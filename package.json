@@ -1,0 +1,64 @@
+{
+  "name": "raml-1-0-parser",
+  "version": "0.1.0",
+  "description": "RAML 1.0 parser",
+  "main": "src/apiFactory.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "underscore": "^1.8.2",
+    "loophole": "^1.0.0",
+    "basarat-text-buffer": "^4.1.5",
+    "esprima": "^2.1.0",
+    "spawn-sync": "^1.0.13",
+    "http-response-object": "^1.0.1",
+    "concat-stream": "^1.5.0",
+    "then-request": "^2.1.1",
+    "lrucache": "^0.2.0",
+    "z-schema": "^3.9.1",
+    "json-schema-compatibility": "^1.0.1",
+    "xmldom": "^0.1.19",
+    "typescript": "1.4.1",
+    "know-your-http-well": "~0.2.0",
+    "media-typer": "^0.3.0",
+    "invariant": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "cheerio": "^0.19.0",
+    "coffee-loader": "^0.7.2",
+    "coffee-script": "^1.9.2",
+    "dot": "^1.0.3",
+    "gaze": "^0.5.1",
+    "glob": "^5.0.15",
+    "gulp": "^3.8.11",
+    "gulp-compass": "^2.0.4",
+    "gulp-connect": "^2.2.0",
+    "gulp-mocha": "^2.0.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "2.7.3",
+    "json-loader": "^0.5.1",
+    "mocha": "^2.2.1",
+    "rimraf": "^2.3.2",
+    "serve": "^1.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raml-org/raml-js-parser-2.git"
+  },
+  "keywords": [
+    "raml1.0",
+    "raml",
+    "typescript",
+    "javascript",
+    "js",
+    "parser"
+  ],
+  "author": "Mulesoft",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raml-org/raml-js-parser-2/issues"
+  },
+  "homepage": "https://github.com/raml-org/raml-js-parser-2#readme"
+}
