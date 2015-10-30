@@ -2,7 +2,7 @@
   "name": "raml-1-0-parser",
   "version": "0.1.0",
   "description": "RAML 1.0 parser",
-  "main": "src/apiFactory.js",
+  "main": "src/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -42,5 +42,21 @@
   "bugs": {
     "url": "https://github.com/raml-org/raml-js-parser-2/issues"
   },
-  "homepage": "https://github.com/raml-org/raml-js-parser-2#readme"
+  "homepage": "https://github.com/raml-org/raml-js-parser-2#readme",
+  "dependencies": {
+    "concat-stream": "^1.5.1",
+    "esprima": "^2.7.0",
+    "http-response-object": "^1.1.0",
+    "json-schema-compatibility": "^1.1.0",
+    "know-your-http-well": "^0.2.0",
+    "loophole": "^1.1.0",
+    "lrucache": "^0.3.0",
+    "media-typer": "^0.3.0",
+    "spawn-sync": "^1.0.14",
+    "then-request": "^2.1.1",
+    "typescript": "^1.6.2",
+    "underscore": "^1.8.3",
+    "xmldom": "^0.1.19",
+    "z-schema": "^3.15.4"
+  }
 }
