@@ -1,3 +1,22 @@
+var path = require("path");
+var fs = require("fs");
+var underscore = require("underscore");
+var loophole = require("loophole");
+var buffer = require("buffer");
+var esprima = require("esprima");
+var child_process = require("child_process");
+var spawn_sync = require("spawn-sync");
+var http_response_object = require("http-response-object");
+var concat_stream = require("concat-stream");
+var then_request = require("then-request");
+var lrucache = require("lrucache");
+var z_schema = require("z-schema");
+var json_schema_compatibility = require("json-schema-compatibility");
+var xmldom = require("xmldom");
+var typescript = require("typescript");
+var know_your_http_well = require("know-your-http-well");
+var media_typer = require("media-typer");
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -31532,7 +31551,7 @@
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = concat-stream;
+	module.exports = concat_stream;
 
 /***/ },
 /* 42 */
