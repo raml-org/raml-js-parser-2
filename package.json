@@ -6,25 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "chai": "^2.2.0",
-    "cheerio": "^0.19.0",
-    "coffee-loader": "^0.7.2",
-    "coffee-script": "^1.9.2",
-    "dot": "^1.0.3",
-    "gaze": "^0.5.1",
-    "glob": "^5.0.15",
-    "gulp": "^3.8.11",
-    "gulp-compass": "^2.0.4",
-    "gulp-connect": "^2.2.0",
-    "gulp-mocha": "^2.0.1",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-typescript": "2.7.3",
-    "json-loader": "^0.5.1",
-    "mocha": "^2.2.1",
-    "rimraf": "^2.3.2",
-    "serve": "^1.4.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raml-org/raml-js-parser-2.git"
