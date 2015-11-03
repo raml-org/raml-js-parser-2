@@ -1,4 +1,8 @@
-# RAML 1.0 JS Parser
+# RAML 1.0 JS Parser <sup>(beta)</sup>
+
+See http://raml.org for more information about RAML.
+
+This parser is at a beta state of development, as part of the API Workbench development cycle (http://apiworkbench.com).
 
 ##Installation
 ```
