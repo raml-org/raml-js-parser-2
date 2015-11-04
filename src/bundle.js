@@ -407,8 +407,8 @@ var media_typer = require("media-typer");
 	    __.prototype = b.prototype;
 	    d.prototype = new __();
 	};
-	var hl = __webpack_require__(18);
-	var core = __webpack_require__(29);
+	var hl = __webpack_require__(17);
+	var core = __webpack_require__(18);
 	var BasicNodeImpl = (function (_super) {
 	    __extends(BasicNodeImpl, _super);
 	    function BasicNodeImpl(node) {
@@ -1320,6 +1320,13 @@ var media_typer = require("media-typer");
 	    /**
 	     *
 	     **/
+	    //xml
+	    DataElementImpl.prototype.xml = function () {
+	        return _super.prototype.element.call(this, 'xml');
+	    };
+	    /**
+	     *
+	     **/
 	    //facets
 	    DataElementImpl.prototype.facets = function () {
 	        return _super.prototype.elements.call(this, 'facets');
@@ -1498,6 +1505,111 @@ var media_typer = require("media-typer");
 	    return DataElementImpl;
 	})(RAMLLanguageElementImpl);
 	exports.DataElementImpl = DataElementImpl;
+	var XMLInfoImpl = (function (_super) {
+	    __extends(XMLInfoImpl, _super);
+	    /**
+	     *
+	     **/
+	    //constructor
+	    function XMLInfoImpl(nodeOrKey) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLInfo(nodeOrKey) : nodeOrKey);
+	        this.nodeOrKey = nodeOrKey;
+	    }
+	    /**
+	     *
+	     **/
+	    //wrapperClassName
+	    XMLInfoImpl.prototype.wrapperClassName = function () {
+	        return "XMLInfoImpl";
+	    };
+	    /**
+	     *
+	     **/
+	    //name
+	    XMLInfoImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     *
+	     **/
+	    //setName
+	    XMLInfoImpl.prototype.setName = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("name").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    /**
+	     *
+	     **/
+	    //namespace
+	    XMLInfoImpl.prototype.namespace = function () {
+	        return _super.prototype.attribute.call(this, 'namespace', this.toString);
+	    };
+	    /**
+	     *
+	     **/
+	    //setNamespace
+	    XMLInfoImpl.prototype.setNamespace = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("namespace").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    /**
+	     *
+	     **/
+	    //prefix
+	    XMLInfoImpl.prototype.prefix = function () {
+	        return _super.prototype.attribute.call(this, 'prefix', this.toString);
+	    };
+	    /**
+	     *
+	     **/
+	    //setPrefix
+	    XMLInfoImpl.prototype.setPrefix = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("prefix").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    /**
+	     *
+	     **/
+	    //attribute
+	    XMLInfoImpl.prototype.attribute = function () {
+	        return _super.prototype.attribute.call(this, 'attribute', this.toBoolean);
+	    };
+	    /**
+	     *
+	     **/
+	    //setAttribute
+	    XMLInfoImpl.prototype.setAttribute = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("attribute").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    /**
+	     *
+	     **/
+	    //wrapped
+	    XMLInfoImpl.prototype.wrapped = function () {
+	        return _super.prototype.attribute.call(this, 'wrapped', this.toBoolean);
+	    };
+	    /**
+	     *
+	     **/
+	    //setWrapped
+	    XMLInfoImpl.prototype.setWrapped = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("wrapped").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    return XMLInfoImpl;
+	})(BasicNodeImpl);
+	exports.XMLInfoImpl = XMLInfoImpl;
 	var ModelLocationImpl = (function () {
 	    /**
 	     *
@@ -1907,13 +2019,6 @@ var media_typer = require("media-typer");
 	            this.highLevel().attrOrCreate("discriminatorValue").setValue("" + param);
 	            return this;
 	        }
-	    };
-	    /**
-	     *
-	     **/
-	    //facets
-	    ObjectFieldImpl.prototype.facets = function () {
-	        return _super.prototype.elements.call(this, 'facets');
 	    };
 	    return ObjectFieldImpl;
 	})(DataElementImpl);
@@ -3689,6 +3794,37 @@ var media_typer = require("media-typer");
 	    SecuritySchemaPartImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
+	    /**
+	     *
+	     **/
+	    //displayName
+	    SecuritySchemaPartImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     *
+	     **/
+	    //setDisplayName
+	    SecuritySchemaPartImpl.prototype.setDisplayName = function (param) {
+	        {
+	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	            return this;
+	        }
+	    };
+	    /**
+	     *
+	     **/
+	    //description
+	    SecuritySchemaPartImpl.prototype.description = function () {
+	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+	    };
+	    /**
+	     *
+	     **/
+	    //annotations
+	    SecuritySchemaPartImpl.prototype.annotations = function () {
+	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
+	    };
 	    return SecuritySchemaPartImpl;
 	})(MethodBaseImpl);
 	exports.SecuritySchemaPartImpl = SecuritySchemaPartImpl;
@@ -4155,6 +4291,12 @@ var media_typer = require("media-typer");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
+	function createXMLInfo(key) {
+	    var universe = hl.universeProvider("RAML10");
+	    var nc = universe.getType("XMLInfo");
+	    var node = nc.createStubNode(null, key);
+	    return node;
+	}
 	function createExampleSpec(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.getType("ExampleSpec");
@@ -4466,13 +4608,13 @@ var media_typer = require("media-typer");
 
 	/// <reference path="../../../typings/tsd.d.ts" />
 	var yaml = __webpack_require__(9);
-	var lowlevel = __webpack_require__(19);
+	var lowlevel = __webpack_require__(20);
 	var path = __webpack_require__(3);
 	var fs = __webpack_require__(11);
 	var parser = __webpack_require__(30);
 	var dumper = __webpack_require__(31);
 	var Error = __webpack_require__(32);
-	var textutil = __webpack_require__(26);
+	var textutil = __webpack_require__(27);
 	var rr = __webpack_require__(33);
 	var MarkupIndentingBuffer = (function () {
 	    function MarkupIndentingBuffer(indent) {
@@ -6925,21 +7067,21 @@ var media_typer = require("media-typer");
 	    d.prototype = new __();
 	};
 	var jsyaml = __webpack_require__(6);
-	var defs = __webpack_require__(17);
-	var hl = __webpack_require__(18);
-	var ll = __webpack_require__(19);
+	var defs = __webpack_require__(19);
+	var hl = __webpack_require__(17);
+	var ll = __webpack_require__(20);
 	var _ = __webpack_require__(13);
 	var yaml = __webpack_require__(9);
-	var proxy = __webpack_require__(20);
-	var typeExpression = __webpack_require__(21);
-	var def = __webpack_require__(17);
-	var builder = __webpack_require__(22);
-	var linter = __webpack_require__(23);
-	var typeBuilder = __webpack_require__(24);
-	var search = __webpack_require__(25);
-	var textutil = __webpack_require__(26);
-	var ModelFactory = __webpack_require__(27);
-	var ovlval = __webpack_require__(28);
+	var proxy = __webpack_require__(21);
+	var typeExpression = __webpack_require__(22);
+	var def = __webpack_require__(19);
+	var builder = __webpack_require__(23);
+	var linter = __webpack_require__(24);
+	var typeBuilder = __webpack_require__(25);
+	var search = __webpack_require__(26);
+	var textutil = __webpack_require__(27);
+	var ModelFactory = __webpack_require__(28);
+	var ovlval = __webpack_require__(29);
 	function qName(x, context) {
 	    var dr = search.declRoot(context);
 	    var nm = x.name();
@@ -7964,7 +8106,7 @@ var media_typer = require("media-typer");
 	                if (x.unit() != r) {
 	                    return false;
 	                }
-	                if (x.value() && x._node.value) {
+	                if (x.value() && x._node && x._node.value) {
 	                    if (x._node.value.doubleQuoted) {
 	                        var ind = (x.value() + "").indexOf(":");
 	                        var nl = (x.value() + "").indexOf("\n");
@@ -8885,9 +9027,9 @@ var media_typer = require("media-typer");
 	    "Swagger2": "./spec-swagger-2.0/swagger.ts"
 	};
 	var jsonDefinitions = {
-	    "RAML10": __webpack_require__(36),
-	    "RAML08": __webpack_require__(37),
-	    "Swagger2": __webpack_require__(38)
+	    "RAML10": __webpack_require__(41),
+	    "RAML08": __webpack_require__(42),
+	    "Swagger2": __webpack_require__(43)
 	};
 	var getUniverse = (function () {
 	    var x = function (key) {
@@ -9623,7 +9765,7 @@ var media_typer = require("media-typer");
 	};
 	/// <reference path="../../typings/tsd.d.ts" />
 	var tsStruct = __webpack_require__(15);
-	var def = __webpack_require__(17);
+	var def = __webpack_require__(19);
 	var _ = __webpack_require__(13);
 	var khttp = __webpack_require__(35);
 	var FieldWrapper = (function () {
@@ -10578,6 +10720,377 @@ var media_typer = require("media-typer");
 /* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/// <reference path="../../typings/tsd.d.ts" />
+	var ds = __webpack_require__(19);
+	(function (NodeKind) {
+	    NodeKind[NodeKind["BASIC"] = 0] = "BASIC";
+	    NodeKind[NodeKind["NODE"] = 1] = "NODE";
+	    NodeKind[NodeKind["ATTRIBUTE"] = 2] = "ATTRIBUTE";
+	})(exports.NodeKind || (exports.NodeKind = {}));
+	var NodeKind = exports.NodeKind;
+	(function (IssueCode) {
+	    IssueCode[IssueCode["UNRESOLVED_REFERENCE"] = 0] = "UNRESOLVED_REFERENCE";
+	    IssueCode[IssueCode["YAML_ERROR"] = 1] = "YAML_ERROR";
+	    IssueCode[IssueCode["UNKNOWN_NODE"] = 2] = "UNKNOWN_NODE";
+	    IssueCode[IssueCode["MISSING_REQUIRED_PROPERTY"] = 3] = "MISSING_REQUIRED_PROPERTY";
+	    IssueCode[IssueCode["PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE"] = 4] = "PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE";
+	    //TODO IMPLEMENT
+	    IssueCode[IssueCode["KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT"] = 5] = "KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT";
+	    IssueCode[IssueCode["UNABLE_TO_RESOLVE_INCLUDE_FILE"] = 6] = "UNABLE_TO_RESOLVE_INCLUDE_FILE";
+	    IssueCode[IssueCode["INVALID_VALUE_SCHEMA"] = 7] = "INVALID_VALUE_SCHEMA";
+	    IssueCode[IssueCode["MISSED_CONTEXT_REQUIREMENT"] = 8] = "MISSED_CONTEXT_REQUIREMENT";
+	    IssueCode[IssueCode["NODE_HAS_VALUE"] = 9] = "NODE_HAS_VALUE";
+	    IssueCode[IssueCode["ONLY_OVERRIDE_ALLOWED"] = 10] = "ONLY_OVERRIDE_ALLOWED";
+	})(exports.IssueCode || (exports.IssueCode = {}));
+	var IssueCode = exports.IssueCode;
+	;
+	var Problem = (function () {
+	    function Problem() {
+	        this.code = 0;
+	    }
+	    Problem.prototype.isOk = function () {
+	        return this.code == 0;
+	    };
+	    return Problem;
+	})();
+	exports.Problem = Problem;
+	function ast2Object(node) {
+	    var result = {};
+	    node.attrs().forEach(function (x) {
+	        result[x.property().name()] = x.value();
+	    });
+	    node.elements().forEach(function (x) {
+	        var m = result[x.property().name()];
+	        if (Array.isArray(m)) {
+	            m.push(ast2Object(x));
+	        }
+	        result[x.property().name()] = x.property().isMultiValue() ? [ast2Object(x)] : ast2Object(x);
+	    });
+	    return result;
+	}
+	exports.ast2Object = ast2Object;
+	exports.universeProvider = __webpack_require__(8);
+	var hlImpl = __webpack_require__(7);
+	exports.getDefinitionSystemType = function (contents, ast) {
+	    var spec = "";
+	    var ptype = "Api";
+	    var num = 0;
+	    var pt = 0;
+	    for (var n = 0; n < contents.length; n++) {
+	        var c = contents.charAt(n);
+	        if (c == '\r' || c == '\n') {
+	            if (spec) {
+	                ptype = contents.substring(pt, n).trim();
+	            }
+	            else {
+	                spec = contents.substring(0, n).trim();
+	            }
+	            break;
+	        }
+	        if (c == ' ') {
+	            num++;
+	            if (!spec && num == 2) {
+	                spec = contents.substring(0, n);
+	                pt = n;
+	            }
+	        }
+	    }
+	    var localUniverse = spec == "#%RAML 1.0" ? new ds.Universe("RAML10", exports.universeProvider("RAML10"), "RAML10") : new ds.Universe("RAML08", exports.universeProvider("RAML08"));
+	    if (ast) {
+	        if (ast.children().filter(function (x) { return x.key() == "swagger"; }).length > 0) {
+	            localUniverse = new ds.Universe("Swagger", exports.universeProvider("Swagger2"), "Swagger");
+	            ptype = "SwaggerObject";
+	        }
+	    }
+	    if (ptype == 'API') {
+	        ptype = "Api";
+	    }
+	    if (ptype == 'NamedExample') {
+	        ptype = "ExampleSpec";
+	    }
+	    if (ptype == 'DataType') {
+	        ptype = "DataElement";
+	    }
+	    if (ptype == 'SecurityScheme') {
+	        ptype = "SecuritySchema";
+	    }
+	    localUniverse.setTopLevel(ptype);
+	    localUniverse.setTypedVersion(spec);
+	    // localUniverse.setDescription(spec);
+	    return { ptype: ptype, localUniverse: localUniverse };
+	};
+	function fromUnit(l) {
+	    if (l == null)
+	        return null;
+	    var contents = l.contents();
+	    var ast = l.ast();
+	    var __ret = exports.getDefinitionSystemType(contents, ast);
+	    var ptype = __ret.ptype;
+	    var localUniverse = __ret.localUniverse;
+	    var apiType = localUniverse.type(ptype);
+	    if (!apiType)
+	        apiType = localUniverse.type("Api");
+	    var api = new hlImpl.ASTNodeImpl(ast, null, apiType, null);
+	    api.setUniverse(localUniverse);
+	    return api;
+	}
+	exports.fromUnit = fromUnit;
+	function globalId(h) {
+	    if (h.parent()) {
+	        return globalId(h.parent()) + "/" + h.localId();
+	    }
+	}
+	exports.globalId = globalId;
+	function nodeAtPosition(h, position) {
+	    var ch = h.children();
+	    var len = ch.length;
+	    var res = null;
+	    for (var num = 0; num < len; num++) {
+	        var cn = ch[num];
+	        if (cn.lowLevel().start() > position) {
+	            break;
+	        }
+	        if (cn.lowLevel().end() < position) {
+	            continue;
+	        }
+	        var nm = nodeAtPosition(cn, position);
+	        if (nm != null) {
+	            return nm;
+	        }
+	        return cn;
+	    }
+	}
+	exports.nodeAtPosition = nodeAtPosition;
+	/**
+	 * Shortcut for checking node type
+	 * @param node
+	 */
+	function kindBasic(node) {
+	    return node.getKind() == 0 /* BASIC */;
+	}
+	exports.kindBasic = kindBasic;
+	/**
+	 * Shortcut for checking node type
+	 * @param node
+	 */
+	function kindAttribute(node) {
+	    return node.getKind() == 2 /* ATTRIBUTE */;
+	}
+	exports.kindAttribute = kindAttribute;
+	/**
+	 * Shortcut for checking node type
+	 * @param node
+	 */
+	function kindNode(node) {
+	    return node.getKind() == 1 /* NODE */;
+	}
+	exports.kindNode = kindNode;
+	function isResourceNode(node) {
+	    return kindNode(node) && node.definition && node.definition().name() == "Resource";
+	}
+	exports.isResourceNode = isResourceNode;
+	function isResourceWithSignature(node) {
+	    if (!isResourceNode(node)) {
+	        return false;
+	    }
+	    var hNode = node;
+	    var uriAttribute = hNode.attr("relativeUri");
+	    if (uriAttribute && uriAttribute.value() && typeof uriAttribute.value() == "string" && uriAttribute.value().indexOf(".") >= 0) {
+	        var signature = hNode.attrValue("signature");
+	        if (!signature)
+	            return false;
+	        if (typeof signature == "string" && signature.length == 0)
+	            return false;
+	        return true;
+	    }
+	    return false;
+	}
+	exports.isResourceWithSignature = isResourceWithSignature;
+	function isRAML10(node) {
+	    var text = node.lowLevel().unit().contents();
+	    return text.indexOf("#%RAML 1.0") >= 0;
+	}
+	exports.isRAML10 = isRAML10;
+	function isRAML08(node) {
+	    var text = node.lowLevel().unit().contents();
+	    return text.indexOf("#%RAML 0.8") >= 0;
+	}
+	exports.isRAML08 = isRAML08;
+	/**
+	 * Shortcut for checking node type and getting it as attribute
+	 * Returns null for non-attributes
+	 * @param node
+	 */
+	function asAttribute(node) {
+	    if (!node.getKind) {
+	        return null;
+	    }
+	    if (node.getKind() != 2 /* ATTRIBUTE */) {
+	        return null;
+	    }
+	    return node;
+	}
+	exports.asAttribute = asAttribute;
+	/**
+	 * Shortcut for checking node type
+	 * @param node
+	 */
+	function asNode(node) {
+	    if (!node.getKind) {
+	        return null;
+	    }
+	    if (node.getKind() != 1 /* NODE */) {
+	        return null;
+	    }
+	    return node;
+	}
+	exports.asNode = asNode;
+	/**
+	 * Checks if specified node is library
+	 * @param node
+	 * @returns {IHighLevelNode|boolean}
+	 */
+	function isLibrary(node) {
+	    return asNode(node) && asNode(node).definition().name() == "Library";
+	}
+	exports.isLibrary = isLibrary;
+	/**
+	 * Check is specified node is library and returns library name. Returns null otherwise.
+	 * @param node
+	 * @returns {any}
+	 */
+	function getLibraryName(node) {
+	    if (!isLibrary(node)) {
+	        return null;
+	    }
+	    return asNode(node).attrValue("name");
+	}
+	exports.getLibraryName = getLibraryName;
+	//# sourceMappingURL=highLevelAST.js.map
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var hlImpl = __webpack_require__(7);
+	var jsyaml = __webpack_require__(6);
+	var BasicSuperNodeImpl = (function () {
+	    function BasicSuperNodeImpl(_node) {
+	        this._node = _node;
+	        _node.setWrapperNode(this);
+	    }
+	    BasicSuperNodeImpl.prototype.wrapperClassName = function () {
+	        return 'BasicSuperNodeImpl';
+	    };
+	    BasicSuperNodeImpl.prototype.parent = function () {
+	        var parent = this._node.parent();
+	        return parent ? parent.wrapperNode() : null;
+	    };
+	    BasicSuperNodeImpl.prototype.highLevel = function () {
+	        return this._node;
+	    };
+	    BasicSuperNodeImpl.prototype.attributes = function (name, constr) {
+	        var attrs = this._node.attributes(name);
+	        if (!attrs) {
+	            return null;
+	        }
+	        if (constr) {
+	            return attrs.map(function (x) { return constr(x); });
+	        }
+	        else {
+	            return attrs.map(function (x) { return x.value(); });
+	        }
+	    };
+	    BasicSuperNodeImpl.prototype.attribute = function (name, constr) {
+	        var attr = this._node.attr(name);
+	        if (!attr) {
+	            return null;
+	        }
+	        if (constr) {
+	            return constr(attr);
+	        }
+	        else {
+	            return attr.value();
+	        }
+	    };
+	    BasicSuperNodeImpl.prototype.elements = function (name) {
+	        var elements = this._node.elementsOfKind(name);
+	        if (!elements) {
+	            return null;
+	        }
+	        return elements.map(function (x) { return x.wrapperNode(); });
+	    };
+	    BasicSuperNodeImpl.prototype.element = function (name) {
+	        var element = this._node.element(name);
+	        if (!element) {
+	            return null;
+	        }
+	        return element.wrapperNode();
+	    };
+	    BasicSuperNodeImpl.prototype.add = function (node) {
+	        this.highLevel().add(node.highLevel());
+	    };
+	    BasicSuperNodeImpl.prototype.addToProp = function (node, prop) {
+	        var hl = node.highLevel();
+	        var pr = this.highLevel().definition().property(prop);
+	        hl._prop = pr;
+	        this.highLevel().add(hl);
+	    };
+	    BasicSuperNodeImpl.prototype.remove = function (node) {
+	        this.highLevel().remove(node.highLevel());
+	    };
+	    BasicSuperNodeImpl.prototype.dump = function () {
+	        return this.highLevel().dump("yaml");
+	    };
+	    BasicSuperNodeImpl.prototype.toString = function (attr) {
+	        var obj = attr.value();
+	        return obj != null ? obj.toString() : obj;
+	    };
+	    BasicSuperNodeImpl.prototype.toBoolean = function (attr) {
+	        var obj = attr.value();
+	        return obj != null ? obj.toString() == 'true' : obj;
+	    };
+	    BasicSuperNodeImpl.prototype.toNumber = function (attr) {
+	        var obj = attr.value();
+	        if (!obj) {
+	            return obj;
+	        }
+	        try {
+	            var nValue = parseFloat(obj.toString());
+	            return nValue;
+	        }
+	        catch (e) {
+	        }
+	        return Number.MAX_VALUE;
+	    };
+	    BasicSuperNodeImpl.prototype.errors = function () {
+	        var result = [].concat(this._node.errors());
+	        this._node.attrs().forEach(function (x) { return result = result.concat(x.errors()); });
+	        return result;
+	    };
+	    return BasicSuperNodeImpl;
+	})();
+	exports.BasicSuperNodeImpl = BasicSuperNodeImpl;
+	function toStructuredValue(node) {
+	    var value = node.value();
+	    if (typeof value === 'string') {
+	        var mockNode = jsyaml.createNode(value.toString());
+	        mockNode._actualNode().startPosition = node.lowLevel().valueStart();
+	        mockNode._actualNode().endPosition = node.lowLevel().valueEnd();
+	        var stv = new hlImpl.StructuredValue(mockNode, node.parent(), node.property());
+	        return stv;
+	    }
+	    else {
+	        return value;
+	    }
+	}
+	exports.toStructuredValue = toStructuredValue;
+	//# sourceMappingURL=parserCore.js.map
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __extends = this.__extends || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
@@ -10587,12 +11100,12 @@ var media_typer = require("media-typer");
 	var _ = __webpack_require__(13);
 	var hlimpl = __webpack_require__(7);
 	var jsyaml = __webpack_require__(6);
-	var su = __webpack_require__(46);
-	var selector = __webpack_require__(47);
-	var typeBuilder = __webpack_require__(24);
-	var ramlexp = __webpack_require__(48);
-	var defs = __webpack_require__(17);
-	var search = __webpack_require__(25);
+	var su = __webpack_require__(47);
+	var selector = __webpack_require__(52);
+	var typeBuilder = __webpack_require__(25);
+	var ramlexp = __webpack_require__(53);
+	var defs = __webpack_require__(19);
+	var search = __webpack_require__(26);
 	var Annotation = (function () {
 	    function Annotation(_name) {
 	        this._name = _name;
@@ -12603,259 +13116,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=definitionSystem.js.map
 
 /***/ },
-/* 18 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/tsd.d.ts" />
-	var ds = __webpack_require__(17);
-	(function (NodeKind) {
-	    NodeKind[NodeKind["BASIC"] = 0] = "BASIC";
-	    NodeKind[NodeKind["NODE"] = 1] = "NODE";
-	    NodeKind[NodeKind["ATTRIBUTE"] = 2] = "ATTRIBUTE";
-	})(exports.NodeKind || (exports.NodeKind = {}));
-	var NodeKind = exports.NodeKind;
-	(function (IssueCode) {
-	    IssueCode[IssueCode["UNRESOLVED_REFERENCE"] = 0] = "UNRESOLVED_REFERENCE";
-	    IssueCode[IssueCode["YAML_ERROR"] = 1] = "YAML_ERROR";
-	    IssueCode[IssueCode["UNKNOWN_NODE"] = 2] = "UNKNOWN_NODE";
-	    IssueCode[IssueCode["MISSING_REQUIRED_PROPERTY"] = 3] = "MISSING_REQUIRED_PROPERTY";
-	    IssueCode[IssueCode["PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE"] = 4] = "PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE";
-	    //TODO IMPLEMENT
-	    IssueCode[IssueCode["KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT"] = 5] = "KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT";
-	    IssueCode[IssueCode["UNABLE_TO_RESOLVE_INCLUDE_FILE"] = 6] = "UNABLE_TO_RESOLVE_INCLUDE_FILE";
-	    IssueCode[IssueCode["INVALID_VALUE_SCHEMA"] = 7] = "INVALID_VALUE_SCHEMA";
-	    IssueCode[IssueCode["MISSED_CONTEXT_REQUIREMENT"] = 8] = "MISSED_CONTEXT_REQUIREMENT";
-	    IssueCode[IssueCode["NODE_HAS_VALUE"] = 9] = "NODE_HAS_VALUE";
-	    IssueCode[IssueCode["ONLY_OVERRIDE_ALLOWED"] = 10] = "ONLY_OVERRIDE_ALLOWED";
-	})(exports.IssueCode || (exports.IssueCode = {}));
-	var IssueCode = exports.IssueCode;
-	;
-	var Problem = (function () {
-	    function Problem() {
-	        this.code = 0;
-	    }
-	    Problem.prototype.isOk = function () {
-	        return this.code == 0;
-	    };
-	    return Problem;
-	})();
-	exports.Problem = Problem;
-	function ast2Object(node) {
-	    var result = {};
-	    node.attrs().forEach(function (x) {
-	        result[x.property().name()] = x.value();
-	    });
-	    node.elements().forEach(function (x) {
-	        var m = result[x.property().name()];
-	        if (Array.isArray(m)) {
-	            m.push(ast2Object(x));
-	        }
-	        result[x.property().name()] = x.property().isMultiValue() ? [ast2Object(x)] : ast2Object(x);
-	    });
-	    return result;
-	}
-	exports.ast2Object = ast2Object;
-	exports.universeProvider = __webpack_require__(8);
-	var hlImpl = __webpack_require__(7);
-	exports.getDefinitionSystemType = function (contents, ast) {
-	    var spec = "";
-	    var ptype = "Api";
-	    var num = 0;
-	    var pt = 0;
-	    for (var n = 0; n < contents.length; n++) {
-	        var c = contents.charAt(n);
-	        if (c == '\r' || c == '\n') {
-	            if (spec) {
-	                ptype = contents.substring(pt, n).trim();
-	            }
-	            else {
-	                spec = contents.substring(0, n).trim();
-	            }
-	            break;
-	        }
-	        if (c == ' ') {
-	            num++;
-	            if (!spec && num == 2) {
-	                spec = contents.substring(0, n);
-	                pt = n;
-	            }
-	        }
-	    }
-	    var localUniverse = spec == "#%RAML 1.0" ? new ds.Universe("RAML10", exports.universeProvider("RAML10"), "RAML10") : new ds.Universe("RAML08", exports.universeProvider("RAML08"));
-	    if (ast) {
-	        if (ast.children().filter(function (x) { return x.key() == "swagger"; }).length > 0) {
-	            localUniverse = new ds.Universe("Swagger", exports.universeProvider("Swagger2"), "Swagger");
-	            ptype = "SwaggerObject";
-	        }
-	    }
-	    if (ptype == 'API') {
-	        ptype = "Api";
-	    }
-	    if (ptype == 'NamedExample') {
-	        ptype = "ExampleSpec";
-	    }
-	    if (ptype == 'DataType') {
-	        ptype = "DataElement";
-	    }
-	    if (ptype == 'SecurityScheme') {
-	        ptype = "SecuritySchema";
-	    }
-	    localUniverse.setTopLevel(ptype);
-	    localUniverse.setTypedVersion(spec);
-	    // localUniverse.setDescription(spec);
-	    return { ptype: ptype, localUniverse: localUniverse };
-	};
-	function fromUnit(l) {
-	    if (l == null)
-	        return null;
-	    var contents = l.contents();
-	    var ast = l.ast();
-	    var __ret = exports.getDefinitionSystemType(contents, ast);
-	    var ptype = __ret.ptype;
-	    var localUniverse = __ret.localUniverse;
-	    var apiType = localUniverse.type(ptype);
-	    if (!apiType)
-	        apiType = localUniverse.type("Api");
-	    var api = new hlImpl.ASTNodeImpl(ast, null, apiType, null);
-	    api.setUniverse(localUniverse);
-	    return api;
-	}
-	exports.fromUnit = fromUnit;
-	function globalId(h) {
-	    if (h.parent()) {
-	        return globalId(h.parent()) + "/" + h.localId();
-	    }
-	}
-	exports.globalId = globalId;
-	function nodeAtPosition(h, position) {
-	    var ch = h.children();
-	    var len = ch.length;
-	    var res = null;
-	    for (var num = 0; num < len; num++) {
-	        var cn = ch[num];
-	        if (cn.lowLevel().start() > position) {
-	            break;
-	        }
-	        if (cn.lowLevel().end() < position) {
-	            continue;
-	        }
-	        var nm = nodeAtPosition(cn, position);
-	        if (nm != null) {
-	            return nm;
-	        }
-	        return cn;
-	    }
-	}
-	exports.nodeAtPosition = nodeAtPosition;
-	/**
-	 * Shortcut for checking node type
-	 * @param node
-	 */
-	function kindBasic(node) {
-	    return node.getKind() == 0 /* BASIC */;
-	}
-	exports.kindBasic = kindBasic;
-	/**
-	 * Shortcut for checking node type
-	 * @param node
-	 */
-	function kindAttribute(node) {
-	    return node.getKind() == 2 /* ATTRIBUTE */;
-	}
-	exports.kindAttribute = kindAttribute;
-	/**
-	 * Shortcut for checking node type
-	 * @param node
-	 */
-	function kindNode(node) {
-	    return node.getKind() == 1 /* NODE */;
-	}
-	exports.kindNode = kindNode;
-	function isResourceNode(node) {
-	    return kindNode(node) && node.definition && node.definition().name() == "Resource";
-	}
-	exports.isResourceNode = isResourceNode;
-	function isResourceWithSignature(node) {
-	    if (!isResourceNode(node)) {
-	        return false;
-	    }
-	    var hNode = node;
-	    var uriAttribute = hNode.attr("relativeUri");
-	    if (uriAttribute && uriAttribute.value() && typeof uriAttribute.value() == "string" && uriAttribute.value().indexOf(".") >= 0) {
-	        var signature = hNode.attrValue("signature");
-	        if (!signature)
-	            return false;
-	        if (typeof signature == "string" && signature.length == 0)
-	            return false;
-	        return true;
-	    }
-	    return false;
-	}
-	exports.isResourceWithSignature = isResourceWithSignature;
-	function isRAML10(node) {
-	    var text = node.lowLevel().unit().contents();
-	    return text.indexOf("#%RAML 1.0") >= 0;
-	}
-	exports.isRAML10 = isRAML10;
-	function isRAML08(node) {
-	    var text = node.lowLevel().unit().contents();
-	    return text.indexOf("#%RAML 0.8") >= 0;
-	}
-	exports.isRAML08 = isRAML08;
-	/**
-	 * Shortcut for checking node type and getting it as attribute
-	 * Returns null for non-attributes
-	 * @param node
-	 */
-	function asAttribute(node) {
-	    if (!node.getKind) {
-	        return null;
-	    }
-	    if (node.getKind() != 2 /* ATTRIBUTE */) {
-	        return null;
-	    }
-	    return node;
-	}
-	exports.asAttribute = asAttribute;
-	/**
-	 * Shortcut for checking node type
-	 * @param node
-	 */
-	function asNode(node) {
-	    if (!node.getKind) {
-	        return null;
-	    }
-	    if (node.getKind() != 1 /* NODE */) {
-	        return null;
-	    }
-	    return node;
-	}
-	exports.asNode = asNode;
-	/**
-	 * Checks if specified node is library
-	 * @param node
-	 * @returns {IHighLevelNode|boolean}
-	 */
-	function isLibrary(node) {
-	    return asNode(node) && asNode(node).definition().name() == "Library";
-	}
-	exports.isLibrary = isLibrary;
-	/**
-	 * Check is specified node is library and returns library name. Returns null otherwise.
-	 * @param node
-	 * @returns {any}
-	 */
-	function getLibraryName(node) {
-	    if (!isLibrary(node)) {
-	        return null;
-	    }
-	    return asNode(node).attrValue("name");
-	}
-	exports.getLibraryName = getLibraryName;
-	//# sourceMappingURL=highLevelAST.js.map
-
-/***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
@@ -12936,7 +13197,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=lowLevelAST.js.map
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -13023,7 +13284,7 @@ var media_typer = require("media-typer");
 	    };
 	    //TODO
 	    LowLevelProxyNode.prototype.dumpToObject = function () {
-	        return null;
+	        return json.serialize(this);
 	    };
 	    LowLevelProxyNode.prototype.keyStart = function () {
 	        return this._original.keyStart();
@@ -13272,17 +13533,17 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=LowLevelASTProxy.js.map
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var defs = __webpack_require__(17);
-	var hl = __webpack_require__(18);
+	var defs = __webpack_require__(19);
+	var hl = __webpack_require__(17);
 	var _ = __webpack_require__(13);
-	var typeExpression = __webpack_require__(49);
-	var search = __webpack_require__(25);
-	var linter = __webpack_require__(23);
-	var schema = __webpack_require__(46);
+	var typeExpression = __webpack_require__(46);
+	var search = __webpack_require__(26);
+	var linter = __webpack_require__(24);
+	var schema = __webpack_require__(47);
 	function validate(str, node, cb) {
 	    var x = str.trim();
 	    if (x.length > 0) {
@@ -13619,17 +13880,17 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=typeExpressions.js.map
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var defs = __webpack_require__(17);
+	var defs = __webpack_require__(19);
 	var _ = __webpack_require__(13);
 	var yaml = __webpack_require__(9);
-	var typeExpression = __webpack_require__(21);
-	var def = __webpack_require__(17);
+	var typeExpression = __webpack_require__(22);
+	var def = __webpack_require__(19);
 	var hlimpl = __webpack_require__(7);
-	var search = __webpack_require__(25);
+	var search = __webpack_require__(26);
 	var KeyMatcher = (function () {
 	    function KeyMatcher(_props) {
 	        this._props = _props;
@@ -14106,23 +14367,23 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=builder.js.map
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
 	var jsyaml = __webpack_require__(6);
-	var defs = __webpack_require__(17);
-	var hl = __webpack_require__(18);
+	var defs = __webpack_require__(19);
+	var hl = __webpack_require__(17);
 	var _ = __webpack_require__(13);
-	var typeExpression = __webpack_require__(21);
-	var def = __webpack_require__(17);
-	var ramlSignature = __webpack_require__(50);
+	var typeExpression = __webpack_require__(22);
+	var def = __webpack_require__(19);
+	var ramlSignature = __webpack_require__(48);
 	var hlimpl = __webpack_require__(7);
-	var su = __webpack_require__(46);
+	var su = __webpack_require__(47);
 	var path = __webpack_require__(3);
 	var fs = __webpack_require__(11);
 	var mediaTypeParser = __webpack_require__(12);
-	var xmlutil = __webpack_require__(51);
+	var xmlutil = __webpack_require__(49);
 	var LinterSettings = (function () {
 	    function LinterSettings() {
 	        this.validateNotStrictExamples = true;
@@ -15236,17 +15497,17 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=linter.js.map
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var defs = __webpack_require__(17);
+	var defs = __webpack_require__(19);
 	var ts2Def = __webpack_require__(16);
 	var _ = __webpack_require__(13);
-	var selector = __webpack_require__(47);
-	var typeExpression = __webpack_require__(21);
+	var selector = __webpack_require__(52);
+	var typeExpression = __webpack_require__(22);
 	var hlimpl = __webpack_require__(7);
-	var linter = __webpack_require__(23);
+	var linter = __webpack_require__(24);
 	function templateFields(node, d) {
 	    var u = node.root().definition().universe();
 	    node.children().forEach(function (x) { return templateFields(x, d); });
@@ -15759,17 +16020,17 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=typeBuilder.js.map
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var defs = __webpack_require__(17);
-	var hl = __webpack_require__(18);
+	var defs = __webpack_require__(19);
+	var hl = __webpack_require__(17);
 	var _ = __webpack_require__(13);
-	var typeExpression = __webpack_require__(21);
-	var ramlSignature = __webpack_require__(50);
+	var typeExpression = __webpack_require__(22);
+	var ramlSignature = __webpack_require__(48);
 	var hlimpl = __webpack_require__(7);
-	var typeBuilder = __webpack_require__(24);
+	var typeBuilder = __webpack_require__(25);
 	//FIXME CORRECTLY STRUCTURE IT
 	function resolveRamlPointer(point, path) {
 	    var components = path.split(".");
@@ -16542,7 +16803,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=search.js.map
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
@@ -16842,11 +17103,11 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=textutil.js.map
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var factory10 = __webpack_require__(52);
-	var factory08 = __webpack_require__(53);
+	var factory10 = __webpack_require__(50);
+	var factory08 = __webpack_require__(51);
 	function buildWrapperNode(node) {
 	    var ramlVersion = node.definition().universe().version();
 	    if (ramlVersion == 'RAML10') {
@@ -16861,13 +17122,13 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=modelFactory.js.map
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var hl = __webpack_require__(18);
+	var hl = __webpack_require__(17);
 	var _ = __webpack_require__(13);
-	var linter = __webpack_require__(23);
+	var linter = __webpack_require__(24);
 	var wrapperHelper = __webpack_require__(54);
 	function escapeUri(u) {
 	    var ss = "";
@@ -17000,139 +17261,25 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=overloadingValidator.js.map
 
 /***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var hlImpl = __webpack_require__(7);
-	var jsyaml = __webpack_require__(6);
-	var BasicSuperNodeImpl = (function () {
-	    function BasicSuperNodeImpl(_node) {
-	        this._node = _node;
-	        _node.setWrapperNode(this);
-	    }
-	    BasicSuperNodeImpl.prototype.wrapperClassName = function () {
-	        return 'BasicSuperNodeImpl';
-	    };
-	    BasicSuperNodeImpl.prototype.parent = function () {
-	        var parent = this._node.parent();
-	        return parent ? parent.wrapperNode() : null;
-	    };
-	    BasicSuperNodeImpl.prototype.highLevel = function () {
-	        return this._node;
-	    };
-	    BasicSuperNodeImpl.prototype.attributes = function (name, constr) {
-	        var attrs = this._node.attributes(name);
-	        if (!attrs) {
-	            return null;
-	        }
-	        if (constr) {
-	            return attrs.map(function (x) { return constr(x); });
-	        }
-	        else {
-	            return attrs.map(function (x) { return x.value(); });
-	        }
-	    };
-	    BasicSuperNodeImpl.prototype.attribute = function (name, constr) {
-	        var attr = this._node.attr(name);
-	        if (!attr) {
-	            return null;
-	        }
-	        if (constr) {
-	            return constr(attr);
-	        }
-	        else {
-	            return attr.value();
-	        }
-	    };
-	    BasicSuperNodeImpl.prototype.elements = function (name) {
-	        var elements = this._node.elementsOfKind(name);
-	        if (!elements) {
-	            return null;
-	        }
-	        return elements.map(function (x) { return x.wrapperNode(); });
-	    };
-	    BasicSuperNodeImpl.prototype.element = function (name) {
-	        var element = this._node.element(name);
-	        if (!element) {
-	            return null;
-	        }
-	        return element.wrapperNode();
-	    };
-	    BasicSuperNodeImpl.prototype.add = function (node) {
-	        this.highLevel().add(node.highLevel());
-	    };
-	    BasicSuperNodeImpl.prototype.addToProp = function (node, prop) {
-	        var hl = node.highLevel();
-	        var pr = this.highLevel().definition().property(prop);
-	        hl._prop = pr;
-	        this.highLevel().add(hl);
-	    };
-	    BasicSuperNodeImpl.prototype.remove = function (node) {
-	        this.highLevel().remove(node.highLevel());
-	    };
-	    BasicSuperNodeImpl.prototype.dump = function () {
-	        return this.highLevel().dump("yaml");
-	    };
-	    BasicSuperNodeImpl.prototype.toString = function (attr) {
-	        var obj = attr.value();
-	        return obj != null ? obj.toString() : obj;
-	    };
-	    BasicSuperNodeImpl.prototype.toBoolean = function (attr) {
-	        var obj = attr.value();
-	        return obj != null ? obj.toString() == 'true' : obj;
-	    };
-	    BasicSuperNodeImpl.prototype.toNumber = function (attr) {
-	        var obj = attr.value();
-	        if (!obj) {
-	            return obj;
-	        }
-	        try {
-	            var nValue = parseFloat(obj.toString());
-	            return nValue;
-	        }
-	        catch (e) {
-	        }
-	        return Number.MAX_VALUE;
-	    };
-	    return BasicSuperNodeImpl;
-	})();
-	exports.BasicSuperNodeImpl = BasicSuperNodeImpl;
-	function toStructuredValue(node) {
-	    var value = node.value();
-	    if (typeof value === 'string') {
-	        var mockNode = jsyaml.createNode(value.toString());
-	        mockNode._actualNode().startPosition = node.lowLevel().valueStart();
-	        mockNode._actualNode().endPosition = node.lowLevel().valueEnd();
-	        var stv = new hlImpl.StructuredValue(mockNode, node.parent(), node.property());
-	        return stv;
-	    }
-	    else {
-	        return value;
-	    }
-	}
-	exports.toStructuredValue = toStructuredValue;
-	//# sourceMappingURL=parserCore.js.map
-
-/***/ },
 /* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
 	'use strict';
-	var loader = __webpack_require__(59);
+	var loader = __webpack_require__(55);
 	var dumper = __webpack_require__(31);
 	function deprecated(name) {
 	    return function () {
 	        throw new Error('Function ' + name + ' is deprecated and cannot be used.');
 	    };
 	}
-	exports.Type = __webpack_require__(60);
-	exports.Schema = __webpack_require__(61);
-	exports.FAILSAFE_SCHEMA = __webpack_require__(62);
-	exports.JSON_SCHEMA = __webpack_require__(63);
-	exports.CORE_SCHEMA = __webpack_require__(64);
-	exports.DEFAULT_SAFE_SCHEMA = __webpack_require__(57);
-	exports.DEFAULT_FULL_SCHEMA = __webpack_require__(56);
+	exports.Type = __webpack_require__(56);
+	exports.Schema = __webpack_require__(57);
+	exports.FAILSAFE_SCHEMA = __webpack_require__(58);
+	exports.JSON_SCHEMA = __webpack_require__(59);
+	exports.CORE_SCHEMA = __webpack_require__(60);
+	exports.DEFAULT_SAFE_SCHEMA = __webpack_require__(61);
+	exports.DEFAULT_FULL_SCHEMA = __webpack_require__(62);
 	exports.load = loader.load;
 	exports.loadAll = loader.loadAll;
 	exports.safeLoad = loader.safeLoad;
@@ -17141,9 +17288,9 @@ var media_typer = require("media-typer");
 	exports.safeDump = dumper.safeDump;
 	exports.YAMLException = __webpack_require__(32);
 	// Deprecared schema names from JS-YAML 2.0.x
-	exports.MINIMAL_SCHEMA = __webpack_require__(62);
-	exports.SAFE_SCHEMA = __webpack_require__(57);
-	exports.DEFAULT_SCHEMA = __webpack_require__(56);
+	exports.MINIMAL_SCHEMA = __webpack_require__(58);
+	exports.SAFE_SCHEMA = __webpack_require__(61);
+	exports.DEFAULT_SCHEMA = __webpack_require__(62);
 	// Deprecated functions from JS-YAML 1.x.x
 	exports.scan = deprecated('scan');
 	exports.parse = deprecated('parse');
@@ -17158,10 +17305,10 @@ var media_typer = require("media-typer");
 	/// <reference path="../../../../typings/tsd.d.ts" />
 	'use strict';
 	/*eslint-disable no-use-before-define*/
-	var common = __webpack_require__(55);
+	var common = __webpack_require__(63);
 	var YAMLException = __webpack_require__(32);
-	var DEFAULT_FULL_SCHEMA = __webpack_require__(56);
-	var DEFAULT_SAFE_SCHEMA = __webpack_require__(57);
+	var DEFAULT_FULL_SCHEMA = __webpack_require__(62);
+	var DEFAULT_SAFE_SCHEMA = __webpack_require__(61);
 	var _toString = Object.prototype.toString;
 	var _hasOwnProperty = Object.prototype.hasOwnProperty;
 	var CHAR_TAB = 0x09; /* Tab */
@@ -17846,11 +17993,11 @@ var media_typer = require("media-typer");
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {/// <reference path="../../../typings/tsd.d.ts" />
-	var spawnSync = __webpack_require__(39).spawnSync || __webpack_require__(40);
+	var spawnSync = __webpack_require__(36).spawnSync || __webpack_require__(37);
 	var HttpResponse = __webpack_require__(66);
-	__webpack_require__(41);
-	__webpack_require__(42);
-	var lru = __webpack_require__(43);
+	__webpack_require__(38);
+	__webpack_require__(39);
+	var lru = __webpack_require__(40);
 	var globalCache = lru(50);
 	//Function('', fs.readFileSync(require.resolve('./lib/worker.js'), 'utf8'));
 	function doRequest(method, url, options) {
@@ -17859,7 +18006,7 @@ var media_typer = require("media-typer");
 	        url: url,
 	        options: options
 	    });
-	    var res = spawnSync('/usr/local/bin/node', [/*require.resolve*/(58)], { input: req });
+	    var res = spawnSync('/usr/local/bin/node', [/*require.resolve*/(64)], { input: req });
 	    if (!res) {
 	        return null;
 	    }
@@ -17916,6 +18063,36 @@ var media_typer = require("media-typer");
 
 /***/ },
 /* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = child_process;
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = spawn_sync;
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = concat_stream;
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = then_request;
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = lrucache;
+
+/***/ },
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = [
@@ -20760,6 +20937,36 @@ var media_typer = require("media-typer");
 								"name": "MetaModel.hide",
 								"arguments": []
 							}
+						],
+						"displayName": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"An alternate, human-friendly name for the security scheme part"
+								]
+							}
+						],
+						"description": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"A longer, human-friendly description of the security scheme part"
+								]
+							},
+							{
+								"name": "MetaModel.valueDescription",
+								"arguments": [
+									"Markdown string"
+								]
+							}
+						],
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Annotations to be applied to this security scheme part. Annotations are any property whose key begins with \"(\" and ends with \")\" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]]."
+								]
+							}
 						]
 					}
 				},
@@ -21465,6 +21672,10 @@ var media_typer = require("media-typer");
 									"arguments": [
 										""
 									]
+								},
+								{
+									"name": "MetaModel.hide",
+									"arguments": []
 								}
 							],
 							"valueConstraint": null,
@@ -21559,7 +21770,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.description",
 									"arguments": [
-										"The describedBy property MAY be used to document  response codes, HTTP headers or provide custom documentation.\nAs a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required properties (such as headers, URI parameters, and so on).\nThe only required item in the security scheme is the description, which completes the security scheme definition for an API."
+										"A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.\nIncluding the security scheme description completes an API documentation."
 									]
 								}
 							],
@@ -22483,7 +22694,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.valueRestriction",
 									"arguments": [
-										"_.find(relativeUri.templateArguments(),$value.name)",
+										"_.find(<br>&nbsp;&nbsp;relativeUri.templateArguments(),<br>&nbsp;&nbsp;$value.name)",
 										"Uri parameter names should match to template names in relative uri"
 									]
 								},
@@ -23787,7 +23998,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.valueDescription",
 									"arguments": [
-										"One or more names from the list of Target Names in the [[raml-10-spec-target-locations-table|Target Locations table]]  below. "
+										"An array of names (or a single name) from the list of Target Names in the [[raml-10-spec-target-locations-table|Target Locations table]]  below. "
 									]
 								}
 							],
@@ -24306,6 +24517,20 @@ var media_typer = require("media-typer");
 							"optional": false
 						},
 						{
+							"name": "xml",
+							"type": {
+								"typeName": "XMLInfo",
+								"nameSpace": "",
+								"basicName": "XMLInfo",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "c:\\GIT-repos\\raml-labs\\src\\raml1\\spec-1.0\\datamodel.ts"
+							},
+							"annotations": [],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
 							"name": "facets",
 							"type": {
 								"base": {
@@ -24736,7 +24961,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.valueDescription",
 									"arguments": [
-										"`Property[]`"
+										"An object whose properties map facets names to their types."
 									]
 								}
 							],
@@ -24768,8 +24993,98 @@ var media_typer = require("media-typer");
 									"arguments": [
 										"Enumeration of possible values for this primitive type. Cannot be used with the file type."
 									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Array containing string representations of possible values, or a single string if there is only one possible value."
+									]
 								}
 							],
+							"valueConstraint": null,
+							"optional": false
+						}
+					],
+					"isInterface": false,
+					"annotations": [],
+					"extends": [],
+					"moduleName": null,
+					"annotationOverridings": {}
+				},
+				{
+					"name": "XMLInfo",
+					"methods": [],
+					"typeParameters": [],
+					"typeParameterConstraint": [],
+					"implements": [],
+					"fields": [
+						{
+							"name": "name",
+							"type": {
+								"typeName": "string",
+								"nameSpace": "",
+								"basicName": "string",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": null
+							},
+							"annotations": [],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "namespace",
+							"type": {
+								"typeName": "string",
+								"nameSpace": "",
+								"basicName": "string",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": null
+							},
+							"annotations": [],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "prefix",
+							"type": {
+								"typeName": "string",
+								"nameSpace": "",
+								"basicName": "string",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": null
+							},
+							"annotations": [],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "attribute",
+							"type": {
+								"typeName": "boolean",
+								"nameSpace": "",
+								"basicName": "boolean",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": null
+							},
+							"annotations": [],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "wrapped",
+							"type": {
+								"typeName": "boolean",
+								"nameSpace": "",
+								"basicName": "boolean",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": null
+							},
+							"annotations": [],
 							"valueConstraint": null,
 							"optional": false
 						}
@@ -24834,7 +25149,20 @@ var media_typer = require("media-typer");
 								"typeArguments": [],
 								"modulePath": "c:\\GIT-repos\\raml-labs\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
-							"annotations": [],
+							"annotations": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Array component type."
+									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Inline type declaration or type name."
+									]
+								}
+							],
 							"valueConstraint": null,
 							"optional": false
 						},
@@ -25168,7 +25496,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.valueDescription",
 									"arguments": [
-										""
+										"Inline type declaration or typename"
 									]
 								}
 							],
@@ -25204,7 +25532,7 @@ var media_typer = require("media-typer");
 								{
 									"name": "MetaModel.valueDescription",
 									"arguments": [
-										""
+										"An object whose properties map regular expressions (which are regarded as defining ranges for property names) to types of properties expressed as Inline type declaration or typename."
 									]
 								}
 							],
@@ -25301,16 +25629,7 @@ var media_typer = require("media-typer");
 						}
 					],
 					"moduleName": null,
-					"annotationOverridings": {
-						"facets": [
-							{
-								"name": "MetaModel.hide",
-								"arguments": [
-									false
-								]
-							}
-						]
-					}
+					"annotationOverridings": {}
 				},
 				{
 					"name": "StrElement",
@@ -27118,7 +27437,7 @@ var media_typer = require("media-typer");
 	]
 
 /***/ },
-/* 37 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = [
@@ -31530,40 +31849,10 @@ var media_typer = require("media-typer");
 	]
 
 /***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = null
-
-/***/ },
-/* 39 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = child_process;
-
-/***/ },
-/* 40 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = spawn_sync;
-
-/***/ },
-/* 41 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = concat_stream;
-
-/***/ },
-/* 42 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = then_request;
-
-/***/ },
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = lrucache;
+	module.exports = null
 
 /***/ },
 /* 44 */
@@ -31998,390 +32287,6 @@ var media_typer = require("media-typer");
 
 /***/ },
 /* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/tsd.d.ts" />
-	var xmlutil = __webpack_require__(51);
-	var lru = __webpack_require__(43);
-	var ZSchema = __webpack_require__(68);
-	var ValidationResult = (function () {
-	    function ValidationResult() {
-	    }
-	    return ValidationResult;
-	})();
-	exports.ValidationResult = ValidationResult;
-	var globalCache = lru(400);
-	var useLint = true;
-	var JSONSchemaObject = (function () {
-	    function JSONSchemaObject(schema) {
-	        this.schema = schema;
-	        if (!schema || schema.trim().length == 0 || schema.trim().charAt(0) != '{') {
-	            throw new Error("Invalid JSON schema content");
-	        }
-	        var jsonSchemaObject;
-	        try {
-	            var jsonSchemaObject = JSON.parse(schema);
-	        }
-	        catch (err) {
-	            throw new Error("It is not JSON schema");
-	        }
-	        if (!jsonSchemaObject) {
-	            return;
-	        }
-	        try {
-	            var api = __webpack_require__(69);
-	            jsonSchemaObject = api.v4(jsonSchemaObject);
-	        }
-	        catch (e) {
-	            throw new Error('Can not parse schema' + schema);
-	        }
-	        delete jsonSchemaObject['$schema'];
-	        delete jsonSchemaObject['required'];
-	        this.jsonSchema = jsonSchemaObject;
-	    }
-	    JSONSchemaObject.prototype.getType = function () {
-	        return "source.json";
-	    };
-	    JSONSchemaObject.prototype.validateObject = function (object) {
-	        //TODO Validation of objects
-	        //xmlutil(content);
-	        this.validate(JSON.stringify(object));
-	    };
-	    JSONSchemaObject.prototype.validate = function (content) {
-	        var key = content + this.schema;
-	        var c = globalCache.get(key);
-	        if (c) {
-	            if (c instanceof Error) {
-	                throw c;
-	            }
-	            return;
-	        }
-	        var validator = new ZSchema();
-	        var valid = validator.validate(JSON.parse(content), this.jsonSchema);
-	        var errors = validator.getLastErrors();
-	        if (errors && errors.length > 0) {
-	            var res = new Error("Content is not valid according to schema:" + errors.map(function (x) { return x.message + " " + x.params; }).join(", "));
-	            res.errors = errors;
-	            globalCache.set(key, res);
-	            throw res;
-	        }
-	        globalCache.set(key, 1);
-	    };
-	    return JSONSchemaObject;
-	})();
-	exports.JSONSchemaObject = JSONSchemaObject;
-	var XMLSchemaObject = (function () {
-	    function XMLSchemaObject(schema) {
-	        this.schema = schema;
-	        if (schema.charAt(0) != '<') {
-	            throw new Error("Invalid JSON schema");
-	        }
-	        xmlutil(schema);
-	    }
-	    XMLSchemaObject.prototype.getType = function () {
-	        return "text.xml";
-	    };
-	    XMLSchemaObject.prototype.validate = function (content) {
-	        xmlutil(content);
-	    };
-	    XMLSchemaObject.prototype.validateObject = function (object) {
-	        //TODO Validation of objects
-	        //xmlutil(content);
-	    };
-	    return XMLSchemaObject;
-	})();
-	exports.XMLSchemaObject = XMLSchemaObject;
-	function getJSONSchema(content) {
-	    var rs = useLint ? globalCache.get(content) : false;
-	    if (rs) {
-	        return rs;
-	    }
-	    var res = new JSONSchemaObject(content);
-	    globalCache.set(content, res);
-	    return res;
-	}
-	exports.getJSONSchema = getJSONSchema;
-	function getXMLSchema(content) {
-	    var rs = useLint ? globalCache.get(content) : false;
-	    if (rs) {
-	        return rs;
-	    }
-	    var res = new XMLSchemaObject(content);
-	    if (useLint) {
-	        globalCache.set(content, res);
-	    }
-	}
-	exports.getXMLSchema = getXMLSchema;
-	function createSchema(content) {
-	    var rs = useLint ? globalCache.get(content) : false;
-	    if (rs) {
-	        return rs;
-	    }
-	    try {
-	        var res = new JSONSchemaObject(content);
-	        if (useLint) {
-	            globalCache.set(content, res);
-	        }
-	        return res;
-	    }
-	    catch (e) {
-	        try {
-	            var res = new XMLSchemaObject(content);
-	            if (useLint) {
-	                globalCache.set(content, res);
-	            }
-	            return res;
-	        }
-	        catch (e) {
-	            if (useLint) {
-	                globalCache.set(content, new Error("Can not parse schema"));
-	            }
-	            return null;
-	        }
-	    }
-	}
-	exports.createSchema = createSchema;
-	//# sourceMappingURL=schemaUtil.js.map
-
-/***/ },
-/* 47 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/tsd.d.ts" />
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	var _ = __webpack_require__(13);
-	var sel = __webpack_require__(71);
-	var Selector = (function () {
-	    function Selector() {
-	    }
-	    Selector.prototype.candidates = function (context) {
-	        return context;
-	    };
-	    Selector.prototype.apply = function (h) {
-	        return this.candidates([h]);
-	    };
-	    return Selector;
-	})();
-	exports.Selector = Selector;
-	var OrMatch = (function (_super) {
-	    __extends(OrMatch, _super);
-	    function OrMatch(left, right) {
-	        _super.call(this);
-	        this.left = left;
-	        this.right = right;
-	    }
-	    OrMatch.prototype.candidates = function (context) {
-	        var l = this.left.candidates(context);
-	        l = l.concat(this.right.candidates(context));
-	        return _.unique(l);
-	    };
-	    return OrMatch;
-	})(Selector);
-	exports.OrMatch = OrMatch;
-	var DotMatch = (function (_super) {
-	    __extends(DotMatch, _super);
-	    function DotMatch(left, right) {
-	        _super.call(this);
-	        this.left = left;
-	        this.right = right;
-	    }
-	    DotMatch.prototype.candidates = function (context) {
-	        var l = this.left.candidates(context);
-	        if (this.left instanceof AnyParentMatch) {
-	            l = this.right.candidates(new AnyChildMatch().candidates(l));
-	            return _.unique(l);
-	        }
-	        if (this.left instanceof ParentMatch) {
-	            l = this.right.candidates(new AnyChildMatch().candidates(l));
-	            return _.unique(l);
-	        }
-	        l = this.right.candidates(l);
-	        return _.unique(l);
-	    };
-	    return DotMatch;
-	})(Selector);
-	exports.DotMatch = DotMatch;
-	function resolveSelector(s, n) {
-	    if (s.type == "or") {
-	        var b = s;
-	        var l = resolveSelector(b.left, n);
-	        var r = resolveSelector(b.right, n);
-	        return new OrMatch(l, r);
-	    }
-	    if (s.type == "dot") {
-	        var b = s;
-	        var l = resolveSelector(b.left, n);
-	        var r = resolveSelector(b.right, n);
-	        return new DotMatch(l, r);
-	    }
-	    if (s.type == 'classLiteral') {
-	        var literal = s;
-	        var tp = n.definition().universe().getType(literal.name);
-	        if (tp == null || tp.isValueType()) {
-	            throw new Error("Referencing unknown type:" + literal.name);
-	        }
-	        return new IdMatch(literal.name);
-	    }
-	    if (s.type == 'parent') {
-	        return new ParentMatch();
-	    }
-	    if (s.type == 'ancestor') {
-	        return new AnyParentMatch();
-	    }
-	    if (s.type == 'descendant') {
-	        return new AnyChildMatch();
-	    }
-	    if (s.type == 'child') {
-	        return new ChildMatch();
-	    }
-	}
-	exports.resolveSelector = resolveSelector;
-	var IdMatch = (function (_super) {
-	    __extends(IdMatch, _super);
-	    function IdMatch(name) {
-	        _super.call(this);
-	        this.name = name;
-	    }
-	    IdMatch.prototype.candidates = function (context) {
-	        var _this = this;
-	        return context.filter(function (x) {
-	            if (!x) {
-	                return false;
-	            }
-	            if (x.definition().name() == _this.name) {
-	                return true;
-	            }
-	            var superTypes = x.definition().allSuperTypes();
-	            if (_.find(superTypes, function (x) { return x.name() == _this.name; })) {
-	                return true;
-	            }
-	            return false;
-	        });
-	    };
-	    return IdMatch;
-	})(Selector);
-	exports.IdMatch = IdMatch;
-	var AnyParentMatch = (function (_super) {
-	    __extends(AnyParentMatch, _super);
-	    function AnyParentMatch() {
-	        _super.apply(this, arguments);
-	    }
-	    AnyParentMatch.prototype.candidates = function (context) {
-	        var res = [];
-	        context.forEach(function (x) {
-	            if (x) {
-	                var z = x.parent();
-	                while (z) {
-	                    res.push(z);
-	                    z = z.parent();
-	                }
-	            }
-	        });
-	        return _.unique(res);
-	    };
-	    return AnyParentMatch;
-	})(Selector);
-	exports.AnyParentMatch = AnyParentMatch;
-	function addChildren(x, r) {
-	    r.push(x);
-	    x.elements().forEach(function (y) { return addChildren(y, r); });
-	}
-	var AnyChildMatch = (function (_super) {
-	    __extends(AnyChildMatch, _super);
-	    function AnyChildMatch() {
-	        _super.apply(this, arguments);
-	    }
-	    AnyChildMatch.prototype.candidates = function (context) {
-	        var res = [];
-	        context.forEach(function (x) {
-	            if (x) {
-	                addChildren(x, res);
-	            }
-	        });
-	        return _.unique(res);
-	    };
-	    return AnyChildMatch;
-	})(Selector);
-	exports.AnyChildMatch = AnyChildMatch;
-	var ParentMatch = (function (_super) {
-	    __extends(ParentMatch, _super);
-	    function ParentMatch() {
-	        _super.apply(this, arguments);
-	    }
-	    ParentMatch.prototype.candidates = function (context) {
-	        return context.map(function (x) { return x.parent(); });
-	    };
-	    return ParentMatch;
-	})(Selector);
-	exports.ParentMatch = ParentMatch;
-	var ChildMatch = (function (_super) {
-	    __extends(ChildMatch, _super);
-	    function ChildMatch() {
-	        _super.apply(this, arguments);
-	    }
-	    ChildMatch.prototype.candidates = function (context) {
-	        var res = [];
-	        context.forEach(function (x) {
-	            if (x) {
-	                res = res.concat(x.elements());
-	            }
-	        });
-	        return res;
-	    };
-	    return ChildMatch;
-	})(Selector);
-	exports.ChildMatch = ChildMatch;
-	function parse(h, path) {
-	    return resolveSelector(sel.parse(path), h);
-	}
-	exports.parse = parse;
-	//# sourceMappingURL=selectorMatch.js.map
-
-/***/ },
-/* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/tsd.d.ts" />
-	var ramlExpression = __webpack_require__(72);
-	var search = __webpack_require__(25);
-	function validate(str, node) {
-	    var result = ramlExpression.parse(str);
-	    validateNode(result, node);
-	}
-	exports.validate = validate;
-	function validateNode(r, node) {
-	    if (r.type == "unary") {
-	        var u = r;
-	        validateNode(u.exp, node);
-	    }
-	    else if (r.type == 'paren') {
-	        var ex = r;
-	        validateNode(ex.exp, node);
-	    }
-	    else if (r.type == 'string' || r.type == 'number') {
-	    }
-	    else if (r.type == 'ident') {
-	        var ident = r;
-	        var p = search.resolveRamlPointer(node, ident.value);
-	        if (!p) {
-	            throw new Error("Unable to resolve " + ident.value);
-	        }
-	    }
-	    else {
-	        var be = r;
-	        validateNode(be.l, node);
-	        validateNode(be.r, node);
-	    }
-	}
-	//# sourceMappingURL=ramlExpressions.js.map
-
-/***/ },
-/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var parser = (function () {
@@ -33077,14 +32982,161 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=typeExpressionParser.js.map
 
 /***/ },
-/* 50 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var hl = __webpack_require__(18);
+	var xmlutil = __webpack_require__(49);
+	var lru = __webpack_require__(40);
+	var ZSchema = __webpack_require__(68);
+	var ValidationResult = (function () {
+	    function ValidationResult() {
+	    }
+	    return ValidationResult;
+	})();
+	exports.ValidationResult = ValidationResult;
+	var globalCache = lru(400);
+	var useLint = true;
+	var JSONSchemaObject = (function () {
+	    function JSONSchemaObject(schema) {
+	        this.schema = schema;
+	        if (!schema || schema.trim().length == 0 || schema.trim().charAt(0) != '{') {
+	            throw new Error("Invalid JSON schema content");
+	        }
+	        var jsonSchemaObject;
+	        try {
+	            var jsonSchemaObject = JSON.parse(schema);
+	        }
+	        catch (err) {
+	            throw new Error("It is not JSON schema");
+	        }
+	        if (!jsonSchemaObject) {
+	            return;
+	        }
+	        try {
+	            var api = __webpack_require__(69);
+	            jsonSchemaObject = api.v4(jsonSchemaObject);
+	        }
+	        catch (e) {
+	            throw new Error('Can not parse schema' + schema);
+	        }
+	        delete jsonSchemaObject['$schema'];
+	        delete jsonSchemaObject['required'];
+	        this.jsonSchema = jsonSchemaObject;
+	    }
+	    JSONSchemaObject.prototype.getType = function () {
+	        return "source.json";
+	    };
+	    JSONSchemaObject.prototype.validateObject = function (object) {
+	        //TODO Validation of objects
+	        //xmlutil(content);
+	        this.validate(JSON.stringify(object));
+	    };
+	    JSONSchemaObject.prototype.validate = function (content) {
+	        var key = content + this.schema;
+	        var c = globalCache.get(key);
+	        if (c) {
+	            if (c instanceof Error) {
+	                throw c;
+	            }
+	            return;
+	        }
+	        var validator = new ZSchema();
+	        var valid = validator.validate(JSON.parse(content), this.jsonSchema);
+	        var errors = validator.getLastErrors();
+	        if (errors && errors.length > 0) {
+	            var res = new Error("Content is not valid according to schema:" + errors.map(function (x) { return x.message + " " + x.params; }).join(", "));
+	            res.errors = errors;
+	            globalCache.set(key, res);
+	            throw res;
+	        }
+	        globalCache.set(key, 1);
+	    };
+	    return JSONSchemaObject;
+	})();
+	exports.JSONSchemaObject = JSONSchemaObject;
+	var XMLSchemaObject = (function () {
+	    function XMLSchemaObject(schema) {
+	        this.schema = schema;
+	        if (schema.charAt(0) != '<') {
+	            throw new Error("Invalid JSON schema");
+	        }
+	        xmlutil(schema);
+	    }
+	    XMLSchemaObject.prototype.getType = function () {
+	        return "text.xml";
+	    };
+	    XMLSchemaObject.prototype.validate = function (content) {
+	        xmlutil(content);
+	    };
+	    XMLSchemaObject.prototype.validateObject = function (object) {
+	        //TODO Validation of objects
+	        //xmlutil(content);
+	    };
+	    return XMLSchemaObject;
+	})();
+	exports.XMLSchemaObject = XMLSchemaObject;
+	function getJSONSchema(content) {
+	    var rs = useLint ? globalCache.get(content) : false;
+	    if (rs) {
+	        return rs;
+	    }
+	    var res = new JSONSchemaObject(content);
+	    globalCache.set(content, res);
+	    return res;
+	}
+	exports.getJSONSchema = getJSONSchema;
+	function getXMLSchema(content) {
+	    var rs = useLint ? globalCache.get(content) : false;
+	    if (rs) {
+	        return rs;
+	    }
+	    var res = new XMLSchemaObject(content);
+	    if (useLint) {
+	        globalCache.set(content, res);
+	    }
+	}
+	exports.getXMLSchema = getXMLSchema;
+	function createSchema(content) {
+	    var rs = useLint ? globalCache.get(content) : false;
+	    if (rs) {
+	        return rs;
+	    }
+	    try {
+	        var res = new JSONSchemaObject(content);
+	        if (useLint) {
+	            globalCache.set(content, res);
+	        }
+	        return res;
+	    }
+	    catch (e) {
+	        try {
+	            var res = new XMLSchemaObject(content);
+	            if (useLint) {
+	                globalCache.set(content, res);
+	            }
+	            return res;
+	        }
+	        catch (e) {
+	            if (useLint) {
+	                globalCache.set(content, new Error("Can not parse schema"));
+	            }
+	            return null;
+	        }
+	    }
+	}
+	exports.createSchema = createSchema;
+	//# sourceMappingURL=schemaUtil.js.map
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/tsd.d.ts" />
+	var hl = __webpack_require__(17);
 	var hlImpl = __webpack_require__(7);
-	var typeExpr = __webpack_require__(21);
-	var ramlSignatureParser = __webpack_require__(73);
+	var typeExpr = __webpack_require__(22);
+	var ramlSignatureParser = __webpack_require__(71);
 	var wrapper = __webpack_require__(4);
 	function validate(s, node, cb) {
 	    var result = ramlSignatureParser.parse(s);
@@ -33186,7 +33238,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=ramlSignature.js.map
 
 /***/ },
-/* 51 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
@@ -33273,7 +33325,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=xmlutil.js.map
 
 /***/ },
-/* 52 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(4);
@@ -33557,6 +33609,9 @@ var media_typer = require("media-typer");
 	    "ValueType": function (x) {
 	        return new RamlWrapper.ValueTypeImpl(x);
 	    },
+	    "XMLInfo": function (x) {
+	        return new RamlWrapper.XMLInfoImpl(x);
+	    },
 	    "XMLSchemaString": function (x) {
 	        return new RamlWrapper.XMLSchemaStringImpl(x);
 	    },
@@ -33570,10 +33625,10 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=raml003factory.js.map
 
 /***/ },
-/* 53 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RamlWrapper = __webpack_require__(74);
+	var RamlWrapper = __webpack_require__(72);
 	function buildWrapperNode(node) {
 	    var nodeClassName = node.definition().name();
 	    var wrapperConstructor = classMap[nodeClassName];
@@ -33756,16 +33811,253 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=raml08factory.js.map
 
 /***/ },
+/* 52 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/tsd.d.ts" />
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var _ = __webpack_require__(13);
+	var sel = __webpack_require__(73);
+	var Selector = (function () {
+	    function Selector() {
+	    }
+	    Selector.prototype.candidates = function (context) {
+	        return context;
+	    };
+	    Selector.prototype.apply = function (h) {
+	        return this.candidates([h]);
+	    };
+	    return Selector;
+	})();
+	exports.Selector = Selector;
+	var OrMatch = (function (_super) {
+	    __extends(OrMatch, _super);
+	    function OrMatch(left, right) {
+	        _super.call(this);
+	        this.left = left;
+	        this.right = right;
+	    }
+	    OrMatch.prototype.candidates = function (context) {
+	        var l = this.left.candidates(context);
+	        l = l.concat(this.right.candidates(context));
+	        return _.unique(l);
+	    };
+	    return OrMatch;
+	})(Selector);
+	exports.OrMatch = OrMatch;
+	var DotMatch = (function (_super) {
+	    __extends(DotMatch, _super);
+	    function DotMatch(left, right) {
+	        _super.call(this);
+	        this.left = left;
+	        this.right = right;
+	    }
+	    DotMatch.prototype.candidates = function (context) {
+	        var l = this.left.candidates(context);
+	        if (this.left instanceof AnyParentMatch) {
+	            l = this.right.candidates(new AnyChildMatch().candidates(l));
+	            return _.unique(l);
+	        }
+	        if (this.left instanceof ParentMatch) {
+	            l = this.right.candidates(new AnyChildMatch().candidates(l));
+	            return _.unique(l);
+	        }
+	        l = this.right.candidates(l);
+	        return _.unique(l);
+	    };
+	    return DotMatch;
+	})(Selector);
+	exports.DotMatch = DotMatch;
+	function resolveSelector(s, n) {
+	    if (s.type == "or") {
+	        var b = s;
+	        var l = resolveSelector(b.left, n);
+	        var r = resolveSelector(b.right, n);
+	        return new OrMatch(l, r);
+	    }
+	    if (s.type == "dot") {
+	        var b = s;
+	        var l = resolveSelector(b.left, n);
+	        var r = resolveSelector(b.right, n);
+	        return new DotMatch(l, r);
+	    }
+	    if (s.type == 'classLiteral') {
+	        var literal = s;
+	        var tp = n.definition().universe().getType(literal.name);
+	        if (tp == null || tp.isValueType()) {
+	            throw new Error("Referencing unknown type:" + literal.name);
+	        }
+	        return new IdMatch(literal.name);
+	    }
+	    if (s.type == 'parent') {
+	        return new ParentMatch();
+	    }
+	    if (s.type == 'ancestor') {
+	        return new AnyParentMatch();
+	    }
+	    if (s.type == 'descendant') {
+	        return new AnyChildMatch();
+	    }
+	    if (s.type == 'child') {
+	        return new ChildMatch();
+	    }
+	}
+	exports.resolveSelector = resolveSelector;
+	var IdMatch = (function (_super) {
+	    __extends(IdMatch, _super);
+	    function IdMatch(name) {
+	        _super.call(this);
+	        this.name = name;
+	    }
+	    IdMatch.prototype.candidates = function (context) {
+	        var _this = this;
+	        return context.filter(function (x) {
+	            if (!x) {
+	                return false;
+	            }
+	            if (x.definition().name() == _this.name) {
+	                return true;
+	            }
+	            var superTypes = x.definition().allSuperTypes();
+	            if (_.find(superTypes, function (x) { return x.name() == _this.name; })) {
+	                return true;
+	            }
+	            return false;
+	        });
+	    };
+	    return IdMatch;
+	})(Selector);
+	exports.IdMatch = IdMatch;
+	var AnyParentMatch = (function (_super) {
+	    __extends(AnyParentMatch, _super);
+	    function AnyParentMatch() {
+	        _super.apply(this, arguments);
+	    }
+	    AnyParentMatch.prototype.candidates = function (context) {
+	        var res = [];
+	        context.forEach(function (x) {
+	            if (x) {
+	                var z = x.parent();
+	                while (z) {
+	                    res.push(z);
+	                    z = z.parent();
+	                }
+	            }
+	        });
+	        return _.unique(res);
+	    };
+	    return AnyParentMatch;
+	})(Selector);
+	exports.AnyParentMatch = AnyParentMatch;
+	function addChildren(x, r) {
+	    r.push(x);
+	    x.elements().forEach(function (y) { return addChildren(y, r); });
+	}
+	var AnyChildMatch = (function (_super) {
+	    __extends(AnyChildMatch, _super);
+	    function AnyChildMatch() {
+	        _super.apply(this, arguments);
+	    }
+	    AnyChildMatch.prototype.candidates = function (context) {
+	        var res = [];
+	        context.forEach(function (x) {
+	            if (x) {
+	                addChildren(x, res);
+	            }
+	        });
+	        return _.unique(res);
+	    };
+	    return AnyChildMatch;
+	})(Selector);
+	exports.AnyChildMatch = AnyChildMatch;
+	var ParentMatch = (function (_super) {
+	    __extends(ParentMatch, _super);
+	    function ParentMatch() {
+	        _super.apply(this, arguments);
+	    }
+	    ParentMatch.prototype.candidates = function (context) {
+	        return context.map(function (x) { return x.parent(); });
+	    };
+	    return ParentMatch;
+	})(Selector);
+	exports.ParentMatch = ParentMatch;
+	var ChildMatch = (function (_super) {
+	    __extends(ChildMatch, _super);
+	    function ChildMatch() {
+	        _super.apply(this, arguments);
+	    }
+	    ChildMatch.prototype.candidates = function (context) {
+	        var res = [];
+	        context.forEach(function (x) {
+	            if (x) {
+	                res = res.concat(x.elements());
+	            }
+	        });
+	        return res;
+	    };
+	    return ChildMatch;
+	})(Selector);
+	exports.ChildMatch = ChildMatch;
+	function parse(h, path) {
+	    return resolveSelector(sel.parse(path), h);
+	}
+	exports.parse = parse;
+	//# sourceMappingURL=selectorMatch.js.map
+
+/***/ },
+/* 53 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/tsd.d.ts" />
+	var ramlExpression = __webpack_require__(74);
+	var search = __webpack_require__(26);
+	function validate(str, node) {
+	    var result = ramlExpression.parse(str);
+	    validateNode(result, node);
+	}
+	exports.validate = validate;
+	function validateNode(r, node) {
+	    if (r.type == "unary") {
+	        var u = r;
+	        validateNode(u.exp, node);
+	    }
+	    else if (r.type == 'paren') {
+	        var ex = r;
+	        validateNode(ex.exp, node);
+	    }
+	    else if (r.type == 'string' || r.type == 'number') {
+	    }
+	    else if (r.type == 'ident') {
+	        var ident = r;
+	        var p = search.resolveRamlPointer(node, ident.value);
+	        if (!p) {
+	            throw new Error("Unable to resolve " + ident.value);
+	        }
+	    }
+	    else {
+	        var be = r;
+	        validateNode(be.l, node);
+	        validateNode(be.r, node);
+	    }
+	}
+	//# sourceMappingURL=ramlExpressions.js.map
+
+/***/ },
 /* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ramlPathMatch = __webpack_require__(75);
-	var hl = __webpack_require__(18);
+	var hl = __webpack_require__(17);
 	var hlimpl = __webpack_require__(7);
 	var Opt = __webpack_require__(5);
 	var util = __webpack_require__(10);
-	var typeexpression = __webpack_require__(24);
-	var search = __webpack_require__(25);
+	var typeexpression = __webpack_require__(25);
+	var search = __webpack_require__(26);
 	var ll = __webpack_require__(6);
 	var path = __webpack_require__(3);
 	function resolveType(p) {
@@ -34104,6 +34396,9 @@ var media_typer = require("media-typer");
 	    HelperUriParam.prototype.highLevel = function () {
 	        return null;
 	    };
+	    HelperUriParam.prototype.errors = function () {
+	        return [];
+	    };
 	    return HelperUriParam;
 	})();
 	exports.HelperUriParam = HelperUriParam;
@@ -34150,146 +34445,14 @@ var media_typer = require("media-typer");
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../typings/tsd.d.ts" />
-	'use strict';
-	function isNothing(subject) {
-	    return (typeof subject === 'undefined') || (null === subject);
-	}
-	exports.isNothing = isNothing;
-	function isObject(subject) {
-	    return (typeof subject === 'object') && (null !== subject);
-	}
-	exports.isObject = isObject;
-	function toArray(sequence) {
-	    if (Array.isArray(sequence)) {
-	        return sequence;
-	    }
-	    else if (isNothing(sequence)) {
-	        return [];
-	    }
-	    return [sequence];
-	}
-	exports.toArray = toArray;
-	function extend(target, source) {
-	    var index, length, key, sourceKeys;
-	    if (source) {
-	        sourceKeys = Object.keys(source);
-	        for (index = 0, length = sourceKeys.length; index < length; index += 1) {
-	            key = sourceKeys[index];
-	            target[key] = source[key];
-	        }
-	    }
-	    return target;
-	}
-	exports.extend = extend;
-	function repeat(string, count) {
-	    var result = '', cycle;
-	    for (cycle = 0; cycle < count; cycle += 1) {
-	        result += string;
-	    }
-	    return result;
-	}
-	exports.repeat = repeat;
-	function isNegativeZero(number) {
-	    return (0 === number) && (Number.NEGATIVE_INFINITY === 1 / number);
-	}
-	exports.isNegativeZero = isNegativeZero;
-	//# sourceMappingURL=common.js.map
-
-/***/ },
-/* 56 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	// JS-YAML's default schema for `load` function.
-	// It is not described in the YAML specification.
-	//
-	// This schema is based on JS-YAML's default safe schema and includes
-	// JavaScript-specific types: !!js/undefined, !!js/regexp and !!js/function.
-	//
-	// Also this schema is used as default base schema at `Schema.create` function.
-	'use strict';
-	var Schema = __webpack_require__(61);
-	var schema = new Schema({
-	    include: [
-	        __webpack_require__(57)
-	    ],
-	    explicit: [
-	        __webpack_require__(76),
-	        __webpack_require__(77),
-	        __webpack_require__(78)
-	    ]
-	});
-	Schema.DEFAULT = schema;
-	module.exports = schema;
-	//# sourceMappingURL=default_full.js.map
-
-/***/ },
-/* 57 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	// JS-YAML's default schema for `safeLoad` function.
-	// It is not described in the YAML specification.
-	//
-	// This schema is based on standard YAML's Core schema and includes most of
-	// extra types described at YAML tag repository. (http://yaml.org/type/)
-	'use strict';
-	var Schema = __webpack_require__(61);
-	var schema = new Schema({
-	    include: [
-	        __webpack_require__(64)
-	    ],
-	    implicit: [
-	        __webpack_require__(79),
-	        __webpack_require__(80)
-	    ],
-	    explicit: [
-	        __webpack_require__(81),
-	        __webpack_require__(82),
-	        __webpack_require__(83),
-	        __webpack_require__(84)
-	    ]
-	});
-	module.exports = schema;
-	//# sourceMappingURL=default_safe.js.map
-
-/***/ },
-/* 58 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {/// <reference path="../../../typings/tsd.d.ts" />
-	'use strict';
-	var concat = __webpack_require__(41);
-	var request = __webpack_require__(42);
-	function respond(data) {
-	    process.stdout.write(JSON.stringify(data), function () {
-	        process.exit(0);
-	    });
-	}
-	process.stdin.pipe(concat(function (stdin) {
-	    var req = JSON.parse(stdin.toString());
-	    request(req.method, req.url, req.options).done(function (response) {
-	        respond({ success: true, response: response });
-	    }, function (err) {
-	        respond({ success: false, error: { message: err.message } });
-	    });
-	}));
-	//# sourceMappingURL=worker.js.map
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(93)))
-
-/***/ },
-/* 59 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../typings/tsd.d.ts" />
 	var ast = __webpack_require__(9);
 	'use strict';
 	/*eslint-disable max-len,no-use-before-define*/
-	var common = __webpack_require__(55);
+	var common = __webpack_require__(63);
 	var YAMLException = __webpack_require__(32);
-	var Mark = __webpack_require__(85);
-	var DEFAULT_SAFE_SCHEMA = __webpack_require__(57);
-	var DEFAULT_FULL_SCHEMA = __webpack_require__(56);
+	var Mark = __webpack_require__(79);
+	var DEFAULT_SAFE_SCHEMA = __webpack_require__(61);
+	var DEFAULT_FULL_SCHEMA = __webpack_require__(62);
 	var _hasOwnProperty = Object.prototype.hasOwnProperty;
 	var CONTEXT_FLOW_IN = 1;
 	var CONTEXT_FLOW_OUT = 2;
@@ -35598,7 +35761,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=loader.js.map
 
 /***/ },
-/* 60 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35658,15 +35821,15 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=type.js.map
 
 /***/ },
-/* 61 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../typings/tsd.d.ts" />
 	'use strict';
 	/*eslint-disable max-len*/
-	var common = __webpack_require__(55);
+	var common = __webpack_require__(63);
 	var YAMLException = __webpack_require__(32);
-	var Type = __webpack_require__(60);
+	var Type = __webpack_require__(56);
 	function compileList(schema, name, result) {
 	    var exclude = [];
 	    schema.include.forEach(function (includedSchema) {
@@ -35746,25 +35909,25 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=schema.js.map
 
 /***/ },
-/* 62 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	// Standard YAML's Failsafe schema.
 	// http://www.yaml.org/spec/1.2/spec.html#id2802346
 	'use strict';
-	var Schema = __webpack_require__(61);
+	var Schema = __webpack_require__(57);
 	module.exports = new Schema({
 	    explicit: [
-	        __webpack_require__(86),
-	        __webpack_require__(87),
-	        __webpack_require__(88)
+	        __webpack_require__(76),
+	        __webpack_require__(77),
+	        __webpack_require__(78)
 	    ]
 	});
 	//# sourceMappingURL=failsafe.js.map
 
 /***/ },
-/* 63 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
@@ -35775,22 +35938,22 @@ var media_typer = require("media-typer");
 	// So, this schema is not such strict as defined in the YAML specification.
 	// It allows numbers in binary notaion, use `Null` and `NULL` as `null`, etc.
 	'use strict';
-	var Schema = __webpack_require__(61);
+	var Schema = __webpack_require__(57);
 	module.exports = new Schema({
 	    include: [
-	        __webpack_require__(62)
+	        __webpack_require__(58)
 	    ],
 	    implicit: [
-	        __webpack_require__(89),
-	        __webpack_require__(90),
-	        __webpack_require__(91),
-	        __webpack_require__(92)
+	        __webpack_require__(80),
+	        __webpack_require__(81),
+	        __webpack_require__(82),
+	        __webpack_require__(83)
 	    ]
 	});
 	//# sourceMappingURL=json.js.map
 
 /***/ },
-/* 64 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
@@ -35800,13 +35963,145 @@ var media_typer = require("media-typer");
 	// NOTE: JS-YAML does not support schema-specific tag resolution restrictions.
 	// So, Core schema has no distinctions from JSON schema is JS-YAML.
 	'use strict';
-	var Schema = __webpack_require__(61);
+	var Schema = __webpack_require__(57);
 	module.exports = new Schema({
 	    include: [
-	        __webpack_require__(63)
+	        __webpack_require__(59)
 	    ]
 	});
 	//# sourceMappingURL=core.js.map
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	// JS-YAML's default schema for `safeLoad` function.
+	// It is not described in the YAML specification.
+	//
+	// This schema is based on standard YAML's Core schema and includes most of
+	// extra types described at YAML tag repository. (http://yaml.org/type/)
+	'use strict';
+	var Schema = __webpack_require__(57);
+	var schema = new Schema({
+	    include: [
+	        __webpack_require__(60)
+	    ],
+	    implicit: [
+	        __webpack_require__(84),
+	        __webpack_require__(85)
+	    ],
+	    explicit: [
+	        __webpack_require__(86),
+	        __webpack_require__(87),
+	        __webpack_require__(88),
+	        __webpack_require__(89)
+	    ]
+	});
+	module.exports = schema;
+	//# sourceMappingURL=default_safe.js.map
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	// JS-YAML's default schema for `load` function.
+	// It is not described in the YAML specification.
+	//
+	// This schema is based on JS-YAML's default safe schema and includes
+	// JavaScript-specific types: !!js/undefined, !!js/regexp and !!js/function.
+	//
+	// Also this schema is used as default base schema at `Schema.create` function.
+	'use strict';
+	var Schema = __webpack_require__(57);
+	var schema = new Schema({
+	    include: [
+	        __webpack_require__(61)
+	    ],
+	    explicit: [
+	        __webpack_require__(90),
+	        __webpack_require__(91),
+	        __webpack_require__(92)
+	    ]
+	});
+	Schema.DEFAULT = schema;
+	module.exports = schema;
+	//# sourceMappingURL=default_full.js.map
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../typings/tsd.d.ts" />
+	'use strict';
+	function isNothing(subject) {
+	    return (typeof subject === 'undefined') || (null === subject);
+	}
+	exports.isNothing = isNothing;
+	function isObject(subject) {
+	    return (typeof subject === 'object') && (null !== subject);
+	}
+	exports.isObject = isObject;
+	function toArray(sequence) {
+	    if (Array.isArray(sequence)) {
+	        return sequence;
+	    }
+	    else if (isNothing(sequence)) {
+	        return [];
+	    }
+	    return [sequence];
+	}
+	exports.toArray = toArray;
+	function extend(target, source) {
+	    var index, length, key, sourceKeys;
+	    if (source) {
+	        sourceKeys = Object.keys(source);
+	        for (index = 0, length = sourceKeys.length; index < length; index += 1) {
+	            key = sourceKeys[index];
+	            target[key] = source[key];
+	        }
+	    }
+	    return target;
+	}
+	exports.extend = extend;
+	function repeat(string, count) {
+	    var result = '', cycle;
+	    for (cycle = 0; cycle < count; cycle += 1) {
+	        result += string;
+	    }
+	    return result;
+	}
+	exports.repeat = repeat;
+	function isNegativeZero(number) {
+	    return (0 === number) && (Number.NEGATIVE_INFINITY === 1 / number);
+	}
+	exports.isNegativeZero = isNegativeZero;
+	//# sourceMappingURL=common.js.map
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/// <reference path="../../../typings/tsd.d.ts" />
+	'use strict';
+	var concat = __webpack_require__(38);
+	var request = __webpack_require__(39);
+	function respond(data) {
+	    process.stdout.write(JSON.stringify(data), function () {
+	        process.exit(0);
+	    });
+	}
+	process.stdin.pipe(concat(function (stdin) {
+	    var req = JSON.parse(stdin.toString());
+	    request(req.method, req.url, req.options).done(function (response) {
+	        respond({ success: true, response: response });
+	    }, function (err) {
+	        respond({ success: false, error: { message: err.message } });
+	    });
+	}));
+	//# sourceMappingURL=worker.js.map
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(93)))
 
 /***/ },
 /* 65 */
@@ -35958,8 +36253,8 @@ var media_typer = require("media-typer");
 	 */
 
 	var base64 = __webpack_require__(101)
-	var ieee754 = __webpack_require__(99)
-	var isArray = __webpack_require__(100)
+	var ieee754 = __webpack_require__(100)
+	var isArray = __webpack_require__(99)
 
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -37390,1762 +37685,6 @@ var media_typer = require("media-typer");
 /* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mod = (function () {
-	    /*
-	     * Generated by PEG.js 0.8.0.
-	     *
-	     * http://pegjs.majda.cz/
-	     */
-	    function peg$subclass(child, parent) {
-	        function ctor() {
-	            this.constructor = child;
-	        }
-	        ctor.prototype = parent.prototype;
-	        child.prototype = new ctor();
-	    }
-	    function SyntaxError(message, expected, found, offset, line, column) {
-	        this.message = message;
-	        this.expected = expected;
-	        this.found = found;
-	        this.offset = offset;
-	        this.line = line;
-	        this.column = column;
-	        this.name = "SyntaxError";
-	    }
-	    peg$subclass(SyntaxError, Error);
-	    function parse(input) {
-	        var options = arguments.length > 1 ? arguments[1] : {}, peg$FAILED = {}, peg$startRuleFunctions = { start: peg$parsestart }, peg$startRuleFunction = peg$parsestart, peg$c0 = peg$FAILED, peg$c1 = "|", peg$c2 = { type: "literal", value: "|", description: "\"|\"" }, peg$c3 = function (left, r) {
-	            return { 'type': 'or', 'left': left, 'right': r ? r : null };
-	        }, peg$c4 = ".", peg$c5 = { type: "literal", value: ".", description: "\".\"" }, peg$c6 = function (left, r) {
-	            return { 'type': 'dot', 'left': left, 'right': r };
-	        }, peg$c7 = "$", peg$c8 = { type: "literal", value: "$", description: "\"$\"" }, peg$c9 = function () {
-	            return { 'type': 'parent' };
-	        }, peg$c10 = "$$", peg$c11 = { type: "literal", value: "$$", description: "\"$$\"" }, peg$c12 = function () {
-	            return { 'type': 'ancestor' };
-	        }, peg$c13 = "**", peg$c14 = { type: "literal", value: "**", description: "\"**\"" }, peg$c15 = function () {
-	            return { 'type': 'descendant' };
-	        }, peg$c16 = "*", peg$c17 = { type: "literal", value: "*", description: "\"*\"" }, peg$c18 = function () {
-	            return { 'type': 'child' };
-	        }, peg$c19 = [], peg$c20 = /^[A-z]/, peg$c21 = { type: "class", value: "[A-z]", description: "[A-z]" }, peg$c22 = function (chars) {
-	            return { 'type': 'classLiteral', "name": chars.join("") };
-	        }, peg$currPos = 0, peg$reportedPos = 0, peg$cachedPos = 0, peg$cachedPosDetails = { line: 1, column: 1, seenCR: false }, peg$maxFailPos = 0, peg$maxFailExpected = [], peg$silentFails = 0, peg$result;
-	        if ("startRule" in options) {
-	            if (!(options.startRule in peg$startRuleFunctions)) {
-	                throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
-	            }
-	            peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
-	        }
-	        function text() {
-	            return input.substring(peg$reportedPos, peg$currPos);
-	        }
-	        function offset() {
-	            return peg$reportedPos;
-	        }
-	        function line() {
-	            return peg$computePosDetails(peg$reportedPos).line;
-	        }
-	        function column() {
-	            return peg$computePosDetails(peg$reportedPos).column;
-	        }
-	        function expected(description) {
-	            throw peg$buildException(null, [{ type: "other", description: description }], peg$reportedPos);
-	        }
-	        function error(message) {
-	            throw peg$buildException(message, null, peg$reportedPos);
-	        }
-	        function peg$computePosDetails(pos) {
-	            function advance(details, startPos, endPos) {
-	                var p, ch;
-	                for (p = startPos; p < endPos; p++) {
-	                    ch = input.charAt(p);
-	                    if (ch === "\n") {
-	                        if (!details.seenCR) {
-	                            details.line++;
-	                        }
-	                        details.column = 1;
-	                        details.seenCR = false;
-	                    }
-	                    else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
-	                        details.line++;
-	                        details.column = 1;
-	                        details.seenCR = true;
-	                    }
-	                    else {
-	                        details.column++;
-	                        details.seenCR = false;
-	                    }
-	                }
-	            }
-	            if (peg$cachedPos !== pos) {
-	                if (peg$cachedPos > pos) {
-	                    peg$cachedPos = 0;
-	                    peg$cachedPosDetails = { line: 1, column: 1, seenCR: false };
-	                }
-	                advance(peg$cachedPosDetails, peg$cachedPos, pos);
-	                peg$cachedPos = pos;
-	            }
-	            return peg$cachedPosDetails;
-	        }
-	        function peg$fail(expected) {
-	            if (peg$currPos < peg$maxFailPos) {
-	                return;
-	            }
-	            if (peg$currPos > peg$maxFailPos) {
-	                peg$maxFailPos = peg$currPos;
-	                peg$maxFailExpected = [];
-	            }
-	            peg$maxFailExpected.push(expected);
-	        }
-	        function peg$buildException(message, expected, pos) {
-	            function cleanupExpected(expected) {
-	                var i = 1;
-	                expected.sort(function (a, b) {
-	                    if (a.description < b.description) {
-	                        return -1;
-	                    }
-	                    else if (a.description > b.description) {
-	                        return 1;
-	                    }
-	                    else {
-	                        return 0;
-	                    }
-	                });
-	                while (i < expected.length) {
-	                    if (expected[i - 1] === expected[i]) {
-	                        expected.splice(i, 1);
-	                    }
-	                    else {
-	                        i++;
-	                    }
-	                }
-	            }
-	            function buildMessage(expected, found) {
-	                function stringEscape(s) {
-	                    function hex(ch) {
-	                        return ch.charCodeAt(0).toString(16).toUpperCase();
-	                    }
-	                    return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\x08/g, '\\b').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\f/g, '\\f').replace(/\r/g, '\\r').replace(/[\x00-\x07\x0B\x0E\x0F]/g, function (ch) {
-	                        return '\\x0' + hex(ch);
-	                    }).replace(/[\x10-\x1F\x80-\xFF]/g, function (ch) {
-	                        return '\\x' + hex(ch);
-	                    }).replace(/[\u0180-\u0FFF]/g, function (ch) {
-	                        return '\\u0' + hex(ch);
-	                    }).replace(/[\u1080-\uFFFF]/g, function (ch) {
-	                        return '\\u' + hex(ch);
-	                    });
-	                }
-	                var expectedDescs = new Array(expected.length), expectedDesc, foundDesc, i;
-	                for (i = 0; i < expected.length; i++) {
-	                    expectedDescs[i] = expected[i].description;
-	                }
-	                expectedDesc = expected.length > 1 ? expectedDescs.slice(0, -1).join(", ") + " or " + expectedDescs[expected.length - 1] : expectedDescs[0];
-	                foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
-	                return "Expected " + expectedDesc + " but " + foundDesc + " found.";
-	            }
-	            var posDetails = peg$computePosDetails(pos), found = pos < input.length ? input.charAt(pos) : null;
-	            if (expected !== null) {
-	                cleanupExpected(expected);
-	            }
-	            return new SyntaxError(message !== null ? message : buildMessage(expected, found), expected, found, pos, posDetails.line, posDetails.column);
-	        }
-	        function peg$parsestart() {
-	            var s0;
-	            s0 = peg$parseor();
-	            return s0;
-	        }
-	        function peg$parseor() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            s1 = peg$parsesequence();
-	            if (s1 !== peg$FAILED) {
-	                if (input.charCodeAt(peg$currPos) === 124) {
-	                    s2 = peg$c1;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s2 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c2);
-	                    }
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    s3 = peg$parseor();
-	                    if (s3 !== peg$FAILED) {
-	                        peg$reportedPos = s0;
-	                        s1 = peg$c3(s1, s3);
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$c0;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$c0;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$c0;
-	            }
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$parsesequence();
-	            }
-	            return s0;
-	        }
-	        function peg$parsesequence() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            s1 = peg$parseprimary();
-	            if (s1 !== peg$FAILED) {
-	                if (input.charCodeAt(peg$currPos) === 46) {
-	                    s2 = peg$c4;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s2 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c5);
-	                    }
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    s3 = peg$parsesequence();
-	                    if (s3 !== peg$FAILED) {
-	                        peg$reportedPos = s0;
-	                        s1 = peg$c6(s1, s3);
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$c0;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$c0;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$c0;
-	            }
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$parseprimary();
-	            }
-	            return s0;
-	        }
-	        function peg$parseprimary() {
-	            var s0;
-	            s0 = peg$parsechildRef();
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$parsedoubleStar();
-	                if (s0 === peg$FAILED) {
-	                    s0 = peg$parsestar();
-	                    if (s0 === peg$FAILED) {
-	                        s0 = peg$parsedoubleDollar();
-	                        if (s0 === peg$FAILED) {
-	                            s0 = peg$parsedollar();
-	                        }
-	                    }
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parsedollar() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            if (input.charCodeAt(peg$currPos) === 36) {
-	                s1 = peg$c7;
-	                peg$currPos++;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c8);
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$reportedPos = s0;
-	                s1 = peg$c9();
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parsedoubleDollar() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            if (input.substr(peg$currPos, 2) === peg$c10) {
-	                s1 = peg$c10;
-	                peg$currPos += 2;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c11);
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$reportedPos = s0;
-	                s1 = peg$c12();
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parsedoubleStar() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            if (input.substr(peg$currPos, 2) === peg$c13) {
-	                s1 = peg$c13;
-	                peg$currPos += 2;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c14);
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$reportedPos = s0;
-	                s1 = peg$c15();
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parsestar() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            if (input.charCodeAt(peg$currPos) === 42) {
-	                s1 = peg$c16;
-	                peg$currPos++;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c17);
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$reportedPos = s0;
-	                s1 = peg$c18();
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parsechildRef() {
-	            var s0, s1, s2;
-	            s0 = peg$currPos;
-	            s1 = [];
-	            if (peg$c20.test(input.charAt(peg$currPos))) {
-	                s2 = input.charAt(peg$currPos);
-	                peg$currPos++;
-	            }
-	            else {
-	                s2 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c21);
-	                }
-	            }
-	            if (s2 !== peg$FAILED) {
-	                while (s2 !== peg$FAILED) {
-	                    s1.push(s2);
-	                    if (peg$c20.test(input.charAt(peg$currPos))) {
-	                        s2 = input.charAt(peg$currPos);
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s2 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c21);
-	                        }
-	                    }
-	                }
-	            }
-	            else {
-	                s1 = peg$c0;
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$reportedPos = s0;
-	                s1 = peg$c22(s1);
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        peg$result = peg$startRuleFunction();
-	        if (peg$result !== peg$FAILED && peg$currPos === input.length) {
-	            return peg$result;
-	        }
-	        else {
-	            if (peg$result !== peg$FAILED && peg$currPos < input.length) {
-	                peg$fail({ type: "end", description: "end of input" });
-	            }
-	            throw peg$buildException(null, peg$maxFailExpected, peg$maxFailPos);
-	        }
-	    }
-	    return {
-	        SyntaxError: SyntaxError,
-	        parse: parse
-	    };
-	})();
-	module.exports = mod;
-	//# sourceMappingURL=ramlselector.js.map
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var parser = (function () {
-	    "use strict";
-	    /*
-	     * Generated by PEG.js 0.9.0.
-	     *
-	     * http://pegjs.org/
-	     */
-	    function peg$subclass(child, parent) {
-	        function ctor() {
-	            this.constructor = child;
-	        }
-	        ctor.prototype = parent.prototype;
-	        child.prototype = new ctor();
-	    }
-	    function peg$SyntaxError(message, expected, found, location) {
-	        this.message = message;
-	        this.expected = expected;
-	        this.found = found;
-	        this.location = location;
-	        this.name = "SyntaxError";
-	        if (typeof Error.captureStackTrace === "function") {
-	            Error.captureStackTrace(this, peg$SyntaxError);
-	        }
-	    }
-	    peg$subclass(peg$SyntaxError, Error);
-	    function peg$parse(input) {
-	        var options = arguments.length > 1 ? arguments[1] : {}, parser = this, peg$FAILED = {}, peg$startRuleFunctions = { Expression: peg$parseExpression }, peg$startRuleFunction = peg$parseExpression, peg$c0 = function (c) {
-	            return c;
-	        }, peg$c1 = function (op, exp) {
-	            return { 'type': 'unary', 'op': op, 'exp': exp };
-	        }, peg$c2 = /^[*%\/]/, peg$c3 = { type: "class", value: "[*%/]", description: "[*%/]" }, peg$c4 = function (l, r) {
-	            return r ? ({ "type": r[0], "l": l, "r": r[1] }) : l;
-	        }, peg$c5 = /^[\-+]/, peg$c6 = { type: "class", value: "[-+]", description: "[-+]" }, peg$c7 = "<=", peg$c8 = { type: "literal", value: "<=", description: "\"<=\"" }, peg$c9 = ">=", peg$c10 = { type: "literal", value: ">=", description: "\">=\"" }, peg$c11 = "<", peg$c12 = { type: "literal", value: "<", description: "\"<\"" }, peg$c13 = ">", peg$c14 = { type: "literal", value: ">", description: "\">\"" }, peg$c15 = "==", peg$c16 = { type: "literal", value: "==", description: "\"==\"" }, peg$c17 = "!=", peg$c18 = { type: "literal", value: "!=", description: "\"!=\"" }, peg$c19 = "&", peg$c20 = { type: "literal", value: "&", description: "\"&\"" }, peg$c21 = "^", peg$c22 = { type: "literal", value: "^", description: "\"^\"" }, peg$c23 = "|", peg$c24 = { type: "literal", value: "|", description: "\"|\"" }, peg$c25 = "&&", peg$c26 = { type: "literal", value: "&&", description: "\"&&\"" }, peg$c27 = "||", peg$c28 = { type: "literal", value: "||", description: "\"||\"" }, peg$c29 = "?", peg$c30 = { type: "literal", value: "?", description: "\"?\"" }, peg$c31 = ":", peg$c32 = { type: "literal", value: ":", description: "\":\"" }, peg$c33 = function (p, e) {
-	            return e ? null : p;
-	        }, peg$c34 = "(", peg$c35 = { type: "literal", value: "(", description: "\"(\"" }, peg$c36 = ")", peg$c37 = { type: "literal", value: ")", description: "\")\"" }, peg$c38 = function (e) {
-	            return { 'type': 'paren', 'exp': e };
-	        }, peg$c39 = /^[\-&*~!]/, peg$c40 = { type: "class", value: "[-&*~!]", description: "[-&*~!]" }, peg$c41 = "$", peg$c42 = { type: "literal", value: "$", description: "\"$\"" }, peg$c43 = /^[a-zA-Z_]/, peg$c44 = { type: "class", value: "[a-zA-Z_]", description: "[a-zA-Z_]" }, peg$c45 = /^[a-zA-Z0-9_]/, peg$c46 = { type: "class", value: "[a-zA-Z0-9_]", description: "[a-zA-Z0-9_]" }, peg$c47 = ".", peg$c48 = { type: "literal", value: ".", description: "\".\"" }, peg$c49 = function (v0, v1) {
-	            return { 'type': 'ident', value: [v0].concat(v1).join('') };
-	        }, peg$c50 = function (m) {
-	            m = m.map(function (x) {
-	                return x[1];
-	            });
-	            return { 'type': 'string', 'value': m.join('') };
-	        }, peg$c51 = "\"", peg$c52 = { type: "literal", value: "\"", description: "\"\\\"\"" }, peg$c53 = { type: "any", description: "any character" }, peg$c54 = /^[abfnrtv]/, peg$c55 = { type: "class", value: "[abfnrtv]", description: "[abfnrtv]" }, peg$c56 = "\\", peg$c57 = { type: "literal", value: "\\", description: "\"\\\\\"" }, peg$c58 = "'", peg$c59 = { type: "literal", value: "'", description: "\"'\"" }, peg$c60 = function (f) {
-	            return f.join('');
-	        }, peg$c61 = /^[0-9]/, peg$c62 = { type: "class", value: "[0-9]", description: "[0-9]" }, peg$c63 = function (v, f) {
-	            if (!f)
-	                f = [];
-	            var val = [v].concat(f).join('');
-	            return { 'type': 'number', 'value': val };
-	        }, peg$c64 = "-", peg$c65 = { type: "literal", value: "-", description: "\"-\"" }, peg$currPos = 0, peg$savedPos = 0, peg$posDetailsCache = [{ line: 1, column: 1, seenCR: false }], peg$maxFailPos = 0, peg$maxFailExpected = [], peg$silentFails = 0, peg$result;
-	        if ("startRule" in options) {
-	            if (!(options.startRule in peg$startRuleFunctions)) {
-	                throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
-	            }
-	            peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
-	        }
-	        function text() {
-	            return input.substring(peg$savedPos, peg$currPos);
-	        }
-	        function location() {
-	            return peg$computeLocation(peg$savedPos, peg$currPos);
-	        }
-	        function expected(description) {
-	            throw peg$buildException(null, [{ type: "other", description: description }], input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
-	        }
-	        function error(message) {
-	            throw peg$buildException(message, null, input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
-	        }
-	        function peg$computePosDetails(pos) {
-	            var details = peg$posDetailsCache[pos], p, ch;
-	            if (details) {
-	                return details;
-	            }
-	            else {
-	                p = pos - 1;
-	                while (!peg$posDetailsCache[p]) {
-	                    p--;
-	                }
-	                details = peg$posDetailsCache[p];
-	                details = {
-	                    line: details.line,
-	                    column: details.column,
-	                    seenCR: details.seenCR
-	                };
-	                while (p < pos) {
-	                    ch = input.charAt(p);
-	                    if (ch === "\n") {
-	                        if (!details.seenCR) {
-	                            details.line++;
-	                        }
-	                        details.column = 1;
-	                        details.seenCR = false;
-	                    }
-	                    else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
-	                        details.line++;
-	                        details.column = 1;
-	                        details.seenCR = true;
-	                    }
-	                    else {
-	                        details.column++;
-	                        details.seenCR = false;
-	                    }
-	                    p++;
-	                }
-	                peg$posDetailsCache[pos] = details;
-	                return details;
-	            }
-	        }
-	        function peg$computeLocation(startPos, endPos) {
-	            var startPosDetails = peg$computePosDetails(startPos), endPosDetails = peg$computePosDetails(endPos);
-	            return {
-	                start: {
-	                    offset: startPos,
-	                    line: startPosDetails.line,
-	                    column: startPosDetails.column
-	                },
-	                end: {
-	                    offset: endPos,
-	                    line: endPosDetails.line,
-	                    column: endPosDetails.column
-	                }
-	            };
-	        }
-	        function peg$fail(expected) {
-	            if (peg$currPos < peg$maxFailPos) {
-	                return;
-	            }
-	            if (peg$currPos > peg$maxFailPos) {
-	                peg$maxFailPos = peg$currPos;
-	                peg$maxFailExpected = [];
-	            }
-	            peg$maxFailExpected.push(expected);
-	        }
-	        function peg$buildException(message, expected, found, location) {
-	            function cleanupExpected(expected) {
-	                var i = 1;
-	                expected.sort(function (a, b) {
-	                    if (a.description < b.description) {
-	                        return -1;
-	                    }
-	                    else if (a.description > b.description) {
-	                        return 1;
-	                    }
-	                    else {
-	                        return 0;
-	                    }
-	                });
-	                while (i < expected.length) {
-	                    if (expected[i - 1] === expected[i]) {
-	                        expected.splice(i, 1);
-	                    }
-	                    else {
-	                        i++;
-	                    }
-	                }
-	            }
-	            function buildMessage(expected, found) {
-	                function stringEscape(s) {
-	                    function hex(ch) {
-	                        return ch.charCodeAt(0).toString(16).toUpperCase();
-	                    }
-	                    return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\x08/g, '\\b').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\f/g, '\\f').replace(/\r/g, '\\r').replace(/[\x00-\x07\x0B\x0E\x0F]/g, function (ch) {
-	                        return '\\x0' + hex(ch);
-	                    }).replace(/[\x10-\x1F\x80-\xFF]/g, function (ch) {
-	                        return '\\x' + hex(ch);
-	                    }).replace(/[\u0100-\u0FFF]/g, function (ch) {
-	                        return '\\u0' + hex(ch);
-	                    }).replace(/[\u1000-\uFFFF]/g, function (ch) {
-	                        return '\\u' + hex(ch);
-	                    });
-	                }
-	                var expectedDescs = new Array(expected.length), expectedDesc, foundDesc, i;
-	                for (i = 0; i < expected.length; i++) {
-	                    expectedDescs[i] = expected[i].description;
-	                }
-	                expectedDesc = expected.length > 1 ? expectedDescs.slice(0, -1).join(", ") + " or " + expectedDescs[expected.length - 1] : expectedDescs[0];
-	                foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
-	                return "Expected " + expectedDesc + " but " + foundDesc + " found.";
-	            }
-	            if (expected !== null) {
-	                cleanupExpected(expected);
-	            }
-	            return new peg$SyntaxError(message !== null ? message : buildMessage(expected, found), expected, found, location);
-	        }
-	        function peg$parseExpression() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            s1 = peg$parseConditionalExpression();
-	            if (s1 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c0(s1);
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parseUnaryExpression() {
-	            var s0, s1;
-	            s0 = peg$currPos;
-	            s1 = peg$parsePrimaryExpression();
-	            if (s1 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c0(s1);
-	            }
-	            s0 = s1;
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$parseUnop();
-	            }
-	            return s0;
-	        }
-	        function peg$parseUnop() {
-	            var s0, s1, s2;
-	            s0 = peg$currPos;
-	            s1 = peg$parseUnaryOperator();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$parseUnaryExpression();
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c1(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseMultiplicativeExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseUnaryExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (peg$c2.test(input.charAt(peg$currPos))) {
-	                    s3 = input.charAt(peg$currPos);
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c3);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseMultiplicativeExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseAdditiveExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseMultiplicativeExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (peg$c5.test(input.charAt(peg$currPos))) {
-	                    s3 = input.charAt(peg$currPos);
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c6);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseAdditiveExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseRelationalExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseAdditiveExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.substr(peg$currPos, 2) === peg$c7) {
-	                    s3 = peg$c7;
-	                    peg$currPos += 2;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c8);
-	                    }
-	                }
-	                if (s3 === peg$FAILED) {
-	                    if (input.substr(peg$currPos, 2) === peg$c9) {
-	                        s3 = peg$c9;
-	                        peg$currPos += 2;
-	                    }
-	                    else {
-	                        s3 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c10);
-	                        }
-	                    }
-	                    if (s3 === peg$FAILED) {
-	                        if (input.charCodeAt(peg$currPos) === 60) {
-	                            s3 = peg$c11;
-	                            peg$currPos++;
-	                        }
-	                        else {
-	                            s3 = peg$FAILED;
-	                            if (peg$silentFails === 0) {
-	                                peg$fail(peg$c12);
-	                            }
-	                        }
-	                        if (s3 === peg$FAILED) {
-	                            if (input.charCodeAt(peg$currPos) === 62) {
-	                                s3 = peg$c13;
-	                                peg$currPos++;
-	                            }
-	                            else {
-	                                s3 = peg$FAILED;
-	                                if (peg$silentFails === 0) {
-	                                    peg$fail(peg$c14);
-	                                }
-	                            }
-	                        }
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseRelationalExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseEqualityExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseRelationalExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.substr(peg$currPos, 2) === peg$c15) {
-	                    s3 = peg$c15;
-	                    peg$currPos += 2;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c16);
-	                    }
-	                }
-	                if (s3 === peg$FAILED) {
-	                    if (input.substr(peg$currPos, 2) === peg$c17) {
-	                        s3 = peg$c17;
-	                        peg$currPos += 2;
-	                    }
-	                    else {
-	                        s3 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c18);
-	                        }
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseEqualityExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseANDExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseEqualityExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.charCodeAt(peg$currPos) === 38) {
-	                    s3 = peg$c19;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c20);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseANDExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseExclusiveORExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseANDExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.charCodeAt(peg$currPos) === 94) {
-	                    s3 = peg$c21;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c22);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseExclusiveORExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseInclusiveORExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseExclusiveORExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.charCodeAt(peg$currPos) === 124) {
-	                    s3 = peg$c23;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c24);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseInclusiveORExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseLogicalANDExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseInclusiveORExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.substr(peg$currPos, 2) === peg$c25) {
-	                    s3 = peg$c25;
-	                    peg$currPos += 2;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c26);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseLogicalANDExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseLogicalORExpression() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseLogicalANDExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.substr(peg$currPos, 2) === peg$c27) {
-	                    s3 = peg$c27;
-	                    peg$currPos += 2;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c28);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseLogicalORExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c4(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseConditionalExpression() {
-	            var s0, s1, s2, s3, s4, s5, s6;
-	            s0 = peg$currPos;
-	            s1 = peg$parseLogicalORExpression();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.charCodeAt(peg$currPos) === 63) {
-	                    s3 = peg$c29;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c30);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseExpression();
-	                    if (s4 !== peg$FAILED) {
-	                        if (input.charCodeAt(peg$currPos) === 58) {
-	                            s5 = peg$c31;
-	                            peg$currPos++;
-	                        }
-	                        else {
-	                            s5 = peg$FAILED;
-	                            if (peg$silentFails === 0) {
-	                                peg$fail(peg$c32);
-	                            }
-	                        }
-	                        if (s5 !== peg$FAILED) {
-	                            s6 = peg$parseConditionalExpression();
-	                            if (s6 !== peg$FAILED) {
-	                                s3 = [s3, s4, s5, s6];
-	                                s2 = s3;
-	                            }
-	                            else {
-	                                peg$currPos = s2;
-	                                s2 = peg$FAILED;
-	                            }
-	                        }
-	                        else {
-	                            peg$currPos = s2;
-	                            s2 = peg$FAILED;
-	                        }
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c33(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parsePrimaryExpression() {
-	            var s0;
-	            s0 = peg$parseIdentifier();
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$parseStringLiteral();
-	                if (s0 === peg$FAILED) {
-	                    s0 = peg$parseNumberLiteral();
-	                    if (s0 === peg$FAILED) {
-	                        s0 = peg$parseCharLiteral();
-	                        if (s0 === peg$FAILED) {
-	                            s0 = peg$parseParen();
-	                        }
-	                    }
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseParen() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            if (input.charCodeAt(peg$currPos) === 40) {
-	                s1 = peg$c34;
-	                peg$currPos++;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c35);
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$parseExpression();
-	                if (s2 !== peg$FAILED) {
-	                    if (input.charCodeAt(peg$currPos) === 41) {
-	                        s3 = peg$c36;
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s3 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c37);
-	                        }
-	                    }
-	                    if (s3 !== peg$FAILED) {
-	                        peg$savedPos = s0;
-	                        s1 = peg$c38(s2);
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseUnaryOperator() {
-	            var s0;
-	            if (peg$c39.test(input.charAt(peg$currPos))) {
-	                s0 = input.charAt(peg$currPos);
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c40);
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseIdentifier() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            if (input.charCodeAt(peg$currPos) === 36) {
-	                s1 = peg$c41;
-	                peg$currPos++;
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c42);
-	                }
-	            }
-	            if (s1 === peg$FAILED) {
-	                if (peg$c43.test(input.charAt(peg$currPos))) {
-	                    s1 = input.charAt(peg$currPos);
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s1 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c44);
-	                    }
-	                }
-	            }
-	            if (s1 !== peg$FAILED) {
-	                s2 = [];
-	                if (peg$c45.test(input.charAt(peg$currPos))) {
-	                    s3 = input.charAt(peg$currPos);
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c46);
-	                    }
-	                }
-	                if (s3 === peg$FAILED) {
-	                    if (input.charCodeAt(peg$currPos) === 46) {
-	                        s3 = peg$c47;
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s3 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c48);
-	                        }
-	                    }
-	                    if (s3 === peg$FAILED) {
-	                        if (input.charCodeAt(peg$currPos) === 36) {
-	                            s3 = peg$c41;
-	                            peg$currPos++;
-	                        }
-	                        else {
-	                            s3 = peg$FAILED;
-	                            if (peg$silentFails === 0) {
-	                                peg$fail(peg$c42);
-	                            }
-	                        }
-	                    }
-	                }
-	                while (s3 !== peg$FAILED) {
-	                    s2.push(s3);
-	                    if (peg$c45.test(input.charAt(peg$currPos))) {
-	                        s3 = input.charAt(peg$currPos);
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s3 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c46);
-	                        }
-	                    }
-	                    if (s3 === peg$FAILED) {
-	                        if (input.charCodeAt(peg$currPos) === 46) {
-	                            s3 = peg$c47;
-	                            peg$currPos++;
-	                        }
-	                        else {
-	                            s3 = peg$FAILED;
-	                            if (peg$silentFails === 0) {
-	                                peg$fail(peg$c48);
-	                            }
-	                        }
-	                        if (s3 === peg$FAILED) {
-	                            if (input.charCodeAt(peg$currPos) === 36) {
-	                                s3 = peg$c41;
-	                                peg$currPos++;
-	                            }
-	                            else {
-	                                s3 = peg$FAILED;
-	                                if (peg$silentFails === 0) {
-	                                    peg$fail(peg$c42);
-	                                }
-	                            }
-	                        }
-	                    }
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c49(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseStringLiteral() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            s1 = peg$parsedoublequote();
-	            if (s1 !== peg$FAILED) {
-	                s2 = [];
-	                s3 = peg$parseDQChar();
-	                while (s3 !== peg$FAILED) {
-	                    s2.push(s3);
-	                    s3 = peg$parseDQChar();
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    s3 = peg$parsedoublequote();
-	                    if (s3 !== peg$FAILED) {
-	                        peg$savedPos = s0;
-	                        s1 = peg$c50(s2);
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parsedoublequote() {
-	            var s0;
-	            if (input.charCodeAt(peg$currPos) === 34) {
-	                s0 = peg$c51;
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c52);
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseDQChar() {
-	            var s0, s1, s2;
-	            s0 = peg$parseEscapeSequence();
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$currPos;
-	                s1 = peg$currPos;
-	                peg$silentFails++;
-	                s2 = peg$parsedoublequote();
-	                peg$silentFails--;
-	                if (s2 === peg$FAILED) {
-	                    s1 = void 0;
-	                }
-	                else {
-	                    peg$currPos = s1;
-	                    s1 = peg$FAILED;
-	                }
-	                if (s1 !== peg$FAILED) {
-	                    if (input.length > peg$currPos) {
-	                        s2 = input.charAt(peg$currPos);
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s2 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c53);
-	                        }
-	                    }
-	                    if (s2 !== peg$FAILED) {
-	                        s1 = [s1, s2];
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseQChar() {
-	            var s0, s1, s2;
-	            s0 = peg$parseEscapeSequence();
-	            if (s0 === peg$FAILED) {
-	                s0 = peg$currPos;
-	                s1 = peg$currPos;
-	                peg$silentFails++;
-	                s2 = peg$parsequote();
-	                peg$silentFails--;
-	                if (s2 === peg$FAILED) {
-	                    s1 = void 0;
-	                }
-	                else {
-	                    peg$currPos = s1;
-	                    s1 = peg$FAILED;
-	                }
-	                if (s1 !== peg$FAILED) {
-	                    if (input.length > peg$currPos) {
-	                        s2 = input.charAt(peg$currPos);
-	                        peg$currPos++;
-	                    }
-	                    else {
-	                        s2 = peg$FAILED;
-	                        if (peg$silentFails === 0) {
-	                            peg$fail(peg$c53);
-	                        }
-	                    }
-	                    if (s2 !== peg$FAILED) {
-	                        s1 = [s1, s2];
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseEscapeSequence() {
-	            var s0, s1, s2;
-	            s0 = peg$currPos;
-	            s1 = peg$parsebackslash();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$parsequote();
-	                if (s2 === peg$FAILED) {
-	                    s2 = peg$parsedoublequote();
-	                    if (s2 === peg$FAILED) {
-	                        s2 = peg$parsebackslash();
-	                        if (s2 === peg$FAILED) {
-	                            if (peg$c54.test(input.charAt(peg$currPos))) {
-	                                s2 = input.charAt(peg$currPos);
-	                                peg$currPos++;
-	                            }
-	                            else {
-	                                s2 = peg$FAILED;
-	                                if (peg$silentFails === 0) {
-	                                    peg$fail(peg$c55);
-	                                }
-	                            }
-	                        }
-	                    }
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    s1 = [s1, s2];
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parsebackslash() {
-	            var s0;
-	            if (input.charCodeAt(peg$currPos) === 92) {
-	                s0 = peg$c56;
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c57);
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parsequote() {
-	            var s0;
-	            if (input.charCodeAt(peg$currPos) === 39) {
-	                s0 = peg$c58;
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c59);
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseCharLiteral() {
-	            var s0, s1, s2, s3;
-	            s0 = peg$currPos;
-	            s1 = peg$parsequote();
-	            if (s1 !== peg$FAILED) {
-	                s2 = [];
-	                s3 = peg$parseQChar();
-	                while (s3 !== peg$FAILED) {
-	                    s2.push(s3);
-	                    s3 = peg$parseQChar();
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    s3 = peg$parsequote();
-	                    if (s3 !== peg$FAILED) {
-	                        peg$savedPos = s0;
-	                        s1 = peg$c50(s2);
-	                        s0 = s1;
-	                    }
-	                    else {
-	                        peg$currPos = s0;
-	                        s0 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseInteger() {
-	            var s0, s1, s2;
-	            s0 = peg$currPos;
-	            s1 = [];
-	            s2 = peg$parsedigit();
-	            if (s2 !== peg$FAILED) {
-	                while (s2 !== peg$FAILED) {
-	                    s1.push(s2);
-	                    s2 = peg$parsedigit();
-	                }
-	            }
-	            else {
-	                s1 = peg$FAILED;
-	            }
-	            if (s1 !== peg$FAILED) {
-	                peg$savedPos = s0;
-	                s1 = peg$c60(s1);
-	            }
-	            s0 = s1;
-	            return s0;
-	        }
-	        function peg$parsedigit() {
-	            var s0;
-	            if (peg$c61.test(input.charAt(peg$currPos))) {
-	                s0 = input.charAt(peg$currPos);
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c62);
-	                }
-	            }
-	            return s0;
-	        }
-	        function peg$parseNumberLiteral() {
-	            var s0, s1, s2, s3, s4;
-	            s0 = peg$currPos;
-	            s1 = peg$parseInteger();
-	            if (s1 !== peg$FAILED) {
-	                s2 = peg$currPos;
-	                if (input.charCodeAt(peg$currPos) === 46) {
-	                    s3 = peg$c47;
-	                    peg$currPos++;
-	                }
-	                else {
-	                    s3 = peg$FAILED;
-	                    if (peg$silentFails === 0) {
-	                        peg$fail(peg$c48);
-	                    }
-	                }
-	                if (s3 !== peg$FAILED) {
-	                    s4 = peg$parseInteger();
-	                    if (s4 !== peg$FAILED) {
-	                        s3 = [s3, s4];
-	                        s2 = s3;
-	                    }
-	                    else {
-	                        peg$currPos = s2;
-	                        s2 = peg$FAILED;
-	                    }
-	                }
-	                else {
-	                    peg$currPos = s2;
-	                    s2 = peg$FAILED;
-	                }
-	                if (s2 === peg$FAILED) {
-	                    s2 = null;
-	                }
-	                if (s2 !== peg$FAILED) {
-	                    peg$savedPos = s0;
-	                    s1 = peg$c63(s1, s2);
-	                    s0 = s1;
-	                }
-	                else {
-	                    peg$currPos = s0;
-	                    s0 = peg$FAILED;
-	                }
-	            }
-	            else {
-	                peg$currPos = s0;
-	                s0 = peg$FAILED;
-	            }
-	            return s0;
-	        }
-	        function peg$parseSign() {
-	            var s0;
-	            if (input.charCodeAt(peg$currPos) === 45) {
-	                s0 = peg$c64;
-	                peg$currPos++;
-	            }
-	            else {
-	                s0 = peg$FAILED;
-	                if (peg$silentFails === 0) {
-	                    peg$fail(peg$c65);
-	                }
-	            }
-	            return s0;
-	        }
-	        peg$result = peg$startRuleFunction();
-	        if (peg$result !== peg$FAILED && peg$currPos === input.length) {
-	            return peg$result;
-	        }
-	        else {
-	            if (peg$result !== peg$FAILED && peg$currPos < input.length) {
-	                peg$fail({ type: "end", description: "end of input" });
-	            }
-	            throw peg$buildException(null, peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
-	        }
-	    }
-	    return {
-	        SyntaxError: peg$SyntaxError,
-	        parse: peg$parse
-	    };
-	})();
-	module.exports = parser;
-	//# sourceMappingURL=ramlExpressionParser.js.map
-
-/***/ },
-/* 73 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var parser = (function () {
 	    "use strict";
 	    /*
@@ -40255,7 +38794,7 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=ramlSignatureParser.js.map
 
 /***/ },
-/* 74 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -40264,8 +38803,8 @@ var media_typer = require("media-typer");
 	    __.prototype = b.prototype;
 	    d.prototype = new __();
 	};
-	var hl = __webpack_require__(18);
-	var core = __webpack_require__(29);
+	var hl = __webpack_require__(17);
+	var core = __webpack_require__(18);
 	var BasicNodeImpl = (function (_super) {
 	    __extends(BasicNodeImpl, _super);
 	    function BasicNodeImpl(node) {
@@ -42236,6 +40775,1762 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=raml08parser.js.map
 
 /***/ },
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mod = (function () {
+	    /*
+	     * Generated by PEG.js 0.8.0.
+	     *
+	     * http://pegjs.majda.cz/
+	     */
+	    function peg$subclass(child, parent) {
+	        function ctor() {
+	            this.constructor = child;
+	        }
+	        ctor.prototype = parent.prototype;
+	        child.prototype = new ctor();
+	    }
+	    function SyntaxError(message, expected, found, offset, line, column) {
+	        this.message = message;
+	        this.expected = expected;
+	        this.found = found;
+	        this.offset = offset;
+	        this.line = line;
+	        this.column = column;
+	        this.name = "SyntaxError";
+	    }
+	    peg$subclass(SyntaxError, Error);
+	    function parse(input) {
+	        var options = arguments.length > 1 ? arguments[1] : {}, peg$FAILED = {}, peg$startRuleFunctions = { start: peg$parsestart }, peg$startRuleFunction = peg$parsestart, peg$c0 = peg$FAILED, peg$c1 = "|", peg$c2 = { type: "literal", value: "|", description: "\"|\"" }, peg$c3 = function (left, r) {
+	            return { 'type': 'or', 'left': left, 'right': r ? r : null };
+	        }, peg$c4 = ".", peg$c5 = { type: "literal", value: ".", description: "\".\"" }, peg$c6 = function (left, r) {
+	            return { 'type': 'dot', 'left': left, 'right': r };
+	        }, peg$c7 = "$", peg$c8 = { type: "literal", value: "$", description: "\"$\"" }, peg$c9 = function () {
+	            return { 'type': 'parent' };
+	        }, peg$c10 = "$$", peg$c11 = { type: "literal", value: "$$", description: "\"$$\"" }, peg$c12 = function () {
+	            return { 'type': 'ancestor' };
+	        }, peg$c13 = "**", peg$c14 = { type: "literal", value: "**", description: "\"**\"" }, peg$c15 = function () {
+	            return { 'type': 'descendant' };
+	        }, peg$c16 = "*", peg$c17 = { type: "literal", value: "*", description: "\"*\"" }, peg$c18 = function () {
+	            return { 'type': 'child' };
+	        }, peg$c19 = [], peg$c20 = /^[A-z]/, peg$c21 = { type: "class", value: "[A-z]", description: "[A-z]" }, peg$c22 = function (chars) {
+	            return { 'type': 'classLiteral', "name": chars.join("") };
+	        }, peg$currPos = 0, peg$reportedPos = 0, peg$cachedPos = 0, peg$cachedPosDetails = { line: 1, column: 1, seenCR: false }, peg$maxFailPos = 0, peg$maxFailExpected = [], peg$silentFails = 0, peg$result;
+	        if ("startRule" in options) {
+	            if (!(options.startRule in peg$startRuleFunctions)) {
+	                throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
+	            }
+	            peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
+	        }
+	        function text() {
+	            return input.substring(peg$reportedPos, peg$currPos);
+	        }
+	        function offset() {
+	            return peg$reportedPos;
+	        }
+	        function line() {
+	            return peg$computePosDetails(peg$reportedPos).line;
+	        }
+	        function column() {
+	            return peg$computePosDetails(peg$reportedPos).column;
+	        }
+	        function expected(description) {
+	            throw peg$buildException(null, [{ type: "other", description: description }], peg$reportedPos);
+	        }
+	        function error(message) {
+	            throw peg$buildException(message, null, peg$reportedPos);
+	        }
+	        function peg$computePosDetails(pos) {
+	            function advance(details, startPos, endPos) {
+	                var p, ch;
+	                for (p = startPos; p < endPos; p++) {
+	                    ch = input.charAt(p);
+	                    if (ch === "\n") {
+	                        if (!details.seenCR) {
+	                            details.line++;
+	                        }
+	                        details.column = 1;
+	                        details.seenCR = false;
+	                    }
+	                    else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
+	                        details.line++;
+	                        details.column = 1;
+	                        details.seenCR = true;
+	                    }
+	                    else {
+	                        details.column++;
+	                        details.seenCR = false;
+	                    }
+	                }
+	            }
+	            if (peg$cachedPos !== pos) {
+	                if (peg$cachedPos > pos) {
+	                    peg$cachedPos = 0;
+	                    peg$cachedPosDetails = { line: 1, column: 1, seenCR: false };
+	                }
+	                advance(peg$cachedPosDetails, peg$cachedPos, pos);
+	                peg$cachedPos = pos;
+	            }
+	            return peg$cachedPosDetails;
+	        }
+	        function peg$fail(expected) {
+	            if (peg$currPos < peg$maxFailPos) {
+	                return;
+	            }
+	            if (peg$currPos > peg$maxFailPos) {
+	                peg$maxFailPos = peg$currPos;
+	                peg$maxFailExpected = [];
+	            }
+	            peg$maxFailExpected.push(expected);
+	        }
+	        function peg$buildException(message, expected, pos) {
+	            function cleanupExpected(expected) {
+	                var i = 1;
+	                expected.sort(function (a, b) {
+	                    if (a.description < b.description) {
+	                        return -1;
+	                    }
+	                    else if (a.description > b.description) {
+	                        return 1;
+	                    }
+	                    else {
+	                        return 0;
+	                    }
+	                });
+	                while (i < expected.length) {
+	                    if (expected[i - 1] === expected[i]) {
+	                        expected.splice(i, 1);
+	                    }
+	                    else {
+	                        i++;
+	                    }
+	                }
+	            }
+	            function buildMessage(expected, found) {
+	                function stringEscape(s) {
+	                    function hex(ch) {
+	                        return ch.charCodeAt(0).toString(16).toUpperCase();
+	                    }
+	                    return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\x08/g, '\\b').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\f/g, '\\f').replace(/\r/g, '\\r').replace(/[\x00-\x07\x0B\x0E\x0F]/g, function (ch) {
+	                        return '\\x0' + hex(ch);
+	                    }).replace(/[\x10-\x1F\x80-\xFF]/g, function (ch) {
+	                        return '\\x' + hex(ch);
+	                    }).replace(/[\u0180-\u0FFF]/g, function (ch) {
+	                        return '\\u0' + hex(ch);
+	                    }).replace(/[\u1080-\uFFFF]/g, function (ch) {
+	                        return '\\u' + hex(ch);
+	                    });
+	                }
+	                var expectedDescs = new Array(expected.length), expectedDesc, foundDesc, i;
+	                for (i = 0; i < expected.length; i++) {
+	                    expectedDescs[i] = expected[i].description;
+	                }
+	                expectedDesc = expected.length > 1 ? expectedDescs.slice(0, -1).join(", ") + " or " + expectedDescs[expected.length - 1] : expectedDescs[0];
+	                foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
+	                return "Expected " + expectedDesc + " but " + foundDesc + " found.";
+	            }
+	            var posDetails = peg$computePosDetails(pos), found = pos < input.length ? input.charAt(pos) : null;
+	            if (expected !== null) {
+	                cleanupExpected(expected);
+	            }
+	            return new SyntaxError(message !== null ? message : buildMessage(expected, found), expected, found, pos, posDetails.line, posDetails.column);
+	        }
+	        function peg$parsestart() {
+	            var s0;
+	            s0 = peg$parseor();
+	            return s0;
+	        }
+	        function peg$parseor() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            s1 = peg$parsesequence();
+	            if (s1 !== peg$FAILED) {
+	                if (input.charCodeAt(peg$currPos) === 124) {
+	                    s2 = peg$c1;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s2 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c2);
+	                    }
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    s3 = peg$parseor();
+	                    if (s3 !== peg$FAILED) {
+	                        peg$reportedPos = s0;
+	                        s1 = peg$c3(s1, s3);
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$c0;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$c0;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$c0;
+	            }
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$parsesequence();
+	            }
+	            return s0;
+	        }
+	        function peg$parsesequence() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            s1 = peg$parseprimary();
+	            if (s1 !== peg$FAILED) {
+	                if (input.charCodeAt(peg$currPos) === 46) {
+	                    s2 = peg$c4;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s2 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c5);
+	                    }
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    s3 = peg$parsesequence();
+	                    if (s3 !== peg$FAILED) {
+	                        peg$reportedPos = s0;
+	                        s1 = peg$c6(s1, s3);
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$c0;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$c0;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$c0;
+	            }
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$parseprimary();
+	            }
+	            return s0;
+	        }
+	        function peg$parseprimary() {
+	            var s0;
+	            s0 = peg$parsechildRef();
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$parsedoubleStar();
+	                if (s0 === peg$FAILED) {
+	                    s0 = peg$parsestar();
+	                    if (s0 === peg$FAILED) {
+	                        s0 = peg$parsedoubleDollar();
+	                        if (s0 === peg$FAILED) {
+	                            s0 = peg$parsedollar();
+	                        }
+	                    }
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parsedollar() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            if (input.charCodeAt(peg$currPos) === 36) {
+	                s1 = peg$c7;
+	                peg$currPos++;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c8);
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$reportedPos = s0;
+	                s1 = peg$c9();
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parsedoubleDollar() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            if (input.substr(peg$currPos, 2) === peg$c10) {
+	                s1 = peg$c10;
+	                peg$currPos += 2;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c11);
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$reportedPos = s0;
+	                s1 = peg$c12();
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parsedoubleStar() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            if (input.substr(peg$currPos, 2) === peg$c13) {
+	                s1 = peg$c13;
+	                peg$currPos += 2;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c14);
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$reportedPos = s0;
+	                s1 = peg$c15();
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parsestar() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            if (input.charCodeAt(peg$currPos) === 42) {
+	                s1 = peg$c16;
+	                peg$currPos++;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c17);
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$reportedPos = s0;
+	                s1 = peg$c18();
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parsechildRef() {
+	            var s0, s1, s2;
+	            s0 = peg$currPos;
+	            s1 = [];
+	            if (peg$c20.test(input.charAt(peg$currPos))) {
+	                s2 = input.charAt(peg$currPos);
+	                peg$currPos++;
+	            }
+	            else {
+	                s2 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c21);
+	                }
+	            }
+	            if (s2 !== peg$FAILED) {
+	                while (s2 !== peg$FAILED) {
+	                    s1.push(s2);
+	                    if (peg$c20.test(input.charAt(peg$currPos))) {
+	                        s2 = input.charAt(peg$currPos);
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s2 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c21);
+	                        }
+	                    }
+	                }
+	            }
+	            else {
+	                s1 = peg$c0;
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$reportedPos = s0;
+	                s1 = peg$c22(s1);
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        peg$result = peg$startRuleFunction();
+	        if (peg$result !== peg$FAILED && peg$currPos === input.length) {
+	            return peg$result;
+	        }
+	        else {
+	            if (peg$result !== peg$FAILED && peg$currPos < input.length) {
+	                peg$fail({ type: "end", description: "end of input" });
+	            }
+	            throw peg$buildException(null, peg$maxFailExpected, peg$maxFailPos);
+	        }
+	    }
+	    return {
+	        SyntaxError: SyntaxError,
+	        parse: parse
+	    };
+	})();
+	module.exports = mod;
+	//# sourceMappingURL=ramlselector.js.map
+
+/***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var parser = (function () {
+	    "use strict";
+	    /*
+	     * Generated by PEG.js 0.9.0.
+	     *
+	     * http://pegjs.org/
+	     */
+	    function peg$subclass(child, parent) {
+	        function ctor() {
+	            this.constructor = child;
+	        }
+	        ctor.prototype = parent.prototype;
+	        child.prototype = new ctor();
+	    }
+	    function peg$SyntaxError(message, expected, found, location) {
+	        this.message = message;
+	        this.expected = expected;
+	        this.found = found;
+	        this.location = location;
+	        this.name = "SyntaxError";
+	        if (typeof Error.captureStackTrace === "function") {
+	            Error.captureStackTrace(this, peg$SyntaxError);
+	        }
+	    }
+	    peg$subclass(peg$SyntaxError, Error);
+	    function peg$parse(input) {
+	        var options = arguments.length > 1 ? arguments[1] : {}, parser = this, peg$FAILED = {}, peg$startRuleFunctions = { Expression: peg$parseExpression }, peg$startRuleFunction = peg$parseExpression, peg$c0 = function (c) {
+	            return c;
+	        }, peg$c1 = function (op, exp) {
+	            return { 'type': 'unary', 'op': op, 'exp': exp };
+	        }, peg$c2 = /^[*%\/]/, peg$c3 = { type: "class", value: "[*%/]", description: "[*%/]" }, peg$c4 = function (l, r) {
+	            return r ? ({ "type": r[0], "l": l, "r": r[1] }) : l;
+	        }, peg$c5 = /^[\-+]/, peg$c6 = { type: "class", value: "[-+]", description: "[-+]" }, peg$c7 = "<=", peg$c8 = { type: "literal", value: "<=", description: "\"<=\"" }, peg$c9 = ">=", peg$c10 = { type: "literal", value: ">=", description: "\">=\"" }, peg$c11 = "<", peg$c12 = { type: "literal", value: "<", description: "\"<\"" }, peg$c13 = ">", peg$c14 = { type: "literal", value: ">", description: "\">\"" }, peg$c15 = "==", peg$c16 = { type: "literal", value: "==", description: "\"==\"" }, peg$c17 = "!=", peg$c18 = { type: "literal", value: "!=", description: "\"!=\"" }, peg$c19 = "&", peg$c20 = { type: "literal", value: "&", description: "\"&\"" }, peg$c21 = "^", peg$c22 = { type: "literal", value: "^", description: "\"^\"" }, peg$c23 = "|", peg$c24 = { type: "literal", value: "|", description: "\"|\"" }, peg$c25 = "&&", peg$c26 = { type: "literal", value: "&&", description: "\"&&\"" }, peg$c27 = "||", peg$c28 = { type: "literal", value: "||", description: "\"||\"" }, peg$c29 = "?", peg$c30 = { type: "literal", value: "?", description: "\"?\"" }, peg$c31 = ":", peg$c32 = { type: "literal", value: ":", description: "\":\"" }, peg$c33 = function (p, e) {
+	            return e ? null : p;
+	        }, peg$c34 = "(", peg$c35 = { type: "literal", value: "(", description: "\"(\"" }, peg$c36 = ")", peg$c37 = { type: "literal", value: ")", description: "\")\"" }, peg$c38 = function (e) {
+	            return { 'type': 'paren', 'exp': e };
+	        }, peg$c39 = /^[\-&*~!]/, peg$c40 = { type: "class", value: "[-&*~!]", description: "[-&*~!]" }, peg$c41 = "$", peg$c42 = { type: "literal", value: "$", description: "\"$\"" }, peg$c43 = /^[a-zA-Z_]/, peg$c44 = { type: "class", value: "[a-zA-Z_]", description: "[a-zA-Z_]" }, peg$c45 = /^[a-zA-Z0-9_]/, peg$c46 = { type: "class", value: "[a-zA-Z0-9_]", description: "[a-zA-Z0-9_]" }, peg$c47 = ".", peg$c48 = { type: "literal", value: ".", description: "\".\"" }, peg$c49 = function (v0, v1) {
+	            return { 'type': 'ident', value: [v0].concat(v1).join('') };
+	        }, peg$c50 = function (m) {
+	            m = m.map(function (x) {
+	                return x[1];
+	            });
+	            return { 'type': 'string', 'value': m.join('') };
+	        }, peg$c51 = "\"", peg$c52 = { type: "literal", value: "\"", description: "\"\\\"\"" }, peg$c53 = { type: "any", description: "any character" }, peg$c54 = /^[abfnrtv]/, peg$c55 = { type: "class", value: "[abfnrtv]", description: "[abfnrtv]" }, peg$c56 = "\\", peg$c57 = { type: "literal", value: "\\", description: "\"\\\\\"" }, peg$c58 = "'", peg$c59 = { type: "literal", value: "'", description: "\"'\"" }, peg$c60 = function (f) {
+	            return f.join('');
+	        }, peg$c61 = /^[0-9]/, peg$c62 = { type: "class", value: "[0-9]", description: "[0-9]" }, peg$c63 = function (v, f) {
+	            if (!f)
+	                f = [];
+	            var val = [v].concat(f).join('');
+	            return { 'type': 'number', 'value': val };
+	        }, peg$c64 = "-", peg$c65 = { type: "literal", value: "-", description: "\"-\"" }, peg$currPos = 0, peg$savedPos = 0, peg$posDetailsCache = [{ line: 1, column: 1, seenCR: false }], peg$maxFailPos = 0, peg$maxFailExpected = [], peg$silentFails = 0, peg$result;
+	        if ("startRule" in options) {
+	            if (!(options.startRule in peg$startRuleFunctions)) {
+	                throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
+	            }
+	            peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
+	        }
+	        function text() {
+	            return input.substring(peg$savedPos, peg$currPos);
+	        }
+	        function location() {
+	            return peg$computeLocation(peg$savedPos, peg$currPos);
+	        }
+	        function expected(description) {
+	            throw peg$buildException(null, [{ type: "other", description: description }], input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
+	        }
+	        function error(message) {
+	            throw peg$buildException(message, null, input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
+	        }
+	        function peg$computePosDetails(pos) {
+	            var details = peg$posDetailsCache[pos], p, ch;
+	            if (details) {
+	                return details;
+	            }
+	            else {
+	                p = pos - 1;
+	                while (!peg$posDetailsCache[p]) {
+	                    p--;
+	                }
+	                details = peg$posDetailsCache[p];
+	                details = {
+	                    line: details.line,
+	                    column: details.column,
+	                    seenCR: details.seenCR
+	                };
+	                while (p < pos) {
+	                    ch = input.charAt(p);
+	                    if (ch === "\n") {
+	                        if (!details.seenCR) {
+	                            details.line++;
+	                        }
+	                        details.column = 1;
+	                        details.seenCR = false;
+	                    }
+	                    else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
+	                        details.line++;
+	                        details.column = 1;
+	                        details.seenCR = true;
+	                    }
+	                    else {
+	                        details.column++;
+	                        details.seenCR = false;
+	                    }
+	                    p++;
+	                }
+	                peg$posDetailsCache[pos] = details;
+	                return details;
+	            }
+	        }
+	        function peg$computeLocation(startPos, endPos) {
+	            var startPosDetails = peg$computePosDetails(startPos), endPosDetails = peg$computePosDetails(endPos);
+	            return {
+	                start: {
+	                    offset: startPos,
+	                    line: startPosDetails.line,
+	                    column: startPosDetails.column
+	                },
+	                end: {
+	                    offset: endPos,
+	                    line: endPosDetails.line,
+	                    column: endPosDetails.column
+	                }
+	            };
+	        }
+	        function peg$fail(expected) {
+	            if (peg$currPos < peg$maxFailPos) {
+	                return;
+	            }
+	            if (peg$currPos > peg$maxFailPos) {
+	                peg$maxFailPos = peg$currPos;
+	                peg$maxFailExpected = [];
+	            }
+	            peg$maxFailExpected.push(expected);
+	        }
+	        function peg$buildException(message, expected, found, location) {
+	            function cleanupExpected(expected) {
+	                var i = 1;
+	                expected.sort(function (a, b) {
+	                    if (a.description < b.description) {
+	                        return -1;
+	                    }
+	                    else if (a.description > b.description) {
+	                        return 1;
+	                    }
+	                    else {
+	                        return 0;
+	                    }
+	                });
+	                while (i < expected.length) {
+	                    if (expected[i - 1] === expected[i]) {
+	                        expected.splice(i, 1);
+	                    }
+	                    else {
+	                        i++;
+	                    }
+	                }
+	            }
+	            function buildMessage(expected, found) {
+	                function stringEscape(s) {
+	                    function hex(ch) {
+	                        return ch.charCodeAt(0).toString(16).toUpperCase();
+	                    }
+	                    return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\x08/g, '\\b').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\f/g, '\\f').replace(/\r/g, '\\r').replace(/[\x00-\x07\x0B\x0E\x0F]/g, function (ch) {
+	                        return '\\x0' + hex(ch);
+	                    }).replace(/[\x10-\x1F\x80-\xFF]/g, function (ch) {
+	                        return '\\x' + hex(ch);
+	                    }).replace(/[\u0100-\u0FFF]/g, function (ch) {
+	                        return '\\u0' + hex(ch);
+	                    }).replace(/[\u1000-\uFFFF]/g, function (ch) {
+	                        return '\\u' + hex(ch);
+	                    });
+	                }
+	                var expectedDescs = new Array(expected.length), expectedDesc, foundDesc, i;
+	                for (i = 0; i < expected.length; i++) {
+	                    expectedDescs[i] = expected[i].description;
+	                }
+	                expectedDesc = expected.length > 1 ? expectedDescs.slice(0, -1).join(", ") + " or " + expectedDescs[expected.length - 1] : expectedDescs[0];
+	                foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
+	                return "Expected " + expectedDesc + " but " + foundDesc + " found.";
+	            }
+	            if (expected !== null) {
+	                cleanupExpected(expected);
+	            }
+	            return new peg$SyntaxError(message !== null ? message : buildMessage(expected, found), expected, found, location);
+	        }
+	        function peg$parseExpression() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            s1 = peg$parseConditionalExpression();
+	            if (s1 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c0(s1);
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parseUnaryExpression() {
+	            var s0, s1;
+	            s0 = peg$currPos;
+	            s1 = peg$parsePrimaryExpression();
+	            if (s1 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c0(s1);
+	            }
+	            s0 = s1;
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$parseUnop();
+	            }
+	            return s0;
+	        }
+	        function peg$parseUnop() {
+	            var s0, s1, s2;
+	            s0 = peg$currPos;
+	            s1 = peg$parseUnaryOperator();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$parseUnaryExpression();
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c1(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseMultiplicativeExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseUnaryExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (peg$c2.test(input.charAt(peg$currPos))) {
+	                    s3 = input.charAt(peg$currPos);
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c3);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseMultiplicativeExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseAdditiveExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseMultiplicativeExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (peg$c5.test(input.charAt(peg$currPos))) {
+	                    s3 = input.charAt(peg$currPos);
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c6);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseAdditiveExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseRelationalExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseAdditiveExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.substr(peg$currPos, 2) === peg$c7) {
+	                    s3 = peg$c7;
+	                    peg$currPos += 2;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c8);
+	                    }
+	                }
+	                if (s3 === peg$FAILED) {
+	                    if (input.substr(peg$currPos, 2) === peg$c9) {
+	                        s3 = peg$c9;
+	                        peg$currPos += 2;
+	                    }
+	                    else {
+	                        s3 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c10);
+	                        }
+	                    }
+	                    if (s3 === peg$FAILED) {
+	                        if (input.charCodeAt(peg$currPos) === 60) {
+	                            s3 = peg$c11;
+	                            peg$currPos++;
+	                        }
+	                        else {
+	                            s3 = peg$FAILED;
+	                            if (peg$silentFails === 0) {
+	                                peg$fail(peg$c12);
+	                            }
+	                        }
+	                        if (s3 === peg$FAILED) {
+	                            if (input.charCodeAt(peg$currPos) === 62) {
+	                                s3 = peg$c13;
+	                                peg$currPos++;
+	                            }
+	                            else {
+	                                s3 = peg$FAILED;
+	                                if (peg$silentFails === 0) {
+	                                    peg$fail(peg$c14);
+	                                }
+	                            }
+	                        }
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseRelationalExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseEqualityExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseRelationalExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.substr(peg$currPos, 2) === peg$c15) {
+	                    s3 = peg$c15;
+	                    peg$currPos += 2;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c16);
+	                    }
+	                }
+	                if (s3 === peg$FAILED) {
+	                    if (input.substr(peg$currPos, 2) === peg$c17) {
+	                        s3 = peg$c17;
+	                        peg$currPos += 2;
+	                    }
+	                    else {
+	                        s3 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c18);
+	                        }
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseEqualityExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseANDExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseEqualityExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.charCodeAt(peg$currPos) === 38) {
+	                    s3 = peg$c19;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c20);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseANDExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseExclusiveORExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseANDExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.charCodeAt(peg$currPos) === 94) {
+	                    s3 = peg$c21;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c22);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseExclusiveORExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseInclusiveORExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseExclusiveORExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.charCodeAt(peg$currPos) === 124) {
+	                    s3 = peg$c23;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c24);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseInclusiveORExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseLogicalANDExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseInclusiveORExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.substr(peg$currPos, 2) === peg$c25) {
+	                    s3 = peg$c25;
+	                    peg$currPos += 2;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c26);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseLogicalANDExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseLogicalORExpression() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseLogicalANDExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.substr(peg$currPos, 2) === peg$c27) {
+	                    s3 = peg$c27;
+	                    peg$currPos += 2;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c28);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseLogicalORExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c4(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseConditionalExpression() {
+	            var s0, s1, s2, s3, s4, s5, s6;
+	            s0 = peg$currPos;
+	            s1 = peg$parseLogicalORExpression();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.charCodeAt(peg$currPos) === 63) {
+	                    s3 = peg$c29;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c30);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseExpression();
+	                    if (s4 !== peg$FAILED) {
+	                        if (input.charCodeAt(peg$currPos) === 58) {
+	                            s5 = peg$c31;
+	                            peg$currPos++;
+	                        }
+	                        else {
+	                            s5 = peg$FAILED;
+	                            if (peg$silentFails === 0) {
+	                                peg$fail(peg$c32);
+	                            }
+	                        }
+	                        if (s5 !== peg$FAILED) {
+	                            s6 = peg$parseConditionalExpression();
+	                            if (s6 !== peg$FAILED) {
+	                                s3 = [s3, s4, s5, s6];
+	                                s2 = s3;
+	                            }
+	                            else {
+	                                peg$currPos = s2;
+	                                s2 = peg$FAILED;
+	                            }
+	                        }
+	                        else {
+	                            peg$currPos = s2;
+	                            s2 = peg$FAILED;
+	                        }
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c33(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parsePrimaryExpression() {
+	            var s0;
+	            s0 = peg$parseIdentifier();
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$parseStringLiteral();
+	                if (s0 === peg$FAILED) {
+	                    s0 = peg$parseNumberLiteral();
+	                    if (s0 === peg$FAILED) {
+	                        s0 = peg$parseCharLiteral();
+	                        if (s0 === peg$FAILED) {
+	                            s0 = peg$parseParen();
+	                        }
+	                    }
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseParen() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            if (input.charCodeAt(peg$currPos) === 40) {
+	                s1 = peg$c34;
+	                peg$currPos++;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c35);
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$parseExpression();
+	                if (s2 !== peg$FAILED) {
+	                    if (input.charCodeAt(peg$currPos) === 41) {
+	                        s3 = peg$c36;
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s3 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c37);
+	                        }
+	                    }
+	                    if (s3 !== peg$FAILED) {
+	                        peg$savedPos = s0;
+	                        s1 = peg$c38(s2);
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseUnaryOperator() {
+	            var s0;
+	            if (peg$c39.test(input.charAt(peg$currPos))) {
+	                s0 = input.charAt(peg$currPos);
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c40);
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseIdentifier() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            if (input.charCodeAt(peg$currPos) === 36) {
+	                s1 = peg$c41;
+	                peg$currPos++;
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c42);
+	                }
+	            }
+	            if (s1 === peg$FAILED) {
+	                if (peg$c43.test(input.charAt(peg$currPos))) {
+	                    s1 = input.charAt(peg$currPos);
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s1 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c44);
+	                    }
+	                }
+	            }
+	            if (s1 !== peg$FAILED) {
+	                s2 = [];
+	                if (peg$c45.test(input.charAt(peg$currPos))) {
+	                    s3 = input.charAt(peg$currPos);
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c46);
+	                    }
+	                }
+	                if (s3 === peg$FAILED) {
+	                    if (input.charCodeAt(peg$currPos) === 46) {
+	                        s3 = peg$c47;
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s3 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c48);
+	                        }
+	                    }
+	                    if (s3 === peg$FAILED) {
+	                        if (input.charCodeAt(peg$currPos) === 36) {
+	                            s3 = peg$c41;
+	                            peg$currPos++;
+	                        }
+	                        else {
+	                            s3 = peg$FAILED;
+	                            if (peg$silentFails === 0) {
+	                                peg$fail(peg$c42);
+	                            }
+	                        }
+	                    }
+	                }
+	                while (s3 !== peg$FAILED) {
+	                    s2.push(s3);
+	                    if (peg$c45.test(input.charAt(peg$currPos))) {
+	                        s3 = input.charAt(peg$currPos);
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s3 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c46);
+	                        }
+	                    }
+	                    if (s3 === peg$FAILED) {
+	                        if (input.charCodeAt(peg$currPos) === 46) {
+	                            s3 = peg$c47;
+	                            peg$currPos++;
+	                        }
+	                        else {
+	                            s3 = peg$FAILED;
+	                            if (peg$silentFails === 0) {
+	                                peg$fail(peg$c48);
+	                            }
+	                        }
+	                        if (s3 === peg$FAILED) {
+	                            if (input.charCodeAt(peg$currPos) === 36) {
+	                                s3 = peg$c41;
+	                                peg$currPos++;
+	                            }
+	                            else {
+	                                s3 = peg$FAILED;
+	                                if (peg$silentFails === 0) {
+	                                    peg$fail(peg$c42);
+	                                }
+	                            }
+	                        }
+	                    }
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c49(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseStringLiteral() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            s1 = peg$parsedoublequote();
+	            if (s1 !== peg$FAILED) {
+	                s2 = [];
+	                s3 = peg$parseDQChar();
+	                while (s3 !== peg$FAILED) {
+	                    s2.push(s3);
+	                    s3 = peg$parseDQChar();
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    s3 = peg$parsedoublequote();
+	                    if (s3 !== peg$FAILED) {
+	                        peg$savedPos = s0;
+	                        s1 = peg$c50(s2);
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parsedoublequote() {
+	            var s0;
+	            if (input.charCodeAt(peg$currPos) === 34) {
+	                s0 = peg$c51;
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c52);
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseDQChar() {
+	            var s0, s1, s2;
+	            s0 = peg$parseEscapeSequence();
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$currPos;
+	                s1 = peg$currPos;
+	                peg$silentFails++;
+	                s2 = peg$parsedoublequote();
+	                peg$silentFails--;
+	                if (s2 === peg$FAILED) {
+	                    s1 = void 0;
+	                }
+	                else {
+	                    peg$currPos = s1;
+	                    s1 = peg$FAILED;
+	                }
+	                if (s1 !== peg$FAILED) {
+	                    if (input.length > peg$currPos) {
+	                        s2 = input.charAt(peg$currPos);
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s2 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c53);
+	                        }
+	                    }
+	                    if (s2 !== peg$FAILED) {
+	                        s1 = [s1, s2];
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseQChar() {
+	            var s0, s1, s2;
+	            s0 = peg$parseEscapeSequence();
+	            if (s0 === peg$FAILED) {
+	                s0 = peg$currPos;
+	                s1 = peg$currPos;
+	                peg$silentFails++;
+	                s2 = peg$parsequote();
+	                peg$silentFails--;
+	                if (s2 === peg$FAILED) {
+	                    s1 = void 0;
+	                }
+	                else {
+	                    peg$currPos = s1;
+	                    s1 = peg$FAILED;
+	                }
+	                if (s1 !== peg$FAILED) {
+	                    if (input.length > peg$currPos) {
+	                        s2 = input.charAt(peg$currPos);
+	                        peg$currPos++;
+	                    }
+	                    else {
+	                        s2 = peg$FAILED;
+	                        if (peg$silentFails === 0) {
+	                            peg$fail(peg$c53);
+	                        }
+	                    }
+	                    if (s2 !== peg$FAILED) {
+	                        s1 = [s1, s2];
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseEscapeSequence() {
+	            var s0, s1, s2;
+	            s0 = peg$currPos;
+	            s1 = peg$parsebackslash();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$parsequote();
+	                if (s2 === peg$FAILED) {
+	                    s2 = peg$parsedoublequote();
+	                    if (s2 === peg$FAILED) {
+	                        s2 = peg$parsebackslash();
+	                        if (s2 === peg$FAILED) {
+	                            if (peg$c54.test(input.charAt(peg$currPos))) {
+	                                s2 = input.charAt(peg$currPos);
+	                                peg$currPos++;
+	                            }
+	                            else {
+	                                s2 = peg$FAILED;
+	                                if (peg$silentFails === 0) {
+	                                    peg$fail(peg$c55);
+	                                }
+	                            }
+	                        }
+	                    }
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    s1 = [s1, s2];
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parsebackslash() {
+	            var s0;
+	            if (input.charCodeAt(peg$currPos) === 92) {
+	                s0 = peg$c56;
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c57);
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parsequote() {
+	            var s0;
+	            if (input.charCodeAt(peg$currPos) === 39) {
+	                s0 = peg$c58;
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c59);
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseCharLiteral() {
+	            var s0, s1, s2, s3;
+	            s0 = peg$currPos;
+	            s1 = peg$parsequote();
+	            if (s1 !== peg$FAILED) {
+	                s2 = [];
+	                s3 = peg$parseQChar();
+	                while (s3 !== peg$FAILED) {
+	                    s2.push(s3);
+	                    s3 = peg$parseQChar();
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    s3 = peg$parsequote();
+	                    if (s3 !== peg$FAILED) {
+	                        peg$savedPos = s0;
+	                        s1 = peg$c50(s2);
+	                        s0 = s1;
+	                    }
+	                    else {
+	                        peg$currPos = s0;
+	                        s0 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseInteger() {
+	            var s0, s1, s2;
+	            s0 = peg$currPos;
+	            s1 = [];
+	            s2 = peg$parsedigit();
+	            if (s2 !== peg$FAILED) {
+	                while (s2 !== peg$FAILED) {
+	                    s1.push(s2);
+	                    s2 = peg$parsedigit();
+	                }
+	            }
+	            else {
+	                s1 = peg$FAILED;
+	            }
+	            if (s1 !== peg$FAILED) {
+	                peg$savedPos = s0;
+	                s1 = peg$c60(s1);
+	            }
+	            s0 = s1;
+	            return s0;
+	        }
+	        function peg$parsedigit() {
+	            var s0;
+	            if (peg$c61.test(input.charAt(peg$currPos))) {
+	                s0 = input.charAt(peg$currPos);
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c62);
+	                }
+	            }
+	            return s0;
+	        }
+	        function peg$parseNumberLiteral() {
+	            var s0, s1, s2, s3, s4;
+	            s0 = peg$currPos;
+	            s1 = peg$parseInteger();
+	            if (s1 !== peg$FAILED) {
+	                s2 = peg$currPos;
+	                if (input.charCodeAt(peg$currPos) === 46) {
+	                    s3 = peg$c47;
+	                    peg$currPos++;
+	                }
+	                else {
+	                    s3 = peg$FAILED;
+	                    if (peg$silentFails === 0) {
+	                        peg$fail(peg$c48);
+	                    }
+	                }
+	                if (s3 !== peg$FAILED) {
+	                    s4 = peg$parseInteger();
+	                    if (s4 !== peg$FAILED) {
+	                        s3 = [s3, s4];
+	                        s2 = s3;
+	                    }
+	                    else {
+	                        peg$currPos = s2;
+	                        s2 = peg$FAILED;
+	                    }
+	                }
+	                else {
+	                    peg$currPos = s2;
+	                    s2 = peg$FAILED;
+	                }
+	                if (s2 === peg$FAILED) {
+	                    s2 = null;
+	                }
+	                if (s2 !== peg$FAILED) {
+	                    peg$savedPos = s0;
+	                    s1 = peg$c63(s1, s2);
+	                    s0 = s1;
+	                }
+	                else {
+	                    peg$currPos = s0;
+	                    s0 = peg$FAILED;
+	                }
+	            }
+	            else {
+	                peg$currPos = s0;
+	                s0 = peg$FAILED;
+	            }
+	            return s0;
+	        }
+	        function peg$parseSign() {
+	            var s0;
+	            if (input.charCodeAt(peg$currPos) === 45) {
+	                s0 = peg$c64;
+	                peg$currPos++;
+	            }
+	            else {
+	                s0 = peg$FAILED;
+	                if (peg$silentFails === 0) {
+	                    peg$fail(peg$c65);
+	                }
+	            }
+	            return s0;
+	        }
+	        peg$result = peg$startRuleFunction();
+	        if (peg$result !== peg$FAILED && peg$currPos === input.length) {
+	            return peg$result;
+	        }
+	        else {
+	            if (peg$result !== peg$FAILED && peg$currPos < input.length) {
+	                peg$fail({ type: "end", description: "end of input" });
+	            }
+	            throw peg$buildException(null, peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
+	        }
+	    }
+	    return {
+	        SyntaxError: peg$SyntaxError,
+	        parse: peg$parse
+	    };
+	})();
+	module.exports = parser;
+	//# sourceMappingURL=ramlExpressionParser.js.map
+
+/***/ },
 /* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -42361,497 +42656,54 @@ var media_typer = require("media-typer");
 /* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var Type = __webpack_require__(60);
-	function resolveJavascriptUndefined() {
-	    return true;
-	}
-	function constructJavascriptUndefined() {
-	    /*eslint-disable no-undefined*/
-	    return undefined;
-	}
-	function representJavascriptUndefined() {
-	    return '';
-	}
-	function isUndefined(object) {
-	    return 'undefined' === typeof object;
-	}
-	module.exports = new Type('tag:yaml.org,2002:js/undefined', {
+	var Type = __webpack_require__(56);
+	module.exports = new Type('tag:yaml.org,2002:str', {
 	    kind: 'scalar',
-	    resolve: resolveJavascriptUndefined,
-	    construct: constructJavascriptUndefined,
-	    predicate: isUndefined,
-	    represent: representJavascriptUndefined
+	    construct: function (data) {
+	        return null !== data ? data : '';
+	    }
 	});
-	//# sourceMappingURL=undefined.js.map
+	//# sourceMappingURL=str.js.map
 
 /***/ },
 /* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var Type = __webpack_require__(60);
-	function resolveJavascriptRegExp(data) {
-	    if (null === data) {
-	        return false;
+	var Type = __webpack_require__(56);
+	module.exports = new Type('tag:yaml.org,2002:seq', {
+	    kind: 'sequence',
+	    construct: function (data) {
+	        return null !== data ? data : [];
 	    }
-	    if (0 === data.length) {
-	        return false;
-	    }
-	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
-	    // if regexp starts with '/' it can have modifiers and must be properly closed
-	    // `/foo/gim` - modifiers tail can be maximum 3 chars
-	    if ('/' === regexp[0]) {
-	        if (tail) {
-	            modifiers = tail[1];
-	        }
-	        if (modifiers.length > 3) {
-	            return false;
-	        }
-	        // if expression starts with /, is should be properly terminated
-	        if (regexp[regexp.length - modifiers.length - 1] !== '/') {
-	            return false;
-	        }
-	        regexp = regexp.slice(1, regexp.length - modifiers.length - 1);
-	    }
-	    try {
-	        var dummy = new RegExp(regexp, modifiers);
-	        return true;
-	    }
-	    catch (error) {
-	        return false;
-	    }
-	}
-	function constructJavascriptRegExp(data) {
-	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
-	    // `/foo/gim` - tail can be maximum 4 chars
-	    if ('/' === regexp[0]) {
-	        if (tail) {
-	            modifiers = tail[1];
-	        }
-	        regexp = regexp.slice(1, regexp.length - modifiers.length - 1);
-	    }
-	    return new RegExp(regexp, modifiers);
-	}
-	function representJavascriptRegExp(object /*, style*/) {
-	    var result = '/' + object.source + '/';
-	    if (object.global) {
-	        result += 'g';
-	    }
-	    if (object.multiline) {
-	        result += 'm';
-	    }
-	    if (object.ignoreCase) {
-	        result += 'i';
-	    }
-	    return result;
-	}
-	function isRegExp(object) {
-	    return '[object RegExp]' === Object.prototype.toString.call(object);
-	}
-	module.exports = new Type('tag:yaml.org,2002:js/regexp', {
-	    kind: 'scalar',
-	    resolve: resolveJavascriptRegExp,
-	    construct: constructJavascriptRegExp,
-	    predicate: isRegExp,
-	    represent: representJavascriptRegExp
 	});
-	//# sourceMappingURL=regexp.js.map
+	//# sourceMappingURL=seq.js.map
 
 /***/ },
 /* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var esprima = __webpack_require__(94);
-	// Browserified version does not have esprima
-	//
-	// 1. For node.js just require module as deps
-	// 2. For browser try to require mudule via external AMD system.
-	//    If not found - try to fallback to window.esprima. If not
-	//    found too - then fail to parse.
-	//
-	var Type = __webpack_require__(60);
-	function resolveJavascriptFunction(data) {
-	    if (null === data) {
-	        return false;
+	var Type = __webpack_require__(56);
+	module.exports = new Type('tag:yaml.org,2002:map', {
+	    kind: 'mapping',
+	    construct: function (data) {
+	        return null !== data ? data : {};
 	    }
-	    try {
-	        var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
-	        if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
-	            return false;
-	        }
-	        return true;
-	    }
-	    catch (err) {
-	        return false;
-	    }
-	}
-	function constructJavascriptFunction(data) {
-	    /*jslint evil:true*/
-	    var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
-	    if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
-	        throw new Error('Failed to resolve function');
-	    }
-	    ast.body[0]['expression'].params.forEach(function (param) {
-	        params.push(param.name);
-	    });
-	    body = ast.body[0]['expression'].body.range;
-	    // Esprima's ranges include the first '{' and the last '}' characters on
-	    // function expressions. So cut them out.
-	    /*eslint-disable no-new-func*/
-	    return new Function(params, source.slice(body[0] + 1, body[1] - 1));
-	}
-	function representJavascriptFunction(object /*, style*/) {
-	    return object.toString();
-	}
-	function isFunction(object) {
-	    return '[object Function]' === Object.prototype.toString.call(object);
-	}
-	module.exports = new Type('tag:yaml.org,2002:js/function', {
-	    kind: 'scalar',
-	    resolve: resolveJavascriptFunction,
-	    construct: constructJavascriptFunction,
-	    predicate: isFunction,
-	    represent: representJavascriptFunction
 	});
-	//# sourceMappingURL=function.js.map
+	//# sourceMappingURL=map.js.map
 
 /***/ },
 /* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	var YAML_TIMESTAMP_REGEXP = new RegExp('^([0-9][0-9][0-9][0-9])' + '-([0-9][0-9]?)' + '-([0-9][0-9]?)' + '(?:(?:[Tt]|[ \\t]+)' + '([0-9][0-9]?)' + ':([0-9][0-9])' + ':([0-9][0-9])' + '(?:\\.([0-9]*))?' + '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' + '(?::([0-9][0-9]))?))?)?$'); // [11] tz_minute
-	function resolveYamlTimestamp(data) {
-	    if (null === data) {
-	        return false;
-	    }
-	    var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
-	    match = YAML_TIMESTAMP_REGEXP.exec(data);
-	    if (null === match) {
-	        return false;
-	    }
-	    return true;
-	}
-	function constructYamlTimestamp(data) {
-	    var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
-	    match = YAML_TIMESTAMP_REGEXP.exec(data);
-	    if (null === match) {
-	        throw new Error('Date resolve error');
-	    }
-	    // match: [1] year [2] month [3] day
-	    year = +(match[1]);
-	    month = +(match[2]) - 1; // JS month starts with 0
-	    day = +(match[3]);
-	    if (!match[4]) {
-	        return new Date(Date.UTC(year, month, day));
-	    }
-	    // match: [4] hour [5] minute [6] second [7] fraction
-	    hour = +(match[4]);
-	    minute = +(match[5]);
-	    second = +(match[6]);
-	    if (match[7]) {
-	        fraction = match[7].slice(0, 3);
-	        while (fraction.length < 3) {
-	            fraction = fraction + '0';
-	        }
-	        fraction = +fraction;
-	    }
-	    // match: [8] tz [9] tz_sign [10] tz_hour [11] tz_minute
-	    if (match[9]) {
-	        tz_hour = +(match[10]);
-	        tz_minute = +(match[11] || 0);
-	        delta = (tz_hour * 60 + tz_minute) * 60000; // delta in mili-seconds
-	        if ('-' === match[9]) {
-	            delta = -delta;
-	        }
-	    }
-	    date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
-	    if (delta) {
-	        date.setTime(date.getTime() - delta);
-	    }
-	    return date;
-	}
-	function representYamlTimestamp(object /*, style*/) {
-	    return object.toISOString();
-	}
-	module.exports = new Type('tag:yaml.org,2002:timestamp', {
-	    kind: 'scalar',
-	    resolve: resolveYamlTimestamp,
-	    construct: constructYamlTimestamp,
-	    instanceOf: Date,
-	    represent: representYamlTimestamp
-	});
-	//# sourceMappingURL=timestamp.js.map
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	function resolveYamlMerge(data) {
-	    return '<<' === data || null === data;
-	}
-	module.exports = new Type('tag:yaml.org,2002:merge', {
-	    kind: 'scalar',
-	    resolve: resolveYamlMerge
-	});
-	//# sourceMappingURL=merge.js.map
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	/*eslint-disable no-bitwise*/
-	// A trick for browserified version.
-	// Since we make browserifier to ignore `buffer` module, NodeBuffer will be undefined
-	var NodeBuffer = __webpack_require__(95).Buffer;
-	var Type = __webpack_require__(60);
-	// [ 64, 65, 66 ] -> [ padding, CR, LF ]
-	var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
-	function resolveYamlBinary(data) {
-	    if (null === data) {
-	        return false;
-	    }
-	    var code, idx, bitlen = 0, len = 0, max = data.length, map = BASE64_MAP;
-	    for (idx = 0; idx < max; idx++) {
-	        code = map.indexOf(data.charAt(idx));
-	        // Skip CR/LF
-	        if (code > 64) {
-	            continue;
-	        }
-	        // Fail on illegal characters
-	        if (code < 0) {
-	            return false;
-	        }
-	        bitlen += 6;
-	    }
-	    // If there are any bits left, source was corrupted
-	    return (bitlen % 8) === 0;
-	}
-	function constructYamlBinary(data) {
-	    var code, idx, tailbits, input = data.replace(/[\r\n=]/g, ''), max = input.length, map = BASE64_MAP, bits = 0, result = [];
-	    for (idx = 0; idx < max; idx++) {
-	        if ((idx % 4 === 0) && idx) {
-	            result.push((bits >> 16) & 0xFF);
-	            result.push((bits >> 8) & 0xFF);
-	            result.push(bits & 0xFF);
-	        }
-	        bits = (bits << 6) | map.indexOf(input.charAt(idx));
-	    }
-	    // Dump tail
-	    tailbits = (max % 4) * 6;
-	    if (tailbits === 0) {
-	        result.push((bits >> 16) & 0xFF);
-	        result.push((bits >> 8) & 0xFF);
-	        result.push(bits & 0xFF);
-	    }
-	    else if (tailbits === 18) {
-	        result.push((bits >> 10) & 0xFF);
-	        result.push((bits >> 2) & 0xFF);
-	    }
-	    else if (tailbits === 12) {
-	        result.push((bits >> 4) & 0xFF);
-	    }
-	    // Wrap into Buffer for NodeJS and leave Array for browser
-	    if (NodeBuffer) {
-	        return new NodeBuffer(result);
-	    }
-	    return result;
-	}
-	function representYamlBinary(object /*, style*/) {
-	    var result = '', bits = 0, idx, tail, max = object.length, map = BASE64_MAP;
-	    for (idx = 0; idx < max; idx++) {
-	        if ((idx % 3 === 0) && idx) {
-	            result += map[(bits >> 18) & 0x3F];
-	            result += map[(bits >> 12) & 0x3F];
-	            result += map[(bits >> 6) & 0x3F];
-	            result += map[bits & 0x3F];
-	        }
-	        bits = (bits << 8) + object[idx];
-	    }
-	    // Dump tail
-	    tail = max % 3;
-	    if (tail === 0) {
-	        result += map[(bits >> 18) & 0x3F];
-	        result += map[(bits >> 12) & 0x3F];
-	        result += map[(bits >> 6) & 0x3F];
-	        result += map[bits & 0x3F];
-	    }
-	    else if (tail === 2) {
-	        result += map[(bits >> 10) & 0x3F];
-	        result += map[(bits >> 4) & 0x3F];
-	        result += map[(bits << 2) & 0x3F];
-	        result += map[64];
-	    }
-	    else if (tail === 1) {
-	        result += map[(bits >> 2) & 0x3F];
-	        result += map[(bits << 4) & 0x3F];
-	        result += map[64];
-	        result += map[64];
-	    }
-	    return result;
-	}
-	function isBinary(object) {
-	    return NodeBuffer && NodeBuffer.isBuffer(object);
-	}
-	module.exports = new Type('tag:yaml.org,2002:binary', {
-	    kind: 'scalar',
-	    resolve: resolveYamlBinary,
-	    construct: constructYamlBinary,
-	    predicate: isBinary,
-	    represent: representYamlBinary
-	});
-	//# sourceMappingURL=binary.js.map
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	var _hasOwnProperty = Object.prototype.hasOwnProperty;
-	var _toString = Object.prototype.toString;
-	function resolveYamlOmap(data) {
-	    if (null === data) {
-	        return true;
-	    }
-	    var objectKeys = [], index, length, pair, pairKey, pairHasKey, object = data;
-	    for (index = 0, length = object.length; index < length; index += 1) {
-	        pair = object[index];
-	        pairHasKey = false;
-	        if ('[object Object]' !== _toString.call(pair)) {
-	            return false;
-	        }
-	        for (pairKey in pair) {
-	            if (_hasOwnProperty.call(pair, pairKey)) {
-	                if (!pairHasKey) {
-	                    pairHasKey = true;
-	                }
-	                else {
-	                    return false;
-	                }
-	            }
-	        }
-	        if (!pairHasKey) {
-	            return false;
-	        }
-	        if (-1 === objectKeys.indexOf(pairKey)) {
-	            objectKeys.push(pairKey);
-	        }
-	        else {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
-	function constructYamlOmap(data) {
-	    return null !== data ? data : [];
-	}
-	module.exports = new Type('tag:yaml.org,2002:omap', {
-	    kind: 'sequence',
-	    resolve: resolveYamlOmap,
-	    construct: constructYamlOmap
-	});
-	//# sourceMappingURL=omap.js.map
-
-/***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	var _toString = Object.prototype.toString;
-	function resolveYamlPairs(data) {
-	    if (null === data) {
-	        return true;
-	    }
-	    var index, length, pair, keys, result, object = data;
-	    result = new Array(object.length);
-	    for (index = 0, length = object.length; index < length; index += 1) {
-	        pair = object[index];
-	        if ('[object Object]' !== _toString.call(pair)) {
-	            return false;
-	        }
-	        keys = Object.keys(pair);
-	        if (1 !== keys.length) {
-	            return false;
-	        }
-	        result[index] = [keys[0], pair[keys[0]]];
-	    }
-	    return true;
-	}
-	function constructYamlPairs(data) {
-	    if (null === data) {
-	        return [];
-	    }
-	    var index, length, pair, keys, result, object = data;
-	    result = new Array(object.length);
-	    for (index = 0, length = object.length; index < length; index += 1) {
-	        pair = object[index];
-	        keys = Object.keys(pair);
-	        result[index] = [keys[0], pair[keys[0]]];
-	    }
-	    return result;
-	}
-	module.exports = new Type('tag:yaml.org,2002:pairs', {
-	    kind: 'sequence',
-	    resolve: resolveYamlPairs,
-	    construct: constructYamlPairs
-	});
-	//# sourceMappingURL=pairs.js.map
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	var _hasOwnProperty = Object.prototype.hasOwnProperty;
-	function resolveYamlSet(data) {
-	    if (null === data) {
-	        return true;
-	    }
-	    var key, object = data;
-	    for (key in object) {
-	        if (_hasOwnProperty.call(object, key)) {
-	            if (null !== object[key]) {
-	                return false;
-	            }
-	        }
-	    }
-	    return true;
-	}
-	function constructYamlSet(data) {
-	    return null !== data ? data : {};
-	}
-	module.exports = new Type('tag:yaml.org,2002:set', {
-	    kind: 'mapping',
-	    resolve: resolveYamlSet,
-	    construct: constructYamlSet
-	});
-	//# sourceMappingURL=set.js.map
-
-/***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/// <reference path="../../../../typings/tsd.d.ts" />
 	'use strict';
-	var common = __webpack_require__(55);
+	var common = __webpack_require__(63);
 	var Mark = (function () {
 	    function Mark(name, buffer, position, line, column) {
 	        this.name = name;
@@ -42913,57 +42765,12 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=mark.js.map
 
 /***/ },
-/* 86 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var Type = __webpack_require__(60);
-	module.exports = new Type('tag:yaml.org,2002:str', {
-	    kind: 'scalar',
-	    construct: function (data) {
-	        return null !== data ? data : '';
-	    }
-	});
-	//# sourceMappingURL=str.js.map
-
-/***/ },
-/* 87 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	module.exports = new Type('tag:yaml.org,2002:seq', {
-	    kind: 'sequence',
-	    construct: function (data) {
-	        return null !== data ? data : [];
-	    }
-	});
-	//# sourceMappingURL=seq.js.map
-
-/***/ },
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
-	module.exports = new Type('tag:yaml.org,2002:map', {
-	    kind: 'mapping',
-	    construct: function (data) {
-	        return null !== data ? data : {};
-	    }
-	});
-	//# sourceMappingURL=map.js.map
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../../../typings/tsd.d.ts" />
-	'use strict';
-	var Type = __webpack_require__(60);
+	var Type = __webpack_require__(56);
 	function resolveYamlNull(data) {
 	    if (null === data) {
 	        return true;
@@ -43001,12 +42808,12 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=null.js.map
 
 /***/ },
-/* 90 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var Type = __webpack_require__(60);
+	var Type = __webpack_require__(56);
 	function resolveYamlBoolean(data) {
 	    if (null === data) {
 	        return false;
@@ -43041,13 +42848,13 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=bool.js.map
 
 /***/ },
-/* 91 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var common = __webpack_require__(55);
-	var Type = __webpack_require__(60);
+	var common = __webpack_require__(63);
+	var Type = __webpack_require__(56);
 	function isHexCode(c) {
 	    return ((0x30 <= c) && (c <= 0x39)) || ((0x41 <= c) && (c <= 0x46)) || ((0x61 <= c) && (c <= 0x66));
 	}
@@ -43214,13 +43021,13 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=int.js.map
 
 /***/ },
-/* 92 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	var common = __webpack_require__(55);
-	var Type = __webpack_require__(60);
+	var common = __webpack_require__(63);
+	var Type = __webpack_require__(56);
 	var YAML_FLOAT_PATTERN = new RegExp('^(?:[-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+][0-9]+)?' + '|\\.[0-9_]+(?:[eE][-+][0-9]+)?' + '|[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*' + '|[-+]?\\.(?:inf|Inf|INF)' + '|\\.(?:nan|NaN|NAN))$');
 	function resolveYamlFloat(data) {
 	    if (null === data) {
@@ -43310,6 +43117,494 @@ var media_typer = require("media-typer");
 	//# sourceMappingURL=float.js.map
 
 /***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	var YAML_TIMESTAMP_REGEXP = new RegExp('^([0-9][0-9][0-9][0-9])' + '-([0-9][0-9]?)' + '-([0-9][0-9]?)' + '(?:(?:[Tt]|[ \\t]+)' + '([0-9][0-9]?)' + ':([0-9][0-9])' + ':([0-9][0-9])' + '(?:\\.([0-9]*))?' + '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' + '(?::([0-9][0-9]))?))?)?$'); // [11] tz_minute
+	function resolveYamlTimestamp(data) {
+	    if (null === data) {
+	        return false;
+	    }
+	    var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
+	    match = YAML_TIMESTAMP_REGEXP.exec(data);
+	    if (null === match) {
+	        return false;
+	    }
+	    return true;
+	}
+	function constructYamlTimestamp(data) {
+	    var match, year, month, day, hour, minute, second, fraction = 0, delta = null, tz_hour, tz_minute, date;
+	    match = YAML_TIMESTAMP_REGEXP.exec(data);
+	    if (null === match) {
+	        throw new Error('Date resolve error');
+	    }
+	    // match: [1] year [2] month [3] day
+	    year = +(match[1]);
+	    month = +(match[2]) - 1; // JS month starts with 0
+	    day = +(match[3]);
+	    if (!match[4]) {
+	        return new Date(Date.UTC(year, month, day));
+	    }
+	    // match: [4] hour [5] minute [6] second [7] fraction
+	    hour = +(match[4]);
+	    minute = +(match[5]);
+	    second = +(match[6]);
+	    if (match[7]) {
+	        fraction = match[7].slice(0, 3);
+	        while (fraction.length < 3) {
+	            fraction = fraction + '0';
+	        }
+	        fraction = +fraction;
+	    }
+	    // match: [8] tz [9] tz_sign [10] tz_hour [11] tz_minute
+	    if (match[9]) {
+	        tz_hour = +(match[10]);
+	        tz_minute = +(match[11] || 0);
+	        delta = (tz_hour * 60 + tz_minute) * 60000; // delta in mili-seconds
+	        if ('-' === match[9]) {
+	            delta = -delta;
+	        }
+	    }
+	    date = new Date(Date.UTC(year, month, day, hour, minute, second, fraction));
+	    if (delta) {
+	        date.setTime(date.getTime() - delta);
+	    }
+	    return date;
+	}
+	function representYamlTimestamp(object /*, style*/) {
+	    return object.toISOString();
+	}
+	module.exports = new Type('tag:yaml.org,2002:timestamp', {
+	    kind: 'scalar',
+	    resolve: resolveYamlTimestamp,
+	    construct: constructYamlTimestamp,
+	    instanceOf: Date,
+	    represent: representYamlTimestamp
+	});
+	//# sourceMappingURL=timestamp.js.map
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	function resolveYamlMerge(data) {
+	    return '<<' === data || null === data;
+	}
+	module.exports = new Type('tag:yaml.org,2002:merge', {
+	    kind: 'scalar',
+	    resolve: resolveYamlMerge
+	});
+	//# sourceMappingURL=merge.js.map
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	/*eslint-disable no-bitwise*/
+	// A trick for browserified version.
+	// Since we make browserifier to ignore `buffer` module, NodeBuffer will be undefined
+	var NodeBuffer = __webpack_require__(94).Buffer;
+	var Type = __webpack_require__(56);
+	// [ 64, 65, 66 ] -> [ padding, CR, LF ]
+	var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
+	function resolveYamlBinary(data) {
+	    if (null === data) {
+	        return false;
+	    }
+	    var code, idx, bitlen = 0, len = 0, max = data.length, map = BASE64_MAP;
+	    for (idx = 0; idx < max; idx++) {
+	        code = map.indexOf(data.charAt(idx));
+	        // Skip CR/LF
+	        if (code > 64) {
+	            continue;
+	        }
+	        // Fail on illegal characters
+	        if (code < 0) {
+	            return false;
+	        }
+	        bitlen += 6;
+	    }
+	    // If there are any bits left, source was corrupted
+	    return (bitlen % 8) === 0;
+	}
+	function constructYamlBinary(data) {
+	    var code, idx, tailbits, input = data.replace(/[\r\n=]/g, ''), max = input.length, map = BASE64_MAP, bits = 0, result = [];
+	    for (idx = 0; idx < max; idx++) {
+	        if ((idx % 4 === 0) && idx) {
+	            result.push((bits >> 16) & 0xFF);
+	            result.push((bits >> 8) & 0xFF);
+	            result.push(bits & 0xFF);
+	        }
+	        bits = (bits << 6) | map.indexOf(input.charAt(idx));
+	    }
+	    // Dump tail
+	    tailbits = (max % 4) * 6;
+	    if (tailbits === 0) {
+	        result.push((bits >> 16) & 0xFF);
+	        result.push((bits >> 8) & 0xFF);
+	        result.push(bits & 0xFF);
+	    }
+	    else if (tailbits === 18) {
+	        result.push((bits >> 10) & 0xFF);
+	        result.push((bits >> 2) & 0xFF);
+	    }
+	    else if (tailbits === 12) {
+	        result.push((bits >> 4) & 0xFF);
+	    }
+	    // Wrap into Buffer for NodeJS and leave Array for browser
+	    if (NodeBuffer) {
+	        return new NodeBuffer(result);
+	    }
+	    return result;
+	}
+	function representYamlBinary(object /*, style*/) {
+	    var result = '', bits = 0, idx, tail, max = object.length, map = BASE64_MAP;
+	    for (idx = 0; idx < max; idx++) {
+	        if ((idx % 3 === 0) && idx) {
+	            result += map[(bits >> 18) & 0x3F];
+	            result += map[(bits >> 12) & 0x3F];
+	            result += map[(bits >> 6) & 0x3F];
+	            result += map[bits & 0x3F];
+	        }
+	        bits = (bits << 8) + object[idx];
+	    }
+	    // Dump tail
+	    tail = max % 3;
+	    if (tail === 0) {
+	        result += map[(bits >> 18) & 0x3F];
+	        result += map[(bits >> 12) & 0x3F];
+	        result += map[(bits >> 6) & 0x3F];
+	        result += map[bits & 0x3F];
+	    }
+	    else if (tail === 2) {
+	        result += map[(bits >> 10) & 0x3F];
+	        result += map[(bits >> 4) & 0x3F];
+	        result += map[(bits << 2) & 0x3F];
+	        result += map[64];
+	    }
+	    else if (tail === 1) {
+	        result += map[(bits >> 2) & 0x3F];
+	        result += map[(bits << 4) & 0x3F];
+	        result += map[64];
+	        result += map[64];
+	    }
+	    return result;
+	}
+	function isBinary(object) {
+	    return NodeBuffer && NodeBuffer.isBuffer(object);
+	}
+	module.exports = new Type('tag:yaml.org,2002:binary', {
+	    kind: 'scalar',
+	    resolve: resolveYamlBinary,
+	    construct: constructYamlBinary,
+	    predicate: isBinary,
+	    represent: representYamlBinary
+	});
+	//# sourceMappingURL=binary.js.map
+
+/***/ },
+/* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	var _hasOwnProperty = Object.prototype.hasOwnProperty;
+	var _toString = Object.prototype.toString;
+	function resolveYamlOmap(data) {
+	    if (null === data) {
+	        return true;
+	    }
+	    var objectKeys = [], index, length, pair, pairKey, pairHasKey, object = data;
+	    for (index = 0, length = object.length; index < length; index += 1) {
+	        pair = object[index];
+	        pairHasKey = false;
+	        if ('[object Object]' !== _toString.call(pair)) {
+	            return false;
+	        }
+	        for (pairKey in pair) {
+	            if (_hasOwnProperty.call(pair, pairKey)) {
+	                if (!pairHasKey) {
+	                    pairHasKey = true;
+	                }
+	                else {
+	                    return false;
+	                }
+	            }
+	        }
+	        if (!pairHasKey) {
+	            return false;
+	        }
+	        if (-1 === objectKeys.indexOf(pairKey)) {
+	            objectKeys.push(pairKey);
+	        }
+	        else {
+	            return false;
+	        }
+	    }
+	    return true;
+	}
+	function constructYamlOmap(data) {
+	    return null !== data ? data : [];
+	}
+	module.exports = new Type('tag:yaml.org,2002:omap', {
+	    kind: 'sequence',
+	    resolve: resolveYamlOmap,
+	    construct: constructYamlOmap
+	});
+	//# sourceMappingURL=omap.js.map
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	var _toString = Object.prototype.toString;
+	function resolveYamlPairs(data) {
+	    if (null === data) {
+	        return true;
+	    }
+	    var index, length, pair, keys, result, object = data;
+	    result = new Array(object.length);
+	    for (index = 0, length = object.length; index < length; index += 1) {
+	        pair = object[index];
+	        if ('[object Object]' !== _toString.call(pair)) {
+	            return false;
+	        }
+	        keys = Object.keys(pair);
+	        if (1 !== keys.length) {
+	            return false;
+	        }
+	        result[index] = [keys[0], pair[keys[0]]];
+	    }
+	    return true;
+	}
+	function constructYamlPairs(data) {
+	    if (null === data) {
+	        return [];
+	    }
+	    var index, length, pair, keys, result, object = data;
+	    result = new Array(object.length);
+	    for (index = 0, length = object.length; index < length; index += 1) {
+	        pair = object[index];
+	        keys = Object.keys(pair);
+	        result[index] = [keys[0], pair[keys[0]]];
+	    }
+	    return result;
+	}
+	module.exports = new Type('tag:yaml.org,2002:pairs', {
+	    kind: 'sequence',
+	    resolve: resolveYamlPairs,
+	    construct: constructYamlPairs
+	});
+	//# sourceMappingURL=pairs.js.map
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	var _hasOwnProperty = Object.prototype.hasOwnProperty;
+	function resolveYamlSet(data) {
+	    if (null === data) {
+	        return true;
+	    }
+	    var key, object = data;
+	    for (key in object) {
+	        if (_hasOwnProperty.call(object, key)) {
+	            if (null !== object[key]) {
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
+	}
+	function constructYamlSet(data) {
+	    return null !== data ? data : {};
+	}
+	module.exports = new Type('tag:yaml.org,2002:set', {
+	    kind: 'mapping',
+	    resolve: resolveYamlSet,
+	    construct: constructYamlSet
+	});
+	//# sourceMappingURL=set.js.map
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	function resolveJavascriptUndefined() {
+	    return true;
+	}
+	function constructJavascriptUndefined() {
+	    /*eslint-disable no-undefined*/
+	    return undefined;
+	}
+	function representJavascriptUndefined() {
+	    return '';
+	}
+	function isUndefined(object) {
+	    return 'undefined' === typeof object;
+	}
+	module.exports = new Type('tag:yaml.org,2002:js/undefined', {
+	    kind: 'scalar',
+	    resolve: resolveJavascriptUndefined,
+	    construct: constructJavascriptUndefined,
+	    predicate: isUndefined,
+	    represent: representJavascriptUndefined
+	});
+	//# sourceMappingURL=undefined.js.map
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var Type = __webpack_require__(56);
+	function resolveJavascriptRegExp(data) {
+	    if (null === data) {
+	        return false;
+	    }
+	    if (0 === data.length) {
+	        return false;
+	    }
+	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
+	    // if regexp starts with '/' it can have modifiers and must be properly closed
+	    // `/foo/gim` - modifiers tail can be maximum 3 chars
+	    if ('/' === regexp[0]) {
+	        if (tail) {
+	            modifiers = tail[1];
+	        }
+	        if (modifiers.length > 3) {
+	            return false;
+	        }
+	        // if expression starts with /, is should be properly terminated
+	        if (regexp[regexp.length - modifiers.length - 1] !== '/') {
+	            return false;
+	        }
+	        regexp = regexp.slice(1, regexp.length - modifiers.length - 1);
+	    }
+	    try {
+	        var dummy = new RegExp(regexp, modifiers);
+	        return true;
+	    }
+	    catch (error) {
+	        return false;
+	    }
+	}
+	function constructJavascriptRegExp(data) {
+	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
+	    // `/foo/gim` - tail can be maximum 4 chars
+	    if ('/' === regexp[0]) {
+	        if (tail) {
+	            modifiers = tail[1];
+	        }
+	        regexp = regexp.slice(1, regexp.length - modifiers.length - 1);
+	    }
+	    return new RegExp(regexp, modifiers);
+	}
+	function representJavascriptRegExp(object /*, style*/) {
+	    var result = '/' + object.source + '/';
+	    if (object.global) {
+	        result += 'g';
+	    }
+	    if (object.multiline) {
+	        result += 'm';
+	    }
+	    if (object.ignoreCase) {
+	        result += 'i';
+	    }
+	    return result;
+	}
+	function isRegExp(object) {
+	    return '[object RegExp]' === Object.prototype.toString.call(object);
+	}
+	module.exports = new Type('tag:yaml.org,2002:js/regexp', {
+	    kind: 'scalar',
+	    resolve: resolveJavascriptRegExp,
+	    construct: constructJavascriptRegExp,
+	    predicate: isRegExp,
+	    represent: representJavascriptRegExp
+	});
+	//# sourceMappingURL=regexp.js.map
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../../../../typings/tsd.d.ts" />
+	'use strict';
+	var esprima = __webpack_require__(95);
+	// Browserified version does not have esprima
+	//
+	// 1. For node.js just require module as deps
+	// 2. For browser try to require mudule via external AMD system.
+	//    If not found - try to fallback to window.esprima. If not
+	//    found too - then fail to parse.
+	//
+	var Type = __webpack_require__(56);
+	function resolveJavascriptFunction(data) {
+	    if (null === data) {
+	        return false;
+	    }
+	    try {
+	        var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
+	        if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
+	            return false;
+	        }
+	        return true;
+	    }
+	    catch (err) {
+	        return false;
+	    }
+	}
+	function constructJavascriptFunction(data) {
+	    /*jslint evil:true*/
+	    var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
+	    if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
+	        throw new Error('Failed to resolve function');
+	    }
+	    ast.body[0]['expression'].params.forEach(function (param) {
+	        params.push(param.name);
+	    });
+	    body = ast.body[0]['expression'].body.range;
+	    // Esprima's ranges include the first '{' and the last '}' characters on
+	    // function expressions. So cut them out.
+	    /*eslint-disable no-new-func*/
+	    return new Function(params, source.slice(body[0] + 1, body[1] - 1));
+	}
+	function representJavascriptFunction(object /*, style*/) {
+	    return object.toString();
+	}
+	function isFunction(object) {
+	    return '[object Function]' === Object.prototype.toString.call(object);
+	}
+	module.exports = new Type('tag:yaml.org,2002:js/function', {
+	    kind: 'scalar',
+	    resolve: resolveJavascriptFunction,
+	    construct: constructJavascriptFunction,
+	    predicate: isFunction,
+	    represent: representJavascriptFunction
+	});
+	//# sourceMappingURL=function.js.map
+
+/***/ },
 /* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -43377,13 +43672,13 @@ var media_typer = require("media-typer");
 /* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = esprima;
+	module.exports = buffer;
 
 /***/ },
 /* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = buffer;
+	module.exports = esprima;
 
 /***/ },
 /* 96 */
@@ -43722,6 +44017,45 @@ var media_typer = require("media-typer");
 /* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/**
+	 * isArray
+	 */
+
+	var isArray = Array.isArray;
+
+	/**
+	 * toString
+	 */
+
+	var str = Object.prototype.toString;
+
+	/**
+	 * Whether or not the given `val`
+	 * is an array.
+	 *
+	 * example:
+	 *
+	 *        isArray([]);
+	 *        // > true
+	 *        isArray(arguments);
+	 *        // > false
+	 *        isArray('');
+	 *        // > false
+	 *
+	 * @param {mixed} val
+	 * @return {bool}
+	 */
+
+	module.exports = isArray || function (val) {
+	  return !! val && '[object Array]' == str.call(val);
+	};
+
+
+/***/ },
+/* 100 */
+/***/ function(module, exports, __webpack_require__) {
+
 	exports.read = function(buffer, offset, isLE, mLen, nBytes) {
 	  var e, m,
 	      eLen = nBytes * 8 - mLen - 1,
@@ -43805,45 +44139,6 @@ var media_typer = require("media-typer");
 	  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8);
 
 	  buffer[offset + i - d] |= s * 128;
-	};
-
-
-/***/ },
-/* 100 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	/**
-	 * isArray
-	 */
-
-	var isArray = Array.isArray;
-
-	/**
-	 * toString
-	 */
-
-	var str = Object.prototype.toString;
-
-	/**
-	 * Whether or not the given `val`
-	 * is an array.
-	 *
-	 * example:
-	 *
-	 *        isArray([]);
-	 *        // > true
-	 *        isArray(arguments);
-	 *        // > false
-	 *        isArray('');
-	 *        // > false
-	 *
-	 * @param {mixed} val
-	 * @return {bool}
-	 */
-
-	module.exports = isArray || function (val) {
-	  return !! val && '[object Array]' == str.call(val);
 	};
 
 
