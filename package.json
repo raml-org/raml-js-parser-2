@@ -48,6 +48,7 @@
     "esprima": "^2.7.0",
     "http-response-object": "^1.1.0",
     "json-schema-compatibility": "^1.1.0",
+    "json-stable-stringify": "^1.0.0",
     "know-your-http-well": "^0.2.0",
     "loophole": "^1.1.0",
     "lrucache": "^0.3.0",
