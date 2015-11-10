@@ -13,7 +13,10 @@ cd raml-js-parser-2
 npm install
 
 node test/test.js  //here you should observe JSON representation of XKCD API in your console
+
+node test/testAsync.js  //same as above but in asynchronous mode
 ```
 
 ## Usage
-For parser usage example refer to `test/test.js`
+* For parser usage example refer to `test/test.js`
+* For asynchrounous usage example refer to `test/test.js`
