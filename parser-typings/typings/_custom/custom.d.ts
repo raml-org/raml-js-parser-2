@@ -8,24 +8,9 @@ interface RadioactiveAttrs {
 interface Function0<T> {(): T}
 
 
-declare module radioactive {
-   export type RadioactiveContent = string | HTMLElement | Function0<any>
-}
 
 
-// radioactive-html
-interface String {
-    _ : {
-            ( opts: RadioactiveAttrs, content: radioactive.RadioactiveContent ): HTMLElement ;
-            ( opts: RadioactiveAttrs ): HTMLElement ;
-            ( content: radioactive.RadioactiveContent ): HTMLElement ;
-            ( ): HTMLElement ;
-        }
-}
-declare module "radioactive-html" {
-    var x: {(a: any, b: any, c:any): void};
-    export = x;
-}
+
 
 declare module "json-pointer" {
     export function dict( obj: any ): { [pointer: string]: any }

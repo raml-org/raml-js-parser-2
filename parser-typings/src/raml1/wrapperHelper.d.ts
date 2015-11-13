@@ -1,0 +1,74 @@
+import RamlWrapper = require('./artifacts/raml003parser');
+import core = require("./parserCore");
+import hl = require('./highLevelAST');
+import Opt = require('../Opt');
+export declare function resolveType(p: RamlWrapper.DataElement): hl.ITypeDefinition;
+export declare function load(pth: string): core.BasicSuperNode;
+export declare function completeRelativeUri(res: RamlWrapper.Resource): string;
+export declare function absoluteUri(res: RamlWrapper.Resource): string;
+export declare function qName(c: core.BasicSuperNode): string;
+export declare function allTraits(a: RamlWrapper.Api): RamlWrapper.Trait[];
+export declare function allResourceTypes(a: RamlWrapper.Api): RamlWrapper.ResourceType[];
+export declare function relativeUriSegments(res: RamlWrapper.Resource): string[];
+export declare function parentResource(method: RamlWrapper.Method): Opt<RamlWrapper.Resource>;
+export declare function parent(resource: RamlWrapper.Resource): Opt<RamlWrapper.Resource>;
+export declare function getChildResource(container: RamlWrapper.Resource | RamlWrapper.Api, relPath: string): Opt<RamlWrapper.Resource>;
+export declare function getResource(container: RamlWrapper.Api | RamlWrapper.Resource, path: string[]): Opt<RamlWrapper.Resource>;
+export declare function getChildMethod(resource: RamlWrapper.Resource, method: string): RamlWrapper.Method[];
+export declare function getMethod(container: RamlWrapper.Resource | RamlWrapper.Api, path: string[], method: string): RamlWrapper.Method[];
+export declare function ownerApi(method: RamlWrapper.Method | RamlWrapper.Resource): RamlWrapper.Api;
+export declare function methodId(method: RamlWrapper.Method): string;
+export declare function isOkRange(response: RamlWrapper.Response): boolean;
+export declare function allResources(api: RamlWrapper.Api): RamlWrapper.Resource[];
+export declare function matchUri(apiRootRelativeUri: string, resource: RamlWrapper.Resource): Opt<ParamValue[]>;
+export declare function schema(body: RamlWrapper.DataElement, api: RamlWrapper.Api): Opt<SchemaDef>;
+export declare function uriParameters(resource: RamlWrapper.Resource): RamlWrapper.DataElement[];
+export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.DataElement[];
+export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWrapper.DataElement[];
+export declare class HelperUriParam implements RamlWrapper.DataElement {
+    private _name;
+    private _parent;
+    constructor(_name: string, _parent: RamlWrapper.BasicNode);
+    wrapperClassName(): string;
+    name(): string;
+    "type"(): string[];
+    location(): RamlWrapper.ModelLocation;
+    locationKind(): RamlWrapper.LocationKind;
+    "default"(): string;
+    xml(): any;
+    sendDefaultByClient(): boolean;
+    example(): string;
+    schema(): string;
+    formParameters(): RamlWrapper.DataElement[];
+    examples(): RamlWrapper.ExampleSpec[];
+    repeat(): boolean;
+    enum(): string[];
+    collectionFormat(): string;
+    required(): boolean;
+    readOnly(): boolean;
+    facets(): any[];
+    scope(): string[];
+    validWhen(): RamlWrapper.ramlexpression;
+    requiredWhen(): RamlWrapper.ramlexpression;
+    displayName(): string;
+    description(): RamlWrapper.MarkdownString;
+    annotations(): RamlWrapper.AnnotationRef[];
+    usage(): any;
+    parent(): RamlWrapper.BasicNode;
+    highLevel(): hl.IHighLevelNode;
+    errors(): hl.ValidationIssue[];
+    definition(): any;
+    runtimeDefinition(): any;
+}
+export declare class SchemaDef {
+    private _content;
+    private _name;
+    constructor(_content: string, _name?: string);
+    name(): string;
+    content(): string;
+}
+export declare class ParamValue {
+    key: string;
+    value: any;
+    constructor(key: string, value: any);
+}

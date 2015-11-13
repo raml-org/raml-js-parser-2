@@ -1,12 +1,9 @@
 console.log('RAML 1.0 JS Parser Test');
 
-require('../src/bundle');
-
-var RAML = global.RAML;
-
 var path = require("path");
+var raml1Parser = require('../src/raml1Parser');
 
-var api = RAML.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml")).getOrElse(null);
+var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml")).getOrElse(null);
 
 api.errors().forEach(function(x){
     console.log(JSON.stringify({
@@ -21,4 +18,4 @@ api.errors().forEach(function(x){
 
 console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
 
-console.log(JSON.stringify(RAML.toJSON(api), null, 2));
+console.log(JSON.stringify(raml1Parser.toJSON(api), null, 2));

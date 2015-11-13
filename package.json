@@ -53,6 +53,7 @@
     "loophole": "^1.1.0",
     "lrucache": "^0.3.0",
     "media-typer": "^0.3.0",
+    "pluralize": "^1.2.0",
     "then-request": "^2.1.1",
     "underscore": "^1.8.3",
     "xmldom": "^0.1.19",
