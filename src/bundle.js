@@ -70,9 +70,9 @@ var raml1Parser = require("./raml1Parser");
 	var apiLoader = __webpack_require__(1);
 	var json2lowlevel = __webpack_require__(61);
 	var raml1Parser = __webpack_require__(104);
-	raml1Parser['loadApi'] = apiLoader.loadApi1;
-	raml1Parser['loadApiAsync'] = apiLoader.loadApi1Async;
-	raml1Parser['toJSON'] = function toJSON(node, serializeOptions) {
+	raml1Parser.loadApi = apiLoader.loadApi1;
+	raml1Parser.loadApiAsync = apiLoader.loadApi1Async;
+	raml1Parser.toJSON = function toJSON(node, serializeOptions) {
 	    if (serializeOptions === void 0) { serializeOptions = {}; }
 	    return json2lowlevel.serialize(node.highLevel().lowLevel(), serializeOptions);
 	};
@@ -88,7 +88,7 @@ var raml1Parser = require("./raml1Parser");
 	        throw deprecationMessage;
 	    }
 	};
-	//# sourceMappingURL=ramlModuleInitializer.js.map
+
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
@@ -160,7 +160,7 @@ var raml1Parser = require("./raml1Parser");
 	    return result;
 	}
 	exports.loadApis1 = loadApis1;
-	//# sourceMappingURL=apiLoader.js.map
+
 
 /***/ },
 /* 2 */
@@ -180,60 +180,49 @@ var raml1Parser = require("./raml1Parser");
 	    function BasicNodeImpl(node) {
 	        _super.call(this, node);
 	    }
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BasicNodeImpl.prototype.wrapperClassName = function () {
 	        return 'BasicNodeImpl';
-	    };
-	    BasicNodeImpl.prototype.parent = function () {
-	        return _super.prototype.parent.call(this);
 	    };
 	    return BasicNodeImpl;
 	})(core.BasicSuperNodeImpl);
 	exports.BasicNodeImpl = BasicNodeImpl;
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLLanguageElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLLanguageElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLLanguageElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+	     ***/
 	    RAMLLanguageElementImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    RAMLLanguageElementImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
+	     ***/
 	    RAMLLanguageElementImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    RAMLLanguageElementImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
@@ -241,31 +230,24 @@ var raml1Parser = require("./raml1Parser");
 	})(BasicNodeImpl);
 	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
 	var ValueTypeImpl = (function () {
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ValueTypeImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ValueTypeImpl.prototype.wrapperClassName = function () {
 	        return "ValueTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * @return String representation of the node value
+	     ***/
 	    ValueTypeImpl.prototype.value = function () {
 	        return this.attr.value();
 	    };
-	    /**
-	     *
-	     **/
-	    //highLevel
+	    /***
+	     * @return Underlying High Level attribute node
+	     ***/
 	    ValueTypeImpl.prototype.highLevel = function () {
 	        return this.attr;
 	    };
@@ -277,10 +259,9 @@ var raml1Parser = require("./raml1Parser");
 	    function NumberTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    NumberTypeImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeImpl";
 	    };
@@ -292,10 +273,9 @@ var raml1Parser = require("./raml1Parser");
 	    function BooleanTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BooleanTypeImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeImpl";
 	    };
@@ -307,17 +287,15 @@ var raml1Parser = require("./raml1Parser");
 	    function ReferenceImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ReferenceImpl.prototype.wrapperClassName = function () {
 	        return "ReferenceImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * @return StructuredValue object representing the node value
+	     ***/
 	    ReferenceImpl.prototype.value = function () {
 	        return core.toStructuredValue(this.attr);
 	    };
@@ -329,10 +307,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ResourceTypeRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeRefImpl";
 	    };
@@ -344,10 +321,9 @@ var raml1Parser = require("./raml1Parser");
 	    function TraitRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    TraitRefImpl.prototype.wrapperClassName = function () {
 	        return "TraitRefImpl";
 	    };
@@ -359,25 +335,26 @@ var raml1Parser = require("./raml1Parser");
 	    function SecuritySchemaRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaRefImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaRefImpl";
 	    };
 	    return SecuritySchemaRefImpl;
 	})(ReferenceImpl);
 	exports.SecuritySchemaRefImpl = SecuritySchemaRefImpl;
+	/***
+	 * Instantiation of annotations. It allows you to attach some meta information to your API
+	 ***/
 	var AnnotationRefImpl = (function (_super) {
 	    __extends(AnnotationRefImpl, _super);
 	    function AnnotationRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    AnnotationRefImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationRefImpl";
 	    };
@@ -389,10 +366,9 @@ var raml1Parser = require("./raml1Parser");
 	    function DataElementRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DataElementRefImpl.prototype.wrapperClassName = function () {
 	        return "DataElementRefImpl";
 	    };
@@ -404,10 +380,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ramlexpressionImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ramlexpressionImpl.prototype.wrapperClassName = function () {
 	        return "ramlexpressionImpl";
 	    };
@@ -419,10 +394,9 @@ var raml1Parser = require("./raml1Parser");
 	    function AnnotationTargetImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    AnnotationTargetImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationTargetImpl";
 	    };
@@ -434,10 +408,9 @@ var raml1Parser = require("./raml1Parser");
 	    function pointerImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    pointerImpl.prototype.wrapperClassName = function () {
 	        return "pointerImpl";
 	    };
@@ -446,63 +419,64 @@ var raml1Parser = require("./raml1Parser");
 	exports.pointerImpl = pointerImpl;
 	var StringTypeImpl = (function (_super) {
 	    __extends(StringTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function StringTypeImpl(attr) {
 	        _super.call(this, attr);
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StringTypeImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeImpl";
 	    };
 	    return StringTypeImpl;
 	})(ValueTypeImpl);
 	exports.StringTypeImpl = StringTypeImpl;
+	/***
+	 * This type currently serves both for absolute and relative urls
+	 ***/
 	var UriTemplateImpl = (function (_super) {
 	    __extends(UriTemplateImpl, _super);
 	    function UriTemplateImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    UriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "UriTemplateImpl";
 	    };
 	    return UriTemplateImpl;
 	})(StringTypeImpl);
 	exports.UriTemplateImpl = UriTemplateImpl;
+	/***
+	 * This  type describes relative uri templates
+	 ***/
 	var RelativeUriImpl = (function (_super) {
 	    __extends(RelativeUriImpl, _super);
 	    function RelativeUriImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RelativeUriImpl.prototype.wrapperClassName = function () {
 	        return "RelativeUriImpl";
 	    };
 	    return RelativeUriImpl;
 	})(UriTemplateImpl);
 	exports.RelativeUriImpl = RelativeUriImpl;
+	/***
+	 * This  type describes absolute uri templates
+	 ***/
 	var FullUriTemplateImpl = (function (_super) {
 	    __extends(FullUriTemplateImpl, _super);
 	    function FullUriTemplateImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FullUriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "FullUriTemplateImpl";
 	    };
@@ -514,25 +488,26 @@ var raml1Parser = require("./raml1Parser");
 	    function StatusCodeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StatusCodeImpl.prototype.wrapperClassName = function () {
 	        return "StatusCodeImpl";
 	    };
 	    return StatusCodeImpl;
 	})(StringTypeImpl);
 	exports.StatusCodeImpl = StatusCodeImpl;
+	/***
+	 * This  type describes fixed uris
+	 ***/
 	var FixedUriImpl = (function (_super) {
 	    __extends(FixedUriImpl, _super);
 	    function FixedUriImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FixedUriImpl.prototype.wrapperClassName = function () {
 	        return "FixedUriImpl";
 	    };
@@ -544,10 +519,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ContentTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ContentTypeImpl.prototype.wrapperClassName = function () {
 	        return "ContentTypeImpl";
 	    };
@@ -559,10 +533,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ValidityExpressionImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ValidityExpressionImpl.prototype.wrapperClassName = function () {
 	        return "ValidityExpressionImpl";
 	    };
@@ -574,10 +547,9 @@ var raml1Parser = require("./raml1Parser");
 	    function DateFormatSpecImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DateFormatSpecImpl.prototype.wrapperClassName = function () {
 	        return "DateFormatSpecImpl";
 	    };
@@ -589,85 +561,94 @@ var raml1Parser = require("./raml1Parser");
 	    function FunctionalInterfaceImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FunctionalInterfaceImpl.prototype.wrapperClassName = function () {
 	        return "FunctionalInterfaceImpl";
 	    };
 	    return FunctionalInterfaceImpl;
 	})(StringTypeImpl);
 	exports.FunctionalInterfaceImpl = FunctionalInterfaceImpl;
+	/***
+	 * Schema at this moment only two subtypes are supported (json schema and xsd)
+	 ***/
 	var SchemaStringImpl = (function (_super) {
 	    __extends(SchemaStringImpl, _super);
 	    function SchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "SchemaStringImpl";
 	    };
 	    return SchemaStringImpl;
 	})(StringTypeImpl);
 	exports.SchemaStringImpl = SchemaStringImpl;
+	/***
+	 * JSON schema
+	 ***/
 	var JSonSchemaStringImpl = (function (_super) {
 	    __extends(JSonSchemaStringImpl, _super);
 	    function JSonSchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "JSonSchemaStringImpl";
 	    };
 	    return JSonSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
+	/***
+	 * XSD schema
+	 ***/
 	var XMLSchemaStringImpl = (function (_super) {
 	    __extends(XMLSchemaStringImpl, _super);
 	    function XMLSchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "XMLSchemaStringImpl";
 	    };
 	    return XMLSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.XMLSchemaStringImpl = XMLSchemaStringImpl;
+	/***
+	 * Examples at this moment only two subtypes are supported (json  and xml)
+	 ***/
 	var ExampleStringImpl = (function (_super) {
 	    __extends(ExampleStringImpl, _super);
 	    function ExampleStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ExampleStringImpl.prototype.wrapperClassName = function () {
 	        return "ExampleStringImpl";
 	    };
 	    return ExampleStringImpl;
 	})(StringTypeImpl);
 	exports.ExampleStringImpl = ExampleStringImpl;
+	/***
+	 * script to inject to tooling environment
+	 ***/
 	var ScriptingHookImpl = (function (_super) {
 	    __extends(ScriptingHookImpl, _super);
 	    function ScriptingHookImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ScriptingHookImpl.prototype.wrapperClassName = function () {
 	        return "ScriptingHookImpl";
 	    };
@@ -679,10 +660,9 @@ var raml1Parser = require("./raml1Parser");
 	    function SecuritySchemaHookScriptImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaHookScriptImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaHookScriptImpl";
 	    };
@@ -694,10 +674,9 @@ var raml1Parser = require("./raml1Parser");
 	    function RAMLPointerImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLPointerImpl.prototype.wrapperClassName = function () {
 	        return "RAMLPointerImpl";
 	    };
@@ -709,45 +688,44 @@ var raml1Parser = require("./raml1Parser");
 	    function RAMLSelectorImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLSelectorImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSelectorImpl";
 	    };
 	    return RAMLSelectorImpl;
 	})(StringTypeImpl);
 	exports.RAMLSelectorImpl = RAMLSelectorImpl;
+	/***
+	 * This sub type of the string represents mime types
+	 ***/
 	var MimeTypeImpl = (function (_super) {
 	    __extends(MimeTypeImpl, _super);
 	    function MimeTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MimeTypeImpl.prototype.wrapperClassName = function () {
 	        return "MimeTypeImpl";
 	    };
 	    return MimeTypeImpl;
 	})(StringTypeImpl);
 	exports.MimeTypeImpl = MimeTypeImpl;
+	/***
+	 * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+	 ***/
 	var MarkdownStringImpl = (function (_super) {
 	    __extends(MarkdownStringImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MarkdownStringImpl(attr) {
 	        _super.call(this, attr);
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MarkdownStringImpl.prototype.wrapperClassName = function () {
 	        return "MarkdownStringImpl";
 	    };
@@ -756,42 +734,32 @@ var raml1Parser = require("./raml1Parser");
 	exports.MarkdownStringImpl = MarkdownStringImpl;
 	var DocumentationItemImpl = (function (_super) {
 	    __extends(DocumentationItemImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DocumentationItemImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DocumentationItemImpl.prototype.wrapperClassName = function () {
 	        return "DocumentationItemImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * Title of documentation section
+	     ***/
 	    DocumentationItemImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    DocumentationItemImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //content
+	    /***
+	     * Content of documentation section
+	     ***/
 	    DocumentationItemImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -800,130 +768,82 @@ var raml1Parser = require("./raml1Parser");
 	exports.DocumentationItemImpl = DocumentationItemImpl;
 	var ScriptSpecImpl = (function (_super) {
 	    __extends(ScriptSpecImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ScriptSpecImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createScriptSpec(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ScriptSpecImpl.prototype.wrapperClassName = function () {
 	        return "ScriptSpecImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //language
 	    ScriptSpecImpl.prototype.language = function () {
 	        return _super.prototype.attribute.call(this, 'language', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setLanguage
+	    /***
+	     * Set language value
+	     ***/
 	    ScriptSpecImpl.prototype.setLanguage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("language").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("language").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //content
 	    ScriptSpecImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setContent
+	    /***
+	     * Set content value
+	     ***/
 	    ScriptSpecImpl.prototype.setContent = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("content").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("content").setValue("" + param);
+	        return this;
 	    };
 	    return ScriptSpecImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ScriptSpecImpl = ScriptSpecImpl;
 	var ApiDescriptionImpl = (function (_super) {
 	    __extends(ApiDescriptionImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ApiDescriptionImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApiDescription(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ApiDescriptionImpl.prototype.wrapperClassName = function () {
 	        return "ApiDescriptionImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //apiFiles
 	    ApiDescriptionImpl.prototype.apiFiles = function () {
 	        return _super.prototype.elements.call(this, 'apiFiles');
 	    };
-	    /**
-	     *
-	     **/
-	    //script
 	    ApiDescriptionImpl.prototype.script = function () {
 	        return _super.prototype.elements.call(this, 'script');
 	    };
-	    /**
-	     *
-	     **/
-	    //type
 	    ApiDescriptionImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setType
+	    /***
+	     * Set type value
+	     ***/
 	    ApiDescriptionImpl.prototype.setType = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("type").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
 	    };
 	    return ApiDescriptionImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ApiDescriptionImpl = ApiDescriptionImpl;
 	var CallbackAPIDescriptionImpl = (function (_super) {
 	    __extends(CallbackAPIDescriptionImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function CallbackAPIDescriptionImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createCallbackAPIDescription(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    CallbackAPIDescriptionImpl.prototype.wrapperClassName = function () {
 	        return "CallbackAPIDescriptionImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //callbackFor
 	    CallbackAPIDescriptionImpl.prototype.callbackFor = function () {
 	        return _super.prototype.element.call(this, 'callbackFor');
 	    };
@@ -932,117 +852,80 @@ var raml1Parser = require("./raml1Parser");
 	exports.CallbackAPIDescriptionImpl = CallbackAPIDescriptionImpl;
 	var RAMLProjectImpl = (function (_super) {
 	    __extends(RAMLProjectImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLProjectImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLProject(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLProjectImpl.prototype.wrapperClassName = function () {
 	        return "RAMLProjectImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //relatedProjects
 	    RAMLProjectImpl.prototype.relatedProjects = function () {
 	        return _super.prototype.elements.call(this, 'relatedProjects');
 	    };
-	    /**
-	     *
-	     **/
-	    //declaredApis
 	    RAMLProjectImpl.prototype.declaredApis = function () {
 	        return _super.prototype.elements.call(this, 'declaredApis');
 	    };
-	    /**
-	     *
-	     **/
-	    //license
 	    RAMLProjectImpl.prototype.license = function () {
 	        return _super.prototype.attribute.call(this, 'license', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setLicense
+	    /***
+	     * Set license value
+	     ***/
 	    RAMLProjectImpl.prototype.setLicense = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("license").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("license").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //overview
 	    RAMLProjectImpl.prototype.overview = function () {
 	        return _super.prototype.attribute.call(this, 'overview', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setOverview
+	    /***
+	     * Set overview value
+	     ***/
 	    RAMLProjectImpl.prototype.setOverview = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("overview").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("overview").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //url
 	    RAMLProjectImpl.prototype.url = function () {
 	        return _super.prototype.attribute.call(this, 'url', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUrl
+	    /***
+	     * Set url value
+	     ***/
 	    RAMLProjectImpl.prototype.setUrl = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("url").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("url").setValue("" + param);
+	        return this;
 	    };
 	    return RAMLProjectImpl;
 	})(RAMLLanguageElementImpl);
 	exports.RAMLProjectImpl = RAMLProjectImpl;
+	/***
+	 * Security schema type allows you to contribute your own security schema type with settings and optinal configurator for plugging into client sdks auth mechanism
+	 ***/
 	var SecuritySchemaTypeImpl = (function (_super) {
 	    __extends(SecuritySchemaTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaTypeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaTypeImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //requiredSettings
+	    /***
+	     * You may declare settings needed to use this type of security security schemas
+	     ***/
 	    SecuritySchemaTypeImpl.prototype.requiredSettings = function () {
 	        return _super.prototype.elements.call(this, 'requiredSettings');
 	    };
-	    /**
-	     *
-	     **/
-	    //describedBy
+	    /***
+	     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
+	     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
+	     ***/
 	    SecuritySchemaTypeImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
@@ -1051,220 +934,166 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaTypeImpl = SecuritySchemaTypeImpl;
 	var DataElementImpl = (function (_super) {
 	    __extends(DataElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DataElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDataElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DataElementImpl.prototype.wrapperClassName = function () {
 	        return "DataElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * name of the parameter
+	     ***/
 	    DataElementImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    DataElementImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //xml
 	    DataElementImpl.prototype.xml = function () {
 	        return _super.prototype.element.call(this, 'xml');
 	    };
-	    /**
-	     *
-	     **/
-	    //facets
+	    /***
+	     * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
+	     ***/
 	    DataElementImpl.prototype.facets = function () {
 	        return _super.prototype.elements.call(this, 'facets');
 	    };
-	    /**
-	     *
-	     **/
-	    //schema
+	    /***
+	     * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+	     ***/
 	    DataElementImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setSchema
+	    /***
+	     * Set schema value
+	     ***/
 	    DataElementImpl.prototype.setSchema = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("schema").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("schema").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
 	    DataElementImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    DataElementImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * A base type which the current type extends, or more generally a type expression.
+	     ***/
 	    DataElementImpl.prototype["type"] = function () {
 	        return _super.prototype.attributes.call(this, 'type', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setType
+	    /***
+	     * Set type value
+	     ***/
 	    DataElementImpl.prototype.setType = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("type").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //location
+	    /***
+	     * Location of the parameter (can not be edited by user)
+	     ***/
 	    DataElementImpl.prototype.location = function () {
 	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ModelLocationImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //locationKind
+	    /***
+	     * Kind of location
+	     ***/
 	    DataElementImpl.prototype.locationKind = function () {
 	        return _super.prototype.attribute.call(this, 'locationKind', function (attr) { return new LocationKindImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //default
+	    /***
+	     * Provides default value for a property
+	     ***/
 	    DataElementImpl.prototype["default"] = function () {
 	        return _super.prototype.attribute.call(this, 'default', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDefault
+	    /***
+	     * Set default value
+	     ***/
 	    DataElementImpl.prototype.setDefault = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("default").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("default").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //example
+	    /***
+	     * An example of an instance of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+	     ***/
 	    DataElementImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setExample
+	    /***
+	     * Set example value
+	     ***/
 	    DataElementImpl.prototype.setExample = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("example").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("example").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //examples
+	    /***
+	     * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+	     ***/
 	    DataElementImpl.prototype.examples = function () {
 	        return _super.prototype.elements.call(this, 'examples');
 	    };
-	    /**
-	     *
-	     **/
-	    //repeat
+	    /***
+	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+	     ***/
 	    DataElementImpl.prototype.repeat = function () {
 	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setRepeat
+	    /***
+	     * Set repeat value
+	     ***/
 	    DataElementImpl.prototype.setRepeat = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("repeat").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //required
+	    /***
+	     * Sets if property is optional or not
+	     ***/
 	    DataElementImpl.prototype.required = function () {
 	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setRequired
+	    /***
+	     * Set required value
+	     ***/
 	    DataElementImpl.prototype.setRequired = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("required").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("required").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the type
+	     ***/
 	    DataElementImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    DataElementImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the type
+	     ***/
 	    DataElementImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    DataElementImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
@@ -1273,121 +1102,76 @@ var raml1Parser = require("./raml1Parser");
 	exports.DataElementImpl = DataElementImpl;
 	var XMLInfoImpl = (function (_super) {
 	    __extends(XMLInfoImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function XMLInfoImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLInfo(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    XMLInfoImpl.prototype.wrapperClassName = function () {
 	        return "XMLInfoImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    XMLInfoImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    XMLInfoImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //namespace
 	    XMLInfoImpl.prototype.namespace = function () {
 	        return _super.prototype.attribute.call(this, 'namespace', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setNamespace
+	    /***
+	     * Set namespace value
+	     ***/
 	    XMLInfoImpl.prototype.setNamespace = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("namespace").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("namespace").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //prefix
 	    XMLInfoImpl.prototype.prefix = function () {
 	        return _super.prototype.attribute.call(this, 'prefix', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setPrefix
+	    /***
+	     * Set prefix value
+	     ***/
 	    XMLInfoImpl.prototype.setPrefix = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("prefix").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("prefix").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //attribute
 	    XMLInfoImpl.prototype.attribute = function () {
 	        return _super.prototype.attribute.call(this, 'attribute', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setAttribute
+	    /***
+	     * Set attribute value
+	     ***/
 	    XMLInfoImpl.prototype.setAttribute = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("attribute").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("attribute").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //wrapped
 	    XMLInfoImpl.prototype.wrapped = function () {
 	        return _super.prototype.attribute.call(this, 'wrapped', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setWrapped
+	    /***
+	     * Set wrapped value
+	     ***/
 	    XMLInfoImpl.prototype.setWrapped = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("wrapped").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("wrapped").setValue("" + param);
+	        return this;
 	    };
 	    return XMLInfoImpl;
 	})(BasicNodeImpl);
 	exports.XMLInfoImpl = XMLInfoImpl;
 	var ModelLocationImpl = (function () {
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ModelLocationImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ModelLocationImpl.prototype.wrapperClassName = function () {
 	        return "ModelLocationImpl";
 	    };
@@ -1395,17 +1179,12 @@ var raml1Parser = require("./raml1Parser");
 	})();
 	exports.ModelLocationImpl = ModelLocationImpl;
 	var LocationKindImpl = (function () {
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function LocationKindImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    LocationKindImpl.prototype.wrapperClassName = function () {
 	        return "LocationKindImpl";
 	    };
@@ -1414,672 +1193,525 @@ var raml1Parser = require("./raml1Parser");
 	exports.LocationKindImpl = LocationKindImpl;
 	var ExampleSpecImpl = (function (_super) {
 	    __extends(ExampleSpecImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ExampleSpecImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createExampleSpec(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ExampleSpecImpl.prototype.wrapperClassName = function () {
 	        return "ExampleSpecImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //content
+	    /***
+	     * The example itself
+	     ***/
 	    ExampleSpecImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setContent
+	    /***
+	     * Set content value
+	     ***/
 	    ExampleSpecImpl.prototype.setContent = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("content").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("content").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //strict
+	    /***
+	     * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+	     ***/
 	    ExampleSpecImpl.prototype.strict = function () {
 	        return _super.prototype.attribute.call(this, 'strict', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setStrict
+	    /***
+	     * Set strict value
+	     ***/
 	    ExampleSpecImpl.prototype.setStrict = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("strict").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("strict").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    ExampleSpecImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    ExampleSpecImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the example
+	     ***/
 	    ExampleSpecImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ExampleSpecImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the example
+	     ***/
 	    ExampleSpecImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    ExampleSpecImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
 	    return ExampleSpecImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ExampleSpecImpl = ExampleSpecImpl;
+	/***
+	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
+	 ***/
 	var FileParameterImpl = (function (_super) {
 	    __extends(FileParameterImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function FileParameterImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createFileParameter(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FileParameterImpl.prototype.wrapperClassName = function () {
 	        return "FileParameterImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //fileTypes
+	    /***
+	     * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
+	     ***/
 	    FileParameterImpl.prototype.fileTypes = function () {
 	        return _super.prototype.attributes.call(this, 'fileTypes', function (attr) { return new ContentTypeImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //minLength
+	    /***
+	     * The minLength attribute specifies the parameter value's minimum number of bytes.
+	     ***/
 	    FileParameterImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinLength
+	    /***
+	     * Set minLength value
+	     ***/
 	    FileParameterImpl.prototype.setMinLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maxLength
+	    /***
+	     * The maxLength attribute specifies the parameter value's maximum number of bytes.
+	     ***/
 	    FileParameterImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaxLength
+	    /***
+	     * Set maxLength value
+	     ***/
 	    FileParameterImpl.prototype.setMaxLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maxLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
+	        return this;
 	    };
 	    return FileParameterImpl;
 	})(DataElementImpl);
 	exports.FileParameterImpl = FileParameterImpl;
 	var ArrayFieldImpl = (function (_super) {
 	    __extends(ArrayFieldImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ArrayFieldImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createArrayField(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ArrayFieldImpl.prototype.wrapperClassName = function () {
 	        return "ArrayFieldImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //uniqueItems
+	    /***
+	     * Should items in array be unique
+	     ***/
 	    ArrayFieldImpl.prototype.uniqueItems = function () {
 	        return _super.prototype.attribute.call(this, 'uniqueItems', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUniqueItems
+	    /***
+	     * Set uniqueItems value
+	     ***/
 	    ArrayFieldImpl.prototype.setUniqueItems = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("uniqueItems").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("uniqueItems").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //items
+	    /***
+	     * Array component type.
+	     ***/
 	    ArrayFieldImpl.prototype.items = function () {
 	        return _super.prototype.element.call(this, 'items');
 	    };
-	    /**
-	     *
-	     **/
-	    //minItems
+	    /***
+	     * Minimum amount of items in array
+	     ***/
 	    ArrayFieldImpl.prototype.minItems = function () {
 	        return _super.prototype.attribute.call(this, 'minItems', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinItems
+	    /***
+	     * Set minItems value
+	     ***/
 	    ArrayFieldImpl.prototype.setMinItems = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minItems").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minItems").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maxItems
+	    /***
+	     * Maximum amount of items in array
+	     ***/
 	    ArrayFieldImpl.prototype.maxItems = function () {
 	        return _super.prototype.attribute.call(this, 'maxItems', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaxItems
+	    /***
+	     * Set maxItems value
+	     ***/
 	    ArrayFieldImpl.prototype.setMaxItems = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maxItems").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maxItems").setValue("" + param);
+	        return this;
 	    };
 	    return ArrayFieldImpl;
 	})(DataElementImpl);
 	exports.ArrayFieldImpl = ArrayFieldImpl;
 	var UnionFieldImpl = (function (_super) {
 	    __extends(UnionFieldImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function UnionFieldImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createUnionField(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    UnionFieldImpl.prototype.wrapperClassName = function () {
 	        return "UnionFieldImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //discriminator
+	    /***
+	     * Type property name to be used as a discriminator or boolean
+	     ***/
 	    UnionFieldImpl.prototype.discriminator = function () {
 	        return _super.prototype.attribute.call(this, 'discriminator', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDiscriminator
+	    /***
+	     * Set discriminator value
+	     ***/
 	    UnionFieldImpl.prototype.setDiscriminator = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("discriminator").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("discriminator").setValue("" + param);
+	        return this;
 	    };
 	    return UnionFieldImpl;
 	})(DataElementImpl);
 	exports.UnionFieldImpl = UnionFieldImpl;
 	var ObjectFieldImpl = (function (_super) {
 	    __extends(ObjectFieldImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ObjectFieldImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createObjectField(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ObjectFieldImpl.prototype.wrapperClassName = function () {
 	        return "ObjectFieldImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //properties
+	    /***
+	     * The properties that instances of this type may or must have.
+	     ***/
 	    ObjectFieldImpl.prototype.properties = function () {
 	        return _super.prototype.elements.call(this, 'properties');
 	    };
-	    /**
-	     *
-	     **/
-	    //minProperties
+	    /***
+	     * The minimum number of properties allowed for instances of this type.
+	     ***/
 	    ObjectFieldImpl.prototype.minProperties = function () {
 	        return _super.prototype.attribute.call(this, 'minProperties', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinProperties
+	    /***
+	     * Set minProperties value
+	     ***/
 	    ObjectFieldImpl.prototype.setMinProperties = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minProperties").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minProperties").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maxProperties
+	    /***
+	     * The maximum number of properties allowed for instances of this type.
+	     ***/
 	    ObjectFieldImpl.prototype.maxProperties = function () {
 	        return _super.prototype.attribute.call(this, 'maxProperties', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaxProperties
+	    /***
+	     * Set maxProperties value
+	     ***/
 	    ObjectFieldImpl.prototype.setMaxProperties = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maxProperties").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maxProperties").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //additionalProperties
+	    /***
+	     * JSON schema style syntax for declaring maps
+	     ***/
 	    ObjectFieldImpl.prototype.additionalProperties = function () {
 	        return _super.prototype.element.call(this, 'additionalProperties');
 	    };
-	    /**
-	     *
-	     **/
-	    //patternProperties
+	    /***
+	     * JSON schema style syntax for declaring key restricted maps
+	     ***/
 	    ObjectFieldImpl.prototype.patternProperties = function () {
 	        return _super.prototype.elements.call(this, 'patternProperties');
 	    };
-	    /**
-	     *
-	     **/
-	    //discriminator
+	    /***
+	     * Type property name to be used as discriminator, or boolean
+	     ***/
 	    ObjectFieldImpl.prototype.discriminator = function () {
 	        return _super.prototype.attribute.call(this, 'discriminator', function (attr) { return new pointerImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //discriminatorValue
+	    /***
+	     * The value of discriminator for the type.
+	     ***/
 	    ObjectFieldImpl.prototype.discriminatorValue = function () {
 	        return _super.prototype.attribute.call(this, 'discriminatorValue', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDiscriminatorValue
+	    /***
+	     * Set discriminatorValue value
+	     ***/
 	    ObjectFieldImpl.prototype.setDiscriminatorValue = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("discriminatorValue").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("discriminatorValue").setValue("" + param);
+	        return this;
 	    };
 	    return ObjectFieldImpl;
 	})(DataElementImpl);
 	exports.ObjectFieldImpl = ObjectFieldImpl;
+	/***
+	 * Value must be a string
+	 ***/
 	var StrElementImpl = (function (_super) {
 	    __extends(StrElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function StrElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createStrElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StrElementImpl.prototype.wrapperClassName = function () {
 	        return "StrElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //pattern
+	    /***
+	     * Regular expression that this string should path
+	     ***/
 	    StrElementImpl.prototype.pattern = function () {
 	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setPattern
+	    /***
+	     * Set pattern value
+	     ***/
 	    StrElementImpl.prototype.setPattern = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("pattern").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //minLength
+	    /***
+	     * Minimum length of the string
+	     ***/
 	    StrElementImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinLength
+	    /***
+	     * Set minLength value
+	     ***/
 	    StrElementImpl.prototype.setMinLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maxLength
+	    /***
+	     * Maximum length of the string
+	     ***/
 	    StrElementImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaxLength
+	    /***
+	     * Set maxLength value
+	     ***/
 	    StrElementImpl.prototype.setMaxLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maxLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //enum
+	    /***
+	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
+	     ***/
 	    StrElementImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setEnum
+	    /***
+	     * Set enum value
+	     ***/
 	    StrElementImpl.prototype.setEnum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("enum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("enum").setValue("" + param);
+	        return this;
 	    };
 	    return StrElementImpl;
 	})(DataElementImpl);
 	exports.StrElementImpl = StrElementImpl;
+	/***
+	 * Value must be a boolean
+	 ***/
 	var BooleanElementImpl = (function (_super) {
 	    __extends(BooleanElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function BooleanElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BooleanElementImpl.prototype.wrapperClassName = function () {
 	        return "BooleanElementImpl";
 	    };
 	    return BooleanElementImpl;
 	})(DataElementImpl);
 	exports.BooleanElementImpl = BooleanElementImpl;
+	/***
+	 * Value must be a boolean
+	 ***/
 	var ValueElementImpl = (function (_super) {
 	    __extends(ValueElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ValueElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createValueElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ValueElementImpl.prototype.wrapperClassName = function () {
 	        return "ValueElementImpl";
 	    };
 	    return ValueElementImpl;
 	})(DataElementImpl);
 	exports.ValueElementImpl = ValueElementImpl;
+	/***
+	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
+	 ***/
 	var NumberElementImpl = (function (_super) {
 	    __extends(NumberElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function NumberElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    NumberElementImpl.prototype.wrapperClassName = function () {
 	        return "NumberElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //minimum
+	    /***
+	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
+	     ***/
 	    NumberElementImpl.prototype.minimum = function () {
 	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinimum
+	    /***
+	     * Set minimum value
+	     ***/
 	    NumberElementImpl.prototype.setMinimum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minimum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maximum
+	    /***
+	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
+	     ***/
 	    NumberElementImpl.prototype.maximum = function () {
 	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaximum
+	    /***
+	     * Set maximum value
+	     ***/
 	    NumberElementImpl.prototype.setMaximum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maximum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //enum
+	    /***
+	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
+	     ***/
 	    NumberElementImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setEnum
+	    /***
+	     * Set enum value
+	     ***/
 	    NumberElementImpl.prototype.setEnum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("enum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("enum").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //format
+	    /***
+	     * Value format
+	     ***/
 	    NumberElementImpl.prototype.format = function () {
 	        return _super.prototype.attribute.call(this, 'format', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setFormat
+	    /***
+	     * Set format value
+	     ***/
 	    NumberElementImpl.prototype.setFormat = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("format").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("format").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //multipleOf
+	    /***
+	     * A numeric instance is valid against "multipleOf" if the result of the division of the instance by this keyword's value is an integer.
+	     ***/
 	    NumberElementImpl.prototype.multipleOf = function () {
 	        return _super.prototype.attribute.call(this, 'multipleOf', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMultipleOf
+	    /***
+	     * Set multipleOf value
+	     ***/
 	    NumberElementImpl.prototype.setMultipleOf = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("multipleOf").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("multipleOf").setValue("" + param);
+	        return this;
 	    };
 	    return NumberElementImpl;
 	})(DataElementImpl);
 	exports.NumberElementImpl = NumberElementImpl;
+	/***
+	 * Value MUST be a integer.
+	 ***/
 	var IntegerElementImpl = (function (_super) {
 	    __extends(IntegerElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function IntegerElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    IntegerElementImpl.prototype.wrapperClassName = function () {
 	        return "IntegerElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //format
 	    IntegerElementImpl.prototype.format = function () {
 	        return _super.prototype.attribute.call(this, 'format', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setFormat
+	    /***
+	     * Set format value
+	     ***/
 	    IntegerElementImpl.prototype.setFormat = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("format").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("format").setValue("" + param);
+	        return this;
 	    };
 	    return IntegerElementImpl;
 	})(NumberElementImpl);
 	exports.IntegerElementImpl = IntegerElementImpl;
 	var RAMLPointerElementImpl = (function (_super) {
 	    __extends(RAMLPointerElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLPointerElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLPointerElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLPointerElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLPointerElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //target
 	    RAMLPointerElementImpl.prototype.target = function () {
 	        return _super.prototype.attribute.call(this, 'target', function (attr) { return new RAMLSelectorImpl(attr); });
 	    };
@@ -2088,18 +1720,13 @@ var raml1Parser = require("./raml1Parser");
 	exports.RAMLPointerElementImpl = RAMLPointerElementImpl;
 	var RAMLExpressionImpl = (function (_super) {
 	    __extends(RAMLExpressionImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLExpressionImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLExpression(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLExpressionImpl.prototype.wrapperClassName = function () {
 	        return "RAMLExpressionImpl";
 	    };
@@ -2108,99 +1735,75 @@ var raml1Parser = require("./raml1Parser");
 	exports.RAMLExpressionImpl = RAMLExpressionImpl;
 	var ScriptHookElementImpl = (function (_super) {
 	    __extends(ScriptHookElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ScriptHookElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createScriptHookElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ScriptHookElementImpl.prototype.wrapperClassName = function () {
 	        return "ScriptHookElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //declaredIn
+	    /***
+	     * Typescript file defining interface which this scrip should comply to
+	     ***/
 	    ScriptHookElementImpl.prototype.declaredIn = function () {
 	        return _super.prototype.attribute.call(this, 'declaredIn', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDeclaredIn
+	    /***
+	     * Set declaredIn value
+	     ***/
 	    ScriptHookElementImpl.prototype.setDeclaredIn = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("declaredIn").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("declaredIn").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //interfaceName
+	    /***
+	     * Name of the interface which scripts should comply to
+	     ***/
 	    ScriptHookElementImpl.prototype.interfaceName = function () {
 	        return _super.prototype.attribute.call(this, 'interfaceName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setInterfaceName
+	    /***
+	     * Set interfaceName value
+	     ***/
 	    ScriptHookElementImpl.prototype.setInterfaceName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("interfaceName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("interfaceName").setValue("" + param);
+	        return this;
 	    };
 	    return ScriptHookElementImpl;
 	})(DataElementImpl);
 	exports.ScriptHookElementImpl = ScriptHookElementImpl;
 	var SchemaElementImpl = (function (_super) {
 	    __extends(SchemaElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SchemaElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSchemaElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SchemaElementImpl.prototype.wrapperClassName = function () {
 	        return "SchemaElementImpl";
 	    };
 	    return SchemaElementImpl;
 	})(DataElementImpl);
 	exports.SchemaElementImpl = SchemaElementImpl;
+	/***
+	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
+	 ***/
 	var DateElementImpl = (function (_super) {
 	    __extends(DateElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DateElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDateElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DateElementImpl.prototype.wrapperClassName = function () {
 	        return "DateElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //dateFormat
 	    DateElementImpl.prototype.dateFormat = function () {
 	        return _super.prototype.attribute.call(this, 'dateFormat', function (attr) { return new DateFormatSpecImpl(attr); });
 	    };
@@ -2209,39 +1812,28 @@ var raml1Parser = require("./raml1Parser");
 	exports.DateElementImpl = DateElementImpl;
 	var HasNormalParametersImpl = (function (_super) {
 	    __extends(HasNormalParametersImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function HasNormalParametersImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
 	        return "HasNormalParametersImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //queryParameters
+	    /***
+	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+	     ***/
 	    HasNormalParametersImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //headers
+	    /***
+	     * Headers that allowed at this position
+	     ***/
 	    HasNormalParametersImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /**
-	     *
-	     **/
-	    //queryString
 	    HasNormalParametersImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
 	    };
@@ -2250,63 +1842,53 @@ var raml1Parser = require("./raml1Parser");
 	exports.HasNormalParametersImpl = HasNormalParametersImpl;
 	var MethodBaseImpl = (function (_super) {
 	    __extends(MethodBaseImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MethodBaseImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MethodBaseImpl.prototype.wrapperClassName = function () {
 	        return "MethodBaseImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //responses
+	    /***
+	     * Information about the expected responses to a request
+	     ***/
 	    MethodBaseImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /**
-	     *
-	     **/
-	    //body
+	    /***
+	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
+	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
+	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+	     ***/
 	    MethodBaseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /**
-	     *
-	     **/
-	    //protocols
+	    /***
+	     * A method can override the protocols specified in the resource or at the API root, by employing this property.
+	     ***/
 	    MethodBaseImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setProtocols
+	    /***
+	     * Set protocols value
+	     ***/
 	    MethodBaseImpl.prototype.setProtocols = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * Instantiation of applyed traits
+	     ***/
 	    MethodBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     ***/
 	    MethodBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
@@ -2315,77 +1897,62 @@ var raml1Parser = require("./raml1Parser");
 	exports.MethodBaseImpl = MethodBaseImpl;
 	var ResponseImpl = (function (_super) {
 	    __extends(ResponseImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResponseImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResponseImpl.prototype.wrapperClassName = function () {
 	        return "ResponseImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //code
+	    /***
+	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+	     ***/
 	    ResponseImpl.prototype.code = function () {
 	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //headers
+	    /***
+	     * Detailed information about any response headers returned by this method
+	     ***/
 	    ResponseImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /**
-	     *
-	     **/
-	    //body
+	    /***
+	     * The body of the response: a body declaration
+	     ***/
 	    ResponseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the response
+	     ***/
 	    ResponseImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ResponseImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the response
+	     ***/
 	    ResponseImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    ResponseImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //isOkRange
+	    /***
+	     * true for codes < 400 and false otherwise
+	     ***/
 	    ResponseImpl.prototype.isOkRange = function () {
 	        return helper.isOkRange(this);
 	    };
@@ -2394,59 +1961,42 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResponseImpl = ResponseImpl;
 	var TraitImpl = (function (_super) {
 	    __extends(TraitImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function TraitImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    TraitImpl.prototype.wrapperClassName = function () {
 	        return "TraitImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Name of the trait
+	     ***/
 	    TraitImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    TraitImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
 	    TraitImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    TraitImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //uses
+	    /***
+	     * You may import library locally here it contents is accessible only inside of this trait
+	     ***/
 	    TraitImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -2455,115 +2005,90 @@ var raml1Parser = require("./raml1Parser");
 	exports.TraitImpl = TraitImpl;
 	var LibraryImpl = (function (_super) {
 	    __extends(LibraryImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function LibraryImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createLibrary(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    LibraryImpl.prototype.wrapperClassName = function () {
 	        return "LibraryImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    LibraryImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    LibraryImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //schemas
+	    /***
+	     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+	     ***/
 	    LibraryImpl.prototype.schemas = function () {
 	        return _super.prototype.elements.call(this, 'schemas');
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
+	    /***
+	     * contains description of why library exist
+	     ***/
 	    LibraryImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    LibraryImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    LibraryImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //types
+	    /***
+	     * Declarations of (data) types for use within this API
+	     ***/
 	    LibraryImpl.prototype.types = function () {
 	        return _super.prototype.elements.call(this, 'types');
 	    };
-	    /**
-	     *
-	     **/
-	    //traits
+	    /***
+	     * Declarations of traits for use within this API
+	     ***/
 	    LibraryImpl.prototype.traits = function () {
 	        return _super.prototype.elements.call(this, 'traits');
 	    };
-	    /**
-	     *
-	     **/
-	    //resourceTypes
+	    /***
+	     * Declarations of resource types for use within this API
+	     ***/
 	    LibraryImpl.prototype.resourceTypes = function () {
 	        return _super.prototype.elements.call(this, 'resourceTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //annotationTypes
+	    /***
+	     * Declarations of annotation types for use by annotations
+	     ***/
 	    LibraryImpl.prototype.annotationTypes = function () {
 	        return _super.prototype.elements.call(this, 'annotationTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemaTypes
+	    /***
+	     * Security schemas types declarations
+	     ***/
 	    LibraryImpl.prototype.securitySchemaTypes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemaTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemes
+	    /***
+	     * Declarations of security schemes for use within this API.
+	     ***/
 	    LibraryImpl.prototype.securitySchemes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemes');
 	    };
-	    /**
-	     *
-	     **/
-	    //uses
+	    /***
+	     * Importing libraries
+	     ***/
 	    LibraryImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -2572,18 +2097,13 @@ var raml1Parser = require("./raml1Parser");
 	exports.LibraryImpl = LibraryImpl;
 	var RAMLSimpleElementImpl = (function (_super) {
 	    __extends(RAMLSimpleElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLSimpleElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLSimpleElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSimpleElementImpl";
 	    };
@@ -2592,86 +2112,69 @@ var raml1Parser = require("./raml1Parser");
 	exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
 	var ImportDeclarationImpl = (function (_super) {
 	    __extends(ImportDeclarationImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ImportDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createImportDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ImportDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "ImportDeclarationImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //key
+	    /***
+	     * Name prefix (without dot) used to refer imported declarations
+	     ***/
 	    ImportDeclarationImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setKey
+	    /***
+	     * Set key value
+	     ***/
 	    ImportDeclarationImpl.prototype.setKey = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("key").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("key").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * Content of the declared namespace
+	     ***/
 	    ImportDeclarationImpl.prototype.value = function () {
 	        return _super.prototype.element.call(this, 'value');
 	    };
 	    return ImportDeclarationImpl;
 	})(RAMLSimpleElementImpl);
 	exports.ImportDeclarationImpl = ImportDeclarationImpl;
+	/***
+	 * Content of the schema
+	 ***/
 	var GlobalSchemaImpl = (function (_super) {
 	    __extends(GlobalSchemaImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function GlobalSchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
 	        return "GlobalSchemaImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //key
+	    /***
+	     * Name of the global schema, used to refer on schema content
+	     ***/
 	    GlobalSchemaImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setKey
+	    /***
+	     * Set key value
+	     ***/
 	    GlobalSchemaImpl.prototype.setKey = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("key").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("key").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * Content of the schema
+	     ***/
 	    GlobalSchemaImpl.prototype.value = function () {
 	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
 	    };
@@ -2680,53 +2183,43 @@ var raml1Parser = require("./raml1Parser");
 	exports.GlobalSchemaImpl = GlobalSchemaImpl;
 	var ResourceBaseImpl = (function (_super) {
 	    __extends(ResourceBaseImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResourceBaseImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceBaseImpl.prototype.wrapperClassName = function () {
 	        return "ResourceBaseImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //methods
+	    /***
+	     * Methods that are part of this resource type definition
+	     ***/
 	    ResourceBaseImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
+	     ***/
 	    ResourceBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+	     ***/
 	    ResourceBaseImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+	     ***/
 	    ResourceBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //uriParameters
+	    /***
+	     * Detailed information about any URI parameters of this resource
+	     ***/
 	    ResourceBaseImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
@@ -2735,136 +2228,110 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResourceBaseImpl = ResourceBaseImpl;
 	var MethodImpl = (function (_super) {
 	    __extends(MethodImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MethodImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MethodImpl.prototype.wrapperClassName = function () {
 	        return "MethodImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //signature
 	    MethodImpl.prototype.signature = function () {
 	        return _super.prototype.attribute.call(this, 'signature', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //method
+	    /***
+	     * Method that can be called
+	     ***/
 	    MethodImpl.prototype.method = function () {
 	        return _super.prototype.attribute.call(this, 'method', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMethod
+	    /***
+	     * Set method value
+	     ***/
 	    MethodImpl.prototype.setMethod = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("method").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("method").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the method (in the resource's context).
+	     ***/
 	    MethodImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    MethodImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the method (in the resource's context)
+	     ***/
 	    MethodImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //queryString
+	    /***
+	     * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
+	     ***/
 	    MethodImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
 	    };
-	    /**
-	     *
-	     **/
-	    //queryParameters
+	    /***
+	     * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
+	     ***/
 	    MethodImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //headers
+	    /***
+	     * Detailed information about any request headers needed by this method.
+	     ***/
 	    MethodImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /**
-	     *
-	     **/
-	    //body
+	    /***
+	     * Some methods admit request bodies, which are described by this property.
+	     ***/
 	    MethodImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * A list of the traits to apply to this method. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+	     ***/
 	    MethodImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    MethodImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * The security schemes that apply to this method
+	     ***/
 	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //parentResource
+	    /***
+	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
+	     ***/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //ownerApi
+	    /***
+	     * Api owning the resource as a sibling
+	     ***/
 	    MethodImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //methodId
+	    /***
+	     * // For methods of Resources: `{parent Resource relative path} {methodName}`.
+	     * // For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	     * // For other methods throws Exception.
+	     ***/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
 	    };
@@ -2873,126 +2340,103 @@ var raml1Parser = require("./raml1Parser");
 	exports.MethodImpl = MethodImpl;
 	var ResourceImpl = (function (_super) {
 	    __extends(ResourceImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResourceImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceImpl.prototype.wrapperClassName = function () {
 	        return "ResourceImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //signature
 	    ResourceImpl.prototype.signature = function () {
 	        return _super.prototype.attribute.call(this, 'signature', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //relativeUri
+	    /***
+	     * Relative URL of this resource from the parent resource
+	     ***/
 	    ResourceImpl.prototype.relativeUri = function () {
 	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //resources
+	    /***
+	     * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
+	     ***/
 	    ResourceImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the resource.
+	     ***/
 	    ResourceImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ResourceImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the resource.
+	     ***/
 	    ResourceImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    ResourceImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //completeRelativeUri
+	    /***
+	     * Path relative to API root
+	     ***/
 	    ResourceImpl.prototype.completeRelativeUri = function () {
 	        return helper.completeRelativeUri(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //absoluteUri
+	    /***
+	     * baseUri of owning Api concatenated with completeRelativeUri
+	     ***/
 	    ResourceImpl.prototype.absoluteUri = function () {
 	        return helper.absoluteUri(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //parentResource
+	    /***
+	     * Parent resource for non top level resources
+	     ***/
 	    ResourceImpl.prototype.parentResource = function () {
 	        return helper.parent(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildResource
+	    /***
+	     * Get child resource by its relative path
+	     ***/
 	    ResourceImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildMethod
+	    /***
+	     * Get child method by its name
+	     ***/
 	    ResourceImpl.prototype.getChildMethod = function (method) {
 	        return helper.getChildMethod(this, method);
 	    };
-	    /**
-	     *
-	     **/
-	    //ownerApi
+	    /***
+	     * Api owning the resource as a sibling
+	     ***/
 	    ResourceImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allUriParameters
+	    /***
+	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	     * //
+	     ***/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //absoluteUriParameters
+	    /***
+	     * Retrieve all absolute uri parameters regardless of whether they are described in
+	     * //`baseUriParameters` and `uriParameters` or not
+	     ***/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
 	    };
@@ -3001,59 +2445,42 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResourceImpl = ResourceImpl;
 	var ResourceTypeImpl = (function (_super) {
 	    __extends(ResourceTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResourceTypeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceTypeImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Name of the resource type
+	     ***/
 	    ResourceTypeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    ResourceTypeImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
 	    ResourceTypeImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    ResourceTypeImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //uses
+	    /***
+	     * You may import library locally here it contents is accessible only inside of this resource type
+	     ***/
 	    ResourceTypeImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -3062,182 +2489,144 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResourceTypeImpl = ResourceTypeImpl;
 	var AnnotationTypeImpl = (function (_super) {
 	    __extends(AnnotationTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function AnnotationTypeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createAnnotationType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    AnnotationTypeImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Name of this annotation type
+	     ***/
 	    AnnotationTypeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    AnnotationTypeImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
+	    /***
+	     * Instructions on how and when to use this annotation in a RAML spec.
+	     ***/
 	    AnnotationTypeImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    AnnotationTypeImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //parameters
+	    /***
+	     * Declarations of parameters allowed in this annotation type
+	     ***/
 	    AnnotationTypeImpl.prototype.parameters = function () {
 	        return _super.prototype.elements.call(this, 'parameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //allowMultiple
+	    /***
+	     * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
+	     ***/
 	    AnnotationTypeImpl.prototype.allowMultiple = function () {
 	        return _super.prototype.attribute.call(this, 'allowMultiple', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setAllowMultiple
+	    /***
+	     * Set allowMultiple value
+	     ***/
 	    AnnotationTypeImpl.prototype.setAllowMultiple = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("allowMultiple").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("allowMultiple").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //allowedTargets
+	    /***
+	     * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
+	     ***/
 	    AnnotationTypeImpl.prototype.allowedTargets = function () {
 	        return _super.prototype.attributes.call(this, 'allowedTargets', function (attr) { return new AnnotationTargetImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the annotation
+	     ***/
 	    AnnotationTypeImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    AnnotationTypeImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the annotation
+	     ***/
 	    AnnotationTypeImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
 	    return AnnotationTypeImpl;
 	})(RAMLLanguageElementImpl);
 	exports.AnnotationTypeImpl = AnnotationTypeImpl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var SecuritySchemaImpl = (function (_super) {
 	    __extends(SecuritySchemaImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    SecuritySchemaImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    SecuritySchemaImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+	     ***/
 	    SecuritySchemaImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setType
+	    /***
+	     * Set type value
+	     ***/
 	    SecuritySchemaImpl.prototype.setType = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("type").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * The description MAY be used to describe a securityScheme.
+	     ***/
 	    SecuritySchemaImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //describedBy
+	    /***
+	     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+	     * Including the security scheme description completes an API documentation.
+	     ***/
 	    SecuritySchemaImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
-	    /**
-	     *
-	     **/
-	    //settings
+	    /***
+	     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+	     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+	     ***/
 	    SecuritySchemaImpl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
@@ -3246,18 +2635,13 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaImpl = SecuritySchemaImpl;
 	var SecuritySchemaSettingsImpl = (function (_super) {
 	    __extends(SecuritySchemaSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaSettingsImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaSettingsImpl";
 	    };
@@ -3266,319 +2650,243 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaSettingsImpl = SecuritySchemaSettingsImpl;
 	var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
 	    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth1SecuritySchemeSettingsImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //requestTokenUri
+	    /***
+	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationUri
+	    /***
+	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //tokenCredentialsUri
+	    /***
+	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
 	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //signatures
 	    OAuth1SecuritySchemeSettingsImpl.prototype.signatures = function () {
 	        return _super.prototype.attributes.call(this, 'signatures', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setSignatures
+	    /***
+	     * Set signatures value
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.setSignatures = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("signatures").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("signatures").setValue("" + param);
+	        return this;
 	    };
 	    return OAuth1SecuritySchemeSettingsImpl;
 	})(SecuritySchemaSettingsImpl);
 	exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
 	var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
 	    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth2SecuritySchemeSettingsImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //accessTokenUri
+	    /***
+	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationUri
+	    /***
+	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationGrants
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
 	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setAuthorizationGrants
+	    /***
+	     * Set authorizationGrants value
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //scopes
+	    /***
+	     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
 	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setScopes
+	    /***
+	     * Set scopes value
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("scopes").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
+	        return this;
 	    };
 	    return OAuth2SecuritySchemeSettingsImpl;
 	})(SecuritySchemaSettingsImpl);
 	exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
 	var PassThroughSettingsImpl = (function (_super) {
 	    __extends(PassThroughSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function PassThroughSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createPassThroughSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    PassThroughSettingsImpl.prototype.wrapperClassName = function () {
 	        return "PassThroughSettingsImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //queryParameterName
 	    PassThroughSettingsImpl.prototype.queryParameterName = function () {
 	        return _super.prototype.attribute.call(this, 'queryParameterName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setQueryParameterName
+	    /***
+	     * Set queryParameterName value
+	     ***/
 	    PassThroughSettingsImpl.prototype.setQueryParameterName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("queryParameterName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("queryParameterName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //headerName
 	    PassThroughSettingsImpl.prototype.headerName = function () {
 	        return _super.prototype.attribute.call(this, 'headerName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setHeaderName
+	    /***
+	     * Set headerName value
+	     ***/
 	    PassThroughSettingsImpl.prototype.setHeaderName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("headerName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("headerName").setValue("" + param);
+	        return this;
 	    };
 	    return PassThroughSettingsImpl;
 	})(SecuritySchemaSettingsImpl);
 	exports.PassThroughSettingsImpl = PassThroughSettingsImpl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var Oath2Impl = (function (_super) {
 	    __extends(Oath2Impl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function Oath2Impl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOath2(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    Oath2Impl.prototype.wrapperClassName = function () {
 	        return "Oath2Impl";
 	    };
-	    /**
-	     *
-	     **/
-	    //settings
 	    Oath2Impl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
 	    return Oath2Impl;
 	})(SecuritySchemaImpl);
 	exports.Oath2Impl = Oath2Impl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var Oath1Impl = (function (_super) {
 	    __extends(Oath1Impl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function Oath1Impl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOath1(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    Oath1Impl.prototype.wrapperClassName = function () {
 	        return "Oath1Impl";
 	    };
-	    /**
-	     *
-	     **/
-	    //settings
 	    Oath1Impl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
 	    return Oath1Impl;
 	})(SecuritySchemaImpl);
 	exports.Oath1Impl = Oath1Impl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var PassThroughImpl = (function (_super) {
 	    __extends(PassThroughImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function PassThroughImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createPassThrough(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    PassThroughImpl.prototype.wrapperClassName = function () {
 	        return "PassThroughImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //settings
 	    PassThroughImpl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
 	    return PassThroughImpl;
 	})(SecuritySchemaImpl);
 	exports.PassThroughImpl = PassThroughImpl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var BasicImpl = (function (_super) {
 	    __extends(BasicImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function BasicImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBasic(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BasicImpl.prototype.wrapperClassName = function () {
 	        return "BasicImpl";
 	    };
 	    return BasicImpl;
 	})(SecuritySchemaImpl);
 	exports.BasicImpl = BasicImpl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var DigestImpl = (function (_super) {
 	    __extends(DigestImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DigestImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDigest(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DigestImpl.prototype.wrapperClassName = function () {
 	        return "DigestImpl";
 	    };
 	    return DigestImpl;
 	})(SecuritySchemaImpl);
 	exports.DigestImpl = DigestImpl;
+	/***
+	 * Declares globally referable security schema definition
+	 ***/
 	var CustomImpl = (function (_super) {
 	    __extends(CustomImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function CustomImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createCustom(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    CustomImpl.prototype.wrapperClassName = function () {
 	        return "CustomImpl";
 	    };
@@ -3587,91 +2895,75 @@ var raml1Parser = require("./raml1Parser");
 	exports.CustomImpl = CustomImpl;
 	var SecuritySchemaPartImpl = (function (_super) {
 	    __extends(SecuritySchemaPartImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaPartImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaPart(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaPartImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaPartImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //headers
+	    /***
+	     * Headers that allowed at this position
+	     ***/
 	    SecuritySchemaPartImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /**
-	     *
-	     **/
-	    //queryParameters
+	    /***
+	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+	     ***/
 	    SecuritySchemaPartImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //queryString
+	    /***
+	     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+	     ***/
 	    SecuritySchemaPartImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
 	    };
-	    /**
-	     *
-	     **/
-	    //responses
+	    /***
+	     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
+	     ***/
 	    SecuritySchemaPartImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * Instantiation of applyed traits
+	     ***/
 	    SecuritySchemaPartImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     ***/
 	    SecuritySchemaPartImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * An alternate, human-friendly name for the security scheme part
+	     ***/
 	    SecuritySchemaPartImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    SecuritySchemaPartImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the security scheme part
+	     ***/
 	    SecuritySchemaPartImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
+	     ***/
 	    SecuritySchemaPartImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
@@ -3680,91 +2972,71 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaPartImpl = SecuritySchemaPartImpl;
 	var OLibraryImpl = (function (_super) {
 	    __extends(OLibraryImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OLibraryImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOLibrary(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OLibraryImpl.prototype.wrapperClassName = function () {
 	        return "OLibraryImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    OLibraryImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    OLibraryImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //schemas
+	    /***
+	     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+	     ***/
 	    OLibraryImpl.prototype.schemas = function () {
 	        return _super.prototype.elements.call(this, 'schemas');
 	    };
-	    /**
-	     *
-	     **/
-	    //types
+	    /***
+	     * Declarations of (data) types for use within this API
+	     ***/
 	    OLibraryImpl.prototype.types = function () {
 	        return _super.prototype.elements.call(this, 'types');
 	    };
-	    /**
-	     *
-	     **/
-	    //traits
+	    /***
+	     * Declarations of traits for use within this API
+	     ***/
 	    OLibraryImpl.prototype.traits = function () {
 	        return _super.prototype.elements.call(this, 'traits');
 	    };
-	    /**
-	     *
-	     **/
-	    //resourceTypes
+	    /***
+	     * Declarations of resource types for use within this API
+	     ***/
 	    OLibraryImpl.prototype.resourceTypes = function () {
 	        return _super.prototype.elements.call(this, 'resourceTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //annotationTypes
+	    /***
+	     * Declarations of annotation types for use by annotations
+	     ***/
 	    OLibraryImpl.prototype.annotationTypes = function () {
 	        return _super.prototype.elements.call(this, 'annotationTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemaTypes
+	    /***
+	     * Security schemas types declarations
+	     ***/
 	    OLibraryImpl.prototype.securitySchemaTypes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemaTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemes
+	    /***
+	     * Declarations of security schemes for use within this API.
+	     ***/
 	    OLibraryImpl.prototype.securitySchemes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemes');
 	    };
-	    /**
-	     *
-	     **/
-	    //uses
+	    /***
+	     * Importing libraries
+	     ***/
 	    OLibraryImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -3773,201 +3045,160 @@ var raml1Parser = require("./raml1Parser");
 	exports.OLibraryImpl = OLibraryImpl;
 	var ApiImpl = (function (_super) {
 	    __extends(ApiImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ApiImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ApiImpl.prototype.wrapperClassName = function () {
 	        return "ApiImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * Short plain-text label for the API
+	     ***/
 	    ApiImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    ApiImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //version
+	    /***
+	     * The version of the API, e.g. "v1"
+	     ***/
 	    ApiImpl.prototype.version = function () {
 	        return _super.prototype.attribute.call(this, 'version', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setVersion
+	    /***
+	     * Set version value
+	     ***/
 	    ApiImpl.prototype.setVersion = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("version").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("version").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //baseUri
+	    /***
+	     * A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI.
+	     ***/
 	    ApiImpl.prototype.baseUri = function () {
 	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //baseUriParameters
+	    /***
+	     * Named parameters used in the baseUri (template)
+	     ***/
 	    ApiImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //protocols
+	    /***
+	     * The protocols supported by the API
+	     ***/
 	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setProtocols
+	    /***
+	     * Set protocols value
+	     ***/
 	    ApiImpl.prototype.setProtocols = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //mediaType
+	    /***
+	     * The default media type to use for request and response bodies (payloads), e.g. "application/json"
+	     ***/
 	    ApiImpl.prototype.mediaType = function () {
 	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * The security schemes that apply to every resource and method in the API
+	     ***/
 	    ApiImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //resources
+	    /***
+	     * The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc
+	     ***/
 	    ApiImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /**
-	     *
-	     **/
-	    //documentation
+	    /***
+	     * Additional overall documentation for the API
+	     ***/
 	    ApiImpl.prototype.documentation = function () {
 	        return _super.prototype.elements.call(this, 'documentation');
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
+	    /***
+	     * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+	     ***/
 	    ApiImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ApiImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    ApiImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    ApiImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * A longer, human-friendly description of the API
+	     ***/
 	    ApiImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //annotations
+	    /***
+	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+	     ***/
 	    ApiImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemaTypes
+	    /***
+	     * Security schemas types declarations
+	     ***/
 	    ApiImpl.prototype.securitySchemaTypes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemaTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //allTraits
+	    /***
+	     * Retrieve all traits including those defined in libraries
+	     ***/
 	    ApiImpl.prototype.allTraits = function () {
 	        return helper.allTraits(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allResourceTypes
+	    /***
+	     * Retrieve all resource types including those defined in libraries
+	     ***/
 	    ApiImpl.prototype.allResourceTypes = function () {
 	        return helper.allResourceTypes(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildResource
+	    /***
+	     * Get child resource by its relative path
+	     ***/
 	    ApiImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /**
-	     *
-	     **/
-	    //allResources
+	    /***
+	     * Retrieve all resources ofthe Api
+	     ***/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allBaseUriParameters
+	    /***
+	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * //
+	     ***/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
 	    };
@@ -3976,142 +3207,102 @@ var raml1Parser = require("./raml1Parser");
 	exports.ApiImpl = ApiImpl;
 	var OverlayImpl = (function (_super) {
 	    __extends(OverlayImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OverlayImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOverlay(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OverlayImpl.prototype.wrapperClassName = function () {
 	        return "OverlayImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
+	    /***
+	     * contains description of why overlay exist
+	     ***/
 	    OverlayImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    OverlayImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //masterRef
 	    OverlayImpl.prototype.masterRef = function () {
 	        return _super.prototype.attribute.call(this, 'masterRef', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMasterRef
+	    /***
+	     * Set masterRef value
+	     ***/
 	    OverlayImpl.prototype.setMasterRef = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("masterRef").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("masterRef").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * Short plain-text label for the API
+	     ***/
 	    OverlayImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    OverlayImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
 	    return OverlayImpl;
 	})(ApiImpl);
 	exports.OverlayImpl = OverlayImpl;
 	var ExtensionImpl = (function (_super) {
 	    __extends(ExtensionImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ExtensionImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createExtension(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ExtensionImpl.prototype.wrapperClassName = function () {
 	        return "ExtensionImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
+	    /***
+	     * contains description of why extension exist
+	     ***/
 	    ExtensionImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    ExtensionImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //masterRef
 	    ExtensionImpl.prototype.masterRef = function () {
 	        return _super.prototype.attribute.call(this, 'masterRef', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMasterRef
+	    /***
+	     * Set masterRef value
+	     ***/
 	    ExtensionImpl.prototype.setMasterRef = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("masterRef").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("masterRef").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * Short plain-text label for the API
+	     ***/
 	    ExtensionImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    ExtensionImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
 	    return ExtensionImpl;
 	})(ApiImpl);
@@ -4434,7 +3625,7 @@ var raml1Parser = require("./raml1Parser");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
-	//# sourceMappingURL=raml003parser.js.map
+
 
 /***/ },
 /* 3 */
@@ -4686,7 +3877,7 @@ var raml1Parser = require("./raml1Parser");
 	    return asNode(node).attrValue("name");
 	}
 	exports.getLibraryName = getLibraryName;
-	//# sourceMappingURL=highLevelAST.js.map
+
 
 /***/ },
 /* 4 */
@@ -6740,7 +5931,7 @@ var raml1Parser = require("./raml1Parser");
 	    return UserDefinedProp;
 	})(Property);
 	exports.UserDefinedProp = UserDefinedProp;
-	//# sourceMappingURL=definitionSystem.js.map
+
 
 /***/ },
 /* 5 */
@@ -8733,7 +7924,7 @@ var raml1Parser = require("./raml1Parser");
 	    any: 1,
 	    scalar: 1
 	};
-	//# sourceMappingURL=highLevelImpl.js.map
+
 
 /***/ },
 /* 7 */
@@ -11492,7 +10683,7 @@ var raml1Parser = require("./raml1Parser");
 	function isWebPath(str) {
 	    return util.stringStartsWith(str, "http://") || util.stringStartsWith(str, "https://");
 	}
-	//# sourceMappingURL=jsyaml2lowLevel.js.map
+
 
 /***/ },
 /* 8 */
@@ -11574,7 +10765,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	}
 	exports.newMap = newMap;
-	//# sourceMappingURL=yamlAST.js.map
+
 
 /***/ },
 /* 9 */
@@ -11655,7 +10846,7 @@ var raml1Parser = require("./raml1Parser");
 	    return new ASTChangeCommand(5 /* INIT_RAML_FILE */, root, newroot, -1);
 	}
 	exports.initRamlFile = initRamlFile;
-	//# sourceMappingURL=lowLevelAST.js.map
+
 
 /***/ },
 /* 10 */
@@ -11705,7 +10896,7 @@ var raml1Parser = require("./raml1Parser");
 	exports.parse = deprecated('parse');
 	exports.compose = deprecated('compose');
 	exports.addConstructor = deprecated('addConstructor');
-	//# sourceMappingURL=js-yaml.js.map
+
 
 /***/ },
 /* 13 */
@@ -13025,7 +12216,7 @@ var raml1Parser = require("./raml1Parser");
 	module.exports.load = load;
 	module.exports.safeLoadAll = safeLoadAll;
 	module.exports.safeLoad = safeLoad;
-	//# sourceMappingURL=loader.js.map
+
 
 /***/ },
 /* 14 */
@@ -13075,7 +12266,7 @@ var raml1Parser = require("./raml1Parser");
 	    return (0 === number) && (Number.NEGATIVE_INFINITY === 1 / number);
 	}
 	exports.isNegativeZero = isNegativeZero;
-	//# sourceMappingURL=common.js.map
+
 
 /***/ },
 /* 15 */
@@ -13102,7 +12293,7 @@ var raml1Parser = require("./raml1Parser");
 	    return YAMLException;
 	})();
 	module.exports = YAMLException;
-	//# sourceMappingURL=exception.js.map
+
 
 /***/ },
 /* 16 */
@@ -13169,7 +12360,7 @@ var raml1Parser = require("./raml1Parser");
 	    return Mark;
 	})();
 	module.exports = Mark;
-	//# sourceMappingURL=mark.js.map
+
 
 /***/ },
 /* 17 */
@@ -13199,7 +12390,7 @@ var raml1Parser = require("./raml1Parser");
 	    ]
 	});
 	module.exports = schema;
-	//# sourceMappingURL=default_safe.js.map
+
 
 /***/ },
 /* 18 */
@@ -13287,7 +12478,7 @@ var raml1Parser = require("./raml1Parser");
 	    return Schema;
 	})();
 	module.exports = Schema;
-	//# sourceMappingURL=schema.js.map
+
 
 /***/ },
 /* 19 */
@@ -13347,7 +12538,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	module.exports = Type;
-	//# sourceMappingURL=type.js.map
+
 
 /***/ },
 /* 20 */
@@ -14149,7 +13340,7 @@ var raml1Parser = require("./raml1Parser");
 	});
 	Schema.DEFAULT = schema;
 	module.exports = schema;
-	//# sourceMappingURL=default_full.js.map
+
 
 /***/ },
 /* 38 */
@@ -14968,7 +14159,7 @@ var raml1Parser = require("./raml1Parser");
 	    return dump(input, common.extend({ schema: DEFAULT_SAFE_SCHEMA }, options));
 	}
 	exports.safeDump = safeDump;
-	//# sourceMappingURL=dumper.js.map
+
 
 /***/ },
 /* 43 */
@@ -15268,7 +14459,7 @@ var raml1Parser = require("./raml1Parser");
 	    return TextRange;
 	})();
 	exports.TextRange = TextRange;
-	//# sourceMappingURL=textutil.js.map
+
 
 /***/ },
 /* 44 */
@@ -15308,7 +14499,7 @@ var raml1Parser = require("./raml1Parser");
 	    return null;
 	}
 	exports.readFromCacheOrGetAsync = readFromCacheOrGetAsync;
-	//# sourceMappingURL=resourceRegistry.js.map
+
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45).Buffer))
 
 /***/ },
@@ -17273,7 +16464,7 @@ var raml1Parser = require("./raml1Parser");
 	    return SimpleExecutor;
 	})();
 	exports.SimpleExecutor = SimpleExecutor;
-	//# sourceMappingURL=SimpleExecutor.js.map
+
 
 /***/ },
 /* 54 */
@@ -17476,7 +16667,7 @@ var raml1Parser = require("./raml1Parser");
 	    return result;
 	}
 	exports.replace = replace;
-	//# sourceMappingURL=index.js.map
+
 
 /***/ },
 /* 56 */
@@ -17527,7 +16718,7 @@ var raml1Parser = require("./raml1Parser");
 	    return Opt;
 	})();
 	module.exports = Opt;
-	//# sourceMappingURL=Opt.js.map
+
 
 /***/ },
 /* 57 */
@@ -18026,7 +17217,7 @@ var raml1Parser = require("./raml1Parser");
 	    return LowLevelValueTransformingNode;
 	})(LowLevelProxyNode);
 	exports.LowLevelValueTransformingNode = LowLevelValueTransformingNode;
-	//# sourceMappingURL=LowLevelASTProxy.js.map
+
 
 /***/ },
 /* 61 */
@@ -18327,7 +17518,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	    return key;
 	}
-	//# sourceMappingURL=json2lowLevel.js.map
+
 
 /***/ },
 /* 62 */
@@ -18680,7 +17871,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	exports.validateNode = validateNode;
-	//# sourceMappingURL=typeExpressions.js.map
+
 
 /***/ },
 /* 64 */
@@ -19376,7 +18567,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	})();
 	module.exports = parser;
-	//# sourceMappingURL=typeExpressionParser.js.map
+
 
 /***/ },
 /* 65 */
@@ -20159,7 +19350,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	    return null;
 	}
-	//# sourceMappingURL=search.js.map
+
 
 /***/ },
 /* 66 */
@@ -20268,7 +19459,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	exports.parse = parse;
-	//# sourceMappingURL=ramlSignature.js.map
+
 
 /***/ },
 /* 67 */
@@ -21380,7 +20571,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	})();
 	module.exports = parser;
-	//# sourceMappingURL=ramlSignatureParser.js.map
+
 
 /***/ },
 /* 68 */
@@ -21916,7 +21107,7 @@ var raml1Parser = require("./raml1Parser");
 	    return result;
 	}
 	exports.elementToProp = elementToProp;
-	//# sourceMappingURL=typeBuilder.js.map
+
 
 /***/ },
 /* 69 */
@@ -22880,7 +22071,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	    processAnnotations(x, p, annotations);
 	}
-	//# sourceMappingURL=tsStrut2Def.js.map
+
 
 /***/ },
 /* 70 */
@@ -23225,7 +22416,7 @@ var raml1Parser = require("./raml1Parser");
 	        return parseQualified(q.left) + "." + parseQualified(q.right);
 	    }
 	}
-	//# sourceMappingURL=tsStructureParser.js.map
+
 
 /***/ },
 /* 71 */
@@ -23602,7 +22793,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	    Matching.classDeclaration = classDeclaration;
 	})(Matching = exports.Matching || (exports.Matching = {}));
-	//# sourceMappingURL=tsASTMatchers.js.map
+
 
 /***/ },
 /* 73 */
@@ -23807,7 +22998,7 @@ var raml1Parser = require("./raml1Parser");
 	    return resolveSelector(sel.parse(path), h);
 	}
 	exports.parse = parse;
-	//# sourceMappingURL=selectorMatch.js.map
+
 
 /***/ },
 /* 75 */
@@ -24211,7 +23402,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	})();
 	module.exports = mod;
-	//# sourceMappingURL=ramlselector.js.map
+
 
 /***/ },
 /* 76 */
@@ -25341,7 +24532,7 @@ var raml1Parser = require("./raml1Parser");
 	    return error;
 	}
 	exports.createIssue = createIssue;
-	//# sourceMappingURL=linter.js.map
+
 
 /***/ },
 /* 77 */
@@ -25488,7 +24679,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	exports.createSchema = createSchema;
-	//# sourceMappingURL=schemaUtil.js.map
+
 
 /***/ },
 /* 78 */
@@ -25575,7 +24766,7 @@ var raml1Parser = require("./raml1Parser");
 	    return cleanupJson(cleanupText(xmlToJson(parsed)));
 	}
 	module.exports = parseXML;
-	//# sourceMappingURL=xmlutil.js.map
+
 
 /***/ },
 /* 79 */
@@ -26117,7 +25308,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	;
-	//# sourceMappingURL=builder.js.map
+
 
 /***/ },
 /* 85 */
@@ -26136,13 +25327,16 @@ var raml1Parser = require("./raml1Parser");
 	    return null;
 	}
 	exports.buildWrapperNode = buildWrapperNode;
-	//# sourceMappingURL=modelFactory.js.map
+
 
 /***/ },
 /* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(2);
+	/***
+	 * Build Wrapper node corresponding to the High Level node
+	 ***/
 	function buildWrapperNode(node) {
 	    var nodeClassName = node.definition().name();
 	    var wrapperConstructor = classMap[nodeClassName];
@@ -26436,13 +25630,16 @@ var raml1Parser = require("./raml1Parser");
 	        return new RamlWrapper.ramlexpressionImpl(x);
 	    }
 	};
-	//# sourceMappingURL=raml003factory.js.map
+
 
 /***/ },
 /* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(88);
+	/***
+	 * Build Wrapper node corresponding to the High Level node
+	 ***/
 	function buildWrapperNode(node) {
 	    var nodeClassName = node.definition().name();
 	    var wrapperConstructor = classMap[nodeClassName];
@@ -26622,7 +25819,7 @@ var raml1Parser = require("./raml1Parser");
 	        return new RamlWrapper.XMLSchemaStringImpl(x);
 	    }
 	};
-	//# sourceMappingURL=raml08factory.js.map
+
 
 /***/ },
 /* 88 */
@@ -26642,36 +25839,30 @@ var raml1Parser = require("./raml1Parser");
 	    function BasicNodeImpl(node) {
 	        _super.call(this, node);
 	    }
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BasicNodeImpl.prototype.wrapperClassName = function () {
 	        return 'BasicNodeImpl';
-	    };
-	    BasicNodeImpl.prototype.parent = function () {
-	        return _super.prototype.parent.call(this);
 	    };
 	    return BasicNodeImpl;
 	})(core.BasicSuperNodeImpl);
 	exports.BasicNodeImpl = BasicNodeImpl;
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLLanguageElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLLanguageElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLLanguageElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
+	     ***/
 	    RAMLLanguageElementImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -26679,31 +25870,24 @@ var raml1Parser = require("./raml1Parser");
 	})(BasicNodeImpl);
 	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
 	var ValueTypeImpl = (function () {
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ValueTypeImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ValueTypeImpl.prototype.wrapperClassName = function () {
 	        return "ValueTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * @return String representation of the node value
+	     ***/
 	    ValueTypeImpl.prototype.value = function () {
 	        return this.attr.value();
 	    };
-	    /**
-	     *
-	     **/
-	    //highLevel
+	    /***
+	     * @return Underlying High Level attribute node
+	     ***/
 	    ValueTypeImpl.prototype.highLevel = function () {
 	        return this.attr;
 	    };
@@ -26715,10 +25899,9 @@ var raml1Parser = require("./raml1Parser");
 	    function NumberTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    NumberTypeImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeImpl";
 	    };
@@ -26730,10 +25913,9 @@ var raml1Parser = require("./raml1Parser");
 	    function BooleanTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BooleanTypeImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeImpl";
 	    };
@@ -26745,17 +25927,15 @@ var raml1Parser = require("./raml1Parser");
 	    function ReferenceImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ReferenceImpl.prototype.wrapperClassName = function () {
 	        return "ReferenceImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * @return StructuredValue object representing the node value
+	     ***/
 	    ReferenceImpl.prototype.value = function () {
 	        return core.toStructuredValue(this.attr);
 	    };
@@ -26767,10 +25947,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ResourceTypeRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeRefImpl";
 	    };
@@ -26782,10 +25961,9 @@ var raml1Parser = require("./raml1Parser");
 	    function TraitRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    TraitRefImpl.prototype.wrapperClassName = function () {
 	        return "TraitRefImpl";
 	    };
@@ -26797,10 +25975,9 @@ var raml1Parser = require("./raml1Parser");
 	    function SecuritySchemaRefImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaRefImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaRefImpl";
 	    };
@@ -26809,123 +25986,132 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaRefImpl = SecuritySchemaRefImpl;
 	var StringTypeImpl = (function (_super) {
 	    __extends(StringTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function StringTypeImpl(attr) {
 	        _super.call(this, attr);
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StringTypeImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeImpl";
 	    };
 	    return StringTypeImpl;
 	})(ValueTypeImpl);
 	exports.StringTypeImpl = StringTypeImpl;
+	/***
+	 * This type currently serves both for absolute and relative urls
+	 ***/
 	var UriTemplateImpl = (function (_super) {
 	    __extends(UriTemplateImpl, _super);
 	    function UriTemplateImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    UriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "UriTemplateImpl";
 	    };
 	    return UriTemplateImpl;
 	})(StringTypeImpl);
 	exports.UriTemplateImpl = UriTemplateImpl;
+	/***
+	 * This  type describes relative uri templates
+	 ***/
 	var RelativeUriImpl = (function (_super) {
 	    __extends(RelativeUriImpl, _super);
 	    function RelativeUriImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RelativeUriImpl.prototype.wrapperClassName = function () {
 	        return "RelativeUriImpl";
 	    };
 	    return RelativeUriImpl;
 	})(UriTemplateImpl);
 	exports.RelativeUriImpl = RelativeUriImpl;
+	/***
+	 * This  type describes absolute uri templates
+	 ***/
 	var FullUriTemplateImpl = (function (_super) {
 	    __extends(FullUriTemplateImpl, _super);
 	    function FullUriTemplateImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FullUriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "FullUriTemplateImpl";
 	    };
 	    return FullUriTemplateImpl;
 	})(UriTemplateImpl);
 	exports.FullUriTemplateImpl = FullUriTemplateImpl;
+	/***
+	 * This  type describes fixed uris
+	 ***/
 	var FixedUriImpl = (function (_super) {
 	    __extends(FixedUriImpl, _super);
 	    function FixedUriImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FixedUriImpl.prototype.wrapperClassName = function () {
 	        return "FixedUriImpl";
 	    };
 	    return FixedUriImpl;
 	})(StringTypeImpl);
 	exports.FixedUriImpl = FixedUriImpl;
+	/***
+	 * Schema at this moment only two subtypes are supported (json schema and xsd)
+	 ***/
 	var SchemaStringImpl = (function (_super) {
 	    __extends(SchemaStringImpl, _super);
 	    function SchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "SchemaStringImpl";
 	    };
 	    return SchemaStringImpl;
 	})(StringTypeImpl);
 	exports.SchemaStringImpl = SchemaStringImpl;
+	/***
+	 * JSON schema
+	 ***/
 	var JSonSchemaStringImpl = (function (_super) {
 	    __extends(JSonSchemaStringImpl, _super);
 	    function JSonSchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "JSonSchemaStringImpl";
 	    };
 	    return JSonSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
+	/***
+	 * XSD schema
+	 ***/
 	var XMLSchemaStringImpl = (function (_super) {
 	    __extends(XMLSchemaStringImpl, _super);
 	    function XMLSchemaStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "XMLSchemaStringImpl";
 	    };
@@ -26937,10 +26123,9 @@ var raml1Parser = require("./raml1Parser");
 	    function ExampleStringImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ExampleStringImpl.prototype.wrapperClassName = function () {
 	        return "ExampleStringImpl";
 	    };
@@ -26952,10 +26137,9 @@ var raml1Parser = require("./raml1Parser");
 	    function JSONExampleImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    JSONExampleImpl.prototype.wrapperClassName = function () {
 	        return "JSONExampleImpl";
 	    };
@@ -26967,10 +26151,9 @@ var raml1Parser = require("./raml1Parser");
 	    function XMLExampleImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    XMLExampleImpl.prototype.wrapperClassName = function () {
 	        return "XMLExampleImpl";
 	    };
@@ -26982,120 +26165,105 @@ var raml1Parser = require("./raml1Parser");
 	    function StatusCodeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StatusCodeImpl.prototype.wrapperClassName = function () {
 	        return "StatusCodeImpl";
 	    };
 	    return StatusCodeImpl;
 	})(StringTypeImpl);
 	exports.StatusCodeImpl = StatusCodeImpl;
+	/***
+	 * This sub type of the string represents mime types
+	 ***/
 	var MimeTypeImpl = (function (_super) {
 	    __extends(MimeTypeImpl, _super);
 	    function MimeTypeImpl() {
 	        _super.apply(this, arguments);
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MimeTypeImpl.prototype.wrapperClassName = function () {
 	        return "MimeTypeImpl";
 	    };
 	    return MimeTypeImpl;
 	})(StringTypeImpl);
 	exports.MimeTypeImpl = MimeTypeImpl;
+	/***
+	 * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+	 ***/
 	var MarkdownStringImpl = (function (_super) {
 	    __extends(MarkdownStringImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MarkdownStringImpl(attr) {
 	        _super.call(this, attr);
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MarkdownStringImpl.prototype.wrapperClassName = function () {
 	        return "MarkdownStringImpl";
 	    };
 	    return MarkdownStringImpl;
 	})(StringTypeImpl);
 	exports.MarkdownStringImpl = MarkdownStringImpl;
+	/***
+	 * Declares globally referancable security schema definition
+	 ***/
 	var SecuritySchemaImpl = (function (_super) {
 	    __extends(SecuritySchemaImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
 	    SecuritySchemaImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    SecuritySchemaImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+	     ***/
 	    SecuritySchemaImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setType
+	    /***
+	     * Set type value
+	     ***/
 	    SecuritySchemaImpl.prototype.setType = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("type").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //description
+	    /***
+	     * The description attribute MAY be used to describe a securitySchemes property.
+	     ***/
 	    SecuritySchemaImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //describedBy
+	    /***
+	     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
+	     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
+	     ***/
 	    SecuritySchemaImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
-	    /**
-	     *
-	     **/
-	    //settings
+	    /***
+	     * The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.
+	     * The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on.
+	     ***/
 	    SecuritySchemaImpl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
@@ -27104,62 +26272,50 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaImpl = SecuritySchemaImpl;
 	var RAMLSimpleElementImpl = (function (_super) {
 	    __extends(RAMLSimpleElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function RAMLSimpleElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLSimpleElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSimpleElementImpl";
 	    };
 	    return RAMLSimpleElementImpl;
 	})(BasicNodeImpl);
 	exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
+	/***
+	 * Content of the schema
+	 ***/
 	var GlobalSchemaImpl = (function (_super) {
 	    __extends(GlobalSchemaImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function GlobalSchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
 	        return "GlobalSchemaImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //key
+	    /***
+	     * Name of the global schema, used to refer on schema content
+	     ***/
 	    GlobalSchemaImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setKey
+	    /***
+	     * Set key value
+	     ***/
 	    GlobalSchemaImpl.prototype.setKey = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("key").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("key").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //value
+	    /***
+	     * Content of the schema
+	     ***/
 	    GlobalSchemaImpl.prototype.value = function () {
 	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
 	    };
@@ -27168,42 +26324,32 @@ var raml1Parser = require("./raml1Parser");
 	exports.GlobalSchemaImpl = GlobalSchemaImpl;
 	var DocumentationItemImpl = (function (_super) {
 	    __extends(DocumentationItemImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DocumentationItemImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DocumentationItemImpl.prototype.wrapperClassName = function () {
 	        return "DocumentationItemImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * title of documentation section
+	     ***/
 	    DocumentationItemImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    DocumentationItemImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //content
+	    /***
+	     * Content of documentation section
+	     ***/
 	    DocumentationItemImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -27212,18 +26358,13 @@ var raml1Parser = require("./raml1Parser");
 	exports.DocumentationItemImpl = DocumentationItemImpl;
 	var SecuritySchemaSettingsImpl = (function (_super) {
 	    __extends(SecuritySchemaSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaSettingsImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaSettingsImpl";
 	    };
@@ -27232,39 +26373,31 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaSettingsImpl = SecuritySchemaSettingsImpl;
 	var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
 	    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth1SecuritySchemeSettingsImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //requestTokenUri
+	    /***
+	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationUri
+	    /***
+	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //tokenCredentialsUri
+	    /***
+	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+	     ***/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
 	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
@@ -27273,86 +26406,66 @@ var raml1Parser = require("./raml1Parser");
 	exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
 	var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
 	    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth2SecuritySchemeSettingsImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //accessTokenUri
+	    /***
+	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationUri
+	    /***
+	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //authorizationGrants
+	    /***
+	     * A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials.
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
 	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setAuthorizationGrants
+	    /***
+	     * Set authorizationGrants value
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //scopes
+	    /***
+	     * A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
 	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setScopes
+	    /***
+	     * Set scopes value
+	     ***/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("scopes").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
+	        return this;
 	    };
 	    return OAuth2SecuritySchemeSettingsImpl;
 	})(SecuritySchemaSettingsImpl);
 	exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
 	var SecuritySchemaPartImpl = (function (_super) {
 	    __extends(SecuritySchemaPartImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function SecuritySchemaPartImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaPart(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    SecuritySchemaPartImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaPartImpl";
 	    };
@@ -27361,87 +26474,67 @@ var raml1Parser = require("./raml1Parser");
 	exports.SecuritySchemaPartImpl = SecuritySchemaPartImpl;
 	var ResourceTypeImpl = (function (_super) {
 	    __extends(ResourceTypeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResourceTypeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceTypeImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Name of the resource type
+	     ***/
 	    ResourceTypeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    ResourceTypeImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
 	    ResourceTypeImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    ResourceTypeImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //methods
+	    /***
+	     * Methods that are part of this resource type definition
+	     ***/
 	    ResourceTypeImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * Instantiation of applyed traits
+	     ***/
 	    ResourceTypeImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * Instantiation of applyed resource type
+	     ***/
 	    ResourceTypeImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     ***/
 	    ResourceTypeImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //uriParameters
+	    /***
+	     * Uri parameters of this resource
+	     ***/
 	    ResourceTypeImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
@@ -27450,49 +26543,35 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResourceTypeImpl = ResourceTypeImpl;
 	var HasNormalParametersImpl = (function (_super) {
 	    __extends(HasNormalParametersImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function HasNormalParametersImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
 	        return "HasNormalParametersImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //queryParameters
+	    /***
+	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+	     ***/
 	    HasNormalParametersImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
 	    HasNormalParametersImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    HasNormalParametersImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //headers
+	    /***
+	     * Headers that allowed at this position
+	     ***/
 	    HasNormalParametersImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
@@ -27501,384 +26580,306 @@ var raml1Parser = require("./raml1Parser");
 	exports.HasNormalParametersImpl = HasNormalParametersImpl;
 	var ParameterImpl = (function (_super) {
 	    __extends(ParameterImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ParameterImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createParameter(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ParameterImpl.prototype.wrapperClassName = function () {
 	        return "ParameterImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * name of the parameter
+	     ***/
 	    ParameterImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    ParameterImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
 	    ParameterImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ParameterImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+	     ***/
 	    ParameterImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setType
+	    /***
+	     * Set type value
+	     ***/
 	    ParameterImpl.prototype.setType = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("type").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //location
+	    /***
+	     * Location of the parameter (can not be edited by user)
+	     ***/
 	    ParameterImpl.prototype.location = function () {
 	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ParameterLocationImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //required
+	    /***
+	     * Set to true if parameter is required
+	     ***/
 	    ParameterImpl.prototype.required = function () {
 	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setRequired
+	    /***
+	     * Set required value
+	     ***/
 	    ParameterImpl.prototype.setRequired = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("required").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("required").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //default
+	    /***
+	     * The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+	     ***/
 	    ParameterImpl.prototype["default"] = function () {
 	        return _super.prototype.attribute.call(this, 'default', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDefault
+	    /***
+	     * Set default value
+	     ***/
 	    ParameterImpl.prototype.setDefault = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("default").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("default").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //example
+	    /***
+	     * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+	     ***/
 	    ParameterImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setExample
+	    /***
+	     * Set example value
+	     ***/
 	    ParameterImpl.prototype.setExample = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("example").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("example").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //repeat
+	    /***
+	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+	     ***/
 	    ParameterImpl.prototype.repeat = function () {
 	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
 	    };
-	    /**
-	     *
-	     **/
-	    //setRepeat
+	    /***
+	     * Set repeat value
+	     ***/
 	    ParameterImpl.prototype.setRepeat = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("repeat").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
+	        return this;
 	    };
 	    return ParameterImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ParameterImpl = ParameterImpl;
 	var ParameterLocationImpl = (function () {
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ParameterLocationImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ParameterLocationImpl.prototype.wrapperClassName = function () {
 	        return "ParameterLocationImpl";
 	    };
 	    return ParameterLocationImpl;
 	})();
 	exports.ParameterLocationImpl = ParameterLocationImpl;
+	/***
+	 * Value must be a string
+	 ***/
 	var StrElementImpl = (function (_super) {
 	    __extends(StrElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function StrElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createStrElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    StrElementImpl.prototype.wrapperClassName = function () {
 	        return "StrElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //pattern
+	    /***
+	     * (Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
+	     ***/
 	    StrElementImpl.prototype.pattern = function () {
 	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setPattern
+	    /***
+	     * Set pattern value
+	     ***/
 	    StrElementImpl.prototype.setPattern = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("pattern").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //enum
+	    /***
+	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
+	     ***/
 	    StrElementImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setEnum
+	    /***
+	     * Set enum value
+	     ***/
 	    StrElementImpl.prototype.setEnum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("enum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("enum").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //minLength
+	    /***
+	     * (Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
+	     ***/
 	    StrElementImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinLength
+	    /***
+	     * Set minLength value
+	     ***/
 	    StrElementImpl.prototype.setMinLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maxLength
+	    /***
+	     * (Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
+	     ***/
 	    StrElementImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaxLength
+	    /***
+	     * Set maxLength value
+	     ***/
 	    StrElementImpl.prototype.setMaxLength = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maxLength").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
+	        return this;
 	    };
 	    return StrElementImpl;
 	})(ParameterImpl);
 	exports.StrElementImpl = StrElementImpl;
+	/***
+	 * Value must be a boolean
+	 ***/
 	var BooleanElementImpl = (function (_super) {
 	    __extends(BooleanElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function BooleanElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BooleanElementImpl.prototype.wrapperClassName = function () {
 	        return "BooleanElementImpl";
 	    };
 	    return BooleanElementImpl;
 	})(ParameterImpl);
 	exports.BooleanElementImpl = BooleanElementImpl;
+	/***
+	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
+	 ***/
 	var NumberElementImpl = (function (_super) {
 	    __extends(NumberElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function NumberElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    NumberElementImpl.prototype.wrapperClassName = function () {
 	        return "NumberElementImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //minimum
+	    /***
+	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
+	     ***/
 	    NumberElementImpl.prototype.minimum = function () {
 	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMinimum
+	    /***
+	     * Set minimum value
+	     ***/
 	    NumberElementImpl.prototype.setMinimum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("minimum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //maximum
+	    /***
+	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
+	     ***/
 	    NumberElementImpl.prototype.maximum = function () {
 	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMaximum
+	    /***
+	     * Set maximum value
+	     ***/
 	    NumberElementImpl.prototype.setMaximum = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("maximum").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
+	        return this;
 	    };
 	    return NumberElementImpl;
 	})(ParameterImpl);
 	exports.NumberElementImpl = NumberElementImpl;
+	/***
+	 * Value MUST be a integer.
+	 ***/
 	var IntegerElementImpl = (function (_super) {
 	    __extends(IntegerElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function IntegerElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    IntegerElementImpl.prototype.wrapperClassName = function () {
 	        return "IntegerElementImpl";
 	    };
 	    return IntegerElementImpl;
 	})(NumberElementImpl);
 	exports.IntegerElementImpl = IntegerElementImpl;
+	/***
+	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
+	 ***/
 	var DateElementImpl = (function (_super) {
 	    __extends(DateElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function DateElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDateElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    DateElementImpl.prototype.wrapperClassName = function () {
 	        return "DateElementImpl";
 	    };
 	    return DateElementImpl;
 	})(ParameterImpl);
 	exports.DateElementImpl = DateElementImpl;
+	/***
+	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
+	 ***/
 	var FileElementImpl = (function (_super) {
 	    __extends(FileElementImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function FileElementImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createFileElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    FileElementImpl.prototype.wrapperClassName = function () {
 	        return "FileElementImpl";
 	    };
@@ -27887,46 +26888,41 @@ var raml1Parser = require("./raml1Parser");
 	exports.FileElementImpl = FileElementImpl;
 	var MethodBaseImpl = (function (_super) {
 	    __extends(MethodBaseImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MethodBaseImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MethodBaseImpl.prototype.wrapperClassName = function () {
 	        return "MethodBaseImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //responses
+	    /***
+	     * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+	     ***/
 	    MethodBaseImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /**
-	     *
-	     **/
-	    //body
+	    /***
+	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
+	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
+	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+	     ***/
 	    MethodBaseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * Instantiation of applyed traits
+	     ***/
 	    MethodBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     ***/
 	    MethodBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
@@ -27935,46 +26931,41 @@ var raml1Parser = require("./raml1Parser");
 	exports.MethodBaseImpl = MethodBaseImpl;
 	var ResponseImpl = (function (_super) {
 	    __extends(ResponseImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResponseImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResponseImpl.prototype.wrapperClassName = function () {
 	        return "ResponseImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //code
+	    /***
+	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+	     ***/
 	    ResponseImpl.prototype.code = function () {
 	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeImpl(attr); });
 	    };
-	    /**
+	    /***
+	     * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
+	     * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
 	     *
-	     **/
-	    //headers
+	     * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
+	     ***/
 	    ResponseImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /**
-	     *
-	     **/
-	    //body
+	    /***
+	     * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
+	     * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
+	     ***/
 	    ResponseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /**
-	     *
-	     **/
-	    //isOkRange
+	    /***
+	     * true for codes < 400 and false otherwise
+	     ***/
 	    ResponseImpl.prototype.isOkRange = function () {
 	        return helper.isOkRange(this);
 	    };
@@ -27983,110 +26974,103 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResponseImpl = ResponseImpl;
 	var BodyLikeImpl = (function (_super) {
 	    __extends(BodyLikeImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function BodyLikeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBodyLike(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    BodyLikeImpl.prototype.wrapperClassName = function () {
 	        return "BodyLikeImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Mime type of the request or response body
+	     ***/
 	    BodyLikeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    BodyLikeImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
+	    /***
+	     * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
 	     *
-	     **/
-	    //schema
+	     * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
+	     *
+	     * All parsers of RAML MUST be able to interpret JSON Schema [JSON_SCHEMA] and XML Schema [XML_SCHEMA].
+	     *
+	     * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
+	     * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
+	     ***/
 	    BodyLikeImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /**
+	    /***
+	     * Documentation generators MUST use body properties' example attributes to generate example invocations.
 	     *
-	     **/
-	    //example
+	     * This example shows example attributes for two body property media types.
+	     ***/
 	    BodyLikeImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', function (attr) { return new ExampleStringImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //formParameters
+	    /***
+	     * Web forms REQUIRE special encoding and custom declaration.
+	     * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
+	     * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
+	     ***/
 	    BodyLikeImpl.prototype.formParameters = function () {
 	        return _super.prototype.elements.call(this, 'formParameters');
 	    };
 	    return BodyLikeImpl;
 	})(RAMLLanguageElementImpl);
 	exports.BodyLikeImpl = BodyLikeImpl;
+	/***
+	 * Needed to set connection between xml related mime types and xsd schema
+	 ***/
 	var XMLBodyImpl = (function (_super) {
 	    __extends(XMLBodyImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function XMLBodyImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLBody(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    XMLBodyImpl.prototype.wrapperClassName = function () {
 	        return "XMLBodyImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //schema
+	    /***
+	     * XSD Schema
+	     ***/
 	    XMLBodyImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new XMLSchemaStringImpl(attr); });
 	    };
 	    return XMLBodyImpl;
 	})(BodyLikeImpl);
 	exports.XMLBodyImpl = XMLBodyImpl;
+	/***
+	 * Needed to set connection between json related mime types and json schema
+	 ***/
 	var JSONBodyImpl = (function (_super) {
 	    __extends(JSONBodyImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function JSONBodyImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createJSONBody(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    JSONBodyImpl.prototype.wrapperClassName = function () {
 	        return "JSONBodyImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //schema
+	    /***
+	     * JSON Schema
+	     ***/
 	    JSONBodyImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new JSonSchemaStringImpl(attr); });
 	    };
@@ -28095,134 +27079,108 @@ var raml1Parser = require("./raml1Parser");
 	exports.JSONBodyImpl = JSONBodyImpl;
 	var TraitImpl = (function (_super) {
 	    __extends(TraitImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function TraitImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    TraitImpl.prototype.wrapperClassName = function () {
 	        return "TraitImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //name
+	    /***
+	     * Name of the trait
+	     ***/
 	    TraitImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setName
+	    /***
+	     * Set name value
+	     ***/
 	    TraitImpl.prototype.setName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("name").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //usage
 	    TraitImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setUsage
+	    /***
+	     * Set usage value
+	     ***/
 	    TraitImpl.prototype.setUsage = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("usage").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
 	    };
 	    return TraitImpl;
 	})(MethodBaseImpl);
 	exports.TraitImpl = TraitImpl;
+	/***
+	 * Method object allows description of http methods
+	 ***/
 	var MethodImpl = (function (_super) {
 	    __extends(MethodImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function MethodImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    MethodImpl.prototype.wrapperClassName = function () {
 	        return "MethodImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //method
+	    /***
+	     * Method that can be called
+	     ***/
 	    MethodImpl.prototype.method = function () {
 	        return _super.prototype.attribute.call(this, 'method', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setMethod
+	    /***
+	     * Set method value
+	     ***/
 	    MethodImpl.prototype.setMethod = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("method").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("method").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //protocols
+	    /***
+	     * A method can override an API's protocols value for that single method by setting a different value for the fields.
+	     ***/
 	    MethodImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setProtocols
+	    /***
+	     * Set protocols value
+	     ***/
 	    MethodImpl.prototype.setProtocols = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     ***/
 	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //parentResource
+	    /***
+	     * For methods of Resources returns parent resource.
+	     * // For methods of ResourceTypes returns undefined Opt.
+	     ***/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //ownerApi
+	    /***
+	     * Api owning the resource as a sibling
+	     ***/
 	    MethodImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //methodId
+	    /***
+	     * // For methods of Resources: `{parent Resource relative path} {methodName}`.
+	     * // For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	     * // For other methods throws Exception.
+	     ***/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
 	    };
@@ -28231,147 +27189,122 @@ var raml1Parser = require("./raml1Parser");
 	exports.MethodImpl = MethodImpl;
 	var ResourceImpl = (function (_super) {
 	    __extends(ResourceImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ResourceImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ResourceImpl.prototype.wrapperClassName = function () {
 	        return "ResourceImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //relativeUri
+	    /***
+	     * Relative URL of this resource from the parent resource
+	     ***/
 	    ResourceImpl.prototype.relativeUri = function () {
 	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //type
+	    /***
+	     * Instantiation of applyed resource type
+	     ***/
 	    ResourceImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //is
+	    /***
+	     * Instantiation of applyed traits
+	     ***/
 	    ResourceImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     ***/
 	    ResourceImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //uriParameters
+	    /***
+	     * Uri parameters of this resource
+	     ***/
 	    ResourceImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //methods
+	    /***
+	     * Methods that can be called on this resource
+	     ***/
 	    ResourceImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /**
-	     *
-	     **/
-	    //resources
+	    /***
+	     * Children resources
+	     ***/
 	    ResourceImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /**
-	     *
-	     **/
-	    //displayName
 	    ResourceImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setDisplayName
+	    /***
+	     * Set displayName value
+	     ***/
 	    ResourceImpl.prototype.setDisplayName = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //baseUriParameters
+	    /***
+	     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+	     ***/
 	    ResourceImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //completeRelativeUri
+	    /***
+	     * Path relative to API root
+	     ***/
 	    ResourceImpl.prototype.completeRelativeUri = function () {
 	        return helper.completeRelativeUri(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //absoluteUri
+	    /***
+	     * baseUri of owning Api concatenated with completeRelativeUri
+	     ***/
 	    ResourceImpl.prototype.absoluteUri = function () {
 	        return helper.absoluteUri(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //parentResource
+	    /***
+	     * Parent resource for non top level resources
+	     ***/
 	    ResourceImpl.prototype.parentResource = function () {
 	        return helper.parent(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildResource
+	    /***
+	     * Get child resource by its relative path
+	     ***/
 	    ResourceImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildMethod
+	    /***
+	     * Get child method by its name
+	     ***/
 	    ResourceImpl.prototype.getChildMethod = function (method) {
 	        return helper.getChildMethod(this, method);
 	    };
-	    /**
-	     *
-	     **/
-	    //ownerApi
+	    /***
+	     * Api owning the resource as a sibling
+	     ***/
 	    ResourceImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allUriParameters
+	    /***
+	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	     * //
+	     ***/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //absoluteUriParameters
+	    /***
+	     * Retrieve all absolute uri parameters regardless of whether they are described in
+	     * //`baseUriParameters` and `uriParameters` or not
+	     ***/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
 	    };
@@ -28380,181 +27313,170 @@ var raml1Parser = require("./raml1Parser");
 	exports.ResourceImpl = ResourceImpl;
 	var ApiImpl = (function (_super) {
 	    __extends(ApiImpl, _super);
-	    /**
-	     *
-	     **/
-	    //constructor
 	    function ApiImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /**
-	     *
-	     **/
-	    //wrapperClassName
+	    /***
+	     * @return Actual name of instance class
+	     ***/
 	    ApiImpl.prototype.wrapperClassName = function () {
 	        return "ApiImpl";
 	    };
-	    /**
-	     *
-	     **/
-	    //title
+	    /***
+	     * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
+	     ***/
 	    ApiImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setTitle
+	    /***
+	     * Set title value
+	     ***/
 	    ApiImpl.prototype.setTitle = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("title").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //version
+	    /***
+	     * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
+	     * The API itself is not versioned.
+	     * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
+	     * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
+	     ***/
 	    ApiImpl.prototype.version = function () {
 	        return _super.prototype.attribute.call(this, 'version', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setVersion
+	    /***
+	     * Set version value
+	     ***/
 	    ApiImpl.prototype.setVersion = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("version").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("version").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //baseUri
+	    /***
+	     * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
+	     * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
+	     * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
+	     ***/
 	    ApiImpl.prototype.baseUri = function () {
 	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //baseUriParameters
+	    /***
+	     * Base uri parameters are named parameters which described template parameters in the base uri
+	     ***/
 	    ApiImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //uriParameters
+	    /***
+	     * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
+	     ***/
 	    ApiImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
-	    /**
-	     *
-	     **/
-	    //protocols
+	    /***
+	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
+	     ***/
 	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /**
-	     *
-	     **/
-	    //setProtocols
+	    /***
+	     * Set protocols value
+	     ***/
 	    ApiImpl.prototype.setProtocols = function (param) {
-	        {
-	            this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	            return this;
-	        }
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
 	    };
-	    /**
-	     *
-	     **/
-	    //mediaType
+	    /***
+	     * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
+	     * One of the following YAML media types:
+	     * text/yaml
+	     * text/x-yaml
+	     * application/yaml
+	     * application/x-yaml*
+	     * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
+	     * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
+	     * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
+	     ***/
 	    ApiImpl.prototype.mediaType = function () {
 	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //schemas
+	    /***
+	     * To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.
+	     ***/
 	    ApiImpl.prototype.schemas = function () {
 	        return _super.prototype.elements.call(this, 'schemas');
 	    };
-	    /**
-	     *
-	     **/
-	    //traits
+	    /***
+	     * Declarations of traits used in this API
+	     ***/
 	    ApiImpl.prototype.traits = function () {
 	        return _super.prototype.elements.call(this, 'traits');
 	    };
-	    /**
-	     *
-	     **/
-	    //securedBy
+	    /***
+	     * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
+	     ***/
 	    ApiImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /**
-	     *
-	     **/
-	    //securitySchemes
+	    /***
+	     * Security schemas that can be applied with securedBy
+	     ***/
 	    ApiImpl.prototype.securitySchemes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemes');
 	    };
-	    /**
-	     *
-	     **/
-	    //resourceTypes
+	    /***
+	     * Declaration of resource types used in this API
+	     ***/
 	    ApiImpl.prototype.resourceTypes = function () {
 	        return _super.prototype.elements.call(this, 'resourceTypes');
 	    };
-	    /**
-	     *
-	     **/
-	    //resources
+	    /***
+	     * Resources are identified by their relative URI, which MUST begin with a slash (/).
+	     * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
+	     * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
+	     * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
+	     ***/
 	    ApiImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /**
+	    /***
+	     * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
+	     * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
+	     * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
+	     * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
 	     *
-	     **/
-	    //documentation
+	     * This example shows an API definition with a single user document.
+	     ***/
 	    ApiImpl.prototype.documentation = function () {
 	        return _super.prototype.elements.call(this, 'documentation');
 	    };
-	    /**
-	     *
-	     **/
-	    //allTraits
+	    /***
+	     * Retrieve all traits including those defined in libraries
+	     ***/
 	    ApiImpl.prototype.allTraits = function () {
 	        return helper.allTraits(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allResourceTypes
+	    /***
+	     * Retrieve all resource types including those defined in libraries
+	     ***/
 	    ApiImpl.prototype.allResourceTypes = function () {
 	        return helper.allResourceTypes(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //getChildResource
+	    /***
+	     * Get child resource by its relative path
+	     ***/
 	    ApiImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /**
-	     *
-	     **/
-	    //allResources
+	    /***
+	     * Retrieve all resources ofthe Api
+	     ***/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
-	    /**
-	     *
-	     **/
-	    //allBaseUriParameters
+	    /***
+	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * //
+	     ***/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
 	    };
@@ -28562,168 +27484,168 @@ var raml1Parser = require("./raml1Parser");
 	})(RAMLLanguageElementImpl);
 	exports.ApiImpl = ApiImpl;
 	function createApi(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Api");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createRAMLLanguageElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("RAMLLanguageElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createSecuritySchema(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("SecuritySchema");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createSecuritySchemaPart(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("SecuritySchemaPart");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createRAMLSimpleElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("RAMLSimpleElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createGlobalSchema(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("GlobalSchema");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createDocumentationItem(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("DocumentationItem");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createSecuritySchemaSettings(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("SecuritySchemaSettings");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createOAuth1SecuritySchemeSettings(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("OAuth1SecuritySchemeSettings");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createOAuth2SecuritySchemeSettings(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("OAuth2SecuritySchemeSettings");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createResourceType(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("ResourceType");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createMethod(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Method");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createMethodBase(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("MethodBase");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createHasNormalParameters(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("HasNormalParameters");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createParameter(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Parameter");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createStrElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("StrElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createBooleanElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("BooleanElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createNumberElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("NumberElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createIntegerElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("IntegerElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createDateElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("DateElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createFileElement(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("FileElement");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createResponse(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Response");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createBodyLike(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("BodyLike");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createXMLBody(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("XMLBody");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createJSONBody(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("JSONBody");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createTrait(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Trait");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
 	function createResource(key) {
-	    var universe = hl.universeProvider("RAML10");
+	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.getType("Resource");
 	    var node = nc.createStubNode(null, key);
 	    return node;
 	}
-	//# sourceMappingURL=raml08parser.js.map
+
 
 /***/ },
 /* 89 */
@@ -28739,10 +27661,16 @@ var raml1Parser = require("./raml1Parser");
 	    BasicSuperNodeImpl.prototype.wrapperClassName = function () {
 	        return 'BasicSuperNodeImpl';
 	    };
+	    /***
+	     * @return direct ancestor in RAML hierarchy
+	     **/
 	    BasicSuperNodeImpl.prototype.parent = function () {
 	        var parent = this._node.parent();
 	        return parent ? parent.wrapperNode() : null;
 	    };
+	    /***
+	     * @return underlying node of the High Level model
+	     **/
 	    BasicSuperNodeImpl.prototype.highLevel = function () {
 	        return this._node;
 	    };
@@ -28784,18 +27712,34 @@ var raml1Parser = require("./raml1Parser");
 	        }
 	        return element.wrapperNode();
 	    };
+	    /***
+	     * Append node as child
+	     * @param node node to be appended
+	     ***/
 	    BasicSuperNodeImpl.prototype.add = function (node) {
 	        this.highLevel().add(node.highLevel());
 	    };
+	    /***
+	     * Append node as property value
+	     * @param node node to be set as property value
+	     * @param prop name of property to set value for
+	     ***/
 	    BasicSuperNodeImpl.prototype.addToProp = function (node, prop) {
 	        var hl = node.highLevel();
 	        var pr = this.highLevel().definition().property(prop);
 	        hl._prop = pr;
 	        this.highLevel().add(hl);
 	    };
+	    /***
+	     * Remove node from children set
+	     * @param node node to be removed
+	     ***/
 	    BasicSuperNodeImpl.prototype.remove = function (node) {
 	        this.highLevel().remove(node.highLevel());
 	    };
+	    /***
+	     * @return YAML string representing the node
+	     ***/
 	    BasicSuperNodeImpl.prototype.dump = function () {
 	        return this.highLevel().dump("yaml");
 	    };
@@ -28820,20 +27764,34 @@ var raml1Parser = require("./raml1Parser");
 	        }
 	        return Number.MAX_VALUE;
 	    };
+	    /***
+	     * @return array of errors
+	     **/
 	    BasicSuperNodeImpl.prototype.errors = function () {
 	        var result = [].concat(this._node.errors());
 	        this._node.attrs().forEach(function (x) { return result = result.concat(x.errors()); });
 	        return result;
 	    };
+	    /***
+	     * @return object representing class of the node
+	     **/
 	    BasicSuperNodeImpl.prototype.definition = function () {
 	        return this.highLevel().definition();
 	    };
+	    /***
+	     * @return for user class instances returns object representing actual user class
+	     **/
 	    BasicSuperNodeImpl.prototype.runtimeDefinition = function () {
 	        return this.highLevel().definition().toRuntime();
 	    };
 	    return BasicSuperNodeImpl;
 	})();
 	exports.BasicSuperNodeImpl = BasicSuperNodeImpl;
+	/***
+	 * Transform High Level attribute to StructuredValue object representing its value
+	 * @param node High Level attribute
+	 * @returns StructuredValue object
+	 */
 	function toStructuredValue(node) {
 	    var value = node.value();
 	    if (typeof value === 'string') {
@@ -28848,7 +27806,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	}
 	exports.toStructuredValue = toStructuredValue;
-	//# sourceMappingURL=parserCore.js.map
+
 
 /***/ },
 /* 90 */
@@ -28877,7 +27835,7 @@ var raml1Parser = require("./raml1Parser");
 	    return null;
 	}
 	exports.load = load;
-	//__$helperMethod__
+	//__$helperMethod__ Path relative to API root
 	function completeRelativeUri(res) {
 	    var uri = '';
 	    var parent = res;
@@ -28889,7 +27847,7 @@ var raml1Parser = require("./raml1Parser");
 	    return uri;
 	}
 	exports.completeRelativeUri = completeRelativeUri;
-	//__$helperMethod__
+	//__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 	function absoluteUri(res) {
 	    var uri = '';
 	    var parent = res;
@@ -28913,12 +27871,12 @@ var raml1Parser = require("./raml1Parser");
 	    return hlimpl.qName(c.highLevel(), c.highLevel().root());
 	}
 	exports.qName = qName;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all traits including those defined in libraries
 	function allTraits(a) {
 	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().name() == "Trait"; }).map(function (x) { return x.wrapperNode(); });
 	}
 	exports.allTraits = allTraits;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all resource types including those defined in libraries
 	function allResourceTypes(a) {
 	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().name() == "ResourceType"; }).map(function (x) { return x.wrapperNode(); });
 	}
@@ -28934,7 +27892,8 @@ var raml1Parser = require("./raml1Parser");
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
-	//__$helperMethod__
+	//__$helperMethod__ For methods of Resources returns parent resource.
+	// For methods of ResourceTypes returns undefined Opt.
 	function parentResource(method) {
 	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
 	        return new Opt(method.parent());
@@ -28942,7 +27901,7 @@ var raml1Parser = require("./raml1Parser");
 	    return Opt.empty();
 	}
 	exports.parentResource = parentResource;
-	//__$helperMethod__ __$meta__={"name":"parentResource"}
+	//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 	function parent(resource) {
 	    var parent = resource.parent();
 	    if (isApi(parent)) {
@@ -28951,7 +27910,7 @@ var raml1Parser = require("./raml1Parser");
 	    return new Opt(parent);
 	}
 	exports.parent = parent;
-	//__$helperMethod__
+	//__$helperMethod__ Get child resource by its relative path
 	function getChildResource(container, relPath) {
 	    if (container == null) {
 	        return Opt.empty();
@@ -28982,7 +27941,7 @@ var raml1Parser = require("./raml1Parser");
 	    return opt;
 	}
 	exports.getResource = getResource;
-	//__$helperMethod__
+	//__$helperMethod__ Get child method by its name
 	function getChildMethod(resource, method) {
 	    if (!resource) {
 	        return null;
@@ -28999,7 +27958,7 @@ var raml1Parser = require("./raml1Parser");
 	    return (obj['title'] && obj['version'] && obj['baseUri']);
 	}
 	;
-	//__$helperMethod__
+	//__$helperMethod__ Api owning the resource as a sibling
 	function ownerApi(method) {
 	    var obj = method;
 	    while (!isApi(obj)) {
@@ -29009,6 +27968,9 @@ var raml1Parser = require("./raml1Parser");
 	}
 	exports.ownerApi = ownerApi;
 	//__$helperMethod__
+	// For methods of Resources: `{parent Resource relative path} {methodName}`.
+	// For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	// For other methods throws Exception.
 	function methodId(method) {
 	    var parent = method.parent();
 	    if (parent instanceof RamlWrapper.ResourceImpl) {
@@ -29020,12 +27982,12 @@ var raml1Parser = require("./raml1Parser");
 	    throw ("Method is supposed to be owned by Resource or ResourceType");
 	}
 	exports.methodId = methodId;
-	//__$helperMethod__
+	//__$helperMethod__ true for codes < 400 and false otherwise
 	function isOkRange(response) {
 	    return parseInt(response.code().value()) < 400;
 	}
 	exports.isOkRange = isOkRange;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all resources ofthe Api
 	function allResources(api) {
 	    var resources = [];
 	    var visitor = function (res) {
@@ -29077,21 +28039,24 @@ var raml1Parser = require("./raml1Parser");
 	//    }
 	//    return new Opt<SchemaDef>(schDef);
 	//}
-	//__$helperMethod__  __$meta__={"name":"allUriParameters"}
+	//__$helperMethod__ Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	//__$meta__={"name":"allUriParameters"}
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
 	    return extractParams(params, uri, resource);
 	}
 	exports.uriParameters = uriParameters;
-	//__$helperMethod__  __$meta__={"name":"allBaseUriParameters"}
+	//__$helperMethod__ Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	// __$meta__={"name":"allBaseUriParameters"}
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
 	    return extractParams(params, uri, api);
 	}
 	exports.baseUriParameters = baseUriParameters;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all absolute uri parameters regardless of whether they are described in
+	//`baseUriParameters` and `uriParameters` or not
 	function absoluteUriParameters(res) {
 	    var params = [];
 	    var parent = res;
@@ -29277,7 +28242,7 @@ var raml1Parser = require("./raml1Parser");
 	//    'default': any
 	//
 	//}
-	//# sourceMappingURL=wrapperHelper08.js.map
+
 
 /***/ },
 /* 91 */
@@ -29416,7 +28381,7 @@ var raml1Parser = require("./raml1Parser");
 	    return OverloadingValidator;
 	})();
 	exports.OverloadingValidator = OverloadingValidator;
-	//# sourceMappingURL=overloadingValidator.js.map
+
 
 /***/ },
 /* 92 */
@@ -29448,7 +28413,7 @@ var raml1Parser = require("./raml1Parser");
 	    return null;
 	}
 	exports.load = load;
-	//__$helperMethod__
+	//__$helperMethod__ Path relative to API root
 	function completeRelativeUri(res) {
 	    var uri = '';
 	    var parent = res;
@@ -29460,7 +28425,7 @@ var raml1Parser = require("./raml1Parser");
 	    return uri;
 	}
 	exports.completeRelativeUri = completeRelativeUri;
-	//__$helperMethod__
+	//__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 	function absoluteUri(res) {
 	    var uri = '';
 	    var parent = res;
@@ -29484,12 +28449,12 @@ var raml1Parser = require("./raml1Parser");
 	    return hlimpl.qName(c.highLevel(), c.highLevel().root());
 	}
 	exports.qName = qName;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all traits including those defined in libraries
 	function allTraits(a) {
 	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().name() == "Trait"; }).map(function (x) { return x.wrapperNode(); });
 	}
 	exports.allTraits = allTraits;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all resource types including those defined in libraries
 	function allResourceTypes(a) {
 	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().name() == "ResourceType"; }).map(function (x) { return x.wrapperNode(); });
 	}
@@ -29505,7 +28470,7 @@ var raml1Parser = require("./raml1Parser");
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
-	//__$helperMethod__
+	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
 	function parentResource(method) {
 	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
 	        return new Opt(method.parent());
@@ -29513,7 +28478,7 @@ var raml1Parser = require("./raml1Parser");
 	    return Opt.empty();
 	}
 	exports.parentResource = parentResource;
-	//__$helperMethod__ __$meta__={"name":"parentResource"}
+	//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 	function parent(resource) {
 	    var parent = resource.parent();
 	    if (isApi(parent)) {
@@ -29522,7 +28487,7 @@ var raml1Parser = require("./raml1Parser");
 	    return new Opt(parent);
 	}
 	exports.parent = parent;
-	//__$helperMethod__
+	//__$helperMethod__ Get child resource by its relative path
 	function getChildResource(container, relPath) {
 	    if (container == null) {
 	        return Opt.empty();
@@ -29553,7 +28518,7 @@ var raml1Parser = require("./raml1Parser");
 	    return opt;
 	}
 	exports.getResource = getResource;
-	//__$helperMethod__
+	//__$helperMethod__ Get child method by its name
 	function getChildMethod(resource, method) {
 	    if (!resource) {
 	        return null;
@@ -29570,7 +28535,7 @@ var raml1Parser = require("./raml1Parser");
 	    return (obj['title'] && obj['version'] && obj['baseUri']);
 	}
 	;
-	//__$helperMethod__
+	//__$helperMethod__ Api owning the resource as a sibling
 	function ownerApi(method) {
 	    var obj = method;
 	    while (!isApi(obj)) {
@@ -29580,6 +28545,9 @@ var raml1Parser = require("./raml1Parser");
 	}
 	exports.ownerApi = ownerApi;
 	//__$helperMethod__
+	// For methods of Resources: `{parent Resource relative path} {methodName}`.
+	// For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	// For other methods throws Exception.
 	function methodId(method) {
 	    var parent = method.parent();
 	    if (parent instanceof RamlWrapper.ResourceImpl) {
@@ -29591,12 +28559,12 @@ var raml1Parser = require("./raml1Parser");
 	    throw ("Method is supposed to be owned by Resource or ResourceType");
 	}
 	exports.methodId = methodId;
-	//__$helperMethod__
+	//__$helperMethod__ true for codes < 400 and false otherwise
 	function isOkRange(response) {
 	    return parseInt(response.code().value()) < 400;
 	}
 	exports.isOkRange = isOkRange;
-	//__$helperMethod__
+	//__$helperMethod__  Retrieve all resources ofthe Api
 	function allResources(api) {
 	    var resources = [];
 	    var visitor = function (res) {
@@ -29653,21 +28621,24 @@ var raml1Parser = require("./raml1Parser");
 	    return new Opt(schDef);
 	}
 	exports.schema = schema;
-	//__$helperMethod__  __$meta__={"name":"allUriParameters"}
+	//__$helperMethod__ Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	// __$meta__={"name":"allUriParameters"}
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
 	    return extractParams(params, uri, resource);
 	}
 	exports.uriParameters = uriParameters;
-	//__$helperMethod__  __$meta__={"name":"allBaseUriParameters"}
+	//__$helperMethod__ Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	//__$meta__={"name":"allBaseUriParameters"}
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
 	    return extractParams(params, uri, api);
 	}
 	exports.baseUriParameters = baseUriParameters;
-	//__$helperMethod__
+	//__$helperMethod__ Retrieve all absolute uri parameters regardless of whether they are described in
+	//`baseUriParameters` and `uriParameters` or not
 	function absoluteUriParameters(res) {
 	    var params = [];
 	    var parent = res;
@@ -29841,7 +28812,7 @@ var raml1Parser = require("./raml1Parser");
 	    }
 	    return ParamWrapper;
 	})();
-	//# sourceMappingURL=wrapperHelper.js.map
+
 
 /***/ },
 /* 93 */
@@ -29963,7 +28934,7 @@ var raml1Parser = require("./raml1Parser");
 	    return { path: '', params: {} };
 	}
 	module.exports = ramlPathMatch;
-	//# sourceMappingURL=raml-path-match.js.map
+
 
 /***/ },
 /* 94 */
@@ -30092,7 +29063,7 @@ var raml1Parser = require("./raml1Parser");
 	    return s;
 	}
 	module.exports = sanitize;
-	//# sourceMappingURL=raml-sanitize.js.map
+
 
 /***/ },
 /* 95 */
@@ -30287,7 +29258,7 @@ var raml1Parser = require("./raml1Parser");
 	    return v;
 	}
 	module.exports = validate;
-	//# sourceMappingURL=raml-validate.js.map
+
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(45).Buffer))
 
 /***/ },
@@ -30326,7 +29297,7 @@ var raml1Parser = require("./raml1Parser");
 	        validateNode(be.r, node);
 	    }
 	}
-	//# sourceMappingURL=ramlExpressions.js.map
+
 
 /***/ },
 /* 97 */
@@ -31678,7 +30649,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	})();
 	module.exports = parser;
-	//# sourceMappingURL=ramlExpressionParser.js.map
+
 
 /***/ },
 /* 98 */
@@ -31799,10 +30770,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SchemaString",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"fields": [
@@ -31839,7 +30810,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [
 								{
@@ -31883,7 +30854,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -31929,7 +30900,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "Library",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [
 								{
@@ -31952,7 +30923,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -31993,7 +30964,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "GlobalSchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32048,7 +31019,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32108,7 +31079,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32155,7 +31126,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32201,7 +31172,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32247,7 +31218,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32293,7 +31264,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32321,7 +31292,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32367,7 +31338,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Library",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32441,7 +31412,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "GlobalSchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32475,7 +31446,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32522,7 +31493,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32568,7 +31539,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32614,7 +31585,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32667,7 +31638,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32695,7 +31666,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32741,7 +31712,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Library",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -32783,7 +31754,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -32867,7 +31838,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Api",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -32951,7 +31922,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Api",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33018,7 +31989,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FullUriTemplate",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [
 								{
@@ -33046,7 +32017,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33128,7 +32099,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MimeType",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [
 								{
@@ -33171,7 +32142,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33201,7 +32172,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Resource",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33243,7 +32214,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DocumentationItem",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33274,7 +32245,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "OLibrary",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33351,7 +32322,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [
 								{
@@ -33380,7 +32351,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33431,7 +32402,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33453,7 +32424,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Api",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33470,7 +32441,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ScriptSpec",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33516,7 +32487,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33547,7 +32518,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "Api",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -33563,7 +32534,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ApiDescription",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33585,7 +32556,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "RAMLProject",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33602,7 +32573,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ApiDescription",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -33662,7 +32633,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 						}
 					],
 					"moduleName": null,
@@ -33672,16 +32643,16 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"RM": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts",
-				"Decls": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts",
-				"Params": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
-				"Bodies": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
-				"models": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"RM": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts",
+				"Decls": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts",
+				"Params": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
+				"Bodies": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
+				"models": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 		},
 		{
 			"classes": [
@@ -33725,7 +32696,7 @@ var raml1Parser = require("./raml1Parser");
 				}
 			],
 			"imports": {},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
 		},
 		{
 			"classes": [
@@ -33779,7 +32750,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33820,7 +32791,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33855,7 +32826,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33898,7 +32869,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33930,10 +32901,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "T",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33968,7 +32939,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -33990,7 +32961,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34012,7 +32983,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34041,7 +33012,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "UriTemplate",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34077,7 +33048,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "UriTemplate",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34106,7 +33077,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34128,7 +33099,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34150,7 +33121,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34191,7 +33162,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34213,7 +33184,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34235,7 +33206,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34277,7 +33248,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34313,7 +33284,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34348,7 +33319,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SchemaString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34383,7 +33354,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SchemaString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34416,7 +33387,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34438,7 +33409,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34460,7 +33431,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -34470,9 +33441,9 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 		},
 		{
 			"classes": [
@@ -34498,10 +33469,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -34529,10 +33500,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -34554,7 +33525,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "MethodBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -34669,7 +33640,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -34685,7 +33656,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaHookScript",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -34727,10 +33698,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemeHook",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -34752,7 +33723,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -34786,7 +33757,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaPart",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -34822,7 +33793,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -34869,7 +33840,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -34900,7 +33871,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -34931,7 +33902,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35009,7 +33980,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchemaSettings",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35055,7 +34026,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35086,7 +34057,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35184,7 +34155,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchemaSettings",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35273,7 +34244,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchemaSettings",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35301,10 +34272,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35328,10 +34299,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -35420,7 +34391,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35447,7 +34418,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaPart",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35468,7 +34439,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaSettings",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -35510,7 +34481,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35541,7 +34512,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "OAuth2SecuritySchemeSettings",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -35576,7 +34547,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35607,7 +34578,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "OAuth1SecuritySchemeSettings",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -35642,7 +34613,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35673,7 +34644,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "PassThroughSettings",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -35708,7 +34679,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35760,7 +34731,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35812,7 +34783,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35864,7 +34835,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchema",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -35886,7 +34857,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Response",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -35929,7 +34900,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36004,7 +34975,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "TraitRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36034,7 +35005,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36063,7 +35034,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "HasNormalParameters",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -36087,10 +35058,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -36142,7 +35113,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Library",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36193,7 +35164,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "MethodBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -36215,7 +35186,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Method",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36257,7 +35228,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "TraitRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36286,7 +35257,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ResourceTypeRef",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -36314,7 +35285,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36348,7 +35319,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36407,7 +35378,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -36431,10 +35402,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -36486,7 +35457,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Library",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36537,7 +35508,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ResourceBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -36586,7 +35557,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Library",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36663,7 +35634,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -36737,7 +35708,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "MethodBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -36873,7 +35844,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -36896,7 +35867,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "RelativeUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -36938,7 +35909,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Resource",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -36981,7 +35952,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ResourceBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -37022,17 +35993,17 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"Params": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts",
-				"Bodies": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
-				"Declarations": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts",
-				"models": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
-				"auth": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts",
-				"api": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"Params": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts",
+				"Bodies": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
+				"Declarations": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts",
+				"models": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
+				"auth": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts",
+				"api": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\api.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\methodsAndResources.ts"
 		},
 		{
 			"classes": [
@@ -37062,7 +36033,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ContentType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 								},
 								"typeKind": 1
 							},
@@ -37142,7 +36113,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -37164,7 +36135,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 								},
 								"typeKind": 1
 							},
@@ -37221,7 +36192,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 								},
 								"typeKind": 1
 							},
@@ -37289,7 +36260,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "DataElement",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -37305,7 +36276,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -37315,12 +36286,12 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
-				"datamodel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
+				"datamodel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\parameters.ts"
 		},
 		{
 			"classes": [
@@ -37360,7 +36331,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
 							},
 							"annotations": [
 								{
@@ -37388,7 +36359,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
 								},
 								"typeKind": 1
 							},
@@ -37463,11 +36434,11 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"Decls": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"Decls": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
 		},
 		{
 			"classes": [
@@ -37489,10 +36460,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 						}
 					],
 					"fields": [
@@ -37557,7 +36528,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 								},
 								"typeKind": 1
 							},
@@ -37637,7 +36608,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationTarget",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 								},
 								"typeKind": 1
 							},
@@ -37711,7 +36682,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 						}
 					],
 					"moduleName": null,
@@ -37769,10 +36740,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "AnnotationType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 						}
 					],
 					"moduleName": null,
@@ -37794,7 +36765,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 						}
 					],
 					"moduleName": null,
@@ -37841,12 +36812,12 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"datamodel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
-				"common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"datamodel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
+				"common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 		},
 		{
 			"classes": [
@@ -37946,7 +36917,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -38033,7 +37004,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ModelLocation",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -38062,7 +37033,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "LocationKind",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -38207,7 +37178,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "XMLInfo",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -38222,7 +37193,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								},
 								"typeKind": 1
 							},
@@ -38344,7 +37315,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ModelLocation",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -38373,7 +37344,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "LocationKind",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -38459,7 +37430,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ExampleSpec",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								},
 								"typeKind": 1
 							},
@@ -38573,7 +37544,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -38626,7 +37597,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								},
 								"typeKind": 1
 							},
@@ -38830,7 +37801,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "DataElement",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -38944,7 +37915,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39024,7 +37995,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39052,10 +38023,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39077,7 +38048,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								},
 								"typeKind": 1
 							},
@@ -39167,7 +38138,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "DataElement",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -39201,7 +38172,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 								},
 								"typeKind": 1
 							},
@@ -39236,7 +38207,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "pointer",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -39333,7 +38304,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39506,7 +38477,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39552,7 +38523,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39598,7 +38569,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39795,7 +38766,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39869,7 +38840,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "NumberElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39900,7 +38871,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "RAMLSelector",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -39924,7 +38895,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39946,7 +38917,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -39994,7 +38965,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -40084,7 +39055,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -40131,7 +39102,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -40162,7 +39133,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "DateFormatSpec",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 							},
 							"annotations": [
 								{
@@ -40198,7 +39169,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "DataElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 						}
 					],
 					"moduleName": null,
@@ -40230,13 +39201,13 @@ var raml1Parser = require("./raml1Parser");
 				}
 			],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"Bodies": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
-				"Declarations": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"Bodies": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts",
+				"Declarations": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\declarations.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts"
 		},
 		{
 			"classes": [
@@ -40366,7 +39337,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -40387,7 +39358,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "StatusCode",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -40423,7 +39394,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 								},
 								"typeKind": 1
 							},
@@ -40486,7 +39457,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DataElement",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 								},
 								"typeKind": 1
 							},
@@ -40523,7 +39494,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -40564,12 +39535,12 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
-				"models": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts",
+				"models": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\datamodel.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\common.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\bodies.ts"
 		},
 		{
 			"classes": [
@@ -40588,7 +39559,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "StatusCode",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -40694,7 +39665,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "AuthentificationParameters",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
 							},
 							"annotations": [],
 							"valueConstraint": null,
@@ -40989,7 +39960,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ParameterSpec",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
 								},
 								"typeKind": 1
 							},
@@ -41138,9 +40109,9 @@ var raml1Parser = require("./raml1Parser");
 				}
 			],
 			"imports": {
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\systemTypes.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-1.0\\auth.ts"
 		}
 	];
 
@@ -41169,10 +40140,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SchemaString",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 						}
 					],
 					"fields": [
@@ -41209,7 +40180,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 							},
 							"annotations": [
 								{
@@ -41249,7 +40220,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 						}
 					],
 					"moduleName": "RAMLSpec",
@@ -41316,7 +40287,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FullUriTemplate",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 							},
 							"annotations": [
 								{
@@ -41356,7 +40327,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41399,7 +40370,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41486,7 +40457,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MimeType",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 							},
 							"annotations": [
 								{
@@ -41529,7 +40500,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "GlobalSchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41557,7 +40528,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41585,7 +40556,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41615,7 +40586,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41643,7 +40614,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41671,7 +40642,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Resource",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41701,7 +40672,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "DocumentationItem",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 								},
 								"typeKind": 1
 							},
@@ -41726,7 +40697,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 						}
 					],
 					"moduleName": "RAMLSpec",
@@ -41768,7 +40739,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 							},
 							"annotations": [
 								{
@@ -41797,7 +40768,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 						}
 					],
 					"moduleName": "RAMLSpec",
@@ -41807,15 +40778,15 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
-				"RM": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts",
-				"Decls": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts",
-				"Params": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts",
-				"Bodies": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
+				"RM": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts",
+				"Decls": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts",
+				"Params": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts",
+				"Bodies": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\api.ts"
 		},
 		{
 			"classes": [
@@ -41859,7 +40830,7 @@ var raml1Parser = require("./raml1Parser");
 				}
 			],
 			"imports": {},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
 		},
 		{
 			"classes": [
@@ -41913,7 +40884,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -41942,7 +40913,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -41971,7 +40942,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42014,7 +40985,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ValueType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42046,10 +41017,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "T",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42097,7 +41068,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42133,7 +41104,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "UriTemplate",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42175,7 +41146,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "UriTemplate",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42204,7 +41175,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42245,7 +41216,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42281,7 +41252,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42316,7 +41287,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SchemaString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42351,7 +41322,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SchemaString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42373,7 +41344,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42395,7 +41366,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42431,7 +41402,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ExampleString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42460,7 +41431,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "ExampleString",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 						}
 					],
 					"moduleName": null,
@@ -42470,9 +41441,9 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 		},
 		{
 			"classes": [
@@ -42498,10 +41469,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42529,10 +41500,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42565,7 +41536,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42598,7 +41569,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLSimpleElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42619,7 +41590,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -42644,7 +41615,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -42669,7 +41640,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -42713,7 +41684,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchemaSettings",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42734,7 +41705,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -42759,7 +41730,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "FixedUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -42855,7 +41826,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "SecuritySchemaSettings",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42883,10 +41854,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -42910,10 +41881,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchema",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -42981,7 +41952,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43002,7 +41973,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaPart",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43023,7 +41994,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SecuritySchemaSettings",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43065,7 +42036,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -43087,7 +42058,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Response",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43117,7 +42088,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "BodyLike",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43153,7 +42124,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "TraitRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43183,7 +42154,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43212,7 +42183,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "HasNormalParameters",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -43236,10 +42207,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Trait",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -43301,7 +42272,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "MethodBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -43325,10 +42296,10 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "ResourceType",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								}
 							],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"fields": [
@@ -43380,7 +42351,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Method",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43410,7 +42381,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "TraitRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43439,7 +42410,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ResourceTypeRef",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43467,7 +42438,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43495,7 +42466,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43542,7 +42513,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -43660,7 +42631,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43696,7 +42667,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "MethodBase",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -43717,7 +42688,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "RelativeUri",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43766,7 +42737,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ResourceTypeRef",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 							},
 							"annotations": [
 								{
@@ -43794,7 +42765,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "TraitRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43824,7 +42795,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "SecuritySchemaRef",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43852,7 +42823,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43903,7 +42874,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Method",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43933,7 +42904,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Resource",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -43977,7 +42948,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 								},
 								"typeKind": 1
 							},
@@ -44022,7 +42993,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 						}
 					],
 					"moduleName": null,
@@ -44032,13 +43003,13 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
-				"Params": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
-				"Bodies": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
+				"Params": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
+				"Bodies": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\methodsAndResources.ts"
 		},
 		{
 			"classes": [
@@ -44137,7 +43108,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ParameterLocation",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 							},
 							"annotations": [
 								{
@@ -44279,7 +43250,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44430,7 +43401,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Parameter",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44470,7 +43441,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Parameter",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44552,7 +43523,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Parameter",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44592,7 +43563,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "NumberElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44638,7 +43609,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Parameter",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44691,7 +43662,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "Parameter",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44713,7 +43684,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 								},
 								"typeKind": 1
 							},
@@ -44789,7 +43760,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 								},
 								"typeKind": 1
 							},
@@ -44845,7 +43816,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 						}
 					],
 					"moduleName": null,
@@ -44866,11 +43837,11 @@ var raml1Parser = require("./raml1Parser");
 				}
 			],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts"
 		},
 		{
 			"classes": [
@@ -44889,7 +43860,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "MarkdownString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
 							},
 							"annotations": [
 								{
@@ -44926,11 +43897,11 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
-				"Decls": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
+				"Decls": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
 		},
 		{
 			"classes": [
@@ -44951,10 +43922,10 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\declarations.ts"
 		},
 		{
 			"classes": [
@@ -45090,7 +44061,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "StringType",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -45153,7 +44124,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "SchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -45187,7 +44158,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "ExampleString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -45245,7 +44216,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 								},
 								"typeKind": 1
 							},
@@ -45284,7 +44255,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -45305,7 +44276,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "XMLSchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -45341,7 +44312,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "BodyLike",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -45362,7 +44333,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "JSonSchemaString",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -45410,7 +44381,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "BodyLike",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -45431,7 +44402,7 @@ var raml1Parser = require("./raml1Parser");
 								"basicName": "StatusCode",
 								"typeKind": 0,
 								"typeArguments": [],
-								"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+								"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 							},
 							"annotations": [
 								{
@@ -45463,7 +44434,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "Parameter",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 								},
 								"typeKind": 1
 							},
@@ -45506,7 +44477,7 @@ var raml1Parser = require("./raml1Parser");
 									"basicName": "BodyLike",
 									"typeKind": 0,
 									"typeArguments": [],
-									"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+									"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 								},
 								"typeKind": 1
 							},
@@ -45537,7 +44508,7 @@ var raml1Parser = require("./raml1Parser");
 							"basicName": "RAMLLanguageElement",
 							"typeKind": 0,
 							"typeArguments": [],
-							"modulePath": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+							"modulePath": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 						}
 					],
 					"moduleName": null,
@@ -45547,12 +44518,12 @@ var raml1Parser = require("./raml1Parser");
 			"aliases": [],
 			"enumDeclarations": [],
 			"imports": {
-				"MetaModel": "C:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
-				"Sys": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
-				"Params": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
-				"Common": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
+				"MetaModel": "c:\\GIT-repos\\api-workbench\\src\\raml1\\metamodel.ts",
+				"Sys": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\systemTypes.ts",
+				"Params": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\parameters.ts",
+				"Common": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\common.ts"
 			},
-			"name": "C:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
+			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\spec-0.8\\bodies.ts"
 		}
 	];
 
@@ -45835,7 +44806,7 @@ var raml1Parser = require("./raml1Parser");
 	    };
 	    return ValueTransformer;
 	})();
-	//# sourceMappingURL=expander.js.map
+
 
 /***/ },
 /* 103 */
