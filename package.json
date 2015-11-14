@@ -2,7 +2,7 @@
   "name": "raml-1-0-parser",
   "version": "0.1.0",
   "description": "RAML 1.0 parser",
-  "main": "src/bundle.js",
+  "main": "src/raml1Parser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
