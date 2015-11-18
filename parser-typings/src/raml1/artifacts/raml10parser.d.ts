@@ -1,16 +1,8 @@
 import hl = require("../highLevelAST");
-import core = require("../parserCore");
+import hlImpl = require("../highLevelImpl");
+import core = require("../wrapped-ast/parserCore");
 import Opt = require("../../Opt");
-export interface BasicNode extends core.BasicSuperNode {
-}
-export declare class BasicNodeImpl extends core.BasicSuperNodeImpl implements BasicNode {
-    constructor(node: hl.IHighLevelNode);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-export interface RAMLLanguageElement extends BasicNode {
+export interface RAMLLanguageElement extends core.BasicNode {
     /***
      * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
      ***/
@@ -24,18 +16,24 @@ export interface RAMLLanguageElement extends BasicNode {
      ***/
     annotations(): AnnotationRef[];
 }
-export declare class RAMLLanguageElementImpl extends BasicNodeImpl implements RAMLLanguageElement {
+export declare class RAMLLanguageElementImpl extends core.BasicNodeImpl implements RAMLLanguageElement {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): RAMLLanguageElementImpl;
@@ -62,9 +60,14 @@ export declare class ValueTypeImpl implements ValueType {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * @return String representation of the node value
      ***/
@@ -77,100 +80,187 @@ export declare class ValueTypeImpl implements ValueType {
 export interface NumberType extends ValueType {
 }
 export declare class NumberTypeImpl extends ValueTypeImpl implements NumberType {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface BooleanType extends ValueType {
 }
 export declare class BooleanTypeImpl extends ValueTypeImpl implements BooleanType {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
-}
-export interface Reference extends ValueType {
-}
-export declare class ReferenceImpl extends ValueTypeImpl implements Reference {
     /***
-     * @return Actual name of instance class
+     * @return Actual name of instance interface
      ***/
-    wrapperClassName(): string;
+    getKind(): string;
+}
+export interface Reference extends core.AbstractWrapperNode {
     /***
      * @return StructuredValue object representing the node value
      ***/
-    value(): string;
+    value(): hlImpl.StructuredValue;
+}
+export declare class ReferenceImpl implements Reference {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * @return StructuredValue object representing the node value
+     ***/
+    value(): hlImpl.StructuredValue;
 }
 export interface ResourceTypeRef extends Reference {
 }
 export declare class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface TraitRef extends Reference {
 }
 export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface SecuritySchemaRef extends Reference {
 }
 export declare class SecuritySchemaRefImpl extends ReferenceImpl implements SecuritySchemaRef {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
- * Instantiation of annotations. It allows you to attach some meta information to your API
+ * Annotations allow you to attach information to your API
  ***/
 export interface AnnotationRef extends Reference {
 }
 /***
- * Instantiation of annotations. It allows you to attach some meta information to your API
+ * Annotations allow you to attach information to your API
  ***/
 export declare class AnnotationRefImpl extends ReferenceImpl implements AnnotationRef {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface DataElementRef extends Reference {
 }
 export declare class DataElementRefImpl extends ReferenceImpl implements DataElementRef {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface ramlexpression extends ValueType {
 }
 export declare class ramlexpressionImpl extends ValueTypeImpl implements ramlexpression {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
+/***
+ * Elements to which this Annotation can be applied (enum)
+ ***/
 export interface AnnotationTarget extends ValueType {
 }
+/***
+ * Elements to which this Annotation can be applied (enum)
+ ***/
 export declare class AnnotationTargetImpl extends ValueTypeImpl implements AnnotationTarget {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface pointer extends ValueType {
 }
 export declare class pointerImpl extends ValueTypeImpl implements pointer {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface StringType extends ValueType {
 }
@@ -178,9 +268,14 @@ export declare class StringTypeImpl extends ValueTypeImpl implements StringType 
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * This type currently serves both for absolute and relative urls
@@ -191,10 +286,17 @@ export interface UriTemplate extends StringType {
  * This type currently serves both for absolute and relative urls
  ***/
 export declare class UriTemplateImpl extends StringTypeImpl implements UriTemplate {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * This  type describes relative uri templates
@@ -205,10 +307,17 @@ export interface RelativeUri extends UriTemplate {
  * This  type describes relative uri templates
  ***/
 export declare class RelativeUriImpl extends UriTemplateImpl implements RelativeUri {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * This  type describes absolute uri templates
@@ -219,18 +328,32 @@ export interface FullUriTemplate extends UriTemplate {
  * This  type describes absolute uri templates
  ***/
 export declare class FullUriTemplateImpl extends UriTemplateImpl implements FullUriTemplate {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface StatusCode extends StringType {
 }
 export declare class StatusCodeImpl extends StringTypeImpl implements StatusCode {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * This  type describes fixed uris
@@ -241,42 +364,77 @@ export interface FixedUri extends StringType {
  * This  type describes fixed uris
  ***/
 export declare class FixedUriImpl extends StringTypeImpl implements FixedUri {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface ContentType extends StringType {
 }
 export declare class ContentTypeImpl extends StringTypeImpl implements ContentType {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface ValidityExpression extends StringType {
 }
 export declare class ValidityExpressionImpl extends StringTypeImpl implements ValidityExpression {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface DateFormatSpec extends StringType {
 }
 export declare class DateFormatSpecImpl extends StringTypeImpl implements DateFormatSpec {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface FunctionalInterface extends StringType {
 }
 export declare class FunctionalInterfaceImpl extends StringTypeImpl implements FunctionalInterface {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * Schema at this moment only two subtypes are supported (json schema and xsd)
@@ -287,10 +445,17 @@ export interface SchemaString extends StringType {
  * Schema at this moment only two subtypes are supported (json schema and xsd)
  ***/
 export declare class SchemaStringImpl extends StringTypeImpl implements SchemaString {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * JSON schema
@@ -301,10 +466,17 @@ export interface JSonSchemaString extends SchemaString {
  * JSON schema
  ***/
 export declare class JSonSchemaStringImpl extends SchemaStringImpl implements JSonSchemaString {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * XSD schema
@@ -315,10 +487,17 @@ export interface XMLSchemaString extends SchemaString {
  * XSD schema
  ***/
 export declare class XMLSchemaStringImpl extends SchemaStringImpl implements XMLSchemaString {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * Examples at this moment only two subtypes are supported (json  and xml)
@@ -329,10 +508,17 @@ export interface ExampleString extends StringType {
  * Examples at this moment only two subtypes are supported (json  and xml)
  ***/
 export declare class ExampleStringImpl extends StringTypeImpl implements ExampleString {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * script to inject to tooling environment
@@ -343,34 +529,62 @@ export interface ScriptingHook extends StringType {
  * script to inject to tooling environment
  ***/
 export declare class ScriptingHookImpl extends StringTypeImpl implements ScriptingHook {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface SecuritySchemaHookScript extends ScriptingHook {
 }
 export declare class SecuritySchemaHookScriptImpl extends ScriptingHookImpl implements SecuritySchemaHookScript {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface RAMLPointer extends StringType {
 }
 export declare class RAMLPointerImpl extends StringTypeImpl implements RAMLPointer {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface RAMLSelector extends StringType {
 }
 export declare class RAMLSelectorImpl extends StringTypeImpl implements RAMLSelector {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * This sub type of the string represents mime types
@@ -381,26 +595,38 @@ export interface MimeType extends StringType {
  * This sub type of the string represents mime types
  ***/
 export declare class MimeTypeImpl extends StringTypeImpl implements MimeType {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
- * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+ * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
  ***/
 export interface MarkdownString extends StringType {
 }
 /***
- * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+ * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
  ***/
 export declare class MarkdownStringImpl extends StringTypeImpl implements MarkdownString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface DocumentationItem extends RAMLLanguageElement {
     /***
@@ -416,14 +642,20 @@ export declare class DocumentationItemImpl extends RAMLLanguageElementImpl imple
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Title of documentation section
      ***/
     title(): string;
     /***
+     * @hidden
      * Set title value
      ***/
     setTitle(param: string): DocumentationItemImpl;
@@ -440,16 +672,23 @@ export declare class ScriptSpecImpl extends RAMLLanguageElementImpl implements S
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     language(): string;
     /***
+     * @hidden
      * Set language value
      ***/
     setLanguage(param: string): ScriptSpecImpl;
     content(): string;
     /***
+     * @hidden
      * Set content value
      ***/
     setContent(param: string): ScriptSpecImpl;
@@ -463,13 +702,19 @@ export declare class ApiDescriptionImpl extends RAMLLanguageElementImpl implemen
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     apiFiles(): Api[];
     script(): ScriptSpec[];
     "type"(): string;
     /***
+     * @hidden
      * Set type value
      ***/
     setType(param: string): ApiDescriptionImpl;
@@ -481,9 +726,14 @@ export declare class CallbackAPIDescriptionImpl extends ApiDescriptionImpl imple
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     callbackFor(): Api;
 }
 export interface RAMLProject extends RAMLLanguageElement {
@@ -497,23 +747,31 @@ export declare class RAMLProjectImpl extends RAMLLanguageElementImpl implements 
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     relatedProjects(): RAMLProject[];
     declaredApis(): ApiDescription[];
     license(): string;
     /***
+     * @hidden
      * Set license value
      ***/
     setLicense(param: string): RAMLProjectImpl;
     overview(): string;
     /***
+     * @hidden
      * Set overview value
      ***/
     setOverview(param: string): RAMLProjectImpl;
     url(): string;
     /***
+     * @hidden
      * Set url value
      ***/
     setUrl(param: string): RAMLProjectImpl;
@@ -539,9 +797,14 @@ export declare class SecuritySchemaTypeImpl extends RAMLLanguageElementImpl impl
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * You may declare settings needed to use this type of security security schemas
      ***/
@@ -616,14 +879,20 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * name of the parameter
      ***/
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): DataElementImpl;
@@ -637,11 +906,13 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     schema(): string;
     /***
+     * @hidden
      * Set schema value
      ***/
     setSchema(param: string): DataElementImpl;
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): DataElementImpl;
@@ -650,6 +921,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     "type"(): string[];
     /***
+     * @hidden
      * Set type value
      ***/
     setType(param: string): DataElementImpl;
@@ -666,6 +938,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     "default"(): string;
     /***
+     * @hidden
      * Set default value
      ***/
     setDefault(param: string): DataElementImpl;
@@ -674,6 +947,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     example(): string;
     /***
+     * @hidden
      * Set example value
      ***/
     setExample(param: string): DataElementImpl;
@@ -686,6 +960,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     repeat(): boolean;
     /***
+     * @hidden
      * Set repeat value
      ***/
     setRepeat(param: boolean): DataElementImpl;
@@ -694,6 +969,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     required(): boolean;
     /***
+     * @hidden
      * Set required value
      ***/
     setRequired(param: boolean): DataElementImpl;
@@ -702,6 +978,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): DataElementImpl;
@@ -714,42 +991,52 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     annotations(): AnnotationRef[];
 }
-export interface XMLInfo extends BasicNode {
+export interface XMLInfo extends core.BasicNode {
     name(): string;
     namespace(): string;
     prefix(): string;
     attribute(): boolean;
     wrapped(): boolean;
 }
-export declare class XMLInfoImpl extends BasicNodeImpl implements XMLInfo {
+export declare class XMLInfoImpl extends core.BasicNodeImpl implements XMLInfo {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): XMLInfoImpl;
     namespace(): string;
     /***
+     * @hidden
      * Set namespace value
      ***/
     setNamespace(param: string): XMLInfoImpl;
     prefix(): string;
     /***
+     * @hidden
      * Set prefix value
      ***/
     setPrefix(param: string): XMLInfoImpl;
     attribute(): boolean;
     /***
+     * @hidden
      * Set attribute value
      ***/
     setAttribute(param: boolean): XMLInfoImpl;
     wrapped(): boolean;
     /***
+     * @hidden
      * Set wrapped value
      ***/
     setWrapped(param: boolean): XMLInfoImpl;
@@ -760,9 +1047,14 @@ export declare class ModelLocationImpl implements ModelLocation {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface LocationKind extends core.AbstractWrapperNode {
 }
@@ -770,9 +1062,14 @@ export declare class LocationKindImpl implements LocationKind {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface ExampleSpec extends RAMLLanguageElement {
     /***
@@ -801,14 +1098,20 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * The example itself
      ***/
     content(): string;
     /***
+     * @hidden
      * Set content value
      ***/
     setContent(param: string): ExampleSpecImpl;
@@ -817,11 +1120,13 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
      ***/
     strict(): boolean;
     /***
+     * @hidden
      * Set strict value
      ***/
     setStrict(param: boolean): ExampleSpecImpl;
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): ExampleSpecImpl;
@@ -830,6 +1135,7 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): ExampleSpecImpl;
@@ -866,9 +1172,14 @@ export declare class FileParameterImpl extends DataElementImpl implements FilePa
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
      ***/
@@ -878,6 +1189,7 @@ export declare class FileParameterImpl extends DataElementImpl implements FilePa
      ***/
     minLength(): number;
     /***
+     * @hidden
      * Set minLength value
      ***/
     setMinLength(param: number): FileParameterImpl;
@@ -886,6 +1198,7 @@ export declare class FileParameterImpl extends DataElementImpl implements FilePa
      ***/
     maxLength(): number;
     /***
+     * @hidden
      * Set maxLength value
      ***/
     setMaxLength(param: number): FileParameterImpl;
@@ -912,14 +1225,20 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Should items in array be unique
      ***/
     uniqueItems(): boolean;
     /***
+     * @hidden
      * Set uniqueItems value
      ***/
     setUniqueItems(param: boolean): ArrayFieldImpl;
@@ -932,6 +1251,7 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
      ***/
     minItems(): number;
     /***
+     * @hidden
      * Set minItems value
      ***/
     setMinItems(param: number): ArrayFieldImpl;
@@ -940,6 +1260,7 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
      ***/
     maxItems(): number;
     /***
+     * @hidden
      * Set maxItems value
      ***/
     setMaxItems(param: number): ArrayFieldImpl;
@@ -954,14 +1275,20 @@ export declare class UnionFieldImpl extends DataElementImpl implements UnionFiel
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Type property name to be used as a discriminator or boolean
      ***/
     discriminator(): string;
     /***
+     * @hidden
      * Set discriminator value
      ***/
     setDiscriminator(param: string): UnionFieldImpl;
@@ -1000,9 +1327,14 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * The properties that instances of this type may or must have.
      ***/
@@ -1012,6 +1344,7 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      ***/
     minProperties(): number;
     /***
+     * @hidden
      * Set minProperties value
      ***/
     setMinProperties(param: number): ObjectFieldImpl;
@@ -1020,6 +1353,7 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      ***/
     maxProperties(): number;
     /***
+     * @hidden
      * Set maxProperties value
      ***/
     setMaxProperties(param: number): ObjectFieldImpl;
@@ -1040,6 +1374,7 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      ***/
     discriminatorValue(): string;
     /***
+     * @hidden
      * Set discriminatorValue value
      ***/
     setDiscriminatorValue(param: string): ObjectFieldImpl;
@@ -1072,14 +1407,20 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Regular expression that this string should path
      ***/
     pattern(): string;
     /***
+     * @hidden
      * Set pattern value
      ***/
     setPattern(param: string): StrElementImpl;
@@ -1088,6 +1429,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      ***/
     minLength(): number;
     /***
+     * @hidden
      * Set minLength value
      ***/
     setMinLength(param: number): StrElementImpl;
@@ -1096,6 +1438,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      ***/
     maxLength(): number;
     /***
+     * @hidden
      * Set maxLength value
      ***/
     setMaxLength(param: number): StrElementImpl;
@@ -1104,6 +1447,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      ***/
     enum(): string[];
     /***
+     * @hidden
      * Set enum value
      ***/
     setEnum(param: string): StrElementImpl;
@@ -1120,9 +1464,14 @@ export declare class BooleanElementImpl extends DataElementImpl implements Boole
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * Value must be a boolean
@@ -1136,9 +1485,14 @@ export declare class ValueElementImpl extends DataElementImpl implements ValueEl
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
@@ -1172,14 +1526,20 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
      ***/
     minimum(): number;
     /***
+     * @hidden
      * Set minimum value
      ***/
     setMinimum(param: number): NumberElementImpl;
@@ -1188,6 +1548,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      ***/
     maximum(): number;
     /***
+     * @hidden
      * Set maximum value
      ***/
     setMaximum(param: number): NumberElementImpl;
@@ -1196,6 +1557,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      ***/
     enum(): string[];
     /***
+     * @hidden
      * Set enum value
      ***/
     setEnum(param: string): NumberElementImpl;
@@ -1204,6 +1566,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      ***/
     format(): string;
     /***
+     * @hidden
      * Set format value
      ***/
     setFormat(param: string): NumberElementImpl;
@@ -1212,6 +1575,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      ***/
     multipleOf(): number;
     /***
+     * @hidden
      * Set multipleOf value
      ***/
     setMultipleOf(param: number): NumberElementImpl;
@@ -1229,11 +1593,17 @@ export declare class IntegerElementImpl extends NumberElementImpl implements Int
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     format(): string;
     /***
+     * @hidden
      * Set format value
      ***/
     setFormat(param: string): IntegerElementImpl;
@@ -1245,9 +1615,14 @@ export declare class RAMLPointerElementImpl extends DataElementImpl implements R
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     target(): RAMLSelector;
 }
 export interface RAMLExpression extends DataElement {
@@ -1256,9 +1631,14 @@ export declare class RAMLExpressionImpl extends DataElementImpl implements RAMLE
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 export interface ScriptHookElement extends DataElement {
     /***
@@ -1274,14 +1654,20 @@ export declare class ScriptHookElementImpl extends DataElementImpl implements Sc
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Typescript file defining interface which this scrip should comply to
      ***/
     declaredIn(): string;
     /***
+     * @hidden
      * Set declaredIn value
      ***/
     setDeclaredIn(param: string): ScriptHookElementImpl;
@@ -1290,6 +1676,7 @@ export declare class ScriptHookElementImpl extends DataElementImpl implements Sc
      ***/
     interfaceName(): string;
     /***
+     * @hidden
      * Set interfaceName value
      ***/
     setInterfaceName(param: string): ScriptHookElementImpl;
@@ -1300,9 +1687,14 @@ export declare class SchemaElementImpl extends DataElementImpl implements Schema
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
 }
 /***
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
@@ -1317,9 +1709,14 @@ export declare class DateElementImpl extends DataElementImpl implements DateElem
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     dateFormat(): DateFormatSpec;
 }
 export interface HasNormalParameters extends RAMLLanguageElement {
@@ -1337,9 +1734,14 @@ export declare class HasNormalParametersImpl extends RAMLLanguageElementImpl imp
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
      ***/
@@ -1379,9 +1781,14 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Information about the expected responses to a request
      ***/
@@ -1397,6 +1804,7 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
      ***/
     protocols(): string[];
     /***
+     * @hidden
      * Set protocols value
      ***/
     setProtocols(param: string): MethodBaseImpl;
@@ -1444,9 +1852,14 @@ export declare class ResponseImpl extends RAMLLanguageElementImpl implements Res
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      ***/
@@ -1464,6 +1877,7 @@ export declare class ResponseImpl extends RAMLLanguageElementImpl implements Res
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): ResponseImpl;
@@ -1495,19 +1909,26 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Name of the trait
      ***/
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): TraitImpl;
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): TraitImpl;
@@ -1516,20 +1937,12 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
      ***/
     uses(): Library[];
 }
-export interface Library extends BasicNode {
+export interface LibraryBase extends RAMLLanguageElement {
     name(): string;
     /***
      * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
      ***/
     schemas(): GlobalSchema[];
-    /***
-     * contains description of why library exist
-     ***/
-    usage(): string;
-    /***
-     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-     ***/
-    annotations(): AnnotationRef[];
     /***
      * Declarations of (data) types for use within this API
      ***/
@@ -1559,188 +1972,84 @@ export interface Library extends BasicNode {
      ***/
     uses(): Library[];
 }
-export declare class LibraryImpl extends BasicNodeImpl implements Library {
+export interface Library extends LibraryBase {
+    /***
+     * contains description of why library exist
+     ***/
+    usage(): string;
+}
+export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements LibraryBase {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
-    setName(param: string): LibraryImpl;
+    setName(param: string): LibraryBaseImpl;
     /***
      * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
      ***/
     schemas(): GlobalSchema[];
     /***
+     * Declarations of (data) types for use within this API
+     ***/
+    types(): DataElement[];
+    /***
+     * Declarations of traits for use within this API
+     ***/
+    traits(): Trait[];
+    /***
+     * Declarations of resource types for use within this API
+     ***/
+    resourceTypes(): ResourceType[];
+    /***
+     * Declarations of annotation types for use by annotations
+     ***/
+    annotationTypes(): AnnotationType[];
+    /***
+     * Security schemas types declarations
+     ***/
+    securitySchemaTypes(): SecuritySchemaType[];
+    /***
+     * Declarations of security schemes for use within this API.
+     ***/
+    securitySchemes(): SecuritySchema[];
+    /***
+     * Importing libraries
+     ***/
+    uses(): Library[];
+}
+export declare class LibraryImpl extends LibraryBaseImpl implements Library {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
      * contains description of why library exist
      ***/
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): LibraryImpl;
-    /***
-     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-     ***/
-    annotations(): AnnotationRef[];
-    /***
-     * Declarations of (data) types for use within this API
-     ***/
-    types(): DataElement[];
-    /***
-     * Declarations of traits for use within this API
-     ***/
-    traits(): Trait[];
-    /***
-     * Declarations of resource types for use within this API
-     ***/
-    resourceTypes(): ResourceType[];
-    /***
-     * Declarations of annotation types for use by annotations
-     ***/
-    annotationTypes(): AnnotationType[];
-    /***
-     * Security schemas types declarations
-     ***/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /***
-     * Declarations of security schemes for use within this API.
-     ***/
-    securitySchemes(): SecuritySchema[];
-    /***
-     * Importing libraries
-     ***/
-    uses(): Library[];
-}
-export interface RAMLSimpleElement extends BasicNode {
-}
-export declare class RAMLSimpleElementImpl extends BasicNodeImpl implements RAMLSimpleElement {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-export interface ImportDeclaration extends RAMLSimpleElement {
-    /***
-     * Name prefix (without dot) used to refer imported declarations
-     ***/
-    key(): string;
-    /***
-     * Content of the declared namespace
-     ***/
-    value(): Library;
-}
-export declare class ImportDeclarationImpl extends RAMLSimpleElementImpl implements ImportDeclaration {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * Name prefix (without dot) used to refer imported declarations
-     ***/
-    key(): string;
-    /***
-     * Set key value
-     ***/
-    setKey(param: string): ImportDeclarationImpl;
-    /***
-     * Content of the declared namespace
-     ***/
-    value(): Library;
-}
-/***
- * Content of the schema
- ***/
-export interface GlobalSchema extends RAMLSimpleElement {
-    /***
-     * Name of the global schema, used to refer on schema content
-     ***/
-    key(): string;
-    /***
-     * Content of the schema
-     ***/
-    value(): SchemaString;
-}
-/***
- * Content of the schema
- ***/
-export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements GlobalSchema {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * Name of the global schema, used to refer on schema content
-     ***/
-    key(): string;
-    /***
-     * Set key value
-     ***/
-    setKey(param: string): GlobalSchemaImpl;
-    /***
-     * Content of the schema
-     ***/
-    value(): SchemaString;
-}
-export interface ResourceBase extends RAMLLanguageElement {
-    /***
-     * Methods that are part of this resource type definition
-     ***/
-    methods(): Method[];
-    /***
-     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
-     ***/
-    is(): TraitRef[];
-    /***
-     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
-     ***/
-    "type"(): ResourceTypeRef;
-    /***
-     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-     ***/
-    securedBy(): SecuritySchemaRef[];
-    /***
-     * Detailed information about any URI parameters of this resource
-     ***/
-    uriParameters(): DataElement[];
-}
-export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements ResourceBase {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * Methods that are part of this resource type definition
-     ***/
-    methods(): Method[];
-    /***
-     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
-     ***/
-    is(): TraitRef[];
-    /***
-     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
-     ***/
-    "type"(): ResourceTypeRef;
-    /***
-     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-     ***/
-    securedBy(): SecuritySchemaRef[];
-    /***
-     * Detailed information about any URI parameters of this resource
-     ***/
-    uriParameters(): DataElement[];
 }
 export interface Method extends MethodBase {
     signature(): SchemaString;
@@ -1803,15 +2112,21 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     signature(): SchemaString;
     /***
      * Method that can be called
      ***/
     method(): string;
     /***
+     * @hidden
      * Set method value
      ***/
     setMethod(param: string): MethodImpl;
@@ -1820,6 +2135,7 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): MethodImpl;
@@ -1869,6 +2185,540 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * // For other methods throws Exception.
      ***/
     methodId(): string;
+}
+export interface SecuritySchemaPart extends MethodBase {
+    /***
+     * Headers that allowed at this position
+     ***/
+    headers(): DataElement[];
+    /***
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     ***/
+    queryParameters(): DataElement[];
+    /***
+     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+     ***/
+    queryString(): DataElement;
+    /***
+     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
+     ***/
+    responses(): Response[];
+    /***
+     * Instantiation of applyed traits
+     ***/
+    is(): TraitRef[];
+    /***
+     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     ***/
+    securedBy(): SecuritySchemaRef[];
+    /***
+     * An alternate, human-friendly name for the security scheme part
+     ***/
+    displayName(): string;
+    /***
+     * A longer, human-friendly description of the security scheme part
+     ***/
+    description(): MarkdownString;
+    /***
+     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
+     ***/
+    annotations(): AnnotationRef[];
+}
+export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements SecuritySchemaPart {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * Headers that allowed at this position
+     ***/
+    headers(): DataElement[];
+    /***
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     ***/
+    queryParameters(): DataElement[];
+    /***
+     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+     ***/
+    queryString(): DataElement;
+    /***
+     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
+     ***/
+    responses(): Response[];
+    /***
+     * Instantiation of applyed traits
+     ***/
+    is(): TraitRef[];
+    /***
+     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     ***/
+    securedBy(): SecuritySchemaRef[];
+    /***
+     * An alternate, human-friendly name for the security scheme part
+     ***/
+    displayName(): string;
+    /***
+     * @hidden
+     * Set displayName value
+     ***/
+    setDisplayName(param: string): SecuritySchemaPartImpl;
+    /***
+     * A longer, human-friendly description of the security scheme part
+     ***/
+    description(): MarkdownString;
+    /***
+     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
+     ***/
+    annotations(): AnnotationRef[];
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface SecuritySchema extends RAMLLanguageElement {
+    name(): string;
+    /***
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+     ***/
+    "type"(): string;
+    /***
+     * The description MAY be used to describe a securityScheme.
+     ***/
+    description(): MarkdownString;
+    /***
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
+     ***/
+    describedBy(): SecuritySchemaPart;
+    /***
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     ***/
+    settings(): SecuritySchemaSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implements SecuritySchema {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    name(): string;
+    /***
+     * @hidden
+     * Set name value
+     ***/
+    setName(param: string): SecuritySchemaImpl;
+    /***
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+     ***/
+    "type"(): string;
+    /***
+     * @hidden
+     * Set type value
+     ***/
+    setType(param: string): SecuritySchemaImpl;
+    /***
+     * The description MAY be used to describe a securityScheme.
+     ***/
+    description(): MarkdownString;
+    /***
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
+     ***/
+    describedBy(): SecuritySchemaPart;
+    /***
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     ***/
+    settings(): SecuritySchemaSettings;
+}
+export interface SecuritySchemaSettings extends core.BasicNode {
+}
+export declare class SecuritySchemaSettingsImpl extends core.BasicNodeImpl implements SecuritySchemaSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+}
+export interface OAuth1SecuritySchemeSettings extends SecuritySchemaSettings {
+    /***
+     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+     ***/
+    requestTokenUri(): FixedUri;
+    /***
+     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+     ***/
+    authorizationUri(): FixedUri;
+    /***
+     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+     ***/
+    tokenCredentialsUri(): FixedUri;
+    signatures(): string[];
+}
+export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth1SecuritySchemeSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+     ***/
+    requestTokenUri(): FixedUri;
+    /***
+     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+     ***/
+    authorizationUri(): FixedUri;
+    /***
+     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+     ***/
+    tokenCredentialsUri(): FixedUri;
+    signatures(): string[];
+    /***
+     * @hidden
+     * Set signatures value
+     ***/
+    setSignatures(param: string): OAuth1SecuritySchemeSettingsImpl;
+}
+export interface OAuth2SecuritySchemeSettings extends SecuritySchemaSettings {
+    /***
+     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     ***/
+    accessTokenUri(): FixedUri;
+    /***
+     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     ***/
+    authorizationUri(): FixedUri;
+    authorizationGrants(): string[];
+    /***
+     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+     ***/
+    scopes(): string[];
+}
+export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth2SecuritySchemeSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     ***/
+    accessTokenUri(): FixedUri;
+    /***
+     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     ***/
+    authorizationUri(): FixedUri;
+    authorizationGrants(): string[];
+    /***
+     * @hidden
+     * Set authorizationGrants value
+     ***/
+    setAuthorizationGrants(param: string): OAuth2SecuritySchemeSettingsImpl;
+    /***
+     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+     ***/
+    scopes(): string[];
+    /***
+     * @hidden
+     * Set scopes value
+     ***/
+    setScopes(param: string): OAuth2SecuritySchemeSettingsImpl;
+}
+export interface PassThroughSettings extends SecuritySchemaSettings {
+    queryParameterName(): string;
+    headerName(): string;
+}
+export declare class PassThroughSettingsImpl extends SecuritySchemaSettingsImpl implements PassThroughSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    queryParameterName(): string;
+    /***
+     * @hidden
+     * Set queryParameterName value
+     ***/
+    setQueryParameterName(param: string): PassThroughSettingsImpl;
+    headerName(): string;
+    /***
+     * @hidden
+     * Set headerName value
+     ***/
+    setHeaderName(param: string): PassThroughSettingsImpl;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface Oath2 extends SecuritySchema {
+    settings(): OAuth2SecuritySchemeSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class Oath2Impl extends SecuritySchemaImpl implements Oath2 {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    settings(): OAuth2SecuritySchemeSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface Oath1 extends SecuritySchema {
+    settings(): OAuth1SecuritySchemeSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class Oath1Impl extends SecuritySchemaImpl implements Oath1 {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    settings(): OAuth1SecuritySchemeSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface PassThrough extends SecuritySchema {
+    settings(): PassThroughSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class PassThroughImpl extends SecuritySchemaImpl implements PassThrough {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    settings(): PassThroughSettings;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface Basic extends SecuritySchema {
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class BasicImpl extends SecuritySchemaImpl implements Basic {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface Digest extends SecuritySchema {
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class DigestImpl extends SecuritySchemaImpl implements Digest {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface Custom extends SecuritySchema {
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class CustomImpl extends SecuritySchemaImpl implements Custom {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+}
+export interface ResourceBase extends RAMLLanguageElement {
+    /***
+     * Methods that are part of this resource type definition
+     ***/
+    methods(): Method[];
+    /***
+     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
+     ***/
+    is(): TraitRef[];
+    /***
+     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+     ***/
+    "type"(): ResourceTypeRef;
+    /***
+     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+     ***/
+    securedBy(): SecuritySchemaRef[];
+    /***
+     * Detailed information about any URI parameters of this resource
+     ***/
+    uriParameters(): DataElement[];
+}
+export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements ResourceBase {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * Methods that are part of this resource type definition
+     ***/
+    methods(): Method[];
+    /***
+     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
+     ***/
+    is(): TraitRef[];
+    /***
+     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+     ***/
+    "type"(): ResourceTypeRef;
+    /***
+     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+     ***/
+    securedBy(): SecuritySchemaRef[];
+    /***
+     * Detailed information about any URI parameters of this resource
+     ***/
+    uriParameters(): DataElement[];
+}
+export interface ResourceType extends ResourceBase {
+    /***
+     * Name of the resource type
+     ***/
+    name(): string;
+    usage(): string;
+    /***
+     * You may import library locally here it contents is accessible only inside of this resource type
+     ***/
+    uses(): Library[];
+}
+export declare class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+    /***
+     * Name of the resource type
+     ***/
+    name(): string;
+    /***
+     * @hidden
+     * Set name value
+     ***/
+    setName(param: string): ResourceTypeImpl;
+    usage(): string;
+    /***
+     * @hidden
+     * Set usage value
+     ***/
+    setUsage(param: string): ResourceTypeImpl;
+    /***
+     * You may import library locally here it contents is accessible only inside of this resource type
+     ***/
+    uses(): Library[];
 }
 export interface Resource extends ResourceBase {
     signature(): SchemaString;
@@ -1931,9 +2781,14 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     signature(): SchemaString;
     /***
      * Relative URL of this resource from the parent resource
@@ -1948,6 +2803,7 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): ResourceImpl;
@@ -1994,42 +2850,6 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
      ***/
     absoluteUriParameters(): DataElement[];
 }
-export interface ResourceType extends ResourceBase {
-    /***
-     * Name of the resource type
-     ***/
-    name(): string;
-    usage(): string;
-    /***
-     * You may import library locally here it contents is accessible only inside of this resource type
-     ***/
-    uses(): Library[];
-}
-export declare class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * Name of the resource type
-     ***/
-    name(): string;
-    /***
-     * Set name value
-     ***/
-    setName(param: string): ResourceTypeImpl;
-    usage(): string;
-    /***
-     * Set usage value
-     ***/
-    setUsage(param: string): ResourceTypeImpl;
-    /***
-     * You may import library locally here it contents is accessible only inside of this resource type
-     ***/
-    uses(): Library[];
-}
 export interface AnnotationType extends RAMLLanguageElement {
     /***
      * Name of this annotation type
@@ -2064,14 +2884,20 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Name of this annotation type
      ***/
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): AnnotationTypeImpl;
@@ -2080,6 +2906,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      ***/
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): AnnotationTypeImpl;
@@ -2092,6 +2919,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      ***/
     allowMultiple(): boolean;
     /***
+     * @hidden
      * Set allowMultiple value
      ***/
     setAllowMultiple(param: boolean): AnnotationTypeImpl;
@@ -2104,6 +2932,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): AnnotationTypeImpl;
@@ -2112,455 +2941,100 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      ***/
     description(): MarkdownString;
 }
-/***
- * Declares globally referable security schema definition
- ***/
-export interface SecuritySchema extends RAMLLanguageElement {
-    name(): string;
-    /***
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     ***/
-    "type"(): string;
-    /***
-     * The description MAY be used to describe a securityScheme.
-     ***/
-    description(): MarkdownString;
-    /***
-     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-     * Including the security scheme description completes an API documentation.
-     ***/
-    describedBy(): SecuritySchemaPart;
-    /***
-     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-     ***/
-    settings(): SecuritySchemaSettings;
+export interface RAMLSimpleElement extends core.BasicNode {
 }
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implements SecuritySchema {
+export declare class RAMLSimpleElementImpl extends core.BasicNodeImpl implements RAMLSimpleElement {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    name(): string;
-    /***
-     * Set name value
-     ***/
-    setName(param: string): SecuritySchemaImpl;
-    /***
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     ***/
-    "type"(): string;
-    /***
-     * Set type value
-     ***/
-    setType(param: string): SecuritySchemaImpl;
-    /***
-     * The description MAY be used to describe a securityScheme.
-     ***/
-    description(): MarkdownString;
-    /***
-     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-     * Including the security scheme description completes an API documentation.
-     ***/
-    describedBy(): SecuritySchemaPart;
-    /***
-     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-     ***/
-    settings(): SecuritySchemaSettings;
-}
-export interface SecuritySchemaSettings extends BasicNode {
-}
-export declare class SecuritySchemaSettingsImpl extends BasicNodeImpl implements SecuritySchemaSettings {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-export interface OAuth1SecuritySchemeSettings extends SecuritySchemaSettings {
-    /***
-     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-     ***/
-    requestTokenUri(): FixedUri;
-    /***
-     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-     ***/
-    authorizationUri(): FixedUri;
-    /***
-     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-     ***/
-    tokenCredentialsUri(): FixedUri;
-    signatures(): string[];
-}
-export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth1SecuritySchemeSettings {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
     /***
-     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+     * @return Actual name of instance interface
      ***/
-    requestTokenUri(): FixedUri;
-    /***
-     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-     ***/
-    authorizationUri(): FixedUri;
-    /***
-     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-     ***/
-    tokenCredentialsUri(): FixedUri;
-    signatures(): string[];
-    /***
-     * Set signatures value
-     ***/
-    setSignatures(param: string): OAuth1SecuritySchemeSettingsImpl;
+    getKind(): string;
 }
-export interface OAuth2SecuritySchemeSettings extends SecuritySchemaSettings {
+export interface ImportDeclaration extends RAMLSimpleElement {
     /***
-     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     * Name prefix (without dot) used to refer imported declarations
      ***/
-    accessTokenUri(): FixedUri;
+    key(): string;
     /***
-     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     * Content of the declared namespace
      ***/
-    authorizationUri(): FixedUri;
-    authorizationGrants(): string[];
-    /***
-     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
-     ***/
-    scopes(): string[];
+    value(): Library;
 }
-export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth2SecuritySchemeSettings {
+export declare class ImportDeclarationImpl extends RAMLSimpleElementImpl implements ImportDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
     /***
-     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     * @return Actual name of instance interface
      ***/
-    accessTokenUri(): FixedUri;
+    getKind(): string;
     /***
-     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     * Name prefix (without dot) used to refer imported declarations
      ***/
-    authorizationUri(): FixedUri;
-    authorizationGrants(): string[];
+    key(): string;
     /***
-     * Set authorizationGrants value
+     * @hidden
+     * Set key value
      ***/
-    setAuthorizationGrants(param: string): OAuth2SecuritySchemeSettingsImpl;
+    setKey(param: string): ImportDeclarationImpl;
     /***
-     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+     * Content of the declared namespace
      ***/
-    scopes(): string[];
-    /***
-     * Set scopes value
-     ***/
-    setScopes(param: string): OAuth2SecuritySchemeSettingsImpl;
+    value(): Library;
 }
-export interface PassThroughSettings extends SecuritySchemaSettings {
-    queryParameterName(): string;
-    headerName(): string;
+/***
+ * Content of the schema
+ ***/
+export interface GlobalSchema extends RAMLSimpleElement {
+    /***
+     * Name of the global schema, used to refer on schema content
+     ***/
+    key(): string;
+    /***
+     * Content of the schema
+     ***/
+    value(): SchemaString;
 }
-export declare class PassThroughSettingsImpl extends SecuritySchemaSettingsImpl implements PassThroughSettings {
+/***
+ * Content of the schema
+ ***/
+export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements GlobalSchema {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    queryParameterName(): string;
-    /***
-     * Set queryParameterName value
-     ***/
-    setQueryParameterName(param: string): PassThroughSettingsImpl;
-    headerName(): string;
-    /***
-     * Set headerName value
-     ***/
-    setHeaderName(param: string): PassThroughSettingsImpl;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Oath2 extends SecuritySchema {
-    settings(): OAuth2SecuritySchemeSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class Oath2Impl extends SecuritySchemaImpl implements Oath2 {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    settings(): OAuth2SecuritySchemeSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Oath1 extends SecuritySchema {
-    settings(): OAuth1SecuritySchemeSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class Oath1Impl extends SecuritySchemaImpl implements Oath1 {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    settings(): OAuth1SecuritySchemeSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface PassThrough extends SecuritySchema {
-    settings(): PassThroughSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class PassThroughImpl extends SecuritySchemaImpl implements PassThrough {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    settings(): PassThroughSettings;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Basic extends SecuritySchema {
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class BasicImpl extends SecuritySchemaImpl implements Basic {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Digest extends SecuritySchema {
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class DigestImpl extends SecuritySchemaImpl implements Digest {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Custom extends SecuritySchema {
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class CustomImpl extends SecuritySchemaImpl implements Custom {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-}
-export interface SecuritySchemaPart extends MethodBase {
-    /***
-     * Headers that allowed at this position
-     ***/
-    headers(): DataElement[];
-    /***
-     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-     ***/
-    queryParameters(): DataElement[];
-    /***
-     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
-     ***/
-    queryString(): DataElement;
-    /***
-     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
-     ***/
-    responses(): Response[];
-    /***
-     * Instantiation of applyed traits
-     ***/
-    is(): TraitRef[];
-    /***
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     ***/
-    securedBy(): SecuritySchemaRef[];
-    /***
-     * An alternate, human-friendly name for the security scheme part
-     ***/
-    displayName(): string;
-    /***
-     * A longer, human-friendly description of the security scheme part
-     ***/
-    description(): MarkdownString;
-    /***
-     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
-     ***/
-    annotations(): AnnotationRef[];
-}
-export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements SecuritySchemaPart {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
     /***
-     * Headers that allowed at this position
+     * @return Actual name of instance interface
      ***/
-    headers(): DataElement[];
+    getKind(): string;
     /***
-     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     * Name of the global schema, used to refer on schema content
      ***/
-    queryParameters(): DataElement[];
+    key(): string;
     /***
-     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+     * @hidden
+     * Set key value
      ***/
-    queryString(): DataElement;
+    setKey(param: string): GlobalSchemaImpl;
     /***
-     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
+     * Content of the schema
      ***/
-    responses(): Response[];
-    /***
-     * Instantiation of applyed traits
-     ***/
-    is(): TraitRef[];
-    /***
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     ***/
-    securedBy(): SecuritySchemaRef[];
-    /***
-     * An alternate, human-friendly name for the security scheme part
-     ***/
-    displayName(): string;
-    /***
-     * Set displayName value
-     ***/
-    setDisplayName(param: string): SecuritySchemaPartImpl;
-    /***
-     * A longer, human-friendly description of the security scheme part
-     ***/
-    description(): MarkdownString;
-    /***
-     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
-     ***/
-    annotations(): AnnotationRef[];
+    value(): SchemaString;
 }
-export interface OLibrary extends RAMLLanguageElement {
-    name(): string;
-    /***
-     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
-     ***/
-    schemas(): GlobalSchema[];
-    /***
-     * Declarations of (data) types for use within this API
-     ***/
-    types(): DataElement[];
-    /***
-     * Declarations of traits for use within this API
-     ***/
-    traits(): Trait[];
-    /***
-     * Declarations of resource types for use within this API
-     ***/
-    resourceTypes(): ResourceType[];
-    /***
-     * Declarations of annotation types for use by annotations
-     ***/
-    annotationTypes(): AnnotationType[];
-    /***
-     * Security schemas types declarations
-     ***/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /***
-     * Declarations of security schemes for use within this API.
-     ***/
-    securitySchemes(): SecuritySchema[];
-    /***
-     * Importing libraries
-     ***/
-    uses(): Library[];
-}
-export declare class OLibraryImpl extends RAMLLanguageElementImpl implements OLibrary {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    name(): string;
-    /***
-     * Set name value
-     ***/
-    setName(param: string): OLibraryImpl;
-    /***
-     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
-     ***/
-    schemas(): GlobalSchema[];
-    /***
-     * Declarations of (data) types for use within this API
-     ***/
-    types(): DataElement[];
-    /***
-     * Declarations of traits for use within this API
-     ***/
-    traits(): Trait[];
-    /***
-     * Declarations of resource types for use within this API
-     ***/
-    resourceTypes(): ResourceType[];
-    /***
-     * Declarations of annotation types for use by annotations
-     ***/
-    annotationTypes(): AnnotationType[];
-    /***
-     * Security schemas types declarations
-     ***/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /***
-     * Declarations of security schemes for use within this API.
-     ***/
-    securitySchemes(): SecuritySchema[];
-    /***
-     * Importing libraries
-     ***/
-    uses(): Library[];
-}
-export interface Api extends OLibrary {
+export interface Api extends LibraryBase {
     /***
      * Short plain-text label for the API
      ***/
@@ -2615,6 +3089,10 @@ export interface Api extends OLibrary {
      ***/
     securitySchemaTypes(): SecuritySchemaType[];
     /***
+     * Equivalent API with traits and resource types expanded
+     ***/
+    expandTraitsAndResourceTypes(): Api;
+    /***
      * Retrieve all traits including those defined in libraries
      ***/
     allTraits(): Trait[];
@@ -2636,18 +3114,24 @@ export interface Api extends OLibrary {
      ***/
     allBaseUriParameters(): DataElement[];
 }
-export declare class ApiImpl extends OLibraryImpl implements Api {
+export declare class ApiImpl extends LibraryBaseImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * Short plain-text label for the API
      ***/
     title(): string;
     /***
+     * @hidden
      * Set title value
      ***/
     setTitle(param: string): ApiImpl;
@@ -2656,6 +3140,7 @@ export declare class ApiImpl extends OLibraryImpl implements Api {
      ***/
     version(): string;
     /***
+     * @hidden
      * Set version value
      ***/
     setVersion(param: string): ApiImpl;
@@ -2672,6 +3157,7 @@ export declare class ApiImpl extends OLibraryImpl implements Api {
      ***/
     protocols(): string[];
     /***
+     * @hidden
      * Set protocols value
      ***/
     setProtocols(param: string): ApiImpl;
@@ -2696,11 +3182,13 @@ export declare class ApiImpl extends OLibraryImpl implements Api {
      ***/
     displayName(): string;
     /***
+     * @hidden
      * Set displayName value
      ***/
     setDisplayName(param: string): ApiImpl;
     name(): string;
     /***
+     * @hidden
      * Set name value
      ***/
     setName(param: string): ApiImpl;
@@ -2716,6 +3204,10 @@ export declare class ApiImpl extends OLibraryImpl implements Api {
      * Security schemas types declarations
      ***/
     securitySchemaTypes(): SecuritySchemaType[];
+    /***
+     * Equivalent API with traits and resource types expanded
+     ***/
+    expandTraitsAndResourceTypes(): Api;
     /***
      * Retrieve all traits including those defined in libraries
      ***/
@@ -2753,19 +3245,26 @@ export declare class OverlayImpl extends ApiImpl implements Overlay {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * contains description of why overlay exist
      ***/
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): OverlayImpl;
     masterRef(): string;
     /***
+     * @hidden
      * Set masterRef value
      ***/
     setMasterRef(param: string): OverlayImpl;
@@ -2774,6 +3273,7 @@ export declare class OverlayImpl extends ApiImpl implements Overlay {
      ***/
     title(): string;
     /***
+     * @hidden
      * Set title value
      ***/
     setTitle(param: string): OverlayImpl;
@@ -2793,19 +3293,26 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
+     * @hidden
      * @return Actual name of instance class
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
     /***
      * contains description of why extension exist
      ***/
     usage(): string;
     /***
+     * @hidden
      * Set usage value
      ***/
     setUsage(param: string): ExtensionImpl;
     masterRef(): string;
     /***
+     * @hidden
      * Set masterRef value
      ***/
     setMasterRef(param: string): ExtensionImpl;
@@ -2814,7 +3321,22 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
      ***/
     title(): string;
     /***
+     * @hidden
      * Set title value
      ***/
     setTitle(param: string): ExtensionImpl;
 }
+/***
+ * Load API synchronously
+ * @param apiPath Path to API: local file system path or Web URL
+ * @param expand Whether to expand traits and resource types
+ * @return Opt<Api>. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+ ***/
+export declare function loadApi(apiPath: string, expand?: boolean): Opt<Api>;
+/***
+ * Load API asynchronously
+ * @param apiPath Path to API: local file system path or Web URL
+ * @param expand Whether to expand traits and resource types
+ * @return Promise<Api>
+ ***/
+export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<Api>;

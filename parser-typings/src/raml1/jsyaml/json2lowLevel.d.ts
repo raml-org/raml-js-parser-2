@@ -12,7 +12,8 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     protected _content: string;
     protected _project: lowlevel.IProject;
     protected _isTopoLevel: boolean;
-    constructor(_absolutePath: string, _path: string, _content: string, _project: lowlevel.IProject, _isTopoLevel: boolean);
+    protected serializeOptions: SerializeOptions;
+    constructor(_absolutePath: string, _path: string, _content: string, _project: lowlevel.IProject, _isTopoLevel: boolean, serializeOptions?: SerializeOptions);
     protected _node: AstNode;
     absolutePath(): string;
     clone(): any;
@@ -42,6 +43,7 @@ export declare class AstNode implements lowlevel.ILowLevelASTNode {
     start(): number;
     end(): number;
     value(): any;
+    actual(): any;
     includeErrors(): any[];
     includePath(): any;
     key(): string;

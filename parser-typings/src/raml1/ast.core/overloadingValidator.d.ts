@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 import hl = require("../highLevelAST");
-import wrapper = require("../artifacts/raml003parser");
+import wrapper = require("../artifacts/raml10parser");
 export declare class OverloadingValidator {
     protected holder: {
         [path: string]: wrapper.Method[];

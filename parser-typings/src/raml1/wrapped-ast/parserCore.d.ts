@@ -1,22 +1,24 @@
-import hl = require("./highLevelAST");
-import hlImpl = require("./highLevelImpl");
+import hl = require("../highLevelAST");
+import hlImpl = require("../highLevelImpl");
 export interface AbstractWrapperNode {
     /***
-     * @return actual name of instance class
-     **/
+     * @hidden
+     ***/
     wrapperClassName(): string;
+    getKind(): string;
 }
-export interface BasicSuperNode extends AbstractWrapperNode {
+export interface BasicNode extends AbstractWrapperNode {
     /***
-     * @return direct ancestor in RAML hierarchy
+     * @return Direct ancestor in RAML hierarchy
      **/
-    parent(): BasicSuperNode;
+    parent(): BasicNode;
     /***
-     * @return underlying node of the High Level model
+     * @hidden
+     * @return Underlying node of the High Level model
      **/
     highLevel(): hl.IHighLevelNode;
     /***
-     * @return array of errors
+     * @return Array of errors
      **/
     errors(): hl.ValidationIssue[];
     /***
@@ -28,38 +30,58 @@ export interface BasicSuperNode extends AbstractWrapperNode {
      **/
     runtimeDefinition(): hl.ITypeDefinition;
 }
-export declare class BasicSuperNodeImpl implements BasicSuperNode {
+export declare class BasicNodeImpl implements BasicNode {
     protected _node: hl.IHighLevelNode;
+    /***
+     * @hidden
+     */
     constructor(_node: hl.IHighLevelNode);
+    /***
+     * @hidden
+     */
     wrapperClassName(): string;
+    getKind(): string;
     /***
-     * @return direct ancestor in RAML hierarchy
+     * @return Direct ancestor in RAML hierarchy
      **/
-    parent(): BasicSuperNode;
+    parent(): BasicNode;
     /***
-     * @return underlying node of the High Level model
+     * @hidden
+     * @return Underlying node of the High Level model
      **/
     highLevel(): hl.IHighLevelNode;
+    /***
+     * @hidden
+     ***/
     protected attributes(name: string, constr?: (attr: hl.IAttribute) => any): any[];
+    /***
+     * @hidden
+     ***/
     protected attribute(name: string, constr?: (attr: hl.IAttribute) => any): any;
+    /***
+     * @hidden
+     ***/
     protected elements(name: string): any[];
+    /***
+     * @hidden
+     ***/
     protected element(name: string): any;
     /***
      * Append node as child
      * @param node node to be appended
      ***/
-    add(node: BasicSuperNodeImpl): void;
+    add(node: BasicNodeImpl): void;
     /***
      * Append node as property value
      * @param node node to be set as property value
      * @param prop name of property to set value for
      ***/
-    addToProp(node: BasicSuperNodeImpl, prop: string): void;
+    addToProp(node: BasicNodeImpl, prop: string): void;
     /***
      * Remove node from children set
      * @param node node to be removed
      ***/
-    remove(node: BasicSuperNodeImpl): void;
+    remove(node: BasicNodeImpl): void;
     /***
      * @return YAML string representing the node
      ***/
@@ -68,7 +90,7 @@ export declare class BasicSuperNodeImpl implements BasicSuperNode {
     toBoolean(attr: hl.IAttribute): boolean;
     toNumber(attr: hl.IAttribute): any;
     /***
-     * @return array of errors
+     * @return Array of errors
      **/
     errors(): hl.ValidationIssue[];
     /***
@@ -81,8 +103,6 @@ export declare class BasicSuperNodeImpl implements BasicSuperNode {
     runtimeDefinition(): hl.ITypeDefinition;
 }
 /***
- * Transform High Level attribute to StructuredValue object representing its value
- * @param node High Level attribute
- * @returns StructuredValue object
- */
+ * @hidden
+ ***/
 export declare function toStructuredValue(node: hl.IAttribute): hlImpl.StructuredValue;

@@ -1,12 +1,13 @@
-import RamlWrapper = require('./artifacts/raml003parser');
+import RamlWrapper = require('../artifacts/raml10parser');
 import core = require("./parserCore");
-import hl = require('./highLevelAST');
-import Opt = require('../Opt');
+import hl = require('../highLevelAST');
+import Opt = require('../../Opt');
 export declare function resolveType(p: RamlWrapper.DataElement): hl.ITypeDefinition;
-export declare function load(pth: string): core.BasicSuperNode;
+export declare function load(pth: string): core.BasicNode;
 export declare function completeRelativeUri(res: RamlWrapper.Resource): string;
+export declare function expandTraitsAndResourceTypes(api: RamlWrapper.Api): RamlWrapper.Api;
 export declare function absoluteUri(res: RamlWrapper.Resource): string;
-export declare function qName(c: core.BasicSuperNode): string;
+export declare function qName(c: core.BasicNode): string;
 export declare function allTraits(a: RamlWrapper.Api): RamlWrapper.Trait[];
 export declare function allResourceTypes(a: RamlWrapper.Api): RamlWrapper.ResourceType[];
 export declare function relativeUriSegments(res: RamlWrapper.Resource): string[];
@@ -28,8 +29,9 @@ export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWr
 export declare class HelperUriParam implements RamlWrapper.DataElement {
     private _name;
     private _parent;
-    constructor(_name: string, _parent: RamlWrapper.BasicNode);
+    constructor(_name: string, _parent: core.BasicNode);
     wrapperClassName(): string;
+    getKind(): string;
     name(): string;
     "type"(): string[];
     location(): RamlWrapper.ModelLocation;
@@ -54,7 +56,7 @@ export declare class HelperUriParam implements RamlWrapper.DataElement {
     description(): RamlWrapper.MarkdownString;
     annotations(): RamlWrapper.AnnotationRef[];
     usage(): any;
-    parent(): RamlWrapper.BasicNode;
+    parent(): core.BasicNode;
     highLevel(): hl.IHighLevelNode;
     errors(): hl.ValidationIssue[];
     definition(): any;

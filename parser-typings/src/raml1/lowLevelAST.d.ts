@@ -57,6 +57,7 @@ export interface ILowLevelASTNode {
     includeErrors(): string[];
     includePath(): string;
     key(): string;
+    actual(): any;
     children(): ILowLevelASTNode[];
     parent(): ILowLevelASTNode;
     unit(): ICompilationUnit;

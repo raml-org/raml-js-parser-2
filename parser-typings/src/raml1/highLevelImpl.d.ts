@@ -2,7 +2,7 @@
 import defs = require("./definitionSystem");
 import hl = require("./highLevelAST");
 import ll = require("./lowLevelAST");
-import ParserCore = require("./parserCore");
+import ParserCore = require("./wrapped-ast/parserCore");
 export declare function qName(x: hl.IHighLevelNode, context: hl.IHighLevelNode): string;
 export declare function evalInSandbox(code: string, thisArg: any, args: any[]): any;
 export declare class BasicASTNode implements hl.IParseResult {
@@ -19,6 +19,7 @@ export declare class BasicASTNode implements hl.IParseResult {
     knownProperty: hl.IProperty;
     needSequence: boolean;
     unresolvedRef: string;
+    isSameNode(n: hl.IParseResult): boolean;
     checkContextValue(name: string, value: string, thisObj: any): boolean;
     printDetails(indent?: string): string;
     errors(): hl.ValidationIssue[];
@@ -68,10 +69,11 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     private _prop;
     private fromKey;
     definition(): hl.IValueTypeDefinition;
+    isString(): boolean;
     constructor(node: ll.ILowLevelASTNode, parent: hl.IHighLevelNode, _def: hl.IValueTypeDefinition, _prop: hl.IProperty, fromKey?: boolean);
     getKind(): hl.NodeKind;
     owningWrapper(): {
-        node: ParserCore.BasicSuperNode;
+        node: ParserCore.BasicNode;
         property: string;
     };
     patchType(t: hl.IValueTypeDefinition): void;
@@ -115,11 +117,11 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     };
     private _wrapperNode;
     getKind(): hl.NodeKind;
-    wrapperNode(): ParserCore.BasicSuperNode;
+    wrapperNode(): ParserCore.BasicNode;
     propertiesAllowedToUse(): hl.IProperty[];
     isAllowedToUse(p: hl.IProperty): boolean;
     allowRecursive(): boolean;
-    setWrapperNode(node: ParserCore.BasicSuperNode): void;
+    setWrapperNode(node: ParserCore.BasicNode): void;
     setAssociatedType(d: hl.INodeDefinition): void;
     associatedType(): hl.INodeDefinition;
     private _isAux;

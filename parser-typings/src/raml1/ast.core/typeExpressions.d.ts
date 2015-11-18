@@ -1,5 +1,5 @@
-/// <reference path="../../typings/tsd.d.ts" />
-import hl = require("./highLevelAST");
+/// <reference path="../../../typings/tsd.d.ts" />
+import hl = require("../highLevelAST");
 export interface BaseNode {
     type: string;
 }

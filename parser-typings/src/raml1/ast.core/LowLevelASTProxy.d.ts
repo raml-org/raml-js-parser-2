@@ -1,8 +1,8 @@
-/// <reference path="../../typings/tsd.d.ts" />
-import ll = require("./lowLevelAST");
-import hl = require("./highLevelAST");
-import yaml = require("./jsyaml/yamlAST");
-import Error = require("./jsyaml/js-yaml/exception");
+/// <reference path="../../../typings/tsd.d.ts" />
+import ll = require("../lowLevelAST");
+import hl = require("../highLevelAST");
+import yaml = require("../jsyaml/yamlAST");
+import Error = require("../jsyaml/js-yaml/exception");
 export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     protected _parent: ll.ILowLevelASTNode;
     protected _transformer: ValueTransformer;
@@ -11,6 +11,7 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     private _highLevelNode;
     private _highLevelParseResult;
     private _keyOverride;
+    actual(): any;
     transformer(): ValueTransformer;
     original(): ll.ILowLevelASTNode;
     start(): number;

@@ -127,6 +127,7 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     private cacheChildren;
     _errors: Error[];
     constructor(_node: yaml.YAMLNode, _unit: lowlevel.ICompilationUnit, _parent: ASTNode, _anchor: ASTNode, _include: ASTNode, cacheChildren?: boolean);
+    actual(): any;
     _children: lowlevel.ILowLevelASTNode[];
     yamlNode(): yaml.YAMLNode;
     gatherIncludes(s?: lowlevel.ILowLevelASTNode[], inc?: ASTNode, anc?: ASTNode, inOneMemberMap?: boolean): void;

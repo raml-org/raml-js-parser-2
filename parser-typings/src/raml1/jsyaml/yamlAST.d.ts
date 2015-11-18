@@ -24,6 +24,9 @@ export interface YAMLNode extends YAMLDocument {
     valueObject?: any;
     parent: YAMLNode;
     errors: YAMLException[];
+    value?: any;
+    key?: any;
+    mappings?: any;
 }
 export interface YAMLAnchorReference extends YAMLNode {
     referencesAnchor: string;
