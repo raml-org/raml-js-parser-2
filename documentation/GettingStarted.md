@@ -142,22 +142,22 @@ Open `documentation` folder in the root of the cloned repository and open index.
 
 `loadApi` function we just used to parse RAML is described there:
 
-![GettingStarted_loadAPI](/images/GettingStarted_loadAPI.png)
+![GettingStarted_loadAPI](images/GettingStarted_loadAPI.png)
 
 As it is a global function of parser module, we are calling it like that:
 `raml.loadApi(fName)`, and is it returns `Opt` instead of direct API reference, we then ask Opt for results: `raml.loadApi(fName).getOrThrow()`
 
 Documentation displays, that `loadApi` returns `Api` object, so click it and see the details:
 
-![GettingStarted_ApiMethods](/images/GettingStarted_ApiMethods.png)
+![GettingStarted_ApiMethods](images/GettingStarted_ApiMethods.png)
 
 Lets check `resources()` method first:
 
-![GettingStarted_ResourcesMethod](/images/GettingStarted_ResourcesMethod.png)
+![GettingStarted_ResourcesMethod](images/GettingStarted_ResourcesMethod.png)
 
 We see that it returns an array of resources, and each resource contains some methods in turn:
 
-![GettingStarted_Resource](/images/GettingStarted_Resource.png)
+![GettingStarted_Resource](images/GettingStarted_Resource.png)
 
 Lets try checking resources and printing them in a simple way. Remove `console.log(JSON.stringify(raml.toJSON(api), null, 2));` line from `getting_started.js` code and add the following:
 
@@ -240,7 +240,7 @@ Here, we use recursion to traverse resources, and for each resource print its `c
 Of course if we do not want to traverse the tree manually, we can find all kinds of useful helpers in documentation, like `allResources` method of `API`, which traverses the tree for you and finds all resources.
 
 Lets print all the methods in that way, but first lets check `methods` documentation:
-![GettingStarted_Methods](/images/GettingStarted_Methods.png)
+![GettingStarted_Methods](images/GettingStarted_Methods.png)
 
 Replace everything under
 ```js
@@ -273,7 +273,7 @@ The output:
 
 We can also see the `responses` method in `Method` documentation:
 
-![GettingStarted_Responses](/images/GettingStarted_Responses.png)
+![GettingStarted_Responses](images/GettingStarted_Responses.png)
 
 Lets print the responses too:
 ```js
@@ -305,11 +305,11 @@ The output is:
 
 To be able to print that, we first used `code()` method of `Response`:
 
-![GettingStarted_Code](/images/GettingStarted_Code.png)
+![GettingStarted_Code](images/GettingStarted_Code.png)
 
 And then found `value()` method in `StatusCode` description:
 
-![GettingStarted_Code](/images/GettingStarted_StatusCode.png)
+![GettingStarted_Code](images/GettingStarted_StatusCode.png)
 
 All in all, the AST tree reflects RAML structure, so starting from `loadApi` global method, then checking documentation for its return value, proceeding to its methods and doing that recursively allows reaching everything.
 
