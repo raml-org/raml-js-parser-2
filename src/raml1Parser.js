@@ -17990,7 +17990,7 @@ module.exports =
 	            var map = {};
 	            this._adoptedNodes.forEach(function (x, i) { return x.children().filter(function (y) { return !y.key(); }).forEach(function (y) {
 	                var key = _this.buildKey(y);
-	                if (map[key]) {
+	                if (i>0&&map[key]) {
 	                    return;
 	                }
 	                map[key] = true;
