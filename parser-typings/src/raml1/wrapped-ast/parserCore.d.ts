@@ -1,5 +1,6 @@
 import hl = require("../highLevelAST");
 import hlImpl = require("../highLevelImpl");
+import json2lowlevel = require('../jsyaml/json2lowLevel');
 export interface AbstractWrapperNode {
     /***
      * @hidden
@@ -32,6 +33,12 @@ export interface BasicNode extends AbstractWrapperNode {
      * @return for user class instances returns object representing actual user class
      **/
     runtimeDefinition(): hl.ITypeDefinition;
+    /***
+     * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
+     * @param node Model node
+     * @return Stringifyable object representation of the node.
+     ***/
+    toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
 }
 export declare class BasicNodeImpl implements BasicNode {
     protected _node: hl.IHighLevelNode;
@@ -104,6 +111,7 @@ export declare class BasicNodeImpl implements BasicNode {
      * @return for user class instances returns object representing actual user class
      **/
     runtimeDefinition(): hl.ITypeDefinition;
+    toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
 }
 /***
  * @hidden

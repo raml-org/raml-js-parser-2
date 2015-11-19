@@ -1,5 +1,31 @@
+/*****************************************************
+ * <p>See <a href="http://raml.org">http://raml.org</a> for more information about RAML.</p>
+ *
+ * <p>This parser is at a beta state of development, as part of the API Workbench development cycle (<a href="http://apiworkbench.com">http://apiworkbench.com</a>).</p>
+ *
+ * <h2>Installation</h2>
+ *
+ * <pre><code>git clone https://github.com/raml-org/raml-js-parser-2
+ *
+ * cd raml-js-parser-2
+ *
+ * npm install
+ *
+ * node test/test.js  //here you should observe JSON representation of XKCD API in your console
+ *
+ * node test/testAsync.js  //same as above but in asynchronous mode
+ * </code></pre>
+ *
+ * <h2>Usage</h2>
+ *
+ * <ul>
+ * <li>For parser usage example refer to <code>test/test.js</code></li>
+ * <li>For asynchrounous usage example refer to <code>test/test.js</code></li>
+ * </ul>
+ ****************************************************/
 import hl = require("../highLevelAST");
 import hlImpl = require("../highLevelImpl");
+import json2lowlevel = require('../jsyaml/json2lowLevel');
 import core = require("../wrapped-ast/parserCore");
 import Opt = require("../../Opt");
 export interface RAMLLanguageElement extends core.BasicNode {
@@ -3330,13 +3356,19 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
  * Load API synchronously
  * @param apiPath Path to API: local file system path or Web URL
  * @param expand Whether to expand traits and resource types
- * @return Opt<Api>. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+ * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
  ***/
 export declare function loadApi(apiPath: string, expand?: boolean): Opt<Api>;
 /***
  * Load API asynchronously
  * @param apiPath Path to API: local file system path or Web URL
  * @param expand Whether to expand traits and resource types
- * @return Promise<Api>
+ * @return Promise&lt;Api&gt;
  ***/
 export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<Api>;
+/***
+ * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
+ * @param node Model node
+ * @return Stringifyable object representation of the node.
+ ***/
+export declare function toJSON(node: core.BasicNode, serializeOptions?: json2lowlevel.SerializeOptions): any;

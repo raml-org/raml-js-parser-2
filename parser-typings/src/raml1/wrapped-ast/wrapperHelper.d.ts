@@ -61,6 +61,7 @@ export declare class HelperUriParam implements RamlWrapper.DataElement {
     errors(): hl.ValidationIssue[];
     definition(): any;
     runtimeDefinition(): any;
+    toJSON(): any;
 }
 export declare class SchemaDef {
     private _content;

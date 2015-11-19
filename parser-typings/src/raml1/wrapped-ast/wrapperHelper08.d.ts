@@ -52,4 +52,5 @@ export declare class HelperUriParam implements RamlWrapper.Parameter {
     errors(): hl.ValidationIssue[];
     definition(): any;
     runtimeDefinition(): any;
+    toJSON(): any;
 }

@@ -18,7 +18,7 @@ export declare function loadApi(apiPath: string, expand?: boolean): Opt<RamlWrap
  ***/
 export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<RamlWrapper.Api>;
 /***
- * Turn model node into an object
+ * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
  * @param node Model node
  * @return Stringifyable object representation of the node.
  ***/

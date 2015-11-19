@@ -1,5 +1,6 @@
 import hl = require("../highLevelAST");
 import hlImpl = require("../highLevelImpl");
+import json2lowlevel = require('../jsyaml/json2lowLevel');
 import core = require("../wrapped-ast/parserCore");
 import Opt = require("../../Opt");
 export interface RAMLLanguageElement extends core.BasicNode {
@@ -1904,13 +1905,19 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
  * Load API synchronously
  * @param apiPath Path to API: local file system path or Web URL
  * @param expand Whether to expand traits and resource types
- * @return Opt<Api>. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+ * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
  ***/
 export declare function loadApi(apiPath: string, expand?: boolean): Opt<Api>;
 /***
  * Load API asynchronously
  * @param apiPath Path to API: local file system path or Web URL
  * @param expand Whether to expand traits and resource types
- * @return Promise<Api>
+ * @return Promise&lt;Api&gt;
  ***/
 export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<Api>;
+/***
+ * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
+ * @param node Model node
+ * @return Stringifyable object representation of the node.
+ ***/
+export declare function toJSON(node: core.BasicNode, serializeOptions?: json2lowlevel.SerializeOptions): any;
