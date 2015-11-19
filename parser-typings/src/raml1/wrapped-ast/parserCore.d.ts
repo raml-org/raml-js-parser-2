@@ -5,6 +5,9 @@ export interface AbstractWrapperNode {
      * @hidden
      ***/
     wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
     getKind(): string;
 }
 export interface BasicNode extends AbstractWrapperNode {

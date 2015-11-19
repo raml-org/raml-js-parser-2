@@ -28961,6 +28961,7 @@ module.exports =
 	var llimpl = __webpack_require__(9);
 	var expander = __webpack_require__(87);
 	var util = __webpack_require__(4);
+	var universeDef = __webpack_require__(62);
 	var universeProvider = __webpack_require__(93);
 	function loadApi1(apiPath, options) {
 	    var opt = loadApi(apiPath, options);
@@ -29062,17 +29063,20 @@ module.exports =
 	    }
 	    var verStr = contents.substring('#%RAML'.length, ind).trim();
 	    var ramlVersion;
+	    var typeName;
 	    if (verStr == '0.8') {
 	        ramlVersion = 'RAML08';
+	        typeName = universeDef.Universe08.Api.name;
 	    }
 	    else if (verStr == '1.0') {
 	        ramlVersion = 'RAML10';
+	        typeName = universeDef.Universe10.Api.name;
 	    }
 	    if (!ramlVersion) {
 	        return null;
 	    }
 	    var universe = universeProvider(ramlVersion);
-	    var apiType = universe.type("Api");
+	    var apiType = universe.type(typeName);
 	    api = new RamlWrapper1.ApiImpl(new hlimpl.ASTNodeImpl(unit.ast(), null, apiType, null));
 	    if (expandTraitsAndResourceTypes) {
 	        api = expander.expandTraitsAndResourceTypes(api);
@@ -29084,7 +29088,7 @@ module.exports =
 	    if (cacheChildren === void 0) { cacheChildren = false; }
 	    if (expandTraitsAndResourceTypes === void 0) { expandTraitsAndResourceTypes = true; }
 	    var universe = universeProvider("RAML10");
-	    var apiType = universe.type("Api");
+	    var apiType = universe.type(universeDef.Universe10.Api.name);
 	    var p = new jsyaml.Project(projectRoot);
 	    var result = [];
 	    p.units().forEach(function (x) {
