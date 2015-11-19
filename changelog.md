@@ -1,5 +1,8 @@
 # Changelog
 
+#### 19/11/15
+Documentation
+
 #### 18/11/15
 Parser methods are given comments.
 
