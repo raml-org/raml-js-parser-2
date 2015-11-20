@@ -516,7 +516,7 @@ var fs = require("fs");
 var path = require("path");
 
 // Here we create a file name to be loaded
-var fName = path.resolve(__dirname, "test2.raml");
+var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
 var api = raml.loadApi(fName, true).getOrThrow();
@@ -553,7 +553,7 @@ var fs = require("fs");
 var path = require("path");
 
 // Here we create a file name to be loaded
-var fName = path.resolve(__dirname, "test2.raml");
+var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
 var api = raml.loadApi(fName, true).getOrThrow();
