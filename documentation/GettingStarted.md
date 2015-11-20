@@ -602,17 +602,149 @@ Member
 
 ## Types
 
-TODO: Finish this.
+Note: here elements renaming are most possible during the next week.
+TODO: change names as soon as the elements are renamed.
 
-For generating typed API we need an access to types, described in RAML files. Let's modify our getting_started.js to enumerate all the types from RAML file:
+Lets print all types declared at top level of API.
+
+`API` has `types()` method, returning an array of DataElement:
+
+![GettingStarted_APITypes](images/GettingStarted_APITypes.png)
+
+`DataElement` is the root of the hierarchy for AST type declarations:
+
+![GettingStarted_DataElementHierarchy](images/GettingStarted_DataElementHierarchy.png)
+
+In the hierarchy, `ObjectField` is basically RAML object type, StrElement is a string, NumberElement is a number, UnionField represents a union type etc.
+Note that this is a hierarchy of type DECLARATIONS. Types also have runtime representation with its own hierarchy.
+
+We can see that `DataElement` has `name()` method, so we can print type names:
+
 ```js
 api.types().forEach(function (type) {
 	console.log(type.name());
+});
+```
+Output is:
 
-	type.properties().forEach(function(prop) {
-		console.log("\t", prop.name());
-	});
+```
+Pet
+Mammal
+Bird
+```
+
+`Pet`, `Mammal` and `Bird` are object types, lets check that:
+
+```js
+api.types().forEach(function (type) {
+    console.log(type.name() + " : " + type.getKind());
+
 });
 ```
 
-  this should enumerate all types' names properties.
+Output:
+
+```
+Pet : ObjectField
+Mammal : ObjectField
+Bird : ObjectField
+```
+
+Checking `ObjectField` in documentation reveals it having `properties` method, in turn returning an array of `DataElement`
+
+![GettingStarted_DataElementHierarchy](images/GettingStarted_ObjectFieldProperties.png)
+
+So we can print property names and their own types for each type:
+
+```js
+api.types().forEach(function (type) {
+
+    console.log(type.name() + " : " + type.getKind());
+
+    type.properties().forEach(function(prop) {
+        console.log("\t", prop.name() + " : " + prop.getKind());
+    });
+
+});
+```
+
+Output:
+
+```
+Pet : ObjectField
+	 name : StrElement
+	 kind : StrElement
+	 price : NumberElement
+	 color : StrElement
+Mammal : ObjectField
+Bird : ObjectField
+	 wingLength : NumberElement
+```
+
+`Color` is also an enum. We can detect and print that:
+
+```js
+api.types().forEach(function (type) {
+
+    console.log(type.name() + " : " + type.getKind());
+
+    type.properties().forEach(function(prop) {
+        console.log("\t", prop.name() + " : " + prop.getKind());
+        if (prop.enum()) {
+            prop.enum().forEach(function(enumValue){
+                console.log("\t\t-", enumValue);
+            })
+        }
+    });
+
+});
+```
+
+Output:
+
+```
+Pet : ObjectField
+	 name : StrElement
+	 kind : StrElement
+	 price : NumberElement
+	 color : StrElement
+		- White
+		- Black
+		- Colored
+Mammal : ObjectField
+Bird : ObjectField
+	 wingLength : NumberElement
+```
+
+Mammal and Bird are of Pet type. Lets print that too:
+
+```js
+api.types().forEach(function (type) {
+
+    console.log(type.name() + " : " + type.getKind());
+    if (type.type() && type.type().length > 0)
+        console.log("\t type: " + type.type())
+
+    type.properties().forEach(function(prop) {
+        console.log("\t", prop.name() + " : " + prop.getKind());
+    });
+
+});
+```
+
+Output:
+
+```
+Pet : ObjectField
+	 name : StrElement
+	 kind : StrElement
+	 price : NumberElement
+	 color : StrElement
+Mammal : ObjectField
+	 type: Pet
+Bird : ObjectField
+	 type: Pet
+	 wingLength : NumberElement
+```
+
+TODO: describe runtime representation of types.
