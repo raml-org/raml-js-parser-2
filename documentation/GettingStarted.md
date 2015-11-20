@@ -315,6 +315,10 @@ All in all, the AST tree reflects RAML structure, so starting from `loadApi` glo
 
 ## Resource Types and Traits
 
+This section describes how to analyze resource types. Traits are analyzed in the same way.
+
+### Expanding AST
+
 Lets change our RAML file to look like this:
 
 ```RAML
@@ -411,8 +415,190 @@ Results are:
 
 So when RAML JS Parser is asked to expand traits and types, you get them applied automatically and have the final structure at hands.
 
-TODO: Finish this.
+If you change the API loading call to
+```js
+var api = raml.loadApi(fName, false).getOrThrow();
+```
+the output will look like:
 
+```
+/shop/pets
+/shop/pets/{id}
+```
+
+So without resource type expansion the methods and other contents from resource types are not added to the point of the AST, they are applied to.
+
+### Getting the name of resource type from its application
+
+We can see the resource type applications itself:
+
+```js
+var resourceTypeValue = api.allResources()[0].type().value().valueName()
+console.log(resourceTypeValue)
+```
+
+Here we take the `/pets` resource, getting its type and printing the value of the type.
+
+The output is:
+```
+Collection
+```
+
+### Getting resource type application parameter values
+
+This can be done with both expanded and unexpanded AST.
+
+Why did we have to call `valueName()` method after calling `value()`, why not just make `value()` to return the type name?
+
+The answer is: the resource type appliance may also have parameters.
+
+Right now it is hard to obtain the parameters at the top level of AST, but going one level down to high-level AST allows that. This should be exposed at top level AST in the nearest future. The current code below will continue to work, but there will be more suitable helpers available at the top level regarding this matter.
+
+TODO: rewrite this part when structured values are wrapped at top level of AST.
+
+Change the RAML file like following:
+
+```RAML
+#%RAML 1.0
+title: Pet shop
+version: 1
+baseUri: /shop
+
+types:
+  Pet:
+    properties:
+      name: string
+      kind: string
+      price: number
+    example:
+      name: "Snoopy"
+      kind: "Mammal"
+      price: 100
+
+resourceTypes:
+
+  Collection:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<item>>[]
+    post:
+      body:
+        application/json:
+          type: <<item>>
+
+  Member:
+    put:
+      body:
+        application/json:
+          type: <<item>>
+    delete:
+      responses:
+        204:
+
+/pets:
+  type: { Collection: {item: Pet} }
+
+  /{id}:
+    type: { Member: {item : Pet} }
+
+```
+
+In this example we made both resource types to have a type parameter.
+In case of `/pets` resource, which refers `Collection` resource type, the `item` parameter value is `Pet`.
+
+Change `getting_started.js` like following:
+```js
+var raml = require("./src/raml1Parser");
+var fs = require("fs");
+var path = require("path");
+
+// Here we create a file name to be loaded
+var fName = path.resolve(__dirname, "test2.raml");
+
+// Parse our RAML file with all the dependencies
+var api = raml.loadApi(fName, true).getOrThrow();
+
+var resourceTypeReference = api.allResources()[0].type().value()
+var highLevelASTNode = resourceTypeReference.toHighlevel()
+
+highLevelASTNode.attrs().forEach(function (attribute) {
+    console.log(attribute.name() + " = " + attribute.value())
+})
+```
+
+Here we call `toHighlevel()` method, which is available for every top-level AST node and get the high-level node, then print its attributes. High-level nodes do not have have its data wrapped to user-friendly helper methods, instead they have attributes and children.
+
+The output is the following:
+```
+key = Collection
+item = Pet
+```
+
+So the `item` parameter value `Pet` is available.
+
+As soon as navigation module is published, it will be possible to directly jump from this resource type appliance to `Collection` resource type declaration as we do in API Workbench.
+
+For now, lets see how resource type declarations can be access directly from API:
+
+### Getting resource type declarations
+
+Modify `getting_started.js` file contents in the following way:
+
+```js
+var raml = require("./src/raml1Parser");
+var fs = require("fs");
+var path = require("path");
+
+// Here we create a file name to be loaded
+var fName = path.resolve(__dirname, "test2.raml");
+
+// Parse our RAML file with all the dependencies
+var api = raml.loadApi(fName, true).getOrThrow();
+
+
+api.resourceTypes().forEach(function (resourceType) {
+    console.log(resourceType.name())
+})
+```
+
+Here we ask API for resource type declarations and print type names.
+
+The output:
+```
+Collection
+Member
+```
+
+And now we will print methods and responses for each resource type the same way we did previously for API:
+```js
+api.resourceTypes().forEach(function (resourceType) {
+    console.log(resourceType.name())
+
+    resourceType.methods().forEach(function(method){
+        console.log("\t"+method.method())
+
+        method.responses().forEach(function (response) {
+            console.log("\t\t" + response.code().value())
+        })
+    })
+})
+```
+
+The output:
+
+```
+Collection
+	get
+		200
+	post
+Member
+	put
+	delete
+		204
+```
 
 ## Types
 
