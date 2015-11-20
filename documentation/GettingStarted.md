@@ -377,7 +377,7 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName, {expandTraitsAndResourceTypes:true}).getOrThrow();
+var api = raml.loadApi(fName, true).getOrThrow();
 
 api.allResources().forEach(function (resource) {
 
