@@ -1,0 +1,19 @@
+#%RAML 1.0 Overlay
+usage: Hints for monitoring the library books API
+masterRef: librarybooks.raml
+annotationTypes:
+  monitor:
+    parameters:
+      frequency:
+        properties:
+          interval: integer
+          unitOfMeasure:
+            enum: [ seconds, minutes, hours ]
+      script:
+/books:
+  get:
+    (monitor):
+      frequency:
+        interval: 5
+        unitOfMeasure: minutes
+      script: randomBooksFetch
