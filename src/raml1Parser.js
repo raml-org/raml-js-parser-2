@@ -117,9 +117,9 @@ module.exports =
 	};
 	var hl = __webpack_require__(2);
 	var json2lowlevel = __webpack_require__(60);
-	var core = __webpack_require__(85);
-	var apiLoader = __webpack_require__(86);
-	var helper = __webpack_require__(88);
+	var core = __webpack_require__(83);
+	var apiLoader = __webpack_require__(84);
+	var helper = __webpack_require__(86);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
 	    function RAMLLanguageElementImpl(nodeOrKey) {
@@ -4471,7 +4471,7 @@ module.exports =
 	    return result;
 	}
 	exports.ast2Object = ast2Object;
-	exports.universeProvider = __webpack_require__(93);
+	exports.universeProvider = __webpack_require__(91);
 	var hlImpl = __webpack_require__(5);
 	exports.getDefinitionSystemType = function (contents, ast) {
 	    var spec = "";
@@ -4677,8 +4677,8 @@ module.exports =
 	var _ = __webpack_require__(4);
 	var hlimpl = __webpack_require__(5);
 	var jsyaml = __webpack_require__(6);
-	var su = __webpack_require__(73);
-	var selector = __webpack_require__(98);
+	var su = __webpack_require__(70);
+	var selector = __webpack_require__(101);
 	var typeBuilder = __webpack_require__(66);
 	var defs = __webpack_require__(3);
 	var search = __webpack_require__(65);
@@ -4698,9 +4698,6 @@ module.exports =
 	        if (_description === void 0) { _description = ""; }
 	        this._name = _name;
 	        this._description = _description;
-	        this._issues = [];
-	        this._toClarify = [];
-	        this._itCovers = [];
 	        this._tags = [];
 	    }
 	    Described.prototype.nameId = function () {
@@ -4708,37 +4705,6 @@ module.exports =
 	    };
 	    Described.prototype.description = function () {
 	        return this._description;
-	    };
-	    Described.prototype.withIssue = function (description) {
-	        this._issues.push(description);
-	        return this;
-	    };
-	    Described.prototype.withTag = function (description) {
-	        this._tags.push(description);
-	        return this;
-	    };
-	    Described.prototype.withClarify = function (description) {
-	        this._toClarify.push(description);
-	        return this;
-	    };
-	    Described.prototype.getCoveredStuff = function () {
-	        return this._itCovers;
-	    };
-	    Described.prototype.withThisFeatureCovers = function (description) {
-	        this._itCovers.push(description);
-	        return this;
-	    };
-	    Described.prototype.withVersion = function (verstion) {
-	        this._version = verstion;
-	    };
-	    Described.prototype.version = function () {
-	        return this._version;
-	    };
-	    Described.prototype.issues = function () {
-	        return this._issues;
-	    };
-	    Described.prototype.toClarify = function () {
-	        return this._toClarify;
 	    };
 	    Described.prototype.tags = function () {
 	        return this._tags;
@@ -5660,7 +5626,10 @@ module.exports =
 	        this.runtime = c;
 	        c._isRuntime = true;
 	        c._representationOf = this;
-	        c._properties = this.allRuntimeProperties();
+	        var foundRuntimeProperties = this.allRuntimeProperties();
+	        if (foundRuntimeProperties) {
+	            foundRuntimeProperties.forEach(function (runtimeProperty) { return runtimeProperty.withDomain(c); });
+	        }
 	        c.setDeclaringNode(this.getDeclaringNode());
 	        if (this.isAssignableFrom("ObjectField")) {
 	            c._value = false;
@@ -6093,7 +6062,6 @@ module.exports =
 	        this._descriminates = false;
 	        this._selfNode = false;
 	        this._contextReq = [];
-	        this._vrestr = [];
 	        this.determinesChildValues = [];
 	    }
 	    Property.prototype.withNoDirectParse = function () {
@@ -6245,13 +6213,6 @@ module.exports =
 	    Property.prototype.withDescribes = function (a) {
 	        this._describes = a;
 	        return this;
-	    };
-	    Property.prototype.withValueRewstrinction = function (exp, message) {
-	        this._vrestr.push({ exp: exp, message: message });
-	        return this;
-	    };
-	    Property.prototype.getValueRestrictionExpressions = function () {
-	        return this._vrestr;
 	    };
 	    Property.prototype.describesAnnotation = function () {
 	        return this._describes != null;
@@ -6800,14 +6761,14 @@ module.exports =
 	var proxy = __webpack_require__(59);
 	var typeExpression = __webpack_require__(63);
 	var def = __webpack_require__(3);
-	var builder = __webpack_require__(80);
-	var linter = __webpack_require__(72);
+	var builder = __webpack_require__(78);
+	var linter = __webpack_require__(69);
 	var typeBuilder = __webpack_require__(66);
 	var search = __webpack_require__(65);
 	var universes = __webpack_require__(62);
 	var textutil = __webpack_require__(42);
-	var ModelFactory = __webpack_require__(81);
-	var ovlval = __webpack_require__(97);
+	var ModelFactory = __webpack_require__(79);
+	var ovlval = __webpack_require__(100);
 	function qName(x, context) {
 	    var dr = search.declRoot(context);
 	    var nm = x.name();
@@ -6847,7 +6808,7 @@ module.exports =
 	    }
 	    return false;
 	}
-	var loophole = __webpack_require__(79);
+	var loophole = __webpack_require__(77);
 	function evalInSandbox(code, thisArg, args) {
 	    return new loophole.Function(code).call(thisArg, args);
 	}
@@ -7756,7 +7717,7 @@ module.exports =
 	        var classname = this.definition().nameId();
 	        var definitionClasName = this.property() ? this.property().range().nameId() : "";
 	        var parentPropertyName = this.property() ? this.property().nameId() : "";
-	        result += indent + parentPropertyName + " : " + classname + "[" + definitionClasName + "]" + "\n";
+	        result += indent + classname + "[" + definitionClasName + "]" + " <--- " + parentPropertyName + "\n";
 	        this.children().forEach(function (child) {
 	            result += child.printDetails(indent + "\t");
 	        });
@@ -10246,14 +10207,16 @@ module.exports =
 	    }
 	}
 	var ASTNode = (function () {
-	    function ASTNode(_node, _unit, _parent, _anchor, _include, cacheChildren) {
+	    function ASTNode(_node, _unit, _parent, _anchor, _include, cacheChildren, _includesContents) {
 	        if (cacheChildren === void 0) { cacheChildren = false; }
+	        if (_includesContents === void 0) { _includesContents = false; }
 	        this._node = _node;
 	        this._unit = _unit;
 	        this._parent = _parent;
 	        this._anchor = _anchor;
 	        this._include = _include;
 	        this.cacheChildren = cacheChildren;
+	        this._includesContents = _includesContents;
 	        this._errors = [];
 	        if (_node == null) {
 	            console.log("null");
@@ -10264,6 +10227,12 @@ module.exports =
 	    };
 	    ASTNode.prototype.yamlNode = function () {
 	        return this._node;
+	    };
+	    ASTNode.prototype.includesContents = function () {
+	        return this._includesContents;
+	    };
+	    ASTNode.prototype.setIncludesContents = function (includesContents) {
+	        this._includesContents = includesContents;
 	    };
 	    ASTNode.prototype.gatherIncludes = function (s, inc, anc, inOneMemberMap) {
 	        var _this = this;
@@ -10830,7 +10799,11 @@ module.exports =
 	                result = [];
 	            }
 	            else {
-	                result = new ASTNode(mapping.value, this._unit, this, anc ? anc : this._anchor, inc ? inc : this._include, this.cacheChildren).children();
+	                var proxy = new ASTNode(mapping.value, this._unit, this, anc ? anc : this._anchor, inc ? inc : this._include, this.cacheChildren);
+	                result = proxy.children();
+	                if (proxy.includesContents()) {
+	                    this.setIncludesContents(true);
+	                }
 	            }
 	        }
 	        else if (kind == 3 /* SEQ */) {
@@ -10853,6 +10826,7 @@ module.exports =
 	                        //    ast = <ASTNode>toIncludingNode(ast);
 	                        //}
 	                        result = resolved.ast().children(this, null);
+	                        this.setIncludesContents(true);
 	                    }
 	                }
 	            }
@@ -11325,7 +11299,7 @@ module.exports =
 	    };
 	    ASTNode.prototype.copy = function () {
 	        var yn = copyNode(this._actualNode());
-	        return new ASTNode(yn, this._unit, this._parent, this._anchor, this._include);
+	        return new ASTNode(yn, this._unit, this._parent, this._anchor, this._include, this._includesContents);
 	    };
 	    ASTNode.prototype.nodeDefinition = function () {
 	        return getDefinitionForLowLevelNode(this);
@@ -17921,6 +17895,9 @@ module.exports =
 	    LowLevelProxyNode.prototype.nodeDefinition = function () {
 	        return impl.getDefinitionForLowLevelNode(this);
 	    };
+	    LowLevelProxyNode.prototype.includesContents = function () {
+	        return this._original.includesContents();
+	    };
 	    return LowLevelProxyNode;
 	})();
 	exports.LowLevelProxyNode = LowLevelProxyNode;
@@ -17990,7 +17967,7 @@ module.exports =
 	            var map = {};
 	            this._adoptedNodes.forEach(function (x, i) { return x.children().filter(function (y) { return !y.key(); }).forEach(function (y) {
 	                var key = _this.buildKey(y);
-	                if (i>0&&map[key]) {
+	                if (i > 0 && map[key]) {
 	                    return;
 	                }
 	                map[key] = true;
@@ -18359,6 +18336,9 @@ module.exports =
 	    };
 	    AstNode.prototype.nodeDefinition = function () {
 	        return llImpl.getDefinitionForLowLevelNode(this);
+	    };
+	    AstNode.prototype.includesContents = function () {
+	        return false;
 	    };
 	    return AstNode;
 	})();
@@ -20074,8 +20054,8 @@ module.exports =
 	var _ = __webpack_require__(4);
 	var typeExpression = __webpack_require__(64);
 	var search = __webpack_require__(65);
-	var linter = __webpack_require__(72);
-	var schema = __webpack_require__(73);
+	var linter = __webpack_require__(69);
+	var schema = __webpack_require__(70);
 	function validate(str, node, cb) {
 	    var x = str.trim();
 	    if (x.length > 0) {
@@ -21879,8 +21859,8 @@ module.exports =
 	var typeExpression = __webpack_require__(63);
 	var universes = __webpack_require__(62);
 	var hlimpl = __webpack_require__(5);
-	var ts2Def = __webpack_require__(67);
-	var linter = __webpack_require__(72);
+	var annotationHandlers = __webpack_require__(67);
+	var linter = __webpack_require__(69);
 	function templateFields(node, d) {
 	    var u = node.root().definition().universe();
 	    node.children().forEach(function (x) { return templateFields(x, d); });
@@ -22186,7 +22166,7 @@ module.exports =
 	}
 	exports.valueOf = valueOf;
 	var scriptToValidator = {};
-	var loophole = __webpack_require__(79);
+	var loophole = __webpack_require__(77);
 	function evalInSandbox(code, thisArg, args) {
 	    return new loophole.Function(code).call(thisArg, args);
 	}
@@ -22368,7 +22348,7 @@ module.exports =
 	                    name: annotationName,
 	                    arguments: args
 	                };
-	                ts2Def.recordAnnotation(result, an);
+	                annotationHandlers.recordAnnotation(result, an);
 	            }
 	        }
 	    });
@@ -22401,601 +22381,56 @@ module.exports =
 /* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	/// <reference path="../../../typings/tsd.d.ts" />
-	var tsStruct = __webpack_require__(68);
 	var def = __webpack_require__(3);
+	var khttp = __webpack_require__(68);
 	var _ = __webpack_require__(4);
-	var khttp = __webpack_require__(71);
-	var FieldWrapper = (function () {
-	    function FieldWrapper(_field, _clazz) {
-	        this._field = _field;
-	        this._clazz = _clazz;
+	function handleTypeAnnotation(a, rangeType) {
+	    if (a.name == 'MetaModel.declaresSubTypeOf') {
+	        rangeType.setExtendedTypeName(a.arguments[0]);
 	    }
-	    FieldWrapper.prototype.name = function () {
-	        return this._field.name;
-	    };
-	    FieldWrapper.prototype.range = function () {
-	        return this._clazz.getModule().typeFor(this._field.type, this._clazz);
-	    };
-	    FieldWrapper.prototype.isMultiValue = function () {
-	        return this._field.type.typeKind == 1 /* ARRAY */;
-	    };
-	    FieldWrapper.prototype.isKey = function () {
-	        return _.find(this._field.annotations, function (x) { return x.name == "MetaModel.key"; }) != null;
-	    };
-	    FieldWrapper.prototype.isSimpleValue = function () {
-	        return _.find(this._field.annotations, function (x) { return x.name == "MetaModel.value"; }) != null;
-	    };
-	    FieldWrapper.prototype.annotations = function () {
-	        return this._field.annotations;
-	    };
-	    return FieldWrapper;
-	})();
-	var FieldConstraint = (function () {
-	    function FieldConstraint(_field, _clazz) {
-	        this._field = _field;
-	        this._clazz = _clazz;
+	    if (a.name == 'MetaModel.nameAtRuntime') {
+	        rangeType.setNameAtRuntime(a.arguments[0]);
 	    }
-	    FieldConstraint.prototype.name = function () {
-	        return this._field.name;
-	    };
-	    FieldConstraint.prototype.value = function () {
-	        return this._field.valueConstraint;
-	    };
-	    return FieldConstraint;
-	})();
-	var ClassWrapper = (function () {
-	    function ClassWrapper(_clazz, mw) {
-	        this._clazz = _clazz;
-	        this.mw = mw;
+	    if (a.name == 'MetaModel.description') {
+	        rangeType.withDescription(a.arguments[0]);
 	    }
-	    ClassWrapper.prototype.typeMeta = function () {
-	        return this._clazz.annotations;
-	    };
-	    ClassWrapper.prototype.path = function () {
-	        return this.mw.path();
-	    };
-	    ClassWrapper.prototype.getModule = function () {
-	        return this.mw;
-	    };
-	    ClassWrapper.prototype.typeArgs = function () {
-	        return this._clazz.typeParameters;
-	    };
-	    ClassWrapper.prototype.typConstraints = function () {
-	        var _this = this;
-	        return this._clazz.typeParameterConstraint.map(function (x) {
-	            if (x) {
-	                return _this.mw.classForName(x);
-	            }
-	            return null;
-	        });
-	    };
-	    ClassWrapper.prototype.methods = function () {
-	        return this._clazz.methods;
-	    };
-	    ClassWrapper.prototype.name = function () {
-	        return this._clazz.name;
-	    };
-	    ClassWrapper.prototype.members = function () {
-	        var _this = this;
-	        return this._clazz.fields.filter(function (x) { return x.valueConstraint == null; }).map(function (x) { return new FieldWrapper(x, _this); });
-	    };
-	    ClassWrapper.prototype.constraints = function () {
-	        var _this = this;
-	        return this._clazz.fields.filter(function (x) { return x.valueConstraint != null; }).map(function (x) { return new FieldConstraint(x, _this); });
-	    };
-	    ClassWrapper.prototype.isSubTypeOf = function (of) {
-	        if (this == of) {
-	            return true;
-	        }
-	        var _res = false;
-	        this.getAllSuperTypes().forEach(function (x) {
-	            if (!_res) {
-	                _res = _res || x.isSubTypeOf(of);
-	            }
-	        });
-	        return _res;
-	    };
-	    ClassWrapper.prototype.getExtendsClauses = function () {
-	        return this._clazz.extends;
-	    };
-	    ClassWrapper.prototype.getSuperTypes = function () {
-	        var _this = this;
-	        var result = [];
-	        this._clazz.extends.forEach(function (x) {
-	            var tp = _this.mw.classForName(x.typeName);
-	            if (tp) {
-	                result.push(tp);
-	            }
-	        });
-	        return result;
-	    };
-	    ClassWrapper.prototype.getAllSuperTypes = function () {
-	        var _this = this;
-	        var result = [];
-	        this._clazz.extends.forEach(function (x) {
-	            var tp = _this.mw.classForName(x.typeName);
-	            if (tp) {
-	                var mm = tp.getAllSuperTypes();
-	                result.push(tp);
-	                result.concat(mm);
-	            }
-	        });
-	        return _.unique(result);
-	    };
-	    ClassWrapper.prototype.annotationOverridings = function () {
-	        return this._clazz.annotationOverridings;
-	    };
-	    return ClassWrapper;
-	})();
-	var AbstractSimpleWrapper = (function () {
-	    function AbstractSimpleWrapper() {
+	    if (a.name == 'MetaModel.inlinedTemplates') {
+	        rangeType.setInlinedTemplates(true);
 	    }
-	    AbstractSimpleWrapper.prototype.members = function () {
-	        return []; //this._clazz.members.map(x=>new FieldWrapper(x,this))
-	    };
-	    AbstractSimpleWrapper.prototype.methods = function () {
-	        return [];
-	    };
-	    AbstractSimpleWrapper.prototype.isSubTypeOf = function (of) {
-	        return false;
-	    };
-	    AbstractSimpleWrapper.prototype.getSuperTypes = function () {
-	        return [];
-	    };
-	    AbstractSimpleWrapper.prototype.getAllSuperTypes = function () {
-	        return [];
-	    };
-	    AbstractSimpleWrapper.prototype.name = function () {
-	        return null;
-	    };
-	    AbstractSimpleWrapper.prototype.constraints = function () {
-	        return [];
-	    };
-	    AbstractSimpleWrapper.prototype.typeMeta = function () {
-	        return [];
-	    };
-	    AbstractSimpleWrapper.prototype.getModule = function () {
-	        throw new Error("Not implemented");
-	    };
-	    AbstractSimpleWrapper.prototype.annotationOverridings = function () {
-	        return {};
-	    };
-	    return AbstractSimpleWrapper;
-	})();
-	var EnumWrapper = (function (_super) {
-	    __extends(EnumWrapper, _super);
-	    function EnumWrapper(_clazz, mw) {
-	        _super.call(this);
-	        this._clazz = _clazz;
-	        this.mw = mw;
+	    if (a.name == 'MetaModel.requireValue') {
+	        rangeType.withContextRequirement("" + a.arguments[0], "" + a.arguments[1]);
 	    }
-	    EnumWrapper.prototype.getModule = function () {
-	        return this.mw;
-	    };
-	    EnumWrapper.prototype.values = function () {
-	        return this._clazz.members;
-	    };
-	    EnumWrapper.prototype.name = function () {
-	        return this._clazz.name;
-	    };
-	    return EnumWrapper;
-	})(AbstractSimpleWrapper);
-	var UnionWrapper = (function (_super) {
-	    __extends(UnionWrapper, _super);
-	    function UnionWrapper(_clazz, mw) {
-	        _super.call(this);
-	        this._clazz = _clazz;
-	        this.mw = mw;
+	    if (a.name == 'MetaModel.referenceIs') {
+	        rangeType.withReferenceIs("" + a.arguments[0]);
 	    }
-	    UnionWrapper.prototype.elements = function () {
-	        return this._clazz;
-	    };
-	    UnionWrapper.prototype.name = function () {
-	        return this._clazz.map(function (x) { return x.name(); }).join("|");
-	    };
-	    return UnionWrapper;
-	})(AbstractSimpleWrapper);
-	var ModuleWrapper = (function () {
-	    function ModuleWrapper(_univers) {
-	        var _this = this;
-	        this._univers = _univers;
-	        this.name2Class = {};
-	        this.namespaceToMod = {};
-	        this._classes = [];
-	        _univers.classes.forEach(function (x) {
-	            var c = new ClassWrapper(x, _this);
-	            _this._classes.push(c);
-	            _this.name2Class[x.name] = c;
-	            if (x.moduleName) {
-	                //FIXME
-	                _this.name2Class[x.moduleName + "." + x.name] = c;
-	            }
-	        });
-	        _univers.enumDeclarations.forEach(function (x) {
-	            var c = new EnumWrapper(x, _this);
-	            _this._classes.push(c);
-	            _this.name2Class[x.name] = c;
-	        });
+	    //MetaModel.referenceIs
+	    if (a.name == 'MetaModel.actuallyExports') {
+	        rangeType.withActuallyExports("" + a.arguments[0]);
 	    }
-	    ModuleWrapper.prototype.typeFor = function (t, ow) {
-	        var _this = this;
-	        switch (t.typeKind) {
-	            case 0 /* BASIC */:
-	                var bt = t;
-	                var typeName = bt.typeName;
-	                if (typeName == "string") {
-	                    typeName = "StringType";
-	                }
-	                if (typeName == "number") {
-	                    typeName = "NumberType";
-	                }
-	                if (typeName == "boolean") {
-	                    typeName = "BooleanType";
-	                }
-	                var ti = _.indexOf(ow.typeArgs(), typeName);
-	                if (ti != -1) {
-	                    var cnst = ow.typConstraints()[ti];
-	                    if (!cnst) {
-	                        return this.classForName("ValueType");
-	                    }
-	                    return cnst;
-	                }
-	                return this.classForName(typeName);
-	            case 2 /* UNION */:
-	                var ut = t;
-	                return new UnionWrapper(ut.options.map(function (x) { return _this.typeFor(x, ow); }), this);
-	            case 1 /* ARRAY */:
-	                var at = t;
-	                return this.typeFor(at.base, ow);
-	        }
-	        return null;
-	    };
-	    ModuleWrapper.prototype.path = function () {
-	        return this._univers.name;
-	    };
-	    ModuleWrapper.prototype.classForName = function (name, stack) {
-	        var _this = this;
-	        if (stack === void 0) { stack = {}; }
-	        if (!name) {
-	            return null;
-	        }
-	        var result = this.name2Class[name];
-	        if (!result && !stack[this.path()]) {
-	            stack[this.path()] = this;
-	            var nmsp = name.indexOf(".");
-	            if (nmsp != -1) {
-	                var actualMod = this.namespaceToMod[name.substring(0, nmsp)];
-	                if (!actualMod) {
-	                    throw new Error();
-	                }
-	                return actualMod.classForName(name.substring(nmsp + 1), stack);
-	            }
-	            Object.keys(this.namespaceToMod).forEach(function (x) {
-	                if (x != "MetaModel") {
-	                    var nm = _this.namespaceToMod[x].classForName(name, stack);
-	                    if (nm) {
-	                        result = nm;
-	                    }
-	                }
-	            });
-	        }
-	        return result;
-	    };
-	    ModuleWrapper.prototype.classes = function () {
-	        return this._classes;
-	    };
-	    return ModuleWrapper;
-	})();
-	var wrapperToType = function (range, u) {
-	    if (range) {
-	        var rangeType;
-	        if (range instanceof UnionWrapper) {
-	            var uw = range;
-	            rangeType = new def.UnionType(uw.elements().map(function (x) { return wrapperToType(x, u); }));
-	        }
-	        else {
-	            rangeType = u.type(range.name());
-	        }
-	        return rangeType;
+	    if (a.name == 'MetaModel.convertsToGlobalOfType') {
+	        rangeType.withConvertsToGlobal("" + a.arguments[0]);
 	    }
-	    else {
-	        return;
+	    if (a.name == 'MetaModel.allowAny') {
+	        rangeType.withAllowAny();
 	    }
-	};
-	var registerClasses = function (m, u) {
-	    var valueType = m.classForName("ValueType");
-	    m.classes().forEach(function (x) {
-	        if (x instanceof EnumWrapper) {
-	            var et = new def.EnumType(x.name(), u, x.getModule().path());
-	            et.values = x.values();
-	            u.register(et);
-	            return;
-	        }
-	        if (x.isSubTypeOf(valueType)) {
-	            var st = x.getAllSuperTypes();
-	            st.push(x);
-	            var refTo = null;
-	            var scriptingHook = null;
-	            st.forEach(function (t) {
-	                var cs = t.getExtendsClauses();
-	                cs.forEach(function (z) {
-	                    if (z.typeKind == 0 /* BASIC */) {
-	                        var bas = z;
-	                        if (bas.basicName == 'Reference') {
-	                            var of = bas.typeArguments[0];
-	                            refTo = of.typeName;
-	                        }
-	                        if (bas.basicName == 'ScriptingHook') {
-	                            var of = bas.typeArguments[0];
-	                            scriptingHook = of.basicName;
-	                        }
-	                    }
-	                });
-	            });
-	            if (refTo) {
-	                //console.log("New reference type" + x.name())
-	                var ref = new def.ReferenceType(x.name(), x.getModule().path(), refTo, u);
-	                u.register(ref);
-	            }
-	            if (scriptingHook) {
-	                //console.log("New scripting hook " + x.name())
-	                var sc = new def.ScriptingHookType(x.name(), x.getModule().path(), scriptingHook, u);
-	                u.register(sc);
-	            }
-	            var vt = new def.ValueType(x.name(), u, x.getModule().path());
-	            u.register(vt);
-	        }
-	        else {
-	            var gt = new def.NodeClass(x.name(), u, x.getModule().path());
-	            u.register(gt);
-	        }
-	    });
-	};
-	var registerHierarchy = function (m, u) {
-	    m.classes().forEach(function (x) {
-	        x.getSuperTypes().forEach(function (y) {
-	            var tp0 = u.type(x.name());
-	            var tp1 = u.type(y.name());
-	            if (!tp0 || !tp1) {
-	                var tp0 = u.type(x.name());
-	                var tp1 = u.type(y.name());
-	                throw new Error();
-	            }
-	            u.registerSuperClass(tp0, tp1);
-	        });
-	    });
-	};
-	var registerEverything = function (m, u) {
-	    m.classes().forEach(function (x) {
-	        var tp = u.type(x.name());
-	        x.typeMeta().forEach(function (a) {
-	            if (a.name == 'MetaModel.declaresSubTypeOf') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.setExtendedTypeName(a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.nameAtRuntime') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.setNameAtRuntime(a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.description') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withDescription(a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.inlinedTemplates') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.setInlinedTemplates(true);
-	            }
-	            if (a.name == 'MetaModel.requireValue') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withContextRequirement("" + a.arguments[0], "" + a.arguments[1]);
-	            }
-	            if (a.name == 'MetaModel.referenceIs') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withReferenceIs("" + a.arguments[0]);
-	            }
-	            //MetaModel.referenceIs
-	            if (a.name == 'MetaModel.actuallyExports') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withActuallyExports("" + a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.convertsToGlobalOfType') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withConvertsToGlobal("" + a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.allowAny') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withAllowAny();
-	            }
-	            if (a.name == 'MetaModel.allowQuestion') {
-	                var rangeType = wrapperToType(x, u);
-	                rangeType.withAllowQuestion();
-	            }
-	            if (a.name == 'MetaModel.functionalDescriminator') {
-	                var r1 = wrapperToType(x, u);
-	                r1.withFunctionalDescriminator("" + a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.alias') {
-	                var at = wrapperToType(x, u);
-	                at.addAlias("" + a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.consumesRefs') {
-	                var at = wrapperToType(x, u);
-	                at.setConsumesRefs(true);
-	            }
-	            if (a.name == 'MetaModel.canInherit') {
-	                var nc = wrapperToType(x, u);
-	                nc.withCanInherit("" + a.arguments[0]);
-	            }
-	            if (a.name == 'MetaModel.definingPropertyIsEnough') {
-	                var nc = wrapperToType(x, u);
-	                nc.definingPropertyIsEnough("" + a.arguments[0]);
-	            }
-	        });
-	        x.members().forEach(function (x) {
-	            var range = x.range();
-	            var rangeType = wrapperToType(range, u);
-	            if (rangeType == null) {
-	                console.log(range + ":" + x.name());
-	            }
-	            createProp(x, tp, rangeType);
-	        });
-	        Object.keys(x.annotationOverridings()).forEach(function (fName) {
-	            var arr = [].concat(x.annotationOverridings()[fName]);
-	            var map = {};
-	            arr.forEach(function (ann) { return map[ann.name] = true; });
-	            var targetField;
-	            var stArr = x.getSuperTypes();
-	            var stMap = {};
-	            for (var i = 0; i < stArr.length; i++) {
-	                var st = stArr[i];
-	                if (stMap[st.name()]) {
-	                    continue;
-	                }
-	                stMap[st.name()] = true;
-	                st.getSuperTypes().forEach(function (sst) { return stArr.push(sst); });
-	                var arr1 = st.annotationOverridings()[fName];
-	                if (arr1) {
-	                    arr1.filter(function (ann) { return !map[ann.name]; }).forEach(function (ann) {
-	                        map[ann.name] = true;
-	                        arr.push(ann);
-	                    });
-	                }
-	                else {
-	                    var stFields = st.members();
-	                    for (var j = 0; j < stFields.length; j++) {
-	                        var stField = stFields[j];
-	                        if (stField.name() == fName) {
-	                            targetField = stField;
-	                            break;
-	                        }
-	                    }
-	                }
-	                if (targetField) {
-	                    var arr2 = targetField.annotations();
-	                    arr2.filter(function (ann) { return !map[ann.name]; }).forEach(function (ann) {
-	                        map[ann.name] = true;
-	                        arr.push(ann);
-	                    });
-	                    break;
-	                }
-	            }
-	            if (!targetField) {
-	                return;
-	            }
-	            var range = targetField.range();
-	            var rangeType = wrapperToType(range, u);
-	            if (rangeType == null) {
-	                console.log(range + ":" + x.name());
-	            }
-	            createProp(targetField, tp, rangeType, arr);
-	        });
-	        x.methods().forEach(function (x) {
-	            var at = tp;
-	            at.addMethod(x.name, x.text);
-	            //console.log(x.name);
-	            //createMember(x, <def.AbstractType>tp, rangeType)
-	        });
-	        x.constraints().forEach(function (x) {
-	            if (x.value().isCallConstraint) {
-	                throw new Error();
-	            }
-	            var mm = x.value();
-	            tp.addRequirement(x.name(), "" + mm.value);
-	        });
-	    });
-	    u.types().forEach(function (x) {
-	        if (x instanceof def.AbstractType) {
-	            var at = x;
-	            at.getAliases().forEach(function (y) { return u.registerAlias(y, at); });
-	        }
-	    });
-	};
-	var processModule = function (ts, u, used, declared) {
-	    if (ts.name.indexOf("metamodel.ts") != -1) {
-	        return; //FIXME
+	    if (a.name == 'MetaModel.allowQuestion') {
+	        rangeType.withAllowQuestion();
 	    }
-	    if (declared[ts.name]) {
-	        return declared[ts.name];
+	    if (a.name == 'MetaModel.alias') {
+	        rangeType.addAlias("" + a.arguments[0]);
 	    }
-	    var m = new ModuleWrapper(ts);
-	    used[ts.name] = m;
-	    declared[ts.name] = m;
-	    Object.keys(ts.imports).forEach(function (x) {
-	        var pMod = ts.imports[x];
-	        if (used[pMod.name]) {
-	            m.namespaceToMod[x] = used[pMod.name];
-	            return;
-	        }
-	        var vMod = processModule(pMod, u, used, declared);
-	        m.namespaceToMod[x] = vMod;
-	    });
-	    used[ts.name] = null;
-	    return m;
-	};
-	function toDefSystem(ts) {
-	    var u = new def.Universe("");
-	    var c = {};
-	    processModule(ts, u, {}, c);
-	    Object.keys(c).forEach(function (x) {
-	        registerClasses(c[x], u);
-	    });
-	    Object.keys(c).forEach(function (x) {
-	        registerHierarchy(c[x], u);
-	    });
-	    Object.keys(c).forEach(function (x) {
-	        registerEverything(c[x], u);
-	    });
-	    u.types().forEach(function (x) {
-	        if (x instanceof def.NodeClass) {
-	            var cl = x;
-	            cl.properties().forEach(function (y) {
-	                var t = y.range();
-	                if (!t.isValueType()) {
-	                    t.properties().forEach(function (p0) {
-	                        if (p0.isKey()) {
-	                            var kp = p0.keyPrefix();
-	                            if (kp) {
-	                                y.withKeyRestriction(kp);
-	                                y.merge();
-	                            }
-	                            var eo = p0.getEnumOptions();
-	                            if (eo) {
-	                                y.withEnumOptions(eo);
-	                                y.merge();
-	                            }
-	                        }
-	                    });
-	                }
-	            });
-	            if (cl.isGlobalDeclaration()) {
-	                if (cl.getActuallyExports() && cl.getActuallyExports() != "$self") {
-	                    var tp = cl.property(cl.getActuallyExports()).range();
-	                    if (tp.isValueType()) {
-	                        var vt = tp;
-	                        vt.setGloballyDeclaredBy(cl);
-	                    }
-	                }
-	                if (cl.getConvertsToGlobal()) {
-	                    var tp = u.getType(cl.getConvertsToGlobal());
-	                    if (tp.isValueType()) {
-	                        var vt = tp;
-	                        vt.setGloballyDeclaredBy(cl);
-	                    }
-	                }
-	            }
-	        }
-	    });
-	    return u;
+	    if (a.name == 'MetaModel.consumesRefs') {
+	        rangeType.setConsumesRefs(true);
+	    }
+	    if (a.name == 'MetaModel.canInherit') {
+	        rangeType.withCanInherit("" + a.arguments[0]);
+	    }
+	    if (a.name == 'MetaModel.definingPropertyIsEnough') {
+	        rangeType.definingPropertyIsEnough("" + a.arguments[0]);
+	    }
 	}
-	exports.toDefSystem = toDefSystem;
-	var annotationHandlers = {
+	exports.handleTypeAnnotation = handleTypeAnnotation;
+	exports.annotationHandlers = {
 	    key: function (a, f) {
 	        f.withFromParentKey();
 	        f.withKey(true);
@@ -23015,15 +22450,12 @@ module.exports =
 	    },
 	    oneOf: function (a, f) {
 	        f.withEnumOptions(a.arguments[0]);
-	        //f.withKeyRestriction(<string>a.arguments[0])
 	    },
 	    oftenKeys: function (a, f) {
 	        f.withOftenKeys(a.arguments[0]);
-	        //f.withKeyRestriction(<string>a.arguments[0])
 	    },
 	    embeddedInMaps: function (a, f) {
 	        f.withEmbedMap();
-	        //f.withKeyRestriction(<string>a.arguments[0])
 	    },
 	    system: function (a, f) {
 	        f.withSystem(true);
@@ -23257,32 +22689,11 @@ module.exports =
 	        //f.withReferenceParameters();
 	        //f.withDescriminating(true)
 	    },
-	    issue: function (a, f) {
-	        //f.withReferenceParameters();
-	        //f.withDescriminating(true)
-	        f.withIssue("" + a.arguments[0]);
-	    },
 	    inherited: function (a, f) {
 	        f.withInherited(true);
 	    },
-	    version: function (a, f) {
-	        f.withVersion("" + a.arguments[0]);
-	    },
-	    needsClarification: function (a, f) {
-	        //f.withReferenceParameters();
-	        //f.withDescriminating(true)
-	        f.withClarify("" + a.arguments[0]);
-	    },
-	    thisFeatureCovers: function (a, f) {
-	        //f.withReferenceParameters();
-	        //f.withDescriminating(true)
-	        f.withThisFeatureCovers("" + a.arguments[0]);
-	    },
 	    selfNode: function (a, f) {
 	        f.withSelfNode();
-	    },
-	    valueRestriction: function (a, f) {
-	        f.withValueRewstrinction("" + a.arguments[0], "" + a.arguments[1]);
 	    },
 	    grammarTokenKind: function (a, f) {
 	        f.withPropertyGrammarType("" + a.arguments[0]);
@@ -23312,777 +22723,19 @@ module.exports =
 	    }
 	};
 	function recordAnnotation(p, a) {
-	    annotationHandlers[a.name](a, p);
+	    exports.annotationHandlers[a.name](a, p);
 	}
 	exports.recordAnnotation = recordAnnotation;
-	var processAnnotations = function (x, p, annotations) {
-	    if (!annotations) {
-	        annotations = x.annotations();
-	    }
-	    annotations.forEach(function (x) {
-	        var nm = x.name.substring(x.name.lastIndexOf(".") + 1);
-	        if (!annotationHandlers[nm]) {
-	            console.log("Can not find handler for:");
-	        }
-	        annotationHandlers[nm](x, p);
-	    });
-	};
-	function createProp(x, clazz, t, annotations) {
-	    var p = def.prop(x.name(), "", clazz, t);
-	    if (x.isMultiValue()) {
-	        p.withMultiValue(true);
-	    }
-	    p.unmerge();
-	    if (!t.isValueType()) {
-	        t.properties().forEach(function (p0) {
-	            if (p0.isKey()) {
-	                var kp = p0.keyPrefix();
-	                if (kp) {
-	                    p.withKeyRestriction(kp);
-	                    p.merge();
-	                }
-	                var eo = p0.getEnumOptions();
-	                if (eo) {
-	                    p.withEnumOptions(eo);
-	                    p.merge();
-	                }
-	            }
-	        });
-	    }
-	    processAnnotations(x, p, annotations);
-	}
 
 
 /***/ },
 /* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Created by kor on 08/05/15.
-	 */
-	/// <reference path="../../../typings/tsd.d.ts" />
-	var ts = __webpack_require__(69);
-	var tsm = __webpack_require__(70);
-	var pth = __webpack_require__(9);
-	var fs = __webpack_require__(10);
-	function parse(content) {
-	    return ts.createSourceFile("sample.ts", content, 0 /* ES3 */, "1.4.1", true);
-	}
-	var fld = tsm.Matching.field();
-	var clazzMatcher = tsm.Matching.classDeclaration();
-	var EnumDeclaration = (function () {
-	    function EnumDeclaration() {
-	    }
-	    return EnumDeclaration;
-	})();
-	exports.EnumDeclaration = EnumDeclaration;
-	(function (TypeKind) {
-	    TypeKind[TypeKind["BASIC"] = 0] = "BASIC";
-	    TypeKind[TypeKind["ARRAY"] = 1] = "ARRAY";
-	    TypeKind[TypeKind["UNION"] = 2] = "UNION";
-	})(exports.TypeKind || (exports.TypeKind = {}));
-	var TypeKind = exports.TypeKind;
-	function classDecl(name, isInteface) {
-	    return {
-	        name: name,
-	        methods: [],
-	        typeParameters: [],
-	        typeParameterConstraint: [],
-	        implements: [],
-	        fields: [],
-	        isInterface: isInteface,
-	        annotations: [],
-	        extends: [],
-	        moduleName: null,
-	        annotationOverridings: {}
-	    };
-	}
-	exports.classDecl = classDecl;
-	function parseStruct(content, modules, mpth) {
-	    var mod = parse(content);
-	    var module = { classes: [], aliases: [], enumDeclarations: [], imports: {}, name: mpth };
-	    modules[mpth] = module;
-	    var currentModule = null;
-	    tsm.Matching.visit(mod, function (x) {
-	        if (x.kind == 189 /* ModuleDeclaration */) {
-	            var cmod = x;
-	            currentModule = cmod.name.text;
-	        }
-	        if (x.kind == 191 /* ImportDeclaration */) {
-	            var imp = x;
-	            var namespace = imp.name.text;
-	            if (namespace == "RamlWrapper") {
-	                return;
-	            }
-	            if (imp.moduleReference.kind != 193 /* ExternalModuleReference */) {
-	                throw new Error("Only external module references are supported now");
-	            }
-	            var path = imp.moduleReference;
-	            if (path.expression.kind != 7 /* StringLiteral */) {
-	                throw new Error("Only string literals are supported in module references ");
-	            }
-	            var literal = path.expression;
-	            var importPath = literal.text;
-	            var absPath = pth.resolve(pth.dirname(mpth) + "/", importPath) + ".ts";
-	            if (!fs.existsSync(absPath)) {
-	                throw new Error("Path " + importPath + " resolve to " + absPath + "do not exists");
-	            }
-	            if (!modules[absPath]) {
-	                var cnt = fs.readFileSync(absPath).toString();
-	                var mod = parseStruct(cnt, modules, absPath);
-	            }
-	            module.imports[namespace] = modules[absPath];
-	        }
-	        if (x.kind == 187 /* TypeAliasDeclaration */) {
-	            var u = x;
-	            var aliasName = u.name.text;
-	            var type = buildType(u.type, mpth);
-	            module.aliases.push({ name: aliasName, type: type });
-	        }
-	        if (x.kind == 188 /* EnumDeclaration */) {
-	            var e = x;
-	            var members = [];
-	            e.members.forEach(function (y) {
-	                members.push(y['name']['text']);
-	            });
-	            module.enumDeclarations.push({ name: e.name.text, members: members });
-	        }
-	        var isInterface = x.kind == 186 /* InterfaceDeclaration */;
-	        var isClass = x.kind == 185 /* ClassDeclaration */;
-	        if (!isInterface && !isClass) {
-	            return;
-	        }
-	        var c = x;
-	        if (c) {
-	            var fields = {};
-	            var clazz = classDecl(c.name.text, isInterface);
-	            clazz.moduleName = currentModule;
-	            module.classes.push(clazz);
-	            c.members.forEach(function (x) {
-	                if (x.kind == 125 /* Method */) {
-	                    var md = x;
-	                    var aliasName = md.name.text;
-	                    var text = content.substring(md.pos, md.end);
-	                    clazz.methods.push({ name: aliasName, start: md.pos, end: md.end, text: text });
-	                }
-	                var field = fld.doMatch(x);
-	                if (field) {
-	                    var f = buildField(field, mpth);
-	                    if (f.name == '$') {
-	                        clazz.annotations = f.annotations;
-	                    }
-	                    else if (f.name.charAt(0) != '$' || f.name == '$ref') {
-	                        fields[f.name] = f;
-	                        clazz.fields.push(f);
-	                    }
-	                    else {
-	                        var targetField = f.name.substr(1);
-	                        var of = fields[targetField];
-	                        if (!of) {
-	                            if (f.name != '$$') {
-	                                //console.log('Overriding annotations for field:'+targetField);
-	                                var overridings = clazz.annotationOverridings[targetField];
-	                                if (!overridings) {
-	                                    overridings = [];
-	                                }
-	                                clazz.annotationOverridings[targetField] = overridings.concat(f.annotations);
-	                            }
-	                        }
-	                        else {
-	                            of.annotations = f.annotations;
-	                        }
-	                    }
-	                }
-	            });
-	            if (c.typeParameters) {
-	                c.typeParameters.forEach(function (x) {
-	                    clazz.typeParameters.push(x.name['text']);
-	                    if (x.constraint == null) {
-	                        clazz.typeParameterConstraint.push(null);
-	                    }
-	                    else {
-	                        clazz.typeParameterConstraint.push(x.constraint['typeName']['text']);
-	                    }
-	                });
-	            }
-	            if (c.heritageClauses) {
-	                c.heritageClauses.forEach(function (x) {
-	                    x.types.forEach(function (y) {
-	                        if (x.token == 77 /* ExtendsKeyword */) {
-	                            clazz.extends.push(buildType(y, mpth));
-	                        }
-	                        else if (x.token == 100 /* ImplementsKeyword */) {
-	                            clazz.implements.push(buildType(y, mpth));
-	                        }
-	                        else {
-	                            throw new Error("Unknown token class heritage");
-	                        }
-	                    });
-	                });
-	            }
-	            return tsm.Matching.SKIP;
-	        }
-	    });
-	    return module;
-	}
-	exports.parseStruct = parseStruct;
-	function buildField(f, path) {
-	    return {
-	        name: f.name['text'],
-	        type: buildType(f.type, path),
-	        annotations: f.name['text'].charAt(0) == '$' ? buildInitializer(f.initializer) : [],
-	        valueConstraint: f.name['text'].charAt(0) != '$' ? buildConstraint(f.initializer) : null,
-	        optional: f.questionToken != null
-	    };
-	}
-	function buildConstraint(e) {
-	    if (e == null) {
-	        return null;
-	    }
-	    if (e.kind == 145 /* CallExpression */) {
-	        return {
-	            isCallConstraint: true,
-	            value: buildAnnotation(e)
-	        };
-	    }
-	    else {
-	        return {
-	            isCallConstraint: false,
-	            value: parseArg(e)
-	        };
-	    }
-	}
-	function buildInitializer(i) {
-	    if (i == null) {
-	        return [];
-	    }
-	    if (i.kind == 141 /* ArrayLiteralExpression */) {
-	        var arr = i;
-	        var annotations = [];
-	        arr.elements.forEach(function (x) {
-	            annotations.push(buildAnnotation(x));
-	        });
-	        return annotations;
-	    }
-	    else {
-	        throw new Error("Only Array Literals supported now");
-	    }
-	}
-	function buildAnnotation(e) {
-	    if (e.kind == 145 /* CallExpression */) {
-	        var call = e;
-	        var name = parseName(call.expression);
-	        var a = {
-	            name: name,
-	            arguments: []
-	        };
-	        call.arguments.forEach(function (x) {
-	            a.arguments.push(parseArg(x));
-	        });
-	        return a;
-	    }
-	    else {
-	        throw new Error("Only call expressions may be annotations");
-	    }
-	}
-	function parseArg(n) {
-	    if (n.kind == 7 /* StringLiteral */) {
-	        var l = n;
-	        return l.text;
-	    }
-	    if (n.kind == 9 /* NoSubstitutionTemplateLiteral */) {
-	        var ls = n;
-	        return ls.text;
-	    }
-	    if (n.kind == 141 /* ArrayLiteralExpression */) {
-	        var arr = n;
-	        var annotations = [];
-	        arr.elements.forEach(function (x) {
-	            annotations.push(parseArg(x));
-	        });
-	        return annotations;
-	    }
-	    if (n.kind == 93 /* TrueKeyword */) {
-	        return true;
-	    }
-	    if (n.kind == 143 /* PropertyAccessExpression */) {
-	        var pa = n;
-	        return parseArg(pa.expression) + "." + parseArg(pa.name);
-	    }
-	    if (n.kind == 63 /* Identifier */) {
-	        var ident = n;
-	        return ident.text;
-	    }
-	    if (n.kind == 78 /* FalseKeyword */) {
-	        return false;
-	    }
-	    if (n.kind == 6 /* NumericLiteral */) {
-	        var nl = n;
-	        return nl.text;
-	    }
-	    if (n.kind == 157 /* BinaryExpression */) {
-	        var bin = n;
-	        if (bin.operator = 32 /* PlusToken */) {
-	            return parseArg(bin.left) + parseArg(bin.right);
-	        }
-	    }
-	    throw new Error("Unknown value in annotation");
-	}
-	function parseName(n) {
-	    if (n.kind == 63 /* Identifier */) {
-	        return n['text'];
-	    }
-	    if (n.kind == 143 /* PropertyAccessExpression */) {
-	        var m = n;
-	        return parseName(m.expression) + "." + parseName(m.name);
-	    }
-	    throw new Error("Only simple identifiers are supported now");
-	}
-	function basicType(n, path) {
-	    var namespaceIndex = n.indexOf(".");
-	    var namespace = namespaceIndex != -1 ? n.substring(0, namespaceIndex) : "";
-	    var basicName = namespaceIndex != -1 ? n.substring(namespaceIndex + 1) : n;
-	    return { typeName: n, nameSpace: namespace, basicName: basicName, typeKind: 0 /* BASIC */, typeArguments: [], modulePath: path };
-	}
-	function arrayType(b) {
-	    return { base: b, typeKind: 1 /* ARRAY */ };
-	}
-	function unionType(b) {
-	    return { options: b, typeKind: 2 /* UNION */ };
-	}
-	function buildType(t, path) {
-	    if (t == null) {
-	        return null;
-	    }
-	    if (t.kind == 118 /* StringKeyword */) {
-	        return basicType("string", null);
-	    }
-	    if (t.kind == 116 /* NumberKeyword */) {
-	        return basicType("number", null);
-	    }
-	    if (t.kind == 110 /* BooleanKeyword */) {
-	        return basicType("boolean", null);
-	    }
-	    if (t.kind == 109 /* AnyKeyword */) {
-	        return basicType("any", null);
-	    }
-	    if (t.kind == 132 /* TypeReference */) {
-	        var tr = t;
-	        var res = basicType(parseQualified(tr.typeName), path);
-	        if (tr.typeArguments) {
-	            tr.typeArguments.forEach(function (x) {
-	                res.typeArguments.push(buildType(x, path));
-	            });
-	        }
-	        return res;
-	    }
-	    if (t.kind == 137 /* ArrayType */) {
-	        var q = t;
-	        return arrayType(buildType(q.elementType, path));
-	    }
-	    if (t.kind == 139 /* UnionType */) {
-	        var ut = t;
-	        return unionType(ut.types.map(function (x) { return buildType(x, path); }));
-	    }
-	    throw new Error("Case not supported" + t.kind);
-	}
-	exports.buildType = buildType;
-	function parseQualified(n) {
-	    if (n.kind == 63 /* Identifier */) {
-	        return n['text'];
-	    }
-	    else {
-	        var q = n;
-	        return parseQualified(q.left) + "." + parseQualified(q.right);
-	    }
-	}
-
-
-/***/ },
-/* 69 */
-/***/ function(module, exports) {
-
-	module.exports = {};
-
-/***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	/// <reference path="../../typings/tsd.d.ts" />
-	var ts = __webpack_require__(69);
-	/***
-	 * This module is designed to match simple patterns on Typescript AST Tree
-	 * it functionality mirrors jsASTMatchers which allows you to match on jsAST
-	 */
-	//TODO RENAME TO MATCHERS
-	var Matching;
-	(function (Matching) {
-	    /**
-	     * do match checks the node type and if node type is ok
-	     * calls match function otherwise it returns null
-	     */
-	    var BasicMatcher = (function () {
-	        function BasicMatcher() {
-	        }
-	        BasicMatcher.prototype.match = function (node) {
-	            throw new Error();
-	        };
-	        BasicMatcher.prototype.nodeType = function () {
-	            throw new Error();
-	        };
-	        BasicMatcher.prototype.doMatch = function (n) {
-	            if (!n) {
-	                return null;
-	            }
-	            if (this.nodeType() == n.kind) {
-	                return this.match(n);
-	            }
-	        };
-	        return BasicMatcher;
-	    })();
-	    var ClassDeclarationMatcher = (function (_super) {
-	        __extends(ClassDeclarationMatcher, _super);
-	        function ClassDeclarationMatcher() {
-	            _super.call(this);
-	        }
-	        ClassDeclarationMatcher.prototype.match = function (node) {
-	            return node;
-	        };
-	        ClassDeclarationMatcher.prototype.nodeType = function () {
-	            return 185 /* ClassDeclaration */;
-	        };
-	        return ClassDeclarationMatcher;
-	    })(BasicMatcher);
-	    var FieldMatcher = (function (_super) {
-	        __extends(FieldMatcher, _super);
-	        function FieldMatcher() {
-	            _super.apply(this, arguments);
-	        }
-	        FieldMatcher.prototype.match = function (node) {
-	            return node;
-	        };
-	        FieldMatcher.prototype.nodeType = function () {
-	            return 124 /* Property */;
-	        };
-	        return FieldMatcher;
-	    })(BasicMatcher);
-	    var AssignmentExpressionMatcher = (function (_super) {
-	        __extends(AssignmentExpressionMatcher, _super);
-	        function AssignmentExpressionMatcher(left, right, tr) {
-	            _super.call(this);
-	            this.left = left;
-	            this.right = right;
-	            this.tr = tr;
-	        }
-	        AssignmentExpressionMatcher.prototype.match = function (node) {
-	            if (node.operator == 51 /* EqualsToken */) {
-	                if (this.left.doMatch(node.left) && this.right.doMatch(node.right)) {
-	                    return this.tr(node);
-	                }
-	            }
-	            return null;
-	        };
-	        AssignmentExpressionMatcher.prototype.nodeType = function () {
-	            return 157 /* BinaryExpression */;
-	        };
-	        return AssignmentExpressionMatcher;
-	    })(BasicMatcher);
-	    var VariableDeclarationMatcher = (function (_super) {
-	        __extends(VariableDeclarationMatcher, _super);
-	        function VariableDeclarationMatcher(left, right, tr) {
-	            _super.call(this);
-	            this.left = left;
-	            this.right = right;
-	            this.tr = tr;
-	        }
-	        VariableDeclarationMatcher.prototype.match = function (node) {
-	            if (this.left.doMatch(node.name) && this.right.doMatch(node.initializer)) {
-	                return this.tr(node);
-	            }
-	        };
-	        VariableDeclarationMatcher.prototype.nodeType = function () {
-	            return 183 /* VariableDeclaration */;
-	        };
-	        return VariableDeclarationMatcher;
-	    })(BasicMatcher);
-	    var ExpressionStatementMatcher = (function (_super) {
-	        __extends(ExpressionStatementMatcher, _super);
-	        function ExpressionStatementMatcher(expression, tr) {
-	            _super.call(this);
-	            this.expression = expression;
-	            this.tr = tr;
-	        }
-	        ExpressionStatementMatcher.prototype.match = function (node) {
-	            var exp = this.expression.doMatch(node.expression);
-	            if (exp) {
-	                var v = this.tr(node.expression);
-	                if (v == true) {
-	                    return exp;
-	                }
-	                return v;
-	            }
-	            return null;
-	        };
-	        ExpressionStatementMatcher.prototype.nodeType = function () {
-	            return 166 /* ExpressionStatement */;
-	        };
-	        return ExpressionStatementMatcher;
-	    })(BasicMatcher);
-	    var SimpleIdentMatcher = (function (_super) {
-	        __extends(SimpleIdentMatcher, _super);
-	        function SimpleIdentMatcher(val) {
-	            _super.call(this);
-	            this.val = val;
-	        }
-	        SimpleIdentMatcher.prototype.match = function (node) {
-	            if (node.text == this.val) {
-	                return true;
-	            }
-	            return null;
-	        };
-	        SimpleIdentMatcher.prototype.nodeType = function () {
-	            return 63 /* Identifier */;
-	        };
-	        return SimpleIdentMatcher;
-	    })(BasicMatcher);
-	    var TrueMatcher = (function () {
-	        function TrueMatcher() {
-	        }
-	        TrueMatcher.prototype.doMatch = function (node) {
-	            return true;
-	        };
-	        TrueMatcher.prototype.nodeType = function () {
-	            return null;
-	        };
-	        return TrueMatcher;
-	    })();
-	    var CallExpressionMatcher = (function (_super) {
-	        __extends(CallExpressionMatcher, _super);
-	        function CallExpressionMatcher(calleeMatcher, tr) {
-	            _super.call(this);
-	            this.calleeMatcher = calleeMatcher;
-	            this.tr = tr;
-	        }
-	        CallExpressionMatcher.prototype.match = function (node) {
-	            if (this.calleeMatcher.doMatch(node.expression)) {
-	                return this.tr(node);
-	            }
-	            return null;
-	        };
-	        CallExpressionMatcher.prototype.nodeType = function () {
-	            return 145 /* CallExpression */;
-	        };
-	        return CallExpressionMatcher;
-	    })(BasicMatcher);
-	    Matching.SKIP = {};
-	    function visit(n, cb) {
-	        var r0 = cb(n);
-	        if (r0) {
-	            if (r0 == Matching.SKIP) {
-	                return null;
-	            }
-	            return r0;
-	        }
-	        var r = ts.forEachChild(n, function (x) {
-	            var r = visit(x, cb);
-	            if (r) {
-	                return r;
-	            }
-	        });
-	        return r;
-	    }
-	    Matching.visit = visit;
-	    var PathNode = (function () {
-	        function PathNode(name, _base) {
-	            this._base = _base;
-	            this.arguments = null;
-	            this.name = name;
-	        }
-	        return PathNode;
-	    })();
-	    var CallPath = (function () {
-	        function CallPath(base, _baseNode) {
-	            this._baseNode = _baseNode;
-	            this.path = [];
-	            this.base = base;
-	        }
-	        CallPath.prototype.start = function () {
-	            return this._baseNode.pos;
-	        };
-	        CallPath.prototype.startLocation = function () {
-	            return this._baseNode.getSourceFile().getLineAndCharacterFromPosition(this.start());
-	        };
-	        CallPath.prototype.endLocation = function () {
-	            return this._baseNode.getSourceFile().getLineAndCharacterFromPosition(this.end());
-	        };
-	        CallPath.prototype.end = function () {
-	            var ce = this.path[this.path.length - 1]._callExpression;
-	            if (ce) {
-	                return ce.end;
-	            }
-	            return this.start();
-	        };
-	        CallPath.prototype.toString = function () {
-	            return this.path.map(function (x) { return x.name; }).join(".");
-	        };
-	        return CallPath;
-	    })();
-	    Matching.CallPath = CallPath;
-	    var MemberExpressionMatcher = (function (_super) {
-	        __extends(MemberExpressionMatcher, _super);
-	        function MemberExpressionMatcher(objectMatcher, propertyMatcher, tr) {
-	            _super.call(this);
-	            this.objectMatcher = objectMatcher;
-	            this.propertyMatcher = propertyMatcher;
-	            this.tr = tr;
-	        }
-	        MemberExpressionMatcher.prototype.match = function (node) {
-	            if (this.objectMatcher.doMatch(node.expression) && this.propertyMatcher.doMatch(node.name)) {
-	                return this.tr(node);
-	            }
-	            return null;
-	        };
-	        MemberExpressionMatcher.prototype.nodeType = function () {
-	            return 143 /* PropertyAccessExpression */;
-	        };
-	        return MemberExpressionMatcher;
-	    })(BasicMatcher);
-	    function memberFromExp(objMatcher, tr) {
-	        if (tr === void 0) { tr = function (x) { return true; }; }
-	        var array = objMatcher.split(".");
-	        var result = null;
-	        for (var a = 0; a < array.length; a++) {
-	            var arg = array[a];
-	            var ci = arg.indexOf("(*)");
-	            var isCall = false;
-	            if (ci != -1) {
-	                arg = arg.substr(0, ci);
-	                isCall = true;
-	            }
-	            if (result == null) {
-	                result = arg == '*' ? anyNode() : ident(arg);
-	            }
-	            else {
-	                result = new MemberExpressionMatcher(result, arg == '*' ? anyNode() : ident(arg), tr);
-	            }
-	            if (isCall) {
-	                result = new CallExpressionMatcher(result, tr);
-	            }
-	        }
-	        //console.log(result)
-	        return result;
-	    }
-	    Matching.memberFromExp = memberFromExp;
-	    var CallBaseMatcher = (function () {
-	        function CallBaseMatcher(rootMatcher) {
-	            this.rootMatcher = rootMatcher;
-	        }
-	        CallBaseMatcher.prototype.doMatch = function (node) {
-	            var original = node;
-	            if (node.kind == 145 /* CallExpression */) {
-	                var call = node;
-	                var res = this.doMatch(call.expression);
-	                if (res) {
-	                    if (res.path.length > 0 && res.path[res.path.length - 1].arguments == null) {
-	                        res.path[res.path.length - 1].arguments = call.arguments;
-	                        res.path[res.path.length - 1]._callExpression = call;
-	                        return res;
-	                    }
-	                    //This case should not exist in type script clients now
-	                    //but leaving it here for possible future use at the moment;
-	                    //if (res.path.length==0&&call.arguments.length==1){
-	                    //    //this is not resource based call!!!
-	                    //    if (call.arguments[0].kind==ts.SyntaxKind.StringLiteral){
-	                    //        var l:ts.LiteralExpression=<ts.LiteralExpression>call.arguments[0];
-	                    //        var url=l.text;
-	                    //        var uriPath=url.toString().split("/");
-	                    //        uriPath.forEach(x=>res.path.push(
-	                    //            new PathNode(x)
-	                    //        ))
-	                    //        return res;
-	                    //    }
-	                    //}
-	                    return null;
-	                }
-	            }
-	            else if (node.kind == 143 /* PropertyAccessExpression */) {
-	                var me = node;
-	                var v = this.doMatch(me.expression);
-	                if (v) {
-	                    if (me.name.kind == 63 /* Identifier */) {
-	                        v.path.push(new PathNode(me.name.text, me.name));
-	                        return v;
-	                    }
-	                    return null;
-	                }
-	            }
-	            else if (node.kind == 63 /* Identifier */) {
-	                var id = node;
-	                if (this.rootMatcher.doMatch(id)) {
-	                    return new CallPath(id.text, id);
-	                }
-	            }
-	            return null;
-	        };
-	        CallBaseMatcher.prototype.nodeType = function () {
-	            return null;
-	        };
-	        return CallBaseMatcher;
-	    })();
-	    Matching.CallBaseMatcher = CallBaseMatcher;
-	    function ident(name) {
-	        return new SimpleIdentMatcher(name);
-	    }
-	    Matching.ident = ident;
-	    function anyNode() {
-	        return new TrueMatcher();
-	    }
-	    Matching.anyNode = anyNode;
-	    function call(calleeMatcher, tr) {
-	        if (tr === void 0) { tr = function (x) { return true; }; }
-	        return new CallExpressionMatcher(calleeMatcher, tr);
-	    }
-	    Matching.call = call;
-	    function exprStmt(eM, tr) {
-	        if (tr === void 0) { tr = function (x) { return true; }; }
-	        return new ExpressionStatementMatcher(eM, tr);
-	    }
-	    Matching.exprStmt = exprStmt;
-	    function assign(left, right, tr) {
-	        if (tr === void 0) { tr = function (x) { return true; }; }
-	        return new AssignmentExpressionMatcher(left, right, tr);
-	    }
-	    Matching.assign = assign;
-	    function varDecl(left, right, tr) {
-	        if (tr === void 0) { tr = function (x) { return true; }; }
-	        return new VariableDeclarationMatcher(left, right, tr);
-	    }
-	    Matching.varDecl = varDecl;
-	    function field() {
-	        return new FieldMatcher();
-	    }
-	    Matching.field = field;
-	    function classDeclaration() {
-	        return new ClassDeclarationMatcher();
-	    }
-	    Matching.classDeclaration = classDeclaration;
-	})(Matching = exports.Matching || (exports.Matching = {}));
-
-
-/***/ },
-/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = require("know-your-http-well");
 
 /***/ },
-/* 72 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
@@ -24093,12 +22746,13 @@ module.exports =
 	var typeExpression = __webpack_require__(63);
 	var def = __webpack_require__(3);
 	var hlimpl = __webpack_require__(5);
-	var su = __webpack_require__(73);
+	var su = __webpack_require__(70);
 	var path = __webpack_require__(9);
 	var fs = __webpack_require__(10);
 	var universes = __webpack_require__(62);
-	var mediaTypeParser = __webpack_require__(78);
-	var xmlutil = __webpack_require__(74);
+	var universeHelpers = __webpack_require__(75);
+	var mediaTypeParser = __webpack_require__(76);
+	var xmlutil = __webpack_require__(71);
 	var LinterSettings = (function () {
 	    function LinterSettings() {
 	        this.validateNotStrictExamples = true;
@@ -24106,11 +22760,12 @@ module.exports =
 	    return LinterSettings;
 	})();
 	var settings = new LinterSettings();
-	var loophole = __webpack_require__(79);
+	var loophole = __webpack_require__(77);
 	function evalInSandbox(code, thisArg, args) {
 	    return new loophole.Function(code).call(thisArg, args);
 	}
 	exports.evalInSandbox = evalInSandbox;
+	var MAX_RECURSION_LEVEL = 400;
 	var lintWithFile = function (customLinter, acceptor, astNode) {
 	    if (fs.existsSync(customLinter)) {
 	        try {
@@ -24215,18 +22870,22 @@ module.exports =
 	    function TypeValidator(node) {
 	        this.node = node;
 	    }
-	    TypeValidator.prototype.validate = function (obj, t, cb, strict) {
+	    TypeValidator.prototype.validate = function (obj, t, cb, strict, recursionLevel) {
+	        if (recursionLevel === void 0) { recursionLevel = 0; }
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        if (t instanceof def.Array) {
-	            this.validateArray(obj, t, cb, strict);
+	            this.validateArray(obj, t, cb, strict, recursionLevel);
 	        }
 	        else if (t instanceof def.Union) {
-	            this.validateUnion(obj, t, cb, strict);
+	            this.validateUnion(obj, t, cb, strict, recursionLevel);
 	        }
 	        else if (t instanceof def.NodeClass) {
-	            this.validateClass(obj, t, cb, strict);
+	            this.validateClass(obj, t, cb, strict, recursionLevel);
 	        }
 	        else if (t instanceof def.ValueType) {
-	            this.validateValue(obj, t, cb, strict);
+	            this.validateValue(obj, t, cb, strict, recursionLevel);
 	        }
 	        else {
 	            throw new Error("Not supported case");
@@ -24271,11 +22930,14 @@ module.exports =
 	            return q;
 	        }
 	    };
-	    TypeValidator.prototype.validateClass = function (obj, t, cb, strict) {
+	    TypeValidator.prototype.validateClass = function (obj, t, cb, strict, recursionLevel) {
 	        var _this = this;
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        var supers = t.allSuperTypes();
 	        supers.push(t);
-	        this.validateFacets(t.isRuntime() ? t : t.toRuntime(), obj, cb, strict);
+	        this.validateFacets(t.isRuntime() ? t : t.toRuntime(), obj, cb, strict, recursionLevel);
 	        supers.forEach(function (s) {
 	            if (s.key() == universes.Universe10.StrElement || s.key() == universes.Universe08.StrElement) {
 	                if (typeof obj != 'string' && typeof obj != 'number' && typeof obj != 'boolean') {
@@ -24294,10 +22956,10 @@ module.exports =
 	                }
 	            }
 	            if (s instanceof def.Array) {
-	                _this.validate(obj, s, cb, strict);
+	                _this.validate(obj, s, cb, strict, recursionLevel + 1);
 	            }
 	            if (s instanceof def.Union) {
-	                _this.validate(obj, s, cb, strict);
+	                _this.validate(obj, s, cb, strict, recursionLevel + 1);
 	            }
 	        });
 	        var props = t.isRuntime() ? t.allProperties() : t.toRuntime().allProperties();
@@ -24315,7 +22977,7 @@ module.exports =
 	                    }
 	                }
 	                else {
-	                    _this.validatePropValue(value, p, cb, strict, p.nameId());
+	                    _this.validatePropValue(value, p, cb, strict, p.nameId(), recursionLevel + 1);
 	                }
 	            }
 	        });
@@ -24328,7 +22990,7 @@ module.exports =
 	                                var re = new RegExp(p.getKeyRegexp());
 	                                if (re.test(x)) {
 	                                    var n = _this.node;
-	                                    _this.validatePropValue(obj[x], p, cb, strict, x);
+	                                    _this.validatePropValue(obj[x], p, cb, strict, x, recursionLevel + 1);
 	                                    handled[x] = 1;
 	                                }
 	                            }
@@ -24344,7 +23006,7 @@ module.exports =
 	                if (p.keyPrefix() != null) {
 	                    Object.keys(obj).forEach(function (x) {
 	                        if (!handled[x]) {
-	                            _this.validatePropValue(obj[x], p, cb, strict, x);
+	                            _this.validatePropValue(obj[x], p, cb, strict, x, recursionLevel + 1);
 	                            handled[x] = 1;
 	                        }
 	                    });
@@ -24367,7 +23029,10 @@ module.exports =
 	            });
 	        }
 	    };
-	    TypeValidator.prototype.validateFacets = function (t, obj, cb, strict) {
+	    TypeValidator.prototype.validateFacets = function (t, obj, cb, strict, recursionLevel) {
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        var rof = t.getRepresentationOf();
 	        var fixedFacets = t.getFixedFacets();
 	        if (rof) {
@@ -24395,10 +23060,13 @@ module.exports =
 	            }
 	        }
 	    };
-	    TypeValidator.prototype.validatePropValue = function (value, p, cb, strict, key) {
+	    TypeValidator.prototype.validatePropValue = function (value, p, cb, strict, key, recursionLevel) {
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        this.pushStack(key);
 	        try {
-	            this.validate(value, p.range(), cb, strict);
+	            this.validate(value, p.range(), cb, strict, recursionLevel);
 	            var enumValues = p.enumValues(null);
 	            if (enumValues) {
 	                if (typeof enumValues == 'string') {
@@ -24432,19 +23100,22 @@ module.exports =
 	            this.stack.value = key;
 	        }
 	    };
-	    TypeValidator.prototype.validateArray = function (obj, t, cb, strict) {
+	    TypeValidator.prototype.validateArray = function (obj, t, cb, strict, recursionLevel) {
 	        var _this = this;
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        if (!(obj instanceof Array)) {
 	            obj = [obj];
 	        }
 	        if (obj instanceof Array) {
 	            var arr = obj;
-	            this.validateFacets(t, obj, cb, strict);
+	            this.validateFacets(t, obj, cb, strict, recursionLevel);
 	            var num = 0;
 	            arr.forEach(function (x) {
 	                try {
 	                    _this.pushStack(num++);
-	                    _this.validate(x, t.component, cb, strict);
+	                    _this.validate(x, t.component, cb, strict, recursionLevel + 1);
 	                }
 	                finally {
 	                    if (_this.stack) {
@@ -24454,10 +23125,16 @@ module.exports =
 	            });
 	        }
 	    };
-	    TypeValidator.prototype.validateUnion = function (obj, t, cb, strict) {
+	    TypeValidator.prototype.validateUnion = function (obj, t, cb, strict, recursionLevel) {
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        //FIXME
 	    };
-	    TypeValidator.prototype.validateValue = function (obj, t, cb, strict) {
+	    TypeValidator.prototype.validateValue = function (obj, t, cb, strict, recursionLevel) {
+	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
+	            return;
+	        }
 	        //FIXME
 	        if (t.key() == universes.Universe08.NumberType || t.key() == universes.Universe10.NumberType) {
 	            if (typeof obj != 'number') {
@@ -24911,16 +23588,55 @@ module.exports =
 	            schema.validate(pObj, cb, strictValidation);
 	        }
 	    };
+	    ExampleValidator.prototype.isExampleNode = function (node) {
+	        return this.isSingleExampleNode(node) || this.isExampleNodeInMultipleDecl(node);
+	    };
+	    ExampleValidator.prototype.isSingleExampleNode = function (node) {
+	        return node.name() == universes.Universe10.DataElement.properties.example.name;
+	    };
+	    ExampleValidator.prototype.isExampleNodeInMultipleDecl = function (node) {
+	        var parent = node.parent();
+	        if (parent) {
+	            return universeHelpers.isExampleSpecType(parent.definition());
+	        }
+	        return false;
+	    };
+	    ExampleValidator.prototype.findParentSchemaOrTypeAttribute = function (node) {
+	        var attribute = node.parent().attr(universes.Universe10.DataElement.properties.schema.name);
+	        if (attribute) {
+	            return attribute;
+	        }
+	        attribute = node.parent().attr(universes.Universe10.DataElement.properties.type.name);
+	        if (attribute) {
+	            return attribute;
+	        }
+	        if (!node.parent()) {
+	            return null;
+	        }
+	        attribute = node.parent().parent().attr(universes.Universe10.DataElement.properties.schema.name);
+	        if (attribute) {
+	            return attribute;
+	        }
+	        attribute = node.parent().parent().attr(universes.Universe10.DataElement.properties.type.name);
+	        if (attribute) {
+	            return attribute;
+	        }
+	        return null;
+	    };
 	    ExampleValidator.prototype.aquireSchema = function (node) {
-	        var sp = node.parent().definition().isAssignableFrom("DataElement");
-	        if (node.name() == "example") {
-	            if (node.parent().property().nameId() == universes.Universe10.LibraryBase.properties.types.name) {
+	        var sp = node.parent().definition().isAssignableFrom(universes.Universe10.DataElement.name);
+	        if (this.isExampleNode(node)) {
+	            var sampleRoot = node;
+	            if (this.isExampleNodeInMultipleDecl(node)) {
+	                sampleRoot = node.parent();
+	            }
+	            if (sampleRoot.parent().property().nameId() == universes.Universe10.LibraryBase.properties.types.name) {
 	                sp = false;
 	            }
-	            if (node.parent().parent()) {
-	                var ppc = node.parent().parent().definition().key();
+	            if (sampleRoot.parent().parent()) {
+	                var ppc = sampleRoot.parent().parent().definition().key();
 	                if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
-	                    if (node.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
+	                    if (sampleRoot.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
 	                    }
 	                    else {
 	                        sp = true;
@@ -24933,10 +23649,7 @@ module.exports =
 	        }
 	        if (node.parent().definition().key() == universes.Universe08.BodyLike || sp) {
 	            //FIXME MULTIPLE INHERITANCE
-	            var sa = node.parent().attr("schema");
-	            if (!sa) {
-	                sa = node.parent().attr("type");
-	            }
+	            var sa = this.findParentSchemaOrTypeAttribute(node);
 	            if (sa) {
 	                var val = sa.value();
 	                if (val instanceof hlimpl.StructuredValue) {
@@ -25212,13 +23925,13 @@ module.exports =
 
 
 /***/ },
-/* 73 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var xmlutil = __webpack_require__(74);
+	var xmlutil = __webpack_require__(71);
 	var lru = __webpack_require__(51);
-	var ZSchema = __webpack_require__(76);
+	var ZSchema = __webpack_require__(73);
 	var ValidationResult = (function () {
 	    function ValidationResult() {
 	    }
@@ -25244,7 +23957,7 @@ module.exports =
 	            return;
 	        }
 	        try {
-	            var api = __webpack_require__(77);
+	            var api = __webpack_require__(74);
 	            jsonSchemaObject = api.v4(jsonSchemaObject);
 	        }
 	        catch (e) {
@@ -25359,11 +24072,11 @@ module.exports =
 
 
 /***/ },
-/* 74 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var DomParser = __webpack_require__(75);
+	var DomParser = __webpack_require__(72);
 	function xmlToJson(xml) {
 	    // Create the return object
 	    var obj = {};
@@ -25446,37 +24159,223 @@ module.exports =
 
 
 /***/ },
-/* 75 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = require("xmldom");
 
 /***/ },
-/* 76 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = require("z-schema");
 
 /***/ },
-/* 77 */
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = require("json-schema-compatibility");
 
 /***/ },
-/* 78 */
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../typings/tsd.d.ts" />
+	var universe = __webpack_require__(62);
+	/////////////////////// properties
+	function isDocumentationProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.documentation.name || p.nameId() === universe.Universe08.Api.properties.documentation.name;
+	}
+	exports.isDocumentationProperty = isDocumentationProperty;
+	function isUsageProperty(p) {
+	    return p.nameId() === universe.Universe10.Trait.properties.usage.name || p.nameId() === universe.Universe08.Trait.properties.usage.name || p.nameId() === universe.Universe10.ResourceType.properties.usage.name || p.nameId() === universe.Universe08.ResourceType.properties.usage.name || p.nameId() === universe.Universe10.Library.properties.usage.name || p.nameId() === universe.Universe10.Overlay.properties.usage.name || p.nameId() === universe.Universe10.Extension.properties.usage.name;
+	}
+	exports.isUsageProperty = isUsageProperty;
+	function isDescriptionProperty(p) {
+	    return p.nameId() === universe.Universe10.DataElement.properties.description.name || p.nameId() === universe.Universe10.RAMLLanguageElement.properties.description.name || p.nameId() === universe.Universe08.RAMLLanguageElement.properties.description.name || p.nameId() === "description";
+	    //TODO too long to actually list every element having a description, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+	}
+	exports.isDescriptionProperty = isDescriptionProperty;
+	function isDisplayNameProperty(p) {
+	    return p.nameId() === universe.Universe10.DataElement.properties.displayName.name || p.nameId() === universe.Universe10.RAMLLanguageElement.properties.displayName.name || p.nameId() === "displayName";
+	    //TODO too long to actually list every element having displayname, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+	}
+	exports.isDisplayNameProperty = isDisplayNameProperty;
+	function isTitleProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.title.name || p.nameId() === universe.Universe08.Api.properties.title.name || p.nameId() === universe.Universe10.DocumentationItem.properties.title.name || p.nameId() === universe.Universe08.DocumentationItem.properties.title.name || p.nameId() === universe.Universe10.Overlay.properties.title.name || p.nameId() === universe.Universe10.Extension.properties.title.name;
+	}
+	exports.isTitleProperty = isTitleProperty;
+	function isAnnotationsProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.annotations.name || p.nameId() === universe.Universe10.SecuritySchemaPart.properties.annotations.name || p.nameId() === universe.Universe10.Method.properties.annotations.name || p.nameId() === universe.Universe10.Resource.properties.annotations.name || p.nameId() === universe.Universe10.RAMLLanguageElement.properties.annotations.name || p.nameId() === universe.Universe10.ExampleSpec.properties.annotations.name || p.nameId() === universe.Universe10.DataElement.properties.annotations.name || p.nameId() === universe.Universe10.Response.properties.annotations.name;
+	}
+	exports.isAnnotationsProperty = isAnnotationsProperty;
+	function isIsProperty(p) {
+	    return p.nameId() === universe.Universe10.MethodBase.properties.is.name || p.nameId() === universe.Universe08.MethodBase.properties.is.name || p.nameId() === universe.Universe10.ResourceBase.properties.is.name || p.nameId() === universe.Universe08.ResourceType.properties.is.name || p.nameId() === universe.Universe08.Resource.properties.is.name;
+	}
+	exports.isIsProperty = isIsProperty;
+	function isSecuredByProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.securedBy.name || p.nameId() === universe.Universe08.Api.properties.securedBy.name || p.nameId() === universe.Universe10.MethodBase.properties.securedBy.name || p.nameId() === universe.Universe08.MethodBase.properties.securedBy.name || p.nameId() === universe.Universe08.ResourceType.properties.securedBy.name || p.nameId() === universe.Universe10.Method.properties.securedBy.name || p.nameId() === universe.Universe08.Method.properties.securedBy.name || p.nameId() === universe.Universe08.Resource.properties.securedBy.name || p.nameId() === universe.Universe10.SecuritySchemaPart.properties.securedBy.name || p.nameId() === universe.Universe10.ResourceBase.properties.securedBy.name;
+	}
+	exports.isSecuredByProperty = isSecuredByProperty;
+	function isTypeProperty(p) {
+	    return p.nameId() === universe.Universe10.SecuritySchema.properties.type.name || p.nameId() === universe.Universe08.SecuritySchema.properties.type.name || p.nameId() === universe.Universe08.ResourceType.properties.type.name || p.nameId() === universe.Universe08.Resource.properties.type.name || p.nameId() === universe.Universe08.Parameter.properties.type.name || p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe10.ApiDescription.properties.type.name || p.nameId() === universe.Universe10.ResourceBase.properties.type.name || p.nameId() === universe.Universe10.DataElement.properties.type.name;
+	}
+	exports.isTypeProperty = isTypeProperty;
+	function isProtocolsProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.protocols.name || p.nameId() === universe.Universe08.Api.properties.protocols.name || p.nameId() === universe.Universe08.Method.properties.protocols.name || p.nameId() === universe.Universe10.MethodBase.properties.protocols.name;
+	}
+	exports.isProtocolsProperty = isProtocolsProperty;
+	function isNameProperty(p) {
+	    return p.nameId() === universe.Universe10.DataElementProperty.properties.name.name || p.nameId() === universe.Universe10.DataElement.properties.name.name || p.nameId() === universe.Universe08.SecuritySchema.properties.name.name || p.nameId() === universe.Universe10.SecuritySchema.properties.name.name || p.nameId() === universe.Universe08.Trait.properties.name.name || p.nameId() === universe.Universe10.Trait.properties.name.name || p.nameId() === "name";
+	    //TODO too long to actually list every element having a name, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+	}
+	exports.isNameProperty = isNameProperty;
+	function isBodyProperty(p) {
+	    return p.nameId() === universe.Universe10.MethodBase.properties.body.name || p.nameId() === universe.Universe08.MethodBase.properties.body.name || p.nameId() === universe.Universe10.Response.properties.body.name || p.nameId() === universe.Universe08.Response.properties.body.name || p.nameId() === universe.Universe10.Method.properties.body.name;
+	}
+	exports.isBodyProperty = isBodyProperty;
+	function isSchemaProperty(p) {
+	    return p.nameId() === universe.Universe08.BodyLike.properties.schema.name || p.nameId() === universe.Universe08.XMLBody.properties.schema.name || p.nameId() === universe.Universe08.JSONBody.properties.schema.name || p.nameId() === universe.Universe10.DataElement.properties.schema.name;
+	}
+	exports.isSchemaProperty = isSchemaProperty;
+	function isSignatureProperty(p) {
+	    return p.nameId() === universe.Universe10.Method.properties.signature.name || p.nameId() === universe.Universe10.Resource.properties.signature.name;
+	}
+	exports.isSignatureProperty = isSignatureProperty;
+	function isResourcesProperty(p) {
+	    return p.nameId() === universe.Universe10.Api.properties.resources.name || p.nameId() === universe.Universe08.Api.properties.resources.name || p.nameId() === universe.Universe10.Resource.properties.resources.name || p.nameId() === universe.Universe08.Resource.properties.resources.name;
+	}
+	exports.isResourcesProperty = isResourcesProperty;
+	function isTypesProperty(p) {
+	    return p.nameId() === universe.Universe10.LibraryBase.properties.types.name;
+	}
+	exports.isTypesProperty = isTypesProperty;
+	function isExampleProperty(p) {
+	    return p.nameId() === universe.Universe10.DataElement.properties.example.name || p.nameId() === "example";
+	    //TODO too long to actually list every element having an example, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+	}
+	exports.isExampleProperty = isExampleProperty;
+	function isValueProperty(p) {
+	    return p.nameId() === universe.Universe10.GlobalSchema.properties.value.name || p.nameId() === universe.Universe08.GlobalSchema.properties.value.name || p.nameId() === universe.Universe10.ImportDeclaration.properties.value.name;
+	}
+	exports.isValueProperty = isValueProperty;
+	function isUriParametersProperty(p) {
+	    return p.nameId() === universe.Universe08.Api.properties.uriParameters.name || p.nameId() === universe.Universe08.ResourceType.properties.uriParameters.name || p.nameId() === universe.Universe08.Resource.properties.uriParameters.name || p.nameId() === universe.Universe10.ResourceBase.properties.uriParameters.name;
+	}
+	exports.isUriParametersProperty = isUriParametersProperty;
+	function isBaseUriParametersProperty(p) {
+	    return p.nameId() === universe.Universe08.Resource.properties.baseUriParameters.name || p.nameId() === universe.Universe08.Api.properties.baseUriParameters.name || p.nameId() === universe.Universe10.Api.properties.baseUriParameters.name;
+	}
+	exports.isBaseUriParametersProperty = isBaseUriParametersProperty;
+	function isUsesProperty(p) {
+	    return p.nameId() === universe.Universe10.LibraryBase.properties.uses.name || p.nameId() === universe.Universe10.Trait.properties.uses.name || p.nameId() === universe.Universe10.ResourceType.properties.uses.name || p.nameId() === universe.Universe10.ResourceTypeOrTrait.properties.uses.name;
+	}
+	exports.isUsesProperty = isUsesProperty;
+	/////////////////////// types
+	function isMethodType(type) {
+	    return type.key() == universe.Universe10.Method || type.key() == universe.Universe08.Method;
+	}
+	exports.isMethodType = isMethodType;
+	function isApiType(type) {
+	    return type.key() == universe.Universe10.Api || type.key() == universe.Universe08.Api;
+	}
+	exports.isApiType = isApiType;
+	function isBooleanTypeType(type) {
+	    return type.key() == universe.Universe10.BooleanType || type.key() == universe.Universe08.BooleanType;
+	}
+	exports.isBooleanTypeType = isBooleanTypeType;
+	function isMarkdownStringType(type) {
+	    return type.key() == universe.Universe10.MarkdownString || type.key() == universe.Universe08.MarkdownString;
+	}
+	exports.isMarkdownStringType = isMarkdownStringType;
+	function isResourceType(type) {
+	    return type.key() == universe.Universe10.Resource || type.key() == universe.Universe08.Resource;
+	}
+	exports.isResourceType = isResourceType;
+	function isTraitType(type) {
+	    return type.key() == universe.Universe10.Trait || type.key() == universe.Universe08.Trait;
+	}
+	exports.isTraitType = isTraitType;
+	function isGlobalSchemaType(type) {
+	    return type.key() == universe.Universe10.GlobalSchema || type.key() == universe.Universe08.GlobalSchema;
+	}
+	exports.isGlobalSchemaType = isGlobalSchemaType;
+	function isSecuritySchemaType(type) {
+	    return type.key() == universe.Universe10.SecuritySchema || type.key() == universe.Universe08.SecuritySchema;
+	}
+	exports.isSecuritySchemaType = isSecuritySchemaType;
+	function isDataElementType(type) {
+	    return type.key() == universe.Universe10.DataElement;
+	}
+	exports.isDataElementType = isDataElementType;
+	function isResponseType(type) {
+	    return type.key() == universe.Universe10.Response || type.key() == universe.Universe08.Response;
+	}
+	exports.isResponseType = isResponseType;
+	function isBodyLikeType(type) {
+	    return type.key() == universe.Universe08.BodyLike;
+	}
+	exports.isBodyLikeType = isBodyLikeType;
+	function isOverlayType(type) {
+	    return type.key() == universe.Universe10.Overlay;
+	}
+	exports.isOverlayType = isOverlayType;
+	function isAnnotationTypeType(type) {
+	    return type.key() == universe.Universe10.AnnotationType;
+	}
+	exports.isAnnotationTypeType = isAnnotationTypeType;
+	function isResourceTypeType(type) {
+	    return type.key() == universe.Universe10.ResourceType || type.key() == universe.Universe08.ResourceType;
+	}
+	exports.isResourceTypeType = isResourceTypeType;
+	function isSchemaStringType(type) {
+	    return type.key() == universe.Universe10.SchemaString || type.key() == universe.Universe08.SchemaString;
+	}
+	exports.isSchemaStringType = isSchemaStringType;
+	function isMethodBaseType(type) {
+	    return type.key() == universe.Universe10.MethodBase || type.key() == universe.Universe08.MethodBase;
+	}
+	exports.isMethodBaseType = isMethodBaseType;
+	function isPointerType(type) {
+	    return type.key() == universe.Universe10.pointer;
+	}
+	exports.isPointerType = isPointerType;
+	function isRamlExpressionType(type) {
+	    return type.key() == universe.Universe10.ramlexpression;
+	}
+	exports.isRamlExpressionType = isRamlExpressionType;
+	function isRamlSelectorType(type) {
+	    return type.key() == universe.Universe10.RAMLSelector;
+	}
+	exports.isRamlSelectorType = isRamlSelectorType;
+	function isLibraryType(type) {
+	    return type.key() == universe.Universe10.Library;
+	}
+	exports.isLibraryType = isLibraryType;
+	function isStringTypeType(type) {
+	    return type.key() == universe.Universe10.StringType || type.key() == universe.Universe08.StringType;
+	}
+	exports.isStringTypeType = isStringTypeType;
+	function isExampleSpecType(type) {
+	    return type.key() == universe.Universe10.ExampleSpec;
+	}
+	exports.isExampleSpecType = isExampleSpecType;
+
+
+/***/ },
+/* 76 */
 /***/ function(module, exports) {
 
 	module.exports = require("media-typer");
 
 /***/ },
-/* 79 */
+/* 77 */
 /***/ function(module, exports) {
 
 	module.exports = require("loophole");
 
 /***/ },
-/* 80 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
@@ -25972,11 +24871,11 @@ module.exports =
 
 
 /***/ },
-/* 81 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var factory10 = __webpack_require__(82);
-	var factory08 = __webpack_require__(83);
+	var factory10 = __webpack_require__(80);
+	var factory08 = __webpack_require__(81);
 	function buildWrapperNode(node) {
 	    var ramlVersion = node.definition().universe().version();
 	    if (ramlVersion == 'RAML10') {
@@ -25991,7 +24890,7 @@ module.exports =
 
 
 /***/ },
-/* 82 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
@@ -26295,10 +25194,10 @@ module.exports =
 
 
 /***/ },
-/* 83 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RamlWrapper = __webpack_require__(84);
+	var RamlWrapper = __webpack_require__(82);
 	/***
 	 * @hidden
 	 * Build Wrapper node corresponding to the High Level node
@@ -26485,7 +25384,7 @@ module.exports =
 
 
 /***/ },
-/* 84 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -26496,9 +25395,9 @@ module.exports =
 	};
 	var hl = __webpack_require__(2);
 	var json2lowlevel = __webpack_require__(60);
-	var core = __webpack_require__(85);
-	var apiLoader = __webpack_require__(86);
-	var helper = __webpack_require__(96);
+	var core = __webpack_require__(83);
+	var apiLoader = __webpack_require__(84);
+	var helper = __webpack_require__(99);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
 	    function RAMLLanguageElementImpl(nodeOrKey) {
@@ -28003,7 +26902,6 @@ module.exports =
 	    };
 	    /***
 	     * Documentation generators MUST use body properties' example attributes to generate example invocations.
-	     *
 	     * This example shows example attributes for two body property media types.
 	     ***/
 	    BodyLikeImpl.prototype.example = function () {
@@ -28811,7 +27709,7 @@ module.exports =
 
 
 /***/ },
-/* 85 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var hlImpl = __webpack_require__(5);
@@ -28996,21 +27894,21 @@ module.exports =
 
 
 /***/ },
-/* 86 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
 	var RamlWrapper1 = __webpack_require__(1);
-	var RamlWrapper08 = __webpack_require__(84);
+	var RamlWrapper08 = __webpack_require__(82);
 	var path = __webpack_require__(9);
 	var Opt = __webpack_require__(55);
 	var jsyaml = __webpack_require__(6);
 	var hlimpl = __webpack_require__(5);
 	var llimpl = __webpack_require__(6);
-	var expander = __webpack_require__(87);
+	var expander = __webpack_require__(85);
 	var util = __webpack_require__(54);
 	var universeDef = __webpack_require__(62);
-	var universeProvider = __webpack_require__(93);
+	var universeProvider = __webpack_require__(91);
 	function loadApi1(apiPath, options) {
 	    var opt = loadApi(apiPath, options);
 	    if (!opt.isDefined()) {
@@ -29100,7 +27998,7 @@ module.exports =
 	        return null;
 	    }
 	    var api;
-	    var expandTraitsAndResourceTypes = options && (options.expandTraitsAndResourceTypes != null) ? options.expandTraitsAndResourceTypes : true;
+	    var expandTraitsAndResourceTypes = (options && (options.expandTraitsAndResourceTypes != null)) ? options.expandTraitsAndResourceTypes : true;
 	    var contents = unit.contents();
 	    if (!util.stringStartsWith(contents, '#%RAML')) {
 	        return null;
@@ -29156,16 +28054,16 @@ module.exports =
 
 
 /***/ },
-/* 87 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var hlimpl = __webpack_require__(5);
 	var proxy = __webpack_require__(59);
 	var RamlWrapper = __webpack_require__(1);
-	var RamlWrapper08 = __webpack_require__(84);
-	var wrapperHelper = __webpack_require__(88);
-	var pluralize = __webpack_require__(92);
-	var universeProvider = __webpack_require__(93);
+	var RamlWrapper08 = __webpack_require__(82);
+	var wrapperHelper = __webpack_require__(86);
+	var pluralize = __webpack_require__(90);
+	var universeProvider = __webpack_require__(91);
 	function expandTraitsAndResourceTypes(api) {
 	    if (!(api instanceof RamlWrapper.ApiImpl || api instanceof RamlWrapper08.ApiImpl)) {
 	        return null;
@@ -29388,18 +28286,18 @@ module.exports =
 
 
 /***/ },
-/* 88 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
-	var ramlPathMatch = __webpack_require__(89);
+	var ramlPathMatch = __webpack_require__(87);
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
 	var universes = __webpack_require__(62);
 	var Opt = __webpack_require__(55);
 	var util = __webpack_require__(54);
 	var typeexpression = __webpack_require__(66);
-	var expander = __webpack_require__(87);
+	var expander = __webpack_require__(85);
 	var lowLevelProxy = __webpack_require__(59);
 	var search = __webpack_require__(65);
 	var ll = __webpack_require__(6);
@@ -29843,12 +28741,12 @@ module.exports =
 
 
 /***/ },
-/* 89 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var ramlSanitize = __webpack_require__(90);
-	var ramlValidate = __webpack_require__(91);
+	var ramlSanitize = __webpack_require__(88);
+	var ramlValidate = __webpack_require__(89);
 	var REGEXP_MATCH = {
 	    number: '[-+]?\\d+(?:\\.\\d+)?',
 	    integer: '[-+]?\\d+',
@@ -29965,7 +28863,7 @@ module.exports =
 
 
 /***/ },
-/* 90 */
+/* 88 */
 /***/ function(module, exports) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
@@ -30094,7 +28992,7 @@ module.exports =
 
 
 /***/ },
-/* 91 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {/// <reference path="../../typings/tsd.d.ts" />
@@ -30290,27 +29188,27 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44).Buffer))
 
 /***/ },
-/* 92 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = require("pluralize");
 
 /***/ },
-/* 93 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, __dirname) {var fs = __webpack_require__(10);
 	var path = __webpack_require__(9);
-	var tsstruct = __webpack_require__(68);
-	var ts2def = __webpack_require__(67);
+	var tsstruct = __webpack_require__(92);
+	var ts2def = __webpack_require__(96);
 	var universes = {};
 	var locations = {
 	    "RAML10": "../spec-1.0/api.ts",
 	    "RAML08": "../spec-0.8/api.ts"
 	};
 	var jsonDefinitions = {
-	    "RAML10": __webpack_require__(94),
-	    "RAML08": __webpack_require__(95)
+	    "RAML10": __webpack_require__(97),
+	    "RAML08": __webpack_require__(98)
 	};
 	var getUniverse = (function () {
 	    var x = function (key) {
@@ -30323,7 +29221,7 @@ module.exports =
 	            universe.setUniverseVersion(key);
 	            universes[key] = universe;
 	        }
-	        var mediaTypeParser = __webpack_require__(78);
+	        var mediaTypeParser = __webpack_require__(76);
 	        global.mediaTypeParser = mediaTypeParser;
 	        return universe;
 	    };
@@ -30388,7 +29286,1303 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), "..\\..\\src\\raml1\\definition-system"))
 
 /***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by kor on 08/05/15.
+	 */
+	/// <reference path="../../../typings/tsd.d.ts" />
+	var ts = __webpack_require__(93);
+	var tsm = __webpack_require__(94);
+	var pth = __webpack_require__(9);
+	var fs = __webpack_require__(10);
+	var tsModel = __webpack_require__(95);
+	function parse(content) {
+	    return ts.createSourceFile("sample.ts", content, 0 /* ES3 */, "1.4.1", true);
+	}
+	var fld = tsm.Matching.field();
+	var clazzMatcher = tsm.Matching.classDeclaration();
+	function classDecl(name, isInteface) {
+	    return {
+	        name: name,
+	        methods: [],
+	        typeParameters: [],
+	        typeParameterConstraint: [],
+	        implements: [],
+	        fields: [],
+	        isInterface: isInteface,
+	        annotations: [],
+	        extends: [],
+	        moduleName: null,
+	        annotationOverridings: {}
+	    };
+	}
+	exports.classDecl = classDecl;
+	function parseStruct(content, modules, mpth) {
+	    var mod = parse(content);
+	    var module = { classes: [], aliases: [], enumDeclarations: [], imports: {}, name: mpth };
+	    modules[mpth] = module;
+	    var currentModule = null;
+	    tsm.Matching.visit(mod, function (x) {
+	        if (x.kind == 189 /* ModuleDeclaration */) {
+	            var cmod = x;
+	            currentModule = cmod.name.text;
+	        }
+	        if (x.kind == 191 /* ImportDeclaration */) {
+	            var imp = x;
+	            var namespace = imp.name.text;
+	            if (namespace == "RamlWrapper") {
+	                return;
+	            }
+	            if (imp.moduleReference.kind != 193 /* ExternalModuleReference */) {
+	                throw new Error("Only external module references are supported now");
+	            }
+	            var path = imp.moduleReference;
+	            if (path.expression.kind != 7 /* StringLiteral */) {
+	                throw new Error("Only string literals are supported in module references ");
+	            }
+	            var literal = path.expression;
+	            var importPath = literal.text;
+	            var absPath = pth.resolve(pth.dirname(mpth) + "/", importPath) + ".ts";
+	            if (!fs.existsSync(absPath)) {
+	                throw new Error("Path " + importPath + " resolve to " + absPath + "do not exists");
+	            }
+	            if (!modules[absPath]) {
+	                var cnt = fs.readFileSync(absPath).toString();
+	                var mod = parseStruct(cnt, modules, absPath);
+	            }
+	            module.imports[namespace] = modules[absPath];
+	        }
+	        if (x.kind == 187 /* TypeAliasDeclaration */) {
+	            var u = x;
+	            var aliasName = u.name.text;
+	            var type = buildType(u.type, mpth);
+	            module.aliases.push({ name: aliasName, type: type });
+	        }
+	        if (x.kind == 188 /* EnumDeclaration */) {
+	            var e = x;
+	            var members = [];
+	            e.members.forEach(function (y) {
+	                members.push(y['name']['text']);
+	            });
+	            module.enumDeclarations.push({ name: e.name.text, members: members });
+	        }
+	        var isInterface = x.kind == 186 /* InterfaceDeclaration */;
+	        var isClass = x.kind == 185 /* ClassDeclaration */;
+	        if (!isInterface && !isClass) {
+	            return;
+	        }
+	        var c = x;
+	        if (c) {
+	            var fields = {};
+	            var clazz = classDecl(c.name.text, isInterface);
+	            clazz.moduleName = currentModule;
+	            module.classes.push(clazz);
+	            c.members.forEach(function (x) {
+	                if (x.kind == 125 /* Method */) {
+	                    var md = x;
+	                    var aliasName = md.name.text;
+	                    var text = content.substring(md.pos, md.end);
+	                    clazz.methods.push({ name: aliasName, start: md.pos, end: md.end, text: text });
+	                }
+	                var field = fld.doMatch(x);
+	                if (field) {
+	                    var f = buildField(field, mpth);
+	                    if (f.name == '$') {
+	                        clazz.annotations = f.annotations;
+	                    }
+	                    else if (f.name.charAt(0) != '$' || f.name == '$ref') {
+	                        fields[f.name] = f;
+	                        clazz.fields.push(f);
+	                    }
+	                    else {
+	                        var targetField = f.name.substr(1);
+	                        var of = fields[targetField];
+	                        if (!of) {
+	                            if (f.name != '$$') {
+	                                //console.log('Overriding annotations for field:'+targetField);
+	                                var overridings = clazz.annotationOverridings[targetField];
+	                                if (!overridings) {
+	                                    overridings = [];
+	                                }
+	                                clazz.annotationOverridings[targetField] = overridings.concat(f.annotations);
+	                            }
+	                        }
+	                        else {
+	                            of.annotations = f.annotations;
+	                        }
+	                    }
+	                }
+	            });
+	            if (c.typeParameters) {
+	                c.typeParameters.forEach(function (x) {
+	                    clazz.typeParameters.push(x.name['text']);
+	                    if (x.constraint == null) {
+	                        clazz.typeParameterConstraint.push(null);
+	                    }
+	                    else {
+	                        clazz.typeParameterConstraint.push(x.constraint['typeName']['text']);
+	                    }
+	                });
+	            }
+	            if (c.heritageClauses) {
+	                c.heritageClauses.forEach(function (x) {
+	                    x.types.forEach(function (y) {
+	                        if (x.token == 77 /* ExtendsKeyword */) {
+	                            clazz.extends.push(buildType(y, mpth));
+	                        }
+	                        else if (x.token == 100 /* ImplementsKeyword */) {
+	                            clazz.implements.push(buildType(y, mpth));
+	                        }
+	                        else {
+	                            throw new Error("Unknown token class heritage");
+	                        }
+	                    });
+	                });
+	            }
+	            return tsm.Matching.SKIP;
+	        }
+	    });
+	    return module;
+	}
+	exports.parseStruct = parseStruct;
+	function buildField(f, path) {
+	    return {
+	        name: f.name['text'],
+	        type: buildType(f.type, path),
+	        annotations: f.name['text'].charAt(0) == '$' ? buildInitializer(f.initializer) : [],
+	        valueConstraint: f.name['text'].charAt(0) != '$' ? buildConstraint(f.initializer) : null,
+	        optional: f.questionToken != null
+	    };
+	}
+	function buildConstraint(e) {
+	    if (e == null) {
+	        return null;
+	    }
+	    if (e.kind == 145 /* CallExpression */) {
+	        return {
+	            isCallConstraint: true,
+	            value: buildAnnotation(e)
+	        };
+	    }
+	    else {
+	        return {
+	            isCallConstraint: false,
+	            value: parseArg(e)
+	        };
+	    }
+	}
+	function buildInitializer(i) {
+	    if (i == null) {
+	        return [];
+	    }
+	    if (i.kind == 141 /* ArrayLiteralExpression */) {
+	        var arr = i;
+	        var annotations = [];
+	        arr.elements.forEach(function (x) {
+	            annotations.push(buildAnnotation(x));
+	        });
+	        return annotations;
+	    }
+	    else {
+	        throw new Error("Only Array Literals supported now");
+	    }
+	}
+	function buildAnnotation(e) {
+	    if (e.kind == 145 /* CallExpression */) {
+	        var call = e;
+	        var name = parseName(call.expression);
+	        var a = {
+	            name: name,
+	            arguments: []
+	        };
+	        call.arguments.forEach(function (x) {
+	            a.arguments.push(parseArg(x));
+	        });
+	        return a;
+	    }
+	    else {
+	        throw new Error("Only call expressions may be annotations");
+	    }
+	}
+	function parseArg(n) {
+	    if (n.kind == 7 /* StringLiteral */) {
+	        var l = n;
+	        return l.text;
+	    }
+	    if (n.kind == 9 /* NoSubstitutionTemplateLiteral */) {
+	        var ls = n;
+	        return ls.text;
+	    }
+	    if (n.kind == 141 /* ArrayLiteralExpression */) {
+	        var arr = n;
+	        var annotations = [];
+	        arr.elements.forEach(function (x) {
+	            annotations.push(parseArg(x));
+	        });
+	        return annotations;
+	    }
+	    if (n.kind == 93 /* TrueKeyword */) {
+	        return true;
+	    }
+	    if (n.kind == 143 /* PropertyAccessExpression */) {
+	        var pa = n;
+	        return parseArg(pa.expression) + "." + parseArg(pa.name);
+	    }
+	    if (n.kind == 63 /* Identifier */) {
+	        var ident = n;
+	        return ident.text;
+	    }
+	    if (n.kind == 78 /* FalseKeyword */) {
+	        return false;
+	    }
+	    if (n.kind == 6 /* NumericLiteral */) {
+	        var nl = n;
+	        return nl.text;
+	    }
+	    if (n.kind == 157 /* BinaryExpression */) {
+	        var bin = n;
+	        if (bin.operator = 32 /* PlusToken */) {
+	            return parseArg(bin.left) + parseArg(bin.right);
+	        }
+	    }
+	    throw new Error("Unknown value in annotation");
+	}
+	function parseName(n) {
+	    if (n.kind == 63 /* Identifier */) {
+	        return n['text'];
+	    }
+	    if (n.kind == 143 /* PropertyAccessExpression */) {
+	        var m = n;
+	        return parseName(m.expression) + "." + parseName(m.name);
+	    }
+	    throw new Error("Only simple identifiers are supported now");
+	}
+	function basicType(n, path) {
+	    var namespaceIndex = n.indexOf(".");
+	    var namespace = namespaceIndex != -1 ? n.substring(0, namespaceIndex) : "";
+	    var basicName = namespaceIndex != -1 ? n.substring(namespaceIndex + 1) : n;
+	    return { typeName: n, nameSpace: namespace, basicName: basicName, typeKind: 0 /* BASIC */, typeArguments: [], modulePath: path };
+	}
+	function arrayType(b) {
+	    return { base: b, typeKind: 1 /* ARRAY */ };
+	}
+	function unionType(b) {
+	    return { options: b, typeKind: 2 /* UNION */ };
+	}
+	function buildType(t, path) {
+	    if (t == null) {
+	        return null;
+	    }
+	    if (t.kind == 118 /* StringKeyword */) {
+	        return basicType("string", null);
+	    }
+	    if (t.kind == 116 /* NumberKeyword */) {
+	        return basicType("number", null);
+	    }
+	    if (t.kind == 110 /* BooleanKeyword */) {
+	        return basicType("boolean", null);
+	    }
+	    if (t.kind == 109 /* AnyKeyword */) {
+	        return basicType("any", null);
+	    }
+	    if (t.kind == 132 /* TypeReference */) {
+	        var tr = t;
+	        var res = basicType(parseQualified(tr.typeName), path);
+	        if (tr.typeArguments) {
+	            tr.typeArguments.forEach(function (x) {
+	                res.typeArguments.push(buildType(x, path));
+	            });
+	        }
+	        return res;
+	    }
+	    if (t.kind == 137 /* ArrayType */) {
+	        var q = t;
+	        return arrayType(buildType(q.elementType, path));
+	    }
+	    if (t.kind == 139 /* UnionType */) {
+	        var ut = t;
+	        return unionType(ut.types.map(function (x) { return buildType(x, path); }));
+	    }
+	    throw new Error("Case not supported" + t.kind);
+	}
+	exports.buildType = buildType;
+	function parseQualified(n) {
+	    if (n.kind == 63 /* Identifier */) {
+	        return n['text'];
+	    }
+	    else {
+	        var q = n;
+	        return parseQualified(q.left) + "." + parseQualified(q.right);
+	    }
+	}
+
+
+/***/ },
+/* 93 */
+/***/ function(module, exports) {
+
+	module.exports = {};
+
+/***/ },
 /* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	/// <reference path="../../typings/tsd.d.ts" />
+	var ts = __webpack_require__(93);
+	/***
+	 * This module is designed to match simple patterns on Typescript AST Tree
+	 * it functionality mirrors jsASTMatchers which allows you to match on jsAST
+	 */
+	//TODO RENAME TO MATCHERS
+	var Matching;
+	(function (Matching) {
+	    /**
+	     * do match checks the node type and if node type is ok
+	     * calls match function otherwise it returns null
+	     */
+	    var BasicMatcher = (function () {
+	        function BasicMatcher() {
+	        }
+	        BasicMatcher.prototype.match = function (node) {
+	            throw new Error();
+	        };
+	        BasicMatcher.prototype.nodeType = function () {
+	            throw new Error();
+	        };
+	        BasicMatcher.prototype.doMatch = function (n) {
+	            if (!n) {
+	                return null;
+	            }
+	            if (this.nodeType() == n.kind) {
+	                return this.match(n);
+	            }
+	        };
+	        return BasicMatcher;
+	    })();
+	    var ClassDeclarationMatcher = (function (_super) {
+	        __extends(ClassDeclarationMatcher, _super);
+	        function ClassDeclarationMatcher() {
+	            _super.call(this);
+	        }
+	        ClassDeclarationMatcher.prototype.match = function (node) {
+	            return node;
+	        };
+	        ClassDeclarationMatcher.prototype.nodeType = function () {
+	            return 185 /* ClassDeclaration */;
+	        };
+	        return ClassDeclarationMatcher;
+	    })(BasicMatcher);
+	    var FieldMatcher = (function (_super) {
+	        __extends(FieldMatcher, _super);
+	        function FieldMatcher() {
+	            _super.apply(this, arguments);
+	        }
+	        FieldMatcher.prototype.match = function (node) {
+	            return node;
+	        };
+	        FieldMatcher.prototype.nodeType = function () {
+	            return 124 /* Property */;
+	        };
+	        return FieldMatcher;
+	    })(BasicMatcher);
+	    var AssignmentExpressionMatcher = (function (_super) {
+	        __extends(AssignmentExpressionMatcher, _super);
+	        function AssignmentExpressionMatcher(left, right, tr) {
+	            _super.call(this);
+	            this.left = left;
+	            this.right = right;
+	            this.tr = tr;
+	        }
+	        AssignmentExpressionMatcher.prototype.match = function (node) {
+	            if (node.operator == 51 /* EqualsToken */) {
+	                if (this.left.doMatch(node.left) && this.right.doMatch(node.right)) {
+	                    return this.tr(node);
+	                }
+	            }
+	            return null;
+	        };
+	        AssignmentExpressionMatcher.prototype.nodeType = function () {
+	            return 157 /* BinaryExpression */;
+	        };
+	        return AssignmentExpressionMatcher;
+	    })(BasicMatcher);
+	    var VariableDeclarationMatcher = (function (_super) {
+	        __extends(VariableDeclarationMatcher, _super);
+	        function VariableDeclarationMatcher(left, right, tr) {
+	            _super.call(this);
+	            this.left = left;
+	            this.right = right;
+	            this.tr = tr;
+	        }
+	        VariableDeclarationMatcher.prototype.match = function (node) {
+	            if (this.left.doMatch(node.name) && this.right.doMatch(node.initializer)) {
+	                return this.tr(node);
+	            }
+	        };
+	        VariableDeclarationMatcher.prototype.nodeType = function () {
+	            return 183 /* VariableDeclaration */;
+	        };
+	        return VariableDeclarationMatcher;
+	    })(BasicMatcher);
+	    var ExpressionStatementMatcher = (function (_super) {
+	        __extends(ExpressionStatementMatcher, _super);
+	        function ExpressionStatementMatcher(expression, tr) {
+	            _super.call(this);
+	            this.expression = expression;
+	            this.tr = tr;
+	        }
+	        ExpressionStatementMatcher.prototype.match = function (node) {
+	            var exp = this.expression.doMatch(node.expression);
+	            if (exp) {
+	                var v = this.tr(node.expression);
+	                if (v == true) {
+	                    return exp;
+	                }
+	                return v;
+	            }
+	            return null;
+	        };
+	        ExpressionStatementMatcher.prototype.nodeType = function () {
+	            return 166 /* ExpressionStatement */;
+	        };
+	        return ExpressionStatementMatcher;
+	    })(BasicMatcher);
+	    var SimpleIdentMatcher = (function (_super) {
+	        __extends(SimpleIdentMatcher, _super);
+	        function SimpleIdentMatcher(val) {
+	            _super.call(this);
+	            this.val = val;
+	        }
+	        SimpleIdentMatcher.prototype.match = function (node) {
+	            if (node.text == this.val) {
+	                return true;
+	            }
+	            return null;
+	        };
+	        SimpleIdentMatcher.prototype.nodeType = function () {
+	            return 63 /* Identifier */;
+	        };
+	        return SimpleIdentMatcher;
+	    })(BasicMatcher);
+	    var TrueMatcher = (function () {
+	        function TrueMatcher() {
+	        }
+	        TrueMatcher.prototype.doMatch = function (node) {
+	            return true;
+	        };
+	        TrueMatcher.prototype.nodeType = function () {
+	            return null;
+	        };
+	        return TrueMatcher;
+	    })();
+	    var CallExpressionMatcher = (function (_super) {
+	        __extends(CallExpressionMatcher, _super);
+	        function CallExpressionMatcher(calleeMatcher, tr) {
+	            _super.call(this);
+	            this.calleeMatcher = calleeMatcher;
+	            this.tr = tr;
+	        }
+	        CallExpressionMatcher.prototype.match = function (node) {
+	            if (this.calleeMatcher.doMatch(node.expression)) {
+	                return this.tr(node);
+	            }
+	            return null;
+	        };
+	        CallExpressionMatcher.prototype.nodeType = function () {
+	            return 145 /* CallExpression */;
+	        };
+	        return CallExpressionMatcher;
+	    })(BasicMatcher);
+	    Matching.SKIP = {};
+	    function visit(n, cb) {
+	        var r0 = cb(n);
+	        if (r0) {
+	            if (r0 == Matching.SKIP) {
+	                return null;
+	            }
+	            return r0;
+	        }
+	        var r = ts.forEachChild(n, function (x) {
+	            var r = visit(x, cb);
+	            if (r) {
+	                return r;
+	            }
+	        });
+	        return r;
+	    }
+	    Matching.visit = visit;
+	    var PathNode = (function () {
+	        function PathNode(name, _base) {
+	            this._base = _base;
+	            this.arguments = null;
+	            this.name = name;
+	        }
+	        return PathNode;
+	    })();
+	    var CallPath = (function () {
+	        function CallPath(base, _baseNode) {
+	            this._baseNode = _baseNode;
+	            this.path = [];
+	            this.base = base;
+	        }
+	        CallPath.prototype.start = function () {
+	            return this._baseNode.pos;
+	        };
+	        CallPath.prototype.startLocation = function () {
+	            return this._baseNode.getSourceFile().getLineAndCharacterFromPosition(this.start());
+	        };
+	        CallPath.prototype.endLocation = function () {
+	            return this._baseNode.getSourceFile().getLineAndCharacterFromPosition(this.end());
+	        };
+	        CallPath.prototype.end = function () {
+	            var ce = this.path[this.path.length - 1]._callExpression;
+	            if (ce) {
+	                return ce.end;
+	            }
+	            return this.start();
+	        };
+	        CallPath.prototype.toString = function () {
+	            return this.path.map(function (x) { return x.name; }).join(".");
+	        };
+	        return CallPath;
+	    })();
+	    Matching.CallPath = CallPath;
+	    var MemberExpressionMatcher = (function (_super) {
+	        __extends(MemberExpressionMatcher, _super);
+	        function MemberExpressionMatcher(objectMatcher, propertyMatcher, tr) {
+	            _super.call(this);
+	            this.objectMatcher = objectMatcher;
+	            this.propertyMatcher = propertyMatcher;
+	            this.tr = tr;
+	        }
+	        MemberExpressionMatcher.prototype.match = function (node) {
+	            if (this.objectMatcher.doMatch(node.expression) && this.propertyMatcher.doMatch(node.name)) {
+	                return this.tr(node);
+	            }
+	            return null;
+	        };
+	        MemberExpressionMatcher.prototype.nodeType = function () {
+	            return 143 /* PropertyAccessExpression */;
+	        };
+	        return MemberExpressionMatcher;
+	    })(BasicMatcher);
+	    function memberFromExp(objMatcher, tr) {
+	        if (tr === void 0) { tr = function (x) { return true; }; }
+	        var array = objMatcher.split(".");
+	        var result = null;
+	        for (var a = 0; a < array.length; a++) {
+	            var arg = array[a];
+	            var ci = arg.indexOf("(*)");
+	            var isCall = false;
+	            if (ci != -1) {
+	                arg = arg.substr(0, ci);
+	                isCall = true;
+	            }
+	            if (result == null) {
+	                result = arg == '*' ? anyNode() : ident(arg);
+	            }
+	            else {
+	                result = new MemberExpressionMatcher(result, arg == '*' ? anyNode() : ident(arg), tr);
+	            }
+	            if (isCall) {
+	                result = new CallExpressionMatcher(result, tr);
+	            }
+	        }
+	        //console.log(result)
+	        return result;
+	    }
+	    Matching.memberFromExp = memberFromExp;
+	    var CallBaseMatcher = (function () {
+	        function CallBaseMatcher(rootMatcher) {
+	            this.rootMatcher = rootMatcher;
+	        }
+	        CallBaseMatcher.prototype.doMatch = function (node) {
+	            var original = node;
+	            if (node.kind == 145 /* CallExpression */) {
+	                var call = node;
+	                var res = this.doMatch(call.expression);
+	                if (res) {
+	                    if (res.path.length > 0 && res.path[res.path.length - 1].arguments == null) {
+	                        res.path[res.path.length - 1].arguments = call.arguments;
+	                        res.path[res.path.length - 1]._callExpression = call;
+	                        return res;
+	                    }
+	                    //This case should not exist in type script clients now
+	                    //but leaving it here for possible future use at the moment;
+	                    //if (res.path.length==0&&call.arguments.length==1){
+	                    //    //this is not resource based call!!!
+	                    //    if (call.arguments[0].kind==ts.SyntaxKind.StringLiteral){
+	                    //        var l:ts.LiteralExpression=<ts.LiteralExpression>call.arguments[0];
+	                    //        var url=l.text;
+	                    //        var uriPath=url.toString().split("/");
+	                    //        uriPath.forEach(x=>res.path.push(
+	                    //            new PathNode(x)
+	                    //        ))
+	                    //        return res;
+	                    //    }
+	                    //}
+	                    return null;
+	                }
+	            }
+	            else if (node.kind == 143 /* PropertyAccessExpression */) {
+	                var me = node;
+	                var v = this.doMatch(me.expression);
+	                if (v) {
+	                    if (me.name.kind == 63 /* Identifier */) {
+	                        v.path.push(new PathNode(me.name.text, me.name));
+	                        return v;
+	                    }
+	                    return null;
+	                }
+	            }
+	            else if (node.kind == 63 /* Identifier */) {
+	                var id = node;
+	                if (this.rootMatcher.doMatch(id)) {
+	                    return new CallPath(id.text, id);
+	                }
+	            }
+	            return null;
+	        };
+	        CallBaseMatcher.prototype.nodeType = function () {
+	            return null;
+	        };
+	        return CallBaseMatcher;
+	    })();
+	    Matching.CallBaseMatcher = CallBaseMatcher;
+	    function ident(name) {
+	        return new SimpleIdentMatcher(name);
+	    }
+	    Matching.ident = ident;
+	    function anyNode() {
+	        return new TrueMatcher();
+	    }
+	    Matching.anyNode = anyNode;
+	    function call(calleeMatcher, tr) {
+	        if (tr === void 0) { tr = function (x) { return true; }; }
+	        return new CallExpressionMatcher(calleeMatcher, tr);
+	    }
+	    Matching.call = call;
+	    function exprStmt(eM, tr) {
+	        if (tr === void 0) { tr = function (x) { return true; }; }
+	        return new ExpressionStatementMatcher(eM, tr);
+	    }
+	    Matching.exprStmt = exprStmt;
+	    function assign(left, right, tr) {
+	        if (tr === void 0) { tr = function (x) { return true; }; }
+	        return new AssignmentExpressionMatcher(left, right, tr);
+	    }
+	    Matching.assign = assign;
+	    function varDecl(left, right, tr) {
+	        if (tr === void 0) { tr = function (x) { return true; }; }
+	        return new VariableDeclarationMatcher(left, right, tr);
+	    }
+	    Matching.varDecl = varDecl;
+	    function field() {
+	        return new FieldMatcher();
+	    }
+	    Matching.field = field;
+	    function classDeclaration() {
+	        return new ClassDeclarationMatcher();
+	    }
+	    Matching.classDeclaration = classDeclaration;
+	})(Matching = exports.Matching || (exports.Matching = {}));
+
+
+/***/ },
+/* 95 */
+/***/ function(module, exports) {
+
+	var EnumDeclaration = (function () {
+	    function EnumDeclaration() {
+	    }
+	    return EnumDeclaration;
+	})();
+	exports.EnumDeclaration = EnumDeclaration;
+	(function (TypeKind) {
+	    TypeKind[TypeKind["BASIC"] = 0] = "BASIC";
+	    TypeKind[TypeKind["ARRAY"] = 1] = "ARRAY";
+	    TypeKind[TypeKind["UNION"] = 2] = "UNION";
+	})(exports.TypeKind || (exports.TypeKind = {}));
+	var TypeKind = exports.TypeKind;
+
+
+/***/ },
+/* 96 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	/// <reference path="../../../typings/tsd.d.ts" />
+	var tsModel = __webpack_require__(95);
+	var def = __webpack_require__(3);
+	var _ = __webpack_require__(4);
+	var aHandlers = __webpack_require__(67);
+	var FieldWrapper = (function () {
+	    function FieldWrapper(_field, _clazz) {
+	        this._field = _field;
+	        this._clazz = _clazz;
+	    }
+	    FieldWrapper.prototype.name = function () {
+	        return this._field.name;
+	    };
+	    FieldWrapper.prototype.range = function () {
+	        return this._clazz.getModule().typeFor(this._field.type, this._clazz);
+	    };
+	    FieldWrapper.prototype.isMultiValue = function () {
+	        return this._field.type.typeKind == 1 /* ARRAY */;
+	    };
+	    FieldWrapper.prototype.isKey = function () {
+	        return _.find(this._field.annotations, function (x) { return x.name == "MetaModel.key"; }) != null;
+	    };
+	    FieldWrapper.prototype.isSimpleValue = function () {
+	        return _.find(this._field.annotations, function (x) { return x.name == "MetaModel.value"; }) != null;
+	    };
+	    FieldWrapper.prototype.annotations = function () {
+	        return this._field.annotations;
+	    };
+	    return FieldWrapper;
+	})();
+	var FieldConstraint = (function () {
+	    function FieldConstraint(_field, _clazz) {
+	        this._field = _field;
+	        this._clazz = _clazz;
+	    }
+	    FieldConstraint.prototype.name = function () {
+	        return this._field.name;
+	    };
+	    FieldConstraint.prototype.value = function () {
+	        return this._field.valueConstraint;
+	    };
+	    return FieldConstraint;
+	})();
+	var ClassWrapper = (function () {
+	    function ClassWrapper(_clazz, mw) {
+	        this._clazz = _clazz;
+	        this.mw = mw;
+	    }
+	    ClassWrapper.prototype.typeMeta = function () {
+	        return this._clazz.annotations;
+	    };
+	    ClassWrapper.prototype.path = function () {
+	        return this.mw.path();
+	    };
+	    ClassWrapper.prototype.getModule = function () {
+	        return this.mw;
+	    };
+	    ClassWrapper.prototype.typeArgs = function () {
+	        return this._clazz.typeParameters;
+	    };
+	    ClassWrapper.prototype.typConstraints = function () {
+	        var _this = this;
+	        return this._clazz.typeParameterConstraint.map(function (x) {
+	            if (x) {
+	                return _this.mw.classForName(x);
+	            }
+	            return null;
+	        });
+	    };
+	    ClassWrapper.prototype.methods = function () {
+	        return this._clazz.methods;
+	    };
+	    ClassWrapper.prototype.name = function () {
+	        return this._clazz.name;
+	    };
+	    ClassWrapper.prototype.members = function () {
+	        var _this = this;
+	        return this._clazz.fields.filter(function (x) { return x.valueConstraint == null; }).map(function (x) { return new FieldWrapper(x, _this); });
+	    };
+	    ClassWrapper.prototype.constraints = function () {
+	        var _this = this;
+	        return this._clazz.fields.filter(function (x) { return x.valueConstraint != null; }).map(function (x) { return new FieldConstraint(x, _this); });
+	    };
+	    ClassWrapper.prototype.isSubTypeOf = function (of) {
+	        if (this == of) {
+	            return true;
+	        }
+	        var _res = false;
+	        this.getAllSuperTypes().forEach(function (x) {
+	            if (!_res) {
+	                _res = _res || x.isSubTypeOf(of);
+	            }
+	        });
+	        return _res;
+	    };
+	    ClassWrapper.prototype.getExtendsClauses = function () {
+	        return this._clazz.extends;
+	    };
+	    ClassWrapper.prototype.getSuperTypes = function () {
+	        var _this = this;
+	        var result = [];
+	        this._clazz.extends.forEach(function (x) {
+	            var tp = _this.mw.classForName(x.typeName);
+	            if (tp) {
+	                result.push(tp);
+	            }
+	        });
+	        return result;
+	    };
+	    ClassWrapper.prototype.getAllSuperTypes = function () {
+	        var _this = this;
+	        var result = [];
+	        this._clazz.extends.forEach(function (x) {
+	            var tp = _this.mw.classForName(x.typeName);
+	            if (tp) {
+	                var mm = tp.getAllSuperTypes();
+	                result.push(tp);
+	                result.concat(mm);
+	            }
+	        });
+	        return _.unique(result);
+	    };
+	    ClassWrapper.prototype.annotationOverridings = function () {
+	        return this._clazz.annotationOverridings;
+	    };
+	    return ClassWrapper;
+	})();
+	var AbstractSimpleWrapper = (function () {
+	    function AbstractSimpleWrapper() {
+	    }
+	    AbstractSimpleWrapper.prototype.members = function () {
+	        return []; //this._clazz.members.map(x=>new FieldWrapper(x,this))
+	    };
+	    AbstractSimpleWrapper.prototype.methods = function () {
+	        return [];
+	    };
+	    AbstractSimpleWrapper.prototype.isSubTypeOf = function (of) {
+	        return false;
+	    };
+	    AbstractSimpleWrapper.prototype.getSuperTypes = function () {
+	        return [];
+	    };
+	    AbstractSimpleWrapper.prototype.getAllSuperTypes = function () {
+	        return [];
+	    };
+	    AbstractSimpleWrapper.prototype.name = function () {
+	        return null;
+	    };
+	    AbstractSimpleWrapper.prototype.constraints = function () {
+	        return [];
+	    };
+	    AbstractSimpleWrapper.prototype.typeMeta = function () {
+	        return [];
+	    };
+	    AbstractSimpleWrapper.prototype.getModule = function () {
+	        throw new Error("Not implemented");
+	    };
+	    AbstractSimpleWrapper.prototype.annotationOverridings = function () {
+	        return {};
+	    };
+	    return AbstractSimpleWrapper;
+	})();
+	var EnumWrapper = (function (_super) {
+	    __extends(EnumWrapper, _super);
+	    function EnumWrapper(_clazz, mw) {
+	        _super.call(this);
+	        this._clazz = _clazz;
+	        this.mw = mw;
+	    }
+	    EnumWrapper.prototype.getModule = function () {
+	        return this.mw;
+	    };
+	    EnumWrapper.prototype.values = function () {
+	        return this._clazz.members;
+	    };
+	    EnumWrapper.prototype.name = function () {
+	        return this._clazz.name;
+	    };
+	    return EnumWrapper;
+	})(AbstractSimpleWrapper);
+	var UnionWrapper = (function (_super) {
+	    __extends(UnionWrapper, _super);
+	    function UnionWrapper(_clazz, mw) {
+	        _super.call(this);
+	        this._clazz = _clazz;
+	        this.mw = mw;
+	    }
+	    UnionWrapper.prototype.elements = function () {
+	        return this._clazz;
+	    };
+	    UnionWrapper.prototype.name = function () {
+	        return this._clazz.map(function (x) { return x.name(); }).join("|");
+	    };
+	    return UnionWrapper;
+	})(AbstractSimpleWrapper);
+	var ModuleWrapper = (function () {
+	    function ModuleWrapper(_univers) {
+	        var _this = this;
+	        this._univers = _univers;
+	        this.name2Class = {};
+	        this.namespaceToMod = {};
+	        this._classes = [];
+	        _univers.classes.forEach(function (x) {
+	            var c = new ClassWrapper(x, _this);
+	            _this._classes.push(c);
+	            _this.name2Class[x.name] = c;
+	            if (x.moduleName) {
+	                //FIXME
+	                _this.name2Class[x.moduleName + "." + x.name] = c;
+	            }
+	        });
+	        _univers.enumDeclarations.forEach(function (x) {
+	            var c = new EnumWrapper(x, _this);
+	            _this._classes.push(c);
+	            _this.name2Class[x.name] = c;
+	        });
+	    }
+	    ModuleWrapper.prototype.typeFor = function (t, ow) {
+	        var _this = this;
+	        switch (t.typeKind) {
+	            case 0 /* BASIC */:
+	                var bt = t;
+	                var typeName = bt.typeName;
+	                if (typeName == "string") {
+	                    typeName = "StringType";
+	                }
+	                if (typeName == "number") {
+	                    typeName = "NumberType";
+	                }
+	                if (typeName == "boolean") {
+	                    typeName = "BooleanType";
+	                }
+	                var ti = _.indexOf(ow.typeArgs(), typeName);
+	                if (ti != -1) {
+	                    var cnst = ow.typConstraints()[ti];
+	                    if (!cnst) {
+	                        return this.classForName("ValueType");
+	                    }
+	                    return cnst;
+	                }
+	                return this.classForName(typeName);
+	            case 2 /* UNION */:
+	                var ut = t;
+	                return new UnionWrapper(ut.options.map(function (x) { return _this.typeFor(x, ow); }), this);
+	            case 1 /* ARRAY */:
+	                var at = t;
+	                return this.typeFor(at.base, ow);
+	        }
+	        return null;
+	    };
+	    ModuleWrapper.prototype.path = function () {
+	        return this._univers.name;
+	    };
+	    ModuleWrapper.prototype.classForName = function (name, stack) {
+	        var _this = this;
+	        if (stack === void 0) { stack = {}; }
+	        if (!name) {
+	            return null;
+	        }
+	        var result = this.name2Class[name];
+	        if (!result && !stack[this.path()]) {
+	            stack[this.path()] = this;
+	            var nmsp = name.indexOf(".");
+	            if (nmsp != -1) {
+	                var actualMod = this.namespaceToMod[name.substring(0, nmsp)];
+	                if (!actualMod) {
+	                    throw new Error();
+	                }
+	                return actualMod.classForName(name.substring(nmsp + 1), stack);
+	            }
+	            Object.keys(this.namespaceToMod).forEach(function (x) {
+	                if (x != "MetaModel") {
+	                    var nm = _this.namespaceToMod[x].classForName(name, stack);
+	                    if (nm) {
+	                        result = nm;
+	                    }
+	                }
+	            });
+	        }
+	        return result;
+	    };
+	    ModuleWrapper.prototype.classes = function () {
+	        return this._classes;
+	    };
+	    return ModuleWrapper;
+	})();
+	var wrapperToType = function (range, u) {
+	    if (range) {
+	        var rangeType;
+	        if (range instanceof UnionWrapper) {
+	            var uw = range;
+	            throw new Error("Union type support was removed from definition system");
+	        }
+	        else {
+	            rangeType = u.type(range.name());
+	        }
+	        return rangeType;
+	    }
+	    else {
+	        return;
+	    }
+	};
+	var registerClasses = function (m, u) {
+	    var valueType = m.classForName("ValueType");
+	    m.classes().forEach(function (x) {
+	        if (x instanceof EnumWrapper) {
+	            var et = new def.EnumType(x.name(), u, x.getModule().path());
+	            et.values = x.values();
+	            u.register(et);
+	            return;
+	        }
+	        if (x.isSubTypeOf(valueType)) {
+	            var st = x.getAllSuperTypes();
+	            st.push(x);
+	            var refTo = null;
+	            st.forEach(function (t) {
+	                var cs = t.getExtendsClauses();
+	                cs.forEach(function (z) {
+	                    if (z.typeKind == 0 /* BASIC */) {
+	                        var bas = z;
+	                        if (bas.basicName == 'Reference') {
+	                            var of = bas.typeArguments[0];
+	                            refTo = of.typeName;
+	                        }
+	                    }
+	                });
+	            });
+	            if (refTo) {
+	                //console.log("New reference type" + x.name())
+	                var ref = new def.ReferenceType(x.name(), x.getModule().path(), refTo, u);
+	                u.register(ref);
+	            }
+	            var vt = new def.ValueType(x.name(), u, x.getModule().path());
+	            u.register(vt);
+	        }
+	        else {
+	            var gt = new def.NodeClass(x.name(), u, x.getModule().path());
+	            u.register(gt);
+	        }
+	    });
+	};
+	var registerHierarchy = function (m, u) {
+	    m.classes().forEach(function (x) {
+	        x.getSuperTypes().forEach(function (y) {
+	            var tp0 = u.type(x.name());
+	            var tp1 = u.type(y.name());
+	            if (!tp0 || !tp1) {
+	                var tp0 = u.type(x.name());
+	                var tp1 = u.type(y.name());
+	                throw new Error();
+	            }
+	            u.registerSuperClass(tp0, tp1);
+	        });
+	    });
+	};
+	var registerEverything = function (m, u) {
+	    m.classes().forEach(function (x) {
+	        var tp = u.type(x.name());
+	        x.typeMeta().forEach(function (a) {
+	            var rangeType = wrapperToType(x, u);
+	            aHandlers.handleTypeAnnotation(a, rangeType);
+	        });
+	        x.members().forEach(function (x) {
+	            var range = x.range();
+	            var rangeType = wrapperToType(range, u);
+	            if (rangeType == null) {
+	                console.log(range + ":" + x.name());
+	            }
+	            createProp(x, tp, rangeType);
+	        });
+	        Object.keys(x.annotationOverridings()).forEach(function (fName) {
+	            var arr = [].concat(x.annotationOverridings()[fName]);
+	            var map = {};
+	            arr.forEach(function (ann) { return map[ann.name] = true; });
+	            var targetField;
+	            var stArr = x.getSuperTypes();
+	            var stMap = {};
+	            for (var i = 0; i < stArr.length; i++) {
+	                var st = stArr[i];
+	                if (stMap[st.name()]) {
+	                    continue;
+	                }
+	                stMap[st.name()] = true;
+	                st.getSuperTypes().forEach(function (sst) { return stArr.push(sst); });
+	                var arr1 = st.annotationOverridings()[fName];
+	                if (arr1) {
+	                    arr1.filter(function (ann) { return !map[ann.name]; }).forEach(function (ann) {
+	                        map[ann.name] = true;
+	                        arr.push(ann);
+	                    });
+	                }
+	                else {
+	                    var stFields = st.members();
+	                    for (var j = 0; j < stFields.length; j++) {
+	                        var stField = stFields[j];
+	                        if (stField.name() == fName) {
+	                            targetField = stField;
+	                            break;
+	                        }
+	                    }
+	                }
+	                if (targetField) {
+	                    var arr2 = targetField.annotations();
+	                    arr2.filter(function (ann) { return !map[ann.name]; }).forEach(function (ann) {
+	                        map[ann.name] = true;
+	                        arr.push(ann);
+	                    });
+	                    break;
+	                }
+	            }
+	            if (!targetField) {
+	                return;
+	            }
+	            var range = targetField.range();
+	            var rangeType = wrapperToType(range, u);
+	            if (rangeType == null) {
+	                console.log(range + ":" + x.name());
+	            }
+	            createProp(targetField, tp, rangeType, arr);
+	        });
+	        x.methods().forEach(function (x) {
+	            var at = tp;
+	            at.addMethod(x.name, x.text);
+	            //console.log(x.name);
+	            //createMember(x, <def.AbstractType>tp, rangeType)
+	        });
+	        x.constraints().forEach(function (x) {
+	            if (x.value().isCallConstraint) {
+	                throw new Error();
+	            }
+	            var mm = x.value();
+	            tp.addRequirement(x.name(), "" + mm.value);
+	        });
+	    });
+	    u.types().forEach(function (x) {
+	        if (x instanceof def.AbstractType) {
+	            var at = x;
+	            at.getAliases().forEach(function (y) { return u.registerAlias(y, at); });
+	        }
+	    });
+	};
+	var processModule = function (ts, u, used, declared) {
+	    if (ts.name.indexOf("metamodel.ts") != -1) {
+	        return; //FIXME
+	    }
+	    if (declared[ts.name]) {
+	        return declared[ts.name];
+	    }
+	    var m = new ModuleWrapper(ts);
+	    used[ts.name] = m;
+	    declared[ts.name] = m;
+	    Object.keys(ts.imports).forEach(function (x) {
+	        var pMod = ts.imports[x];
+	        if (used[pMod.name]) {
+	            m.namespaceToMod[x] = used[pMod.name];
+	            return;
+	        }
+	        var vMod = processModule(pMod, u, used, declared);
+	        m.namespaceToMod[x] = vMod;
+	    });
+	    used[ts.name] = null;
+	    return m;
+	};
+	function toDefSystem(ts) {
+	    var u = new def.Universe("");
+	    var c = {};
+	    processModule(ts, u, {}, c);
+	    Object.keys(c).forEach(function (x) {
+	        registerClasses(c[x], u);
+	    });
+	    Object.keys(c).forEach(function (x) {
+	        registerHierarchy(c[x], u);
+	    });
+	    Object.keys(c).forEach(function (x) {
+	        registerEverything(c[x], u);
+	    });
+	    u.types().forEach(function (x) {
+	        if (x instanceof def.NodeClass) {
+	            var cl = x;
+	            cl.properties().forEach(function (y) {
+	                var t = y.range();
+	                if (!t.isValueType()) {
+	                    t.properties().forEach(function (p0) {
+	                        if (p0.isKey()) {
+	                            var kp = p0.keyPrefix();
+	                            if (kp) {
+	                                y.withKeyRestriction(kp);
+	                                y.merge();
+	                            }
+	                            var eo = p0.getEnumOptions();
+	                            if (eo) {
+	                                y.withEnumOptions(eo);
+	                                y.merge();
+	                            }
+	                        }
+	                    });
+	                }
+	            });
+	            if (cl.isGlobalDeclaration()) {
+	                if (cl.getActuallyExports() && cl.getActuallyExports() != "$self") {
+	                    var tp = cl.property(cl.getActuallyExports()).range();
+	                    if (tp.isValueType()) {
+	                        var vt = tp;
+	                        vt.setGloballyDeclaredBy(cl);
+	                    }
+	                }
+	                if (cl.getConvertsToGlobal()) {
+	                    var tp = u.getType(cl.getConvertsToGlobal());
+	                    if (tp.isValueType()) {
+	                        var vt = tp;
+	                        vt.setGloballyDeclaredBy(cl);
+	                    }
+	                }
+	            }
+	        }
+	    });
+	    return u;
+	}
+	exports.toDefSystem = toDefSystem;
+	var processAnnotations = function (x, p, annotations) {
+	    if (!annotations) {
+	        annotations = x.annotations();
+	    }
+	    annotations.forEach(function (x) {
+	        var nm = x.name.substring(x.name.lastIndexOf(".") + 1);
+	        if (!aHandlers.annotationHandlers[nm]) {
+	            console.log("Can not find handler for:");
+	        }
+	        aHandlers.annotationHandlers[nm](x, p);
+	    });
+	};
+	function createProp(x, clazz, t, annotations) {
+	    var p = def.prop(x.name(), "", clazz, t);
+	    if (x.isMultiValue()) {
+	        p.withMultiValue(true);
+	    }
+	    p.unmerge();
+	    if (!t.isValueType()) {
+	        t.properties().forEach(function (p0) {
+	            if (p0.isKey()) {
+	                var kp = p0.keyPrefix();
+	                if (kp) {
+	                    p.withKeyRestriction(kp);
+	                    p.merge();
+	                }
+	                var eo = p0.getEnumOptions();
+	                if (eo) {
+	                    p.withEnumOptions(eo);
+	                    p.merge();
+	                }
+	            }
+	        });
+	    }
+	    processAnnotations(x, p, annotations);
+	}
+
+
+/***/ },
+/* 97 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -30832,12 +31026,6 @@ module.exports =
 								{
 									"name": "MetaModel.embeddedInMaps",
 									"arguments": []
-								},
-								{
-									"name": "MetaModel.version",
-									"arguments": [
-										"MetaModel.RAMLVersion.RAML10"
-									]
 								},
 								{
 									"name": "MetaModel.description",
@@ -31887,15 +32075,7 @@ module.exports =
 				}
 			],
 			"aliases": [],
-			"enumDeclarations": [
-				{
-					"name": "RAMLVersion",
-					"members": [
-						"RAML08",
-						"RAML10"
-					]
-				}
-			],
+			"enumDeclarations": [],
 			"imports": {},
 			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\definition-system\\metamodel.ts"
 		},
@@ -32996,20 +33176,7 @@ module.exports =
 					"implements": [],
 					"fields": [],
 					"isInterface": false,
-					"annotations": [
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
-						},
-						{
-							"name": "MetaModel.functionalDescriminator",
-							"arguments": [
-								"$parent.type"
-							]
-						}
-					],
+					"annotations": [],
 					"extends": [],
 					"moduleName": null,
 					"annotationOverridings": {}
@@ -33153,12 +33320,6 @@ module.exports =
 							"name": "MetaModel.functionalDescriminator",
 							"arguments": [
 								"$parent.type=='OAuth 1.0'"
-							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
 							]
 						}
 					],
@@ -33329,12 +33490,6 @@ module.exports =
 							"arguments": [
 								"$parent.type=='OAuth 2.0'"
 							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
 						}
 					],
 					"extends": [
@@ -33417,12 +33572,6 @@ module.exports =
 							"name": "MetaModel.functionalDescriminator",
 							"arguments": [
 								"$parent.type=='PassThrough'"
-							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
 							]
 						}
 					],
@@ -34105,12 +34254,6 @@ module.exports =
 									"arguments": [
 										"Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.\nResources CAN have alternate representations. For example, an API might support both JSON and XML representations.\nA method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type."
 									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"Ensure that forms spec is consistent with it"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -34173,12 +34316,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Instantiation of applyed traits"
-									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
 									]
 								}
 							],
@@ -34532,13 +34669,6 @@ module.exports =
 									"arguments": [
 										"fieldOrParam",
 										true
-									]
-								},
-								{
-									"name": "MetaModel.valueRestriction",
-									"arguments": [
-										"_.find(<br>&nbsp;&nbsp;relativeUri.templateArguments(),<br>&nbsp;&nbsp;$value.name)",
-										"Uri parameter names should match to template names in relative uri"
 									]
 								},
 								{
@@ -35277,12 +35407,6 @@ module.exports =
 					"isInterface": false,
 					"annotations": [
 						{
-							"name": "MetaModel.thisFeatureCovers",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/94"
-							]
-						},
-						{
 							"name": "MetaModel.description",
 							"arguments": [
 								"(Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly."
@@ -35328,12 +35452,6 @@ module.exports =
 									"arguments": [
 										"fieldOrParam",
 										true
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/78"
 									]
 								},
 								{
@@ -35388,12 +35506,6 @@ module.exports =
 									]
 								},
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/59"
-									]
-								},
-								{
 									"name": "MetaModel.setsContextValue",
 									"arguments": [
 										"location",
@@ -35417,18 +35529,6 @@ module.exports =
 									"name": "MetaModel.newInstanceName",
 									"arguments": [
 										"New Header"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"It is not clear if this also allowed for resources(check)"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"cover wildcards ({*})"
 									]
 								}
 							],
@@ -35541,12 +35641,6 @@ module.exports =
 								"typeKind": 1
 							},
 							"annotations": [
-								{
-									"name": "MetaModel.version",
-									"arguments": [
-										"MetaModel.RAMLVersion.RAML10"
-									]
-								},
 								{
 									"name": "MetaModel.noDirectParse",
 									"arguments": []
@@ -39269,7 +39363,7 @@ module.exports =
 	];
 
 /***/ },
-/* 95 */
+/* 98 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -39448,24 +39542,6 @@ module.exports =
 									"arguments": [
 										"(Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].\n            The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.\n            If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:"
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/72"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/119"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Overrriding on resource level looks pretty strange"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -39496,18 +39572,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Base uri parameters are named parameters which described template parameters in the base uri"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Specification is not good enough"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/150"
 									]
 								}
 							],
@@ -39540,18 +39604,6 @@ module.exports =
 									"arguments": [
 										"URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters"
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Duplicate of base uri parameters"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/61"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -39578,18 +39630,6 @@ module.exports =
 											"HTTP",
 											"HTTPS"
 										]
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Not clear how it should work in combination with baseUri"
-									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"Actually it is a set"
 									]
 								},
 								{
@@ -39628,12 +39668,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"(Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:\nOne of the following YAML media types:\ntext/yaml\ntext/x-yaml\napplication/yaml\napplication/x-yaml*\nAny type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types\nA custom type that conforms to the regular expression, \"application/[A-Za-z.-0-1]*+?(json|xml)\"\nFor any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.\n"
-									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"should be open enum"
 									]
 								},
 								{
@@ -39714,12 +39748,6 @@ module.exports =
 								"typeKind": 1
 							},
 							"annotations": [
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Not stated clearly in spec"
-									]
-								},
 								{
 									"name": "MetaModel.description",
 									"arguments": [
@@ -39900,12 +39928,6 @@ module.exports =
 									"arguments": [
 										"Content of documentation section"
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Needs better documentation, I would like to polish it in 1.0"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -39972,15 +39994,7 @@ module.exports =
 				}
 			],
 			"aliases": [],
-			"enumDeclarations": [
-				{
-					"name": "RAMLVersion",
-					"members": [
-						"RAML08",
-						"RAML10"
-					]
-				}
-			],
+			"enumDeclarations": [],
 			"imports": {},
 			"name": "c:\\GIT-repos\\api-workbench\\src\\raml1\\definition-system\\metamodel.ts"
 		},
@@ -40183,14 +40197,14 @@ module.exports =
 					"methods": [
 						{
 							"name": "templateArguments",
-							"start": 1159,
-							"end": 1597,
+							"start": 1091,
+							"end": 1529,
 							"text": "\n\n    templateArguments():string[]{\n        var pos=0;\n        var str=this.value();\n        var result=[];\n        while(true){\n            var start=str.indexOf(\"{\",pos)\n            if (start!=-1){\n                var end=str.indexOf(\"}\",start+1);\n                result.push(str.substring(start+1,end))\n                pos=end;\n            }\n            else{\n                break;\n            }\n        }\n        return result;\n    }"
 						},
 						{
 							"name": "validate",
-							"start": 1597,
-							"end": 1697,
+							"start": 1529,
+							"end": 1629,
 							"text": "\n\n    validate(){\n        var str=this.value();\n        //write something to validate Url here\n    }"
 						}
 					],
@@ -40204,12 +40218,6 @@ module.exports =
 							"name": "MetaModel.description",
 							"arguments": [
 								"This type currently serves both for absolute and relative urls"
-							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/115"
 							]
 						}
 					],
@@ -40231,8 +40239,8 @@ module.exports =
 					"methods": [
 						{
 							"name": "parse",
-							"start": 1822,
-							"end": 2616,
+							"start": 1754,
+							"end": 2548,
 							"text": "\n    parse():string[]{\n        //FIXME INHERITANCE\n        var value=this.value();\n        var result=[]\n        var temp=\"\";\n        var inPar=false;\n        var count=0;\n        for (var a=0;a<value.length;a++){\n            var c=value[a];\n            if (c=='{'){\n                count++;\n                inPar=true;\n                continue;\n            }\n            if (c=='}'){\n                count--;\n                inPar=false;\n                result.push(temp);\n                temp=\"\";\n                continue;\n            }\n            if (inPar){\n                temp+=c;\n            }\n        }\n        if (count>0){\n            throw new Error(\"Unmatched '{'\")\n        }\n        if (count<0){\n            throw new Error(\"Unmatched '}'\")\n        }\n        return result;\n    }"
 						}
 					],
@@ -40267,14 +40275,14 @@ module.exports =
 					"methods": [
 						{
 							"name": "parse",
-							"start": 2745,
-							"end": 3530,
+							"start": 2677,
+							"end": 3462,
 							"text": "\n    parse():string[]{//FIXME INHERITANCE\n        var value=this.value();\n        var result=[]\n        var temp=\"\";\n        var inPar=false;\n        var count=0;\n        for (var a=0;a<value.length;a++){\n            var c=value[a];\n            if (c=='{'){\n                count++;\n                inPar=true;\n                continue;\n            }\n            if (c=='}'){\n                count--;\n                inPar=false;\n                result.push(temp);\n                temp=\"\";\n                continue;\n            }\n            if (inPar){\n                temp+=c;\n            }\n        }\n        if (count>0){\n            throw new Error(\"Unmatched '{'\")\n        }\n        if (count<0){\n            throw new Error(\"Unmatched '}'\")\n        }\n        return result;\n    }"
 						},
 						{
 							"name": "validate",
-							"start": 3530,
-							"end": 3629,
+							"start": 3462,
+							"end": 3561,
 							"text": "\n    validate(){\n        var str=this.value();\n        //write something to validate Url here\n    }"
 						}
 					],
@@ -40349,12 +40357,6 @@ module.exports =
 							]
 						},
 						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/80"
-							]
-						},
-						{
 							"name": "MetaModel.description",
 							"arguments": [
 								"Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0"
@@ -40379,8 +40381,8 @@ module.exports =
 					"methods": [
 						{
 							"name": "validate",
-							"start": 4242,
-							"end": 4425,
+							"start": 4098,
+							"end": 4281,
 							"text": "\n\n    validate(){\n        var str=this.value();\n        //write something to validate schema here here\n        //in fact it should check that content is valid json or xsd schema\n    }"
 						}
 					],
@@ -40529,8 +40531,8 @@ module.exports =
 					"methods": [
 						{
 							"name": "parse",
-							"start": 4957,
-							"end": 5359,
+							"start": 4813,
+							"end": 5215,
 							"text": "\n\n    parse():any{\n        try {\n            JSON.parse(this.value());\n        } catch (e){\n            var ne=new Error(\"Warning: Can not parse JSON:\"+e.message);\n            throw ne\n        }\n        var a=this.$$.parent().attr('schema');\n        if (a) {\n          var sm=  a.findReferencedValue()\n          if (sm&&sm.validate){\n              sm.validate(this.value());\n          }\n        }\n    }"
 						}
 					],
@@ -40673,12 +40675,6 @@ module.exports =
 						{
 							"name": "MetaModel.allowAny",
 							"arguments": []
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
 						}
 					],
 					"extends": [
@@ -40706,12 +40702,6 @@ module.exports =
 						{
 							"name": "MetaModel.allowAny",
 							"arguments": []
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
 						}
 					],
 					"extends": [
@@ -40821,12 +40811,6 @@ module.exports =
 						{
 							"name": "MetaModel.allowAny",
 							"arguments": []
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
 						}
 					],
 					"extends": [
@@ -40963,12 +40947,6 @@ module.exports =
 						{
 							"name": "MetaModel.allowAny",
 							"arguments": []
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Specification is actually very vague here"
-							]
 						}
 					],
 					"extends": [
@@ -41256,12 +41234,6 @@ module.exports =
 									"arguments": [
 										"Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.\nResources CAN have alternate representations. For example, an API might support both JSON and XML representations.\nA method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type."
 									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"Ensure that forms spec is consistent with it"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -41285,12 +41257,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Instantiation of applyed traits"
-									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
 									]
 								}
 							],
@@ -41513,12 +41479,6 @@ module.exports =
 									"arguments": [
 										"Methods that are part of this resource type definition"
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"definition system did not represents that ? is allowed after method names here"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -41543,12 +41503,6 @@ module.exports =
 									"arguments": [
 										"Instantiation of applyed traits"
 									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -41569,12 +41523,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Instantiation of applyed resource type"
-									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
 									]
 								}
 							],
@@ -41623,12 +41571,6 @@ module.exports =
 								"typeKind": 1
 							},
 							"annotations": [
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/71"
-									]
-								},
 								{
 									"name": "MetaModel.setsContextValue",
 									"arguments": [
@@ -41718,12 +41660,6 @@ module.exports =
 									"arguments": [
 										"Method that can be called"
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/95"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -41750,18 +41686,6 @@ module.exports =
 											"HTTP",
 											"HTTPS"
 										]
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"Not clear how it should work in combination with baseUri also is it also related to resources and types/traits"
-									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"Actually it is a set"
 									]
 								},
 								{
@@ -41848,12 +41772,6 @@ module.exports =
 									"arguments": []
 								},
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/73"
-									]
-								},
-								{
 									"name": "MetaModel.startFrom",
 									"arguments": [
 										"/"
@@ -41863,12 +41781,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Relative URL of this resource from the parent resource"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/87"
 									]
 								}
 							],
@@ -41890,12 +41802,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Instantiation of applyed resource type"
-									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
 									]
 								}
 							],
@@ -41920,12 +41826,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"Instantiation of applyed traits"
-									]
-								},
-								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/98"
 									]
 								}
 							],
@@ -41982,23 +41882,10 @@ module.exports =
 									]
 								},
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/71"
-									]
-								},
-								{
 									"name": "MetaModel.setsContextValue",
 									"arguments": [
 										"location",
 										"Params.ParameterLocation.URI"
-									]
-								},
-								{
-									"name": "MetaModel.valueRestriction",
-									"arguments": [
-										"_.find(relativeUri.parse(),$value.name)",
-										"Uri parameter names should match to template names in relative uri"
 									]
 								},
 								{
@@ -42117,12 +42004,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level."
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"This feature is not consistent (causes not solvable overloading)"
 									]
 								}
 							],
@@ -42308,12 +42189,6 @@ module.exports =
 									"arguments": [
 										"The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value."
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/86"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -42334,12 +42209,6 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property."
-									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"It sounds consistent to allow multiple examples for parameters, but it will make hard to describe difference between 0.8 and 1.0 in terms of def system"
 									]
 								}
 							],
@@ -42362,18 +42231,6 @@ module.exports =
 									"arguments": [
 										"The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
 									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"semantic of repeat is not clearly specified and actually multiple possible reasonable options exists at the same time "
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/152"
-									]
 								}
 							],
 							"valueConstraint": null,
@@ -42381,14 +42238,7 @@ module.exports =
 						}
 					],
 					"isInterface": false,
-					"annotations": [
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"Multiple  parameter types are not supported in this specification we should think about how to cover them properly using same key and redefining parameter looks pretty reasonable for 1.0"
-							]
-						}
-					],
+					"annotations": [],
 					"extends": [
 						{
 							"typeName": "Common.RAMLLanguageElement",
@@ -42421,12 +42271,6 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.thisFeatureCovers",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/97"
-									]
-								},
-								{
 									"name": "MetaModel.description",
 									"arguments": [
 										"(Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity."
@@ -42451,12 +42295,6 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/82"
-									]
-								},
-								{
 									"name": "MetaModel.description",
 									"arguments": [
 										"(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
@@ -42477,18 +42315,6 @@ module.exports =
 								"modulePath": null
 							},
 							"annotations": [
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/93"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/141"
-									]
-								},
 								{
 									"name": "MetaModel.description",
 									"arguments": [
@@ -42740,12 +42566,6 @@ module.exports =
 							"arguments": [
 								"Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. "
 							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/105"
-							]
 						}
 					],
 					"extends": [
@@ -42786,12 +42606,6 @@ module.exports =
 							"arguments": [
 								"location",
 								"ParameterLocation.FORM"
-							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/94"
 							]
 						},
 						{
@@ -42836,24 +42650,6 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/53"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/78"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/46"
-									]
-								},
-								{
 									"name": "MetaModel.setsContextValue",
 									"arguments": [
 										"location",
@@ -42886,14 +42682,7 @@ module.exports =
 								"typeArguments": [],
 								"modulePath": null
 							},
-							"annotations": [
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"I am not sure that it should be here but it is actually used"
-									]
-								}
-							],
+							"annotations": [],
 							"valueConstraint": null,
 							"optional": false
 						},
@@ -42912,12 +42701,6 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/59"
-									]
-								},
-								{
 									"name": "MetaModel.setsContextValue",
 									"arguments": [
 										"location",
@@ -42934,18 +42717,6 @@ module.exports =
 									"name": "MetaModel.newInstanceName",
 									"arguments": [
 										"New Header"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"It is not clear if this also allowed for resources(check)"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"cover wildcards ({*})"
 									]
 								}
 							],
@@ -43249,12 +43020,6 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/8"
-									]
-								},
-								{
 									"name": "MetaModel.requireValue",
 									"arguments": [
 										"this.name.isForm()",
@@ -43283,45 +43048,9 @@ module.exports =
 							},
 							"annotations": [
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/75"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/70"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/24"
-									]
-								},
-								{
 									"name": "MetaModel.description",
 									"arguments": [
-										"Documentation generators MUST use body properties' example attributes to generate example invocations.\n\nThis example shows example attributes for two body property media types."
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/107"
-									]
-								},
-								{
-									"name": "MetaModel.needsClarification",
-									"arguments": [
-										"Multiple examples"
-									]
-								},
-								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"https://github.com/raml-org/raml-spec/issues/113"
+										"Documentation generators MUST use body properties' example attributes to generate example invocations.\nThis example shows example attributes for two body property media types."
 									]
 								}
 							],
@@ -43481,18 +43210,6 @@ module.exports =
 							"arguments": [
 								"Needed to set connection between json related mime types and json schema"
 							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/160"
-							]
-						},
-						{
-							"name": "MetaModel.issue",
-							"arguments": [
-								"https://github.com/raml-org/raml-spec/issues/81"
-							]
 						}
 					],
 					"extends": [
@@ -43574,12 +43291,6 @@ module.exports =
 									]
 								},
 								{
-									"name": "MetaModel.issue",
-									"arguments": [
-										"it seems to use different wildcard then in methods and resources"
-									]
-								},
-								{
 									"name": "MetaModel.description",
 									"arguments": [
 										"An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.\n        API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.\n\nIn the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media."
@@ -43649,13 +43360,13 @@ module.exports =
 	];
 
 /***/ },
-/* 96 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RamlWrapper = __webpack_require__(84);
+	var RamlWrapper = __webpack_require__(82);
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
-	var expander = __webpack_require__(87);
+	var expander = __webpack_require__(85);
 	var lowLevelProxy = __webpack_require__(59);
 	var Opt = __webpack_require__(55);
 	var util = __webpack_require__(54);
@@ -44104,14 +43815,14 @@ module.exports =
 
 
 /***/ },
-/* 97 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
 	var hl = __webpack_require__(2);
 	var _ = __webpack_require__(4);
-	var linter = __webpack_require__(72);
-	var wrapperHelper = __webpack_require__(88);
+	var linter = __webpack_require__(69);
+	var wrapperHelper = __webpack_require__(86);
 	function escapeUri(u) {
 	    var ss = "";
 	    var level = 0;
@@ -44243,7 +43954,7 @@ module.exports =
 
 
 /***/ },
-/* 98 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
@@ -44254,7 +43965,7 @@ module.exports =
 	    d.prototype = new __();
 	};
 	var _ = __webpack_require__(4);
-	var sel = __webpack_require__(99);
+	var sel = __webpack_require__(102);
 	var Selector = (function () {
 	    function Selector() {
 	    }
@@ -44442,7 +44153,7 @@ module.exports =
 
 
 /***/ },
-/* 99 */
+/* 102 */
 /***/ function(module, exports) {
 
 	var mod = (function () {
