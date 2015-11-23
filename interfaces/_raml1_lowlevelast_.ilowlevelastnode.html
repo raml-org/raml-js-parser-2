@@ -78,6 +78,16 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.astnode.html" class="tsd-signature-type">ASTNode</a></li>
+					<li><a href="../classes/_raml1_jsyaml_json2lowlevel_.astnode.html" class="tsd-signature-type">AstNode</a></li>
+					<li><a href="../classes/_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a></li>
+					<li><a href="../classes/_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html" class="tsd-signature-type">LowLevelProxyNode</a></li>
+					<li><a href="../classes/_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -101,6 +111,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#includeerrors" class="tsd-kind-icon">include<wbr>Errors</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#includepath" class="tsd-kind-icon">include<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#includedfrom" class="tsd-kind-icon">included<wbr>From</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#includescontents" class="tsd-kind-icon">includes<wbr>Contents</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#isvaluelocal" class="tsd-kind-icon">is<wbr>Value<wbr>Local</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#key" class="tsd-kind-icon">key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_lowlevelast_.ilowlevelastnode.html#keyend" class="tsd-kind-icon">key<wbr>End</a></li>
@@ -421,6 +432,28 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="includescontents" class="tsd-anchor"></a>
+					<h3>includes<wbr>Contents</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">includes<wbr>Contents<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in raml1/lowLevelAST.ts:148</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Indicates that contents of this node are !included</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 					<a name="isvaluelocal" class="tsd-anchor"></a>
 					<h3>is<wbr>Value<wbr>Local</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
@@ -532,7 +565,7 @@
 					<a name="nodedefinition" class="tsd-anchor"></a>
 					<h3>node<wbr>Definition</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">node<wbr>Definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.inodedefinition.html" class="tsd-signature-type">INodeDefinition</a></li>
+						<li class="tsd-signature tsd-kind-icon">node<wbr>Definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">highlevel.INodeDefinition</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -541,7 +574,7 @@
 									<li>Defined in raml1/lowLevelAST.ts:143</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.inodedefinition.html" class="tsd-signature-type">INodeDefinition</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">highlevel.INodeDefinition</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -864,6 +897,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_lowlevelast_.ilowlevelastnode.html#includedfrom" class="tsd-kind-icon">included<wbr>From</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_lowlevelast_.ilowlevelastnode.html#includescontents" class="tsd-kind-icon">includes<wbr>Contents</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_lowlevelast_.ilowlevelastnode.html#isvaluelocal" class="tsd-kind-icon">is<wbr>Value<wbr>Local</a>
