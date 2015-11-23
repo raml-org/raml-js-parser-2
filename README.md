@@ -19,4 +19,4 @@ node test/testAsync.js  //same as above but in asynchronous mode
 
 ## Usage
 * For parser usage example refer to `test/test.js`
-* For asynchrounous usage example refer to `test/test.js`
+* For asynchrounous usage example refer to `test/testAsync.js`
