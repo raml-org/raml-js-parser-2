@@ -86,6 +86,10 @@ export interface ILowLevelASTNode {
     text(unitText: string): string;
     copy(): ILowLevelASTNode;
     nodeDefinition(): highlevel.INodeDefinition;
+    /**
+     * Indicates that contents of this node are !included
+     */
+    includesContents(): boolean;
 }
 export declare enum CommandKind {
     ADD_CHILD = 0,

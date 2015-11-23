@@ -74,7 +74,6 @@
 						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_raml1_definition_system_tsstruct2def_.annotationhandler.html" class="tsd-kind-icon">Annotation<wbr>Handler</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_raml1_definition_system_tsstruct2def_.typewrapper.html" class="tsd-kind-icon">Type<wbr>Wrapper</a></li>
 							</ul>
 						</section>
@@ -84,18 +83,11 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#createprop" class="tsd-kind-icon">create<wbr>Prop</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#processannotations" class="tsd-kind-icon">process<wbr>Annotations</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#processmodule" class="tsd-kind-icon">process<wbr>Module</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_definition_system_tsstruct2def_.html#recordannotation" class="tsd-kind-icon">record<wbr>Annotation</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#registerclasses" class="tsd-kind-icon">register<wbr>Classes</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#registereverything" class="tsd-kind-icon">register<wbr>Everything</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#registerhierarchy" class="tsd-kind-icon">register<wbr>Hierarchy</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_definition_system_tsstruct2def_.html#todefsystem" class="tsd-kind-icon">to<wbr>Def<wbr>System</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#wrappertotype" class="tsd-kind-icon">wrapper<wbr>ToType</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definition_system_tsstruct2def_.html#annotationhandlers" class="tsd-kind-icon">annotation<wbr>Handlers</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,13 +99,13 @@
 					<a name="createprop" class="tsd-anchor"></a>
 					<h3>create<wbr>Prop</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Prop<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.fieldwrapper.html" class="tsd-signature-type">FieldWrapper</a>, clazz<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a>, annotations<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Prop<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.fieldwrapper.html" class="tsd-signature-type">FieldWrapper</a>, clazz<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">def.IType</span>, annotations<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_definition_system_tsmodel_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:976</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:575</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -125,10 +117,10 @@
 									<h5>clazz: <a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a></h5>
 								</li>
 								<li>
-									<h5>t: <a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a></h5>
+									<h5>t: <span class="tsd-signature-type">def.IType</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> annotations: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> annotations: <a href="../interfaces/_raml1_definition_system_tsmodel_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -139,13 +131,13 @@
 					<a name="processannotations" class="tsd-anchor"></a>
 					<h3>process<wbr>Annotations</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Annotations<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.fieldwrapper.html" class="tsd-signature-type">FieldWrapper</a>, p<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, annotations<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Annotations<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.fieldwrapper.html" class="tsd-signature-type">FieldWrapper</a>, p<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, annotations<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_definition_system_tsmodel_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:964</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:563</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -157,7 +149,7 @@
 									<h5>p: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> annotations: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> annotations: <a href="../interfaces/_raml1_definition_system_tsmodel_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -168,19 +160,19 @@
 					<a name="processmodule" class="tsd-anchor"></a>
 					<h3>process<wbr>Module</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Module<span class="tsd-signature-symbol">(</span>ts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.module.html" class="tsd-signature-type">Module</a>, u<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a>, used<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, declared<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.modulewrapper.html" class="tsd-signature-type">ModuleWrapper</a></li>
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Module<span class="tsd-signature-symbol">(</span>ts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsmodel_.module.html" class="tsd-signature-type">Module</a>, u<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a>, used<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, declared<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_tsstruct2def_.modulewrapper.html" class="tsd-signature-type">ModuleWrapper</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:548</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:478</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ts: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.module.html" class="tsd-signature-type">Module</a></h5>
+									<h5>ts: <a href="../interfaces/_raml1_definition_system_tsmodel_.module.html" class="tsd-signature-type">Module</a></h5>
 								</li>
 								<li>
 									<h5>u: <a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a></h5>
@@ -206,32 +198,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="recordannotation" class="tsd-anchor"></a>
-					<h3>record<wbr>Annotation</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">record<wbr>Annotation<span class="tsd-signature-symbol">(</span>p<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:960</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>p: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-								</li>
-								<li>
-									<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 					<a name="registerclasses" class="tsd-anchor"></a>
 					<h3>register<wbr>Classes</h3>
@@ -242,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:326</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:328</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -268,7 +234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:393</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:387</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,7 +260,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:378</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:372</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,19 +280,19 @@
 					<a name="todefsystem" class="tsd-anchor"></a>
 					<h3>to<wbr>Def<wbr>System</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Def<wbr>System<span class="tsd-signature-symbol">(</span>ts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.module.html" class="tsd-signature-type">Module</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Def<wbr>System<span class="tsd-signature-symbol">(</span>ts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsmodel_.module.html" class="tsd-signature-type">Module</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:572</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:502</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ts: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.module.html" class="tsd-signature-type">Module</a></h5>
+									<h5>ts: <a href="../interfaces/_raml1_definition_system_tsmodel_.module.html" class="tsd-signature-type">Module</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a></h4>
@@ -337,13 +303,13 @@
 					<a name="wrappertotype" class="tsd-anchor"></a>
 					<h3>wrapper<wbr>ToType</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">wrapper<wbr>ToType<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstruct2def_.typewrapper.html" class="tsd-signature-type">TypeWrapper</a>, u<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a></li>
+						<li class="tsd-signature tsd-kind-icon">wrapper<wbr>ToType<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstruct2def_.typewrapper.html" class="tsd-signature-type">TypeWrapper</a>, u<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definition-system/tsStruct2Def.ts:310</li>
+									<li>Defined in raml1/definition-system/tsStruct2Def.ts:311</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -355,1036 +321,9 @@
 									<h5>u: <a href="../classes/_raml1_definitionsystem_.universe.html" class="tsd-signature-type">Universe</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external tsd-is-not-exported">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-					<a name="annotationhandlers" class="tsd-anchor"></a>
-					<h3>annotation<wbr>Handlers</h3>
-					<div class="tsd-signature tsd-kind-icon">annotation<wbr>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in raml1/definition-system/tsStruct2Def.ts:635</li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.allowmultiple" class="tsd-anchor"></a>
-						<h3>allow<wbr>Multiple</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">allow<wbr>Multiple<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:863</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.allownull" class="tsd-anchor"></a>
-						<h3>allow<wbr>Null</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">allow<wbr>Null<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:889</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.canbeduplicator" class="tsd-anchor"></a>
-						<h3>can<wbr>BeDuplicator</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">can<wbr>BeDuplicator<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:939</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.canbevalue" class="tsd-anchor"></a>
-						<h3>can<wbr>BeValue</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">can<wbr>BeValue<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:643</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.caninherit" class="tsd-anchor"></a>
-						<h3>can<wbr>Inherit</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">can<wbr>Inherit<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:936</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.constraint" class="tsd-anchor"></a>
-						<h3>constraint</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">constraint<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:872</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.declaringfields" class="tsd-anchor"></a>
-						<h3>declaring<wbr>Fields</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">declaring<wbr>Fields<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:881</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.defaultvalue" class="tsd-anchor"></a>
-						<h3>default<wbr>Value</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">default<wbr>Value<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:682</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.describesannotation" class="tsd-anchor"></a>
-						<h3>describes<wbr>Annotation</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">describes<wbr>Annotation<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:885</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.descriminatingproperty" class="tsd-anchor"></a>
-						<h3>descriminating<wbr>Property</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">descriminating<wbr>Property<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:894</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.description" class="tsd-anchor"></a>
-						<h3>description</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:898</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.documentationtablelabel" class="tsd-anchor"></a>
-						<h3>documentation<wbr>Table<wbr>Label</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">documentation<wbr>Table<wbr>Label<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:950</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.embeddedinmaps" class="tsd-anchor"></a>
-						<h3>embedded<wbr>InMaps</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">embedded<wbr>InMaps<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:661</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.extrametakey" class="tsd-anchor"></a>
-						<h3>extra<wbr>Meta<wbr>Key</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">extra<wbr>Meta<wbr>Key<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:812</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.facetid" class="tsd-anchor"></a>
-						<h3>facet<wbr>Id</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">facet<wbr>Id<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:685</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.grammartokenkind" class="tsd-anchor"></a>
-						<h3>grammar<wbr>Token<wbr>Kind</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">grammar<wbr>Token<wbr>Kind<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:933</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.hide" class="tsd-anchor"></a>
-						<h3>hide</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">hide<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:942</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.inherited" class="tsd-anchor"></a>
-						<h3>inherited</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">inherited<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:909</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.issue" class="tsd-anchor"></a>
-						<h3>issue</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">issue<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:903</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.key" class="tsd-anchor"></a>
-						<h3>key</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:636</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.markdowndescription" class="tsd-anchor"></a>
-						<h3>markdown<wbr>Description</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">markdown<wbr>Description<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:953</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.needsclarification" class="tsd-anchor"></a>
-						<h3>needs<wbr>Clarification</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">needs<wbr>Clarification<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:915</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.newinstancename" class="tsd-anchor"></a>
-						<h3>new<wbr>Instance<wbr>Name</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">new<wbr>Instance<wbr>Name<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:876</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.nodirectparse" class="tsd-anchor"></a>
-						<h3>no<wbr>Direct<wbr>Parse</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">no<wbr>Direct<wbr>Parse<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:673</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.oftenkeys" class="tsd-anchor"></a>
-						<h3>often<wbr>Keys</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">often<wbr>Keys<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:657</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.oneof" class="tsd-anchor"></a>
-						<h3>one<wbr>Of</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">one<wbr>Of<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:653</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.requirevalue" class="tsd-anchor"></a>
-						<h3>require<wbr>Value</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">require<wbr>Value<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:859</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.required" class="tsd-anchor"></a>
-						<h3>required</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">required<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:668</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.selector" class="tsd-anchor"></a>
-						<h3>selector</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">selector<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:867</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.selfnode" class="tsd-anchor"></a>
-						<h3>self<wbr>Node</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">self<wbr>Node<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:927</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.setscontextvalue" class="tsd-anchor"></a>
-						<h3>sets<wbr>Context<wbr>Value</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">sets<wbr>Context<wbr>Value<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:678</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.startfrom" class="tsd-anchor"></a>
-						<h3>start<wbr>From</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">start<wbr>From<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:649</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.system" class="tsd-anchor"></a>
-						<h3>system</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">system<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:665</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.thisfeaturecovers" class="tsd-anchor"></a>
-						<h3>this<wbr>Feature<wbr>Covers</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">this<wbr>Feature<wbr>Covers<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:921</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.unmerged" class="tsd-anchor"></a>
-						<h3>unmerged</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">unmerged<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:646</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.value" class="tsd-anchor"></a>
-						<h3>value</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:640</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.valuedescription" class="tsd-anchor"></a>
-						<h3>value<wbr>Description</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">value<wbr>Description<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:956</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.valuerestriction" class="tsd-anchor"></a>
-						<h3>value<wbr>Restriction</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">value<wbr>Restriction<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:930</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-						<a name="annotationhandlers.version" class="tsd-anchor"></a>
-						<h3>version</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
-							<li class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a>, f<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in raml1/definition-system/tsStruct2Def.ts:912</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>a: <a href="../interfaces/_raml1_definition_system_tsstructureparser_.annotation.html" class="tsd-signature-type">Annotation</a></h5>
-									</li>
-									<li>
-										<h5>f: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
 				</section>
 			</section>
 		</div>
@@ -1402,9 +341,6 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../interfaces/_raml1_definition_system_tsstruct2def_.annotationhandler.html" class="tsd-kind-icon">Annotation<wbr>Handler</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../interfaces/_raml1_definition_system_tsstruct2def_.typewrapper.html" class="tsd-kind-icon">Type<wbr>Wrapper</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -1415,9 +351,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_raml1_definition_system_tsstruct2def_.html#processmodule" class="tsd-kind-icon">process<wbr>Module</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="_raml1_definition_system_tsstruct2def_.html#recordannotation" class="tsd-kind-icon">record<wbr>Annotation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_raml1_definition_system_tsstruct2def_.html#registerclasses" class="tsd-kind-icon">register<wbr>Classes</a>
@@ -1433,9 +366,6 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_raml1_definition_system_tsstruct2def_.html#wrappertotype" class="tsd-kind-icon">wrapper<wbr>ToType</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="_raml1_definition_system_tsstruct2def_.html#annotationhandlers" class="tsd-kind-icon">annotation<wbr>Handlers</a>
 					</li>
 				</ul>
 			</nav>

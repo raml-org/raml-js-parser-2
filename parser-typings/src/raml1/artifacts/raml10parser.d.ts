@@ -28,6 +28,7 @@ import hlImpl = require("../highLevelImpl");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
 import core = require("../wrapped-ast/parserCore");
 import Opt = require("../../Opt");
+import apiLoader = require("../../ramlscript/apiLoader");
 export interface RAMLLanguageElement extends core.BasicNode {
     /***
      * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
@@ -186,9 +187,9 @@ export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
      ***/
     getKind(): string;
 }
-export interface SecuritySchemaRef extends Reference {
+export interface SecuritySchemeRef extends Reference {
 }
-export declare class SecuritySchemaRefImpl extends ReferenceImpl implements SecuritySchemaRef {
+export declare class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -225,21 +226,6 @@ export declare class AnnotationRefImpl extends ReferenceImpl implements Annotati
 export interface DataElementRef extends Reference {
 }
 export declare class DataElementRefImpl extends ReferenceImpl implements DataElementRef {
-    protected attr: hl.IAttribute;
-    constructor(attr: hl.IAttribute);
-    /***
-     * @hidden
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * @return Actual name of instance interface
-     ***/
-    getKind(): string;
-}
-export interface ramlexpression extends ValueType {
-}
-export declare class ramlexpressionImpl extends ValueTypeImpl implements ramlexpression {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -327,12 +313,12 @@ export declare class UriTemplateImpl extends StringTypeImpl implements UriTempla
 /***
  * This  type describes relative uri templates
  ***/
-export interface RelativeUri extends UriTemplate {
+export interface RelativeUriString extends UriTemplate {
 }
 /***
  * This  type describes relative uri templates
  ***/
-export declare class RelativeUriImpl extends UriTemplateImpl implements RelativeUri {
+export declare class RelativeUriStringImpl extends UriTemplateImpl implements RelativeUriString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -348,12 +334,12 @@ export declare class RelativeUriImpl extends UriTemplateImpl implements Relative
 /***
  * This  type describes absolute uri templates
  ***/
-export interface FullUriTemplate extends UriTemplate {
+export interface FullUriTemplateString extends UriTemplate {
 }
 /***
  * This  type describes absolute uri templates
  ***/
-export declare class FullUriTemplateImpl extends UriTemplateImpl implements FullUriTemplate {
+export declare class FullUriTemplateStringImpl extends UriTemplateImpl implements FullUriTemplateString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -366,9 +352,9 @@ export declare class FullUriTemplateImpl extends UriTemplateImpl implements Full
      ***/
     getKind(): string;
 }
-export interface StatusCode extends StringType {
+export interface StatusCodeString extends StringType {
 }
-export declare class StatusCodeImpl extends StringTypeImpl implements StatusCode {
+export declare class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -384,12 +370,12 @@ export declare class StatusCodeImpl extends StringTypeImpl implements StatusCode
 /***
  * This  type describes fixed uris
  ***/
-export interface FixedUri extends StringType {
+export interface FixedUriString extends StringType {
 }
 /***
  * This  type describes fixed uris
  ***/
-export declare class FixedUriImpl extends StringTypeImpl implements FixedUri {
+export declare class FixedUriStringImpl extends StringTypeImpl implements FixedUriString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -534,42 +520,6 @@ export interface ExampleString extends StringType {
  * Examples at this moment only two subtypes are supported (json  and xml)
  ***/
 export declare class ExampleStringImpl extends StringTypeImpl implements ExampleString {
-    protected attr: hl.IAttribute;
-    constructor(attr: hl.IAttribute);
-    /***
-     * @hidden
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * @return Actual name of instance interface
-     ***/
-    getKind(): string;
-}
-/***
- * script to inject to tooling environment
- ***/
-export interface ScriptingHook extends StringType {
-}
-/***
- * script to inject to tooling environment
- ***/
-export declare class ScriptingHookImpl extends StringTypeImpl implements ScriptingHook {
-    protected attr: hl.IAttribute;
-    constructor(attr: hl.IAttribute);
-    /***
-     * @hidden
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * @return Actual name of instance interface
-     ***/
-    getKind(): string;
-}
-export interface SecuritySchemaHookScript extends ScriptingHook {
-}
-export declare class SecuritySchemaHookScriptImpl extends ScriptingHookImpl implements SecuritySchemaHookScript {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -809,12 +759,12 @@ export interface SecuritySchemaType extends RAMLLanguageElement {
     /***
      * You may declare settings needed to use this type of security security schemas
      ***/
-    requiredSettings(): DataElement[];
+    requiredSettings(): TypeDeclaration[];
     /***
      * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
      * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
      ***/
-    describedBy(): SecuritySchemaPart;
+    describedBy(): SecuritySchemePart;
 }
 /***
  * Security schema type allows you to contribute your own security schema type with settings and optinal configurator for plugging into client sdks auth mechanism
@@ -834,23 +784,23 @@ export declare class SecuritySchemaTypeImpl extends RAMLLanguageElementImpl impl
     /***
      * You may declare settings needed to use this type of security security schemas
      ***/
-    requiredSettings(): DataElement[];
+    requiredSettings(): TypeDeclaration[];
     /***
      * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
      * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
      ***/
-    describedBy(): SecuritySchemaPart;
+    describedBy(): SecuritySchemePart;
 }
-export interface DataElement extends RAMLLanguageElement {
+export interface TypeDeclaration extends RAMLLanguageElement {
     /***
      * name of the parameter
      ***/
     name(): string;
-    xml(): XMLInfo;
+    xml(): XMLSerializationHints;
     /***
      * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
      ***/
-    facets(): DataElement[];
+    facets(): TypeDeclaration[];
     /***
      * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
      ***/
@@ -901,7 +851,7 @@ export interface DataElement extends RAMLLanguageElement {
      ***/
     annotations(): AnnotationRef[];
 }
-export declare class DataElementImpl extends RAMLLanguageElementImpl implements DataElement {
+export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl implements TypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -921,12 +871,12 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set name value
      ***/
-    setName(param: string): DataElementImpl;
-    xml(): XMLInfo;
+    setName(param: string): TypeDeclarationImpl;
+    xml(): XMLSerializationHints;
     /***
      * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
      ***/
-    facets(): DataElement[];
+    facets(): TypeDeclaration[];
     /***
      * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
      ***/
@@ -935,13 +885,13 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set schema value
      ***/
-    setSchema(param: string): DataElementImpl;
+    setSchema(param: string): TypeDeclarationImpl;
     usage(): string;
     /***
      * @hidden
      * Set usage value
      ***/
-    setUsage(param: string): DataElementImpl;
+    setUsage(param: string): TypeDeclarationImpl;
     /***
      * A base type which the current type extends, or more generally a type expression.
      ***/
@@ -950,7 +900,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set type value
      ***/
-    setType(param: string): DataElementImpl;
+    setType(param: string): TypeDeclarationImpl;
     /***
      * Location of the parameter (can not be edited by user)
      ***/
@@ -967,7 +917,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set default value
      ***/
-    setDefault(param: string): DataElementImpl;
+    setDefault(param: string): TypeDeclarationImpl;
     /***
      * An example of an instance of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
      ***/
@@ -976,7 +926,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set example value
      ***/
-    setExample(param: string): DataElementImpl;
+    setExample(param: string): TypeDeclarationImpl;
     /***
      * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
      ***/
@@ -989,7 +939,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set repeat value
      ***/
-    setRepeat(param: boolean): DataElementImpl;
+    setRepeat(param: boolean): TypeDeclarationImpl;
     /***
      * Sets if property is optional or not
      ***/
@@ -998,7 +948,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set required value
      ***/
-    setRequired(param: boolean): DataElementImpl;
+    setRequired(param: boolean): TypeDeclarationImpl;
     /***
      * An alternate, human-friendly name for the type
      ***/
@@ -1007,7 +957,7 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      * @hidden
      * Set displayName value
      ***/
-    setDisplayName(param: string): DataElementImpl;
+    setDisplayName(param: string): TypeDeclarationImpl;
     /***
      * A longer, human-friendly description of the type
      ***/
@@ -1017,14 +967,14 @@ export declare class DataElementImpl extends RAMLLanguageElementImpl implements 
      ***/
     annotations(): AnnotationRef[];
 }
-export interface XMLInfo extends core.BasicNode {
+export interface XMLSerializationHints extends core.BasicNode {
     name(): string;
     namespace(): string;
     prefix(): string;
     attribute(): boolean;
     wrapped(): boolean;
 }
-export declare class XMLInfoImpl extends core.BasicNodeImpl implements XMLInfo {
+export declare class XMLSerializationHintsImpl extends core.BasicNodeImpl implements XMLSerializationHints {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1041,31 +991,31 @@ export declare class XMLInfoImpl extends core.BasicNodeImpl implements XMLInfo {
      * @hidden
      * Set name value
      ***/
-    setName(param: string): XMLInfoImpl;
+    setName(param: string): XMLSerializationHintsImpl;
     namespace(): string;
     /***
      * @hidden
      * Set namespace value
      ***/
-    setNamespace(param: string): XMLInfoImpl;
+    setNamespace(param: string): XMLSerializationHintsImpl;
     prefix(): string;
     /***
      * @hidden
      * Set prefix value
      ***/
-    setPrefix(param: string): XMLInfoImpl;
+    setPrefix(param: string): XMLSerializationHintsImpl;
     attribute(): boolean;
     /***
      * @hidden
      * Set attribute value
      ***/
-    setAttribute(param: boolean): XMLInfoImpl;
+    setAttribute(param: boolean): XMLSerializationHintsImpl;
     wrapped(): boolean;
     /***
      * @hidden
      * Set wrapped value
      ***/
-    setWrapped(param: boolean): XMLInfoImpl;
+    setWrapped(param: boolean): XMLSerializationHintsImpl;
 }
 export interface ModelLocation extends core.AbstractWrapperNode {
 }
@@ -1177,7 +1127,7 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
 /***
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  ***/
-export interface FileParameter extends DataElement {
+export interface FileTypeDeclaration extends TypeDeclaration {
     /***
      * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
      ***/
@@ -1194,7 +1144,7 @@ export interface FileParameter extends DataElement {
 /***
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  ***/
-export declare class FileParameterImpl extends DataElementImpl implements FileParameter {
+export declare class FileTypeDeclarationImpl extends TypeDeclarationImpl implements FileTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1218,7 +1168,7 @@ export declare class FileParameterImpl extends DataElementImpl implements FilePa
      * @hidden
      * Set minLength value
      ***/
-    setMinLength(param: number): FileParameterImpl;
+    setMinLength(param: number): FileTypeDeclarationImpl;
     /***
      * The maxLength attribute specifies the parameter value's maximum number of bytes.
      ***/
@@ -1227,9 +1177,9 @@ export declare class FileParameterImpl extends DataElementImpl implements FilePa
      * @hidden
      * Set maxLength value
      ***/
-    setMaxLength(param: number): FileParameterImpl;
+    setMaxLength(param: number): FileTypeDeclarationImpl;
 }
-export interface ArrayField extends DataElement {
+export interface ArrayTypeDeclaration extends TypeDeclaration {
     /***
      * Should items in array be unique
      ***/
@@ -1237,7 +1187,7 @@ export interface ArrayField extends DataElement {
     /***
      * Array component type.
      ***/
-    items(): DataElement;
+    items(): TypeDeclaration;
     /***
      * Minimum amount of items in array
      ***/
@@ -1247,7 +1197,7 @@ export interface ArrayField extends DataElement {
      ***/
     maxItems(): number;
 }
-export declare class ArrayFieldImpl extends DataElementImpl implements ArrayField {
+export declare class ArrayTypeDeclarationImpl extends TypeDeclarationImpl implements ArrayTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1267,11 +1217,11 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
      * @hidden
      * Set uniqueItems value
      ***/
-    setUniqueItems(param: boolean): ArrayFieldImpl;
+    setUniqueItems(param: boolean): ArrayTypeDeclarationImpl;
     /***
      * Array component type.
      ***/
-    items(): DataElement;
+    items(): TypeDeclaration;
     /***
      * Minimum amount of items in array
      ***/
@@ -1280,7 +1230,7 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
      * @hidden
      * Set minItems value
      ***/
-    setMinItems(param: number): ArrayFieldImpl;
+    setMinItems(param: number): ArrayTypeDeclarationImpl;
     /***
      * Maximum amount of items in array
      ***/
@@ -1289,15 +1239,15 @@ export declare class ArrayFieldImpl extends DataElementImpl implements ArrayFiel
      * @hidden
      * Set maxItems value
      ***/
-    setMaxItems(param: number): ArrayFieldImpl;
+    setMaxItems(param: number): ArrayTypeDeclarationImpl;
 }
-export interface UnionField extends DataElement {
+export interface UnionTypeDeclaration extends TypeDeclaration {
     /***
      * Type property name to be used as a discriminator or boolean
      ***/
     discriminator(): string;
 }
-export declare class UnionFieldImpl extends DataElementImpl implements UnionField {
+export declare class UnionTypeDeclarationImpl extends TypeDeclarationImpl implements UnionTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1317,13 +1267,13 @@ export declare class UnionFieldImpl extends DataElementImpl implements UnionFiel
      * @hidden
      * Set discriminator value
      ***/
-    setDiscriminator(param: string): UnionFieldImpl;
+    setDiscriminator(param: string): UnionTypeDeclarationImpl;
 }
-export interface ObjectField extends DataElement {
+export interface ObjectTypeDeclaration extends TypeDeclaration {
     /***
      * The properties that instances of this type may or must have.
      ***/
-    properties(): DataElement[];
+    properties(): TypeDeclaration[];
     /***
      * The minimum number of properties allowed for instances of this type.
      ***/
@@ -1335,11 +1285,11 @@ export interface ObjectField extends DataElement {
     /***
      * JSON schema style syntax for declaring maps
      ***/
-    additionalProperties(): DataElement;
+    additionalProperties(): TypeDeclaration;
     /***
      * JSON schema style syntax for declaring key restricted maps
      ***/
-    patternProperties(): DataElement[];
+    patternProperties(): TypeDeclaration[];
     /***
      * Type property name to be used as discriminator, or boolean
      ***/
@@ -1349,7 +1299,7 @@ export interface ObjectField extends DataElement {
      ***/
     discriminatorValue(): string;
 }
-export declare class ObjectFieldImpl extends DataElementImpl implements ObjectField {
+export declare class ObjectTypeDeclarationImpl extends TypeDeclarationImpl implements ObjectTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1364,7 +1314,7 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
     /***
      * The properties that instances of this type may or must have.
      ***/
-    properties(): DataElement[];
+    properties(): TypeDeclaration[];
     /***
      * The minimum number of properties allowed for instances of this type.
      ***/
@@ -1373,7 +1323,7 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      * @hidden
      * Set minProperties value
      ***/
-    setMinProperties(param: number): ObjectFieldImpl;
+    setMinProperties(param: number): ObjectTypeDeclarationImpl;
     /***
      * The maximum number of properties allowed for instances of this type.
      ***/
@@ -1382,15 +1332,15 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      * @hidden
      * Set maxProperties value
      ***/
-    setMaxProperties(param: number): ObjectFieldImpl;
+    setMaxProperties(param: number): ObjectTypeDeclarationImpl;
     /***
      * JSON schema style syntax for declaring maps
      ***/
-    additionalProperties(): DataElement;
+    additionalProperties(): TypeDeclaration;
     /***
      * JSON schema style syntax for declaring key restricted maps
      ***/
-    patternProperties(): DataElement[];
+    patternProperties(): TypeDeclaration[];
     /***
      * Type property name to be used as discriminator, or boolean
      ***/
@@ -1403,12 +1353,12 @@ export declare class ObjectFieldImpl extends DataElementImpl implements ObjectFi
      * @hidden
      * Set discriminatorValue value
      ***/
-    setDiscriminatorValue(param: string): ObjectFieldImpl;
+    setDiscriminatorValue(param: string): ObjectTypeDeclarationImpl;
 }
 /***
  * Value must be a string
  ***/
-export interface StrElement extends DataElement {
+export interface StringTypeDeclaration extends TypeDeclaration {
     /***
      * Regular expression that this string should path
      ***/
@@ -1429,7 +1379,7 @@ export interface StrElement extends DataElement {
 /***
  * Value must be a string
  ***/
-export declare class StrElementImpl extends DataElementImpl implements StrElement {
+export declare class StringTypeDeclarationImpl extends TypeDeclarationImpl implements StringTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1449,7 +1399,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      * @hidden
      * Set pattern value
      ***/
-    setPattern(param: string): StrElementImpl;
+    setPattern(param: string): StringTypeDeclarationImpl;
     /***
      * Minimum length of the string
      ***/
@@ -1458,7 +1408,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      * @hidden
      * Set minLength value
      ***/
-    setMinLength(param: number): StrElementImpl;
+    setMinLength(param: number): StringTypeDeclarationImpl;
     /***
      * Maximum length of the string
      ***/
@@ -1467,7 +1417,7 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      * @hidden
      * Set maxLength value
      ***/
-    setMaxLength(param: number): StrElementImpl;
+    setMaxLength(param: number): StringTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
      ***/
@@ -1476,17 +1426,17 @@ export declare class StrElementImpl extends DataElementImpl implements StrElemen
      * @hidden
      * Set enum value
      ***/
-    setEnum(param: string): StrElementImpl;
+    setEnum(param: string): StringTypeDeclarationImpl;
 }
 /***
  * Value must be a boolean
  ***/
-export interface BooleanElement extends DataElement {
+export interface BooleanTypeDeclaration extends TypeDeclaration {
 }
 /***
  * Value must be a boolean
  ***/
-export declare class BooleanElementImpl extends DataElementImpl implements BooleanElement {
+export declare class BooleanTypeDeclarationImpl extends TypeDeclarationImpl implements BooleanTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1502,12 +1452,12 @@ export declare class BooleanElementImpl extends DataElementImpl implements Boole
 /***
  * Value must be a boolean
  ***/
-export interface ValueElement extends DataElement {
+export interface ValueTypeDeclaration extends TypeDeclaration {
 }
 /***
  * Value must be a boolean
  ***/
-export declare class ValueElementImpl extends DataElementImpl implements ValueElement {
+export declare class ValueTypeDeclarationImpl extends TypeDeclarationImpl implements ValueTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1523,7 +1473,7 @@ export declare class ValueElementImpl extends DataElementImpl implements ValueEl
 /***
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  ***/
-export interface NumberElement extends DataElement {
+export interface NumberTypeDeclaration extends TypeDeclaration {
     /***
      * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
      ***/
@@ -1548,7 +1498,7 @@ export interface NumberElement extends DataElement {
 /***
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  ***/
-export declare class NumberElementImpl extends DataElementImpl implements NumberElement {
+export declare class NumberTypeDeclarationImpl extends TypeDeclarationImpl implements NumberTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1568,7 +1518,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      * @hidden
      * Set minimum value
      ***/
-    setMinimum(param: number): NumberElementImpl;
+    setMinimum(param: number): NumberTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
      ***/
@@ -1577,7 +1527,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      * @hidden
      * Set maximum value
      ***/
-    setMaximum(param: number): NumberElementImpl;
+    setMaximum(param: number): NumberTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
      ***/
@@ -1586,7 +1536,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      * @hidden
      * Set enum value
      ***/
-    setEnum(param: string): NumberElementImpl;
+    setEnum(param: string): NumberTypeDeclarationImpl;
     /***
      * Value format
      ***/
@@ -1595,7 +1545,7 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      * @hidden
      * Set format value
      ***/
-    setFormat(param: string): NumberElementImpl;
+    setFormat(param: string): NumberTypeDeclarationImpl;
     /***
      * A numeric instance is valid against "multipleOf" if the result of the division of the instance by this keyword's value is an integer.
      ***/
@@ -1604,18 +1554,18 @@ export declare class NumberElementImpl extends DataElementImpl implements Number
      * @hidden
      * Set multipleOf value
      ***/
-    setMultipleOf(param: number): NumberElementImpl;
+    setMultipleOf(param: number): NumberTypeDeclarationImpl;
 }
 /***
  * Value MUST be a integer.
  ***/
-export interface IntegerElement extends NumberElement {
+export interface IntegerTypeDeclaration extends NumberTypeDeclaration {
     format(): string;
 }
 /***
  * Value MUST be a integer.
  ***/
-export declare class IntegerElementImpl extends NumberElementImpl implements IntegerElement {
+export declare class IntegerTypeDeclarationImpl extends NumberTypeDeclarationImpl implements IntegerTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1632,12 +1582,12 @@ export declare class IntegerElementImpl extends NumberElementImpl implements Int
      * @hidden
      * Set format value
      ***/
-    setFormat(param: string): IntegerElementImpl;
+    setFormat(param: string): IntegerTypeDeclarationImpl;
 }
-export interface RAMLPointerElement extends DataElement {
+export interface RAMLPointerElement extends TypeDeclaration {
     target(): RAMLSelector;
 }
-export declare class RAMLPointerElementImpl extends DataElementImpl implements RAMLPointerElement {
+export declare class RAMLPointerElementImpl extends TypeDeclarationImpl implements RAMLPointerElement {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1651,9 +1601,9 @@ export declare class RAMLPointerElementImpl extends DataElementImpl implements R
     getKind(): string;
     target(): RAMLSelector;
 }
-export interface RAMLExpression extends DataElement {
+export interface RAMLExpression extends TypeDeclaration {
 }
-export declare class RAMLExpressionImpl extends DataElementImpl implements RAMLExpression {
+export declare class RAMLExpressionImpl extends TypeDeclarationImpl implements RAMLExpression {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1666,7 +1616,7 @@ export declare class RAMLExpressionImpl extends DataElementImpl implements RAMLE
      ***/
     getKind(): string;
 }
-export interface ScriptHookElement extends DataElement {
+export interface ScriptHookElement extends TypeDeclaration {
     /***
      * Typescript file defining interface which this scrip should comply to
      ***/
@@ -1676,7 +1626,7 @@ export interface ScriptHookElement extends DataElement {
      ***/
     interfaceName(): string;
 }
-export declare class ScriptHookElementImpl extends DataElementImpl implements ScriptHookElement {
+export declare class ScriptHookElementImpl extends TypeDeclarationImpl implements ScriptHookElement {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1707,9 +1657,9 @@ export declare class ScriptHookElementImpl extends DataElementImpl implements Sc
      ***/
     setInterfaceName(param: string): ScriptHookElementImpl;
 }
-export interface SchemaElement extends DataElement {
+export interface SchemaElement extends TypeDeclaration {
 }
-export declare class SchemaElementImpl extends DataElementImpl implements SchemaElement {
+export declare class SchemaElementImpl extends TypeDeclarationImpl implements SchemaElement {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1725,13 +1675,13 @@ export declare class SchemaElementImpl extends DataElementImpl implements Schema
 /***
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
  ***/
-export interface DateElement extends DataElement {
+export interface DateTypeDeclaration extends TypeDeclaration {
     dateFormat(): DateFormatSpec;
 }
 /***
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
  ***/
-export declare class DateElementImpl extends DataElementImpl implements DateElement {
+export declare class DateTypeDeclarationImpl extends TypeDeclarationImpl implements DateTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1749,12 +1699,12 @@ export interface HasNormalParameters extends RAMLLanguageElement {
     /***
      * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Headers that allowed at this position
      ***/
-    headers(): DataElement[];
-    queryString(): DataElement;
+    headers(): TypeDeclaration[];
+    queryString(): TypeDeclaration;
 }
 export declare class HasNormalParametersImpl extends RAMLLanguageElementImpl implements HasNormalParameters {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1771,12 +1721,12 @@ export declare class HasNormalParametersImpl extends RAMLLanguageElementImpl imp
     /***
      * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Headers that allowed at this position
      ***/
-    headers(): DataElement[];
-    queryString(): DataElement;
+    headers(): TypeDeclaration[];
+    queryString(): TypeDeclaration;
 }
 export interface MethodBase extends HasNormalParameters {
     /***
@@ -1788,7 +1738,7 @@ export interface MethodBase extends HasNormalParameters {
      * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
      * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * A method can override the protocols specified in the resource or at the API root, by employing this property.
      ***/
@@ -1801,7 +1751,7 @@ export interface MethodBase extends HasNormalParameters {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
 }
 export declare class MethodBaseImpl extends HasNormalParametersImpl implements MethodBase {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1824,7 +1774,7 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
      * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
      * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * A method can override the protocols specified in the resource or at the API root, by employing this property.
      ***/
@@ -1842,21 +1792,21 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
 }
 export interface Response extends RAMLLanguageElement {
     /***
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      ***/
-    code(): StatusCode;
+    code(): StatusCodeString;
     /***
      * Detailed information about any response headers returned by this method
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * The body of the response: a body declaration
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * An alternate, human-friendly name for the response
      ***/
@@ -1889,15 +1839,15 @@ export declare class ResponseImpl extends RAMLLanguageElementImpl implements Res
     /***
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      ***/
-    code(): StatusCode;
+    code(): StatusCodeString;
     /***
      * Detailed information about any response headers returned by this method
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * The body of the response: a body declaration
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * An alternate, human-friendly name for the response
      ***/
@@ -1972,7 +1922,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     /***
      * Declarations of (data) types for use within this API
      ***/
-    types(): DataElement[];
+    types(): TypeDeclaration[];
     /***
      * Declarations of traits for use within this API
      ***/
@@ -1984,7 +1934,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     /***
      * Declarations of annotation types for use by annotations
      ***/
-    annotationTypes(): AnnotationType[];
+    annotationTypes(): AnnotationTypeDeclaration[];
     /***
      * Security schemas types declarations
      ***/
@@ -1992,7 +1942,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     /***
      * Declarations of security schemes for use within this API.
      ***/
-    securitySchemes(): SecuritySchema[];
+    securitySchemes(): AbstractSecurityScheme[];
     /***
      * Importing libraries
      ***/
@@ -2029,7 +1979,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     /***
      * Declarations of (data) types for use within this API
      ***/
-    types(): DataElement[];
+    types(): TypeDeclaration[];
     /***
      * Declarations of traits for use within this API
      ***/
@@ -2041,7 +1991,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     /***
      * Declarations of annotation types for use by annotations
      ***/
-    annotationTypes(): AnnotationType[];
+    annotationTypes(): AnnotationTypeDeclaration[];
     /***
      * Security schemas types declarations
      ***/
@@ -2049,7 +1999,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     /***
      * Declarations of security schemes for use within this API.
      ***/
-    securitySchemes(): SecuritySchema[];
+    securitySchemes(): AbstractSecurityScheme[];
     /***
      * Importing libraries
      ***/
@@ -2094,19 +2044,19 @@ export interface Method extends MethodBase {
     /***
      * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
      ***/
-    queryString(): DataElement;
+    queryString(): TypeDeclaration;
     /***
      * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Detailed information about any request headers needed by this method.
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * Some methods admit request bodies, which are described by this property.
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * A list of the traits to apply to this method. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
      ***/
@@ -2118,7 +2068,7 @@ export interface Method extends MethodBase {
     /***
      * The security schemes that apply to this method
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
      ***/
@@ -2172,19 +2122,19 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     /***
      * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
      ***/
-    queryString(): DataElement;
+    queryString(): TypeDeclaration;
     /***
      * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Detailed information about any request headers needed by this method.
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * Some methods admit request bodies, which are described by this property.
      ***/
-    body(): DataElement[];
+    body(): TypeDeclaration[];
     /***
      * A list of the traits to apply to this method. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
      ***/
@@ -2196,7 +2146,7 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     /***
      * The security schemes that apply to this method
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
      ***/
@@ -2212,19 +2162,19 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      ***/
     methodId(): string;
 }
-export interface SecuritySchemaPart extends MethodBase {
+export interface SecuritySchemePart extends MethodBase {
     /***
      * Headers that allowed at this position
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
      ***/
-    queryString(): DataElement;
+    queryString(): TypeDeclaration;
     /***
      * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
      ***/
@@ -2237,7 +2187,7 @@ export interface SecuritySchemaPart extends MethodBase {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * An alternate, human-friendly name for the security scheme part
      ***/
@@ -2251,7 +2201,7 @@ export interface SecuritySchemaPart extends MethodBase {
      ***/
     annotations(): AnnotationRef[];
 }
-export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements SecuritySchemaPart {
+export declare class SecuritySchemePartImpl extends MethodBaseImpl implements SecuritySchemePart {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2266,15 +2216,15 @@ export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements Se
     /***
      * Headers that allowed at this position
      ***/
-    headers(): DataElement[];
+    headers(): TypeDeclaration[];
     /***
      * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
      ***/
-    queryParameters(): DataElement[];
+    queryParameters(): TypeDeclaration[];
     /***
      * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
      ***/
-    queryString(): DataElement;
+    queryString(): TypeDeclaration;
     /***
      * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
      ***/
@@ -2287,7 +2237,7 @@ export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements Se
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * An alternate, human-friendly name for the security scheme part
      ***/
@@ -2296,7 +2246,7 @@ export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements Se
      * @hidden
      * Set displayName value
      ***/
-    setDisplayName(param: string): SecuritySchemaPartImpl;
+    setDisplayName(param: string): SecuritySchemePartImpl;
     /***
      * A longer, human-friendly description of the security scheme part
      ***/
@@ -2309,7 +2259,7 @@ export declare class SecuritySchemaPartImpl extends MethodBaseImpl implements Se
 /***
  * Declares globally referable security schema definition
  ***/
-export interface SecuritySchema extends RAMLLanguageElement {
+export interface AbstractSecurityScheme extends RAMLLanguageElement {
     name(): string;
     /***
      * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
@@ -2323,17 +2273,17 @@ export interface SecuritySchema extends RAMLLanguageElement {
      * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
      * Including the security scheme description completes an API documentation.
      ***/
-    describedBy(): SecuritySchemaPart;
+    describedBy(): SecuritySchemePart;
     /***
      * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
      * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
      ***/
-    settings(): SecuritySchemaSettings;
+    settings(): SecuritySchemeSettings;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implements SecuritySchema {
+export declare class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2350,7 +2300,7 @@ export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set name value
      ***/
-    setName(param: string): SecuritySchemaImpl;
+    setName(param: string): AbstractSecuritySchemeImpl;
     /***
      * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
      ***/
@@ -2359,7 +2309,7 @@ export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set type value
      ***/
-    setType(param: string): SecuritySchemaImpl;
+    setType(param: string): AbstractSecuritySchemeImpl;
     /***
      * The description MAY be used to describe a securityScheme.
      ***/
@@ -2368,16 +2318,16 @@ export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implemen
      * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
      * Including the security scheme description completes an API documentation.
      ***/
-    describedBy(): SecuritySchemaPart;
+    describedBy(): SecuritySchemePart;
     /***
      * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
      * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
      ***/
-    settings(): SecuritySchemaSettings;
+    settings(): SecuritySchemeSettings;
 }
-export interface SecuritySchemaSettings extends core.BasicNode {
+export interface SecuritySchemeSettings extends core.BasicNode {
 }
-export declare class SecuritySchemaSettingsImpl extends core.BasicNodeImpl implements SecuritySchemaSettings {
+export declare class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2390,22 +2340,22 @@ export declare class SecuritySchemaSettingsImpl extends core.BasicNodeImpl imple
      ***/
     getKind(): string;
 }
-export interface OAuth1SecuritySchemeSettings extends SecuritySchemaSettings {
+export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings {
     /***
      * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
      ***/
-    requestTokenUri(): FixedUri;
+    requestTokenUri(): FixedUriString;
     /***
      * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
      ***/
-    authorizationUri(): FixedUri;
+    authorizationUri(): FixedUriString;
     /***
      * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
      ***/
-    tokenCredentialsUri(): FixedUri;
+    tokenCredentialsUri(): FixedUriString;
     signatures(): string[];
 }
-export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth1SecuritySchemeSettings {
+export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth1SecuritySchemeSettings {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2420,15 +2370,15 @@ export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSett
     /***
      * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
      ***/
-    requestTokenUri(): FixedUri;
+    requestTokenUri(): FixedUriString;
     /***
      * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
      ***/
-    authorizationUri(): FixedUri;
+    authorizationUri(): FixedUriString;
     /***
      * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
      ***/
-    tokenCredentialsUri(): FixedUri;
+    tokenCredentialsUri(): FixedUriString;
     signatures(): string[];
     /***
      * @hidden
@@ -2436,22 +2386,22 @@ export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSett
      ***/
     setSignatures(param: string): OAuth1SecuritySchemeSettingsImpl;
 }
-export interface OAuth2SecuritySchemeSettings extends SecuritySchemaSettings {
+export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings {
     /***
      * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
      ***/
-    accessTokenUri(): FixedUri;
+    accessTokenUri(): FixedUriString;
     /***
      * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
      ***/
-    authorizationUri(): FixedUri;
+    authorizationUri(): FixedUriString;
     authorizationGrants(): string[];
     /***
      * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
      ***/
     scopes(): string[];
 }
-export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth2SecuritySchemeSettings {
+export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2466,11 +2416,11 @@ export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSett
     /***
      * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
      ***/
-    accessTokenUri(): FixedUri;
+    accessTokenUri(): FixedUriString;
     /***
      * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
      ***/
-    authorizationUri(): FixedUri;
+    authorizationUri(): FixedUriString;
     authorizationGrants(): string[];
     /***
      * @hidden
@@ -2487,11 +2437,11 @@ export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSett
      ***/
     setScopes(param: string): OAuth2SecuritySchemeSettingsImpl;
 }
-export interface PassThroughSettings extends SecuritySchemaSettings {
+export interface PassThroughSecuritySchemeSettings extends SecuritySchemeSettings {
     queryParameterName(): string;
     headerName(): string;
 }
-export declare class PassThroughSettingsImpl extends SecuritySchemaSettingsImpl implements PassThroughSettings {
+export declare class PassThroughSecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements PassThroughSecuritySchemeSettings {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2508,24 +2458,24 @@ export declare class PassThroughSettingsImpl extends SecuritySchemaSettingsImpl 
      * @hidden
      * Set queryParameterName value
      ***/
-    setQueryParameterName(param: string): PassThroughSettingsImpl;
+    setQueryParameterName(param: string): PassThroughSecuritySchemeSettingsImpl;
     headerName(): string;
     /***
      * @hidden
      * Set headerName value
      ***/
-    setHeaderName(param: string): PassThroughSettingsImpl;
+    setHeaderName(param: string): PassThroughSecuritySchemeSettingsImpl;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export interface Oath2 extends SecuritySchema {
+export interface OAuth2SecurityScheme extends AbstractSecurityScheme {
     settings(): OAuth2SecuritySchemeSettings;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class Oath2Impl extends SecuritySchemaImpl implements Oath2 {
+export declare class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth2SecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2542,13 +2492,13 @@ export declare class Oath2Impl extends SecuritySchemaImpl implements Oath2 {
 /***
  * Declares globally referable security schema definition
  ***/
-export interface Oath1 extends SecuritySchema {
+export interface OAuth1SecurityScheme extends AbstractSecurityScheme {
     settings(): OAuth1SecuritySchemeSettings;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class Oath1Impl extends SecuritySchemaImpl implements Oath1 {
+export declare class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth1SecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2565,13 +2515,13 @@ export declare class Oath1Impl extends SecuritySchemaImpl implements Oath1 {
 /***
  * Declares globally referable security schema definition
  ***/
-export interface PassThrough extends SecuritySchema {
-    settings(): PassThroughSettings;
+export interface PassThroughSecurityScheme extends AbstractSecurityScheme {
+    settings(): PassThroughSecuritySchemeSettings;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class PassThroughImpl extends SecuritySchemaImpl implements PassThrough {
+export declare class PassThroughSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements PassThroughSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2583,38 +2533,17 @@ export declare class PassThroughImpl extends SecuritySchemaImpl implements PassT
      * @return Actual name of instance interface
      ***/
     getKind(): string;
-    settings(): PassThroughSettings;
+    settings(): PassThroughSecuritySchemeSettings;
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export interface Basic extends SecuritySchema {
+export interface BasicSecurityScheme extends AbstractSecurityScheme {
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class BasicImpl extends SecuritySchemaImpl implements Basic {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /***
-     * @hidden
-     * @return Actual name of instance class
-     ***/
-    wrapperClassName(): string;
-    /***
-     * @return Actual name of instance interface
-     ***/
-    getKind(): string;
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export interface Digest extends SecuritySchema {
-}
-/***
- * Declares globally referable security schema definition
- ***/
-export declare class DigestImpl extends SecuritySchemaImpl implements Digest {
+export declare class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements BasicSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2630,12 +2559,33 @@ export declare class DigestImpl extends SecuritySchemaImpl implements Digest {
 /***
  * Declares globally referable security schema definition
  ***/
-export interface Custom extends SecuritySchema {
+export interface DigestSecurityScheme extends AbstractSecurityScheme {
 }
 /***
  * Declares globally referable security schema definition
  ***/
-export declare class CustomImpl extends SecuritySchemaImpl implements Custom {
+export declare class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements DigestSecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /***
+     * @hidden
+     * @return Actual name of instance class
+     ***/
+    wrapperClassName(): string;
+    /***
+     * @return Actual name of instance interface
+     ***/
+    getKind(): string;
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export interface CustomSecurityScheme extends AbstractSecurityScheme {
+}
+/***
+ * Declares globally referable security schema definition
+ ***/
+export declare class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements CustomSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2664,11 +2614,11 @@ export interface ResourceBase extends RAMLLanguageElement {
     /***
      * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * Detailed information about any URI parameters of this resource
      ***/
-    uriParameters(): DataElement[];
+    uriParameters(): TypeDeclaration[];
 }
 export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements ResourceBase {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2697,11 +2647,11 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
     /***
      * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * Detailed information about any URI parameters of this resource
      ***/
-    uriParameters(): DataElement[];
+    uriParameters(): TypeDeclaration[];
 }
 export interface ResourceType extends ResourceBase {
     /***
@@ -2751,7 +2701,7 @@ export interface Resource extends ResourceBase {
     /***
      * Relative URL of this resource from the parent resource
      ***/
-    relativeUri(): RelativeUri;
+    relativeUri(): RelativeUriString;
     /***
      * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
      ***/
@@ -2796,12 +2746,12 @@ export interface Resource extends ResourceBase {
      * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
      * //
      ***/
-    allUriParameters(): DataElement[];
+    allUriParameters(): TypeDeclaration[];
     /***
      * Retrieve all absolute uri parameters regardless of whether they are described in
      * //`baseUriParameters` and `uriParameters` or not
      ***/
-    absoluteUriParameters(): DataElement[];
+    absoluteUriParameters(): TypeDeclaration[];
 }
 export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2819,7 +2769,7 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     /***
      * Relative URL of this resource from the parent resource
      ***/
-    relativeUri(): RelativeUri;
+    relativeUri(): RelativeUriString;
     /***
      * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
      ***/
@@ -2869,14 +2819,14 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
      * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
      * //
      ***/
-    allUriParameters(): DataElement[];
+    allUriParameters(): TypeDeclaration[];
     /***
      * Retrieve all absolute uri parameters regardless of whether they are described in
      * //`baseUriParameters` and `uriParameters` or not
      ***/
-    absoluteUriParameters(): DataElement[];
+    absoluteUriParameters(): TypeDeclaration[];
 }
-export interface AnnotationType extends RAMLLanguageElement {
+export interface AnnotationTypeDeclaration extends RAMLLanguageElement {
     /***
      * Name of this annotation type
      ***/
@@ -2888,7 +2838,7 @@ export interface AnnotationType extends RAMLLanguageElement {
     /***
      * Declarations of parameters allowed in this annotation type
      ***/
-    parameters(): DataElement[];
+    parameters(): TypeDeclaration[];
     /***
      * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
      ***/
@@ -2906,7 +2856,7 @@ export interface AnnotationType extends RAMLLanguageElement {
      ***/
     description(): MarkdownString;
 }
-export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implements AnnotationType {
+export declare class AnnotationTypeDeclarationImpl extends RAMLLanguageElementImpl implements AnnotationTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -2926,7 +2876,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set name value
      ***/
-    setName(param: string): AnnotationTypeImpl;
+    setName(param: string): AnnotationTypeDeclarationImpl;
     /***
      * Instructions on how and when to use this annotation in a RAML spec.
      ***/
@@ -2935,11 +2885,11 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set usage value
      ***/
-    setUsage(param: string): AnnotationTypeImpl;
+    setUsage(param: string): AnnotationTypeDeclarationImpl;
     /***
      * Declarations of parameters allowed in this annotation type
      ***/
-    parameters(): DataElement[];
+    parameters(): TypeDeclaration[];
     /***
      * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
      ***/
@@ -2948,7 +2898,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set allowMultiple value
      ***/
-    setAllowMultiple(param: boolean): AnnotationTypeImpl;
+    setAllowMultiple(param: boolean): AnnotationTypeDeclarationImpl;
     /***
      * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
      ***/
@@ -2961,7 +2911,7 @@ export declare class AnnotationTypeImpl extends RAMLLanguageElementImpl implemen
      * @hidden
      * Set displayName value
      ***/
-    setDisplayName(param: string): AnnotationTypeImpl;
+    setDisplayName(param: string): AnnotationTypeDeclarationImpl;
     /***
      * A longer, human-friendly description of the annotation
      ***/
@@ -3072,11 +3022,11 @@ export interface Api extends LibraryBase {
     /***
      * A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI.
      ***/
-    baseUri(): FullUriTemplate;
+    baseUri(): FullUriTemplateString;
     /***
      * Named parameters used in the baseUri (template)
      ***/
-    baseUriParameters(): DataElement[];
+    baseUriParameters(): TypeDeclaration[];
     /***
      * The protocols supported by the API
      ***/
@@ -3088,7 +3038,7 @@ export interface Api extends LibraryBase {
     /***
      * The security schemes that apply to every resource and method in the API
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc
      ***/
@@ -3138,7 +3088,7 @@ export interface Api extends LibraryBase {
      * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
      * //
      ***/
-    allBaseUriParameters(): DataElement[];
+    allBaseUriParameters(): TypeDeclaration[];
 }
 export declare class ApiImpl extends LibraryBaseImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -3173,11 +3123,11 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     /***
      * A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI.
      ***/
-    baseUri(): FullUriTemplate;
+    baseUri(): FullUriTemplateString;
     /***
      * Named parameters used in the baseUri (template)
      ***/
-    baseUriParameters(): DataElement[];
+    baseUriParameters(): TypeDeclaration[];
     /***
      * The protocols supported by the API
      ***/
@@ -3194,7 +3144,7 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     /***
      * The security schemes that apply to every resource and method in the API
      ***/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /***
      * The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc
      ***/
@@ -3254,9 +3204,9 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
      * //
      ***/
-    allBaseUriParameters(): DataElement[];
+    allBaseUriParameters(): TypeDeclaration[];
 }
-export interface Overlay extends Api {
+export interface ApiOverlay extends Api {
     /***
      * contains description of why overlay exist
      ***/
@@ -3267,7 +3217,7 @@ export interface Overlay extends Api {
      ***/
     title(): string;
 }
-export declare class OverlayImpl extends ApiImpl implements Overlay {
+export declare class ApiOverlayImpl extends ApiImpl implements ApiOverlay {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -3287,13 +3237,13 @@ export declare class OverlayImpl extends ApiImpl implements Overlay {
      * @hidden
      * Set usage value
      ***/
-    setUsage(param: string): OverlayImpl;
+    setUsage(param: string): ApiOverlayImpl;
     masterRef(): string;
     /***
      * @hidden
      * Set masterRef value
      ***/
-    setMasterRef(param: string): OverlayImpl;
+    setMasterRef(param: string): ApiOverlayImpl;
     /***
      * Short plain-text label for the API
      ***/
@@ -3302,9 +3252,9 @@ export declare class OverlayImpl extends ApiImpl implements Overlay {
      * @hidden
      * Set title value
      ***/
-    setTitle(param: string): OverlayImpl;
+    setTitle(param: string): ApiOverlayImpl;
 }
-export interface Extension extends Api {
+export interface ApiExtension extends Api {
     /***
      * contains description of why extension exist
      ***/
@@ -3315,7 +3265,7 @@ export interface Extension extends Api {
      ***/
     title(): string;
 }
-export declare class ExtensionImpl extends ApiImpl implements Extension {
+export declare class ApiExtensionImpl extends ApiImpl implements ApiExtension {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -3335,13 +3285,13 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
      * @hidden
      * Set usage value
      ***/
-    setUsage(param: string): ExtensionImpl;
+    setUsage(param: string): ApiExtensionImpl;
     masterRef(): string;
     /***
      * @hidden
      * Set masterRef value
      ***/
-    setMasterRef(param: string): ExtensionImpl;
+    setMasterRef(param: string): ApiExtensionImpl;
     /***
      * Short plain-text label for the API
      ***/
@@ -3350,22 +3300,22 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
      * @hidden
      * Set title value
      ***/
-    setTitle(param: string): ExtensionImpl;
+    setTitle(param: string): ApiExtensionImpl;
 }
 /***
  * Load API synchronously
  * @param apiPath Path to API: local file system path or Web URL
- * @param expand Whether to expand traits and resource types
+ * @param options Load options
  * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
  ***/
-export declare function loadApi(apiPath: string, expand?: boolean): Opt<Api>;
+export declare function loadApi(apiPath: string, options?: apiLoader.Options): Opt<Api>;
 /***
  * Load API asynchronously
  * @param apiPath Path to API: local file system path or Web URL
- * @param expand Whether to expand traits and resource types
+ * @param expand Load options
  * @return Promise&lt;Api&gt;
  ***/
-export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<Api>;
+export declare function loadApiAsync(apiPath: string, options?: apiLoader.Options): Promise<Api>;
 /***
  * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
  * @param node Model node

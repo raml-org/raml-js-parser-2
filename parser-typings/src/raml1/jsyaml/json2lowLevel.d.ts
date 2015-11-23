@@ -75,9 +75,10 @@ export declare class AstNode implements lowlevel.ILowLevelASTNode {
     copy(): AstNode;
     markup(json?: boolean): string;
     nodeDefinition(): highlevel.INodeDefinition;
+    includesContents(): boolean;
 }
 export interface SerializeOptions {
     escapeNumericKeys?: boolean;
-    writeErroes?: boolean;
+    writeErrors?: boolean;
 }
 export declare function serialize(node: lowlevel.ILowLevelASTNode, options?: SerializeOptions): any;

@@ -4,7 +4,6 @@ import hl = require("./highLevelAST");
 import ll = require("./lowLevelAST");
 import ParserCore = require("./wrapped-ast/parserCore");
 export declare function qName(x: hl.IHighLevelNode, context: hl.IHighLevelNode): string;
-export declare function evalInSandbox(code: string, thisArg: any, args: any[]): any;
 export declare class BasicASTNode implements hl.IParseResult {
     protected _node: ll.ILowLevelASTNode;
     private _parent;
@@ -23,8 +22,6 @@ export declare class BasicASTNode implements hl.IParseResult {
     checkContextValue(name: string, value: string, thisObj: any): boolean;
     printDetails(indent?: string): string;
     errors(): hl.ValidationIssue[];
-    toRuntimeModel(): any;
-    protected fillValue(type: hl.ITypeDefinition, val: any): any;
     markCh(): boolean;
     unmarkCh(): void;
     validate(v: hl.ValidationAcceptor): void;
@@ -33,7 +30,6 @@ export declare class BasicASTNode implements hl.IParseResult {
     setComputed(name: string, v: any): void;
     computedValue(name: string): any;
     lowLevel(): ll.ILowLevelASTNode;
-    expansionSpec(): hl.ExpansionSpec;
     name(): string;
     parent(): hl.IHighLevelNode;
     setParent(parent: hl.IHighLevelNode): void;
@@ -84,7 +80,6 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
      * @param v
      */
     validate(v: hl.ValidationAcceptor): void;
-    toRuntime(): any;
     isElement(): boolean;
     property(): defs.Property;
     convertMultivalueToString(value: string): string;

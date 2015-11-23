@@ -125,7 +125,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:144</li>
+									<li>Defined in raml1/ast.core/linter.ts:150</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -147,7 +147,7 @@
 					<div class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/ast.core/linter.ts:147</li>
+							<li>Defined in raml1/ast.core/linter.ts:153</li>
 						</ul>
 					</aside>
 				</section>
@@ -157,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <a href="_raml1_ast_core_linter_.stacknode.html" class="tsd-signature-type">StackNode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/ast.core/linter.ts:336</li>
+							<li>Defined in raml1/ast.core/linter.ts:354</li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +174,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:168</li>
+									<li>Defined in raml1/ast.core/linter.ts:178</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -206,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:184</li>
+									<li>Defined in raml1/ast.core/linter.ts:194</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -232,7 +232,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:363</li>
+									<li>Defined in raml1/ast.core/linter.ts:385</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -249,13 +249,13 @@
 					<a name="validate" class="tsd-anchor"></a>
 					<h3>validate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:151</li>
+									<li>Defined in raml1/ast.core/linter.ts:157</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -264,13 +264,16 @@
 									<h5>obj: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>t: <a href="../interfaces/_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+									<h5>t: <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
 								</li>
 								<li>
 									<h5>cb: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
 								</li>
 								<li>
 									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> recursionLevel: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -281,13 +284,13 @@
 					<a name="validatearray" class="tsd-anchor"></a>
 					<h3>validate<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Array<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.array.html" class="tsd-signature-type">Array</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Array<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.array.html" class="tsd-signature-type">Array</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:376</li>
+									<li>Defined in raml1/ast.core/linter.ts:398</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -304,6 +307,9 @@
 								<li>
 									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -313,13 +319,13 @@
 					<a name="validateclass" class="tsd-anchor"></a>
 					<h3>validate<wbr>Class</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Class<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Class<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:208</li>
+									<li>Defined in raml1/ast.core/linter.ts:218</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,6 +342,9 @@
 								<li>
 									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -345,19 +354,19 @@
 					<a name="validatefacets" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> validate<wbr>Facets</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Facets<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Facets<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:306</li>
+									<li>Defined in raml1/ast.core/linter.ts:320</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>t: <span class="tsd-signature-type">any</span></h5>
+									<h5>t: <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
 								</li>
 								<li>
 									<h5>obj: <span class="tsd-signature-type">any</span></h5>
@@ -366,7 +375,10 @@
 									<h5>cb: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>strict: <span class="tsd-signature-type">any</span></h5>
+									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -377,13 +389,13 @@
 					<a name="validatepropvalue" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> validate<wbr>Prop<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Prop<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iproperty.html" class="tsd-signature-type">IProperty</a>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Prop<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:338</li>
+									<li>Defined in raml1/ast.core/linter.ts:356</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -392,7 +404,7 @@
 									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>p: <a href="../interfaces/_raml1_highlevelast_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+									<h5>p: <a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
 								</li>
 								<li>
 									<h5>cb: <span class="tsd-signature-type">any</span></h5>
@@ -403,6 +415,9 @@
 								<li>
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -412,13 +427,13 @@
 					<a name="validateunion" class="tsd-anchor"></a>
 					<h3>validate<wbr>Union</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Union<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.union.html" class="tsd-signature-type">Union</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Union<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.union.html" class="tsd-signature-type">Union</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:398</li>
+									<li>Defined in raml1/ast.core/linter.ts:424</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -435,6 +450,9 @@
 								<li>
 									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -444,13 +462,13 @@
 					<a name="validatevalue" class="tsd-anchor"></a>
 					<h3>validate<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Value<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.valuetype.html" class="tsd-signature-type">ValueType</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Value<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, t<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.valuetype.html" class="tsd-signature-type">ValueType</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, strict<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, recursionLevel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:401</li>
+									<li>Defined in raml1/ast.core/linter.ts:431</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -466,6 +484,9 @@
 								</li>
 								<li>
 									<h5>strict: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>recursionLevel: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -498,6 +519,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#astpropimpl" class="tsd-kind-icon">ASTProp<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#max_recursion_level" class="tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#loophole" class="tsd-kind-icon">loophole</a>

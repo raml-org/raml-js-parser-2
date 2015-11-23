@@ -66,8 +66,8 @@ declare module Raml08Parser {
      *
      * - OAuth 1.0
      * - OAuth 2.0
-     * - Basic Authentication
-     * - Digest Authentication
+     * - BasicSecurityScheme Authentication
+     * - DigestSecurityScheme Authentication
      * - x-{other}
      *
      * @see http://raml.org/spec.html#type-1

@@ -41,22 +41,45 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     updateContentSafe(n: string): void;
     project(): Project;
 }
-export interface IncludeResolver {
+export interface FSResolver {
+    /**
+     * Load file content
+     * @param path File path
+     * @return File content as string
+     **/
     content(path: string): string;
+    /**
+     * List directory
+     * @param path Directory path
+     * @return Names list of files located in the directory
+     **/
     list(path: string): string[];
 }
+/**
+ * Must provide either page content or error message
+ */
 export interface Response {
-    content: string;
-    errorMessage: string;
+    /**
+     * Page content
+     */
+    content?: string;
+    /**
+     * Error message
+     */
+    errorMessage?: string;
 }
 export interface HTTPResolver {
     /**
-     * @param url
-     */
+     * Load resource by URL synchronously
+     * @param url Resource URL
+     * @return Resource content in string form
+     **/
     getResource(url: string): Response;
     /**
-     * @param url
-     */
+     * Load resource by URL asynchronously
+     * @param url Resource URL
+     * @return Resource content in string form
+     **/
     getResourceAsync(url: string): Promise<Response>;
 }
 export declare class HTTPResolverImpl implements HTTPResolver {
@@ -65,7 +88,7 @@ export declare class HTTPResolverImpl implements HTTPResolver {
     getResourceAsync(url: string): Promise<Response>;
     private toResponse(response, url);
 }
-export declare class FSResolver implements IncludeResolver {
+export declare class FSResolverImpl implements FSResolver {
     content(path: string): string;
     list(path: string): string[];
 }
@@ -82,8 +105,8 @@ export declare class Project implements lowlevel.IProject {
      * @param resolver
      * @param _httpResolver
      */
-    constructor(rootPath: string, resolver?: IncludeResolver, _httpResolver?: HTTPResolver);
-    cloneWithResolver(newResolver: IncludeResolver, httpResolver?: HTTPResolver): Project;
+    constructor(rootPath: string, resolver?: FSResolver, _httpResolver?: HTTPResolver);
+    cloneWithResolver(newResolver: FSResolver, httpResolver?: HTTPResolver): Project;
     setCachedUnitContent(pth: string, cnt: string, tl?: boolean): CompilationUnit;
     resolveAsync(unitPath: string, pathInUnit: string): Promise<lowlevel.ICompilationUnit>;
     resolve(unitPath: string, pathInUnit: string): CompilationUnit;
@@ -125,11 +148,14 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     private _anchor;
     private _include;
     private cacheChildren;
+    private _includesContents;
     _errors: Error[];
-    constructor(_node: yaml.YAMLNode, _unit: lowlevel.ICompilationUnit, _parent: ASTNode, _anchor: ASTNode, _include: ASTNode, cacheChildren?: boolean);
+    constructor(_node: yaml.YAMLNode, _unit: lowlevel.ICompilationUnit, _parent: ASTNode, _anchor: ASTNode, _include: ASTNode, cacheChildren?: boolean, _includesContents?: boolean);
     actual(): any;
     _children: lowlevel.ILowLevelASTNode[];
     yamlNode(): yaml.YAMLNode;
+    includesContents(): boolean;
+    setIncludesContents(includesContents: boolean): void;
     gatherIncludes(s?: lowlevel.ILowLevelASTNode[], inc?: ASTNode, anc?: ASTNode, inOneMemberMap?: boolean): void;
     private _highLevelNode;
     private _highLevelParseResult;

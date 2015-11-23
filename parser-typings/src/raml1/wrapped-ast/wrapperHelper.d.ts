@@ -2,7 +2,7 @@ import RamlWrapper = require('../artifacts/raml10parser');
 import core = require("./parserCore");
 import hl = require('../highLevelAST');
 import Opt = require('../../Opt');
-export declare function resolveType(p: RamlWrapper.DataElement): hl.ITypeDefinition;
+export declare function resolveType(p: RamlWrapper.TypeDeclaration): hl.ITypeDefinition;
 export declare function load(pth: string): core.BasicNode;
 export declare function completeRelativeUri(res: RamlWrapper.Resource): string;
 export declare function expandTraitsAndResourceTypes(api: RamlWrapper.Api): RamlWrapper.Api;
@@ -22,11 +22,11 @@ export declare function methodId(method: RamlWrapper.Method): string;
 export declare function isOkRange(response: RamlWrapper.Response): boolean;
 export declare function allResources(api: RamlWrapper.Api): RamlWrapper.Resource[];
 export declare function matchUri(apiRootRelativeUri: string, resource: RamlWrapper.Resource): Opt<ParamValue[]>;
-export declare function schema(body: RamlWrapper.DataElement, api: RamlWrapper.Api): Opt<SchemaDef>;
-export declare function uriParameters(resource: RamlWrapper.Resource): RamlWrapper.DataElement[];
-export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.DataElement[];
-export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWrapper.DataElement[];
-export declare class HelperUriParam implements RamlWrapper.DataElement {
+export declare function schema(body: RamlWrapper.TypeDeclaration, api: RamlWrapper.Api): Opt<SchemaDef>;
+export declare function uriParameters(resource: RamlWrapper.Resource): RamlWrapper.TypeDeclaration[];
+export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.TypeDeclaration[];
+export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWrapper.TypeDeclaration[];
+export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     private _name;
     private _parent;
     constructor(_name: string, _parent: core.BasicNode);
@@ -41,7 +41,7 @@ export declare class HelperUriParam implements RamlWrapper.DataElement {
     sendDefaultByClient(): boolean;
     example(): string;
     schema(): string;
-    formParameters(): RamlWrapper.DataElement[];
+    formParameters(): RamlWrapper.TypeDeclaration[];
     examples(): RamlWrapper.ExampleSpec[];
     repeat(): boolean;
     enum(): string[];
@@ -50,8 +50,6 @@ export declare class HelperUriParam implements RamlWrapper.DataElement {
     readOnly(): boolean;
     facets(): any[];
     scope(): string[];
-    validWhen(): RamlWrapper.ramlexpression;
-    requiredWhen(): RamlWrapper.ramlexpression;
     displayName(): string;
     description(): RamlWrapper.MarkdownString;
     annotations(): RamlWrapper.AnnotationRef[];

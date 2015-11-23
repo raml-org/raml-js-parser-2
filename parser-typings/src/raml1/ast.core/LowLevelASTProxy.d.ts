@@ -49,6 +49,7 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     copy(): LowLevelCompositeNode;
     markup(json?: boolean): string;
     nodeDefinition(): hl.INodeDefinition;
+    includesContents(): boolean;
 }
 export declare class LowLevelCompositeNode extends LowLevelProxyNode {
     protected fromMainTree: boolean;

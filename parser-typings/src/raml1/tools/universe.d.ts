@@ -101,11 +101,11 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "RelativeUri": {
+        "RelativeUriString": {
             "name": string;
             "properties": {};
         };
-        "FullUriTemplate": {
+        "FullUriTemplateString": {
             "name": string;
             "properties": {};
         };
@@ -133,7 +133,7 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "StatusCode": {
+        "StatusCodeString": {
             "name": string;
             "properties": {};
         };
@@ -345,7 +345,7 @@ declare var Universes: {
                 };
             };
         };
-        "StrElement": {
+        "StringTypeDeclaration": {
             "name": string;
             "properties": {
                 "pattern": {
@@ -362,11 +362,11 @@ declare var Universes: {
                 };
             };
         };
-        "BooleanElement": {
+        "BooleanTypeDeclaration": {
             "name": string;
             "properties": {};
         };
-        "NumberElement": {
+        "NumberTypeDeclaration": {
             "name": string;
             "properties": {
                 "minimum": {
@@ -377,15 +377,15 @@ declare var Universes: {
                 };
             };
         };
-        "IntegerElement": {
+        "IntegerTypeDeclaration": {
             "name": string;
             "properties": {};
         };
-        "DateElement": {
+        "DateTypeDeclaration": {
             "name": string;
             "properties": {};
         };
-        "FileElement": {
+        "FileTypeDeclaration": {
             "name": string;
             "properties": {};
         };
@@ -416,10 +416,6 @@ declare var Universes: {
             };
         };
         "RAMLSimpleElement": {
-            "name": string;
-            "properties": {};
-        };
-        "DeclarationWithoutAnotations": {
             "name": string;
             "properties": {};
         };
@@ -558,7 +554,7 @@ declare var Universes: {
                 };
             };
         };
-        "Overlay": {
+        "ApiOverlay": {
             "name": string;
             "properties": {
                 "usage": {
@@ -572,7 +568,7 @@ declare var Universes: {
                 };
             };
         };
-        "Extension": {
+        "ApiExtension": {
             "name": string;
             "properties": {
                 "usage": {
@@ -729,23 +725,19 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "StatusCode": {
+        "StatusCodeString": {
             "name": string;
             "properties": {};
         };
-        "ramlexpression": {
+        "RelativeUriString": {
             "name": string;
             "properties": {};
         };
-        "RelativeUri": {
+        "FullUriTemplateString": {
             "name": string;
             "properties": {};
         };
-        "FullUriTemplate": {
-            "name": string;
-            "properties": {};
-        };
-        "FixedUri": {
+        "FixedUriString": {
             "name": string;
             "properties": {};
         };
@@ -785,10 +777,6 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "ScriptingHook": {
-            "name": string;
-            "properties": {};
-        };
         "RAMLPointer": {
             "name": string;
             "properties": {};
@@ -805,7 +793,7 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "SecuritySchemaPart": {
+        "SecuritySchemePart": {
             "name": string;
             "properties": {
                 "headers": {
@@ -837,21 +825,6 @@ declare var Universes: {
                 };
             };
         };
-        "SecuritySchemaHook": {
-            "name": string;
-            "properties": {
-                "parameters": {
-                    "name": string;
-                };
-                "script": {
-                    "name": string;
-                };
-            };
-        };
-        "SecuritySchemaHookScript": {
-            "name": string;
-            "properties": {};
-        };
         "SecuritySchemaType": {
             "name": string;
             "properties": {
@@ -863,7 +836,7 @@ declare var Universes: {
                 };
             };
         };
-        "SecuritySchemaSettings": {
+        "SecuritySchemeSettings": {
             "name": string;
             "properties": {};
         };
@@ -901,7 +874,7 @@ declare var Universes: {
                 };
             };
         };
-        "PassThroughSettings": {
+        "PassThroughSecuritySchemeSettings": {
             "name": string;
             "properties": {
                 "queryParameterName": {
@@ -912,11 +885,11 @@ declare var Universes: {
                 };
             };
         };
-        "SecuritySchemaRef": {
+        "SecuritySchemeRef": {
             "name": string;
             "properties": {};
         };
-        "SecuritySchema": {
+        "AbstractSecurityScheme": {
             "name": string;
             "properties": {
                 "name": {
@@ -936,7 +909,7 @@ declare var Universes: {
                 };
             };
         };
-        "Oath2": {
+        "OAuth2SecurityScheme": {
             "name": string;
             "properties": {
                 "settings": {
@@ -944,7 +917,7 @@ declare var Universes: {
                 };
             };
         };
-        "Oath1": {
+        "OAuth1SecurityScheme": {
             "name": string;
             "properties": {
                 "settings": {
@@ -952,7 +925,7 @@ declare var Universes: {
                 };
             };
         };
-        "PassThrough": {
+        "PassThroughSecurityScheme": {
             "name": string;
             "properties": {
                 "settings": {
@@ -960,15 +933,15 @@ declare var Universes: {
                 };
             };
         };
-        "Basic": {
+        "BasicSecurityScheme": {
             "name": string;
             "properties": {};
         };
-        "Digest": {
+        "DigestSecurityScheme": {
             "name": string;
             "properties": {};
         };
-        "Custom": {
+        "CustomSecurityScheme": {
             "name": string;
             "properties": {};
         };
@@ -1115,7 +1088,7 @@ declare var Universes: {
                 };
             };
         };
-        "FileParameter": {
+        "FileTypeDeclaration": {
             "name": string;
             "properties": {
                 "fileTypes": {
@@ -1161,7 +1134,7 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "AnnotationType": {
+        "AnnotationTypeDeclaration": {
             "name": string;
             "properties": {
                 "name": {
@@ -1246,7 +1219,7 @@ declare var Universes: {
                 };
             };
         };
-        "DataElement": {
+        "TypeDeclaration": {
             "name": string;
             "properties": {
                 "name": {
@@ -1310,7 +1283,7 @@ declare var Universes: {
                 };
             };
         };
-        "XMLInfo": {
+        "XMLSerializationHints": {
             "name": string;
             "properties": {
                 "name": {
@@ -1330,7 +1303,7 @@ declare var Universes: {
                 };
             };
         };
-        "ArrayField": {
+        "ArrayTypeDeclaration": {
             "name": string;
             "properties": {
                 "uniqueItems": {
@@ -1347,7 +1320,7 @@ declare var Universes: {
                 };
             };
         };
-        "UnionField": {
+        "UnionTypeDeclaration": {
             "name": string;
             "properties": {
                 "discriminator": {
@@ -1359,7 +1332,7 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "ObjectField": {
+        "ObjectTypeDeclaration": {
             "name": string;
             "properties": {
                 "properties": {
@@ -1385,7 +1358,7 @@ declare var Universes: {
                 };
             };
         };
-        "StrElement": {
+        "StringTypeDeclaration": {
             "name": string;
             "properties": {
                 "pattern": {
@@ -1402,15 +1375,15 @@ declare var Universes: {
                 };
             };
         };
-        "BooleanElement": {
+        "BooleanTypeDeclaration": {
             "name": string;
             "properties": {};
         };
-        "ValueElement": {
+        "ValueTypeDeclaration": {
             "name": string;
             "properties": {};
         };
-        "NumberElement": {
+        "NumberTypeDeclaration": {
             "name": string;
             "properties": {
                 "minimum": {
@@ -1430,7 +1403,7 @@ declare var Universes: {
                 };
             };
         };
-        "IntegerElement": {
+        "IntegerTypeDeclaration": {
             "name": string;
             "properties": {
                 "format": {
@@ -1469,7 +1442,7 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "DateElement": {
+        "DateTypeDeclaration": {
             "name": string;
             "properties": {
                 "dateFormat": {
@@ -1615,6 +1588,10 @@ declare var Universes: {
             "properties": {};
         };
         "SecuritySchemeHook": {
+            "name": string;
+            "properties": {};
+        };
+        "StatusCode": {
             "name": string;
             "properties": {};
         };

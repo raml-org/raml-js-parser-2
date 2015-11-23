@@ -153,13 +153,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Project<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, resolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a>, _httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Project<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, resolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a>, _httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:414</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:441</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +175,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> resolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a><span class="tsd-signature-symbol"> =&nbsp;new FSResolver()</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> resolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a><span class="tsd-signature-symbol"> =&nbsp;new FSResolverImpl()</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> _httpResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol"> =&nbsp;new HTTPResolverImpl()</span></h5>
@@ -198,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">_http<wbr>Resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:449</li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +208,7 @@
 					<div class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.iastlistener.html" class="tsd-signature-type">IASTListener</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:411</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:438</li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +218,7 @@
 					<div class="tsd-signature tsd-kind-icon">path<wbr>ToUnit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:414</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:441</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -233,10 +233,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="resolver" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolver</h3>
-					<div class="tsd-signature tsd-kind-icon">resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a></div>
+					<div class="tsd-signature tsd-kind-icon">resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:449</li>
 						</ul>
 					</aside>
 				</section>
@@ -246,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">root<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:449</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,7 +261,7 @@
 					<div class="tsd-signature tsd-kind-icon">tlisteners<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.itextchangecommandlistener.html" class="tsd-signature-type">ITextChangeCommandListener</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:412</li>
+							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:439</li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:693</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:720</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,7 +314,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#addlistener">addListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1614</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1641</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -338,7 +338,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#addtextchangelistener">addTextChangeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1606</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1633</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -361,7 +361,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:675</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:702</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -384,7 +384,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1055</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1082</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1085</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1112</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -436,19 +436,19 @@
 					<a name="clonewithresolver" class="tsd-anchor"></a>
 					<h3>clone<wbr>With<wbr>Resolver</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">clone<wbr>With<wbr>Resolver<span class="tsd-signature-symbol">(</span>newResolver<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a>, httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+						<li class="tsd-signature tsd-kind-icon">clone<wbr>With<wbr>Resolver<span class="tsd-signature-symbol">(</span>newResolver<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a>, httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:426</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:453</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>newResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a></h5>
+									<h5>newResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> httpResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
@@ -468,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:491</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:518</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -495,7 +495,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#execute">execute</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1270</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1297</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -518,7 +518,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1072</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1099</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -548,7 +548,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#executetextchange">executeTextChange</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1440</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1467</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -571,7 +571,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1401</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1428</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -594,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1575</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1602</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -623,7 +623,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:634</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:661</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -646,7 +646,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1262</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1289</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -672,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:934</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:961</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -695,7 +695,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:922</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:949</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -718,7 +718,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:928</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:955</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -741,7 +741,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:679</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:706</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -765,7 +765,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#lexererrors">lexerErrors</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:483</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:510</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -782,7 +782,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:683</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:710</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -805,7 +805,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:938</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:965</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -835,7 +835,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#removelistener">removeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1618</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1645</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -859,7 +859,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#removetextchangelistener">removeTextChangeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1609</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1636</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -882,7 +882,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1365</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1392</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -917,7 +917,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:460</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:487</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -943,7 +943,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:441</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:468</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -969,7 +969,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:434</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:461</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -998,7 +998,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:660</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:687</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1021,7 +1021,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:502</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:529</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1047,7 +1047,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:556</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:583</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1074,7 +1074,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#units">units</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:479</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:506</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -1091,7 +1091,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1545</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1572</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1117,7 +1117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:623</li>
+									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:650</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1149,10 +1149,10 @@
 						<a href="../enums/_raml1_jsyaml_jsyaml2lowlevel_.insertionpointtype.html" class="tsd-kind-icon">Insertion<wbr>Point<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-kind-icon">HTTPResolver</a>
+						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-kind-icon">FSResolver</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-kind-icon">Include<wbr>Resolver</a>
+						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-kind-icon">HTTPResolver</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.response.html" class="tsd-kind-icon">Response</a>

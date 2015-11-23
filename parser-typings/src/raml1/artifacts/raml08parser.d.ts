@@ -3,6 +3,7 @@ import hlImpl = require("../highLevelImpl");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
 import core = require("../wrapped-ast/parserCore");
 import Opt = require("../../Opt");
+import apiLoader = require("../../ramlscript/apiLoader");
 export interface RAMLLanguageElement extends core.BasicNode {
     /***
      * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
@@ -194,12 +195,12 @@ export declare class UriTemplateImpl extends StringTypeImpl implements UriTempla
 /***
  * This  type describes relative uri templates
  ***/
-export interface RelativeUri extends UriTemplate {
+export interface RelativeUriString extends UriTemplate {
 }
 /***
  * This  type describes relative uri templates
  ***/
-export declare class RelativeUriImpl extends UriTemplateImpl implements RelativeUri {
+export declare class RelativeUriStringImpl extends UriTemplateImpl implements RelativeUriString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -215,12 +216,12 @@ export declare class RelativeUriImpl extends UriTemplateImpl implements Relative
 /***
  * This  type describes absolute uri templates
  ***/
-export interface FullUriTemplate extends UriTemplate {
+export interface FullUriTemplateString extends UriTemplate {
 }
 /***
  * This  type describes absolute uri templates
  ***/
-export declare class FullUriTemplateImpl extends UriTemplateImpl implements FullUriTemplate {
+export declare class FullUriTemplateStringImpl extends UriTemplateImpl implements FullUriTemplateString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -362,9 +363,9 @@ export declare class XMLExampleImpl extends ExampleStringImpl implements XMLExam
      ***/
     getKind(): string;
 }
-export interface StatusCode extends StringType {
+export interface StatusCodeString extends StringType {
 }
-export declare class StatusCodeImpl extends StringTypeImpl implements StatusCode {
+export declare class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString {
     protected attr: hl.IAttribute;
     constructor(attr: hl.IAttribute);
     /***
@@ -948,7 +949,7 @@ export declare class ParameterLocationImpl implements ParameterLocation {
 /***
  * Value must be a string
  ***/
-export interface StrElement extends Parameter {
+export interface StringTypeDeclaration extends Parameter {
     /***
      * (Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
      ***/
@@ -969,7 +970,7 @@ export interface StrElement extends Parameter {
 /***
  * Value must be a string
  ***/
-export declare class StrElementImpl extends ParameterImpl implements StrElement {
+export declare class StringTypeDeclarationImpl extends ParameterImpl implements StringTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -989,7 +990,7 @@ export declare class StrElementImpl extends ParameterImpl implements StrElement 
      * @hidden
      * Set pattern value
      ***/
-    setPattern(param: string): StrElementImpl;
+    setPattern(param: string): StringTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
      ***/
@@ -998,7 +999,7 @@ export declare class StrElementImpl extends ParameterImpl implements StrElement 
      * @hidden
      * Set enum value
      ***/
-    setEnum(param: string): StrElementImpl;
+    setEnum(param: string): StringTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
      ***/
@@ -1007,7 +1008,7 @@ export declare class StrElementImpl extends ParameterImpl implements StrElement 
      * @hidden
      * Set minLength value
      ***/
-    setMinLength(param: number): StrElementImpl;
+    setMinLength(param: number): StringTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
      ***/
@@ -1016,17 +1017,17 @@ export declare class StrElementImpl extends ParameterImpl implements StrElement 
      * @hidden
      * Set maxLength value
      ***/
-    setMaxLength(param: number): StrElementImpl;
+    setMaxLength(param: number): StringTypeDeclarationImpl;
 }
 /***
  * Value must be a boolean
  ***/
-export interface BooleanElement extends Parameter {
+export interface BooleanTypeDeclaration extends Parameter {
 }
 /***
  * Value must be a boolean
  ***/
-export declare class BooleanElementImpl extends ParameterImpl implements BooleanElement {
+export declare class BooleanTypeDeclarationImpl extends ParameterImpl implements BooleanTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1042,7 +1043,7 @@ export declare class BooleanElementImpl extends ParameterImpl implements Boolean
 /***
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  ***/
-export interface NumberElement extends Parameter {
+export interface NumberTypeDeclaration extends Parameter {
     /***
      * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
      ***/
@@ -1055,7 +1056,7 @@ export interface NumberElement extends Parameter {
 /***
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  ***/
-export declare class NumberElementImpl extends ParameterImpl implements NumberElement {
+export declare class NumberTypeDeclarationImpl extends ParameterImpl implements NumberTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1075,7 +1076,7 @@ export declare class NumberElementImpl extends ParameterImpl implements NumberEl
      * @hidden
      * Set minimum value
      ***/
-    setMinimum(param: number): NumberElementImpl;
+    setMinimum(param: number): NumberTypeDeclarationImpl;
     /***
      * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
      ***/
@@ -1084,17 +1085,17 @@ export declare class NumberElementImpl extends ParameterImpl implements NumberEl
      * @hidden
      * Set maximum value
      ***/
-    setMaximum(param: number): NumberElementImpl;
+    setMaximum(param: number): NumberTypeDeclarationImpl;
 }
 /***
  * Value MUST be a integer.
  ***/
-export interface IntegerElement extends NumberElement {
+export interface IntegerTypeDeclaration extends NumberTypeDeclaration {
 }
 /***
  * Value MUST be a integer.
  ***/
-export declare class IntegerElementImpl extends NumberElementImpl implements IntegerElement {
+export declare class IntegerTypeDeclarationImpl extends NumberTypeDeclarationImpl implements IntegerTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1110,12 +1111,12 @@ export declare class IntegerElementImpl extends NumberElementImpl implements Int
 /***
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
  ***/
-export interface DateElement extends Parameter {
+export interface DateTypeDeclaration extends Parameter {
 }
 /***
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
  ***/
-export declare class DateElementImpl extends ParameterImpl implements DateElement {
+export declare class DateTypeDeclarationImpl extends ParameterImpl implements DateTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1131,12 +1132,12 @@ export declare class DateElementImpl extends ParameterImpl implements DateElemen
 /***
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  ***/
-export interface FileElement extends Parameter {
+export interface FileTypeDeclaration extends Parameter {
 }
 /***
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  ***/
-export declare class FileElementImpl extends ParameterImpl implements FileElement {
+export declare class FileTypeDeclarationImpl extends ParameterImpl implements FileTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /***
@@ -1208,7 +1209,7 @@ export interface Response extends RAMLLanguageElement {
     /***
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      ***/
-    code(): StatusCode;
+    code(): StatusCodeString;
     /***
      * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
      * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
@@ -1241,7 +1242,7 @@ export declare class ResponseImpl extends RAMLLanguageElementImpl implements Res
     /***
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      ***/
-    code(): StatusCode;
+    code(): StatusCodeString;
     /***
      * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
      * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
@@ -1277,7 +1278,6 @@ export interface BodyLike extends RAMLLanguageElement {
     schema(): SchemaString;
     /***
      * Documentation generators MUST use body properties' example attributes to generate example invocations.
-     *
      * This example shows example attributes for two body property media types.
      ***/
     example(): ExampleString;
@@ -1322,7 +1322,6 @@ export declare class BodyLikeImpl extends RAMLLanguageElementImpl implements Bod
     schema(): SchemaString;
     /***
      * Documentation generators MUST use body properties' example attributes to generate example invocations.
-     *
      * This example shows example attributes for two body property media types.
      ***/
     example(): ExampleString;
@@ -1515,7 +1514,7 @@ export interface Resource extends RAMLLanguageElement {
     /***
      * Relative URL of this resource from the parent resource
      ***/
-    relativeUri(): RelativeUri;
+    relativeUri(): RelativeUriString;
     /***
      * Instantiation of applyed resource type
      ***/
@@ -1596,7 +1595,7 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
     /***
      * Relative URL of this resource from the parent resource
      ***/
-    relativeUri(): RelativeUri;
+    relativeUri(): RelativeUriString;
     /***
      * Instantiation of applyed resource type
      ***/
@@ -1684,7 +1683,7 @@ export interface Api extends RAMLLanguageElement {
      * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
      * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
      ***/
-    baseUri(): FullUriTemplate;
+    baseUri(): FullUriTemplateString;
     /***
      * Base uri parameters are named parameters which described template parameters in the base uri
      ***/
@@ -1809,7 +1808,7 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
      * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
      * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
      ***/
-    baseUri(): FullUriTemplate;
+    baseUri(): FullUriTemplateString;
     /***
      * Base uri parameters are named parameters which described template parameters in the base uri
      ***/
@@ -1904,17 +1903,17 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
 /***
  * Load API synchronously
  * @param apiPath Path to API: local file system path or Web URL
- * @param expand Whether to expand traits and resource types
+ * @param options Load options
  * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
  ***/
-export declare function loadApi(apiPath: string, expand?: boolean): Opt<Api>;
+export declare function loadApi(apiPath: string, options?: apiLoader.Options): Opt<Api>;
 /***
  * Load API asynchronously
  * @param apiPath Path to API: local file system path or Web URL
- * @param expand Whether to expand traits and resource types
+ * @param expand Load options
  * @return Promise&lt;Api&gt;
  ***/
-export declare function loadApiAsync(apiPath: string, expand?: boolean): Promise<Api>;
+export declare function loadApiAsync(apiPath: string, options?: apiLoader.Options): Promise<Api>;
 /***
  * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
  * @param node Model node
