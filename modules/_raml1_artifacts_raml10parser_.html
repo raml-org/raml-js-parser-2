@@ -199,13 +199,13 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<a name="loadapi" class="tsd-anchor"></a>
 					<h3>load<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5803</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5798</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -222,14 +222,14 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Load options</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.</p>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
+							<p>Api instance or null if Api can not be found.</p>
 						</li>
 					</ul>
 				</section>
@@ -237,13 +237,13 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<a name="loadapiasync" class="tsd-anchor"></a>
 					<h3>load<wbr>Api<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5814</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5809</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -260,7 +260,10 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Load options</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -278,7 +281,7 @@ node test/testAsync.js  //same as above but in asynchronous mode
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5823</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5818</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
