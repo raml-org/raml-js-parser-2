@@ -1,5 +1,8 @@
 # Changelog
 
+#### 27/11/15
+Removing Opt from top level parser API. Webpack example for using parser on Web.
+
 #### 19/11/15
 Documentation
 

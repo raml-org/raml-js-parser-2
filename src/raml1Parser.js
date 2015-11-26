@@ -106,7 +106,7 @@ module.exports =
 	 *
 	 * <ul>
 	 * <li>For parser usage example refer to <code>test/test.js</code></li>
-	 * <li>For asynchrounous usage example refer to <code>test/test.js</code></li>
+	 * <li>For asynchrounous usage example refer to <code>test/testAsync.js</code></li>
 	 * </ul>
 	 ****************************************************/
 	var __extends = this.__extends || function (d, b) {
@@ -2597,7 +2597,7 @@ module.exports =
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
 	    /***
-	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
+	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 	     ***/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
@@ -2609,9 +2609,9 @@ module.exports =
 	        return helper.ownerApi(this);
 	    };
 	    /***
-	     * // For methods of Resources: `{parent Resource relative path} {methodName}`.
-	     * // For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-	     * // For other methods throws Exception.
+	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
+	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	     * For other methods throws Exception.
 	     ***/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
@@ -3312,14 +3312,13 @@ module.exports =
 	    };
 	    /***
 	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	     * //
 	     ***/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
 	    /***
 	     * Retrieve all absolute uri parameters regardless of whether they are described in
-	     * //`baseUriParameters` and `uriParameters` or not
+	     * `baseUriParameters` and `uriParameters` or not
 	     ***/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
@@ -3704,7 +3703,6 @@ module.exports =
 	    };
 	    /***
 	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	     * //
 	     ***/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
@@ -4315,16 +4313,16 @@ module.exports =
 	 * Load API synchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+	 * @return Api instance or null if Api can not be found.
 	 ***/
 	function loadApi(apiPath, options) {
-	    return apiLoader.loadApi1(apiPath, options);
+	    return apiLoader.loadApi1(apiPath, options).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
 	/***
 	 * Load API asynchronously
 	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param expand Load options
+	 * @param options Load options
 	 * @return Promise&lt;Api&gt;
 	 ***/
 	function loadApiAsync(apiPath, options) {
@@ -11076,6 +11074,32 @@ module.exports =
 	    FSResolverImpl.prototype.list = function (path) {
 	        return fs.readdirSync(path);
 	    };
+	    FSResolverImpl.prototype.contentAsync = function (path) {
+	        return new Promise(function (resolve, reject) {
+	            fs.exists(path, function (x) {
+	                if (!x) {
+	                    reject('File does not exist:' + path);
+	                }
+	                fs.readFile(path, function (err, data) {
+	                    if (err != null) {
+	                        reject(err);
+	                    }
+	                    var content = data.toString();
+	                    resolve(content);
+	                });
+	            });
+	        });
+	    };
+	    FSResolverImpl.prototype.listAsync = function (path) {
+	        return new Promise(function (reject, resolve) {
+	            fs.readdir(path, function (err, files) {
+	                if (err != null) {
+	                    reject(err);
+	                }
+	                resolve(files);
+	            });
+	        });
+	    };
 	    return FSResolverImpl;
 	})();
 	exports.FSResolverImpl = FSResolverImpl;
@@ -11278,6 +11302,19 @@ module.exports =
 	        var names = this.resolver.list(this.rootPath).filter(function (x) { return path.extname(x) == '.raml'; });
 	        return names.map(function (x) { return _this.unit(x); }).filter(function (y) { return y.isTopLevel(); });
 	    };
+	    Project.prototype.unitsAsync = function () {
+	        var _this = this;
+	        return this.resolver.listAsync(this.rootPath).then(function (x) {
+	            var promises = x.filter(function (x) { return path.extname(x) == '.raml'; }).map(function (x) { return _this.unitAsync(x).then(function (x) {
+	                return x.isTopLevel() ? x : null;
+	            }, function (x) {
+	                return null;
+	            }); });
+	            return Promise.all(promises).then(function (arr) {
+	                return arr.filter(function (x) { return x != null; });
+	            });
+	        });
+	    };
 	    Project.prototype.lexerErrors = function () {
 	        var results = [];
 	        this.units().forEach(function (x) {
@@ -11398,7 +11435,7 @@ module.exports =
 	                }
 	            }
 	            else {
-	                cnt = Promise.resolve(this.resolver.content(apath));
+	                cnt = this.resolver.contentAsync(apath);
 	            }
 	        }
 	        if (cnt == null) {
@@ -20481,7 +20518,9 @@ module.exports =
 	        });
 	        if (options && options.writeErrors) {
 	            var errors = collectErrors(node);
-	            obj['__$errors__'] = errors;
+	            if (errors != null && errors.length > 0) {
+	                obj['__$errors__'] = errors;
+	            }
 	        }
 	        return obj;
 	    }
@@ -27572,7 +27611,7 @@ module.exports =
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
 	    /***
-	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
+	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 	     ***/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
@@ -27584,9 +27623,9 @@ module.exports =
 	        return helper.ownerApi(this);
 	    };
 	    /***
-	     * // For methods of Resources: `{parent Resource relative path} {methodName}`.
-	     * // For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-	     * // For other methods throws Exception.
+	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
+	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	     * For other methods throws Exception.
 	     ***/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
@@ -27711,14 +27750,13 @@ module.exports =
 	    };
 	    /***
 	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	     * //
 	     ***/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
 	    /***
 	     * Retrieve all absolute uri parameters regardless of whether they are described in
-	     * //`baseUriParameters` and `uriParameters` or not
+	     * `baseUriParameters` and `uriParameters` or not
 	     ***/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
@@ -27906,7 +27944,6 @@ module.exports =
 	    };
 	    /***
 	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	     * //
 	     ***/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
@@ -28161,16 +28198,16 @@ module.exports =
 	 * Load API synchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Opt&lt;Api&gt;. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+	 * @return Api instance or null if Api can not be found.
 	 ***/
 	function loadApi(apiPath, options) {
-	    return apiLoader.loadApi08(apiPath, options);
+	    return apiLoader.loadApi08(apiPath, options).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
 	/***
 	 * Load API asynchronously
 	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param expand Load options
+	 * @param options Load options
 	 * @return Promise&lt;Api&gt;
 	 ***/
 	function loadApiAsync(apiPath, options) {
@@ -28334,8 +28371,11 @@ module.exports =
 	     * @return Array of errors
 	     **/
 	    BasicNodeImpl.prototype.errors = function () {
-	        var result = [].concat(this._node.errors());
-	        this._node.attrs().forEach(function (x) { return result = result.concat(x.errors()); });
+	        var result = [];
+	        if (this._node.errors() != null) {
+	            result = result.concat(this._node.errors());
+	        }
+	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return result = result.concat(x.errors()); });
 	        return result;
 	    };
 	    /***
@@ -28388,7 +28428,6 @@ module.exports =
 	var hlimpl = __webpack_require__(10);
 	var llimpl = __webpack_require__(11);
 	var expander = __webpack_require__(89);
-	var util = __webpack_require__(59);
 	var universeDef = __webpack_require__(7);
 	var universeProvider = __webpack_require__(95);
 	/***
@@ -28518,30 +28557,44 @@ module.exports =
 	    var api;
 	    var expandTraitsAndResourceTypes = (options && (options.expandTraitsAndResourceTypes != null)) ? options.expandTraitsAndResourceTypes : true;
 	    var contents = unit.contents();
-	    if (!util.stringStartsWith(contents, '#%RAML')) {
+	    var ramlFirstLine = contents.match(/^#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+	    if (!ramlFirstLine) {
 	        return null;
 	    }
-	    var ind = contents.indexOf('\n');
-	    if (ind < 0) {
-	        ind = contents.length;
-	    }
-	    var verStr = contents.substring('#%RAML'.length, ind).trim();
-	    var ramlVersion;
+	    var verStr = ramlFirstLine[1];
+	    var ramlFileType = ramlFirstLine[2];
 	    var typeName;
+	    var apiImpl;
+	    var ramlVersion;
 	    if (verStr == '0.8') {
 	        ramlVersion = 'RAML08';
-	        typeName = universeDef.Universe08.Api.name;
 	    }
 	    else if (verStr == '1.0') {
 	        ramlVersion = 'RAML10';
-	        typeName = universeDef.Universe10.Api.name;
 	    }
 	    if (!ramlVersion) {
 	        return null;
 	    }
+	    if (!ramlFileType || ramlFileType.trim() === "") {
+	        apiImpl = RamlWrapper1.ApiImpl;
+	        if (verStr == '0.8') {
+	            typeName = universeDef.Universe08.Api.name;
+	        }
+	        else if (verStr == '1.0') {
+	            typeName = universeDef.Universe10.Api.name;
+	        }
+	    }
+	    else if (ramlFileType === "Overlay") {
+	        apiImpl = RamlWrapper1.ApiOverlayImpl;
+	        typeName = universeDef.Universe10.ApiOverlay.name;
+	    }
+	    else if (ramlFileType === "Extension") {
+	        apiImpl = RamlWrapper1.ApiExtensionImpl;
+	        typeName = universeDef.Universe10.ApiExtension.name;
+	    }
 	    var universe = universeProvider(ramlVersion);
 	    var apiType = universe.type(typeName);
-	    api = new RamlWrapper1.ApiImpl(new hlimpl.ASTNodeImpl(unit.ast(), null, apiType, null));
+	    api = new apiImpl(new hlimpl.ASTNodeImpl(unit.ast(), null, apiType, null));
 	    if (expandTraitsAndResourceTypes) {
 	        api = expander.expandTraitsAndResourceTypes(api);
 	    }
@@ -28903,52 +28956,52 @@ module.exports =
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
-	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
+	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 	function parentResource(method) {
 	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
-	        return new Opt(method.parent());
+	        return method.parent();
 	    }
-	    return Opt.empty();
+	    return null;
 	}
 	exports.parentResource = parentResource;
 	//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 	function parent(resource) {
 	    var parent = resource.parent();
 	    if (isApi(parent)) {
-	        return Opt.empty();
+	        return null;
 	    }
-	    return new Opt(parent);
+	    return parent;
 	}
 	exports.parent = parent;
 	//__$helperMethod__ Get child resource by its relative path
 	function getChildResource(container, relPath) {
 	    if (container == null) {
-	        return Opt.empty();
+	        return null;
 	    }
 	    var resources = container.resources();
 	    if (!resources) {
-	        return Opt.empty();
+	        return null;
 	    }
 	    resources = resources.filter(function (x) { return x.relativeUri().value() == relPath; });
 	    if (resources.length == 0) {
-	        return Opt.empty();
+	        return null;
 	    }
-	    return new Opt(resources[0]);
+	    return resources[0];
 	}
 	exports.getChildResource = getChildResource;
 	function getResource(container, path) {
 	    if (!container) {
 	        return null;
 	    }
-	    var opt = Opt.empty();
+	    var res = null;
 	    for (var i = 0; i < path.length; i++) {
-	        opt = getChildResource(container, path[i]);
-	        if (!opt.isDefined()) {
-	            return opt;
+	        res = getChildResource(container, path[i]);
+	        if (!res) {
+	            return null;
 	        }
-	        container = opt.getOrThrow();
+	        container = res;
 	    }
-	    return opt;
+	    return res;
 	}
 	exports.getResource = getResource;
 	//__$helperMethod__ Get child method by its name
@@ -28961,7 +29014,10 @@ module.exports =
 	exports.getChildMethod = getChildMethod;
 	function getMethod(container, path, method) {
 	    var resource = getResource(container, path);
-	    return getChildMethod(resource.getOrElse(null), method);
+	    if (!resource) {
+	        return null;
+	    }
+	    return getChildMethod(resource, method);
 	}
 	exports.getMethod = getMethod;
 	function isApi(obj) {
@@ -29010,11 +29066,9 @@ module.exports =
 	exports.allResources = allResources;
 	function matchUri(apiRootRelativeUri, resource) {
 	    var allParameters = {};
-	    var opt = new Opt(resource);
-	    while (opt.isDefined()) {
-	        var res = opt.getOrThrow();
-	        uriParameters(res).forEach(function (x) { return allParameters[x.name()] = new ParamWrapper(x); });
-	        opt = parent(res);
+	    while (resource != null) {
+	        uriParameters(resource).forEach(function (x) { return allParameters[x.name()] = new ParamWrapper(x); });
+	        resource = parent(resource);
 	    }
 	    var result = ramlPathMatch(completeRelativeUri(resource), allParameters, {})(apiRootRelativeUri);
 	    if (result) {
@@ -43731,7 +43785,6 @@ module.exports =
 	var hlimpl = __webpack_require__(10);
 	var expander = __webpack_require__(89);
 	var lowLevelProxy = __webpack_require__(64);
-	var Opt = __webpack_require__(60);
 	var util = __webpack_require__(59);
 	var search = __webpack_require__(69);
 	var ll = __webpack_require__(11);
@@ -43817,52 +43870,52 @@ module.exports =
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
-	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns undefined Opt.
+	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
 	function parentResource(method) {
 	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
-	        return new Opt(method.parent());
+	        return method.parent();
 	    }
-	    return Opt.empty();
+	    return null;
 	}
 	exports.parentResource = parentResource;
 	//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 	function parent(resource) {
 	    var parent = resource.parent();
 	    if (isApi(parent)) {
-	        return Opt.empty();
+	        return null;
 	    }
-	    return new Opt(parent);
+	    return parent;
 	}
 	exports.parent = parent;
 	//__$helperMethod__ Get child resource by its relative path
 	function getChildResource(container, relPath) {
 	    if (container == null) {
-	        return Opt.empty();
+	        return null;
 	    }
 	    var resources = container.resources();
 	    if (!resources) {
-	        return Opt.empty();
+	        return null;
 	    }
 	    resources = resources.filter(function (x) { return x.relativeUri().value() == relPath; });
 	    if (resources.length == 0) {
-	        return Opt.empty();
+	        return null;
 	    }
-	    return new Opt(resources[0]);
+	    return resources[0];
 	}
 	exports.getChildResource = getChildResource;
 	function getResource(container, path) {
 	    if (!container) {
 	        return null;
 	    }
-	    var opt = Opt.empty();
+	    var res = null;
 	    for (var i = 0; i < path.length; i++) {
-	        opt = getChildResource(container, path[i]);
-	        if (!opt.isDefined()) {
-	            return opt;
+	        res = getChildResource(container, path[i]);
+	        if (!res) {
+	            return null;
 	        }
-	        container = opt.getOrThrow();
+	        container = res;
 	    }
-	    return opt;
+	    return res;
 	}
 	exports.getResource = getResource;
 	//__$helperMethod__ Get child method by its name
@@ -43875,7 +43928,10 @@ module.exports =
 	exports.getChildMethod = getChildMethod;
 	function getMethod(container, path, method) {
 	    var resource = getResource(container, path);
-	    return getChildMethod(resource.getOrElse(null), method);
+	    if (resource == null) {
+	        return null;
+	    }
+	    return getChildMethod(resource, method);
 	}
 	exports.getMethod = getMethod;
 	function isApi(obj) {

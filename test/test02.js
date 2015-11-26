@@ -11,7 +11,7 @@ var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.ra
 		content: function(path){ return fs.readFileSync(path).toString(); },
 		list: function(path){ return fs.readDirSync(path); }
 	}
-}).getOrElse(null);
+});
 
 api.errors().forEach(function(x){
     console.log(JSON.stringify({

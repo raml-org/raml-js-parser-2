@@ -20,3 +20,28 @@ node test/testAsync.js  //same as above but in asynchronous mode
 ## Usage
 * For parser usage example refer to `test/test.js`
 * For asynchrounous usage example refer to `test/test.js`
+
+##Web
+In order to use your parser dependent code on web you may call the `web-tools/webPackage` script for your code in order to construct a Webpack bundle. The script accepts following command line parameters:
+
+* *-srcPath*(required) Absolute or relative path to JS file using the parser and which, in turn, is used by the HTML page
+* *-dstPath*(required) Path to the resulting bundle
+* *-uglify* If present, the resulting bundle is subjected to optimization
+
+The script requires following modules: `webpack` and `mkdir`. These may be installed locally:
+```
+npm install webpack
+npm install mkdirp
+```
+or globally (in this case the should be linked to the project) 
+```
+npm install webpack -g
+npm install mkdirp -g
+npm link webpack
+npm link mkdirp
+```
+Example can be found at `examples/web-example`. In order to regenerate example bundle, run
+```
+node ./web-tools/webPackage.js -srcPath ./examples/web-example/page.js -dstPath ./examples/web-example/bundle/bundle.js
+```
+from the project root.

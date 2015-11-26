@@ -43,17 +43,29 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
 }
 export interface FSResolver {
     /**
-     * Load file content
+     * Load file content synchronosly
      * @param path File path
      * @return File content as string
      **/
     content(path: string): string;
     /**
-     * List directory
+     * Load file content asynchronosly
+     * @param path File path
+     * @return File content as string
+     **/
+    contentAsync(path: string): Promise<string>;
+    /**
+     * List directory synchronosly
      * @param path Directory path
      * @return Names list of files located in the directory
      **/
     list(path: string): string[];
+    /**
+     * List directory asynchronosly
+     * @param path Directory path
+     * @return Names list of files located in the directory
+     **/
+    listAsync(path: string): Promise<string[]>;
 }
 /**
  * Must provide either page content or error message
@@ -91,6 +103,8 @@ export declare class HTTPResolverImpl implements HTTPResolver {
 export declare class FSResolverImpl implements FSResolver {
     content(path: string): string;
     list(path: string): string[];
+    contentAsync(path: string): Promise<string>;
+    listAsync(path: string): Promise<string[]>;
 }
 export declare class Project implements lowlevel.IProject {
     private rootPath;
@@ -111,6 +125,7 @@ export declare class Project implements lowlevel.IProject {
     resolveAsync(unitPath: string, pathInUnit: string): Promise<lowlevel.ICompilationUnit>;
     resolve(unitPath: string, pathInUnit: string): CompilationUnit;
     units(): lowlevel.ICompilationUnit[];
+    unitsAsync(): Promise<lowlevel.ICompilationUnit[]>;
     lexerErrors(): Error[];
     deleteUnit(p: string, absolute?: boolean): void;
     unit(p: string, absolute?: boolean): CompilationUnit;
