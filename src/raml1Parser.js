@@ -11076,18 +11076,14 @@ module.exports =
 	    };
 	    FSResolverImpl.prototype.contentAsync = function (path) {
 	        return new Promise(function (resolve, reject) {
-	            fs.exists(path, function (x) {
-	                if (!x) {
-	                    reject('File does not exist:' + path);
-	                }
 	                fs.readFile(path, function (err, data) {
 	                    if (err != null) {
 	                        reject(err);
+	                        return;
 	                    }
 	                    var content = data.toString();
 	                    resolve(content);
 	                });
-	            });
 	        });
 	    };
 	    FSResolverImpl.prototype.listAsync = function (path) {
@@ -11095,6 +11091,7 @@ module.exports =
 	            fs.readdir(path, function (err, files) {
 	                if (err != null) {
 	                    reject(err);
+	                    return;
 	                }
 	                resolve(files);
 	            });
