@@ -11076,14 +11076,14 @@ module.exports =
 	    };
 	    FSResolverImpl.prototype.contentAsync = function (path) {
 	        return new Promise(function (resolve, reject) {
-	                fs.readFile(path, function (err, data) {
-	                    if (err != null) {
-	                        reject(err);
-	                        return;
-	                    }
-	                    var content = data.toString();
-	                    resolve(content);
-	                });
+	            fs.readFile(path, function (err, data) {
+	                if (err != null) {
+	                    reject(err);
+	                    return;
+	                }
+	                var content = data.toString();
+	                resolve(content);
+	            });
 	        });
 	    };
 	    FSResolverImpl.prototype.listAsync = function (path) {
@@ -11235,14 +11235,18 @@ module.exports =
 	     * @param _httpResolver
 	     */
 	    function Project(rootPath, resolver, _httpResolver) {
-	        if (resolver === void 0) { resolver = new FSResolverImpl(); }
-	        if (_httpResolver === void 0) { _httpResolver = new HTTPResolverImpl(); }
 	        this.rootPath = rootPath;
 	        this.resolver = resolver;
 	        this._httpResolver = _httpResolver;
 	        this.listeners = [];
 	        this.tlisteners = [];
 	        this.pathToUnit = {};
+	        if (this.resolver == null) {
+	            this.resolver = new FSResolverImpl();
+	        }
+	        if (this._httpResolver == null) {
+	            this._httpResolver = new HTTPResolverImpl();
+	        }
 	    }
 	    Project.prototype.cloneWithResolver = function (newResolver, httpResolver) {
 	        if (httpResolver === void 0) { httpResolver = null; }
@@ -11264,13 +11268,10 @@ module.exports =
 	        if (!pathInUnit) {
 	            return Promise.reject(new Error("Unit path is null"));
 	        }
-	        if (pathInUnit.charAt(0) == '/') {
-	            return this.unitAsync(pathInUnit);
-	        }
-	        if (isWebPath(pathInUnit)) {
+	        if (isWebPath(pathInUnit) || path.isAbsolute(pathInUnit)) {
 	            return this.unitAsync(pathInUnit, true);
 	        }
-	        if (unitPath.charAt(0) == '/') {
+	        else if (isWebPath(unitPath) || path.isAbsolute(unitPath)) {
 	            var absPath = toAbsolutePath(path.dirname(unitPath), pathInUnit);
 	            return this.unitAsync(absPath, true);
 	        }
@@ -11281,13 +11282,10 @@ module.exports =
 	        if (!pathInUnit) {
 	            return null;
 	        }
-	        if (pathInUnit.charAt(0) == '/') {
-	            return this.unit(pathInUnit);
-	        }
-	        if (isWebPath(pathInUnit)) {
+	        if (isWebPath(pathInUnit) || path.isAbsolute(pathInUnit)) {
 	            return this.unit(pathInUnit, true);
 	        }
-	        if (unitPath.charAt(0) == '/') {
+	        else if (isWebPath(unitPath) || path.isAbsolute(unitPath)) {
 	            var absPath = toAbsolutePath(path.dirname(unitPath), pathInUnit);
 	            return this.unit(absPath, true);
 	        }
@@ -11322,7 +11320,7 @@ module.exports =
 	    Project.prototype.deleteUnit = function (p, absolute) {
 	        if (absolute === void 0) { absolute = false; }
 	        var apath = null;
-	        if (p.indexOf("http://") == 0 || p.indexOf("https://") == 0) {
+	        if (isWebPath(p)) {
 	            apath = p;
 	        }
 	        else {
@@ -11377,7 +11375,7 @@ module.exports =
 	            return null;
 	        }
 	        var tl = util.stringStartsWith(cnt, "#%RAML");
-	        var relPath = path.relative(this.rootPath, apath);
+	        var relPath = (isWebPath(this.rootPath) == isWebPath(apath)) ? path.relative(this.rootPath, apath) : apath;
 	        var unit = new CompilationUnit(relPath, cnt, tl, this, apath);
 	        this.pathToUnit[apath] = unit;
 	        return unit;
@@ -11438,7 +11436,7 @@ module.exports =
 	        if (cnt == null) {
 	            return Promise.resolve(null);
 	        }
-	        var relPath = path.relative(this.rootPath, apath);
+	        var relPath = (isWebPath(this.rootPath) == isWebPath(apath)) ? path.relative(this.rootPath, apath) : apath;
 	        return cnt.then(function (x) {
 	            if (!x) {
 	                return Promise.reject(new Error("Can note resolve " + apath));
@@ -13651,6 +13649,9 @@ module.exports =
 	}
 	exports.fetchIncludesAsync = fetchIncludesAsync;
 	function toAbsolutePath(rootPath, relPath) {
+	    if (isWebPath(relPath)) {
+	        return relPath;
+	    }
 	    var apath;
 	    if (isWebPath(rootPath)) {
 	        var rp = util.stringEndsWith(rootPath, "/") ? rootPath : rootPath + "/";
@@ -15526,11 +15527,6 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
-	// Standard YAML's Core schema.
-	// http://www.yaml.org/spec/1.2/spec.html#id2804923
-	//
-	// NOTE: JS-YAML does not support schema-specific tag resolution restrictions.
-	// So, Core schema has no distinctions from JSON schema is JS-YAML.
 	'use strict';
 	var Schema = __webpack_require__(22);
 	module.exports = new Schema({
@@ -15538,19 +15534,13 @@ module.exports =
 	        __webpack_require__(25)
 	    ]
 	});
-	//# sourceMappingURL=core.js.map
+
 
 /***/ },
 /* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
-	// Standard YAML's JSON schema.
-	// http://www.yaml.org/spec/1.2/spec.html#id2803231
-	//
-	// NOTE: JS-YAML does not support schema-specific tag resolution restrictions.
-	// So, this schema is not such strict as defined in the YAML specification.
-	// It allows numbers in binary notaion, use `Null` and `NULL` as `null`, etc.
 	'use strict';
 	var Schema = __webpack_require__(22);
 	module.exports = new Schema({
@@ -15564,15 +15554,13 @@ module.exports =
 	        __webpack_require__(33)
 	    ]
 	});
-	//# sourceMappingURL=json.js.map
+
 
 /***/ },
 /* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
-	// Standard YAML's Failsafe schema.
-	// http://www.yaml.org/spec/1.2/spec.html#id2802346
 	'use strict';
 	var Schema = __webpack_require__(22);
 	module.exports = new Schema({
@@ -15582,7 +15570,7 @@ module.exports =
 	        __webpack_require__(29)
 	    ]
 	});
-	//# sourceMappingURL=failsafe.js.map
+
 
 /***/ },
 /* 27 */
@@ -15593,11 +15581,9 @@ module.exports =
 	var Type = __webpack_require__(23);
 	module.exports = new Type('tag:yaml.org,2002:str', {
 	    kind: 'scalar',
-	    construct: function (data) {
-	        return null !== data ? data : '';
-	    }
+	    construct: function (data) { return null !== data ? data : ''; }
 	});
-	//# sourceMappingURL=str.js.map
+
 
 /***/ },
 /* 28 */
@@ -15608,11 +15594,9 @@ module.exports =
 	var Type = __webpack_require__(23);
 	module.exports = new Type('tag:yaml.org,2002:seq', {
 	    kind: 'sequence',
-	    construct: function (data) {
-	        return null !== data ? data : [];
-	    }
+	    construct: function (data) { return null !== data ? data : []; }
 	});
-	//# sourceMappingURL=seq.js.map
+
 
 /***/ },
 /* 29 */
@@ -15623,11 +15607,9 @@ module.exports =
 	var Type = __webpack_require__(23);
 	module.exports = new Type('tag:yaml.org,2002:map', {
 	    kind: 'mapping',
-	    construct: function (data) {
-	        return null !== data ? data : {};
-	    }
+	    construct: function (data) { return null !== data ? data : {}; }
 	});
-	//# sourceMappingURL=map.js.map
+
 
 /***/ },
 /* 30 */
@@ -15641,7 +15623,8 @@ module.exports =
 	        return true;
 	    }
 	    var max = data.length;
-	    return (max === 1 && data === '~') || (max === 4 && (data === 'null' || data === 'Null' || data === 'NULL'));
+	    return (max === 1 && data === '~') ||
+	        (max === 4 && (data === 'null' || data === 'Null' || data === 'NULL'));
 	}
 	function constructYamlNull() {
 	    return null;
@@ -15655,22 +15638,14 @@ module.exports =
 	    construct: constructYamlNull,
 	    predicate: isNull,
 	    represent: {
-	        canonical: function () {
-	            return '~';
-	        },
-	        lowercase: function () {
-	            return 'null';
-	        },
-	        uppercase: function () {
-	            return 'NULL';
-	        },
-	        camelcase: function () {
-	            return 'Null';
-	        }
+	        canonical: function () { return '~'; },
+	        lowercase: function () { return 'null'; },
+	        uppercase: function () { return 'NULL'; },
+	        camelcase: function () { return 'Null'; }
 	    },
 	    defaultStyle: 'lowercase'
 	});
-	//# sourceMappingURL=null.js.map
+
 
 /***/ },
 /* 31 */
@@ -15684,10 +15659,13 @@ module.exports =
 	        return false;
 	    }
 	    var max = data.length;
-	    return (max === 4 && (data === 'true' || data === 'True' || data === 'TRUE')) || (max === 5 && (data === 'false' || data === 'False' || data === 'FALSE'));
+	    return (max === 4 && (data === 'true' || data === 'True' || data === 'TRUE')) ||
+	        (max === 5 && (data === 'false' || data === 'False' || data === 'FALSE'));
 	}
 	function constructYamlBoolean(data) {
-	    return data === 'true' || data === 'True' || data === 'TRUE';
+	    return data === 'true' ||
+	        data === 'True' ||
+	        data === 'TRUE';
 	}
 	function isBoolean(object) {
 	    return '[object Boolean]' === Object.prototype.toString.call(object);
@@ -15698,19 +15676,13 @@ module.exports =
 	    construct: constructYamlBoolean,
 	    predicate: isBoolean,
 	    represent: {
-	        lowercase: function (object) {
-	            return object ? 'true' : 'false';
-	        },
-	        uppercase: function (object) {
-	            return object ? 'TRUE' : 'FALSE';
-	        },
-	        camelcase: function (object) {
-	            return object ? 'True' : 'False';
-	        }
+	        lowercase: function (object) { return object ? 'true' : 'false'; },
+	        uppercase: function (object) { return object ? 'TRUE' : 'FALSE'; },
+	        camelcase: function (object) { return object ? 'True' : 'False'; }
 	    },
 	    defaultStyle: 'lowercase'
 	});
-	//# sourceMappingURL=bool.js.map
+
 
 /***/ },
 /* 32 */
@@ -15721,7 +15693,9 @@ module.exports =
 	var common = __webpack_require__(18);
 	var Type = __webpack_require__(23);
 	function isHexCode(c) {
-	    return ((0x30 <= c) && (c <= 0x39)) || ((0x41 <= c) && (c <= 0x46)) || ((0x61 <= c) && (c <= 0x66));
+	    return ((0x30 <= c) && (c <= 0x39)) ||
+	        ((0x41 <= c) && (c <= 0x46)) ||
+	        ((0x61 <= c) && (c <= 0x66));
 	}
 	function isOctCode(c) {
 	    return ((0x30 <= c) && (c <= 0x37));
@@ -15738,19 +15712,15 @@ module.exports =
 	        return false;
 	    }
 	    ch = data[index];
-	    // sign
 	    if (ch === '-' || ch === '+') {
 	        ch = data[++index];
 	    }
 	    if (ch === '0') {
-	        // 0
 	        if (index + 1 === max) {
 	            return true;
 	        }
 	        ch = data[++index];
-	        // base 2, base 8, base 16
 	        if (ch === 'b') {
-	            // base 2
 	            index++;
 	            for (; index < max; index++) {
 	                ch = data[index];
@@ -15765,7 +15735,6 @@ module.exports =
 	            return hasDigits;
 	        }
 	        if (ch === 'x') {
-	            // base 16
 	            index++;
 	            for (; index < max; index++) {
 	                ch = data[index];
@@ -15807,11 +15776,9 @@ module.exports =
 	    if (!hasDigits) {
 	        return false;
 	    }
-	    // if !base60 - done;
 	    if (ch !== ':') {
 	        return true;
 	    }
-	    // base60 almost not used, no needs to optimize
 	    return /^(:[0-5]?[0-9])+$/.test(data.slice(index));
 	}
 	function constructYamlInteger(data) {
@@ -15854,7 +15821,8 @@ module.exports =
 	    return sign * parseInt(value, 10);
 	}
 	function isInteger(object) {
-	    return ('[object Number]' === Object.prototype.toString.call(object)) && (0 === object % 1 && !common.isNegativeZero(object));
+	    return ('[object Number]' === Object.prototype.toString.call(object)) &&
+	        (0 === object % 1 && !common.isNegativeZero(object));
 	}
 	module.exports = new Type('tag:yaml.org,2002:int', {
 	    kind: 'scalar',
@@ -15862,18 +15830,10 @@ module.exports =
 	    construct: constructYamlInteger,
 	    predicate: isInteger,
 	    represent: {
-	        binary: function (object) {
-	            return '0b' + object.toString(2);
-	        },
-	        octal: function (object) {
-	            return '0' + object.toString(8);
-	        },
-	        decimal: function (object) {
-	            return object.toString(10);
-	        },
-	        hexadecimal: function (object) {
-	            return '0x' + object.toString(16).toUpperCase();
-	        }
+	        binary: function (object) { return '0b' + object.toString(2); },
+	        octal: function (object) { return '0' + object.toString(8); },
+	        decimal: function (object) { return object.toString(10); },
+	        hexadecimal: function (object) { return '0x' + object.toString(16).toUpperCase(); }
 	    },
 	    defaultStyle: 'decimal',
 	    styleAliases: {
@@ -15883,7 +15843,7 @@ module.exports =
 	        hexadecimal: [16, 'hex']
 	    }
 	});
-	//# sourceMappingURL=int.js.map
+
 
 /***/ },
 /* 33 */
@@ -15893,7 +15853,11 @@ module.exports =
 	'use strict';
 	var common = __webpack_require__(18);
 	var Type = __webpack_require__(23);
-	var YAML_FLOAT_PATTERN = new RegExp('^(?:[-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+][0-9]+)?' + '|\\.[0-9_]+(?:[eE][-+][0-9]+)?' + '|[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*' + '|[-+]?\\.(?:inf|Inf|INF)' + '|\\.(?:nan|NaN|NAN))$');
+	var YAML_FLOAT_PATTERN = new RegExp('^(?:[-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+][0-9]+)?' +
+	    '|\\.[0-9_]+(?:[eE][-+][0-9]+)?' +
+	    '|[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*' +
+	    '|[-+]?\\.(?:inf|Inf|INF)' +
+	    '|\\.(?:nan|NaN|NAN))$');
 	function resolveYamlFloat(data) {
 	    if (null === data) {
 	        return false;
@@ -15969,7 +15933,8 @@ module.exports =
 	    return object.toString(10);
 	}
 	function isFloat(object) {
-	    return ('[object Number]' === Object.prototype.toString.call(object)) && (0 !== object % 1 || common.isNegativeZero(object));
+	    return ('[object Number]' === Object.prototype.toString.call(object)) &&
+	        (0 !== object % 1 || common.isNegativeZero(object));
 	}
 	module.exports = new Type('tag:yaml.org,2002:float', {
 	    kind: 'scalar',
@@ -15979,7 +15944,7 @@ module.exports =
 	    represent: representYamlFloat,
 	    defaultStyle: 'lowercase'
 	});
-	//# sourceMappingURL=float.js.map
+
 
 /***/ },
 /* 34 */
@@ -15988,7 +15953,16 @@ module.exports =
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
 	var Type = __webpack_require__(23);
-	var YAML_TIMESTAMP_REGEXP = new RegExp('^([0-9][0-9][0-9][0-9])' + '-([0-9][0-9]?)' + '-([0-9][0-9]?)' + '(?:(?:[Tt]|[ \\t]+)' + '([0-9][0-9]?)' + ':([0-9][0-9])' + ':([0-9][0-9])' + '(?:\\.([0-9]*))?' + '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' + '(?::([0-9][0-9]))?))?)?$'); // [11] tz_minute
+	var YAML_TIMESTAMP_REGEXP = new RegExp('^([0-9][0-9][0-9][0-9])' +
+	    '-([0-9][0-9]?)' +
+	    '-([0-9][0-9]?)' +
+	    '(?:(?:[Tt]|[ \\t]+)' +
+	    '([0-9][0-9]?)' +
+	    ':([0-9][0-9])' +
+	    ':([0-9][0-9])' +
+	    '(?:\\.([0-9]*))?' +
+	    '(?:[ \\t]*(Z|([-+])([0-9][0-9]?)' +
+	    '(?::([0-9][0-9]))?))?)?$');
 	function resolveYamlTimestamp(data) {
 	    if (null === data) {
 	        return false;
@@ -16006,14 +15980,12 @@ module.exports =
 	    if (null === match) {
 	        throw new Error('Date resolve error');
 	    }
-	    // match: [1] year [2] month [3] day
 	    year = +(match[1]);
-	    month = +(match[2]) - 1; // JS month starts with 0
+	    month = +(match[2]) - 1;
 	    day = +(match[3]);
 	    if (!match[4]) {
 	        return new Date(Date.UTC(year, month, day));
 	    }
-	    // match: [4] hour [5] minute [6] second [7] fraction
 	    hour = +(match[4]);
 	    minute = +(match[5]);
 	    second = +(match[6]);
@@ -16024,11 +15996,10 @@ module.exports =
 	        }
 	        fraction = +fraction;
 	    }
-	    // match: [8] tz [9] tz_sign [10] tz_hour [11] tz_minute
 	    if (match[9]) {
 	        tz_hour = +(match[10]);
 	        tz_minute = +(match[11] || 0);
-	        delta = (tz_hour * 60 + tz_minute) * 60000; // delta in mili-seconds
+	        delta = (tz_hour * 60 + tz_minute) * 60000;
 	        if ('-' === match[9]) {
 	            delta = -delta;
 	        }
@@ -16039,7 +16010,7 @@ module.exports =
 	    }
 	    return date;
 	}
-	function representYamlTimestamp(object /*, style*/) {
+	function representYamlTimestamp(object) {
 	    return object.toISOString();
 	}
 	module.exports = new Type('tag:yaml.org,2002:timestamp', {
@@ -16049,7 +16020,7 @@ module.exports =
 	    instanceOf: Date,
 	    represent: representYamlTimestamp
 	});
-	//# sourceMappingURL=timestamp.js.map
+
 
 /***/ },
 /* 35 */
@@ -16065,7 +16036,7 @@ module.exports =
 	    kind: 'scalar',
 	    resolve: resolveYamlMerge
 	});
-	//# sourceMappingURL=merge.js.map
+
 
 /***/ },
 /* 36 */
@@ -16073,12 +16044,8 @@ module.exports =
 
 	/// <reference path="../../../../../typings/tsd.d.ts" />
 	'use strict';
-	/*eslint-disable no-bitwise*/
-	// A trick for browserified version.
-	// Since we make browserifier to ignore `buffer` module, NodeBuffer will be undefined
 	var NodeBuffer = __webpack_require__(37).Buffer;
 	var Type = __webpack_require__(23);
-	// [ 64, 65, 66 ] -> [ padding, CR, LF ]
 	var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=\n\r';
 	function resolveYamlBinary(data) {
 	    if (null === data) {
@@ -16087,17 +16054,14 @@ module.exports =
 	    var code, idx, bitlen = 0, len = 0, max = data.length, map = BASE64_MAP;
 	    for (idx = 0; idx < max; idx++) {
 	        code = map.indexOf(data.charAt(idx));
-	        // Skip CR/LF
 	        if (code > 64) {
 	            continue;
 	        }
-	        // Fail on illegal characters
 	        if (code < 0) {
 	            return false;
 	        }
 	        bitlen += 6;
 	    }
-	    // If there are any bits left, source was corrupted
 	    return (bitlen % 8) === 0;
 	}
 	function constructYamlBinary(data) {
@@ -16110,7 +16074,6 @@ module.exports =
 	        }
 	        bits = (bits << 6) | map.indexOf(input.charAt(idx));
 	    }
-	    // Dump tail
 	    tailbits = (max % 4) * 6;
 	    if (tailbits === 0) {
 	        result.push((bits >> 16) & 0xFF);
@@ -16124,13 +16087,12 @@ module.exports =
 	    else if (tailbits === 12) {
 	        result.push((bits >> 4) & 0xFF);
 	    }
-	    // Wrap into Buffer for NodeJS and leave Array for browser
 	    if (NodeBuffer) {
 	        return new NodeBuffer(result);
 	    }
 	    return result;
 	}
-	function representYamlBinary(object /*, style*/) {
+	function representYamlBinary(object) {
 	    var result = '', bits = 0, idx, tail, max = object.length, map = BASE64_MAP;
 	    for (idx = 0; idx < max; idx++) {
 	        if ((idx % 3 === 0) && idx) {
@@ -16141,7 +16103,6 @@ module.exports =
 	        }
 	        bits = (bits << 8) + object[idx];
 	    }
-	    // Dump tail
 	    tail = max % 3;
 	    if (tail === 0) {
 	        result += map[(bits >> 18) & 0x3F];
@@ -16173,7 +16134,7 @@ module.exports =
 	    predicate: isBinary,
 	    represent: representYamlBinary
 	});
-	//# sourceMappingURL=binary.js.map
+
 
 /***/ },
 /* 37 */
@@ -16231,7 +16192,7 @@ module.exports =
 	    resolve: resolveYamlOmap,
 	    construct: constructYamlOmap
 	});
-	//# sourceMappingURL=omap.js.map
+
 
 /***/ },
 /* 39 */
@@ -16278,7 +16239,7 @@ module.exports =
 	    resolve: resolveYamlPairs,
 	    construct: constructYamlPairs
 	});
-	//# sourceMappingURL=pairs.js.map
+
 
 /***/ },
 /* 40 */
@@ -16310,7 +16271,7 @@ module.exports =
 	    resolve: resolveYamlSet,
 	    construct: constructYamlSet
 	});
-	//# sourceMappingURL=set.js.map
+
 
 /***/ },
 /* 41 */
@@ -16351,7 +16312,6 @@ module.exports =
 	    return true;
 	}
 	function constructJavascriptUndefined() {
-	    /*eslint-disable no-undefined*/
 	    return undefined;
 	}
 	function representJavascriptUndefined() {
@@ -16367,7 +16327,7 @@ module.exports =
 	    predicate: isUndefined,
 	    represent: representJavascriptUndefined
 	});
-	//# sourceMappingURL=undefined.js.map
+
 
 /***/ },
 /* 43 */
@@ -16384,8 +16344,6 @@ module.exports =
 	        return false;
 	    }
 	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
-	    // if regexp starts with '/' it can have modifiers and must be properly closed
-	    // `/foo/gim` - modifiers tail can be maximum 3 chars
 	    if ('/' === regexp[0]) {
 	        if (tail) {
 	            modifiers = tail[1];
@@ -16393,7 +16351,6 @@ module.exports =
 	        if (modifiers.length > 3) {
 	            return false;
 	        }
-	        // if expression starts with /, is should be properly terminated
 	        if (regexp[regexp.length - modifiers.length - 1] !== '/') {
 	            return false;
 	        }
@@ -16409,7 +16366,6 @@ module.exports =
 	}
 	function constructJavascriptRegExp(data) {
 	    var regexp = data, tail = /\/([gim]*)$/.exec(data), modifiers = '';
-	    // `/foo/gim` - tail can be maximum 4 chars
 	    if ('/' === regexp[0]) {
 	        if (tail) {
 	            modifiers = tail[1];
@@ -16418,7 +16374,7 @@ module.exports =
 	    }
 	    return new RegExp(regexp, modifiers);
 	}
-	function representJavascriptRegExp(object /*, style*/) {
+	function representJavascriptRegExp(object) {
 	    var result = '/' + object.source + '/';
 	    if (object.global) {
 	        result += 'g';
@@ -16441,7 +16397,7 @@ module.exports =
 	    predicate: isRegExp,
 	    represent: representJavascriptRegExp
 	});
-	//# sourceMappingURL=regexp.js.map
+
 
 /***/ },
 /* 44 */
@@ -16450,13 +16406,6 @@ module.exports =
 	/// <reference path="../../../../../../typings/tsd.d.ts" />
 	'use strict';
 	var esprima = __webpack_require__(45);
-	// Browserified version does not have esprima
-	//
-	// 1. For node.js just require module as deps
-	// 2. For browser try to require mudule via external AMD system.
-	//    If not found - try to fallback to window.esprima. If not
-	//    found too - then fail to parse.
-	//
 	var Type = __webpack_require__(23);
 	function resolveJavascriptFunction(data) {
 	    if (null === data) {
@@ -16464,7 +16413,10 @@ module.exports =
 	    }
 	    try {
 	        var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
-	        if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
+	        if ('Program' !== ast.type ||
+	            1 !== ast.body.length ||
+	            'ExpressionStatement' !== ast.body[0].type ||
+	            'FunctionExpression' !== ast.body[0]['expression'].type) {
 	            return false;
 	        }
 	        return true;
@@ -16476,19 +16428,19 @@ module.exports =
 	function constructJavascriptFunction(data) {
 	    /*jslint evil:true*/
 	    var source = '(' + data + ')', ast = esprima.parse(source, { range: true }), params = [], body;
-	    if ('Program' !== ast.type || 1 !== ast.body.length || 'ExpressionStatement' !== ast.body[0].type || 'FunctionExpression' !== ast.body[0]['expression'].type) {
+	    if ('Program' !== ast.type ||
+	        1 !== ast.body.length ||
+	        'ExpressionStatement' !== ast.body[0].type ||
+	        'FunctionExpression' !== ast.body[0]['expression'].type) {
 	        throw new Error('Failed to resolve function');
 	    }
 	    ast.body[0]['expression'].params.forEach(function (param) {
 	        params.push(param.name);
 	    });
 	    body = ast.body[0]['expression'].body.range;
-	    // Esprima's ranges include the first '{' and the last '}' characters on
-	    // function expressions. So cut them out.
-	    /*eslint-disable no-new-func*/
 	    return new Function(params, source.slice(body[0] + 1, body[1] - 1));
 	}
-	function representJavascriptFunction(object /*, style*/) {
+	function representJavascriptFunction(object) {
 	    return object.toString();
 	}
 	function isFunction(object) {
@@ -16501,7 +16453,7 @@ module.exports =
 	    predicate: isFunction,
 	    represent: representJavascriptFunction
 	});
-	//# sourceMappingURL=function.js.map
+
 
 /***/ },
 /* 45 */
@@ -28534,16 +28486,7 @@ module.exports =
 	    var includeResolver = options && options.fsResolver ? options.fsResolver : null;
 	    var httpResolver = options && options.httpResolver ? options.httpResolver : null;
 	    var projectRoot = path.dirname(apiPath);
-	    var project;
-	    if (httpResolver) {
-	        project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
-	    }
-	    else if (includeResolver) {
-	        project = new jsyaml.Project(projectRoot, includeResolver);
-	    }
-	    else {
-	        project = new jsyaml.Project(projectRoot);
-	    }
+	    var project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
 	    return project;
 	}
 	;

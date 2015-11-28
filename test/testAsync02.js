@@ -9,9 +9,37 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 	
 	expandTraitsAndResourceTypes: false,
 	fsResolver: {
+		
 		content: function(path){ return fs.readFileSync(path).toString(); },
-		list: function(path){ return fs.readDirSync(path); }
+		
+		list: function(path){ return fs.readDirSync(path); },
+		
+		contentAsync: function(path){
+			return new Promise(function (resolve, reject) {
+	            fs.readFile(path, function (err, data) {
+	                if (err != null) {
+	                    reject(err);
+	                    return;
+	                }
+	                var content = data.toString();
+	                resolve(content);
+	            });
+          	});
+		},
+		
+		listAsync: function (path) {
+	        return new Promise(function (reject, resolve) {
+	            fs.readdir(path, function (err, files) {
+	                if (err != null) {
+	                    reject(err);
+	                    return;
+	                }
+	                resolve(files);
+	            });
+	        });
+	    }
 	},
+	
 	httpResolver:{
 		getResource: function(path){
 			var xhr = buildXHR( );
@@ -29,17 +57,13 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 	                resolve(response);
 	            };
 	            xhr.onerror = function() {
-	                reject({errorMessage:"Network Error"});
+	            	resolve({errorMessage:"Network Error"});
 	            };
 	            xhr.send();
 			});
 		}
 	}
 }).then( function(api){
-	console.log('GOT api')
-	if(api.errors()){
-		console.log('GOT ERRORS')
-	}
     api.errors().forEach(function(x){
         console.log(JSON.stringify({
             code: x.code,

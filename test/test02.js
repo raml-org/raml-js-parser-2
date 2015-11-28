@@ -6,10 +6,37 @@ var fs = require("fs")
 
 var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"),{
 	
-	expandTraitsAndResourceTypes: false,
+	expandTraitsAndResourceTypes: true,
 	fsResolver: {
+		
 		content: function(path){ return fs.readFileSync(path).toString(); },
-		list: function(path){ return fs.readDirSync(path); }
+		
+		list: function(path){ return fs.readDirSync(path); },
+		
+		contentAsync: function(path){
+			return new Promise(function (resolve, reject) {
+	            fs.readFile(path, function (err, data) {
+	                if (err != null) {
+	                    reject(err);
+	                    return;
+	                }
+	                var content = data.toString();
+	                resolve(content);
+	            });
+          	});
+		},
+		
+		listAsync: function (path) {
+	        return new Promise(function (reject, resolve) {
+	            fs.readdir(path, function (err, files) {
+	                if (err != null) {
+	                    reject(err);
+	                    return;
+	                }
+	                resolve(files);
+	            });
+	        });
+	    }
 	}
 });
 
