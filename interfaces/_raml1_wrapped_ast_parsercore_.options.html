@@ -85,9 +85,9 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.options.html#expandtraitsandresourcetypes" class="tsd-kind-icon">expand<wbr>Traits<wbr>And<wbr>Resource<wbr>Types</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.options.html#fsresolver" class="tsd-kind-icon">fs<wbr>Resolver</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.options.html#httpresolver" class="tsd-kind-icon">http<wbr>Resolver</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.options.html#rejectonerrors" class="tsd-kind-icon">reject<wbr>OnErrors</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,32 +96,12 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="expandtraitsandresourcetypes" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> expand<wbr>Traits<wbr>And<wbr>Resource<wbr>Types</h3>
-					<div class="tsd-signature tsd-kind-icon">expand<wbr>Traits<wbr>And<wbr>Resource<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in raml1/wrapped-ast/parserCore.ts:261</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether ro expand traits and resource types</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>default</dt>
-							<dd><p>true</p>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 					<a name="fsresolver" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> fs<wbr>Resolver</h3>
 					<div class="tsd-signature tsd-kind-icon">fs<wbr>Resolver<span class="tsd-signature-symbol">:</span> <a href="_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/wrapped-ast/parserCore.ts:266</li>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:270</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,12 +116,27 @@
 					<div class="tsd-signature tsd-kind-icon">http<wbr>Resolver<span class="tsd-signature-symbol">:</span> <a href="_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/wrapped-ast/parserCore.ts:271</li>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:275</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Module used for operations with web</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="rejectonerrors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> reject<wbr>OnErrors</h3>
+					<div class="tsd-signature tsd-kind-icon">reject<wbr>OnErrors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:280</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Whether to return Api which contains errors.</p>
 						</div>
 					</div>
 				</section>
@@ -166,19 +161,22 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-kind-icon">Basic<wbr>Node</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_wrapped_ast_parsercore_.error.html" class="tsd-kind-icon">Error</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_wrapped_ast_parsercore_.options.html" class="tsd-kind-icon">Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_raml1_wrapped_ast_parsercore_.options.html#expandtraitsandresourcetypes" class="tsd-kind-icon">expand<wbr>Traits<wbr>And<wbr>Resource<wbr>Types</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_wrapped_ast_parsercore_.options.html#fsresolver" class="tsd-kind-icon">fs<wbr>Resolver</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_wrapped_ast_parsercore_.options.html#httpresolver" class="tsd-kind-icon">http<wbr>Resolver</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.options.html#rejectonerrors" class="tsd-kind-icon">reject<wbr>OnErrors</a>
 							</li>
 						</ul>
 					</li>
