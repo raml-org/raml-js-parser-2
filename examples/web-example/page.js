@@ -27,7 +27,7 @@ var onClick = function() {
     		                resolve(response);
     		            };
     		            xhr.onerror = function() {
-    		                reject({errorMessage:"Network Error"});
+    		                return Promise.reject({errorMessage:"Network Error"});
     		            };
     		            xhr.send();
     				});

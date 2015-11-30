@@ -6,7 +6,6 @@ var fs = require("fs")
 
 var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"),{
 	
-	expandTraitsAndResourceTypes: true,
 	fsResolver: {
 		
 		content: function(path){ return fs.readFileSync(path).toString(); },
@@ -53,4 +52,4 @@ api.errors().forEach(function(x){
 
 console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
 
-console.log(JSON.stringify(raml1Parser.toJSON(api), null, 2));
+console.log(JSON.stringify(api.toJSON(), null, 2));

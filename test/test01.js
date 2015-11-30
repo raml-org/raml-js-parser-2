@@ -18,4 +18,4 @@ api.errors().forEach(function(x){
 
 console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
 
-console.log(JSON.stringify(raml1Parser.toJSON(api), null, 2));
+console.log(JSON.stringify(api.toJSON(), null, 2));

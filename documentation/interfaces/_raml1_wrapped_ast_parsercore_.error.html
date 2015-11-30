@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DescriminatorOrReferenceValidator | api-workbench</title>
+	<title>Error | api-workbench</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_raml1_ast_core_linter_.html">&quot;raml1/ast.core/linter&quot;</a>
+					<a href="../modules/_raml1_wrapped_ast_parsercore_.html">&quot;raml1/wrapped-ast/parserCore&quot;</a>
 				</li>
 				<li>
-					<a href="_raml1_ast_core_linter_.descriminatororreferencevalidator.html">DescriminatorOrReferenceValidator</a>
+					<a href="_raml1_wrapped_ast_parsercore_.error.html">Error</a>
 				</li>
 			</ul>
-			<h1>Class DescriminatorOrReferenceValidator</h1>
+			<h1>Interface Error</h1>
 		</div>
 	</div>
 </header>
@@ -74,14 +74,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DescriminatorOrReferenceValidator</span>
+						<span class="target">Error</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html" class="tsd-signature-type">PropertyValidator</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,42 +83,102 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Methods</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_linter_.descriminatororreferencevalidator.html#validate" class="tsd-kind-icon">validate</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#code" class="tsd-kind-icon">code</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#column" class="tsd-kind-icon">column</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#end" class="tsd-kind-icon">end</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#iswarning" class="tsd-kind-icon">is<wbr>Warning</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#line" class="tsd-kind-icon">line</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#path" class="tsd-kind-icon">path</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_raml1_wrapped_ast_parsercore_.error.html#start" class="tsd-kind-icon">start</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="validate" class="tsd-anchor"></a>
-					<h3>validate</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html">PropertyValidator</a>.<a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html#validate">validate</a></p>
-								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:822</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
-								</li>
-								<li>
-									<h5>cb: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="code" class="tsd-anchor"></a>
+					<h3>code</h3>
+					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <a href="../enums/_raml1_highlevelast_.issuecode.html" class="tsd-signature-type">IssueCode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:284</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="column" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> column</h3>
+					<div class="tsd-signature tsd-kind-icon">column<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:290</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="end" class="tsd-anchor"></a>
+					<h3>end</h3>
+					<div class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:288</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="iswarning" class="tsd-anchor"></a>
+					<h3>is<wbr>Warning</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Warning<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:291</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="line" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> line</h3>
+					<div class="tsd-signature tsd-kind-icon">line<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:289</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:285</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="path" class="tsd-anchor"></a>
+					<h3>path</h3>
+					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:286</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="start" class="tsd-anchor"></a>
+					<h3>start</h3>
+					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/wrapped-ast/parserCore.ts:287</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -135,65 +189,53 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module tsd-is-external">
-						<a href="../modules/_raml1_ast_core_linter_.html">"raml1/ast.core/linter"</a>
+						<a href="../modules/_raml1_wrapped_ast_parsercore_.html">"raml1/wrapped-<wbr>ast/parser<wbr>Core"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-kind-icon">IShema</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html" class="tsd-kind-icon">Abstract<wbr>Wrapper<wbr>Node</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html" class="tsd-kind-icon">Property<wbr>Validator</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-kind-icon">Basic<wbr>Node</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#astnodeimpl" class="tsd-kind-icon">ASTNode<wbr>Impl</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_wrapped_ast_parsercore_.error.html" class="tsd-kind-icon">Error</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#code" class="tsd-kind-icon">code</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#column" class="tsd-kind-icon">column</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#end" class="tsd-kind-icon">end</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#iswarning" class="tsd-kind-icon">is<wbr>Warning</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#line" class="tsd-kind-icon">line</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#path" class="tsd-kind-icon">path</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_raml1_wrapped_ast_parsercore_.error.html#start" class="tsd-kind-icon">start</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#astpropimpl" class="tsd-kind-icon">ASTProp<wbr>Impl</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#max_recursion_level" class="tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#loophole" class="tsd-kind-icon">loophole</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#mediatypeparser" class="tsd-kind-icon">media<wbr>Type<wbr>Parser</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#settings" class="tsd-kind-icon">settings</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="../modules/_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="../modules/_raml1_ast_core_linter_.html#createissue" class="tsd-kind-icon">create<wbr>Issue</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="../modules/_raml1_ast_core_linter_.html#evalinsandbox" class="tsd-kind-icon">eval<wbr>InSandbox</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#getmediatype" class="tsd-kind-icon">get<wbr>Media<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#getmediatype2" class="tsd-kind-icon">get<wbr>Media<wbr>Type2</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#isjson" class="tsd-kind-icon">is<wbr>Json</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#isxml" class="tsd-kind-icon">isXML</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="../modules/_raml1_ast_core_linter_.html#lintnode" class="tsd-kind-icon">lint<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#lintwithfile" class="tsd-kind-icon">lint<wbr>With<wbr>File</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<a href="../modules/_raml1_ast_core_linter_.html#localerror" class="tsd-kind-icon">local<wbr>Error</a>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_wrapped_ast_parsercore_.options.html" class="tsd-kind-icon">Options</a>
 					</li>
 				</ul>
 			</nav>

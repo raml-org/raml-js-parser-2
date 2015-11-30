@@ -50,22 +50,22 @@ module.exports =
 	 * Load API synchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param expand Whether to expand traits and resource types
-	 * @return Opt<Api>. Call .isDefined() Opt member to find out if the result actually contains an Api. Call .getOrThrow() Opt member to retrieve the Api.
+	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
+	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
 	 ***/
-	function loadApi(apiPath, expand) {
-	    if (expand === void 0) { expand = true; }
-	    return RamlWrapper.loadApi(apiPath, expand);
+	function loadApi(apiPath, options, extensionsAndOverlays) {
+	    return RamlWrapper.loadApi(apiPath, options, extensionsAndOverlays);
 	}
 	exports.loadApi = loadApi;
 	/***
 	 * Load API asynchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param expand Whether to expand traits and resource types
-	 * @return Promise<Api>
+	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
+	 * @return Promise<Api>. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
 	 ***/
-	function loadApiAsync(apiPath, expand) {
-	    if (expand === void 0) { expand = true; }
-	    return RamlWrapper.loadApiAsync(apiPath, expand);
+	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
+	    return RamlWrapper.loadApiAsync(apiPath, options, extensionsAndOverlays);
 	}
 	exports.loadApiAsync = loadApiAsync;
 	/***
@@ -88,6 +88,8 @@ module.exports =
 	 * <p>See <a href="http://raml.org">http://raml.org</a> for more information about RAML.</p>
 	 *
 	 * <p>This parser is at a beta state of development, as part of the API Workbench development cycle (<a href="http://apiworkbench.com">http://apiworkbench.com</a>).</p>
+	 *
+	 * <p><a href="https://github.com/raml-org/raml-js-parser-2/blob/master/documentation/GettingStarted.md">Getting Started Guide</a> describes the first steps with the parser.</p>
 	 *
 	 * <h2>Installation</h2>
 	 *
@@ -116,7 +118,6 @@ module.exports =
 	    d.prototype = new __();
 	};
 	var hl = __webpack_require__(2);
-	var json2lowlevel = __webpack_require__(65);
 	var services = __webpack_require__(9);
 	var core = __webpack_require__(87);
 	var apiLoader = __webpack_require__(88);
@@ -1286,6 +1287,12 @@ module.exports =
 	     ***/
 	    TypeDeclarationImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
+	    };
+	    /***
+	     * Path relative to API root
+	     ***/
+	    TypeDeclarationImpl.prototype.runtimeType = function () {
+	        return helper.runtimeType(this);
 	    };
 	    return TypeDeclarationImpl;
 	})(RAMLLanguageElementImpl);
@@ -3674,7 +3681,7 @@ module.exports =
 	    /***
 	     * Equivalent API with traits and resource types expanded
 	     ***/
-	    ApiImpl.prototype.expandTraitsAndResourceTypes = function () {
+	    ApiImpl.prototype.expand = function () {
 	        return helper.expandTraitsAndResourceTypes(this);
 	    };
 	    /***
@@ -4313,32 +4320,24 @@ module.exports =
 	 * Load API synchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Api instance or null if Api can not be found.
+	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
+	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
 	 ***/
-	function loadApi(apiPath, options) {
-	    return apiLoader.loadApi1(apiPath, options).getOrElse(null);
+	function loadApi(apiPath, options, extensionsAndOverlays) {
+	    return apiLoader.loadApi1(apiPath, options, extensionsAndOverlays).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
 	/***
 	 * Load API asynchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Promise&lt;Api&gt;
+	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
+	 * @return Promise&lt;Api&gt;. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
 	 ***/
-	function loadApiAsync(apiPath, options) {
-	    return apiLoader.loadApi1Async(apiPath, options);
+	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
+	    return apiLoader.loadApi1Async(apiPath, options, extensionsAndOverlays);
 	}
 	exports.loadApiAsync = loadApiAsync;
-	/***
-	 * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
-	 * @param node Model node
-	 * @return Stringifyable object representation of the node.
-	 ***/
-	function toJSON(node, serializeOptions) {
-	    return json2lowlevel.serialize(node.highLevel().lowLevel(), serializeOptions);
-	}
-	exports.toJSON = toJSON;
-	;
 
 
 /***/ },
@@ -4506,7 +4505,7 @@ module.exports =
 	}
 	exports.kindNode = kindNode;
 	function isResourceNode(node) {
-	    return kindNode(node) && node.definition && node.definition().name() == "Resource";
+	    return kindNode(node) && node.definition && (node.definition().key() == universes.Universe08.Resource || node.definition().key() == universes.Universe10.Resource);
 	}
 	exports.isResourceNode = isResourceNode;
 	function isResourceWithSignature(node) {
@@ -4514,9 +4513,9 @@ module.exports =
 	        return false;
 	    }
 	    var hNode = node;
-	    var uriAttribute = hNode.attr("relativeUri");
+	    var uriAttribute = hNode.attr(universes.Universe10.Resource.properties.relativeUri.name);
 	    if (uriAttribute && uriAttribute.value() && typeof uriAttribute.value() == "string" && uriAttribute.value().indexOf(".") >= 0) {
-	        var signature = hNode.attrValue("signature");
+	        var signature = hNode.attrValue(universes.Universe10.Resource.properties.signature.name);
 	        if (!signature)
 	            return false;
 	        if (typeof signature == "string" && signature.length == 0)
@@ -7624,9 +7623,11 @@ module.exports =
 	        if (this._key) {
 	            return this._key;
 	        }
-	        this._key = this.universe().matched()[this.nameId()];
-	        if (!this._key) {
-	            return null;
+	        if (this._universe) {
+	            this._key = this.universe().matched()[this.nameId()];
+	            if (!this._key) {
+	                return null;
+	            }
 	        }
 	        return this._key;
 	    };
@@ -7751,8 +7752,8 @@ module.exports =
 	    AbstractType.prototype.allSuperTypesRecurrent = function (t, m, result) {
 	        var _this = this;
 	        t.superTypes().forEach(function (x) {
-	            result.push(x);
 	            if (!m[x.nameId()]) {
+	                result.push(x);
 	                m[x.nameId()] = x;
 	                _this.allSuperTypesRecurrent(x, m, result);
 	            }
@@ -8100,6 +8101,10 @@ module.exports =
 	    function RAMLPropertyService(_property) {
 	        _super.call(this);
 	        this._property = _property;
+	        if (!_property) {
+	            throw new Error();
+	        }
+	        _super.call(this);
 	    }
 	    RAMLPropertyService.prototype.valueDocProvider = function () {
 	        return this._property.valueDocProvider();
@@ -8235,10 +8240,16 @@ module.exports =
 	            return -1024;
 	    };
 	    RAMLPropertyService.prototype.isKey = function () {
-	        return this._property.isKey();
+	        if (this._property instanceof def.Property) {
+	            return this._property.isKey();
+	        }
+	        return false;
 	    };
 	    RAMLPropertyService.prototype.isMerged = function () {
-	        return this._property.isMerged();
+	        if (this._property instanceof def.Property) {
+	            return this._property.isMerged();
+	        }
+	        return false;
 	    };
 	    RAMLPropertyService.prototype.isTypeExpr = function () {
 	        if (this.teDef && false) {
@@ -8827,6 +8838,18 @@ module.exports =
 	    RAMLService.prototype.findMembersDeterminer = function () {
 	        return _.find(this._type.allProperties(), function (x) { return x.isThisPropertyDeclaresTypeFields(); });
 	    };
+	    RAMLService.prototype.nameAtRuntime = function () {
+	        if (this._type.valueRequirements().length > 0) {
+	            return this.valueRequirements()[0].value;
+	        }
+	        if (this._type instanceof def.ValueType) {
+	            var nr = this._type.getNameAtRuntime();
+	            if (nr) {
+	                return nr;
+	            }
+	        }
+	        return this._type.nameId();
+	    };
 	    RAMLService.prototype.toRuntime = function () {
 	        if (this._runtime) {
 	            return this._runtime;
@@ -8895,6 +8918,90 @@ module.exports =
 	                    at.component = comp.getAdapter(RAMLService).toRuntime();
 	                }
 	            }
+	            //at.component=this.component.toRuntime();
+	            return at;
+	        }
+	        return c;
+	    };
+	    RAMLService.prototype.toRuntimeWithInheritance = function () {
+	        if (this._runtime) {
+	            return this._runtime;
+	        }
+	        if (!this._type.getAdapter(RAMLService).isUserDefined()) {
+	            return new def.NodeClass(this.nameAtRuntime(), this.universe(), "", "");
+	        }
+	        var c = new def.UserDefinedClass(this.nameId(), this.universe(), null, this.getPath(), "");
+	        this._runtime = c;
+	        c.getAdapter(RAMLService)._isRuntime = true;
+	        c.getAdapter(RAMLService)._representationOf = this._type;
+	        var foundRuntimeProperties = this.getRuntimeProperties();
+	        if (foundRuntimeProperties) {
+	            foundRuntimeProperties.forEach(function (runtimeProperty) { return runtimeProperty.withDomain(c); });
+	            c._properties = foundRuntimeProperties;
+	        }
+	        else {
+	            c._properties = [];
+	        }
+	        c.getAdapter(RAMLService).setDeclaringNode(this.getDeclaringNode());
+	        this._type.allSuperTypes().forEach(function (t) {
+	            var s = t.getAdapter(RAMLService).toRuntimeWithInheritance();
+	            if (t.key() == universes.Universe10.TypeDeclaration) {
+	                return;
+	            }
+	            if (t.key() == universes.Universe10.RAMLLanguageElement) {
+	                return;
+	            }
+	            c._superTypes.push(s);
+	        });
+	        if (this.isAssignableFrom("ObjectTypeDeclaration")) {
+	            c._value = false;
+	            if (c._properties.length == 0) {
+	                c.getAdapter(RAMLService).withAllowAny();
+	            }
+	        }
+	        else {
+	            c._value = true;
+	        }
+	        if (this._type.isUnion()) {
+	            var ut = new def.Union(this.nameId(), this.universe(), this.getPath());
+	            ut.getAdapter(RAMLService)._representationOf = this._type;
+	            ut._isRuntime = true;
+	            ut.getAdapter(RAMLService).setDeclaringNode(this.getDeclaringNode());
+	            var cm = this._type.union();
+	            if (cm) {
+	                if (cm.leftType()) {
+	                    ut.left = cm.leftType().getAdapter(RAMLService).toRuntime();
+	                }
+	                if (cm.rightType()) {
+	                    ut.right = cm.rightType().getAdapter(RAMLService).toRuntime();
+	                }
+	                return ut;
+	            }
+	            this._runtime = ut;
+	            var union = new def.NodeClass("union", this.universe(), "", "");
+	            union._superTypes.push(arr);
+	            //at.component=this.component.toRuntime();
+	            return ut;
+	        }
+	        if (this._type.isArray()) {
+	            var at = new def.Array(this.nameId(), this.universe(), this.getPath());
+	            this._runtime = at;
+	            at._af = {};
+	            var fs = this._type.getFixedFacets();
+	            for (var i in fs) {
+	                at._af[i] = fs[i];
+	            }
+	            at.getAdapter(RAMLService)._representationOf = this._type;
+	            at.getAdapter(RAMLService).setDeclaringNode(this.getDeclaringNode());
+	            var at1 = this._type.array();
+	            if (at1) {
+	                var comp = at1.componentType();
+	                if (comp) {
+	                    at.component = comp.getAdapter(RAMLService).toRuntime();
+	                }
+	            }
+	            var arr = new def.NodeClass("array", this.universe(), "", "");
+	            at._superTypes.push(arr);
 	            //at.component=this.component.toRuntime();
 	            return at;
 	        }
@@ -11078,8 +11185,7 @@ module.exports =
 	        return new Promise(function (resolve, reject) {
 	            fs.readFile(path, function (err, data) {
 	                if (err != null) {
-	                    reject(err);
-	                    return;
+	                    return reject(err);
 	                }
 	                var content = data.toString();
 	                resolve(content);
@@ -11090,8 +11196,7 @@ module.exports =
 	        return new Promise(function (reject, resolve) {
 	            fs.readdir(path, function (err, files) {
 	                if (err != null) {
-	                    reject(err);
-	                    return;
+	                    return reject(err);
 	                }
 	                resolve(files);
 	            });
@@ -13641,8 +13746,6 @@ module.exports =
 	        units.push(x);
 	        map[x.absolutePath()] = true;
 	        return processUnits(0);
-	    }, function (x) {
-	        Promise.reject(x);
 	    }).then(function (x) {
 	        return units.length > 0 ? units[0] : null;
 	    });
@@ -19869,31 +19972,31 @@ module.exports =
 	        this._transformer = _transformer;
 	    }
 	    LowLevelProxyNode.prototype.actual = function () {
-	        if (this._original) {
-	            return this._original.actual();
+	        if (this._originalNode) {
+	            return this._originalNode.actual();
 	        }
 	        return this;
 	    };
 	    LowLevelProxyNode.prototype.transformer = function () {
 	        return this._transformer;
 	    };
-	    LowLevelProxyNode.prototype.original = function () {
-	        return this._original;
+	    LowLevelProxyNode.prototype.originalNode = function () {
+	        return this._originalNode;
 	    };
 	    LowLevelProxyNode.prototype.start = function () {
-	        return this._original.start();
+	        return this._originalNode.start();
 	    };
 	    LowLevelProxyNode.prototype.end = function () {
-	        return this._original.end();
+	        return this._originalNode.end();
 	    };
 	    LowLevelProxyNode.prototype.value = function () {
 	        throw new Error('The method must be overridden');
 	    };
 	    LowLevelProxyNode.prototype.includeErrors = function () {
-	        return this._original.includeErrors();
+	        return this._originalNode.includeErrors();
 	    };
 	    LowLevelProxyNode.prototype.includePath = function () {
-	        return this._original.includePath();
+	        return this._originalNode.includePath();
 	    };
 	    LowLevelProxyNode.prototype.setKeyOverride = function (_key) {
 	        this._keyOverride = _key;
@@ -19902,7 +20005,7 @@ module.exports =
 	        if (this._keyOverride) {
 	            return this._keyOverride;
 	        }
-	        return this._original.key();
+	        return this._originalNode.key();
 	    };
 	    LowLevelProxyNode.prototype.children = function () {
 	        throw new Error('The method must be overridden');
@@ -19911,19 +20014,19 @@ module.exports =
 	        return this._parent;
 	    };
 	    LowLevelProxyNode.prototype.unit = function () {
-	        return this._original.unit();
+	        return this._originalNode.unit();
 	    };
 	    LowLevelProxyNode.prototype.anchorId = function () {
-	        return this._original.anchorId();
+	        return this._originalNode.anchorId();
 	    };
 	    LowLevelProxyNode.prototype.errors = function () {
-	        return this._original.errors();
+	        return this._originalNode.errors();
 	    };
 	    LowLevelProxyNode.prototype.anchoredFrom = function () {
-	        return this._original.anchoredFrom();
+	        return this._originalNode.anchoredFrom();
 	    };
 	    LowLevelProxyNode.prototype.includedFrom = function () {
-	        return this._original.includedFrom();
+	        return this._originalNode.includedFrom();
 	    };
 	    LowLevelProxyNode.prototype.visit = function (v) {
 	        if (v(this)) {
@@ -19945,28 +20048,28 @@ module.exports =
 	        return json.serialize(this);
 	    };
 	    LowLevelProxyNode.prototype.keyStart = function () {
-	        return this._original.keyStart();
+	        return this._originalNode.keyStart();
 	    };
 	    LowLevelProxyNode.prototype.keyEnd = function () {
-	        return this._original.keyEnd();
+	        return this._originalNode.keyEnd();
 	    };
 	    LowLevelProxyNode.prototype.valueStart = function () {
-	        return this._original.valueStart();
+	        return this._originalNode.valueStart();
 	    };
 	    LowLevelProxyNode.prototype.valueEnd = function () {
-	        return this._original.valueEnd();
+	        return this._originalNode.valueEnd();
 	    };
 	    LowLevelProxyNode.prototype.isValueLocal = function () {
-	        return this._original.isValueLocal();
+	        return this._originalNode.isValueLocal();
 	    };
 	    LowLevelProxyNode.prototype.kind = function () {
-	        return this._original.kind();
+	        return this._originalNode.kind();
 	    };
 	    LowLevelProxyNode.prototype.valueKind = function () {
-	        return this._original.valueKind();
+	        return this._originalNode.valueKind();
 	    };
 	    LowLevelProxyNode.prototype.show = function (msg) {
-	        this._original.show(msg);
+	        this._originalNode.show(msg);
 	    };
 	    LowLevelProxyNode.prototype.setHighLevelParseResult = function (highLevelParseResult) {
 	        this._highLevelParseResult = highLevelParseResult;
@@ -19993,28 +20096,26 @@ module.exports =
 	        return impl.getDefinitionForLowLevelNode(this);
 	    };
 	    LowLevelProxyNode.prototype.includesContents = function () {
-	        return this._original.includesContents();
+	        return this._originalNode.includesContents();
 	    };
 	    return LowLevelProxyNode;
 	})();
 	exports.LowLevelProxyNode = LowLevelProxyNode;
 	var LowLevelCompositeNode = (function (_super) {
 	    __extends(LowLevelCompositeNode, _super);
-	    function LowLevelCompositeNode(node, parent, transformer, fromMainTree) {
-	        if (fromMainTree === void 0) { fromMainTree = true; }
+	    function LowLevelCompositeNode(node, parent, transformer) {
 	        _super.call(this, parent, transformer);
-	        this.fromMainTree = fromMainTree;
 	        //Colliding nodes of the initioal AST
 	        this._adoptedNodes = [];
-	        var originalParent = this.parent() ? this.parent().original() : null;
-	        this._original = new LowLevelValueTransformingNode(node, originalParent, transformer);
-	        this._adoptedNodes.push(this.original());
+	        var primaryParent = this.parent() ? this.parent().primaryNode() : null;
+	        this._originalNode = new LowLevelValueTransformingNode(node, primaryParent, transformer);
+	        this._adoptedNodes.push(this.primaryNode());
 	    }
 	    LowLevelCompositeNode.prototype.adoptedNodes = function () {
 	        return this._adoptedNodes;
 	    };
-	    LowLevelCompositeNode.prototype.original = function () {
-	        return this._original;
+	    LowLevelCompositeNode.prototype.primaryNode = function () {
+	        return this._originalNode;
 	    };
 	    LowLevelCompositeNode.prototype.parent = function () {
 	        return this._parent;
@@ -20023,8 +20124,8 @@ module.exports =
 	        if (!transformer) {
 	            transformer = this._transformer;
 	        }
-	        var originalParent = this.parent() ? this.parent().original() : null;
-	        var tNode = new LowLevelValueTransformingNode(node, originalParent, transformer);
+	        var primaryParent = this.parent() ? this.parent().primaryNode() : null;
+	        var tNode = new LowLevelValueTransformingNode(node, primaryParent, transformer);
 	        this._adoptedNodes.push(tNode);
 	        if (this._children) {
 	            this._children.forEach(function (x) { return x._parent = null; });
@@ -20039,7 +20140,7 @@ module.exports =
 	        if (valuableNodes.length > 0) {
 	            return valuableNodes[0].value();
 	        }
-	        return this._original.value();
+	        return this._originalNode.value();
 	    };
 	    LowLevelCompositeNode.prototype.children = function () {
 	        var _this = this;
@@ -20064,17 +20165,17 @@ module.exports =
 	            result = this.collectChildrenWithKeys();
 	            var map = {};
 	            this._adoptedNodes.forEach(function (x) { return x.children().filter(function (y) { return !y.key(); }).forEach(function (y) {
-	                var isOriginal = x == _this.original();
+	                var isPrimary = x == _this.primaryNode();
 	                var key = _this.buildKey(y);
-	                if (!isOriginal && map[key]) {
+	                if (!isPrimary && map[key]) {
 	                    //filtering away values with repeating keys
-	                    //Original node is not subjected to filtration
+	                    //primary node is not subjected to filtration
 	                    return;
 	                }
 	                map[key] = true;
 	                var transformer = x.transformer() ? x.transformer() : _this.transformer();
-	                var ch = (y instanceof LowLevelValueTransformingNode) ? y.original() : y;
-	                result.push(new LowLevelCompositeNode(ch, _this, transformer, isOriginal));
+	                var ch = (y instanceof LowLevelValueTransformingNode) ? y.originalNode() : y;
+	                result.push(new LowLevelCompositeNode(ch, _this, transformer));
 	            }); });
 	        }
 	        else {
@@ -20101,8 +20202,8 @@ module.exports =
 	        var result = [];
 	        var m = {};
 	        this._adoptedNodes.forEach(function (x) {
-	            var isOriginal = x == _this.original();
-	            x.original().children().forEach(function (y) {
+	            var isPrimary = x == _this.primaryNode();
+	            x.originalNode().children().forEach(function (y) {
 	                var key = y.key();
 	                if (!key) {
 	                    return;
@@ -20115,30 +20216,42 @@ module.exports =
 	                    arr = [];
 	                    m[key] = arr;
 	                }
-	                arr.push({ node: y, transformer: x.transformer(), fromOriginalTree: _this.fromMainTree && isOriginal });
+	                arr.push({ node: y, transformer: x.transformer(), isPrimary: isPrimary });
 	            });
 	        });
 	        Object.keys(m).forEach(function (key) {
 	            var arr = m[key];
 	            var allOptional = true;
-	            var hasChildFromOriginalTree = false;
+	            var hasPrimaryChildren = false;
 	            arr.forEach(function (x) {
 	                allOptional = allOptional && util.stringEndsWith(x.node.key(), '?');
-	                hasChildFromOriginalTree = hasChildFromOriginalTree || x.fromOriginalTree;
+	                hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;
 	            });
-	            if (hasChildFromOriginalTree || !allOptional) {
-	                var originalTransformer = arr[0].transformer ? arr[0].transformer : _this.transformer();
-	                var originalChild = new LowLevelCompositeNode(arr[0].node, _this, originalTransformer, hasChildFromOriginalTree);
+	            if (hasPrimaryChildren) {
+	                var primaryChildren = [];
+	                arr.filter(function (x) { return x.isPrimary; }).forEach(function (x) {
+	                    var tr = x.transformer ? x.transformer : _this.transformer();
+	                    primaryChildren.push(new LowLevelCompositeNode(x.node, _this, tr));
+	                });
+	                var primaryChild = primaryChildren[0];
+	                arr.filter(function (x) { return !x.isPrimary; }).forEach(function (x) {
+	                    primaryChild.adopt(x.node, x.transformer);
+	                });
+	                primaryChildren.forEach(function (x) { return result.push(x); });
+	            }
+	            else if (!allOptional) {
+	                var tr = arr[0].transformer ? arr[0].transformer : _this.transformer();
+	                var primaryChild = new LowLevelCompositeNode(arr[0].node, _this, tr);
 	                for (var i = 1; i < arr.length; i++) {
-	                    originalChild.adopt(arr[i].node, arr[i].transformer);
+	                    primaryChild.adopt(arr[i].node, arr[i].transformer);
 	                }
-	                result.push(originalChild);
+	                result.push(primaryChild);
 	            }
 	        });
 	        return result;
 	    };
 	    LowLevelCompositeNode.prototype.valueKind = function () {
-	        if (this._original.kind() != 1 /* MAPPING */) {
+	        if (this._originalNode.kind() != 1 /* MAPPING */) {
 	            return null;
 	        }
 	        for (var i = 0; i < this._adoptedNodes.length; i++) {
@@ -20172,23 +20285,20 @@ module.exports =
 	    __extends(LowLevelValueTransformingNode, _super);
 	    function LowLevelValueTransformingNode(node, parent, transformer) {
 	        _super.call(this, parent, transformer);
-	        this._original = node;
+	        this._originalNode = node;
 	    }
 	    LowLevelValueTransformingNode.prototype.value = function () {
-	        var val = this.original().value();
+	        var val = this.originalNode().value();
 	        var t = this.transformer();
 	        if (t) {
-	            val = t.transform(val);
-	            if (t.error()) {
-	                var msg = t.error();
-	                console.log(t.error());
-	            }
+	            var transformationResult = t.transform(val);
+	            val = transformationResult.value;
 	        }
 	        return val;
 	    };
 	    LowLevelValueTransformingNode.prototype.children = function () {
 	        var _this = this;
-	        return this.original().children().map(function (x) { return new LowLevelValueTransformingNode(x, _this, _this._transformer); });
+	        return this.originalNode().children().map(function (x) { return new LowLevelValueTransformingNode(x, _this, _this._transformer); });
 	    };
 	    LowLevelValueTransformingNode.prototype.parent = function () {
 	        return this._parent;
@@ -22844,7 +22954,7 @@ module.exports =
 	        result.withRange(nc.getAdapter(services.RAMLService).toRuntime());
 	    }
 	    if (result.range() == null) {
-	        result.withRange(new defs.ValueType("String", e.definition().universe(), ""));
+	        result.withRange(new defs.ValueType("string", e.definition().universe(), ""));
 	    }
 	    if (result.range().key() == universes.Universe10.ObjectTypeDeclaration) {
 	        var rm = new defs.NodeClass(universes.Universe10.ObjectTypeDeclaration.name, result.range().universe(), "", "");
@@ -23357,16 +23467,16 @@ module.exports =
 	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
 	            return;
 	        }
-	        if (t instanceof def.Array) {
+	        if (t instanceof typeSystem.Array) {
 	            this.validateArray(obj, t, cb, strict, recursionLevel);
 	        }
-	        else if (t instanceof def.Union) {
+	        else if (t instanceof typeSystem.Union) {
 	            this.validateUnion(obj, t, cb, strict, recursionLevel);
 	        }
-	        else if (t instanceof def.NodeClass) {
+	        else if (t instanceof typeSystem.StructuredType) {
 	            this.validateClass(obj, t, cb, strict, recursionLevel);
 	        }
-	        else if (t instanceof def.ValueType) {
+	        else if (t instanceof typeSystem.ValueType) {
 	            this.validateValue(obj, t, cb, strict, recursionLevel);
 	        }
 	        else {
@@ -23907,6 +24017,9 @@ module.exports =
 	        var tn = c.name();
 	        if (c.definition().key() === universes.Universe10.Api || c.definition().key() === universes.Universe08.Api) {
 	            this.checkBaseUri(node, c, vl, cb);
+	            return;
+	        }
+	        if (c.definition().key() == universes.Universe10.ResourceType || c.definition().key() == universes.Universe08.ResourceType) {
 	            return;
 	        }
 	        try {
@@ -25868,7 +25981,6 @@ module.exports =
 	    d.prototype = new __();
 	};
 	var hl = __webpack_require__(2);
-	var json2lowlevel = __webpack_require__(65);
 	var services = __webpack_require__(9);
 	var core = __webpack_require__(87);
 	var apiLoader = __webpack_require__(88);
@@ -27864,7 +27976,7 @@ module.exports =
 	    /***
 	     * Equivalent API with traits and resource types expanded
 	     ***/
-	    ApiImpl.prototype.expandTraitsAndResourceTypes = function () {
+	    ApiImpl.prototype.expand = function () {
 	        return helper.expandTraitsAndResourceTypes(this);
 	    };
 	    /***
@@ -28147,9 +28259,10 @@ module.exports =
 	 * Load API synchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Api instance or null if Api can not be found.
+	 *
+	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
 	 ***/
-	function loadApi(apiPath, options) {
+	function loadApi(apiPath, options, extensionsAndOverlays) {
 	    return apiLoader.loadApi08(apiPath, options).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
@@ -28157,22 +28270,13 @@ module.exports =
 	 * Load API asynchronously
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
-	 * @return Promise&lt;Api&gt;
+	 *
+	 * @return Promise&lt;Api&gt;. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
 	 ***/
-	function loadApiAsync(apiPath, options) {
+	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
 	    return apiLoader.loadApi08Async(apiPath, options);
 	}
 	exports.loadApiAsync = loadApiAsync;
-	/***
-	 * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
-	 * @param node Model node
-	 * @return Stringifyable object representation of the node.
-	 ***/
-	function toJSON(node, serializeOptions) {
-	    return json2lowlevel.serialize(node.highLevel().lowLevel(), serializeOptions);
-	}
-	exports.toJSON = toJSON;
-	;
 
 
 /***/ },
@@ -28320,11 +28424,21 @@ module.exports =
 	     * @return Array of errors
 	     **/
 	    BasicNodeImpl.prototype.errors = function () {
-	        var result = [];
+	        var issues = [];
 	        if (this._node.errors() != null) {
-	            result = result.concat(this._node.errors());
+	            issues = issues.concat(this._node.errors());
 	        }
-	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return result = result.concat(x.errors()); });
+	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return issues = issues.concat(x.errors()); });
+	        var result = issues.map(function (x) {
+	            return {
+	                code: x.code,
+	                message: x.message,
+	                path: x.path,
+	                start: x.start,
+	                end: x.end,
+	                isWarning: x.isWarning
+	            };
+	        });
 	        return result;
 	    };
 	    /***
@@ -28385,15 +28499,12 @@ module.exports =
 	 * @param options Load options
 	 * @return Opt&lt;Api&gt;
 	 ***/
-	function loadApi1(apiPath, options) {
-	    var opt = loadApi(apiPath, options);
+	function loadApi1(apiPath, options, extensionsAndOverlays) {
+	    var opt = loadApi(apiPath, options, extensionsAndOverlays);
 	    if (!opt.isDefined()) {
 	        return Opt.empty();
 	    }
 	    var api = opt.getOrThrow();
-	    if (!(api instanceof RamlWrapper1.ApiImpl)) {
-	        return Opt.empty();
-	    }
 	    return new Opt(api);
 	}
 	exports.loadApi1 = loadApi1;
@@ -28409,9 +28520,6 @@ module.exports =
 	        return Opt.empty();
 	    }
 	    var api = opt.getOrThrow();
-	    if (!(api instanceof RamlWrapper08.ApiImpl)) {
-	        return Opt.empty();
-	    }
 	    return new Opt(api);
 	}
 	exports.loadApi08 = loadApi08;
@@ -28421,13 +28529,19 @@ module.exports =
 	 * @param options Load options
 	 * @return Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
-	function loadApi(apiPath, options) {
+	function loadApi(apiPath, options, extensionsAndOverlays) {
+	    if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
+	        throw new Error("Applying of extensions and overlays is not implemented yet.");
+	    }
 	    var project = getProject(apiPath, options);
 	    var api;
 	    var unitName = path.basename(apiPath);
 	    var unit = project.unit(unitName);
 	    if (unit) {
 	        api = toApi(unit, options);
+	    }
+	    if (api && options && options.rejectOnErrors && api.errors() && api.errors().length > 0) {
+	        return Opt.empty();
 	    }
 	    return new Opt(api);
 	}
@@ -28438,14 +28552,8 @@ module.exports =
 	 * @param options Load options
 	 * @return Promise&lt;Api&gt;
 	 ***/
-	function loadApi1Async(apiPath, options) {
-	    return loadApiAsync(apiPath, options).then(function (x) {
-	        if (!x) {
-	            return x;
-	        }
-	        if (!(x instanceof RamlWrapper1.ApiImpl)) {
-	            return null;
-	        }
+	function loadApi1Async(apiPath, options, extensionsAndOverlays) {
+	    return loadApiAsync(apiPath, options, extensionsAndOverlays).then(function (x) {
 	        return x;
 	    });
 	}
@@ -28458,12 +28566,6 @@ module.exports =
 	 ***/
 	function loadApi08Async(apiPath, options) {
 	    return loadApiAsync(apiPath, options).then(function (x) {
-	        if (!x) {
-	            return x;
-	        }
-	        if (!(x instanceof RamlWrapper08.ApiImpl)) {
-	            return null;
-	        }
 	        return x;
 	    });
 	}
@@ -28474,11 +28576,18 @@ module.exports =
 	 * @param options Load options
 	 * @return Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
-	function loadApiAsync(apiPath, options) {
+	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
+	    if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
+	        return Promise.reject(new Error("Applying of extensions and overlays is not implemented yet."));
+	    }
 	    var project = getProject(apiPath, options);
 	    var unitName = path.basename(apiPath);
 	    return llimpl.fetchIncludesAsync(project, unitName).then(function (x) {
-	        return toApi(x, options);
+	        var api = toApi(x, options);
+	        if (api && options && options.rejectOnErrors && api.errors() && api.errors().length > 0) {
+	            return Promise.reject(new Error('Api contains errors.'));
+	        }
+	        return api;
 	    });
 	}
 	exports.loadApiAsync = loadApiAsync;
@@ -28486,7 +28595,16 @@ module.exports =
 	    var includeResolver = options && options.fsResolver ? options.fsResolver : null;
 	    var httpResolver = options && options.httpResolver ? options.httpResolver : null;
 	    var projectRoot = path.dirname(apiPath);
-	    var project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
+	    var project;
+	    if (httpResolver) {
+	        project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
+	    }
+	    else if (includeResolver) {
+	        project = new jsyaml.Project(projectRoot, includeResolver);
+	    }
+	    else {
+	        project = new jsyaml.Project(projectRoot);
+	    }
 	    return project;
 	}
 	;
@@ -28495,7 +28613,6 @@ module.exports =
 	        return null;
 	    }
 	    var api;
-	    var expandTraitsAndResourceTypes = (options && (options.expandTraitsAndResourceTypes != null)) ? options.expandTraitsAndResourceTypes : true;
 	    var contents = unit.contents();
 	    var ramlFirstLine = contents.match(/^#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
 	    if (!ramlFirstLine) {
@@ -28516,12 +28633,13 @@ module.exports =
 	        return null;
 	    }
 	    if (!ramlFileType || ramlFileType.trim() === "") {
-	        apiImpl = RamlWrapper1.ApiImpl;
 	        if (verStr == '0.8') {
 	            typeName = universeDef.Universe08.Api.name;
+	            apiImpl = RamlWrapper08.ApiImpl;
 	        }
 	        else if (verStr == '1.0') {
 	            typeName = universeDef.Universe10.Api.name;
+	            apiImpl = RamlWrapper1.ApiImpl;
 	        }
 	    }
 	    else if (ramlFileType === "Overlay") {
@@ -28535,9 +28653,6 @@ module.exports =
 	    var universe = universeProvider(ramlVersion);
 	    var apiType = universe.type(typeName);
 	    api = new apiImpl(new hlimpl.ASTNodeImpl(unit.ast(), null, apiType, null));
-	    if (expandTraitsAndResourceTypes) {
-	        api = expander.expandTraitsAndResourceTypes(api);
-	    }
 	    return api;
 	}
 	;
@@ -28568,7 +28683,15 @@ module.exports =
 /* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(10);
+	var util = __webpack_require__(59);
 	var proxy = __webpack_require__(64);
 	var RamlWrapper = __webpack_require__(1);
 	var RamlWrapper08 = __webpack_require__(86);
@@ -28618,19 +28741,33 @@ module.exports =
 	        if (resource instanceof RamlWrapper.ResourceImpl) {
 	            var mb = resource;
 	        }
-	        resourceData.filter(function (x) { return x.resourceType != null; }).forEach(function (x) { return resource.highLevel().lowLevel().adopt(x.resourceType.node.highLevel().lowLevel(), x.resourceType.transformer); });
+	        var resourceLowLevel = resource.highLevel().lowLevel();
+	        resourceData.filter(function (x) { return x.resourceType != null; }).forEach(function (x) {
+	            var resourceTypeLowLevel = x.resourceType.node.highLevel().lowLevel();
+	            var resourceTypeTransformer = new DefaultTransformer(resource, x.resourceType.transformer);
+	            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer);
+	        });
 	        var methods = resource.methods();
 	        methods.forEach(function (m) {
+	            var methodLowLevel = m.highLevel().lowLevel();
 	            var name = m.method();
 	            var map = {};
 	            resourceData.forEach(function (x) {
 	                var methodTraits = x.methodTraits[name];
 	                if (methodTraits) {
-	                    methodTraits.forEach(function (x) { return m.highLevel().lowLevel().adopt(x.node.highLevel().lowLevel(), x.transformer); }, true);
+	                    methodTraits.forEach(function (x) {
+	                        var traitLowLevel = x.node.highLevel().lowLevel();
+	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
+	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
+	                    });
 	                }
 	                var resourceTraits = x.traits;
 	                if (resourceTraits) {
-	                    resourceTraits.forEach(function (x) { return m.highLevel().lowLevel().adopt(x.node.highLevel().lowLevel(), x.transformer); }, true);
+	                    resourceTraits.forEach(function (x) {
+	                        var traitLowLevel = x.node.highLevel().lowLevel();
+	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
+	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
+	                    });
 	                }
 	            });
 	        });
@@ -28692,7 +28829,7 @@ module.exports =
 	        var value = obj.value();
 	        if (typeof (value) == 'string') {
 	            if (transformer) {
-	                value = transformer.transform(value);
+	                value = transformer.transform(value).value;
 	            }
 	            var node = globalMap[value];
 	            if (node) {
@@ -28711,14 +28848,14 @@ module.exports =
 	            //var t = hlimpl.typeFromNode(node.highLevel());
 	            if (node) {
 	                if (this.ramlVersion == 'RAML08' && transformer) {
-	                    sv.children().forEach(function (x) { return params[x.valueName()] = transformer.transform(x.lowLevel().value()); });
+	                    sv.children().forEach(function (x) { return params[x.valueName()] = transformer.transform(x.lowLevel().value()).value; });
 	                }
 	                else {
 	                    sv.children().forEach(function (x) { return params[x.valueName()] = x.lowLevel().value(); });
 	                }
 	                return {
 	                    name: name,
-	                    transformer: new ValueTransformer(params, template),
+	                    transformer: new ValueTransformer(template, name, params),
 	                    node: node
 	                };
 	            }
@@ -28728,15 +28865,14 @@ module.exports =
 	    return TraitsAndResourceTypesExpander;
 	})();
 	var ValueTransformer = (function () {
-	    function ValueTransformer(params, template) {
+	    function ValueTransformer(templateKind, templateName, params) {
+	        this.templateKind = templateKind;
+	        this.templateName = templateName;
 	        this.params = params;
-	        this.template = template;
 	    }
-	    ValueTransformer.prototype.error = function () {
-	        return this.err;
-	    };
 	    ValueTransformer.prototype.transform = function (obj) {
 	        var undefParams = {};
+	        var errors = [];
 	        if (typeof (obj) === 'string') {
 	            var str = obj;
 	            var str1 = '';
@@ -28780,20 +28916,85 @@ module.exports =
 	            var upArr = Object.keys(undefParams);
 	            if (upArr.length > 0) {
 	                var errStr = upArr.join(', ').trim();
-	                this.err = "Undefined " + this.template + " parameter" + (upArr.length > 1 ? 's' : '') + ": " + errStr;
-	            }
-	            else {
-	                this.err = null;
+	                var message = "Undefined " + this.templateKind + " parameter" + (upArr.length > 1 ? 's' : '') + ": " + errStr;
+	                var error = {
+	                    code: 3 /* MISSING_REQUIRED_PROPERTY */,
+	                    isWarning: false,
+	                    message: message,
+	                    node: null,
+	                    start: -1,
+	                    end: -1,
+	                    path: null
+	                };
+	                errors.push(error);
 	            }
 	            str1 += str.substring(prev, str.length);
-	            return str1;
+	            return { value: str1, errors: errors };
 	        }
 	        else {
-	            return obj;
+	            return { value: obj, errors: errors };
 	        }
 	    };
 	    return ValueTransformer;
 	})();
+	var DefaultTransformer = (function (_super) {
+	    __extends(DefaultTransformer, _super);
+	    function DefaultTransformer(owner, delegate) {
+	        _super.call(this, delegate.templateKind, delegate.templateName, null);
+	        this.owner = owner;
+	        this.delegate = delegate;
+	    }
+	    DefaultTransformer.prototype.transform = function (obj) {
+	        if (obj == null) {
+	            return {
+	                value: obj,
+	                errors: []
+	            };
+	        }
+	        var ownResult = {
+	            value: obj,
+	            errors: []
+	        };
+	        var gotDefaultParam = false;
+	        defaultParameters.forEach(function (x) { return gotDefaultParam = gotDefaultParam || obj.toString().indexOf('<<' + x) >= 0; });
+	        if (gotDefaultParam) {
+	            this.initParams();
+	            ownResult = _super.prototype.transform.call(this, obj);
+	        }
+	        var result = this.delegate.transform(ownResult.value);
+	        return result;
+	    };
+	    DefaultTransformer.prototype.initParams = function () {
+	        var methodName;
+	        var resourcePath = "";
+	        var resourcePathName;
+	        var node = this.owner.highLevel().lowLevel().originalNode().originalNode();
+	        while (node) {
+	            var key = node.key();
+	            if (key != null) {
+	                if (util.stringStartsWith(key, '/')) {
+	                    if (!resourcePathName) {
+	                        resourcePathName = key.replace(/[\/\{\}]/g, '');
+	                    }
+	                    resourcePath = key + resourcePath;
+	                }
+	                else {
+	                    methodName = key;
+	                }
+	            }
+	            node = node.parent();
+	        }
+	        this.params = {
+	            resourcePath: resourcePath,
+	            resourcePathName: resourcePathName
+	        };
+	        if (methodName) {
+	            this.params['methodName'] = methodName;
+	        }
+	    };
+	    return DefaultTransformer;
+	})(ValueTransformer);
+	var defaultParameters = ['resourcePath', 'resourcePathName', 'methodName'];
 
 
 /***/ },
@@ -28819,6 +29020,12 @@ module.exports =
 	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
 	}
 	exports.resolveType = resolveType;
+	//__$helperMethod__ Path relative to API root
+	function runtimeType(p) {
+	    var tpe = typeexpression.typeFromNode(p.highLevel());
+	    return tpe.getAdapter(ramlservices.RAMLService).toRuntimeWithInheritance();
+	}
+	exports.runtimeType = runtimeType;
 	function load(pth) {
 	    var m = new ll.Project(path.dirname(pth));
 	    var unit = m.unit(path.basename(pth));
@@ -28842,7 +29049,7 @@ module.exports =
 	    return uri;
 	}
 	exports.completeRelativeUri = completeRelativeUri;
-	//__$helperMethod__ Equivalent API with traits and resource types expanded
+	//__$helperMethod__ Equivalent API with traits and resource types expanded __$meta__={"name":"expand"}
 	function expandTraitsAndResourceTypes(api) {
 	    var lowLevelNode = api.highLevel().lowLevel();
 	    if (lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode) {
@@ -29137,6 +29344,9 @@ module.exports =
 	        return null;
 	    };
 	    HelperUriParam.prototype.xml = function () {
+	        return null;
+	    };
+	    HelperUriParam.prototype.runtimeType = function () {
 	        return null;
 	    };
 	    HelperUriParam.prototype.sendDefaultByClient = function () {
@@ -43744,7 +43954,7 @@ module.exports =
 	    return null;
 	}
 	exports.load = load;
-	//__$helperMethod__ Equivalent API with traits and resource types expanded
+	//__$helperMethod__ Equivalent API with traits and resource types expanded __$meta__={"name":"expand"}
 	function expandTraitsAndResourceTypes(api) {
 	    var lowLevelNode = api.highLevel().lowLevel();
 	    if (lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode) {

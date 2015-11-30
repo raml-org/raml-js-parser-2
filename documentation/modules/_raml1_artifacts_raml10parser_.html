@@ -71,7 +71,7 @@
 				<div class="tsd-comment tsd-typography">
 					<p>See <a href="http://raml.org">http://raml.org</a> for more information about RAML.</p>
 					<p>This parser is at a beta state of development, as part of the API Workbench development cycle (<a href="http://apiworkbench.com">http://apiworkbench.com</a>).</p>
-                    <p><a href="https://github.com/raml-org/raml-js-parser-2/blob/master/documentation/GettingStarted.md">Getting Started Guide</a> describes the first steps with the parser.</p>
+					<p><a href="https://github.com/raml-org/raml-js-parser-2/blob/master/documentation/GettingStarted.md">Getting Started Guide</a> describes the first steps with the parser.</p>
 					<h2>Installation</h2>
 					<pre><code>git clone https://github.com/raml-org/raml-js-parser-2
 
@@ -183,15 +183,33 @@ node test/testAsync.js  //same as above but in asynchronous mode
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_raml1_artifacts_raml10parser_.pointer.html" class="tsd-kind-icon">pointer</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported"><a href="_raml1_artifacts_raml10parser_.html#itypedefinition" class="tsd-kind-icon">IType<wbr>Definition</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#tojson" class="tsd-kind-icon">toJSON</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="itypedefinition" class="tsd-anchor"></a>
+					<h3>IType<wbr>Definition</h3>
+					<div class="tsd-signature tsd-kind-icon">IType<wbr>Definition<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/artifacts/raml10parser.ts:39</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -200,13 +218,13 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<a name="loadapi" class="tsd-anchor"></a>
 					<h3>load<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a>, extensionsAndOverlays<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5798</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5816</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -228,9 +246,15 @@ node test/testAsync.js  //same as above but in asynchronous mode
 										<p>Load options</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extensionsAndOverlays: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Paths to extensions and overlays to be applied listed in the order of application.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
-							<p>Api instance or null if Api can not be found.</p>
+							<p>Api instance or null if Api can not be found. If the &#39;rejectOnErrors&#39; option is set to true, null is returned for Api which contains errors.</p>
 						</li>
 					</ul>
 				</section>
@@ -238,13 +262,13 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<a name="loadapiasync" class="tsd-anchor"></a>
 					<h3>load<wbr>Api<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a>, extensionsAndOverlays<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5809</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5828</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,44 +290,15 @@ node test/testAsync.js  //same as above but in asynchronous mode
 										<p>Load options</p>
 									</div>
 								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise&lt;Api&gt;</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="tojson" class="tsd-anchor"></a>
-					<h3>toJSON</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-signature-type">BasicNode</a>, serializeOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_json2lowlevel_.serializeoptions.html" class="tsd-signature-type">SerializeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5818</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
 								<li>
-									<h5>node: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-signature-type">BasicNode</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> extensionsAndOverlays: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Model node</p>
+										<p>Paths to extensions and overlays to be applied listed in the order of application.</p>
 									</div>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serializeOptions: <a href="../interfaces/_raml1_jsyaml_json2lowlevel_.serializeoptions.html" class="tsd-signature-type">SerializeOptions</a></h5>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>Stringifyable object representation of the node.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;Api&gt;. The Promise is rejected if the resulting Api contains errors and the &#39;rejectOnErrors&#39; option is set to &#39;true&#39;.</p>
 						</li>
 					</ul>
 				</section>
@@ -574,14 +569,14 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_raml1_artifacts_raml10parser_.pointer.html" class="tsd-kind-icon">pointer</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_raml1_artifacts_raml10parser_.html#itypedefinition" class="tsd-kind-icon">IType<wbr>Definition</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_raml1_artifacts_raml10parser_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_raml1_artifacts_raml10parser_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_raml1_artifacts_raml10parser_.html#tojson" class="tsd-kind-icon">toJSON</a>
 					</li>
 				</ul>
 			</nav>

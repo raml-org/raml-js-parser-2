@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ResourceTypeRef | api-workbench</title>
+	<title>ChildEntry | api-workbench</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_raml1_artifacts_raml10parser_.html">&quot;raml1/artifacts/raml10parser&quot;</a>
+					<a href="../modules/_raml1_ast_core_lowlevelastproxy_.html">&quot;raml1/ast.core/LowLevelASTProxy&quot;</a>
 				</li>
 				<li>
-					<a href="_raml1_artifacts_raml10parser_.resourcetyperef.html">ResourceTypeRef</a>
+					<a href="_raml1_ast_core_lowlevelastproxy_.childentry.html">ChildEntry</a>
 				</li>
 			</ul>
-			<h1>Interface ResourceTypeRef</h1>
+			<h1>Interface ChildEntry</h1>
 		</div>
 	</div>
 </header>
@@ -74,12 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_raml1_artifacts_raml10parser_.reference.html" class="tsd-signature-type">Reference</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">ResourceTypeRef</span>
-							</li>
-						</ul>
+						<span class="target">ChildEntry</span>
 					</li>
 				</ul>
 			</section>
@@ -87,59 +82,48 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
-							<h3>Methods</h3>
+						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.resourcetyperef.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.resourcetyperef.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#isprimary" class="tsd-kind-icon">is<wbr>Primary</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#node" class="tsd-kind-icon">node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#transformer" class="tsd-kind-icon">transformer</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<a name="getkind" class="tsd-anchor"></a>
-					<h3>get<wbr>Kind</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#getkind">getKind</a></p>
-								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:18</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>Actual name of instance interface</p>
-						</li>
-					</ul>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external tsd-is-not-exported">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="isprimary" class="tsd-anchor"></a>
+					<h3>is<wbr>Primary</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Primary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:361</li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_highlevelimpl_.structuredvalue.html" class="tsd-signature-type">StructuredValue</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="_raml1_artifacts_raml10parser_.reference.html#value">value</a></p>
-								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:199</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_raml1_highlevelimpl_.structuredvalue.html" class="tsd-signature-type">StructuredValue</a></h4>
-							<p>StructuredValue object representing the node value</p>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="node" class="tsd-anchor"></a>
+					<h3>node</h3>
+					<div class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">:</span> <a href="_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:359</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="transformer" class="tsd-anchor"></a>
+					<h3>transformer</h3>
+					<div class="tsd-signature tsd-kind-icon">transformer<span class="tsd-signature-symbol">:</span> <a href="_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:360</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -149,8 +133,8 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_raml1_artifacts_raml10parser_.html">"raml1/artifacts/raml10parser"</a>
+					<li class="current tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_ast_core_lowlevelastproxy_.html">"raml1/ast.core/<wbr>Low<wbr>LevelASTProxy"</a>
 					</li>
 				</ul>
 			</nav>
@@ -158,19 +142,28 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_raml1_artifacts_raml10parser_.resourcetyperef.html" class="tsd-kind-icon">Resource<wbr>Type<wbr>Ref</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_ast_core_lowlevelastproxy_.childentry.html" class="tsd-kind-icon">Child<wbr>Entry</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_raml1_artifacts_raml10parser_.resourcetyperef.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#isprimary" class="tsd-kind-icon">is<wbr>Primary</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_raml1_artifacts_raml10parser_.resourcetyperef.html#value" class="tsd-kind-icon">value</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#node" class="tsd-kind-icon">node</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_raml1_ast_core_lowlevelastproxy_.childentry.html#transformer" class="tsd-kind-icon">transformer</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-kind-icon">Value<wbr>Transformer</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_lowlevelastproxy_.html#stringify" class="tsd-kind-icon">stringify</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

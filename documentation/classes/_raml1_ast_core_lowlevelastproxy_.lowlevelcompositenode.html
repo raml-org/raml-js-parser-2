@@ -104,10 +104,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_adoptednodes" class="tsd-kind-icon">_adopted<wbr>Nodes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_children" class="tsd-kind-icon">_children</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_original" class="tsd-kind-icon">_original</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_originalnode" class="tsd-kind-icon">_original<wbr>Node</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_parent" class="tsd-kind-icon">_parent</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#_transformer" class="tsd-kind-icon">_transformer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#frommaintree" class="tsd-kind-icon">from<wbr>Main<wbr>Tree</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -141,8 +140,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#kind" class="tsd-kind-icon">kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#markup" class="tsd-kind-icon">markup</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#nodedefinition" class="tsd-kind-icon">node<wbr>Definition</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#original" class="tsd-kind-icon">original</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#originalnode" class="tsd-kind-icon">original<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#parent" class="tsd-kind-icon">parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#primarynode" class="tsd-kind-icon">primary<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#sethighlevelnode" class="tsd-kind-icon">set<wbr>High<wbr>Level<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#sethighlevelparseresult" class="tsd-kind-icon">set<wbr>High<wbr>Level<wbr>Parse<wbr>Result</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html#setkeyoverride" class="tsd-kind-icon">set<wbr>Key<wbr>Override</a></li>
@@ -167,7 +167,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Low<wbr>Level<wbr>Composite<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, parent<span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a>, transformer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a>, fromMainTree<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Low<wbr>Level<wbr>Composite<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, parent<span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a>, transformer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -188,9 +188,6 @@
 								<li>
 									<h5>transformer: <a href="../interfaces/_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a></h5>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> fromMainTree: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
-								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a></h4>
 						</li>
@@ -205,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">_adopted<wbr>Nodes<span class="tsd-signature-symbol">:</span> <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:166</li>
+							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:165</li>
 						</ul>
 					</aside>
 				</section>
@@ -215,16 +212,16 @@
 					<div class="tsd-signature tsd-kind-icon">_children<span class="tsd-signature-symbol">:</span> <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:168</li>
+							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:167</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
-					<a name="_original" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _original</h3>
-					<div class="tsd-signature tsd-kind-icon">_original<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></div>
+					<a name="_originalnode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _original<wbr>Node</h3>
+					<div class="tsd-signature tsd-kind-icon">_original<wbr>Node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#_original">_original</a></p>
+						<p>Inherited from <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#_originalnode">_originalNode</a></p>
 						<ul>
 							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:17</li>
 						</ul>
@@ -249,16 +246,6 @@
 						<p>Inherited from <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#_transformer">_transformer</a></p>
 						<ul>
 							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:15</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
-					<a name="frommaintree" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> from<wbr>Main<wbr>Tree</h3>
-					<div class="tsd-signature tsd-kind-icon">from<wbr>Main<wbr>Tree<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:157</li>
 						</ul>
 					</aside>
 				</section>
@@ -318,7 +305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:180</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:179</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -344,7 +331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:170</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:169</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -399,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:252</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:251</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -424,7 +411,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#children">children</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#children">children</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:205</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:204</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -441,7 +428,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:268</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:267</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -527,7 +514,7 @@
 					<a name="errors" class="tsd-anchor"></a>
 					<h3>errors</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.error.html" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -538,7 +525,7 @@
 									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:72</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_wrapped_ast_parsercore_.error.html" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -636,7 +623,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#includepath">includePath</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#includepath">includePath</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:329</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:338</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -712,7 +699,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#key">key</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#key">key</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:340</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:349</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -820,21 +807,21 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
-					<a name="original" class="tsd-anchor"></a>
-					<h3>original</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">original<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="originalnode" class="tsd-anchor"></a>
+					<h3>original<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">original<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#original">original</a></p>
+								<p>Inherited from <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#originalnode">originalNode</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:174</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:34</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -850,10 +837,27 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#parent">parent</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#parent">parent</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:178</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:177</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelcompositenode.html" class="tsd-signature-type">LowLevelCompositeNode</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="primarynode" class="tsd-anchor"></a>
+					<h3>primary<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">primary<wbr>Node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:173</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelvaluetransformingnode.html" class="tsd-signature-type">LowLevelValueTransformingNode</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -1048,7 +1052,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#value">value</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#value">value</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:197</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:196</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -1086,7 +1090,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html">ILowLevelASTNode</a>.<a href="../interfaces/_raml1_lowlevelast_.ilowlevelastnode.html#valuekind">valueKind</a></p>
 								<p>Overwrites <a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html">LowLevelProxyNode</a>.<a href="_raml1_ast_core_lowlevelastproxy_.lowlevelproxynode.html#valuekind">valueKind</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:316</li>
+									<li>Defined in raml1/ast.core/LowLevelASTProxy.ts:325</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/_raml1_jsyaml_yamlast_.kind.html" class="tsd-signature-type">Kind</a></h4>
@@ -1152,6 +1156,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../interfaces/_raml1_ast_core_lowlevelastproxy_.childentry.html" class="tsd-kind-icon">Child<wbr>Entry</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_raml1_ast_core_lowlevelastproxy_.valuetransformer.html" class="tsd-kind-icon">Value<wbr>Transformer</a>
 					</li>

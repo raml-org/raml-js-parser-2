@@ -7,7 +7,6 @@ var fs = require("fs")
 
 raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/production/api.raml",{
 	
-	expandTraitsAndResourceTypes: false,
 	fsResolver: {
 		
 		content: function(path){ return fs.readFileSync(path).toString(); },
@@ -18,8 +17,7 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 			return new Promise(function (resolve, reject) {
 	            fs.readFile(path, function (err, data) {
 	                if (err != null) {
-	                    reject(err);
-	                    return;
+	                    return reject(err);
 	                }
 	                var content = data.toString();
 	                resolve(content);
@@ -31,8 +29,7 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 	        return new Promise(function (reject, resolve) {
 	            fs.readdir(path, function (err, files) {
 	                if (err != null) {
-	                    reject(err);
-	                    return;
+	                    return reject(err);
 	                }
 	                resolve(files);
 	            });
@@ -76,7 +73,7 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
         });
 
     console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
-    console.log(JSON.stringify(raml1Parser.toJSON(api), null, 2));
+    console.log(JSON.stringify(api.toJSON(), null, 2));
 },function(err){
 	console.log(err);
 });
