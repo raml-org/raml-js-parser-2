@@ -46,45 +46,21 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
-	/***
-	 * Load API synchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param expand Whether to expand traits and resource types
-	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
-	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
-	 ***/
-	function loadApi(apiPath, options, extensionsAndOverlays) {
-	    return RamlWrapper.loadApi(apiPath, options, extensionsAndOverlays);
+	function loadApi(apiPath, extensionsAndOverlays, options) {
+	    return RamlWrapper.loadApi(apiPath, extensionsAndOverlays, options);
 	}
 	exports.loadApi = loadApi;
-	/***
-	 * Load API asynchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param expand Whether to expand traits and resource types
-	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
-	 * @return Promise<Api>. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
-	 ***/
-	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
-	    return RamlWrapper.loadApiAsync(apiPath, options, extensionsAndOverlays);
+	function loadApiAsync(apiPath, extensionsAndOverlays, options) {
+	    return RamlWrapper.loadApiAsync(apiPath, extensionsAndOverlays, options);
 	}
 	exports.loadApiAsync = loadApiAsync;
-	/***
-	 * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
-	 * @param node Model node
-	 * @return Stringifyable object representation of the node.
-	 ***/
-	function toJSON(node, serializeOptions) {
-	    return RamlWrapper.toJSON(node, serializeOptions);
-	}
-	exports.toJSON = toJSON;
-	;
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*****************************************************
+	/**
 	 * <p>See <a href="http://raml.org">http://raml.org</a> for more information about RAML.</p>
 	 *
 	 * <p>This parser is at a beta state of development, as part of the API Workbench development cycle (<a href="http://apiworkbench.com">http://apiworkbench.com</a>).</p>
@@ -110,7 +86,7 @@ module.exports =
 	 * <li>For parser usage example refer to <code>test/test.js</code></li>
 	 * <li>For asynchrounous usage example refer to <code>test/testAsync.js</code></li>
 	 * </ul>
-	 ****************************************************/
+	 **/
 	var __extends = this.__extends || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
@@ -124,100 +100,93 @@ module.exports =
 	var helper = __webpack_require__(90);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
-	    function RAMLLanguageElementImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLLanguageElement(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function RAMLLanguageElementImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLLanguageElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.getKind = function () {
 	        return "RAMLLanguageElement";
 	    };
-	    /***
+	    /**
 	     * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
 	    return RAMLLanguageElementImpl;
 	})(core.BasicNodeImpl);
 	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
-	var ValueTypeImpl = (function () {
-	    function ValueTypeImpl(attr) {
-	        this.attr = attr;
+	var ValueTypeImpl = (function (_super) {
+	    __extends(ValueTypeImpl, _super);
+	    function ValueTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.wrapperClassName = function () {
 	        return "ValueTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.getKind = function () {
 	        return "ValueType";
 	    };
-	    /***
+	    /**
 	     * @return String representation of the node value
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.value = function () {
 	        return this.attr.value();
 	    };
-	    /***
-	     * @return Underlying High Level attribute node
-	     ***/
-	    ValueTypeImpl.prototype.highLevel = function () {
-	        return this.attr;
-	    };
 	    return ValueTypeImpl;
-	})();
+	})(core.AttributeNodeImpl);
 	exports.ValueTypeImpl = ValueTypeImpl;
 	var NumberTypeImpl = (function (_super) {
 	    __extends(NumberTypeImpl, _super);
-	    function NumberTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function NumberTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    NumberTypeImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    NumberTypeImpl.prototype.getKind = function () {
 	        return "NumberType";
 	    };
@@ -226,68 +195,67 @@ module.exports =
 	exports.NumberTypeImpl = NumberTypeImpl;
 	var BooleanTypeImpl = (function (_super) {
 	    __extends(BooleanTypeImpl, _super);
-	    function BooleanTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function BooleanTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BooleanTypeImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BooleanTypeImpl.prototype.getKind = function () {
 	        return "BooleanType";
 	    };
 	    return BooleanTypeImpl;
 	})(ValueTypeImpl);
 	exports.BooleanTypeImpl = BooleanTypeImpl;
-	var ReferenceImpl = (function () {
-	    function ReferenceImpl(attr) {
-	        this.attr = attr;
+	var ReferenceImpl = (function (_super) {
+	    __extends(ReferenceImpl, _super);
+	    function ReferenceImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.wrapperClassName = function () {
 	        return "ReferenceImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.getKind = function () {
 	        return "Reference";
 	    };
-	    /***
+	    /**
 	     * @return StructuredValue object representing the node value
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.value = function () {
 	        return core.toStructuredValue(this.attr);
 	    };
 	    return ReferenceImpl;
-	})();
+	})(core.AttributeNodeImpl);
 	exports.ReferenceImpl = ReferenceImpl;
 	var ResourceTypeRefImpl = (function (_super) {
 	    __extends(ResourceTypeRefImpl, _super);
-	    function ResourceTypeRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ResourceTypeRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceTypeRefImpl.prototype.getKind = function () {
 	        return "ResourceTypeRef";
 	    };
@@ -296,20 +264,19 @@ module.exports =
 	exports.ResourceTypeRefImpl = ResourceTypeRefImpl;
 	var TraitRefImpl = (function (_super) {
 	    __extends(TraitRefImpl, _super);
-	    function TraitRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function TraitRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    TraitRefImpl.prototype.wrapperClassName = function () {
 	        return "TraitRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    TraitRefImpl.prototype.getKind = function () {
 	        return "TraitRef";
 	    };
@@ -318,45 +285,43 @@ module.exports =
 	exports.TraitRefImpl = TraitRefImpl;
 	var SecuritySchemeRefImpl = (function (_super) {
 	    __extends(SecuritySchemeRefImpl, _super);
-	    function SecuritySchemeRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function SecuritySchemeRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemeRefImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemeRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemeRefImpl.prototype.getKind = function () {
 	        return "SecuritySchemeRef";
 	    };
 	    return SecuritySchemeRefImpl;
 	})(ReferenceImpl);
 	exports.SecuritySchemeRefImpl = SecuritySchemeRefImpl;
-	/***
+	/**
 	 * Annotations allow you to attach information to your API
-	 ***/
+	 **/
 	var AnnotationRefImpl = (function (_super) {
 	    __extends(AnnotationRefImpl, _super);
-	    function AnnotationRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function AnnotationRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    AnnotationRefImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    AnnotationRefImpl.prototype.getKind = function () {
 	        return "AnnotationRef";
 	    };
@@ -365,45 +330,43 @@ module.exports =
 	exports.AnnotationRefImpl = AnnotationRefImpl;
 	var DataElementRefImpl = (function (_super) {
 	    __extends(DataElementRefImpl, _super);
-	    function DataElementRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function DataElementRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DataElementRefImpl.prototype.wrapperClassName = function () {
 	        return "DataElementRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DataElementRefImpl.prototype.getKind = function () {
 	        return "DataElementRef";
 	    };
 	    return DataElementRefImpl;
 	})(ReferenceImpl);
 	exports.DataElementRefImpl = DataElementRefImpl;
-	/***
+	/**
 	 * Elements to which this Annotation can be applied (enum)
-	 ***/
+	 **/
 	var AnnotationTargetImpl = (function (_super) {
 	    __extends(AnnotationTargetImpl, _super);
-	    function AnnotationTargetImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function AnnotationTargetImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    AnnotationTargetImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationTargetImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    AnnotationTargetImpl.prototype.getKind = function () {
 	        return "AnnotationTarget";
 	    };
@@ -412,20 +375,19 @@ module.exports =
 	exports.AnnotationTargetImpl = AnnotationTargetImpl;
 	var pointerImpl = (function (_super) {
 	    __extends(pointerImpl, _super);
-	    function pointerImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function pointerImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    pointerImpl.prototype.wrapperClassName = function () {
 	        return "pointerImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    pointerImpl.prototype.getKind = function () {
 	        return "pointer";
 	    };
@@ -434,95 +396,91 @@ module.exports =
 	exports.pointerImpl = pointerImpl;
 	var StringTypeImpl = (function (_super) {
 	    __extends(StringTypeImpl, _super);
-	    function StringTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function StringTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StringTypeImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StringTypeImpl.prototype.getKind = function () {
 	        return "StringType";
 	    };
 	    return StringTypeImpl;
 	})(ValueTypeImpl);
 	exports.StringTypeImpl = StringTypeImpl;
-	/***
+	/**
 	 * This type currently serves both for absolute and relative urls
-	 ***/
+	 **/
 	var UriTemplateImpl = (function (_super) {
 	    __extends(UriTemplateImpl, _super);
-	    function UriTemplateImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function UriTemplateImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    UriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "UriTemplateImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    UriTemplateImpl.prototype.getKind = function () {
 	        return "UriTemplate";
 	    };
 	    return UriTemplateImpl;
 	})(StringTypeImpl);
 	exports.UriTemplateImpl = UriTemplateImpl;
-	/***
+	/**
 	 * This  type describes relative uri templates
-	 ***/
+	 **/
 	var RelativeUriStringImpl = (function (_super) {
 	    __extends(RelativeUriStringImpl, _super);
-	    function RelativeUriStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function RelativeUriStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RelativeUriStringImpl.prototype.wrapperClassName = function () {
 	        return "RelativeUriStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RelativeUriStringImpl.prototype.getKind = function () {
 	        return "RelativeUriString";
 	    };
 	    return RelativeUriStringImpl;
 	})(UriTemplateImpl);
 	exports.RelativeUriStringImpl = RelativeUriStringImpl;
-	/***
+	/**
 	 * This  type describes absolute uri templates
-	 ***/
+	 **/
 	var FullUriTemplateStringImpl = (function (_super) {
 	    __extends(FullUriTemplateStringImpl, _super);
-	    function FullUriTemplateStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function FullUriTemplateStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FullUriTemplateStringImpl.prototype.wrapperClassName = function () {
 	        return "FullUriTemplateStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FullUriTemplateStringImpl.prototype.getKind = function () {
 	        return "FullUriTemplateString";
 	    };
@@ -531,45 +489,43 @@ module.exports =
 	exports.FullUriTemplateStringImpl = FullUriTemplateStringImpl;
 	var StatusCodeStringImpl = (function (_super) {
 	    __extends(StatusCodeStringImpl, _super);
-	    function StatusCodeStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function StatusCodeStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StatusCodeStringImpl.prototype.wrapperClassName = function () {
 	        return "StatusCodeStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StatusCodeStringImpl.prototype.getKind = function () {
 	        return "StatusCodeString";
 	    };
 	    return StatusCodeStringImpl;
 	})(StringTypeImpl);
 	exports.StatusCodeStringImpl = StatusCodeStringImpl;
-	/***
+	/**
 	 * This  type describes fixed uris
-	 ***/
+	 **/
 	var FixedUriStringImpl = (function (_super) {
 	    __extends(FixedUriStringImpl, _super);
-	    function FixedUriStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function FixedUriStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FixedUriStringImpl.prototype.wrapperClassName = function () {
 	        return "FixedUriStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FixedUriStringImpl.prototype.getKind = function () {
 	        return "FixedUriString";
 	    };
@@ -578,20 +534,19 @@ module.exports =
 	exports.FixedUriStringImpl = FixedUriStringImpl;
 	var ContentTypeImpl = (function (_super) {
 	    __extends(ContentTypeImpl, _super);
-	    function ContentTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ContentTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ContentTypeImpl.prototype.wrapperClassName = function () {
 	        return "ContentTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ContentTypeImpl.prototype.getKind = function () {
 	        return "ContentType";
 	    };
@@ -600,20 +555,19 @@ module.exports =
 	exports.ContentTypeImpl = ContentTypeImpl;
 	var ValidityExpressionImpl = (function (_super) {
 	    __extends(ValidityExpressionImpl, _super);
-	    function ValidityExpressionImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ValidityExpressionImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ValidityExpressionImpl.prototype.wrapperClassName = function () {
 	        return "ValidityExpressionImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ValidityExpressionImpl.prototype.getKind = function () {
 	        return "ValidityExpression";
 	    };
@@ -622,20 +576,19 @@ module.exports =
 	exports.ValidityExpressionImpl = ValidityExpressionImpl;
 	var DateFormatSpecImpl = (function (_super) {
 	    __extends(DateFormatSpecImpl, _super);
-	    function DateFormatSpecImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function DateFormatSpecImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DateFormatSpecImpl.prototype.wrapperClassName = function () {
 	        return "DateFormatSpecImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DateFormatSpecImpl.prototype.getKind = function () {
 	        return "DateFormatSpec";
 	    };
@@ -644,120 +597,115 @@ module.exports =
 	exports.DateFormatSpecImpl = DateFormatSpecImpl;
 	var FunctionalInterfaceImpl = (function (_super) {
 	    __extends(FunctionalInterfaceImpl, _super);
-	    function FunctionalInterfaceImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function FunctionalInterfaceImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FunctionalInterfaceImpl.prototype.wrapperClassName = function () {
 	        return "FunctionalInterfaceImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FunctionalInterfaceImpl.prototype.getKind = function () {
 	        return "FunctionalInterface";
 	    };
 	    return FunctionalInterfaceImpl;
 	})(StringTypeImpl);
 	exports.FunctionalInterfaceImpl = FunctionalInterfaceImpl;
-	/***
+	/**
 	 * Schema at this moment only two subtypes are supported (json schema and xsd)
-	 ***/
+	 **/
 	var SchemaStringImpl = (function (_super) {
 	    __extends(SchemaStringImpl, _super);
-	    function SchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function SchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "SchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SchemaStringImpl.prototype.getKind = function () {
 	        return "SchemaString";
 	    };
 	    return SchemaStringImpl;
 	})(StringTypeImpl);
 	exports.SchemaStringImpl = SchemaStringImpl;
-	/***
+	/**
 	 * JSON schema
-	 ***/
+	 **/
 	var JSonSchemaStringImpl = (function (_super) {
 	    __extends(JSonSchemaStringImpl, _super);
-	    function JSonSchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function JSonSchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "JSonSchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    JSonSchemaStringImpl.prototype.getKind = function () {
 	        return "JSonSchemaString";
 	    };
 	    return JSonSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
-	/***
+	/**
 	 * XSD schema
-	 ***/
+	 **/
 	var XMLSchemaStringImpl = (function (_super) {
 	    __extends(XMLSchemaStringImpl, _super);
-	    function XMLSchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function XMLSchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "XMLSchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    XMLSchemaStringImpl.prototype.getKind = function () {
 	        return "XMLSchemaString";
 	    };
 	    return XMLSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.XMLSchemaStringImpl = XMLSchemaStringImpl;
-	/***
+	/**
 	 * Examples at this moment only two subtypes are supported (json  and xml)
-	 ***/
+	 **/
 	var ExampleStringImpl = (function (_super) {
 	    __extends(ExampleStringImpl, _super);
-	    function ExampleStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ExampleStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ExampleStringImpl.prototype.wrapperClassName = function () {
 	        return "ExampleStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ExampleStringImpl.prototype.getKind = function () {
 	        return "ExampleString";
 	    };
@@ -766,20 +714,19 @@ module.exports =
 	exports.ExampleStringImpl = ExampleStringImpl;
 	var RAMLPointerImpl = (function (_super) {
 	    __extends(RAMLPointerImpl, _super);
-	    function RAMLPointerImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function RAMLPointerImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLPointerImpl.prototype.wrapperClassName = function () {
 	        return "RAMLPointerImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLPointerImpl.prototype.getKind = function () {
 	        return "RAMLPointer";
 	    };
@@ -788,70 +735,67 @@ module.exports =
 	exports.RAMLPointerImpl = RAMLPointerImpl;
 	var RAMLSelectorImpl = (function (_super) {
 	    __extends(RAMLSelectorImpl, _super);
-	    function RAMLSelectorImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function RAMLSelectorImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLSelectorImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSelectorImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLSelectorImpl.prototype.getKind = function () {
 	        return "RAMLSelector";
 	    };
 	    return RAMLSelectorImpl;
 	})(StringTypeImpl);
 	exports.RAMLSelectorImpl = RAMLSelectorImpl;
-	/***
+	/**
 	 * This sub type of the string represents mime types
-	 ***/
+	 **/
 	var MimeTypeImpl = (function (_super) {
 	    __extends(MimeTypeImpl, _super);
-	    function MimeTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function MimeTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MimeTypeImpl.prototype.wrapperClassName = function () {
 	        return "MimeTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MimeTypeImpl.prototype.getKind = function () {
 	        return "MimeType";
 	    };
 	    return MimeTypeImpl;
 	})(StringTypeImpl);
 	exports.MimeTypeImpl = MimeTypeImpl;
-	/***
+	/**
 	 * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
-	 ***/
+	 **/
 	var MarkdownStringImpl = (function (_super) {
 	    __extends(MarkdownStringImpl, _super);
-	    function MarkdownStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function MarkdownStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MarkdownStringImpl.prototype.wrapperClassName = function () {
 	        return "MarkdownStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MarkdownStringImpl.prototype.getKind = function () {
 	        return "MarkdownString";
 	    };
@@ -864,36 +808,36 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.wrapperClassName = function () {
 	        return "DocumentationItemImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.getKind = function () {
 	        return "DocumentationItem";
 	    };
-	    /***
+	    /**
 	     * Title of documentation section
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Content of documentation section
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -906,26 +850,26 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createScriptSpec(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ScriptSpecImpl.prototype.wrapperClassName = function () {
 	        return "ScriptSpecImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ScriptSpecImpl.prototype.getKind = function () {
 	        return "ScriptSpec";
 	    };
 	    ScriptSpecImpl.prototype.language = function () {
 	        return _super.prototype.attribute.call(this, 'language', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set language value
-	     ***/
+	     **/
 	    ScriptSpecImpl.prototype.setLanguage = function (param) {
 	        this.highLevel().attrOrCreate("language").setValue("" + param);
 	        return this;
@@ -933,10 +877,10 @@ module.exports =
 	    ScriptSpecImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set content value
-	     ***/
+	     **/
 	    ScriptSpecImpl.prototype.setContent = function (param) {
 	        this.highLevel().attrOrCreate("content").setValue("" + param);
 	        return this;
@@ -950,16 +894,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApiDescription(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ApiDescriptionImpl.prototype.wrapperClassName = function () {
 	        return "ApiDescriptionImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ApiDescriptionImpl.prototype.getKind = function () {
 	        return "ApiDescription";
 	    };
@@ -972,10 +916,10 @@ module.exports =
 	    ApiDescriptionImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set type value
-	     ***/
+	     **/
 	    ApiDescriptionImpl.prototype.setType = function (param) {
 	        this.highLevel().attrOrCreate("type").setValue("" + param);
 	        return this;
@@ -989,16 +933,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createCallbackAPIDescription(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    CallbackAPIDescriptionImpl.prototype.wrapperClassName = function () {
 	        return "CallbackAPIDescriptionImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    CallbackAPIDescriptionImpl.prototype.getKind = function () {
 	        return "CallbackAPIDescription";
 	    };
@@ -1014,16 +958,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLProject(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLProjectImpl.prototype.wrapperClassName = function () {
 	        return "RAMLProjectImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLProjectImpl.prototype.getKind = function () {
 	        return "RAMLProject";
 	    };
@@ -1036,10 +980,10 @@ module.exports =
 	    RAMLProjectImpl.prototype.license = function () {
 	        return _super.prototype.attribute.call(this, 'license', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set license value
-	     ***/
+	     **/
 	    RAMLProjectImpl.prototype.setLicense = function (param) {
 	        this.highLevel().attrOrCreate("license").setValue("" + param);
 	        return this;
@@ -1047,10 +991,10 @@ module.exports =
 	    RAMLProjectImpl.prototype.overview = function () {
 	        return _super.prototype.attribute.call(this, 'overview', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set overview value
-	     ***/
+	     **/
 	    RAMLProjectImpl.prototype.setOverview = function (param) {
 	        this.highLevel().attrOrCreate("overview").setValue("" + param);
 	        return this;
@@ -1058,10 +1002,10 @@ module.exports =
 	    RAMLProjectImpl.prototype.url = function () {
 	        return _super.prototype.attribute.call(this, 'url', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set url value
-	     ***/
+	     **/
 	    RAMLProjectImpl.prototype.setUrl = function (param) {
 	        this.highLevel().attrOrCreate("url").setValue("" + param);
 	        return this;
@@ -1069,38 +1013,38 @@ module.exports =
 	    return RAMLProjectImpl;
 	})(RAMLLanguageElementImpl);
 	exports.RAMLProjectImpl = RAMLProjectImpl;
-	/***
+	/**
 	 * Security schema type allows you to contribute your own security schema type with settings and optinal configurator for plugging into client sdks auth mechanism
-	 ***/
+	 **/
 	var SecuritySchemaTypeImpl = (function (_super) {
 	    __extends(SecuritySchemaTypeImpl, _super);
 	    function SecuritySchemaTypeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemaTypeImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemaTypeImpl.prototype.getKind = function () {
 	        return "SecuritySchemaType";
 	    };
-	    /***
+	    /**
 	     * You may declare settings needed to use this type of security security schemas
-	     ***/
+	     **/
 	    SecuritySchemaTypeImpl.prototype.requiredSettings = function () {
 	        return _super.prototype.elements.call(this, 'requiredSettings');
 	    };
-	    /***
+	    /**
 	     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
 	     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
-	     ***/
+	     **/
 	    SecuritySchemaTypeImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
@@ -1113,29 +1057,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "TypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.getKind = function () {
 	        return "TypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * name of the parameter
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -1143,22 +1087,22 @@ module.exports =
 	    TypeDeclarationImpl.prototype.xml = function () {
 	        return _super.prototype.element.call(this, 'xml');
 	    };
-	    /***
+	    /**
 	     * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.facets = function () {
 	        return _super.prototype.elements.call(this, 'facets');
 	    };
-	    /***
+	    /**
 	     * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set schema value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setSchema = function (param) {
 	        this.highLevel().attrOrCreate("schema").setValue("" + param);
 	        return this;
@@ -1166,131 +1110,131 @@ module.exports =
 	    TypeDeclarationImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A base type which the current type extends, or more generally a type expression.
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype["type"] = function () {
 	        return _super.prototype.attributes.call(this, 'type', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set type value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setType = function (param) {
 	        this.highLevel().attrOrCreate("type").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Location of the parameter (can not be edited by user)
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.location = function () {
 	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ModelLocationImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Kind of location
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.locationKind = function () {
 	        return _super.prototype.attribute.call(this, 'locationKind', function (attr) { return new LocationKindImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Provides default value for a property
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype["default"] = function () {
 	        return _super.prototype.attribute.call(this, 'default', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set default value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setDefault = function (param) {
 	        this.highLevel().attrOrCreate("default").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * An example of an instance of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set example value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setExample = function (param) {
 	        this.highLevel().attrOrCreate("example").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.examples = function () {
 	        return _super.prototype.elements.call(this, 'examples');
 	    };
-	    /***
+	    /**
 	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.repeat = function () {
 	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set repeat value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setRepeat = function (param) {
 	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Sets if property is optional or not
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.required = function () {
 	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set required value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setRequired = function (param) {
 	        this.highLevel().attrOrCreate("required").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the type
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the type
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    TypeDeclarationImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /***
-	     * Path relative to API root
-	     ***/
+	    /**
+	     * Runtime representation of type represented by this AST node
+	     **/
 	    TypeDeclarationImpl.prototype.runtimeType = function () {
 	        return helper.runtimeType(this);
 	    };
@@ -1299,30 +1243,29 @@ module.exports =
 	exports.TypeDeclarationImpl = TypeDeclarationImpl;
 	var XMLSerializationHintsImpl = (function (_super) {
 	    __extends(XMLSerializationHintsImpl, _super);
-	    function XMLSerializationHintsImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLSerializationHints(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function XMLSerializationHintsImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.wrapperClassName = function () {
 	        return "XMLSerializationHintsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.getKind = function () {
 	        return "XMLSerializationHints";
 	    };
 	    XMLSerializationHintsImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -1330,10 +1273,10 @@ module.exports =
 	    XMLSerializationHintsImpl.prototype.namespace = function () {
 	        return _super.prototype.attribute.call(this, 'namespace', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set namespace value
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.setNamespace = function (param) {
 	        this.highLevel().attrOrCreate("namespace").setValue("" + param);
 	        return this;
@@ -1341,10 +1284,10 @@ module.exports =
 	    XMLSerializationHintsImpl.prototype.prefix = function () {
 	        return _super.prototype.attribute.call(this, 'prefix', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set prefix value
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.setPrefix = function (param) {
 	        this.highLevel().attrOrCreate("prefix").setValue("" + param);
 	        return this;
@@ -1352,10 +1295,10 @@ module.exports =
 	    XMLSerializationHintsImpl.prototype.attribute = function () {
 	        return _super.prototype.attribute.call(this, 'attribute', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set attribute value
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.setAttribute = function (param) {
 	        this.highLevel().attrOrCreate("attribute").setValue("" + param);
 	        return this;
@@ -1363,10 +1306,10 @@ module.exports =
 	    XMLSerializationHintsImpl.prototype.wrapped = function () {
 	        return _super.prototype.attribute.call(this, 'wrapped', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set wrapped value
-	     ***/
+	     **/
 	    XMLSerializationHintsImpl.prototype.setWrapped = function (param) {
 	        this.highLevel().attrOrCreate("wrapped").setValue("" + param);
 	        return this;
@@ -1378,16 +1321,16 @@ module.exports =
 	    function ModelLocationImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ModelLocationImpl.prototype.wrapperClassName = function () {
 	        return "ModelLocationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ModelLocationImpl.prototype.getKind = function () {
 	        return "ModelLocation";
 	    };
@@ -1398,16 +1341,16 @@ module.exports =
 	    function LocationKindImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    LocationKindImpl.prototype.wrapperClassName = function () {
 	        return "LocationKindImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    LocationKindImpl.prototype.getKind = function () {
 	        return "LocationKind";
 	    };
@@ -1420,43 +1363,43 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createExampleSpec(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.wrapperClassName = function () {
 	        return "ExampleSpecImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.getKind = function () {
 	        return "ExampleSpec";
 	    };
-	    /***
+	    /**
 	     * The example itself
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set content value
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.setContent = function (param) {
 	        this.highLevel().attrOrCreate("content").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.strict = function () {
 	        return _super.prototype.attribute.call(this, 'strict', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set strict value
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.setStrict = function (param) {
 	        this.highLevel().attrOrCreate("strict").setValue("" + param);
 	        return this;
@@ -1464,95 +1407,95 @@ module.exports =
 	    ExampleSpecImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the example
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the example
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    ExampleSpecImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
 	    return ExampleSpecImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ExampleSpecImpl = ExampleSpecImpl;
-	/***
+	/**
 	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
-	 ***/
+	 **/
 	var FileTypeDeclarationImpl = (function (_super) {
 	    __extends(FileTypeDeclarationImpl, _super);
 	    function FileTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createFileTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "FileTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.getKind = function () {
 	        return "FileTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.fileTypes = function () {
 	        return _super.prototype.attributes.call(this, 'fileTypes', function (attr) { return new ContentTypeImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The minLength attribute specifies the parameter value's minimum number of bytes.
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minLength value
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.setMinLength = function (param) {
 	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The maxLength attribute specifies the parameter value's maximum number of bytes.
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maxLength value
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.setMaxLength = function (param) {
 	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
 	        return this;
@@ -1566,63 +1509,63 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createArrayTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "ArrayTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.getKind = function () {
 	        return "ArrayTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * Should items in array be unique
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.uniqueItems = function () {
 	        return _super.prototype.attribute.call(this, 'uniqueItems', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set uniqueItems value
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.setUniqueItems = function (param) {
 	        this.highLevel().attrOrCreate("uniqueItems").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Array component type.
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.items = function () {
 	        return _super.prototype.element.call(this, 'items');
 	    };
-	    /***
+	    /**
 	     * Minimum amount of items in array
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.minItems = function () {
 	        return _super.prototype.attribute.call(this, 'minItems', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minItems value
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.setMinItems = function (param) {
 	        this.highLevel().attrOrCreate("minItems").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Maximum amount of items in array
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.maxItems = function () {
 	        return _super.prototype.attribute.call(this, 'maxItems', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maxItems value
-	     ***/
+	     **/
 	    ArrayTypeDeclarationImpl.prototype.setMaxItems = function (param) {
 	        this.highLevel().attrOrCreate("maxItems").setValue("" + param);
 	        return this;
@@ -1636,29 +1579,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createUnionTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    UnionTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "UnionTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    UnionTypeDeclarationImpl.prototype.getKind = function () {
 	        return "UnionTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * Type property name to be used as a discriminator or boolean
-	     ***/
+	     **/
 	    UnionTypeDeclarationImpl.prototype.discriminator = function () {
 	        return _super.prototype.attribute.call(this, 'discriminator', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set discriminator value
-	     ***/
+	     **/
 	    UnionTypeDeclarationImpl.prototype.setDiscriminator = function (param) {
 	        this.highLevel().attrOrCreate("discriminator").setValue("" + param);
 	        return this;
@@ -1672,81 +1615,81 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createObjectTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "ObjectTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.getKind = function () {
 	        return "ObjectTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * The properties that instances of this type may or must have.
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.properties = function () {
 	        return _super.prototype.elements.call(this, 'properties');
 	    };
-	    /***
+	    /**
 	     * The minimum number of properties allowed for instances of this type.
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.minProperties = function () {
 	        return _super.prototype.attribute.call(this, 'minProperties', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minProperties value
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.setMinProperties = function (param) {
 	        this.highLevel().attrOrCreate("minProperties").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The maximum number of properties allowed for instances of this type.
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.maxProperties = function () {
 	        return _super.prototype.attribute.call(this, 'maxProperties', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maxProperties value
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.setMaxProperties = function (param) {
 	        this.highLevel().attrOrCreate("maxProperties").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * JSON schema style syntax for declaring maps
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.additionalProperties = function () {
 	        return _super.prototype.element.call(this, 'additionalProperties');
 	    };
-	    /***
+	    /**
 	     * JSON schema style syntax for declaring key restricted maps
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.patternProperties = function () {
 	        return _super.prototype.elements.call(this, 'patternProperties');
 	    };
-	    /***
+	    /**
 	     * Type property name to be used as discriminator, or boolean
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.discriminator = function () {
 	        return _super.prototype.attribute.call(this, 'discriminator', function (attr) { return new pointerImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The value of discriminator for the type.
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.discriminatorValue = function () {
 	        return _super.prototype.attribute.call(this, 'discriminatorValue', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set discriminatorValue value
-	     ***/
+	     **/
 	    ObjectTypeDeclarationImpl.prototype.setDiscriminatorValue = function (param) {
 	        this.highLevel().attrOrCreate("discriminatorValue").setValue("" + param);
 	        return this;
@@ -1754,80 +1697,80 @@ module.exports =
 	    return ObjectTypeDeclarationImpl;
 	})(TypeDeclarationImpl);
 	exports.ObjectTypeDeclarationImpl = ObjectTypeDeclarationImpl;
-	/***
+	/**
 	 * Value must be a string
-	 ***/
+	 **/
 	var StringTypeDeclarationImpl = (function (_super) {
 	    __extends(StringTypeDeclarationImpl, _super);
 	    function StringTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createStringTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.getKind = function () {
 	        return "StringTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * Regular expression that this string should path
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.pattern = function () {
 	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set pattern value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setPattern = function (param) {
 	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Minimum length of the string
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minLength value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setMinLength = function (param) {
 	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Maximum length of the string
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maxLength value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setMaxLength = function (param) {
 	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set enum value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setEnum = function (param) {
 	        this.highLevel().attrOrCreate("enum").setValue("" + param);
 	        return this;
@@ -1835,144 +1778,144 @@ module.exports =
 	    return StringTypeDeclarationImpl;
 	})(TypeDeclarationImpl);
 	exports.StringTypeDeclarationImpl = StringTypeDeclarationImpl;
-	/***
+	/**
 	 * Value must be a boolean
-	 ***/
+	 **/
 	var BooleanTypeDeclarationImpl = (function (_super) {
 	    __extends(BooleanTypeDeclarationImpl, _super);
 	    function BooleanTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BooleanTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BooleanTypeDeclarationImpl.prototype.getKind = function () {
 	        return "BooleanTypeDeclaration";
 	    };
 	    return BooleanTypeDeclarationImpl;
 	})(TypeDeclarationImpl);
 	exports.BooleanTypeDeclarationImpl = BooleanTypeDeclarationImpl;
-	/***
+	/**
 	 * Value must be a boolean
-	 ***/
+	 **/
 	var ValueTypeDeclarationImpl = (function (_super) {
 	    __extends(ValueTypeDeclarationImpl, _super);
 	    function ValueTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createValueTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ValueTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "ValueTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ValueTypeDeclarationImpl.prototype.getKind = function () {
 	        return "ValueTypeDeclaration";
 	    };
 	    return ValueTypeDeclarationImpl;
 	})(TypeDeclarationImpl);
 	exports.ValueTypeDeclarationImpl = ValueTypeDeclarationImpl;
-	/***
+	/**
 	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
-	 ***/
+	 **/
 	var NumberTypeDeclarationImpl = (function (_super) {
 	    __extends(NumberTypeDeclarationImpl, _super);
 	    function NumberTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.getKind = function () {
 	        return "NumberTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.minimum = function () {
 	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minimum value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setMinimum = function (param) {
 	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.maximum = function () {
 	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maximum value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setMaximum = function (param) {
 	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set enum value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setEnum = function (param) {
 	        this.highLevel().attrOrCreate("enum").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Value format
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.format = function () {
 	        return _super.prototype.attribute.call(this, 'format', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set format value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setFormat = function (param) {
 	        this.highLevel().attrOrCreate("format").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A numeric instance is valid against "multipleOf" if the result of the division of the instance by this keyword's value is an integer.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.multipleOf = function () {
 	        return _super.prototype.attribute.call(this, 'multipleOf', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set multipleOf value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setMultipleOf = function (param) {
 	        this.highLevel().attrOrCreate("multipleOf").setValue("" + param);
 	        return this;
@@ -1980,35 +1923,35 @@ module.exports =
 	    return NumberTypeDeclarationImpl;
 	})(TypeDeclarationImpl);
 	exports.NumberTypeDeclarationImpl = NumberTypeDeclarationImpl;
-	/***
+	/**
 	 * Value MUST be a integer.
-	 ***/
+	 **/
 	var IntegerTypeDeclarationImpl = (function (_super) {
 	    __extends(IntegerTypeDeclarationImpl, _super);
 	    function IntegerTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    IntegerTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "IntegerTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    IntegerTypeDeclarationImpl.prototype.getKind = function () {
 	        return "IntegerTypeDeclaration";
 	    };
 	    IntegerTypeDeclarationImpl.prototype.format = function () {
 	        return _super.prototype.attribute.call(this, 'format', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set format value
-	     ***/
+	     **/
 	    IntegerTypeDeclarationImpl.prototype.setFormat = function (param) {
 	        this.highLevel().attrOrCreate("format").setValue("" + param);
 	        return this;
@@ -2022,16 +1965,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLPointerElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLPointerElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLPointerElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLPointerElementImpl.prototype.getKind = function () {
 	        return "RAMLPointerElement";
 	    };
@@ -2047,16 +1990,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLExpression(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLExpressionImpl.prototype.wrapperClassName = function () {
 	        return "RAMLExpressionImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLExpressionImpl.prototype.getKind = function () {
 	        return "RAMLExpression";
 	    };
@@ -2069,43 +2012,43 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createScriptHookElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.wrapperClassName = function () {
 	        return "ScriptHookElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.getKind = function () {
 	        return "ScriptHookElement";
 	    };
-	    /***
+	    /**
 	     * Typescript file defining interface which this scrip should comply to
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.declaredIn = function () {
 	        return _super.prototype.attribute.call(this, 'declaredIn', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set declaredIn value
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.setDeclaredIn = function (param) {
 	        this.highLevel().attrOrCreate("declaredIn").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Name of the interface which scripts should comply to
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.interfaceName = function () {
 	        return _super.prototype.attribute.call(this, 'interfaceName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set interfaceName value
-	     ***/
+	     **/
 	    ScriptHookElementImpl.prototype.setInterfaceName = function (param) {
 	        this.highLevel().attrOrCreate("interfaceName").setValue("" + param);
 	        return this;
@@ -2119,41 +2062,41 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSchemaElement(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SchemaElementImpl.prototype.wrapperClassName = function () {
 	        return "SchemaElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SchemaElementImpl.prototype.getKind = function () {
 	        return "SchemaElement";
 	    };
 	    return SchemaElementImpl;
 	})(TypeDeclarationImpl);
 	exports.SchemaElementImpl = SchemaElementImpl;
-	/***
+	/**
 	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
-	 ***/
+	 **/
 	var DateTypeDeclarationImpl = (function (_super) {
 	    __extends(DateTypeDeclarationImpl, _super);
 	    function DateTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDateTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DateTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "DateTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DateTypeDeclarationImpl.prototype.getKind = function () {
 	        return "DateTypeDeclaration";
 	    };
@@ -2169,28 +2112,28 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
 	        return "HasNormalParametersImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.getKind = function () {
 	        return "HasNormalParameters";
 	    };
-	    /***
+	    /**
 	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /***
+	    /**
 	     * Headers that allowed at this position
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
@@ -2206,57 +2149,57 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.wrapperClassName = function () {
 	        return "MethodBaseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.getKind = function () {
 	        return "MethodBase";
 	    };
-	    /***
+	    /**
 	     * Information about the expected responses to a request
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /***
+	    /**
 	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
 	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
 	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /***
+	    /**
 	     * A method can override the protocols specified in the resource or at the API root, by employing this property.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set protocols value
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.setProtocols = function (param) {
 	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed traits
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
@@ -2269,66 +2212,66 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResponseImpl.prototype.wrapperClassName = function () {
 	        return "ResponseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResponseImpl.prototype.getKind = function () {
 	        return "Response";
 	    };
-	    /***
+	    /**
 	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-	     ***/
+	     **/
 	    ResponseImpl.prototype.code = function () {
 	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Detailed information about any response headers returned by this method
-	     ***/
+	     **/
 	    ResponseImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /***
+	    /**
 	     * The body of the response: a body declaration
-	     ***/
+	     **/
 	    ResponseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the response
-	     ***/
+	     **/
 	    ResponseImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ResponseImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the response
-	     ***/
+	     **/
 	    ResponseImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    ResponseImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * true for codes < 400 and false otherwise
-	     ***/
+	     **/
 	    ResponseImpl.prototype.isOkRange = function () {
 	        return helper.isOkRange(this);
 	    };
@@ -2341,29 +2284,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    TraitImpl.prototype.wrapperClassName = function () {
 	        return "TraitImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    TraitImpl.prototype.getKind = function () {
 	        return "Trait";
 	    };
-	    /***
+	    /**
 	     * Name of the trait
-	     ***/
+	     **/
 	    TraitImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    TraitImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -2371,17 +2314,17 @@ module.exports =
 	    TraitImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    TraitImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * You may import library locally here it contents is accessible only inside of this trait
-	     ***/
+	     **/
 	    TraitImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -2394,75 +2337,75 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createLibraryBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.wrapperClassName = function () {
 	        return "LibraryBaseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.getKind = function () {
 	        return "LibraryBase";
 	    };
 	    LibraryBaseImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.schemas = function () {
 	        return _super.prototype.elements.call(this, 'schemas');
 	    };
-	    /***
+	    /**
 	     * Declarations of (data) types for use within this API
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.types = function () {
 	        return _super.prototype.elements.call(this, 'types');
 	    };
-	    /***
+	    /**
 	     * Declarations of traits for use within this API
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.traits = function () {
 	        return _super.prototype.elements.call(this, 'traits');
 	    };
-	    /***
+	    /**
 	     * Declarations of resource types for use within this API
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.resourceTypes = function () {
 	        return _super.prototype.elements.call(this, 'resourceTypes');
 	    };
-	    /***
+	    /**
 	     * Declarations of annotation types for use by annotations
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.annotationTypes = function () {
 	        return _super.prototype.elements.call(this, 'annotationTypes');
 	    };
-	    /***
+	    /**
 	     * Security schemas types declarations
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.securitySchemaTypes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemaTypes');
 	    };
-	    /***
+	    /**
 	     * Declarations of security schemes for use within this API.
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.securitySchemes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemes');
 	    };
-	    /***
+	    /**
 	     * Importing libraries
-	     ***/
+	     **/
 	    LibraryBaseImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -2475,29 +2418,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createLibrary(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    LibraryImpl.prototype.wrapperClassName = function () {
 	        return "LibraryImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    LibraryImpl.prototype.getKind = function () {
 	        return "Library";
 	    };
-	    /***
+	    /**
 	     * contains description of why library exist
-	     ***/
+	     **/
 	    LibraryImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    LibraryImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
@@ -2511,115 +2454,115 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MethodImpl.prototype.wrapperClassName = function () {
 	        return "MethodImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MethodImpl.prototype.getKind = function () {
 	        return "Method";
 	    };
 	    MethodImpl.prototype.signature = function () {
 	        return _super.prototype.attribute.call(this, 'signature', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Method that can be called
-	     ***/
+	     **/
 	    MethodImpl.prototype.method = function () {
 	        return _super.prototype.attribute.call(this, 'method', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set method value
-	     ***/
+	     **/
 	    MethodImpl.prototype.setMethod = function (param) {
 	        this.highLevel().attrOrCreate("method").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the method (in the resource's context).
-	     ***/
+	     **/
 	    MethodImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    MethodImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the method (in the resource's context)
-	     ***/
+	     **/
 	    MethodImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-	     ***/
+	     **/
 	    MethodImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
 	    };
-	    /***
+	    /**
 	     * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
-	     ***/
+	     **/
 	    MethodImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /***
+	    /**
 	     * Detailed information about any request headers needed by this method.
-	     ***/
+	     **/
 	    MethodImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /***
+	    /**
 	     * Some methods admit request bodies, which are described by this property.
-	     ***/
+	     **/
 	    MethodImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /***
+	    /**
 	     * A list of the traits to apply to this method. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
-	     ***/
+	     **/
 	    MethodImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    MethodImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The security schemes that apply to this method
-	     ***/
+	     **/
 	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-	     ***/
+	     **/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
 	    };
-	    /***
+	    /**
 	     * Api owning the resource as a sibling
-	     ***/
+	     **/
 	    MethodImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /***
+	    /**
 	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
 	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
 	     * For other methods throws Exception.
-	     ***/
+	     **/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
 	    };
@@ -2632,149 +2575,149 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemePart(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemePartImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.getKind = function () {
 	        return "SecuritySchemePart";
 	    };
-	    /***
+	    /**
 	     * Headers that allowed at this position
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /***
+	    /**
 	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
-	    /***
+	    /**
 	     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
 	    };
-	    /***
+	    /**
 	     * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed traits
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the security scheme part
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the security scheme part
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
-	     ***/
+	     **/
 	    SecuritySchemePartImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
 	    return SecuritySchemePartImpl;
 	})(MethodBaseImpl);
 	exports.SecuritySchemePartImpl = SecuritySchemePartImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var AbstractSecuritySchemeImpl = (function (_super) {
 	    __extends(AbstractSecuritySchemeImpl, _super);
 	    function AbstractSecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createAbstractSecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "AbstractSecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.getKind = function () {
 	        return "AbstractSecurityScheme";
 	    };
 	    AbstractSecuritySchemeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set type value
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.setType = function (param) {
 	        this.highLevel().attrOrCreate("type").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The description MAY be used to describe a securityScheme.
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
 	     * Including the security scheme description completes an API documentation.
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
-	    /***
+	    /**
 	     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
 	     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-	     ***/
+	     **/
 	    AbstractSecuritySchemeImpl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
@@ -2783,20 +2726,19 @@ module.exports =
 	exports.AbstractSecuritySchemeImpl = AbstractSecuritySchemeImpl;
 	var SecuritySchemeSettingsImpl = (function (_super) {
 	    __extends(SecuritySchemeSettingsImpl, _super);
-	    function SecuritySchemeSettingsImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemeSettings(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function SecuritySchemeSettingsImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "SecuritySchemeSettings";
 	    };
@@ -2809,44 +2751,44 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth1SecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "OAuth1SecuritySchemeSettings";
 	    };
-	    /***
+	    /**
 	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
 	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriStringImpl(attr); });
 	    };
 	    OAuth1SecuritySchemeSettingsImpl.prototype.signatures = function () {
 	        return _super.prototype.attributes.call(this, 'signatures', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set signatures value
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.setSignatures = function (param) {
 	        this.highLevel().attrOrCreate("signatures").setValue("" + param);
 	        return this;
@@ -2860,52 +2802,52 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth2SecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "OAuth2SecuritySchemeSettings";
 	    };
-	    /***
+	    /**
 	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriStringImpl(attr); });
 	    };
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
 	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set authorizationGrants value
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
 	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
 	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set scopes value
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
 	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
 	        return this;
@@ -2919,26 +2861,26 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createPassThroughSecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "PassThroughSecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "PassThroughSecuritySchemeSettings";
 	    };
 	    PassThroughSecuritySchemeSettingsImpl.prototype.queryParameterName = function () {
 	        return _super.prototype.attribute.call(this, 'queryParameterName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set queryParameterName value
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeSettingsImpl.prototype.setQueryParameterName = function (param) {
 	        this.highLevel().attrOrCreate("queryParameterName").setValue("" + param);
 	        return this;
@@ -2946,10 +2888,10 @@ module.exports =
 	    PassThroughSecuritySchemeSettingsImpl.prototype.headerName = function () {
 	        return _super.prototype.attribute.call(this, 'headerName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set headerName value
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeSettingsImpl.prototype.setHeaderName = function (param) {
 	        this.highLevel().attrOrCreate("headerName").setValue("" + param);
 	        return this;
@@ -2957,25 +2899,25 @@ module.exports =
 	    return PassThroughSecuritySchemeSettingsImpl;
 	})(SecuritySchemeSettingsImpl);
 	exports.PassThroughSecuritySchemeSettingsImpl = PassThroughSecuritySchemeSettingsImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var OAuth2SecuritySchemeImpl = (function (_super) {
 	    __extends(OAuth2SecuritySchemeImpl, _super);
 	    function OAuth2SecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "OAuth2SecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeImpl.prototype.getKind = function () {
 	        return "OAuth2SecurityScheme";
 	    };
@@ -2985,25 +2927,25 @@ module.exports =
 	    return OAuth2SecuritySchemeImpl;
 	})(AbstractSecuritySchemeImpl);
 	exports.OAuth2SecuritySchemeImpl = OAuth2SecuritySchemeImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var OAuth1SecuritySchemeImpl = (function (_super) {
 	    __extends(OAuth1SecuritySchemeImpl, _super);
 	    function OAuth1SecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "OAuth1SecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeImpl.prototype.getKind = function () {
 	        return "OAuth1SecurityScheme";
 	    };
@@ -3013,25 +2955,25 @@ module.exports =
 	    return OAuth1SecuritySchemeImpl;
 	})(AbstractSecuritySchemeImpl);
 	exports.OAuth1SecuritySchemeImpl = OAuth1SecuritySchemeImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var PassThroughSecuritySchemeImpl = (function (_super) {
 	    __extends(PassThroughSecuritySchemeImpl, _super);
 	    function PassThroughSecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createPassThroughSecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "PassThroughSecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    PassThroughSecuritySchemeImpl.prototype.getKind = function () {
 	        return "PassThroughSecurityScheme";
 	    };
@@ -3041,75 +2983,75 @@ module.exports =
 	    return PassThroughSecuritySchemeImpl;
 	})(AbstractSecuritySchemeImpl);
 	exports.PassThroughSecuritySchemeImpl = PassThroughSecuritySchemeImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var BasicSecuritySchemeImpl = (function (_super) {
 	    __extends(BasicSecuritySchemeImpl, _super);
 	    function BasicSecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBasicSecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BasicSecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "BasicSecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BasicSecuritySchemeImpl.prototype.getKind = function () {
 	        return "BasicSecurityScheme";
 	    };
 	    return BasicSecuritySchemeImpl;
 	})(AbstractSecuritySchemeImpl);
 	exports.BasicSecuritySchemeImpl = BasicSecuritySchemeImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var DigestSecuritySchemeImpl = (function (_super) {
 	    __extends(DigestSecuritySchemeImpl, _super);
 	    function DigestSecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDigestSecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DigestSecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "DigestSecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DigestSecuritySchemeImpl.prototype.getKind = function () {
 	        return "DigestSecurityScheme";
 	    };
 	    return DigestSecuritySchemeImpl;
 	})(AbstractSecuritySchemeImpl);
 	exports.DigestSecuritySchemeImpl = DigestSecuritySchemeImpl;
-	/***
+	/**
 	 * Declares globally referable security schema definition
-	 ***/
+	 **/
 	var CustomSecuritySchemeImpl = (function (_super) {
 	    __extends(CustomSecuritySchemeImpl, _super);
 	    function CustomSecuritySchemeImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createCustomSecurityScheme(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    CustomSecuritySchemeImpl.prototype.wrapperClassName = function () {
 	        return "CustomSecuritySchemeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    CustomSecuritySchemeImpl.prototype.getKind = function () {
 	        return "CustomSecurityScheme";
 	    };
@@ -3122,46 +3064,46 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.wrapperClassName = function () {
 	        return "ResourceBaseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.getKind = function () {
 	        return "ResourceBase";
 	    };
-	    /***
+	    /**
 	     * Methods that are part of this resource type definition
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /***
+	    /**
 	     * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Detailed information about any URI parameters of this resource
-	     ***/
+	     **/
 	    ResourceBaseImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
@@ -3174,29 +3116,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.getKind = function () {
 	        return "ResourceType";
 	    };
-	    /***
+	    /**
 	     * Name of the resource type
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -3204,17 +3146,17 @@ module.exports =
 	    ResourceTypeImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * You may import library locally here it contents is accessible only inside of this resource type
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.uses = function () {
 	        return _super.prototype.elements.call(this, 'uses');
 	    };
@@ -3227,106 +3169,106 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceImpl.prototype.wrapperClassName = function () {
 	        return "ResourceImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getKind = function () {
 	        return "Resource";
 	    };
 	    ResourceImpl.prototype.signature = function () {
 	        return _super.prototype.attribute.call(this, 'signature', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Relative URL of this resource from the parent resource
-	     ***/
+	     **/
 	    ResourceImpl.prototype.relativeUri = function () {
 	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
-	     ***/
+	     **/
 	    ResourceImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the resource.
-	     ***/
+	     **/
 	    ResourceImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ResourceImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the resource.
-	     ***/
+	     **/
 	    ResourceImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    ResourceImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Path relative to API root
-	     ***/
+	     **/
 	    ResourceImpl.prototype.completeRelativeUri = function () {
 	        return helper.completeRelativeUri(this);
 	    };
-	    /***
+	    /**
 	     * baseUri of owning Api concatenated with completeRelativeUri
-	     ***/
+	     **/
 	    ResourceImpl.prototype.absoluteUri = function () {
 	        return helper.absoluteUri(this);
 	    };
-	    /***
+	    /**
 	     * Parent resource for non top level resources
-	     ***/
+	     **/
 	    ResourceImpl.prototype.parentResource = function () {
 	        return helper.parent(this);
 	    };
-	    /***
+	    /**
 	     * Get child resource by its relative path
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /***
+	    /**
 	     * Get child method by its name
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getChildMethod = function (method) {
 	        return helper.getChildMethod(this, method);
 	    };
-	    /***
+	    /**
 	     * Api owning the resource as a sibling
-	     ***/
+	     **/
 	    ResourceImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	     ***/
+	     **/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all absolute uri parameters regardless of whether they are described in
 	     * `baseUriParameters` and `uriParameters` or not
-	     ***/
+	     **/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
 	    };
@@ -3339,90 +3281,90 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createAnnotationTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "AnnotationTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.getKind = function () {
 	        return "AnnotationTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * Name of this annotation type
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Instructions on how and when to use this annotation in a RAML spec.
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Declarations of parameters allowed in this annotation type
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.parameters = function () {
 	        return _super.prototype.elements.call(this, 'parameters');
 	    };
-	    /***
+	    /**
 	     * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.allowMultiple = function () {
 	        return _super.prototype.attribute.call(this, 'allowMultiple', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set allowMultiple value
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.setAllowMultiple = function (param) {
 	        this.highLevel().attrOrCreate("allowMultiple").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.allowedTargets = function () {
 	        return _super.prototype.attributes.call(this, 'allowedTargets', function (attr) { return new AnnotationTargetImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * An alternate, human-friendly name for the annotation
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the annotation
-	     ***/
+	     **/
 	    AnnotationTypeDeclarationImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -3431,20 +3373,19 @@ module.exports =
 	exports.AnnotationTypeDeclarationImpl = AnnotationTypeDeclarationImpl;
 	var RAMLSimpleElementImpl = (function (_super) {
 	    __extends(RAMLSimpleElementImpl, _super);
-	    function RAMLSimpleElementImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLSimpleElement(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function RAMLSimpleElementImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSimpleElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLSimpleElementImpl.prototype.getKind = function () {
 	        return "RAMLSimpleElement";
 	    };
@@ -3457,81 +3398,81 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createImportDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ImportDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "ImportDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ImportDeclarationImpl.prototype.getKind = function () {
 	        return "ImportDeclaration";
 	    };
-	    /***
+	    /**
 	     * Name prefix (without dot) used to refer imported declarations
-	     ***/
+	     **/
 	    ImportDeclarationImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set key value
-	     ***/
+	     **/
 	    ImportDeclarationImpl.prototype.setKey = function (param) {
 	        this.highLevel().attrOrCreate("key").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Content of the declared namespace
-	     ***/
+	     **/
 	    ImportDeclarationImpl.prototype.value = function () {
 	        return _super.prototype.element.call(this, 'value');
 	    };
 	    return ImportDeclarationImpl;
 	})(RAMLSimpleElementImpl);
 	exports.ImportDeclarationImpl = ImportDeclarationImpl;
-	/***
+	/**
 	 * Content of the schema
-	 ***/
+	 **/
 	var GlobalSchemaImpl = (function (_super) {
 	    __extends(GlobalSchemaImpl, _super);
 	    function GlobalSchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
 	        return "GlobalSchemaImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.getKind = function () {
 	        return "GlobalSchema";
 	    };
-	    /***
+	    /**
 	     * Name of the global schema, used to refer on schema content
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set key value
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.setKey = function (param) {
 	        this.highLevel().attrOrCreate("key").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Content of the schema
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.value = function () {
 	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
 	    };
@@ -3544,107 +3485,107 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ApiImpl.prototype.wrapperClassName = function () {
 	        return "ApiImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ApiImpl.prototype.getKind = function () {
 	        return "Api";
 	    };
-	    /***
+	    /**
 	     * Short plain-text label for the API
-	     ***/
+	     **/
 	    ApiImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The version of the API, e.g. "v1"
-	     ***/
+	     **/
 	    ApiImpl.prototype.version = function () {
 	        return _super.prototype.attribute.call(this, 'version', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set version value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setVersion = function (param) {
 	        this.highLevel().attrOrCreate("version").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI.
-	     ***/
+	     **/
 	    ApiImpl.prototype.baseUri = function () {
 	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Named parameters used in the baseUri (template)
-	     ***/
+	     **/
 	    ApiImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /***
+	    /**
 	     * The protocols supported by the API
-	     ***/
+	     **/
 	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set protocols value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setProtocols = function (param) {
 	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The default media type to use for request and response bodies (payloads), e.g. "application/json"
-	     ***/
+	     **/
 	    ApiImpl.prototype.mediaType = function () {
 	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The security schemes that apply to every resource and method in the API
-	     ***/
+	     **/
 	    ApiImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc
-	     ***/
+	     **/
 	    ApiImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /***
+	    /**
 	     * Additional overall documentation for the API
-	     ***/
+	     **/
 	    ApiImpl.prototype.documentation = function () {
 	        return _super.prototype.elements.call(this, 'documentation');
 	    };
-	    /***
+	    /**
 	     * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-	     ***/
+	     **/
 	    ApiImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
@@ -3652,65 +3593,65 @@ module.exports =
 	    ApiImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A longer, human-friendly description of the API
-	     ***/
+	     **/
 	    ApiImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-	     ***/
+	     **/
 	    ApiImpl.prototype.annotations = function () {
 	        return _super.prototype.attributes.call(this, 'annotations', function (attr) { return new AnnotationRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Security schemas types declarations
-	     ***/
+	     **/
 	    ApiImpl.prototype.securitySchemaTypes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemaTypes');
 	    };
-	    /***
+	    /**
 	     * Equivalent API with traits and resource types expanded
-	     ***/
+	     **/
 	    ApiImpl.prototype.expand = function () {
 	        return helper.expandTraitsAndResourceTypes(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all traits including those defined in libraries
-	     ***/
+	     **/
 	    ApiImpl.prototype.allTraits = function () {
 	        return helper.allTraits(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all resource types including those defined in libraries
-	     ***/
+	     **/
 	    ApiImpl.prototype.allResourceTypes = function () {
 	        return helper.allResourceTypes(this);
 	    };
-	    /***
+	    /**
 	     * Get child resource by its relative path
-	     ***/
+	     **/
 	    ApiImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /***
+	    /**
 	     * Retrieve all resources ofthe Api
-	     ***/
+	     **/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	     ***/
+	     **/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
 	    };
@@ -3723,29 +3664,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApiOverlay(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.wrapperClassName = function () {
 	        return "ApiOverlayImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.getKind = function () {
 	        return "ApiOverlay";
 	    };
-	    /***
+	    /**
 	     * contains description of why overlay exist
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
@@ -3753,24 +3694,24 @@ module.exports =
 	    ApiOverlayImpl.prototype.masterRef = function () {
 	        return _super.prototype.attribute.call(this, 'masterRef', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set masterRef value
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.setMasterRef = function (param) {
 	        this.highLevel().attrOrCreate("masterRef").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Short plain-text label for the API
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    ApiOverlayImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
@@ -3784,29 +3725,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApiExtension(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.wrapperClassName = function () {
 	        return "ApiExtensionImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.getKind = function () {
 	        return "ApiExtension";
 	    };
-	    /***
+	    /**
 	     * contains description of why extension exist
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
@@ -3814,24 +3755,24 @@ module.exports =
 	    ApiExtensionImpl.prototype.masterRef = function () {
 	        return _super.prototype.attribute.call(this, 'masterRef', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set masterRef value
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.setMasterRef = function (param) {
 	        this.highLevel().attrOrCreate("masterRef").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Short plain-text label for the API
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    ApiExtensionImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
@@ -3839,503 +3780,489 @@ module.exports =
 	    return ApiExtensionImpl;
 	})(ApiImpl);
 	exports.ApiExtensionImpl = ApiExtensionImpl;
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createApi(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Api");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createLibraryBase(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("LibraryBase");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLLanguageElement(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("RAMLLanguageElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createDocumentationItem(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("DocumentationItem");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createScriptSpec(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ScriptSpec");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createApiDescription(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ApiDescription");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createCallbackAPIDescription(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("CallbackAPIDescription");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLProject(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("RAMLProject");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchemaType(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("SecuritySchemaType");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("TypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createXMLSerializationHints(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("XMLSerializationHints");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createExampleSpec(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ExampleSpec");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createFileTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("FileTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createArrayTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ArrayTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createUnionTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("UnionTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createObjectTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ObjectTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createStringTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("StringTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createBooleanTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("BooleanTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createValueTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ValueTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createNumberTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("NumberTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createIntegerTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("IntegerTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLPointerElement(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("RAMLPointerElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLExpression(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("RAMLExpression");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createScriptHookElement(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ScriptHookElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSchemaElement(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("SchemaElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createDateTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("DateTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchemePart(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("SecuritySchemePart");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createMethodBase(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("MethodBase");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createHasNormalParameters(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("HasNormalParameters");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResponse(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Response");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createTrait(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Trait");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createLibrary(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Library");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createMethod(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Method");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createAbstractSecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("AbstractSecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("SecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth1SecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("OAuth1SecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth2SecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("OAuth2SecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createPassThroughSecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("PassThroughSecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth2SecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("OAuth2SecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth1SecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("OAuth1SecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createPassThroughSecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("PassThroughSecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createBasicSecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("BasicSecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createDigestSecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("DigestSecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createCustomSecurityScheme(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("CustomSecurityScheme");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResourceBase(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ResourceBase");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResourceType(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ResourceType");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResource(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("Resource");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createAnnotationTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("AnnotationTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createGlobalSchema(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("GlobalSchema");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLSimpleElement(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("RAMLSimpleElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createImportDeclaration(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ImportDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createApiOverlay(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ApiOverlay");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createApiExtension(key) {
 	    var universe = hl.universeProvider("RAML10");
 	    var nc = universe.type("ApiExtension");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
-	 * Load API synchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
-	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
-	 ***/
-	function loadApi(apiPath, options, extensionsAndOverlays) {
-	    return apiLoader.loadApi1(apiPath, options, extensionsAndOverlays).getOrElse(null);
+	function loadApi(apiPath, arg1, arg2) {
+	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
-	/***
-	 * Load API asynchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application.
-	 * @return Promise&lt;Api&gt;. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
-	 ***/
-	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
-	    return apiLoader.loadApi1Async(apiPath, options, extensionsAndOverlays);
+	function loadApiAsync(apiPath, arg1, arg2) {
+	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
 	exports.loadApiAsync = loadApiAsync;
 
@@ -25490,10 +25417,10 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
-	/***
+	/**
 	 * @hidden
 	 * Build Wrapper node corresponding to the High Level node
-	 ***/
+	 **/
 	function buildWrapperNode(node) {
 	    var nodeClassName = node.definition().nameId();
 	    var wrapperConstructor = classMap[nodeClassName];
@@ -25785,10 +25712,10 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(86);
-	/***
+	/**
 	 * @hidden
 	 * Build Wrapper node corresponding to the High Level node
-	 ***/
+	 **/
 	function buildWrapperNode(node) {
 	    var nodeClassName = node.definition().nameId();
 	    var wrapperConstructor = classMap[nodeClassName];
@@ -25987,80 +25914,73 @@ module.exports =
 	var helper = __webpack_require__(103);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
-	    function RAMLLanguageElementImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLLanguageElement(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function RAMLLanguageElementImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLLanguageElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.getKind = function () {
 	        return "RAMLLanguageElement";
 	    };
-	    /***
+	    /**
 	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
-	     ***/
+	     **/
 	    RAMLLanguageElementImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
 	    return RAMLLanguageElementImpl;
 	})(core.BasicNodeImpl);
 	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
-	var ValueTypeImpl = (function () {
-	    function ValueTypeImpl(attr) {
-	        this.attr = attr;
+	var ValueTypeImpl = (function (_super) {
+	    __extends(ValueTypeImpl, _super);
+	    function ValueTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.wrapperClassName = function () {
 	        return "ValueTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.getKind = function () {
 	        return "ValueType";
 	    };
-	    /***
+	    /**
 	     * @return String representation of the node value
-	     ***/
+	     **/
 	    ValueTypeImpl.prototype.value = function () {
 	        return this.attr.value();
 	    };
-	    /***
-	     * @return Underlying High Level attribute node
-	     ***/
-	    ValueTypeImpl.prototype.highLevel = function () {
-	        return this.attr;
-	    };
 	    return ValueTypeImpl;
-	})();
+	})(core.AttributeNodeImpl);
 	exports.ValueTypeImpl = ValueTypeImpl;
 	var NumberTypeImpl = (function (_super) {
 	    __extends(NumberTypeImpl, _super);
-	    function NumberTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function NumberTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    NumberTypeImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    NumberTypeImpl.prototype.getKind = function () {
 	        return "NumberType";
 	    };
@@ -26069,68 +25989,67 @@ module.exports =
 	exports.NumberTypeImpl = NumberTypeImpl;
 	var BooleanTypeImpl = (function (_super) {
 	    __extends(BooleanTypeImpl, _super);
-	    function BooleanTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function BooleanTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BooleanTypeImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BooleanTypeImpl.prototype.getKind = function () {
 	        return "BooleanType";
 	    };
 	    return BooleanTypeImpl;
 	})(ValueTypeImpl);
 	exports.BooleanTypeImpl = BooleanTypeImpl;
-	var ReferenceImpl = (function () {
-	    function ReferenceImpl(attr) {
-	        this.attr = attr;
+	var ReferenceImpl = (function (_super) {
+	    __extends(ReferenceImpl, _super);
+	    function ReferenceImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.wrapperClassName = function () {
 	        return "ReferenceImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.getKind = function () {
 	        return "Reference";
 	    };
-	    /***
+	    /**
 	     * @return StructuredValue object representing the node value
-	     ***/
+	     **/
 	    ReferenceImpl.prototype.value = function () {
 	        return core.toStructuredValue(this.attr);
 	    };
 	    return ReferenceImpl;
-	})();
+	})(core.AttributeNodeImpl);
 	exports.ReferenceImpl = ReferenceImpl;
 	var ResourceTypeRefImpl = (function (_super) {
 	    __extends(ResourceTypeRefImpl, _super);
-	    function ResourceTypeRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ResourceTypeRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceTypeRefImpl.prototype.getKind = function () {
 	        return "ResourceTypeRef";
 	    };
@@ -26139,20 +26058,19 @@ module.exports =
 	exports.ResourceTypeRefImpl = ResourceTypeRefImpl;
 	var TraitRefImpl = (function (_super) {
 	    __extends(TraitRefImpl, _super);
-	    function TraitRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function TraitRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    TraitRefImpl.prototype.wrapperClassName = function () {
 	        return "TraitRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    TraitRefImpl.prototype.getKind = function () {
 	        return "TraitRef";
 	    };
@@ -26161,20 +26079,19 @@ module.exports =
 	exports.TraitRefImpl = TraitRefImpl;
 	var SecuritySchemaRefImpl = (function (_super) {
 	    __extends(SecuritySchemaRefImpl, _super);
-	    function SecuritySchemaRefImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function SecuritySchemaRefImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemaRefImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaRefImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemaRefImpl.prototype.getKind = function () {
 	        return "SecuritySchemaRef";
 	    };
@@ -26183,195 +26100,187 @@ module.exports =
 	exports.SecuritySchemaRefImpl = SecuritySchemaRefImpl;
 	var StringTypeImpl = (function (_super) {
 	    __extends(StringTypeImpl, _super);
-	    function StringTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function StringTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StringTypeImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StringTypeImpl.prototype.getKind = function () {
 	        return "StringType";
 	    };
 	    return StringTypeImpl;
 	})(ValueTypeImpl);
 	exports.StringTypeImpl = StringTypeImpl;
-	/***
+	/**
 	 * This type currently serves both for absolute and relative urls
-	 ***/
+	 **/
 	var UriTemplateImpl = (function (_super) {
 	    __extends(UriTemplateImpl, _super);
-	    function UriTemplateImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function UriTemplateImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    UriTemplateImpl.prototype.wrapperClassName = function () {
 	        return "UriTemplateImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    UriTemplateImpl.prototype.getKind = function () {
 	        return "UriTemplate";
 	    };
 	    return UriTemplateImpl;
 	})(StringTypeImpl);
 	exports.UriTemplateImpl = UriTemplateImpl;
-	/***
+	/**
 	 * This  type describes relative uri templates
-	 ***/
+	 **/
 	var RelativeUriStringImpl = (function (_super) {
 	    __extends(RelativeUriStringImpl, _super);
-	    function RelativeUriStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function RelativeUriStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RelativeUriStringImpl.prototype.wrapperClassName = function () {
 	        return "RelativeUriStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RelativeUriStringImpl.prototype.getKind = function () {
 	        return "RelativeUriString";
 	    };
 	    return RelativeUriStringImpl;
 	})(UriTemplateImpl);
 	exports.RelativeUriStringImpl = RelativeUriStringImpl;
-	/***
+	/**
 	 * This  type describes absolute uri templates
-	 ***/
+	 **/
 	var FullUriTemplateStringImpl = (function (_super) {
 	    __extends(FullUriTemplateStringImpl, _super);
-	    function FullUriTemplateStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function FullUriTemplateStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FullUriTemplateStringImpl.prototype.wrapperClassName = function () {
 	        return "FullUriTemplateStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FullUriTemplateStringImpl.prototype.getKind = function () {
 	        return "FullUriTemplateString";
 	    };
 	    return FullUriTemplateStringImpl;
 	})(UriTemplateImpl);
 	exports.FullUriTemplateStringImpl = FullUriTemplateStringImpl;
-	/***
+	/**
 	 * This  type describes fixed uris
-	 ***/
+	 **/
 	var FixedUriImpl = (function (_super) {
 	    __extends(FixedUriImpl, _super);
-	    function FixedUriImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function FixedUriImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FixedUriImpl.prototype.wrapperClassName = function () {
 	        return "FixedUriImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FixedUriImpl.prototype.getKind = function () {
 	        return "FixedUri";
 	    };
 	    return FixedUriImpl;
 	})(StringTypeImpl);
 	exports.FixedUriImpl = FixedUriImpl;
-	/***
+	/**
 	 * Schema at this moment only two subtypes are supported (json schema and xsd)
-	 ***/
+	 **/
 	var SchemaStringImpl = (function (_super) {
 	    __extends(SchemaStringImpl, _super);
-	    function SchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function SchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "SchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SchemaStringImpl.prototype.getKind = function () {
 	        return "SchemaString";
 	    };
 	    return SchemaStringImpl;
 	})(StringTypeImpl);
 	exports.SchemaStringImpl = SchemaStringImpl;
-	/***
+	/**
 	 * JSON schema
-	 ***/
+	 **/
 	var JSonSchemaStringImpl = (function (_super) {
 	    __extends(JSonSchemaStringImpl, _super);
-	    function JSonSchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function JSonSchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "JSonSchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    JSonSchemaStringImpl.prototype.getKind = function () {
 	        return "JSonSchemaString";
 	    };
 	    return JSonSchemaStringImpl;
 	})(SchemaStringImpl);
 	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
-	/***
+	/**
 	 * XSD schema
-	 ***/
+	 **/
 	var XMLSchemaStringImpl = (function (_super) {
 	    __extends(XMLSchemaStringImpl, _super);
-	    function XMLSchemaStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function XMLSchemaStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
 	        return "XMLSchemaStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    XMLSchemaStringImpl.prototype.getKind = function () {
 	        return "XMLSchemaString";
 	    };
@@ -26380,20 +26289,19 @@ module.exports =
 	exports.XMLSchemaStringImpl = XMLSchemaStringImpl;
 	var ExampleStringImpl = (function (_super) {
 	    __extends(ExampleStringImpl, _super);
-	    function ExampleStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function ExampleStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ExampleStringImpl.prototype.wrapperClassName = function () {
 	        return "ExampleStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ExampleStringImpl.prototype.getKind = function () {
 	        return "ExampleString";
 	    };
@@ -26402,20 +26310,19 @@ module.exports =
 	exports.ExampleStringImpl = ExampleStringImpl;
 	var JSONExampleImpl = (function (_super) {
 	    __extends(JSONExampleImpl, _super);
-	    function JSONExampleImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function JSONExampleImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    JSONExampleImpl.prototype.wrapperClassName = function () {
 	        return "JSONExampleImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    JSONExampleImpl.prototype.getKind = function () {
 	        return "JSONExample";
 	    };
@@ -26424,20 +26331,19 @@ module.exports =
 	exports.JSONExampleImpl = JSONExampleImpl;
 	var XMLExampleImpl = (function (_super) {
 	    __extends(XMLExampleImpl, _super);
-	    function XMLExampleImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function XMLExampleImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    XMLExampleImpl.prototype.wrapperClassName = function () {
 	        return "XMLExampleImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    XMLExampleImpl.prototype.getKind = function () {
 	        return "XMLExample";
 	    };
@@ -26446,140 +26352,137 @@ module.exports =
 	exports.XMLExampleImpl = XMLExampleImpl;
 	var StatusCodeStringImpl = (function (_super) {
 	    __extends(StatusCodeStringImpl, _super);
-	    function StatusCodeStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function StatusCodeStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StatusCodeStringImpl.prototype.wrapperClassName = function () {
 	        return "StatusCodeStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StatusCodeStringImpl.prototype.getKind = function () {
 	        return "StatusCodeString";
 	    };
 	    return StatusCodeStringImpl;
 	})(StringTypeImpl);
 	exports.StatusCodeStringImpl = StatusCodeStringImpl;
-	/***
+	/**
 	 * This sub type of the string represents mime types
-	 ***/
+	 **/
 	var MimeTypeImpl = (function (_super) {
 	    __extends(MimeTypeImpl, _super);
-	    function MimeTypeImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function MimeTypeImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MimeTypeImpl.prototype.wrapperClassName = function () {
 	        return "MimeTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MimeTypeImpl.prototype.getKind = function () {
 	        return "MimeType";
 	    };
 	    return MimeTypeImpl;
 	})(StringTypeImpl);
 	exports.MimeTypeImpl = MimeTypeImpl;
-	/***
+	/**
 	 * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
-	 ***/
+	 **/
 	var MarkdownStringImpl = (function (_super) {
 	    __extends(MarkdownStringImpl, _super);
-	    function MarkdownStringImpl(attr) {
-	        _super.call(this, attr);
-	        this.attr = attr;
+	    function MarkdownStringImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MarkdownStringImpl.prototype.wrapperClassName = function () {
 	        return "MarkdownStringImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MarkdownStringImpl.prototype.getKind = function () {
 	        return "MarkdownString";
 	    };
 	    return MarkdownStringImpl;
 	})(StringTypeImpl);
 	exports.MarkdownStringImpl = MarkdownStringImpl;
-	/***
+	/**
 	 * Declares globally referenceable security schema definition
-	 ***/
+	 **/
 	var SecuritySchemaImpl = (function (_super) {
 	    __extends(SecuritySchemaImpl, _super);
 	    function SecuritySchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.getKind = function () {
 	        return "SecuritySchema";
 	    };
 	    SecuritySchemaImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set type value
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.setType = function (param) {
 	        this.highLevel().attrOrCreate("type").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The description attribute MAY be used to describe a securitySchemes property.
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.description = function () {
 	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
 	     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.describedBy = function () {
 	        return _super.prototype.element.call(this, 'describedBy');
 	    };
-	    /***
+	    /**
 	     * The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.
 	     * The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on.
-	     ***/
+	     **/
 	    SecuritySchemaImpl.prototype.settings = function () {
 	        return _super.prototype.element.call(this, 'settings');
 	    };
@@ -26588,65 +26491,64 @@ module.exports =
 	exports.SecuritySchemaImpl = SecuritySchemaImpl;
 	var RAMLSimpleElementImpl = (function (_super) {
 	    __extends(RAMLSimpleElementImpl, _super);
-	    function RAMLSimpleElementImpl(nodeOrKey) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createRAMLSimpleElement(nodeOrKey) : nodeOrKey);
-	        this.nodeOrKey = nodeOrKey;
+	    function RAMLSimpleElementImpl() {
+	        _super.apply(this, arguments);
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
 	        return "RAMLSimpleElementImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    RAMLSimpleElementImpl.prototype.getKind = function () {
 	        return "RAMLSimpleElement";
 	    };
 	    return RAMLSimpleElementImpl;
 	})(core.BasicNodeImpl);
 	exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
-	/***
+	/**
 	 * Content of the schema
-	 ***/
+	 **/
 	var GlobalSchemaImpl = (function (_super) {
 	    __extends(GlobalSchemaImpl, _super);
 	    function GlobalSchemaImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
 	        return "GlobalSchemaImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.getKind = function () {
 	        return "GlobalSchema";
 	    };
-	    /***
+	    /**
 	     * Name of the global schema, used to refer on schema content
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.key = function () {
 	        return _super.prototype.attribute.call(this, 'key', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set key value
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.setKey = function (param) {
 	        this.highLevel().attrOrCreate("key").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Content of the schema
-	     ***/
+	     **/
 	    GlobalSchemaImpl.prototype.value = function () {
 	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
 	    };
@@ -26659,36 +26561,36 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.wrapperClassName = function () {
 	        return "DocumentationItemImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.getKind = function () {
 	        return "DocumentationItem";
 	    };
-	    /***
+	    /**
 	     * title of documentation section
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Content of documentation section
-	     ***/
+	     **/
 	    DocumentationItemImpl.prototype.content = function () {
 	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
 	    };
@@ -26701,16 +26603,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemaSettingsImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemaSettingsImpl.prototype.getKind = function () {
 	        return "SecuritySchemaSettings";
 	    };
@@ -26723,34 +26625,34 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth1SecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "OAuth1SecuritySchemeSettings";
 	    };
-	    /***
+	    /**
 	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-	     ***/
+	     **/
 	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
 	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
@@ -26763,55 +26665,55 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
 	        return "OAuth2SecuritySchemeSettingsImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.getKind = function () {
 	        return "OAuth2SecuritySchemeSettings";
 	    };
-	    /***
+	    /**
 	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
 	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
 	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials.
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
 	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set authorizationGrants value
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
 	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
 	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set scopes value
-	     ***/
+	     **/
 	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
 	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
 	        return this;
@@ -26825,16 +26727,16 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaPart(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    SecuritySchemaPartImpl.prototype.wrapperClassName = function () {
 	        return "SecuritySchemaPartImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    SecuritySchemaPartImpl.prototype.getKind = function () {
 	        return "SecuritySchemaPart";
 	    };
@@ -26847,29 +26749,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.wrapperClassName = function () {
 	        return "ResourceTypeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.getKind = function () {
 	        return "ResourceType";
 	    };
-	    /***
+	    /**
 	     * Name of the resource type
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -26877,42 +26779,42 @@ module.exports =
 	    ResourceTypeImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Methods that are part of this resource type definition
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed traits
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed resource type
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Uri parameters of this resource
-	     ***/
+	     **/
 	    ResourceTypeImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
@@ -26925,39 +26827,39 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
 	        return "HasNormalParametersImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.getKind = function () {
 	        return "HasNormalParameters";
 	    };
-	    /***
+	    /**
 	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.queryParameters = function () {
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
 	    HasNormalParametersImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Headers that allowed at this position
-	     ***/
+	     **/
 	    HasNormalParametersImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
@@ -26970,29 +26872,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createParameter(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ParameterImpl.prototype.wrapperClassName = function () {
 	        return "ParameterImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ParameterImpl.prototype.getKind = function () {
 	        return "Parameter";
 	    };
-	    /***
+	    /**
 	     * name of the parameter
-	     ***/
+	     **/
 	    ParameterImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -27000,86 +26902,86 @@ module.exports =
 	    ParameterImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
-	     ***/
+	     **/
 	    ParameterImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set type value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setType = function (param) {
 	        this.highLevel().attrOrCreate("type").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * Location of the parameter (can not be edited by user)
-	     ***/
+	     **/
 	    ParameterImpl.prototype.location = function () {
 	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ParameterLocationImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Set to true if parameter is required
-	     ***/
+	     **/
 	    ParameterImpl.prototype.required = function () {
 	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set required value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setRequired = function (param) {
 	        this.highLevel().attrOrCreate("required").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
-	     ***/
+	     **/
 	    ParameterImpl.prototype["default"] = function () {
 	        return _super.prototype.attribute.call(this, 'default', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set default value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setDefault = function (param) {
 	        this.highLevel().attrOrCreate("default").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
-	     ***/
+	     **/
 	    ParameterImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set example value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setExample = function (param) {
 	        this.highLevel().attrOrCreate("example").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-	     ***/
+	     **/
 	    ParameterImpl.prototype.repeat = function () {
 	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set repeat value
-	     ***/
+	     **/
 	    ParameterImpl.prototype.setRepeat = function (param) {
 	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
 	        return this;
@@ -27091,96 +26993,96 @@ module.exports =
 	    function ParameterLocationImpl(attr) {
 	        this.attr = attr;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ParameterLocationImpl.prototype.wrapperClassName = function () {
 	        return "ParameterLocationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ParameterLocationImpl.prototype.getKind = function () {
 	        return "ParameterLocation";
 	    };
 	    return ParameterLocationImpl;
 	})();
 	exports.ParameterLocationImpl = ParameterLocationImpl;
-	/***
+	/**
 	 * Value must be a string
-	 ***/
+	 **/
 	var StringTypeDeclarationImpl = (function (_super) {
 	    __extends(StringTypeDeclarationImpl, _super);
 	    function StringTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createStringTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "StringTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.getKind = function () {
 	        return "StringTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.pattern = function () {
 	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set pattern value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setPattern = function (param) {
 	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.enum = function () {
 	        return _super.prototype.attributes.call(this, 'enum', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set enum value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setEnum = function (param) {
 	        this.highLevel().attrOrCreate("enum").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.minLength = function () {
 	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minLength value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setMinLength = function (param) {
 	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.maxLength = function () {
 	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maxLength value
-	     ***/
+	     **/
 	    StringTypeDeclarationImpl.prototype.setMaxLength = function (param) {
 	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
 	        return this;
@@ -27188,77 +27090,77 @@ module.exports =
 	    return StringTypeDeclarationImpl;
 	})(ParameterImpl);
 	exports.StringTypeDeclarationImpl = StringTypeDeclarationImpl;
-	/***
+	/**
 	 * Value must be a boolean
-	 ***/
+	 **/
 	var BooleanTypeDeclarationImpl = (function (_super) {
 	    __extends(BooleanTypeDeclarationImpl, _super);
 	    function BooleanTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BooleanTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "BooleanTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BooleanTypeDeclarationImpl.prototype.getKind = function () {
 	        return "BooleanTypeDeclaration";
 	    };
 	    return BooleanTypeDeclarationImpl;
 	})(ParameterImpl);
 	exports.BooleanTypeDeclarationImpl = BooleanTypeDeclarationImpl;
-	/***
+	/**
 	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
-	 ***/
+	 **/
 	var NumberTypeDeclarationImpl = (function (_super) {
 	    __extends(NumberTypeDeclarationImpl, _super);
 	    function NumberTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "NumberTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.getKind = function () {
 	        return "NumberTypeDeclaration";
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.minimum = function () {
 	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set minimum value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setMinimum = function (param) {
 	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.maximum = function () {
 	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set maximum value
-	     ***/
+	     **/
 	    NumberTypeDeclarationImpl.prototype.setMaximum = function (param) {
 	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
 	        return this;
@@ -27266,75 +27168,75 @@ module.exports =
 	    return NumberTypeDeclarationImpl;
 	})(ParameterImpl);
 	exports.NumberTypeDeclarationImpl = NumberTypeDeclarationImpl;
-	/***
+	/**
 	 * Value MUST be a integer.
-	 ***/
+	 **/
 	var IntegerTypeDeclarationImpl = (function (_super) {
 	    __extends(IntegerTypeDeclarationImpl, _super);
 	    function IntegerTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    IntegerTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "IntegerTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    IntegerTypeDeclarationImpl.prototype.getKind = function () {
 	        return "IntegerTypeDeclaration";
 	    };
 	    return IntegerTypeDeclarationImpl;
 	})(NumberTypeDeclarationImpl);
 	exports.IntegerTypeDeclarationImpl = IntegerTypeDeclarationImpl;
-	/***
+	/**
 	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
-	 ***/
+	 **/
 	var DateTypeDeclarationImpl = (function (_super) {
 	    __extends(DateTypeDeclarationImpl, _super);
 	    function DateTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createDateTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    DateTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "DateTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    DateTypeDeclarationImpl.prototype.getKind = function () {
 	        return "DateTypeDeclaration";
 	    };
 	    return DateTypeDeclarationImpl;
 	})(ParameterImpl);
 	exports.DateTypeDeclarationImpl = DateTypeDeclarationImpl;
-	/***
+	/**
 	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
-	 ***/
+	 **/
 	var FileTypeDeclarationImpl = (function (_super) {
 	    __extends(FileTypeDeclarationImpl, _super);
 	    function FileTypeDeclarationImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createFileTypeDeclaration(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.wrapperClassName = function () {
 	        return "FileTypeDeclarationImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    FileTypeDeclarationImpl.prototype.getKind = function () {
 	        return "FileTypeDeclaration";
 	    };
@@ -27347,44 +27249,44 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.wrapperClassName = function () {
 	        return "MethodBaseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.getKind = function () {
 	        return "MethodBase";
 	    };
-	    /***
+	    /**
 	     * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.responses = function () {
 	        return _super.prototype.elements.call(this, 'responses');
 	    };
-	    /***
+	    /**
 	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
 	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
 	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed traits
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
 	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     ***/
+	     **/
 	    MethodBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
@@ -27397,44 +27299,44 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResponseImpl.prototype.wrapperClassName = function () {
 	        return "ResponseImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResponseImpl.prototype.getKind = function () {
 	        return "Response";
 	    };
-	    /***
+	    /**
 	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-	     ***/
+	     **/
 	    ResponseImpl.prototype.code = function () {
 	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
 	     * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
 	     *
 	     * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
-	     ***/
+	     **/
 	    ResponseImpl.prototype.headers = function () {
 	        return _super.prototype.elements.call(this, 'headers');
 	    };
-	    /***
+	    /**
 	     * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
 	     * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
-	     ***/
+	     **/
 	    ResponseImpl.prototype.body = function () {
 	        return _super.prototype.elements.call(this, 'body');
 	    };
-	    /***
+	    /**
 	     * true for codes < 400 and false otherwise
-	     ***/
+	     **/
 	    ResponseImpl.prototype.isOkRange = function () {
 	        return helper.isOkRange(this);
 	    };
@@ -27447,34 +27349,34 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createBodyLike(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.wrapperClassName = function () {
 	        return "BodyLikeImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.getKind = function () {
 	        return "BodyLike";
 	    };
-	    /***
+	    /**
 	     * Mime type of the request or response body
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
 	     *
 	     * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
@@ -27483,84 +27385,84 @@ module.exports =
 	     *
 	     * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
 	     * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new SchemaStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Documentation generators MUST use body properties' example attributes to generate example invocations.
 	     * This example shows example attributes for two body property media types.
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.example = function () {
 	        return _super.prototype.attribute.call(this, 'example', function (attr) { return new ExampleStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Web forms REQUIRE special encoding and custom declaration.
 	     * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
 	     * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
-	     ***/
+	     **/
 	    BodyLikeImpl.prototype.formParameters = function () {
 	        return _super.prototype.elements.call(this, 'formParameters');
 	    };
 	    return BodyLikeImpl;
 	})(RAMLLanguageElementImpl);
 	exports.BodyLikeImpl = BodyLikeImpl;
-	/***
+	/**
 	 * Needed to set connection between xml related mime types and xsd schema
-	 ***/
+	 **/
 	var XMLBodyImpl = (function (_super) {
 	    __extends(XMLBodyImpl, _super);
 	    function XMLBodyImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLBody(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    XMLBodyImpl.prototype.wrapperClassName = function () {
 	        return "XMLBodyImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    XMLBodyImpl.prototype.getKind = function () {
 	        return "XMLBody";
 	    };
-	    /***
+	    /**
 	     * XSD Schema
-	     ***/
+	     **/
 	    XMLBodyImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new XMLSchemaStringImpl(attr); });
 	    };
 	    return XMLBodyImpl;
 	})(BodyLikeImpl);
 	exports.XMLBodyImpl = XMLBodyImpl;
-	/***
+	/**
 	 * Needed to set connection between json related mime types and json schema
-	 ***/
+	 **/
 	var JSONBodyImpl = (function (_super) {
 	    __extends(JSONBodyImpl, _super);
 	    function JSONBodyImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createJSONBody(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    JSONBodyImpl.prototype.wrapperClassName = function () {
 	        return "JSONBodyImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    JSONBodyImpl.prototype.getKind = function () {
 	        return "JSONBody";
 	    };
-	    /***
+	    /**
 	     * JSON Schema
-	     ***/
+	     **/
 	    JSONBodyImpl.prototype.schema = function () {
 	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new JSonSchemaStringImpl(attr); });
 	    };
@@ -27573,29 +27475,29 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    TraitImpl.prototype.wrapperClassName = function () {
 	        return "TraitImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    TraitImpl.prototype.getKind = function () {
 	        return "Trait";
 	    };
-	    /***
+	    /**
 	     * Name of the trait
-	     ***/
+	     **/
 	    TraitImpl.prototype.name = function () {
 	        return _super.prototype.attribute.call(this, 'name', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set name value
-	     ***/
+	     **/
 	    TraitImpl.prototype.setName = function (param) {
 	        this.highLevel().attrOrCreate("name").setValue("" + param);
 	        return this;
@@ -27603,10 +27505,10 @@ module.exports =
 	    TraitImpl.prototype.usage = function () {
 	        return _super.prototype.attribute.call(this, 'usage', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set usage value
-	     ***/
+	     **/
 	    TraitImpl.prototype.setUsage = function (param) {
 	        this.highLevel().attrOrCreate("usage").setValue("" + param);
 	        return this;
@@ -27614,80 +27516,80 @@ module.exports =
 	    return TraitImpl;
 	})(MethodBaseImpl);
 	exports.TraitImpl = TraitImpl;
-	/***
+	/**
 	 * Method object allows description of http methods
-	 ***/
+	 **/
 	var MethodImpl = (function (_super) {
 	    __extends(MethodImpl, _super);
 	    function MethodImpl(nodeOrKey) {
 	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    MethodImpl.prototype.wrapperClassName = function () {
 	        return "MethodImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    MethodImpl.prototype.getKind = function () {
 	        return "Method";
 	    };
-	    /***
+	    /**
 	     * Method that can be called
-	     ***/
+	     **/
 	    MethodImpl.prototype.method = function () {
 	        return _super.prototype.attribute.call(this, 'method', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set method value
-	     ***/
+	     **/
 	    MethodImpl.prototype.setMethod = function (param) {
 	        this.highLevel().attrOrCreate("method").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A method can override an API's protocols value for that single method by setting a different value for the fields.
-	     ***/
+	     **/
 	    MethodImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set protocols value
-	     ***/
+	     **/
 	    MethodImpl.prototype.setProtocols = function (param) {
 	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     ***/
+	     **/
 	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-	     ***/
+	     **/
 	    MethodImpl.prototype.parentResource = function () {
 	        return helper.parentResource(this);
 	    };
-	    /***
+	    /**
 	     * Api owning the resource as a sibling
-	     ***/
+	     **/
 	    MethodImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /***
+	    /**
 	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
 	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
 	     * For other methods throws Exception.
-	     ***/
+	     **/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
 	    };
@@ -27700,125 +27602,125 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ResourceImpl.prototype.wrapperClassName = function () {
 	        return "ResourceImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getKind = function () {
 	        return "Resource";
 	    };
-	    /***
+	    /**
 	     * Relative URL of this resource from the parent resource
-	     ***/
+	     **/
 	    ResourceImpl.prototype.relativeUri = function () {
 	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed resource type
-	     ***/
+	     **/
 	    ResourceImpl.prototype["type"] = function () {
 	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Instantiation of applyed traits
-	     ***/
+	     **/
 	    ResourceImpl.prototype.is = function () {
 	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     ***/
+	     **/
 	    ResourceImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Uri parameters of this resource
-	     ***/
+	     **/
 	    ResourceImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
-	    /***
+	    /**
 	     * Methods that can be called on this resource
-	     ***/
+	     **/
 	    ResourceImpl.prototype.methods = function () {
 	        return _super.prototype.elements.call(this, 'methods');
 	    };
-	    /***
+	    /**
 	     * Children resources
-	     ***/
+	     **/
 	    ResourceImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
 	    ResourceImpl.prototype.displayName = function () {
 	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set displayName value
-	     ***/
+	     **/
 	    ResourceImpl.prototype.setDisplayName = function (param) {
 	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-	     ***/
+	     **/
 	    ResourceImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /***
+	    /**
 	     * Path relative to API root
-	     ***/
+	     **/
 	    ResourceImpl.prototype.completeRelativeUri = function () {
 	        return helper.completeRelativeUri(this);
 	    };
-	    /***
+	    /**
 	     * baseUri of owning Api concatenated with completeRelativeUri
-	     ***/
+	     **/
 	    ResourceImpl.prototype.absoluteUri = function () {
 	        return helper.absoluteUri(this);
 	    };
-	    /***
+	    /**
 	     * Parent resource for non top level resources
-	     ***/
+	     **/
 	    ResourceImpl.prototype.parentResource = function () {
 	        return helper.parent(this);
 	    };
-	    /***
+	    /**
 	     * Get child resource by its relative path
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /***
+	    /**
 	     * Get child method by its name
-	     ***/
+	     **/
 	    ResourceImpl.prototype.getChildMethod = function (method) {
 	        return helper.getChildMethod(this, method);
 	    };
-	    /***
+	    /**
 	     * Api owning the resource as a sibling
-	     ***/
+	     **/
 	    ResourceImpl.prototype.ownerApi = function () {
 	        return helper.ownerApi(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	     ***/
+	     **/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all absolute uri parameters regardless of whether they are described in
 	     * `baseUriParameters` and `uriParameters` or not
-	     ***/
+	     **/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
 	    };
@@ -27831,85 +27733,85 @@ module.exports =
 	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey);
 	        this.nodeOrKey = nodeOrKey;
 	    }
-	    /***
+	    /**
 	     * @hidden
 	     * @return Actual name of instance class
-	     ***/
+	     **/
 	    ApiImpl.prototype.wrapperClassName = function () {
 	        return "ApiImpl";
 	    };
-	    /***
+	    /**
 	     * @return Actual name of instance interface
-	     ***/
+	     **/
 	    ApiImpl.prototype.getKind = function () {
 	        return "Api";
 	    };
-	    /***
+	    /**
 	     * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
-	     ***/
+	     **/
 	    ApiImpl.prototype.title = function () {
 	        return _super.prototype.attribute.call(this, 'title', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set title value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setTitle = function (param) {
 	        this.highLevel().attrOrCreate("title").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
 	     * The API itself is not versioned.
 	     * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
 	     * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
-	     ***/
+	     **/
 	    ApiImpl.prototype.version = function () {
 	        return _super.prototype.attribute.call(this, 'version', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set version value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setVersion = function (param) {
 	        this.highLevel().attrOrCreate("version").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
 	     * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
 	     * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
-	     ***/
+	     **/
 	    ApiImpl.prototype.baseUri = function () {
 	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateStringImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Base uri parameters are named parameters which described template parameters in the base uri
-	     ***/
+	     **/
 	    ApiImpl.prototype.baseUriParameters = function () {
 	        return _super.prototype.elements.call(this, 'baseUriParameters');
 	    };
-	    /***
+	    /**
 	     * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
-	     ***/
+	     **/
 	    ApiImpl.prototype.uriParameters = function () {
 	        return _super.prototype.elements.call(this, 'uriParameters');
 	    };
-	    /***
+	    /**
 	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-	     ***/
+	     **/
 	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
-	    /***
+	    /**
 	     * @hidden
 	     * Set protocols value
-	     ***/
+	     **/
 	    ApiImpl.prototype.setProtocols = function (param) {
 	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
 	        return this;
 	    };
-	    /***
+	    /**
 	     * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
 	     * One of the following YAML media types:
 	     * text/yaml
@@ -27919,362 +27821,348 @@ module.exports =
 	     * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
 	     * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
 	     * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
-	     ***/
+	     **/
 	    ApiImpl.prototype.mediaType = function () {
 	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.
-	     ***/
+	     **/
 	    ApiImpl.prototype.schemas = function () {
 	        return _super.prototype.elements.call(this, 'schemas');
 	    };
-	    /***
+	    /**
 	     * Declarations of traits used in this API
-	     ***/
+	     **/
 	    ApiImpl.prototype.traits = function () {
 	        return _super.prototype.elements.call(this, 'traits');
 	    };
-	    /***
+	    /**
 	     * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
-	     ***/
+	     **/
 	    ApiImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
 	    };
-	    /***
+	    /**
 	     * Security schemas that can be applied with securedBy
-	     ***/
+	     **/
 	    ApiImpl.prototype.securitySchemes = function () {
 	        return _super.prototype.elements.call(this, 'securitySchemes');
 	    };
-	    /***
+	    /**
 	     * Declaration of resource types used in this API
-	     ***/
+	     **/
 	    ApiImpl.prototype.resourceTypes = function () {
 	        return _super.prototype.elements.call(this, 'resourceTypes');
 	    };
-	    /***
+	    /**
 	     * Resources are identified by their relative URI, which MUST begin with a slash (/).
 	     * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
 	     * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
 	     * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
-	     ***/
+	     **/
 	    ApiImpl.prototype.resources = function () {
 	        return _super.prototype.elements.call(this, 'resources');
 	    };
-	    /***
+	    /**
 	     * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
 	     * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
 	     * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
 	     * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
 	     *
 	     * This example shows an API definition with a single user document.
-	     ***/
+	     **/
 	    ApiImpl.prototype.documentation = function () {
 	        return _super.prototype.elements.call(this, 'documentation');
 	    };
-	    /***
+	    /**
 	     * Equivalent API with traits and resource types expanded
-	     ***/
+	     **/
 	    ApiImpl.prototype.expand = function () {
 	        return helper.expandTraitsAndResourceTypes(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all traits including those defined in libraries
-	     ***/
+	     **/
 	    ApiImpl.prototype.allTraits = function () {
 	        return helper.allTraits(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all resource types including those defined in libraries
-	     ***/
+	     **/
 	    ApiImpl.prototype.allResourceTypes = function () {
 	        return helper.allResourceTypes(this);
 	    };
-	    /***
+	    /**
 	     * Get child resource by its relative path
-	     ***/
+	     **/
 	    ApiImpl.prototype.getChildResource = function (relPath) {
 	        return helper.getChildResource(this, relPath);
 	    };
-	    /***
+	    /**
 	     * Retrieve all resources ofthe Api
-	     ***/
+	     **/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
-	    /***
+	    /**
 	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	     ***/
+	     **/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
 	    };
 	    return ApiImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ApiImpl = ApiImpl;
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createApi(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Api");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLLanguageElement(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("RAMLLanguageElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchema(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("SecuritySchema");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchemaPart(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("SecuritySchemaPart");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createRAMLSimpleElement(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("RAMLSimpleElement");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createGlobalSchema(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("GlobalSchema");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createDocumentationItem(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("DocumentationItem");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createSecuritySchemaSettings(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("SecuritySchemaSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth1SecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("OAuth1SecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createOAuth2SecuritySchemeSettings(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("OAuth2SecuritySchemeSettings");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResourceType(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("ResourceType");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createMethod(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Method");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createMethodBase(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("MethodBase");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createHasNormalParameters(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("HasNormalParameters");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createParameter(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Parameter");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createStringTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("StringTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createBooleanTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("BooleanTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createNumberTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("NumberTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createIntegerTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("IntegerTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createDateTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("DateTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createFileTypeDeclaration(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("FileTypeDeclaration");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResponse(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Response");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createBodyLike(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("BodyLike");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createXMLBody(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("XMLBody");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createJSONBody(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("JSONBody");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createTrait(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Trait");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
+	/**
 	 * @hidden
-	 ***/
+	 **/
 	function createResource(key) {
 	    var universe = hl.universeProvider("RAML08");
 	    var nc = universe.type("Resource");
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	/***
-	 * Load API synchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 *
-	 * @return Api instance or null if Api can not be found. If the 'rejectOnErrors' option is set to true, null is returned for Api which contains errors.
-	 ***/
-	function loadApi(apiPath, options, extensionsAndOverlays) {
-	    return apiLoader.loadApi08(apiPath, options).getOrElse(null);
+	function loadApi(apiPath, arg1, arg2) {
+	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
 	exports.loadApi = loadApi;
-	/***
-	 * Load API asynchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 *
-	 * @return Promise&lt;Api&gt;. The Promise is rejected if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
-	 ***/
-	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
-	    return apiLoader.loadApi08Async(apiPath, options);
+	function loadApiAsync(apiPath, arg1, arg2) {
+	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
 	exports.loadApiAsync = loadApiAsync;
 
@@ -28459,6 +28347,28 @@ module.exports =
 	    return BasicNodeImpl;
 	})();
 	exports.BasicNodeImpl = BasicNodeImpl;
+	var AttributeNodeImpl = (function () {
+	    function AttributeNodeImpl(attr) {
+	        this.attr = attr;
+	    }
+	    /***
+	     * @return Underlying High Level attribute node
+	     ***/
+	    AttributeNodeImpl.prototype.highLevel = function () {
+	        return this.attr;
+	    };
+	    /***
+	     * @hidden
+	     */
+	    AttributeNodeImpl.prototype.wrapperClassName = function () {
+	        return 'AttributeNodeImpl';
+	    };
+	    AttributeNodeImpl.prototype.getKind = function () {
+	        return 'AttributeNode';
+	    };
+	    return AttributeNodeImpl;
+	})();
+	exports.AttributeNodeImpl = AttributeNodeImpl;
 	/***
 	 * @hidden
 	 ***/
@@ -28494,121 +28404,72 @@ module.exports =
 	var universeDef = __webpack_require__(7);
 	var universeProvider = __webpack_require__(95);
 	/***
-	 * Load RAML 1.0 API synchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Opt&lt;Api&gt;
-	 ***/
-	function loadApi1(apiPath, options, extensionsAndOverlays) {
-	    var opt = loadApi(apiPath, options, extensionsAndOverlays);
-	    if (!opt.isDefined()) {
-	        return Opt.empty();
-	    }
-	    var api = opt.getOrThrow();
-	    return new Opt(api);
-	}
-	exports.loadApi1 = loadApi1;
-	/***
-	 * Load RAML 0.8 API synchronously
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Opt&lt;Api&gt;
-	 ***/
-	function loadApi08(apiPath, options) {
-	    var opt = loadApi(apiPath, options);
-	    if (!opt.isDefined()) {
-	        return Opt.empty();
-	    }
-	    var api = opt.getOrThrow();
-	    return new Opt(api);
-	}
-	exports.loadApi08 = loadApi08;
-	/***
 	 * Load API synchronously. Detects RAML version and uses corresponding parser.
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
 	 * @return Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
-	function loadApi(apiPath, options, extensionsAndOverlays) {
+	function loadApi(apiPath, arg1, arg2) {
+	    var gotArray = Array.isArray(arg1);
+	    var extensionsAndOverlays = (gotArray ? arg1 : arg2);
+	    var options = (gotArray ? arg2 : arg1);
+	    options = options || {};
 	    if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
 	        throw new Error("Applying of extensions and overlays is not implemented yet.");
 	    }
 	    var project = getProject(apiPath, options);
-	    var api;
 	    var unitName = path.basename(apiPath);
 	    var unit = project.unit(unitName);
+	    var api;
 	    if (unit) {
-	        api = toApi(unit, options);
+	        api = toApi(unit, extensionsAndOverlays, options);
 	    }
-	    if (api && options && options.rejectOnErrors && api.errors() && api.errors().length > 0) {
-	        return Opt.empty();
+	    if (options.rejectOnErrors && api && api.errors().length) {
+	        throw toError(api);
 	    }
 	    return new Opt(api);
 	}
 	exports.loadApi = loadApi;
-	/***
-	 * Load RAML 1.0 API asynchronously.
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Promise&lt;Api&gt;
-	 ***/
-	function loadApi1Async(apiPath, options, extensionsAndOverlays) {
-	    return loadApiAsync(apiPath, options, extensionsAndOverlays).then(function (x) {
-	        return x;
-	    });
-	}
-	exports.loadApi1Async = loadApi1Async;
-	/***
-	 * Load RAML 0.8 API asynchronously.
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Promise&lt;Api&gt;
-	 ***/
-	function loadApi08Async(apiPath, options) {
-	    return loadApiAsync(apiPath, options).then(function (x) {
-	        return x;
-	    });
-	}
-	exports.loadApi08Async = loadApi08Async;
 	/***
 	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
 	 * @param apiPath Path to API: local file system path or Web URL
 	 * @param options Load options
 	 * @return Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
-	function loadApiAsync(apiPath, options, extensionsAndOverlays) {
+	function loadApiAsync(apiPath, arg1, arg2) {
+	    var gotArray = Array.isArray(arg1);
+	    var extensionsAndOverlays = (gotArray ? arg1 : arg2);
+	    var options = (gotArray ? arg2 : arg1);
+	    options = options || {};
 	    if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
 	        return Promise.reject(new Error("Applying of extensions and overlays is not implemented yet."));
 	    }
 	    var project = getProject(apiPath, options);
 	    var unitName = path.basename(apiPath);
 	    return llimpl.fetchIncludesAsync(project, unitName).then(function (x) {
-	        var api = toApi(x, options);
-	        if (api && options && options.rejectOnErrors && api.errors() && api.errors().length > 0) {
-	            return Promise.reject(new Error('Api contains errors.'));
+	        try {
+	            var api = toApi(x, extensionsAndOverlays, options);
+	            if (options.rejectOnErrors && api && api.errors().length) {
+	                return Promise.reject(toError(api));
+	            }
+	            return api;
 	        }
-	        return api;
+	        catch (err) {
+	            return Promise.reject(err);
+	        }
 	    });
 	}
 	exports.loadApiAsync = loadApiAsync;
 	function getProject(apiPath, options) {
-	    var includeResolver = options && options.fsResolver ? options.fsResolver : null;
-	    var httpResolver = options && options.httpResolver ? options.httpResolver : null;
+	    options = options || {};
+	    var includeResolver = options.fsResolver;
+	    var httpResolver = options.httpResolver;
 	    var projectRoot = path.dirname(apiPath);
-	    var project;
-	    if (httpResolver) {
-	        project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
-	    }
-	    else if (includeResolver) {
-	        project = new jsyaml.Project(projectRoot, includeResolver);
-	    }
-	    else {
-	        project = new jsyaml.Project(projectRoot);
-	    }
+	    var project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
 	    return project;
 	}
 	;
-	function toApi(unit, options) {
+	function toApi(unit, extensionsAndOverlays, options) {
 	    if (!unit) {
 	        return null;
 	    }
@@ -28616,6 +28477,7 @@ module.exports =
 	    var contents = unit.contents();
 	    var ramlFirstLine = contents.match(/^#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
 	    if (!ramlFirstLine) {
+	        //TODO throw sensible error
 	        return null;
 	    }
 	    var verStr = ramlFirstLine[1];
@@ -28630,7 +28492,11 @@ module.exports =
 	        ramlVersion = 'RAML10';
 	    }
 	    if (!ramlVersion) {
+	        //TODO throw sensible error
 	        return null;
+	    }
+	    if (ramlVersion == 'RAML08' && extensionsAndOverlays != null && extensionsAndOverlays.length > 0) {
+	        throw new Error('Extensions and overlays are not supported in RAML 0.8.');
 	    }
 	    if (!ramlFileType || ramlFileType.trim() === "") {
 	        if (verStr == '0.8') {
@@ -28656,6 +28522,12 @@ module.exports =
 	    return api;
 	}
 	;
+	function toError(api) {
+	    var error = new Error('Api contains errors.');
+	    error.parserErrors = api.errors();
+	    return error;
+	}
+	exports.toError = toError;
 	function loadApis1(projectRoot, cacheChildren, expandTraitsAndResourceTypes) {
 	    if (cacheChildren === void 0) { cacheChildren = false; }
 	    if (expandTraitsAndResourceTypes === void 0) { expandTraitsAndResourceTypes = true; }
@@ -29020,7 +28892,7 @@ module.exports =
 	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
 	}
 	exports.resolveType = resolveType;
-	//__$helperMethod__ Path relative to API root
+	//__$helperMethod__ Runtime representation of type represented by this AST node
 	function runtimeType(p) {
 	    var tpe = typeexpression.typeFromNode(p.highLevel());
 	    return tpe.getAdapter(ramlservices.RAMLService).toRuntimeWithInheritance();

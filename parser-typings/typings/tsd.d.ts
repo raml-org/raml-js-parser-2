@@ -1,6 +1,7 @@
 /// <reference path="jquery/jquery.d.ts" />
 /// <reference path="codemirror/codemirror.d.ts" />
 /// <reference path="_custom/custom.d.ts" />
+/// <reference path="_custom/arrify.d.ts" />
 /// <reference path="_custom/lrucache.d.ts" />
 /// <reference path="_custom/atom.d.ts" />
 /// <reference path="_custom/space-pen-views.d.ts" />

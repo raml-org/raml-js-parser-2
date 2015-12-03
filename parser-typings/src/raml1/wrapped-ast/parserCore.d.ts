@@ -1,5 +1,6 @@
 import hl = require("../highLevelAST");
 import hlImpl = require("../highLevelImpl");
+import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
 export interface AbstractWrapperNode {
     /***
@@ -24,7 +25,7 @@ export interface BasicNode extends AbstractWrapperNode {
     /***
      * @return Array of errors
      **/
-    errors(): hl.ValidationIssue[];
+    errors(): RamlParserError[];
     /***
      * @return object representing class of the node
      **/
@@ -102,7 +103,7 @@ export declare class BasicNodeImpl implements BasicNode {
     /***
      * @return Array of errors
      **/
-    errors(): hl.ValidationIssue[];
+    errors(): RamlParserError[];
     /***
      * @return object representing class of the node
      **/
@@ -113,7 +114,53 @@ export declare class BasicNodeImpl implements BasicNode {
     runtimeDefinition(): hl.ITypeDefinition;
     toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
 }
+export interface AttributeNode extends AbstractWrapperNode {
+    /***
+     * @return Underlying High Level attribute node
+     ***/
+    highLevel(): hl.IAttribute;
+}
+export declare class AttributeNodeImpl implements AttributeNode {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
+    /***
+     * @return Underlying High Level attribute node
+     ***/
+    highLevel(): hl.IAttribute;
+    /***
+     * @hidden
+     */
+    wrapperClassName(): string;
+    getKind(): string;
+}
 /***
  * @hidden
  ***/
 export declare function toStructuredValue(node: hl.IAttribute): hlImpl.StructuredValue;
+export interface Options {
+    /**
+     * Module used for operations with file system
+     **/
+    fsResolver?: jsyaml.FSResolver;
+    /**
+     * Module used for operations with web
+     **/
+    httpResolver?: jsyaml.HTTPResolver;
+    /**
+     * Whether to return Api which contains errors.
+     **/
+    rejectOnErrors?: boolean;
+}
+export interface RamlParserError {
+    code: hl.IssueCode;
+    message: string;
+    path: string;
+    start: number;
+    end: number;
+    line?: number;
+    column?: number;
+    isWarning: boolean;
+}
+export interface ApiLoadingError extends Error {
+    errors: RamlParserError[];
+}
