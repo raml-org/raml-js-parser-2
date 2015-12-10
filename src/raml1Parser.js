@@ -19270,7 +19270,7 @@ module.exports =
 /* 52 */
 /***/ function(module, exports) {
 
-	
+
 	/**
 	 * isArray
 	 */
@@ -19334,7 +19334,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
-	var XMLHttpRequestConstructor = __webpack_require__(58).XMLHttpRequest;
+	var XMLHttpRequestConstructor = __webpack_require__(58).XMLHttpRequest || XMLHttpRequest;
 	function buildXHR() {
 	    var x = new XMLHttpRequestConstructor;
 	    return x;
@@ -20301,7 +20301,7 @@ module.exports =
 	    };
 	    CompilationUnit.prototype.resolve = function (p) {
 	        return null;
-	    }; // TODO FIXME 
+	    }; // TODO FIXME
 	    return CompilationUnit;
 	})();
 	exports.CompilationUnit = CompilationUnit;

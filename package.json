@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/raml-org/raml-js-parser-2.git"
   },
+  "browser": {
+    "fs": false,
+    "xmlhttprequest": false
+  },
   "keywords": [
     "raml1.0",
     "raml",
