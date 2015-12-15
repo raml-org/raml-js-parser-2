@@ -43,18 +43,10 @@ If there are no any exceptions, RAML JS Parser is installed successfully
 
 Run command line tool and create a folder where all you test files will be stored.
 
-Create package.json file which should contain at least a dependency to raml-js-parser NodeJS module:
-```json
-{
-  "name": "myParserTest",
-    "dependencies":
-    {
-      "raml-1-parser": "https://github.com/raml-org/raml-js-parser-2"
-    }
-}
-```
 
-Run ```npm install ``` and wait while all the dependencies are downloaded
+Run `npm init`
+
+Run `npm install raml-1-parser --save` and wait while all the dependencies are downloaded
 and properly initialized.
 
 Run ```node node_modules/raml-1-parser/test/test01.js```. If there are no any exceptions, RAML JS Parser is installed successfully
