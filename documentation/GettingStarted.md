@@ -15,8 +15,6 @@ This document is intended to provide an initial knowledge of how to use RAML 1.0
 
 NPM installation is recommended, but taking a quick look at the parser can be done via repository cloning.
 
-At the moment the parser is not published as NPM, so only repository cloning way is viable.
-
 #### Cloning Repository
 
 Run the following command-line instructions:
@@ -42,7 +40,6 @@ node test/testAsync.js  //same as above but in asynchronous mode
 If there are no any exceptions, RAML JS Parser is installed successfully
 
 #### NPM installation
-This way of installation is currently unavailable.
 
 Run command line tool and create a folder where all you test files will be stored.
 
@@ -52,8 +49,7 @@ Create package.json file which should contain at least a dependency to raml-js-p
   "name": "myParserTest",
     "dependencies":
     {
-      "raml-1-0-parser": "https://github.com/raml-org/raml-js-parser-2",
-      "typescript": "*" // This line is temporary and required only to workaround a bug. Will be removed soon.
+      "raml-1-parser": "https://github.com/raml-org/raml-js-parser-2"
     }
 }
 ```
@@ -61,17 +57,17 @@ Create package.json file which should contain at least a dependency to raml-js-p
 Run ```npm install ``` and wait while all the dependencies are downloaded
 and properly initialized.
 
-Run ```node test.js```. If there are no any exceptions, RAML JS Parser is installed successfully
+Run ```node node_modules/raml-1-parser/test/test01.js```. If there are no any exceptions, RAML JS Parser is installed successfully
 
 ## Creating test files
 
-These instructions assume that JS Parser was installed by cloning repository. As soon as the parser is published as NPM module, the instructions will be changed to reflect that.
+These instructions assume that JS Parser was installed via NPM.
 
-Use your favorite text editor to create `getting_started.js` JS file in root of the cloned repository and add require instruction like that:
+Use your favorite text editor to create `getting_started.js` JS file in root of the module and add require instruction like that:
 
 ```js
 // step1
-var raml = require("./src/raml1Parser");
+var raml = require("raml-1-parser");
 ```
 
 Create `test.raml` file in the same folder with the following contents:
@@ -126,8 +122,8 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName).getOrThrow();
-console.log(JSON.stringify(raml.toJSON(api), null, 2));
+var api = raml.loadApiSync(fName);
+console.log(JSON.stringify(api.toJSON(), null, 2));
 
 ```
 
@@ -140,14 +136,14 @@ Run ```node getting_started.js``` again. If you see the JSON reflecting RAML fil
 
 Open `documentation` folder in the root of the cloned repository and open index.html file in web browser.
 
-`loadApi` function we just used to parse RAML is described there:
+`loadApiSync` function we just used to parse RAML is described there:
 
-![GettingStarted_loadAPI](images/GettingStarted_loadAPI.png)
+![GettingStarted_loadAPI](images/GettingStarted_loadAPISync.png)
 
 As it is a global function of parser module, we are calling it like that:
-`raml.loadApi(fName)`, and is it returns `Opt` instead of direct API reference, we then ask Opt for results: `raml.loadApi(fName).getOrThrow()`
+`raml.loadApiSync(fName)`, and is it returns `Api`.
 
-Documentation displays, that `loadApi` returns `Api` object, so click it and see the details:
+Documentation displays, that `loadApiSync` returns `Api` object, so click it and see the details:
 
 ![GettingStarted_ApiMethods](images/GettingStarted_ApiMethods.png)
 
@@ -159,7 +155,7 @@ We see that it returns an array of resources, and each resource contains some me
 
 ![GettingStarted_Resource](images/GettingStarted_Resource.png)
 
-Lets try checking resources and printing them in a simple way. Remove `console.log(JSON.stringify(raml.toJSON(api), null, 2));` line from `getting_started.js` code and add the following:
+Lets try checking resources and printing them in a simple way. Remove `console.log(JSON.stringify(api.toJSON(), null, 2));` line from `getting_started.js` code and add the following:
 
 ```js
 var apiResources = api.resources();
@@ -180,7 +176,7 @@ But why only `/shop/pets` is listed, and `/shop/pets/{id}` is not? Because AST i
 Lets see if we can modify our code to print the whole resource tree:
 
 ```js
-var raml = require("./src/raml1Parser");
+var raml = require("raml-1-parser");
 var fs = require("fs");
 var path = require("path");
 
@@ -188,7 +184,7 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName).getOrThrow();
+var api = raml.loadApiSync(fName);
 
 /**
  * Process resource (here we just trace different paramters of URL)
@@ -244,7 +240,7 @@ Lets print all the methods in that way, but first lets check `methods` documenta
 
 Replace everything under
 ```js
-var api = raml.loadApi(fName).getOrThrow();
+var api = raml.loadApiSync(fName);
 ```
 line with the following:
 
@@ -311,7 +307,7 @@ And then found `value()` method in `StatusCodeString` description:
 
 ![GettingStarted_Code](images/GettingStarted_StatusCode.png)
 
-All in all, the AST tree reflects RAML structure, so starting from `loadApi` global method, then checking documentation for its return value, proceeding to its methods and doing that recursively allows reaching everything.
+All in all, the AST tree reflects RAML structure, so starting from `loadApiSync` global method, then checking documentation for its return value, proceeding to its methods and doing that recursively allows reaching everything.
 
 ## Resource Types and Traits
 
@@ -373,7 +369,7 @@ It differs from the previous sample by method declarations being moved to resour
 
 Now change `getting_started.js` contents:
 ```js
-var raml = require("./src/raml1Parser");
+var raml = require("raml-1-parser");
 var fs = require("fs");
 var path = require("path");
 
@@ -381,7 +377,7 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName, true).getOrThrow();
+var api = raml.loadApiSync(fName).expand();
 
 api.allResources().forEach(function (resource) {
 
@@ -417,7 +413,7 @@ So when RAML JS Parser is asked to expand traits and types, you get them applied
 
 If you change the API loading call to
 ```js
-var api = raml.loadApi(fName, false).getOrThrow();
+var api = raml.loadApiSync(fName);
 ```
 the output will look like:
 
@@ -511,7 +507,7 @@ In case of `/pets` resource, which refers `Collection` resource type, the `item`
 
 Change `getting_started.js` like following:
 ```js
-var raml = require("./src/raml1Parser");
+var raml = require("raml-1-parser");
 var fs = require("fs");
 var path = require("path");
 
@@ -519,7 +515,7 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName, true).getOrThrow();
+var api = raml.loadApiSync(fName);
 
 var resourceTypeReference = api.allResources()[0].type().value()
 var highLevelASTNode = resourceTypeReference.toHighlevel()
@@ -548,7 +544,7 @@ For now, lets see how resource type declarations can be access directly from API
 Modify `getting_started.js` file contents in the following way:
 
 ```js
-var raml = require("./src/raml1Parser");
+var raml = require("raml-1-parser");
 var fs = require("fs");
 var path = require("path");
 
@@ -556,7 +552,7 @@ var path = require("path");
 var fName = path.resolve(__dirname, "test.raml");
 
 // Parse our RAML file with all the dependencies
-var api = raml.loadApi(fName, true).getOrThrow();
+var api = raml.loadApiSync(fName);
 
 
 api.resourceTypes().forEach(function (resourceType) {
