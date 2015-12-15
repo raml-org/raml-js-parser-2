@@ -186,7 +186,7 @@ node test/testAsync.js  //same as above but in asynchronous mode
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_raml1_artifacts_raml10parser_.html#loadapisync" class="tsd-kind-icon">load<wbr>Api<wbr>Sync</a></li>
 							</ul>
 						</section>
 					</div>
@@ -198,19 +198,19 @@ node test/testAsync.js  //same as above but in asynchronous mode
 					<a name="loadapi" class="tsd-anchor"></a>
 					<h3>load<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, extensionsAndOverlays<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, extensionsAndOverlays<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5623</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5594</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Load API synchronously. If the &#39;rejectOnErrors&#39; option is set to true, <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> is thrown for Api which contains errors.</p>
+									<p>Load API asynchronously. The Promise is rejected with <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> if the resulting Api contains errors and the &#39;rejectOnErrors&#39; option is set to &#39;true&#39;.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -228,18 +228,18 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
-							<p>Api instance.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;Api&gt;.</p>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5631</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5602</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Load API synchronously. If the &#39;rejectOnErrors&#39; option is set to true, <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> is thrown for Api which contains errors.</p>
+									<p>Load API asynchronously. The Promise is rejected with <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> if the resulting Api contains errors and the &#39;rejectOnErrors&#39; option is set to &#39;true&#39;.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -263,28 +263,28 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
-							<p>Api instance.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;Api&gt;.</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="loadapiasync" class="tsd-anchor"></a>
-					<h3>load<wbr>Api<wbr>Async</h3>
+					<a name="loadapisync" class="tsd-anchor"></a>
+					<h3>load<wbr>Api<wbr>Sync</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, extensionsAndOverlays<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Sync<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Sync<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, extensionsAndOverlays<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5644</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5573</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Load API asynchronously. The Promise is rejected with <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> if the resulting Api contains errors and the &#39;rejectOnErrors&#39; option is set to &#39;true&#39;.</p>
+									<p>Load API synchronously. If the &#39;rejectOnErrors&#39; option is set to true, <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> is thrown for Api which contains errors.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -302,18 +302,18 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise&lt;Api&gt;.</p>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
+							<p>Api instance.</p>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:5652</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:5581</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Load API asynchronously. The Promise is rejected with <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> if the resulting Api contains errors and the &#39;rejectOnErrors&#39; option is set to &#39;true&#39;.</p>
+									<p>Load API synchronously. If the &#39;rejectOnErrors&#39; option is set to true, <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html">ApiLoadingError</a> is thrown for Api which contains errors.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -337,8 +337,8 @@ node test/testAsync.js  //same as above but in asynchronous mode
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>Promise&lt;Api&gt;.</p>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a></h4>
+							<p>Api instance.</p>
 						</li>
 					</ul>
 				</section>
@@ -610,7 +610,7 @@ node test/testAsync.js  //same as above but in asynchronous mode
 						<a href="_raml1_artifacts_raml10parser_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_raml1_artifacts_raml10parser_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a>
+						<a href="_raml1_artifacts_raml10parser_.html#loadapisync" class="tsd-kind-icon">load<wbr>Api<wbr>Sync</a>
 					</li>
 				</ul>
 			</nav>
