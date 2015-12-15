@@ -14,7 +14,7 @@ var paths = [
 paths = paths.map(function(ramlPath) {
     return path.resolve(__dirname, path.join("../raml-specs/modularization", ramlPath));
 });
-var api = raml1Parser.loadApi(paths).getOrElse(null);
+var api = raml1Parser.loadApiSync(paths[0], paths.slice(1));
 
 api.errors().forEach(function(x){
     console.log(JSON.stringify({
@@ -29,4 +29,4 @@ api.errors().forEach(function(x){
 
 console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
 
-console.log(JSON.stringify(raml1Parser.toJSON(api), null, 2));
+console.log(api.highLevel().printDetails());
