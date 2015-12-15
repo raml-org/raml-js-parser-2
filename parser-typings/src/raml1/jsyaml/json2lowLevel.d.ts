@@ -29,6 +29,7 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     project(): lowlevel.IProject;
     updateContent(newContent: string): void;
     ramlVersion(): string;
+    lineMapper(): lowlevel.LineMapper;
     resolve(p: string): lowlevel.ICompilationUnit;
 }
 export declare class AstNode implements lowlevel.ILowLevelASTNode {

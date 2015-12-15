@@ -280,6 +280,7 @@ export declare class AbstractType extends Described implements ITypeDefinition {
         [name: string]: ITypeDefinition;
     }): IProperty[];
     facet(name: string): IProperty;
+    typeId(): string;
     allProperties(ps?: {
         [name: string]: ITypeDefinition;
     }): IProperty[];
@@ -366,7 +367,7 @@ export declare class Property extends Described implements IProperty {
     keyPrefix(): string;
     withEnumOptions(op: string[]): Property;
     _keyRegexp: string;
-    withKeyRegexp(regexp: string): void;
+    withKeyRegexp(regexp: string): Property;
     getKeyRegexp(): string;
     matchKey(k: string): boolean;
     private facetValidator;

@@ -1513,12 +1513,20 @@ export interface Resource extends RAMLLanguageElement {
      **/
     ownerApi(): Api;
     /**
-     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * /resource/{objectId}/{propertyId}:
+     * uriParameters:
+     * objectId:
+     * ```
+     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
      **/
     allUriParameters(): Parameter[];
     /**
-     * Retrieve all absolute uri parameters regardless of whether they are described in
-     * `baseUriParameters` and `uriParameters` or not
+     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): Parameter[];
 }
@@ -1598,12 +1606,20 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
      **/
     ownerApi(): Api;
     /**
-     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * /resource/{objectId}/{propertyId}:
+     * uriParameters:
+     * objectId:
+     * ```
+     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
      **/
     allUriParameters(): Parameter[];
     /**
-     * Retrieve all absolute uri parameters regardless of whether they are described in
-     * `baseUriParameters` and `uriParameters` or not
+     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): Parameter[];
 }
@@ -1702,13 +1718,27 @@ export interface Api extends RAMLLanguageElement {
      **/
     getChildResource(relPath: string): Resource;
     /**
-     * Retrieve all resources ofthe Api
+     * Retrieve all resources of the Api
      **/
     allResources(): Resource[];
     /**
-     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * version: v1
+     * baseUri: https://{organization}.example.com/{version}/{service}
+     * baseUriParameters:
+     * service:
+     * ```
+     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
      **/
     allBaseUriParameters(): Parameter[];
+    /**
+     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+     * Otherwise, returns protocol, specified in the base URI.
+     **/
+    allProtocols(): string[];
 }
 export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1831,13 +1861,27 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
      **/
     getChildResource(relPath: string): Resource;
     /**
-     * Retrieve all resources ofthe Api
+     * Retrieve all resources of the Api
      **/
     allResources(): Resource[];
     /**
-     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * version: v1
+     * baseUri: https://{organization}.example.com/{version}/{service}
+     * baseUriParameters:
+     * service:
+     * ```
+     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
      **/
     allBaseUriParameters(): Parameter[];
+    /**
+     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+     * Otherwise, returns protocol, specified in the base URI.
+     **/
+    allProtocols(): string[];
 }
 /**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.
@@ -1845,11 +1889,11 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
  * @param options Load options
  * @return Api instance.
  **/
-export declare function loadApi(apiPath: string, options?: core.Options): Api;
+export declare function loadApiSync(apiPath: string, options?: core.Options): Api;
 /**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
  * @param options Load options
  * @return Promise&lt;Api&gt;.
  **/
-export declare function loadApiAsync(apiPath: string, options?: core.Options): Promise<Api>;
+export declare function loadApi(apiPath: string, options?: core.Options): Promise<Api>;

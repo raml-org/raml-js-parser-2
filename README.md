@@ -36,9 +36,12 @@ npm install mkdirp
 or globally (in this case the should be linked to the project) 
 ```
 npm install webpack -g
+npm install json-loader -g
 npm install mkdirp -g
 npm link webpack
 npm link mkdirp
+npm link json-loader
+
 ```
 Example can be found at [`examples/web-example`](https://github.com/raml-org/raml-js-parser-2/tree/master/examples/web-example). In order to regenerate example bundle, run
 ```

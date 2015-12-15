@@ -728,13 +728,12 @@ export interface TypeDeclaration extends RAMLLanguageElement {
      * name of the parameter
      **/
     name(): string;
-    xml(): XMLSerializationHints;
     /**
      * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
      **/
     facets(): TypeDeclaration[];
     /**
-     * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+     * Alias for the equivalent "type" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "type" property, as the "schema" alias for that property name may be removed in a future RAML version. The "type" property allows for XML and JSON schemas.
      **/
     schema(): string;
     usage(): string;
@@ -808,13 +807,12 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
      * Set name value
      **/
     setName(param: string): TypeDeclarationImpl;
-    xml(): XMLSerializationHints;
     /**
      * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
      **/
     facets(): TypeDeclaration[];
     /**
-     * Alias for the type property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+     * Alias for the equivalent "type" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "type" property, as the "schema" alias for that property name may be removed in a future RAML version. The "type" property allows for XML and JSON schemas.
      **/
     schema(): string;
     /**
@@ -906,54 +904,6 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
      * Runtime representation of type represented by this AST node
      **/
     runtimeType(): typeSystem.ITypeDefinition;
-}
-export interface XMLSerializationHints extends core.BasicNode {
-    name(): string;
-    namespace(): string;
-    prefix(): string;
-    attribute(): boolean;
-    wrapped(): boolean;
-}
-export declare class XMLSerializationHintsImpl extends core.BasicNodeImpl implements XMLSerializationHints {
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    getKind(): string;
-    name(): string;
-    /**
-     * @hidden
-     * Set name value
-     **/
-    setName(param: string): XMLSerializationHintsImpl;
-    namespace(): string;
-    /**
-     * @hidden
-     * Set namespace value
-     **/
-    setNamespace(param: string): XMLSerializationHintsImpl;
-    prefix(): string;
-    /**
-     * @hidden
-     * Set prefix value
-     **/
-    setPrefix(param: string): XMLSerializationHintsImpl;
-    attribute(): boolean;
-    /**
-     * @hidden
-     * Set attribute value
-     **/
-    setAttribute(param: boolean): XMLSerializationHintsImpl;
-    wrapped(): boolean;
-    /**
-     * @hidden
-     * Set wrapped value
-     **/
-    setWrapped(param: boolean): XMLSerializationHintsImpl;
 }
 export interface ModelLocation extends core.AbstractWrapperNode {
 }
@@ -1854,7 +1804,7 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
 export interface LibraryBase extends RAMLLanguageElement {
     name(): string;
     /**
-     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+     * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
      **/
     schemas(): GlobalSchema[];
     /**
@@ -1872,7 +1822,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     /**
      * Declarations of annotation types for use by annotations
      **/
-    annotationTypes(): AnnotationTypeDeclaration[];
+    annotationTypes(): TypeDeclaration[];
     /**
      * Security schemas types declarations
      **/
@@ -1911,7 +1861,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
      **/
     setName(param: string): LibraryBaseImpl;
     /**
-     * Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.
+     * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
      **/
     schemas(): GlobalSchema[];
     /**
@@ -1929,7 +1879,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     /**
      * Declarations of annotation types for use by annotations
      **/
-    annotationTypes(): AnnotationTypeDeclaration[];
+    annotationTypes(): TypeDeclaration[];
     /**
      * Security schemas types declarations
      **/
@@ -2679,12 +2629,20 @@ export interface Resource extends ResourceBase {
      **/
     ownerApi(): Api;
     /**
-     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * /resource/{objectId}/{propertyId}:
+     * uriParameters:
+     * objectId:
+     * ```
+     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
      **/
     allUriParameters(): TypeDeclaration[];
     /**
-     * Retrieve all absolute uri parameters regardless of whether they are described in
-     * `baseUriParameters` and `uriParameters` or not
+     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): TypeDeclaration[];
 }
@@ -2751,28 +2709,24 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
      **/
     ownerApi(): Api;
     /**
-     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * /resource/{objectId}/{propertyId}:
+     * uriParameters:
+     * objectId:
+     * ```
+     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
      **/
     allUriParameters(): TypeDeclaration[];
     /**
-     * Retrieve all absolute uri parameters regardless of whether they are described in
-     * `baseUriParameters` and `uriParameters` or not
+     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): TypeDeclaration[];
 }
 export interface AnnotationTypeDeclaration extends RAMLLanguageElement {
-    /**
-     * Name of this annotation type
-     **/
-    name(): string;
-    /**
-     * Instructions on how and when to use this annotation in a RAML spec.
-     **/
-    usage(): string;
-    /**
-     * Declarations of parameters allowed in this annotation type
-     **/
-    parameters(): TypeDeclaration[];
     /**
      * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
      **/
@@ -2781,14 +2735,6 @@ export interface AnnotationTypeDeclaration extends RAMLLanguageElement {
      * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
      **/
     allowedTargets(): AnnotationTarget[];
-    /**
-     * An alternate, human-friendly name for the annotation
-     **/
-    displayName(): string;
-    /**
-     * A longer, human-friendly description of the annotation
-     **/
-    description(): MarkdownString;
 }
 export declare class AnnotationTypeDeclarationImpl extends RAMLLanguageElementImpl implements AnnotationTypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2803,28 +2749,6 @@ export declare class AnnotationTypeDeclarationImpl extends RAMLLanguageElementIm
      **/
     getKind(): string;
     /**
-     * Name of this annotation type
-     **/
-    name(): string;
-    /**
-     * @hidden
-     * Set name value
-     **/
-    setName(param: string): AnnotationTypeDeclarationImpl;
-    /**
-     * Instructions on how and when to use this annotation in a RAML spec.
-     **/
-    usage(): string;
-    /**
-     * @hidden
-     * Set usage value
-     **/
-    setUsage(param: string): AnnotationTypeDeclarationImpl;
-    /**
-     * Declarations of parameters allowed in this annotation type
-     **/
-    parameters(): TypeDeclaration[];
-    /**
      * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
      **/
     allowMultiple(): boolean;
@@ -2837,19 +2761,6 @@ export declare class AnnotationTypeDeclarationImpl extends RAMLLanguageElementIm
      * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
      **/
     allowedTargets(): AnnotationTarget[];
-    /**
-     * An alternate, human-friendly name for the annotation
-     **/
-    displayName(): string;
-    /**
-     * @hidden
-     * Set displayName value
-     **/
-    setDisplayName(param: string): AnnotationTypeDeclarationImpl;
-    /**
-     * A longer, human-friendly description of the annotation
-     **/
-    description(): MarkdownString;
 }
 export interface RAMLSimpleElement extends core.BasicNode {
 }
@@ -3013,13 +2924,27 @@ export interface Api extends LibraryBase {
      **/
     getChildResource(relPath: string): Resource;
     /**
-     * Retrieve all resources ofthe Api
+     * Retrieve all resources of the Api
      **/
     allResources(): Resource[];
     /**
-     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * version: v1
+     * baseUri: https://{organization}.example.com/{version}/{service}
+     * baseUriParameters:
+     * service:
+     * ```
+     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
      **/
     allBaseUriParameters(): TypeDeclaration[];
+    /**
+     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+     * Otherwise, returns protocol, specified in the base URI.
+     **/
+    allProtocols(): string[];
 }
 export declare class ApiImpl extends LibraryBaseImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -3128,15 +3053,29 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      **/
     getChildResource(relPath: string): Resource;
     /**
-     * Retrieve all resources ofthe Api
+     * Retrieve all resources of the Api
      **/
     allResources(): Resource[];
     /**
-     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+     * Consider a fragment of RAML specification:
+     * ```yaml
+     * version: v1
+     * baseUri: https://{organization}.example.com/{version}/{service}
+     * baseUriParameters:
+     * service:
+     * ```
+     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
      **/
     allBaseUriParameters(): TypeDeclaration[];
+    /**
+     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+     * Otherwise, returns protocol, specified in the base URI.
+     **/
+    allProtocols(): string[];
 }
-export interface ApiOverlay extends Api {
+export interface Overlay extends Api {
     /**
      * contains description of why overlay exist
      **/
@@ -3147,7 +3086,7 @@ export interface ApiOverlay extends Api {
      **/
     title(): string;
 }
-export declare class ApiOverlayImpl extends ApiImpl implements ApiOverlay {
+export declare class OverlayImpl extends ApiImpl implements Overlay {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /**
@@ -3167,13 +3106,13 @@ export declare class ApiOverlayImpl extends ApiImpl implements ApiOverlay {
      * @hidden
      * Set usage value
      **/
-    setUsage(param: string): ApiOverlayImpl;
+    setUsage(param: string): OverlayImpl;
     masterRef(): string;
     /**
      * @hidden
      * Set masterRef value
      **/
-    setMasterRef(param: string): ApiOverlayImpl;
+    setMasterRef(param: string): OverlayImpl;
     /**
      * Short plain-text label for the API
      **/
@@ -3182,9 +3121,9 @@ export declare class ApiOverlayImpl extends ApiImpl implements ApiOverlay {
      * @hidden
      * Set title value
      **/
-    setTitle(param: string): ApiOverlayImpl;
+    setTitle(param: string): OverlayImpl;
 }
-export interface ApiExtension extends Api {
+export interface Extension extends Api {
     /**
      * contains description of why extension exist
      **/
@@ -3195,7 +3134,7 @@ export interface ApiExtension extends Api {
      **/
     title(): string;
 }
-export declare class ApiExtensionImpl extends ApiImpl implements ApiExtension {
+export declare class ExtensionImpl extends ApiImpl implements Extension {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /**
@@ -3215,13 +3154,13 @@ export declare class ApiExtensionImpl extends ApiImpl implements ApiExtension {
      * @hidden
      * Set usage value
      **/
-    setUsage(param: string): ApiExtensionImpl;
+    setUsage(param: string): ExtensionImpl;
     masterRef(): string;
     /**
      * @hidden
      * Set masterRef value
      **/
-    setMasterRef(param: string): ApiExtensionImpl;
+    setMasterRef(param: string): ExtensionImpl;
     /**
      * Short plain-text label for the API
      **/
@@ -3230,7 +3169,7 @@ export declare class ApiExtensionImpl extends ApiImpl implements ApiExtension {
      * @hidden
      * Set title value
      **/
-    setTitle(param: string): ApiExtensionImpl;
+    setTitle(param: string): ExtensionImpl;
 }
 /**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.
@@ -3238,7 +3177,7 @@ export declare class ApiExtensionImpl extends ApiImpl implements ApiExtension {
  * @param options Load options
  * @return Api instance.
  **/
-export declare function loadApi(apiPath: string, options?: core.Options): Api;
+export declare function loadApiSync(apiPath: string, options?: core.Options): Api;
 /**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.
  * @param apiPath Path to API: local file system path or Web URL
@@ -3246,14 +3185,14 @@ export declare function loadApi(apiPath: string, options?: core.Options): Api;
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
  * @return Api instance.
  **/
-export declare function loadApi(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Api;
+export declare function loadApiSync(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Api;
 /**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
  * @param options Load options
  * @return Promise&lt;Api&gt;.
  **/
-export declare function loadApiAsync(apiPath: string, options?: core.Options): Promise<Api>;
+export declare function loadApi(apiPath: string, options?: core.Options): Promise<Api>;
 /**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
@@ -3261,4 +3200,4 @@ export declare function loadApiAsync(apiPath: string, options?: core.Options): P
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
  * @return Promise&lt;Api&gt;.
  **/
-export declare function loadApiAsync(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Promise<Api>;
+export declare function loadApi(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Promise<Api>;

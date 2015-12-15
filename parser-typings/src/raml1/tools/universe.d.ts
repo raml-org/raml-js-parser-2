@@ -554,7 +554,7 @@ declare var Universes: {
                 };
             };
         };
-        "ApiOverlay": {
+        "Overlay": {
             "name": string;
             "properties": {
                 "usage": {
@@ -568,7 +568,7 @@ declare var Universes: {
                 };
             };
         };
-        "ApiExtension": {
+        "Extension": {
             "name": string;
             "properties": {
                 "usage": {
@@ -1225,9 +1225,6 @@ declare var Universes: {
                 "name": {
                     "name": string;
                 };
-                "xml": {
-                    "name": string;
-                };
                 "facets": {
                     "name": string;
                 };
@@ -1279,26 +1276,6 @@ declare var Universes: {
                     "name": string;
                 };
                 "enum": {
-                    "name": string;
-                };
-            };
-        };
-        "XMLSerializationHints": {
-            "name": string;
-            "properties": {
-                "name": {
-                    "name": string;
-                };
-                "namespace": {
-                    "name": string;
-                };
-                "prefix": {
-                    "name": string;
-                };
-                "attribute": {
-                    "name": string;
-                };
-                "wrapped": {
                     "name": string;
                 };
             };

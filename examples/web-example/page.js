@@ -2,10 +2,10 @@ var raml1Parser = require('../../src/raml1Parser')
 
 
 var onClick = function() {
-	
+
 	var url = document.getElementById('inputUrl').value
-	
-    raml1Parser.loadApiAsync(url,{
+
+    raml1Parser.loadApi(url,{
     		fsResolver: {
     			content: function(path){ return fs.readFileSync(path).toString(); },
     			list: function(path){ return fs.readDirSync(path); }
@@ -15,7 +15,7 @@ var onClick = function() {
     				var xhr = new XMLHttpRequest();
     				xhr.open("get", path, false);
     				xhr.send();
-    				var response = toResponse(xhr);			
+    				var response = toResponse(xhr);
     				return response;
     			},
     			getResourceAsync: function(path){
@@ -34,11 +34,11 @@ var onClick = function() {
     			}
     		}
     	}).then(function(api){
-	
+
 	    	var titleField = document.getElementById('apiTitle');
-	    	
+
 	    	titleField.value = api.title();
-	    	
+
 	    	var str = "";
 	    	api.allResources().map(function(x){return x.completeRelativeUri()}).sort().forEach(function(x){
 	    		str += x + '\n';
@@ -66,4 +66,3 @@ function toResponse(xhr){
 	}
 	return response;
 }
-
