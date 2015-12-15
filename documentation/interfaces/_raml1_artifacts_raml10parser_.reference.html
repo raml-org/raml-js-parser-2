@@ -74,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html" class="tsd-signature-type">AbstractWrapperNode</a>
+						<a href="_raml1_wrapped_ast_parsercore_.attributenode.html" class="tsd-signature-type">AttributeNode</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">Reference</span>
@@ -86,7 +86,7 @@
 										<a href="_raml1_artifacts_raml10parser_.traitref.html" class="tsd-signature-type">TraitRef</a>
 									</li>
 									<li>
-										<a href="_raml1_artifacts_raml10parser_.securityschemaref.html" class="tsd-signature-type">SecuritySchemaRef</a>
+										<a href="_raml1_artifacts_raml10parser_.securityschemeref.html" class="tsd-signature-type">SecuritySchemeRef</a>
 									</li>
 									<li>
 										<a href="_raml1_artifacts_raml10parser_.annotationref.html" class="tsd-signature-type">AnnotationRef</a>
@@ -108,6 +108,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.reference.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.reference.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.reference.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -127,13 +128,34 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#getkind">getKind</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:17</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L19">raml1/wrapped-ast/parserCore.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Actual name of instance interface</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="highlevel" class="tsd-anchor"></a>
+					<h3>high<wbr>Level</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">high<wbr>Level<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#highlevel">highLevel</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L274">raml1/wrapped-ast/parserCore.ts:274</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h4>
+							<p>Underlying High Level attribute node</p>
 						</li>
 					</ul>
 				</section>
@@ -147,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:195</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:178</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,6 +201,9 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.reference.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_raml1_artifacts_raml10parser_.reference.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_raml1_artifacts_raml10parser_.reference.html#value" class="tsd-kind-icon">value</a>

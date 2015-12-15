@@ -74,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_raml1_artifacts_raml10parser_.securityschemasettings.html" class="tsd-signature-type">SecuritySchemaSettings</a>
+						<a href="_raml1_artifacts_raml10parser_.securityschemesettings.html" class="tsd-signature-type">SecuritySchemeSettings</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">OAuth1SecuritySchemeSettings</span>
@@ -111,13 +111,13 @@
 					<a name="authorizationuri" class="tsd-anchor"></a>
 					<h3>authorization<wbr>Uri</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">authorization<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></li>
+						<li class="tsd-signature tsd-kind-icon">authorization<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:3755</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:3528</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -125,7 +125,7 @@
 									<p>The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -133,19 +133,19 @@
 					<a name="definition" class="tsd-anchor"></a>
 					<h3>definition</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
+						<li class="tsd-signature tsd-kind-icon">definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#definition">definition</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:41</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L43">raml1/wrapped-ast/parserCore.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
 							<p>object representing class of the node</p>
 						</li>
 					</ul>
@@ -154,19 +154,19 @@
 					<a name="errors" class="tsd-anchor"></a>
 					<h3>errors</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_wrapped_ast_parsercore_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#errors">errors</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:36</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L38">raml1/wrapped-ast/parserCore.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_wrapped_ast_parsercore_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></h4>
 							<p>Array of errors</p>
 						</li>
 					</ul>
@@ -182,7 +182,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#getkind">getKind</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:17</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L19">raml1/wrapped-ast/parserCore.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -203,7 +203,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#parent">parent</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:25</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L27">raml1/wrapped-ast/parserCore.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -217,13 +217,13 @@
 					<a name="requesttokenuri" class="tsd-anchor"></a>
 					<h3>request<wbr>Token<wbr>Uri</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">request<wbr>Token<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></li>
+						<li class="tsd-signature tsd-kind-icon">request<wbr>Token<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:3749</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:3522</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -231,7 +231,7 @@
 									<p>The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -239,19 +239,19 @@
 					<a name="runtimedefinition" class="tsd-anchor"></a>
 					<h3>runtime<wbr>Definition</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">runtime<wbr>Definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
+						<li class="tsd-signature tsd-kind-icon">runtime<wbr>Definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#runtimedefinition">runtimeDefinition</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:46</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L48">raml1/wrapped-ast/parserCore.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
 							<p>for user class instances returns object representing actual user class</p>
 						</li>
 					</ul>
@@ -266,7 +266,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:3763</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:3536</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -284,7 +284,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:53</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L55">raml1/wrapped-ast/parserCore.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -307,13 +307,13 @@
 					<a name="tokencredentialsuri" class="tsd-anchor"></a>
 					<h3>token<wbr>Credentials<wbr>Uri</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">token<wbr>Credentials<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></li>
+						<li class="tsd-signature tsd-kind-icon">token<wbr>Credentials<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:3761</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:3534</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,7 +321,7 @@
 									<p>The URI of the Token Request endpoint as defined in RFC5849 Section 2.3</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduri.html" class="tsd-signature-type">FixedUri</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.fixeduristring.html" class="tsd-signature-type">FixedUriString</a></h4>
 						</li>
 					</ul>
 				</section>

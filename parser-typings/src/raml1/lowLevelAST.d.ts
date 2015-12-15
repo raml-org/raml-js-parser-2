@@ -25,6 +25,7 @@ export interface ICompilationUnit {
      */
     getIncludeNodes(): ILowLevelASTNode[];
     updateContent(newContent: string): any;
+    lineMapper(): LineMapper;
 }
 export interface IProject {
     units(): ICompilationUnit[];
@@ -86,6 +87,10 @@ export interface ILowLevelASTNode {
     text(unitText: string): string;
     copy(): ILowLevelASTNode;
     nodeDefinition(): highlevel.INodeDefinition;
+    /**
+     * Indicates that contents of this node are !included
+     */
+    includesContents(): boolean;
 }
 export declare enum CommandKind {
     ADD_CHILD = 0,
@@ -126,4 +131,29 @@ export declare function insertNode(t: ILowLevelASTNode, child: ILowLevelASTNode,
 export declare function initRamlFile(root: ILowLevelASTNode, newroot: ILowLevelASTNode): ASTChangeCommand;
 export interface ILowLevelEnvironment {
     createProject(path: string): IProject;
+}
+export interface TextPosition {
+    /**
+     * Line number, starting from zero
+     */
+    line: number;
+    /**
+     * Column number, starting from zero
+     */
+    column: number;
+    /**
+     * Character index in whole text, starting from zero
+     */
+    position: number;
+}
+export interface LineMapper {
+    position(pos: number): TextPosition;
+}
+export declare class LineMapperImpl implements LineMapper {
+    private content;
+    private absPath;
+    constructor(content: string, absPath: string);
+    private mapping;
+    position(_pos: number): TextPosition;
+    initMapping(): void;
 }

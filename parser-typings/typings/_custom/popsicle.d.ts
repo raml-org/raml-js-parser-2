@@ -114,9 +114,11 @@ declare module 'popsicle' {
       always (fn: (request: Request) => Promise<any>): Request
 
       // Control flow.
-      then (fn: (response: Response) => any): Promise<any>
-      catch (fn: (error: Error) => any): Promise<any>
-      exec (fn: (err: Error, response: Response) => any): void
+      then <T> (onResolve: (response?: Response) => T): Promise<T>
+      then <T> (onResolve: void, onReject?: (error?: Error) => T): Promise<T>
+      then <T> (onResolve: (response?: Response) => T, onReject?: (error?: Error) => T): Promise<T>
+      catch <T> (onReject: (error?: Error) => T): Promise<T>
+      exec (cb: (err?: Error, response?: Response) => any): void
     }
 
     class Response extends Headers {
@@ -130,6 +132,7 @@ declare module 'popsicle' {
       // Utilities.
       statusType (): number
       error (message: string): Error
+      toJSON (): any
     }
 
     function jar (): CookieJar

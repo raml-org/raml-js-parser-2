@@ -72,23 +72,15 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-kind-icon">Options</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-external">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_ramlscript_apiloader_.html#fetchandloadapiasync" class="tsd-kind-icon">fetch<wbr>And<wbr>Load<wbr>Api<wbr>Async</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_ramlscript_apiloader_.html#getproject" class="tsd-kind-icon">get<wbr>Project</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapi08" class="tsd-kind-icon">load<wbr>Api08</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapi08async" class="tsd-kind-icon">load<wbr>Api08<wbr>Async</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapi1" class="tsd-kind-icon">load<wbr>Api1</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapi1async" class="tsd-kind-icon">load<wbr>Api1<wbr>Async</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#loadapis1" class="tsd-kind-icon">load<wbr>Apis1</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_ramlscript_apiloader_.html#toapi" class="tsd-kind-icon">to<wbr>Api</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_ramlscript_apiloader_.html#toerror" class="tsd-kind-icon">to<wbr>Error</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,16 +89,45 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-					<a name="getproject" class="tsd-anchor"></a>
-					<h3>get<wbr>Project</h3>
+					<a name="fetchandloadapiasync" class="tsd-anchor"></a>
+					<h3>fetch<wbr>And<wbr>Load<wbr>Api<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Project<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+						<li class="tsd-signature tsd-kind-icon">fetch<wbr>And<wbr>Load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>project<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a>, unitName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:100</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L129">ramlscript/apiLoader.ts:129</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>project: <a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></h5>
+								</li>
+								<li>
+									<h5>unitName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="getproject" class="tsd-anchor"></a>
+					<h3>get<wbr>Project</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Project<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L144">ramlscript/apiLoader.ts:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -115,7 +136,7 @@
 									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../classes/_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></h4>
@@ -126,129 +147,37 @@
 					<a name="loadapi" class="tsd-anchor"></a>
 					<h3>load<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, arg1<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a>, arg2<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:55</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L27">ramlscript/apiLoader.ts:27</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load API synchronously. Detects RAML version and uses corresponding parser.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path to API: local file system path or Web URL</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arg1: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arg2: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="loadapi08" class="tsd-anchor"></a>
-					<h3>load<wbr>Api08</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api08<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:41</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="loadapi08async" class="tsd-anchor"></a>
-					<h3>load<wbr>Api08<wbr>Async</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api08<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:79</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="loadapi1" class="tsd-anchor"></a>
-					<h3>load<wbr>Api1</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api1<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:28</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-					<a name="loadapi1async" class="tsd-anchor"></a>
-					<h3>load<wbr>Api1<wbr>Async</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api1<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:67</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_opt_.opt.html" class="tsd-signature-type">Opt</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.</p>
 						</li>
 					</ul>
 				</section>
@@ -256,25 +185,37 @@
 					<a name="loadapiasync" class="tsd-anchor"></a>
 					<h3>load<wbr>Api<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Api<wbr>Async<span class="tsd-signature-symbol">(</span>apiPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, arg1<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a>, arg2<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:91</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L82">ramlscript/apiLoader.ts:82</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Load API asynchronously. Detects RAML version and uses corresponding parser.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>apiPath: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path to API: local file system path or Web URL</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arg1: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> arg2: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Api</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.</p>
 						</li>
 					</ul>
 				</section>
@@ -288,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:167</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L237">ramlscript/apiLoader.ts:237</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -311,28 +252,54 @@
 					<a name="toapi" class="tsd-anchor"></a>
 					<h3>to<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Api<span class="tsd-signature-symbol">(</span>unit<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Api</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Api<span class="tsd-signature-symbol">(</span>unitOrHighlevel<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a>, checkApisOverlays<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in ramlscript/apiLoader.ts:119</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L155">ramlscript/apiLoader.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>unit: <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a></h5>
+									<h5>unitOrHighlevel: <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
 								</li>
 								<li>
-									<h5>options: <a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-signature-type">Options</a></h5>
+									<h5>options: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.options.html" class="tsd-signature-type">Options</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> checkApisOverlays: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a>
 								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">Api</span>
+								<a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a>
 							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="toerror" class="tsd-anchor"></a>
+					<h3>to<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Error<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html" class="tsd-signature-type">ApiLoadingError</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/ramlscript/apiLoader.ts#L230">ramlscript/apiLoader.ts:230</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html" class="tsd-signature-type">ApiLoadingError</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -351,26 +318,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_ramlscript_apiloader_.options.html" class="tsd-kind-icon">Options</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_ramlscript_apiloader_.html#fetchandloadapiasync" class="tsd-kind-icon">fetch<wbr>And<wbr>Load<wbr>Api<wbr>Async</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_ramlscript_apiloader_.html#getproject" class="tsd-kind-icon">get<wbr>Project</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_ramlscript_apiloader_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="_ramlscript_apiloader_.html#loadapi08" class="tsd-kind-icon">load<wbr>Api08</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="_ramlscript_apiloader_.html#loadapi08async" class="tsd-kind-icon">load<wbr>Api08<wbr>Async</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="_ramlscript_apiloader_.html#loadapi1" class="tsd-kind-icon">load<wbr>Api1</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<a href="_ramlscript_apiloader_.html#loadapi1async" class="tsd-kind-icon">load<wbr>Api1<wbr>Async</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_ramlscript_apiloader_.html#loadapiasync" class="tsd-kind-icon">load<wbr>Api<wbr>Async</a>
@@ -380,6 +335,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_ramlscript_apiloader_.html#toapi" class="tsd-kind-icon">to<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_ramlscript_apiloader_.html#toerror" class="tsd-kind-icon">to<wbr>Error</a>
 					</li>
 				</ul>
 			</nav>

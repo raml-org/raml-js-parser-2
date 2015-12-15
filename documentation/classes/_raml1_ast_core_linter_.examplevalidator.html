@@ -99,7 +99,11 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#aquireschema" class="tsd-kind-icon">aquire<wbr>Schema</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#findparentschemaortypeattribute" class="tsd-kind-icon">find<wbr>Parent<wbr>Schema<wbr>OrType<wbr>Attribute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#getschemafrommodel" class="tsd-kind-icon">get<wbr>Schema<wbr>From<wbr>Model</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#isexamplenode" class="tsd-kind-icon">is<wbr>Example<wbr>Node</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#isexamplenodeinmultipledecl" class="tsd-kind-icon">is<wbr>Example<wbr>Node<wbr>InMultiple<wbr>Decl</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#issingleexamplenode" class="tsd-kind-icon">is<wbr>Single<wbr>Example<wbr>Node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#isstrict" class="tsd-kind-icon">is<wbr>Strict</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#parseobject" class="tsd-kind-icon">parse<wbr>Object</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_linter_.examplevalidator.html#testdublication" class="tsd-kind-icon">test<wbr>Dublication</a></li>
@@ -122,30 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:851</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-signature-type">IShema</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="getschemafrommodel" class="tsd-anchor"></a>
-					<h3>get<wbr>Schema<wbr>From<wbr>Model</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Schema<wbr>From<wbr>Model<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-signature-type">IShema</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:930</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1741">raml1/ast.core/linter.ts:1741</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -159,6 +140,121 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="findparentschemaortypeattribute" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> find<wbr>Parent<wbr>Schema<wbr>OrType<wbr>Attribute</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Parent<wbr>Schema<wbr>OrType<wbr>Attribute<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1713">raml1/ast.core/linter.ts:1713</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getschemafrommodel" class="tsd-anchor"></a>
+					<h3>get<wbr>Schema<wbr>From<wbr>Model</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Schema<wbr>From<wbr>Model<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-signature-type">IShema</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1824">raml1/ast.core/linter.ts:1824</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-signature-type">IShema</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="isexamplenode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Example<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Example<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1695">raml1/ast.core/linter.ts:1695</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="isexamplenodeinmultipledecl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Example<wbr>Node<wbr>InMultiple<wbr>Decl</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Example<wbr>Node<wbr>InMultiple<wbr>Decl<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1704">raml1/ast.core/linter.ts:1704</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="issingleexamplenode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Single<wbr>Example<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Single<wbr>Example<wbr>Node<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1700">raml1/ast.core/linter.ts:1700</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="isstrict" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> is<wbr>Strict</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
@@ -168,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:1021</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1915">raml1/ast.core/linter.ts:1915</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -191,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:969</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1863">raml1/ast.core/linter.ts:1863</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -220,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:957</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1851">raml1/ast.core/linter.ts:1851</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -249,7 +345,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:947</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1841">raml1/ast.core/linter.ts:1841</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -279,7 +375,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html">PropertyValidator</a>.<a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in raml1/ast.core/linter.ts:831</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/ast.core/linter.ts#L1675">raml1/ast.core/linter.ts:1675</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,6 +410,12 @@
 						<a href="../interfaces/_raml1_ast_core_linter_.ishema.html" class="tsd-kind-icon">IShema</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../interfaces/_raml1_ast_core_linter_.nametoint.html" class="tsd-kind-icon">Name<wbr>ToInt</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../interfaces/_raml1_ast_core_linter_.nodevalidator.html" class="tsd-kind-icon">Node<wbr>Validator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../interfaces/_raml1_ast_core_linter_.propertyvalidator.html" class="tsd-kind-icon">Property<wbr>Validator</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -321,6 +423,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#astpropimpl" class="tsd-kind-icon">ASTProp<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#max_recursion_level" class="tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#loophole" class="tsd-kind-icon">loophole</a>
@@ -331,13 +436,19 @@
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#settings" class="tsd-kind-icon">settings</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_ast_core_linter_.html#typetoname" class="tsd-kind-icon">type<wbr>ToName</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#checkpropertyquard" class="tsd-kind-icon">check<wbr>Property<wbr>Quard</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="../modules/_raml1_ast_core_linter_.html#createissue" class="tsd-kind-icon">create<wbr>Issue</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#evalinsandbox" class="tsd-kind-icon">eval<wbr>InSandbox</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -347,12 +458,21 @@
 						<a href="../modules/_raml1_ast_core_linter_.html#getmediatype2" class="tsd-kind-icon">get<wbr>Media<wbr>Type2</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#insideresourcetypeortrait" class="tsd-kind-icon">inside<wbr>Resource<wbr>Type<wbr>OrTrait</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#isexampleprop" class="tsd-kind-icon">is<wbr>Example<wbr>Prop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#isjson" class="tsd-kind-icon">is<wbr>Json</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#istypeorschema" class="tsd-kind-icon">is<wbr>Type<wbr>OrSchema</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#isxml" class="tsd-kind-icon">isXML</a>
 					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#lintnode" class="tsd-kind-icon">lint<wbr>Node</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -360,6 +480,27 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_raml1_ast_core_linter_.html#localerror" class="tsd-kind-icon">local<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#namefornonreference" class="tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_ast_core_linter_.html#validate" class="tsd-kind-icon">validate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_ast_core_linter_.html#validatebasic" class="tsd-kind-icon">validate<wbr>Basic</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#validateincludes" class="tsd-kind-icon">validate<wbr>Includes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#validateregexp" class="tsd-kind-icon">validate<wbr>Regexp</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#allowoverride" class="tsd-kind-icon">allow<wbr>Override</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_ast_core_linter_.html#buildins" class="tsd-kind-icon">build<wbr>Ins</a>
 					</li>
 				</ul>
 			</nav>

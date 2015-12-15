@@ -3,6 +3,9 @@ import yaml = require("./yamlAST");
 import lowlevel = require("../lowLevelAST");
 import highlevel = require("../highLevelAST");
 import Error = require("./js-yaml/exception");
+export declare var Kind: {
+    SCALAR: yaml.Kind;
+};
 export declare class MarkupIndentingBuffer {
     text: string;
     indent: string;
@@ -20,6 +23,7 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     private _apath;
     constructor(_path: any, _content: any, _tl: any, _project: Project, _apath: string);
     private stu;
+    private _lineMapper;
     isStubUnit(): boolean;
     resolveAsync(p: string): Promise<lowlevel.ICompilationUnit>;
     getIncludeNodes(): lowlevel.ILowLevelASTNode[];
@@ -40,23 +44,64 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     updateContent(n: string): void;
     updateContentSafe(n: string): void;
     project(): Project;
+    lineMapper(): lowlevel.LineMapper;
 }
-export interface IncludeResolver {
+export interface FSResolver {
+    /**
+     * Load file content synchronosly
+     * @param path File path
+     * @return File content as string
+     **/
     content(path: string): string;
-    list(path: string): string[];
+    /**
+     * Load file content asynchronosly
+     * @param path File path
+     * @return File content as string
+     **/
+    contentAsync(path: string): Promise<string>;
 }
+/**
+ * @hidden
+ **/
+export interface ExtendedFSResolver extends FSResolver {
+    /**
+     * List directory synchronosly
+     * @param path Directory path
+     * @return Names list of files located in the directory
+     **/
+    list(path: string): string[];
+    /**
+     * List directory asynchronosly
+     * @param path Directory path
+     * @return Names list of files located in the directory
+     **/
+    listAsync(path: string): Promise<string[]>;
+}
+/**
+ * Must provide either page content or error message
+ */
 export interface Response {
-    content: string;
-    errorMessage: string;
+    /**
+     * Page content
+     */
+    content?: string;
+    /**
+     * Error message
+     */
+    errorMessage?: string;
 }
 export interface HTTPResolver {
     /**
-     * @param url
-     */
+     * Load resource by URL synchronously
+     * @param url Resource URL
+     * @return Resource content in string form
+     **/
     getResource(url: string): Response;
     /**
-     * @param url
-     */
+     * Load resource by URL asynchronously
+     * @param url Resource URL
+     * @return Resource content in string form
+     **/
     getResourceAsync(url: string): Promise<Response>;
 }
 export declare class HTTPResolverImpl implements HTTPResolver {
@@ -65,9 +110,11 @@ export declare class HTTPResolverImpl implements HTTPResolver {
     getResourceAsync(url: string): Promise<Response>;
     private toResponse(response, url);
 }
-export declare class FSResolver implements IncludeResolver {
+export declare class FSResolverImpl implements ExtendedFSResolver {
     content(path: string): string;
     list(path: string): string[];
+    contentAsync(path: string): Promise<string>;
+    listAsync(path: string): Promise<string[]>;
 }
 export declare class Project implements lowlevel.IProject {
     private rootPath;
@@ -82,12 +129,13 @@ export declare class Project implements lowlevel.IProject {
      * @param resolver
      * @param _httpResolver
      */
-    constructor(rootPath: string, resolver?: IncludeResolver, _httpResolver?: HTTPResolver);
-    cloneWithResolver(newResolver: IncludeResolver, httpResolver?: HTTPResolver): Project;
+    constructor(rootPath: string, resolver?: FSResolver, _httpResolver?: HTTPResolver);
+    cloneWithResolver(newResolver: FSResolver, httpResolver?: HTTPResolver): Project;
     setCachedUnitContent(pth: string, cnt: string, tl?: boolean): CompilationUnit;
     resolveAsync(unitPath: string, pathInUnit: string): Promise<lowlevel.ICompilationUnit>;
     resolve(unitPath: string, pathInUnit: string): CompilationUnit;
     units(): lowlevel.ICompilationUnit[];
+    unitsAsync(): Promise<lowlevel.ICompilationUnit[]>;
     lexerErrors(): Error[];
     deleteUnit(p: string, absolute?: boolean): void;
     unit(p: string, absolute?: boolean): CompilationUnit;
@@ -125,11 +173,14 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     private _anchor;
     private _include;
     private cacheChildren;
+    private _includesContents;
     _errors: Error[];
-    constructor(_node: yaml.YAMLNode, _unit: lowlevel.ICompilationUnit, _parent: ASTNode, _anchor: ASTNode, _include: ASTNode, cacheChildren?: boolean);
+    constructor(_node: yaml.YAMLNode, _unit: lowlevel.ICompilationUnit, _parent: ASTNode, _anchor: ASTNode, _include: ASTNode, cacheChildren?: boolean, _includesContents?: boolean);
     actual(): any;
     _children: lowlevel.ILowLevelASTNode[];
     yamlNode(): yaml.YAMLNode;
+    includesContents(): boolean;
+    setIncludesContents(includesContents: boolean): void;
     gatherIncludes(s?: lowlevel.ILowLevelASTNode[], inc?: ASTNode, anc?: ASTNode, inOneMemberMap?: boolean): void;
     private _highLevelNode;
     private _highLevelParseResult;

@@ -1,5 +1,7 @@
 import hl = require("../highLevelAST");
+import ll = require("../lowLevelAST");
 import hlImpl = require("../highLevelImpl");
+import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
 export interface AbstractWrapperNode {
     /***
@@ -24,7 +26,7 @@ export interface BasicNode extends AbstractWrapperNode {
     /***
      * @return Array of errors
      **/
-    errors(): hl.ValidationIssue[];
+    errors(): RamlParserError[];
     /***
      * @return object representing class of the node
      **/
@@ -102,7 +104,7 @@ export declare class BasicNodeImpl implements BasicNode {
     /***
      * @return Array of errors
      **/
-    errors(): hl.ValidationIssue[];
+    errors(): RamlParserError[];
     /***
      * @return object representing class of the node
      **/
@@ -113,7 +115,81 @@ export declare class BasicNodeImpl implements BasicNode {
     runtimeDefinition(): hl.ITypeDefinition;
     toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
 }
+export interface AttributeNode extends AbstractWrapperNode {
+    /***
+     * @return Underlying High Level attribute node
+     ***/
+    highLevel(): hl.IAttribute;
+}
+export declare class AttributeNodeImpl implements AttributeNode {
+    protected attr: hl.IAttribute;
+    constructor(attr: hl.IAttribute);
+    /***
+     * @return Underlying High Level attribute node
+     ***/
+    highLevel(): hl.IAttribute;
+    /***
+     * @hidden
+     */
+    wrapperClassName(): string;
+    getKind(): string;
+}
 /***
  * @hidden
  ***/
 export declare function toStructuredValue(node: hl.IAttribute): hlImpl.StructuredValue;
+export interface Options {
+    /**
+     * Module used for operations with file system
+     **/
+    fsResolver?: jsyaml.FSResolver;
+    /**
+     * Module used for operations with web
+     **/
+    httpResolver?: jsyaml.HTTPResolver;
+    /**
+     * Whether to return Api which contains errors.
+     **/
+    rejectOnErrors?: boolean;
+}
+export interface RamlParserError {
+    /**
+     * [[IssueCode]]
+     */
+    code: hl.IssueCode;
+    /**
+     * Messag text
+     */
+    message: string;
+    /**
+     * File path
+     */
+    path: string;
+    /**
+     * Start index in the whole text, starting from zero
+     */
+    start: number;
+    /**
+     * End index in the whole text, starting from zero
+     */
+    end: number;
+    /**
+     * Start line, starting from zero
+     */
+    line?: number;
+    /**
+     * Column index, starting from zero
+     */
+    column?: number;
+    /**
+     * Length two array of [[TextPosition]] describing start and end of error location
+     */
+    range: ll.TextPosition[];
+    /**
+     * Whether the message is warning or not
+     */
+    isWarning: boolean;
+}
+export interface ApiLoadingError extends Error {
+    parserErrors: RamlParserError[];
+}

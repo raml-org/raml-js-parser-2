@@ -75,18 +75,49 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_raml1_definitionsystem_.cacheable.html" class="tsd-kind-icon">Cacheable</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_raml1_definitionsystem_.facetvalidator.html" class="tsd-kind-icon">Facet<wbr>Validator</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-kind-icon">IType</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_raml1_definitionsystem_.iuniversedescriptor.html" class="tsd-kind-icon">IUniverse<wbr>Descriptor</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_raml1_definitionsystem_.status.html" class="tsd-kind-icon">Status</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_definitionsystem_.html#itype" class="tsd-kind-icon">IType</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_definitionsystem_.html#prop" class="tsd-kind-icon">prop</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definitionsystem_.html#registeradapters" class="tsd-kind-icon">register<wbr>Adapters</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_definitionsystem_.html#injector" class="tsd-kind-icon">injector</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+					<a name="itype" class="tsd-anchor"></a>
+					<h3>IType</h3>
+					<div class="tsd-signature tsd-kind-icon">IType<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/definitionSystem.ts#L37">raml1/definitionSystem.ts:37</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>What is our universe at first we have node types
+								they have following fundamental properties:
+							some nodes can fold to another kinds of nodes</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -96,13 +127,13 @@
 					<a name="prop" class="tsd-anchor"></a>
 					<h3>prop</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">prop<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, desc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, domain<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, range<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></li>
+						<li class="tsd-signature tsd-kind-icon">prop<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, desc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, domain<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a>, range<span class="tsd-signature-symbol">: </span><a href="_raml1_definitionsystem_.html#itype" class="tsd-signature-type">IType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/definitionSystem.ts:1554</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/definitionSystem.ts#L339">raml1/definitionSystem.ts:339</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -117,12 +148,71 @@
 									<h5>domain: <a href="../classes/_raml1_definitionsystem_.nodeclass.html" class="tsd-signature-type">NodeClass</a></h5>
 								</li>
 								<li>
-									<h5>range: <a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-signature-type">IType</a></h5>
+									<h5>range: <a href="_raml1_definitionsystem_.html#itype" class="tsd-signature-type">IType</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h4>
 						</li>
 					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="registeradapters" class="tsd-anchor"></a>
+					<h3>register<wbr>Adapters</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Adapters<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_typesystem_.adaptable.html" class="tsd-signature-type">Adaptable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/definitionSystem.ts#L16">raml1/definitionSystem.ts:16</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>a: <a href="../classes/_raml1_definition_system_typesystem_.adaptable.html" class="tsd-signature-type">Adaptable</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external tsd-is-not-exported">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="injector" class="tsd-anchor"></a>
+					<h3>injector</h3>
+					<div class="tsd-signature tsd-kind-icon">injector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/definitionSystem.ts#L25">raml1/definitionSystem.ts:25</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="injector.inject" class="tsd-anchor"></a>
+						<h3>inject</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+							<li class="tsd-signature tsd-kind-icon">inject<span class="tsd-signature-symbol">(</span>a<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definition_system_typesystem_.adaptable.html" class="tsd-signature-type">Adaptable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/definitionSystem.ts#L26">raml1/definitionSystem.ts:26</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>a: <a href="../classes/_raml1_definition_system_typesystem_.adaptable.html" class="tsd-signature-type">Adaptable</a></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -142,20 +232,23 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../interfaces/_raml1_definitionsystem_.cacheable.html" class="tsd-kind-icon">Cacheable</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_definitionsystem_.facetvalidator.html" class="tsd-kind-icon">Facet<wbr>Validator</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_definitionsystem_.itype.html" class="tsd-kind-icon">IType</a>
-					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../interfaces/_raml1_definitionsystem_.iuniversedescriptor.html" class="tsd-kind-icon">IUniverse<wbr>Descriptor</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_raml1_definitionsystem_.status.html" class="tsd-kind-icon">Status</a>
 					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_definitionsystem_.html#itype" class="tsd-kind-icon">IType</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_definitionsystem_.html#prop" class="tsd-kind-icon">prop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_definitionsystem_.html#registeradapters" class="tsd-kind-icon">register<wbr>Adapters</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_definitionsystem_.html#injector" class="tsd-kind-icon">injector</a>
 					</li>
 				</ul>
 			</nav>

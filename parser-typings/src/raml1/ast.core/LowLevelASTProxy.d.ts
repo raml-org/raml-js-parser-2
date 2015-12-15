@@ -7,13 +7,13 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     protected _parent: ll.ILowLevelASTNode;
     protected _transformer: ValueTransformer;
     constructor(_parent: ll.ILowLevelASTNode, _transformer: ValueTransformer);
-    protected _original: ll.ILowLevelASTNode;
+    protected _originalNode: ll.ILowLevelASTNode;
     private _highLevelNode;
     private _highLevelParseResult;
     private _keyOverride;
     actual(): any;
     transformer(): ValueTransformer;
-    original(): ll.ILowLevelASTNode;
+    originalNode(): ll.ILowLevelASTNode;
     start(): number;
     end(): number;
     value(): any;
@@ -49,14 +49,14 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     copy(): LowLevelCompositeNode;
     markup(json?: boolean): string;
     nodeDefinition(): hl.INodeDefinition;
+    includesContents(): boolean;
 }
 export declare class LowLevelCompositeNode extends LowLevelProxyNode {
-    protected fromMainTree: boolean;
-    constructor(node: ll.ILowLevelASTNode, parent: LowLevelCompositeNode, transformer: ValueTransformer, fromMainTree?: boolean);
+    constructor(node: ll.ILowLevelASTNode, parent: LowLevelCompositeNode, transformer: ValueTransformer);
     protected _adoptedNodes: LowLevelValueTransformingNode[];
     protected _children: LowLevelCompositeNode[];
     adoptedNodes(): ll.ILowLevelASTNode[];
-    original(): LowLevelValueTransformingNode;
+    primaryNode(): LowLevelValueTransformingNode;
     parent(): LowLevelCompositeNode;
     adopt(node: ll.ILowLevelASTNode, transformer: ValueTransformer): void;
     value(): any;
@@ -74,6 +74,8 @@ export declare class LowLevelValueTransformingNode extends LowLevelProxyNode {
     parent(): LowLevelValueTransformingNode;
 }
 export interface ValueTransformer {
-    transform(val: any): any;
-    error(): string;
+    transform(value: any): {
+        value: any;
+        errors: hl.ValidationIssue[];
+    };
 }

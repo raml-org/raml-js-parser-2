@@ -29,6 +29,7 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     project(): lowlevel.IProject;
     updateContent(newContent: string): void;
     ramlVersion(): string;
+    lineMapper(): lowlevel.LineMapper;
     resolve(p: string): lowlevel.ICompilationUnit;
 }
 export declare class AstNode implements lowlevel.ILowLevelASTNode {
@@ -75,9 +76,10 @@ export declare class AstNode implements lowlevel.ILowLevelASTNode {
     copy(): AstNode;
     markup(json?: boolean): string;
     nodeDefinition(): highlevel.INodeDefinition;
+    includesContents(): boolean;
 }
 export interface SerializeOptions {
     escapeNumericKeys?: boolean;
-    writeErroes?: boolean;
+    writeErrors?: boolean;
 }
 export declare function serialize(node: lowlevel.ILowLevelASTNode, options?: SerializeOptions): any;

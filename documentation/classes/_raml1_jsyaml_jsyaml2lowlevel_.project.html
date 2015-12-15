@@ -140,6 +140,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#unit" class="tsd-kind-icon">unit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#unitasync" class="tsd-kind-icon">unit<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#units" class="tsd-kind-icon">units</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#unitsasync" class="tsd-kind-icon">units<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#updatepositions" class="tsd-kind-icon">update<wbr>Positions</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html#visualizenewlines" class="tsd-kind-icon">visualize<wbr>Newlines</a></li>
 							</ul>
@@ -153,13 +154,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Project<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, resolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a>, _httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Project<span class="tsd-signature-symbol">(</span>rootPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, resolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a>, _httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:414</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L499">raml1/jsyaml/jsyaml2lowLevel.ts:499</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,10 +176,10 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> resolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a><span class="tsd-signature-symbol"> =&nbsp;new FSResolver()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> resolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> _httpResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol"> =&nbsp;new HTTPResolverImpl()</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> _httpResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 										</div>
@@ -194,11 +195,11 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="_httpresolver" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _http<wbr>Resolver</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> _http<wbr>Resolver</h3>
 					<div class="tsd-signature tsd-kind-icon">_http<wbr>Resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L507">raml1/jsyaml/jsyaml2lowLevel.ts:507</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +209,7 @@
 					<div class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.iastlistener.html" class="tsd-signature-type">IASTListener</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:411</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L496">raml1/jsyaml/jsyaml2lowLevel.ts:496</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">path<wbr>ToUnit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:414</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L499">raml1/jsyaml/jsyaml2lowLevel.ts:499</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -232,11 +233,11 @@
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a name="resolver" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolver</h3>
-					<div class="tsd-signature tsd-kind-icon">resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a></div>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> resolver</h3>
+					<div class="tsd-signature tsd-kind-icon">resolver<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L507">raml1/jsyaml/jsyaml2lowLevel.ts:507</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -246,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">root<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:422</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L507">raml1/jsyaml/jsyaml2lowLevel.ts:507</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">tlisteners<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_lowlevelast_.itextchangecommandlistener.html" class="tsd-signature-type">ITextChangeCommandListener</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:412</li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L497">raml1/jsyaml/jsyaml2lowLevel.ts:497</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +279,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:693</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L802">raml1/jsyaml/jsyaml2lowLevel.ts:802</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,7 +315,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#addlistener">addListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1614</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1723">raml1/jsyaml/jsyaml2lowLevel.ts:1723</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -338,7 +339,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#addtextchangelistener">addTextChangeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1606</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1715">raml1/jsyaml/jsyaml2lowLevel.ts:1715</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -361,7 +362,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:675</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L784">raml1/jsyaml/jsyaml2lowLevel.ts:784</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -384,7 +385,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1055</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1164">raml1/jsyaml/jsyaml2lowLevel.ts:1164</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1085</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1194">raml1/jsyaml/jsyaml2lowLevel.ts:1194</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -436,19 +437,19 @@
 					<a name="clonewithresolver" class="tsd-anchor"></a>
 					<h3>clone<wbr>With<wbr>Resolver</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">clone<wbr>With<wbr>Resolver<span class="tsd-signature-symbol">(</span>newResolver<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a>, httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
+						<li class="tsd-signature tsd-kind-icon">clone<wbr>With<wbr>Resolver<span class="tsd-signature-symbol">(</span>newResolver<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a>, httpResolver<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_jsyaml_jsyaml2lowlevel_.project.html" class="tsd-signature-type">Project</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:426</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L516">raml1/jsyaml/jsyaml2lowLevel.ts:516</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>newResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-signature-type">IncludeResolver</a></h5>
+									<h5>newResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-signature-type">FSResolver</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> httpResolver: <a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-signature-type">HTTPResolver</a><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
@@ -468,7 +469,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:491</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L600">raml1/jsyaml/jsyaml2lowLevel.ts:600</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -495,7 +496,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#execute">execute</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1270</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1379">raml1/jsyaml/jsyaml2lowLevel.ts:1379</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -518,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1072</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1181">raml1/jsyaml/jsyaml2lowLevel.ts:1181</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -548,7 +549,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#executetextchange">executeTextChange</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1440</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1549">raml1/jsyaml/jsyaml2lowLevel.ts:1549</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -571,7 +572,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1401</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1510">raml1/jsyaml/jsyaml2lowLevel.ts:1510</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -594,7 +595,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1575</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1684">raml1/jsyaml/jsyaml2lowLevel.ts:1684</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -623,7 +624,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:634</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L743">raml1/jsyaml/jsyaml2lowLevel.ts:743</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -646,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1262</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1371">raml1/jsyaml/jsyaml2lowLevel.ts:1371</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -672,7 +673,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:934</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1043">raml1/jsyaml/jsyaml2lowLevel.ts:1043</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -695,7 +696,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:922</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1031">raml1/jsyaml/jsyaml2lowLevel.ts:1031</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -718,7 +719,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:928</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1037">raml1/jsyaml/jsyaml2lowLevel.ts:1037</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -741,7 +742,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:679</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L788">raml1/jsyaml/jsyaml2lowLevel.ts:788</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -758,17 +759,17 @@
 					<a name="lexererrors" class="tsd-anchor"></a>
 					<h3>lexer<wbr>Errors</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">lexer<wbr>Errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">lexer<wbr>Errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#lexererrors">lexerErrors</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:483</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L592">raml1/jsyaml/jsyaml2lowLevel.ts:592</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_wrapped_ast_parsercore_.apiloadingerror.html#error" class="tsd-signature-type">Error</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -782,7 +783,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:683</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L792">raml1/jsyaml/jsyaml2lowLevel.ts:792</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -805,7 +806,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:938</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1047">raml1/jsyaml/jsyaml2lowLevel.ts:1047</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -835,7 +836,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#removelistener">removeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1618</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1727">raml1/jsyaml/jsyaml2lowLevel.ts:1727</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -859,7 +860,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#removetextchangelistener">removeTextChangeListener</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1609</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1718">raml1/jsyaml/jsyaml2lowLevel.ts:1718</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -882,7 +883,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1365</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1474">raml1/jsyaml/jsyaml2lowLevel.ts:1474</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -917,7 +918,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:460</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L546">raml1/jsyaml/jsyaml2lowLevel.ts:546</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -943,7 +944,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:441</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L531">raml1/jsyaml/jsyaml2lowLevel.ts:531</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -969,7 +970,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:434</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L524">raml1/jsyaml/jsyaml2lowLevel.ts:524</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -998,7 +999,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:660</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L769">raml1/jsyaml/jsyaml2lowLevel.ts:769</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1021,7 +1022,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:502</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L611">raml1/jsyaml/jsyaml2lowLevel.ts:611</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1047,7 +1048,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:556</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L665">raml1/jsyaml/jsyaml2lowLevel.ts:665</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1074,10 +1075,27 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_lowlevelast_.iproject.html">IProject</a>.<a href="../interfaces/_raml1_lowlevelast_.iproject.html#units">units</a></p>
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:479</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L562">raml1/jsyaml/jsyaml2lowLevel.ts:562</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="unitsasync" class="tsd-anchor"></a>
+					<h3>units<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">units<wbr>Async<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L570">raml1/jsyaml/jsyaml2lowLevel.ts:570</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1091,7 +1109,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:1545</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L1654">raml1/jsyaml/jsyaml2lowLevel.ts:1654</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1117,7 +1135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/jsyaml/jsyaml2lowLevel.ts:623</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/jsyaml/jsyaml2lowLevel.ts#L732">raml1/jsyaml/jsyaml2lowLevel.ts:732</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1149,10 +1167,10 @@
 						<a href="../enums/_raml1_jsyaml_jsyaml2lowlevel_.insertionpointtype.html" class="tsd-kind-icon">Insertion<wbr>Point<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-kind-icon">HTTPResolver</a>
+						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.fsresolver.html" class="tsd-kind-icon">FSResolver</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
-						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.includeresolver.html" class="tsd-kind-icon">Include<wbr>Resolver</a>
+						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.httpresolver.html" class="tsd-kind-icon">HTTPResolver</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_raml1_jsyaml_jsyaml2lowlevel_.response.html" class="tsd-kind-icon">Response</a>
@@ -1222,6 +1240,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="../modules/_raml1_jsyaml_jsyaml2lowlevel_.html#toincludingnode" class="tsd-kind-icon">to<wbr>Including<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_jsyaml_jsyaml2lowlevel_.html#kind" class="tsd-kind-icon">Kind</a>
 					</li>
 				</ul>
 			</nav>
