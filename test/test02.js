@@ -4,14 +4,14 @@ var path = require("path");
 var raml1Parser = require('../src/raml1Parser');
 var fs = require("fs")
 
-var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"),{
-	
+var api = raml1Parser.loadApiSync(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"),{
+
 	fsResolver: {
-		
+
 		content: function(path){ return fs.readFileSync(path).toString(); },
-		
+
 		list: function(path){ return fs.readDirSync(path); },
-		
+
 		contentAsync: function(path){
 			return new Promise(function (resolve, reject) {
 	            fs.readFile(path, function (err, data) {
@@ -24,7 +24,7 @@ var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.ra
 	            });
           	});
 		},
-		
+
 		listAsync: function (path) {
 	        return new Promise(function (reject, resolve) {
 	            fs.readdir(path, function (err, files) {

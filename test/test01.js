@@ -3,7 +3,7 @@ console.log('RAML 1.0 JS Parser Test');
 var path = require("path");
 var raml1Parser = require('../src/raml1Parser');
 
-var api = raml1Parser.loadApi(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"));
+var api = raml1Parser.loadApiSync(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"));
 
 api.errors().forEach(function(x){
     console.log(JSON.stringify({

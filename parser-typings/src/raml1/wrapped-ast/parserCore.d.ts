@@ -1,4 +1,5 @@
 import hl = require("../highLevelAST");
+import ll = require("../lowLevelAST");
 import hlImpl = require("../highLevelImpl");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
@@ -152,15 +153,43 @@ export interface Options {
     rejectOnErrors?: boolean;
 }
 export interface RamlParserError {
+    /**
+     * [[IssueCode]]
+     */
     code: hl.IssueCode;
+    /**
+     * Messag text
+     */
     message: string;
+    /**
+     * File path
+     */
     path: string;
+    /**
+     * Start index in the whole text, starting from zero
+     */
     start: number;
+    /**
+     * End index in the whole text, starting from zero
+     */
     end: number;
+    /**
+     * Start line, starting from zero
+     */
     line?: number;
+    /**
+     * Column index, starting from zero
+     */
     column?: number;
+    /**
+     * Length two array of [[TextPosition]] describing start and end of error location
+     */
+    range: ll.TextPosition[];
+    /**
+     * Whether the message is warning or not
+     */
     isWarning: boolean;
 }
 export interface ApiLoadingError extends Error {
-    errors: RamlParserError[];
+    parserErrors: RamlParserError[];
 }

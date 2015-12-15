@@ -25,9 +25,43 @@ export declare function isOkRange(response: RamlWrapper.Response): boolean;
 export declare function allResources(api: RamlWrapper.Api): RamlWrapper.Resource[];
 export declare function matchUri(apiRootRelativeUri: string, resource: RamlWrapper.Resource): Opt<ParamValue[]>;
 export declare function schema(body: RamlWrapper.TypeDeclaration, api: RamlWrapper.Api): Opt<SchemaDef>;
+/**
+ * __$helperMethod__ Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+ * Consider a fragment of RAML specification:
+ * ```yaml
+ * /resource/{objectId}/{propertyId}:
+ *   uriParameters:
+ *     objectId:
+ * ```
+ * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+ * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+ * __$meta__={"name":"allUriParameters"}
+ **/
 export declare function uriParameters(resource: RamlWrapper.Resource): RamlWrapper.TypeDeclaration[];
+/**__$helperMethod__
+ * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+ * Consider a fragment of RAML specification:
+ * ```yaml
+ * version: v1
+ * baseUri: https://{organization}.example.com/{version}/{service}
+ * baseUriParameters:
+ *   service:
+ * ```
+ * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+ * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
+ * __$meta__={"name":"allBaseUriParameters"}
+ **/
 export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.TypeDeclaration[];
+/**__$helperMethod__
+ * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+ * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+ */
 export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWrapper.TypeDeclaration[];
+/**
+ * __$helperMethod__ Protocols used by the API. Returns the `protocols` property value if it is specified.
+ * Otherwise, returns protocol, specified in the base URI.
+ **/
+export declare function allProtocols(api: RamlWrapper.Api): string[];
 export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     private _name;
     private _parent;
@@ -59,7 +93,7 @@ export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     usage(): any;
     parent(): core.BasicNode;
     highLevel(): hl.IHighLevelNode;
-    errors(): hl.ValidationIssue[];
+    errors(): core.RamlParserError[];
     definition(): any;
     runtimeDefinition(): any;
     toJSON(): any;

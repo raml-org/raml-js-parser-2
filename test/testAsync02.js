@@ -5,14 +5,14 @@ var raml1Parser = require('../src/raml1Parser');
 var XMLHttpRequestConstructor = require("xmlhttprequest").XMLHttpRequest;
 var fs = require("fs")
 
-raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/production/api.raml",{
-	
+raml1Parser.loadApi("https://raw.githubusercontent.com/raml-apis/XKCD/production/api.raml",{
+
 	fsResolver: {
-		
+
 		content: function(path){ return fs.readFileSync(path).toString(); },
-		
+
 		list: function(path){ return fs.readDirSync(path); },
-		
+
 		contentAsync: function(path){
 			return new Promise(function (resolve, reject) {
 	            fs.readFile(path, function (err, data) {
@@ -24,7 +24,7 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 	            });
           	});
 		},
-		
+
 		listAsync: function (path) {
 	        return new Promise(function (reject, resolve) {
 	            fs.readdir(path, function (err, files) {
@@ -36,13 +36,13 @@ raml1Parser.loadApiAsync("https://raw.githubusercontent.com/raml-apis/XKCD/produ
 	        });
 	    }
 	},
-	
+
 	httpResolver:{
 		getResource: function(path){
 			var xhr = buildXHR( );
 			xhr.open("get", path, false);
 			xhr.send();
-			var response = toResponse(xhr);			
+			var response = toResponse(xhr);
 			return ;
 		},
 		getResourceAsync: function(path){

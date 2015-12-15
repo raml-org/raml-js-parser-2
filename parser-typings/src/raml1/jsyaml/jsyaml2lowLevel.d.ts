@@ -3,6 +3,9 @@ import yaml = require("./yamlAST");
 import lowlevel = require("../lowLevelAST");
 import highlevel = require("../highLevelAST");
 import Error = require("./js-yaml/exception");
+export declare var Kind: {
+    SCALAR: yaml.Kind;
+};
 export declare class MarkupIndentingBuffer {
     text: string;
     indent: string;
@@ -20,6 +23,7 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     private _apath;
     constructor(_path: any, _content: any, _tl: any, _project: Project, _apath: string);
     private stu;
+    private _lineMapper;
     isStubUnit(): boolean;
     resolveAsync(p: string): Promise<lowlevel.ICompilationUnit>;
     getIncludeNodes(): lowlevel.ILowLevelASTNode[];
@@ -40,6 +44,7 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
     updateContent(n: string): void;
     updateContentSafe(n: string): void;
     project(): Project;
+    lineMapper(): lowlevel.LineMapper;
 }
 export interface FSResolver {
     /**
@@ -54,6 +59,11 @@ export interface FSResolver {
      * @return File content as string
      **/
     contentAsync(path: string): Promise<string>;
+}
+/**
+ * @hidden
+ **/
+export interface ExtendedFSResolver extends FSResolver {
     /**
      * List directory synchronosly
      * @param path Directory path
@@ -100,7 +110,7 @@ export declare class HTTPResolverImpl implements HTTPResolver {
     getResourceAsync(url: string): Promise<Response>;
     private toResponse(response, url);
 }
-export declare class FSResolverImpl implements FSResolver {
+export declare class FSResolverImpl implements ExtendedFSResolver {
     content(path: string): string;
     list(path: string): string[];
     contentAsync(path: string): Promise<string>;

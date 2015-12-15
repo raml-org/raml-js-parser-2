@@ -80,10 +80,10 @@
 								<span class="target">Api</span>
 								<ul class="tsd-hierarchy">
 									<li>
-										<a href="_raml1_artifacts_raml10parser_.apioverlay.html" class="tsd-signature-type">ApiOverlay</a>
+										<a href="_raml1_artifacts_raml10parser_.overlay.html" class="tsd-signature-type">Overlay</a>
 									</li>
 									<li>
-										<a href="_raml1_artifacts_raml10parser_.apiextension.html" class="tsd-signature-type">ApiExtension</a>
+										<a href="_raml1_artifacts_raml10parser_.extension.html" class="tsd-signature-type">Extension</a>
 									</li>
 								</ul>
 							</li>
@@ -99,6 +99,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.api.html#allbaseuriparameters" class="tsd-kind-icon">all<wbr>Base<wbr>Uri<wbr>Parameters</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.api.html#allprotocols" class="tsd-kind-icon">all<wbr>Protocols</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.api.html#allresourcetypes" class="tsd-kind-icon">all<wbr>Resource<wbr>Types</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.api.html#allresources" class="tsd-kind-icon">all<wbr>Resources</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.api.html#alltraits" class="tsd-kind-icon">all<wbr>Traits</a></li>
@@ -148,15 +149,46 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4807</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4629</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieve all base uri parameters regardless of whether they are described in <code>baseUriParameters</code> or not</p>
+									<p>Retrieve an ordered list of all base uri parameters regardless of whether they are described in <code>baseUriParameters</code> or not
+									Consider a fragment of RAML specification:</p>
+									<pre><code class="lang-yaml">version: v1
+baseUri: https://{organization}.example.com/{version}/{service}
+baseUriParameters:
+service:
+</code></pre>
+									<p>Here <code>version</code> and <code>organization</code> are base uri parameters which are not described in the <code>baseUriParameters</code> node.
+									Thus, they are not among <code>Api.baseUriParameters()</code>, but they are among <code>Api.allBaseUriParameters()</code>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.typedeclaration.html" class="tsd-signature-type">TypeDeclaration</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="allprotocols" class="tsd-anchor"></a>
+					<h3>all<wbr>Protocols</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Protocols<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4636</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Protocols used by the API. Returns the <code>protocols</code> property value if it is specified.
+									Otherwise, returns protocol, specified in the base URI.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -170,7 +202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4789</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4602</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -192,12 +224,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4801</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4614</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Retrieve all resources ofthe Api</p>
+									<p>Retrieve all resources of the Api</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -214,7 +246,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4783</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4596</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,14 +262,14 @@
 					<a name="annotationtypes" class="tsd-anchor"></a>
 					<h3>annotation<wbr>Types</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">annotation<wbr>Types<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.annotationtypedeclaration.html" class="tsd-signature-type">AnnotationTypeDeclaration</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">annotation<wbr>Types<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.typedeclaration.html" class="tsd-signature-type">TypeDeclaration</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#annotationtypes">annotationTypes</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2943</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2840</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +277,7 @@
 									<p>Declarations of annotation types for use by annotations</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.annotationtypedeclaration.html" class="tsd-signature-type">AnnotationTypeDeclaration</a><span class="tsd-signature-symbol">[]</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.typedeclaration.html" class="tsd-signature-type">TypeDeclaration</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -260,7 +292,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html">RAMLLanguageElement</a>.<a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html#annotations">annotations</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4765</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4578</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +314,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4709</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4522</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4715</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4528</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -327,7 +359,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#definition">definition</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:42</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L43">raml1/wrapped-ast/parserCore.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -348,7 +380,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html">RAMLLanguageElement</a>.<a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html#description">description</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4759</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4572</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -371,7 +403,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html">RAMLLanguageElement</a>.<a href="_raml1_artifacts_raml10parser_.ramllanguageelement.html#displayname">displayName</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4751</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4564</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,7 +425,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4745</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4558</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +448,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#errors">errors</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:37</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L38">raml1/wrapped-ast/parserCore.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -436,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4777</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4590</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -458,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4795</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4608</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -487,7 +519,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#getkind">getKind</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:18</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L19">raml1/wrapped-ast/parserCore.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -507,7 +539,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4727</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4540</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -530,7 +562,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#name">name</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4753</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4566</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -548,7 +580,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#parent">parent</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:26</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L27">raml1/wrapped-ast/parserCore.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,7 +600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4721</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4534</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -591,7 +623,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#resourcetypes">resourceTypes</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2937</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2834</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -613,7 +645,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4739</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4552</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -636,7 +668,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#runtimedefinition">runtimeDefinition</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:47</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L48">raml1/wrapped-ast/parserCore.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -657,12 +689,12 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#schemas">schemas</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2919</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2816</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Alias for the types property, for compatibility with RAML 0.8. Deprecated - may be removed in a future RAML version.</p>
+									<p>Alias for the equivalent &quot;types&quot; property, for compatibility with RAML 0.8. Deprecated - API definitions should use the &quot;types&quot; property, as the &quot;schemas&quot; alias for that property name may be removed in a future RAML version. The &quot;types&quot; property allows for XML and JSON schemas.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.globalschema.html" class="tsd-signature-type">GlobalSchema</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -679,7 +711,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4733</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4546</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -702,7 +734,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#securityschematypes">securitySchemaTypes</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4771</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4584</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -725,7 +757,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#securityschemes">securitySchemes</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2955</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2852</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -747,7 +779,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4697</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4510</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -770,7 +802,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.basicnode.html">BasicNode</a>.<a href="_raml1_wrapped_ast_parsercore_.basicnode.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in raml1/wrapped-ast/parserCore.ts:54</li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L55">raml1/wrapped-ast/parserCore.ts:55</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,7 +832,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#traits">traits</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2931</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2828</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -823,7 +855,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#types">types</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2925</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2822</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -846,7 +878,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.librarybase.html">LibraryBase</a>.<a href="_raml1_artifacts_raml10parser_.librarybase.html#uses">uses</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:2961</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2858</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -868,7 +900,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:4703</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:4516</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -902,6 +934,9 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_raml1_artifacts_raml10parser_.api.html#allbaseuriparameters" class="tsd-kind-icon">all<wbr>Base<wbr>Uri<wbr>Parameters</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_raml1_artifacts_raml10parser_.api.html#allprotocols" class="tsd-kind-icon">all<wbr>Protocols</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_raml1_artifacts_raml10parser_.api.html#allresourcetypes" class="tsd-kind-icon">all<wbr>Resource<wbr>Types</a>

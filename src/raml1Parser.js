@@ -46,14 +46,14 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
+	function loadApiSync(apiPath, extensionsAndOverlays, options) {
+	    return RamlWrapper.loadApiSync(apiPath, extensionsAndOverlays, options);
+	}
+	exports.loadApiSync = loadApiSync;
 	function loadApi(apiPath, extensionsAndOverlays, options) {
 	    return RamlWrapper.loadApi(apiPath, extensionsAndOverlays, options);
 	}
 	exports.loadApi = loadApi;
-	function loadApiAsync(apiPath, extensionsAndOverlays, options) {
-	    return RamlWrapper.loadApiAsync(apiPath, extensionsAndOverlays, options);
-	}
-	exports.loadApiAsync = loadApiAsync;
 
 
 /***/ },
@@ -3181,14 +3181,22 @@ module.exports =
 	        return helper.ownerApi(this);
 	    };
 	    /**
-	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * /resource/{objectId}/{propertyId}:
+	     * uriParameters:
+	     * objectId:
+	     * ```
+	     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+	     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
 	     **/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
 	    /**
-	     * Retrieve all absolute uri parameters regardless of whether they are described in
-	     * `baseUriParameters` and `uriParameters` or not
+	     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+	     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
 	     **/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
@@ -3511,16 +3519,32 @@ module.exports =
 	        return helper.getChildResource(this, relPath);
 	    };
 	    /**
-	     * Retrieve all resources ofthe Api
+	     * Retrieve all resources of the Api
 	     **/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
 	    /**
-	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * version: v1
+	     * baseUri: https://{organization}.example.com/{version}/{service}
+	     * baseUriParameters:
+	     * service:
+	     * ```
+	     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+	     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
 	     **/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
+	    };
+	    /**
+	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+	     * Otherwise, returns protocol, specified in the base URI.
+	     **/
+	    ApiImpl.prototype.allProtocols = function () {
+	        return helper.allProtocols(this);
 	    };
 	    return ApiImpl;
 	})(LibraryBaseImpl);
@@ -4115,14 +4139,14 @@ module.exports =
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	function loadApi(apiPath, arg1, arg2) {
+	function loadApiSync(apiPath, arg1, arg2) {
 	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
-	exports.loadApi = loadApi;
-	function loadApiAsync(apiPath, arg1, arg2) {
+	exports.loadApiSync = loadApiSync;
+	function loadApi(apiPath, arg1, arg2) {
 	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
-	exports.loadApiAsync = loadApiAsync;
+	exports.loadApi = loadApi;
 
 
 /***/ },
@@ -4515,6 +4539,14 @@ module.exports =
 	                x[mi.key()] = mi;
 	            }
 	        }
+	    };
+	    UserDefinedClass.prototype.typeId = function () {
+	        var rs = this.nameId();
+	        var node = this.getAdapter(ramlServices.RAMLService).getDeclaringNode();
+	        if (node) {
+	            rs = rs + node.lowLevel().start() + node.lowLevel().unit().absolutePath();
+	        }
+	        return rs;
 	    };
 	    UserDefinedClass.prototype.isValueType = function () {
 	        if (this._value) {
@@ -5026,7 +5058,7 @@ module.exports =
 	var typeBuilder = __webpack_require__(50);
 	var search = __webpack_require__(53);
 	var universes = __webpack_require__(54);
-	var jsyaml = __webpack_require__(14);
+	var jsyaml = __webpack_require__(15);
 	var textutil = __webpack_require__(48);
 	var ModelFactory = __webpack_require__(121);
 	var services = __webpack_require__(49);
@@ -5971,8 +6003,8 @@ module.exports =
 	var json = __webpack_require__(8);
 	var stringify = __webpack_require__(118);
 	var Error = __webpack_require__(9);
-	var impl = __webpack_require__(14);
-	var util = __webpack_require__(10);
+	var impl = __webpack_require__(15);
+	var util = __webpack_require__(11);
 	var universes = __webpack_require__(54);
 	var LowLevelProxyNode = (function () {
 	    function LowLevelProxyNode(_parent, _transformer) {
@@ -6407,9 +6439,10 @@ module.exports =
 	 * Created by kor on 05/05/15.
 	 */
 	var Error = __webpack_require__(9);
+	var lowlevel = __webpack_require__(10);
 	var yaml = __webpack_require__(7);
-	var util = __webpack_require__(10);
-	var llImpl = __webpack_require__(14);
+	var util = __webpack_require__(11);
+	var llImpl = __webpack_require__(15);
 	var CompilationUnit = (function () {
 	    function CompilationUnit(_absolutePath, _path, _content, _project, _isTopoLevel, serializeOptions) {
 	        if (serializeOptions === void 0) { serializeOptions = {}; }
@@ -6461,6 +6494,9 @@ module.exports =
 	    };
 	    CompilationUnit.prototype.ramlVersion = function () {
 	        throw new Error('not implemented');
+	    };
+	    CompilationUnit.prototype.lineMapper = function () {
+	        return new lowlevel.LineMapperImpl(this.contents(), this.absolutePath());
 	    };
 	    CompilationUnit.prototype.resolve = function (p) {
 	        return null;
@@ -6745,8 +6781,146 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/tsd.d.ts" />
+	/**
+	 * Created by kor on 05/05/15.
+	 */
+	var Error = __webpack_require__(9);
+	var ASTDelta = (function () {
+	    function ASTDelta() {
+	    }
+	    return ASTDelta;
+	})();
+	exports.ASTDelta = ASTDelta;
+	(function (CommandKind) {
+	    CommandKind[CommandKind["ADD_CHILD"] = 0] = "ADD_CHILD";
+	    CommandKind[CommandKind["REMOVE_CHILD"] = 1] = "REMOVE_CHILD";
+	    CommandKind[CommandKind["MOVE_CHILD"] = 2] = "MOVE_CHILD";
+	    CommandKind[CommandKind["CHANGE_KEY"] = 3] = "CHANGE_KEY";
+	    CommandKind[CommandKind["CHANGE_VALUE"] = 4] = "CHANGE_VALUE";
+	    CommandKind[CommandKind["INIT_RAML_FILE"] = 5] = "INIT_RAML_FILE";
+	})(exports.CommandKind || (exports.CommandKind = {}));
+	var CommandKind = exports.CommandKind;
+	var TextChangeCommand = (function () {
+	    function TextChangeCommand(offset, replacementLength, text, unit, target) {
+	        if (target === void 0) { target = null; }
+	        this.offset = offset;
+	        this.replacementLength = replacementLength;
+	        this.text = text;
+	        this.unit = unit;
+	        this.target = target;
+	    }
+	    return TextChangeCommand;
+	})();
+	exports.TextChangeCommand = TextChangeCommand;
+	var CompositeCommand = (function () {
+	    function CompositeCommand() {
+	        this.commands = [];
+	    }
+	    return CompositeCommand;
+	})();
+	exports.CompositeCommand = CompositeCommand;
+	var ASTChangeCommand = (function () {
+	    function ASTChangeCommand(kind, target, value, position) {
+	        this.toSeq = false;
+	        this.kind = kind;
+	        this.target = target;
+	        this.value = value;
+	        this.position = position;
+	    }
+	    return ASTChangeCommand;
+	})();
+	exports.ASTChangeCommand = ASTChangeCommand;
+	function setAttr(t, value) {
+	    return new ASTChangeCommand(4 /* CHANGE_VALUE */, t, value, -1);
+	}
+	exports.setAttr = setAttr;
+	function setAttrStructured(t, value) {
+	    return new ASTChangeCommand(4 /* CHANGE_VALUE */, t, value.lowLevel(), -1);
+	}
+	exports.setAttrStructured = setAttrStructured;
+	function setKey(t, value) {
+	    return new ASTChangeCommand(3 /* CHANGE_KEY */, t, value, -1);
+	}
+	exports.setKey = setKey;
+	function removeNode(t, child) {
+	    return new ASTChangeCommand(1 /* REMOVE_CHILD */, t, child, -1);
+	}
+	exports.removeNode = removeNode;
+	function insertNode(t, child, insertAfter, toSeq) {
+	    if (insertAfter === void 0) { insertAfter = null; }
+	    if (toSeq === void 0) { toSeq = false; }
+	    var s = new ASTChangeCommand(0 /* ADD_CHILD */, t, child, -1);
+	    s.insertionPoint = insertAfter;
+	    s.toSeq = toSeq;
+	    return s;
+	}
+	exports.insertNode = insertNode;
+	function initRamlFile(root, newroot) {
+	    return new ASTChangeCommand(5 /* INIT_RAML_FILE */, root, newroot, -1);
+	}
+	exports.initRamlFile = initRamlFile;
+	var LineMapperImpl = (function () {
+	    function LineMapperImpl(content, absPath) {
+	        this.content = content;
+	        this.absPath = absPath;
+	    }
+	    LineMapperImpl.prototype.position = function (_pos) {
+	        var pos = _pos;
+	        this.initMapping();
+	        for (var i = 0; i < this.mapping.length; i++) {
+	            var lineLength = this.mapping[i];
+	            if (pos < lineLength) {
+	                return {
+	                    line: i,
+	                    column: pos,
+	                    position: _pos
+	                };
+	            }
+	            pos -= lineLength;
+	        }
+	        throw new Error("Character position exceeds text length: " + _pos + " > + " + this.content.length + ".\nUnit path: " + this.absPath);
+	    };
+	    LineMapperImpl.prototype.initMapping = function () {
+	        if (this.mapping != null) {
+	            return;
+	        }
+	        if (this.content == null) {
+	            throw new Error("\"Line Mapper has been given null content" + (this.absPath != null ? ('. Path: ' + this.absPath) : 'and null path.'));
+	        }
+	        this.mapping = [];
+	        var ind = 0;
+	        var l = this.content.length;
+	        for (var i = 0; i < l; i++) {
+	            if (this.content.charAt(i) == '\n') {
+	                if (i < l - 1 && this.content.charAt(i + 1) == '\r') {
+	                    this.mapping.push(i - ind + 2);
+	                    ind = i + 2;
+	                    i++;
+	                }
+	                else {
+	                    this.mapping.push(i - ind + 1);
+	                    ind = i + 1;
+	                }
+	            }
+	            else if (this.content.charAt(i) == '\r') {
+	                this.mapping.push(i - ind + 1);
+	                ind = i + 1;
+	            }
+	        }
+	        this.mapping.push(l - ind);
+	    };
+	    return LineMapperImpl;
+	})();
+	exports.LineMapperImpl = LineMapperImpl;
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/tsd.d.ts" />
 	var _ = __webpack_require__(4);
-	var Opt = __webpack_require__(11);
+	var Opt = __webpack_require__(12);
 	exports.defined = function (x) { return (x !== null) && (x !== undefined); };
 	/**
 	 * Arrays of Objects are common in RAML08.
@@ -6938,11 +7112,11 @@ module.exports =
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../typings/tsd.d.ts" />
-	var invariant = __webpack_require__(12);
+	var invariant = __webpack_require__(13);
 	var exists = function (v) { return (v != null); };
 	var globalEmptyOpt;
 	var Opt = (function () {
@@ -6989,7 +7163,7 @@ module.exports =
 
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -7044,10 +7218,10 @@ module.exports =
 
 	module.exports = invariant;
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -7144,12 +7318,12 @@ module.exports =
 
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
 	var yaml = __webpack_require__(7);
-	var lowlevel = __webpack_require__(15);
+	var lowlevel = __webpack_require__(10);
 	var path = __webpack_require__(16);
 	var fs = __webpack_require__(17);
 	var parser = __webpack_require__(18);
@@ -7159,7 +7333,7 @@ module.exports =
 	var services = __webpack_require__(49);
 	var rr = __webpack_require__(111);
 	var SimpleExecutor = __webpack_require__(115);
-	var util = __webpack_require__(10);
+	var util = __webpack_require__(11);
 	var URL = __webpack_require__(117);
 	exports.Kind = {
 	    SCALAR: 0 /* SCALAR */
@@ -7286,12 +7460,20 @@ module.exports =
 	        this._content = n;
 	        this.errors = null;
 	        this._node = null; //todo incremental update
+	        this._lineMapper = null;
 	    };
 	    CompilationUnit.prototype.updateContentSafe = function (n) {
 	        this._content = n;
+	        this._lineMapper = null;
 	    };
 	    CompilationUnit.prototype.project = function () {
 	        return this._project;
+	    };
+	    CompilationUnit.prototype.lineMapper = function () {
+	        if (this._lineMapper == null) {
+	            this._lineMapper = new lowlevel.LineMapperImpl(this.contents(), this.absolutePath());
+	        }
+	        return this._lineMapper;
 	    };
 	    return CompilationUnit;
 	})();
@@ -9957,87 +10139,6 @@ module.exports =
 	function isWebPath(str) {
 	    return util.stringStartsWith(str, "http://") || util.stringStartsWith(str, "https://");
 	}
-
-
-/***/ },
-/* 15 */
-/***/ function(module, exports) {
-
-	/// <reference path="../../typings/tsd.d.ts" />
-	var ASTDelta = (function () {
-	    function ASTDelta() {
-	    }
-	    return ASTDelta;
-	})();
-	exports.ASTDelta = ASTDelta;
-	(function (CommandKind) {
-	    CommandKind[CommandKind["ADD_CHILD"] = 0] = "ADD_CHILD";
-	    CommandKind[CommandKind["REMOVE_CHILD"] = 1] = "REMOVE_CHILD";
-	    CommandKind[CommandKind["MOVE_CHILD"] = 2] = "MOVE_CHILD";
-	    CommandKind[CommandKind["CHANGE_KEY"] = 3] = "CHANGE_KEY";
-	    CommandKind[CommandKind["CHANGE_VALUE"] = 4] = "CHANGE_VALUE";
-	    CommandKind[CommandKind["INIT_RAML_FILE"] = 5] = "INIT_RAML_FILE";
-	})(exports.CommandKind || (exports.CommandKind = {}));
-	var CommandKind = exports.CommandKind;
-	var TextChangeCommand = (function () {
-	    function TextChangeCommand(offset, replacementLength, text, unit, target) {
-	        if (target === void 0) { target = null; }
-	        this.offset = offset;
-	        this.replacementLength = replacementLength;
-	        this.text = text;
-	        this.unit = unit;
-	        this.target = target;
-	    }
-	    return TextChangeCommand;
-	})();
-	exports.TextChangeCommand = TextChangeCommand;
-	var CompositeCommand = (function () {
-	    function CompositeCommand() {
-	        this.commands = [];
-	    }
-	    return CompositeCommand;
-	})();
-	exports.CompositeCommand = CompositeCommand;
-	var ASTChangeCommand = (function () {
-	    function ASTChangeCommand(kind, target, value, position) {
-	        this.toSeq = false;
-	        this.kind = kind;
-	        this.target = target;
-	        this.value = value;
-	        this.position = position;
-	    }
-	    return ASTChangeCommand;
-	})();
-	exports.ASTChangeCommand = ASTChangeCommand;
-	function setAttr(t, value) {
-	    return new ASTChangeCommand(4 /* CHANGE_VALUE */, t, value, -1);
-	}
-	exports.setAttr = setAttr;
-	function setAttrStructured(t, value) {
-	    return new ASTChangeCommand(4 /* CHANGE_VALUE */, t, value.lowLevel(), -1);
-	}
-	exports.setAttrStructured = setAttrStructured;
-	function setKey(t, value) {
-	    return new ASTChangeCommand(3 /* CHANGE_KEY */, t, value, -1);
-	}
-	exports.setKey = setKey;
-	function removeNode(t, child) {
-	    return new ASTChangeCommand(1 /* REMOVE_CHILD */, t, child, -1);
-	}
-	exports.removeNode = removeNode;
-	function insertNode(t, child, insertAfter, toSeq) {
-	    if (insertAfter === void 0) { insertAfter = null; }
-	    if (toSeq === void 0) { toSeq = false; }
-	    var s = new ASTChangeCommand(0 /* ADD_CHILD */, t, child, -1);
-	    s.insertionPoint = insertAfter;
-	    s.toSeq = toSeq;
-	    return s;
-	}
-	exports.insertNode = insertNode;
-	function initRamlFile(root, newroot) {
-	    return new ASTChangeCommand(5 /* INIT_RAML_FILE */, root, newroot, -1);
-	}
-	exports.initRamlFile = initRamlFile;
 
 
 /***/ },
@@ -13639,7 +13740,7 @@ module.exports =
 	};
 	var _ = __webpack_require__(4);
 	var hlImpl = __webpack_require__(5);
-	var jsyaml = __webpack_require__(14);
+	var jsyaml = __webpack_require__(15);
 	var typeBuilder = __webpack_require__(50);
 	var search = __webpack_require__(53);
 	var def = __webpack_require__(3);
@@ -14517,6 +14618,7 @@ module.exports =
 	                if (cm.rightType()) {
 	                    ut.right = cm.rightType().getAdapter(RAMLService).toRuntime();
 	                }
+	                this._runtime = ut;
 	                return ut;
 	            }
 	            this._runtime = ut;
@@ -15511,7 +15613,8 @@ module.exports =
 	        values.push("string");
 	        values.push("value");
 	        if (!_.find(values, function (x) { return x == val; })) {
-	            cb.accept(linter.createIssue(0 /* UNRESOLVED_REFERENCE */, "Unresolved reference:" + val, node));
+	            var message = "Unrecognized type '" + val + "'.";
+	            cb.accept(linter.createIssue(0 /* UNRESOLVED_REFERENCE */, message, node));
 	            return true;
 	        }
 	    }
@@ -18566,7 +18669,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var jsyaml = __webpack_require__(14);
+	var jsyaml = __webpack_require__(15);
 	var defs = __webpack_require__(3);
 	var hl = __webpack_require__(2);
 	var _ = __webpack_require__(4);
@@ -19472,6 +19575,13 @@ module.exports =
 	    return UrlParameterNameValidator;
 	})();
 	exports.UrlParameterNameValidator = UrlParameterNameValidator;
+	exports.typeToName = {};
+	exports.typeToName[universes.Universe08.Trait.name] = "trait";
+	exports.typeToName[universes.Universe08.ResourceType.name] = "resource type";
+	exports.typeToName[universes.Universe10.Trait.name] = "trait";
+	exports.typeToName[universes.Universe10.AnnotationTypeDeclaration.name] = "annotation type";
+	exports.typeToName[universes.Universe10.ResourceType.name] = "resource type";
+	exports.typeToName[universes.Universe10.AbstractSecurityScheme.name] = "security scheme";
 	function checkReference(pr, astNode, vl, cb) {
 	    if (!vl) {
 	        return;
@@ -19512,19 +19622,31 @@ module.exports =
 	    catch (e) {
 	        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, "Syntax error:" + e.message, astNode));
 	    }
-	    var valid = pr.getAdapter(services.RAMLPropertyService).isValidValue(vl, astNode.parent());
+	    var adapter = pr.getAdapter(services.RAMLPropertyService);
+	    var valid = adapter.isValidValue(vl, astNode.parent());
 	    if (!valid) {
 	        if (typeof vl == 'string') {
 	            if ((vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe10.TypeDeclaration.properties.type.name) {
 	                return true;
 	            }
 	        }
-	        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, "Unresolved reference:" + vl, astNode));
+	        var expected = (adapter.isReference && adapter.isReference() && adapter.referencesTo && adapter.referencesTo() && adapter.referencesTo().nameId && adapter.referencesTo().nameId());
+	        var referencedToName = exports.typeToName[expected] || nameForNonReference(astNode);
+	        var message = referencedToName ? ("Unrecognized " + referencedToName + " '" + vl + "'.") : ("Unresolved reference: " + vl);
+	        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, message, astNode));
 	        return true;
 	    }
 	    return false;
 	}
-	;
+	function nameForNonReference(astNode) {
+	    var propertyName = astNode && astNode.lowLevel() && astNode.lowLevel().key();
+	    if (propertyName === universes.Universe10.AbstractSecurityScheme.properties.type.name) {
+	        var domain = astNode.parent() && astNode.parent().definition() && astNode.parent().definition().nameId();
+	        if (domain === universes.Universe10.AbstractSecurityScheme.name) {
+	            return "security scheme type";
+	        }
+	    }
+	}
 	var SchemaOrTypeValidator = (function () {
 	    function SchemaOrTypeValidator() {
 	    }
@@ -21083,7 +21205,7 @@ module.exports =
 	        if (ps[this.nameId()]) {
 	            return [];
 	        }
-	        ps[this.nameId()] = this;
+	        ps[this.typeId()] = this;
 	        var n = {};
 	        if (this.superTypes().length > 0) {
 	            this.superTypes().forEach(function (x) {
@@ -21099,15 +21221,18 @@ module.exports =
 	    AbstractType.prototype.facet = function (name) {
 	        return _.find(this.allFacets(), function (x) { return x.nameId() == name; });
 	    };
+	    AbstractType.prototype.typeId = function () {
+	        return this.nameId();
+	    };
 	    AbstractType.prototype.allProperties = function (ps) {
 	        if (ps === void 0) { ps = {}; }
 	        if (this._props) {
 	            return this._props;
 	        }
-	        if (ps[this.nameId()]) {
+	        if (ps[this.typeId()]) {
 	            return [];
 	        }
-	        ps[this.nameId()] = this;
+	        ps[this.typeId()] = this;
 	        var n = {};
 	        if (this.superTypes().length > 0) {
 	            this.superTypes().forEach(function (x) {
@@ -21705,13 +21830,13 @@ module.exports =
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
 	var universes = __webpack_require__(54);
-	var Opt = __webpack_require__(11);
-	var util = __webpack_require__(10);
+	var Opt = __webpack_require__(12);
+	var util = __webpack_require__(11);
 	var typeexpression = __webpack_require__(50);
 	var expander = __webpack_require__(73);
 	var lowLevelProxy = __webpack_require__(6);
 	var search = __webpack_require__(53);
-	var ll = __webpack_require__(14);
+	var ll = __webpack_require__(15);
 	var path = __webpack_require__(16);
 	var ramlservices = __webpack_require__(49);
 	function resolveType(p) {
@@ -21744,7 +21869,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        uri = res.relativeUri().value() + uri;
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
 	    return uri;
 	}
 	exports.completeRelativeUri = completeRelativeUri;
@@ -21765,7 +21890,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        uri = res.relativeUri().value() + uri;
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
 	    uri = uri.replace(/\/\//g, '/');
 	    var buri = parent.baseUri();
 	    var base = buri ? buri.value() : "";
@@ -21798,7 +21923,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        result.push(res.relativeUri().value());
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
@@ -21867,7 +21992,7 @@ module.exports =
 	}
 	exports.getMethod = getMethod;
 	function isApi(obj) {
-	    return (obj['title'] && obj['version'] && obj['baseUri']);
+	    return obj.definition().key().name == universes.Universe10.Api.name;
 	}
 	;
 	//__$helperMethod__ Api owning the resource as a sibling
@@ -21891,7 +22016,7 @@ module.exports =
 	    else if (parent instanceof RamlWrapper.ResourceTypeImpl) {
 	        return parent.name() + ' ' + method.method().toLowerCase();
 	    }
-	    throw new Error("Method is supposed to be owned by Resource or ResourceType");
+	    throw new Error("Method is supposed to be owned by Resource or ResourceType.\nHere the method is owned by " + method.definition().key().name);
 	}
 	exports.methodId = methodId;
 	//__$helperMethod__ true for codes < 400 and false otherwise
@@ -21899,7 +22024,7 @@ module.exports =
 	    return parseInt(response.code().value()) < 400;
 	}
 	exports.isOkRange = isOkRange;
-	//__$helperMethod__  Retrieve all resources ofthe Api
+	//__$helperMethod__  Retrieve all resources of the Api
 	function allResources(api) {
 	    var resources = [];
 	    var visitor = function (res) {
@@ -21954,24 +22079,47 @@ module.exports =
 	    return new Opt(schDef);
 	}
 	exports.schema = schema;
-	//__$helperMethod__ Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	// __$meta__={"name":"allUriParameters"}
+	/**
+	 * __$helperMethod__ Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * /resource/{objectId}/{propertyId}:
+	 *   uriParameters:
+	 *     objectId:
+	 * ```
+	 * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+	 * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+	 * __$meta__={"name":"allUriParameters"}
+	 **/
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
 	    return extractParams(params, uri, resource);
 	}
 	exports.uriParameters = uriParameters;
-	//__$helperMethod__ Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	//__$meta__={"name":"allBaseUriParameters"}
+	/**__$helperMethod__
+	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * version: v1
+	 * baseUri: https://{organization}.example.com/{version}/{service}
+	 * baseUriParameters:
+	 *   service:
+	 * ```
+	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+	 * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
+	 * __$meta__={"name":"allBaseUriParameters"}
+	 **/
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
 	    return extractParams(params, uri, api);
 	}
 	exports.baseUriParameters = baseUriParameters;
-	//__$helperMethod__ Retrieve all absolute uri parameters regardless of whether they are described in
-	//`baseUriParameters` and `uriParameters` or not
+	/**__$helperMethod__
+	 * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+	 * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+	 */
 	function absoluteUriParameters(res) {
 	    var params = [];
 	    var parent = res;
@@ -21981,7 +22129,7 @@ module.exports =
 	        var uriParams = res.uriParameters();
 	        params = extractParams(uriParams, uri, res).concat(params);
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
 	    var api = parent;
 	    var baseUri = api.baseUri().value();
 	    var baseUriParams = api.baseUriParameters();
@@ -21989,6 +22137,25 @@ module.exports =
 	    return params;
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
+	/**
+	 * __$helperMethod__ Protocols used by the API. Returns the `protocols` property value if it is specified.
+	 * Otherwise, returns protocol, specified in the base URI.
+	 **/
+	function allProtocols(api) {
+	    var result = api.protocols();
+	    if (result.length != 0) {
+	        return result;
+	    }
+	    var baseUri = api.baseUri().value();
+	    if (baseUri && baseUri.trim().length != 0) {
+	        var ind = baseUri.indexOf('://');
+	        if (ind >= 0) {
+	            result = [baseUri.substring(0, ind)];
+	        }
+	    }
+	    return result;
+	}
+	exports.allProtocols = allProtocols;
 	function extractParams(params, uri, resource) {
 	    if (!uri) {
 	        return [];
@@ -24428,7 +24595,7 @@ module.exports =
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
 	var Error = __webpack_require__(9);
-	var util = __webpack_require__(10);
+	var util = __webpack_require__(11);
 	var proxy = __webpack_require__(6);
 	var RamlWrapper = __webpack_require__(1);
 	var RamlWrapper08 = __webpack_require__(74);
@@ -26639,14 +26806,22 @@ module.exports =
 	        return helper.ownerApi(this);
 	    };
 	    /**
-	     * Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
+	     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * /resource/{objectId}/{propertyId}:
+	     * uriParameters:
+	     * objectId:
+	     * ```
+	     * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+	     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
 	     **/
 	    ResourceImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
 	    };
 	    /**
-	     * Retrieve all absolute uri parameters regardless of whether they are described in
-	     * `baseUriParameters` and `uriParameters` or not
+	     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+	     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
 	     **/
 	    ResourceImpl.prototype.absoluteUriParameters = function () {
 	        return helper.absoluteUriParameters(this);
@@ -26827,16 +27002,32 @@ module.exports =
 	        return helper.getChildResource(this, relPath);
 	    };
 	    /**
-	     * Retrieve all resources ofthe Api
+	     * Retrieve all resources of the Api
 	     **/
 	    ApiImpl.prototype.allResources = function () {
 	        return helper.allResources(this);
 	    };
 	    /**
-	     * Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * version: v1
+	     * baseUri: https://{organization}.example.com/{version}/{service}
+	     * baseUriParameters:
+	     * service:
+	     * ```
+	     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+	     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
 	     **/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
+	    };
+	    /**
+	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+	     * Otherwise, returns protocol, specified in the base URI.
+	     **/
+	    ApiImpl.prototype.allProtocols = function () {
+	        return helper.allProtocols(this);
 	    };
 	    return ApiImpl;
 	})(RAMLLanguageElementImpl);
@@ -27084,14 +27275,14 @@ module.exports =
 	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 	    return node;
 	}
-	function loadApi(apiPath, arg1, arg2) {
+	function loadApiSync(apiPath, arg1, arg2) {
 	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
-	exports.loadApi = loadApi;
-	function loadApiAsync(apiPath, arg1, arg2) {
+	exports.loadApiSync = loadApiSync;
+	function loadApi(apiPath, arg1, arg2) {
 	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
-	exports.loadApiAsync = loadApiAsync;
+	exports.loadApi = loadApi;
 
 
 /***/ },
@@ -27099,7 +27290,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var hlImpl = __webpack_require__(5);
-	var jsyaml = __webpack_require__(14);
+	var jsyaml = __webpack_require__(15);
 	var ramlService = __webpack_require__(49);
 	var json2lowlevel = __webpack_require__(8);
 	var BasicNodeImpl = (function () {
@@ -27244,13 +27435,31 @@ module.exports =
 	            issues = issues.concat(this._node.errors());
 	        }
 	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return issues = issues.concat(x.errors()); });
+	        var lineMapper = this._node.lowLevel().unit().lineMapper();
 	        var result = issues.map(function (x) {
+	            var startPoint = null;
+	            try {
+	                startPoint = lineMapper.position(x.start);
+	            }
+	            catch (e) {
+	                console.warn(e);
+	            }
+	            var endPoint = null;
+	            try {
+	                endPoint = lineMapper.position(x.end);
+	            }
+	            catch (e) {
+	                console.warn(e);
+	            }
 	            return {
 	                code: x.code,
 	                message: x.message,
 	                path: x.path,
 	                start: x.start,
 	                end: x.end,
+	                line: startPoint.errorMessage ? null : startPoint.line,
+	                column: startPoint.errorMessage ? null : startPoint.column,
+	                range: [startPoint, endPoint],
 	                isWarning: x.isWarning
 	            };
 	        });
@@ -27323,10 +27532,10 @@ module.exports =
 	var RamlWrapper1 = __webpack_require__(1);
 	var RamlWrapper08 = __webpack_require__(74);
 	var path = __webpack_require__(16);
-	var Opt = __webpack_require__(11);
-	var jsyaml = __webpack_require__(14);
+	var Opt = __webpack_require__(12);
+	var jsyaml = __webpack_require__(15);
 	var hlimpl = __webpack_require__(5);
-	var llimpl = __webpack_require__(14);
+	var llimpl = __webpack_require__(15);
 	var expander = __webpack_require__(73);
 	var universeDef = __webpack_require__(54);
 	var universeProvider = __webpack_require__(77);
@@ -27338,16 +27547,24 @@ module.exports =
 	 ***/
 	function loadApi(apiPath, arg1, arg2) {
 	    var gotArray = Array.isArray(arg1);
-	    var extensionsAndOverlays = (gotArray ? arg1 : arg2);
+	    var extensionsAndOverlays = (gotArray ? arg1 : null);
 	    var options = (gotArray ? arg2 : arg1);
 	    options = options || {};
 	    var project = getProject(apiPath, options);
 	    var unitName = path.basename(apiPath);
 	    var unit = project.unit(unitName);
+	    if (arg2 && !extensionsAndOverlays) {
+	        throw new Error("Extensions and overlays list should be defined");
+	    }
 	    var api;
 	    if (unit) {
 	        if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
 	            var extensionUnits = [];
+	            extensionsAndOverlays.forEach(function (currentPath) {
+	                if (!currentPath || currentPath.trim().length == 0) {
+	                    throw new Error("Extensions and overlays list should contain legal file paths");
+	                }
+	            });
 	            extensionsAndOverlays.forEach(function (unitPath) {
 	                extensionUnits.push(project.unit(path.basename(unitPath)));
 	            });
@@ -27374,11 +27591,14 @@ module.exports =
 	 ***/
 	function loadApiAsync(apiPath, arg1, arg2) {
 	    var gotArray = Array.isArray(arg1);
-	    var extensionsAndOverlays = (gotArray ? arg1 : arg2);
+	    var extensionsAndOverlays = (gotArray ? arg1 : null);
 	    var options = (gotArray ? arg2 : arg1);
 	    options = options || {};
 	    var project = getProject(apiPath, options);
 	    var unitName = path.basename(apiPath);
+	    if (arg2 && !extensionsAndOverlays) {
+	        throw new Error("Extensions and overlays list should be defined");
+	    }
 	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
 	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
 	            masterApi.highLevel().setMergeMode(0 /* MERGE */);
@@ -27386,6 +27606,11 @@ module.exports =
 	        });
 	    }
 	    else {
+	        extensionsAndOverlays.forEach(function (currentPath) {
+	            if (!currentPath || currentPath.trim().length == 0) {
+	                throw new Error("Extensions and overlays list should contain legal file paths");
+	            }
+	        });
 	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
 	            var apiPromises = [];
 	            extensionsAndOverlays.forEach(function (extensionUnitPath) {
@@ -41706,11 +41931,12 @@ module.exports =
 	var RamlWrapper = __webpack_require__(74);
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
+	var universes = __webpack_require__(54);
 	var expander = __webpack_require__(73);
 	var lowLevelProxy = __webpack_require__(6);
-	var util = __webpack_require__(10);
+	var util = __webpack_require__(11);
 	var search = __webpack_require__(53);
-	var ll = __webpack_require__(14);
+	var ll = __webpack_require__(15);
 	var path = __webpack_require__(16);
 	//export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
 	//    var tpe=typeexpression.typeFromNode(p.highLevel());
@@ -41744,7 +41970,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        uri = res.relativeUri().value() + uri;
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe08.Resource.name);
 	    return uri;
 	}
 	exports.completeRelativeUri = completeRelativeUri;
@@ -41756,7 +41982,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        uri = res.relativeUri().value() + uri;
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe08.Resource.name);
 	    uri = uri.replace(/\/\//g, '/');
 	    var buri = parent.baseUri();
 	    var base = buri ? buri.value() : "";
@@ -41774,12 +42000,12 @@ module.exports =
 	exports.qName = qName;
 	//__$helperMethod__ Retrieve all traits including those defined in libraries
 	function allTraits(a) {
-	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().nameId() == "Trait"; }).map(function (x) { return x.wrapperNode(); });
+	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().key().name == "Trait"; }).map(function (x) { return x.wrapperNode(); });
 	}
 	exports.allTraits = allTraits;
 	//__$helperMethod__ Retrieve all resource types including those defined in libraries
 	function allResourceTypes(a) {
-	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().nameId() == "ResourceType"; }).map(function (x) { return x.wrapperNode(); });
+	    return search.globalDeclarations(a.highLevel()).filter(function (x) { return x.definition().key().name == "ResourceType"; }).map(function (x) { return x.wrapperNode(); });
 	}
 	exports.allResourceTypes = allResourceTypes;
 	function relativeUriSegments(res) {
@@ -41789,7 +42015,7 @@ module.exports =
 	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
 	        result.push(res.relativeUri().value());
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe08.Resource.name);
 	    return result.reverse();
 	}
 	exports.relativeUriSegments = relativeUriSegments;
@@ -41858,7 +42084,7 @@ module.exports =
 	}
 	exports.getMethod = getMethod;
 	function isApi(obj) {
-	    return (obj['title'] && obj['version'] && obj['baseUri']);
+	    return (obj.definition().key().name == universes.Universe08.Api.name);
 	}
 	;
 	//__$helperMethod__ Api owning the resource as a sibling
@@ -41882,7 +42108,7 @@ module.exports =
 	    else if (parent instanceof RamlWrapper.ResourceTypeImpl) {
 	        return parent.name() + ' ' + method.method().toLowerCase();
 	    }
-	    throw new Error("Method is supposed to be owned by Resource or ResourceType");
+	    throw new Error("Method is supposed to be owned by Resource or ResourceType.\nHere the method is owned by " + method.definition().key().name);
 	}
 	exports.methodId = methodId;
 	//__$helperMethod__ true for codes < 400 and false otherwise
@@ -41890,7 +42116,7 @@ module.exports =
 	    return parseInt(response.code().value()) < 400;
 	}
 	exports.isOkRange = isOkRange;
-	//__$helperMethod__  Retrieve all resources ofthe Api
+	//__$helperMethod__  Retrieve all resources of the Api
 	function allResources(api) {
 	    var resources = [];
 	    var visitor = function (res) {
@@ -41942,24 +42168,47 @@ module.exports =
 	//    }
 	//    return new Opt<SchemaDef>(schDef);
 	//}
-	//__$helperMethod__ Retrieve all uri parameters regardless of whether they are described in `uriParameters` or not
-	// __$meta__={"name":"allUriParameters"}
+	/**
+	 * __$helperMethod__ Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * /resource/{objectId}/{propertyId}:
+	 *   uriParameters:
+	 *     objectId:
+	 * ```
+	 * Here `propertyId` uri parameter is not described in the `uriParameters` node.
+	 * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+	 * __$meta__={"name":"allUriParameters"}
+	 **/
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
 	    return extractParams(params, uri, resource);
 	}
 	exports.uriParameters = uriParameters;
-	//__$helperMethod__ Retrieve all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	//__$meta__={"name":"allBaseUriParameters"}
+	/**__$helperMethod__
+	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * version: v1
+	 * baseUri: https://{organization}.example.com/{version}/{service}
+	 * baseUriParameters:
+	 *   service:
+	 * ```
+	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node.
+	 * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
+	 * __$meta__={"name":"allBaseUriParameters"}
+	 **/
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
 	    return extractParams(params, uri, api);
 	}
 	exports.baseUriParameters = baseUriParameters;
-	//__$helperMethod__ Retrieve all absolute uri parameters regardless of whether they are described in
-	//`baseUriParameters` and `uriParameters` or not
+	/**__$helperMethod__
+	 * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+	 * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+	 */
 	function absoluteUriParameters(res) {
 	    var params = [];
 	    var parent = res;
@@ -41969,7 +42218,7 @@ module.exports =
 	        var uriParams = res.uriParameters();
 	        params = extractParams(uriParams, uri, res).concat(params);
 	        parent = res.parent();
-	    } while (parent['relativeUri']);
+	    } while (parent.definition().key().name == universes.Universe08.Resource.name);
 	    var api = parent;
 	    var baseUri = api.baseUri().value();
 	    var baseUriParams = api.baseUriParameters();
@@ -41977,6 +42226,25 @@ module.exports =
 	    return params;
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
+	/**
+	 * __$helperMethod__ Protocols used by the API. Returns the `protocols` property value if it is specified.
+	 * Otherwise, returns protocol, specified in the base URI.
+	 **/
+	function allProtocols(api) {
+	    var result = api.protocols();
+	    if (result.length != 0) {
+	        return result;
+	    }
+	    var baseUri = api.baseUri().value();
+	    if (baseUri && baseUri.trim().length != 0) {
+	        var ind = baseUri.indexOf('://');
+	        if (ind >= 0) {
+	            result = [baseUri.substring(0, ind)];
+	        }
+	    }
+	    return result;
+	}
+	exports.allProtocols = allProtocols;
 	function extractParams(params, uri, resource) {
 	    if (!uri) {
 	        return [];
@@ -42963,7 +43231,7 @@ module.exports =
 	                }
 	            }
 	            if (node.definition().isUnion()) {
-	                if (node.definition().getAdapter(services.RAMLService).isRuntime() || (node.parent() && node.parent().definition().isAssignableFrom(universes.Universe10.Annotation.name))) {
+	                if (true && (node.parent() && node.property().nameId() == universes.Universe10.RAMLLanguageElement.properties.annotations.name)) {
 	                    var optins = getAllOptions(node.definition().union());
 	                    var actualResult = null;
 	                    var bestResult = null;
@@ -43002,6 +43270,7 @@ module.exports =
 	                        }
 	                    });
 	                    if (actualResult) {
+	                        llnode.patchType(bestType);
 	                        return actualResult;
 	                    }
 	                    if (bestResult) {
@@ -43379,8 +43648,8 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/tsd.d.ts" />
-	var jsyaml = __webpack_require__(14);
-	var ll = __webpack_require__(15);
+	var jsyaml = __webpack_require__(15);
+	var ll = __webpack_require__(10);
 	var _ = __webpack_require__(4);
 	var hlimpl = __webpack_require__(5);
 	var services = __webpack_require__(49);
