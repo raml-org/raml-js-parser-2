@@ -7,8 +7,9 @@ var raml1Parser = require('../src/raml1Parser');
 var paths = [
     'librarybooks.raml',
     'monitoringOverlay.raml',
-    'administrativeExtension.raml',
     'spanishOverlay.raml',
+    'administrativeExtension.raml',
+    'spanishAdministrativeOverlay.raml',
     'publicInstanceExtension.raml'
 ];
 paths = paths.map(function(ramlPath) {
@@ -27,6 +28,46 @@ api.errors().forEach(function(x){
     },null,2));
 });
 
-console.log( "Some method name: " + api.resources()[0].methods()[0].method() );
+console.log(
+    "Content from master librarybooks.raml:",
+    api.getChildResource('/books')
+        .absoluteUri() // /books
+);
 
-console.log(api.highLevel().printDetails());
+console.log(
+    "Content from monitoringOverlay.raml:",
+    api.getChildResource('/books')
+        .getChildMethod('get')[0]
+        .annotations()[0]
+        .value()
+        .children()[1]
+        .lowLevel()
+        .value() //randomBooksFetch
+);
+
+console.log(
+    "Content from spanishOverlay.raml:",
+    api.getChildResource('/books')
+        .description()
+        .value() //La colección de libros de la biblioteca
+);
+
+console.log(
+    "Content from administrativeExtension.raml:",
+    api.getChildResource('/books')
+        .getChildMethod('post')[0]
+        .method() //post
+);
+
+console.log(
+    "Content from spanishAdministrativeOverlay.raml:",
+    api.getChildResource('/books')
+        .getChildMethod('post')[0]
+        .description()
+        .value() //A?adir un nuevo libro para la colecci?n
+);
+
+console.log(
+    "Content from publicInstanceExtension.raml:",
+    api.baseUri().value() //http://api.piedmont-library.com
+);
