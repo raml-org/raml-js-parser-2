@@ -19,7 +19,7 @@
     "parser"
   ],
   "author": "Mulesoft",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/raml-org/raml-js-parser-2/issues"
   },
