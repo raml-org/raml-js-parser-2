@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.0-beta.1",
   "description": "RAML 1.0 parser",
   "main": "src/raml1Parser.js",
   "scripts": {
