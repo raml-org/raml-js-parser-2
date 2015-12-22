@@ -118,8 +118,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#kind" class="tsd-kind-icon">kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -139,7 +139,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L277">raml1/wrapped-ast/parserCore.ts:277</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L277">raml1/wrapped-ast/parserCore.ts:277</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -162,35 +162,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#attr">attr</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L279">raml1/wrapped-ast/parserCore.ts:279</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L279">raml1/wrapped-ast/parserCore.ts:279</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="getkind" class="tsd-anchor"></a>
-					<h3>get<wbr>Kind</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html">MarkdownString</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html#getkind">getKind</a></p>
-								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.stringtypeimpl.html">StringTypeImpl</a>.<a href="_raml1_artifacts_raml10parser_.stringtypeimpl.html#getkind">getKind</a></p>
-								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:720</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>Actual name of instance interface</p>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="highlevel" class="tsd-anchor"></a>
 					<h3>high<wbr>Level</h3>
@@ -203,13 +181,35 @@
 								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html">MarkdownString</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html#highlevel">highLevel</a></p>
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#highlevel">highLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L284">raml1/wrapped-ast/parserCore.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L284">raml1/wrapped-ast/parserCore.ts:284</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h4>
 							<p>Underlying High Level attribute node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="kind" class="tsd-anchor"></a>
+					<h3>kind</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html">MarkdownString</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.markdownstring.html#kind">kind</a></p>
+								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.stringtypeimpl.html">StringTypeImpl</a>.<a href="_raml1_artifacts_raml10parser_.stringtypeimpl.html#kind">kind</a></p>
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:720</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Actual name of instance interface</p>
 						</li>
 					</ul>
 				</section>
@@ -261,11 +261,11 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#attr" class="tsd-kind-icon">attr</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#kind" class="tsd-kind-icon">kind</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.markdownstringimpl.html#value" class="tsd-kind-icon">value</a>

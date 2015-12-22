@@ -91,6 +91,8 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#addvalue" class="tsd-kind-icon">add<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#asattr" class="tsd-kind-icon">as<wbr>Attr</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#aselement" class="tsd-kind-icon">as<wbr>Element</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#children" class="tsd-kind-icon">children</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#computedvalue" class="tsd-kind-icon">computed<wbr>Value</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#definition" class="tsd-kind-icon">definition</a></li>
@@ -122,6 +124,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#setvalues" class="tsd-kind-icon">set<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#validate" class="tsd-kind-icon">validate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="_raml1_highlevelast_.iattribute.html#version" class="tsd-kind-icon">version</a></li>
 							</ul>
 						</section>
 					</div>
@@ -139,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L152">raml1/highLevelAST.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L150">raml1/highLevelAST.ts:150</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,6 +152,42 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+					<a name="asattr" class="tsd-anchor"></a>
+					<h3>as<wbr>Attr</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">as<wbr>Attr<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#asattr">asAttr</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L62">raml1/highLevelAST.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+					<a name="aselement" class="tsd-anchor"></a>
+					<h3>as<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">as<wbr>Element<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#aselement">asElement</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L64">raml1/highLevelAST.ts:64</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -163,7 +202,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#children">children</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L54">raml1/highLevelAST.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L58">raml1/highLevelAST.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -181,7 +220,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#computedvalue">computedValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L64">raml1/highLevelAST.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L70">raml1/highLevelAST.ts:70</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -204,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L144">raml1/highLevelAST.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L142">raml1/highLevelAST.ts:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.ivaluetypedefinition.html" class="tsd-signature-type">IValueTypeDefinition</a></h4>
@@ -222,7 +261,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#errors">errors</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L44">raml1/highLevelAST.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L48">raml1/highLevelAST.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a><span class="tsd-signature-symbol">[]</span></h4>
@@ -240,7 +279,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#fulllocalid">fullLocalId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L60">raml1/highLevelAST.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L66">raml1/highLevelAST.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -258,7 +297,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#getkind">getKind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L68">raml1/highLevelAST.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L74">raml1/highLevelAST.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/_raml1_highlevelast_.nodekind.html" class="tsd-signature-type">NodeKind</a></h4>
@@ -276,7 +315,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#getlowlevelend">getLowLevelEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L71">raml1/highLevelAST.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L77">raml1/highLevelAST.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -294,7 +333,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#getlowlevelstart">getLowLevelStart</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L70">raml1/highLevelAST.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L76">raml1/highLevelAST.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -312,7 +351,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#hashkey">hashkey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L43">raml1/highLevelAST.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L47">raml1/highLevelAST.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -330,7 +369,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#id">id</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L63">raml1/highLevelAST.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L69">raml1/highLevelAST.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -348,7 +387,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#isattached">isAttached</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L55">raml1/highLevelAST.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L59">raml1/highLevelAST.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -366,7 +405,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#isattr">isAttr</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L57">raml1/highLevelAST.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L61">raml1/highLevelAST.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -384,7 +423,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#iselement">isElement</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L58">raml1/highLevelAST.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L63">raml1/highLevelAST.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -401,7 +440,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L159">raml1/highLevelAST.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L157">raml1/highLevelAST.ts:157</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -419,7 +458,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#isimplicit">isImplicit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L56">raml1/highLevelAST.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L60">raml1/highLevelAST.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -437,7 +476,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#issamenode">isSameNode</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L49">raml1/highLevelAST.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L53">raml1/highLevelAST.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -461,7 +500,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#isunknown">isUnknown</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L61">raml1/highLevelAST.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L67">raml1/highLevelAST.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -479,7 +518,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#localid">localId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L156">raml1/highLevelAST.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L154">raml1/highLevelAST.ts:154</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -497,7 +536,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#lowlevel">lowLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L142">raml1/highLevelAST.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L140">raml1/highLevelAST.ts:140</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h4>
@@ -515,7 +554,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#name">name</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L154">raml1/highLevelAST.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L152">raml1/highLevelAST.ts:152</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -532,7 +571,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L161">raml1/highLevelAST.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L159">raml1/highLevelAST.ts:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -558,7 +597,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#parent">parent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L51">raml1/highLevelAST.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L55">raml1/highLevelAST.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h4>
@@ -576,7 +615,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#printdetails">printDetails</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L66">raml1/highLevelAST.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L72">raml1/highLevelAST.ts:72</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -600,7 +639,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#property">property</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L146">raml1/highLevelAST.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L144">raml1/highLevelAST.ts:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a></h4>
@@ -617,7 +656,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L157">raml1/highLevelAST.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L155">raml1/highLevelAST.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -635,7 +674,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#root">root</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L48">raml1/highLevelAST.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L52">raml1/highLevelAST.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h4>
@@ -653,7 +692,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#setparent">setParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L52">raml1/highLevelAST.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L56">raml1/highLevelAST.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -676,7 +715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L150">raml1/highLevelAST.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L148">raml1/highLevelAST.ts:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -699,7 +738,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L151">raml1/highLevelAST.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L149">raml1/highLevelAST.ts:149</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -723,7 +762,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#validate">validate</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L65">raml1/highLevelAST.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L71">raml1/highLevelAST.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -746,7 +785,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/highLevelAST.ts#L148">raml1/highLevelAST.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L146">raml1/highLevelAST.ts:146</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_highlevelast_.iparseresult.html">IParseResult</a>.<a href="_raml1_highlevelast_.iparseresult.html#version">version</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/highLevelAST.ts#L78">raml1/highLevelAST.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -768,6 +825,18 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-external">
+						<a href="../enums/_raml1_highlevelast_.issuecode.html" class="tsd-kind-icon">Issue<wbr>Code</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-external">
+						<a href="../enums/_raml1_highlevelast_.nodekind.html" class="tsd-kind-icon">Node<wbr>Kind</a>
+					</li>
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-external">
+						<a href="../enums/_raml1_highlevelast_.ramlversion.html" class="tsd-kind-icon">RAMLVersion</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-external">
+						<a href="_raml1_highlevelast_.iacceptor.html" class="tsd-kind-icon">IAcceptor</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
@@ -775,6 +844,12 @@
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_highlevelast_.iattribute.html#addvalue" class="tsd-kind-icon">add<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+								<a href="_raml1_highlevelast_.iattribute.html#asattr" class="tsd-kind-icon">as<wbr>Attr</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+								<a href="_raml1_highlevelast_.iattribute.html#aselement" class="tsd-kind-icon">as<wbr>Element</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
 								<a href="_raml1_highlevelast_.iattribute.html#children" class="tsd-kind-icon">children</a>
@@ -869,10 +944,76 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
 								<a href="_raml1_highlevelast_.iattribute.html#value" class="tsd-kind-icon">value</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
+								<a href="_raml1_highlevelast_.iattribute.html#version" class="tsd-kind-icon">version</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.ihighlevelnode.html" class="tsd-kind-icon">IHigh<wbr>Level<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.inodebuilder.html" class="tsd-kind-icon">INode<wbr>Builder</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.iparseresult.html" class="tsd-kind-icon">IParse<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.ivaluedocprovider.html" class="tsd-kind-icon">IValue<wbr>Doc<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.ivaluesuggester.html" class="tsd-kind-icon">IValue<wbr>Suggester</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.ivaluetypedefinition.html" class="tsd-kind-icon">IValue<wbr>Type<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.status.html" class="tsd-kind-icon">Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.validationacceptor.html" class="tsd-kind-icon">Validation<wbr>Acceptor</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.validationaction.html" class="tsd-kind-icon">Validation<wbr>Action</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_highlevelast_.validationissue.html" class="tsd-kind-icon">Validation<wbr>Issue</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#iarraytype" class="tsd-kind-icon">IArray<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#inamedentity" class="tsd-kind-icon">INamed<wbr>Entity</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#inodedefinition" class="tsd-kind-icon">INode<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#iproperty" class="tsd-kind-icon">IProperty</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#itypedefinition" class="tsd-kind-icon">IType<wbr>Definition</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#iuniontype" class="tsd-kind-icon">IUnion<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#iuniverse" class="tsd-kind-icon">IUniverse</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#namedid" class="tsd-kind-icon">Named<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#universeprovider" class="tsd-kind-icon">universe<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_raml1_highlevelast_.html#fromunit" class="tsd-kind-icon">from<wbr>Unit</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_raml1_highlevelast_.html#getdefinitionsystemtype" class="tsd-kind-icon">get<wbr>Definition<wbr>System<wbr>Type</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
