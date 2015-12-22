@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 import Opt = require("../Opt");
 export declare var defined: (x: any) => boolean;
 export interface Dict<T> {

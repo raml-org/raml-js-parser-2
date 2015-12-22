@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import loader = require('./js-yaml/loader');
 import dumper = require('./js-yaml/dumper');
 export declare var Type: any;

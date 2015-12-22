@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import ll = require("../lowLevelAST");
 import hl = require("../highLevelAST");
 import yaml = require("../jsyaml/yamlAST");

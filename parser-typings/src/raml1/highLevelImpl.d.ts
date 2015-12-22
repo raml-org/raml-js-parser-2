@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 import defs = require("./definitionSystem");
 import hl = require("./highLevelAST");
 import ll = require("./lowLevelAST");
@@ -9,6 +9,9 @@ export declare class BasicASTNode implements hl.IParseResult {
     private _parent;
     private _hashkey;
     getKind(): hl.NodeKind;
+    asAttr(): hl.IAttribute;
+    version(): hl.RAMLVersion;
+    asElement(): hl.IHighLevelNode;
     hashkey(): string;
     root(): hl.IHighLevelNode;
     getLowLevelStart(): number;
@@ -61,13 +64,14 @@ export declare class StructuredValue {
     valueName(): string;
     children(): StructuredValue[];
     lowLevel(): ll.ILowLevelASTNode;
-    toHighlevel(parent?: hl.IHighLevelNode): hl.IHighLevelNode;
+    toHighLevel(parent?: hl.IHighLevelNode): hl.IHighLevelNode;
 }
 export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     private _def;
     private _prop;
     private fromKey;
     definition(): hl.IValueTypeDefinition;
+    asAttr(): ASTPropImpl;
     isString(): boolean;
     constructor(node: ll.ILowLevelASTNode, parent: hl.IHighLevelNode, _def: hl.IValueTypeDefinition, _prop: hl.IProperty, fromKey?: boolean);
     getKind(): hl.NodeKind;
@@ -103,7 +107,7 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     setValues(values: string[]): void;
     isEmpty(): boolean;
 }
-export declare enum OveralMergeMode {
+export declare enum OverlayMergeMode {
     MERGE = 0,
     AGGREGATE = 1,
 }
@@ -129,13 +133,15 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     private masterApi;
     /**
      * Depending on the merge mode, overlays and extensions are either merged with the master, or their trees are joined via aggregation
-     * @type {OveralMergeMode}
+     * @type {OverlayMergeMode}
      */
     private overlayMergeMode;
     constructor(node: ll.ILowLevelASTNode, parent: hl.IHighLevelNode, _def: hl.INodeDefinition, _prop: hl.IProperty);
     patchProp(pr: hl.IProperty): void;
     getKind(): hl.NodeKind;
     wrapperNode(): ParserCore.BasicNode;
+    asElement(): hl.IHighLevelNode;
+    private buildWrapperNode();
     propertiesAllowedToUse(): hl.IProperty[];
     isAllowedToUse(p: hl.IProperty): boolean;
     allowRecursive(): boolean;
@@ -155,8 +161,8 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
      * @param master
      */
     overrideMaster(master: hl.IParseResult): void;
-    setMergeMode(mergeMode: OveralMergeMode): void;
-    getMergeMode(): OveralMergeMode;
+    setMergeMode(mergeMode: OverlayMergeMode): void;
+    getMergeMode(): OverlayMergeMode;
     private calculateMasterByRef();
     private resetAuxilaryState();
     printDetails(indent?: string): string;

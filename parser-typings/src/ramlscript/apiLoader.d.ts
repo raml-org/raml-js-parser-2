@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 import RamlWrapper1 = require("../raml1/artifacts/raml10parser");
 import RamlWrapper08 = require("../raml1/artifacts/raml08parser");
 import Opt = require('../Opt');

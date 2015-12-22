@@ -543,9 +543,6 @@ declare var Universes: {
                 "annotationTypes": {
                     "name": string;
                 };
-                "securitySchemaTypes": {
-                    "name": string;
-                };
                 "securitySchemes": {
                     "name": string;
                 };
@@ -622,9 +619,6 @@ declare var Universes: {
                     "name": string;
                 };
                 "annotations": {
-                    "name": string;
-                };
-                "securitySchemaTypes": {
                     "name": string;
                 };
             };
@@ -825,17 +819,6 @@ declare var Universes: {
                 };
             };
         };
-        "SecuritySchemaType": {
-            "name": string;
-            "properties": {
-                "requiredSettings": {
-                    "name": string;
-                };
-                "describedBy": {
-                    "name": string;
-                };
-            };
-        };
         "SecuritySchemeSettings": {
             "name": string;
             "properties": {};
@@ -1030,9 +1013,6 @@ declare var Universes: {
         "Method": {
             "name": string;
             "properties": {
-                "signature": {
-                    "name": string;
-                };
                 "method": {
                     "name": string;
                 };
@@ -1068,9 +1048,6 @@ declare var Universes: {
         "Resource": {
             "name": string;
             "properties": {
-                "signature": {
-                    "name": string;
-                };
                 "relativeUri": {
                     "name": string;
                 };
@@ -1137,25 +1114,10 @@ declare var Universes: {
         "AnnotationTypeDeclaration": {
             "name": string;
             "properties": {
-                "name": {
-                    "name": string;
-                };
-                "usage": {
-                    "name": string;
-                };
-                "parameters": {
-                    "name": string;
-                };
                 "allowMultiple": {
                     "name": string;
                 };
                 "allowedTargets": {
-                    "name": string;
-                };
-                "displayName": {
-                    "name": string;
-                };
-                "description": {
                     "name": string;
                 };
             };

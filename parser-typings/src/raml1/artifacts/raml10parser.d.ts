@@ -52,7 +52,7 @@ export declare class RAMLLanguageElementImpl extends core.BasicNodeImpl implemen
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
      **/
@@ -86,7 +86,7 @@ export declare class ValueTypeImpl extends core.AttributeNodeImpl implements Val
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * @return String representation of the node value
      **/
@@ -103,7 +103,7 @@ export declare class NumberTypeImpl extends ValueTypeImpl implements NumberType 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface BooleanType extends ValueType {
 }
@@ -116,7 +116,7 @@ export declare class BooleanTypeImpl extends ValueTypeImpl implements BooleanTyp
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface Reference extends core.AttributeNode {
     /**
@@ -133,7 +133,7 @@ export declare class ReferenceImpl extends core.AttributeNodeImpl implements Ref
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * @return StructuredValue object representing the node value
      **/
@@ -150,7 +150,7 @@ export declare class ResourceTypeRefImpl extends ReferenceImpl implements Resour
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface TraitRef extends Reference {
 }
@@ -163,7 +163,7 @@ export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface SecuritySchemeRef extends Reference {
 }
@@ -176,7 +176,7 @@ export declare class SecuritySchemeRefImpl extends ReferenceImpl implements Secu
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Annotations allow you to attach information to your API
@@ -195,7 +195,7 @@ export declare class AnnotationRefImpl extends ReferenceImpl implements Annotati
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface DataElementRef extends Reference {
 }
@@ -208,7 +208,7 @@ export declare class DataElementRefImpl extends ReferenceImpl implements DataEle
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Elements to which this Annotation can be applied (enum)
@@ -227,7 +227,7 @@ export declare class AnnotationTargetImpl extends ValueTypeImpl implements Annot
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface pointer extends ValueType {
 }
@@ -240,7 +240,7 @@ export declare class pointerImpl extends ValueTypeImpl implements pointer {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface StringType extends ValueType {
 }
@@ -253,7 +253,7 @@ export declare class StringTypeImpl extends ValueTypeImpl implements StringType 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * This type currently serves both for absolute and relative urls
@@ -272,7 +272,7 @@ export declare class UriTemplateImpl extends StringTypeImpl implements UriTempla
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * This  type describes relative uri templates
@@ -291,7 +291,7 @@ export declare class RelativeUriStringImpl extends UriTemplateImpl implements Re
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * This  type describes absolute uri templates
@@ -310,7 +310,7 @@ export declare class FullUriTemplateStringImpl extends UriTemplateImpl implement
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface StatusCodeString extends StringType {
 }
@@ -323,7 +323,7 @@ export declare class StatusCodeStringImpl extends StringTypeImpl implements Stat
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * This  type describes fixed uris
@@ -342,7 +342,7 @@ export declare class FixedUriStringImpl extends StringTypeImpl implements FixedU
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ContentType extends StringType {
 }
@@ -355,7 +355,7 @@ export declare class ContentTypeImpl extends StringTypeImpl implements ContentTy
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ValidityExpression extends StringType {
 }
@@ -368,7 +368,7 @@ export declare class ValidityExpressionImpl extends StringTypeImpl implements Va
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface DateFormatSpec extends StringType {
 }
@@ -381,7 +381,7 @@ export declare class DateFormatSpecImpl extends StringTypeImpl implements DateFo
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface FunctionalInterface extends StringType {
 }
@@ -394,7 +394,7 @@ export declare class FunctionalInterfaceImpl extends StringTypeImpl implements F
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Schema at this moment only two subtypes are supported (json schema and xsd)
@@ -413,7 +413,7 @@ export declare class SchemaStringImpl extends StringTypeImpl implements SchemaSt
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * JSON schema
@@ -432,7 +432,7 @@ export declare class JSonSchemaStringImpl extends SchemaStringImpl implements JS
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * XSD schema
@@ -451,7 +451,7 @@ export declare class XMLSchemaStringImpl extends SchemaStringImpl implements XML
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Examples at this moment only two subtypes are supported (json  and xml)
@@ -470,7 +470,7 @@ export declare class ExampleStringImpl extends StringTypeImpl implements Example
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface RAMLPointer extends StringType {
 }
@@ -483,7 +483,7 @@ export declare class RAMLPointerImpl extends StringTypeImpl implements RAMLPoint
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface RAMLSelector extends StringType {
 }
@@ -496,7 +496,7 @@ export declare class RAMLSelectorImpl extends StringTypeImpl implements RAMLSele
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * This sub type of the string represents mime types
@@ -515,7 +515,7 @@ export declare class MimeTypeImpl extends StringTypeImpl implements MimeType {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
@@ -534,7 +534,7 @@ export declare class MarkdownStringImpl extends StringTypeImpl implements Markdo
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface DocumentationItem extends RAMLLanguageElement {
     /**
@@ -557,7 +557,7 @@ export declare class DocumentationItemImpl extends RAMLLanguageElementImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Title of documentation section
      **/
@@ -587,7 +587,7 @@ export declare class ScriptSpecImpl extends RAMLLanguageElementImpl implements S
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     language(): string;
     /**
      * @hidden
@@ -617,7 +617,7 @@ export declare class ApiDescriptionImpl extends RAMLLanguageElementImpl implemen
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     apiFiles(): Api[];
     script(): ScriptSpec[];
     "type"(): string;
@@ -641,7 +641,7 @@ export declare class CallbackAPIDescriptionImpl extends ApiDescriptionImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     callbackFor(): Api;
 }
 export interface RAMLProject extends RAMLLanguageElement {
@@ -662,7 +662,7 @@ export declare class RAMLProjectImpl extends RAMLLanguageElementImpl implements 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     relatedProjects(): RAMLProject[];
     declaredApis(): ApiDescription[];
     license(): string;
@@ -685,23 +685,33 @@ export declare class RAMLProjectImpl extends RAMLLanguageElementImpl implements 
     setUrl(param: string): RAMLProjectImpl;
 }
 /**
- * Security schema type allows you to contribute your own security schema type with settings and optinal configurator for plugging into client sdks auth mechanism
+ * Declares globally referable security schema definition
  **/
-export interface SecuritySchemaType extends RAMLLanguageElement {
+export interface AbstractSecurityScheme extends RAMLLanguageElement {
+    name(): string;
     /**
-     * You may declare settings needed to use this type of security security schemas
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
      **/
-    requiredSettings(): TypeDeclaration[];
+    "type"(): string;
     /**
-     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
-     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
+     * The description MAY be used to describe a securityScheme.
+     **/
+    description(): MarkdownString;
+    /**
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
      **/
     describedBy(): SecuritySchemePart;
+    /**
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     **/
+    settings(): SecuritySchemeSettings;
 }
 /**
- * Security schema type allows you to contribute your own security schema type with settings and optinal configurator for plugging into client sdks auth mechanism
+ * Declares globally referable security schema definition
  **/
-export declare class SecuritySchemaTypeImpl extends RAMLLanguageElementImpl implements SecuritySchemaType {
+export declare class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
     constructor(nodeOrKey: hl.IHighLevelNode | string);
     /**
@@ -712,16 +722,69 @@ export declare class SecuritySchemaTypeImpl extends RAMLLanguageElementImpl impl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
+    name(): string;
     /**
-     * You may declare settings needed to use this type of security security schemas
+     * @hidden
+     * Set name value
      **/
-    requiredSettings(): TypeDeclaration[];
+    setName(param: string): AbstractSecuritySchemeImpl;
     /**
-     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
-     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+     **/
+    "type"(): string;
+    /**
+     * @hidden
+     * Set type value
+     **/
+    setType(param: string): AbstractSecuritySchemeImpl;
+    /**
+     * The description MAY be used to describe a securityScheme.
+     **/
+    description(): MarkdownString;
+    /**
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
      **/
     describedBy(): SecuritySchemePart;
+    /**
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     **/
+    settings(): SecuritySchemeSettings;
+}
+export interface HasNormalParameters extends RAMLLanguageElement {
+    /**
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     **/
+    queryParameters(): TypeDeclaration[];
+    /**
+     * Headers that allowed at this position
+     **/
+    headers(): TypeDeclaration[];
+    queryString(): TypeDeclaration;
+}
+export declare class HasNormalParametersImpl extends RAMLLanguageElementImpl implements HasNormalParameters {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     **/
+    queryParameters(): TypeDeclaration[];
+    /**
+     * Headers that allowed at this position
+     **/
+    headers(): TypeDeclaration[];
+    queryString(): TypeDeclaration;
 }
 export interface TypeDeclaration extends RAMLLanguageElement {
     /**
@@ -797,7 +860,7 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * name of the parameter
      **/
@@ -918,7 +981,7 @@ export declare class ModelLocationImpl implements ModelLocation {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface LocationKind extends core.AbstractWrapperNode {
 }
@@ -933,7 +996,7 @@ export declare class LocationKindImpl implements LocationKind {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ExampleSpec extends RAMLLanguageElement {
     /**
@@ -969,7 +1032,7 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * The example itself
      **/
@@ -1043,7 +1106,7 @@ export declare class FileTypeDeclarationImpl extends TypeDeclarationImpl impleme
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * It should also include a new property: fileTypes, which should be a list of valid content-type strings for the file. The file type * /* should be a valid value.
      **/
@@ -1096,7 +1159,7 @@ export declare class ArrayTypeDeclarationImpl extends TypeDeclarationImpl implem
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Should items in array be unique
      **/
@@ -1146,7 +1209,7 @@ export declare class UnionTypeDeclarationImpl extends TypeDeclarationImpl implem
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Type property name to be used as a discriminator or boolean
      **/
@@ -1198,7 +1261,7 @@ export declare class ObjectTypeDeclarationImpl extends TypeDeclarationImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * The properties that instances of this type may or must have.
      **/
@@ -1278,7 +1341,7 @@ export declare class StringTypeDeclarationImpl extends TypeDeclarationImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Regular expression that this string should path
      **/
@@ -1335,7 +1398,7 @@ export declare class BooleanTypeDeclarationImpl extends TypeDeclarationImpl impl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Value must be a boolean
@@ -1356,7 +1419,7 @@ export declare class ValueTypeDeclarationImpl extends TypeDeclarationImpl implem
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
@@ -1397,7 +1460,7 @@ export declare class NumberTypeDeclarationImpl extends TypeDeclarationImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
      **/
@@ -1464,7 +1527,7 @@ export declare class IntegerTypeDeclarationImpl extends NumberTypeDeclarationImp
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     format(): string;
     /**
      * @hidden
@@ -1486,7 +1549,7 @@ export declare class RAMLPointerElementImpl extends TypeDeclarationImpl implemen
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     target(): RAMLSelector;
 }
 export interface RAMLExpression extends TypeDeclaration {
@@ -1502,7 +1565,7 @@ export declare class RAMLExpressionImpl extends TypeDeclarationImpl implements R
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ScriptHookElement extends TypeDeclaration {
     /**
@@ -1525,7 +1588,7 @@ export declare class ScriptHookElementImpl extends TypeDeclarationImpl implement
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Typescript file defining interface which this scrip should comply to
      **/
@@ -1558,7 +1621,7 @@ export declare class SchemaElementImpl extends TypeDeclarationImpl implements Sc
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
@@ -1580,41 +1643,8 @@ export declare class DateTypeDeclarationImpl extends TypeDeclarationImpl impleme
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     dateFormat(): DateFormatSpec;
-}
-export interface HasNormalParameters extends RAMLLanguageElement {
-    /**
-     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-     **/
-    queryParameters(): TypeDeclaration[];
-    /**
-     * Headers that allowed at this position
-     **/
-    headers(): TypeDeclaration[];
-    queryString(): TypeDeclaration;
-}
-export declare class HasNormalParametersImpl extends RAMLLanguageElementImpl implements HasNormalParameters {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    getKind(): string;
-    /**
-     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-     **/
-    queryParameters(): TypeDeclaration[];
-    /**
-     * Headers that allowed at this position
-     **/
-    headers(): TypeDeclaration[];
-    queryString(): TypeDeclaration;
 }
 export interface MethodBase extends HasNormalParameters {
     /**
@@ -1652,7 +1682,7 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Information about the expected responses to a request
      **/
@@ -1723,7 +1753,7 @@ export declare class ResponseImpl extends RAMLLanguageElementImpl implements Res
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
      **/
@@ -1780,7 +1810,7 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Name of the trait
      **/
@@ -1824,10 +1854,6 @@ export interface LibraryBase extends RAMLLanguageElement {
      **/
     annotationTypes(): TypeDeclaration[];
     /**
-     * Security schemas types declarations
-     **/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /**
      * Declarations of security schemes for use within this API.
      **/
     securitySchemes(): AbstractSecurityScheme[];
@@ -1853,7 +1879,7 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     name(): string;
     /**
      * @hidden
@@ -1881,10 +1907,6 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
      **/
     annotationTypes(): TypeDeclaration[];
     /**
-     * Security schemas types declarations
-     **/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /**
      * Declarations of security schemes for use within this API.
      **/
     securitySchemes(): AbstractSecurityScheme[];
@@ -1904,7 +1926,7 @@ export declare class LibraryImpl extends LibraryBaseImpl implements Library {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * contains description of why library exist
      **/
@@ -1916,7 +1938,6 @@ export declare class LibraryImpl extends LibraryBaseImpl implements Library {
     setUsage(param: string): LibraryImpl;
 }
 export interface Method extends MethodBase {
-    signature(): SchemaString;
     /**
      * Method that can be called
      **/
@@ -1983,8 +2004,7 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
-    signature(): SchemaString;
+    kind(): string;
     /**
      * Method that can be called
      **/
@@ -2100,7 +2120,7 @@ export declare class SecuritySchemePartImpl extends MethodBaseImpl implements Se
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Headers that allowed at this position
      **/
@@ -2144,75 +2164,6 @@ export declare class SecuritySchemePartImpl extends MethodBaseImpl implements Se
      **/
     annotations(): AnnotationRef[];
 }
-/**
- * Declares globally referable security schema definition
- **/
-export interface AbstractSecurityScheme extends RAMLLanguageElement {
-    name(): string;
-    /**
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     **/
-    "type"(): string;
-    /**
-     * The description MAY be used to describe a securityScheme.
-     **/
-    description(): MarkdownString;
-    /**
-     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-     * Including the security scheme description completes an API documentation.
-     **/
-    describedBy(): SecuritySchemePart;
-    /**
-     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-     **/
-    settings(): SecuritySchemeSettings;
-}
-/**
- * Declares globally referable security schema definition
- **/
-export declare class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    getKind(): string;
-    name(): string;
-    /**
-     * @hidden
-     * Set name value
-     **/
-    setName(param: string): AbstractSecuritySchemeImpl;
-    /**
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     **/
-    "type"(): string;
-    /**
-     * @hidden
-     * Set type value
-     **/
-    setType(param: string): AbstractSecuritySchemeImpl;
-    /**
-     * The description MAY be used to describe a securityScheme.
-     **/
-    description(): MarkdownString;
-    /**
-     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-     * Including the security scheme description completes an API documentation.
-     **/
-    describedBy(): SecuritySchemePart;
-    /**
-     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-     **/
-    settings(): SecuritySchemeSettings;
-}
 export interface SecuritySchemeSettings extends core.BasicNode {
 }
 export declare class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings {
@@ -2224,7 +2175,7 @@ export declare class SecuritySchemeSettingsImpl extends core.BasicNodeImpl imple
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings {
     /**
@@ -2252,7 +2203,7 @@ export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSett
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
      **/
@@ -2298,7 +2249,7 @@ export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSett
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
      **/
@@ -2338,7 +2289,7 @@ export declare class PassThroughSecuritySchemeSettingsImpl extends SecuritySchem
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     queryParameterName(): string;
     /**
      * @hidden
@@ -2372,7 +2323,7 @@ export declare class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     settings(): OAuth2SecuritySchemeSettings;
 }
 /**
@@ -2395,7 +2346,7 @@ export declare class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     settings(): OAuth1SecuritySchemeSettings;
 }
 /**
@@ -2418,7 +2369,7 @@ export declare class PassThroughSecuritySchemeImpl extends AbstractSecuritySchem
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     settings(): PassThroughSecuritySchemeSettings;
 }
 /**
@@ -2440,7 +2391,7 @@ export declare class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl 
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Declares globally referable security schema definition
@@ -2461,7 +2412,7 @@ export declare class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 /**
  * Declares globally referable security schema definition
@@ -2482,7 +2433,7 @@ export declare class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ResourceBase extends RAMLLanguageElement {
     /**
@@ -2517,7 +2468,7 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Methods that are part of this resource type definition
      **/
@@ -2561,7 +2512,7 @@ export declare class ResourceTypeImpl extends ResourceBaseImpl implements Resour
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Name of the resource type
      **/
@@ -2583,7 +2534,6 @@ export declare class ResourceTypeImpl extends ResourceBaseImpl implements Resour
     uses(): Library[];
 }
 export interface Resource extends ResourceBase {
-    signature(): SchemaString;
     /**
      * Relative URL of this resource from the parent resource
      **/
@@ -2619,11 +2569,11 @@ export interface Resource extends ResourceBase {
     /**
      * Get child resource by its relative path
      **/
-    getChildResource(relPath: string): Resource;
+    childResource(relPath: string): Resource;
     /**
      * Get child method by its name
      **/
-    getChildMethod(method: string): Method[];
+    childMethod(method: string): Method[];
     /**
      * Api owning the resource as a sibling
      **/
@@ -2657,8 +2607,7 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
-    signature(): SchemaString;
+    kind(): string;
     /**
      * Relative URL of this resource from the parent resource
      **/
@@ -2699,11 +2648,11 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     /**
      * Get child resource by its relative path
      **/
-    getChildResource(relPath: string): Resource;
+    childResource(relPath: string): Resource;
     /**
      * Get child method by its name
      **/
-    getChildMethod(method: string): Method[];
+    childMethod(method: string): Method[];
     /**
      * Api owning the resource as a sibling
      **/
@@ -2747,7 +2696,7 @@ export declare class AnnotationTypeDeclarationImpl extends RAMLLanguageElementIm
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Whether multiple instances of annotations of this type may be applied simultaneously at the same location
      **/
@@ -2773,7 +2722,7 @@ export declare class RAMLSimpleElementImpl extends core.BasicNodeImpl implements
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
 }
 export interface ImportDeclaration extends RAMLSimpleElement {
     /**
@@ -2796,7 +2745,7 @@ export declare class ImportDeclarationImpl extends RAMLSimpleElementImpl impleme
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Name prefix (without dot) used to refer imported declarations
      **/
@@ -2838,7 +2787,7 @@ export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements G
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Name of the global schema, used to refer on schema content
      **/
@@ -2904,10 +2853,6 @@ export interface Api extends LibraryBase {
      **/
     annotations(): AnnotationRef[];
     /**
-     * Security schemas types declarations
-     **/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /**
      * Equivalent API with traits and resource types expanded
      **/
     expand(): Api;
@@ -2922,7 +2867,7 @@ export interface Api extends LibraryBase {
     /**
      * Get child resource by its relative path
      **/
-    getChildResource(relPath: string): Resource;
+    childResource(relPath: string): Resource;
     /**
      * Retrieve all resources of the Api
      **/
@@ -2957,7 +2902,7 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * Short plain-text label for the API
      **/
@@ -3033,10 +2978,6 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      **/
     annotations(): AnnotationRef[];
     /**
-     * Security schemas types declarations
-     **/
-    securitySchemaTypes(): SecuritySchemaType[];
-    /**
      * Equivalent API with traits and resource types expanded
      **/
     expand(): Api;
@@ -3051,7 +2992,7 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     /**
      * Get child resource by its relative path
      **/
-    getChildResource(relPath: string): Resource;
+    childResource(relPath: string): Resource;
     /**
      * Retrieve all resources of the Api
      **/
@@ -3097,7 +3038,7 @@ export declare class OverlayImpl extends ApiImpl implements Overlay {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * contains description of why overlay exist
      **/
@@ -3145,7 +3086,7 @@ export declare class ExtensionImpl extends ApiImpl implements Extension {
     /**
      * @return Actual name of instance interface
      **/
-    getKind(): string;
+    kind(): string;
     /**
      * contains description of why extension exist
      **/

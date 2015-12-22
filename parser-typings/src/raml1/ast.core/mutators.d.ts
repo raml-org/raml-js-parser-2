@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import hl = require("../highLevelAST");
 import hlimpl = require("../highLevelImpl");
 export declare function removeNodeFrom(source: hlimpl.ASTNodeImpl, node: hl.IParseResult): void;

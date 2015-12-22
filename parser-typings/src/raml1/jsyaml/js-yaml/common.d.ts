@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/main.d.ts" />
 export declare function isNothing(subject: any): boolean;
 export declare function isObject(subject: any): boolean;
 export declare function toArray(sequence: any): any;

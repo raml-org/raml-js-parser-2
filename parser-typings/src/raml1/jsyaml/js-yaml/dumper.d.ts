@@ -1,3 +1,3 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/main.d.ts" />
 export declare function dump(input: any, options: any): string;
 export declare function safeDump(input: any, options: any): string;

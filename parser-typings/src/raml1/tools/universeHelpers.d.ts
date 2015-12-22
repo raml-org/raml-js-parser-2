@@ -1,9 +1,14 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import hl = require("../../raml1/highLevelAST");
 export declare function isDocumentationProperty(p: hl.IProperty): boolean;
+export declare function isUsagePropertyName(name: string): boolean;
 export declare function isUsageProperty(p: hl.IProperty): boolean;
+export declare function isMasterRefProperty(p: hl.IProperty): boolean;
+export declare function isDescriptionPropertyName(name: string): boolean;
 export declare function isDescriptionProperty(p: hl.IProperty): boolean;
+export declare function isDisplayNamePropertyName(name: string): boolean;
 export declare function isDisplayNameProperty(p: hl.IProperty): boolean;
+export declare function isTitlePropertyName(name: string): boolean;
 export declare function isTitleProperty(p: hl.IProperty): boolean;
 export declare function isAnnotationsProperty(p: hl.IProperty): boolean;
 export declare function isIsProperty(p: hl.IProperty): boolean;
@@ -13,14 +18,16 @@ export declare function isProtocolsProperty(p: hl.IProperty): boolean;
 export declare function isNameProperty(p: hl.IProperty): boolean;
 export declare function isBodyProperty(p: hl.IProperty): boolean;
 export declare function isSchemaProperty(p: hl.IProperty): boolean;
-export declare function isSignatureProperty(p: hl.IProperty): boolean;
+export declare function isSchemasProperty(p: hl.IProperty): boolean;
 export declare function isResourcesProperty(p: hl.IProperty): boolean;
 export declare function isTypesProperty(p: hl.IProperty): boolean;
 export declare function isExampleProperty(p: hl.IProperty): boolean;
+export declare function isExamplesProperty(p: hl.IProperty): boolean;
 export declare function isValueProperty(p: hl.IProperty): boolean;
 export declare function isUriParametersProperty(p: hl.IProperty): boolean;
 export declare function isBaseUriParametersProperty(p: hl.IProperty): boolean;
 export declare function isUsesProperty(p: hl.IProperty): boolean;
+export declare function isAnnotationTypesProperty(p: hl.IProperty): boolean;
 export declare function isMethodType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isApiType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isBooleanTypeType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
@@ -43,3 +50,7 @@ export declare function isRamlSelectorType(type: hl.INodeDefinition | hl.ITypeDe
 export declare function isLibraryType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isStringTypeType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isExampleSpecType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isExtensionType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isTypeDeclarationTypeOrDescendant(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isDocumentationType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isAnnotationRefTypeOrDescendant(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;

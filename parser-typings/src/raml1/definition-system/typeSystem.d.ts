@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/underscore/underscore.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 export interface INamedEntity {
     nameId(): string;
     description(): any;
@@ -82,6 +82,7 @@ export interface ITypeDefinition extends INamedEntity {
      * true if this type values have internal structure
      */
     hasStructure(): boolean;
+    isExternal(): boolean;
     /**
      * List of value requirements for this type,
      * used to discriminate a type from a list of subtype
@@ -298,6 +299,7 @@ export declare class AbstractType extends Described implements ITypeDefinition {
     array(): any;
     uc: boolean;
     union(): any;
+    isExternal(): boolean;
     isUnion(): boolean;
     fixFacet(name: string, v: any): void;
     protected _af: {
@@ -397,4 +399,9 @@ export declare class Array extends AbstractType implements IArrayType {
     isUserDefined(): boolean;
     componentType(): ITypeDefinition;
     key(): any;
+}
+export declare class ExternalType extends StructuredType {
+    schemaString: string;
+    isUserDefined(): boolean;
+    isExternal(): boolean;
 }

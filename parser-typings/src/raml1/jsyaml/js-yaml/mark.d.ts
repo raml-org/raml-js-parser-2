@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/tsd.d.ts" />
+/// <reference path="../../../../typings/main.d.ts" />
 declare class Mark {
     name: string;
     buffer: string;
