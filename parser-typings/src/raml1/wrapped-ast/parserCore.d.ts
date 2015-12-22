@@ -11,7 +11,7 @@ export interface AbstractWrapperNode {
     /***
      * @return Actual name of instance interface
      ***/
-    getKind(): string;
+    kind(): string;
 }
 export interface BasicNode extends AbstractWrapperNode {
     /***
@@ -52,7 +52,7 @@ export declare class BasicNodeImpl implements BasicNode {
      * @hidden
      */
     wrapperClassName(): string;
-    getKind(): string;
+    kind(): string;
     /***
      * @return Direct ancestor in RAML hierarchy
      **/
@@ -132,7 +132,7 @@ export declare class AttributeNodeImpl implements AttributeNode {
      * @hidden
      */
     wrapperClassName(): string;
-    getKind(): string;
+    kind(): string;
 }
 /***
  * @hidden

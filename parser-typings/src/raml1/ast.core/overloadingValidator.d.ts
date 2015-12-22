@@ -1,4 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import hl = require("../highLevelAST");
 import wrapper = require("../artifacts/raml10parser");
 declare class OverloadingValidator {

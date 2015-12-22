@@ -1,8 +1,9 @@
-/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/main.d.ts" />
 import yaml = require("./yamlAST");
 import lowlevel = require("../lowLevelAST");
 import highlevel = require("../highLevelAST");
 import Error = require("./js-yaml/exception");
+import rr = require("./resourceRegistry");
 export declare var Kind: {
     SCALAR: yaml.Kind;
 };
@@ -77,19 +78,7 @@ export interface ExtendedFSResolver extends FSResolver {
      **/
     listAsync(path: string): Promise<string[]>;
 }
-/**
- * Must provide either page content or error message
- */
-export interface Response {
-    /**
-     * Page content
-     */
-    content?: string;
-    /**
-     * Error message
-     */
-    errorMessage?: string;
-}
+export declare type Response = rr.Response;
 export interface HTTPResolver {
     /**
      * Load resource by URL synchronously

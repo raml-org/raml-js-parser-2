@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 export interface HARExecutor {
     execute(req: har.Request): har.Response;
     executeAsync(req: har.Request): Promise<har.Response>;

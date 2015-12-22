@@ -90,8 +90,8 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.ramlpointer.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.ramlpointer.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.ramlpointer.html#kind" class="tsd-kind-icon">kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.ramlpointer.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -100,27 +100,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-					<a name="getkind" class="tsd-anchor"></a>
-					<h3>get<wbr>Kind</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#getkind">getKind</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L19">raml1/wrapped-ast/parserCore.ts:19</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>Actual name of instance interface</p>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="highlevel" class="tsd-anchor"></a>
 					<h3>high<wbr>Level</h3>
@@ -132,13 +111,34 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#highlevel">highLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/Fix_1900_OverlaysMerging/src/raml1/wrapped-ast/parserCore.ts#L274">raml1/wrapped-ast/parserCore.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L274">raml1/wrapped-ast/parserCore.ts:274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h4>
 							<p>Underlying High Level attribute node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="kind" class="tsd-anchor"></a>
+					<h3>kind</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#kind">kind</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L19">raml1/wrapped-ast/parserCore.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Actual name of instance interface</p>
 						</li>
 					</ul>
 				</section>
@@ -184,10 +184,10 @@
 						<a href="_raml1_artifacts_raml10parser_.ramlpointer.html" class="tsd-kind-icon">RAMLPointer</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_raml1_artifacts_raml10parser_.ramlpointer.html#getkind" class="tsd-kind-icon">get<wbr>Kind</a>
+								<a href="_raml1_artifacts_raml10parser_.ramlpointer.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_raml1_artifacts_raml10parser_.ramlpointer.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a>
+								<a href="_raml1_artifacts_raml10parser_.ramlpointer.html#kind" class="tsd-kind-icon">kind</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.ramlpointer.html#value" class="tsd-kind-icon">value</a>

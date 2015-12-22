@@ -1,4 +1,4 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 export declare function isMultiLine(s: string): boolean;
 export declare function isMultiLineValue(s: string): boolean;
 export declare function makeMutiLine(s: string, lev: number): string;

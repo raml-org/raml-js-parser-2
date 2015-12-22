@@ -15,9 +15,9 @@ export declare function allResourceTypes(a: RamlWrapper.Api): RamlWrapper.Resour
 export declare function relativeUriSegments(res: RamlWrapper.Resource): string[];
 export declare function parentResource(method: RamlWrapper.Method): RamlWrapper.Resource;
 export declare function parent(resource: RamlWrapper.Resource): RamlWrapper.Resource;
-export declare function getChildResource(container: RamlWrapper.Resource | RamlWrapper.Api, relPath: string): RamlWrapper.Resource;
+export declare function childResource(container: RamlWrapper.Resource | RamlWrapper.Api, relPath: string): RamlWrapper.Resource;
 export declare function getResource(container: RamlWrapper.Api | RamlWrapper.Resource, path: string[]): RamlWrapper.Resource;
-export declare function getChildMethod(resource: RamlWrapper.Resource, method: string): RamlWrapper.Method[];
+export declare function childMethod(resource: RamlWrapper.Resource, method: string): RamlWrapper.Method[];
 export declare function getMethod(container: RamlWrapper.Resource | RamlWrapper.Api, path: string[], method: string): RamlWrapper.Method[];
 export declare function ownerApi(method: RamlWrapper.Method | RamlWrapper.Resource): RamlWrapper.Api;
 export declare function methodId(method: RamlWrapper.Method): string;
@@ -67,7 +67,7 @@ export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     private _parent;
     constructor(_name: string, _parent: core.BasicNode);
     wrapperClassName(): string;
-    getKind(): string;
+    kind(): string;
     name(): string;
     "type"(): string[];
     location(): RamlWrapper.ModelLocation;
