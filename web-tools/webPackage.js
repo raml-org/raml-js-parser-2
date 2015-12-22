@@ -1,39 +1,40 @@
 var webpack = require('webpack');
 var fs = require('fs');
 var path = require('path');
-var mkdirp = require('mkdirp')
+var mkdirp = require('mkdirp');
 
 function packageScript(srcPath,dstPath,uglify) {
-	
-	var cwd = process.cwd();
-	
-	if(!srcPath){
-		throw new Error('Source path is null.');
-	}
-	else{
-		if(!path.isAbsolute(srcPath)){
-			srcPath = path.resolve(cwd,srcPath);
-		}
-		if(!fs.existsSync(srcPath)){
-			throw new Error('File does not exist: ' + srcPath);
-		}
-	}
+  'use strict';
 
-	if(!dstPath){		
-		throw new Error('Destination path is null.');
-	}
-	else{
-		if(!path.isAbsolute(dstPath)){
-			dstPath = path.resolve(cwd,dstPath);
-		}
-	}
-	
-	var outputFolder = path.dirname(dstPath);
+  var cwd = process.cwd();
+
+  if(!srcPath){
+    throw new Error('Source path is null.');
+  }
+  else{
+    if(!path.isAbsolute(srcPath)){
+      srcPath = path.resolve(cwd,srcPath);
+    }
+    if(!fs.existsSync(srcPath)){
+      throw new Error('File does not exist: ' + srcPath);
+    }
+  }
+
+  if(!dstPath){
+    throw new Error('Destination path is null.');
+  }
+  else{
+    if(!path.isAbsolute(dstPath)){
+      dstPath = path.resolve(cwd,dstPath);
+    }
+  }
+
+  var outputFolder = path.dirname(dstPath);
     var fileName = path.basename(dstPath);
     mkdirp.sync(outputFolder);
-    
+
     var contextDir = path.dirname(srcPath);
-    
+
     var plugins = uglify ? [
         new webpack.optimize.UglifyJsPlugin({
             minimize: true,
@@ -45,22 +46,23 @@ function packageScript(srcPath,dstPath,uglify) {
         entry: srcPath,
         output: {
             path: outputFolder,
-            filename: fileName
+            filename: fileName,
+            library: ['RAML', 'Parser'],
+            libraryTarget: 'umd'
         },
         resolve: {
             alias: {
-                fs: path.resolve(__dirname, './modules/emptyFS.js')
+                fs: path.resolve(__dirname, './modules/emptyFS.js'),
+                xmlhttprequest: path.resolve(__dirname, './modules/emptyXMLHttpRequest.js')
             }
         },
-        externals: [
-            {
-                "xmlhttprequest": '{}'
-            }
-        ],
         plugins: plugins,
         module: {
             loaders: [
-                { test: /\.json$/, loader: "json" }
+                {
+                  test: /\.json$/,
+                  loader: 'json'
+                }
             ]
         },
         node: {
@@ -78,7 +80,7 @@ function packageScript(srcPath,dstPath,uglify) {
             console.log(err.message);
             return;
         }
-        console.log("Webpack Building Bundle:");
+        console.log('Webpack Building Bundle:');
         console.log(stats.toString({ reasons: true, errorDetails: true }));
     });
 }
@@ -87,15 +89,15 @@ var dstPath;
 var srcPath;
 var uglify = false;
 var args = process.argv;
-for(var i = 0 ; i < args.length ; i++){
-    if(args[i]=='-dstPath' && i < args.length-1){
-        dstPath = args[i+1]
+for (var i = 0 ; i < args.length ; i++){
+    if (args[i] === '-dstPath' && i < args.length-1) {
+        dstPath = args[i + 1]
     }
-    else if(args[i]=='-srcPath' && i < args.length-1){
-        srcPath = args[i+1]
+    else if (args[i] === '-srcPath' && i < args.length-1) {
+        srcPath = args[i + 1]
     }
-    if(args[i]=='-uglify'){
-        uglify = false;
+    if (args[i] === '-uglify') {
+        uglify = true;
     }
 }
 

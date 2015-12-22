@@ -1,21 +1,28 @@
-function readFileSync(filePath) {
+'use strict';
+
+function readFileSync() {
     return null;
 }
 exports.readFileSync = readFileSync;
-function writeFileSync(filePath, content) {
+
+function writeFileSync() {
 }
 exports.writeFileSync = writeFileSync;
-function existsSync(filePath) {
+
+function existsSync() {
     return false;
 }
 exports.existsSync = existsSync;
-function mkdirSync(dir) {
+
+function mkdirSync() {
 }
 exports.mkdirSync = mkdirSync;
-function readdirSync(filePath) {
+
+function readdirSync() {
 }
 exports.readdirSync = readdirSync;
-function statSync(filePath) {
+
+function statSync() {
     return {
         isDirectory: function () {
             return false;
@@ -29,15 +36,17 @@ function statSync(filePath) {
     };
 }
 exports.statSync = statSync;
+
 function lstatSync(filePath) {
-    return this.statSync(filePath);
+    return statSync(filePath);
 }
 exports.lstatSync = lstatSync;
-function list(file, parent) {
+
+function list() {
     return [];
 }
 exports.list = list;
-function onChange(callback) {
+
+function onChange() {
 }
 exports.onChange = onChange;
-//# sourceMappingURL=emptyFS.js.map
