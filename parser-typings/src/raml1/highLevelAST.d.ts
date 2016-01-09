@@ -36,6 +36,7 @@ export interface IParseResult {
     errors(): ValidationIssue[];
     lowLevel(): lowLevel.ILowLevelASTNode;
     name(): string;
+    optional(): boolean;
     root(): IHighLevelNode;
     isSameNode(n: IParseResult): boolean;
     parent(): IHighLevelNode;
@@ -147,6 +148,7 @@ export interface IHighLevelNode extends IParseResult {
     associatedType(): INodeDefinition;
     wrapperNode(): ParserCore.BasicNode;
     setWrapperNode(node: ParserCore.BasicNode): any;
+    optionalProperties(): string[];
 }
 export interface IAcceptor<T> {
     calculationStarts(): any;
@@ -154,4 +156,5 @@ export interface IAcceptor<T> {
     calculationComplete(): any;
 }
 export declare var universeProvider: any;
+export declare function getFragmentDefenitionName(highLevelNode: IHighLevelNode): string;
 export declare function fromUnit(l: lowLevel.ICompilationUnit): IParseResult;

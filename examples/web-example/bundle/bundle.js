@@ -421,6 +421,18 @@
 		    SecuritySchemeRefImpl.prototype.kind = function () {
 		        return "SecuritySchemeRef";
 		    };
+		    /**
+		     * Returns the name of security scheme, this reference refers to.
+		     **/
+		    SecuritySchemeRefImpl.prototype.securitySchemeName = function () {
+		        return helper.securitySchemeName(this);
+		    };
+		    /**
+		     * Returns AST node of security scheme, this reference refers to, or null.
+		     **/
+		    SecuritySchemeRefImpl.prototype.securityScheme = function () {
+		        return helper.securityScheme(this);
+		    };
 		    return SecuritySchemeRefImpl;
 		})(ReferenceImpl);
 		exports.SecuritySchemeRefImpl = SecuritySchemeRefImpl;
@@ -1423,6 +1435,12 @@
 		     **/
 		    TypeDeclarationImpl.prototype.runtimeType = function () {
 		        return helper.runtimeType(this);
+		    };
+		    /**
+		     * validate an instance against type
+		     **/
+		    TypeDeclarationImpl.prototype.validateInstance = function (value) {
+		        return helper.validateInstance(this, value);
 		    };
 		    return TypeDeclarationImpl;
 		})(RAMLLanguageElementImpl);
@@ -2630,6 +2648,13 @@
 		    MethodImpl.prototype.methodId = function () {
 		        return helper.methodId(this);
 		    };
+		    /**
+		     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		     * returns schemes defined with `securedBy` at API level.
+		     **/
+		    MethodImpl.prototype.allSecuredBy = function () {
+		        return helper.allSecuredBy(this);
+		    };
 		    return MethodImpl;
 		})(MethodBaseImpl);
 		exports.MethodImpl = MethodImpl;
@@ -3270,6 +3295,13 @@
 		     **/
 		    ResourceImpl.prototype.absoluteUriParameters = function () {
 		        return helper.absoluteUriParameters(this);
+		    };
+		    /**
+		     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		     * returns schemes defined with `securedBy` at API level.
+		     **/
+		    ResourceImpl.prototype.allSecuredBy = function () {
+		        return helper.allSecuredBy(this);
 		    };
 		    return ResourceImpl;
 		})(ResourceBaseImpl);
@@ -4280,6 +4312,11 @@
 		    // localUniverse.setDescription(spec);
 		    return { ptype: ptype, localUniverse: localUniverse };
 		};
+		function getFragmentDefenitionName(highLevelNode) {
+		    var contents = highLevelNode.lowLevel() && highLevelNode.lowLevel().unit() && highLevelNode.lowLevel().unit().contents();
+		    return getDefinitionSystemType(contents, highLevelNode.lowLevel()).ptype;
+		}
+		exports.getFragmentDefenitionName = getFragmentDefenitionName;
 		function fromUnit(l) {
 		    if (l == null)
 		        return null;
@@ -4310,7 +4347,7 @@
 		};
 		var _ = __webpack_require__(4);
 		var hlimpl = __webpack_require__(5);
-		var selector = __webpack_require__(123);
+		var selector = __webpack_require__(125);
 		var universes = __webpack_require__(54);
 		var typeSystem = __webpack_require__(63);
 		var ramlServices = __webpack_require__(49);
@@ -4386,7 +4423,7 @@
 		            if (rt.key() == universes.Universe10.AnnotationTypeDeclaration) {
 		                return true;
 		            }
-		            return rt.getAdapter(ramlServices.RAMLService).isInlinedTemplates() || (rt.getAdapter(ramlServices.RAMLService).findMembersDeterminer() != null) || rt.key() == universes.Universe08.SecuritySchema || rt.key() === universes.Universe10.AbstractSecurityScheme; //FIXME
+		            return rt.getAdapter(ramlServices.RAMLService).isInlinedTemplates() || (rt.getAdapter(ramlServices.RAMLService).findMembersDeterminer() != null) || rt.key() == universes.Universe08.AbstractSecurityScheme || rt.key() === universes.Universe10.AbstractSecurityScheme; //FIXME
 		        }
 		        else {
 		            return false;
@@ -4446,7 +4483,11 @@
 		        var rs = this.nameId();
 		        var node = this.getAdapter(ramlServices.RAMLService).getDeclaringNode();
 		        if (node) {
-		            rs = rs + node.lowLevel().start() + node.lowLevel().unit().absolutePath();
+		            rs = rs + node.lowLevel().start();
+		            var unit = node.lowLevel().unit();
+		            if (unit) {
+		                rs = rs + unit.absolutePath();
+		            }
 		        }
 		        return rs;
 		    };
@@ -4951,8 +4992,8 @@
 		var hl = __webpack_require__(2);
 		var _ = __webpack_require__(4);
 		var proxy = __webpack_require__(6);
-		var builder = __webpack_require__(119);
-		var mutators = __webpack_require__(120);
+		var builder = __webpack_require__(121);
+		var mutators = __webpack_require__(122);
 		var linter = __webpack_require__(55);
 		var typeBuilder = __webpack_require__(50);
 		var search = __webpack_require__(53);
@@ -4960,8 +5001,8 @@
 		var jsyaml = __webpack_require__(15);
 		var textutil = __webpack_require__(48);
 		var services = __webpack_require__(49);
-		var factory10 = __webpack_require__(121);
-		var factory08 = __webpack_require__(122);
+		var factory10 = __webpack_require__(123);
+		var factory08 = __webpack_require__(124);
 		function qName(x, context) {
 		    var dr = search.declRoot(context);
 		    var nm = x.name();
@@ -5001,11 +5042,6 @@
 		    BasicASTNode.prototype.asAttr = function () {
 		        return null;
 		    };
-		    BasicASTNode.prototype.version = function () {
-		        //TODO Move to unit
-		        var text = this.lowLevel().unit().contents();
-		        return text.indexOf("#%RAML 1.0") == 0 ? 0 /* RAML10 */ : 1 /* RAML08 */;
-		    };
 		    BasicASTNode.prototype.asElement = function () {
 		        return null;
 		    };
@@ -5019,6 +5055,9 @@
 		            return this.parent().root();
 		        }
 		        return this;
+		    };
+		    BasicASTNode.prototype.version = function () {
+		        return "";
 		    };
 		    BasicASTNode.prototype.getLowLevelStart = function () {
 		        if (this.lowLevel().kind() === jsyaml.Kind.SCALAR) {
@@ -5110,6 +5149,9 @@
 		            return "";
 		        }
 		        return c;
+		    };
+		    BasicASTNode.prototype.optional = function () {
+		        return this.lowLevel().optional();
 		    };
 		    BasicASTNode.prototype.parent = function () {
 		        return this._parent;
@@ -5311,6 +5353,9 @@
 		        return lines.join('');
 		    };
 		    ASTPropImpl.prototype.value = function () {
+		        if (this._value) {
+		            return this._value;
+		        }
 		        if (this._computed) {
 		            return this.computedValue(this.property().nameId());
 		        }
@@ -5369,7 +5414,8 @@
 		            }
 		            else {
 		                var lowLevel = this.value().lowLevel();
-		                var dump = lowLevel.dump();
+		                var dumpObject = lowLevel.dumpToObject();
+		                var dump = JSON.stringify(dumpObject);
 		                var indentedDump = "";
 		                var dumpLines = dump.split("\n");
 		                dumpLines.forEach(function (dumpLine) { return indentedDump += ((indent ? indent : "") + "  " + dumpLine + "\n"); });
@@ -5548,7 +5594,12 @@
 		        //initializing ids if needed
 		        //TODO refactor workaround
 		        this.isAuxilary();
-		        return this._knownIds;
+		        if (this._knownIds) {
+		            return this._knownIds;
+		        }
+		        else {
+		            return {};
+		        }
 		    };
 		    ASTNodeImpl.prototype.findById = function (id) {
 		        var _this = this;
@@ -5622,7 +5673,7 @@
 		    ASTNodeImpl.prototype.resetAuxilaryState = function () {
 		        this._isAux = false;
 		        this._auxChecked = false;
-		        this._knownIds = {};
+		        this._knownIds = null;
 		        this.clearChildrenCache();
 		    };
 		    ASTNodeImpl.prototype.printDetails = function (indent) {
@@ -5685,7 +5736,16 @@
 		        });
 		        return filteredReferences;
 		    };
+		    ASTNodeImpl.prototype.setNamePatch = function (s) {
+		        this._patchedName = s;
+		    };
+		    ASTNodeImpl.prototype.isNamePatch = function () {
+		        return this._patchedName;
+		    };
 		    ASTNodeImpl.prototype.name = function () {
+		        if (this._patchedName) {
+		            return this._patchedName;
+		        }
 		        var ka = _.find(this.directChildren(), function (x) { return x.property() && x.property().getAdapter(services.RAMLPropertyService).isKey(); });
 		        if (ka && ka instanceof ASTPropImpl) {
 		            var c = ka.value();
@@ -5883,7 +5943,14 @@
 		        return _.filter(this.attrs(), function (y) { return y.name() == n; });
 		    };
 		    ASTNodeImpl.prototype.attrs = function () {
-		        return this.children().filter(function (x) { return x.isAttr(); });
+		        var rs = this.children().filter(function (x) { return x.isAttr(); });
+		        if (this._patchedName) {
+		            var kp = _.find(this.definition().allProperties(), function (x) { return x.getAdapter(services.RAMLPropertyService).isKey(); });
+		            var mm = new ASTPropImpl(this.lowLevel(), this, kp.range(), kp, true);
+		            mm._value = this._patchedName;
+		            return [mm].concat(rs);
+		        }
+		        return rs;
 		    };
 		    ASTNodeImpl.prototype.elements = function () {
 		        return this.children().filter(function (x) { return !x.isAttr() && !x.isUnknown(); });
@@ -5914,6 +5981,28 @@
 		    ASTNodeImpl.prototype.clearChildrenCache = function () {
 		        this._children = null;
 		    };
+		    ASTNodeImpl.prototype.optionalProperties = function () {
+		        var def = this.definition();
+		        if (def == null) {
+		            return [];
+		        }
+		        var result = [];
+		        var map = {};
+		        var children = this.lowLevel().children();
+		        children.forEach(function (x) {
+		            if (x.optional()) {
+		                map[x.key()] = true;
+		            }
+		        });
+		        var props = def.allProperties();
+		        props.forEach(function (x) {
+		            var prop = x;
+		            if (map[prop.nameId()]) {
+		                result.push(prop.nameId());
+		            }
+		        });
+		        return result;
+		    };
 		    return ASTNodeImpl;
 		})(BasicASTNode);
 		exports.ASTNodeImpl = ASTNodeImpl;
@@ -5931,16 +6020,20 @@
 		};
 		var yaml = __webpack_require__(7);
 		var json = __webpack_require__(8);
-		var stringify = __webpack_require__(118);
+		var stringify = __webpack_require__(120);
 		var Error = __webpack_require__(9);
 		var impl = __webpack_require__(15);
-		var util = __webpack_require__(11);
 		var universes = __webpack_require__(54);
+		var _ = __webpack_require__(4);
 		var LowLevelProxyNode = (function () {
-		    function LowLevelProxyNode(_parent, _transformer) {
+		    function LowLevelProxyNode(_parent, _transformer, ramlVersion) {
 		        this._parent = _parent;
 		        this._transformer = _transformer;
+		        this.ramlVersion = ramlVersion;
 		    }
+		    LowLevelProxyNode.prototype.keyKind = function () {
+		        return this._originalNode.keyKind();
+		    };
 		    LowLevelProxyNode.prototype.actual = function () {
 		        if (this._originalNode) {
 		            return this._originalNode.actual();
@@ -5968,6 +6061,9 @@
 		    LowLevelProxyNode.prototype.includePath = function () {
 		        return this._originalNode.includePath();
 		    };
+		    LowLevelProxyNode.prototype.includeReference = function () {
+		        return this._originalNode.includeReference();
+		    };
 		    LowLevelProxyNode.prototype.setKeyOverride = function (_key) {
 		        this._keyOverride = _key;
 		    };
@@ -5976,6 +6072,9 @@
 		            return this._keyOverride;
 		        }
 		        return this._originalNode.key();
+		    };
+		    LowLevelProxyNode.prototype.optional = function () {
+		        return this.originalNode().optional();
 		    };
 		    LowLevelProxyNode.prototype.children = function () {
 		        throw new Error('The method must be overridden');
@@ -6073,19 +6172,21 @@
 		exports.LowLevelProxyNode = LowLevelProxyNode;
 		var LowLevelCompositeNode = (function (_super) {
 		    __extends(LowLevelCompositeNode, _super);
-		    function LowLevelCompositeNode(node, parent, transformer) {
-		        _super.call(this, parent, transformer);
+		    function LowLevelCompositeNode(node, parent, transformer, ramlVersion, isPrimary) {
+		        if (isPrimary === void 0) { isPrimary = true; }
+		        _super.call(this, parent, transformer, ramlVersion);
+		        this.isPrimary = isPrimary;
 		        //Colliding nodes of the initioal AST
 		        this._adoptedNodes = [];
-		        var primaryParent = this.parent() ? this.parent().primaryNode() : null;
-		        this._originalNode = new LowLevelValueTransformingNode(node, primaryParent, transformer);
-		        this._adoptedNodes.push(this.primaryNode());
+		        var originalParent = this.parent() ? this.parent().originalNode() : null;
+		        this._originalNode = new LowLevelValueTransformingNode(node, originalParent, transformer, this.ramlVersion);
+		        this._adoptedNodes.push(this._originalNode);
 		    }
 		    LowLevelCompositeNode.prototype.adoptedNodes = function () {
 		        return this._adoptedNodes;
 		    };
 		    LowLevelCompositeNode.prototype.primaryNode = function () {
-		        return this._originalNode;
+		        return this.isPrimary ? this._originalNode : null;
 		    };
 		    LowLevelCompositeNode.prototype.parent = function () {
 		        return this._parent;
@@ -6094,8 +6195,8 @@
 		        if (!transformer) {
 		            transformer = this._transformer;
 		        }
-		        var primaryParent = this.parent() ? this.parent().primaryNode() : null;
-		        var tNode = new LowLevelValueTransformingNode(node, primaryParent, transformer);
+		        var originalParent = this.parent() ? this.parent().originalNode() : null;
+		        var tNode = new LowLevelValueTransformingNode(node, originalParent, transformer, this.ramlVersion);
 		        this._adoptedNodes.push(tNode);
 		        if (this._children) {
 		            this._children.forEach(function (x) { return x._parent = null; });
@@ -6145,7 +6246,7 @@
 		                map[key] = true;
 		                var transformer = x.transformer() ? x.transformer() : _this.transformer();
 		                var ch = (y instanceof LowLevelValueTransformingNode) ? y.originalNode() : y;
-		                result.push(new LowLevelCompositeNode(ch, _this, transformer));
+		                result.push(new LowLevelCompositeNode(ch, _this, transformer, _this.ramlVersion, isPrimary));
 		            }); });
 		        }
 		        else {
@@ -6175,11 +6276,11 @@
 		            var isPrimary = x == _this.primaryNode();
 		            x.originalNode().children().forEach(function (y) {
 		                var key = y.key();
-		                if (!key) {
+		                if (_this.skipKey(key, isPrimary)) {
 		                    return;
 		                }
-		                if (util.stringEndsWith(key, '?')) {
-		                    key = key.substring(0, key.length - 1);
+		                if (!key) {
+		                    return;
 		                }
 		                var arr = m[key];
 		                if (!arr) {
@@ -6194,14 +6295,14 @@
 		            var allOptional = true;
 		            var hasPrimaryChildren = false;
 		            arr.forEach(function (x) {
-		                allOptional = allOptional && util.stringEndsWith(x.node.key(), '?');
+		                allOptional = allOptional && x.node.optional();
 		                hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;
 		            });
 		            if (hasPrimaryChildren) {
 		                var primaryChildren = [];
 		                arr.filter(function (x) { return x.isPrimary; }).forEach(function (x) {
 		                    var tr = x.transformer ? x.transformer : _this.transformer();
-		                    primaryChildren.push(new LowLevelCompositeNode(x.node, _this, tr));
+		                    primaryChildren.push(new LowLevelCompositeNode(x.node, _this, tr, _this.ramlVersion, true));
 		                });
 		                var primaryChild = primaryChildren[0];
 		                arr.filter(function (x) { return !x.isPrimary; }).forEach(function (x) {
@@ -6211,7 +6312,7 @@
 		            }
 		            else if (!allOptional) {
 		                var tr = arr[0].transformer ? arr[0].transformer : _this.transformer();
-		                var primaryChild = new LowLevelCompositeNode(arr[0].node, _this, tr);
+		                var primaryChild = new LowLevelCompositeNode(arr[0].node, _this, tr, _this.ramlVersion, false);
 		                for (var i = 1; i < arr.length; i++) {
 		                    primaryChild.adopt(arr[i].node, arr[i].transformer);
 		                }
@@ -6219,6 +6320,24 @@
 		            }
 		        });
 		        return result;
+		    };
+		    LowLevelCompositeNode.prototype.skipKey = function (key, isPrimary) {
+		        if (isPrimary) {
+		            return false;
+		        }
+		        if (this.ramlVersion != 'RAML08') {
+		            return false;
+		        }
+		        var methodDef = universes.Universe08.Method;
+		        var hasNormalParametersDef = universes.Universe08.HasNormalParameters;
+		        var resourceDef = universes.Universe08.Resource;
+		        if (key == hasNormalParametersDef.properties.displayName.name && this.highLevelNode().definition().key().name == methodDef.name) {
+		            return true;
+		        }
+		        if (key == resourceDef.properties.displayName.name && this.highLevelNode().definition().key().name == resourceDef.name) {
+		            return true;
+		        }
+		        return false;
 		    };
 		    LowLevelCompositeNode.prototype.valueKind = function () {
 		        if (this._originalNode.kind() != 1 /* MAPPING */) {
@@ -6241,20 +6360,25 @@
 		        }
 		        return null;
 		    };
-		    LowLevelCompositeNode.prototype.key = function () {
-		        var keys = this._adoptedNodes.map(function (x) { return x.key(); }).filter(function (x) { return x != null && !util.stringEndsWith(x, '?'); });
-		        if (keys.length > 0) {
-		            return keys[0];
+		    LowLevelCompositeNode.prototype.includeReference = function () {
+		        for (var i = 0; i < this._adoptedNodes.length; i++) {
+		            var node = this._adoptedNodes[i];
+		            if (node.value() != null) {
+		                return node.includeReference();
+		            }
 		        }
-		        return _super.prototype.key.call(this);
+		        return null;
+		    };
+		    LowLevelCompositeNode.prototype.optional = function () {
+		        return _.all(this._adoptedNodes, function (x) { return x.optional(); });
 		    };
 		    return LowLevelCompositeNode;
 		})(LowLevelProxyNode);
 		exports.LowLevelCompositeNode = LowLevelCompositeNode;
 		var LowLevelValueTransformingNode = (function (_super) {
 		    __extends(LowLevelValueTransformingNode, _super);
-		    function LowLevelValueTransformingNode(node, parent, transformer) {
-		        _super.call(this, parent, transformer);
+		    function LowLevelValueTransformingNode(node, parent, transformer, ramlVersion) {
+		        _super.call(this, parent, transformer, ramlVersion);
 		        this._originalNode = node;
 		    }
 		    LowLevelValueTransformingNode.prototype.value = function () {
@@ -6268,10 +6392,17 @@
 		    };
 		    LowLevelValueTransformingNode.prototype.children = function () {
 		        var _this = this;
-		        return this.originalNode().children().map(function (x) { return new LowLevelValueTransformingNode(x, _this, _this._transformer); });
+		        return this.originalNode().children().map(function (x) { return new LowLevelValueTransformingNode(x, _this, _this._transformer, _this.ramlVersion); });
 		    };
 		    LowLevelValueTransformingNode.prototype.parent = function () {
 		        return this._parent;
+		    };
+		    LowLevelValueTransformingNode.prototype.key = function () {
+		        var key = _super.prototype.key.call(this);
+		        if (this.transformer() != null) {
+		            return this.transformer().transform(key).value;
+		        }
+		        return key;
 		    };
 		    return LowLevelValueTransformingNode;
 		})(LowLevelProxyNode);
@@ -6470,6 +6601,7 @@
 		        this._parent = _parent;
 		        this.options = options;
 		        this._key = _key;
+		        this._isOptional = false;
 		        if (this._object instanceof Object) {
 		            Object.keys(this._object).forEach(function (x) {
 		                var u = unescapeKey(x, _this.options);
@@ -6480,7 +6612,16 @@
 		                }
 		            });
 		        }
+		        if (this._key) {
+		            if (util.stringEndsWith(this._key, '?')) {
+		                this._isOptional = true;
+		                this._key = this._key.substring(0, this._key.length - 1);
+		            }
+		        }
 		    }
+		    AstNode.prototype.keyKind = function () {
+		        return null;
+		    };
 		    AstNode.prototype.start = function () {
 		        return -1;
 		    };
@@ -6499,8 +6640,14 @@
 		    AstNode.prototype.includePath = function () {
 		        return null;
 		    };
+		    AstNode.prototype.includeReference = function () {
+		        return null;
+		    };
 		    AstNode.prototype.key = function () {
 		        return this._key;
+		    };
+		    AstNode.prototype.optional = function () {
+		        return this._isOptional;
 		    };
 		    AstNode.prototype.children = function () {
 		        var _this = this;
@@ -6815,7 +6962,7 @@
 		            return;
 		        }
 		        if (this.content == null) {
-		            throw new Error("\"Line Mapper has been given null content" + (this.absPath != null ? ('. Path: ' + this.absPath) : 'and null path.'));
+		            throw new Error("Line Mapper has been given null content" + (this.absPath != null ? ('. Path: ' + this.absPath) : ' and null path.'));
 		        }
 		        this.mapping = [];
 		        var ind = 0;
@@ -7261,10 +7408,11 @@
 		var Error = __webpack_require__(9);
 		var textutil = __webpack_require__(48);
 		var services = __webpack_require__(49);
-		var rr = __webpack_require__(111);
-		var SimpleExecutor = __webpack_require__(115);
+		var rr = __webpack_require__(112);
+		var SimpleExecutor = __webpack_require__(116);
 		var util = __webpack_require__(11);
-		var URL = __webpack_require__(117);
+		var URL = __webpack_require__(118);
+		var refResolvers = __webpack_require__(119);
 		exports.Kind = {
 		    SCALAR: 0 /* SCALAR */
 		};
@@ -7339,7 +7487,7 @@
 		    };
 		    CompilationUnit.prototype.isRAMLUnit = function () {
 		        var en = path.extname(this._path);
-		        return en == '.raml' || en == '.yaml';
+		        return en == '.raml' || en == '.yaml' || en == '.yml';
 		    };
 		    CompilationUnit.prototype.contents = function () {
 		        return this._content;
@@ -8322,7 +8470,8 @@
 		            //console.log('mapping val: ' + attr.valueKindName());
 		            if (attr.isValueInclude()) {
 		                var inc = attr.valueAsInclude();
-		                var includePath = inc.value;
+		                var includeString = inc.value;
+		                var includePath = refResolvers.getIncludePath(includeString);
 		                //console.log("attr.setValue: path: " + includePath);
 		                var resolved = attr.unit().resolve(includePath);
 		                if (resolved == null) {
@@ -8334,7 +8483,11 @@
 		                    //TODO DIFFERENT DATA TYPES, inner references
 		                    return;
 		                }
-		                resolved.updateContent(newval);
+		                //TODO for now disabling an update from outline details to JSON schema when there is a reference
+		                //to an inner element of the schema
+		                if (!refResolvers.getIncludeReference(includeString)) {
+		                    resolved.updateContent(newval);
+		                }
 		                return;
 		            }
 		            //console.log('Range0: ' + range.startpos() + '..' + range.endpos() + ': [' + this.visualizeNewlines(range.text()) + ']');
@@ -9034,6 +9187,12 @@
 		            return res;
 		        }
 		    };
+		    ASTNode.prototype.keyKind = function () {
+		        if (this._node.key) {
+		            return this._node.key.kind;
+		        }
+		        return null;
+		    };
 		    ASTNode.prototype._actualNode = function () {
 		        return this._node;
 		    };
@@ -9091,7 +9250,8 @@
 		        }
 		        if (this._node.kind == 5 /* INCLUDE_REF */) {
 		            //here we should resolve include
-		            var includePath = this._node['value'];
+		            var includeString = this._node['value'];
+		            var includePath = refResolvers.getIncludePath(includeString);
 		            var resolved = this._unit.resolve(includePath);
 		            if (resolved == null) {
 		                return "can not resolve " + includePath;
@@ -9100,7 +9260,7 @@
 		                //TODO DIFFERENT DATA TYPES, inner references
 		                return null;
 		            }
-		            var text = resolved.contents();
+		            var text = refResolvers.resolveContents(includeString, resolved.contents());
 		            if (textutil.isMultiLineValue(text)) {
 		                text = textutil.fromMutiLine(text);
 		            }
@@ -9155,7 +9315,7 @@
 		            }
 		        });
 		    };
-		    ASTNode.prototype.key = function () {
+		    ASTNode.prototype.rawKey = function () {
 		        if (!this._node) {
 		            return "";
 		        }
@@ -9171,6 +9331,17 @@
 		        }
 		        //other kinds do not have keys
 		        return null;
+		    };
+		    ASTNode.prototype.key = function () {
+		        var key = this.rawKey();
+		        if (key != null && util.stringEndsWith(key, '?')) {
+		            key = key.substring(0, key.length - 1);
+		        }
+		        return key;
+		    };
+		    ASTNode.prototype.optional = function () {
+		        var key = this.rawKey();
+		        return key != null && util.stringEndsWith(key, '?');
 		    };
 		    ASTNode.prototype.addChild = function (n, pos) {
 		        if (pos === void 0) { pos = -1; }
@@ -9334,6 +9505,15 @@
 		                    rs.push("" + includePath + " can not be parsed");
 		                }
 		            }
+		            else if (this.includeReference()) {
+		                var content = resolved.contents();
+		                if (content) {
+		                    var resolvedIncludeReference = refResolvers.resolve(includePath, this.includeReference(), content);
+		                    if (resolvedIncludeReference && resolvedIncludeReference.validation && resolvedIncludeReference.validation.length > 0) {
+		                        resolvedIncludeReference.validation.forEach(function (validationResult) { return rs.push(validationResult.message); });
+		                    }
+		                }
+		            }
 		        }
 		        return rs;
 		    };
@@ -9491,6 +9671,20 @@
 		        this._unit = unit;
 		    };
 		    ASTNode.prototype.includePath = function () {
+		        var includeString = this.getIncludeString();
+		        if (!includeString) {
+		            return null;
+		        }
+		        return refResolvers.getIncludePath(includeString);
+		    };
+		    ASTNode.prototype.includeReference = function () {
+		        var includeString = this.getIncludeString();
+		        if (!includeString) {
+		            return null;
+		        }
+		        return refResolvers.getIncludeReference(includeString);
+		    };
+		    ASTNode.prototype.getIncludeString = function () {
 		        if (this._node.kind == 5 /* INCLUDE_REF */) {
 		            var includePath = this._node['value'];
 		            return includePath;
@@ -9499,7 +9693,7 @@
 		            var mapping = this._node;
 		            if (mapping.value == null)
 		                return null;
-		            return new ASTNode(mapping.value, this._unit, this, null, null).includePath();
+		            return new ASTNode(mapping.value, this._unit, this, null, null).getIncludeString();
 		        }
 		        return null;
 		    };
@@ -10314,12 +10508,12 @@
 		        major = parseInt(match[1], 10);
 		        minor = parseInt(match[2], 10);
 		        if (1 !== major) {
-		            throwError(state, 'unacceptable YAML version of the document');
+		            throwError(state, 'found incompatible YAML document (version 1.2 is required)');
 		        }
 		        state.version = args[0];
 		        state.checkLineBreaks = (minor < 2);
-		        if (1 !== minor && 2 !== minor) {
-		            throwWarning(state, 'unsupported YAML version of the document');
+		        if (2 !== minor) {
+		            throwError(state, 'found incompatible YAML document (version 1.2 is required)');
 		        }
 		    },
 		    TAG: function handleTagDirective(state, name, args) {
@@ -14078,7 +14272,7 @@
 		            return this._isAnnotation;
 		        }
 		        this._annotationChecked = true;
-		        this._isAnnotation = (_.find(this._type.allSuperTypes(), function (x) { return x.key() == universes.Universe10.Annotation; }) != null);
+		        this._isAnnotation = (_.find(this._type.allSuperTypes(), function (x) { return x.key() == universes.Universe10.AnnotationRef; }) != null);
 		        return this._isAnnotation;
 		    };
 		    RAMLService.prototype.allowValue = function () {
@@ -14180,6 +14374,9 @@
 		                        matches = false;
 		                    }
 		                }
+		                else {
+		                    matches = false;
+		                }
 		            }
 		        });
 		        return matches;
@@ -14191,13 +14388,14 @@
 		        if (!lowLevel.unit()) {
 		            lowLevel._unit = unit;
 		        }
-		        this._type.allProperties().forEach(function (x) {
-		            if (x.range().isValueType() && !x.getAdapter(RAMLPropertyParserService).isSystem()) {
-		                var a = nm.attr(x.nameId());
-		                if (!a) {
-		                }
-		            }
-		        });
+		        //this._type.allProperties().forEach(x=>{
+		        //    if(x.range().isValueType()&&!x.getAdapter(RAMLPropertyParserService).isSystem()){
+		        //        var a = nm.attr(x.nameId());
+		        //        if (!a){
+		        //            //nm.createAttr(x.name(),"")
+		        //        }
+		        //    }
+		        //})
 		        nm.children();
 		        return nm;
 		    };
@@ -14271,14 +14469,9 @@
 		                return tm;
 		            }
 		            if (this.key() == universes.Universe08.StatusCodeString || this.key() == universes.Universe10.StatusCodeString) {
-		                if (v.length != 3) {
-		                    return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
-		                }
-		                for (var i = 0; i < v.length; i++) {
-		                    var c = v[i];
-		                    if (!_.find(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'X'], function (x) { return x == c; })) {
-		                        return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
-		                    }
+		                var err = validateResponseString(v);
+		                if (err != null) {
+		                    return err;
 		                }
 		            }
 		            if (this.key() == universes.Universe08.JSonSchemaString || this.key() == universes.Universe10.JSonSchemaString) {
@@ -14303,7 +14496,23 @@
 		            if (this.key() == universes.Universe08.NumberType || this.isAssignableFrom(universes.Universe10.NumberType.name)) {
 		                var q = parseFloat(v);
 		                if (isNaN(q)) {
-		                    return new Error("number is expected here");
+		                    return new Error("the value of " + p.nameId() + " must be a number");
+		                }
+		            }
+		            if (this.key() == universes.Universe08.StringType || this.isAssignableFrom(universes.Universe10.StringType.name)) {
+		                if (v === null) {
+		                    //checking if there is at least something in the node.
+		                    //We have many tests and APIs with the text like 'propertyName:' without a value. I do not know if such cases are
+		                    //actually valid, but not reporting this for now.
+		                    if (h && p) {
+		                        var highLevelProperty = h.attr(p.nameId());
+		                        if (highLevelProperty) {
+		                            var lowLevelChildren = highLevelProperty.lowLevel().children();
+		                            if (lowLevelChildren && lowLevelChildren.length > 0) {
+		                                return new Error(p.nameId() + " must be a string");
+		                            }
+		                        }
+		                    }
 		                }
 		            }
 		            //if (this.name()=='ramlexpression'){
@@ -14627,6 +14836,19 @@
 		    return RAMLService;
 		})();
 		exports.RAMLService = RAMLService;
+		function validateResponseString(v) {
+		    if (v.length != 3) {
+		        return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+		    }
+		    for (var i = 0; i < v.length; i++) {
+		        var c = v[i];
+		        if (!_.find(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'x', 'X'], function (x) { return x == c; })) {
+		            return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+		        }
+		    }
+		    return null;
+		}
+		exports.validateResponseString = validateResponseString;
 
 
 	/***/ },
@@ -14731,6 +14953,10 @@
 		    var de = node.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name);
 		    return de;
 		}
+		function TypeDeclaration(node) {
+		    var de = node.definition().universe().type(universes.Universe10.TypeDeclaration.name);
+		    return de;
+		}
 		var ann = 0;
 		function typeFromNode(node) {
 		    if (!node) {
@@ -14756,6 +14982,7 @@
 		    if (def.getAdapter(services.RAMLService).isInlinedTemplates()) {
 		        var usages = {};
 		        templateFields(node, usages);
+		        result.getAdapter(services.RAMLService).setInlinedTemplates(true);
 		        Object.keys(usages).forEach(function (x) {
 		            var prop = new defs.UserDefinedProp(x);
 		            //prop._node=node;
@@ -14817,7 +15044,7 @@
 		                    var et = new defs.ExternalType(node.name(), node.definition().universe(), upath);
 		                    et.schemaString = vl;
 		                    et.node = node;
-		                    var de = ObjectTypeDeclaration(node);
+		                    var de = TypeDeclaration(node);
 		                    if (de) {
 		                        result._superTypes.push(de);
 		                    }
@@ -14827,7 +15054,7 @@
 		                    var et = new defs.ExternalType(node.name(), node.definition().universe(), upath);
 		                    et.schemaString = vl;
 		                    et.node = node;
-		                    var de = ObjectTypeDeclaration(node);
+		                    var de = TypeDeclaration(node);
 		                    if (de) {
 		                        result._superTypes.push(de);
 		                    }
@@ -14952,7 +15179,7 @@
 		}
 		exports.valueOf = valueOf;
 		var scriptToValidator = {};
-		var loophole = __webpack_require__(110);
+		var loophole = __webpack_require__(111);
 		function evalInSandbox(code, thisArg, args) {
 		    return new loophole.Function(code).call(thisArg, args);
 		}
@@ -14994,11 +15221,7 @@
 		function elementToProp(e, toRuntime) {
 		    if (toRuntime === void 0) { toRuntime = false; }
 		    var nm = e.name();
-		    var optional = false;
-		    if (nm && nm.length > 0 && nm.charAt(nm.length - 1) == '?') {
-		        nm = nm.substr(0, nm.length - 1);
-		        optional = true;
-		    }
+		    var optional = e.optional();
 		    var result = new defs.UserDefinedProp(nm);
 		    result._node = e;
 		    try {
@@ -16342,7 +16565,7 @@
 		                }
 		                return n;
 		            }
-		            if (n instanceof hlimpl.ASTPropImpl) {
+		            else if (n instanceof hlimpl.ASTPropImpl) {
 		                var attr = n;
 		                if (!attr.property().isKey()) {
 		                    var vl = attr.value();
@@ -16363,7 +16586,7 @@
 		                }
 		                return null;
 		            }
-		            return n;
+		            return null;
 		        }
 		    }
 		    return null;
@@ -16453,6 +16676,28 @@
 		    }
 		    return node.asElement().attrValue("name");
 		}
+		function findDeclarationByNode(node, nodePart) {
+		    var unit = node.lowLevel().unit();
+		    if (!unit) {
+		        return null;
+		    }
+		    var start = node.lowLevel().start();
+		    var end = node.lowLevel().end();
+		    if (nodePart && nodePart == 1 /* KEY_COMPLETION */) {
+		        start = node.lowLevel().keyStart();
+		        end = node.lowLevel().keyEnd();
+		    }
+		    else if (nodePart && nodePart == 0 /* VALUE_COMPLETION */) {
+		        start = node.lowLevel().valueStart();
+		        end = node.lowLevel().valueEnd();
+		    }
+		    if (start == -1 || end == -1) {
+		        return null;
+		    }
+		    var offset = Math.floor((start + end) / 2);
+		    return findDeclaration(unit, offset);
+		}
+		exports.findDeclarationByNode = findDeclarationByNode;
 		function findDeclaration(unit, offset) {
 		    var node = deepFindNode(hl.fromUnit(unit), offset, offset, false);
 		    var kind = determineCompletionKind(unit.contents(), offset);
@@ -16617,6 +16862,17 @@
 		        if (c == '#') {
 		            if (i == 0) {
 		                return 4 /* VERSION_COMPLETION */;
+		            }
+		            for (var j = i - 1; j >= 0; j--) {
+		                var currentChar = text.charAt(j);
+		                if (currentChar == '\r' || currentChar == '\n') {
+		                    break;
+		                }
+		                else if (currentChar == '!') {
+		                    if (text.indexOf("!include", j) == j) {
+		                        return 2 /* PATH_COMPLETION */;
+		                    }
+		                }
 		            }
 		            return 7 /* INCOMMENT */;
 		        }
@@ -16919,7 +17175,7 @@
 		                    }
 		                    var libraryName = getLibraryName(node);
 		                    if (libraryName && vn.indexOf(libraryName) != -1) {
-		                        var referencingLibrary = getLibraryDefiningNode(vl);
+		                        var referencingLibrary = getLibraryDefiningNode(hnode);
 		                        if (referencingLibrary && referencingLibrary.lowLevel().start() == node.lowLevel().start()) {
 		                            result.push(a);
 		                        }
@@ -17137,69 +17393,6 @@
 		            "name": "TraitRef",
 		            "properties": {}
 		        },
-		        "SecuritySchemaPart": {
-		            "name": "SecuritySchemaPart",
-		            "properties": {}
-		        },
-		        "SecuritySchemaSettings": {
-		            "name": "SecuritySchemaSettings",
-		            "properties": {}
-		        },
-		        "OAuth1SecuritySchemeSettings": {
-		            "name": "OAuth1SecuritySchemeSettings",
-		            "properties": {
-		                "requestTokenUri": {
-		                    "name": "requestTokenUri"
-		                },
-		                "authorizationUri": {
-		                    "name": "authorizationUri"
-		                },
-		                "tokenCredentialsUri": {
-		                    "name": "tokenCredentialsUri"
-		                }
-		            }
-		        },
-		        "OAuth2SecuritySchemeSettings": {
-		            "name": "OAuth2SecuritySchemeSettings",
-		            "properties": {
-		                "accessTokenUri": {
-		                    "name": "accessTokenUri"
-		                },
-		                "authorizationUri": {
-		                    "name": "authorizationUri"
-		                },
-		                "authorizationGrants": {
-		                    "name": "authorizationGrants"
-		                },
-		                "scopes": {
-		                    "name": "scopes"
-		                }
-		            }
-		        },
-		        "SecuritySchemaRef": {
-		            "name": "SecuritySchemaRef",
-		            "properties": {}
-		        },
-		        "SecuritySchema": {
-		            "name": "SecuritySchema",
-		            "properties": {
-		                "name": {
-		                    "name": "name"
-		                },
-		                "type": {
-		                    "name": "type"
-		                },
-		                "description": {
-		                    "name": "description"
-		                },
-		                "describedBy": {
-		                    "name": "describedBy"
-		                },
-		                "settings": {
-		                    "name": "settings"
-		                }
-		            }
-		        },
 		        "MethodBase": {
 		            "name": "MethodBase",
 		            "properties": {
@@ -17251,6 +17444,9 @@
 		                },
 		                "uriParameters": {
 		                    "name": "uriParameters"
+		                },
+		                "displayName": {
+		                    "name": "displayName"
 		                }
 		            }
 		        },
@@ -17299,6 +17495,133 @@
 		                    "name": "baseUriParameters"
 		                }
 		            }
+		        },
+		        "SecuritySchemePart": {
+		            "name": "SecuritySchemePart",
+		            "properties": {
+		                "headers": {
+		                    "name": "headers"
+		                },
+		                "queryParameters": {
+		                    "name": "queryParameters"
+		                },
+		                "responses": {
+		                    "name": "responses"
+		                },
+		                "is": {
+		                    "name": "is"
+		                },
+		                "securedBy": {
+		                    "name": "securedBy"
+		                },
+		                "displayName": {
+		                    "name": "displayName"
+		                },
+		                "description": {
+		                    "name": "description"
+		                }
+		            }
+		        },
+		        "SecuritySchemeSettings": {
+		            "name": "SecuritySchemeSettings",
+		            "properties": {}
+		        },
+		        "AbstractSecurityScheme": {
+		            "name": "AbstractSecurityScheme",
+		            "properties": {
+		                "name": {
+		                    "name": "name"
+		                },
+		                "type": {
+		                    "name": "type"
+		                },
+		                "description": {
+		                    "name": "description"
+		                },
+		                "describedBy": {
+		                    "name": "describedBy"
+		                },
+		                "settings": {
+		                    "name": "settings"
+		                }
+		            }
+		        },
+		        "SecuritySchemeRef": {
+		            "name": "SecuritySchemeRef",
+		            "properties": {}
+		        },
+		        "OAuth1SecuritySchemeSettings": {
+		            "name": "OAuth1SecuritySchemeSettings",
+		            "properties": {
+		                "requestTokenUri": {
+		                    "name": "requestTokenUri"
+		                },
+		                "authorizationUri": {
+		                    "name": "authorizationUri"
+		                },
+		                "tokenCredentialsUri": {
+		                    "name": "tokenCredentialsUri"
+		                },
+		                "signatures": {
+		                    "name": "signatures"
+		                }
+		            }
+		        },
+		        "OAuth2SecuritySchemeSettings": {
+		            "name": "OAuth2SecuritySchemeSettings",
+		            "properties": {
+		                "accessTokenUri": {
+		                    "name": "accessTokenUri"
+		                },
+		                "authorizationUri": {
+		                    "name": "authorizationUri"
+		                },
+		                "authorizationGrants": {
+		                    "name": "authorizationGrants"
+		                },
+		                "scopes": {
+		                    "name": "scopes"
+		                }
+		            }
+		        },
+		        "PassThroughSecuritySchemeSettings": {
+		            "name": "PassThroughSecuritySchemeSettings",
+		            "properties": {
+		                "queryParameterName": {
+		                    "name": "queryParameterName"
+		                },
+		                "headerName": {
+		                    "name": "headerName"
+		                }
+		            }
+		        },
+		        "OAuth2SecurityScheme": {
+		            "name": "OAuth2SecurityScheme",
+		            "properties": {
+		                "settings": {
+		                    "name": "settings"
+		                }
+		            }
+		        },
+		        "OAuth1SecurityScheme": {
+		            "name": "OAuth1SecurityScheme",
+		            "properties": {
+		                "settings": {
+		                    "name": "settings"
+		                }
+		            }
+		        },
+		        "BasicSecurityScheme": {
+		            "name": "BasicSecurityScheme",
+		            "properties": {}
+		        },
+		        "DigestSecurityScheme": {
+		            "name": "DigestSecurityScheme",
+		            "properties": {}
+		        },
+		        "CustomSecurityScheme": {
+		            "name": "CustomSecurityScheme",
+		            "properties": {}
 		        },
 		        "Parameter": {
 		            "name": "Parameter",
@@ -18532,6 +18855,7 @@
 		var defs = __webpack_require__(3);
 		var hl = __webpack_require__(2);
 		var _ = __webpack_require__(4);
+		var yaml = __webpack_require__(7);
 		var typeExpression = __webpack_require__(51);
 		var def = __webpack_require__(3);
 		var hlimpl = __webpack_require__(5);
@@ -18544,6 +18868,7 @@
 		var typeSystem = __webpack_require__(63);
 		var typeBuilder = __webpack_require__(50);
 		var OverloadingValidator = __webpack_require__(64);
+		var OverloadingValidator08 = __webpack_require__(110);
 		var util = __webpack_require__(48);
 		var mediaTypeParser = __webpack_require__(87);
 		var xmlutil = __webpack_require__(57);
@@ -18554,7 +18879,7 @@
 		    return LinterSettings;
 		})();
 		var settings = new LinterSettings();
-		var loophole = __webpack_require__(110);
+		var loophole = __webpack_require__(111);
 		function evalInSandbox(code, thisArg, args) {
 		    return new loophole.Function(code).call(thisArg, args);
 		}
@@ -18679,6 +19004,39 @@
 		            return;
 		        }
 		        if (t.isExternal()) {
+		            var so = null;
+		            var strVal = t.external().schema();
+		            if (strVal.charAt(0) == "{") {
+		                try {
+		                    so = su.getJSONSchema(strVal);
+		                }
+		                catch (e) {
+		                    return null;
+		                }
+		            }
+		            if (strVal.charAt(0) == "<") {
+		                try {
+		                    so = su.getXMLSchema(strVal);
+		                }
+		                catch (e) {
+		                    return null;
+		                }
+		            }
+		            if (so) {
+		                try {
+		                    so.validateObject(obj);
+		                }
+		                catch (e) {
+		                    if (e.message == "Cannot assign to read only property '__$validated' of object") {
+		                        return;
+		                    }
+		                    if (e.message == "Object.keys called on non-object") {
+		                        return;
+		                    }
+		                    cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conforms to schema:" + e.message, this.node, !strict));
+		                    return;
+		                }
+		            }
 		            return;
 		        }
 		        if (t.isArray()) {
@@ -18991,24 +19349,56 @@
 		    }
 		    return false;
 		}
-		function validateBasic(node, v) {
-		    if (node.lowLevel() && node.parent() == null) {
-		        node.lowLevel().errors().forEach(function (x) {
-		            var em = {
-		                code: 1 /* YAML_ERROR */,
-		                message: x.message,
-		                node: null,
-		                start: x.mark.position,
-		                end: x.mark.position + 1,
-		                isWarning: false,
-		                path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
-		                unit: node.lowLevel().unit()
-		            };
-		            v.accept(em);
-		        });
+		function validateBasic(node, v, requiredOnly) {
+		    if (requiredOnly === void 0) { requiredOnly = false; }
+		    if (node.lowLevel()) {
+		        if (node.lowLevel().keyKind() == 2 /* MAP */) {
+		            v.accept(createIssue(2 /* UNKNOWN_NODE */, "Node key can not be map", node));
+		        }
+		        if (node.lowLevel().keyKind() == 3 /* SEQ */) {
+		            if (node.lowLevel().value() == null) {
+		                var isPattern = false;
+		                if (node.isElement()) {
+		                    if (node.asElement().definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+		                        isPattern = true;
+		                    }
+		                }
+		                if (!isPattern) {
+		                    v.accept(createIssue(2 /* UNKNOWN_NODE */, "Node key can not be sequence", node));
+		                }
+		            }
+		        }
+		        if (node.parent() == null) {
+		            node.lowLevel().errors().forEach(function (x) {
+		                var em = {
+		                    code: 1 /* YAML_ERROR */,
+		                    message: x.message,
+		                    node: null,
+		                    start: x.mark.position,
+		                    end: x.mark.position + 1,
+		                    isWarning: false,
+		                    path: node.lowLevel().unit() == node.root().lowLevel().unit() ? null : node.lowLevel().unit().path(),
+		                    unit: node.lowLevel().unit()
+		                };
+		                v.accept(em);
+		            });
+		        }
 		    }
 		    validateIncludes(node, v);
+		    if (node.errorMessage) {
+		        v.accept(createIssue(2 /* UNKNOWN_NODE */, node.errorMessage, node));
+		        return;
+		    }
 		    if (node.isUnknown()) {
+		        if (node.name().indexOf("<<") != -1) {
+		            if (insideResourceTypeOrTrait(node.parent())) {
+		                var error = new TraitVariablesValidator().check(node.name());
+		                if (error) {
+		                    v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "unknown function applied to property name", node));
+		                }
+		                return;
+		            }
+		        }
 		        if (node.needSequence) {
 		            v.accept(createIssue(2 /* UNKNOWN_NODE */, "node: " + node.name() + " should be wrapped in sequence", node));
 		        }
@@ -19016,7 +19406,10 @@
 		            v.accept(createIssue(2 /* UNKNOWN_NODE */, "reference: " + node.lowLevel().value() + " can not be resolved", node));
 		        }
 		        if (node.knownProperty && node.lowLevel().value()) {
-		            v.accept(createIssue(2 /* UNKNOWN_NODE */, "property " + node.name() + " can not have scalar value", node));
+		            //if (!node.lowLevel().)
+		            if (node.lowLevel().includeErrors().length == 0) {
+		                v.accept(createIssue(2 /* UNKNOWN_NODE */, "property " + node.name() + " can not have scalar value", node));
+		            }
 		        }
 		        else {
 		            v.accept(createIssue(2 /* UNKNOWN_NODE */, "Unknown node: " + node.name(), node));
@@ -19027,7 +19420,14 @@
 		        return;
 		    }
 		    try {
-		        node.directChildren().forEach(function (x) { return x.validate(v); });
+		        node.directChildren().filter(function (child) {
+		            return !requiredOnly || (child.property && child.property() && child.property().isRequired());
+		        }).forEach(function (x) {
+		            if (x.errorMessage) {
+		                v.accept(createIssue(2 /* UNKNOWN_NODE */, x.errorMessage, node));
+		            }
+		            x.validate(v);
+		        });
 		    }
 		    finally {
 		        node.unmarkCh();
@@ -19035,17 +19435,29 @@
 		}
 		exports.validateBasic = validateBasic;
 		function validate(node, v) {
+		    if (!node.parent()) {
+		        try {
+		            validateIncludes(node, v);
+		        }
+		        finally {
+		            cleanupIncludesFlag(node, v);
+		        }
+		    }
 		    if (node.isAttr()) {
 		        new CompositePropertyValidator().validate(node, v);
 		    }
 		    else if (node.isElement()) {
-		        if (!node.definition().getAdapter(services.RAMLService).getAllowAny()) {
-		            validateBasic(node, v);
+		        var highLevelNode = node;
+		        var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
+		        var isAllowAny = highLevelNode.definition().getAdapter(services.RAMLService).getAllowAny();
+		        if (isAllowAny) {
+		            if (hasRequireds) {
+		                validateBasic(node, v, true);
+		            }
 		        }
 		        else {
-		            validateIncludes(node, v);
+		            validateBasic(node, v);
 		        }
-		        ;
 		        new CompositeNodeValidator().validate(node, v);
 		    }
 		    else {
@@ -19053,13 +19465,24 @@
 		    }
 		}
 		exports.validate = validate;
+		function cleanupIncludesFlag(node, v) {
+		    var val = node.lowLevel().actual();
+		    delete val._inc;
+		    node.children().forEach(function (x) { return cleanupIncludesFlag(x, v); });
+		}
 		function validateIncludes(node, v) {
+		    var val = node.lowLevel().actual();
+		    if (val._inc) {
+		        return;
+		    }
+		    val._inc = true;
 		    if (node.lowLevel()) {
 		        node.lowLevel().includeErrors().forEach(function (x) {
 		            var em = createIssue(6 /* UNABLE_TO_RESOLVE_INCLUDE_FILE */, x, node);
 		            v.accept(em);
 		        });
 		    }
+		    node.children().forEach(function (x) { return validateIncludes(node, v); });
 		}
 		var validateRegexp = function (cleanedValue, v, node) {
 		    try {
@@ -19069,6 +19492,52 @@
 		        v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Illegal pattern " + cleanedValue, node));
 		    }
 		};
+		var TraitVariablesValidator = (function () {
+		    function TraitVariablesValidator() {
+		    }
+		    TraitVariablesValidator.prototype.check = function (obj) {
+		        var errors = [];
+		        if (typeof (obj) === 'string') {
+		            var str = obj;
+		            var prev = 0;
+		            for (var i = str.indexOf('<<'); i >= 0; i = str.indexOf('<<', prev)) {
+		                var i0 = i;
+		                i += '<<'.length;
+		                prev = str.indexOf('>>', i);
+		                var paramOccurence = str.substring(i, prev);
+		                prev += '>>'.length;
+		                var originalString = str.substring(i0, prev);
+		                var val;
+		                var paramName;
+		                var ind = paramOccurence.lastIndexOf('|');
+		                paramName = paramOccurence.substring(0, ind).trim();
+		                var transformerName = paramOccurence.substring(ind + 1).trim();
+		                if (ind != -1) {
+		                    if (transformerName == 'singularize') {
+		                        return;
+		                    }
+		                    if (transformerName == 'pluralize') {
+		                        return;
+		                    }
+		                    if (transformerName == 'singularize') {
+		                        return;
+		                    }
+		                    if (transformerName == '!singularize') {
+		                        return;
+		                    }
+		                    if (transformerName == '!pluralize') {
+		                        return;
+		                    }
+		                    if (transformerName == '!singularize') {
+		                        return;
+		                    }
+		                    return "unknown function " + transformerName;
+		                }
+		            }
+		        }
+		    };
+		    return TraitVariablesValidator;
+		})();
 		var CompositePropertyValidator = (function () {
 		    function CompositePropertyValidator() {
 		    }
@@ -19088,28 +19557,36 @@
 		                }
 		                v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Scalar is expected here", node));
 		            }
+		            else {
+		                if (node.lowLevel().valueKind() != 0 /* SCALAR */ && node.lowLevel().valueKind() != 5 /* INCLUDE_REF */ && !node.property().getAdapter(services.RAMLPropertyService).isKey()) {
+		                    if ((!node.property().isMultiValue())) {
+		                        var k = node.property().range().key();
+		                        if (k == universes.Universe08.StringType || k == universes.Universe08.MarkdownString || k == universes.Universe08.MimeType) {
+		                            v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "property '" + node.name() + "' must be a string", node));
+		                        }
+		                    }
+		                }
+		            }
 		        }
-		        if (node.parent().allowsQuestion() && node.property().getAdapter(services.RAMLPropertyService).isKey()) {
-		            if (vl != null && vl.length > 0 && vl.charAt(vl.length - 1) == '?') {
-		                vl = vl.substr(0, vl.length - 1);
+		        if (node.property().getAdapter(services.RAMLPropertyService).isKey()) {
+		            if (vl != null && vl.indexOf(" ") != -1) {
+		                v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Keys should not have spaces '" + node.value() + "'", node));
 		            }
 		        }
 		        if (typeof vl == 'string' && vl.indexOf("<<") != -1) {
 		            if (vl.indexOf(">>") > vl.indexOf("<<")) {
+		                var error = new TraitVariablesValidator().check(vl);
+		                if (error) {
+		                    v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "unknown function applied to parameter", node));
+		                }
 		                if (insideResourceTypeOrTrait(node.parent())) {
 		                    return;
 		                }
 		            }
 		        }
-		        validateIncludes(node, v);
 		        if ((node.property().range().key() == universes.Universe08.MimeType || node.property().range().key() == universes.Universe10.MimeType) || (node.property().nameId() == universes.Universe10.TypeDeclaration.properties.name.name && node.parent().property().nameId() == universes.Universe10.Method.properties.body.name)) {
 		            new MediaTypeValidator().validate(node, v);
 		            return;
-		        }
-		        if (node.property().getAdapter(services.RAMLPropertyService).isKey()) {
-		            if (vl.indexOf(" ") != -1) {
-		                v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Keys should not have spaces '" + node.value() + "'", node));
-		            }
 		        }
 		        if (isExampleProp(node.property())) {
 		            new ExampleValidator().validate(node, v);
@@ -19160,11 +19637,6 @@
 		    }
 		    NormalValidator.prototype.validate = function (node, cb) {
 		        var vl = node.value();
-		        if (node.parent().allowsQuestion() && node.property().getAdapter(services.RAMLPropertyService).isKey()) {
-		            if (vl != null && vl.length > 0 && vl.charAt(vl.length - 1) == '?') {
-		                vl = vl.substr(0, vl.length - 1);
-		            }
-		        }
 		        var pr = node.property();
 		        var range = pr.range();
 		        if (range instanceof typeSystem.AbstractType) {
@@ -19201,7 +19673,12 @@
 		            }
 		        }
 		        var v = cb;
-		        var validation = pr.range().getAdapter(services.RAMLService).isValid(node.parent(), vl, pr);
+		        if (node.lowLevel().keyKind() != 3 /* SEQ */) {
+		            var validation = pr.range().getAdapter(services.RAMLService).isValid(node.parent(), vl, pr);
+		        }
+		        else {
+		            validation = true;
+		        }
 		        if (validation instanceof Error) {
 		            if (!validation.canBeRef) {
 		                v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, validation.message, node));
@@ -19257,7 +19734,7 @@
 		        if (values) {
 		            if (typeof values == 'string') {
 		                if (values != vl) {
-		                    if (vl && (vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe08.SecuritySchema.properties.type.name) {
+		                    if (vl && (vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe08.AbstractSecurityScheme.properties.type.name) {
 		                    }
 		                    else {
 		                        v.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, "Invalid value:" + vl + " allowed values are:" + values, node));
@@ -19266,7 +19743,7 @@
 		            }
 		            else if (values.length > 0) {
 		                if (!_.find(values, function (x) { return x == vl; })) {
-		                    if (vl && (vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe08.SecuritySchema.properties.type.name) {
+		                    if (vl && (vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe08.AbstractSecurityScheme.properties.type.name) {
 		                    }
 		                    else {
 		                        v.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, "Invalid value:" + vl + " allowed values are:" + values.join(","), node));
@@ -19282,7 +19759,13 @@
 		    }
 		    UriValidator.prototype.validate = function (node, cb) {
 		        try {
-		            new UrlParameterNameValidator().parseUrl(node.value());
+		            var values = new UrlParameterNameValidator().parseUrl(node.value());
+		            if (values.some(function (x) { return x == "version"; }) && node.property().nameId() == "baseUri") {
+		                var version = node.root().attr("version");
+		                if (!version) {
+		                    cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "missing version", node, false));
+		                }
+		            }
 		        }
 		        catch (e) {
 		            cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, e.message, node, false));
@@ -19427,7 +19910,19 @@
 		        }
 		        try {
 		            var pNames = this.parseUrl(tn);
-		            if (!_.find(pNames, function (x) { return x == vl; })) {
+		            var foundInLocalParameters = _.find(pNames, function (x) { return x == vl; });
+		            if (!foundInLocalParameters) {
+		                var baseUri = node.root().attr(universes.Universe10.Api.properties.baseUri.name);
+		                if (baseUri && node.name() === universes.Universe08.Api.properties.baseUriParameters.name) {
+		                    var baseUriValue = baseUri.value();
+		                    if (baseUriValue) {
+		                        pNames = this.parseUrl(baseUriValue);
+		                        if (pNames && pNames.length > 0) {
+		                            if (_.find(pNames, function (x) { return x == vl; }))
+		                                return;
+		                        }
+		                    }
+		                }
 		                cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Unused url parameter '" + vl + "'", node));
 		            }
 		        }
@@ -19495,6 +19990,11 @@
 		        var expected = (adapter.isReference && adapter.isReference() && adapter.referencesTo && adapter.referencesTo() && adapter.referencesTo().nameId && adapter.referencesTo().nameId());
 		        var referencedToName = exports.typeToName[expected] || nameForNonReference(astNode);
 		        var message = referencedToName ? ("Unrecognized " + referencedToName + " '" + vl + "'.") : ("Unresolved reference: " + vl);
+		        if (pr.nameId() == "type" && pr.domain().universe().version() == "RAML08") {
+		            if (pr.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
+		                message = "type can be either of: string, number, integer, file, date or boolean";
+		            }
+		        }
 		        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, message, astNode));
 		        return true;
 		    }
@@ -19612,7 +20112,11 @@
 		    RequiredPropertiesAndContextRequirementsValidator.prototype.validate = function (node, v) {
 		        (node.definition()).getAdapter(services.RAMLService).getContextRequirements().forEach(function (x) {
 		            if (!node.checkContextValue(x.name, x.value, x.value)) {
-		                v.accept(createIssue(8 /* MISSED_CONTEXT_REQUIREMENT */, x.name + (" should be " + x.value + " to use type " + node.definition().nameId()), node));
+		                var message = x.name + (" should be " + x.value + " to use type " + node.definition().nameId());
+		                if (x.name == 'location' && x.value == "ParameterLocation.FORM") {
+		                    message = "file type can be only used in web forms";
+		                }
+		                v.accept(createIssue(8 /* MISSED_CONTEXT_REQUIREMENT */, message, node));
 		            }
 		        });
 		        node.definition().requiredProperties().forEach(function (x) {
@@ -19623,7 +20127,11 @@
 		            if (r.isValueType()) {
 		                var nm = node.attr(x.nameId());
 		                if (!nm) {
-		                    var i = createIssue(3 /* MISSING_REQUIRED_PROPERTY */, "Missing required property " + x.nameId(), node);
+		                    var msg = "Missing required property " + x.nameId();
+		                    if (node.definition().getAdapter(services.RAMLService).isInlinedTemplates()) {
+		                        msg = "value was not provided for parameter: " + x.nameId();
+		                    }
+		                    var i = createIssue(3 /* MISSING_REQUIRED_PROPERTY */, msg, node);
 		                    v.accept(i);
 		                }
 		            }
@@ -19719,16 +20227,14 @@
 		                    var serv = xnc.getAdapter(services.RAMLService);
 		                    var rps = facets ? xnc.allFacets() : serv.allRuntimeProperties();
 		                    rps.forEach(function (rp) {
-		                        var override = _.find(props, function (x) {
-		                            return x.name() == rp.nameId() || x.name() == rp.nameId() + "?";
-		                        });
+		                        var override = _.find(props, function (x) { return x.name() == rp.nameId(); });
 		                        if (override) {
 		                            if (facets) {
 		                                //not allowing to override facets at all
 		                                var i = createIssue(10 /* ONLY_OVERRIDE_ALLOWED */, ("Illegal override of " + name + " " + override.name() + " inherited from ") + t.value(), override);
 		                                v.accept(i);
 		                            }
-		                            else if (override.name() == rp.nameId() + "?") {
+		                            else if (override.optional()) {
 		                                //we are not allowing to override required properties with optional properties
 		                                var i = createIssue(10 /* ONLY_OVERRIDE_ALLOWED */, ("Illegal override of " + name + " " + override.name() + " inherited from ") + t.value() + ', required ' + name + ' can not be made optional ', override);
 		                                v.accept(i);
@@ -19766,11 +20272,25 @@
 		    function CompositeNodeValidator() {
 		    }
 		    CompositeNodeValidator.prototype.validate = function (node, v) {
+		        if (node.lowLevel().keyKind() == 3 /* SEQ */) {
+		            var isPattern = node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name);
+		            if (!isPattern) {
+		                v.accept(createIssue(2 /* UNKNOWN_NODE */, "Node key can not be sequence", node));
+		            }
+		        }
+		        if (node.definition().key() == universes.Universe08.GlobalSchema) {
+		            if (node.lowLevel().valueKind() != 0 /* SCALAR */ && node.lowLevel().valueKind() != 5 /* INCLUDE_REF */) {
+		                v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "schema " + node.name() + " must be a string", node));
+		            }
+		        }
 		        if (!node.parent()) {
 		            new RAMLVersionAndFragmentValidator().validate(node, v);
 		            if (node.definition().key() == universes.Universe08.Api || node.definition().key() == universes.Universe10.Api) {
 		                if (node.definition().universe().version() != "RAML08") {
 		                    new OverloadingValidator().validateApi(node.wrapperNode(), v);
+		                }
+		                else {
+		                    new OverloadingValidator08().validateApi(node.wrapperNode(), v);
 		                }
 		            }
 		            new ScalarQuoteValidator().validate(node, v);
@@ -19786,6 +20306,26 @@
 		            }
 		            if (anc.getAdapter(services.RAMLService).isRuntime()) {
 		                new FixedFacetsValidator().validate(node, v);
+		            }
+		        }
+		        if (nc.key() == universes.Universe08.BodyLike) {
+		            if (node.lowLevel().children().map(function (x) { return x.key(); }).some(function (x) { return x === "formParameters"; })) {
+		                if (node.parent() && node.parent().definition().key() == universes.Universe08.Response) {
+		                    var i = createIssue(9 /* NODE_HAS_VALUE */, "form parameters can not be used in response", node);
+		                    v.accept(i);
+		                }
+		                else if (node.lowLevel().children().map(function (x) { return x.key(); }).some(function (x) { return x === "schema" || x === "example"; })) {
+		                    var i = createIssue(9 /* NODE_HAS_VALUE */, "formParameters cannot be used together with the example or schema properties", node);
+		                    v.accept(i);
+		                }
+		            }
+		        }
+		        //validation of enum values;
+		        if (node.definition().isAssignableFrom(universes.Universe08.Parameter.name) || node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+		            var vls = node.attributes("enum").map(function (x) { return x.value(); });
+		            if (vls.length != _.uniq(vls).length) {
+		                var i = createIssue(9 /* NODE_HAS_VALUE */, "enum contains duplicated values", node);
+		                v.accept(i);
 		            }
 		        }
 		        checkPropertyQuard(node, v);
@@ -19950,8 +20490,10 @@
 		                var rm = x.lowLevel().parent() ? x.lowLevel().parent().end() : "";
 		                var k = x.name() + rm;
 		                if (m.hasOwnProperty(k)) {
-		                    var i = createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, x.name() + " already exists in this context", x);
-		                    v.accept(i);
+		                    if (!x.isNamePatch()) {
+		                        var i = createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, x.name() + " already exists in this context", x);
+		                        v.accept(i);
+		                    }
 		                }
 		                else {
 		                    m[k] = 1;
@@ -19981,9 +20523,14 @@
 		                }
 		            });
 		        }
+		        var requireds = node.definition().requiredProperties();
+		        var hasRequireds = requireds && requireds.length > 0;
+		        var adapter = node.definition().getAdapter(services.RAMLService);
+		        var isAllowAny = adapter && adapter.getAllowAny();
+		        var anyExceptRequireds = isAllowAny && hasRequireds;
 		        var allLowlevel = node.lowLevel().children();
 		        var mm = _.groupBy(allLowlevel, function (x) { return x.key(); });
-		        var pr = node.directChildren().filter(function (x) { return x.isAttr(); });
+		        var pr = node.directChildren().filter(function (x) { return x.isAttr() || anyExceptRequireds; });
 		        var gr = _.groupBy(pr, function (x) { return x.name(); });
 		        var all = node.directChildren();
 		        var allG = _.groupBy(all, function (x) { return x.name(); });
@@ -20024,9 +20571,17 @@
 		            }
 		        });
 		        Object.keys(gr).forEach(function (x) {
-		            if (gr[x].length > 1 && !gr[x][0].property().isMultiValue()) {
+		            if (gr[x].length < 2) {
+		                return;
+		            }
+		            var isUnknown = gr[x][0].isUnknown();
+		            var isMultiValue = !isUnknown && gr[x][0].property().isMultiValue();
+		            if (isMultiValue && (node.definition().isAssignableFrom(universes.Universe08.SecuritySchemeSettings.name) || node.definition().isAssignableFrom(universes.Universe10.SecuritySchemeSettings.name))) {
+		                isMultiValue = mm[x] && mm[x].length === 1;
+		            }
+		            if ((isUnknown && anyExceptRequireds) || !isMultiValue) {
 		                gr[x].forEach(function (y) {
-		                    var i = createIssue(4 /* PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE */, y.property().nameId() + " should have a single value", y);
+		                    var i = createIssue(4 /* PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE */, (y.property() ? y.property().nameId() : y.name()) + " should have a single value", y);
 		                    v.accept(i);
 		                });
 		            }
@@ -20339,9 +20894,18 @@
 		                    return {
 		                        validate: function (pObje, cb, strict) {
 		                            try {
+		                                if (pObje.__$validated) {
+		                                    return;
+		                                }
 		                                so.validateObject(pObje);
 		                            }
 		                            catch (e) {
+		                                if (e.message == "Cannot assign to read only property '__$validated' of object") {
+		                                    return;
+		                                }
+		                                if (e.message == "Object.keys called on non-object") {
+		                                    return;
+		                                }
 		                                cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conforms to schema:" + e.message, node, !strict));
 		                                return;
 		                            }
@@ -20626,7 +21190,7 @@
 		            throw new Error('Can not parse schema' + schema);
 		        }
 		        delete jsonSchemaObject['$schema'];
-		        delete jsonSchemaObject['required'];
+		        //delete jsonSchemaObject['required']
 		        this.jsonSchema = jsonSchemaObject;
 		    }
 		    JSONSchemaObject.prototype.getType = function () {
@@ -20906,7 +21470,7 @@
 		}
 		exports.isSecuredByProperty = isSecuredByProperty;
 		function isTypeProperty(p) {
-		    return p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.SecuritySchema.properties.type.name || p.nameId() === universe.Universe08.ResourceType.properties.type.name || p.nameId() === universe.Universe08.Resource.properties.type.name || p.nameId() === universe.Universe08.Parameter.properties.type.name || p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe10.ApiDescription.properties.type.name || p.nameId() === universe.Universe10.ResourceBase.properties.type.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
+		    return p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.ResourceType.properties.type.name || p.nameId() === universe.Universe08.Resource.properties.type.name || p.nameId() === universe.Universe08.Parameter.properties.type.name || p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe10.ApiDescription.properties.type.name || p.nameId() === universe.Universe10.ResourceBase.properties.type.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
 		}
 		exports.isTypeProperty = isTypeProperty;
 		function isProtocolsProperty(p) {
@@ -20914,7 +21478,7 @@
 		}
 		exports.isProtocolsProperty = isProtocolsProperty;
 		function isNameProperty(p) {
-		    return p.nameId() === universe.Universe10.TypeDeclaration.properties.name.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.name.name || p.nameId() === universe.Universe08.SecuritySchema.properties.name.name || p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.name.name || p.nameId() === universe.Universe08.Trait.properties.name.name || p.nameId() === universe.Universe10.Trait.properties.name.name || p.nameId() === "name";
+		    return p.nameId() === universe.Universe10.TypeDeclaration.properties.name.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.name.name || p.nameId() === universe.Universe08.AbstractSecurityScheme.properties.name.name || p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.name.name || p.nameId() === universe.Universe08.Trait.properties.name.name || p.nameId() === universe.Universe10.Trait.properties.name.name || p.nameId() === "name";
 		    //TODO too long to actually list every element having a name, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
 		}
 		exports.isNameProperty = isNameProperty;
@@ -21002,7 +21566,7 @@
 		}
 		exports.isGlobalSchemaType = isGlobalSchemaType;
 		function isSecuritySchemaType(type) {
-		    return type.key() == universe.Universe10.AbstractSecurityScheme || type.key() == universe.Universe08.SecuritySchema;
+		    return type.key() == universe.Universe10.AbstractSecurityScheme || type.key() == universe.Universe08.AbstractSecurityScheme;
 		}
 		exports.isSecuritySchemaType = isSecuritySchemaType;
 		function isTypeDeclarationType(type) {
@@ -21201,13 +21765,15 @@
 		    AbstractType.prototype.properties = function () {
 		        return [];
 		    };
-		    AbstractType.prototype.printDetails = function () {
-		        var result = "";
-		        result += this.nameId() + "\n";
-		        this.properties().forEach(function (property) {
-		            result += "  " + property.nameId() + ":" + property.range() + "\n";
+		    AbstractType.prototype.external = function () {
+		        var x = this.allSuperTypes();
+		        var res = null;
+		        x.forEach(function (y) {
+		            if (y instanceof ExternalType) {
+		                res = y;
+		            }
 		        });
-		        return result;
+		        return res;
 		    };
 		    AbstractType.prototype.allFacets = function (ps) {
 		        if (ps === void 0) { ps = {}; }
@@ -21334,7 +21900,7 @@
 		            }
 		            mm.uc = true;
 		            try {
-		                return x.isExternal();
+		                return x instanceof ExternalType;
 		            }
 		            finally {
 		                mm.uc = false;
@@ -21435,9 +22001,9 @@
 		    AbstractType.prototype.allSuperTypesRecurrent = function (t, m, result) {
 		        var _this = this;
 		        t.superTypes().forEach(function (x) {
-		            if (!m[x.nameId()]) {
+		            if (!m[x.typeId()]) {
 		                result.push(x);
-		                m[x.nameId()] = x;
+		                m[x.typeId()] = x;
 		                _this.allSuperTypesRecurrent(x, m, result);
 		            }
 		        });
@@ -21455,6 +22021,72 @@
 		    };
 		    AbstractType.prototype.requiredProperties = function () {
 		        return this.allProperties().filter(function (x) { return x.isRequired(); });
+		    };
+		    AbstractType.prototype.printDetails = function (indent, settings) {
+		        var _this = this;
+		        if (!indent) {
+		            indent = "";
+		        }
+		        if (!settings) {
+		            settings = {
+		                hideProperties: false,
+		                hideSuperTypeProperties: false,
+		                printStandardSuperclasses: false
+		            };
+		        }
+		        var standardIndent = "  ";
+		        var result = "";
+		        var className = this.getTypeClassName();
+		        result += indent + this.nameId() + "[" + className + "]" + "\n";
+		        var properties = this.properties();
+		        if (properties && properties.length > 0 && !settings.hideProperties) {
+		            result += indent + standardIndent + "Properties:\n";
+		            properties.forEach(function (property) {
+		                var propertyType = "";
+		                var propertyRange = property.range();
+		                if (propertyRange instanceof Described) {
+		                    propertyType += propertyRange.nameId();
+		                }
+		                if (propertyRange instanceof AbstractType) {
+		                    propertyType += "[";
+		                    propertyType += propertyRange.getTypeClassName();
+		                    propertyType += "]";
+		                }
+		                result += indent + standardIndent + standardIndent + property.nameId() + " : " + propertyType + "\n";
+		            });
+		        }
+		        var superTypes = this.superTypes();
+		        var filteredSuperTypes = superTypes;
+		        if (superTypes && !settings.printStandardSuperclasses) {
+		            filteredSuperTypes = _.filter(superTypes, function (superType) {
+		                var name = superType instanceof Described ? superType.nameId() : "";
+		                var type = superType instanceof AbstractType ? superType.getTypeClassName() : "";
+		                return !_this.isStandardSuperclass(name, type);
+		            });
+		        }
+		        if (filteredSuperTypes && filteredSuperTypes.length > 0) {
+		            result += indent + standardIndent + "Super types:\n";
+		            filteredSuperTypes.forEach(function (superType) {
+		                result += superType.printDetails(indent + standardIndent + standardIndent, {
+		                    hideProperties: settings.hideSuperTypeProperties,
+		                    hideSuperTypeProperties: settings.hideSuperTypeProperties,
+		                    printStandardSuperclasses: settings.printStandardSuperclasses
+		                });
+		            });
+		        }
+		        return result;
+		    };
+		    AbstractType.prototype.getTypeClassName = function () {
+		        return this.constructor.toString().match(/\w+/g)[1];
+		    };
+		    AbstractType.prototype.isStandardSuperclass = function (nameId, className) {
+		        if (nameId === "TypeDeclaration" && className === "NodeClass")
+		            return true;
+		        if (nameId === "ObjectTypeDeclaration" && className === "NodeClass")
+		            return true;
+		        if (nameId === "RAMLLanguageElement" && className === "NodeClass")
+		            return true;
+		        return false;
 		    };
 		    return AbstractType;
 		})(Described);
@@ -21557,11 +22189,11 @@
 		        return this;
 		    };
 		    Property.prototype.setDefaultVal = function (s) {
-		        this._defaultVal = s;
+		        this._defaultValue = s;
 		        return this;
 		    };
 		    Property.prototype.defaultValue = function () {
-		        return this._defaultVal;
+		        return this._defaultValue;
 		    };
 		    Property.prototype.isPrimitive = function () {
 		        return false;
@@ -21712,6 +22344,15 @@
 		    function ExternalType() {
 		        _super.apply(this, arguments);
 		    }
+		    ExternalType.prototype.external = function () {
+		        return this;
+		    };
+		    ExternalType.prototype.typeId = function () {
+		        return this.schemaString;
+		    };
+		    ExternalType.prototype.schema = function () {
+		        return this.schemaString;
+		    };
 		    ExternalType.prototype.isUserDefined = function () {
 		        return true;
 		    };
@@ -21870,6 +22511,7 @@
 		var ramlPathMatch = __webpack_require__(66);
 		var hl = __webpack_require__(2);
 		var hlimpl = __webpack_require__(5);
+		var linter = __webpack_require__(55);
 		var universes = __webpack_require__(54);
 		var Opt = __webpack_require__(12);
 		var util = __webpack_require__(11);
@@ -21943,6 +22585,23 @@
 		    return uri;
 		}
 		exports.absoluteUri = absoluteUri;
+		//__$helperMethod__ validate an instance against type
+		function validateInstance(res, value) {
+		    var tv = new linter.TypeValidator(res.highLevel());
+		    var errors = [];
+		    var vl = {
+		        begin: function () {
+		        },
+		        accept: function (issue) {
+		            errors.push(issue.message);
+		        },
+		        end: function () {
+		        }
+		    };
+		    tv.validate(value, res.runtimeType(), vl, true);
+		    return errors;
+		}
+		exports.validateInstance = validateInstance;
 		function qName(c) {
 		    return hlimpl.qName(c.highLevel(), c.highLevel().root());
 		}
@@ -21979,10 +22638,10 @@
 		//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 		function parent(resource) {
 		    var parent = resource.parent();
-		    if (isApi(parent)) {
-		        return null;
+		    if (parent.definition().key().name == universes.Universe10.Resource.name) {
+		        return parent;
 		    }
-		    return parent;
+		    return null;
 		}
 		exports.parent = parent;
 		//__$helperMethod__ Get child resource by its relative path
@@ -22062,7 +22721,19 @@
 		exports.methodId = methodId;
 		//__$helperMethod__ true for codes < 400 and false otherwise
 		function isOkRange(response) {
-		    return parseInt(response.code().value()) < 400;
+		    var str = response.code().value();
+		    var err = ramlservices.validateResponseString(str);
+		    if (err != null) {
+		        return false;
+		    }
+		    try {
+		        if (parseInt(str.charAt(0)) < 4) {
+		            return true;
+		        }
+		    }
+		    catch (e) {
+		    }
+		    return false;
 		}
 		exports.isOkRange = isOkRange;
 		//__$helperMethod__  Retrieve all resources of the Api
@@ -22197,6 +22868,59 @@
 		    return result;
 		}
 		exports.allProtocols = allProtocols;
+		/**
+		 * __$helperMethod__ Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		 * returns schemes defined with `securedBy` at API level.
+		 */
+		function allSecuredBy(resourceOrMethod) {
+		    var currentSecuredBy = resourceOrMethod.securedBy();
+		    if (currentSecuredBy && currentSecuredBy.length > 0) {
+		        return currentSecuredBy;
+		    }
+		    //instanceof, but have to avoid direct usage of instanceof in JS.
+		    if (resourceOrMethod.highLevel().definition().key() == universes.Universe10.Method) {
+		        var resource = resourceOrMethod.parentResource();
+		        if (resource && resource.securedBy() && resource.securedBy().length > 0) {
+		            return resource.securedBy();
+		        }
+		    }
+		    return resourceOrMethod.ownerApi().securedBy();
+		}
+		exports.allSecuredBy = allSecuredBy;
+		/**
+		 * __$helperMethod__ Returns the name of security scheme, this reference refers to.
+		 */
+		function securitySchemeName(schemeReference) {
+		    var highLevel = schemeReference.highLevel();
+		    if (!highLevel)
+		        return "";
+		    var attributeValue = highLevel.value();
+		    if (!attributeValue)
+		        return "";
+		    return attributeValue.toString();
+		}
+		exports.securitySchemeName = securitySchemeName;
+		/**
+		 * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
+		 */
+		function securityScheme(schemeReference) {
+		    var highLevel = schemeReference.highLevel();
+		    if (!highLevel)
+		        return null;
+		    var declaration = search.findDeclarationByNode(highLevel, 0 /* VALUE_COMPLETION */);
+		    if (!declaration)
+		        return null;
+		    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+		        return null;
+		    }
+		    var result = declaration.wrapperNode();
+		    if (!(result instanceof RamlWrapper.AbstractSecuritySchemeImpl)) {
+		        //I do not see how to avoid instanceof here
+		        return null;
+		    }
+		    return result;
+		}
+		exports.securityScheme = securityScheme;
 		function extractParams(params, uri, resource) {
 		    if (!uri) {
 		        return [];
@@ -22255,6 +22979,9 @@
 		    };
 		    HelperUriParam.prototype.runtimeType = function () {
 		        return null;
+		    };
+		    HelperUriParam.prototype.validateInstance = function (v) {
+		        return [];
 		    };
 		    HelperUriParam.prototype.sendDefaultByClient = function () {
 		        return false;
@@ -22324,6 +23051,12 @@
 		    };
 		    HelperUriParam.prototype.toJSON = function () {
 		        return { "name": this.name() };
+		    };
+		    HelperUriParam.prototype.optional = function () {
+		        return false;
+		    };
+		    HelperUriParam.prototype.optionalProperties = function () {
+		        return [];
 		    };
 		    return HelperUriParam;
 		})();
@@ -24687,9 +25420,12 @@
 		        //if ((!traits || traits.length == 0) && (!resourceTypes || resourceTypes.length == 0)) {
 		        //    return api;
 		        //}
+		        if (traits.length == 0 && resourceTypes.length == 0) {
+		            return _api;
+		        }
 		        var llNode = api.highLevel().lowLevel();
 		        this.ramlVersion = _api.highLevel().definition().universe().version();
-		        var topComposite = new proxy.LowLevelCompositeNode(llNode, null, null);
+		        var topComposite = new proxy.LowLevelCompositeNode(llNode, null, null, this.ramlVersion);
 		        var apiType = isRAML1 ? universeProvider('RAML10').type('Api') : universeProvider('RAML08').type('Api');
 		        var hlNode = new hlimpl.ASTNodeImpl(topComposite, null, apiType, null);
 		        var result = isRAML1 ? new RamlWrapper.ApiImpl(hlNode) : new RamlWrapper08.ApiImpl(hlNode);
@@ -24722,7 +25458,6 @@
 		        methods.forEach(function (m) {
 		            var methodLowLevel = m.highLevel().lowLevel();
 		            var name = m.method();
-		            var map = {};
 		            resourceData.forEach(function (x) {
 		                var methodTraits = x.methodTraits[name];
 		                if (methodTraits) {
@@ -24906,6 +25641,7 @@
 		    }
 		    return result;
 		}
+		exports.getTransformerForOccurence = getTransformerForOccurence;
 		var ValueTransformer = (function () {
 		    function ValueTransformer(templateKind, templateName, params) {
 		        this.templateKind = templateKind;
@@ -25212,27 +25948,39 @@
 		    return TraitRefImpl;
 		})(ReferenceImpl);
 		exports.TraitRefImpl = TraitRefImpl;
-		var SecuritySchemaRefImpl = (function (_super) {
-		    __extends(SecuritySchemaRefImpl, _super);
-		    function SecuritySchemaRefImpl() {
+		var SecuritySchemeRefImpl = (function (_super) {
+		    __extends(SecuritySchemeRefImpl, _super);
+		    function SecuritySchemeRefImpl() {
 		        _super.apply(this, arguments);
 		    }
 		    /**
 		     * @hidden
 		     * @return Actual name of instance class
 		     **/
-		    SecuritySchemaRefImpl.prototype.wrapperClassName = function () {
-		        return "SecuritySchemaRefImpl";
+		    SecuritySchemeRefImpl.prototype.wrapperClassName = function () {
+		        return "SecuritySchemeRefImpl";
 		    };
 		    /**
 		     * @return Actual name of instance interface
 		     **/
-		    SecuritySchemaRefImpl.prototype.kind = function () {
-		        return "SecuritySchemaRef";
+		    SecuritySchemeRefImpl.prototype.kind = function () {
+		        return "SecuritySchemeRef";
 		    };
-		    return SecuritySchemaRefImpl;
+		    /**
+		     * Returns the name of security scheme, this reference refers to.
+		     **/
+		    SecuritySchemeRefImpl.prototype.securitySchemeName = function () {
+		        return helper.securitySchemeName(this);
+		    };
+		    /**
+		     * Returns AST node of security scheme, this reference refers to, or null.
+		     **/
+		    SecuritySchemeRefImpl.prototype.securityScheme = function () {
+		        return helper.securityScheme(this);
+		    };
+		    return SecuritySchemeRefImpl;
 		})(ReferenceImpl);
-		exports.SecuritySchemaRefImpl = SecuritySchemaRefImpl;
+		exports.SecuritySchemeRefImpl = SecuritySchemeRefImpl;
 		var StringTypeImpl = (function (_super) {
 		    __extends(StringTypeImpl, _super);
 		    function StringTypeImpl() {
@@ -25554,330 +26302,6 @@
 		    return MarkdownStringImpl;
 		})(StringTypeImpl);
 		exports.MarkdownStringImpl = MarkdownStringImpl;
-		/**
-		 * Declares globally referenceable security schema definition
-		 **/
-		var SecuritySchemaImpl = (function (_super) {
-		    __extends(SecuritySchemaImpl, _super);
-		    function SecuritySchemaImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchema(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    SecuritySchemaImpl.prototype.wrapperClassName = function () {
-		        return "SecuritySchemaImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    SecuritySchemaImpl.prototype.kind = function () {
-		        return "SecuritySchema";
-		    };
-		    SecuritySchemaImpl.prototype.name = function () {
-		        return _super.prototype.attribute.call(this, 'name', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set name value
-		     **/
-		    SecuritySchemaImpl.prototype.setName = function (param) {
-		        this.highLevel().attrOrCreate("name").setValue("" + param);
-		        return this;
-		    };
-		    /**
-		     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-		     **/
-		    SecuritySchemaImpl.prototype["type"] = function () {
-		        return _super.prototype.attribute.call(this, 'type', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set type value
-		     **/
-		    SecuritySchemaImpl.prototype.setType = function (param) {
-		        this.highLevel().attrOrCreate("type").setValue("" + param);
-		        return this;
-		    };
-		    /**
-		     * The description attribute MAY be used to describe a securitySchemes property.
-		     **/
-		    SecuritySchemaImpl.prototype.description = function () {
-		        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
-		    };
-		    /**
-		     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
-		     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
-		     **/
-		    SecuritySchemaImpl.prototype.describedBy = function () {
-		        return _super.prototype.element.call(this, 'describedBy');
-		    };
-		    /**
-		     * The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.
-		     * The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on.
-		     **/
-		    SecuritySchemaImpl.prototype.settings = function () {
-		        return _super.prototype.element.call(this, 'settings');
-		    };
-		    return SecuritySchemaImpl;
-		})(RAMLLanguageElementImpl);
-		exports.SecuritySchemaImpl = SecuritySchemaImpl;
-		var RAMLSimpleElementImpl = (function (_super) {
-		    __extends(RAMLSimpleElementImpl, _super);
-		    function RAMLSimpleElementImpl() {
-		        _super.apply(this, arguments);
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
-		        return "RAMLSimpleElementImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    RAMLSimpleElementImpl.prototype.kind = function () {
-		        return "RAMLSimpleElement";
-		    };
-		    return RAMLSimpleElementImpl;
-		})(core.BasicNodeImpl);
-		exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
-		/**
-		 * Content of the schema
-		 **/
-		var GlobalSchemaImpl = (function (_super) {
-		    __extends(GlobalSchemaImpl, _super);
-		    function GlobalSchemaImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    GlobalSchemaImpl.prototype.wrapperClassName = function () {
-		        return "GlobalSchemaImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    GlobalSchemaImpl.prototype.kind = function () {
-		        return "GlobalSchema";
-		    };
-		    /**
-		     * Name of the global schema, used to refer on schema content
-		     **/
-		    GlobalSchemaImpl.prototype.key = function () {
-		        return _super.prototype.attribute.call(this, 'key', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set key value
-		     **/
-		    GlobalSchemaImpl.prototype.setKey = function (param) {
-		        this.highLevel().attrOrCreate("key").setValue("" + param);
-		        return this;
-		    };
-		    /**
-		     * Content of the schema
-		     **/
-		    GlobalSchemaImpl.prototype.value = function () {
-		        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
-		    };
-		    return GlobalSchemaImpl;
-		})(RAMLSimpleElementImpl);
-		exports.GlobalSchemaImpl = GlobalSchemaImpl;
-		var DocumentationItemImpl = (function (_super) {
-		    __extends(DocumentationItemImpl, _super);
-		    function DocumentationItemImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    DocumentationItemImpl.prototype.wrapperClassName = function () {
-		        return "DocumentationItemImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    DocumentationItemImpl.prototype.kind = function () {
-		        return "DocumentationItem";
-		    };
-		    /**
-		     * title of documentation section
-		     **/
-		    DocumentationItemImpl.prototype.title = function () {
-		        return _super.prototype.attribute.call(this, 'title', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set title value
-		     **/
-		    DocumentationItemImpl.prototype.setTitle = function (param) {
-		        this.highLevel().attrOrCreate("title").setValue("" + param);
-		        return this;
-		    };
-		    /**
-		     * Content of documentation section
-		     **/
-		    DocumentationItemImpl.prototype.content = function () {
-		        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
-		    };
-		    return DocumentationItemImpl;
-		})(RAMLSimpleElementImpl);
-		exports.DocumentationItemImpl = DocumentationItemImpl;
-		var SecuritySchemaSettingsImpl = (function (_super) {
-		    __extends(SecuritySchemaSettingsImpl, _super);
-		    function SecuritySchemaSettingsImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaSettings(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    SecuritySchemaSettingsImpl.prototype.wrapperClassName = function () {
-		        return "SecuritySchemaSettingsImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    SecuritySchemaSettingsImpl.prototype.kind = function () {
-		        return "SecuritySchemaSettings";
-		    };
-		    return SecuritySchemaSettingsImpl;
-		})(RAMLSimpleElementImpl);
-		exports.SecuritySchemaSettingsImpl = SecuritySchemaSettingsImpl;
-		var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
-		    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
-		    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
-		        return "OAuth1SecuritySchemeSettingsImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    OAuth1SecuritySchemeSettingsImpl.prototype.kind = function () {
-		        return "OAuth1SecuritySchemeSettings";
-		    };
-		    /**
-		     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-		     **/
-		    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
-		        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
-		    };
-		    /**
-		     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-		     **/
-		    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
-		        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
-		    };
-		    /**
-		     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-		     **/
-		    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
-		        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
-		    };
-		    return OAuth1SecuritySchemeSettingsImpl;
-		})(SecuritySchemaSettingsImpl);
-		exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
-		var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
-		    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
-		    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
-		        return "OAuth2SecuritySchemeSettingsImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.kind = function () {
-		        return "OAuth2SecuritySchemeSettings";
-		    };
-		    /**
-		     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
-		        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
-		    };
-		    /**
-		     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
-		        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
-		    };
-		    /**
-		     * A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials.
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
-		        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set authorizationGrants value
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
-		        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
-		        return this;
-		    };
-		    /**
-		     * A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
-		        return _super.prototype.attributes.call(this, 'scopes', this.toString);
-		    };
-		    /**
-		     * @hidden
-		     * Set scopes value
-		     **/
-		    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
-		        this.highLevel().attrOrCreate("scopes").setValue("" + param);
-		        return this;
-		    };
-		    return OAuth2SecuritySchemeSettingsImpl;
-		})(SecuritySchemaSettingsImpl);
-		exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
-		var SecuritySchemaPartImpl = (function (_super) {
-		    __extends(SecuritySchemaPartImpl, _super);
-		    function SecuritySchemaPartImpl(nodeOrKey) {
-		        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemaPart(nodeOrKey) : nodeOrKey);
-		        this.nodeOrKey = nodeOrKey;
-		    }
-		    /**
-		     * @hidden
-		     * @return Actual name of instance class
-		     **/
-		    SecuritySchemaPartImpl.prototype.wrapperClassName = function () {
-		        return "SecuritySchemaPartImpl";
-		    };
-		    /**
-		     * @return Actual name of instance interface
-		     **/
-		    SecuritySchemaPartImpl.prototype.kind = function () {
-		        return "SecuritySchemaPart";
-		    };
-		    return SecuritySchemaPartImpl;
-		})(RAMLSimpleElementImpl);
-		exports.SecuritySchemaPartImpl = SecuritySchemaPartImpl;
 		var ResourceTypeImpl = (function (_super) {
 		    __extends(ResourceTypeImpl, _super);
 		    function ResourceTypeImpl(nodeOrKey) {
@@ -25945,13 +26369,24 @@
 		     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
 		     **/
 		    ResourceTypeImpl.prototype.securedBy = function () {
-		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 		    };
 		    /**
 		     * Uri parameters of this resource
 		     **/
 		    ResourceTypeImpl.prototype.uriParameters = function () {
 		        return _super.prototype.elements.call(this, 'uriParameters');
+		    };
+		    ResourceTypeImpl.prototype.displayName = function () {
+		        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set displayName value
+		     **/
+		    ResourceTypeImpl.prototype.setDisplayName = function (param) {
+		        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+		        return this;
 		    };
 		    return ResourceTypeImpl;
 		})(RAMLLanguageElementImpl);
@@ -26423,7 +26858,7 @@
 		     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 		     **/
 		    MethodBaseImpl.prototype.securedBy = function () {
-		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 		    };
 		    return MethodBaseImpl;
 		})(HasNormalParametersImpl);
@@ -26651,6 +27086,80 @@
 		    return TraitImpl;
 		})(MethodBaseImpl);
 		exports.TraitImpl = TraitImpl;
+		var SecuritySchemePartImpl = (function (_super) {
+		    __extends(SecuritySchemePartImpl, _super);
+		    function SecuritySchemePartImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemePart(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    SecuritySchemePartImpl.prototype.wrapperClassName = function () {
+		        return "SecuritySchemePartImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    SecuritySchemePartImpl.prototype.kind = function () {
+		        return "SecuritySchemePart";
+		    };
+		    /**
+		     * Headers that allowed at this position
+		     **/
+		    SecuritySchemePartImpl.prototype.headers = function () {
+		        return _super.prototype.elements.call(this, 'headers');
+		    };
+		    /**
+		     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+		     **/
+		    SecuritySchemePartImpl.prototype.queryParameters = function () {
+		        return _super.prototype.elements.call(this, 'queryParameters');
+		    };
+		    /**
+		     * Optional array of responses, describing the possible responses that could be sent.
+		     **/
+		    SecuritySchemePartImpl.prototype.responses = function () {
+		        return _super.prototype.elements.call(this, 'responses');
+		    };
+		    /**
+		     * Instantiation of applyed traits
+		     **/
+		    SecuritySchemePartImpl.prototype.is = function () {
+		        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
+		    };
+		    /**
+		     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+		     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+		     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+		     **/
+		    SecuritySchemePartImpl.prototype.securedBy = function () {
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+		    };
+		    /**
+		     * An alternate, human-friendly name for the security scheme part
+		     **/
+		    SecuritySchemePartImpl.prototype.displayName = function () {
+		        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set displayName value
+		     **/
+		    SecuritySchemePartImpl.prototype.setDisplayName = function (param) {
+		        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * A longer, human-friendly description of the security scheme part
+		     **/
+		    SecuritySchemePartImpl.prototype.description = function () {
+		        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+		    };
+		    return SecuritySchemePartImpl;
+		})(MethodBaseImpl);
+		exports.SecuritySchemePartImpl = SecuritySchemePartImpl;
 		/**
 		 * Method object allows description of http methods
 		 **/
@@ -26706,7 +27215,7 @@
 		     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
 		     **/
 		    MethodImpl.prototype.securedBy = function () {
-		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 		    };
 		    /**
 		     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
@@ -26727,6 +27236,13 @@
 		     **/
 		    MethodImpl.prototype.methodId = function () {
 		        return helper.methodId(this);
+		    };
+		    /**
+		     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		     * returns schemes defined with `securedBy` at API level.
+		     **/
+		    MethodImpl.prototype.allSecuredBy = function () {
+		        return helper.allSecuredBy(this);
 		    };
 		    return MethodImpl;
 		})(MethodBaseImpl);
@@ -26773,7 +27289,7 @@
 		     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
 		     **/
 		    ResourceImpl.prototype.securedBy = function () {
-		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 		    };
 		    /**
 		     * Uri parameters of this resource
@@ -26867,9 +27383,337 @@
 		    ResourceImpl.prototype.absoluteUriParameters = function () {
 		        return helper.absoluteUriParameters(this);
 		    };
+		    /**
+		     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		     * returns schemes defined with `securedBy` at API level.
+		     **/
+		    ResourceImpl.prototype.allSecuredBy = function () {
+		        return helper.allSecuredBy(this);
+		    };
 		    return ResourceImpl;
 		})(RAMLLanguageElementImpl);
 		exports.ResourceImpl = ResourceImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var AbstractSecuritySchemeImpl = (function (_super) {
+		    __extends(AbstractSecuritySchemeImpl, _super);
+		    function AbstractSecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createAbstractSecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "AbstractSecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.kind = function () {
+		        return "AbstractSecurityScheme";
+		    };
+		    AbstractSecuritySchemeImpl.prototype.name = function () {
+		        return _super.prototype.attribute.call(this, 'name', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set name value
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.setName = function (param) {
+		        this.highLevel().attrOrCreate("name").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+		     **/
+		    AbstractSecuritySchemeImpl.prototype["type"] = function () {
+		        return _super.prototype.attribute.call(this, 'type', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set type value
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.setType = function (param) {
+		        this.highLevel().attrOrCreate("type").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * The description MAY be used to describe a securityScheme.
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.description = function () {
+		        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+		    };
+		    /**
+		     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+		     * Including the security scheme description completes an API documentation.
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.describedBy = function () {
+		        return _super.prototype.element.call(this, 'describedBy');
+		    };
+		    /**
+		     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+		     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+		     **/
+		    AbstractSecuritySchemeImpl.prototype.settings = function () {
+		        return _super.prototype.element.call(this, 'settings');
+		    };
+		    return AbstractSecuritySchemeImpl;
+		})(RAMLLanguageElementImpl);
+		exports.AbstractSecuritySchemeImpl = AbstractSecuritySchemeImpl;
+		var SecuritySchemeSettingsImpl = (function (_super) {
+		    __extends(SecuritySchemeSettingsImpl, _super);
+		    function SecuritySchemeSettingsImpl() {
+		        _super.apply(this, arguments);
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+		        return "SecuritySchemeSettingsImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    SecuritySchemeSettingsImpl.prototype.kind = function () {
+		        return "SecuritySchemeSettings";
+		    };
+		    return SecuritySchemeSettingsImpl;
+		})(core.BasicNodeImpl);
+		exports.SecuritySchemeSettingsImpl = SecuritySchemeSettingsImpl;
+		var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
+		    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
+		    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+		        return "OAuth1SecuritySchemeSettingsImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    OAuth1SecuritySchemeSettingsImpl.prototype.kind = function () {
+		        return "OAuth1SecuritySchemeSettings";
+		    };
+		    /**
+		     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+		     **/
+		    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
+		        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
+		    };
+		    /**
+		     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+		     **/
+		    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
+		        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
+		    };
+		    /**
+		     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+		     **/
+		    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
+		        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
+		    };
+		    return OAuth1SecuritySchemeSettingsImpl;
+		})(SecuritySchemeSettingsImpl);
+		exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
+		var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
+		    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
+		    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+		        return "OAuth2SecuritySchemeSettingsImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.kind = function () {
+		        return "OAuth2SecuritySchemeSettings";
+		    };
+		    /**
+		     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
+		        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
+		    };
+		    /**
+		     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
+		        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
+		    };
+		    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
+		        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set authorizationGrants value
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
+		        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
+		        return _super.prototype.attributes.call(this, 'scopes', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set scopes value
+		     **/
+		    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
+		        this.highLevel().attrOrCreate("scopes").setValue("" + param);
+		        return this;
+		    };
+		    return OAuth2SecuritySchemeSettingsImpl;
+		})(SecuritySchemeSettingsImpl);
+		exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var OAuth2SecuritySchemeImpl = (function (_super) {
+		    __extends(OAuth2SecuritySchemeImpl, _super);
+		    function OAuth2SecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    OAuth2SecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "OAuth2SecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    OAuth2SecuritySchemeImpl.prototype.kind = function () {
+		        return "OAuth2SecurityScheme";
+		    };
+		    OAuth2SecuritySchemeImpl.prototype.settings = function () {
+		        return _super.prototype.element.call(this, 'settings');
+		    };
+		    return OAuth2SecuritySchemeImpl;
+		})(AbstractSecuritySchemeImpl);
+		exports.OAuth2SecuritySchemeImpl = OAuth2SecuritySchemeImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var OAuth1SecuritySchemeImpl = (function (_super) {
+		    __extends(OAuth1SecuritySchemeImpl, _super);
+		    function OAuth1SecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    OAuth1SecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "OAuth1SecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    OAuth1SecuritySchemeImpl.prototype.kind = function () {
+		        return "OAuth1SecurityScheme";
+		    };
+		    OAuth1SecuritySchemeImpl.prototype.settings = function () {
+		        return _super.prototype.element.call(this, 'settings');
+		    };
+		    return OAuth1SecuritySchemeImpl;
+		})(AbstractSecuritySchemeImpl);
+		exports.OAuth1SecuritySchemeImpl = OAuth1SecuritySchemeImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var BasicSecuritySchemeImpl = (function (_super) {
+		    __extends(BasicSecuritySchemeImpl, _super);
+		    function BasicSecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createBasicSecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    BasicSecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "BasicSecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    BasicSecuritySchemeImpl.prototype.kind = function () {
+		        return "BasicSecurityScheme";
+		    };
+		    return BasicSecuritySchemeImpl;
+		})(AbstractSecuritySchemeImpl);
+		exports.BasicSecuritySchemeImpl = BasicSecuritySchemeImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var DigestSecuritySchemeImpl = (function (_super) {
+		    __extends(DigestSecuritySchemeImpl, _super);
+		    function DigestSecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createDigestSecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    DigestSecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "DigestSecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    DigestSecuritySchemeImpl.prototype.kind = function () {
+		        return "DigestSecurityScheme";
+		    };
+		    return DigestSecuritySchemeImpl;
+		})(AbstractSecuritySchemeImpl);
+		exports.DigestSecuritySchemeImpl = DigestSecuritySchemeImpl;
+		/**
+		 * Declares globally referable security schema definition
+		 **/
+		var CustomSecuritySchemeImpl = (function (_super) {
+		    __extends(CustomSecuritySchemeImpl, _super);
+		    function CustomSecuritySchemeImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createCustomSecurityScheme(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    CustomSecuritySchemeImpl.prototype.wrapperClassName = function () {
+		        return "CustomSecuritySchemeImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    CustomSecuritySchemeImpl.prototype.kind = function () {
+		        return "CustomSecurityScheme";
+		    };
+		    return CustomSecuritySchemeImpl;
+		})(AbstractSecuritySchemeImpl);
+		exports.CustomSecuritySchemeImpl = CustomSecuritySchemeImpl;
 		var ApiImpl = (function (_super) {
 		    __extends(ApiImpl, _super);
 		    function ApiImpl(nodeOrKey) {
@@ -26984,7 +27828,7 @@
 		     * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
 		     **/
 		    ApiImpl.prototype.securedBy = function () {
-		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemaRefImpl(attr); });
+		        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 		    };
 		    /**
 		     * Security schemas that can be applied with securedBy
@@ -27073,6 +27917,114 @@
 		    return ApiImpl;
 		})(RAMLLanguageElementImpl);
 		exports.ApiImpl = ApiImpl;
+		var RAMLSimpleElementImpl = (function (_super) {
+		    __extends(RAMLSimpleElementImpl, _super);
+		    function RAMLSimpleElementImpl() {
+		        _super.apply(this, arguments);
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
+		        return "RAMLSimpleElementImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    RAMLSimpleElementImpl.prototype.kind = function () {
+		        return "RAMLSimpleElement";
+		    };
+		    return RAMLSimpleElementImpl;
+		})(core.BasicNodeImpl);
+		exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
+		var DocumentationItemImpl = (function (_super) {
+		    __extends(DocumentationItemImpl, _super);
+		    function DocumentationItemImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    DocumentationItemImpl.prototype.wrapperClassName = function () {
+		        return "DocumentationItemImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    DocumentationItemImpl.prototype.kind = function () {
+		        return "DocumentationItem";
+		    };
+		    /**
+		     * title of documentation section
+		     **/
+		    DocumentationItemImpl.prototype.title = function () {
+		        return _super.prototype.attribute.call(this, 'title', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set title value
+		     **/
+		    DocumentationItemImpl.prototype.setTitle = function (param) {
+		        this.highLevel().attrOrCreate("title").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * Content of documentation section
+		     **/
+		    DocumentationItemImpl.prototype.content = function () {
+		        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
+		    };
+		    return DocumentationItemImpl;
+		})(RAMLSimpleElementImpl);
+		exports.DocumentationItemImpl = DocumentationItemImpl;
+		/**
+		 * Content of the schema
+		 **/
+		var GlobalSchemaImpl = (function (_super) {
+		    __extends(GlobalSchemaImpl, _super);
+		    function GlobalSchemaImpl(nodeOrKey) {
+		        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey);
+		        this.nodeOrKey = nodeOrKey;
+		    }
+		    /**
+		     * @hidden
+		     * @return Actual name of instance class
+		     **/
+		    GlobalSchemaImpl.prototype.wrapperClassName = function () {
+		        return "GlobalSchemaImpl";
+		    };
+		    /**
+		     * @return Actual name of instance interface
+		     **/
+		    GlobalSchemaImpl.prototype.kind = function () {
+		        return "GlobalSchema";
+		    };
+		    /**
+		     * Name of the global schema, used to refer on schema content
+		     **/
+		    GlobalSchemaImpl.prototype.key = function () {
+		        return _super.prototype.attribute.call(this, 'key', this.toString);
+		    };
+		    /**
+		     * @hidden
+		     * Set key value
+		     **/
+		    GlobalSchemaImpl.prototype.setKey = function (param) {
+		        this.highLevel().attrOrCreate("key").setValue("" + param);
+		        return this;
+		    };
+		    /**
+		     * Content of the schema
+		     **/
+		    GlobalSchemaImpl.prototype.value = function () {
+		        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
+		    };
+		    return GlobalSchemaImpl;
+		})(RAMLSimpleElementImpl);
+		exports.GlobalSchemaImpl = GlobalSchemaImpl;
 		/**
 		 * @hidden
 		 **/
@@ -27088,78 +28040,6 @@
 		function createRAMLLanguageElement(key) {
 		    var universe = hl.universeProvider("RAML08");
 		    var nc = universe.type("RAMLLanguageElement");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createSecuritySchema(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("SecuritySchema");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createSecuritySchemaPart(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("SecuritySchemaPart");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createRAMLSimpleElement(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("RAMLSimpleElement");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createGlobalSchema(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("GlobalSchema");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createDocumentationItem(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("DocumentationItem");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createSecuritySchemaSettings(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("SecuritySchemaSettings");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createOAuth1SecuritySchemeSettings(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("OAuth1SecuritySchemeSettings");
-		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-		    return node;
-		}
-		/**
-		 * @hidden
-		 **/
-		function createOAuth2SecuritySchemeSettings(key) {
-		    var universe = hl.universeProvider("RAML08");
-		    var nc = universe.type("OAuth2SecuritySchemeSettings");
 		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 		    return node;
 		}
@@ -27310,9 +28190,126 @@
 		/**
 		 * @hidden
 		 **/
+		function createSecuritySchemePart(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("SecuritySchemePart");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
 		function createResource(key) {
 		    var universe = hl.universeProvider("RAML08");
 		    var nc = universe.type("Resource");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createAbstractSecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("AbstractSecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createSecuritySchemeSettings(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("SecuritySchemeSettings");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createOAuth1SecuritySchemeSettings(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("OAuth1SecuritySchemeSettings");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createOAuth2SecuritySchemeSettings(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("OAuth2SecuritySchemeSettings");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createOAuth2SecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("OAuth2SecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createOAuth1SecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("OAuth1SecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createBasicSecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("BasicSecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createDigestSecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("DigestSecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createCustomSecurityScheme(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("CustomSecurityScheme");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createGlobalSchema(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("GlobalSchema");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createRAMLSimpleElement(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("RAMLSimpleElement");
+		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+		    return node;
+		}
+		/**
+		 * @hidden
+		 **/
+		function createDocumentationItem(key) {
+		    var universe = hl.universeProvider("RAML08");
+		    var nc = universe.type("DocumentationItem");
 		    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
 		    return node;
 		}
@@ -27335,39 +28332,39 @@
 		var ramlService = __webpack_require__(49);
 		var json2lowlevel = __webpack_require__(8);
 		var BasicNodeImpl = (function () {
-		    /***
+		    /**
 		     * @hidden
-		     */
+		     **/
 		    function BasicNodeImpl(_node) {
 		        this._node = _node;
 		        _node.setWrapperNode(this);
 		    }
-		    /***
+		    /**
 		     * @hidden
-		     */
+		     **/
 		    BasicNodeImpl.prototype.wrapperClassName = function () {
 		        return 'BasicNodeImpl';
 		    };
 		    BasicNodeImpl.prototype.kind = function () {
 		        return 'BasicNode';
 		    };
-		    /***
+		    /**
 		     * @return Direct ancestor in RAML hierarchy
 		     **/
 		    BasicNodeImpl.prototype.parent = function () {
 		        var parent = this._node.parent();
 		        return parent ? parent.wrapperNode() : null;
 		    };
-		    /***
+		    /**
 		     * @hidden
 		     * @return Underlying node of the High Level model
 		     **/
 		    BasicNodeImpl.prototype.highLevel = function () {
 		        return this._node;
 		    };
-		    /***
+		    /**
 		     * @hidden
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.attributes = function (name, constr) {
 		        var attrs = this._node.attributes(name);
 		        if (!attrs) {
@@ -27380,9 +28377,9 @@
 		            return attrs.map(function (x) { return x.value(); });
 		        }
 		    };
-		    /***
+		    /**
 		     * @hidden
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.attribute = function (name, constr) {
 		        var attr = this._node.attr(name);
 		        if (!attr) {
@@ -27395,9 +28392,9 @@
 		            return attr.value();
 		        }
 		    };
-		    /***
+		    /**
 		     * @hidden
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.elements = function (name) {
 		        var elements = this._node.elementsOfKind(name);
 		        if (!elements) {
@@ -27405,9 +28402,9 @@
 		        }
 		        return elements.map(function (x) { return x.wrapperNode(); });
 		    };
-		    /***
+		    /**
 		     * @hidden
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.element = function (name) {
 		        var element = this._node.element(name);
 		        if (!element) {
@@ -27415,34 +28412,34 @@
 		        }
 		        return element.wrapperNode();
 		    };
-		    /***
+		    /**
 		     * Append node as child
 		     * @param node node to be appended
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.add = function (node) {
 		        this.highLevel().add(node.highLevel());
 		    };
-		    /***
+		    /**
 		     * Append node as property value
 		     * @param node node to be set as property value
 		     * @param prop name of property to set value for
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.addToProp = function (node, prop) {
 		        var hl = node.highLevel();
 		        var pr = this.highLevel().definition().property(prop);
 		        hl._prop = pr;
 		        this.highLevel().add(hl);
 		    };
-		    /***
+		    /**
 		     * Remove node from children set
 		     * @param node node to be removed
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.remove = function (node) {
 		        this.highLevel().remove(node.highLevel());
 		    };
-		    /***
+		    /**
 		     * @return YAML string representing the node
-		     ***/
+		     **/
 		    BasicNodeImpl.prototype.dump = function () {
 		        return this.highLevel().dump("yaml");
 		    };
@@ -27467,7 +28464,7 @@
 		        }
 		        return Number.MAX_VALUE;
 		    };
-		    /***
+		    /**
 		     * @return Array of errors
 		     **/
 		    BasicNodeImpl.prototype.errors = function () {
@@ -27506,13 +28503,13 @@
 		        });
 		        return result;
 		    };
-		    /***
+		    /**
 		     * @return object representing class of the node
 		     **/
 		    BasicNodeImpl.prototype.definition = function () {
 		        return this.highLevel().definition();
 		    };
-		    /***
+		    /**
 		     * @return for user class instances returns object representing actual user class
 		     **/
 		    BasicNodeImpl.prototype.runtimeDefinition = function () {
@@ -27521,6 +28518,22 @@
 		    BasicNodeImpl.prototype.toJSON = function (serializeOptions) {
 		        return json2lowlevel.serialize(this.highLevel().lowLevel(), serializeOptions);
 		    };
+		    /**
+		     * @return Whether the element is an optional sibling of trait or resource type
+		     **/
+		    BasicNodeImpl.prototype.optional = function () {
+		        var highLevel = this.highLevel();
+		        return highLevel != null ? highLevel.optional() : false;
+		    };
+		    /**
+		     * @return For siblings of traits or resource types returns an array of optional properties names.
+		     **/
+		    BasicNodeImpl.prototype.optionalProperties = function () {
+		        if (!this.highLevel()) {
+		            return [];
+		        }
+		        return this.highLevel().optionalProperties();
+		    };
 		    return BasicNodeImpl;
 		})();
 		exports.BasicNodeImpl = BasicNodeImpl;
@@ -27528,27 +28541,34 @@
 		    function AttributeNodeImpl(attr) {
 		        this.attr = attr;
 		    }
-		    /***
+		    /**
 		     * @return Underlying High Level attribute node
-		     ***/
+		     **/
 		    AttributeNodeImpl.prototype.highLevel = function () {
 		        return this.attr;
 		    };
-		    /***
+		    /**
 		     * @hidden
-		     */
+		     **/
 		    AttributeNodeImpl.prototype.wrapperClassName = function () {
 		        return 'AttributeNodeImpl';
 		    };
 		    AttributeNodeImpl.prototype.kind = function () {
 		        return 'AttributeNode';
 		    };
+		    /**
+		     * @return Whether the element is an optional sibling of trait or resource type
+		     **/
+		    AttributeNodeImpl.prototype.optional = function () {
+		        var highLevel = this.highLevel();
+		        return highLevel != null ? highLevel.optional() : false;
+		    };
 		    return AttributeNodeImpl;
 		})();
 		exports.AttributeNodeImpl = AttributeNodeImpl;
-		/***
+		/**
 		 * @hidden
-		 ***/
+		 **/
 		function toStructuredValue(node) {
 		    var value = node.value();
 		    if (typeof value === 'string') {
@@ -27707,7 +28727,7 @@
 		    }
 		    var api;
 		    var contents = unit.contents();
-		    var ramlFirstLine = contents.match(/^#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+		    var ramlFirstLine = contents.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
 		    if (!ramlFirstLine) {
 		        //TODO throw sensible error
 		        return null;
@@ -29287,6 +30307,16 @@
 		                return null;
 		            });
 		        }
+		        if (a.arguments[0] == "enum") {
+		            f.setFacetValidator(function (x, f) {
+		                var validateAgainst = x + "";
+		                var array = f.children().map(function (x) { return x.value(); });
+		                if (!array.some(function (x) { return x == validateAgainst; })) {
+		                    return "value should be one of :" + array.join(",");
+		                }
+		                return null;
+		            });
+		        }
 		        if (a.arguments[0] == "maxItems") {
 		            f.setFacetValidator(function (x, f) {
 		                if (x instanceof Array) {
@@ -30445,7 +31475,7 @@
 												"application/json",
 												"application/xml",
 												"application/x-www-form-urlencoded",
-												"multipart/formdata"
+												"multipart/form-data"
 											]
 										]
 									},
@@ -31877,7 +32907,12 @@
 						"implements": [],
 						"fields": [],
 						"isInterface": false,
-						"annotations": [],
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
 						"extends": [],
 						"moduleName": null,
 						"annotationOverridings": {}
@@ -32018,6 +33053,10 @@
 						"isInterface": false,
 						"annotations": [
 							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							},
+							{
 								"name": "MetaModel.functionalDescriminator",
 								"arguments": [
 									"$parent.type=='OAuth 1.0'"
@@ -32035,32 +33074,7 @@
 							}
 						],
 						"moduleName": null,
-						"annotationOverridings": {
-							"displayName": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"description": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"annotations": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"authentificationConfigurator": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							]
-						}
+						"annotationOverridings": {}
 					},
 					{
 						"name": "OAuth2SecuritySchemeSettings",
@@ -32185,7 +33199,12 @@
 							}
 						],
 						"isInterface": false,
-						"annotations": [],
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
 						"extends": [
 							{
 								"typeName": "SecuritySchemeSettings",
@@ -32197,32 +33216,7 @@
 							}
 						],
 						"moduleName": null,
-						"annotationOverridings": {
-							"displayName": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"description": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"annotations": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							],
-							"authentificationConfigurator": [
-								{
-									"name": "MetaModel.hide",
-									"arguments": []
-								}
-							]
-						}
+						"annotationOverridings": {}
 					},
 					{
 						"name": "PassThroughSecuritySchemeSettings",
@@ -32261,7 +33255,12 @@
 							}
 						],
 						"isInterface": false,
-						"annotations": [],
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
 						"extends": [
 							{
 								"typeName": "SecuritySchemeSettings",
@@ -36135,6 +37134,12 @@
 								},
 								"annotations": [
 									{
+										"name": "MetaModel.facetId",
+										"arguments": [
+											"enum"
+										]
+									},
+									{
 										"name": "MetaModel.describesAnnotation",
 										"arguments": [
 											"oneOf"
@@ -36360,6 +37365,12 @@
 									"typeKind": 1
 								},
 								"annotations": [
+									{
+										"name": "MetaModel.facetId",
+										"arguments": [
+											"enum"
+										]
+									},
 									{
 										"name": "MetaModel.describesAnnotation",
 										"arguments": [
@@ -38172,9 +39183,9 @@
 								"name": "securedBy",
 								"type": {
 									"base": {
-										"typeName": "RM.SecuritySchemaRef",
+										"typeName": "RM.SecuritySchemeRef",
 										"nameSpace": "RM",
-										"basicName": "SecuritySchemaRef",
+										"basicName": "SecuritySchemeRef",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/api.ts"
@@ -38196,9 +39207,9 @@
 								"name": "securitySchemes",
 								"type": {
 									"base": {
-										"typeName": "RM.SecuritySchema",
+										"typeName": "RM.AbstractSecurityScheme",
 										"nameSpace": "RM",
-										"basicName": "SecuritySchema",
+										"basicName": "AbstractSecurityScheme",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/api.ts"
@@ -38341,6 +39352,10 @@
 										"arguments": [
 											"title of documentation section"
 										]
+									},
+									{
+										"name": "MetaModel.required",
+										"arguments": []
 									}
 								],
 								"valueConstraint": null,
@@ -38362,6 +39377,10 @@
 										"arguments": [
 											"Content of documentation section"
 										]
+									},
+									{
+										"name": "MetaModel.required",
+										"arguments": []
 									}
 								],
 								"valueConstraint": null,
@@ -39098,515 +40117,6 @@
 						"annotationOverridings": {}
 					},
 					{
-						"name": "SecuritySchemaPart",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [],
-						"fields": [],
-						"isInterface": false,
-						"annotations": [
-							{
-								"name": "MetaModel.allowAny",
-								"arguments": []
-							}
-						],
-						"extends": [
-							{
-								"typeName": "Common.RAMLSimpleElement",
-								"nameSpace": "Common",
-								"basicName": "RAMLSimpleElement",
-								"typeKind": 0,
-								"typeArguments": [],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
-						"name": "SecuritySchemaSettings",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [],
-						"fields": [],
-						"isInterface": false,
-						"annotations": [
-							{
-								"name": "MetaModel.allowAny",
-								"arguments": []
-							}
-						],
-						"extends": [
-							{
-								"typeName": "Common.RAMLSimpleElement",
-								"nameSpace": "Common",
-								"basicName": "RAMLSimpleElement",
-								"typeKind": 0,
-								"typeArguments": [],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
-						"name": "OAuth1SecuritySchemeSettings",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [],
-						"fields": [
-							{
-								"name": "requestTokenUri",
-								"type": {
-									"typeName": "Sys.FixedUri",
-									"nameSpace": "Sys",
-									"basicName": "FixedUri",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "authorizationUri",
-								"type": {
-									"typeName": "Sys.FixedUri",
-									"nameSpace": "Sys",
-									"basicName": "FixedUri",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "tokenCredentialsUri",
-								"type": {
-									"typeName": "Sys.FixedUri",
-									"nameSpace": "Sys",
-									"basicName": "FixedUri",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							}
-						],
-						"isInterface": false,
-						"annotations": [
-							{
-								"name": "MetaModel.functionalDescriminator",
-								"arguments": [
-									"$parent.type=='OAuth 1.0'"
-								]
-							},
-							{
-								"name": "MetaModel.allowAny",
-								"arguments": []
-							}
-						],
-						"extends": [
-							{
-								"typeName": "SecuritySchemaSettings",
-								"nameSpace": "",
-								"basicName": "SecuritySchemaSettings",
-								"typeKind": 0,
-								"typeArguments": [],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
-						"name": "OAuth2SecuritySchemeSettings",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [],
-						"fields": [
-							{
-								"name": "accessTokenUri",
-								"type": {
-									"typeName": "Sys.FixedUri",
-									"nameSpace": "Sys",
-									"basicName": "FixedUri",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "authorizationUri",
-								"type": {
-									"typeName": "Sys.FixedUri",
-									"nameSpace": "Sys",
-									"basicName": "FixedUri",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "authorizationGrants",
-								"type": {
-									"base": {
-										"typeName": "string",
-										"nameSpace": "",
-										"basicName": "string",
-										"typeKind": 0,
-										"typeArguments": [],
-										"modulePath": null
-									},
-									"typeKind": 1
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials."
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "scopes",
-								"type": {
-									"base": {
-										"typeName": "string",
-										"nameSpace": "",
-										"basicName": "string",
-										"typeKind": 0,
-										"typeArguments": [],
-										"modulePath": null
-									},
-									"typeKind": 1
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3"
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							}
-						],
-						"isInterface": false,
-						"annotations": [
-							{
-								"name": "MetaModel.functionalDescriminator",
-								"arguments": [
-									"$parent.type=='OAuth 2.0'"
-								]
-							},
-							{
-								"name": "MetaModel.allowAny",
-								"arguments": []
-							}
-						],
-						"extends": [
-							{
-								"typeName": "SecuritySchemaSettings",
-								"nameSpace": "",
-								"basicName": "SecuritySchemaSettings",
-								"typeKind": 0,
-								"typeArguments": [],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
-						"name": "SecuritySchemaRef",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [],
-						"fields": [],
-						"isInterface": false,
-						"annotations": [],
-						"extends": [
-							{
-								"typeName": "Sys.Reference",
-								"nameSpace": "Sys",
-								"basicName": "Reference",
-								"typeKind": 0,
-								"typeArguments": [
-									{
-										"typeName": "SecuritySchema",
-										"nameSpace": "",
-										"basicName": "SecuritySchema",
-										"typeKind": 0,
-										"typeArguments": [],
-										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-									}
-								],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
-						"name": "SecuritySchema",
-						"methods": [],
-						"typeParameters": [],
-						"typeParameterConstraint": [],
-						"implements": [
-							{
-								"typeName": "Sys.Referencable",
-								"nameSpace": "Sys",
-								"basicName": "Referencable",
-								"typeKind": 0,
-								"typeArguments": [
-									{
-										"typeName": "SecuritySchema",
-										"nameSpace": "",
-										"basicName": "SecuritySchema",
-										"typeKind": 0,
-										"typeArguments": [],
-										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-									}
-								],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"fields": [
-							{
-								"name": "name",
-								"type": {
-									"typeName": "string",
-									"nameSpace": "",
-									"basicName": "string",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": null
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.key",
-										"arguments": []
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "type",
-								"type": {
-									"typeName": "string",
-									"nameSpace": "",
-									"basicName": "string",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": null
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.required",
-										"arguments": []
-									},
-									{
-										"name": "MetaModel.oneOf",
-										"arguments": [
-											[
-												"OAuth 1.0",
-												"OAuth 2.0",
-												"Basic Authentication",
-												"DigestSecurityScheme Authentication",
-												"x-{other}"
-											]
-										]
-									},
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "description",
-								"type": {
-									"typeName": "Sys.MarkdownString",
-									"nameSpace": "Sys",
-									"basicName": "MarkdownString",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The description attribute MAY be used to describe a securitySchemes property."
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "describedBy",
-								"type": {
-									"typeName": "SecuritySchemaPart",
-									"nameSpace": "",
-									"basicName": "SecuritySchemaPart",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.\n        This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation."
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							},
-							{
-								"name": "settings",
-								"type": {
-									"typeName": "SecuritySchemaSettings",
-									"nameSpace": "",
-									"basicName": "SecuritySchemaSettings",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"annotations": [
-									{
-										"name": "MetaModel.description",
-										"arguments": [
-											"The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.\n        The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on."
-										]
-									}
-								],
-								"valueConstraint": null,
-								"optional": false
-							}
-						],
-						"isInterface": false,
-						"annotations": [
-							{
-								"name": "MetaModel.description",
-								"arguments": [
-									"Declares globally referenceable security schema definition"
-								]
-							},
-							{
-								"name": "MetaModel.actuallyExports",
-								"arguments": [
-									"$self"
-								]
-							},
-							{
-								"name": "MetaModel.referenceIs",
-								"arguments": [
-									"settings"
-								]
-							}
-						],
-						"extends": [
-							{
-								"typeName": "Common.RAMLLanguageElement",
-								"nameSpace": "Common",
-								"basicName": "RAMLLanguageElement",
-								"typeKind": 0,
-								"typeArguments": [],
-								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-							}
-						],
-						"moduleName": null,
-						"annotationOverridings": {}
-					},
-					{
 						"name": "MethodBase",
 						"methods": [],
 						"typeParameters": [],
@@ -39701,9 +40211,9 @@
 								"name": "securedBy",
 								"type": {
 									"base": {
-										"typeName": "SecuritySchemaRef",
+										"typeName": "SecuritySchemeRef",
 										"nameSpace": "",
-										"basicName": "SecuritySchemaRef",
+										"basicName": "SecuritySchemeRef",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
@@ -39967,9 +40477,9 @@
 								"name": "securedBy",
 								"type": {
 									"base": {
-										"typeName": "SecuritySchemaRef",
+										"typeName": "SecuritySchemeRef",
 										"nameSpace": "",
-										"basicName": "SecuritySchemaRef",
+										"basicName": "SecuritySchemeRef",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
@@ -40019,6 +40529,20 @@
 										]
 									}
 								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "displayName",
+								"type": {
+									"typeName": "string",
+									"nameSpace": "",
+									"basicName": "string",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": null
+								},
+								"annotations": [],
 								"valueConstraint": null,
 								"optional": false
 							}
@@ -40136,9 +40660,9 @@
 								"name": "securedBy",
 								"type": {
 									"base": {
-										"typeName": "SecuritySchemaRef",
+										"typeName": "SecuritySchemeRef",
 										"nameSpace": "",
-										"basicName": "SecuritySchemaRef",
+										"basicName": "SecuritySchemeRef",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
@@ -40270,9 +40794,9 @@
 								"name": "securedBy",
 								"type": {
 									"base": {
-										"typeName": "SecuritySchemaRef",
+										"typeName": "SecuritySchemeRef",
 										"nameSpace": "",
-										"basicName": "SecuritySchemaRef",
+										"basicName": "SecuritySchemeRef",
 										"typeKind": 0,
 										"typeArguments": [],
 										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
@@ -40452,6 +40976,951 @@
 								"typeName": "Common.RAMLLanguageElement",
 								"nameSpace": "Common",
 								"basicName": "RAMLLanguageElement",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "SecuritySchemePart",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [],
+						"isInterface": false,
+						"annotations": [],
+						"extends": [
+							{
+								"typeName": "MethodBase",
+								"nameSpace": "",
+								"basicName": "MethodBase",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {
+							"headers": [
+								{
+									"name": "MetaModel.markdownDescription",
+									"arguments": [
+										"Optional array of headers, documenting the possible headers that could be accepted."
+									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Object whose property names are the request header names and whose values describe the values."
+									]
+								}
+							],
+							"queryParameters": [
+								{
+									"name": "MetaModel.markdownDescription",
+									"arguments": [
+										"Query parameters, used by the schema in order to authorize the request. Mutually exclusive with queryString."
+									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Object whose property names are the query parameter names and whose values describe the values."
+									]
+								}
+							],
+							"queryString": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters."
+									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Type name or type declaration"
+									]
+								}
+							],
+							"responses": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Optional array of responses, describing the possible responses that could be sent."
+									]
+								}
+							],
+							"is": [
+								{
+									"name": "MetaModel.hide",
+									"arguments": []
+								}
+							],
+							"securedBy": [
+								{
+									"name": "MetaModel.hide",
+									"arguments": []
+								}
+							],
+							"displayName": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"An alternate, human-friendly name for the security scheme part"
+									]
+								}
+							],
+							"description": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"A longer, human-friendly description of the security scheme part"
+									]
+								},
+								{
+									"name": "MetaModel.valueDescription",
+									"arguments": [
+										"Markdown string"
+									]
+								}
+							],
+							"annotations": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Annotations to be applied to this security scheme part. Annotations are any property whose key begins with \"(\" and ends with \")\" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]]."
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "SecuritySchemeSettings",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
+						"extends": [],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "AbstractSecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [
+							{
+								"typeName": "Sys.Referencable",
+								"nameSpace": "Sys",
+								"basicName": "Referencable",
+								"typeKind": 0,
+								"typeArguments": [
+									{
+										"typeName": "AbstractSecurityScheme",
+										"nameSpace": "",
+										"basicName": "AbstractSecurityScheme",
+										"typeKind": 0,
+										"typeArguments": [],
+										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+									}
+								],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"fields": [
+							{
+								"name": "name",
+								"type": {
+									"typeName": "string",
+									"nameSpace": "",
+									"basicName": "string",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": null
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.key",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.startFrom",
+										"arguments": [
+											""
+										]
+									},
+									{
+										"name": "MetaModel.hide",
+										"arguments": []
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "type",
+								"type": {
+									"typeName": "string",
+									"nameSpace": "",
+									"basicName": "string",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": null
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.oneOf",
+										"arguments": [
+											[
+												"OAuth 1.0",
+												"OAuth 2.0",
+												"Basic Authentication",
+												"DigestSecurityScheme Authentication",
+												"x-{other}"
+											]
+										]
+									},
+									{
+										"name": "MetaModel.descriminatingProperty",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"string<br><br>The value MUST be one of<br>* OAuth 1.0,<br>* OAuth 2.0,<br>* BasicSecurityScheme Authentication<br>* DigestSecurityScheme Authentication<br>* x-&lt;other&gt;"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "description",
+								"type": {
+									"typeName": "Sys.MarkdownString",
+									"nameSpace": "Sys",
+									"basicName": "MarkdownString",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The description attribute MAY be used to describe a security schemes property."
+										]
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The description MAY be used to describe a securityScheme."
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "describedBy",
+								"type": {
+									"typeName": "SecuritySchemePart",
+									"nameSpace": "",
+									"basicName": "SecuritySchemePart",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.\nIncluding the security scheme description completes an API documentation."
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "settings",
+								"type": {
+									"typeName": "SecuritySchemeSettings",
+									"nameSpace": "",
+									"basicName": "SecuritySchemeSettings",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.\nIt describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "Common.RAMLLanguageElement",
+								"nameSpace": "Common",
+								"basicName": "RAMLLanguageElement",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "SecuritySchemeRef",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
+						"extends": [
+							{
+								"typeName": "Sys.Reference",
+								"nameSpace": "Sys",
+								"basicName": "Reference",
+								"typeKind": 0,
+								"typeArguments": [
+									{
+										"typeName": "AbstractSecurityScheme",
+										"nameSpace": "",
+										"basicName": "AbstractSecurityScheme",
+										"typeKind": 0,
+										"typeArguments": [],
+										"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+									}
+								],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "OAuth1SecuritySchemeSettings",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "requestTokenUri",
+								"type": {
+									"typeName": "Sys.FixedUri",
+									"nameSpace": "Sys",
+									"basicName": "FixedUri",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"FixedUriString"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "authorizationUri",
+								"type": {
+									"typeName": "Sys.FixedUri",
+									"nameSpace": "Sys",
+									"basicName": "FixedUri",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"FixedUriString"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "tokenCredentialsUri",
+								"type": {
+									"typeName": "Sys.FixedUri",
+									"nameSpace": "Sys",
+									"basicName": "FixedUri",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"FixedUriString"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							},
+							{
+								"name": "MetaModel.functionalDescriminator",
+								"arguments": [
+									"$parent.type=='OAuth 1.0'"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "SecuritySchemeSettings",
+								"nameSpace": "",
+								"basicName": "SecuritySchemeSettings",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {
+							"annotations": [
+								{
+									"name": "MetaModel.hide",
+									"arguments": []
+								}
+							]
+						}
+					},
+					{
+						"name": "OAuth2SecuritySchemeSettings",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "accessTokenUri",
+								"type": {
+									"typeName": "Sys.FixedUri",
+									"nameSpace": "Sys",
+									"basicName": "FixedUri",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type."
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"FixedUriString"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "authorizationUri",
+								"type": {
+									"typeName": "Sys.FixedUri",
+									"nameSpace": "Sys",
+									"basicName": "FixedUri",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types."
+										]
+									},
+									{
+										"name": "MetaModel.valueDescription",
+										"arguments": [
+											"FixedUriString"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "authorizationGrants",
+								"type": {
+									"base": {
+										"typeName": "string",
+										"nameSpace": "",
+										"basicName": "string",
+										"typeKind": 0,
+										"typeArguments": [],
+										"modulePath": null
+									},
+									"typeKind": 1
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.required",
+										"arguments": []
+									},
+									{
+										"name": "MetaModel.markdownDescription",
+										"arguments": [
+											"A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:<br>* authorization_code<br>* password<br>* client_credentials<br>* implicit<br>* refresh_token."
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							},
+							{
+								"name": "scopes",
+								"type": {
+									"base": {
+										"typeName": "string",
+										"nameSpace": "",
+										"basicName": "string",
+										"typeKind": 0,
+										"typeArguments": [],
+										"modulePath": null
+									},
+									"typeKind": 1
+								},
+								"annotations": [
+									{
+										"name": "MetaModel.description",
+										"arguments": [
+											"A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3"
+										]
+									}
+								],
+								"valueConstraint": null,
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.allowAny",
+								"arguments": []
+							}
+						],
+						"extends": [
+							{
+								"typeName": "SecuritySchemeSettings",
+								"nameSpace": "",
+								"basicName": "SecuritySchemeSettings",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {
+							"annotations": [
+								{
+									"name": "MetaModel.hide",
+									"arguments": []
+								}
+							]
+						}
+					},
+					{
+						"name": "OAuth2SecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "type",
+								"type": null,
+								"annotations": [],
+								"valueConstraint": {
+									"isCallConstraint": false,
+									"value": "OAuth 2.0"
+								},
+								"optional": false
+							},
+							{
+								"name": "settings",
+								"type": {
+									"typeName": "OAuth2SecuritySchemeSettings",
+									"nameSpace": "",
+									"basicName": "OAuth2SecuritySchemeSettings",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [],
+								"valueConstraint": null,
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "AbstractSecurityScheme",
+								"nameSpace": "",
+								"basicName": "AbstractSecurityScheme",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "OAuth1SecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "type",
+								"type": null,
+								"annotations": [],
+								"valueConstraint": {
+									"isCallConstraint": false,
+									"value": "OAuth 1.0"
+								},
+								"optional": false
+							},
+							{
+								"name": "settings",
+								"type": {
+									"typeName": "OAuth1SecuritySchemeSettings",
+									"nameSpace": "",
+									"basicName": "OAuth1SecuritySchemeSettings",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"annotations": [],
+								"valueConstraint": null,
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "AbstractSecurityScheme",
+								"nameSpace": "",
+								"basicName": "AbstractSecurityScheme",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "BasicSecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "type",
+								"type": null,
+								"annotations": [],
+								"valueConstraint": {
+									"isCallConstraint": false,
+									"value": "Basic Authentication"
+								},
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "AbstractSecurityScheme",
+								"nameSpace": "",
+								"basicName": "AbstractSecurityScheme",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "DigestSecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "type",
+								"type": null,
+								"annotations": [],
+								"valueConstraint": {
+									"isCallConstraint": false,
+									"value": "DigestSecurityScheme Authentication"
+								},
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "AbstractSecurityScheme",
+								"nameSpace": "",
+								"basicName": "AbstractSecurityScheme",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							}
+						],
+						"moduleName": null,
+						"annotationOverridings": {}
+					},
+					{
+						"name": "CustomSecurityScheme",
+						"methods": [],
+						"typeParameters": [],
+						"typeParameterConstraint": [],
+						"implements": [],
+						"fields": [
+							{
+								"name": "type",
+								"type": null,
+								"annotations": [],
+								"valueConstraint": {
+									"isCallConstraint": false,
+									"value": "x-{other}"
+								},
+								"optional": false
+							}
+						],
+						"isInterface": false,
+						"annotations": [
+							{
+								"name": "MetaModel.description",
+								"arguments": [
+									"Declares globally referable security schema definition"
+								]
+							},
+							{
+								"name": "MetaModel.actuallyExports",
+								"arguments": [
+									"$self"
+								]
+							},
+							{
+								"name": "MetaModel.referenceIs",
+								"arguments": [
+									"settings"
+								]
+							}
+						],
+						"extends": [
+							{
+								"typeName": "AbstractSecurityScheme",
+								"nameSpace": "",
+								"basicName": "AbstractSecurityScheme",
 								"typeKind": 0,
 								"typeArguments": [],
 								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
@@ -41434,7 +42903,7 @@
 												"application/json",
 												"application/xml",
 												"application/x-www-form-urlencoded",
-												"multipart/formdata"
+												"multipart/form-data"
 											]
 										]
 									}
@@ -41811,6 +43280,7 @@
 		var lowLevelProxy = __webpack_require__(6);
 		var util = __webpack_require__(11);
 		var search = __webpack_require__(53);
+		var ramlservices = __webpack_require__(49);
 		var ll = __webpack_require__(15);
 		var path = __webpack_require__(16);
 		//export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
@@ -41905,10 +43375,10 @@
 		//__$helperMethod__ Parent resource for non top level resources __$meta__={"name":"parentResource"}
 		function parent(resource) {
 		    var parent = resource.parent();
-		    if (isApi(parent)) {
-		        return null;
+		    if (parent.definition().key().name == universes.Universe08.Resource.name) {
+		        parent;
 		    }
-		    return parent;
+		    return null;
 		}
 		exports.parent = parent;
 		//__$helperMethod__ Get child resource by its relative path
@@ -41988,7 +43458,19 @@
 		exports.methodId = methodId;
 		//__$helperMethod__ true for codes < 400 and false otherwise
 		function isOkRange(response) {
-		    return parseInt(response.code().value()) < 400;
+		    var str = response.code().value();
+		    var err = ramlservices.validateResponseString(str);
+		    if (err != null) {
+		        return false;
+		    }
+		    try {
+		        if (parseInt(str.charAt(0)) < 4) {
+		            return true;
+		        }
+		    }
+		    catch (e) {
+		    }
+		    return false;
 		}
 		exports.isOkRange = isOkRange;
 		//__$helperMethod__  Retrieve all resources of the Api
@@ -42120,6 +43602,59 @@
 		    return result;
 		}
 		exports.allProtocols = allProtocols;
+		/**
+		 * __$helperMethod__ Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+		 * returns schemes defined with `securedBy` at API level.
+		 */
+		function allSecuredBy(resourceOrMethod) {
+		    var currentSecuredBy = resourceOrMethod.securedBy();
+		    if (currentSecuredBy && currentSecuredBy.length > 0) {
+		        return currentSecuredBy;
+		    }
+		    //instanceof, but have to avoid direct usage of instanceof in JS.
+		    if (resourceOrMethod.highLevel().definition().key() == universes.Universe08.Method) {
+		        var resource = resourceOrMethod.parentResource();
+		        if (resource && resource.securedBy() && resource.securedBy().length > 0) {
+		            return resource.securedBy();
+		        }
+		    }
+		    return resourceOrMethod.ownerApi().securedBy();
+		}
+		exports.allSecuredBy = allSecuredBy;
+		/**
+		 * __$helperMethod__ Returns the name of security scheme, this reference refers to.
+		 */
+		function securitySchemeName(schemeReference) {
+		    var highLevel = schemeReference.highLevel();
+		    if (!highLevel)
+		        return "";
+		    var attributeValue = highLevel.value();
+		    if (!attributeValue)
+		        return "";
+		    return attributeValue.toString();
+		}
+		exports.securitySchemeName = securitySchemeName;
+		/**
+		 * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
+		 */
+		function securityScheme(schemeReference) {
+		    var highLevel = schemeReference.highLevel();
+		    if (!highLevel)
+		        return null;
+		    var declaration = search.findDeclarationByNode(highLevel, 0 /* VALUE_COMPLETION */);
+		    if (!declaration)
+		        return null;
+		    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+		        return null;
+		    }
+		    var result = declaration.wrapperNode();
+		    if (!(result instanceof RamlWrapper.AbstractSecuritySchemeImpl)) {
+		        //I do not see how to avoid instanceof here
+		        return null;
+		    }
+		    return result;
+		}
+		exports.securityScheme = securityScheme;
 		function extractParams(params, uri, resource) {
 		    if (!uri) {
 		        return [];
@@ -42233,6 +43768,12 @@
 		    };
 		    HelperUriParam.prototype.toJSON = function () {
 		        return { "name": this.name() };
+		    };
+		    HelperUriParam.prototype.optional = function () {
+		        return false;
+		    };
+		    HelperUriParam.prototype.optionalProperties = function () {
+		        return [];
 		    };
 		    return HelperUriParam;
 		})();
@@ -42787,18 +44328,81 @@
 
 	/***/ },
 	/* 110 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		/// <reference path="../../../typings/main.d.ts" />
+		var hl = __webpack_require__(2);
+		var linter = __webpack_require__(55);
+		var wrapperHelper = __webpack_require__(88);
+		function escapeUri(u) {
+		    var ss = "";
+		    var level = 0;
+		    for (var i = 0; i < u.length; i++) {
+		        var c = u.charAt(i);
+		        if (level == 0) {
+		            ss = ss + c;
+		        }
+		        if (c == '{') {
+		            level++;
+		        }
+		        if (c == '}') {
+		            level--;
+		        }
+		    }
+		    return ss;
+		}
+		var OverloadingValidator = (function () {
+		    function OverloadingValidator() {
+		        this.holder = {};
+		        this.conflicting = {};
+		    }
+		    OverloadingValidator.prototype.validateApi = function (q, v) {
+		        var _this = this;
+		        q.resources().forEach(function (x) {
+		            _this.acceptResource(x);
+		            x.resources().forEach(function (y) { return _this.acceptResource(y); });
+		        });
+		        for (var c in this.conflicting) {
+		            var ms = this.conflicting[c];
+		            var notPushed = ms;
+		            if (notPushed.length > 1) {
+		                notPushed.forEach(function (m) {
+		                    v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "resources share same URI", m.highLevel(), true));
+		                });
+		            }
+		        }
+		    };
+		    OverloadingValidator.prototype.acceptResource = function (x) {
+		        var uri = escapeUri(wrapperHelper.absoluteUri(x));
+		        var pos = this.holder[uri];
+		        if (!pos) {
+		            pos = [];
+		            this.holder[uri] = pos;
+		        }
+		        pos.push(x);
+		        if (pos.length > 1) {
+		            this.conflicting[uri] = pos;
+		        }
+		    };
+		    return OverloadingValidator;
+		})();
+		module.exports = OverloadingValidator;
+
+
+	/***/ },
+	/* 111 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(40);
 
 	/***/ },
-	/* 111 */
+	/* 112 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
-		var HttpResponse = __webpack_require__(112);
-		__webpack_require__(113);
+		var HttpResponse = __webpack_require__(113);
 		__webpack_require__(114);
+		__webpack_require__(115);
 		var lru = __webpack_require__(59);
 		var globalCache = lru(50);
 		function hasAsyncRequests() {
@@ -42831,29 +44435,29 @@
 
 
 	/***/ },
-	/* 112 */
+	/* 113 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(43);
 
 	/***/ },
-	/* 113 */
+	/* 114 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(44);
 
 	/***/ },
-	/* 114 */
+	/* 115 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(77);
 
 	/***/ },
-	/* 115 */
+	/* 116 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../typings/main.d.ts" />
-		var XMLHttpRequestConstructor = __webpack_require__(116).XMLHttpRequest;
+		var XMLHttpRequestConstructor = __webpack_require__(117).XMLHttpRequest;
 		function buildXHR() {
 		    var x = new XMLHttpRequestConstructor;
 		    return x;
@@ -42979,25 +44583,224 @@
 
 
 	/***/ },
-	/* 116 */
+	/* 117 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(91);
 
 	/***/ },
-	/* 117 */
+	/* 118 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(92);
 
 	/***/ },
-	/* 118 */
+	/* 119 */
+	/***/ function(module, exports, __webpack_require__) {
+
+		/// <reference path="../../../typings/main.d.ts" />
+		var _ = __webpack_require__(4);
+		/**
+		 * Gets pure include path portion from the complete include.
+		 * Does not include the reference part.
+		 * @param includeString
+		 */
+		function getIncludePath(includeString) {
+		    var index = includeString.indexOf("#");
+		    if (index == -1)
+		        return includeString;
+		    return includeString.substring(0, index);
+		}
+		exports.getIncludePath = getIncludePath;
+		/**
+		 * Gets reference portion of the include string and returns it as
+		 * an array of segments. Returns null of no reference is contained in the include.
+		 * @param includeString
+		 */
+		function getIncludeReference(includeString) {
+		    var index = includeString.indexOf("#");
+		    if (index == -1)
+		        return null;
+		    var referenceString = index == includeString.length - 1 ? "" : includeString.substring(index + 1, includeString.length);
+		    var segments = referenceString.split("/");
+		    if (segments.length == 0)
+		        return null;
+		    if (segments[0].trim() == "") {
+		        segments.splice(0, 1);
+		    }
+		    return new IncludeReferenceImpl(referenceString, segments);
+		}
+		exports.getIncludeReference = getIncludeReference;
+		/**
+		 * Factory method returning all include reference resolvers, registered in the system.
+		 */
+		function getIncludeReferenceResolvers() {
+		    return [new JSONResolver()];
+		}
+		exports.getIncludeReferenceResolvers = getIncludeReferenceResolvers;
+		/**
+		 * Checks all resolvers, finds the suitable one, resolves the reference and returns the result
+		 * of resolving. Returns null if no suitable resolver is found or resolver itself fails to resolve.
+		 * @param includeString - complete include string
+		 * @param content - include contents
+		 */
+		function resolveContents(includeString, content) {
+		    if (!includeString) {
+		        return content;
+		    }
+		    var reference = getIncludeReference(includeString);
+		    if (!reference) {
+		        return content;
+		    }
+		    var includePath = getIncludePath(includeString);
+		    return resolve(includePath, reference, content).content;
+		}
+		exports.resolveContents = resolveContents;
+		/**
+		 * Checks all resolvers, finds the suitable one, resolves the reference and returns the result
+		 * of resolving. Returns null if no suitable resolver is found or resolver itself fails to resolve.
+		 * @param includePath
+		 * @param includeReference
+		 * @param content
+		 */
+		function resolve(includePath, includeReference, content) {
+		    if (!content) {
+		        return {
+		            content: null,
+		            validation: []
+		        };
+		    }
+		    var resolver = _.find(getIncludeReferenceResolvers(), function (currentResolver) { return currentResolver.isApplicable(includePath, content); });
+		    if (!resolver)
+		        return {
+		            content: content,
+		            validation: []
+		        };
+		    return resolver.resolveReference(content, includeReference);
+		}
+		exports.resolve = resolve;
+		function completeReference(includePath, includeReference, content) {
+		    if (!content) {
+		        return [];
+		    }
+		    var resolver = _.find(getIncludeReferenceResolvers(), function (currentResolver) { return currentResolver.isApplicable(includePath, content); });
+		    if (!resolver)
+		        return [];
+		    return resolver.completeReference(content, includeReference);
+		}
+		exports.completeReference = completeReference;
+		var IncludeReferenceImpl = (function () {
+		    function IncludeReferenceImpl(originalString, segments) {
+		        this.segments = segments;
+		        this.originalString = originalString;
+		    }
+		    IncludeReferenceImpl.prototype.getFragments = function () {
+		        return this.segments;
+		    };
+		    IncludeReferenceImpl.prototype.asString = function () {
+		        return this.originalString;
+		    };
+		    return IncludeReferenceImpl;
+		})();
+		var JSONResolver = (function () {
+		    function JSONResolver() {
+		    }
+		    JSONResolver.prototype.isApplicable = function (includePath, content) {
+		        return true;
+		    };
+		    JSONResolver.prototype.resolveReference = function (content, reference) {
+		        try {
+		            var jsonRoot = JSON.parse(content);
+		            var fragments = reference.getFragments();
+		            if (!fragments || fragments.length == 0) {
+		                return {
+		                    content: content,
+		                    validation: []
+		                };
+		            }
+		            var currentJSON = jsonRoot;
+		            for (var i = 0; i < fragments.length; i++) {
+		                var fragment = fragments[i];
+		                currentJSON = this.findChild(currentJSON, fragment);
+		                if (!currentJSON) {
+		                    var validationIssue = {
+		                        message: "Can not resolve " + fragment + " in #" + reference.asString() + " reference"
+		                    };
+		                    return {
+		                        content: content,
+		                        validation: [validationIssue]
+		                    };
+		                }
+		            }
+		            return {
+		                content: JSON.stringify(currentJSON, null, 2),
+		                validation: []
+		            };
+		        }
+		        catch (Error) {
+		            console.log(Error);
+		        }
+		        return {
+		            content: content,
+		            validation: []
+		        };
+		    };
+		    JSONResolver.prototype.completeReference = function (content, reference) {
+		        try {
+		            var jsonRoot = JSON.parse(content);
+		            var fragments = reference.getFragments();
+		            if (!fragments || fragments.length == 0) {
+		                return this.getChildren(jsonRoot);
+		            }
+		            var currentJSON = jsonRoot;
+		            var emptyPrefixCompletion = reference.asString().lastIndexOf("/") == reference.asString().length - 1;
+		            var limit = emptyPrefixCompletion ? fragments.length : fragments.length - 1;
+		            for (var i = 0; i < fragments.length - 1; i++) {
+		                var fragment = fragments[i];
+		                currentJSON = this.findChild(currentJSON, fragment);
+		                if (!currentJSON) {
+		                    return [];
+		                }
+		            }
+		            if (emptyPrefixCompletion) {
+		                return this.getChildren(currentJSON);
+		            }
+		            else {
+		                var lastPrefix = fragments[fragments.length - 1];
+		                var result = [];
+		                this.getChildren(currentJSON).forEach(function (child) {
+		                    if (child.indexOf(lastPrefix) == 0) {
+		                        result.push(child);
+		                    }
+		                });
+		                return result;
+		            }
+		        }
+		        catch (Error) {
+		            console.log(Error);
+		        }
+		        return [];
+		    };
+		    JSONResolver.prototype.findChild = function (jsonObject, fragment) {
+		        var decoded = fragment.replace('~1', '/');
+		        decoded = fragment.replace('~0', '~');
+		        return jsonObject[decoded];
+		    };
+		    JSONResolver.prototype.getChildren = function (jsonObject) {
+		        return Object.keys(jsonObject);
+		    };
+		    return JSONResolver;
+		})();
+
+
+	/***/ },
+	/* 120 */
 	/***/ function(module, exports) {
 
 		module.exports = __webpack_require__(98);
 
 	/***/ },
-	/* 119 */
+	/* 121 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -43006,6 +44809,7 @@
 		var yaml = __webpack_require__(7);
 		var typeExpression = __webpack_require__(51);
 		var def = __webpack_require__(3);
+		var high = __webpack_require__(2);
 		var hlimpl = __webpack_require__(5);
 		var search = __webpack_require__(53);
 		var universes = __webpack_require__(54);
@@ -43042,12 +44846,11 @@
 		    };
 		    return KeyMatcher;
 		})();
-		var deep = 0;
-		function getAllOptions(c) {
+		function getAllOptions(c, deep) {
+		    if (deep === void 0) { deep = 0; }
 		    if (deep > 20) {
 		        return [];
 		    }
-		    deep++;
 		    try {
 		        var result = [];
 		        var tp = c.leftType();
@@ -43057,7 +44860,7 @@
 		        var r = c.rightType();
 		        if (r) {
 		            if (r.isUnion()) {
-		                var options = getAllOptions(r.union());
+		                var options = getAllOptions(r.union(), deep + 1);
 		                result = result.concat(options);
 		            }
 		            else {
@@ -43067,7 +44870,6 @@
 		        return result;
 		    }
 		    finally {
-		        deep--;
 		    }
 		}
 		var ad = 0;
@@ -43231,10 +45033,8 @@
 		    BasicNodeBuilder.prototype.processChildren = function (childrenToAdopt, aNode, res, allowsQuestion, km) {
 		        childrenToAdopt.forEach(function (x) {
 		            var key = x.key();
-		            if (allowsQuestion) {
-		                if (key != null && key.charAt(key.length - 1) == '?') {
-		                    key = key.substr(0, key.length - 1);
-		                }
+		            if (x.optional() && !allowsQuestion) {
+		                return;
 		            }
 		            var p = key != null ? km.match(key) : null;
 		            if (p != null) {
@@ -43270,7 +45070,31 @@
 		                        if (p.isInherited()) {
 		                            aNode.setComputed(p.nameId(), x.value());
 		                        }
-		                        res.push(new hlimpl.ASTPropImpl(x, aNode, range, p));
+		                        var attrNode = new hlimpl.ASTPropImpl(x, aNode, range, p);
+		                        if ((seq || x.valueKind() == 2 /* MAP */)) {
+		                            var rng = p.range().nameId();
+		                            if (!p.getAdapter(services.RAMLPropertyService).isExampleProperty()) {
+		                                if (rng == 'StringType') {
+		                                    rng = "string";
+		                                }
+		                                if (rng == 'NumberType') {
+		                                    rng = "number";
+		                                }
+		                                if (rng == 'BooleanType') {
+		                                    rng = "boolean";
+		                                }
+		                                if (rng == "string" || rng == "number" || rng == "boolean") {
+		                                    attrNode.errorMessage = "property '" + p.groupName() + "' must be a " + rng;
+		                                    if (x.children().length == 0 && p.groupName() == "enum") {
+		                                        attrNode.errorMessage = "enum is empty";
+		                                        if (x.valueKind() == 2 /* MAP */) {
+		                                            attrNode.errorMessage = "the value of enum must be an array";
+		                                        }
+		                                    }
+		                                }
+		                            }
+		                        }
+		                        res.push(attrNode);
 		                    }
 		                    //}
 		                    return;
@@ -43279,15 +45103,44 @@
 		                    var rs = [];
 		                    //now we need determine actual type
 		                    aNode._children = res;
+		                    if (x.value() && typeof x.value() == 'string') {
+		                        if (x.value().trim().length > 0) {
+		                            var c = p.range();
+		                            if (!c.allProperties().some(function (x) {
+		                                var srv = x;
+		                                if (srv) {
+		                                    return srv.canBeValue() && srv.isFromParentValue();
+		                                }
+		                                return false;
+		                            })) {
+		                                var bnode = new hlimpl.BasicASTNode(x, aNode);
+		                                bnode.getLowLevelEnd = function () {
+		                                    return -1;
+		                                };
+		                                bnode.getLowLevelStart = function () {
+		                                    return -1;
+		                                };
+		                                bnode.knownProperty = p;
+		                                res.push(bnode);
+		                            }
+		                        }
+		                    }
 		                    if (!p.isMerged()) {
 		                        if (multyValue) {
 		                            if (p.getAdapter(services.RAMLPropertyService).isEmbedMap()) {
 		                                var chld = x.children();
 		                                if (chld.length == 0) {
-		                                    if (x.value()) {
-		                                        var bnode = new hlimpl.BasicASTNode(x, aNode);
-		                                        bnode.knownProperty = p;
-		                                        res.push(bnode);
+		                                    if (p.range().key() == universes.Universe08.ResourceType) {
+		                                        var error = new hlimpl.BasicASTNode(x, aNode);
+		                                        error.errorMessage = "property: '" + p.nameId() + "' must be a map";
+		                                        res.push(error);
+		                                    }
+		                                    if (x.valueKind() == 0 /* SCALAR */) {
+		                                        if (p.range().key() == universes.Universe08.AbstractSecurityScheme) {
+		                                            var error = new hlimpl.BasicASTNode(x, aNode);
+		                                            error.errorMessage = "property: '" + p.nameId() + "' must be a map";
+		                                            res.push(error);
+		                                        }
 		                                    }
 		                                }
 		                                chld.forEach(function (y) {
@@ -43366,6 +45219,18 @@
 		                                                            filter[x.name()] = true;
 		                                                        }
 		                                                    });
+		                                                    var ap = node.definition().allProperties();
+		                                                    ap.forEach(function (p) {
+		                                                        if (p.getAdapter(services.RAMLPropertyService).isKey()) {
+		                                                            return;
+		                                                        }
+		                                                        if (p.getAdapter(services.RAMLPropertyService).isSystem()) {
+		                                                            return;
+		                                                        }
+		                                                        if (node.lowLevel().children().some(function (x) { return x.key() == p.nameId(); })) {
+		                                                            filter[p.nameId()] = true;
+		                                                        }
+		                                                    });
 		                                                    node._computed = true;
 		                                                }
 		                                            }
@@ -43373,17 +45238,46 @@
 		                                    }
 		                                }
 		                                var parsed = [];
+		                                if (x.children().length == 0) {
+		                                    if (x.valueKind() == 3 /* SEQ */) {
+		                                        if (p.range().key() == universes.Universe08.Parameter) {
+		                                            var error = new hlimpl.BasicASTNode(x, aNode);
+		                                            error.errorMessage = "property: '" + p.nameId() + "' must be a map";
+		                                            res.push(error);
+		                                        }
+		                                    }
+		                                }
 		                                x.children().forEach(function (y) {
 		                                    if (filter[y.key()]) {
 		                                        return;
 		                                    }
-		                                    var node = new hlimpl.ASTNodeImpl(y, aNode, range, p);
-		                                    var dc = p.domain().key();
-		                                    if (p.nameId() == "body" && (dc == universes.Universe08.MethodBase || dc == universes.Universe10.MethodBase)) {
-		                                        node.setComputed("form", "true"); //FIXME
+		                                    if (y.valueKind() == 3 /* SEQ */) {
+		                                        y.children().forEach(function (z) {
+		                                            var node = new hlimpl.ASTNodeImpl(z, aNode, range, p);
+		                                            node._allowQuestion = allowsQuestion;
+		                                            node.setNamePatch(y.key());
+		                                            parsed.push(node);
+		                                        });
+		                                        if (y.children().length == 0) {
+		                                            var error = new hlimpl.BasicASTNode(y, aNode);
+		                                            if (p.range().key() == universes.Universe08.Parameter) {
+		                                                error.errorMessage = "named parameter needs at least one type";
+		                                            }
+		                                            else {
+		                                                error.errorMessage = "node should have at least one member value";
+		                                            }
+		                                            res.push(error);
+		                                        }
 		                                    }
-		                                    node._allowQuestion = allowsQuestion;
-		                                    parsed.push(node);
+		                                    else {
+		                                        var node = new hlimpl.ASTNodeImpl(y, aNode, range, p);
+		                                        var dc = p.domain().key();
+		                                        if (p.nameId() == "body" && (dc == universes.Universe08.MethodBase || dc == universes.Universe10.MethodBase)) {
+		                                            node.setComputed("form", "true"); //FIXME
+		                                        }
+		                                        node._allowQuestion = allowsQuestion;
+		                                        parsed.push(node);
+		                                    }
 		                                });
 		                                if (parsed.length > 0) {
 		                                    parsed.forEach(function (x) { return rs.push(x); });
@@ -43453,6 +45347,22 @@
 		    return null;
 		}
 		function doDescrimination(node) {
+		    try {
+		        var nodeDefenitionName = node.definition().nameId();
+		        var isApi = nodeDefenitionName === universes.Universe10.Api.name || nodeDefenitionName === universes.Universe08.Api.name;
+		        if (!isApi && !node.property() && !node.parent() && node.definition().nameId() === high.getFragmentDefenitionName(node)) {
+		            var result = null;
+		            var subTypes = node.definition().allSubTypes();
+		            subTypes.forEach(function (subType) {
+		                if (!result && subType.getAdapter(services.RAMLService).match(node, null)) {
+		                    result = subType;
+		                }
+		            });
+		            return result;
+		        }
+		    }
+		    catch (exception) {
+		    }
 		    return descriminate(node.property(), node.parent(), node);
 		}
 		exports.doDescrimination = doDescrimination;
@@ -43516,7 +45426,7 @@
 
 
 	/***/ },
-	/* 120 */
+	/* 122 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -43929,7 +45839,7 @@
 
 
 	/***/ },
-	/* 121 */
+	/* 123 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var RamlWrapper = __webpack_require__(1);
@@ -44218,7 +46128,7 @@
 
 
 	/***/ },
-	/* 122 */
+	/* 124 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var RamlWrapper = __webpack_require__(74);
@@ -44257,8 +46167,14 @@
 		}
 		exports.buildWrapperNode = buildWrapperNode;
 		var classMap = {
+		    "AbstractSecurityScheme": function (x) {
+		        return new RamlWrapper.AbstractSecuritySchemeImpl(x);
+		    },
 		    "Api": function (x) {
 		        return new RamlWrapper.ApiImpl(x);
+		    },
+		    "BasicSecurityScheme": function (x) {
+		        return new RamlWrapper.BasicSecuritySchemeImpl(x);
 		    },
 		    "BodyLike": function (x) {
 		        return new RamlWrapper.BodyLikeImpl(x);
@@ -44269,8 +46185,14 @@
 		    "BooleanTypeDeclaration": function (x) {
 		        return new RamlWrapper.BooleanTypeDeclarationImpl(x);
 		    },
+		    "CustomSecurityScheme": function (x) {
+		        return new RamlWrapper.CustomSecuritySchemeImpl(x);
+		    },
 		    "DateTypeDeclaration": function (x) {
 		        return new RamlWrapper.DateTypeDeclarationImpl(x);
+		    },
+		    "DigestSecurityScheme": function (x) {
+		        return new RamlWrapper.DigestSecuritySchemeImpl(x);
 		    },
 		    "DocumentationItem": function (x) {
 		        return new RamlWrapper.DocumentationItemImpl(x);
@@ -44323,8 +46245,14 @@
 		    "NumberTypeDeclaration": function (x) {
 		        return new RamlWrapper.NumberTypeDeclarationImpl(x);
 		    },
+		    "OAuth1SecurityScheme": function (x) {
+		        return new RamlWrapper.OAuth1SecuritySchemeImpl(x);
+		    },
 		    "OAuth1SecuritySchemeSettings": function (x) {
 		        return new RamlWrapper.OAuth1SecuritySchemeSettingsImpl(x);
+		    },
+		    "OAuth2SecurityScheme": function (x) {
+		        return new RamlWrapper.OAuth2SecuritySchemeImpl(x);
 		    },
 		    "OAuth2SecuritySchemeSettings": function (x) {
 		        return new RamlWrapper.OAuth2SecuritySchemeSettingsImpl(x);
@@ -44362,17 +46290,14 @@
 		    "SchemaString": function (x) {
 		        return new RamlWrapper.SchemaStringImpl(x);
 		    },
-		    "SecuritySchema": function (x) {
-		        return new RamlWrapper.SecuritySchemaImpl(x);
+		    "SecuritySchemePart": function (x) {
+		        return new RamlWrapper.SecuritySchemePartImpl(x);
 		    },
-		    "SecuritySchemaPart": function (x) {
-		        return new RamlWrapper.SecuritySchemaPartImpl(x);
+		    "SecuritySchemeRef": function (x) {
+		        return new RamlWrapper.SecuritySchemeRefImpl(x);
 		    },
-		    "SecuritySchemaRef": function (x) {
-		        return new RamlWrapper.SecuritySchemaRefImpl(x);
-		    },
-		    "SecuritySchemaSettings": function (x) {
-		        return new RamlWrapper.SecuritySchemaSettingsImpl(x);
+		    "SecuritySchemeSettings": function (x) {
+		        return new RamlWrapper.SecuritySchemeSettingsImpl(x);
 		    },
 		    "StatusCodeString": function (x) {
 		        return new RamlWrapper.StatusCodeStringImpl(x);
@@ -44408,7 +46333,7 @@
 
 
 	/***/ },
-	/* 123 */
+	/* 125 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -44419,7 +46344,7 @@
 		    d.prototype = new __();
 		};
 		var _ = __webpack_require__(4);
-		var sel = __webpack_require__(124);
+		var sel = __webpack_require__(126);
 		var Selector = (function () {
 		    function Selector() {
 		    }
@@ -44607,7 +46532,7 @@
 
 
 	/***/ },
-	/* 124 */
+	/* 126 */
 	/***/ function(module, exports) {
 
 		var mod = (function () {
@@ -46899,49 +48824,7 @@
 /* 5 */
 /***/ function(module, exports) {
 
-	function readFileSync(filePath) {
-	    return null;
-	}
-	exports.readFileSync = readFileSync;
-	function writeFileSync(filePath, content) {
-	}
-	exports.writeFileSync = writeFileSync;
-	function existsSync(filePath) {
-	    return false;
-	}
-	exports.existsSync = existsSync;
-	function mkdirSync(dir) {
-	}
-	exports.mkdirSync = mkdirSync;
-	function readdirSync(filePath) {
-	}
-	exports.readdirSync = readdirSync;
-	function statSync(filePath) {
-	    return {
-	        isDirectory: function () {
-	            return false;
-	        },
-	        isSymbolicLink: function () {
-	            return false;
-	        },
-	        isFile: function () {
-	            return false;
-	        }
-	    };
-	}
-	exports.statSync = statSync;
-	function lstatSync(filePath) {
-	    return this.statSync(filePath);
-	}
-	exports.lstatSync = lstatSync;
-	function list(file, parent) {
-	    return [];
-	}
-	exports.list = list;
-	function onChange(callback) {
-	}
-	exports.onChange = onChange;
-	//# sourceMappingURL=emptyFS.js.map
+	/* (ignored) */
 
 /***/ },
 /* 6 */
@@ -46954,6 +48837,8 @@
 	 * @license  MIT
 	 */
 	/* eslint-disable no-proto */
+
+	'use strict'
 
 	var base64 = __webpack_require__(7)
 	var ieee754 = __webpack_require__(8)
@@ -47037,8 +48922,10 @@
 	    return new Buffer(arg)
 	  }
 
-	  this.length = 0
-	  this.parent = undefined
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    this.length = 0
+	    this.parent = undefined
+	  }
 
 	  // Common case.
 	  if (typeof arg === 'number') {
@@ -47169,6 +49056,10 @@
 	if (Buffer.TYPED_ARRAY_SUPPORT) {
 	  Buffer.prototype.__proto__ = Uint8Array.prototype
 	  Buffer.__proto__ = Uint8Array
+	} else {
+	  // pre-set for values that may exist in the future
+	  Buffer.prototype.length = undefined
+	  Buffer.prototype.parent = undefined
 	}
 
 	function allocate (that, length) {
@@ -47318,10 +49209,6 @@
 	  }
 	}
 	Buffer.byteLength = byteLength
-
-	// pre-set for values that may exist in the future
-	Buffer.prototype.length = undefined
-	Buffer.prototype.parent = undefined
 
 	function slowToString (encoding, start, end) {
 	  var loweredCase = false
@@ -58039,7 +59926,7 @@
 
 	    'use strict';
 
-	    validator = { version: '4.4.0' };
+	    validator = { version: '4.5.0' };
 
 	    var emailUserPart = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~]+$/i;
 	    var quotedEmailUser = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f]))*$/i;
@@ -58087,14 +59974,14 @@
 	    var base64 = /^(?:[A-Z0-9+\/]{4})*(?:[A-Z0-9+\/]{2}==|[A-Z0-9+\/]{3}=|[A-Z0-9+\/]{4})$/i;
 
 	    var phones = {
-	      'zh-CN': /^(\+?0?86\-?)?1[345789]\d{9}$/,
+	      'zh-CN': /^(\+?0?86\-?)?((13\d|14[57]|15[^4,\D]|17[678]|18\d)\d{8}|170[059]\d{7})$/,
 	      'zh-TW': /^(\+?886\-?|0)?9\d{8}$/,
 	      'en-ZA': /^(\+?27|0)\d{9}$/,
 	      'en-AU': /^(\+?61|0)4\d{8}$/,
 	      'en-HK': /^(\+?852\-?)?[569]\d{3}\-?\d{4}$/,
 	      'fr-FR': /^(\+?33|0)[67]\d{8}$/,
 	      'pt-PT': /^(\+351)?9[1236]\d{7}$/,
-	      'el-GR': /^(\+30)?((2\d{9})|(69\d{8}))$/,
+	      'el-GR': /^(\+?30)?(69\d{8})$/,
 	      'en-GB': /^(\+?44|0)7\d{9}$/,
 	      'en-US': /^(\+?1)?[2-9]\d{2}[2-9](?!11)\d{6}$/,
 	      'en-ZM': /^(\+26)?09[567]\d{7}$/,
@@ -58102,7 +59989,8 @@
 	      'nb-NO': /^(\+?47)?[49]\d{7}$/,
 	      'nn-NO': /^(\+?47)?[49]\d{7}$/,
 	      'vi-VN': /^(0|\+?84)?((1(2([0-9])|6([2-9])|88|99))|(9((?!5)[0-9])))([0-9]{7})$/,
-	      'en-NZ': /^(\+?64|0)2\d{7,9}$/
+	      'en-NZ': /^(\+?64|0)2\d{7,9}$/,
+	      'en-IN': /^(\+?91|0)?[789]\d{9}$/
 	    };
 
 	    // from http://goo.gl/0ejHHW
@@ -58403,8 +60291,10 @@
 	                // disallow full-width chars
 	                return false;
 	            }
-	            if (part[0] === '-' || part[part.length - 1] === '-' ||
-	                    part.indexOf('---') >= 0) {
+	            if (part[0] === '-' || part[part.length - 1] === '-') {
+	                return false;
+	            }
+	            if (part.indexOf('---') >= 0 && part.slice(0, 4) !== 'xn--') {
 	                return false;
 	            }
 	        }
@@ -58507,7 +60397,10 @@
 	            }
 	        } else {
 	            timezone = iso8601Parts[21];
-	            if (!timezone || timezone === 'z' || timezone === 'Z') {
+	            if (!timezone) {
+	                return null;
+	            }
+	            if (timezone === 'z' || timezone === 'Z') {
 	                return 0;
 	            }
 	            sign = iso8601Parts[22];
@@ -58527,6 +60420,7 @@
 	        if (isNaN(normalizedDate)) {
 	            return false;
 	        }
+
 	        // normalizedDate is in the user's timezone. Apply the input
 	        // timezone offset to the date so that the year and day match
 	        // the input
@@ -58537,6 +60431,7 @@
 	            normalizedDate = new Date(normalizedDate.getTime() +
 	                60000 * timezoneDifference);
 	        }
+
 	        var day = String(normalizedDate.getDate());
 	        var dayOrYear, dayOrYearMatches, year;
 	        //check for valid double digits that could be late days
@@ -58549,6 +60444,7 @@
 	        dayOrYear = dayOrYearMatches.map(function(digitString) {
 	            return digitString.match(/\d+/g)[0];
 	        }).join('/');
+
 	        year = String(normalizedDate.getFullYear()).slice(-2);
 	        if (dayOrYear === day || dayOrYear === year) {
 	            return true;
@@ -66785,8 +68681,9 @@
 
 	util.inherits(Readable, Stream);
 
+	var Duplex;
 	function ReadableState(options, stream) {
-	  var Duplex = __webpack_require__(70);
+	  Duplex = Duplex || __webpack_require__(70);
 
 	  options = options || {};
 
@@ -66852,8 +68749,9 @@
 	  }
 	}
 
+	var Duplex;
 	function Readable(options) {
-	  var Duplex = __webpack_require__(70);
+	  Duplex = Duplex || __webpack_require__(70);
 
 	  if (!(this instanceof Readable))
 	    return new Readable(options);
@@ -68032,8 +69930,9 @@
 	  this.next = null;
 	}
 
+	var Duplex;
 	function WritableState(options, stream) {
-	  var Duplex = __webpack_require__(70);
+	  Duplex = Duplex || __webpack_require__(70);
 
 	  options = options || {};
 
@@ -68141,8 +70040,9 @@
 	}catch(_){}}());
 
 
+	var Duplex;
 	function Writable(options) {
-	  var Duplex = __webpack_require__(70);
+	  Duplex = Duplex || __webpack_require__(70);
 
 	  // Writable ctor is applied to Duplexes, though they're not
 	  // instanceof Writable, they're instanceof Readable.

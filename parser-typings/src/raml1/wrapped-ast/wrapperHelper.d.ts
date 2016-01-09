@@ -9,6 +9,7 @@ export declare function load(pth: string): core.BasicNode;
 export declare function completeRelativeUri(res: RamlWrapper.Resource): string;
 export declare function expandTraitsAndResourceTypes(api: RamlWrapper.Api): RamlWrapper.Api;
 export declare function absoluteUri(res: RamlWrapper.Resource): string;
+export declare function validateInstance(res: RamlWrapper.TypeDeclaration, value: any): string[];
 export declare function qName(c: core.BasicNode): string;
 export declare function allTraits(a: RamlWrapper.Api): RamlWrapper.Trait[];
 export declare function allResourceTypes(a: RamlWrapper.Api): RamlWrapper.ResourceType[];
@@ -62,6 +63,19 @@ export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWr
  * Otherwise, returns protocol, specified in the base URI.
  **/
 export declare function allProtocols(api: RamlWrapper.Api): string[];
+/**
+ * __$helperMethod__ Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+ * returns schemes defined with `securedBy` at API level.
+ */
+export declare function allSecuredBy(resourceOrMethod: RamlWrapper.Resource | RamlWrapper.Method): RamlWrapper.SecuritySchemeRef[];
+/**
+ * __$helperMethod__ Returns the name of security scheme, this reference refers to.
+ */
+export declare function securitySchemeName(schemeReference: RamlWrapper.SecuritySchemeRef): string;
+/**
+ * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
+ */
+export declare function securityScheme(schemeReference: RamlWrapper.SecuritySchemeRef): RamlWrapper.AbstractSecurityScheme;
 export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     private _name;
     private _parent;
@@ -75,6 +89,7 @@ export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     "default"(): string;
     xml(): any;
     runtimeType(): any;
+    validateInstance(v: any): any[];
     sendDefaultByClient(): boolean;
     example(): string;
     schema(): string;
@@ -97,6 +112,8 @@ export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
     definition(): any;
     runtimeDefinition(): any;
     toJSON(): any;
+    optional(): boolean;
+    optionalProperties(): string[];
 }
 export declare class SchemaDef {
     private _content;

@@ -56,6 +56,19 @@ export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWr
  * Otherwise, returns protocol, specified in the base URI.
  **/
 export declare function allProtocols(api: RamlWrapper.Api): string[];
+/**
+ * __$helperMethod__ Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+ * returns schemes defined with `securedBy` at API level.
+ */
+export declare function allSecuredBy(resourceOrMethod: RamlWrapper.Resource | RamlWrapper.Method): RamlWrapper.SecuritySchemeRef[];
+/**
+ * __$helperMethod__ Returns the name of security scheme, this reference refers to.
+ */
+export declare function securitySchemeName(schemeReference: RamlWrapper.SecuritySchemeRef): string;
+/**
+ * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
+ */
+export declare function securityScheme(schemeReference: RamlWrapper.SecuritySchemeRef): RamlWrapper.AbstractSecurityScheme;
 export declare class HelperUriParam implements RamlWrapper.Parameter {
     private _name;
     private _parent;
@@ -86,4 +99,6 @@ export declare class HelperUriParam implements RamlWrapper.Parameter {
     definition(): any;
     runtimeDefinition(): any;
     toJSON(): any;
+    optional(): boolean;
+    optionalProperties(): string[];
 }

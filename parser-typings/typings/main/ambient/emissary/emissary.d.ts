@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.3.5
 // Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/emissary/emissary.d.ts
 // Type definitions for emissary
 // Project: https://github.com/atom/emissary

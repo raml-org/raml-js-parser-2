@@ -10,10 +10,10 @@ export declare class BasicASTNode implements hl.IParseResult {
     private _hashkey;
     getKind(): hl.NodeKind;
     asAttr(): hl.IAttribute;
-    version(): hl.RAMLVersion;
     asElement(): hl.IHighLevelNode;
     hashkey(): string;
     root(): hl.IHighLevelNode;
+    version(): string;
     getLowLevelStart(): number;
     getLowLevelEnd(): number;
     private _implicit;
@@ -23,6 +23,7 @@ export declare class BasicASTNode implements hl.IParseResult {
     knownProperty: hl.IProperty;
     needSequence: boolean;
     unresolvedRef: string;
+    errorMessage: string;
     isSameNode(n: hl.IParseResult): boolean;
     checkContextValue(name: string, value: string, thisObj: any): boolean;
     printDetails(indent?: string): string;
@@ -41,6 +42,7 @@ export declare class BasicASTNode implements hl.IParseResult {
     computedValue(name: string): any;
     lowLevel(): ll.ILowLevelASTNode;
     name(): string;
+    optional(): boolean;
     parent(): hl.IHighLevelNode;
     setParent(parent: hl.IHighLevelNode): void;
     isElement(): boolean;
@@ -71,7 +73,7 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     private _prop;
     private fromKey;
     definition(): hl.IValueTypeDefinition;
-    asAttr(): ASTPropImpl;
+    asAttr(): hl.IAttribute;
     isString(): boolean;
     constructor(node: ll.ILowLevelASTNode, parent: hl.IHighLevelNode, _def: hl.IValueTypeDefinition, _prop: hl.IProperty, fromKey?: boolean);
     getKind(): hl.NodeKind;
@@ -85,6 +87,7 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     isElement(): boolean;
     property(): defs.Property;
     convertMultivalueToString(value: string): string;
+    _value: string;
     value(): any;
     name(): string;
     printDetails(indent?: string): string;
@@ -148,9 +151,7 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     setWrapperNode(node: ParserCore.BasicNode): void;
     setAssociatedType(d: hl.INodeDefinition): void;
     associatedType(): hl.INodeDefinition;
-    knownIds(): {
-        [name: string]: hl.IParseResult;
-    };
+    knownIds(): {};
     findById(id: string): hl.IParseResult;
     isAuxilary(): boolean;
     private initilizeKnownIDs(api);
@@ -175,6 +176,9 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     private getExtractedChildren();
     allowsQuestion(): boolean;
     findReferences(): hl.IParseResult[];
+    private _patchedName;
+    setNamePatch(s: string): void;
+    isNamePatch(): string;
     name(): any;
     findElementAtOffset(n: number): hl.IHighLevelNode;
     isElement(): boolean;
@@ -212,4 +216,5 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     isExpanded(): boolean;
     copy(): ASTNodeImpl;
     clearChildrenCache(): void;
+    optionalProperties(): string[];
 }

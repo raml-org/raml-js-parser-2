@@ -166,6 +166,14 @@ export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
     kind(): string;
 }
 export interface SecuritySchemeRef extends Reference {
+    /**
+     * Returns the name of security scheme, this reference refers to.
+     **/
+    securitySchemeName(): string;
+    /**
+     * Returns AST node of security scheme, this reference refers to, or null.
+     **/
+    securityScheme(): AbstractSecurityScheme;
 }
 export declare class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef {
     /**
@@ -177,6 +185,14 @@ export declare class SecuritySchemeRefImpl extends ReferenceImpl implements Secu
      * @return Actual name of instance interface
      **/
     kind(): string;
+    /**
+     * Returns the name of security scheme, this reference refers to.
+     **/
+    securitySchemeName(): string;
+    /**
+     * Returns AST node of security scheme, this reference refers to, or null.
+     **/
+    securityScheme(): AbstractSecurityScheme;
 }
 /**
  * Annotations allow you to attach information to your API
@@ -848,6 +864,10 @@ export interface TypeDeclaration extends RAMLLanguageElement {
      * Runtime representation of type represented by this AST node
      **/
     runtimeType(): typeSystem.ITypeDefinition;
+    /**
+     * validate an instance against type
+     **/
+    validateInstance(value: any): string[];
 }
 export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl implements TypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -967,6 +987,10 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
      * Runtime representation of type represented by this AST node
      **/
     runtimeType(): typeSystem.ITypeDefinition;
+    /**
+     * validate an instance against type
+     **/
+    validateInstance(value: any): string[];
 }
 export interface ModelLocation extends core.AbstractWrapperNode {
 }
@@ -1992,6 +2016,11 @@ export interface Method extends MethodBase {
      * For other methods throws Exception.
      **/
     methodId(): string;
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export declare class MethodImpl extends MethodBaseImpl implements Method {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2069,6 +2098,11 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * For other methods throws Exception.
      **/
     methodId(): string;
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export interface SecuritySchemePart extends MethodBase {
     /**
@@ -2595,6 +2629,11 @@ export interface Resource extends ResourceBase {
      * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): TypeDeclaration[];
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2674,6 +2713,11 @@ export declare class ResourceImpl extends ResourceBaseImpl implements Resource {
      * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): TypeDeclaration[];
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export interface AnnotationTypeDeclaration extends RAMLLanguageElement {
     /**

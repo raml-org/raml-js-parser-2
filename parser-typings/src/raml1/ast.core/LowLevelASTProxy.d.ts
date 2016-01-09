@@ -3,14 +3,17 @@ import ll = require("../lowLevelAST");
 import hl = require("../highLevelAST");
 import yaml = require("../jsyaml/yamlAST");
 import Error = require("../jsyaml/js-yaml/exception");
+import refResolvers = require("../jsyaml/includeRefResolvers");
 export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     protected _parent: ll.ILowLevelASTNode;
     protected _transformer: ValueTransformer;
-    constructor(_parent: ll.ILowLevelASTNode, _transformer: ValueTransformer);
+    protected ramlVersion: string;
+    constructor(_parent: ll.ILowLevelASTNode, _transformer: ValueTransformer, ramlVersion: string);
     protected _originalNode: ll.ILowLevelASTNode;
     private _highLevelNode;
     private _highLevelParseResult;
     private _keyOverride;
+    keyKind(): yaml.Kind;
     actual(): any;
     transformer(): ValueTransformer;
     originalNode(): ll.ILowLevelASTNode;
@@ -19,8 +22,10 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     value(): any;
     includeErrors(): string[];
     includePath(): string;
+    includeReference(): refResolvers.IncludeReference;
     setKeyOverride(_key: string): void;
     key(): string;
+    optional(): boolean;
     children(): ll.ILowLevelASTNode[];
     parent(): ll.ILowLevelASTNode;
     unit(): ll.ICompilationUnit;
@@ -52,7 +57,8 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     includesContents(): boolean;
 }
 export declare class LowLevelCompositeNode extends LowLevelProxyNode {
-    constructor(node: ll.ILowLevelASTNode, parent: LowLevelCompositeNode, transformer: ValueTransformer);
+    private isPrimary;
+    constructor(node: ll.ILowLevelASTNode, parent: LowLevelCompositeNode, transformer: ValueTransformer, ramlVersion: string, isPrimary?: boolean);
     protected _adoptedNodes: LowLevelValueTransformingNode[];
     protected _children: LowLevelCompositeNode[];
     adoptedNodes(): ll.ILowLevelASTNode[];
@@ -63,15 +69,18 @@ export declare class LowLevelCompositeNode extends LowLevelProxyNode {
     children(): ll.ILowLevelASTNode[];
     private buildKey(y);
     private collectChildrenWithKeys();
+    private skipKey(key, isPrimary);
     valueKind(): yaml.Kind;
     includePath(): string;
-    key(): string;
+    includeReference(): refResolvers.IncludeReference;
+    optional(): boolean;
 }
 export declare class LowLevelValueTransformingNode extends LowLevelProxyNode {
-    constructor(node: ll.ILowLevelASTNode, parent: ll.ILowLevelASTNode, transformer: ValueTransformer);
+    constructor(node: ll.ILowLevelASTNode, parent: ll.ILowLevelASTNode, transformer: ValueTransformer, ramlVersion: string);
     value(): any;
     children(): ll.ILowLevelASTNode[];
     parent(): LowLevelValueTransformingNode;
+    key(): string;
 }
 export interface ValueTransformer {
     transform(value: any): {

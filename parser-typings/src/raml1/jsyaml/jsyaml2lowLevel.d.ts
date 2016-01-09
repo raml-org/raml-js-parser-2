@@ -4,6 +4,7 @@ import lowlevel = require("../lowLevelAST");
 import highlevel = require("../highLevelAST");
 import Error = require("./js-yaml/exception");
 import rr = require("./resourceRegistry");
+import refResolvers = require("./includeRefResolvers");
 export declare var Kind: {
     SCALAR: yaml.Kind;
 };
@@ -191,13 +192,16 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     dump(): string;
     dumpToObject(full?: boolean): any;
     dumpNode(n: yaml.YAMLNode, full?: boolean): any;
+    keyKind(): any;
     _actualNode(): yaml.YAMLNode;
     execute(cmd: lowlevel.CompositeCommand): void;
     updateFrom(n: yaml.YAMLNode): void;
     value(): any;
     printDetails(indent?: string): string;
     visit(v: lowlevel.ASTVisitor): void;
+    private rawKey();
     key(): string;
+    optional(): boolean;
     addChild(n: lowlevel.ILowLevelASTNode, pos?: number): void;
     removeChild(n: lowlevel.ILowLevelASTNode): void;
     includeErrors(): string[];
@@ -208,6 +212,8 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     unit(): lowlevel.ICompilationUnit;
     setUnit(unit: lowlevel.ICompilationUnit): void;
     includePath(): string;
+    includeReference(): refResolvers.IncludeReference;
+    getIncludeString(): string;
     anchoredFrom(): lowlevel.ILowLevelASTNode;
     includedFrom(): lowlevel.ILowLevelASTNode;
     kind(): yaml.Kind;
