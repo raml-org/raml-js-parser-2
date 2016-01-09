@@ -153,69 +153,6 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "SecuritySchemaPart": {
-            "name": string;
-            "properties": {};
-        };
-        "SecuritySchemaSettings": {
-            "name": string;
-            "properties": {};
-        };
-        "OAuth1SecuritySchemeSettings": {
-            "name": string;
-            "properties": {
-                "requestTokenUri": {
-                    "name": string;
-                };
-                "authorizationUri": {
-                    "name": string;
-                };
-                "tokenCredentialsUri": {
-                    "name": string;
-                };
-            };
-        };
-        "OAuth2SecuritySchemeSettings": {
-            "name": string;
-            "properties": {
-                "accessTokenUri": {
-                    "name": string;
-                };
-                "authorizationUri": {
-                    "name": string;
-                };
-                "authorizationGrants": {
-                    "name": string;
-                };
-                "scopes": {
-                    "name": string;
-                };
-            };
-        };
-        "SecuritySchemaRef": {
-            "name": string;
-            "properties": {};
-        };
-        "SecuritySchema": {
-            "name": string;
-            "properties": {
-                "name": {
-                    "name": string;
-                };
-                "type": {
-                    "name": string;
-                };
-                "description": {
-                    "name": string;
-                };
-                "describedBy": {
-                    "name": string;
-                };
-                "settings": {
-                    "name": string;
-                };
-            };
-        };
         "MethodBase": {
             "name": string;
             "properties": {
@@ -268,6 +205,9 @@ declare var Universes: {
                 "uriParameters": {
                     "name": string;
                 };
+                "displayName": {
+                    "name": string;
+                };
             };
         };
         "Method": {
@@ -315,6 +255,133 @@ declare var Universes: {
                     "name": string;
                 };
             };
+        };
+        "SecuritySchemePart": {
+            "name": string;
+            "properties": {
+                "headers": {
+                    "name": string;
+                };
+                "queryParameters": {
+                    "name": string;
+                };
+                "responses": {
+                    "name": string;
+                };
+                "is": {
+                    "name": string;
+                };
+                "securedBy": {
+                    "name": string;
+                };
+                "displayName": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+            };
+        };
+        "SecuritySchemeSettings": {
+            "name": string;
+            "properties": {};
+        };
+        "AbstractSecurityScheme": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+                "type": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+                "describedBy": {
+                    "name": string;
+                };
+                "settings": {
+                    "name": string;
+                };
+            };
+        };
+        "SecuritySchemeRef": {
+            "name": string;
+            "properties": {};
+        };
+        "OAuth1SecuritySchemeSettings": {
+            "name": string;
+            "properties": {
+                "requestTokenUri": {
+                    "name": string;
+                };
+                "authorizationUri": {
+                    "name": string;
+                };
+                "tokenCredentialsUri": {
+                    "name": string;
+                };
+                "signatures": {
+                    "name": string;
+                };
+            };
+        };
+        "OAuth2SecuritySchemeSettings": {
+            "name": string;
+            "properties": {
+                "accessTokenUri": {
+                    "name": string;
+                };
+                "authorizationUri": {
+                    "name": string;
+                };
+                "authorizationGrants": {
+                    "name": string;
+                };
+                "scopes": {
+                    "name": string;
+                };
+            };
+        };
+        "PassThroughSecuritySchemeSettings": {
+            "name": string;
+            "properties": {
+                "queryParameterName": {
+                    "name": string;
+                };
+                "headerName": {
+                    "name": string;
+                };
+            };
+        };
+        "OAuth2SecurityScheme": {
+            "name": string;
+            "properties": {
+                "settings": {
+                    "name": string;
+                };
+            };
+        };
+        "OAuth1SecurityScheme": {
+            "name": string;
+            "properties": {
+                "settings": {
+                    "name": string;
+                };
+            };
+        };
+        "BasicSecurityScheme": {
+            "name": string;
+            "properties": {};
+        };
+        "DigestSecurityScheme": {
+            "name": string;
+            "properties": {};
+        };
+        "CustomSecurityScheme": {
+            "name": string;
+            "properties": {};
         };
         "Parameter": {
             "name": string;

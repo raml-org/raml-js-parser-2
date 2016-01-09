@@ -116,9 +116,17 @@ export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
      **/
     kind(): string;
 }
-export interface SecuritySchemaRef extends Reference {
+export interface SecuritySchemeRef extends Reference {
+    /**
+     * Returns the name of security scheme, this reference refers to.
+     **/
+    securitySchemeName(): string;
+    /**
+     * Returns AST node of security scheme, this reference refers to, or null.
+     **/
+    securityScheme(): AbstractSecurityScheme;
 }
-export declare class SecuritySchemaRefImpl extends ReferenceImpl implements SecuritySchemaRef {
+export declare class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef {
     /**
      * @hidden
      * @return Actual name of instance class
@@ -128,6 +136,14 @@ export declare class SecuritySchemaRefImpl extends ReferenceImpl implements Secu
      * @return Actual name of instance interface
      **/
     kind(): string;
+    /**
+     * Returns the name of security scheme, this reference refers to.
+     **/
+    securitySchemeName(): string;
+    /**
+     * Returns AST node of security scheme, this reference refers to, or null.
+     **/
+    securityScheme(): AbstractSecurityScheme;
 }
 export interface StringType extends ValueType {
 }
@@ -365,292 +381,6 @@ export declare class MarkdownStringImpl extends StringTypeImpl implements Markdo
      **/
     kind(): string;
 }
-/**
- * Declares globally referenceable security schema definition
- **/
-export interface SecuritySchema extends RAMLLanguageElement {
-    name(): string;
-    /**
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     **/
-    "type"(): string;
-    /**
-     * The description attribute MAY be used to describe a securitySchemes property.
-     **/
-    description(): MarkdownString;
-    /**
-     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
-     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
-     **/
-    describedBy(): SecuritySchemaPart;
-    /**
-     * The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.
-     * The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on.
-     **/
-    settings(): SecuritySchemaSettings;
-}
-/**
- * Declares globally referenceable security schema definition
- **/
-export declare class SecuritySchemaImpl extends RAMLLanguageElementImpl implements SecuritySchema {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    name(): string;
-    /**
-     * @hidden
-     * Set name value
-     **/
-    setName(param: string): SecuritySchemaImpl;
-    /**
-     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-     **/
-    "type"(): string;
-    /**
-     * @hidden
-     * Set type value
-     **/
-    setType(param: string): SecuritySchemaImpl;
-    /**
-     * The description attribute MAY be used to describe a securitySchemes property.
-     **/
-    description(): MarkdownString;
-    /**
-     * The describedBy attribute MAY be used to apply a trait-like structure to a security scheme mechanism so as to extend the mechanism, such as specifying response codes, HTTP headers or custom documentation.
-     * This extension allows API designers to describe security schemes. As a best practice, even for standard security schemes, API designers SHOULD describe the security schemes' required artifacts, such as headers, URI parameters, and so on. Including the security schemes' description completes an API's documentation.
-     **/
-    describedBy(): SecuritySchemaPart;
-    /**
-     * The settings attribute MAY be used to provide security schema-specific information. Depending on the value of the type parameter, its attributes can vary.
-     * The following lists describe the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the Security Scheme type. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, an so on.
-     **/
-    settings(): SecuritySchemaSettings;
-}
-export interface RAMLSimpleElement extends core.BasicNode {
-}
-export declare class RAMLSimpleElementImpl extends core.BasicNodeImpl implements RAMLSimpleElement {
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-}
-/**
- * Content of the schema
- **/
-export interface GlobalSchema extends RAMLSimpleElement {
-    /**
-     * Name of the global schema, used to refer on schema content
-     **/
-    key(): string;
-    /**
-     * Content of the schema
-     **/
-    value(): SchemaString;
-}
-/**
- * Content of the schema
- **/
-export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements GlobalSchema {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    /**
-     * Name of the global schema, used to refer on schema content
-     **/
-    key(): string;
-    /**
-     * @hidden
-     * Set key value
-     **/
-    setKey(param: string): GlobalSchemaImpl;
-    /**
-     * Content of the schema
-     **/
-    value(): SchemaString;
-}
-export interface DocumentationItem extends RAMLSimpleElement {
-    /**
-     * title of documentation section
-     **/
-    title(): string;
-    /**
-     * Content of documentation section
-     **/
-    content(): MarkdownString;
-}
-export declare class DocumentationItemImpl extends RAMLSimpleElementImpl implements DocumentationItem {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    /**
-     * title of documentation section
-     **/
-    title(): string;
-    /**
-     * @hidden
-     * Set title value
-     **/
-    setTitle(param: string): DocumentationItemImpl;
-    /**
-     * Content of documentation section
-     **/
-    content(): MarkdownString;
-}
-export interface SecuritySchemaSettings extends RAMLSimpleElement {
-}
-export declare class SecuritySchemaSettingsImpl extends RAMLSimpleElementImpl implements SecuritySchemaSettings {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-}
-export interface OAuth1SecuritySchemeSettings extends SecuritySchemaSettings {
-    /**
-     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-     **/
-    requestTokenUri(): FixedUri;
-    /**
-     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-     **/
-    authorizationUri(): FixedUri;
-    /**
-     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-     **/
-    tokenCredentialsUri(): FixedUri;
-}
-export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth1SecuritySchemeSettings {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    /**
-     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-     **/
-    requestTokenUri(): FixedUri;
-    /**
-     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-     **/
-    authorizationUri(): FixedUri;
-    /**
-     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-     **/
-    tokenCredentialsUri(): FixedUri;
-}
-export interface OAuth2SecuritySchemeSettings extends SecuritySchemaSettings {
-    /**
-     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2
-     **/
-    accessTokenUri(): FixedUri;
-    /**
-     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1
-     **/
-    authorizationUri(): FixedUri;
-    /**
-     * A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials.
-     **/
-    authorizationGrants(): string[];
-    /**
-     * A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3
-     **/
-    scopes(): string[];
-}
-export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemaSettingsImpl implements OAuth2SecuritySchemeSettings {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    /**
-     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2
-     **/
-    accessTokenUri(): FixedUri;
-    /**
-     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1
-     **/
-    authorizationUri(): FixedUri;
-    /**
-     * A list of the Authorization grants supported by the API As defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of: code, token, owner or credentials.
-     **/
-    authorizationGrants(): string[];
-    /**
-     * @hidden
-     * Set authorizationGrants value
-     **/
-    setAuthorizationGrants(param: string): OAuth2SecuritySchemeSettingsImpl;
-    /**
-     * A list of scopes supported by the API as defined in RFC6749 [RFC6749] Section 3.3
-     **/
-    scopes(): string[];
-    /**
-     * @hidden
-     * Set scopes value
-     **/
-    setScopes(param: string): OAuth2SecuritySchemeSettingsImpl;
-}
-export interface SecuritySchemaPart extends RAMLSimpleElement {
-}
-export declare class SecuritySchemaPartImpl extends RAMLSimpleElementImpl implements SecuritySchemaPart {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    constructor(nodeOrKey: hl.IHighLevelNode | string);
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-}
 export interface ResourceType extends RAMLLanguageElement {
     /**
      * Name of the resource type
@@ -673,11 +403,12 @@ export interface ResourceType extends RAMLLanguageElement {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Uri parameters of this resource
      **/
     uriParameters(): Parameter[];
+    displayName(): string;
 }
 export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -722,11 +453,17 @@ export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Uri parameters of this resource
      **/
     uriParameters(): Parameter[];
+    displayName(): string;
+    /**
+     * @hidden
+     * Set displayName value
+     **/
+    setDisplayName(param: string): ResourceTypeImpl;
 }
 export interface HasNormalParameters extends RAMLLanguageElement {
     /**
@@ -1113,7 +850,7 @@ export interface MethodBase extends HasNormalParameters {
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
 }
 export declare class MethodBaseImpl extends HasNormalParametersImpl implements MethodBase {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1146,7 +883,7 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
 }
 export interface Response extends RAMLLanguageElement {
     /**
@@ -1368,6 +1105,86 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
      **/
     setUsage(param: string): TraitImpl;
 }
+export interface SecuritySchemePart extends MethodBase {
+    /**
+     * Headers that allowed at this position
+     **/
+    headers(): Parameter[];
+    /**
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     **/
+    queryParameters(): Parameter[];
+    /**
+     * Optional array of responses, describing the possible responses that could be sent.
+     **/
+    responses(): Response[];
+    /**
+     * Instantiation of applyed traits
+     **/
+    is(): TraitRef[];
+    /**
+     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     **/
+    securedBy(): SecuritySchemeRef[];
+    /**
+     * An alternate, human-friendly name for the security scheme part
+     **/
+    displayName(): string;
+    /**
+     * A longer, human-friendly description of the security scheme part
+     **/
+    description(): MarkdownString;
+}
+export declare class SecuritySchemePartImpl extends MethodBaseImpl implements SecuritySchemePart {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * Headers that allowed at this position
+     **/
+    headers(): Parameter[];
+    /**
+     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+     **/
+    queryParameters(): Parameter[];
+    /**
+     * Optional array of responses, describing the possible responses that could be sent.
+     **/
+    responses(): Response[];
+    /**
+     * Instantiation of applyed traits
+     **/
+    is(): TraitRef[];
+    /**
+     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     **/
+    securedBy(): SecuritySchemeRef[];
+    /**
+     * An alternate, human-friendly name for the security scheme part
+     **/
+    displayName(): string;
+    /**
+     * @hidden
+     * Set displayName value
+     **/
+    setDisplayName(param: string): SecuritySchemePartImpl;
+    /**
+     * A longer, human-friendly description of the security scheme part
+     **/
+    description(): MarkdownString;
+}
 /**
  * Method object allows description of http methods
  **/
@@ -1384,7 +1201,7 @@ export interface Method extends MethodBase {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
      **/
@@ -1399,6 +1216,11 @@ export interface Method extends MethodBase {
      * For other methods throws Exception.
      **/
     methodId(): string;
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 /**
  * Method object allows description of http methods
@@ -1437,7 +1259,7 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
      **/
@@ -1452,6 +1274,11 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * For other methods throws Exception.
      **/
     methodId(): string;
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export interface Resource extends RAMLLanguageElement {
     /**
@@ -1470,7 +1297,7 @@ export interface Resource extends RAMLLanguageElement {
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Uri parameters of this resource
      **/
@@ -1529,6 +1356,11 @@ export interface Resource extends RAMLLanguageElement {
      * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): Parameter[];
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
 }
 export declare class ResourceImpl extends RAMLLanguageElementImpl implements Resource {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1558,7 +1390,7 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Uri parameters of this resource
      **/
@@ -1622,6 +1454,292 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
      * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
      **/
     absoluteUriParameters(): Parameter[];
+    /**
+     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+     * returns schemes defined with `securedBy` at API level.
+     **/
+    allSecuredBy(): SecuritySchemeRef[];
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface AbstractSecurityScheme extends RAMLLanguageElement {
+    name(): string;
+    /**
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+     **/
+    "type"(): string;
+    /**
+     * The description MAY be used to describe a securityScheme.
+     **/
+    description(): MarkdownString;
+    /**
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
+     **/
+    describedBy(): SecuritySchemePart;
+    /**
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     **/
+    settings(): SecuritySchemeSettings;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    name(): string;
+    /**
+     * @hidden
+     * Set name value
+     **/
+    setName(param: string): AbstractSecuritySchemeImpl;
+    /**
+     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+     **/
+    "type"(): string;
+    /**
+     * @hidden
+     * Set type value
+     **/
+    setType(param: string): AbstractSecuritySchemeImpl;
+    /**
+     * The description MAY be used to describe a securityScheme.
+     **/
+    description(): MarkdownString;
+    /**
+     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+     * Including the security scheme description completes an API documentation.
+     **/
+    describedBy(): SecuritySchemePart;
+    /**
+     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+     **/
+    settings(): SecuritySchemeSettings;
+}
+export interface SecuritySchemeSettings extends core.BasicNode {
+}
+export declare class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings {
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+}
+export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings {
+    /**
+     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+     **/
+    requestTokenUri(): FixedUri;
+    /**
+     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+     **/
+    authorizationUri(): FixedUri;
+    /**
+     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+     **/
+    tokenCredentialsUri(): FixedUri;
+}
+export declare class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth1SecuritySchemeSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+     **/
+    requestTokenUri(): FixedUri;
+    /**
+     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+     **/
+    authorizationUri(): FixedUri;
+    /**
+     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+     **/
+    tokenCredentialsUri(): FixedUri;
+}
+export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings {
+    /**
+     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     **/
+    accessTokenUri(): FixedUri;
+    /**
+     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     **/
+    authorizationUri(): FixedUri;
+    authorizationGrants(): string[];
+    /**
+     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+     **/
+    scopes(): string[];
+}
+export declare class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+     **/
+    accessTokenUri(): FixedUri;
+    /**
+     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+     **/
+    authorizationUri(): FixedUri;
+    authorizationGrants(): string[];
+    /**
+     * @hidden
+     * Set authorizationGrants value
+     **/
+    setAuthorizationGrants(param: string): OAuth2SecuritySchemeSettingsImpl;
+    /**
+     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+     **/
+    scopes(): string[];
+    /**
+     * @hidden
+     * Set scopes value
+     **/
+    setScopes(param: string): OAuth2SecuritySchemeSettingsImpl;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface OAuth2SecurityScheme extends AbstractSecurityScheme {
+    settings(): OAuth2SecuritySchemeSettings;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth2SecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    settings(): OAuth2SecuritySchemeSettings;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface OAuth1SecurityScheme extends AbstractSecurityScheme {
+    settings(): OAuth1SecuritySchemeSettings;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth1SecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    settings(): OAuth1SecuritySchemeSettings;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface BasicSecurityScheme extends AbstractSecurityScheme {
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements BasicSecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface DigestSecurityScheme extends AbstractSecurityScheme {
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements DigestSecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export interface CustomSecurityScheme extends AbstractSecurityScheme {
+}
+/**
+ * Declares globally referable security schema definition
+ **/
+export declare class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements CustomSecurityScheme {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
 }
 export interface Api extends RAMLLanguageElement {
     /**
@@ -1676,11 +1794,11 @@ export interface Api extends RAMLLanguageElement {
     /**
      * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Security schemas that can be applied with securedBy
      **/
-    securitySchemes(): SecuritySchema[];
+    securitySchemes(): AbstractSecurityScheme[];
     /**
      * Declaration of resource types used in this API
      **/
@@ -1819,11 +1937,11 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
     /**
      * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
      **/
-    securedBy(): SecuritySchemaRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Security schemas that can be applied with securedBy
      **/
-    securitySchemes(): SecuritySchema[];
+    securitySchemes(): AbstractSecurityScheme[];
     /**
      * Declaration of resource types used in this API
      **/
@@ -1882,6 +2000,97 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
      * Otherwise, returns protocol, specified in the base URI.
      **/
     allProtocols(): string[];
+}
+export interface RAMLSimpleElement extends core.BasicNode {
+}
+export declare class RAMLSimpleElementImpl extends core.BasicNodeImpl implements RAMLSimpleElement {
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+}
+export interface DocumentationItem extends RAMLSimpleElement {
+    /**
+     * title of documentation section
+     **/
+    title(): string;
+    /**
+     * Content of documentation section
+     **/
+    content(): MarkdownString;
+}
+export declare class DocumentationItemImpl extends RAMLSimpleElementImpl implements DocumentationItem {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * title of documentation section
+     **/
+    title(): string;
+    /**
+     * @hidden
+     * Set title value
+     **/
+    setTitle(param: string): DocumentationItemImpl;
+    /**
+     * Content of documentation section
+     **/
+    content(): MarkdownString;
+}
+/**
+ * Content of the schema
+ **/
+export interface GlobalSchema extends RAMLSimpleElement {
+    /**
+     * Name of the global schema, used to refer on schema content
+     **/
+    key(): string;
+    /**
+     * Content of the schema
+     **/
+    value(): SchemaString;
+}
+/**
+ * Content of the schema
+ **/
+export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements GlobalSchema {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    constructor(nodeOrKey: hl.IHighLevelNode | string);
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    /**
+     * Name of the global schema, used to refer on schema content
+     **/
+    key(): string;
+    /**
+     * @hidden
+     * Set key value
+     **/
+    setKey(param: string): GlobalSchemaImpl;
+    /**
+     * Content of the schema
+     **/
+    value(): SchemaString;
 }
 /**
  * Load API synchronously. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for Api which contains errors.

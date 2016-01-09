@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.3.5
 // Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/2947ff83e00900b84aab2e75981c16073be526b6/esprima/esprima.d.ts
 // Type definitions for Esprima v1.2.0
 // Project: http://esprima.org

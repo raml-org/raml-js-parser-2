@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.3.5
 // Source: custom_typings/atom.d.ts
 declare module AtomCore {
   interface IWorkspace {

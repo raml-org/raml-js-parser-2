@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.3.5
 // Source: custom_typings/escope.d.ts
 declare module "escope" {
 

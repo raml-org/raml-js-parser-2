@@ -7,6 +7,7 @@ import yaml = require("./jsyaml/yamlAST");
 import highlevel = require("./highLevelAST");
 import hi = require("./highLevelImpl");
 import jsyaml = require("./jsyaml/jsyaml2lowLevel");
+import refResolvers = require("./jsyaml/includeRefResolvers");
 export interface ICompilationUnit {
     contents(): string;
     path(): string;
@@ -57,7 +58,9 @@ export interface ILowLevelASTNode {
     value(): any;
     includeErrors(): string[];
     includePath(): string;
+    includeReference(): refResolvers.IncludeReference;
     key(): string;
+    optional(): boolean;
     actual(): any;
     children(): ILowLevelASTNode[];
     parent(): ILowLevelASTNode;
@@ -78,6 +81,7 @@ export interface ILowLevelASTNode {
     isValueLocal(): boolean;
     kind(): yaml.Kind;
     valueKind(): yaml.Kind;
+    keyKind(): yaml.Kind;
     show(msg: string, lev?: number, text?: string): any;
     markup(json?: boolean): string;
     highLevelParseResult(): highlevel.IParseResult;
@@ -134,11 +138,11 @@ export interface ILowLevelEnvironment {
 }
 export interface TextPosition {
     /**
-     * Line number, starting from zero
+     * Line number, starting from one
      */
     line: number;
     /**
-     * Column number, starting from zero
+     * Column number, starting from one
      */
     column: number;
     /**

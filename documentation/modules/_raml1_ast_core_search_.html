@@ -93,6 +93,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#extractname" class="tsd-kind-icon">extract<wbr>Name</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#findallsubtypes" class="tsd-kind-icon">find<wbr>All<wbr>Sub<wbr>Types</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#finddeclaration" class="tsd-kind-icon">find<wbr>Declaration</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#finddeclarationbynode" class="tsd-kind-icon">find<wbr>Declaration<wbr>ByNode</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#finddeclarations" class="tsd-kind-icon">find<wbr>Declarations</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#findexamplecontenttype" class="tsd-kind-icon">find<wbr>Example<wbr>Content<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_search_.html#findusages" class="tsd-kind-icon">find<wbr>Usages</a></li>
@@ -134,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L653">raml1/ast.core/search.ts:653</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L694">raml1/ast.core/search.ts:694</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -212,7 +213,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L390">raml1/ast.core/search.ts:390</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L417">raml1/ast.core/search.ts:417</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -264,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L619">raml1/ast.core/search.ts:619</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L660">raml1/ast.core/search.ts:660</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -290,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L264">raml1/ast.core/search.ts:264</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L291">raml1/ast.core/search.ts:291</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -300,6 +301,35 @@
 								</li>
 								<li>
 									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<a href="../interfaces/_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>
+							</h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="finddeclarationbynode" class="tsd-anchor"></a>
+					<h3>find<wbr>Declaration<wbr>ByNode</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Declaration<wbr>ByNode<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, nodePart<span class="tsd-signature-symbol">?: </span><a href="../enums/_raml1_ast_core_search_.locationkind.html" class="tsd-signature-type">LocationKind</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L265">raml1/ast.core/search.ts:265</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> nodePart: <a href="../enums/_raml1_ast_core_search_.locationkind.html" class="tsd-signature-type">LocationKind</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a>
@@ -342,7 +372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L347">raml1/ast.core/search.ts:347</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L374">raml1/ast.core/search.ts:374</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -391,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L658">raml1/ast.core/search.ts:658</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L699">raml1/ast.core/search.ts:699</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -443,7 +473,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L785">raml1/ast.core/search.ts:785</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L826">raml1/ast.core/search.ts:826</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,7 +502,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L812">raml1/ast.core/search.ts:812</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L853">raml1/ast.core/search.ts:853</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -570,7 +600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L362">raml1/ast.core/search.ts:362</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L389">raml1/ast.core/search.ts:389</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -619,7 +649,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L592">raml1/ast.core/search.ts:592</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L633">raml1/ast.core/search.ts:633</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -645,7 +675,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L355">raml1/ast.core/search.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L382">raml1/ast.core/search.ts:382</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -671,7 +701,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L624">raml1/ast.core/search.ts:624</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L665">raml1/ast.core/search.ts:665</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -697,7 +727,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L679">raml1/ast.core/search.ts:679</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L720">raml1/ast.core/search.ts:720</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -752,7 +782,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L510">raml1/ast.core/search.ts:510</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L551">raml1/ast.core/search.ts:551</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -778,7 +808,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L582">raml1/ast.core/search.ts:582</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L623">raml1/ast.core/search.ts:623</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -847,7 +877,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L535">raml1/ast.core/search.ts:535</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L576">raml1/ast.core/search.ts:576</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -879,7 +909,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L574">raml1/ast.core/search.ts:574</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L615">raml1/ast.core/search.ts:615</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -913,7 +943,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L662">raml1/ast.core/search.ts:662</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/search.ts#L703">raml1/ast.core/search.ts:703</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -999,6 +1029,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_ast_core_search_.html#finddeclaration" class="tsd-kind-icon">find<wbr>Declaration</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_raml1_ast_core_search_.html#finddeclarationbynode" class="tsd-kind-icon">find<wbr>Declaration<wbr>ByNode</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_ast_core_search_.html#finddeclarations" class="tsd-kind-icon">find<wbr>Declarations</a>
