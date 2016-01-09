@@ -87,18 +87,21 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#kind" class="tsd-kind-icon">kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#optional" class="tsd-kind-icon">optional</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#securityscheme" class="tsd-kind-icon">security<wbr>Scheme</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#securityschemename" class="tsd-kind-icon">security<wbr>Scheme<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.securityschemeref.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="highlevel" class="tsd-anchor"></a>
@@ -111,7 +114,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#highlevel">highLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L274">raml1/wrapped-ast/parserCore.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L304">raml1/wrapped-ast/parserCore.ts:304</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -139,6 +142,71 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Actual name of instance interface</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="optional" class="tsd-anchor"></a>
+					<h3>optional</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">optional<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#optional">optional</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L309">raml1/wrapped-ast/parserCore.ts:309</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Whether the element is an optional sibling of trait or resource type</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="securityscheme" class="tsd-anchor"></a>
+					<h3>security<wbr>Scheme</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">security<wbr>Scheme<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.abstractsecurityscheme.html" class="tsd-signature-type">AbstractSecurityScheme</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:247</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns AST node of security scheme, this reference refers to, or null.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_artifacts_raml10parser_.abstractsecurityscheme.html" class="tsd-signature-type">AbstractSecurityScheme</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="securityschemename" class="tsd-anchor"></a>
+					<h3>security<wbr>Scheme<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">security<wbr>Scheme<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:241</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the name of security scheme, this reference refers to.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -188,6 +256,15 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.securityschemeref.html#kind" class="tsd-kind-icon">kind</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_raml1_artifacts_raml10parser_.securityschemeref.html#optional" class="tsd-kind-icon">optional</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_raml1_artifacts_raml10parser_.securityschemeref.html#securityscheme" class="tsd-kind-icon">security<wbr>Scheme</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_raml1_artifacts_raml10parser_.securityschemeref.html#securityschemename" class="tsd-kind-icon">security<wbr>Scheme<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.securityschemeref.html#value" class="tsd-kind-icon">value</a>
