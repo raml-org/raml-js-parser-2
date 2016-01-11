@@ -24,7 +24,7 @@
     "url": "https://github.com/raml-org/raml-js-parser-2/issues"
   },
   "browser": {
-    "fs": false,
+    "fs": "./web-tools/modules/emptyFS.js",
     "xmlhttprequest": "./web-tools/modules/browserXMLHttpRequest.js"
   },
   "homepage": "https://github.com/raml-org/raml-js-parser-2#readme",
