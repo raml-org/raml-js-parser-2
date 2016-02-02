@@ -54,6 +54,22 @@ module.exports =
 	    return RamlWrapper.loadApi(apiPath, extensionsAndOverlays, options);
 	}
 	exports.loadApi = loadApi;
+	function loadRAMLSync(apiPath, extensionsAndOverlays, options) {
+	    return RamlWrapper.loadRAMLSync(apiPath, extensionsAndOverlays, options);
+	}
+	exports.loadRAMLSync = loadRAMLSync;
+	function loadRAML(apiPath, extensionsAndOverlays, options) {
+	    return RamlWrapper.loadRAML(apiPath, extensionsAndOverlays, options);
+	}
+	exports.loadRAML = loadRAML;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType - runtime type to find the match for
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    return RamlWrapper.getLanguageElementByRuntimeType(runtimeType);
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
 
 
 /***/ },
@@ -96,7 +112,7 @@ module.exports =
 	var hl = __webpack_require__(2);
 	var services = __webpack_require__(49);
 	var core = __webpack_require__(75);
-	var apiLoader = __webpack_require__(76);
+	var apiLoader = __webpack_require__(77);
 	var helper = __webpack_require__(65);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
@@ -1026,7 +1042,7 @@ module.exports =
 	})(RAMLLanguageElementImpl);
 	exports.RAMLProjectImpl = RAMLProjectImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var AbstractSecuritySchemeImpl = (function (_super) {
 	    __extends(AbstractSecuritySchemeImpl, _super);
@@ -1321,6 +1337,12 @@ module.exports =
 	     **/
 	    TypeDeclarationImpl.prototype.validateInstance = function (value) {
 	        return helper.validateInstance(this, value);
+	    };
+	    /**
+	     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+	     **/
+	    TypeDeclarationImpl.prototype.schemaContent = function () {
+	        return helper.schemaContent(this);
 	    };
 	    return TypeDeclarationImpl;
 	})(RAMLLanguageElementImpl);
@@ -2570,7 +2592,7 @@ module.exports =
 	        return _super.prototype.elements.call(this, 'queryParameters');
 	    };
 	    /**
-	     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+	     * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
 	     **/
 	    SecuritySchemePartImpl.prototype.queryString = function () {
 	        return _super.prototype.element.call(this, 'queryString');
@@ -2799,7 +2821,7 @@ module.exports =
 	})(SecuritySchemeSettingsImpl);
 	exports.PassThroughSecuritySchemeSettingsImpl = PassThroughSecuritySchemeSettingsImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var OAuth2SecuritySchemeImpl = (function (_super) {
 	    __extends(OAuth2SecuritySchemeImpl, _super);
@@ -2827,7 +2849,7 @@ module.exports =
 	})(AbstractSecuritySchemeImpl);
 	exports.OAuth2SecuritySchemeImpl = OAuth2SecuritySchemeImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var OAuth1SecuritySchemeImpl = (function (_super) {
 	    __extends(OAuth1SecuritySchemeImpl, _super);
@@ -2855,7 +2877,7 @@ module.exports =
 	})(AbstractSecuritySchemeImpl);
 	exports.OAuth1SecuritySchemeImpl = OAuth1SecuritySchemeImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var PassThroughSecuritySchemeImpl = (function (_super) {
 	    __extends(PassThroughSecuritySchemeImpl, _super);
@@ -2883,7 +2905,7 @@ module.exports =
 	})(AbstractSecuritySchemeImpl);
 	exports.PassThroughSecuritySchemeImpl = PassThroughSecuritySchemeImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var BasicSecuritySchemeImpl = (function (_super) {
 	    __extends(BasicSecuritySchemeImpl, _super);
@@ -2908,7 +2930,7 @@ module.exports =
 	})(AbstractSecuritySchemeImpl);
 	exports.BasicSecuritySchemeImpl = BasicSecuritySchemeImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var DigestSecuritySchemeImpl = (function (_super) {
 	    __extends(DigestSecuritySchemeImpl, _super);
@@ -2933,7 +2955,7 @@ module.exports =
 	})(AbstractSecuritySchemeImpl);
 	exports.DigestSecuritySchemeImpl = DigestSecuritySchemeImpl;
 	/**
-	 * Declares globally referable security schema definition
+	 * Declares globally referable security scheme definition
 	 **/
 	var CustomSecuritySchemeImpl = (function (_super) {
 	    __extends(CustomSecuritySchemeImpl, _super);
@@ -3521,6 +3543,12 @@ module.exports =
 	     **/
 	    ApiImpl.prototype.allProtocols = function () {
 	        return helper.allProtocols(this);
+	    };
+	    /**
+	     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+	     **/
+	    ApiImpl.prototype.RAMLVersion = function () {
+	        return helper.RAMLVersion(this);
 	    };
 	    return ApiImpl;
 	})(LibraryBaseImpl);
@@ -4110,10 +4138,26 @@ module.exports =
 	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
 	exports.loadApiSync = loadApiSync;
+	function loadRAMLSync(ramlPath, arg1, arg2) {
+	    return apiLoader.loadApi(ramlPath, arg1, arg2).getOrElse(null);
+	}
+	exports.loadRAMLSync = loadRAMLSync;
 	function loadApi(apiPath, arg1, arg2) {
 	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
 	exports.loadApi = loadApi;
+	function loadRAML(ramlPath, arg1, arg2) {
+	    return apiLoader.loadRAMLAsync(ramlPath, arg1, arg2);
+	}
+	exports.loadRAML = loadRAML;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType - runtime type to find the match for
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    return apiLoader.getLanguageElementByRuntimeType(runtimeType);
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
 
 
 /***/ },
@@ -4148,7 +4192,7 @@ module.exports =
 	    IssueCode[IssueCode["ONLY_OVERRIDE_ALLOWED"] = 10] = "ONLY_OVERRIDE_ALLOWED";
 	})(exports.IssueCode || (exports.IssueCode = {}));
 	var IssueCode = exports.IssueCode;
-	exports.universeProvider = __webpack_require__(77);
+	exports.universeProvider = __webpack_require__(78);
 	var hlImpl = __webpack_require__(5);
 	var getDefinitionSystemType = function (contents, ast) {
 	    var spec = "";
@@ -4210,6 +4254,8 @@ module.exports =
 	        apiType = localUniverse.type("Api");
 	    var api = new hlImpl.ASTNodeImpl(ast, null, apiType, null);
 	    api.setUniverse(localUniverse);
+	    //forcing discrimination
+	    api.children();
 	    return api;
 	}
 	exports.fromUnit = fromUnit;
@@ -4227,10 +4273,11 @@ module.exports =
 	};
 	var _ = __webpack_require__(4);
 	var hlimpl = __webpack_require__(5);
-	var selector = __webpack_require__(125);
+	var selector = __webpack_require__(126);
 	var universes = __webpack_require__(54);
 	var typeSystem = __webpack_require__(63);
 	var ramlServices = __webpack_require__(49);
+	var example = __webpack_require__(128);
 	function registerAdapters(a) {
 	    if (a instanceof typeSystem.AbstractType) {
 	        a.addAdapter(new ramlServices.RAMLService(a));
@@ -4371,7 +4418,7 @@ module.exports =
 	        }
 	        return rs;
 	    };
-	    UserDefinedClass.prototype.isValueType = function () {
+	    UserDefinedClass.prototype.hasValueTypeInHierarchy = function () {
 	        if (this._value) {
 	            return true;
 	        }
@@ -4379,6 +4426,50 @@ module.exports =
 	            return false;
 	        }
 	        return false;
+	    };
+	    /**
+	     * Returns example for this type.
+	     * Returned example should be tested for being empty and being expandable.
+	     */
+	    UserDefinedClass.prototype.examples = function () {
+	        return example.createExamples(this);
+	    };
+	    /**
+	     * Returns whether this type contain genuine user defined type in its hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    UserDefinedClass.prototype.isGenuineUserDefinedType = function () {
+	        return this.genuineUserDefinedType() != null;
+	    };
+	    /**
+	     * Returns nearest genuine user-define type in the hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    UserDefinedClass.prototype.genuineUserDefinedType = function () {
+	        var declaringNode = this.getAdapter(ramlServices.RAMLService).getDeclaringNode();
+	        if (!declaringNode) {
+	            return null;
+	        }
+	        var foundMeaningfulChild = false;
+	        declaringNode.children().forEach(function (child) {
+	            if (!((child.isAttr() && child.asAttr().name() == universes.Universe10.TypeDeclaration.properties.name.name) || (child.isAttr() && child.asAttr().name() == universes.Universe10.TypeDeclaration.properties.type.name))) {
+	                foundMeaningfulChild = true;
+	            }
+	        });
+	        if (foundMeaningfulChild)
+	            return this;
+	        //if the type is defined at top-level, we also need to return it as at least it has a meaningful user-defined name
+	        if (declaringNode.property().nameId() == universes.Universe10.LibraryBase.properties.types.name) {
+	            return this;
+	        }
+	        var superTypes = this.superTypes();
+	        //there should be nothing in super types but a single user defined class
+	        if (superTypes == null || superTypes.length != 1) {
+	            return null;
+	        }
+	        return superTypes[0].genuineUserDefinedType();
 	    };
 	    return UserDefinedClass;
 	})(NodeClass);
@@ -4872,8 +4963,8 @@ module.exports =
 	var hl = __webpack_require__(2);
 	var _ = __webpack_require__(4);
 	var proxy = __webpack_require__(6);
-	var builder = __webpack_require__(121);
-	var mutators = __webpack_require__(122);
+	var builder = __webpack_require__(122);
+	var mutators = __webpack_require__(123);
 	var linter = __webpack_require__(55);
 	var typeBuilder = __webpack_require__(50);
 	var search = __webpack_require__(53);
@@ -4881,8 +4972,8 @@ module.exports =
 	var jsyaml = __webpack_require__(15);
 	var textutil = __webpack_require__(48);
 	var services = __webpack_require__(49);
-	var factory10 = __webpack_require__(123);
-	var factory08 = __webpack_require__(124);
+	var factory10 = __webpack_require__(124);
+	var factory08 = __webpack_require__(125);
 	function qName(x, context) {
 	    var dr = search.declRoot(context);
 	    var nm = x.name();
@@ -5411,6 +5502,8 @@ module.exports =
 	    };
 	    ASTNodeImpl.prototype.wrapperNode = function () {
 	        if (!this._wrapperNode) {
+	            //forcing discrimination
+	            this.children();
 	            this._wrapperNode = this.buildWrapperNode();
 	        }
 	        return this._wrapperNode;
@@ -5900,7 +5993,7 @@ module.exports =
 	};
 	var yaml = __webpack_require__(7);
 	var json = __webpack_require__(8);
-	var stringify = __webpack_require__(120);
+	var stringify = __webpack_require__(121);
 	var Error = __webpack_require__(9);
 	var impl = __webpack_require__(15);
 	var universes = __webpack_require__(54);
@@ -7288,11 +7381,11 @@ module.exports =
 	var Error = __webpack_require__(9);
 	var textutil = __webpack_require__(48);
 	var services = __webpack_require__(49);
-	var rr = __webpack_require__(112);
-	var SimpleExecutor = __webpack_require__(116);
+	var rr = __webpack_require__(113);
+	var SimpleExecutor = __webpack_require__(117);
 	var util = __webpack_require__(11);
-	var URL = __webpack_require__(118);
-	var refResolvers = __webpack_require__(119);
+	var URL = __webpack_require__(119);
+	var refResolvers = __webpack_require__(120);
 	exports.Kind = {
 	    SCALAR: 0 /* SCALAR */
 	};
@@ -7441,7 +7534,7 @@ module.exports =
 	        this.executor = new SimpleExecutor.SimpleExecutor();
 	    }
 	    HTTPResolverImpl.prototype.getResource = function (url) {
-	        if (atom) {
+	        if (typeof atom !== 'undefined' && atom != null) {
 	            var cached = rr.get(url);
 	            if (cached) {
 	                return cached;
@@ -13912,7 +14005,7 @@ module.exports =
 	            else {
 	                if (this.range().key() == universes.Universe08.SchemaString || this.range().key() == universes.Universe10.SchemaString) {
 	                    if (this.range().universe().version() == "RAML10") {
-	                        if (this.range().isValueType()) {
+	                        if (this.range().hasValueTypeInHierarchy()) {
 	                            var definitionNodes = search.globalDeclarations(c).filter(function (node) {
 	                                if (node.definition().key() == universes.Universe10.GlobalSchema) {
 	                                    return true;
@@ -13931,7 +14024,7 @@ module.exports =
 	            else if (this.isReference()) {
 	                rs = search.nodesDeclaringType(this.referencesTo(), c).map(function (x) { return hlImpl.qName(x, c); });
 	            }
-	            else if (this.range().isValueType() && this.range().isValueType()) {
+	            else if (this.range().hasValueTypeInHierarchy() && this.range().hasValueTypeInHierarchy()) {
 	                var vt = this.range().getAdapter(RAMLService);
 	                if (vt.globallyDeclaredBy().length > 0) {
 	                    var definitionNodes = search.globalDeclarations(c).filter(function (z) { return _.find(vt.globallyDeclaredBy(), function (x) { return x == z.definition(); }) != null; });
@@ -14033,7 +14126,7 @@ module.exports =
 	            var subTypes = search.nodesDeclaringType(rt, c);
 	            return subTypes;
 	        }
-	        if (this.range().isValueType()) {
+	        if (this.range().hasValueTypeInHierarchy()) {
 	            var vt = this.range().getAdapter(RAMLService);
 	            if (vt.globallyDeclaredBy().length > 0) {
 	                var definitionNodes = search.globalDeclarations(c).filter(function (z) { return _.find(vt.globallyDeclaredBy(), function (x) { return x == z.definition(); }) != null; });
@@ -14118,10 +14211,10 @@ module.exports =
 	        return this._type.isAssignableFrom(name);
 	    };
 	    RAMLService.prototype.isValid = function (h, value, p) {
-	        if (this._type.isArray()) {
+	        if (this._type.hasArrayInHierarchy()) {
 	            return this.isValidArray(h, value, p);
 	        }
-	        else if (this._type.isValueType()) {
+	        else if (this._type.hasValueTypeInHierarchy()) {
 	            return this.isValidValueType(h, value, p);
 	        }
 	        return true;
@@ -14283,8 +14376,8 @@ module.exports =
 	        return this._type.key();
 	    };
 	    RAMLService.prototype.isValidArray = function (h, v, p) {
-	        if (this._type.array().componentType()) {
-	            return this._type.array().componentType().getAdapter(RAMLService).isValid(h, v, p);
+	        if (this._type.arrayInHierarchy().componentType()) {
+	            return this._type.arrayInHierarchy().componentType().getAdapter(RAMLService).isValid(h, v, p);
 	        }
 	        return true;
 	    };
@@ -14603,7 +14696,7 @@ module.exports =
 	        if (this._runtime) {
 	            return this._runtime;
 	        }
-	        if (this._type.isExternal()) {
+	        if (this._type.hasExternalInHierarchy()) {
 	            return this._type;
 	        }
 	        if (this._type instanceof typeSystem.ValueType) {
@@ -14666,14 +14759,14 @@ module.exports =
 	        else {
 	            c._value = true;
 	            var sm = this._type.superTypes();
-	            c._superTypes = sm.map(function (x) { return x.getAdapter(RAMLService).toRuntime(); }).filter(function (x) { return x && x.isValueType(); });
+	            c._superTypes = sm.map(function (x) { return x.getAdapter(RAMLService).toRuntime(); }).filter(function (x) { return x && x.hasValueTypeInHierarchy(); });
 	        }
-	        if (this._type.isUnion()) {
+	        if (this._type.hasUnionInHierarchy()) {
 	            var ut = new def.Union(this.nameId(), this.universe(), this.getPath());
 	            ut.getAdapter(RAMLService)._representationOf = this._type;
 	            ut._isRuntime = true;
 	            ut.getAdapter(RAMLService).setDeclaringNode(this.getDeclaringNode());
-	            var cm = this._type.union();
+	            var cm = this._type.unionInHierarchy();
 	            if (cm) {
 	                if (cm.leftType()) {
 	                    ut.left = cm.leftType().getAdapter(RAMLService).toRuntime();
@@ -14688,7 +14781,7 @@ module.exports =
 	            //at.component=this.component.toRuntime();
 	            return ut;
 	        }
-	        if (this._type.isArray()) {
+	        if (this._type.hasArrayInHierarchy()) {
 	            var at = new def.Array(this.nameId(), this.universe(), this.getPath());
 	            this._runtime = at;
 	            at._af = {};
@@ -14698,7 +14791,7 @@ module.exports =
 	            }
 	            at.getAdapter(RAMLService)._representationOf = this._type;
 	            at.getAdapter(RAMLService).setDeclaringNode(this.getDeclaringNode());
-	            var at1 = this._type.array();
+	            var at1 = this._type.arrayInHierarchy();
 	            if (at1) {
 	                var comp = at1.componentType();
 	                if (comp) {
@@ -14741,7 +14834,7 @@ module.exports =
 	var typeExpression = __webpack_require__(51);
 	var universes = __webpack_require__(54);
 	var hlimpl = __webpack_require__(5);
-	var annotationHandlers = __webpack_require__(83);
+	var annotationHandlers = __webpack_require__(84);
 	var services = __webpack_require__(49);
 	var linter = __webpack_require__(55);
 	function templateFields(node, d) {
@@ -15059,7 +15152,7 @@ module.exports =
 	}
 	exports.valueOf = valueOf;
 	var scriptToValidator = {};
-	var loophole = __webpack_require__(111);
+	var loophole = __webpack_require__(112);
 	function evalInSandbox(code, thisArg, args) {
 	    return new loophole.Function(code).call(thisArg, args);
 	}
@@ -16521,8 +16614,8 @@ module.exports =
 	        //TODO EXTRACT COMMON OPEN NODE FUNC
 	        return t;
 	    }
-	    if (attr.property() instanceof defs.UserDefinedProp) {
-	        var up = attr.property();
+	    if (p instanceof defs.UserDefinedProp) {
+	        var up = p;
 	        return up._node;
 	    }
 	    return null;
@@ -16575,12 +16668,12 @@ module.exports =
 	        return null;
 	    }
 	    var offset = Math.floor((start + end) / 2);
-	    return findDeclaration(unit, offset);
+	    return findDeclaration(unit, offset, nodePart);
 	}
 	exports.findDeclarationByNode = findDeclarationByNode;
-	function findDeclaration(unit, offset) {
+	function findDeclaration(unit, offset, nodePart) {
 	    var node = deepFindNode(hl.fromUnit(unit), offset, offset, false);
-	    var kind = determineCompletionKind(unit.contents(), offset);
+	    var kind = nodePart ? nodePart : determineCompletionKind(unit.contents(), offset);
 	    if (kind == 0 /* VALUE_COMPLETION */) {
 	        var hlnode = node;
 	        if (node instanceof hlimpl.ASTPropImpl) {
@@ -16602,6 +16695,9 @@ module.exports =
 	                    }
 	                }
 	            }
+	        }
+	        else {
+	            return searchInTheValue(offset, unit.contents(), null, hlnode, hlnode.property());
 	        }
 	    }
 	    if (kind == 1 /* KEY_COMPLETION */ || kind == 6 /* SEQUENCE_KEY_COPLETION */) {
@@ -16669,19 +16765,26 @@ module.exports =
 	}
 	exports.parseDocumentationContent = parseDocumentationContent;
 	function isExampleNodeContent(node) {
+	    var typeExampleName10 = universes.Universe10.TypeDeclaration.properties.example.name;
+	    var typeExamplesName10 = universes.Universe10.TypeDeclaration.properties.examples.name;
+	    var contentName10 = universes.Universe10.ExampleSpec.properties.content.name;
+	    var objectName10 = universes.Universe10.ObjectTypeDeclaration.name;
 	    if (!(node instanceof hlimpl.ASTPropImpl)) {
 	        return false;
 	    }
 	    var property = node;
-	    if (universes.Universe10.ExampleSpec.properties.content.name == property.name() && property.isString()) {
-	        if (property.parent() instanceof hlimpl.ASTNodeImpl && (universes.Universe10.TypeDeclaration.properties.examples.name == property.parent().property().nameId() || universes.Universe10.TypeDeclaration.properties.example.name == property.parent().property().nameId())) {
-	            if (property.parent().parent() instanceof hlimpl.ASTNodeImpl && property.parent().parent().definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name)) {
+	    var parent = property.parent();
+	    var parentProperty = parent && parent.property();
+	    var parentPropertyName = parentProperty && parentProperty.nameId();
+	    if (contentName10 === property.name() && property.isString()) {
+	        if (parent instanceof hlimpl.ASTNodeImpl && (typeExamplesName10 === parentPropertyName || typeExampleName10 === parentPropertyName)) {
+	            if (parent.parent() instanceof hlimpl.ASTNodeImpl && parent.parent().definition().isAssignableFrom(objectName10)) {
 	                return true;
 	            }
 	        }
 	    }
-	    else if (universes.Universe10.TypeDeclaration.properties.example.name == property.name() && property.isString()) {
-	        if (property.parent() instanceof hlimpl.ASTNodeImpl && property.parent().definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name)) {
+	    else if (typeExampleName10 === property.name() && property.isString()) {
+	        if (parent instanceof hlimpl.ASTNodeImpl && parent.definition().isAssignableFrom(objectName10)) {
 	            return true;
 	        }
 	    }
@@ -16903,7 +17006,7 @@ module.exports =
 	            result = result.concat(definitionNodes);
 	        });
 	    }
-	    var isElementType = !range.isValueType();
+	    var isElementType = !range.hasValueTypeInHierarchy();
 	    if (isElementType && range.getAdapter(ramlServices.RAMLService).isInlinedTemplates() && n) {
 	        var root = n;
 	        //TODO I did not like it it might be written much better
@@ -16944,7 +17047,7 @@ module.exports =
 	        if (p.isReference()) {
 	            return exports.nodesDeclaringType(p.referencesTo(), c);
 	        }
-	        if (p.range().isValueType()) {
+	        if (p.range().hasValueTypeInHierarchy()) {
 	            var vt = p.range().getAdapter(ramlServices.RAMLService);
 	            if (vt.globallyDeclaredBy && vt.globallyDeclaredBy().length > 0) {
 	                var definitionNodes = globalDeclarations(c).filter(function (z) { return _.find(vt.globallyDeclaredBy(), function (x) { return x == z.definition(); }) != null; });
@@ -18748,9 +18851,10 @@ module.exports =
 	var typeSystem = __webpack_require__(63);
 	var typeBuilder = __webpack_require__(50);
 	var OverloadingValidator = __webpack_require__(64);
-	var OverloadingValidator08 = __webpack_require__(110);
+	var OverloadingValidator08 = __webpack_require__(111);
+	var expander = __webpack_require__(73);
 	var util = __webpack_require__(48);
-	var mediaTypeParser = __webpack_require__(87);
+	var mediaTypeParser = __webpack_require__(88);
 	var xmlutil = __webpack_require__(57);
 	var LinterSettings = (function () {
 	    function LinterSettings() {
@@ -18759,7 +18863,7 @@ module.exports =
 	    return LinterSettings;
 	})();
 	var settings = new LinterSettings();
-	var loophole = __webpack_require__(111);
+	var loophole = __webpack_require__(112);
 	function evalInSandbox(code, thisArg, args) {
 	    return new loophole.Function(code).call(thisArg, args);
 	}
@@ -18791,6 +18895,19 @@ module.exports =
 	}
 	;
 	function lintNode(astNode, acceptor) {
+	    if (typeof fs === "undefined") {
+	        return;
+	    }
+	    if (!fs) {
+	        return;
+	    }
+	    var fsMethods = ['exists', 'readFile', 'writeFile', 'readdir', 'existsSync', 'readFileSync', 'writeFileSync', 'readdirSync'];
+	    var existingFsFields = Object.keys(fs);
+	    for (var i = 0; i < fsMethods.length; i++) {
+	        if (!fs[fsMethods[i]]) {
+	            return;
+	        }
+	    }
 	    var ps = astNode.lowLevel().unit().absolutePath();
 	    var dr = path.dirname(ps);
 	    var customLinter = path.resolve(dr, "raml-lint.js");
@@ -18883,9 +19000,9 @@ module.exports =
 	        if (recursionLevel >= MAX_RECURSION_LEVEL) {
 	            return;
 	        }
-	        if (t.isExternal()) {
+	        if (t.hasExternalInHierarchy()) {
 	            var so = null;
-	            var strVal = t.external().schema();
+	            var strVal = t.externalInHierarchy().schema();
 	            if (strVal.charAt(0) == "{") {
 	                try {
 	                    so = su.getJSONSchema(strVal);
@@ -18919,16 +19036,16 @@ module.exports =
 	            }
 	            return;
 	        }
-	        if (t.isArray()) {
-	            this.validateArray(obj, t.array(), cb, strict, recursionLevel);
+	        if (t.hasArrayInHierarchy()) {
+	            this.validateArray(obj, t.arrayInHierarchy(), cb, strict, recursionLevel);
 	        }
-	        else if (t.isUnion()) {
-	            this.validateUnion(obj, t.union(), cb, strict, recursionLevel);
+	        else if (t.hasUnionInHierarchy()) {
+	            this.validateUnion(obj, t.unionInHierarchy(), cb, strict, recursionLevel);
 	        }
 	        else if (t.hasStructure()) {
 	            this.validateClass(obj, t, cb, strict, recursionLevel);
 	        }
-	        else if (t.isValueType()) {
+	        else if (t.hasValueTypeInHierarchy()) {
 	            this.validateValue(obj, t, cb, strict, recursionLevel);
 	        }
 	        else {
@@ -19393,22 +19510,8 @@ module.exports =
 	                paramName = paramOccurence.substring(0, ind).trim();
 	                var transformerName = paramOccurence.substring(ind + 1).trim();
 	                if (ind != -1) {
-	                    if (transformerName == 'singularize') {
-	                        return;
-	                    }
-	                    if (transformerName == 'pluralize') {
-	                        return;
-	                    }
-	                    if (transformerName == 'singularize') {
-	                        return;
-	                    }
-	                    if (transformerName == '!singularize') {
-	                        return;
-	                    }
-	                    if (transformerName == '!pluralize') {
-	                        return;
-	                    }
-	                    if (transformerName == '!singularize') {
+	                    var functionNames = expander.getTransformNames();
+	                    if (_.find(functionNames, function (functionName) { return transformerName === functionName || transformerName === ('!' + functionName); })) {
 	                        return;
 	                    }
 	                    return "unknown function " + transformerName;
@@ -19417,6 +19520,28 @@ module.exports =
 	        }
 	    };
 	    return TraitVariablesValidator;
+	})();
+	var MethodBodyValidator = (function () {
+	    function MethodBodyValidator() {
+	    }
+	    MethodBodyValidator.prototype.validate = function (node, validationAcceptor) {
+	        var methodNode = node.parent();
+	        if (!methodNode) {
+	            return;
+	        }
+	        if (!(methodNode.definition().isAssignableFrom(universes.Universe08.Method.name) || methodNode.definition().isAssignableFrom(universes.Universe10.Method.name))) {
+	            return;
+	        }
+	        var hasBody = _.find(methodNode.lowLevel() && methodNode.lowLevel().children() || [], function (child) {
+	            var keyValue = child.key();
+	            return keyValue && (universes.Universe08.MethodBase.properties.body.name === keyValue || universes.Universe10.MethodBase.properties.body.name === keyValue);
+	        });
+	        if (hasBody && _.find(MethodBodyValidator.methodsWithoutRequestBody, function (methodDisabled) { return methodNode.name() === methodDisabled; })) {
+	            validationAcceptor.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, 'Request body is disabled for "' + methodNode.name() + '" method.', methodNode));
+	        }
+	    };
+	    MethodBodyValidator.methodsWithoutRequestBody = ['trace'];
+	    return MethodBodyValidator;
 	})();
 	var CompositePropertyValidator = (function () {
 	    function CompositePropertyValidator() {
@@ -19464,6 +19589,7 @@ module.exports =
 	                }
 	            }
 	        }
+	        new MethodBodyValidator().validate(node, v);
 	        if ((node.property().range().key() == universes.Universe08.MimeType || node.property().range().key() == universes.Universe10.MimeType) || (node.property().nameId() == universes.Universe10.TypeDeclaration.properties.name.name && node.parent().property().nameId() == universes.Universe10.Method.properties.body.name)) {
 	            new MediaTypeValidator().validate(node, v);
 	            return;
@@ -19533,7 +19659,7 @@ module.exports =
 	                    if (val) {
 	                        try {
 	                            var qq = vl;
-	                            if (pr.range().isArray()) {
+	                            if (pr.range().hasArrayInHierarchy()) {
 	                                try {
 	                                    qq = node.parent().lowLevel().dumpToObject()[node.parent().name()][pr.nameId()];
 	                                }
@@ -19861,6 +19987,9 @@ module.exports =
 	    }
 	    var adapter = pr.getAdapter(services.RAMLPropertyService);
 	    var valid = adapter.isValidValue(vl, astNode.parent());
+	    if (!valid && astNode.lowLevel().unit().absolutePath() !== astNode.parent().lowLevel().unit().absolutePath()) {
+	        valid = adapter.isValidValue(vl, hl.fromUnit(astNode.lowLevel().unit()));
+	    }
 	    if (!valid) {
 	        if (typeof vl == 'string') {
 	            if ((vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe10.TypeDeclaration.properties.type.name) {
@@ -20001,10 +20130,10 @@ module.exports =
 	        });
 	        node.definition().requiredProperties().forEach(function (x) {
 	            var r = x.range();
-	            if (r.isArray()) {
-	                r = r.array().componentType();
+	            if (r.hasArrayInHierarchy()) {
+	                r = r.arrayInHierarchy().componentType();
 	            }
-	            if (r.isValueType()) {
+	            if (r.hasValueTypeInHierarchy()) {
 	                var nm = node.attr(x.nameId());
 	                if (!nm) {
 	                    var msg = "Missing required property " + x.nameId();
@@ -20206,6 +20335,17 @@ module.exports =
 	            if (vls.length != _.uniq(vls).length) {
 	                var i = createIssue(9 /* NODE_HAS_VALUE */, "enum contains duplicated values", node);
 	                v.accept(i);
+	            }
+	            if (node.definition().isAssignableFrom(universes.Universe08.NumberTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.NumberTypeDeclaration.name)) {
+	                var isInteger = node.definition().isAssignableFrom(universes.Universe08.IntegerTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.IntegerTypeDeclaration.name);
+	                node.attributes("enum").forEach(function (attribute) {
+	                    var value = isInteger ? parseInt(attribute.value()) : parseFloat(attribute.value());
+	                    var isValid = isInteger ? !isNaN(value) && attribute.value().indexOf('.') === -1 : !isNaN(value);
+	                    if (!isValid) {
+	                        var issue = createIssue(9 /* NODE_HAS_VALUE */, (isInteger ? "Integer" : "Number") + " is expected", attribute);
+	                        v.accept(issue);
+	                    }
+	                });
 	            }
 	        }
 	        checkPropertyQuard(node, v);
@@ -20473,7 +20613,7 @@ module.exports =
 	    function InheritanceRulesValidator() {
 	    }
 	    InheritanceRulesValidator.prototype.isPrimitive = function (q) {
-	        return !q.isArray() && !this.isObject(q) && !q.isUnion() && q.key() != universes.Universe10.TypeDeclaration;
+	        return !q.hasArrayInHierarchy() && !this.isObject(q) && !q.hasUnionInHierarchy() && q.key() != universes.Universe10.TypeDeclaration;
 	    };
 	    InheritanceRulesValidator.prototype.isObject = function (q) {
 	        return q.isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name);
@@ -20496,8 +20636,8 @@ module.exports =
 	                        return;
 	                    }
 	                }
-	                if (_.find(st, function (x) { return x.isArray(); })) {
-	                    if (_.find(st, function (x) { return !x.isArray(); })) {
+	                if (_.find(st, function (x) { return x.hasArrayInHierarchy(); })) {
+	                    if (_.find(st, function (x) { return !x.hasArrayInHierarchy(); })) {
 	                        var i = createIssue(7 /* INVALID_VALUE_SCHEMA */, "You can not inherit both from types of different kind", node.attr("type") ? node.attr("type") : node);
 	                        v.accept(i);
 	                        return;
@@ -20508,7 +20648,7 @@ module.exports =
 	                    v.accept(i);
 	                    return;
 	                }
-	                if (_.filter(st, function (x) { return x.isArray(); }).length > 1) {
+	                if (_.filter(st, function (x) { return x.hasArrayInHierarchy(); }).length > 1) {
 	                    var i = createIssue(7 /* INVALID_VALUE_SCHEMA */, "You can not inherit from two array types", node.attr("type") ? node.attr("type") : node);
 	                    v.accept(i);
 	                    return;
@@ -20533,8 +20673,25 @@ module.exports =
 	    any: 1,
 	    scalar: 1
 	};
+	var TypeVisited = (function () {
+	    function TypeVisited(name, path) {
+	        this.name = name;
+	        this.path = path;
+	    }
+	    TypeVisited.prototype.isType = function (definition) {
+	        if (this.name !== (definition && definition.nameId())) {
+	            return false;
+	        }
+	        if (this.path !== (definition && definition._path)) {
+	            return false;
+	        }
+	        return true;
+	    };
+	    return TypeVisited;
+	})();
 	var TypeExressionHierarchyValidator = (function () {
 	    function TypeExressionHierarchyValidator() {
+	        this.visited = [];
 	    }
 	    TypeExressionHierarchyValidator.prototype.validate = function (node, cb) {
 	        this._node = node;
@@ -20557,12 +20714,14 @@ module.exports =
 	                    return;
 	                }
 	            }
-	            var cc = {};
-	            cc[this._node.name()] = this.definition();
-	            this.traverseDec(this.definition(), cb, 0, cc);
+	            this.visited.push(new TypeVisited(this._node.name(), this.path()));
+	            this.traverseDec(this.definition(), cb, 0);
 	        }
 	        catch (e) {
 	        }
+	    };
+	    TypeExressionHierarchyValidator.prototype.path = function () {
+	        return this._node && this._node.lowLevel() && this._node.lowLevel().unit() && this._node.lowLevel().unit().path();
 	    };
 	    TypeExressionHierarchyValidator.prototype.attr = function (name) {
 	        return this._node.attr(name);
@@ -20584,9 +20743,8 @@ module.exports =
 	     * @param level
 	     * @param visited
 	     */
-	    TypeExressionHierarchyValidator.prototype.traverseDec = function (d, v, level, visited) {
+	    TypeExressionHierarchyValidator.prototype.traverseDec = function (d, v, level) {
 	        var _this = this;
-	        if (visited === void 0) { visited = {}; }
 	        if (!d) {
 	            return;
 	        }
@@ -20600,46 +20758,46 @@ module.exports =
 	            v.accept(i);
 	            return;
 	        }
-	        if (visited[d.nameId()]) {
+	        if (_.find(this.visited, function (mayBeVisited) { return mayBeVisited.isType(d); })) {
 	            var i = createIssue(7 /* INVALID_VALUE_SCHEMA */, "Recurrent type definition", this.attr("type") ? this.attr("type") : this._node);
 	            v.accept(i);
 	            throw new Error();
 	        }
-	        visited[d.nameId()] = this.definition();
+	        this.visited.push(new TypeVisited(d.nameId(), d._path));
 	        try {
 	            if (d.nameId() == this._node.name() && level > 0) {
 	                var i = createIssue(7 /* INVALID_VALUE_SCHEMA */, "Recurrent type definition", this.attr("type") ? this.attr("type") : this._node);
 	                v.accept(i);
 	                throw new Error();
 	            }
-	            if (d.isArray()) {
-	                this.traverseDec(d.array().componentType(), v, level + 1, visited);
+	            if (d.hasArrayInHierarchy()) {
+	                this.traverseDec(d.arrayInHierarchy().componentType(), v, level + 1);
 	                return;
 	            }
-	            if (d.isUnion()) {
+	            if (d.hasUnionInHierarchy()) {
 	                var lleft = level + 1;
 	                var lright = level + 1;
-	                var union = d.union();
+	                var union = d.unionInHierarchy();
 	                if (union.leftType()) {
-	                    if (union.leftType().isUnion()) {
-	                        var ul = union.leftType().union();
+	                    if (union.leftType().hasUnionInHierarchy()) {
+	                        var ul = union.leftType().unionInHierarchy();
 	                        if (union.getAdapter(services.RAMLService).getDeclaringNode() == ul.getAdapter(services.RAMLService).getDeclaringNode()) {
 	                        }
 	                    }
 	                }
 	                if (union.rightType()) {
-	                    if (union.rightType().isUnion()) {
-	                        var ul = union.rightType().union();
+	                    if (union.rightType().hasUnionInHierarchy()) {
+	                        var ul = union.rightType().unionInHierarchy();
 	                        if (union.getAdapter(services.RAMLService).getDeclaringNode() == ul.getAdapter(services.RAMLService).getDeclaringNode()) {
 	                            lright = level;
 	                        }
 	                    }
 	                }
 	                if (lleft == level + 1) {
-	                    this.traverseDec(union.leftType(), v, lleft, visited);
+	                    this.traverseDec(union.leftType(), v, lleft);
 	                }
 	                if (lright == level + 1) {
-	                    this.traverseDec(union.rightType(), v, lright, visited);
+	                    this.traverseDec(union.rightType(), v, lright);
 	                }
 	                return;
 	            }
@@ -20648,13 +20806,13 @@ module.exports =
 	                if (yy instanceof defs.AbstractType) {
 	                    var node = (yy).getAdapter(services.RAMLService).getDeclaringNode();
 	                    if (node || yy instanceof defs.Array || yy instanceof defs.Union) {
-	                        _this.traverseDec(yy, v, level + 1, visited);
+	                        _this.traverseDec(yy, v, level + 1);
 	                    }
 	                }
 	            });
 	        }
 	        finally {
-	            delete visited[d.nameId()];
+	            this.visited = this.visited.filter(function (toRemove) { return !toRemove.isType(d); });
 	        }
 	    };
 	    return TypeExressionHierarchyValidator;
@@ -20724,23 +20882,25 @@ module.exports =
 	            if (this.isExampleNodeInMultipleDecl(node)) {
 	                sampleRoot = node.parent();
 	            }
-	            if (sampleRoot.parent().definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name) && sampleRoot.parent().parent() === null) {
-	                sp = false;
-	            }
-	            else if (sampleRoot.parent().property().nameId() == universes.Universe10.LibraryBase.properties.types.name) {
-	                sp = false;
-	            }
-	            if (sampleRoot.parent().parent()) {
-	                var ppc = sampleRoot.parent().parent().definition().key();
-	                if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
-	                    if (sampleRoot.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
+	            if (sampleRoot.parent()) {
+	                if (sampleRoot.parent().definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name) && sampleRoot.parent().parent() === null) {
+	                    sp = false;
+	                }
+	                else if (sampleRoot.parent().property().nameId() == universes.Universe10.LibraryBase.properties.types.name) {
+	                    sp = false;
+	                }
+	                if (sampleRoot.parent().parent()) {
+	                    var ppc = sampleRoot.parent().parent().definition().key();
+	                    if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
+	                        if (sampleRoot.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
+	                        }
+	                        else {
+	                            sp = true;
+	                        }
 	                    }
-	                    else {
+	                    if (ppc == universes.Universe08.Response || ppc == universes.Universe10.Response) {
 	                        sp = true;
 	                    }
-	                }
-	                if (ppc == universes.Universe08.Response || ppc == universes.Universe10.Response) {
-	                    sp = true;
 	                }
 	            }
 	        }
@@ -20794,14 +20954,16 @@ module.exports =
 	                    };
 	                }
 	                else {
-	                    //lets try to get schema from type
 	                    if (strVal.length > 0) {
-	                        var tp = typeExpression.getType2(node.parent(), strVal, {});
+	                        var nodeParent = node.parent();
+	                        var grandParent = nodeParent && nodeParent.parent();
+	                        var owner = nodeParent && nodeParent.definition() && nodeParent.definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name) && nodeParent;
+	                        owner = owner || (grandParent && grandParent.definition() && grandParent.definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name) && grandParent);
+	                        var tp = owner ? typeBuilder.typeFromNode(owner) : typeExpression.getType2(node.parent(), strVal, {});
 	                        if (tp) {
 	                            return {
 	                                validate: function (pObje, cb, strict) {
 	                                    new TypeValidator(node).validate(pObje, tp, cb, strict);
-	                                    //validate using typeExpression;
 	                                }
 	                            };
 	                        }
@@ -20918,9 +21080,11 @@ module.exports =
 	function isJson(s) {
 	    return s.indexOf("json") != -1;
 	}
+	exports.isJson = isJson;
 	function isXML(s) {
 	    return s.indexOf("xml") != -1;
 	}
+	exports.isXML = isXML;
 	function getMediaType(node) {
 	    var vl = getMediaType2(node);
 	    if (vl == 'body') {
@@ -20932,6 +21096,7 @@ module.exports =
 	    }
 	    return vl;
 	}
+	exports.getMediaType = getMediaType;
 	function getMediaType2(node) {
 	    if (node.parent()) {
 	        var pc = node.parent().definition();
@@ -21416,6 +21581,10 @@ module.exports =
 	    return p.nameId() === universe.Universe10.LibraryBase.properties.annotationTypes.name;
 	}
 	exports.isAnnotationTypesProperty = isAnnotationTypesProperty;
+	function isRepeatProperty(p) {
+	    return p.nameId() === universe.Universe08.Parameter.properties.repeat.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.repeat.name;
+	}
+	exports.isRepeatProperty = isRepeatProperty;
 	/////////////////////// types
 	function isMethodType(type) {
 	    return type.key() == universe.Universe10.Method || type.key() == universe.Universe08.Method;
@@ -21645,7 +21814,7 @@ module.exports =
 	    AbstractType.prototype.properties = function () {
 	        return [];
 	    };
-	    AbstractType.prototype.external = function () {
+	    AbstractType.prototype.externalInHierarchy = function () {
 	        var x = this.allSuperTypes();
 	        var res = null;
 	        x.forEach(function (y) {
@@ -21712,7 +21881,7 @@ module.exports =
 	    AbstractType.prototype.property = function (propName) {
 	        return _.find(this.allProperties(), function (x) { return x.nameId() == propName; });
 	    };
-	    AbstractType.prototype.isValueType = function () {
+	    AbstractType.prototype.hasValueTypeInHierarchy = function () {
 	        return _.find(this.allSuperTypes(), function (x) {
 	            var mm = x;
 	            if (mm.uc) {
@@ -21720,7 +21889,7 @@ module.exports =
 	            }
 	            mm.uc = true;
 	            try {
-	                return x.isValueType();
+	                return x.hasValueTypeInHierarchy();
 	            }
 	            finally {
 	                mm.uc = false;
@@ -21748,11 +21917,11 @@ module.exports =
 	    AbstractType.prototype.isUserDefined = function () {
 	        return false;
 	    };
-	    AbstractType.prototype.isArray = function () {
+	    AbstractType.prototype.hasArrayInHierarchy = function () {
 	        var arr = _.find(this.allSuperTypes(), function (x) { return x instanceof Array; }) != null;
 	        return arr;
 	    };
-	    AbstractType.prototype.array = function () {
+	    AbstractType.prototype.arrayInHierarchy = function () {
 	        var x = this.allSuperTypes();
 	        var res = null;
 	        x.forEach(function (y) {
@@ -21762,7 +21931,7 @@ module.exports =
 	        });
 	        return res;
 	    };
-	    AbstractType.prototype.union = function () {
+	    AbstractType.prototype.unionInHierarchy = function () {
 	        var x = this.allSuperTypes();
 	        var res = null;
 	        x.forEach(function (y) {
@@ -21772,7 +21941,7 @@ module.exports =
 	        });
 	        return res;
 	    };
-	    AbstractType.prototype.isExternal = function () {
+	    AbstractType.prototype.hasExternalInHierarchy = function () {
 	        return _.find(this.allSuperTypes(), function (x) {
 	            var mm = x;
 	            if (mm.uc) {
@@ -21787,7 +21956,7 @@ module.exports =
 	            }
 	        }) != null;
 	    };
-	    AbstractType.prototype.isUnion = function () {
+	    AbstractType.prototype.hasUnionInHierarchy = function () {
 	        return _.find(this.allSuperTypes(), function (x) {
 	            var mm = x;
 	            if (mm.uc) {
@@ -21795,7 +21964,7 @@ module.exports =
 	            }
 	            mm.uc = true;
 	            try {
-	                return x.isUnion();
+	                return x.hasUnionInHierarchy();
 	            }
 	            finally {
 	                mm.uc = false;
@@ -21968,6 +22137,50 @@ module.exports =
 	            return true;
 	        return false;
 	    };
+	    /**
+	     * Returns example for this type.
+	     * Returned example should be tested for being empty and being expandable.
+	     */
+	    AbstractType.prototype.examples = function () {
+	        return [new ExpandableExampleStub()];
+	    };
+	    /**
+	     * Returns whether this type contain genuine user defined type in its hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    AbstractType.prototype.isGenuineUserDefinedType = function () {
+	        return false;
+	    };
+	    /**
+	     * Returns nearest genuine user-define type in the hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    AbstractType.prototype.genuineUserDefinedType = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isUnion = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.union = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isExternal = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.external = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isArray = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.array = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isValueType = function () {
+	        return false;
+	    };
 	    return AbstractType;
 	})(Described);
 	exports.AbstractType = AbstractType;
@@ -21981,6 +22194,9 @@ module.exports =
 	    }
 	    ValueType.prototype.hasStructure = function () {
 	        return false;
+	    };
+	    ValueType.prototype.hasValueTypeInHierarchy = function () {
+	        return true;
 	    };
 	    ValueType.prototype.isValueType = function () {
 	        return true;
@@ -22042,6 +22258,8 @@ module.exports =
 	        this._isRequired = false;
 	        this._isMultiValue = false;
 	        this._descriminates = false;
+	        this._defaultBooleanValue = null;
+	        this._defaultIntegerValue = null;
 	    }
 	    Property.prototype.withMultiValue = function (v) {
 	        if (v === void 0) { v = true; }
@@ -22072,8 +22290,25 @@ module.exports =
 	        this._defaultValue = s;
 	        return this;
 	    };
+	    Property.prototype.setDefaultBooleanVal = function (s) {
+	        this._defaultBooleanValue = s;
+	        return this;
+	    };
+	    Property.prototype.setDefaultIntegerVal = function (s) {
+	        this._defaultIntegerValue = s;
+	        return this;
+	    };
 	    Property.prototype.defaultValue = function () {
-	        return this._defaultValue;
+	        if (this._defaultValue != null) {
+	            return this._defaultValue;
+	        }
+	        else if (this._defaultBooleanValue != null) {
+	            return this._defaultBooleanValue;
+	        }
+	        else if (this._defaultIntegerValue != null) {
+	            return this._defaultIntegerValue;
+	        }
+	        return null;
 	    };
 	    Property.prototype.isPrimitive = function () {
 	        return false;
@@ -22083,7 +22318,7 @@ module.exports =
 	        return this;
 	    };
 	    Property.prototype.isValueProperty = function () {
-	        return this._nodeRange.isValueType();
+	        return this._nodeRange.hasValueTypeInHierarchy();
 	    };
 	    Property.prototype.enumOptions = function () {
 	        if (this._enumOptions && typeof this._enumOptions == 'string') {
@@ -22148,7 +22383,7 @@ module.exports =
 	        return this._nodeRange;
 	    };
 	    Property.prototype.isMultiValue = function () {
-	        if (this.range() && this.range().isArray()) {
+	        if (this.range() && this.range().hasArrayInHierarchy()) {
 	            return true;
 	        }
 	        return this._isMultiValue;
@@ -22176,21 +22411,27 @@ module.exports =
 	    Union.prototype.isUserDefined = function () {
 	        return true;
 	    };
+	    Union.prototype.unionInHierarchy = function () {
+	        return this;
+	    };
 	    Union.prototype.union = function () {
 	        return this;
+	    };
+	    Union.prototype.hasUnionInHierarchy = function () {
+	        return true;
 	    };
 	    Union.prototype.isUnion = function () {
 	        return true;
 	    };
-	    Union.prototype.isArray = function () {
+	    Union.prototype.hasArrayInHierarchy = function () {
 	        if (this.left && this.right) {
-	            return this.left.isArray() || this.right.isArray();
+	            return this.left.hasArrayInHierarchy() || this.right.hasArrayInHierarchy();
 	        }
 	        if (this.left) {
-	            return this.left.isArray();
+	            return this.left.hasArrayInHierarchy();
 	        }
 	        if (this.right) {
-	            return this.right.isArray();
+	            return this.right.hasArrayInHierarchy();
 	        }
 	    };
 	    return Union;
@@ -22201,8 +22442,14 @@ module.exports =
 	    function Array() {
 	        _super.apply(this, arguments);
 	    }
+	    Array.prototype.hasArrayInHierarchy = function () {
+	        return true;
+	    };
 	    Array.prototype.isArray = function () {
 	        return true;
+	    };
+	    Array.prototype.arrayInHierarchy = function () {
+	        return this;
 	    };
 	    Array.prototype.array = function () {
 	        return this;
@@ -22224,7 +22471,7 @@ module.exports =
 	    function ExternalType() {
 	        _super.apply(this, arguments);
 	    }
-	    ExternalType.prototype.external = function () {
+	    ExternalType.prototype.externalInHierarchy = function () {
 	        return this;
 	    };
 	    ExternalType.prototype.typeId = function () {
@@ -22236,12 +22483,51 @@ module.exports =
 	    ExternalType.prototype.isUserDefined = function () {
 	        return true;
 	    };
+	    ExternalType.prototype.hasExternalInHierarchy = function () {
+	        return true;
+	    };
 	    ExternalType.prototype.isExternal = function () {
 	        return true;
+	    };
+	    ExternalType.prototype.external = function () {
+	        return this;
 	    };
 	    return ExternalType;
 	})(StructuredType);
 	exports.ExternalType = ExternalType;
+	var ExpandableExampleStub = (function () {
+	    function ExpandableExampleStub() {
+	    }
+	    ExpandableExampleStub.prototype.isEmpty = function () {
+	        return true;
+	    };
+	    ExpandableExampleStub.prototype.isJSONString = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.isXMLString = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.isYAML = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.asString = function () {
+	        return "";
+	    };
+	    ExpandableExampleStub.prototype.asJSON = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.original = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.expandAsString = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.expandAsJSON = function () {
+	        return null;
+	    };
+	    return ExpandableExampleStub;
+	})();
+	exports.ExpandableExampleStub = ExpandableExampleStub;
 
 
 /***/ },
@@ -22686,7 +22972,8 @@ module.exports =
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
-	    return extractParams(params, uri, resource);
+	    var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
+	    return extractParams(params, uri, resource, propName);
 	}
 	exports.uriParameters = uriParameters;
 	/**__$helperMethod__
@@ -22705,7 +22992,8 @@ module.exports =
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
-	    return extractParams(params, uri, api);
+	    var propName = universes.Universe10.Api.properties.baseUriParameters.name;
+	    return extractParams(params, uri, api, propName);
 	}
 	exports.baseUriParameters = baseUriParameters;
 	/**__$helperMethod__
@@ -22713,19 +23001,21 @@ module.exports =
 	 * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
 	 */
 	function absoluteUriParameters(res) {
+	    var uriParamsPropName = universes.Universe10.ResourceBase.properties.uriParameters.name;
+	    var baseUriParamsPropName = universes.Universe10.Api.properties.baseUriParameters.name;
 	    var params = [];
 	    var parent = res;
 	    do {
 	        res = parent;
 	        var uri = res.relativeUri().value();
 	        var uriParams = res.uriParameters();
-	        params = extractParams(uriParams, uri, res).concat(params);
+	        params = extractParams(uriParams, uri, res, uriParamsPropName).concat(params);
 	        parent = res.parent();
 	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
 	    var api = parent;
 	    var baseUri = api.baseUri().value();
 	    var baseUriParams = api.baseUriParameters();
-	    params = extractParams(baseUriParams, baseUri, api).concat(params);
+	    params = extractParams(baseUriParams, baseUri, api, baseUriParamsPropName).concat(params);
 	    return params;
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
@@ -22738,11 +23028,14 @@ module.exports =
 	    if (result.length != 0) {
 	        return result;
 	    }
-	    var baseUri = api.baseUri().value();
-	    if (baseUri && baseUri.trim().length != 0) {
-	        var ind = baseUri.indexOf('://');
-	        if (ind >= 0) {
-	            result = [baseUri.substring(0, ind)];
+	    var baseUriAttr = api.baseUri();
+	    if (baseUriAttr) {
+	        var baseUri = baseUriAttr.value();
+	        if (baseUri) {
+	            var ind = baseUri.indexOf('://');
+	            if (ind >= 0) {
+	                result = [baseUri.substring(0, ind)];
+	            }
 	        }
 	    }
 	    return result;
@@ -22801,146 +23094,76 @@ module.exports =
 	    return result;
 	}
 	exports.securityScheme = securityScheme;
-	function extractParams(params, uri, resource) {
+	//__$helperMethod__ Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+	function RAMLVersion(api) {
+	    return api.highLevel().definition().universe().version();
+	}
+	exports.RAMLVersion = RAMLVersion;
+	//__$helperMethod__ Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+	function schemaContent(typeDeclaration) {
+	    var schemaString = typeDeclaration.schema();
+	    if (!schemaString) {
+	        return null;
+	    }
+	    var schemaAttribute = typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
+	    if (!schemaAttribute) {
+	        return schemaString;
+	    }
+	    var declaration = search.findDeclarationByNode(schemaAttribute, 0 /* VALUE_COMPLETION */);
+	    if (!declaration)
+	        return schemaString;
+	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+	        return schemaString;
+	    }
+	    //we found the schema declaration and should get its contents
+	    if (declaration.definition().key() != universes.Universe10.GlobalSchema) {
+	        return null;
+	    }
+	    var valueAttribute = declaration.attr(universes.Universe10.GlobalSchema.properties.value.name);
+	    if (valueAttribute == null) {
+	        return null;
+	    }
+	    return valueAttribute.value();
+	}
+	exports.schemaContent = schemaContent;
+	function extractParams(params, uri, owner, propName) {
+	    var ownerHl = owner.highLevel();
+	    var prop = ownerHl.definition().property(propName);
 	    if (!uri) {
 	        return [];
 	    }
 	    var describedParams = {};
-	    params.forEach(function (x) { return describedParams[x.name()] = x; });
+	    params.forEach(function (x) {
+	        var arr = describedParams[x.name()];
+	        if (!arr) {
+	            arr = [];
+	            describedParams[x.name()] = arr;
+	        }
+	        arr.push(x);
+	    });
 	    var allParams = [];
 	    var prev = 0;
+	    var mentionedParams = {};
 	    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
 	        prev = uri.indexOf('}', ++i);
 	        var paramName = uri.substring(i, prev);
+	        mentionedParams[paramName] = true;
 	        if (describedParams[paramName]) {
-	            allParams.push(describedParams[paramName]);
+	            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
 	        }
 	        else {
-	            allParams.push(new HelperUriParam(paramName, resource));
+	            var uriParameter = new RamlWrapper.TypeDeclarationImpl(paramName);
+	            uriParameter.setName(paramName);
+	            var hlNode = uriParameter.highLevel();
+	            hlNode.setParent(ownerHl);
+	            hlNode.patchProp(prop);
+	            allParams.push(uriParameter);
 	        }
 	    }
+	    Object.keys(describedParams).filter(function (x) { return !mentionedParams[x]; }).forEach(function (x) { return describedParams[x].forEach(function (y) { return allParams.push(y); }); });
 	    return allParams;
 	}
 	;
-	var HelperUriParam = (function () {
-	    function HelperUriParam(_name, _parent) {
-	        this._name = _name;
-	        this._parent = _parent;
-	    }
-	    HelperUriParam.prototype.wrapperClassName = function () {
-	        return "HelperUriParam";
-	    };
-	    HelperUriParam.prototype.kind = function () {
-	        return "HelperUriParam";
-	    };
-	    HelperUriParam.prototype.name = function () {
-	        return this._name;
-	    };
-	    HelperUriParam.prototype["type"] = function () {
-	        return ["string"];
-	    };
-	    HelperUriParam.prototype.location = function () {
-	        return {
-	            wrapperClassName: function () { return "HelperModelLocation"; },
-	            kind: function () { return "HelperModelLocation"; }
-	        };
-	    };
-	    HelperUriParam.prototype.locationKind = function () {
-	        return {
-	            wrapperClassName: function () { return "HelperLocationKind"; },
-	            kind: function () { return "HelperLocationKind"; }
-	        };
-	    };
-	    HelperUriParam.prototype["default"] = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.xml = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.runtimeType = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.validateInstance = function (v) {
-	        return [];
-	    };
-	    HelperUriParam.prototype.sendDefaultByClient = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.example = function () {
-	        return '';
-	    };
-	    HelperUriParam.prototype.schema = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.formParameters = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.examples = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.repeat = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.enum = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.collectionFormat = function () {
-	        return 'multi';
-	    };
-	    HelperUriParam.prototype.required = function () {
-	        return true;
-	    };
-	    HelperUriParam.prototype.readOnly = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.facets = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.scope = function () {
-	        return [];
-	    };
-	    //xml(  ):RamlWrapper.XMLInfo{ return null; }
-	    //validWhen(  ):RamlWrapper.ramlexpression{ return null; }
-	    //requiredWhen(  ):RamlWrapper.ramlexpression{ return null; }
-	    HelperUriParam.prototype.displayName = function () {
-	        return this._name;
-	    };
-	    HelperUriParam.prototype.description = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.annotations = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.usage = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.parent = function () {
-	        return this._parent;
-	    };
-	    HelperUriParam.prototype.highLevel = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.errors = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.definition = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.runtimeDefinition = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.toJSON = function () {
-	        return { "name": this.name() };
-	    };
-	    HelperUriParam.prototype.optional = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.optionalProperties = function () {
-	        return [];
-	    };
-	    return HelperUriParam;
-	})();
-	exports.HelperUriParam = HelperUriParam;
 	var SchemaDef = (function () {
 	    function SchemaDef(_content, _name) {
 	        this._content = _content;
@@ -25254,9 +25477,9 @@ module.exports =
 	var RamlWrapper = __webpack_require__(1);
 	var RamlWrapper08 = __webpack_require__(74);
 	var wrapperHelper = __webpack_require__(65);
-	var pluralize = __webpack_require__(89);
-	var universeProvider = __webpack_require__(77);
-	var changeCase = __webpack_require__(90);
+	var pluralize = __webpack_require__(90);
+	var universeProvider = __webpack_require__(78);
+	var changeCase = __webpack_require__(91);
 	function expandTraitsAndResourceTypes(api) {
 	    if (!(api instanceof RamlWrapper.ApiImpl || api instanceof RamlWrapper08.ApiImpl)) {
 	        return null;
@@ -25661,8 +25884,8 @@ module.exports =
 	var hl = __webpack_require__(2);
 	var services = __webpack_require__(49);
 	var core = __webpack_require__(75);
-	var apiLoader = __webpack_require__(76);
-	var helper = __webpack_require__(88);
+	var apiLoader = __webpack_require__(77);
+	var helper = __webpack_require__(89);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
 	    function RAMLLanguageElementImpl() {
@@ -26854,6 +27077,12 @@ module.exports =
 	    BodyLikeImpl.prototype.formParameters = function () {
 	        return _super.prototype.elements.call(this, 'formParameters');
 	    };
+	    /**
+	     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+	     **/
+	    BodyLikeImpl.prototype.schemaContent = function () {
+	        return helper.schemaContent(this);
+	    };
 	    return BodyLikeImpl;
 	})(RAMLLanguageElementImpl);
 	exports.BodyLikeImpl = BodyLikeImpl;
@@ -27794,6 +28023,12 @@ module.exports =
 	    ApiImpl.prototype.allProtocols = function () {
 	        return helper.allProtocols(this);
 	    };
+	    /**
+	     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+	     **/
+	    ApiImpl.prototype.RAMLVersion = function () {
+	        return helper.RAMLVersion(this);
+	    };
 	    return ApiImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ApiImpl = ApiImpl;
@@ -28197,10 +28432,26 @@ module.exports =
 	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
 	}
 	exports.loadApiSync = loadApiSync;
+	function loadRAMLSync(ramlPath, arg1, arg2) {
+	    return apiLoader.loadApi(ramlPath, arg1, arg2).getOrElse(null);
+	}
+	exports.loadRAMLSync = loadRAMLSync;
 	function loadApi(apiPath, arg1, arg2) {
 	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
 	}
 	exports.loadApi = loadApi;
+	function loadRAML(ramlPath, arg1, arg2) {
+	    return apiLoader.loadRAMLAsync(ramlPath, arg1, arg2);
+	}
+	exports.loadRAML = loadRAML;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType - runtime type to find the match for
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    return apiLoader.getLanguageElementByRuntimeType(runtimeType);
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
 
 
 /***/ },
@@ -28211,6 +28462,7 @@ module.exports =
 	var jsyaml = __webpack_require__(15);
 	var ramlService = __webpack_require__(49);
 	var json2lowlevel = __webpack_require__(8);
+	var defaultCalculator = __webpack_require__(76);
 	var BasicNodeImpl = (function () {
 	    /**
 	     * @hidden
@@ -28247,9 +28499,20 @@ module.exports =
 	     **/
 	    BasicNodeImpl.prototype.attributes = function (name, constr) {
 	        var attrs = this._node.attributes(name);
-	        if (!attrs) {
-	            return null;
+	        if (!attrs || attrs.length == 0) {
+	            var defaultValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+	            if (defaultValue == null)
+	                return [];
+	            if (constr && (constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
+	                return [constr(defaultValue)];
+	            }
+	            else if (constr) {
+	                return [];
+	            }
+	            return [defaultValue];
 	        }
+	        //TODO not sure if we want to artificially create missing attributes having
+	        //default values
 	        if (constr) {
 	            return attrs.map(function (x) { return constr(x); });
 	        }
@@ -28262,14 +28525,24 @@ module.exports =
 	     **/
 	    BasicNodeImpl.prototype.attribute = function (name, constr) {
 	        var attr = this._node.attr(name);
-	        if (!attr) {
-	            return null;
-	        }
-	        if (constr) {
+	        if (constr && !(constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
+	            //we're not putting values directly inside anything, besides the default
+	            //convertors for default types we support
+	            if (attr == null)
+	                return null;
 	            return constr(attr);
 	        }
+	        var attributeValue = attr ? attr.value() : null;
+	        if (attributeValue == null) {
+	            attributeValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+	        }
+	        if (attributeValue == null)
+	            return null;
+	        if (constr) {
+	            return constr(attributeValue);
+	        }
 	        else {
-	            return attr.value();
+	            return attributeValue;
 	        }
 	    };
 	    /**
@@ -28323,16 +28596,37 @@ module.exports =
 	    BasicNodeImpl.prototype.dump = function () {
 	        return this.highLevel().dump("yaml");
 	    };
-	    BasicNodeImpl.prototype.toString = function (attr) {
-	        var obj = attr.value();
+	    BasicNodeImpl.prototype.toString = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
 	        return obj != null ? obj.toString() : obj;
 	    };
-	    BasicNodeImpl.prototype.toBoolean = function (attr) {
-	        var obj = attr.value();
+	    BasicNodeImpl.prototype.toBoolean = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
 	        return obj != null ? obj.toString() == 'true' : obj;
 	    };
-	    BasicNodeImpl.prototype.toNumber = function (attr) {
-	        var obj = attr.value();
+	    BasicNodeImpl.prototype.toNumber = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
 	        if (!obj) {
 	            return obj;
 	        }
@@ -28414,6 +28708,24 @@ module.exports =
 	        }
 	        return this.highLevel().optionalProperties();
 	    };
+	    BasicNodeImpl.prototype.getDefaultsCalculator = function () {
+	        if (this.defaultsCalculator) {
+	            return this.defaultsCalculator;
+	        }
+	        if (this.parent()) {
+	            this.defaultsCalculator = this.parent().getDefaultsCalculator();
+	        }
+	        if (!this.defaultsCalculator) {
+	            this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(false);
+	        }
+	        return this.defaultsCalculator;
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.setAttributeDefaults = function (attributeDefaults) {
+	        this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(attributeDefaults);
+	    };
 	    return BasicNodeImpl;
 	})();
 	exports.BasicNodeImpl = BasicNodeImpl;
@@ -28469,17 +28781,85 @@ module.exports =
 /* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var universeHelpers = __webpack_require__(62);
+	var services = __webpack_require__(49);
+	var AttributeDefaultsCalculator = (function () {
+	    /**
+	     *
+	     * @param enabled - if false, defaults calculator will not return defaults from
+	     * attrValueOrDefault method, only original values.
+	     * @constructor
+	     */
+	    function AttributeDefaultsCalculator(enabled) {
+	        this.enabled = enabled;
+	    }
+	    /**
+	     * Return attribute default value if defaults calculator is enabled.
+	     * If attribute value is null or undefined, returns attribute default.
+	     */
+	    AttributeDefaultsCalculator.prototype.attributeDefaultIfEnabled = function (node, attributeProperty) {
+	        if (!this.enabled)
+	            return null;
+	        return this.getAttributeDefault(node, attributeProperty);
+	    };
+	    /**
+	     * Returns attribute default.
+	     */
+	    AttributeDefaultsCalculator.prototype.getAttributeDefault = function (node, attributeProperty) {
+	        if (!node || !attributeProperty)
+	            return null;
+	        try {
+	            return this.getAttributeDefault2(attributeProperty, node, node.definition(), node.property(), node.parent(), node.parent() ? node.parent().definition() : null);
+	        }
+	        catch (Error) {
+	            console.log(Error);
+	            return null;
+	        }
+	    };
+	    /**
+	     * Returns attribute default.
+	     * There are so many arguments instead of just providing a single AST node and getting
+	     * anything we want from it as sometimes we create fake nodes in helpers and thus
+	     * do not have actual high-level nodes at hands.
+	     */
+	    AttributeDefaultsCalculator.prototype.getAttributeDefault2 = function (attributeProperty, node, nodeDefinition, nodeProperty, parent, parentDefinition) {
+	        //static values defined in definition system via defaultValue, defaultIntegerValue
+	        // and defaultBooleanValue annotations.
+	        if (attributeProperty.defaultValue() != null) {
+	            return attributeProperty.defaultValue();
+	        }
+	        if (universeHelpers.isDisplayNameProperty(attributeProperty)) {
+	            var adapter = nodeDefinition.getAdapter(services.RAMLService);
+	            var keyProperty = adapter.getKeyProp();
+	            if (keyProperty != null) {
+	                var attributeValue = node.attrValue(keyProperty.nameId());
+	                if (attributeValue != null)
+	                    return attributeValue;
+	            }
+	        }
+	        return null;
+	    };
+	    return AttributeDefaultsCalculator;
+	})();
+	exports.AttributeDefaultsCalculator = AttributeDefaultsCalculator;
+
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/// <reference path="../../typings/main.d.ts" />
 	var RamlWrapper1 = __webpack_require__(1);
-	var RamlWrapper08 = __webpack_require__(74);
 	var path = __webpack_require__(16);
 	var Opt = __webpack_require__(12);
 	var jsyaml = __webpack_require__(15);
+	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
 	var llimpl = __webpack_require__(15);
 	var expander = __webpack_require__(73);
 	var universeDef = __webpack_require__(54);
-	var universeProvider = __webpack_require__(77);
+	var ramlServices = __webpack_require__(49);
+	var universeProvider = __webpack_require__(78);
 	/***
 	 * Load API synchronously. Detects RAML version and uses corresponding parser.
 	 * @param apiPath Path to API: local file system path or Web URL
@@ -28487,6 +28867,27 @@ module.exports =
 	 * @return Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
 	function loadApi(apiPath, arg1, arg2) {
+	    var api = loadRAMLInternal(apiPath, arg1, arg2);
+	    if (false) {
+	        throw new Error("Loaded RAML is not API");
+	    }
+	    else {
+	        return new Opt(api);
+	    }
+	}
+	exports.loadApi = loadApi;
+	/***
+	 * Load RAML synchronously. Detects RAML version and uses corresponding parser.
+	 * @param ramlPath Path to RAML: local file system path or Web URL
+	 * @param options Load options
+	 * @return Opt&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadRAML(ramlPath, arg1, arg2) {
+	    var result = loadRAMLInternal(ramlPath, arg1, arg2);
+	    return new Opt(result);
+	}
+	exports.loadRAML = loadRAML;
+	function loadRAMLInternal(apiPath, arg1, arg2) {
 	    var gotArray = Array.isArray(arg1);
 	    var extensionsAndOverlays = (gotArray ? arg1 : null);
 	    var options = (gotArray ? arg2 : arg1);
@@ -28521,9 +28922,11 @@ module.exports =
 	    if (options.rejectOnErrors && api && api.errors().length) {
 	        throw toError(api);
 	    }
-	    return new Opt(api);
+	    if (options.attributeDefaults != null && api) {
+	        api.setAttributeDefaults(options.attributeDefaults);
+	    }
+	    return api;
 	}
-	exports.loadApi = loadApi;
 	/***
 	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
 	 * @param apiPath Path to API: local file system path or Web URL
@@ -28531,18 +28934,40 @@ module.exports =
 	 * @return Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
 	 ***/
 	function loadApiAsync(apiPath, arg1, arg2) {
+	    var ramlPromise = loadRAMLAsync(apiPath, arg1, arg2);
+	    return ramlPromise.then(function (loadedRaml) {
+	        if (false) {
+	            //TODO check that loaded RAML is API
+	            return Promise.reject("Specified RAML is not API");
+	        }
+	        else {
+	            return loadedRaml;
+	        }
+	    });
+	}
+	exports.loadApiAsync = loadApiAsync;
+	/***
+	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
+	 * @param ramlPath Path to RAML: local file system path or Web URL
+	 * @param options Load options
+	 * @return Promise&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadRAMLAsync(ramlPath, arg1, arg2) {
 	    var gotArray = Array.isArray(arg1);
 	    var extensionsAndOverlays = (gotArray ? arg1 : null);
 	    var options = (gotArray ? arg2 : arg1);
 	    options = options || {};
-	    var project = getProject(apiPath, options);
-	    var unitName = path.basename(apiPath);
+	    var project = getProject(ramlPath, options);
+	    var unitName = path.basename(ramlPath);
 	    if (arg2 && !extensionsAndOverlays) {
 	        throw new Error("Extensions and overlays list should be defined");
 	    }
 	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
 	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
 	            masterApi.highLevel().setMergeMode(0 /* MERGE */);
+	            if (options.attributeDefaults != null && masterApi) {
+	                masterApi.setAttributeDefaults(options.attributeDefaults);
+	            }
 	            return masterApi;
 	        });
 	    }
@@ -28560,14 +28985,33 @@ module.exports =
 	            return Promise.all(apiPromises).then(function (apis) {
 	                var overlayUnits = [];
 	                apis.forEach(function (currentApi) { return overlayUnits.push(currentApi.highLevel().lowLevel().unit()); });
-	                return expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits, 0 /* MERGE */);
+	                var result = expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits, 0 /* MERGE */);
+	                if (options.attributeDefaults != null && result) {
+	                    result.setAttributeDefaults(options.attributeDefaults);
+	                }
+	                return result;
 	            }).then(function (mergedHighLevel) {
 	                return toApi(mergedHighLevel, options);
 	            });
 	        });
 	    }
 	}
-	exports.loadApiAsync = loadApiAsync;
+	exports.loadRAMLAsync = loadRAMLAsync;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    if (runtimeType == null) {
+	        return null;
+	    }
+	    var highLevelNode = runtimeType.getAdapter(ramlServices.RAMLService).getDeclaringNode();
+	    if (highLevelNode == null) {
+	        return null;
+	    }
+	    return highLevelNode.wrapperNode();
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
 	function fetchAndLoadApiAsync(project, unitName, options) {
 	    return llimpl.fetchIncludesAsync(project, unitName).then(function (x) {
 	        try {
@@ -28630,30 +29074,28 @@ module.exports =
 	    if (ramlVersion == 'RAML08' && checkApisOverlays) {
 	        throw new Error('Extensions and overlays are not supported in RAML 0.8.');
 	    }
-	    if (!ramlFileType || ramlFileType.trim() === "") {
-	        if (verStr == '0.8') {
-	            typeName = universeDef.Universe08.Api.name;
-	            apiImpl = RamlWrapper08.ApiImpl;
-	        }
-	        else if (verStr == '1.0') {
-	            typeName = universeDef.Universe10.Api.name;
-	            apiImpl = RamlWrapper1.ApiImpl;
-	        }
-	    }
-	    else if (ramlFileType === "Overlay") {
-	        apiImpl = RamlWrapper1.OverlayImpl;
-	        typeName = universeDef.Universe10.Overlay.name;
-	    }
-	    else if (ramlFileType === "Extension") {
-	        apiImpl = RamlWrapper1.ExtensionImpl;
-	        typeName = universeDef.Universe10.Extension.name;
-	    }
+	    //if (!ramlFileType || ramlFileType.trim() === "") {
+	    //    if (verStr=='0.8') {
+	    //        typeName = universeDef.Universe08.Api.name;
+	    //        apiImpl = RamlWrapper08.ApiImpl;
+	    //    } else if(verStr=='1.0'){
+	    //        typeName = universeDef.Universe10.Api.name;
+	    //        apiImpl = RamlWrapper1.ApiImpl;
+	    //    }
+	    //} else if (ramlFileType === "Overlay") {
+	    //    apiImpl = RamlWrapper1.OverlayImpl;
+	    //    typeName = universeDef.Universe10.Overlay.name;
+	    //} else if (ramlFileType === "Extension") {
+	    //    apiImpl = RamlWrapper1.ExtensionImpl;
+	    //    typeName = universeDef.Universe10.Extension.name;
+	    //}
 	    var universe = universeProvider(ramlVersion);
 	    var apiType = universe.type(typeName);
 	    if (!highLevel) {
-	        highLevel = new hlimpl.ASTNodeImpl(unit.ast(), null, apiType, null);
+	        highLevel = hl.fromUnit(unit);
 	    }
-	    api = new apiImpl(highLevel);
+	    //api = new apiImpl(highLevel);
+	    api = highLevel.wrapperNode();
 	    return api;
 	}
 	;
@@ -28687,21 +29129,21 @@ module.exports =
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, __dirname) {var fs = __webpack_require__(17);
 	var path = __webpack_require__(16);
-	var tsstruct = __webpack_require__(78);
-	var ts2def = __webpack_require__(82);
+	var tsstruct = __webpack_require__(79);
+	var ts2def = __webpack_require__(83);
 	var universes = {};
 	var locations = {
 	    "RAML10": "../spec-1.0/api.ts",
 	    "RAML08": "../spec-0.8/api.ts"
 	};
 	var jsonDefinitions = {
-	    "RAML10": __webpack_require__(85),
-	    "RAML08": __webpack_require__(86)
+	    "RAML10": __webpack_require__(86),
+	    "RAML08": __webpack_require__(87)
 	};
 	var getUniverse = (function () {
 	    var x = function (key) {
@@ -28714,7 +29156,7 @@ module.exports =
 	            universe.setUniverseVersion(key);
 	            universes[key] = universe;
 	        }
-	        var mediaTypeParser = __webpack_require__(87);
+	        var mediaTypeParser = __webpack_require__(88);
 	        global.mediaTypeParser = mediaTypeParser;
 	        return universe;
 	    };
@@ -28779,18 +29221,18 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), "../../src/raml1/definition-system"))
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by kor on 08/05/15.
 	 */
 	/// <reference path="../../../typings/main.d.ts" />
-	var ts = __webpack_require__(79);
-	var tsm = __webpack_require__(80);
+	var ts = __webpack_require__(80);
+	var tsm = __webpack_require__(81);
 	var pth = __webpack_require__(16);
 	var fs = __webpack_require__(17);
-	var tsModel = __webpack_require__(81);
+	var tsModel = __webpack_require__(82);
 	function parse(content) {
 	    return ts.createSourceFile("sample.ts", content, 0 /* ES3 */, "1.4.1", true);
 	}
@@ -29032,7 +29474,7 @@ module.exports =
 	    }
 	    if (n.kind == 6 /* NumericLiteral */) {
 	        var nl = n;
-	        return nl.text;
+	        return Number(nl.text);
 	    }
 	    if (n.kind == 157 /* BinaryExpression */) {
 	        var bin = n;
@@ -29113,13 +29555,13 @@ module.exports =
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = {};
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -29129,7 +29571,7 @@ module.exports =
 	    d.prototype = new __();
 	};
 	/// <reference path="../../typings/main.d.ts" />
-	var ts = __webpack_require__(79);
+	var ts = __webpack_require__(80);
 	/***
 	 * This module is designed to match simple patterns on Typescript AST Tree
 	 * it functionality mirrors jsASTMatchers which allows you to match on jsAST
@@ -29490,7 +29932,7 @@ module.exports =
 
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports) {
 
 	var EnumDeclaration = (function () {
@@ -29508,7 +29950,7 @@ module.exports =
 
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -29518,10 +29960,10 @@ module.exports =
 	    d.prototype = new __();
 	};
 	/// <reference path="../../../typings/main.d.ts" />
-	var tsModel = __webpack_require__(81);
+	var tsModel = __webpack_require__(82);
 	var def = __webpack_require__(3);
 	var _ = __webpack_require__(4);
-	var aHandlers = __webpack_require__(83);
+	var aHandlers = __webpack_require__(84);
 	var services = __webpack_require__(49);
 	var FieldWrapper = (function () {
 	    function FieldWrapper(_field, _clazz) {
@@ -29998,7 +30440,7 @@ module.exports =
 	            cl.properties().forEach(function (y) {
 	                var t = y.range();
 	                var ap = y;
-	                if (!t.isValueType()) {
+	                if (!t.hasValueTypeInHierarchy()) {
 	                    t.properties().forEach(function (p0) {
 	                        if (p0.getAdapter(services.RAMLPropertyService).isKey()) {
 	                            var kp = p0.keyPrefix();
@@ -30018,14 +30460,14 @@ module.exports =
 	            if (cl.getAdapter(services.RAMLService).isGlobalDeclaration()) {
 	                if (cl.getAdapter(services.RAMLService).getActuallyExports() && cl.getAdapter(services.RAMLService).getActuallyExports() != "$self") {
 	                    var tp = cl.property(cl.getAdapter(services.RAMLService).getActuallyExports()).range();
-	                    if (tp.isValueType()) {
+	                    if (tp.hasValueTypeInHierarchy()) {
 	                        var vt = tp.getAdapter(services.RAMLService);
 	                        vt.setGloballyDeclaredBy(cl);
 	                    }
 	                }
 	                if (cl.getAdapter(services.RAMLService).getConvertsToGlobal()) {
 	                    var tp = u.type(cl.getAdapter(services.RAMLService).getConvertsToGlobal());
-	                    if (tp.isValueType()) {
+	                    if (tp.hasValueTypeInHierarchy()) {
 	                        var vt = tp.getAdapter(services.RAMLService);
 	                        vt.setGloballyDeclaredBy(cl);
 	                    }
@@ -30054,7 +30496,7 @@ module.exports =
 	        p.withMultiValue(true);
 	    }
 	    p.unmerge();
-	    if (!t.isValueType()) {
+	    if (!t.hasValueTypeInHierarchy()) {
 	        t.properties().forEach(function (p0) {
 	            if (p0.getAdapter(services.RAMLPropertyService).isKey()) {
 	                var kp = p0.keyPrefix();
@@ -30075,11 +30517,11 @@ module.exports =
 
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var def = __webpack_require__(3);
-	var khttp = __webpack_require__(84);
+	var khttp = __webpack_require__(85);
 	var _ = __webpack_require__(4);
 	var services = __webpack_require__(49);
 	function handleTypeAnnotation(a, rangeType) {
@@ -30174,6 +30616,12 @@ module.exports =
 	    },
 	    defaultValue: function (a, f) {
 	        f.setDefaultVal("" + a.arguments[0]);
+	    },
+	    defaultIntegerValue: function (a, f) {
+	        f.setDefaultIntegerVal(a.arguments[0]);
+	    },
+	    defaultBooleanValue: function (a, f) {
+	        f.setDefaultBooleanVal(a.arguments[0]);
 	    },
 	    facetId: function (a, f) {
 	        if (a.arguments[0] == "minItems") {
@@ -30437,13 +30885,13 @@ module.exports =
 
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = require("know-your-http-well");
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -32703,7 +33151,7 @@ module.exports =
 							{
 								"name": "MetaModel.markdownDescription",
 								"arguments": [
-									"Query parameters, used by the schema in order to authorize the request. Mutually exclusive with queryString. See [[raml-10-spec-query-parameters-in-a-query-string|Query Parameters]] section."
+									"Query parameters, used by the scheme in order to authorize the request. Mutually exclusive with queryString. See [[raml-10-spec-query-parameters-in-a-query-string|Query Parameters]] section."
 								]
 							},
 							{
@@ -32717,7 +33165,7 @@ module.exports =
 							{
 								"name": "MetaModel.description",
 								"arguments": [
-									"Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters."
+									"Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters."
 								]
 							},
 							{
@@ -33261,7 +33709,7 @@ module.exports =
 											"OAuth 1.0",
 											"OAuth 2.0",
 											"Basic Authentication",
-											"DigestSecurityScheme Authentication",
+											"Digest Authentication",
 											"Pass Through",
 											"x-{other}"
 										]
@@ -33362,7 +33810,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33428,7 +33876,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33494,7 +33942,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33560,7 +34008,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33612,7 +34060,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33654,7 +34102,7 @@ module.exports =
 							"annotations": [],
 							"valueConstraint": {
 								"isCallConstraint": false,
-								"value": "DigestSecurityScheme Authentication"
+								"value": "Digest Authentication"
 							},
 							"optional": false
 						}
@@ -33664,7 +34112,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -33716,7 +34164,7 @@ module.exports =
 						{
 							"name": "MetaModel.description",
 							"arguments": [
-								"Declares globally referable security schema definition"
+								"Declares globally referable security scheme definition"
 							]
 						},
 						{
@@ -34098,7 +34546,7 @@ module.exports =
 								{
 									"name": "MetaModel.documentationTableLabel",
 									"arguments": [
-										"get?<br>patch?<br>put?<br>post?<br>delete?<br>options?<br>head?"
+										"get?<br>patch?<br>put?<br>post?<br>delete?<br>options?<br>head?<br>trace?<br>connect?"
 									]
 								},
 								{
@@ -34542,7 +34990,9 @@ module.exports =
 											"delete",
 											"options",
 											"head",
-											"patch"
+											"patch",
+											"trace",
+											"connect"
 										]
 									]
 								},
@@ -36151,6 +36601,12 @@ module.exports =
 									]
 								},
 								{
+									"name": "MetaModel.defaultBooleanValue",
+									"arguments": [
+										false
+									]
+								},
+								{
 									"name": "MetaModel.hide",
 									"arguments": []
 								}
@@ -36191,6 +36647,12 @@ module.exports =
 								{
 									"name": "MetaModel.hide",
 									"arguments": []
+								},
+								{
+									"name": "MetaModel.defaultBooleanValue",
+									"arguments": [
+										true
+									]
 								}
 							],
 							"valueConstraint": null,
@@ -38688,7 +39150,7 @@ module.exports =
 	];
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -39073,6 +39535,10 @@ module.exports =
 								"typeKind": 1
 							},
 							"annotations": [
+								{
+									"name": "MetaModel.allowNull",
+									"arguments": []
+								},
 								{
 									"name": "MetaModel.description",
 									"arguments": [
@@ -40489,7 +40955,9 @@ module.exports =
 											"delete",
 											"patch",
 											"options",
-											"head"
+											"head",
+											"trace",
+											"connect"
 										]
 									]
 								},
@@ -41951,6 +42419,12 @@ module.exports =
 									"arguments": [
 										"Set to true if parameter is required"
 									]
+								},
+								{
+									"name": "MetaModel.defaultBooleanValue",
+									"arguments": [
+										true
+									]
 								}
 							],
 							"valueConstraint": null,
@@ -42013,6 +42487,12 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
+									]
+								},
+								{
+									"name": "MetaModel.defaultBooleanValue",
+									"arguments": [
+										false
 									]
 								}
 							],
@@ -43143,13 +43623,13 @@ module.exports =
 	];
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports) {
 
 	module.exports = require("media-typer");
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(74);
@@ -43420,7 +43900,8 @@ module.exports =
 	function uriParameters(resource) {
 	    var uri = resource.relativeUri().value();
 	    var params = resource.uriParameters();
-	    return extractParams(params, uri, resource);
+	    var propName = universes.Universe08.Resource.properties.uriParameters.name;
+	    return extractParams(params, uri, resource, propName);
 	}
 	exports.uriParameters = uriParameters;
 	/**__$helperMethod__
@@ -43439,7 +43920,8 @@ module.exports =
 	function baseUriParameters(api) {
 	    var uri = api.baseUri() ? api.baseUri().value() : '';
 	    var params = api.baseUriParameters();
-	    return extractParams(params, uri, api);
+	    var propName = universes.Universe08.Api.properties.baseUriParameters.name;
+	    return extractParams(params, uri, api, propName);
 	}
 	exports.baseUriParameters = baseUriParameters;
 	/**__$helperMethod__
@@ -43447,19 +43929,21 @@ module.exports =
 	 * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
 	 */
 	function absoluteUriParameters(res) {
+	    var uriParamsPropName = universes.Universe08.Resource.properties.uriParameters.name;
+	    var baseUriParamsPropName = universes.Universe08.Api.properties.baseUriParameters.name;
 	    var params = [];
 	    var parent = res;
 	    do {
 	        res = parent;
 	        var uri = res.relativeUri().value();
 	        var uriParams = res.uriParameters();
-	        params = extractParams(uriParams, uri, res).concat(params);
+	        params = extractParams(uriParams, uri, res, uriParamsPropName).concat(params);
 	        parent = res.parent();
 	    } while (parent.definition().key().name == universes.Universe08.Resource.name);
 	    var api = parent;
 	    var baseUri = api.baseUri().value();
 	    var baseUriParams = api.baseUriParameters();
-	    params = extractParams(baseUriParams, baseUri, api).concat(params);
+	    params = extractParams(baseUriParams, baseUri, api, baseUriParamsPropName).concat(params);
 	    return params;
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
@@ -43472,11 +43956,14 @@ module.exports =
 	    if (result.length != 0) {
 	        return result;
 	    }
-	    var baseUri = api.baseUri().value();
-	    if (baseUri && baseUri.trim().length != 0) {
-	        var ind = baseUri.indexOf('://');
-	        if (ind >= 0) {
-	            result = [baseUri.substring(0, ind)];
+	    var baseUriAttr = api.baseUri();
+	    if (baseUriAttr) {
+	        var baseUri = baseUriAttr.value();
+	        if (baseUri) {
+	            var ind = baseUri.indexOf('://');
+	            if (ind >= 0) {
+	                result = [baseUri.substring(0, ind)];
+	            }
 	        }
 	    }
 	    return result;
@@ -43535,129 +44022,80 @@ module.exports =
 	    return result;
 	}
 	exports.securityScheme = securityScheme;
-	function extractParams(params, uri, resource) {
+	//__$helperMethod__ Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+	function RAMLVersion(api) {
+	    return api.highLevel().definition().universe().version();
+	}
+	exports.RAMLVersion = RAMLVersion;
+	function extractParams(params, uri, owner, propName) {
+	    var ownerHl = owner.highLevel();
+	    var prop = ownerHl.definition().property(propName);
 	    if (!uri) {
 	        return [];
 	    }
 	    var describedParams = {};
-	    params.forEach(function (x) { return describedParams[x.name()] = x; });
+	    params.forEach(function (x) {
+	        var arr = describedParams[x.name()];
+	        if (!arr) {
+	            arr = [];
+	            describedParams[x.name()] = arr;
+	        }
+	        arr.push(x);
+	    });
 	    var allParams = [];
 	    var prev = 0;
+	    var mentionedParams = {};
 	    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
 	        prev = uri.indexOf('}', ++i);
 	        var paramName = uri.substring(i, prev);
+	        mentionedParams[paramName] = true;
 	        if (describedParams[paramName]) {
-	            allParams.push(describedParams[paramName]);
+	            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
 	        }
 	        else {
-	            allParams.push(new HelperUriParam(paramName, resource));
+	            var uriParameter = new RamlWrapper.ParameterImpl(paramName);
+	            uriParameter.setName(paramName);
+	            var hlNode = uriParameter.highLevel();
+	            hlNode.setParent(ownerHl);
+	            hlNode.patchProp(prop);
+	            allParams.push(uriParameter);
 	        }
 	    }
+	    Object.keys(describedParams).filter(function (x) { return !mentionedParams[x]; }).forEach(function (x) { return describedParams[x].forEach(function (y) { return allParams.push(y); }); });
 	    return allParams;
 	}
 	;
-	var HelperUriParam = (function () {
-	    function HelperUriParam(_name, _parent) {
-	        this._name = _name;
-	        this._parent = _parent;
+	//__$helperMethod__ Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+	function schemaContent(bodyDeclaration) {
+	    var schemaDecl = bodyDeclaration.schema();
+	    if (schemaDecl == null) {
+	        return null;
 	    }
-	    HelperUriParam.prototype.wrapperClassName = function () {
-	        return "HelperUriParam";
-	    };
-	    HelperUriParam.prototype.kind = function () {
-	        return "HelperUriParam";
-	    };
-	    HelperUriParam.prototype.name = function () {
-	        return this._name;
-	    };
-	    HelperUriParam.prototype["type"] = function () {
-	        return "string";
-	    };
-	    HelperUriParam.prototype.location = function () {
-	        return {
-	            wrapperClassName: function () { return "HelperModelLocation"; },
-	            kind: function () { return "HelperModelLocation"; }
-	        };
-	    };
-	    //    locationKind(  ):RamlWrapper.LocationKind{ return { wrapperClassName: ()=>"HelperLocationKind" }; }
-	    HelperUriParam.prototype["default"] = function () {
+	    var schemaString = schemaDecl.value();
+	    if (!schemaString) {
 	        return null;
-	    };
-	    HelperUriParam.prototype.xml = function () {
+	    }
+	    var schemaAttribute = bodyDeclaration.highLevel().attr(universes.Universe08.BodyLike.properties.schema.name);
+	    if (!schemaAttribute) {
+	        return schemaString;
+	    }
+	    var declaration = search.findDeclarationByNode(schemaAttribute, 0 /* VALUE_COMPLETION */);
+	    if (!declaration)
+	        return schemaString;
+	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+	        return schemaString;
+	    }
+	    //we found the schema declaration and should get its contents
+	    if (declaration.definition().key() != universes.Universe08.GlobalSchema) {
 	        return null;
-	    };
-	    HelperUriParam.prototype.sendDefaultByClient = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.example = function () {
-	        return '';
-	    };
-	    HelperUriParam.prototype.schema = function () {
+	    }
+	    var valueAttribute = declaration.attr(universes.Universe08.GlobalSchema.properties.value.name);
+	    if (valueAttribute == null) {
 	        return null;
-	    };
-	    //    formParameters():RamlWrapper.TypeDeclaration[]{return []}
-	    //    examples(  ):RamlWrapper.ExampleSpec[]{ return []}
-	    HelperUriParam.prototype.repeat = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.enum = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.collectionFormat = function () {
-	        return 'multi';
-	    };
-	    HelperUriParam.prototype.required = function () {
-	        return true;
-	    };
-	    HelperUriParam.prototype.readOnly = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.facets = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.scope = function () {
-	        return [];
-	    };
-	    //xml(  ):RamlWrapper.XMLInfo{ return null; }
-	    //    validWhen(  ):RamlWrapper.ramlexpression{ return null; }
-	    //    requiredWhen(  ):RamlWrapper.ramlexpression{ return null; }
-	    HelperUriParam.prototype.displayName = function () {
-	        return this._name;
-	    };
-	    HelperUriParam.prototype.description = function () {
-	        return null;
-	    };
-	    //    annotations(  ):RamlWrapper.AnnotationRef[]{ return []; }
-	    HelperUriParam.prototype.usage = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.parent = function () {
-	        return this._parent;
-	    };
-	    HelperUriParam.prototype.highLevel = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.errors = function () {
-	        return [];
-	    };
-	    HelperUriParam.prototype.definition = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.runtimeDefinition = function () {
-	        return null;
-	    };
-	    HelperUriParam.prototype.toJSON = function () {
-	        return { "name": this.name() };
-	    };
-	    HelperUriParam.prototype.optional = function () {
-	        return false;
-	    };
-	    HelperUriParam.prototype.optionalProperties = function () {
-	        return [];
-	    };
-	    return HelperUriParam;
-	})();
-	exports.HelperUriParam = HelperUriParam;
+	    }
+	    return valueAttribute.value();
+	}
+	exports.schemaContent = schemaContent;
 	//
 	//export class SchemaDef{
 	//
@@ -43721,38 +44159,38 @@ module.exports =
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports) {
 
 	module.exports = require("pluralize");
 
 /***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports.dot = exports.dotCase = __webpack_require__(91)
-	exports.swap = exports.swapCase = __webpack_require__(97)
-	exports.path = exports.pathCase = __webpack_require__(99)
-	exports.upper = exports.upperCase = __webpack_require__(98)
-	exports.lower = exports.lowerCase = __webpack_require__(93)
-	exports.camel = exports.camelCase = __webpack_require__(100)
-	exports.snake = exports.snakeCase = __webpack_require__(101)
-	exports.title = exports.titleCase = __webpack_require__(102)
-	exports.param = exports.paramCase = __webpack_require__(103)
-	exports.pascal = exports.pascalCase = __webpack_require__(104)
-	exports.constant = exports.constantCase = __webpack_require__(106)
-	exports.sentence = exports.sentenceCase = __webpack_require__(92)
-	exports.isUpper = exports.isUpperCase = __webpack_require__(107)
-	exports.isLower = exports.isLowerCase = __webpack_require__(108)
-	exports.ucFirst = exports.upperCaseFirst = __webpack_require__(105)
-	exports.lcFirst = exports.lowerCaseFirst = __webpack_require__(109)
-
-
-/***/ },
 /* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sentenceCase = __webpack_require__(92);
+	exports.dot = exports.dotCase = __webpack_require__(92)
+	exports.swap = exports.swapCase = __webpack_require__(98)
+	exports.path = exports.pathCase = __webpack_require__(100)
+	exports.upper = exports.upperCase = __webpack_require__(99)
+	exports.lower = exports.lowerCase = __webpack_require__(94)
+	exports.camel = exports.camelCase = __webpack_require__(101)
+	exports.snake = exports.snakeCase = __webpack_require__(102)
+	exports.title = exports.titleCase = __webpack_require__(103)
+	exports.param = exports.paramCase = __webpack_require__(104)
+	exports.pascal = exports.pascalCase = __webpack_require__(105)
+	exports.constant = exports.constantCase = __webpack_require__(107)
+	exports.sentence = exports.sentenceCase = __webpack_require__(93)
+	exports.isUpper = exports.isUpperCase = __webpack_require__(108)
+	exports.isLower = exports.isLowerCase = __webpack_require__(109)
+	exports.ucFirst = exports.upperCaseFirst = __webpack_require__(106)
+	exports.lcFirst = exports.lowerCaseFirst = __webpack_require__(110)
+
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var sentenceCase = __webpack_require__(93);
 
 	/**
 	 * Dot case a string.
@@ -43767,14 +44205,14 @@ module.exports =
 
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var lowerCase = __webpack_require__(93)
+	var lowerCase = __webpack_require__(94)
 
-	var NON_WORD_REGEXP = __webpack_require__(94)
-	var CAMEL_CASE_REGEXP = __webpack_require__(95)
-	var TRAILING_DIGIT_REGEXP = __webpack_require__(96)
+	var NON_WORD_REGEXP = __webpack_require__(95)
+	var CAMEL_CASE_REGEXP = __webpack_require__(96)
+	var TRAILING_DIGIT_REGEXP = __webpack_require__(97)
 
 	/**
 	 * Sentence case a string.
@@ -43813,7 +44251,7 @@ module.exports =
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports) {
 
 	/**
@@ -43873,32 +44311,32 @@ module.exports =
 
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
 	module.exports = /[^\u0041-\u005A\u0061-\u007A\u00AA\u00B5\u00BA\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0370-\u0374\u0376\u0377\u037A-\u037D\u0386\u0388-\u038A\u038C\u038E-\u03A1\u03A3-\u03F5\u03F7-\u0481\u048A-\u0527\u0531-\u0556\u0559\u0561-\u0587\u05D0-\u05EA\u05F0-\u05F2\u0620-\u064A\u066E\u066F\u0671-\u06D3\u06D5\u06E5\u06E6\u06EE\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u07F4\u07F5\u07FA\u0800-\u0815\u081A\u0824\u0828\u0840-\u0858\u08A0\u08A2-\u08AC\u0904-\u0939\u093D\u0950\u0958-\u0961\u0971-\u0977\u0979-\u097F\u0985-\u098C\u098F\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC\u09DD\u09DF-\u09E1\u09F0\u09F1\u0A05-\u0A0A\u0A0F\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32\u0A33\u0A35\u0A36\u0A38\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0\u0AE1\u0B05-\u0B0C\u0B0F\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32\u0B33\u0B35-\u0B39\u0B3D\u0B5C\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99\u0B9A\u0B9C\u0B9E\u0B9F\u0BA3\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C33\u0C35-\u0C39\u0C3D\u0C58\u0C59\u0C60\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0\u0CE1\u0CF1\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D60\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32\u0E33\u0E40-\u0E46\u0E81\u0E82\u0E84\u0E87\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA\u0EAB\u0EAD-\u0EB0\u0EB2\u0EB3\u0EBD\u0EC0-\u0EC4\u0EC6\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065\u1066\u106E-\u1070\u1075-\u1081\u108E\u10A0-\u10C5\u10C7\u10CD\u10D0-\u10FA\u10FC-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u13A0-\u13F4\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17D7\u17DC\u1820-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191C\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19C1-\u19C7\u1A00-\u1A16\u1A20-\u1A54\u1AA7\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C7D\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5\u1CF6\u1D00-\u1DBF\u1E00-\u1F15\u1F18-\u1F1D\u1F20-\u1F45\u1F48-\u1F4D\u1F50-\u1F57\u1F59\u1F5B\u1F5D\u1F5F-\u1F7D\u1F80-\u1FB4\u1FB6-\u1FBC\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FCC\u1FD0-\u1FD3\u1FD6-\u1FDB\u1FE0-\u1FEC\u1FF2-\u1FF4\u1FF6-\u1FFC\u2071\u207F\u2090-\u209C\u2102\u2107\u210A-\u2113\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u212F-\u2139\u213C-\u213F\u2145-\u2149\u214E\u2183\u2184\u2C00-\u2C2E\u2C30-\u2C5E\u2C60-\u2CE4\u2CEB-\u2CEE\u2CF2\u2CF3\u2D00-\u2D25\u2D27\u2D2D\u2D30-\u2D67\u2D6F\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u2E2F\u3005\u3006\u3031-\u3035\u303B\u303C\u3041-\u3096\u309D-\u309F\u30A1-\u30FA\u30FC-\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FCC\uA000-\uA48C\uA4D0-\uA4FD\uA500-\uA60C\uA610-\uA61F\uA62A\uA62B\uA640-\uA66E\uA67F-\uA697\uA6A0-\uA6E5\uA717-\uA71F\uA722-\uA788\uA78B-\uA78E\uA790-\uA793\uA7A0-\uA7AA\uA7F8-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9CF\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA76\uAA7A\uAA80-\uAAAF\uAAB1\uAAB5\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADD\uAAE0-\uAAEA\uAAF2-\uAAF4\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB00-\uFB06\uFB13-\uFB17\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40\uFB41\uFB43\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF21-\uFF3A\uFF41-\uFF5A\uFF66-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19]+/g
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports) {
 
 	module.exports = /([\u0061-\u007A\u00B5\u00DF-\u00F6\u00F8-\u00FF\u0101\u0103\u0105\u0107\u0109\u010B\u010D\u010F\u0111\u0113\u0115\u0117\u0119\u011B\u011D\u011F\u0121\u0123\u0125\u0127\u0129\u012B\u012D\u012F\u0131\u0133\u0135\u0137\u0138\u013A\u013C\u013E\u0140\u0142\u0144\u0146\u0148\u0149\u014B\u014D\u014F\u0151\u0153\u0155\u0157\u0159\u015B\u015D\u015F\u0161\u0163\u0165\u0167\u0169\u016B\u016D\u016F\u0171\u0173\u0175\u0177\u017A\u017C\u017E-\u0180\u0183\u0185\u0188\u018C\u018D\u0192\u0195\u0199-\u019B\u019E\u01A1\u01A3\u01A5\u01A8\u01AA\u01AB\u01AD\u01B0\u01B4\u01B6\u01B9\u01BA\u01BD-\u01BF\u01C6\u01C9\u01CC\u01CE\u01D0\u01D2\u01D4\u01D6\u01D8\u01DA\u01DC\u01DD\u01DF\u01E1\u01E3\u01E5\u01E7\u01E9\u01EB\u01ED\u01EF\u01F0\u01F3\u01F5\u01F9\u01FB\u01FD\u01FF\u0201\u0203\u0205\u0207\u0209\u020B\u020D\u020F\u0211\u0213\u0215\u0217\u0219\u021B\u021D\u021F\u0221\u0223\u0225\u0227\u0229\u022B\u022D\u022F\u0231\u0233-\u0239\u023C\u023F\u0240\u0242\u0247\u0249\u024B\u024D\u024F-\u0293\u0295-\u02AF\u0371\u0373\u0377\u037B-\u037D\u0390\u03AC-\u03CE\u03D0\u03D1\u03D5-\u03D7\u03D9\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F3\u03F5\u03F8\u03FB\u03FC\u0430-\u045F\u0461\u0463\u0465\u0467\u0469\u046B\u046D\u046F\u0471\u0473\u0475\u0477\u0479\u047B\u047D\u047F\u0481\u048B\u048D\u048F\u0491\u0493\u0495\u0497\u0499\u049B\u049D\u049F\u04A1\u04A3\u04A5\u04A7\u04A9\u04AB\u04AD\u04AF\u04B1\u04B3\u04B5\u04B7\u04B9\u04BB\u04BD\u04BF\u04C2\u04C4\u04C6\u04C8\u04CA\u04CC\u04CE\u04CF\u04D1\u04D3\u04D5\u04D7\u04D9\u04DB\u04DD\u04DF\u04E1\u04E3\u04E5\u04E7\u04E9\u04EB\u04ED\u04EF\u04F1\u04F3\u04F5\u04F7\u04F9\u04FB\u04FD\u04FF\u0501\u0503\u0505\u0507\u0509\u050B\u050D\u050F\u0511\u0513\u0515\u0517\u0519\u051B\u051D\u051F\u0521\u0523\u0525\u0527\u0561-\u0587\u1D00-\u1D2B\u1D6B-\u1D77\u1D79-\u1D9A\u1E01\u1E03\u1E05\u1E07\u1E09\u1E0B\u1E0D\u1E0F\u1E11\u1E13\u1E15\u1E17\u1E19\u1E1B\u1E1D\u1E1F\u1E21\u1E23\u1E25\u1E27\u1E29\u1E2B\u1E2D\u1E2F\u1E31\u1E33\u1E35\u1E37\u1E39\u1E3B\u1E3D\u1E3F\u1E41\u1E43\u1E45\u1E47\u1E49\u1E4B\u1E4D\u1E4F\u1E51\u1E53\u1E55\u1E57\u1E59\u1E5B\u1E5D\u1E5F\u1E61\u1E63\u1E65\u1E67\u1E69\u1E6B\u1E6D\u1E6F\u1E71\u1E73\u1E75\u1E77\u1E79\u1E7B\u1E7D\u1E7F\u1E81\u1E83\u1E85\u1E87\u1E89\u1E8B\u1E8D\u1E8F\u1E91\u1E93\u1E95-\u1E9D\u1E9F\u1EA1\u1EA3\u1EA5\u1EA7\u1EA9\u1EAB\u1EAD\u1EAF\u1EB1\u1EB3\u1EB5\u1EB7\u1EB9\u1EBB\u1EBD\u1EBF\u1EC1\u1EC3\u1EC5\u1EC7\u1EC9\u1ECB\u1ECD\u1ECF\u1ED1\u1ED3\u1ED5\u1ED7\u1ED9\u1EDB\u1EDD\u1EDF\u1EE1\u1EE3\u1EE5\u1EE7\u1EE9\u1EEB\u1EED\u1EEF\u1EF1\u1EF3\u1EF5\u1EF7\u1EF9\u1EFB\u1EFD\u1EFF-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB0-\u1FB4\u1FB6\u1FB7\u1FBE\u1FC2-\u1FC4\u1FC6\u1FC7\u1FD0-\u1FD3\u1FD6\u1FD7\u1FE0-\u1FE7\u1FF2-\u1FF4\u1FF6\u1FF7\u210A\u210E\u210F\u2113\u212F\u2134\u2139\u213C\u213D\u2146-\u2149\u214E\u2184\u2C30-\u2C5E\u2C61\u2C65\u2C66\u2C68\u2C6A\u2C6C\u2C71\u2C73\u2C74\u2C76-\u2C7B\u2C81\u2C83\u2C85\u2C87\u2C89\u2C8B\u2C8D\u2C8F\u2C91\u2C93\u2C95\u2C97\u2C99\u2C9B\u2C9D\u2C9F\u2CA1\u2CA3\u2CA5\u2CA7\u2CA9\u2CAB\u2CAD\u2CAF\u2CB1\u2CB3\u2CB5\u2CB7\u2CB9\u2CBB\u2CBD\u2CBF\u2CC1\u2CC3\u2CC5\u2CC7\u2CC9\u2CCB\u2CCD\u2CCF\u2CD1\u2CD3\u2CD5\u2CD7\u2CD9\u2CDB\u2CDD\u2CDF\u2CE1\u2CE3\u2CE4\u2CEC\u2CEE\u2CF3\u2D00-\u2D25\u2D27\u2D2D\uA641\uA643\uA645\uA647\uA649\uA64B\uA64D\uA64F\uA651\uA653\uA655\uA657\uA659\uA65B\uA65D\uA65F\uA661\uA663\uA665\uA667\uA669\uA66B\uA66D\uA681\uA683\uA685\uA687\uA689\uA68B\uA68D\uA68F\uA691\uA693\uA695\uA697\uA723\uA725\uA727\uA729\uA72B\uA72D\uA72F-\uA731\uA733\uA735\uA737\uA739\uA73B\uA73D\uA73F\uA741\uA743\uA745\uA747\uA749\uA74B\uA74D\uA74F\uA751\uA753\uA755\uA757\uA759\uA75B\uA75D\uA75F\uA761\uA763\uA765\uA767\uA769\uA76B\uA76D\uA76F\uA771-\uA778\uA77A\uA77C\uA77F\uA781\uA783\uA785\uA787\uA78C\uA78E\uA791\uA793\uA7A1\uA7A3\uA7A5\uA7A7\uA7A9\uA7FA\uFB00-\uFB06\uFB13-\uFB17\uFF41-\uFF5A])([\u0041-\u005A\u00C0-\u00D6\u00D8-\u00DE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178\u0179\u017B\u017D\u0181\u0182\u0184\u0186\u0187\u0189-\u018B\u018E-\u0191\u0193\u0194\u0196-\u0198\u019C\u019D\u019F\u01A0\u01A2\u01A4\u01A6\u01A7\u01A9\u01AC\u01AE\u01AF\u01B1-\u01B3\u01B5\u01B7\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A\u023B\u023D\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u0386\u0388-\u038A\u038C\u038E\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E\u213F\u2145\u2183\u2C00-\u2C2E\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA\uFF21-\uFF3A\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])/g
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports) {
 
 	module.exports = /([\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])([^\u0030-\u0039\u00B2\u00B3\u00B9\u00BC-\u00BE\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u09F4-\u09F9\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0B72-\u0B77\u0BE6-\u0BF2\u0C66-\u0C6F\u0C78-\u0C7E\u0CE6-\u0CEF\u0D66-\u0D75\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F33\u1040-\u1049\u1090-\u1099\u1369-\u137C\u16EE-\u16F0\u17E0-\u17E9\u17F0-\u17F9\u1810-\u1819\u1946-\u194F\u19D0-\u19DA\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\u2070\u2074-\u2079\u2080-\u2089\u2150-\u2182\u2185-\u2189\u2460-\u249B\u24EA-\u24FF\u2776-\u2793\u2CFD\u3007\u3021-\u3029\u3038-\u303A\u3192-\u3195\u3220-\u3229\u3248-\u324F\u3251-\u325F\u3280-\u3289\u32B1-\u32BF\uA620-\uA629\uA6E6-\uA6EF\uA830-\uA835\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19])/g
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
-	var lowerCase = __webpack_require__(93)
+	var upperCase = __webpack_require__(99)
+	var lowerCase = __webpack_require__(94)
 
 	/**
 	 * Swap the case of a string. Manually iterate over every character and check
@@ -43927,7 +44365,7 @@ module.exports =
 
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports) {
 
 	/**
@@ -43983,10 +44421,10 @@ module.exports =
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sentenceCase = __webpack_require__(92);
+	var sentenceCase = __webpack_require__(93);
 
 	/**
 	 * Path case a string.
@@ -44001,11 +44439,11 @@ module.exports =
 
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
-	var sentenceCase = __webpack_require__(92)
+	var upperCase = __webpack_require__(99)
+	var sentenceCase = __webpack_require__(93)
 
 	/**
 	 * Camel case a string.
@@ -44030,10 +44468,10 @@ module.exports =
 
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sentenceCase = __webpack_require__(92);
+	var sentenceCase = __webpack_require__(93);
 
 	/**
 	 * Snake case a string.
@@ -44048,11 +44486,11 @@ module.exports =
 
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
-	var sentenceCase = __webpack_require__(92)
+	var upperCase = __webpack_require__(99)
+	var sentenceCase = __webpack_require__(93)
 
 	/**
 	 * Title case a string.
@@ -44069,10 +44507,10 @@ module.exports =
 
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var sentenceCase = __webpack_require__(92);
+	var sentenceCase = __webpack_require__(93);
 
 	/**
 	 * Param case a string.
@@ -44087,11 +44525,11 @@ module.exports =
 
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var camelCase = __webpack_require__(100)
-	var upperCaseFirst = __webpack_require__(105)
+	var camelCase = __webpack_require__(101)
+	var upperCaseFirst = __webpack_require__(106)
 
 	/**
 	 * Pascal case a string.
@@ -44106,10 +44544,10 @@ module.exports =
 
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
+	var upperCase = __webpack_require__(99)
 
 	/**
 	 * Upper case the first character of a string.
@@ -44129,11 +44567,11 @@ module.exports =
 
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
-	var snakeCase = __webpack_require__(101)
+	var upperCase = __webpack_require__(99)
+	var snakeCase = __webpack_require__(102)
 
 	/**
 	 * Constant case a string.
@@ -44148,10 +44586,10 @@ module.exports =
 
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var upperCase = __webpack_require__(98)
+	var upperCase = __webpack_require__(99)
 
 	/**
 	 * Check if a string is upper case.
@@ -44166,10 +44604,10 @@ module.exports =
 
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var lowerCase = __webpack_require__(93)
+	var lowerCase = __webpack_require__(94)
 
 	/**
 	 * Check if a string is lower case.
@@ -44184,10 +44622,10 @@ module.exports =
 
 
 /***/ },
-/* 109 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var lowerCase = __webpack_require__(93)
+	var lowerCase = __webpack_require__(94)
 
 	/**
 	 * Lower case the first character of a string.
@@ -44207,13 +44645,13 @@ module.exports =
 
 
 /***/ },
-/* 110 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
 	var hl = __webpack_require__(2);
 	var linter = __webpack_require__(55);
-	var wrapperHelper = __webpack_require__(88);
+	var wrapperHelper = __webpack_require__(89);
 	function escapeUri(u) {
 	    var ss = "";
 	    var level = 0;
@@ -44270,19 +44708,19 @@ module.exports =
 
 
 /***/ },
-/* 111 */
+/* 112 */
 /***/ function(module, exports) {
 
 	module.exports = require("loophole");
 
 /***/ },
-/* 112 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
-	var HttpResponse = __webpack_require__(113);
-	__webpack_require__(114);
+	var HttpResponse = __webpack_require__(114);
 	__webpack_require__(115);
+	__webpack_require__(116);
 	var lru = __webpack_require__(59);
 	var globalCache = lru(50);
 	function hasAsyncRequests() {
@@ -44315,29 +44753,29 @@ module.exports =
 
 
 /***/ },
-/* 113 */
+/* 114 */
 /***/ function(module, exports) {
 
 	module.exports = require("http-response-object");
 
 /***/ },
-/* 114 */
+/* 115 */
 /***/ function(module, exports) {
 
 	module.exports = require("concat-stream");
 
 /***/ },
-/* 115 */
+/* 116 */
 /***/ function(module, exports) {
 
 	module.exports = require("then-request");
 
 /***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../typings/main.d.ts" />
-	var XMLHttpRequestConstructor = __webpack_require__(117).XMLHttpRequest;
+	var XMLHttpRequestConstructor = __webpack_require__(118).XMLHttpRequest;
 	function buildXHR() {
 	    var x = new XMLHttpRequestConstructor;
 	    return x;
@@ -44463,19 +44901,19 @@ module.exports =
 
 
 /***/ },
-/* 117 */
+/* 118 */
 /***/ function(module, exports) {
 
 	module.exports = require("xmlhttprequest");
 
 /***/ },
-/* 118 */
+/* 119 */
 /***/ function(module, exports) {
 
 	module.exports = require("url");
 
 /***/ },
-/* 119 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
@@ -44674,13 +45112,13 @@ module.exports =
 
 
 /***/ },
-/* 120 */
+/* 121 */
 /***/ function(module, exports) {
 
 	module.exports = require("json-stable-stringify");
 
 /***/ },
-/* 121 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
@@ -44739,8 +45177,8 @@ module.exports =
 	        }
 	        var r = c.rightType();
 	        if (r) {
-	            if (r.isUnion()) {
-	                var options = getAllOptions(r.union(), deep + 1);
+	            if (r.hasUnionInHierarchy()) {
+	                var options = getAllOptions(r.unionInHierarchy(), deep + 1);
 	                result = result.concat(options);
 	            }
 	            else {
@@ -44785,9 +45223,9 @@ module.exports =
 	                    this.shouldDescriminate = false;
 	                }
 	            }
-	            if (node.definition().isUnion()) {
+	            if (node.definition().hasUnionInHierarchy()) {
 	                if (true && (node.parent() && node.property().nameId() == universes.Universe10.RAMLLanguageElement.properties.annotations.name)) {
-	                    var optins = getAllOptions(node.definition().union());
+	                    var optins = getAllOptions(node.definition().unionInHierarchy());
 	                    var actualResult = null;
 	                    var bestResult = null;
 	                    var bestType = null;
@@ -44796,7 +45234,7 @@ module.exports =
 	                    optins.forEach(function (x) {
 	                        if (!actualResult) {
 	                            //TODO ADD UNION + Descriminator
-	                            if (!(x).isUnion()) {
+	                            if (!(x).hasUnionInHierarchy()) {
 	                                var tp = llnode.patchType(x);
 	                                if (ad == 0) {
 	                                    ad++;
@@ -44878,7 +45316,7 @@ module.exports =
 	                }
 	            }
 	            else {
-	                if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (km.canBeValue.range().isUnion() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
+	                if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (km.canBeValue.range().hasUnionInHierarchy() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
 	                    //check check for annotation is just for safety, generally, imho, we should go inside for any unions
 	                    var ch = new hlimpl.ASTNodeImpl(node.lowLevel(), aNode, km.canBeValue.range(), km.canBeValue);
 	                    return [ch];
@@ -44932,12 +45370,12 @@ module.exports =
 	                    range = at.component;
 	                    um = true;
 	                }
-	                else if (range.isArray()) {
+	                else if (range.hasArrayInHierarchy()) {
 	                    multyValue = true;
 	                    um = true;
 	                }
 	                //TODO DESCRIMINATORS
-	                if (range.isValueType()) {
+	                if (range.hasValueTypeInHierarchy()) {
 	                    var ch = x.children();
 	                    var seq = (x.valueKind() == 3 /* SEQ */);
 	                    if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
@@ -45306,14 +45744,16 @@ module.exports =
 
 
 /***/ },
-/* 122 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
 	var jsyaml = __webpack_require__(15);
 	var ll = __webpack_require__(10);
 	var _ = __webpack_require__(4);
+	var yaml = __webpack_require__(7);
 	var hlimpl = __webpack_require__(5);
+	var universes = __webpack_require__(54);
 	var services = __webpack_require__(49);
 	function findLastAttributeIndex(n) {
 	    var last = -1;
@@ -45328,7 +45768,7 @@ module.exports =
 	            continue;
 	        //console.log(property.name() + ': isval: ' + property.isValue() + '; multi: ' + property.isMultiValue() + '; range val: ' + property.range().isValueType());
 	        //if((property.isValue() || /*property.isMultiValue()) ||*/ property.range().isValueType()) {
-	        if (property.isFromParentValue() || property.range().isValueType()) {
+	        if (property.isFromParentValue() || property.range().hasValueTypeInHierarchy()) {
 	            last = i;
 	        }
 	    }
@@ -45575,6 +46015,20 @@ module.exports =
 	exports.setKey = setKey;
 	function createAttr(node, n, v) {
 	    var mapping = jsyaml.createMapping(n, v);
+	    var map;
+	    if (node.definition() && node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+	        if (node.lowLevel() && node.lowLevel().valueKind() === 0 /* SCALAR */) {
+	            var typePropertyName = universes.Universe10.TypeDeclaration.properties.type.name;
+	            var typeMapping = jsyaml.createMapping(typePropertyName, node.lowLevel().value());
+	            var command = new ll.CompositeCommand();
+	            command.commands.push(ll.setAttr(node.lowLevel(), ""));
+	            node.lowLevel().execute(command);
+	            command = new ll.CompositeCommand();
+	            var insertionPoint = findInsertionPointLowLevel(node, typeMapping, node.definition().property(typePropertyName), true);
+	            command.commands.push(ll.insertNode(node.lowLevel(), typeMapping, insertionPoint));
+	            node.lowLevel().execute(command);
+	        }
+	    }
 	    //console.log('create attribute: ' + n);
 	    if (node.isStub()) {
 	        //console.log('create-attr: stub case');
@@ -45645,7 +46099,7 @@ module.exports =
 	    //now we need to understand to which low level node it should go
 	    //command.commands.push(ll.insertNode(target.lowLevel(), node.lowLevel()))
 	    var insertionTarget = null;
-	    if (node.property().getAdapter(services.RAMLPropertyService).isMerged() || node.property().range().isValueType()) {
+	    if (node.property().getAdapter(services.RAMLPropertyService).isMerged() || node.property().range().hasValueTypeInHierarchy()) {
 	        //console.log('CASE 1');
 	        //newLowLevel = node.lowLevel();
 	        command.commands.push(ll.insertNode(target.lowLevel(), node.lowLevel(), insertionPoint));
@@ -45719,7 +46173,7 @@ module.exports =
 
 
 /***/ },
-/* 123 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(1);
@@ -46008,7 +46462,7 @@ module.exports =
 
 
 /***/ },
-/* 124 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var RamlWrapper = __webpack_require__(74);
@@ -46213,7 +46667,7 @@ module.exports =
 
 
 /***/ },
-/* 125 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/// <reference path="../../../typings/main.d.ts" />
@@ -46224,7 +46678,7 @@ module.exports =
 	    d.prototype = new __();
 	};
 	var _ = __webpack_require__(4);
-	var sel = __webpack_require__(126);
+	var sel = __webpack_require__(127);
 	var Selector = (function () {
 	    function Selector() {
 	    }
@@ -46291,7 +46745,7 @@ module.exports =
 	    if (s.type == 'classLiteral') {
 	        var literal = s;
 	        var tp = n.definition().universe().type(literal.name);
-	        if (tp == null || tp.isValueType()) {
+	        if (tp == null || tp.hasValueTypeInHierarchy()) {
 	            throw new Error("Referencing unknown type:" + literal.name);
 	        }
 	        return new IdMatch(literal.name);
@@ -46412,7 +46866,7 @@ module.exports =
 
 
 /***/ },
-/* 126 */
+/* 127 */
 /***/ function(module, exports) {
 
 	var mod = (function () {
@@ -46813,6 +47267,447 @@ module.exports =
 	    };
 	})();
 	module.exports = mod;
+
+
+/***/ },
+/* 128 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var hlimpl = __webpack_require__(5);
+	var universes = __webpack_require__(54);
+	var ramlServices = __webpack_require__(49);
+	var linter = __webpack_require__(55);
+	var xmlutil = __webpack_require__(57);
+	var exampleGen = __webpack_require__(129);
+	function createExamples(typeDefinition) {
+	    var declaringNode = typeDefinition.getAdapter(ramlServices.RAMLService).getDeclaringNode();
+	    if (declaringNode == null) {
+	        return [new EmptyExpandableExample()];
+	    }
+	    var exampleAttribute = declaringNode.attr(universes.Universe10.TypeDeclaration.properties.example.name);
+	    if (exampleAttribute != null) {
+	        return [new ExpandableExampleImpl(exampleAttribute)];
+	    }
+	    var exampleSpecs = declaringNode.elementsOfKind(universes.Universe10.TypeDeclaration.properties.examples.name);
+	    if (exampleSpecs != null && exampleSpecs.length > 0) {
+	        var result = [];
+	        exampleSpecs.forEach(function (spec) {
+	            result.push(createExampleFromSpec(spec));
+	        });
+	        return result;
+	    }
+	    return [new EmptyExpandableExample(typeDefinition)];
+	}
+	exports.createExamples = createExamples;
+	function createExampleFromSpec(exampleSpecNode) {
+	    var contentAttribute = exampleSpecNode.attr(universes.Universe10.ExampleSpec.properties.content.name);
+	    if (contentAttribute == null) {
+	        return new EmptyExpandableExample();
+	    }
+	    return new ExpandableExampleImpl(contentAttribute);
+	}
+	exports.createExampleFromSpec = createExampleFromSpec;
+	/**
+	 * Default implementation of example.
+	 */
+	var ExpandableExampleImpl = (function () {
+	    function ExpandableExampleImpl(attribute) {
+	        this._built = false;
+	        this._isEmpty = true;
+	        this._isJSONString = false;
+	        this._isXMLString = false;
+	        this._isYAML = false;
+	        this._stringRepresentation = null;
+	        this._jsonRepresentation = null;
+	        this.attribute = attribute;
+	    }
+	    /**
+	     * Returns true if the application in question does not have an example set directly.
+	     * It is still possible that while application has no direct example, references may have
+	     * example pieces, current example may be expanded with.
+	     */
+	    ExpandableExampleImpl.prototype.isEmpty = function () {
+	        this.buildIfNeeded();
+	        return this._isEmpty;
+	    };
+	    /**
+	     * Whether the original example is JSON string.
+	     */
+	    ExpandableExampleImpl.prototype.isJSONString = function () {
+	        this.buildIfNeeded();
+	        return this._isJSONString;
+	    };
+	    /**
+	     * Whether the original example is XML string.
+	     */
+	    ExpandableExampleImpl.prototype.isXMLString = function () {
+	        this.buildIfNeeded();
+	        return this._isXMLString;
+	    };
+	    /**
+	     * Whether original example is set up as YAML.
+	     */
+	    ExpandableExampleImpl.prototype.isYAML = function () {
+	        this.buildIfNeeded();
+	        return this._isYAML;
+	    };
+	    /**
+	     * Returns representation of this example as a string.
+	     * This method works for any type of example.
+	     */
+	    ExpandableExampleImpl.prototype.asString = function () {
+	        this.buildIfNeeded();
+	        return this._stringRepresentation;
+	    };
+	    /**
+	     * Returns representation of this example as JSON object.
+	     * This works for examples being JSON strings and YAML objects.
+	     * It -may- work for XML string examples, but is not guaranteed.
+	     */
+	    ExpandableExampleImpl.prototype.asJSON = function () {
+	        this.buildIfNeeded();
+	        return this._jsonRepresentation;
+	    };
+	    /**
+	     * Returns an original example. It is string for XML and JSON strings,
+	     * or JSON object for YAML example.
+	     */
+	    ExpandableExampleImpl.prototype.original = function () {
+	        this.buildIfNeeded();
+	        return this.internalExampleContent();
+	    };
+	    /**
+	     * Expands the example with what its application references can provide.
+	     * Returns null or expansion result as string. XML examples are not supported.
+	     */
+	    ExpandableExampleImpl.prototype.expandAsString = function () {
+	        var expandedJSON = this.expandAsJSON();
+	        if (expandedJSON == null)
+	            return null;
+	        return JSON.stringify(expandedJSON, null, 2);
+	    };
+	    /**
+	     * Expands the example with what its application references can provide.
+	     * Returns null or expansion result as JSON object. XML examples are not supported.
+	     */
+	    ExpandableExampleImpl.prototype.expandAsJSON = function () {
+	        this.buildIfNeeded();
+	        var typeDefinition = this.getTypeDefinition();
+	        if (typeDefinition == null)
+	            return null;
+	        var runtimeType = typeDefinition.getAdapter(ramlServices.RAMLService).toRuntime();
+	        if (runtimeType == null)
+	            return null;
+	        return exampleGen.createExampleObjectFromTypeDefinition(runtimeType);
+	    };
+	    ExpandableExampleImpl.prototype.buildIfNeeded = function () {
+	        if (!this._built) {
+	            this._built = true;
+	            this.build();
+	        }
+	    };
+	    ExpandableExampleImpl.prototype.build = function () {
+	        var exampleContent = this.internalExampleContent();
+	        //determining example kind
+	        if (exampleContent == null) {
+	            this._isEmpty = true;
+	            return;
+	        }
+	        this._isEmpty = false;
+	        if (typeof exampleContent === "string") {
+	            this._isJSONString = this.testExampleJson(exampleContent);
+	            if (!this._isJSONString) {
+	                this._isXMLString = this.testExampleXML(exampleContent);
+	            }
+	        }
+	        else {
+	            this._isYAML = true;
+	        }
+	        //setting string representation for string type
+	        if (typeof exampleContent === "string") {
+	            this._stringRepresentation = exampleContent;
+	        }
+	        //setting json representation
+	        if (this._isJSONString) {
+	            try {
+	                this._jsonRepresentation = JSON.parse(exampleContent);
+	            }
+	            catch (Error) {
+	            }
+	        }
+	        else if (this._isYAML) {
+	            this._jsonRepresentation = new linter.ExampleValidator().parseObject(this.attribute, {
+	                begin: function () {
+	                },
+	                end: function () {
+	                },
+	                accept: function (e) {
+	                }
+	            }, false);
+	        }
+	        //string representation for YAML samples
+	        if (this._isYAML && this._jsonRepresentation != null) {
+	            this._stringRepresentation = JSON.stringify(this._jsonRepresentation, null, 2);
+	        }
+	    };
+	    /**
+	     * Gets sample contents from declaring node.
+	     * Returns either a string, json object for YAML, or null
+	     */
+	    ExpandableExampleImpl.prototype.internalExampleContent = function () {
+	        if (this.attribute == null) {
+	            return null;
+	        }
+	        var value = this.attribute.value();
+	        if (value == null) {
+	            return null;
+	        }
+	        if (typeof value === "string") {
+	            return value;
+	        }
+	        else if (value instanceof hlimpl.StructuredValue) {
+	            var dumped = value.lowLevel().dumpToObject(true);
+	            //TODO check how valid those checks got from linter are
+	            //these ones are probably caused by the upper attribute name, and thus additional check for attribute name is required
+	            if (dumped["example"]) {
+	                return dumped["example"];
+	            }
+	            if (dumped["content"]) {
+	                return dumped["content"];
+	            }
+	            return dumped;
+	        }
+	        //failed to recognize
+	        return null;
+	    };
+	    ExpandableExampleImpl.prototype.testExampleJson = function (content) {
+	        var mediaType = linter.getMediaType(this.attribute);
+	        if (mediaType != null) {
+	            return linter.isJson(mediaType);
+	        }
+	        try {
+	            JSON.parse(content);
+	            return true;
+	        }
+	        catch (e) {
+	            return false;
+	        }
+	    };
+	    ExpandableExampleImpl.prototype.testExampleXML = function (content) {
+	        var mediaType = linter.getMediaType(this.attribute);
+	        if (mediaType != null) {
+	            return linter.isXML(mediaType);
+	        }
+	        //no media type found, testing by parsing
+	        if (content.trim().indexOf("<") == -1) {
+	            return false;
+	        }
+	        try {
+	            xmlutil(content);
+	            return true;
+	        }
+	        catch (e) {
+	            return false;
+	        }
+	    };
+	    ExpandableExampleImpl.prototype.getTypeDefinition = function () {
+	        var parent = this.attribute.parent();
+	        if (parent == null) {
+	            return null;
+	        }
+	        if (parent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+	            return parent.definition().getAdapter(ramlServices.RAMLService).toRuntime();
+	        }
+	        var parentsParent = parent.parent();
+	        if (parentsParent == null) {
+	            return null;
+	        }
+	        if (parentsParent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+	            return parentsParent.definition().getAdapter(ramlServices.RAMLService).toRuntime();
+	        }
+	        return null;
+	    };
+	    return ExpandableExampleImpl;
+	})();
+	exports.ExpandableExampleImpl = ExpandableExampleImpl;
+	var EmptyExpandableExample = (function () {
+	    function EmptyExpandableExample(typeDefinition) {
+	        this.typeDefinition = typeDefinition;
+	        var k = 0;
+	        k++;
+	    }
+	    EmptyExpandableExample.prototype.isEmpty = function () {
+	        return true;
+	    };
+	    EmptyExpandableExample.prototype.isJSONString = function () {
+	        return false;
+	    };
+	    EmptyExpandableExample.prototype.isXMLString = function () {
+	        return false;
+	    };
+	    EmptyExpandableExample.prototype.isYAML = function () {
+	        return false;
+	    };
+	    EmptyExpandableExample.prototype.asString = function () {
+	        return "";
+	    };
+	    EmptyExpandableExample.prototype.asJSON = function () {
+	        return null;
+	    };
+	    EmptyExpandableExample.prototype.original = function () {
+	        return null;
+	    };
+	    EmptyExpandableExample.prototype.expandAsString = function () {
+	        var expandedJSON = this.expandAsJSON();
+	        if (expandedJSON == null)
+	            return null;
+	        return JSON.stringify(expandedJSON, null, 2);
+	    };
+	    EmptyExpandableExample.prototype.expandAsJSON = function () {
+	        if (this.typeDefinition == null)
+	            return null;
+	        return exampleGen.createExampleObjectFromTypeDefinition(this.typeDefinition);
+	    };
+	    return EmptyExpandableExample;
+	})();
+	exports.EmptyExpandableExample = EmptyExpandableExample;
+
+
+/***/ },
+/* 129 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var defs = __webpack_require__(3);
+	var wrapperHelper = __webpack_require__(65);
+	var services = __webpack_require__(49);
+	var linter = __webpack_require__(55);
+	function createExampleObject(w, generateFakeExamples) {
+	    if (generateFakeExamples === void 0) { generateFakeExamples = false; }
+	    var tp = wrapperHelper.resolveType(w);
+	    return createExampleObjectFromTypeDefinition(tp, generateFakeExamples);
+	}
+	exports.createExampleObject = createExampleObject;
+	function createExampleObjectFromTypeDefinition(tp, generateFakeExamples) {
+	    if (generateFakeExamples === void 0) { generateFakeExamples = false; }
+	    if (tp instanceof defs.NodeClass) {
+	        var nc = tp;
+	        var node = nc.getAdapter(services.RAMLService).getDeclaringNode();
+	        if (node) {
+	            var e = node.attr("example");
+	            if (e) {
+	                return new linter.ExampleValidator().parseObject(e, {
+	                    begin: function () {
+	                    },
+	                    end: function () {
+	                    },
+	                    accept: function (e) {
+	                    }
+	                }, false);
+	            }
+	            else {
+	                var em = node.elementsOfKind("examples");
+	                if (em.length > 0) {
+	                    var result = null;
+	                    em.forEach(function (x) {
+	                        var cnt = x.attr("content");
+	                        if (cnt) {
+	                            result = new linter.ExampleValidator().parseObject(cnt, {
+	                                begin: function () {
+	                                },
+	                                end: function () {
+	                                },
+	                                accept: function (e) {
+	                                }
+	                            }, false);
+	                        }
+	                    });
+	                    if (result) {
+	                        return mergeSuperTypes(result, tp);
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    if (tp.hasArrayInHierarchy()) {
+	        var arr = tp;
+	        var res = [];
+	        var cm = arr.componentType();
+	        if (cm) {
+	            res.push(createExampleObjectFromTypeDefinition(cm));
+	        }
+	        return res;
+	    }
+	    else if (tp.hasUnionInHierarchy()) {
+	        var ut = tp;
+	        if (ut.leftType()) {
+	            if (ut.leftType().getAdapter(services.RAMLService).isUserDefined()) {
+	                return createExampleObjectFromTypeDefinition(ut.leftType());
+	            }
+	        }
+	        if (ut.rightType()) {
+	            if (ut.rightType().getAdapter(services.RAMLService).isUserDefined()) {
+	                return createExampleObjectFromTypeDefinition(ut.rightType());
+	            }
+	        }
+	    }
+	    else if (tp.hasValueTypeInHierarchy() && generateFakeExamples) {
+	        var original = tp.getAdapter(services.RAMLService).getRepresentationOf();
+	        var exString = "some value " + tp.nameId();
+	        if (original) {
+	            var supers = original.allSuperTypes();
+	            supers.forEach(function (x) {
+	                if (!x.getAdapter(services.RAMLService).isUserDefined() && x.nameId() == "NumberTypeDeclaration") {
+	                    exString = 1;
+	                }
+	                if (!x.getAdapter(services.RAMLService).isUserDefined() && x.nameId() == "BooleanTypeDeclaration") {
+	                    exString = true;
+	                }
+	                if (!x.getAdapter(services.RAMLService).isUserDefined() && x.nameId() == "IntegerTypeDeclaration") {
+	                    exString = 1;
+	                }
+	            });
+	        }
+	        return exString;
+	    }
+	    else {
+	        var obj = {};
+	        tp.allProperties().forEach(function (x) {
+	            obj[x.nameId()] = exampleObject(x);
+	        });
+	        return mergeSuperTypes(obj, tp);
+	    }
+	}
+	exports.createExampleObjectFromTypeDefinition = createExampleObjectFromTypeDefinition;
+	/**
+	 * Merges parent example (not its properties example) into the specified example.
+	 * @param exampleToMergeTo - modifies the argument!
+	 * @param type
+	 * @return modified example
+	 */
+	function mergeSuperTypes(exampleToMergeTo, type) {
+	    type.superTypes().forEach(function (superType) {
+	        var superTypeExample = createExampleObjectFromTypeDefinition(superType);
+	        if (superTypeExample) {
+	            Object.keys(superTypeExample).forEach(function (parentProperty) {
+	                var propertyValue = exampleToMergeTo[parentProperty];
+	                if (!propertyValue || (typeof propertyValue === 'object' && Object.keys(propertyValue).length == 0)) {
+	                    exampleToMergeTo[parentProperty] = superTypeExample[parentProperty];
+	                }
+	            });
+	        }
+	    });
+	    return exampleToMergeTo;
+	}
+	function exampleObject(x) {
+	    var vl = x.defaultValue();
+	    if (vl) {
+	        return vl;
+	    }
+	    var res = x.range();
+	    if (res) {
+	        return createExampleObjectFromTypeDefinition(res);
+	    }
+	}
 
 
 /***/ }

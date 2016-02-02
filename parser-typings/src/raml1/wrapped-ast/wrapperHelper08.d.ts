@@ -1,6 +1,5 @@
 import RamlWrapper = require('../artifacts/raml08parser');
 import core = require("./parserCore");
-import hl = require('../highLevelAST');
 export declare function load(pth: string): core.BasicNode;
 export declare function expandTraitsAndResourceTypes(api: RamlWrapper.Api): RamlWrapper.Api;
 export declare function completeRelativeUri(res: RamlWrapper.Resource): string;
@@ -69,36 +68,5 @@ export declare function securitySchemeName(schemeReference: RamlWrapper.Security
  * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
  */
 export declare function securityScheme(schemeReference: RamlWrapper.SecuritySchemeRef): RamlWrapper.AbstractSecurityScheme;
-export declare class HelperUriParam implements RamlWrapper.Parameter {
-    private _name;
-    private _parent;
-    constructor(_name: string, _parent: core.BasicNode);
-    wrapperClassName(): string;
-    kind(): string;
-    name(): string;
-    "type"(): string;
-    location(): RamlWrapper.ParameterLocation;
-    "default"(): string;
-    xml(): any;
-    sendDefaultByClient(): boolean;
-    example(): string;
-    schema(): string;
-    repeat(): boolean;
-    enum(): string[];
-    collectionFormat(): string;
-    required(): boolean;
-    readOnly(): boolean;
-    facets(): any[];
-    scope(): string[];
-    displayName(): string;
-    description(): RamlWrapper.MarkdownString;
-    usage(): any;
-    parent(): core.BasicNode;
-    highLevel(): hl.IHighLevelNode;
-    errors(): core.RamlParserError[];
-    definition(): any;
-    runtimeDefinition(): any;
-    toJSON(): any;
-    optional(): boolean;
-    optionalProperties(): string[];
-}
+export declare function RAMLVersion(api: RamlWrapper.Api): string;
+export declare function schemaContent(bodyDeclaration: RamlWrapper.BodyLike): string;

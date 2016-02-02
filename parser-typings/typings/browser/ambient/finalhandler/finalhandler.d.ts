@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.5
+// Compiled using typings@0.3.3
 // Source: custom_typings/finalhandler.d.ts
 declare module 'finalhandler' {
   import http = require('http')
