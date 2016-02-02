@@ -52,6 +52,7 @@ export interface BasicNode extends AbstractWrapperNode {
 }
 export declare class BasicNodeImpl implements BasicNode {
     protected _node: hl.IHighLevelNode;
+    private defaultsCalculator;
     /**
      * @hidden
      **/
@@ -106,9 +107,9 @@ export declare class BasicNodeImpl implements BasicNode {
      * @return YAML string representing the node
      **/
     dump(): string;
-    toString(attr: hl.IAttribute): string;
-    toBoolean(attr: hl.IAttribute): boolean;
-    toNumber(attr: hl.IAttribute): any;
+    toString(arg: any): string;
+    toBoolean(arg: any): boolean;
+    toNumber(arg: any): any;
     /**
      * @return Array of errors
      **/
@@ -130,6 +131,11 @@ export declare class BasicNodeImpl implements BasicNode {
      * @return For siblings of traits or resource types returns an array of optional properties names.
      **/
     optionalProperties(): string[];
+    private getDefaultsCalculator();
+    /**
+     * @hidden
+     **/
+    setAttributeDefaults(attributeDefaults: boolean): void;
 }
 export interface AttributeNode extends AbstractWrapperNode {
     /**
@@ -175,6 +181,11 @@ export interface Options {
      * Whether to return Api which contains errors.
      **/
     rejectOnErrors?: boolean;
+    /**
+     * If true, attribute defaults will be returned if no actual vale is specified in RAML code.
+     * Affects only attributes.
+     */
+    attributeDefaults?: boolean;
 }
 export interface RamlParserError {
     /**

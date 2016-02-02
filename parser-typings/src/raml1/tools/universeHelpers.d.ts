@@ -28,6 +28,7 @@ export declare function isUriParametersProperty(p: hl.IProperty): boolean;
 export declare function isBaseUriParametersProperty(p: hl.IProperty): boolean;
 export declare function isUsesProperty(p: hl.IProperty): boolean;
 export declare function isAnnotationTypesProperty(p: hl.IProperty): boolean;
+export declare function isRepeatProperty(p: hl.IProperty): boolean;
 export declare function isMethodType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isApiType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isBooleanTypeType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;

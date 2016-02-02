@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.5
+// Compiled using typings@0.3.3
 // Source: custom_typings/client-oauth2.d.ts
 declare module "client-oauth2" {
 

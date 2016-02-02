@@ -1,5 +1,6 @@
 import hl = require("../highLevelAST");
 import hlImpl = require("../highLevelImpl");
+import typeSystem = require("../definition-system/typeSystem");
 import core = require("../wrapped-ast/parserCore");
 export interface RAMLLanguageElement extends core.BasicNode {
     /**
@@ -967,6 +968,10 @@ export interface BodyLike extends RAMLLanguageElement {
      * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
      **/
     formParameters(): Parameter[];
+    /**
+     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+     **/
+    schemaContent(): string;
 }
 export declare class BodyLikeImpl extends RAMLLanguageElementImpl implements BodyLike {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1011,6 +1016,10 @@ export declare class BodyLikeImpl extends RAMLLanguageElementImpl implements Bod
      * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
      **/
     formParameters(): Parameter[];
+    /**
+     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+     **/
+    schemaContent(): string;
 }
 /**
  * Needed to set connection between xml related mime types and xsd schema
@@ -1857,6 +1866,10 @@ export interface Api extends RAMLLanguageElement {
      * Otherwise, returns protocol, specified in the base URI.
      **/
     allProtocols(): string[];
+    /**
+     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+     **/
+    RAMLVersion(): string;
 }
 export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2000,6 +2013,10 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
      * Otherwise, returns protocol, specified in the base URI.
      **/
     allProtocols(): string[];
+    /**
+     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+     **/
+    RAMLVersion(): string;
 }
 export interface RAMLSimpleElement extends core.BasicNode {
 }
@@ -2099,6 +2116,7 @@ export declare class GlobalSchemaImpl extends RAMLSimpleElementImpl implements G
  * @return Api instance.
  **/
 export declare function loadApiSync(apiPath: string, options?: core.Options): Api;
+export declare function loadRAMLSync(ramlPath: string, arg1?: string[] | core.Options, arg2?: core.Options): RAMLLanguageElement;
 /**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
@@ -2106,3 +2124,9 @@ export declare function loadApiSync(apiPath: string, options?: core.Options): Ap
  * @return Promise&lt;Api&gt;.
  **/
 export declare function loadApi(apiPath: string, options?: core.Options): Promise<Api>;
+export declare function loadRAML(ramlPath: string, arg1?: string[] | core.Options, arg2?: core.Options): Promise<RAMLLanguageElement>;
+/**
+ * Gets AST node by runtime type, if runtime type matches any.
+ * @param runtimeType - runtime type to find the match for
+ */
+export declare function getLanguageElementByRuntimeType(runtimeType: typeSystem.ITypeDefinition): core.BasicNode;

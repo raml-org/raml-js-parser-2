@@ -76,45 +76,8 @@ export declare function securitySchemeName(schemeReference: RamlWrapper.Security
  * __$helperMethod__ Returns AST node of security scheme, this reference refers to, or null.
  */
 export declare function securityScheme(schemeReference: RamlWrapper.SecuritySchemeRef): RamlWrapper.AbstractSecurityScheme;
-export declare class HelperUriParam implements RamlWrapper.TypeDeclaration {
-    private _name;
-    private _parent;
-    constructor(_name: string, _parent: core.BasicNode);
-    wrapperClassName(): string;
-    kind(): string;
-    name(): string;
-    "type"(): string[];
-    location(): RamlWrapper.ModelLocation;
-    locationKind(): RamlWrapper.LocationKind;
-    "default"(): string;
-    xml(): any;
-    runtimeType(): any;
-    validateInstance(v: any): any[];
-    sendDefaultByClient(): boolean;
-    example(): string;
-    schema(): string;
-    formParameters(): RamlWrapper.TypeDeclaration[];
-    examples(): RamlWrapper.ExampleSpec[];
-    repeat(): boolean;
-    enum(): string[];
-    collectionFormat(): string;
-    required(): boolean;
-    readOnly(): boolean;
-    facets(): any[];
-    scope(): string[];
-    displayName(): string;
-    description(): RamlWrapper.MarkdownString;
-    annotations(): RamlWrapper.AnnotationRef[];
-    usage(): any;
-    parent(): core.BasicNode;
-    highLevel(): hl.IHighLevelNode;
-    errors(): core.RamlParserError[];
-    definition(): any;
-    runtimeDefinition(): any;
-    toJSON(): any;
-    optional(): boolean;
-    optionalProperties(): string[];
-}
+export declare function RAMLVersion(api: RamlWrapper.Api): string;
+export declare function schemaContent(typeDeclaration: RamlWrapper.TypeDeclaration): string;
 export declare class SchemaDef {
     private _content;
     private _name;

@@ -701,7 +701,7 @@ export declare class RAMLProjectImpl extends RAMLLanguageElementImpl implements 
     setUrl(param: string): RAMLProjectImpl;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface AbstractSecurityScheme extends RAMLLanguageElement {
     name(): string;
@@ -725,7 +725,7 @@ export interface AbstractSecurityScheme extends RAMLLanguageElement {
     settings(): SecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -868,6 +868,10 @@ export interface TypeDeclaration extends RAMLLanguageElement {
      * validate an instance against type
      **/
     validateInstance(value: any): string[];
+    /**
+     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+     **/
+    schemaContent(): string;
 }
 export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl implements TypeDeclaration {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -991,6 +995,10 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
      * validate an instance against type
      **/
     validateInstance(value: any): string[];
+    /**
+     * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
+     **/
+    schemaContent(): string;
 }
 export interface ModelLocation extends core.AbstractWrapperNode {
 }
@@ -2114,7 +2122,7 @@ export interface SecuritySchemePart extends MethodBase {
      **/
     queryParameters(): TypeDeclaration[];
     /**
-     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+     * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
      **/
     queryString(): TypeDeclaration;
     /**
@@ -2164,7 +2172,7 @@ export declare class SecuritySchemePartImpl extends MethodBaseImpl implements Se
      **/
     queryParameters(): TypeDeclaration[];
     /**
-     * Specifies the query string, used by the schema in order to authorize the request. Mutually exclusive with queryParameters.
+     * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
      **/
     queryString(): TypeDeclaration;
     /**
@@ -2338,13 +2346,13 @@ export declare class PassThroughSecuritySchemeSettingsImpl extends SecuritySchem
     setHeaderName(param: string): PassThroughSecuritySchemeSettingsImpl;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface OAuth2SecurityScheme extends AbstractSecurityScheme {
     settings(): OAuth2SecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth2SecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2361,13 +2369,13 @@ export declare class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl
     settings(): OAuth2SecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface OAuth1SecurityScheme extends AbstractSecurityScheme {
     settings(): OAuth1SecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth1SecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2384,13 +2392,13 @@ export declare class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl
     settings(): OAuth1SecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface PassThroughSecurityScheme extends AbstractSecurityScheme {
     settings(): PassThroughSecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class PassThroughSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements PassThroughSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2407,12 +2415,12 @@ export declare class PassThroughSecuritySchemeImpl extends AbstractSecuritySchem
     settings(): PassThroughSecuritySchemeSettings;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface BasicSecurityScheme extends AbstractSecurityScheme {
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements BasicSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2428,12 +2436,12 @@ export declare class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl 
     kind(): string;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface DigestSecurityScheme extends AbstractSecurityScheme {
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements DigestSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2449,12 +2457,12 @@ export declare class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl
     kind(): string;
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export interface CustomSecurityScheme extends AbstractSecurityScheme {
 }
 /**
- * Declares globally referable security schema definition
+ * Declares globally referable security scheme definition
  **/
 export declare class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements CustomSecurityScheme {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2934,6 +2942,10 @@ export interface Api extends LibraryBase {
      * Otherwise, returns protocol, specified in the base URI.
      **/
     allProtocols(): string[];
+    /**
+     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+     **/
+    RAMLVersion(): string;
 }
 export declare class ApiImpl extends LibraryBaseImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -3059,6 +3071,10 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      * Otherwise, returns protocol, specified in the base URI.
      **/
     allProtocols(): string[];
+    /**
+     * Returns RAML version. "RAML10" string is returned for RAML 1.0. "RAML08" string is returned for RAML 0.8.
+     **/
+    RAMLVersion(): string;
 }
 export interface Overlay extends Api {
     /**
@@ -3172,6 +3188,14 @@ export declare function loadApiSync(apiPath: string, options?: core.Options): Ap
  **/
 export declare function loadApiSync(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Api;
 /**
+ * Load RAML synchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
+ * @return RAMLLanguageElement instance.
+ **/
+export declare function loadRAMLSync(ramlPath: string, extensionsAndOverlays: string[], options?: core.Options): RAMLLanguageElement;
+/**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
  * @param options Load options
@@ -3186,3 +3210,16 @@ export declare function loadApi(apiPath: string, options?: core.Options): Promis
  * @return Promise&lt;Api&gt;.
  **/
 export declare function loadApi(apiPath: string, extensionsAndOverlays: string[], options?: core.Options): Promise<Api>;
+/**
+ * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the resulting RAMLLanguageElement contains errors and the 'rejectOnErrors' option is set to 'true'.
+ * @param ramlPath Path to RAML: local file system path or Web URL
+ * @param options Load options
+ * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
+ * @return Promise&lt;RAMLLanguageElement&gt;.
+ **/
+export declare function loadRAML(ramlPath: string, extensionsAndOverlays: string[], options?: core.Options): Promise<RAMLLanguageElement>;
+/**
+ * Gets AST node by runtime type, if runtime type matches any.
+ * @param runtimeType - runtime type to find the match for
+ */
+export declare function getLanguageElementByRuntimeType(runtimeType: typeSystem.ITypeDefinition): core.BasicNode;

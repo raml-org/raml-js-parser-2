@@ -137,6 +137,8 @@ declare module 'popsicle' {
     function jar (): CookieJar
 
     function form (): FormData
+
+    var plugins: any
   }
 
   export = popsicle
