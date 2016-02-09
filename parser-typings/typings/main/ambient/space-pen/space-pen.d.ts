@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/space-pen.d.ts
 // Type definitions for SpacePen
 // Project: https://github.com/atom/space-pen

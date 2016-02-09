@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/server-address.d.ts
 declare module 'server-address' {
   import http = require('http')

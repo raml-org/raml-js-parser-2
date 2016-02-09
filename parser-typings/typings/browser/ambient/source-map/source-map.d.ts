@@ -1,5 +1,5 @@
-// Compiled using typings@0.3.3
-// Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/source-map/source-map.d.ts
+// Compiled using typings@0.5.2
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/source-map/source-map.d.ts
 // Type definitions for source-map v0.1.38
 // Project: https://github.com/mozilla/source-map
 // Definitions by: Morten Houston Ludvigsen <https://github.com/MortenHoustonLudvigsen>

@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/osprey-mock-service.d.ts
 declare module 'osprey-mock-service' {
   import http = require('http')

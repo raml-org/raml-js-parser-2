@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/space-pen-views.d.ts
 // Type definitions for atom-space-pen-views (v2.0.5)
 // Project: https://github.com/atom/atom-space-pen-views

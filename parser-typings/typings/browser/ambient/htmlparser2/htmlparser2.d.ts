@@ -1,5 +1,5 @@
-// Compiled using typings@0.3.3
-// Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/32f0a90dab26f70b206407ac24d4d622d0f0f408/htmlparser2/htmlparser2.d.ts
+// Compiled using typings@0.5.2
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/32f0a90dab26f70b206407ac24d4d622d0f0f408/htmlparser2/htmlparser2.d.ts
 // Type definitions for htmlparser2 v3.7.x
 // Project: https://github.com/fb55/htmlparser2/
 // Definitions by: James Roland Cabresos <https://github.com/staticfunction/>

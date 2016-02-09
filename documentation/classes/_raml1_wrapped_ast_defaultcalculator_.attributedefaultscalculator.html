@@ -100,6 +100,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#attributedefaultifenabled" class="tsd-kind-icon">attribute<wbr>Default<wbr>IfEnabled</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#getattributedefault" class="tsd-kind-icon">get<wbr>Attribute<wbr>Default</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#getattributedefault2" class="tsd-kind-icon">get<wbr>Attribute<wbr>Default2</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#getwrapperattributedefault" class="tsd-kind-icon">get<wbr>Wrapper<wbr>Attribute<wbr>Default</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#handlerequiredattribute" class="tsd-kind-icon">handle<wbr>Required<wbr>Attribute</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_wrapped_ast_defaultcalculator_.attributedefaultscalculator.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
 							</ul>
 						</section>
 					</div>
@@ -237,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/defaultCalculator.ts#L58">raml1/wrapped-ast/defaultCalculator.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/defaultCalculator.ts#L68">raml1/wrapped-ast/defaultCalculator.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -270,6 +273,87 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getwrapperattributedefault" class="tsd-anchor"></a>
+					<h3>get<wbr>Wrapper<wbr>Attribute<wbr>Default</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Wrapper<wbr>Attribute<wbr>Default<span class="tsd-signature-symbol">(</span>wrapperNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-signature-type">BasicNode</a>, attributeName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/defaultCalculator.ts#L52">raml1/wrapped-ast/defaultCalculator.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>wrapperNode: <a href="../interfaces/_raml1_wrapped_ast_parsercore_.basicnode.html" class="tsd-signature-type">BasicNode</a></h5>
+								</li>
+								<li>
+									<h5>attributeName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="handlerequiredattribute" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> handle<wbr>Required<wbr>Attribute</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Required<wbr>Attribute<span class="tsd-signature-symbol">(</span>attributeProperty<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a>, node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, nodeDefinition<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, nodeProperty<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a>, parent<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, parentDefinition<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/defaultCalculator.ts#L98">raml1/wrapped-ast/defaultCalculator.ts:98</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attributeProperty: <a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+								<li>
+									<h5>node: <a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>nodeDefinition: <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+								</li>
+								<li>
+									<h5>nodeProperty: <a href="../interfaces/_raml1_definition_system_typesystem_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+								<li>
+									<h5>parent: <a href="../interfaces/_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>parentDefinition: <a href="../interfaces/_raml1_definition_system_typesystem_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="isenabled" class="tsd-anchor"></a>
+					<h3>is<wbr>Enabled</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Enabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/defaultCalculator.ts#L142">raml1/wrapped-ast/defaultCalculator.ts:142</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>

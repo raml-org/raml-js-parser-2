@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/raml.d.ts
 // TODO: http://raml.org/spec.html#named-parameters-with-multiple-types
 //       how is this surface on the parser?
@@ -65,8 +65,8 @@ declare module Raml08Parser {
      *
      * - OAuth 1.0
      * - OAuth 2.0
-     * - BasicSecurityScheme Authentication
-     * - DigestSecurityScheme Authentication
+     * - Basic Authentication
+     * - Digest Authentication
      * - x-{other}
      *
      * @see http://raml.org/spec.html#type-1
