@@ -4393,11 +4393,11 @@
 		};
 		var _ = __webpack_require__(4);
 		var hlimpl = __webpack_require__(5);
-		var selector = __webpack_require__(126);
+		var selector = __webpack_require__(128);
 		var universes = __webpack_require__(54);
 		var typeSystem = __webpack_require__(63);
 		var ramlServices = __webpack_require__(49);
-		var example = __webpack_require__(128);
+		var example = __webpack_require__(130);
 		function registerAdapters(a) {
 		    if (a instanceof typeSystem.AbstractType) {
 		        a.addAdapter(new ramlServices.RAMLService(a));
@@ -5083,8 +5083,8 @@
 		var hl = __webpack_require__(2);
 		var _ = __webpack_require__(4);
 		var proxy = __webpack_require__(6);
-		var builder = __webpack_require__(122);
-		var mutators = __webpack_require__(123);
+		var builder = __webpack_require__(124);
+		var mutators = __webpack_require__(125);
 		var linter = __webpack_require__(55);
 		var typeBuilder = __webpack_require__(50);
 		var search = __webpack_require__(53);
@@ -5092,8 +5092,8 @@
 		var jsyaml = __webpack_require__(15);
 		var textutil = __webpack_require__(48);
 		var services = __webpack_require__(49);
-		var factory10 = __webpack_require__(124);
-		var factory08 = __webpack_require__(125);
+		var factory10 = __webpack_require__(126);
+		var factory08 = __webpack_require__(127);
 		function qName(x, context) {
 		    var dr = search.declRoot(context);
 		    var nm = x.name();
@@ -6113,7 +6113,7 @@
 		};
 		var yaml = __webpack_require__(7);
 		var json = __webpack_require__(8);
-		var stringify = __webpack_require__(121);
+		var stringify = __webpack_require__(123);
 		var Error = __webpack_require__(9);
 		var impl = __webpack_require__(15);
 		var universes = __webpack_require__(54);
@@ -6424,12 +6424,14 @@
 		        var methodDef = universes.Universe08.Method;
 		        var hasNormalParametersDef = universes.Universe08.HasNormalParameters;
 		        var resourceDef = universes.Universe08.Resource;
-		        if (key == hasNormalParametersDef.properties.displayName.name && this.highLevelNode().definition().key().name == methodDef.name) {
-		            return true;
-		        }
-		        if (key == resourceDef.properties.displayName.name && this.highLevelNode().definition().key().name == resourceDef.name) {
-		            return true;
-		        }
+		        //if(key==hasNormalParametersDef.properties.displayName.name
+		        //    &&this.highLevelNode().definition().key().name==methodDef.name){
+		        //    return true;
+		        //}
+		        //if(key==resourceDef.properties.displayName.name
+		        //    &&this.highLevelNode().definition().key().name==resourceDef.name){
+		        //    return true;
+		        //}
 		        return false;
 		    };
 		    LowLevelCompositeNode.prototype.valueKind = function () {
@@ -7504,8 +7506,8 @@
 		var rr = __webpack_require__(113);
 		var SimpleExecutor = __webpack_require__(117);
 		var util = __webpack_require__(11);
-		var URL = __webpack_require__(119);
-		var refResolvers = __webpack_require__(120);
+		var URL = __webpack_require__(121);
+		var refResolvers = __webpack_require__(122);
 		exports.Kind = {
 		    SCALAR: 0 /* SCALAR */
 		};
@@ -7661,22 +7663,33 @@
 		            }
 		            rr.addNotify(url);
 		            try {
+		                var resultWithCallback = {
+		                    content: ""
+		                };
 		                this.getResourceAsync(url).then(function (x) {
 		                    try {
-		                        x.errorMessage = null;
-		                        rr.set(url, x);
+		                        if (x.errorMessage) {
+		                            rr.set(url, { content: null, errorMessage: null });
+		                        }
+		                        else {
+		                            x.errorMessage = null;
+		                            rr.set(url, x);
+		                        }
 		                    }
 		                    finally {
+		                        if (resultWithCallback.callback) {
+		                            resultWithCallback.callback(rr.get(url));
+		                        }
 		                        rr.removeNotity(url);
 		                    }
 		                }, function (e) {
 		                    rr.set(url, { content: null, errorMessage: null });
+		                    if (resultWithCallback.callback) {
+		                        resultWithCallback.callback(rr.get(url));
+		                    }
 		                    rr.removeNotity(url);
-		                    //do nothing.
 		                });
-		                return {
-		                    content: ""
-		                };
+		                return resultWithCallback;
 		            }
 		            catch (e) {
 		                console.log("Error");
@@ -8008,19 +8021,21 @@
 		        if (absolute === void 0) { absolute = false; }
 		        var cnt = null;
 		        var apath = p;
+		        var response;
 		        if (isWebPath(p)) {
 		            if (this.pathToUnit[apath]) {
 		                return this.pathToUnit[apath];
 		            }
 		            if (this._httpResolver) {
-		                var resp = this._httpResolver.getResource(p);
-		                if (resp.errorMessage) {
-		                    throw new Error(resp.errorMessage);
+		                response = this._httpResolver.getResource(p);
+		                if (response.errorMessage) {
+		                    throw new Error(response.errorMessage);
 		                }
-		                cnt = resp.content;
+		                cnt = response.content;
 		            }
 		            else {
-		                cnt = new HTTPResolverImpl().getResource(apath).content;
+		                response = new HTTPResolverImpl().getResource(apath);
+		                cnt = response.content;
 		            }
 		        }
 		        else {
@@ -8054,6 +8069,11 @@
 		        var relPath = (isWebPath(this.rootPath) == isWebPath(apath)) ? path.relative(this.rootPath, apath) : apath;
 		        var unit = new CompilationUnit(relPath, cnt, tl, this, apath);
 		        this.pathToUnit[apath] = unit;
+		        if (response) {
+		            response.callback = function (contentHolder) {
+		                unit.updateContent(contentHolder && contentHolder.content);
+		            };
+		        }
 		        return unit;
 		    };
 		    Project.prototype.unitAsync = function (p, absolute) {
@@ -9209,8 +9229,8 @@
 		    };
 		    ASTNode.prototype.valueEnd = function () {
 		        if (this._node.kind == 1 /* MAPPING */) {
-		            var mn = this.asMapping();
-		            return mn.value.endPosition;
+		            var mapping = this.asMapping();
+		            return mapping.value ? mapping.value.endPosition : mapping.endPosition;
 		        }
 		        return -1;
 		    };
@@ -19675,7 +19695,7 @@
 		                if (isTypeOrSchema(node.property())) {
 		                    if (node.property().domain().key() == universes.Universe08.BodyLike) {
 		                        var structValue = vl;
-		                        var newNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node.parent(), node.parent().definition().universe().type("ObjectTypeDeclaration"), node.property());
+		                        var newNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node.parent(), node.parent().definition().universe().type(universes.Universe08.BodyLike.name), node.property());
 		                        newNode.validate(v);
 		                        return;
 		                    }
@@ -20123,6 +20143,9 @@
 		            if (pr.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
 		                message = "type can be either of: string, number, integer, file, date or boolean";
 		            }
+		        }
+		        if (astNode.parent() != null && universeHelpers.isSecuritySchemaType(astNode.parent().definition())) {
+		            message += " Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}";
 		        }
 		        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, message, astNode));
 		        return true;
@@ -21605,6 +21628,11 @@
 		    return isDescriptionPropertyName(p.nameId());
 		}
 		exports.isDescriptionProperty = isDescriptionProperty;
+		function isRequiredPropertyName(name) {
+		    return name === universe.Universe10.TypeDeclaration.properties.required.name || name === universe.Universe08.Parameter.properties.required.name || name === "required";
+		    //TODO too long to actually list every element having displayname, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+		}
+		exports.isRequiredPropertyName = isRequiredPropertyName;
 		function isDisplayNamePropertyName(name) {
 		    return name === universe.Universe10.TypeDeclaration.properties.displayName.name || name === universe.Universe10.RAMLLanguageElement.properties.displayName.name || name === "displayName";
 		    //TODO too long to actually list every element having displayname, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
@@ -21614,6 +21642,10 @@
 		    return isDisplayNamePropertyName(p.nameId());
 		}
 		exports.isDisplayNameProperty = isDisplayNameProperty;
+		function isRequiredProperty(p) {
+		    return isRequiredPropertyName(p.nameId());
+		}
+		exports.isRequiredProperty = isRequiredProperty;
 		function isTitlePropertyName(name) {
 		    return name === universe.Universe10.Api.properties.title.name || name === universe.Universe08.Api.properties.title.name || name === universe.Universe10.DocumentationItem.properties.title.name || name === universe.Universe08.DocumentationItem.properties.title.name || name === universe.Universe10.Overlay.properties.title.name || name === universe.Universe10.Extension.properties.title.name;
 		}
@@ -21622,6 +21654,30 @@
 		    return isTitlePropertyName(p.nameId());
 		}
 		exports.isTitleProperty = isTitleProperty;
+		function isHeadersProperty(p) {
+		    return isHeadersPropertyName(p.nameId());
+		}
+		exports.isHeadersProperty = isHeadersProperty;
+		function isHeadersPropertyName(name) {
+		    return name === universe.Universe08.HasNormalParameters.properties.headers.name || name === universe.Universe08.Response.properties.headers.name || name === universe.Universe08.SecuritySchemePart.properties.headers.name || name === universe.Universe10.HasNormalParameters.properties.headers.name || name === universe.Universe10.Response.properties.headers.name || name === universe.Universe10.SecuritySchemePart.properties.headers.name || name === universe.Universe10.Method.properties.headers.name;
+		}
+		exports.isHeadersPropertyName = isHeadersPropertyName;
+		function isFormParametersProperty(p) {
+		    return isFormParametersPropertyName(p.nameId());
+		}
+		exports.isFormParametersProperty = isFormParametersProperty;
+		function isFormParametersPropertyName(name) {
+		    return name === universe.Universe08.BodyLike.properties.formParameters.name;
+		}
+		exports.isFormParametersPropertyName = isFormParametersPropertyName;
+		function isQueryParametersProperty(p) {
+		    return isQueryParametersPropertyName(p.nameId());
+		}
+		exports.isQueryParametersProperty = isQueryParametersProperty;
+		function isQueryParametersPropertyName(name) {
+		    return name === universe.Universe08.HasNormalParameters.properties.queryParameters.name || name === universe.Universe08.SecuritySchemePart.properties.queryParameters.name || name === universe.Universe10.HasNormalParameters.properties.queryParameters.name || name === universe.Universe10.SecuritySchemePart.properties.queryParameters.name || name === universe.Universe10.Method.properties.queryParameters.name;
+		}
+		exports.isQueryParametersPropertyName = isQueryParametersPropertyName;
 		function isAnnotationsProperty(p) {
 		    return p.nameId() === universe.Universe10.Api.properties.annotations.name || p.nameId() === universe.Universe10.Method.properties.annotations.name || p.nameId() === universe.Universe10.Resource.properties.annotations.name || p.nameId() === universe.Universe10.RAMLLanguageElement.properties.annotations.name || p.nameId() === universe.Universe10.ExampleSpec.properties.annotations.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.annotations.name || p.nameId() === universe.Universe10.Response.properties.annotations.name;
 		}
@@ -25652,6 +25708,7 @@
 		        var apiType = isRAML1 ? universeProvider('RAML10').type('Api') : universeProvider('RAML08').type('Api');
 		        var hlNode = new hlimpl.ASTNodeImpl(topComposite, null, apiType, null);
 		        var result = isRAML1 ? new RamlWrapper.ApiImpl(hlNode) : new RamlWrapper08.ApiImpl(hlNode);
+		        result.setAttributeDefaults(_api.getDefaultsCalculator().isEnabled());
 		        this.traitMap = {};
 		        this.resourceTypeMap = {};
 		        result.highLevel().setMergeMode(_api.highLevel().getMergeMode());
@@ -28828,6 +28885,9 @@
 		        }
 		        return this.highLevel().optionalProperties();
 		    };
+		    /**
+		     * @hidden
+		     **/
 		    BasicNodeImpl.prototype.getDefaultsCalculator = function () {
 		        if (this.defaultsCalculator) {
 		            return this.defaultsCalculator;
@@ -28936,6 +28996,15 @@
 		            return null;
 		        }
 		    };
+		    AttributeDefaultsCalculator.prototype.getWrapperAttributeDefault = function (wrapperNode, attributeName) {
+		        var highLevelNode = wrapperNode.highLevel();
+		        if (highLevelNode == null)
+		            return null;
+		        var property = highLevelNode.definition().property(attributeName);
+		        if (property == null)
+		            return null;
+		        return this.getAttributeDefault(highLevelNode, property);
+		    };
 		    /**
 		     * Returns attribute default.
 		     * There are so many arguments instead of just providing a single AST node and getting
@@ -28943,6 +29012,9 @@
 		     * do not have actual high-level nodes at hands.
 		     */
 		    AttributeDefaultsCalculator.prototype.getAttributeDefault2 = function (attributeProperty, node, nodeDefinition, nodeProperty, parent, parentDefinition) {
+		        if (universeHelpers.isRequiredProperty(attributeProperty)) {
+		            return this.handleRequiredAttribute(attributeProperty, node, nodeDefinition, nodeProperty, parent, parentDefinition);
+		        }
 		        //static values defined in definition system via defaultValue, defaultIntegerValue
 		        // and defaultBooleanValue annotations.
 		        if (attributeProperty.defaultValue() != null) {
@@ -28958,6 +29030,40 @@
 		            }
 		        }
 		        return null;
+		    };
+		    AttributeDefaultsCalculator.prototype.handleRequiredAttribute = function (attributeProperty, node, nodeDefinition, nodeProperty, parent, parentDefinition) {
+		        if (nodeDefinition == null) {
+		            return null;
+		        }
+		        //if node key is ending with question mark, it optional, thus its "required" == false
+		        var adapter = nodeDefinition.getAdapter(services.RAMLService);
+		        var keyProperty = adapter.getKeyProp();
+		        if (keyProperty != null) {
+		            var attribute = node.attr(keyProperty.nameId());
+		            if (attribute != null && attribute.optional()) {
+		                return false;
+		            }
+		        }
+		        if (nodeProperty != null) {
+		            //the spec is unclear with regard to this parameter, but for now it looks like:
+		            //for query string parameters, form parameters, and request and response headers the default is false
+		            //for URI parameters the default is true
+		            //for base URI parameters - unclear, but according to old JS parser behavior it looks like the default is true
+		            //for all other entities we back drop to what definition system states
+		            if (universeHelpers.isHeadersProperty(nodeProperty) || universeHelpers.isFormParametersProperty(nodeProperty) || universeHelpers.isQueryParametersProperty(nodeProperty)) {
+		                return false;
+		            }
+		            else if (universeHelpers.isUriParametersProperty(nodeProperty) || universeHelpers.isBaseUriParametersProperty(nodeProperty)) {
+		                return true;
+		            }
+		        }
+		        if (attributeProperty.defaultValue() != null) {
+		            return attributeProperty.defaultValue();
+		        }
+		        return null;
+		    };
+		    AttributeDefaultsCalculator.prototype.isEnabled = function () {
+		        return this.enabled;
 		    };
 		    return AttributeDefaultsCalculator;
 		})();
@@ -42306,7 +42412,7 @@
 								"annotations": [],
 								"valueConstraint": {
 									"isCallConstraint": false,
-									"value": "DigestSecurityScheme Authentication"
+									"value": "Digest Authentication"
 								},
 								"optional": false
 							}
@@ -44895,17 +45001,13 @@
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../typings/main.d.ts" />
-		var XMLHttpRequestConstructor = __webpack_require__(118).XMLHttpRequest;
-		function buildXHR() {
-		    var x = new XMLHttpRequestConstructor;
-		    return x;
-		}
+		var requests = __webpack_require__(118);
 		var SimpleExecutor = (function () {
 		    function SimpleExecutor() {
 		    }
 		    SimpleExecutor.prototype.execute = function (req, doAppendParams) {
 		        if (doAppendParams === void 0) { doAppendParams = true; }
-		        var xhr = buildXHR();
+		        var xhr = requests.buildXHR();
 		        var url = req.url;
 		        if (doAppendParams) {
 		            url = this.appendParams(req, req.url);
@@ -44956,7 +45058,7 @@
 		    };
 		    SimpleExecutor.prototype.executeAsync = function (req, doAppendParams) {
 		        if (doAppendParams === void 0) { doAppendParams = true; }
-		        var xhr = buildXHR();
+		        var xhr = requests.buildXHR();
 		        var url = req.url;
 		        if (doAppendParams) {
 		            url = this.appendParams(req, req.url);
@@ -44965,15 +45067,7 @@
 		        return new Promise(function (resolve, reject) {
 		            xhr.open(req.method, url, true);
 		            xhr.onload = function () {
-		                //rheaders=xhr.getAllResponseHeaders();
 		                var status = xhr.status;
-		                if (status > 300 && status < 400) {
-		                    var locHeader = xhr.getResponseHeader('location');
-		                    if (locHeader) {
-		                        req.url = locHeader;
-		                        return outer.executeAsync(req, false);
-		                    }
-		                }
 		                var response = {
 		                    status: status,
 		                    statusText: xhr.statusText,
@@ -44998,7 +45092,6 @@
 		        });
 		    };
 		    SimpleExecutor.prototype.doRequest = function (req, xhr) {
-		        // Make the request
 		        if (req.headers) {
 		            req.headers.forEach(function (x) { return xhr.setRequestHeader(x.name, x.value); });
 		        }
@@ -45022,18 +45115,75 @@
 
 	/***/ },
 	/* 118 */
-	/***/ function(module, exports) {
+	/***/ function(module, exports, __webpack_require__) {
 
-		module.exports = __webpack_require__(91);
+		/// <reference path="../../typings/main.d.ts" />
+		var XhrSync = __webpack_require__(119).XMLHttpRequest;
+		var XhrAsync = __webpack_require__(120).XMLHttpRequest;
+		var XMLHttpRequestWrapper = (function () {
+		    function XMLHttpRequestWrapper() {
+		    }
+		    XMLHttpRequestWrapper.prototype.open = function (method, url, async) {
+		        this.xhr = async ? new XhrAsync() : new XhrSync();
+		        this.async = async;
+		        this.xhr.open(method, url, async);
+		    };
+		    XMLHttpRequestWrapper.prototype.setRequestHeader = function (name, value) {
+		        this.xhr.setRequestHeader(name, value);
+		    };
+		    XMLHttpRequestWrapper.prototype.getResponseHeader = function (name) {
+		        return this.xhr.getResponseHeader(name);
+		    };
+		    XMLHttpRequestWrapper.prototype.getAllResponseHeaders = function () {
+		        return this.xhr.getAllResponseHeaders();
+		    };
+		    XMLHttpRequestWrapper.prototype.send = function (content) {
+		        var _this = this;
+		        this.xhr.onload = function () { return _this.onResponse(false); };
+		        this.xhr.onerror = function () { return _this.onResponse(true); };
+		        this.xhr.send(content);
+		    };
+		    XMLHttpRequestWrapper.prototype.onResponse = function (isError) {
+		        this.statusText = this.xhr.statusText;
+		        this.responseText = this.xhr.responseText;
+		        this.responseType = this.xhr.responseType;
+		        this.status = this.xhr.status;
+		        if (isError && this.onerror) {
+		            this.onerror();
+		            return;
+		        }
+		        if (this.onload) {
+		            this.onload();
+		        }
+		    };
+		    return XMLHttpRequestWrapper;
+		})();
+		function buildXHR() {
+		    return new XMLHttpRequestWrapper();
+		}
+		exports.buildXHR = buildXHR;
+
 
 	/***/ },
 	/* 119 */
 	/***/ function(module, exports) {
 
-		module.exports = __webpack_require__(92);
+		module.exports = __webpack_require__(91);
 
 	/***/ },
 	/* 120 */
+	/***/ function(module, exports) {
+
+		module.exports = __webpack_require__(92);
+
+	/***/ },
+	/* 121 */
+	/***/ function(module, exports) {
+
+		module.exports = __webpack_require__(93);
+
+	/***/ },
+	/* 122 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -45232,13 +45382,13 @@
 
 
 	/***/ },
-	/* 121 */
+	/* 123 */
 	/***/ function(module, exports) {
 
-		module.exports = __webpack_require__(98);
+		module.exports = __webpack_require__(99);
 
 	/***/ },
-	/* 122 */
+	/* 124 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -45864,7 +46014,7 @@
 
 
 	/***/ },
-	/* 123 */
+	/* 125 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -46293,7 +46443,7 @@
 
 
 	/***/ },
-	/* 124 */
+	/* 126 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var RamlWrapper = __webpack_require__(1);
@@ -46582,7 +46732,7 @@
 
 
 	/***/ },
-	/* 125 */
+	/* 127 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var RamlWrapper = __webpack_require__(74);
@@ -46787,7 +46937,7 @@
 
 
 	/***/ },
-	/* 126 */
+	/* 128 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		/// <reference path="../../../typings/main.d.ts" />
@@ -46798,7 +46948,7 @@
 		    d.prototype = new __();
 		};
 		var _ = __webpack_require__(4);
-		var sel = __webpack_require__(127);
+		var sel = __webpack_require__(129);
 		var Selector = (function () {
 		    function Selector() {
 		    }
@@ -46986,7 +47136,7 @@
 
 
 	/***/ },
-	/* 127 */
+	/* 129 */
 	/***/ function(module, exports) {
 
 		var mod = (function () {
@@ -47390,7 +47540,7 @@
 
 
 	/***/ },
-	/* 128 */
+	/* 130 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var hlimpl = __webpack_require__(5);
@@ -47398,7 +47548,7 @@
 		var ramlServices = __webpack_require__(49);
 		var linter = __webpack_require__(55);
 		var xmlutil = __webpack_require__(57);
-		var exampleGen = __webpack_require__(129);
+		var exampleGen = __webpack_require__(131);
 		function createExamples(typeDefinition) {
 		    var declaringNode = typeDefinition.getAdapter(ramlServices.RAMLService).getDeclaringNode();
 		    if (declaringNode == null) {
@@ -47694,7 +47844,7 @@
 
 
 	/***/ },
-	/* 129 */
+	/* 131 */
 	/***/ function(module, exports, __webpack_require__) {
 
 		var defs = __webpack_require__(3);
@@ -73599,6 +73749,12 @@
 
 /***/ },
 /* 92 */
+/***/ function(module, exports) {
+
+	exports.XMLHttpRequest = XMLHttpRequest;
+
+/***/ },
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -73622,7 +73778,7 @@
 	// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 	// USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-	var punycode = __webpack_require__(93);
+	var punycode = __webpack_require__(94);
 
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -73694,7 +73850,7 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
-	    querystring = __webpack_require__(95);
+	    querystring = __webpack_require__(96);
 
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && isObject(url) && url instanceof Url) return url;
@@ -74311,7 +74467,7 @@
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -74843,10 +74999,10 @@
 
 	}(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(94)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(95)(module), (function() { return this; }())))
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -74862,17 +75018,17 @@
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	exports.decode = exports.parse = __webpack_require__(96);
-	exports.encode = exports.stringify = __webpack_require__(97);
+	exports.decode = exports.parse = __webpack_require__(97);
+	exports.encode = exports.stringify = __webpack_require__(98);
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -74958,7 +75114,7 @@
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -75028,10 +75184,10 @@
 
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var json = typeof JSON !== 'undefined' ? JSON : __webpack_require__(99);
+	var json = typeof JSON !== 'undefined' ? JSON : __webpack_require__(100);
 
 	module.exports = function (obj, opts) {
 	    if (!opts) opts = {};
@@ -75117,15 +75273,15 @@
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports.parse = __webpack_require__(100);
-	exports.stringify = __webpack_require__(101);
+	exports.parse = __webpack_require__(101);
+	exports.stringify = __webpack_require__(102);
 
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports) {
 
 	var at, // The index of the current character
@@ -75404,7 +75560,7 @@
 
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports) {
 
 	var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,

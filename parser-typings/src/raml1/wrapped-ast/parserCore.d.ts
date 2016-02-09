@@ -3,6 +3,7 @@ import ll = require("../lowLevelAST");
 import hlImpl = require("../highLevelImpl");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import json2lowlevel = require('../jsyaml/json2lowLevel');
+import defaultCalculator = require("./defaultCalculator");
 export interface AbstractWrapperNode {
     /**
      * @hidden
@@ -131,7 +132,10 @@ export declare class BasicNodeImpl implements BasicNode {
      * @return For siblings of traits or resource types returns an array of optional properties names.
      **/
     optionalProperties(): string[];
-    private getDefaultsCalculator();
+    /**
+     * @hidden
+     **/
+    getDefaultsCalculator(): defaultCalculator.AttributeDefaultsCalculator;
     /**
      * @hidden
      **/

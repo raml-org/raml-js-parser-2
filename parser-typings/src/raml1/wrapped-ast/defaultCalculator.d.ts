@@ -1,5 +1,6 @@
 import hl = require("../highLevelAST");
 import typesystem = require("../../raml1/definition-system/typeSystem");
+import parserCore = require("./parserCore");
 export declare class AttributeDefaultsCalculator {
     private enabled;
     /**
@@ -18,6 +19,7 @@ export declare class AttributeDefaultsCalculator {
      * Returns attribute default.
      */
     getAttributeDefault(node: hl.IHighLevelNode, attributeProperty: hl.IProperty): any;
+    getWrapperAttributeDefault(wrapperNode: parserCore.BasicNode, attributeName: string): any;
     /**
      * Returns attribute default.
      * There are so many arguments instead of just providing a single AST node and getting
@@ -25,4 +27,6 @@ export declare class AttributeDefaultsCalculator {
      * do not have actual high-level nodes at hands.
      */
     getAttributeDefault2(attributeProperty: typesystem.IProperty, node: hl.IHighLevelNode, nodeDefinition: typesystem.ITypeDefinition, nodeProperty: typesystem.IProperty, parent: hl.IHighLevelNode, parentDefinition: typesystem.ITypeDefinition): any;
+    private handleRequiredAttribute(attributeProperty, node, nodeDefinition, nodeProperty, parent, parentDefinition);
+    isEnabled(): boolean;
 }

@@ -1,5 +1,5 @@
-// Compiled using typings@0.3.3
-// Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/q/Q.d.ts
+// Compiled using typings@0.5.2
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/q/Q.d.ts
 // Type definitions for Q
 // Project: https://github.com/kriskowal/q
 // Definitions by: Barrie Nemetchek <https://github.com/bnemetchek>, Andrew Gaspar <https://github.com/AndrewGaspar/>, John Reilly <https://github.com/johnnyreilly>

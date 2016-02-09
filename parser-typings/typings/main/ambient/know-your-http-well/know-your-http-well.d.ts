@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/know-your-http-well.d.ts
 declare module 'know-your-http-well' {
   export interface StatusCode {

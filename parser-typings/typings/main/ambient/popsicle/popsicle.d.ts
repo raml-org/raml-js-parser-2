@@ -1,4 +1,4 @@
-// Compiled using typings@0.3.3
+// Compiled using typings@0.5.2
 // Source: custom_typings/popsicle.d.ts
 declare module 'popsicle' {
   import http = require('http')

@@ -1,5 +1,5 @@
-// Compiled using typings@0.3.3
-// Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/bba34156c1eaad788fa8996f7d30b54c4fce5ffe/request/request.d.ts
+// Compiled using typings@0.5.2
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/bba34156c1eaad788fa8996f7d30b54c4fce5ffe/request/request.d.ts
 // Type definitions for request
 // Project: https://github.com/mikeal/request
 // Definitions by: Carlos Ballesteros Velasco <https://github.com/soywiz>, bonnici <https://github.com/bonnici>, Bart van der Schoor <https://github.com/Bartvds>

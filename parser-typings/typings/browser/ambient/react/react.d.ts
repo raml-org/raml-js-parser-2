@@ -1,5 +1,5 @@
-// Compiled using typings@0.3.3
-// Source: https://raw.githubusercontent.com/definitelytyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/react/react.d.ts
+// Compiled using typings@0.5.2
+// Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/react/react.d.ts
 // Type definitions for React v0.13.1 (external module)
 // Project: http://facebook.github.io/react/
 // Definitions by: Asana <https://asana.com>, AssureSign <http://www.assuresign.com>
