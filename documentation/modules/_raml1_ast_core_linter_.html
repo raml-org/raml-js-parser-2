@@ -102,6 +102,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#checkpropertyquard" class="tsd-kind-icon">check<wbr>Property<wbr>Quard</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#checkresourcetypereference" class="tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#checktraitreference" class="tsd-kind-icon">check<wbr>Trait<wbr>Reference</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#cleanupincludesflag" class="tsd-kind-icon">cleanup<wbr>Includes<wbr>Flag</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_linter_.html#createissue" class="tsd-kind-icon">create<wbr>Issue</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#evalinsandbox" class="tsd-kind-icon">eval<wbr>InSandbox</a></li>
@@ -116,6 +118,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#lintwithfile" class="tsd-kind-icon">lint<wbr>With<wbr>File</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#localerror" class="tsd-kind-icon">local<wbr>Error</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#namefornonreference" class="tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#specializereferenceerror" class="tsd-kind-icon">specialize<wbr>Reference<wbr>Error</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_linter_.html#validate" class="tsd-kind-icon">validate</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_raml1_ast_core_linter_.html#validatebasic" class="tsd-kind-icon">validate<wbr>Basic</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_raml1_ast_core_linter_.html#validateincludes" class="tsd-kind-icon">validate<wbr>Includes</a></li>
@@ -203,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<wbr>ToName<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1194">raml1/ast.core/linter.ts:1194</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1195">raml1/ast.core/linter.ts:1195</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -251,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1203">raml1/ast.core/linter.ts:1203</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1204">raml1/ast.core/linter.ts:1204</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -274,6 +277,64 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checkresourcetypereference" class="tsd-anchor"></a>
+					<h3>check<wbr>Resource<wbr>Type<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1333">raml1/ast.core/linter.ts:1333</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checktraitreference" class="tsd-anchor"></a>
+					<h3>check<wbr>Trait<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Trait<wbr>Reference<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1286">raml1/ast.core/linter.ts:1286</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 					<a name="cleanupincludesflag" class="tsd-anchor"></a>
 					<h3>cleanup<wbr>Includes<wbr>Flag</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -283,7 +344,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L675">raml1/ast.core/linter.ts:675</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L676">raml1/ast.core/linter.ts:676</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -309,7 +370,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2522">raml1/ast.core/linter.ts:2522</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2623">raml1/ast.core/linter.ts:2623</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -370,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2444">raml1/ast.core/linter.ts:2444</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2545">raml1/ast.core/linter.ts:2545</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -393,7 +454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2455">raml1/ast.core/linter.ts:2455</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2556">raml1/ast.core/linter.ts:2556</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -462,7 +523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2438">raml1/ast.core/linter.ts:2438</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2539">raml1/ast.core/linter.ts:2539</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -508,7 +569,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2441">raml1/ast.core/linter.ts:2441</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2542">raml1/ast.core/linter.ts:2542</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -586,7 +647,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2480">raml1/ast.core/linter.ts:2480</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2581">raml1/ast.core/linter.ts:2581</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -653,7 +714,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1288">raml1/ast.core/linter.ts:1288</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1383">raml1/ast.core/linter.ts:1383</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -663,6 +724,42 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="specializereferenceerror" class="tsd-anchor"></a>
+					<h3>specialize<wbr>Reference<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">specialize<wbr>Reference<wbr>Error<span class="tsd-signature-symbol">(</span>originalMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, property<span class="tsd-signature-symbol">: </span><a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1367">raml1/ast.core/linter.ts:1367</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sometimes we need a more specialized message for the bad references, which diviate from a general algorithm.
+										Like listing possible values etc.
+									This method is responsible for such cases.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>originalMessage: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>property: <a href="../classes/_raml1_definitionsystem_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -731,7 +828,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L681">raml1/ast.core/linter.ts:681</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L682">raml1/ast.core/linter.ts:682</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -757,7 +854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L696">raml1/ast.core/linter.ts:696</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L697">raml1/ast.core/linter.ts:697</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -785,7 +882,7 @@
 					<div class="tsd-signature tsd-kind-icon">allow<wbr>Override<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
@@ -794,7 +891,7 @@
 						<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -804,7 +901,7 @@
 						<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -814,7 +911,7 @@
 						<div class="tsd-signature tsd-kind-icon">methods<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -824,7 +921,7 @@
 						<div class="tsd-signature tsd-kind-icon">query<wbr>Parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -834,7 +931,7 @@
 						<div class="tsd-signature tsd-kind-icon">resources<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -844,7 +941,7 @@
 						<div class="tsd-signature tsd-kind-icon">responses<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1371">raml1/ast.core/linter.ts:1371</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1472">raml1/ast.core/linter.ts:1472</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -855,7 +952,7 @@
 					<div class="tsd-signature tsd-kind-icon">build<wbr>Ins<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1990">raml1/ast.core/linter.ts:1990</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2091">raml1/ast.core/linter.ts:2091</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
@@ -864,7 +961,7 @@
 						<div class="tsd-signature tsd-kind-icon">any<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2001">raml1/ast.core/linter.ts:2001</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2102">raml1/ast.core/linter.ts:2102</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -874,7 +971,7 @@
 						<div class="tsd-signature tsd-kind-icon">array<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1997">raml1/ast.core/linter.ts:1997</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2098">raml1/ast.core/linter.ts:2098</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -884,7 +981,7 @@
 						<div class="tsd-signature tsd-kind-icon">boolean<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1993">raml1/ast.core/linter.ts:1993</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2094">raml1/ast.core/linter.ts:2094</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -894,7 +991,7 @@
 						<div class="tsd-signature tsd-kind-icon">date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1992">raml1/ast.core/linter.ts:1992</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2093">raml1/ast.core/linter.ts:2093</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -904,7 +1001,7 @@
 						<div class="tsd-signature tsd-kind-icon">file<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1999">raml1/ast.core/linter.ts:1999</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2100">raml1/ast.core/linter.ts:2100</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -914,7 +1011,7 @@
 						<div class="tsd-signature tsd-kind-icon">integer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1995">raml1/ast.core/linter.ts:1995</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2096">raml1/ast.core/linter.ts:2096</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -924,7 +1021,7 @@
 						<div class="tsd-signature tsd-kind-icon">number<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1994">raml1/ast.core/linter.ts:1994</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2095">raml1/ast.core/linter.ts:2095</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -934,7 +1031,7 @@
 						<div class="tsd-signature tsd-kind-icon">object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1996">raml1/ast.core/linter.ts:1996</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2097">raml1/ast.core/linter.ts:2097</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -944,7 +1041,7 @@
 						<div class="tsd-signature tsd-kind-icon">scalar<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2002">raml1/ast.core/linter.ts:2002</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2103">raml1/ast.core/linter.ts:2103</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -954,7 +1051,7 @@
 						<div class="tsd-signature tsd-kind-icon">string<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1991">raml1/ast.core/linter.ts:1991</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2092">raml1/ast.core/linter.ts:2092</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -964,7 +1061,7 @@
 						<div class="tsd-signature tsd-kind-icon">union<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L1998">raml1/ast.core/linter.ts:1998</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2099">raml1/ast.core/linter.ts:2099</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -974,7 +1071,7 @@
 						<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2000">raml1/ast.core/linter.ts:2000</a></li>
+								<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/linter.ts#L2101">raml1/ast.core/linter.ts:2101</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -1034,6 +1131,12 @@
 						<a href="_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_ast_core_linter_.html#checkresourcetypereference" class="tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_ast_core_linter_.html#checktraitreference" class="tsd-kind-icon">check<wbr>Trait<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_raml1_ast_core_linter_.html#cleanupincludesflag" class="tsd-kind-icon">cleanup<wbr>Includes<wbr>Flag</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
@@ -1074,6 +1177,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_raml1_ast_core_linter_.html#namefornonreference" class="tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_raml1_ast_core_linter_.html#specializereferenceerror" class="tsd-kind-icon">specialize<wbr>Reference<wbr>Error</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_raml1_ast_core_linter_.html#validate" class="tsd-kind-icon">validate</a>

@@ -4190,6 +4190,7 @@ module.exports =
 	    IssueCode[IssueCode["MISSED_CONTEXT_REQUIREMENT"] = 8] = "MISSED_CONTEXT_REQUIREMENT";
 	    IssueCode[IssueCode["NODE_HAS_VALUE"] = 9] = "NODE_HAS_VALUE";
 	    IssueCode[IssueCode["ONLY_OVERRIDE_ALLOWED"] = 10] = "ONLY_OVERRIDE_ALLOWED";
+	    IssueCode[IssueCode["ILLEGAL_PROPERTY_VALUE"] = 11] = "ILLEGAL_PROPERTY_VALUE";
 	})(exports.IssueCode || (exports.IssueCode = {}));
 	var IssueCode = exports.IssueCode;
 	exports.universeProvider = __webpack_require__(78);
@@ -4974,6 +4975,7 @@ module.exports =
 	var services = __webpack_require__(49);
 	var factory10 = __webpack_require__(126);
 	var factory08 = __webpack_require__(127);
+	var resourceRegistry = __webpack_require__(113);
 	function qName(x, context) {
 	    var dr = search.declRoot(context);
 	    var nm = x.name();
@@ -5790,6 +5792,11 @@ module.exports =
 	        this._children = null;
 	    };
 	    ASTNodeImpl.prototype.children = function () {
+	        var lowLevel = this.lowLevel();
+	        if (lowLevel && lowLevel.isValueInclude && lowLevel.isValueInclude() && resourceRegistry.isWaitingFor(lowLevel.includePath())) {
+	            this._children = null;
+	            return [];
+	        }
 	        if (this._children) {
 	            return this.mergeChildren(this._children, this.getExtractedChildren());
 	        }
@@ -19462,6 +19469,7 @@ module.exports =
 	    }
 	    if (node.isAttr()) {
 	        new CompositePropertyValidator().validate(node, v);
+	        validateIncludes(node, v);
 	    }
 	    else if (node.isElement()) {
 	        var highLevelNode = node;
@@ -19966,6 +19974,8 @@ module.exports =
 	exports.typeToName[universes.Universe10.ResourceType.name] = "resource type";
 	exports.typeToName[universes.Universe10.AbstractSecurityScheme.name] = "security scheme";
 	function checkReference(pr, astNode, vl, cb) {
+	    checkTraitReference(pr, astNode, cb);
+	    checkResourceTypeReference(pr, astNode, cb);
 	    if (!vl) {
 	        return;
 	    }
@@ -20019,18 +20029,90 @@ module.exports =
 	        var expected = (adapter.isReference && adapter.isReference() && adapter.referencesTo && adapter.referencesTo() && adapter.referencesTo().nameId && adapter.referencesTo().nameId());
 	        var referencedToName = exports.typeToName[expected] || nameForNonReference(astNode);
 	        var message = referencedToName ? ("Unrecognized " + referencedToName + " '" + vl + "'.") : ("Unresolved reference: " + vl);
-	        if (pr.nameId() == "type" && pr.domain().universe().version() == "RAML08") {
-	            if (pr.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
-	                message = "type can be either of: string, number, integer, file, date or boolean";
-	            }
-	        }
-	        if (astNode.parent() != null && universeHelpers.isSecuritySchemaType(astNode.parent().definition())) {
-	            message += " Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}";
-	        }
-	        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, message, astNode));
+	        var spesializedMessage = specializeReferenceError(message, pr, astNode);
+	        cb.accept(createIssue(0 /* UNRESOLVED_REFERENCE */, spesializedMessage, astNode));
 	        return true;
 	    }
 	    return false;
+	}
+	function checkTraitReference(property, astNode, acceptor) {
+	    //"is" property value must be an array
+	    if (!universeHelpers.isIsProperty(property)) {
+	        return;
+	    }
+	    var lowLevel = astNode.lowLevel();
+	    if (lowLevel == null) {
+	        return;
+	    }
+	    //trying to find "is" mapping, looking 2 nodes up max
+	    var isMappingNode = null;
+	    var lowLevelParent = lowLevel.parent();
+	    var lowLevelParentParent = lowLevelParent != null ? lowLevelParent.parent() : null;
+	    if (lowLevel.kind() == 1 /* MAPPING */ && lowLevel.key() && lowLevel.key() == "is") {
+	        isMappingNode = lowLevel;
+	    }
+	    else if (lowLevelParent != null && lowLevelParent.kind() == 1 /* MAPPING */ && lowLevelParent.key() && lowLevelParent.key() == "is") {
+	        isMappingNode = lowLevelParent;
+	    }
+	    else if (lowLevelParentParent != null && lowLevelParentParent.kind() == 1 /* MAPPING */ && lowLevelParentParent.key() && lowLevelParentParent.key() == "is") {
+	        isMappingNode = lowLevelParentParent;
+	    }
+	    if (isMappingNode == null) {
+	        return;
+	    }
+	    //having a single value is bad
+	    if (isMappingNode.value() != null && (!isMappingNode.children() || isMappingNode.children().length == 0)) {
+	        acceptor.accept(createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, "property 'is' must be an array", astNode));
+	    }
+	    //only maps and scalars are allowed as direct children
+	    var illegalChildFound = false;
+	    isMappingNode.children().forEach(function (child) {
+	        if (child.kind() != 0 /* SCALAR */ && child.kind() != 2 /* MAP */) {
+	            illegalChildFound = true;
+	        }
+	    });
+	    if (illegalChildFound) {
+	        acceptor.accept(createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, "property 'is' must be an array", astNode));
+	    }
+	}
+	function checkResourceTypeReference(property, astNode, acceptor) {
+	    if (!universeHelpers.isTypeProperty(property)) {
+	        return;
+	    }
+	    if (!universeHelpers.isResourceTypeRefType(astNode.definition())) {
+	        return;
+	    }
+	    var lowLevel = astNode.lowLevel();
+	    if (astNode.value() == null && lowLevel && lowLevel.children() && lowLevel.children().length == 0) {
+	        if (lowLevel.kind() == 1 /* MAPPING */ && lowLevel.valueKind() != null) {
+	            //no value, no children in the mapping, but some value, that means empty map or something like this.
+	            acceptor.accept(createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, "resource type name must be provided", astNode));
+	        }
+	    }
+	    else if (astNode.value() == null && lowLevel && lowLevel.children() && lowLevel.children().length > 1) {
+	        //more than a single resource type in a list / map
+	        acceptor.accept(createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, "a resource or resourceType can inherit from a single resourceType", astNode));
+	    }
+	}
+	/**
+	 * Sometimes we need a more specialized message for the bad references, which diviate from a general algorithm.
+	 * Like listing possible values etc.
+	 * This method is responsible for such cases.
+	 * @param originalMessage
+	 * @param pr
+	 * @param astNode
+	 * @returns {string}
+	 */
+	function specializeReferenceError(originalMessage, property, astNode) {
+	    if (property.nameId() == "type" && property.domain().universe().version() == "RAML08") {
+	        if (property.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
+	            return "type can be either of: string, number, integer, file, date or boolean";
+	        }
+	    }
+	    if (astNode.parent() != null && universeHelpers.isSecuritySchemaType(astNode.parent().definition())) {
+	        return originalMessage + " Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}";
+	    }
+	    return originalMessage;
 	}
 	function nameForNonReference(astNode) {
 	    var propertyName = astNode && astNode.lowLevel() && astNode.lowLevel().key();
@@ -20086,7 +20168,7 @@ module.exports =
 	                }
 	            }
 	        }
-	        else {
+	        else if (vl != null) {
 	            var st = vl;
 	            if (st) {
 	                valueKey = st.valueName();
@@ -20099,6 +20181,12 @@ module.exports =
 	            }
 	            else {
 	                valueKey = null;
+	            }
+	        }
+	        else {
+	            //there is no value, but still a reference: calling checkReference with null value
+	            if (node.definition().isAssignableFrom(universes.Universe10.Reference.name)) {
+	                checkReference(pr, node, null, cb);
 	            }
 	        }
 	        if (valueKey) {
@@ -21446,6 +21534,8 @@ module.exports =
 	}
 	function parseXML(value) {
 	    var v = new DomParser.DOMParser();
+	    if (!value || value.trim().indexOf("<<") == 0)
+	        return null;
 	    var parsed = v.parseFromString(value);
 	    return cleanupJson(cleanupText(xmlToJson(parsed)));
 	}
@@ -21666,6 +21756,14 @@ module.exports =
 	    return type.key() == universe.Universe10.Trait || type.key() == universe.Universe08.Trait;
 	}
 	exports.isTraitType = isTraitType;
+	function isTraitRefType(type) {
+	    return type.key() == universe.Universe10.TraitRef || type.key() == universe.Universe08.TraitRef;
+	}
+	exports.isTraitRefType = isTraitRefType;
+	function isResourceTypeRefType(type) {
+	    return type.key() == universe.Universe10.ResourceTypeRef || type.key() == universe.Universe08.ResourceTypeRef;
+	}
+	exports.isResourceTypeRefType = isResourceTypeRefType;
 	function isGlobalSchemaType(type) {
 	    return type.key() == universe.Universe10.GlobalSchema || type.key() == universe.Universe08.GlobalSchema;
 	}
@@ -44848,6 +44946,10 @@ module.exports =
 	    nlisteners.forEach(function (x) { return x(url); });
 	}
 	exports.removeNotity = removeNotity;
+	function isWaitingFor(url) {
+	    return notifies[url] ? true : false;
+	}
+	exports.isWaitingFor = isWaitingFor;
 	function set(url, content) {
 	    globalCache.set(url, content);
 	}

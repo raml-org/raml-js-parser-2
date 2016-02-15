@@ -43,6 +43,8 @@ export declare function isBooleanTypeType(type: hl.INodeDefinition | hl.ITypeDef
 export declare function isMarkdownStringType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isResourceType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isTraitType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isTraitRefType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
+export declare function isResourceTypeRefType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isGlobalSchemaType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isSecuritySchemaType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
 export declare function isTypeDeclarationType(type: hl.INodeDefinition | hl.ITypeDefinition): boolean;
