@@ -196,7 +196,7 @@ export declare class ASTNode implements lowlevel.ILowLevelASTNode {
     _actualNode(): yaml.YAMLNode;
     execute(cmd: lowlevel.CompositeCommand): void;
     updateFrom(n: yaml.YAMLNode): void;
-    value(): any;
+    value(toString?: boolean): any;
     printDetails(indent?: string): string;
     visit(v: lowlevel.ASTVisitor): void;
     private rawKey();
@@ -269,7 +269,7 @@ export declare class InsertionPoint {
     static node(): InsertionPoint;
     show(msg: string): void;
 }
-export declare function createNode(key: string): ASTNode;
+export declare function createNode(key: string, parent?: ASTNode): ASTNode;
 export declare function createMap(mappings: yaml.YAMLMapping[]): ASTNode;
 export declare function createScalar(value: string): ASTNode;
 export declare function createSeq(sn: yaml.YAMLSequence, parent: ASTNode, unit: CompilationUnit): ASTNode;

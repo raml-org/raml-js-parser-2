@@ -35,11 +35,11 @@ export declare class CompilationUnit implements lowlevel.ICompilationUnit {
 export declare class AstNode implements lowlevel.ILowLevelASTNode {
     private _unit;
     protected _object: any;
-    protected _parent: AstNode;
+    protected _parent: lowlevel.ILowLevelASTNode;
     protected options: SerializeOptions;
     protected _key: string;
     keyKind(): any;
-    constructor(_unit: CompilationUnit, _object: any, _parent?: AstNode, options?: SerializeOptions, _key?: string);
+    constructor(_unit: lowlevel.ICompilationUnit, _object: any, _parent?: lowlevel.ILowLevelASTNode, options?: SerializeOptions, _key?: string);
     private _highLevelNode;
     private _highLevelParseResult;
     private _isOptional;
@@ -53,8 +53,8 @@ export declare class AstNode implements lowlevel.ILowLevelASTNode {
     key(): string;
     optional(): boolean;
     children(): any;
-    parent(): AstNode;
-    unit(): CompilationUnit;
+    parent(): lowlevel.ILowLevelASTNode;
+    unit(): lowlevel.ICompilationUnit;
     anchorId(): any;
     errors(): any[];
     anchoredFrom(): AstNode;

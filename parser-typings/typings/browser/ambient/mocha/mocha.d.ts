@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/95ce1d9e8212be19d36aa8ccecb48303cc5c87f9/mocha/mocha.d.ts
 // Type definitions for mocha 2.0.1
 // Project: http://mochajs.org/

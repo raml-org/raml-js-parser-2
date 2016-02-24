@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/7ca8add069411b3bde47fad7208706801cde8656/mime/mime.d.ts
 // Type definitions for mime
 // Project: https://github.com/broofa/node-mime

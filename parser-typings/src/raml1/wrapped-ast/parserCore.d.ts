@@ -50,14 +50,16 @@ export interface BasicNode extends AbstractWrapperNode {
      * @return Whether the element is an optional sibling of trait or resource type
      **/
     optional(): boolean;
+    meta(): NodeMetadata;
 }
 export declare class BasicNodeImpl implements BasicNode {
     protected _node: hl.IHighLevelNode;
     private defaultsCalculator;
+    _meta: NodeMetadataImpl;
     /**
      * @hidden
      **/
-    constructor(_node: hl.IHighLevelNode);
+    constructor(_node: hl.IHighLevelNode, setAsWrapper?: boolean);
     /**
      * @hidden
      **/
@@ -140,6 +142,8 @@ export declare class BasicNodeImpl implements BasicNode {
      * @hidden
      **/
     setAttributeDefaults(attributeDefaults: boolean): void;
+    attributeDefaults(): boolean;
+    meta(): NodeMetadata;
 }
 export interface AttributeNode extends AbstractWrapperNode {
     /**
@@ -150,9 +154,11 @@ export interface AttributeNode extends AbstractWrapperNode {
      * @return Whether the element is an optional sibling of trait or resource type
      **/
     optional(): boolean;
+    meta(): ValueMetadata;
 }
 export declare class AttributeNodeImpl implements AttributeNode {
     protected attr: hl.IAttribute;
+    protected _meta: ValueMetadataImpl;
     constructor(attr: hl.IAttribute);
     /**
      * @return Underlying High Level attribute node
@@ -167,6 +173,7 @@ export declare class AttributeNodeImpl implements AttributeNode {
      * @return Whether the element is an optional sibling of trait or resource type
      **/
     optional(): boolean;
+    meta(): ValueMetadataImpl;
 }
 /**
  * @hidden
@@ -232,3 +239,93 @@ export interface RamlParserError {
 export interface ApiLoadingError extends Error {
     parserErrors: RamlParserError[];
 }
+export interface TypeInstance {
+    properties(): TypeInstanceProperty[];
+    isScalar(): boolean;
+    value(): any;
+}
+export interface TypeInstanceProperty {
+    name(): string;
+    value(): TypeInstance;
+    values(): TypeInstance[];
+    isArray(): boolean;
+}
+export declare class TypeInstanceImpl implements TypeInstance {
+    constructor(nodes: ll.ILowLevelASTNode | ll.ILowLevelASTNode[]);
+    protected node: ll.ILowLevelASTNode;
+    protected children: ll.ILowLevelASTNode[];
+    properties(): TypeInstancePropertyImpl[];
+    private getChildren();
+    value(): any;
+    isScalar(): any;
+    toJSON(): any;
+}
+export declare class TypeInstancePropertyImpl implements TypeInstanceProperty {
+    protected node: ll.ILowLevelASTNode;
+    constructor(node: ll.ILowLevelASTNode);
+    name(): string;
+    value(): TypeInstanceImpl;
+    values(): TypeInstanceImpl[];
+    isArray(): any;
+}
+export interface ValueMetadata {
+    /**
+     * Returns 'true', if the actual value is missing, and returned value has
+     * been obtained from the RAML document by means of some rule.
+     * @default false
+     */
+    calculated(): boolean;
+    /**
+     * Returns 'true', if the actual value is missing, and returned value is
+     * stated in the RAML spec as default for the property
+     * @default false
+     */
+    insertedAsDefault(): boolean;
+    /**
+     * Returns 'true' for optional siblings of traits and resource types
+     * @default false
+     */
+    optional(): boolean;
+    /**
+     * Returns 'true', if all values are default.
+     */
+    isDefault(): boolean;
+    toJSON(): any;
+}
+export interface NodeMetadata extends ValueMetadata {
+    /**
+     * Returns metadata for those properties of the node, whose type is primitive or an array of primitive.
+     */
+    primitiveValuesMeta(): {
+        [key: string]: ValueMetadata;
+    };
+}
+export declare class ValueMetadataImpl implements ValueMetadata {
+    protected _insertedAsDefault: boolean;
+    protected _calculated: boolean;
+    protected _optional: boolean;
+    constructor(_insertedAsDefault?: boolean, _calculated?: boolean, _optional?: boolean);
+    calculated(): boolean;
+    insertedAsDefault(): boolean;
+    setCalculated(): void;
+    setInsertedAsDefault(): void;
+    setOptional(): void;
+    optional(): boolean;
+    isDefault(): boolean;
+    toJSON(): {};
+}
+export declare class NodeMetadataImpl extends ValueMetadataImpl implements NodeMetadata {
+    valuesMeta: {
+        [key: string]: ValueMetadata;
+    };
+    primitiveValuesMeta(): {
+        [key: string]: ValueMetadata;
+    };
+    registerInsertedAsDefaultValue(propName: string): void;
+    registerCalculatedValue(propName: string): void;
+    registerOptionalValue(propName: string): void;
+    resetPrimitiveValuesMeta(): void;
+    isDefault(): boolean;
+    toJSON(): {};
+}
+export declare function fillElementMeta(node: BasicNodeImpl): NodeMetadataImpl;

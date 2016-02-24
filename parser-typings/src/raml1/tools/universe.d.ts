@@ -77,6 +77,10 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
+        "AnyType": {
+            "name": string;
+            "properties": {};
+        };
         "NumberType": {
             "name": string;
             "properties": {};
@@ -142,6 +146,49 @@ declare var Universes: {
             "properties": {};
         };
         "XMLExample": {
+            "name": string;
+            "properties": {};
+        };
+        "TypeInstance": {
+            "name": string;
+            "properties": {
+                "properties": {
+                    "name": string;
+                };
+                "isScalar": {
+                    "name": string;
+                };
+                "value": {
+                    "name": string;
+                };
+            };
+        };
+        "TypeInstanceProperty": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+                "value": {
+                    "name": string;
+                };
+                "values": {
+                    "name": string;
+                };
+                "isArray": {
+                    "name": string;
+                };
+            };
+        };
+        "RAMLLanguageElement": {
+            "name": string;
+            "properties": {
+                "description": {
+                    "name": string;
+                };
+            };
+        };
+        "RAMLSimpleElement": {
             "name": string;
             "properties": {};
         };
@@ -322,9 +369,6 @@ declare var Universes: {
                 "tokenCredentialsUri": {
                     "name": string;
                 };
-                "signatures": {
-                    "name": string;
-                };
             };
         };
         "OAuth2SecuritySchemeSettings": {
@@ -340,17 +384,6 @@ declare var Universes: {
                     "name": string;
                 };
                 "scopes": {
-                    "name": string;
-                };
-            };
-        };
-        "PassThroughSecuritySchemeSettings": {
-            "name": string;
-            "properties": {
-                "queryParameterName": {
-                    "name": string;
-                };
-                "headerName": {
                     "name": string;
                 };
             };
@@ -471,18 +504,6 @@ declare var Universes: {
             };
         };
         "ParameterLocation": {
-            "name": string;
-            "properties": {};
-        };
-        "RAMLLanguageElement": {
-            "name": string;
-            "properties": {
-                "description": {
-                    "name": string;
-                };
-            };
-        };
-        "RAMLSimpleElement": {
             "name": string;
             "properties": {};
         };
@@ -762,6 +783,10 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
+        "AnyType": {
+            "name": string;
+            "properties": {};
+        };
         "NumberType": {
             "name": string;
             "properties": {};
@@ -838,11 +863,413 @@ declare var Universes: {
             "name": string;
             "properties": {};
         };
-        "RAMLPointer": {
+        "RAMLSelector": {
             "name": string;
             "properties": {};
         };
-        "RAMLSelector": {
+        "ExampleSpec": {
+            "name": string;
+            "properties": {
+                "content": {
+                    "name": string;
+                };
+                "strict": {
+                    "name": string;
+                };
+                "name": {
+                    "name": string;
+                };
+                "displayName": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+                "annotations": {
+                    "name": string;
+                };
+            };
+        };
+        "DataElementProperty": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+                "location": {
+                    "name": string;
+                };
+                "locationKind": {
+                    "name": string;
+                };
+                "default": {
+                    "name": string;
+                };
+                "required": {
+                    "name": string;
+                };
+            };
+        };
+        "TypeDeclaration": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+                "facets": {
+                    "name": string;
+                };
+                "schema": {
+                    "name": string;
+                };
+                "usage": {
+                    "name": string;
+                };
+                "type": {
+                    "name": string;
+                };
+                "location": {
+                    "name": string;
+                };
+                "locationKind": {
+                    "name": string;
+                };
+                "default": {
+                    "name": string;
+                };
+                "example": {
+                    "name": string;
+                };
+                "examples": {
+                    "name": string;
+                };
+                "repeat": {
+                    "name": string;
+                };
+                "required": {
+                    "name": string;
+                };
+                "displayName": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+                "annotations": {
+                    "name": string;
+                };
+            };
+        };
+        "ScalarElement": {
+            "name": string;
+            "properties": {
+                "facets": {
+                    "name": string;
+                };
+                "enum": {
+                    "name": string;
+                };
+            };
+        };
+        "ArrayTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "uniqueItems": {
+                    "name": string;
+                };
+                "items": {
+                    "name": string;
+                };
+                "minItems": {
+                    "name": string;
+                };
+                "maxItems": {
+                    "name": string;
+                };
+            };
+        };
+        "UnionTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "discriminator": {
+                    "name": string;
+                };
+            };
+        };
+        "ObjectTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "properties": {
+                    "name": string;
+                };
+                "minProperties": {
+                    "name": string;
+                };
+                "maxProperties": {
+                    "name": string;
+                };
+                "additionalProperties": {
+                    "name": string;
+                };
+                "patternProperties": {
+                    "name": string;
+                };
+                "discriminator": {
+                    "name": string;
+                };
+                "discriminatorValue": {
+                    "name": string;
+                };
+            };
+        };
+        "StringTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "pattern": {
+                    "name": string;
+                };
+                "minLength": {
+                    "name": string;
+                };
+                "maxLength": {
+                    "name": string;
+                };
+                "enum": {
+                    "name": string;
+                };
+            };
+        };
+        "BooleanTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "ValueTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "NumberTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "minimum": {
+                    "name": string;
+                };
+                "maximum": {
+                    "name": string;
+                };
+                "enum": {
+                    "name": string;
+                };
+                "format": {
+                    "name": string;
+                };
+                "multipleOf": {
+                    "name": string;
+                };
+            };
+        };
+        "IntegerTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "format": {
+                    "name": string;
+                };
+            };
+        };
+        "RAMLPointerElement": {
+            "name": string;
+            "properties": {
+                "target": {
+                    "name": string;
+                };
+            };
+        };
+        "pointer": {
+            "name": string;
+            "properties": {};
+        };
+        "RAMLExpression": {
+            "name": string;
+            "properties": {};
+        };
+        "SchemaElement": {
+            "name": string;
+            "properties": {};
+        };
+        "DateTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "dateFormat": {
+                    "name": string;
+                };
+            };
+        };
+        "TypeInstance": {
+            "name": string;
+            "properties": {
+                "properties": {
+                    "name": string;
+                };
+                "isScalar": {
+                    "name": string;
+                };
+                "value": {
+                    "name": string;
+                };
+            };
+        };
+        "TypeInstanceProperty": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+                "value": {
+                    "name": string;
+                };
+                "values": {
+                    "name": string;
+                };
+                "isArray": {
+                    "name": string;
+                };
+            };
+        };
+        "ModelLocation": {
+            "name": string;
+            "properties": {};
+        };
+        "LocationKind": {
+            "name": string;
+            "properties": {};
+        };
+        "MimeTypeModel": {
+            "name": string;
+            "properties": {
+                "type": {
+                    "name": string;
+                };
+                "tree": {
+                    "name": string;
+                };
+                "subtype": {
+                    "name": string;
+                };
+                "suffix": {
+                    "name": string;
+                };
+                "parameters": {
+                    "name": string;
+                };
+            };
+        };
+        "MimeType": {
+            "name": string;
+            "properties": {};
+        };
+        "Response": {
+            "name": string;
+            "properties": {
+                "code": {
+                    "name": string;
+                };
+                "headers": {
+                    "name": string;
+                };
+                "body": {
+                    "name": string;
+                };
+                "displayName": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+                "annotations": {
+                    "name": string;
+                };
+            };
+        };
+        "RAMLLanguageElement": {
+            "name": string;
+            "properties": {
+                "displayName": {
+                    "name": string;
+                };
+                "description": {
+                    "name": string;
+                };
+                "annotations": {
+                    "name": string;
+                };
+            };
+        };
+        "RAMLSimpleElement": {
+            "name": string;
+            "properties": {};
+        };
+        "AnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {
+                "allowMultiple": {
+                    "name": string;
+                };
+                "allowedTargets": {
+                    "name": string;
+                };
+                "usage": {
+                    "name": string;
+                };
+            };
+        };
+        "AnnotationRef": {
+            "name": string;
+            "properties": {};
+        };
+        "AnnotationTarget": {
+            "name": string;
+            "properties": {};
+        };
+        "Annotation": {
+            "name": string;
+            "properties": {
+                "name": {
+                    "name": string;
+                };
+            };
+        };
+        "ArrayAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "UnionAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "ObjectAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "StringAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "BooleanAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "ValueAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "NumberAnnotationTypeDeclaration": {
+            "name": string;
+            "properties": {};
+        };
+        "RAMLExpressionAnnotation": {
+            "name": string;
+            "properties": {};
+        };
+        "DateTypeAnnotationDeclaration": {
             "name": string;
             "properties": {};
         };
@@ -1156,357 +1583,6 @@ declare var Universes: {
                     "name": string;
                 };
                 "queryString": {
-                    "name": string;
-                };
-            };
-        };
-        "RAMLLanguageElement": {
-            "name": string;
-            "properties": {
-                "displayName": {
-                    "name": string;
-                };
-                "description": {
-                    "name": string;
-                };
-                "annotations": {
-                    "name": string;
-                };
-            };
-        };
-        "RAMLSimpleElement": {
-            "name": string;
-            "properties": {};
-        };
-        "AnnotationTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "allowMultiple": {
-                    "name": string;
-                };
-                "allowedTargets": {
-                    "name": string;
-                };
-            };
-        };
-        "AnnotationRef": {
-            "name": string;
-            "properties": {};
-        };
-        "AnnotationTarget": {
-            "name": string;
-            "properties": {};
-        };
-        "Annotation": {
-            "name": string;
-            "properties": {
-                "name": {
-                    "name": string;
-                };
-            };
-        };
-        "ExampleSpec": {
-            "name": string;
-            "properties": {
-                "content": {
-                    "name": string;
-                };
-                "strict": {
-                    "name": string;
-                };
-                "name": {
-                    "name": string;
-                };
-                "displayName": {
-                    "name": string;
-                };
-                "description": {
-                    "name": string;
-                };
-                "annotations": {
-                    "name": string;
-                };
-            };
-        };
-        "DataElementProperty": {
-            "name": string;
-            "properties": {
-                "name": {
-                    "name": string;
-                };
-                "location": {
-                    "name": string;
-                };
-                "locationKind": {
-                    "name": string;
-                };
-                "default": {
-                    "name": string;
-                };
-                "required": {
-                    "name": string;
-                };
-            };
-        };
-        "TypeDeclaration": {
-            "name": string;
-            "properties": {
-                "name": {
-                    "name": string;
-                };
-                "facets": {
-                    "name": string;
-                };
-                "schema": {
-                    "name": string;
-                };
-                "usage": {
-                    "name": string;
-                };
-                "type": {
-                    "name": string;
-                };
-                "location": {
-                    "name": string;
-                };
-                "locationKind": {
-                    "name": string;
-                };
-                "default": {
-                    "name": string;
-                };
-                "example": {
-                    "name": string;
-                };
-                "examples": {
-                    "name": string;
-                };
-                "repeat": {
-                    "name": string;
-                };
-                "required": {
-                    "name": string;
-                };
-                "displayName": {
-                    "name": string;
-                };
-                "description": {
-                    "name": string;
-                };
-                "annotations": {
-                    "name": string;
-                };
-            };
-        };
-        "ScalarElement": {
-            "name": string;
-            "properties": {
-                "facets": {
-                    "name": string;
-                };
-                "enum": {
-                    "name": string;
-                };
-            };
-        };
-        "ArrayTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "uniqueItems": {
-                    "name": string;
-                };
-                "items": {
-                    "name": string;
-                };
-                "minItems": {
-                    "name": string;
-                };
-                "maxItems": {
-                    "name": string;
-                };
-            };
-        };
-        "UnionTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "discriminator": {
-                    "name": string;
-                };
-            };
-        };
-        "DataElementRef": {
-            "name": string;
-            "properties": {};
-        };
-        "ObjectTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "properties": {
-                    "name": string;
-                };
-                "minProperties": {
-                    "name": string;
-                };
-                "maxProperties": {
-                    "name": string;
-                };
-                "additionalProperties": {
-                    "name": string;
-                };
-                "patternProperties": {
-                    "name": string;
-                };
-                "discriminator": {
-                    "name": string;
-                };
-                "discriminatorValue": {
-                    "name": string;
-                };
-            };
-        };
-        "StringTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "pattern": {
-                    "name": string;
-                };
-                "minLength": {
-                    "name": string;
-                };
-                "maxLength": {
-                    "name": string;
-                };
-                "enum": {
-                    "name": string;
-                };
-            };
-        };
-        "BooleanTypeDeclaration": {
-            "name": string;
-            "properties": {};
-        };
-        "ValueTypeDeclaration": {
-            "name": string;
-            "properties": {};
-        };
-        "NumberTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "minimum": {
-                    "name": string;
-                };
-                "maximum": {
-                    "name": string;
-                };
-                "enum": {
-                    "name": string;
-                };
-                "format": {
-                    "name": string;
-                };
-                "multipleOf": {
-                    "name": string;
-                };
-            };
-        };
-        "IntegerTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "format": {
-                    "name": string;
-                };
-            };
-        };
-        "RAMLPointerElement": {
-            "name": string;
-            "properties": {
-                "target": {
-                    "name": string;
-                };
-            };
-        };
-        "pointer": {
-            "name": string;
-            "properties": {};
-        };
-        "RAMLExpression": {
-            "name": string;
-            "properties": {};
-        };
-        "ScriptHookElement": {
-            "name": string;
-            "properties": {
-                "declaredIn": {
-                    "name": string;
-                };
-                "interfaceName": {
-                    "name": string;
-                };
-            };
-        };
-        "SchemaElement": {
-            "name": string;
-            "properties": {};
-        };
-        "DateTypeDeclaration": {
-            "name": string;
-            "properties": {
-                "dateFormat": {
-                    "name": string;
-                };
-            };
-        };
-        "ModelLocation": {
-            "name": string;
-            "properties": {};
-        };
-        "LocationKind": {
-            "name": string;
-            "properties": {};
-        };
-        "MimeTypeModel": {
-            "name": string;
-            "properties": {
-                "type": {
-                    "name": string;
-                };
-                "tree": {
-                    "name": string;
-                };
-                "subtype": {
-                    "name": string;
-                };
-                "suffix": {
-                    "name": string;
-                };
-                "parameters": {
-                    "name": string;
-                };
-            };
-        };
-        "MimeType": {
-            "name": string;
-            "properties": {};
-        };
-        "Response": {
-            "name": string;
-            "properties": {
-                "code": {
-                    "name": string;
-                };
-                "headers": {
-                    "name": string;
-                };
-                "body": {
-                    "name": string;
-                };
-                "displayName": {
-                    "name": string;
-                };
-                "description": {
-                    "name": string;
-                };
-                "annotations": {
                     "name": string;
                 };
             };

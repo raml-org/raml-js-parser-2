@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/source-map/source-map.d.ts
 // Type definitions for source-map v0.1.38
 // Project: https://github.com/mozilla/source-map

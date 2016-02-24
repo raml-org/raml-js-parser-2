@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/bba34156c1eaad788fa8996f7d30b54c4fce5ffe/form-data/form-data.d.ts
 // Type definitions for form-data
 // Project: https://github.com/felixge/node-form-data

@@ -77,6 +77,8 @@ export declare enum IssueCode {
     NODE_HAS_VALUE = 9,
     ONLY_OVERRIDE_ALLOWED = 10,
     ILLEGAL_PROPERTY_VALUE = 11,
+    ILLEGAL_PROPERTY = 12,
+    INVALID_PROPERTY = 13,
 }
 export interface ValidationAcceptor {
     begin(): any;

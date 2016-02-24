@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/52318243888c4aa02b3c0b5e68631577728ffcf8/js-yaml/js-yaml.d.ts
 // Type definitions for js-yaml 3.0.2
 // Project: https://github.com/nodeca/js-yaml

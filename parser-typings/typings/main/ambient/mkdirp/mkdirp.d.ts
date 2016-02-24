@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/52fa2b9ce36f2c5843204e9bfbaada7cded9b47a/mkdirp/mkdirp.d.ts
 // Type definitions for mkdirp 0.3.0
 // Project: http://github.com/substack/node-mkdirp

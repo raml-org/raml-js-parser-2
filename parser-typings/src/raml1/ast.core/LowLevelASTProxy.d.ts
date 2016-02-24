@@ -19,7 +19,7 @@ export declare class LowLevelProxyNode implements ll.ILowLevelASTNode {
     originalNode(): ll.ILowLevelASTNode;
     start(): number;
     end(): number;
-    value(): any;
+    value(toString?: boolean): any;
     includeErrors(): string[];
     includePath(): string;
     includeReference(): refResolvers.IncludeReference;
@@ -65,7 +65,7 @@ export declare class LowLevelCompositeNode extends LowLevelProxyNode {
     primaryNode(): LowLevelValueTransformingNode;
     parent(): LowLevelCompositeNode;
     adopt(node: ll.ILowLevelASTNode, transformer: ValueTransformer): void;
-    value(): any;
+    value(toString?: boolean): any;
     children(): ll.ILowLevelASTNode[];
     private buildKey(y);
     private collectChildrenWithKeys();
@@ -77,7 +77,7 @@ export declare class LowLevelCompositeNode extends LowLevelProxyNode {
 }
 export declare class LowLevelValueTransformingNode extends LowLevelProxyNode {
     constructor(node: ll.ILowLevelASTNode, parent: ll.ILowLevelASTNode, transformer: ValueTransformer, ramlVersion: string);
-    value(): any;
+    value(toString?: boolean): any;
     children(): ll.ILowLevelASTNode[];
     parent(): LowLevelValueTransformingNode;
     key(): string;

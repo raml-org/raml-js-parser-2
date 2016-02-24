@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/01ce3ccf7f071514ff5057ef32a4550bf0b81dfe/codemirror/codemirror.d.ts
 // Type definitions for CodeMirror
 // Project: https://github.com/marijnh/CodeMirror

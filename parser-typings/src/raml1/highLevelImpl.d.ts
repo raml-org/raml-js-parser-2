@@ -88,6 +88,7 @@ export declare class ASTPropImpl extends BasicASTNode implements hl.IAttribute {
     property(): defs.Property;
     convertMultivalueToString(value: string): string;
     _value: string;
+    overrideValue(value: string): void;
     value(): any;
     name(): string;
     printDetails(indent?: string): string;

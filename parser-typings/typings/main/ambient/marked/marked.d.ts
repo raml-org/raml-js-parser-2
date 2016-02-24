@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/d93cab373e6f15928b1d4475fe63a65691cdc468/marked/marked.d.ts
 // Type definitions for Marked
 // Project: https://github.com/chjj/marked

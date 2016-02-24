@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: custom_typings/raml.d.ts
 // TODO: http://raml.org/spec.html#named-parameters-with-multiple-types
 //       how is this surface on the parser?
