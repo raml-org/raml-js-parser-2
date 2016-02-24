@@ -80,6 +80,9 @@
 								<span class="target">ReferenceImpl</span>
 								<ul class="tsd-hierarchy">
 									<li>
+										<a href="_raml1_artifacts_raml10parser_.annotationrefimpl.html" class="tsd-signature-type">AnnotationRefImpl</a>
+									</li>
+									<li>
 										<a href="_raml1_artifacts_raml10parser_.resourcetyperefimpl.html" class="tsd-signature-type">ResourceTypeRefImpl</a>
 									</li>
 									<li>
@@ -87,12 +90,6 @@
 									</li>
 									<li>
 										<a href="_raml1_artifacts_raml10parser_.securityschemerefimpl.html" class="tsd-signature-type">SecuritySchemeRefImpl</a>
-									</li>
-									<li>
-										<a href="_raml1_artifacts_raml10parser_.annotationrefimpl.html" class="tsd-signature-type">AnnotationRefImpl</a>
-									</li>
-									<li>
-										<a href="_raml1_artifacts_raml10parser_.dataelementrefimpl.html" class="tsd-signature-type">DataElementRefImpl</a>
 									</li>
 								</ul>
 							</li>
@@ -120,6 +117,7 @@
 						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#_meta" class="tsd-kind-icon">_meta</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#attr" class="tsd-kind-icon">attr</a></li>
 							</ul>
 						</section>
@@ -128,7 +126,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#kind" class="tsd-kind-icon">kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#meta" class="tsd-kind-icon">meta</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#optional" class="tsd-kind-icon">optional</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#structuredvalue" class="tsd-kind-icon">structured<wbr>Value</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_raml1_artifacts_raml10parser_.referenceimpl.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -148,7 +149,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L399">raml1/wrapped-ast/parserCore.ts:399</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L434">raml1/wrapped-ast/parserCore.ts:434</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -165,13 +166,24 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="_meta" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _meta</h3>
+					<div class="tsd-signature tsd-kind-icon">_meta<span class="tsd-signature-symbol">:</span> <a href="_raml1_wrapped_ast_parsercore_.valuemetadataimpl.html" class="tsd-signature-type">ValueMetadataImpl</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#_meta">_meta</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L434">raml1/wrapped-ast/parserCore.ts:434</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="attr" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> attr</h3>
 					<div class="tsd-signature tsd-kind-icon">attr<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#attr">attr</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L399">raml1/wrapped-ast/parserCore.ts:399</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L432">raml1/wrapped-ast/parserCore.ts:432</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,7 +202,7 @@
 								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#highlevel">highLevel</a></p>
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#highlevel">highLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L408">raml1/wrapped-ast/parserCore.ts:408</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L443">raml1/wrapped-ast/parserCore.ts:443</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -212,13 +224,50 @@
 								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#kind">kind</a></p>
 								<p>Overwrites <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#kind">kind</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:193</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:246</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Actual name of instance interface</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="meta" class="tsd-anchor"></a>
+					<h3>meta</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_wrapped_ast_parsercore_.valuemetadataimpl.html" class="tsd-signature-type">ValueMetadataImpl</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#meta">meta</a></p>
+								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#meta">meta</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L464">raml1/wrapped-ast/parserCore.ts:464</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_wrapped_ast_parsercore_.valuemetadataimpl.html" class="tsd-signature-type">ValueMetadataImpl</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#name">name</a></p>
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:258</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -234,13 +283,31 @@
 								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#optional">optional</a></p>
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html">AttributeNodeImpl</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenodeimpl.html#optional">optional</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L424">raml1/wrapped-ast/parserCore.ts:424</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L459">raml1/wrapped-ast/parserCore.ts:459</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>Whether the element is an optional sibling of trait or resource type</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="structuredvalue" class="tsd-anchor"></a>
+					<h3>structured<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">structured<wbr>Value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.typeinstance.html" class="tsd-signature-type">TypeInstance</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#structuredvalue">structuredValue</a></p>
+								<ul>
+									<li>Defined in raml1/artifacts/raml10parser.ts:254</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_raml1_artifacts_raml10parser_.typeinstance.html" class="tsd-signature-type">TypeInstance</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -255,7 +322,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html">Reference</a>.<a href="../interfaces/_raml1_artifacts_raml10parser_.reference.html#value">value</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:199</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:252</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -289,6 +356,9 @@
 								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#_meta" class="tsd-kind-icon">_meta</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#attr" class="tsd-kind-icon">attr</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -298,7 +368,16 @@
 								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#kind" class="tsd-kind-icon">kind</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#meta" class="tsd-kind-icon">meta</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#optional" class="tsd-kind-icon">optional</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#structuredvalue" class="tsd-kind-icon">structured<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_raml1_artifacts_raml10parser_.referenceimpl.html#value" class="tsd-kind-icon">value</a>

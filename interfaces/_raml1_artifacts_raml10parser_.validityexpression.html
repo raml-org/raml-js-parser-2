@@ -92,8 +92,9 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#highlevel" class="tsd-kind-icon">high<wbr>Level</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#kind" class="tsd-kind-icon">kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#meta" class="tsd-kind-icon">meta</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#optional" class="tsd-kind-icon">optional</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited"><a href="_raml1_artifacts_raml10parser_.validityexpression.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,7 +113,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#highlevel">highLevel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L389">raml1/wrapped-ast/parserCore.ts:389</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L419">raml1/wrapped-ast/parserCore.ts:419</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -133,13 +134,31 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html">AbstractWrapperNode</a>.<a href="_raml1_wrapped_ast_parsercore_.abstractwrappernode.html#kind">kind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L20">raml1/wrapped-ast/parserCore.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L24">raml1/wrapped-ast/parserCore.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Actual name of instance interface</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="meta" class="tsd-anchor"></a>
+					<h3>meta</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_raml1_wrapped_ast_parsercore_.valuemetadata.html" class="tsd-signature-type">ValueMetadata</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#meta">meta</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L426">raml1/wrapped-ast/parserCore.ts:426</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_raml1_wrapped_ast_parsercore_.valuemetadata.html" class="tsd-signature-type">ValueMetadata</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -154,7 +173,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_raml1_wrapped_ast_parsercore_.attributenode.html">AttributeNode</a>.<a href="_raml1_wrapped_ast_parsercore_.attributenode.html#optional">optional</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L394">raml1/wrapped-ast/parserCore.ts:394</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/wrapped-ast/parserCore.ts#L424">raml1/wrapped-ast/parserCore.ts:424</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,18 +183,19 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 					<a name="value" class="tsd-anchor"></a>
 					<h3>value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.valuetype.html">ValueType</a>.<a href="_raml1_artifacts_raml10parser_.valuetype.html#value">value</a></p>
+								<p>Inherited from <a href="_raml1_artifacts_raml10parser_.stringtype.html">StringType</a>.<a href="_raml1_artifacts_raml10parser_.stringtype.html#value">value</a></p>
+								<p>Overwrites <a href="_raml1_artifacts_raml10parser_.valuetype.html">ValueType</a>.<a href="_raml1_artifacts_raml10parser_.valuetype.html#value">value</a></p>
 								<ul>
-									<li>Defined in raml1/artifacts/raml10parser.ts:115</li>
+									<li>Defined in raml1/artifacts/raml10parser.ts:2209</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -212,9 +232,12 @@
 								<a href="_raml1_artifacts_raml10parser_.validityexpression.html#kind" class="tsd-kind-icon">kind</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-								<a href="_raml1_artifacts_raml10parser_.validityexpression.html#optional" class="tsd-kind-icon">optional</a>
+								<a href="_raml1_artifacts_raml10parser_.validityexpression.html#meta" class="tsd-kind-icon">meta</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_raml1_artifacts_raml10parser_.validityexpression.html#optional" class="tsd-kind-icon">optional</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-overwrite tsd-is-inherited">
 								<a href="_raml1_artifacts_raml10parser_.validityexpression.html#value" class="tsd-kind-icon">value</a>
 							</li>
 						</ul>
