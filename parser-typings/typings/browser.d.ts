@@ -35,6 +35,7 @@
 /// <reference path="browser/ambient/pathwatcher/pathwatcher.d.ts" />
 /// <reference path="browser/ambient/pluralize/pluralize.d.ts" />
 /// <reference path="browser/ambient/popsicle/popsicle.d.ts" />
+/// <reference path="browser/ambient/pretty-data/pretty-data.d.ts" />
 /// <reference path="browser/ambient/raml/raml.d.ts" />
 /// <reference path="browser/ambient/react-pure-render/react-pure-render.d.ts" />
 /// <reference path="browser/ambient/react/react.d.ts" />

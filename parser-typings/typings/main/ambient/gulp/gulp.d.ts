@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/gulp/gulp.d.ts
 // Type definitions for Gulp v3.8.x
 // Project: http://gulpjs.com

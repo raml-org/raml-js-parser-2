@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/be0b6b394f77a59e192ad7cfec18078706e44db5/status-bar/status-bar.d.ts
 // Type definitions for status-bar
 // Project: https://github.com/atom/status-bar

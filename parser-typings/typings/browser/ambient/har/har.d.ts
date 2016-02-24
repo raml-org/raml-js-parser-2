@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: custom_typings/har.d.ts
 /**
  * Definitions for HAR 1.2 ( Http Archive Format )

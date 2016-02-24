@@ -1,4 +1,4 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: custom_typings/react-pure-render.d.ts
 declare module 'react-pure-render/function' {
   function shouldPureComponentUpdate (nextProps: any, nextState: any): boolean;

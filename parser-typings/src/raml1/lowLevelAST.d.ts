@@ -55,7 +55,7 @@ export interface ASTVisitor {
 export interface ILowLevelASTNode {
     start(): number;
     end(): number;
-    value(): any;
+    value(toString?: boolean): any;
     includeErrors(): string[];
     includePath(): string;
     includeReference(): refResolvers.IncludeReference;

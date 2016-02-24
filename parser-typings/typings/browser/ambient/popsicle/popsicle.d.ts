@@ -1,34 +1,21 @@
-// Compiled using typings@0.5.2
+// Compiled using typings@0.6.8
 // Source: custom_typings/popsicle.d.ts
 declare module 'popsicle' {
   import http = require('http')
 
-  function popsicle (options: popsicle.Options): popsicle.Request
-
   module popsicle {
+    export function request (options: string | Options): popsicle.Request
+
     interface Options {
-      // Standard options.
       url: string
       method?: string
       body?: any
       query?: string | QueryMap
       timeout?: number
       headers?: HeaderMap
-
-      // Node options.
-      jar?: CookieJar
-      maxRedirects?: number
-      rejectUnauthorized?: boolean
-      agent?: http.Agent
-      stream?: boolean
-      raw?: boolean
-      encoding?: string
-
-      // Browser options.
-      withCredentials?: boolean
-
-      // Misc. options.
-      parse?: boolean
+      options?: any
+      use?: Function[]
+      transport?: any
     }
 
     interface QueryMap {
@@ -59,7 +46,7 @@ declare module 'popsicle' {
       type (type: string): Request
     }
 
-    class Request extends Headers implements Promise<Response>, Options {
+    class Request extends Headers implements Promise<Response> {
       // Standard options.
       url: string
       method: string
@@ -121,14 +108,10 @@ declare module 'popsicle' {
     }
 
     class Response extends Headers {
-      // Link to the original request instance.
       request: Request
-
-      // Response properties.
       body: any
       status: number
-
-      // Utilities.
+      statusText: string
       statusType (): number
       error (message: string): Error
       toJSON (): any
