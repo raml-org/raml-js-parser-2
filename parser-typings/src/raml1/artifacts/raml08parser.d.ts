@@ -214,6 +214,10 @@ export interface ResourceType extends RAMLLanguageElement {
      * An alternate, human-friendly name for the resource type
      **/
     displayName(): string;
+    /**
+     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+     **/
+    baseUriParameters(): Parameter[];
 }
 export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -267,6 +271,10 @@ export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements
      * Set displayName value
      **/
     setDisplayName(param: string): ResourceTypeImpl;
+    /**
+     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+     **/
+    baseUriParameters(): Parameter[];
     /**
      * @hidden
      * @return Actual name of instance class
@@ -681,10 +689,6 @@ export interface MethodBase extends HasNormalParameters {
      **/
     protocols(): string[];
     /**
-     * Instantiation of applyed traits
-     **/
-    is(): TraitRef[];
-    /**
      * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
@@ -717,10 +721,6 @@ export declare class MethodBaseImpl extends HasNormalParametersImpl implements M
      * Set protocols value
      **/
     setProtocols(param: string): MethodBaseImpl;
-    /**
-     * Instantiation of applyed traits
-     **/
-    is(): TraitRef[];
     /**
      * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
@@ -1061,66 +1061,6 @@ export declare class JSONBodyImpl extends BodyLikeImpl implements JSONBody {
      **/
     kind(): string;
 }
-export interface TraitRef extends Reference {
-    /**
-     * Returns referenced trait
-     **/
-    trait(): Trait;
-}
-export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-    trait(): Trait;
-}
-export interface Trait extends MethodBase {
-    /**
-     * Name of the trait
-     **/
-    name(): string;
-    /**
-     * Instructions on how and when the trait should be used.
-     **/
-    usage(): string;
-}
-export declare class TraitImpl extends MethodBaseImpl implements Trait {
-    protected nodeOrKey: hl.IHighLevelNode | string;
-    protected setAsTopLevel: boolean;
-    constructor(nodeOrKey: hl.IHighLevelNode | string, setAsTopLevel?: boolean);
-    /**
-     * Name of the trait
-     **/
-    name(): string;
-    /**
-     * @hidden
-     * Set name value
-     **/
-    setName(param: string): TraitImpl;
-    /**
-     * Instructions on how and when the trait should be used.
-     **/
-    usage(): string;
-    /**
-     * @hidden
-     * Set usage value
-     **/
-    setUsage(param: string): TraitImpl;
-    /**
-     * @hidden
-     * @return Actual name of instance class
-     **/
-    wrapperClassName(): string;
-    /**
-     * @return Actual name of instance interface
-     **/
-    kind(): string;
-}
 export interface SecuritySchemeRef extends Reference {
     /**
      * Returns the name of security scheme, this reference refers to.
@@ -1234,10 +1174,6 @@ export interface SecuritySchemePart extends MethodBase {
      **/
     responses(): Response[];
     /**
-     * Instantiation of applyed traits
-     **/
-    is(): TraitRef[];
-    /**
      * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
      * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
@@ -1268,10 +1204,6 @@ export declare class SecuritySchemePartImpl extends MethodBaseImpl implements Se
      * Optional array of responses, describing the possible responses that could be sent.
      **/
     responses(): Response[];
-    /**
-     * Instantiation of applyed traits
-     **/
-    is(): TraitRef[];
     /**
      * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
@@ -1555,11 +1487,57 @@ export declare class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl
      **/
     kind(): string;
 }
+export interface Trait extends MethodBase {
+    /**
+     * Name of the trait
+     **/
+    name(): string;
+    /**
+     * Instructions on how and when the trait should be used.
+     **/
+    usage(): string;
+}
+export declare class TraitImpl extends MethodBaseImpl implements Trait {
+    protected nodeOrKey: hl.IHighLevelNode | string;
+    protected setAsTopLevel: boolean;
+    constructor(nodeOrKey: hl.IHighLevelNode | string, setAsTopLevel?: boolean);
+    /**
+     * Name of the trait
+     **/
+    name(): string;
+    /**
+     * @hidden
+     * Set name value
+     **/
+    setName(param: string): TraitImpl;
+    /**
+     * Instructions on how and when the trait should be used.
+     **/
+    usage(): string;
+    /**
+     * @hidden
+     * Set usage value
+     **/
+    setUsage(param: string): TraitImpl;
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+}
 export interface Method extends MethodBase {
     /**
      * Method that can be called
      **/
     method(): string;
+    /**
+     * Instantiation of applyed traits
+     **/
+    is(): TraitRef[];
     /**
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
      **/
@@ -1604,6 +1582,10 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      **/
     securedBy_original(): SecuritySchemeRef[];
     /**
+     * Instantiation of applyed traits
+     **/
+    is(): TraitRef[];
+    /**
      * @hidden
      * @return Actual name of instance class
      **/
@@ -1636,6 +1618,24 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * returns schemes defined with `securedBy` at API level.
      **/
     allSecuredBy(): SecuritySchemeRef[];
+}
+export interface TraitRef extends Reference {
+    /**
+     * Returns referenced trait
+     **/
+    trait(): Trait;
+}
+export declare class TraitRefImpl extends ReferenceImpl implements TraitRef {
+    /**
+     * @hidden
+     * @return Actual name of instance class
+     **/
+    wrapperClassName(): string;
+    /**
+     * @return Actual name of instance interface
+     **/
+    kind(): string;
+    trait(): Trait;
 }
 /**
  * This type currently serves both for absolute and relative urls
