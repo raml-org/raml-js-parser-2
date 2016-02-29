@@ -111,9 +111,9 @@ module.exports =
 	};
 	var hl = __webpack_require__(2);
 	var services = __webpack_require__(49);
-	var core = __webpack_require__(67);
-	var apiLoader = __webpack_require__(79);
-	var helper = __webpack_require__(65);
+	var core = __webpack_require__(78);
+	var apiLoader = __webpack_require__(90);
+	var helper = __webpack_require__(76);
 	var RAMLLanguageElementImpl = (function (_super) {
 	    __extends(RAMLLanguageElementImpl, _super);
 	    function RAMLLanguageElementImpl() {
@@ -4640,7 +4640,7 @@ module.exports =
 	    IssueCode[IssueCode["INVALID_PROPERTY"] = 13] = "INVALID_PROPERTY";
 	})(exports.IssueCode || (exports.IssueCode = {}));
 	var IssueCode = exports.IssueCode;
-	exports.universeProvider = __webpack_require__(80);
+	exports.universeProvider = __webpack_require__(63);
 	var hlImpl = __webpack_require__(5);
 	var getDefinitionSystemType = function (contents, ast) {
 	    var spec = "";
@@ -4726,7 +4726,7 @@ module.exports =
 	var hlimpl = __webpack_require__(5);
 	var selector = __webpack_require__(131);
 	var universes = __webpack_require__(54);
-	var typeSystem = __webpack_require__(63);
+	var typeSystem = __webpack_require__(74);
 	var ramlServices = __webpack_require__(49);
 	var example = __webpack_require__(114);
 	function registerAdapters(a) {
@@ -5427,7 +5427,7 @@ module.exports =
 	var yaml = __webpack_require__(7);
 	var textutil = __webpack_require__(48);
 	var services = __webpack_require__(49);
-	var factory10 = __webpack_require__(66);
+	var factory10 = __webpack_require__(77);
 	var factory08 = __webpack_require__(92);
 	var universeHelpers = __webpack_require__(62);
 	var resourceRegistry = __webpack_require__(118);
@@ -14436,7 +14436,7 @@ module.exports =
 	var hlImpl = __webpack_require__(5);
 	var jsyaml = __webpack_require__(15);
 	var typeBuilder = __webpack_require__(50);
-	var typeSystem = __webpack_require__(63);
+	var typeSystem = __webpack_require__(74);
 	var search = __webpack_require__(53);
 	var def = __webpack_require__(3);
 	var universes = __webpack_require__(54);
@@ -15422,7 +15422,7 @@ module.exports =
 	var typeExpression = __webpack_require__(51);
 	var universes = __webpack_require__(54);
 	var hlimpl = __webpack_require__(5);
-	var annotationHandlers = __webpack_require__(86);
+	var annotationHandlers = __webpack_require__(69);
 	var services = __webpack_require__(49);
 	var linter = __webpack_require__(55);
 	function templateFields(node, d) {
@@ -19517,15 +19517,16 @@ module.exports =
 	var fs = __webpack_require__(17);
 	var universes = __webpack_require__(54);
 	var universeHelpers = __webpack_require__(62);
+	var universeProvider = __webpack_require__(63);
 	var services = __webpack_require__(49);
-	var typeSystem = __webpack_require__(63);
+	var typeSystem = __webpack_require__(74);
 	var typeBuilder = __webpack_require__(50);
-	var OverloadingValidator = __webpack_require__(64);
+	var OverloadingValidator = __webpack_require__(75);
 	var OverloadingValidator08 = __webpack_require__(116);
-	var expander = __webpack_require__(77);
+	var expander = __webpack_require__(88);
 	var search = __webpack_require__(53);
 	var util = __webpack_require__(48);
-	var mediaTypeParser = __webpack_require__(90);
+	var mediaTypeParser = __webpack_require__(73);
 	var xmlutil = __webpack_require__(57);
 	var changeCase = __webpack_require__(94);
 	var pluralize = __webpack_require__(93);
@@ -19708,7 +19709,7 @@ module.exports =
 	                    if (e.message == "Object.keys called on non-object") {
 	                        return;
 	                    }
-	                    cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conforms to schema:" + e.message, this.node, !strict));
+	                    cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conform to schema:" + e.message, this.node, !strict));
 	                    return;
 	                }
 	            }
@@ -20027,6 +20028,72 @@ module.exports =
 	    }
 	    return null;
 	}
+	function restrictUnknownNodeError(node) {
+	    var parentNode = node.parent();
+	    var issue = null;
+	    var parentDef = parentNode.definition();
+	    if (parentNode && parentDef instanceof def.UserDefinedClass) {
+	        var parentProperty = parentNode.property();
+	        if (universeHelpers.isIsProperty(parentProperty) || universeHelpers.isTypeProperty(parentProperty)) {
+	            var paramName = node.name();
+	            if (exports.RESERVED_TEMPLATE_PARAMETERS[paramName] != null) {
+	                //Handling reserved parameter names;
+	                issue = createIssue(13 /* INVALID_PROPERTY */, "Invalid parameter name: " + paramName + " is reserved", node);
+	            }
+	            else {
+	                issue = createIssue(2 /* UNKNOWN_NODE */, "Unused parameter: " + paramName, node);
+	            }
+	        }
+	    }
+	    if (!issue) {
+	        var propName = node.name();
+	        var universe08 = universeProvider("RAML08");
+	        var isRAML08 = parentDef.universe().version() == universe08.version();
+	        if (isRAML08) {
+	            var parameterTypeName = universes.Universe08.Parameter.name;
+	            var typeDeclarationTypeName = universes.Universe10.TypeDeclaration.name;
+	            if (isRAML08 && parentDef.isAssignableFrom(parameterTypeName)) {
+	                var possibleDefs = universe08.type(parameterTypeName).allSubTypes().filter(function (x) { return universes.Universe08[x.nameId()]['properties'][propName] != null; });
+	                var possibleDefsMap = {};
+	                for (var i = 0; i < possibleDefs.length; i++) {
+	                    var x = possibleDefs[i];
+	                    if (possibleDefsMap[x.nameId()]) {
+	                        continue;
+	                    }
+	                    var valueRequirements = x.valueRequirements();
+	                    if (!(valueRequirements && valueRequirements.length != 0)) {
+	                        continue;
+	                    }
+	                    var typeRquirements = valueRequirements.filter(function (x) { return x.name == 'type'; }).map(function (x) { return x.value; });
+	                    if (typeRquirements.length == 0) {
+	                        continue;
+	                    }
+	                    var runtimeName = typeRquirements[0];
+	                    possibleDefsMap[x.nameId()] = runtimeName;
+	                    x.allSubTypes().forEach(function (y) { return possibleDefs.push(y); });
+	                }
+	                var runtimeNames = Object.keys(possibleDefsMap).map(function (x) { return possibleDefsMap[x]; }).sort();
+	                ;
+	                if (runtimeNames.length > 0) {
+	                    var namesStr = runtimeNames.map(function (x, i) {
+	                        var x1 = "'" + x + "'";
+	                        if (i == runtimeNames.length - 1) {
+	                            return x1;
+	                        }
+	                        if (i == runtimeNames.length - 2) {
+	                            return x1 + ' or ';
+	                        }
+	                        return x1 + ', ';
+	                    }).join('');
+	                    var message = "Property '" + propName + "' can only be used if type is " + namesStr;
+	                    issue = createIssue(12 /* ILLEGAL_PROPERTY */, message, node);
+	                }
+	            }
+	        }
+	    }
+	    return issue;
+	}
+	;
 	function validateBasic(node, v, requiredOnly) {
 	    if (requiredOnly === void 0) { requiredOnly = false; }
 	    var parentNode = node.parent();
@@ -20071,10 +20138,7 @@ module.exports =
 	    if (node.isUnknown()) {
 	        if (node.name().indexOf("<<") != -1) {
 	            if (typeOfContainingTemplate(parentNode) != null) {
-	                var error = new TraitVariablesValidator().check(node.name());
-	                if (error) {
-	                    v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "unknown function applied to property name", node));
-	                }
+	                new TraitVariablesValidator().validateName(node, v);
 	                return;
 	            }
 	        }
@@ -20091,24 +20155,11 @@ module.exports =
 	            }
 	        }
 	        else {
-	            var specialError = false;
-	            if (parentNode && parentNode.definition() instanceof def.UserDefinedClass) {
-	                var parentProperty = parentNode.property();
-	                if (universeHelpers.isIsProperty(parentProperty) || universeHelpers.isTypeProperty(parentProperty)) {
-	                    specialError = true;
-	                    var paramName = node.name();
-	                    if (exports.RESERVED_TEMPLATE_PARAMETERS[paramName] != null) {
-	                        //Handling reserved parameter names;
-	                        v.accept(createIssue(13 /* INVALID_PROPERTY */, "Invalid parameter name: " + paramName + " is reserved", node));
-	                    }
-	                    else {
-	                        v.accept(createIssue(2 /* UNKNOWN_NODE */, "Unused parameter: " + paramName, node));
-	                    }
-	                }
+	            var issue = restrictUnknownNodeError(node);
+	            if (!issue) {
+	                issue = createIssue(2 /* UNKNOWN_NODE */, "Unknown node: " + node.name(), node);
 	            }
-	            if (!specialError) {
-	                v.accept(createIssue(2 /* UNKNOWN_NODE */, "Unknown node: " + node.name(), node));
-	            }
+	            v.accept(issue);
 	        }
 	    }
 	    if (node.markCh() && !node.allowRecursive()) {
@@ -20155,6 +20206,7 @@ module.exports =
 	        else {
 	            validateBasic(node, v);
 	        }
+	        new UriParametersValidator().validate(highLevelNode, v);
 	        new CompositeNodeValidator().validate(highLevelNode, v);
 	        new TemplateCyclesDetector().validate(highLevelNode, v);
 	    }
@@ -20194,32 +20246,52 @@ module.exports =
 	var TraitVariablesValidator = (function () {
 	    function TraitVariablesValidator() {
 	    }
-	    TraitVariablesValidator.prototype.check = function (obj) {
+	    TraitVariablesValidator.prototype.validateName = function (node, acceptor) {
+	        var name = node.name();
+	        if (name) {
+	            var start = node.lowLevel().keyStart();
+	            this.check(name, start, node, acceptor);
+	        }
+	    };
+	    TraitVariablesValidator.prototype.validateValue = function (node, acceptor) {
+	        var value = node.value();
+	        if (typeof (value) === 'string') {
+	            var start = node.lowLevel().valueStart();
+	            this.check(value, start, node, acceptor);
+	        }
+	    };
+	    TraitVariablesValidator.prototype.check = function (str, start, node, acceptor) {
 	        var errors = [];
-	        if (typeof (obj) === 'string') {
-	            var str = obj;
-	            var prev = 0;
-	            for (var i = str.indexOf('<<'); i >= 0; i = str.indexOf('<<', prev)) {
-	                var i0 = i;
-	                i += '<<'.length;
-	                prev = str.indexOf('>>', i);
-	                var paramOccurence = str.substring(i, prev);
-	                prev += '>>'.length;
-	                var originalString = str.substring(i0, prev);
-	                var val;
-	                var paramName;
-	                var ind = paramOccurence.lastIndexOf('|');
-	                paramName = paramOccurence.substring(0, ind).trim();
-	                var transformerName = paramOccurence.substring(ind + 1).trim();
-	                if (ind != -1) {
-	                    var functionNames = expander.getTransformNames();
-	                    if (_.find(functionNames, function (functionName) { return transformerName === functionName || transformerName === ('!' + functionName); })) {
-	                        return;
-	                    }
-	                    return "unknown function " + transformerName;
+	        var prev = 0;
+	        for (var i = str.indexOf('<<'); i >= 0; i = str.indexOf('<<', prev)) {
+	            var i0 = i;
+	            i += '<<'.length;
+	            prev = str.indexOf('>>', i);
+	            var paramOccurence = str.substring(i, prev);
+	            var ind = paramOccurence.lastIndexOf('|');
+	            var paramName = ind >= 0 ? paramOccurence.substring(0, ind) : paramOccurence;
+	            if (paramName.trim().length == 0) {
+	                var msg = "Trait or resource type parameter name must contain non whitespace characters";
+	                var issue = createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, msg, node, false);
+	                issue.start = start + i;
+	                issue.end = start + prev;
+	                acceptor.accept(issue);
+	            }
+	            if (ind != -1) {
+	                ind++;
+	                var transformerName = paramOccurence.substring(ind).trim();
+	                var functionNames = expander.getTransformNames();
+	                if (!_.find(functionNames, function (functionName) { return transformerName === functionName || transformerName === ('!' + functionName); })) {
+	                    var msg = "Unknown function applied to parameter: " + transformerName;
+	                    var issue = createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, msg, node, false);
+	                    issue.start = start + ind;
+	                    issue.end = start + prev;
+	                    acceptor.accept(issue);
 	                }
 	            }
+	            prev += '>>'.length;
 	        }
+	        return errors;
 	    };
 	    return TraitVariablesValidator;
 	})();
@@ -20282,10 +20354,7 @@ module.exports =
 	        }
 	        if (typeof vl == 'string' && vl.indexOf("<<") != -1) {
 	            if (vl.indexOf(">>") > vl.indexOf("<<")) {
-	                var error = new TraitVariablesValidator().check(vl);
-	                if (error) {
-	                    v.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "unknown function applied to parameter", node));
-	                }
+	                new TraitVariablesValidator().validateValue(node, v);
 	                if (typeOfContainingTemplate(node.parent()) != null) {
 	                    return;
 	                }
@@ -20303,7 +20372,7 @@ module.exports =
 	            //TODO MOVE TO DEF SYSTEM
 	            var nameId = node.parent().property() && node.parent().property().nameId();
 	            if (nameId == universes.Universe08.Resource.properties.uriParameters.name || nameId == universes.Universe08.Resource.properties.baseUriParameters.name) {
-	                new UrlParameterNameValidator().validate(node, v);
+	                //                    new UrlParameterNameValidator().validate(node, v);
 	                return;
 	            }
 	        }
@@ -21829,7 +21898,7 @@ module.exports =
 	                                if (e.message == "Object.keys called on non-object") {
 	                                    return;
 	                                }
-	                                cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conforms to schema:" + e.message, node, !strict));
+	                                cb.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Example does not conform to schema:" + e.message, node, !strict));
 	                                return;
 	                            }
 	                            //validate using classical schema;
@@ -21980,6 +22049,9 @@ module.exports =
 	            }
 	            var attr = node;
 	            var prop = attr.property();
+	            if (prop.isMultiValue() || prop.range().isArray()) {
+	                return;
+	            }
 	            if (!prop.isFromParentKey()) {
 	                var template = typeOfContainingTemplate(attr.parent());
 	                if (template) {
@@ -22006,20 +22078,64 @@ module.exports =
 	                    });
 	                });
 	            }
-	            if (node.optional()) {
-	                if (universeHelpers.isIsProperty(prop)) {
-	                    var template = typeOfContainingTemplate(aNode.parent());
-	                    if (template) {
-	                        var templateNamePlural = toReadableName(template, true, true);
-	                        var message = "Optional scalar properties are not allowed in " + templateNamePlural + " and their descendants: " + prop.nameId() + "?";
-	                        var issue = createIssue(8 /* MISSED_CONTEXT_REQUIREMENT */, message, node, false);
+	        }
+	    };
+	    return OptionalPropertiesValidator;
+	})();
+	var UriParametersValidator = (function () {
+	    function UriParametersValidator() {
+	    }
+	    UriParametersValidator.prototype.validate = function (node, v) {
+	        var def = node.definition();
+	        var baseUriPropName = universes.Universe10.Api.properties.baseUri.name;
+	        var baseUriParamsPropName = universes.Universe10.Api.properties.baseUriParameters.name;
+	        var uriPropName = universes.Universe10.Resource.properties.relativeUri.name;
+	        var uriParamsPropName = universes.Universe10.ResourceBase.properties.uriParameters.name;
+	        if (universeHelpers.isApiSibling(def)) {
+	            this.inspectParameters(node, v, baseUriPropName, baseUriParamsPropName);
+	        }
+	        else if (universeHelpers.isResourceType(def)) {
+	            var rootNode = node.root();
+	            this.inspectParameters(node, v, baseUriPropName, baseUriParamsPropName, rootNode);
+	            this.inspectParameters(node, v, uriPropName, uriParamsPropName);
+	        }
+	        else if (universeHelpers.isResourceTypeType(def)) {
+	            var rootNode = node.root();
+	            this.inspectParameters(node, v, baseUriPropName, baseUriParamsPropName, rootNode);
+	        }
+	    };
+	    UriParametersValidator.prototype.inspectParameters = function (node, v, uriPropName, paramsPropName, rootNode) {
+	        rootNode = rootNode || node;
+	        var uriValue = '';
+	        var uriAttr = rootNode.attr(uriPropName);
+	        if (uriAttr) {
+	            uriValue = uriAttr.value();
+	            if (!uriValue) {
+	                uriValue = '';
+	            }
+	        }
+	        var paramElements = node.elementsOfKind(paramsPropName);
+	        paramElements.forEach(function (x) {
+	            var nameAttr = x.attr(universes.Universe10.TypeDeclaration.properties.name.name);
+	            if (nameAttr) {
+	                var name = nameAttr.value();
+	                if (name != null) {
+	                    if (uriValue.indexOf('{' + name + '}') < 0) {
+	                        if (universeHelpers.isResourceTypeType(node.definition())) {
+	                            if (name.indexOf('<<') >= 0) {
+	                                return;
+	                            }
+	                        }
+	                        var propNameReadable = pluralize.singular(changeCase.sentence(paramsPropName));
+	                        var message = changeCase.ucFirst(propNameReadable) + " unused";
+	                        var issue = createIssue(11 /* ILLEGAL_PROPERTY_VALUE */, message, x, true);
 	                        v.accept(issue);
 	                    }
 	                }
 	            }
-	        }
+	        });
 	    };
-	    return OptionalPropertiesValidator;
+	    return UriParametersValidator;
 	})();
 	var TemplateCyclesDetector = (function () {
 	    function TemplateCyclesDetector() {
@@ -22064,7 +22180,11 @@ module.exports =
 	        });
 	    };
 	    TemplateCyclesDetector.prototype.templateName = function (node) {
-	        return node.attr(this.nameProperty).value();
+	        var nameAttribute = node.attr(this.nameProperty);
+	        if (!nameAttribute) {
+	            return null;
+	        }
+	        return nameAttribute.value();
 	    };
 	    TemplateCyclesDetector.prototype.findCyclesInDefinition = function (node, propName, templatesMap, occuredTemplates) {
 	        if (occuredTemplates === void 0) { occuredTemplates = {}; }
@@ -22823,9230 +22943,18 @@ module.exports =
 /* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/// <reference path="../../../typings/main.d.ts" />
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	var _ = __webpack_require__(4);
-	var extraInjections = [];
-	function registerInjector(i) {
-	    extraInjections.push(i);
-	}
-	exports.registerInjector = registerInjector;
-	var Adaptable = (function () {
-	    function Adaptable() {
-	        var _this = this;
-	        this.adapters = [];
-	        extraInjections.forEach(function (x) { return x.inject(_this); });
-	    }
-	    Adaptable.prototype.addAdapter = function (q) {
-	        this.adapters.push(q);
-	    };
-	    Adaptable.prototype.getAdapter = function (adapterType) {
-	        var result = null;
-	        this.adapters.forEach(function (x) {
-	            if (x instanceof adapterType) {
-	                result = x;
-	            }
-	        });
-	        return result;
-	    };
-	    return Adaptable;
-	})();
-	exports.Adaptable = Adaptable;
-	var Described = (function (_super) {
-	    __extends(Described, _super);
-	    function Described(_name, _description) {
-	        if (_description === void 0) { _description = ""; }
-	        _super.call(this);
-	        this._name = _name;
-	        this._description = _description;
-	        this._tags = [];
-	        this._annotations = [];
-	    }
-	    Described.prototype.nameId = function () {
-	        return this._name;
-	    };
-	    Described.prototype.description = function () {
-	        return this._description;
-	    };
-	    Described.prototype.addAnnotation = function (a) {
-	        this._annotations.push(a);
-	    };
-	    Described.prototype.removeAnnotation = function (a) {
-	        this._annotations = this._annotations.filter(function (x) { return x != a; });
-	    };
-	    Described.prototype.annotations = function () {
-	        return [].concat(this._annotations);
-	    };
-	    Described.prototype.tags = function () {
-	        return this._tags;
-	    };
-	    Described.prototype.withDescription = function (d) {
-	        this._description = d;
-	        return this;
-	    };
-	    Described.prototype.setName = function (name) {
-	        this._name = name;
-	    };
-	    return Described;
-	})(Adaptable);
-	exports.Described = Described;
-	var ValueRequirement = (function () {
-	    /**
-	     *
-	     * @param name name of the property to discriminate
-	     * @param value expected value of discriminating property
-	     */
-	    function ValueRequirement(name, value) {
-	        this.name = name;
-	        this.value = value;
-	    }
-	    return ValueRequirement;
-	})();
-	exports.ValueRequirement = ValueRequirement;
-	var Annotation = (function (_super) {
-	    __extends(Annotation, _super);
-	    function Annotation(type, parameters) {
-	        _super.call(this, type.nameId());
-	        this.type = type;
-	        this.parameters = parameters;
-	    }
-	    Annotation.prototype.parameterNames = function () {
-	        return Object.keys(this.parameters);
-	    };
-	    Annotation.prototype.parameter = function (name) {
-	        return this.parameters[name];
-	    };
-	    Annotation.prototype.getType = function () {
-	        return this.type;
-	    };
-	    return Annotation;
-	})(Described);
-	exports.Annotation = Annotation;
-	var AbstractType = (function (_super) {
-	    __extends(AbstractType, _super);
-	    function AbstractType(_name, _universe, _path) {
-	        if (_universe === void 0) { _universe = null; }
-	        if (_path === void 0) { _path = ""; }
-	        _super.call(this, _name);
-	        this._universe = _universe;
-	        this._path = _path;
-	        this._customProperties = [];
-	        this._superTypes = [];
-	        this._subTypes = [];
-	        this._requirements = [];
-	        this.fixedFacets = {};
-	        this.uc = false;
-	    }
-	    AbstractType.prototype.properties = function () {
-	        return [];
-	    };
-	    AbstractType.prototype.externalInHierarchy = function () {
-	        var x = this.allSuperTypes();
-	        var res = null;
-	        x.forEach(function (y) {
-	            if (y instanceof ExternalType) {
-	                res = y;
-	            }
-	        });
-	        return res;
-	    };
-	    AbstractType.prototype.allFacets = function (ps) {
-	        if (ps === void 0) { ps = {}; }
-	        if (this._allFacets) {
-	            return this._allFacets;
-	        }
-	        if (ps[this.nameId()]) {
-	            return [];
-	        }
-	        ps[this.typeId()] = this;
-	        var n = {};
-	        if (this.superTypes().length > 0) {
-	            this.superTypes().forEach(function (x) {
-	                if (x instanceof AbstractType) {
-	                    x.allFacets(ps).forEach(function (y) { return n[y.nameId()] = y; });
-	                }
-	            });
-	        }
-	        this.properties().forEach(function (x) { return n[x.nameId()] = x; });
-	        this._allFacets = Object.keys(n).map(function (x) { return n[x]; });
-	        return this._allFacets;
-	    };
-	    AbstractType.prototype.facet = function (name) {
-	        return _.find(this.allFacets(), function (x) { return x.nameId() == name; });
-	    };
-	    AbstractType.prototype.typeId = function () {
-	        return this.nameId();
-	    };
-	    AbstractType.prototype.allProperties = function (ps) {
-	        if (ps === void 0) { ps = {}; }
-	        if (this._props) {
-	            return this._props;
-	        }
-	        if (ps[this.typeId()]) {
-	            return [];
-	        }
-	        ps[this.typeId()] = this;
-	        var n = {};
-	        if (this.superTypes().length > 0) {
-	            this.superTypes().forEach(function (x) {
-	                if (x instanceof AbstractType) {
-	                    x.allProperties(ps).forEach(function (y) { return n[y.nameId()] = y; });
-	                }
-	                else {
-	                    x.allProperties().forEach(function (y) { return n[y.nameId()] = y; });
-	                }
-	            });
-	        }
-	        for (var x in this.getFixedFacets()) {
-	            delete n[x];
-	        }
-	        this.properties().forEach(function (x) { return n[x.nameId()] = x; });
-	        this._props = Object.keys(n).map(function (x) { return n[x]; });
-	        return this._props;
-	    };
-	    AbstractType.prototype.property = function (propName) {
-	        return _.find(this.allProperties(), function (x) { return x.nameId() == propName; });
-	    };
-	    AbstractType.prototype.hasValueTypeInHierarchy = function () {
-	        return _.find(this.allSuperTypes(), function (x) {
-	            var mm = x;
-	            if (mm.uc) {
-	                return false;
-	            }
-	            mm.uc = true;
-	            try {
-	                return x.hasValueTypeInHierarchy();
-	            }
-	            finally {
-	                mm.uc = false;
-	            }
-	        }) != null;
-	    };
-	    AbstractType.prototype.isAnnotationType = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.hasStructure = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.key = function () {
-	        if (this._key) {
-	            return this._key;
-	        }
-	        if (this._universe) {
-	            this._key = this.universe().matched()[this.nameId()];
-	            if (!this._key) {
-	                return null;
-	            }
-	        }
-	        return this._key;
-	    };
-	    AbstractType.prototype.isUserDefined = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.hasArrayInHierarchy = function () {
-	        var arr = _.find(this.allSuperTypes(), function (x) { return x instanceof Array; }) != null;
-	        return arr;
-	    };
-	    AbstractType.prototype.arrayInHierarchy = function () {
-	        var x = this.allSuperTypes();
-	        var res = null;
-	        x.forEach(function (y) {
-	            if (y instanceof Array) {
-	                res = y;
-	            }
-	        });
-	        return res;
-	    };
-	    AbstractType.prototype.unionInHierarchy = function () {
-	        var x = this.allSuperTypes();
-	        var res = null;
-	        x.forEach(function (y) {
-	            if (y instanceof Union) {
-	                res = y;
-	            }
-	        });
-	        return res;
-	    };
-	    AbstractType.prototype.hasExternalInHierarchy = function () {
-	        return _.find(this.allSuperTypes(), function (x) {
-	            var mm = x;
-	            if (mm.uc) {
-	                return false;
-	            }
-	            mm.uc = true;
-	            try {
-	                return x instanceof ExternalType;
-	            }
-	            finally {
-	                mm.uc = false;
-	            }
-	        }) != null;
-	    };
-	    AbstractType.prototype.hasUnionInHierarchy = function () {
-	        return _.find(this.allSuperTypes(), function (x) {
-	            var mm = x;
-	            if (mm.uc) {
-	                return false;
-	            }
-	            mm.uc = true;
-	            try {
-	                return x.hasUnionInHierarchy();
-	            }
-	            finally {
-	                mm.uc = false;
-	            }
-	        }) != null;
-	    };
-	    AbstractType.prototype.fixFacet = function (name, v) {
-	        this.fixedFacets[name] = v;
-	    };
-	    AbstractType.prototype.getFixedFacets = function () {
-	        if (this._af) {
-	            return this._af;
-	        }
-	        var sp = this.allSuperTypes();
-	        var mm = {};
-	        for (var q in this.fixedFacets) {
-	            mm[q] = this.fixedFacets[q];
-	        }
-	        sp.forEach(function (x) {
-	            if (x instanceof AbstractType) {
-	                x.contributeFacets(mm);
-	                var ff = x.fixedFacets;
-	                for (var q in ff) {
-	                    mm[q] = ff[q];
-	                }
-	            }
-	        });
-	        this.contributeFacets(mm);
-	        this._af = mm;
-	        return mm;
-	    };
-	    AbstractType.prototype.contributeFacets = function (x) {
-	    };
-	    AbstractType.prototype.getPath = function () {
-	        return this._path;
-	    };
-	    AbstractType.prototype.setNameAtRuntime = function (name) {
-	        this._nameAtRuntime = name;
-	    };
-	    AbstractType.prototype.getNameAtRuntime = function () {
-	        return this._nameAtRuntime;
-	    };
-	    AbstractType.prototype.universe = function () {
-	        return this._universe;
-	    };
-	    AbstractType.prototype.superTypes = function () {
-	        return [].concat(this._superTypes);
-	    };
-	    AbstractType.prototype.isAssignableFrom = function (typeName) {
-	        if (this.nameId() == typeName) {
-	            if (this.isUserDefined()) {
-	                return false;
-	            }
-	            return true;
-	        }
-	        var currentSuperTypes = this.allSuperTypes();
-	        for (var i = 0; i < currentSuperTypes.length; i++) {
-	            if (currentSuperTypes[i].nameId() == typeName) {
-	                return true;
-	            }
-	        }
-	        return false;
-	    };
-	    AbstractType.prototype.annotationType = function () {
-	        return null;
-	    };
-	    AbstractType.prototype.subTypes = function () {
-	        return [].concat(this._subTypes);
-	    };
-	    AbstractType.prototype.allSubTypes = function () {
-	        var rs = [];
-	        this.subTypes().forEach(function (x) {
-	            rs.push(x);
-	            rs = rs.concat(x.allSubTypes());
-	        });
-	        return _.unique(rs);
-	    };
-	    AbstractType.prototype.allSuperTypes = function () {
-	        var rs = [];
-	        this.allSuperTypesRecurrent(this, {}, rs);
-	        return _.unique(rs);
-	    };
-	    AbstractType.prototype.allSuperTypesRecurrent = function (t, m, result) {
-	        var _this = this;
-	        t.superTypes().forEach(function (x) {
-	            if (!m[x.typeId()]) {
-	                result.push(x);
-	                m[x.typeId()] = x;
-	                _this.allSuperTypesRecurrent(x, m, result);
-	            }
-	        });
-	    };
-	    AbstractType.prototype.addSuperType = function (q) {
-	        q._subTypes.push(this);
-	        this._superTypes.push(q);
-	    };
-	    AbstractType.prototype.addRequirement = function (name, value) {
-	        this._requirements.push(new ValueRequirement(name, value));
-	    };
-	    //FIXME simplify it
-	    AbstractType.prototype.valueRequirements = function () {
-	        return this._requirements;
-	    };
-	    AbstractType.prototype.requiredProperties = function () {
-	        return this.allProperties().filter(function (x) { return x.isRequired(); });
-	    };
-	    AbstractType.prototype.printDetails = function (indent, settings) {
-	        var _this = this;
-	        if (!indent) {
-	            indent = "";
-	        }
-	        if (!settings) {
-	            settings = {
-	                hideProperties: false,
-	                hideSuperTypeProperties: false,
-	                printStandardSuperclasses: false
-	            };
-	        }
-	        var standardIndent = "  ";
-	        var result = "";
-	        var className = this.getTypeClassName();
-	        result += indent + this.nameId() + "[" + className + "]" + "\n";
-	        var properties = this.properties();
-	        if (properties && properties.length > 0 && !settings.hideProperties) {
-	            result += indent + standardIndent + "Properties:\n";
-	            properties.forEach(function (property) {
-	                var propertyType = "";
-	                var propertyRange = property.range();
-	                if (propertyRange instanceof Described) {
-	                    propertyType += propertyRange.nameId();
-	                }
-	                if (propertyRange instanceof AbstractType) {
-	                    propertyType += "[";
-	                    propertyType += propertyRange.getTypeClassName();
-	                    propertyType += "]";
-	                }
-	                result += indent + standardIndent + standardIndent + property.nameId() + " : " + propertyType + "\n";
-	            });
-	        }
-	        var superTypes = this.superTypes();
-	        var filteredSuperTypes = superTypes;
-	        if (superTypes && !settings.printStandardSuperclasses) {
-	            filteredSuperTypes = _.filter(superTypes, function (superType) {
-	                var name = superType instanceof Described ? superType.nameId() : "";
-	                var type = superType instanceof AbstractType ? superType.getTypeClassName() : "";
-	                return !_this.isStandardSuperclass(name, type);
-	            });
-	        }
-	        if (filteredSuperTypes && filteredSuperTypes.length > 0) {
-	            result += indent + standardIndent + "Super types:\n";
-	            filteredSuperTypes.forEach(function (superType) {
-	                result += superType.printDetails(indent + standardIndent + standardIndent, {
-	                    hideProperties: settings.hideSuperTypeProperties,
-	                    hideSuperTypeProperties: settings.hideSuperTypeProperties,
-	                    printStandardSuperclasses: settings.printStandardSuperclasses
-	                });
-	            });
-	        }
-	        return result;
-	    };
-	    AbstractType.prototype.getTypeClassName = function () {
-	        return this.constructor.toString().match(/\w+/g)[1];
-	    };
-	    AbstractType.prototype.isStandardSuperclass = function (nameId, className) {
-	        if (nameId === "TypeDeclaration" && className === "NodeClass")
-	            return true;
-	        if (nameId === "ObjectTypeDeclaration" && className === "NodeClass")
-	            return true;
-	        if (nameId === "RAMLLanguageElement" && className === "NodeClass")
-	            return true;
-	        return false;
-	    };
-	    /**
-	     * Returns example for this type.
-	     * Returned example should be tested for being empty and being expandable.
-	     */
-	    AbstractType.prototype.examples = function () {
-	        return [new ExpandableExampleStub()];
-	    };
-	    /**
-	     * Returns whether this type contain genuine user defined type in its hierarchy.
-	     * Genuine user defined type is a type user intentionally defined and filled with
-	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
-	     */
-	    AbstractType.prototype.isGenuineUserDefinedType = function () {
-	        return false;
-	    };
-	    /**
-	     * Returns nearest genuine user-define type in the hierarchy.
-	     * Genuine user defined type is a type user intentionally defined and filled with
-	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
-	     */
-	    AbstractType.prototype.genuineUserDefinedType = function () {
-	        return null;
-	    };
-	    AbstractType.prototype.customProperties = function () {
-	        return [].concat(this._customProperties);
-	    };
-	    AbstractType.prototype.allCustomProperties = function () {
-	        var props = [];
-	        this.superTypes().forEach(function (x) { return props = props.concat(x.allCustomProperties()); });
-	        props = props.concat(this.customProperties());
-	        return props;
-	    };
-	    AbstractType.prototype.registerCustomProperty = function (p) {
-	        if (p.domain() != this) {
-	            throw new Error("Should be already owned by this");
-	        }
-	        if (this._customProperties.indexOf(p) != -1) {
-	            throw new Error("Already included");
-	        }
-	        this._customProperties.push(p);
-	    };
-	    AbstractType.prototype.setCustom = function (val) {
-	        this._isCustom = val;
-	    };
-	    AbstractType.prototype.isCustom = function () {
-	        return this._isCustom;
-	    };
-	    AbstractType.prototype.isUnion = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.union = function () {
-	        return null;
-	    };
-	    AbstractType.prototype.isExternal = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.external = function () {
-	        return null;
-	    };
-	    AbstractType.prototype.isArray = function () {
-	        return false;
-	    };
-	    AbstractType.prototype.array = function () {
-	        return null;
-	    };
-	    AbstractType.prototype.isValueType = function () {
-	        return false;
-	    };
-	    return AbstractType;
-	})(Described);
-	exports.AbstractType = AbstractType;
-	var ValueType = (function (_super) {
-	    __extends(ValueType, _super);
-	    function ValueType(name, _universe, path, description) {
-	        if (_universe === void 0) { _universe = null; }
-	        if (path === void 0) { path = ""; }
-	        if (description === void 0) { description = ""; }
-	        _super.call(this, name, _universe, path);
-	    }
-	    ValueType.prototype.hasStructure = function () {
-	        return false;
-	    };
-	    ValueType.prototype.hasValueTypeInHierarchy = function () {
-	        return true;
-	    };
-	    ValueType.prototype.isValueType = function () {
-	        return true;
-	    };
-	    ValueType.prototype.isUnionType = function () {
-	        return false;
-	    };
-	    return ValueType;
-	})(AbstractType);
-	exports.ValueType = ValueType;
-	var StructuredType = (function (_super) {
-	    __extends(StructuredType, _super);
-	    function StructuredType() {
-	        _super.apply(this, arguments);
-	        this._properties = [];
-	    }
-	    StructuredType.prototype.hasStructure = function () {
-	        return true;
-	    };
-	    StructuredType.prototype.propertyIndex = function (name) {
-	        var props = this.properties();
-	        for (var i = 0; i < props.length; i++) {
-	            if (props[i].nameId() == name)
-	                return i;
-	        }
-	        return -1;
-	    };
-	    StructuredType.prototype.addProperty = function (name, range) {
-	        return new Property(name).withDomain(this).withRange(range);
-	    };
-	    StructuredType.prototype.allPropertyIndex = function (name) {
-	        var props = this.allProperties();
-	        for (var i = 0; i < props.length; i++) {
-	            if (props[i].nameId() == name)
-	                return i;
-	        }
-	        return -1;
-	    };
-	    StructuredType.prototype.properties = function () {
-	        return [].concat(this._properties);
-	    };
-	    StructuredType.prototype.registerProperty = function (p) {
-	        if (p.domain() != this) {
-	            throw new Error("Should be already owned by this");
-	        }
-	        if (this._properties.indexOf(p) != -1) {
-	            throw new Error("Already included");
-	        }
-	        this._properties.push(p);
-	    };
-	    return StructuredType;
-	})(AbstractType);
-	exports.StructuredType = StructuredType;
-	var Property = (function (_super) {
-	    __extends(Property, _super);
-	    function Property() {
-	        _super.apply(this, arguments);
-	        this._keyShouldStartFrom = null;
-	        this._isRequired = false;
-	        this._isMultiValue = false;
-	        this._descriminates = false;
-	        this._defaultBooleanValue = null;
-	        this._defaultIntegerValue = null;
-	    }
-	    Property.prototype.withMultiValue = function (v) {
-	        if (v === void 0) { v = true; }
-	        this._isMultiValue = v;
-	        return this;
-	    };
-	    Property.prototype.withDescriminating = function (b) {
-	        this._descriminates = b;
-	        return this;
-	    };
-	    Property.prototype.withRequired = function (req) {
-	        this._isRequired = req;
-	        return this;
-	    };
-	    Property.prototype.isRequired = function () {
-	        return this._isRequired;
-	    };
-	    Property.prototype.withKeyRestriction = function (keyShouldStartFrom) {
-	        this._keyShouldStartFrom = keyShouldStartFrom;
-	        return this;
-	    };
-	    Property.prototype.withDomain = function (d, custom) {
-	        if (custom === void 0) { custom = false; }
-	        this._ownerClass = d;
-	        if (custom) {
-	            d.registerCustomProperty(this);
-	        }
-	        else {
-	            d.registerProperty(this);
-	        }
-	        return this;
-	    };
-	    Property.prototype.setDefaultVal = function (s) {
-	        this._defaultValue = s;
-	        return this;
-	    };
-	    Property.prototype.setDefaultBooleanVal = function (s) {
-	        this._defaultBooleanValue = s;
-	        return this;
-	    };
-	    Property.prototype.setDefaultIntegerVal = function (s) {
-	        this._defaultIntegerValue = s;
-	        return this;
-	    };
-	    Property.prototype.defaultValue = function () {
-	        if (this._defaultValue != null) {
-	            return this._defaultValue;
-	        }
-	        else if (this._defaultBooleanValue != null) {
-	            return this._defaultBooleanValue;
-	        }
-	        else if (this._defaultIntegerValue != null) {
-	            return this._defaultIntegerValue;
-	        }
-	        return null;
-	    };
-	    Property.prototype.isPrimitive = function () {
-	        return false;
-	    };
-	    Property.prototype.withRange = function (t) {
-	        this._nodeRange = t;
-	        return this;
-	    };
-	    Property.prototype.isValueProperty = function () {
-	        return this._nodeRange.hasValueTypeInHierarchy();
-	    };
-	    Property.prototype.enumOptions = function () {
-	        if (this._enumOptions && typeof this._enumOptions == 'string') {
-	            return [this._enumOptions + ""];
-	        }
-	        return this._enumOptions;
-	    };
-	    Property.prototype.keyPrefix = function () {
-	        return this._keyShouldStartFrom;
-	    };
-	    Property.prototype.withEnumOptions = function (op) {
-	        this._enumOptions = op;
-	        return this;
-	    };
-	    Property.prototype.withKeyRegexp = function (regexp) {
-	        this._keyRegexp = regexp;
-	        return this;
-	    };
-	    Property.prototype.getKeyRegexp = function () {
-	        return this._keyRegexp;
-	    };
-	    Property.prototype.matchKey = function (k) {
-	        if (k == null) {
-	            return false;
-	        }
-	        if (this._groupName != null) {
-	            return this._groupName == k;
-	        }
-	        else {
-	            if (this._keyShouldStartFrom != null) {
-	                if (k.indexOf(this._keyShouldStartFrom) == 0) {
-	                    return true;
-	                }
-	            }
-	            if (this._enumOptions) {
-	                if (this._enumOptions.indexOf(k) != -1) {
-	                    return true;
-	                }
-	            }
-	            if (this.getKeyRegexp()) {
-	                try {
-	                    if (new RegExp(this.getKeyRegexp()).test(k)) {
-	                        return true;
-	                    }
-	                }
-	                catch (Error) {
-	                }
-	            }
-	            return false;
-	        }
-	    };
-	    Property.prototype.getFacetValidator = function () {
-	        return this.facetValidator;
-	    };
-	    Property.prototype.setFacetValidator = function (f) {
-	        this.facetValidator = f;
-	    };
-	    Property.prototype.domain = function () {
-	        return this._ownerClass;
-	    };
-	    Property.prototype.range = function () {
-	        return this._nodeRange;
-	    };
-	    Property.prototype.isMultiValue = function () {
-	        if (this.range() && this.range().hasArrayInHierarchy()) {
-	            return true;
-	        }
-	        return this._isMultiValue;
-	    };
-	    Property.prototype.isDescriminator = function () {
-	        return this._descriminates;
-	    };
-	    return Property;
-	})(Described);
-	exports.Property = Property;
-	var Union = (function (_super) {
-	    __extends(Union, _super);
-	    function Union() {
-	        _super.apply(this, arguments);
-	    }
-	    Union.prototype.key = function () {
-	        return null;
-	    };
-	    Union.prototype.leftType = function () {
-	        return this.left;
-	    };
-	    Union.prototype.rightType = function () {
-	        return this.right;
-	    };
-	    Union.prototype.isUserDefined = function () {
-	        return true;
-	    };
-	    Union.prototype.unionInHierarchy = function () {
-	        return this;
-	    };
-	    Union.prototype.union = function () {
-	        return this;
-	    };
-	    Union.prototype.hasUnionInHierarchy = function () {
-	        return true;
-	    };
-	    Union.prototype.isUnion = function () {
-	        return true;
-	    };
-	    Union.prototype.hasArrayInHierarchy = function () {
-	        if (this.left && this.right) {
-	            return this.left.hasArrayInHierarchy() || this.right.hasArrayInHierarchy();
-	        }
-	        if (this.left) {
-	            return this.left.hasArrayInHierarchy();
-	        }
-	        if (this.right) {
-	            return this.right.hasArrayInHierarchy();
-	        }
-	    };
-	    return Union;
-	})(AbstractType);
-	exports.Union = Union;
-	var Array = (function (_super) {
-	    __extends(Array, _super);
-	    function Array() {
-	        _super.apply(this, arguments);
-	    }
-	    Array.prototype.hasArrayInHierarchy = function () {
-	        return true;
-	    };
-	    Array.prototype.isArray = function () {
-	        return true;
-	    };
-	    Array.prototype.arrayInHierarchy = function () {
-	        return this;
-	    };
-	    Array.prototype.array = function () {
-	        return this;
-	    };
-	    Array.prototype.isUserDefined = function () {
-	        return true;
-	    };
-	    Array.prototype.componentType = function () {
-	        return this.component;
-	    };
-	    Array.prototype.key = function () {
-	        return null;
-	    };
-	    return Array;
-	})(AbstractType);
-	exports.Array = Array;
-	var ExternalType = (function (_super) {
-	    __extends(ExternalType, _super);
-	    function ExternalType() {
-	        _super.apply(this, arguments);
-	    }
-	    ExternalType.prototype.externalInHierarchy = function () {
-	        return this;
-	    };
-	    ExternalType.prototype.typeId = function () {
-	        return this.schemaString;
-	    };
-	    ExternalType.prototype.schema = function () {
-	        return this.schemaString;
-	    };
-	    ExternalType.prototype.isUserDefined = function () {
-	        return true;
-	    };
-	    ExternalType.prototype.hasExternalInHierarchy = function () {
-	        return true;
-	    };
-	    ExternalType.prototype.isExternal = function () {
-	        return true;
-	    };
-	    ExternalType.prototype.external = function () {
-	        return this;
-	    };
-	    return ExternalType;
-	})(StructuredType);
-	exports.ExternalType = ExternalType;
-	var ExpandableExampleStub = (function () {
-	    function ExpandableExampleStub() {
-	    }
-	    ExpandableExampleStub.prototype.isEmpty = function () {
-	        return true;
-	    };
-	    ExpandableExampleStub.prototype.isJSONString = function () {
-	        return false;
-	    };
-	    ExpandableExampleStub.prototype.isXMLString = function () {
-	        return false;
-	    };
-	    ExpandableExampleStub.prototype.isYAML = function () {
-	        return false;
-	    };
-	    ExpandableExampleStub.prototype.asString = function () {
-	        return "";
-	    };
-	    ExpandableExampleStub.prototype.asJSON = function () {
-	        return null;
-	    };
-	    ExpandableExampleStub.prototype.original = function () {
-	        return null;
-	    };
-	    ExpandableExampleStub.prototype.expandAsString = function () {
-	        return null;
-	    };
-	    ExpandableExampleStub.prototype.expandAsJSON = function () {
-	        return null;
-	    };
-	    return ExpandableExampleStub;
-	})();
-	exports.ExpandableExampleStub = ExpandableExampleStub;
-
-
-/***/ },
-/* 64 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../../typings/main.d.ts" />
-	var hl = __webpack_require__(2);
-	var _ = __webpack_require__(4);
-	var linter = __webpack_require__(55);
-	var wrapperHelper = __webpack_require__(65);
-	function escapeUri(u) {
-	    var ss = "";
-	    var level = 0;
-	    for (var i = 0; i < u.length; i++) {
-	        var c = u.charAt(i);
-	        if (level == 0) {
-	            ss = ss + c;
-	        }
-	        if (c == '{') {
-	            level++;
-	        }
-	        if (c == '}') {
-	            level--;
-	        }
-	    }
-	    return ss;
-	}
-	var OverloadingValidator = (function () {
-	    function OverloadingValidator() {
-	        this.holder = {};
-	        this.conflicting = {};
-	    }
-	    OverloadingValidator.prototype.validateApi = function (q, v) {
-	        var _this = this;
-	        q.resources().forEach(function (x) {
-	            _this.acceptResource(x);
-	            x.resources().forEach(function (y) { return _this.acceptResource(y); });
-	        });
-	        for (var c in this.conflicting) {
-	            var ms = this.conflicting[c];
-	            //now we should layout parameters by items
-	            var overmapQuery = {};
-	            var overmapHeaders = {};
-	            var pushed = [];
-	            ms.forEach(function (m) {
-	                m.queryParameters().forEach(function (q) {
-	                    var key = q.name();
-	                    if (!q.required()) {
-	                        return;
-	                    }
-	                    var set = overmapQuery[key];
-	                    if (!set) {
-	                        set = [];
-	                        overmapQuery[key] = set;
-	                    }
-	                    set.push(m);
-	                    pushed.push(m);
-	                });
-	                m.headers().forEach(function (q) {
-	                    var key = q.name();
-	                    if (!q.required()) {
-	                        return;
-	                    }
-	                    var set = overmapHeaders[key];
-	                    if (!set) {
-	                        set = [];
-	                        overmapHeaders[key] = set;
-	                    }
-	                    set.push(m);
-	                    pushed.push(m);
-	                });
-	            });
-	            var notPushed = ms.filter(function (x) { return !_.find(pushed, function (y) { return y == x; }); });
-	            if (notPushed.length > 0) {
-	                notPushed.forEach(function (m) {
-	                    v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous", m.highLevel(), true));
-	                });
-	            }
-	            for (var key in overmapQuery) {
-	                var cm = overmapQuery[key];
-	                if (cm.length > 1) {
-	                    var over = {};
-	                    var pushed2 = [];
-	                    cm.forEach(function (m) {
-	                        var pr = _.find(m.queryParameters(), function (x) { return x.name() == key; });
-	                        if (pr['enum']) {
-	                            var ev = pr['enum']();
-	                            if (ev && ev.length > 0) {
-	                                ev.forEach(function (value) {
-	                                    var t = over[value];
-	                                    if (!t) {
-	                                        t = [];
-	                                        over[value] = t;
-	                                    }
-	                                    t.push(m);
-	                                    pushed2.push(m);
-	                                });
-	                            }
-	                        }
-	                    });
-	                    var notPushed2 = cm.filter(function (x) { return !_.find(pushed2, function (y) { return y == x; }); });
-	                    if (notPushed2.length > 0) {
-	                        notPushed2.forEach(function (m) {
-	                            v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous no domain restrictions", m.highLevel(), true));
-	                        });
-	                    }
-	                    for (var k in over) {
-	                        var rs = over[k];
-	                        if (rs.length > 1) {
-	                            rs.forEach(function (m) { return v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous ( enum value " + k + ")", m.highLevel(), true)); });
-	                        }
-	                    }
-	                }
-	            }
-	        }
-	    };
-	    OverloadingValidator.prototype.acceptResource = function (x) {
-	        var _this = this;
-	        x.methods().forEach(function (m) {
-	            _this.acceptMethod(x, m);
-	        });
-	    };
-	    OverloadingValidator.prototype.acceptMethod = function (x, m) {
-	        var uri = escapeUri(wrapperHelper.absoluteUri(x)) + m.method();
-	        var pos = this.holder[uri];
-	        if (!pos) {
-	            pos = [];
-	            this.holder[uri] = pos;
-	        }
-	        pos.push(m);
-	        if (pos.length > 1) {
-	            this.conflicting[uri] = pos;
-	        }
-	        //wrapperHelper.absoluteUri(m.parent().)
-	    };
-	    return OverloadingValidator;
-	})();
-	module.exports = OverloadingValidator;
-
-
-/***/ },
-/* 65 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var RamlWrapper = __webpack_require__(1);
-	var factory = __webpack_require__(66);
-	var core = __webpack_require__(67);
-	var ramlPathMatch = __webpack_require__(70);
-	var hl = __webpack_require__(2);
-	var hlimpl = __webpack_require__(5);
-	var linter = __webpack_require__(55);
-	var universeDef = __webpack_require__(54);
-	var universes = __webpack_require__(54);
-	var Opt = __webpack_require__(12);
-	var util = __webpack_require__(11);
-	var typeexpression = __webpack_require__(50);
-	var expander = __webpack_require__(77);
-	var lowLevelProxy = __webpack_require__(6);
-	var search = __webpack_require__(53);
-	var ll = __webpack_require__(15);
-	var json = __webpack_require__(8);
-	var path = __webpack_require__(16);
-	var ramlservices = __webpack_require__(49);
-	var example = __webpack_require__(114);
-	var universeHelpers = __webpack_require__(62);
-	var universeProvider = __webpack_require__(80);
-	function resolveType(p) {
-	    var tpe = typeexpression.typeFromNode(p.highLevel());
-	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
-	}
-	exports.resolveType = resolveType;
-	//__$helperMethod__ Runtime representation of type represented by this AST node
-	function runtimeType(p) {
-	    var tpe = typeexpression.typeFromNode(p.highLevel());
-	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
-	}
-	exports.runtimeType = runtimeType;
-	function load(pth) {
-	    var m = new ll.Project(path.dirname(pth));
-	    var unit = m.unit(path.basename(pth));
-	    if (unit) {
-	        if (unit.isRAMLUnit()) {
-	            return hl.fromUnit(unit).wrapperNode();
-	        }
-	    }
-	    return null;
-	}
-	exports.load = load;
-	//__$helperMethod__ Path relative to API root
-	function completeRelativeUri(res) {
-	    var uri = '';
-	    var parent = res;
-	    do {
-	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
-	        uri = res.relativeUri().value() + uri;
-	        parent = res.parent();
-	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
-	    return uri;
-	}
-	exports.completeRelativeUri = completeRelativeUri;
-	/**
-	 * __$helperMethod__
-	 * Equivalent API with traits and resource types expanded
-	 * __$meta__={"name":"expand"}
-	 **/
-	function expandTraitsAndResourceTypes(api) {
-	    var lowLevelNode = api.highLevel().lowLevel();
-	    if (lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode) {
-	        return api;
-	    }
-	    return expander.expandTraitsAndResourceTypes(api);
-	}
-	exports.expandTraitsAndResourceTypes = expandTraitsAndResourceTypes;
-	//__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
-	function absoluteUri(res) {
-	    var uri = '';
-	    var parent = res;
-	    do {
-	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
-	        uri = res.relativeUri().value() + uri;
-	        parent = res.parent();
-	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
-	    uri = uri.replace(/\/\//g, '/');
-	    var buri = parent.baseUri();
-	    var base = buri ? buri.value() : "";
-	    base = base ? base : '';
-	    if (util.stringEndsWith(base, '/')) {
-	        uri = uri.substring(1);
-	    }
-	    uri = base + uri;
-	    return uri;
-	}
-	exports.absoluteUri = absoluteUri;
-	//__$helperMethod__ validate an instance against type
-	function validateInstance(res, value) {
-	    var tv = new linter.TypeValidator(res.highLevel());
-	    var errors = [];
-	    var vl = {
-	        begin: function () {
-	        },
-	        accept: function (issue) {
-	            errors.push(issue.message);
-	        },
-	        end: function () {
-	        }
-	    };
-	    tv.validate(value, res.runtimeType(), vl, true);
-	    return errors;
-	}
-	exports.validateInstance = validateInstance;
-	function qName(c) {
-	    return hlimpl.qName(c.highLevel(), c.highLevel().root());
-	}
-	exports.qName = qName;
-	/**
-	 * __$helperMethod__
-	 * Retrieve all traits including those defined in libraries
-	 * __$meta__{"name":"traits","override":true}
-	 **/
-	function traitsPrimary(a) {
-	    return allTraits(a);
-	}
-	exports.traitsPrimary = traitsPrimary;
-	//__$helperMethod__ Retrieve all traits including those defined in libraries
-	function allTraits(a) {
-	    return findTemplates(a, function (d) { return universeHelpers.isTraitType(d); });
-	}
-	exports.allTraits = allTraits;
-	/**
-	 * __$helperMethod__
-	 * Retrieve all resource types including those defined in libraries
-	 * __$meta__{"name":"resourceTypes","override":true}
-	 **/
-	function resourceTypesPrimary(a) {
-	    return allResourceTypes(a);
-	}
-	exports.resourceTypesPrimary = resourceTypesPrimary;
-	//__$helperMethod__ Retrieve all resource types including those defined in libraries
-	function allResourceTypes(a) {
-	    return findTemplates(a, function (d) { return universeHelpers.isResourceTypeType(d); });
-	}
-	exports.allResourceTypes = allResourceTypes;
-	function findTemplates(a, filter) {
-	    var arr = search.globalDeclarations(a.highLevel()).filter(function (x) { return filter(x.definition()); });
-	    var ll = a.highLevel().lowLevel();
-	    var nodePath = ll.includePath();
-	    if (!nodePath) {
-	        nodePath = ll.unit().path();
-	    }
-	    var topLevelArr = arr.map(function (x) {
-	        var topLevelNode;
-	        var p = x.lowLevel().unit().path();
-	        if (p != nodePath) {
-	            topLevelNode = factory.buildWrapperNode(x, false);
-	            topLevelNode.meta().setCalculated();
-	        }
-	        else {
-	            topLevelNode = x.wrapperNode();
-	        }
-	        return topLevelNode;
-	    });
-	    return topLevelArr;
-	}
-	;
-	function relativeUriSegments(res) {
-	    var result = [];
-	    var parent = res;
-	    do {
-	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
-	        result.push(res.relativeUri().value());
-	        parent = res.parent();
-	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
-	    return result.reverse();
-	}
-	exports.relativeUriSegments = relativeUriSegments;
-	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-	function parentResource(method) {
-	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
-	        return method.parent();
-	    }
-	    return null;
-	}
-	exports.parentResource = parentResource;
-	/**
-	 * __$helperMethod__
-	 * Parent resource for non top level resources
-	 * __$meta__={"name":"parentResource"}
-	 **/
-	function parent(resource) {
-	    var parent = resource.parent();
-	    if (parent.definition().key().name == universes.Universe10.Resource.name) {
-	        return parent;
-	    }
-	    return null;
-	}
-	exports.parent = parent;
-	//__$helperMethod__ Get child resource by its relative path
-	function childResource(container, relPath) {
-	    if (container == null) {
-	        return null;
-	    }
-	    var resources = container.resources();
-	    if (!resources) {
-	        return null;
-	    }
-	    resources = resources.filter(function (x) { return x.relativeUri().value() == relPath; });
-	    if (resources.length == 0) {
-	        return null;
-	    }
-	    return resources[0];
-	}
-	exports.childResource = childResource;
-	function getResource(container, path) {
-	    if (!container) {
-	        return null;
-	    }
-	    var res = null;
-	    for (var i = 0; i < path.length; i++) {
-	        res = childResource(container, path[i]);
-	        if (!res) {
-	            return null;
-	        }
-	        container = res;
-	    }
-	    return res;
-	}
-	exports.getResource = getResource;
-	//__$helperMethod__ Get child method by its name
-	function childMethod(resource, method) {
-	    if (!resource) {
-	        return null;
-	    }
-	    return resource.methods().filter(function (x) { return x.method() == method; });
-	}
-	exports.childMethod = childMethod;
-	function getMethod(container, path, method) {
-	    var resource = getResource(container, path);
-	    if (!resource) {
-	        return null;
-	    }
-	    return childMethod(resource, method);
-	}
-	exports.getMethod = getMethod;
-	function isApi(obj) {
-	    return universeHelpers.isApiSibling(obj.definition());
-	}
-	;
-	//__$helperMethod__ Api owning the resource as a sibling
-	function ownerApi(method) {
-	    var obj = method;
-	    while (!isApi(obj)) {
-	        obj = obj.parent();
-	    }
-	    return obj;
-	}
-	exports.ownerApi = ownerApi;
-	/**
-	 * __$helperMethod__
-	 * For methods of Resources: `{parent Resource relative path} {methodName}`.
-	 * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-	 * For other methods throws Exception.
-	 **/
-	function methodId(method) {
-	    var parent = method.parent();
-	    if (parent instanceof RamlWrapper.ResourceImpl) {
-	        return completeRelativeUri(parent) + ' ' + method.method().toLowerCase();
-	    }
-	    else if (parent instanceof RamlWrapper.ResourceTypeImpl) {
-	        return parent.name() + ' ' + method.method().toLowerCase();
-	    }
-	    throw new Error("Method is supposed to be owned by Resource or ResourceType.\nHere the method is owned by " + method.definition().key().name);
-	}
-	exports.methodId = methodId;
-	//__$helperMethod__ true for codes < 400 and false otherwise
-	function isOkRange(response) {
-	    var str = response.code().value();
-	    var err = ramlservices.validateResponseString(str);
-	    if (err != null) {
-	        return false;
-	    }
-	    try {
-	        if (parseInt(str.charAt(0)) < 4) {
-	            return true;
-	        }
-	    }
-	    catch (e) {
-	    }
-	    return false;
-	}
-	exports.isOkRange = isOkRange;
-	//__$helperMethod__  Retrieve all resources of the Api
-	function allResources(api) {
-	    var resources = [];
-	    var visitor = function (res) {
-	        resources.push(res);
-	        res.resources().forEach(function (x) { return visitor(x); });
-	    };
-	    api.resources().forEach(function (x) { return visitor(x); });
-	    return resources;
-	}
-	exports.allResources = allResources;
-	function matchUri(apiRootRelativeUri, resource) {
-	    var allParameters = {};
-	    while (resource != null) {
-	        uriParameters(resource).forEach(function (x) { return allParameters[x.name()] = new ParamWrapper(x); });
-	        resource = parent(resource);
-	    }
-	    var result = ramlPathMatch(completeRelativeUri(resource), allParameters, {})(apiRootRelativeUri);
-	    if (result) {
-	        return new Opt(Object.keys(result.params).map(function (x) { return new ParamValue(x, result['params'][x]); }));
-	    }
-	    return Opt.empty();
-	}
-	exports.matchUri = matchUri;
-	var schemaContentChars = ['{', '<'];
-	function schema(body, api) {
-	    var schemaNode = body.schema();
-	    if (!schemaNode) {
-	        return Opt.empty();
-	    }
-	    var schemaString = schemaNode;
-	    var isContent = false;
-	    schemaContentChars.forEach(function (x) {
-	        try {
-	            isContent = isContent || schemaString.indexOf(x) >= 0;
-	        }
-	        catch (e) {
-	        }
-	    });
-	    var schDef;
-	    if (isContent) {
-	        schDef = new SchemaDef(schemaString);
-	    }
-	    else {
-	        var globalSchemes = api.schemas().filter(function (x) { return x.key() == schemaString; });
-	        if (globalSchemes.length > 0) {
-	            schDef = new SchemaDef(globalSchemes[0].value().value(), globalSchemes[0].key());
-	        }
-	        else {
-	            return Opt.empty();
-	        }
-	    }
-	    return new Opt(schDef);
-	}
-	exports.schema = schema;
-	/**
-	 * __$helperMethod__
-	 * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-	 * Consider a fragment of RAML specification:
-	 * ```yaml
-	 * /resource/{objectId}/{propertyId}:
-	 *   uriParameters:
-	 *     objectId:
-	 * ```
-	 * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-	 * but it is among Resource.uriParameters().
-	 * __$meta__={"name":"uriParameters","override": true}
-	 **/
-	function uriParametersPrimary(resource) {
-	    return uriParameters(resource);
-	}
-	exports.uriParametersPrimary = uriParametersPrimary;
-	/**
-	 * __$helperMethod__
-	 * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-	 * Consider a fragment of RAML specification:
-	 * ```yaml
-	 * /resource/{objectId}/{propertyId}:
-	 *   uriParameters:
-	 *     objectId:
-	 * ```
-	 * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-	 * but it is among Resource.allUriParameters().
-	 * __$meta__={"name":"allUriParameters"}
-	 **/
-	function uriParameters(resource) {
-	    var params = resource.uriParameters_original();
-	    if (!(resource instanceof RamlWrapper.ResourceImpl)) {
-	        return params;
-	    }
-	    var uri = resource.relativeUri().value();
-	    var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
-	    return extractParams(params, uri, resource, propName);
-	}
-	exports.uriParameters = uriParameters;
-	/**
-	 * __$helperMethod__
-	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	 * Consider a fragment of RAML specification:
-	 * ```yaml
-	 * version: v1
-	 * baseUri: https://{organization}.example.com/{version}/{service}
-	 * baseUriParameters:
-	 *   service:
-	 * ```
-	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
-	 * but they are among `Api.baseUriParameters()`.
-	 * __$meta__={"name":"baseUriParameters","override":true}
-	 **/
-	function baseUriParametersPrimary(api) {
-	    return baseUriParameters(api);
-	}
-	exports.baseUriParametersPrimary = baseUriParametersPrimary;
-	/**
-	 * __$helperMethod__
-	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	 * Consider a fragment of RAML specification:
-	 * ```yaml
-	 * version: v1
-	 * baseUri: https://{organization}.example.com/{version}/{service}
-	 * baseUriParameters:
-	 *   service:
-	 * ```
-	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
-	 * but they are among `Api.allBaseUriParameters()`.
-	 * __$meta__={"name":"allBaseUriParameters"}
-	 **/
-	function baseUriParameters(api) {
-	    var uri = api.baseUri() ? api.baseUri().value() : '';
-	    var params = api.baseUriParameters_original();
-	    var propName = universes.Universe10.Api.properties.baseUriParameters.name;
-	    return extractParams(params, uri, api, propName);
-	}
-	exports.baseUriParameters = baseUriParameters;
-	/**
-	 * __$helperMethod__
-	 * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.baseUriParameters()`
-	 * for `Api` owning the `Resource` and `Resource.uriParameters()`.
-	 **/
-	function absoluteUriParameters(res) {
-	    var params = [];
-	    var parent = res;
-	    do {
-	        res = parent;
-	        params = uriParameters(res).concat(params);
-	        parent = res.parent();
-	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
-	    var api = parent;
-	    var baseUri = api.baseUri().value();
-	    var baseUriParams = api.baseUriParameters();
-	    params = baseUriParameters(api).concat(params);
-	    return params;
-	}
-	exports.absoluteUriParameters = absoluteUriParameters;
-	/**
-	 * __$helperMethod__
-	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
-	 * Otherwise, returns protocol, specified in the base URI.
-	 * __$meta__={"name":"protocols","override":true}
-	 **/
-	function protocolsPrimary(api) {
-	    return allProtocols(api);
-	}
-	exports.protocolsPrimary = protocolsPrimary;
-	/**
-	 * __$helperMethod__
-	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
-	 * Otherwise, returns protocol, specified in the base URI.
-	 **/
-	function allProtocols(api) {
-	    var attributeDefaults = api.attributeDefaults();
-	    var result = api.protocols_original();
-	    if (result.length != 0 || !attributeDefaults) {
-	        return result;
-	    }
-	    var baseUriAttr = api.baseUri();
-	    if (baseUriAttr) {
-	        var baseUri = baseUriAttr.value();
-	        if (baseUri) {
-	            var ind = baseUri.indexOf('://');
-	            if (ind >= 0) {
-	                result = [baseUri.substring(0, ind)];
-	            }
-	            if (result.length == 0) {
-	                result = ['HTTP'];
-	            }
-	        }
-	    }
-	    return result;
-	}
-	exports.allProtocols = allProtocols;
-	/**
-	 * __$helperMethod__
-	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-	 * returns schemes defined with `securedBy` at API level.
-	 * __$meta__={"name":"securedBy","override":true}
-	 **/
-	function securedByPrimary(resourceOrMethod) {
-	    return allSecuredBy(resourceOrMethod);
-	}
-	exports.securedByPrimary = securedByPrimary;
-	/**
-	 * __$helperMethod__
-	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-	 * returns schemes defined with `securedBy` at API level.
-	 **/
-	function allSecuredBy(resourceOrMethod) {
-	    var currentSecuredBy = resourceOrMethod.securedBy_original();
-	    if (currentSecuredBy && currentSecuredBy.length > 0) {
-	        return currentSecuredBy;
-	    }
-	    //instanceof, but have to avoid direct usage of instanceof in JS.
-	    var key = resourceOrMethod.highLevel().definition().key();
-	    if (key == universes.Universe10.Method) {
-	        var method = resourceOrMethod;
-	        var resource = method.parentResource();
-	        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
-	            return resource.securedBy_original();
-	        }
-	        return method.ownerApi().securedBy();
-	    }
-	    if (key == universes.Universe10.Resource) {
-	        return resourceOrMethod.ownerApi().securedBy();
-	    }
-	    return currentSecuredBy;
-	}
-	exports.allSecuredBy = allSecuredBy;
-	//export function allSecuredBy(resourceOrMethod : RamlWrapper.ResourceBase | RamlWrapper.Method):RamlWrapper.SecuritySchemeRef[] {
-	//    var currentSecuredBy:RamlWrapper.SecuritySchemeRef[];
-	//    var key = resourceOrMethod.highLevel().definition().key();
-	//    if (key == universes.Universe10.Method){
-	//        currentSecuredBy = (<RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
-	//    }
-	//    else{
-	//        currentSecuredBy = (<RamlWrapper.ResourceBaseImpl>resourceOrMethod).securedBy_original();
-	//    }
-	//    if (currentSecuredBy && currentSecuredBy.length > 0) {
-	//        return currentSecuredBy;
-	//    }
-	//
-	//    //instanceof, but have to avoid direct usage of instanceof in JS.
-	//    if (key == universes.Universe10.Method) {
-	//        var method = (<RamlWrapper.Method>resourceOrMethod);
-	//        var resource = <RamlWrapper.ResourceImpl>method.parentResource();
-	//        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
-	//            return resource.securedBy();
-	//        }
-	//        return method.ownerApi().securedBy();
-	//    }
-	//    if (key == universes.Universe10.Resource){
-	//        return (<RamlWrapper.ResourceImpl>resourceOrMethod).ownerApi().securedBy();
-	//    }
-	//    return currentSecuredBy;
-	//}
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"primary":true}
-	 **/
-	function securitySchemeName(schemeReference) {
-	    var highLevel = schemeReference.highLevel();
-	    if (!highLevel)
-	        return "";
-	    var attributeValue = highLevel.value();
-	    if (!attributeValue)
-	        return "";
-	    return attributeValue.toString();
-	}
-	exports.securitySchemeName = securitySchemeName;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"primary":true}
-	 **/
-	function securityScheme(schemeReference) {
-	    var highLevel = schemeReference.highLevel();
-	    if (!highLevel)
-	        return null;
-	    var declaration = search.findDeclarationByNode(highLevel, 0 /* VALUE_COMPLETION */);
-	    if (!declaration)
-	        return null;
-	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
-	        return null;
-	    }
-	    var result = declaration.wrapperNode();
-	    if (!(result instanceof RamlWrapper.AbstractSecuritySchemeImpl)) {
-	        //I do not see how to avoid instanceof here
-	        return null;
-	    }
-	    return result;
-	}
-	exports.securityScheme = securityScheme;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"primary":true}
-	 **/
-	function RAMLVersion(api) {
-	    return api.highLevel().definition().universe().version();
-	}
-	exports.RAMLVersion = RAMLVersion;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"primary":true}
-	 **/
-	function structuredValue(reference) {
-	    var hl = reference.value().lowLevel();
-	    return new core.TypeInstanceImpl(hl);
-	}
-	exports.structuredValue = structuredValue;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"name","primary":true}
-	 **/
-	function referenceName(reference) {
-	    var val = reference.highLevel().value();
-	    return typeof val == 'string' ? val : val.valueName();
-	}
-	exports.referenceName = referenceName;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"trait","primary":true}
-	 **/
-	function referencedTrait(ref) {
-	    return referencedObject(ref);
-	}
-	exports.referencedTrait = referencedTrait;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"annotation","primary":true}
-	 **/
-	function referencedAnnotation(ref) {
-	    return referencedObject(ref);
-	}
-	exports.referencedAnnotation = referencedAnnotation;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"resourceType","primary":true}
-	 **/
-	function referencedResourceType(ref) {
-	    return referencedObject(ref);
-	}
-	exports.referencedResourceType = referencedResourceType;
-	function referencedObject(ref) {
-	    var attr = ref.highLevel();
-	    var parent = attr.parent();
-	    var vn = ref.name();
-	    var cands = attr.property().getAdapter(ramlservices.RAMLPropertyService).referenceTargets(parent).filter(function (x) { return hlimpl.qName(x, parent) == vn; });
-	    if (cands.length == 0) {
-	        return null;
-	    }
-	    return cands[0].wrapperNode();
-	}
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"example","override":true}
-	 **/
-	function getTypeExample(td) {
-	    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
-	    return attrToExampleString(attr);
-	}
-	exports.getTypeExample = getTypeExample;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"structuredExample","primary":true}
-	 **/
-	function getTypeStructuredExample(td) {
-	    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
-	    return exampleAttrToTypeInstance(attr);
-	}
-	exports.getTypeStructuredExample = getTypeStructuredExample;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"content","override":true}
-	 **/
-	function getExampleStringContent(td) {
-	    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-	    return attrToExampleString(attr);
-	}
-	exports.getExampleStringContent = getExampleStringContent;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"structuredContent","primary":true}
-	 **/
-	function getExampleStructuredContent(td) {
-	    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-	    return exampleAttrToTypeInstance(attr);
-	}
-	exports.getExampleStructuredContent = getExampleStructuredContent;
-	function attrToExampleString(attr) {
-	    if (!attr) {
-	        return null;
-	    }
-	    var val = attr.value();
-	    if (typeof val == 'string') {
-	        return val;
-	    }
-	    return new example.ExpandableExampleImpl(attr).asString();
-	}
-	function exampleAttrToTypeInstance(attr) {
-	    if (!attr) {
-	        return null;
-	    }
-	    var val = attr.value();
-	    var expandable = new example.ExpandableExampleImpl(attr);
-	    if (expandable.isYAML()) {
-	        return new core.TypeInstanceImpl(attr.lowLevel());
-	    }
-	    var obj = expandable.asJSON();
-	    if (!obj) {
-	        return null;
-	    }
-	    var llNode = attr.lowLevel();
-	    var jsonNode = new json.AstNode(llNode.unit(), obj, llNode.parent(), null, llNode.key());
-	    return new core.TypeInstanceImpl(jsonNode);
-	}
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"fixedFacets","primary":true}
-	 **/
-	function typeFixedFacets(td) {
-	    var fixedFacetAttrs = td.highLevel().attrs().filter(function (x) {
-	        var prop = x.property();
-	        var domain = prop.domain();
-	        var domAdapter = domain.getAdapter(ramlservices.RAMLService);
-	        if (!domAdapter.isUserDefined()) {
-	            return false;
-	        }
-	        var range = prop.range();
-	        var rangeAdapter = range.getAdapter(ramlservices.RAMLService);
-	        if (rangeAdapter.isAnnotation()) {
-	            return false;
-	        }
-	        return true;
-	    });
-	    return new core.TypeInstanceImpl(fixedFacetAttrs.map(function (x) { return x.lowLevel(); }));
-	}
-	exports.typeFixedFacets = typeFixedFacets;
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"primary":true}
-	 **/
-	function schemaContent(typeDeclaration) {
-	    var schemaString = typeDeclaration.schema();
-	    if (!schemaString) {
-	        return null;
-	    }
-	    var schemaAttribute = typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
-	    if (!schemaAttribute) {
-	        return schemaString;
-	    }
-	    var declaration = search.findDeclarationByNode(schemaAttribute, 0 /* VALUE_COMPLETION */);
-	    if (!declaration)
-	        return schemaString;
-	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
-	        return schemaString;
-	    }
-	    //we found the schema declaration and should get its contents
-	    if (declaration.definition().key() != universes.Universe10.GlobalSchema) {
-	        return null;
-	    }
-	    var valueAttribute = declaration.attr(universes.Universe10.GlobalSchema.properties.value.name);
-	    if (valueAttribute == null) {
-	        return null;
-	    }
-	    return valueAttribute.value();
-	}
-	exports.schemaContent = schemaContent;
-	function extractParams(params, uri, owner, propName) {
-	    var ownerHl = owner.highLevel();
-	    var prop = ownerHl.definition().property(propName);
-	    if (!uri) {
-	        return [];
-	    }
-	    var describedParams = {};
-	    params.forEach(function (x) {
-	        var arr = describedParams[x.name()];
-	        if (!arr) {
-	            arr = [];
-	            describedParams[x.name()] = arr;
-	        }
-	        arr.push(x);
-	    });
-	    var allParams = [];
-	    var prev = 0;
-	    var mentionedParams = {};
-	    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
-	        prev = uri.indexOf('}', ++i);
-	        var paramName = uri.substring(i, prev);
-	        mentionedParams[paramName] = true;
-	        if (describedParams[paramName]) {
-	            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
-	        }
-	        else {
-	            var universe = universeProvider("RAML10");
-	            var nc = universe.type(universeDef.Universe10.TypeDeclaration.name);
-	            var node = nc.getAdapter(ramlservices.RAMLService).createStubNode(null, paramName);
-	            var uriParameter = factory.buildWrapperNode(node);
-	            var hlNode = uriParameter.highLevel();
-	            hlNode.setParent(ownerHl);
-	            uriParameter.meta().setCalculated();
-	            uriParameter.setName(paramName);
-	            hlNode.patchProp(prop);
-	            allParams.push(uriParameter);
-	        }
-	    }
-	    Object.keys(describedParams).filter(function (x) { return !mentionedParams[x]; }).forEach(function (x) { return describedParams[x].forEach(function (y) { return allParams.push(y); }); });
-	    return allParams;
-	}
-	;
-	var SchemaDef = (function () {
-	    function SchemaDef(_content, _name) {
-	        this._content = _content;
-	        this._name = _name;
-	    }
-	    SchemaDef.prototype.name = function () {
-	        return this._name;
-	    };
-	    SchemaDef.prototype.content = function () {
-	        return this._content;
-	    };
-	    return SchemaDef;
-	})();
-	exports.SchemaDef = SchemaDef;
-	var ParamValue = (function () {
-	    function ParamValue(key, value) {
-	        this.key = key;
-	        this.value = value;
-	    }
-	    return ParamValue;
-	})();
-	exports.ParamValue = ParamValue;
-	var ParamWrapper = (function () {
-	    function ParamWrapper(_param) {
-	        this._param = _param;
-	        this.description = _param.description() ? _param.description().value() : this.description;
-	        this.displayName = _param.displayName();
-	        //        this.enum = _param.enum();
-	        this.type = _param.type().length > 0 ? _param.type()[0] : "string";
-	        this.example = _param.example();
-	        this.repeat = _param.repeat();
-	        this.required = _param.required();
-	        this.default = _param.default();
-	    }
-	    return ParamWrapper;
-	})();
-	/**
-	 * __$helperMethod__
-	 * __$meta__={"name":"meta"}
-	 **/
-	function apiMetadata(api) {
-	    var apiImpl = api;
-	    var meta = core.fillElementMeta(apiImpl);
-	    var protocolsOriginal = apiImpl.protocols_original();
-	    if (protocolsOriginal.length == 0) {
-	        var protocols = apiImpl.protocols();
-	        if (protocols.length != 0) {
-	            meta.registerCalculatedValue(universes.Universe10.Api.properties.protocols.name);
-	        }
-	    }
-	    return meta;
-	}
-	exports.apiMetadata = apiMetadata;
-
-
-/***/ },
-/* 66 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var RamlWrapper = __webpack_require__(1);
-	/**
-	 * @hidden
-	 * Build Wrapper node corresponding to the High Level node
-	 **/
-	function buildWrapperNode(node, setAsTopLevel) {
-	    if (setAsTopLevel === void 0) { setAsTopLevel = true; }
-	    var definition = node.definition();
-	    var nodeClassName = definition.nameId();
-	    var wrapperConstructor = classMap[nodeClassName];
-	    if (!wrapperConstructor) {
-	        var priorities = determineSuperclassesPriorities(definition);
-	        var superTypes = definition.allSuperTypes().sort(function (x, y) { return priorities[x.nameId()] - priorities[y.nameId()]; });
-	        var wr = null;
-	        for (var i = 0; i < superTypes.length; i++) {
-	            var superTypeName = superTypes[i].nameId();
-	            wrapperConstructor = classMap[superTypeName];
-	            if (superTypeName == "DataElement") {
-	                wr = superTypeName;
-	                continue;
-	            }
-	            if (superTypeName == "RAMLLanguageElement") {
-	                continue;
-	            }
-	            if (wrapperConstructor) {
-	                break;
-	            }
-	        }
-	        if (!wrapperConstructor) {
-	            wr = superTypeName;
-	        }
-	    }
-	    if (!wrapperConstructor) {
-	        wrapperConstructor = classMap["RAMLLanguageElement"];
-	    }
-	    return wrapperConstructor(node, setAsTopLevel);
-	}
-	exports.buildWrapperNode = buildWrapperNode;
-	function determineSuperclassesPriorities(td, priorities, path) {
-	    if (priorities === void 0) { priorities = {}; }
-	    if (path === void 0) { path = {}; }
-	    var typeName = td.nameId();
-	    if (path[typeName]) {
-	        return;
-	    }
-	    path[typeName] = true;
-	    var rank = (priorities[typeName] != null && priorities[typeName] + 1) || 0;
-	    var superTypes = td.superTypes();
-	    superTypes.forEach(function (x) {
-	        var name = x.nameId();
-	        var r = priorities[name];
-	        if (r == null || rank > r) {
-	            priorities[name] = rank;
-	            determineSuperclassesPriorities(x, priorities, path);
-	        }
-	    });
-	    delete path[typeName];
-	    return priorities;
-	}
-	var classMap = {
-	    "AbstractSecurityScheme": function (x, y) {
-	        return new RamlWrapper.AbstractSecuritySchemeImpl(x, y);
-	    },
-	    "AnnotationRef": function (x) {
-	        return new RamlWrapper.AnnotationRefImpl(x);
-	    },
-	    "AnnotationTarget": function (x) {
-	        return new RamlWrapper.AnnotationTargetImpl(x);
-	    },
-	    "AnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.AnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "AnyType": function (x) {
-	        return new RamlWrapper.AnyTypeImpl(x);
-	    },
-	    "Api": function (x, y) {
-	        return new RamlWrapper.ApiImpl(x, y);
-	    },
-	    "ArrayAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ArrayAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "ArrayTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ArrayTypeDeclarationImpl(x, y);
-	    },
-	    "BasicSecurityScheme": function (x, y) {
-	        return new RamlWrapper.BasicSecuritySchemeImpl(x, y);
-	    },
-	    "BooleanAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.BooleanAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "BooleanType": function (x) {
-	        return new RamlWrapper.BooleanTypeImpl(x);
-	    },
-	    "BooleanTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.BooleanTypeDeclarationImpl(x, y);
-	    },
-	    "ContentType": function (x) {
-	        return new RamlWrapper.ContentTypeImpl(x);
-	    },
-	    "CustomSecurityScheme": function (x, y) {
-	        return new RamlWrapper.CustomSecuritySchemeImpl(x, y);
-	    },
-	    "DateFormatSpec": function (x) {
-	        return new RamlWrapper.DateFormatSpecImpl(x);
-	    },
-	    "DateTypeAnnotationDeclaration": function (x, y) {
-	        return new RamlWrapper.DateTypeAnnotationDeclarationImpl(x, y);
-	    },
-	    "DateTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.DateTypeDeclarationImpl(x, y);
-	    },
-	    "DigestSecurityScheme": function (x, y) {
-	        return new RamlWrapper.DigestSecuritySchemeImpl(x, y);
-	    },
-	    "DocumentationItem": function (x, y) {
-	        return new RamlWrapper.DocumentationItemImpl(x, y);
-	    },
-	    "ExampleSpec": function (x, y) {
-	        return new RamlWrapper.ExampleSpecImpl(x, y);
-	    },
-	    "ExampleString": function (x) {
-	        return new RamlWrapper.ExampleStringImpl(x);
-	    },
-	    "Extension": function (x, y) {
-	        return new RamlWrapper.ExtensionImpl(x, y);
-	    },
-	    "FileTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.FileTypeDeclarationImpl(x, y);
-	    },
-	    "FixedUriString": function (x) {
-	        return new RamlWrapper.FixedUriStringImpl(x);
-	    },
-	    "FullUriTemplateString": function (x) {
-	        return new RamlWrapper.FullUriTemplateStringImpl(x);
-	    },
-	    "FunctionalInterface": function (x) {
-	        return new RamlWrapper.FunctionalInterfaceImpl(x);
-	    },
-	    "GlobalSchema": function (x, y) {
-	        return new RamlWrapper.GlobalSchemaImpl(x, y);
-	    },
-	    "HasNormalParameters": function (x, y) {
-	        return new RamlWrapper.HasNormalParametersImpl(x, y);
-	    },
-	    "ImportDeclaration": function (x, y) {
-	        return new RamlWrapper.ImportDeclarationImpl(x, y);
-	    },
-	    "IntegerTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.IntegerTypeDeclarationImpl(x, y);
-	    },
-	    "JSonSchemaString": function (x) {
-	        return new RamlWrapper.JSonSchemaStringImpl(x);
-	    },
-	    "Library": function (x, y) {
-	        return new RamlWrapper.LibraryImpl(x, y);
-	    },
-	    "LibraryBase": function (x, y) {
-	        return new RamlWrapper.LibraryBaseImpl(x, y);
-	    },
-	    "LocationKind": function (x) {
-	        return new RamlWrapper.LocationKindImpl(x);
-	    },
-	    "MarkdownString": function (x) {
-	        return new RamlWrapper.MarkdownStringImpl(x);
-	    },
-	    "Method": function (x, y) {
-	        return new RamlWrapper.MethodImpl(x, y);
-	    },
-	    "MethodBase": function (x, y) {
-	        return new RamlWrapper.MethodBaseImpl(x, y);
-	    },
-	    "MimeType": function (x) {
-	        return new RamlWrapper.MimeTypeImpl(x);
-	    },
-	    "ModelLocation": function (x) {
-	        return new RamlWrapper.ModelLocationImpl(x);
-	    },
-	    "NumberAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.NumberAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "NumberType": function (x) {
-	        return new RamlWrapper.NumberTypeImpl(x);
-	    },
-	    "NumberTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.NumberTypeDeclarationImpl(x, y);
-	    },
-	    "OAuth1SecurityScheme": function (x, y) {
-	        return new RamlWrapper.OAuth1SecuritySchemeImpl(x, y);
-	    },
-	    "OAuth1SecuritySchemeSettings": function (x, y) {
-	        return new RamlWrapper.OAuth1SecuritySchemeSettingsImpl(x, y);
-	    },
-	    "OAuth2SecurityScheme": function (x, y) {
-	        return new RamlWrapper.OAuth2SecuritySchemeImpl(x, y);
-	    },
-	    "OAuth2SecuritySchemeSettings": function (x, y) {
-	        return new RamlWrapper.OAuth2SecuritySchemeSettingsImpl(x, y);
-	    },
-	    "ObjectAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ObjectAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "ObjectTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ObjectTypeDeclarationImpl(x, y);
-	    },
-	    "Overlay": function (x, y) {
-	        return new RamlWrapper.OverlayImpl(x, y);
-	    },
-	    "PassThroughSecurityScheme": function (x, y) {
-	        return new RamlWrapper.PassThroughSecuritySchemeImpl(x, y);
-	    },
-	    "PassThroughSecuritySchemeSettings": function (x, y) {
-	        return new RamlWrapper.PassThroughSecuritySchemeSettingsImpl(x, y);
-	    },
-	    "RAMLExpression": function (x, y) {
-	        return new RamlWrapper.RAMLExpressionImpl(x, y);
-	    },
-	    "RAMLExpressionAnnotation": function (x, y) {
-	        return new RamlWrapper.RAMLExpressionAnnotationImpl(x, y);
-	    },
-	    "RAMLLanguageElement": function (x, y) {
-	        return new RamlWrapper.RAMLLanguageElementImpl(x, y);
-	    },
-	    "RAMLSelector": function (x) {
-	        return new RamlWrapper.RAMLSelectorImpl(x);
-	    },
-	    "RAMLSimpleElement": function (x, y) {
-	        return new RamlWrapper.RAMLSimpleElementImpl(x, y);
-	    },
-	    "Reference": function (x) {
-	        return new RamlWrapper.ReferenceImpl(x);
-	    },
-	    "RelativeUriString": function (x) {
-	        return new RamlWrapper.RelativeUriStringImpl(x);
-	    },
-	    "Resource": function (x, y) {
-	        return new RamlWrapper.ResourceImpl(x, y);
-	    },
-	    "ResourceBase": function (x, y) {
-	        return new RamlWrapper.ResourceBaseImpl(x, y);
-	    },
-	    "ResourceType": function (x, y) {
-	        return new RamlWrapper.ResourceTypeImpl(x, y);
-	    },
-	    "ResourceTypeRef": function (x) {
-	        return new RamlWrapper.ResourceTypeRefImpl(x);
-	    },
-	    "Response": function (x, y) {
-	        return new RamlWrapper.ResponseImpl(x, y);
-	    },
-	    "SchemaElement": function (x, y) {
-	        return new RamlWrapper.SchemaElementImpl(x, y);
-	    },
-	    "SchemaString": function (x) {
-	        return new RamlWrapper.SchemaStringImpl(x);
-	    },
-	    "SecuritySchemePart": function (x, y) {
-	        return new RamlWrapper.SecuritySchemePartImpl(x, y);
-	    },
-	    "SecuritySchemeRef": function (x) {
-	        return new RamlWrapper.SecuritySchemeRefImpl(x);
-	    },
-	    "SecuritySchemeSettings": function (x, y) {
-	        return new RamlWrapper.SecuritySchemeSettingsImpl(x, y);
-	    },
-	    "StatusCodeString": function (x) {
-	        return new RamlWrapper.StatusCodeStringImpl(x);
-	    },
-	    "StringAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.StringAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "StringType": function (x) {
-	        return new RamlWrapper.StringTypeImpl(x);
-	    },
-	    "StringTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.StringTypeDeclarationImpl(x, y);
-	    },
-	    "Trait": function (x, y) {
-	        return new RamlWrapper.TraitImpl(x, y);
-	    },
-	    "TraitRef": function (x) {
-	        return new RamlWrapper.TraitRefImpl(x);
-	    },
-	    "TypeDeclaration": function (x, y) {
-	        return new RamlWrapper.TypeDeclarationImpl(x, y);
-	    },
-	    "UnionAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.UnionAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "UnionTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.UnionTypeDeclarationImpl(x, y);
-	    },
-	    "UriTemplate": function (x) {
-	        return new RamlWrapper.UriTemplateImpl(x);
-	    },
-	    "ValidityExpression": function (x) {
-	        return new RamlWrapper.ValidityExpressionImpl(x);
-	    },
-	    "ValueAnnotationTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ValueAnnotationTypeDeclarationImpl(x, y);
-	    },
-	    "ValueType": function (x) {
-	        return new RamlWrapper.ValueTypeImpl(x);
-	    },
-	    "ValueTypeDeclaration": function (x, y) {
-	        return new RamlWrapper.ValueTypeDeclarationImpl(x, y);
-	    },
-	    "XMLSchemaString": function (x) {
-	        return new RamlWrapper.XMLSchemaStringImpl(x);
-	    }
-	};
-
-
-/***/ },
-/* 67 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	var hlImpl = __webpack_require__(5);
-	var jsyaml = __webpack_require__(15);
-	var ramlService = __webpack_require__(49);
-	var json2lowlevel = __webpack_require__(8);
-	var defaultCalculator = __webpack_require__(68);
-	var yaml = __webpack_require__(7);
-	var search = __webpack_require__(53);
-	var universeHelpers = __webpack_require__(62);
-	var tckDumper = __webpack_require__(69);
-	var BasicNodeImpl = (function () {
-	    /**
-	     * @hidden
-	     **/
-	    function BasicNodeImpl(_node, setAsWrapper) {
-	        if (setAsWrapper === void 0) { setAsWrapper = true; }
-	        this._node = _node;
-	        this._meta = new NodeMetadataImpl(false, false, this.optional());
-	        if (setAsWrapper) {
-	            _node.setWrapperNode(this);
-	        }
-	    }
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.wrapperClassName = function () {
-	        return 'BasicNodeImpl';
-	    };
-	    BasicNodeImpl.prototype.kind = function () {
-	        return 'BasicNode';
-	    };
-	    /**
-	     * @return Direct ancestor in RAML hierarchy
-	     **/
-	    BasicNodeImpl.prototype.parent = function () {
-	        var parent = this._node.parent();
-	        return parent ? parent.wrapperNode() : null;
-	    };
-	    /**
-	     * @hidden
-	     * @return Underlying node of the High Level model
-	     **/
-	    BasicNodeImpl.prototype.highLevel = function () {
-	        return this._node;
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.attributes = function (name, constr) {
-	        var attrs = this._node.attributes(name);
-	        if (!attrs || attrs.length == 0) {
-	            var defaultValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
-	            if (defaultValue == null)
-	                return [];
-	            if (constr && (constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
-	                return [constr(defaultValue)];
-	            }
-	            else if (constr) {
-	                return [];
-	            }
-	            return [defaultValue];
-	        }
-	        //TODO not sure if we want to artificially create missing attributes having
-	        //default values
-	        if (constr) {
-	            return attrs.map(function (x) { return constr(x); });
-	        }
-	        else {
-	            return attrs.map(function (x) { return x.value(); });
-	        }
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.attribute = function (name, constr) {
-	        var attr = this._node.attr(name);
-	        if (constr && !(constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
-	            //we're not putting values directly inside anything, besides the default
-	            //convertors for default types we support
-	            if (attr == null)
-	                return null;
-	            return constr(attr);
-	        }
-	        var attributeValue = attr ? attr.value() : null;
-	        if (attributeValue == null) {
-	            attributeValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
-	        }
-	        if (attributeValue == null)
-	            return null;
-	        if (constr) {
-	            return constr(attributeValue);
-	        }
-	        else {
-	            return attributeValue;
-	        }
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.elements = function (name) {
-	        var elements = this._node.elementsOfKind(name);
-	        if (!elements) {
-	            return null;
-	        }
-	        return elements.map(function (x) { return x.wrapperNode(); });
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.element = function (name) {
-	        var element = this._node.element(name);
-	        if (!element) {
-	            return null;
-	        }
-	        return element.wrapperNode();
-	    };
-	    /**
-	     * Append node as child
-	     * @param node node to be appended
-	     **/
-	    BasicNodeImpl.prototype.add = function (node) {
-	        this.highLevel().add(node.highLevel());
-	    };
-	    /**
-	     * Append node as property value
-	     * @param node node to be set as property value
-	     * @param prop name of property to set value for
-	     **/
-	    BasicNodeImpl.prototype.addToProp = function (node, prop) {
-	        var hl = node.highLevel();
-	        var pr = this.highLevel().definition().property(prop);
-	        hl._prop = pr;
-	        this.highLevel().add(hl);
-	    };
-	    /**
-	     * Remove node from children set
-	     * @param node node to be removed
-	     **/
-	    BasicNodeImpl.prototype.remove = function (node) {
-	        this.highLevel().remove(node.highLevel());
-	    };
-	    /**
-	     * @return YAML string representing the node
-	     **/
-	    BasicNodeImpl.prototype.dump = function () {
-	        return this.highLevel().dump("yaml");
-	    };
-	    BasicNodeImpl.prototype.toString = function (arg) {
-	        var obj;
-	        //kind of instanceof for hl.IAttribute without actually calling instanceof
-	        if (arg.lowLevel && arg.property) {
-	            obj = arg.value();
-	        }
-	        else {
-	            obj = arg;
-	        }
-	        return obj != null ? obj.toString() : obj;
-	    };
-	    BasicNodeImpl.prototype.toBoolean = function (arg) {
-	        var obj;
-	        //kind of instanceof for hl.IAttribute without actually calling instanceof
-	        if (arg.lowLevel && arg.property) {
-	            obj = arg.value();
-	        }
-	        else {
-	            obj = arg;
-	        }
-	        return obj != null ? obj.toString() == 'true' : obj;
-	    };
-	    BasicNodeImpl.prototype.toNumber = function (arg) {
-	        var obj;
-	        //kind of instanceof for hl.IAttribute without actually calling instanceof
-	        if (arg.lowLevel && arg.property) {
-	            obj = arg.value();
-	        }
-	        else {
-	            obj = arg;
-	        }
-	        if (!obj) {
-	            return obj;
-	        }
-	        try {
-	            var nValue = parseFloat(obj.toString());
-	            return nValue;
-	        }
-	        catch (e) {
-	        }
-	        return Number.MAX_VALUE;
-	    };
-	    /**
-	     * @return Array of errors
-	     **/
-	    BasicNodeImpl.prototype.errors = function () {
-	        var _this = this;
-	        var issues = [];
-	        if (this._node.errors() != null) {
-	            issues = issues.concat(this._node.errors());
-	        }
-	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return issues = issues.concat(x.errors()); });
-	        var lineMapper = this._node.lowLevel().unit().lineMapper();
-	        var result = issues.map(function (x) {
-	            var startPoint = null;
-	            try {
-	                startPoint = lineMapper.position(x.start);
-	            }
-	            catch (e) {
-	                console.warn(e);
-	            }
-	            var endPoint = null;
-	            try {
-	                endPoint = lineMapper.position(x.end);
-	            }
-	            catch (e) {
-	                console.warn(e);
-	            }
-	            var path;
-	            if (x.path) {
-	                path = x.path;
-	            }
-	            else if (x.node) {
-	                path = x.node.lowLevel().unit().path();
-	            }
-	            else {
-	                path = search.declRoot(_this.highLevel()).lowLevel().unit().path();
-	            }
-	            return {
-	                code: x.code,
-	                message: x.message,
-	                path: path,
-	                start: x.start,
-	                end: x.end,
-	                line: startPoint.errorMessage ? null : startPoint.line,
-	                column: startPoint.errorMessage ? null : startPoint.column,
-	                range: [startPoint, endPoint],
-	                isWarning: x.isWarning
-	            };
-	        });
-	        return result;
-	    };
-	    /**
-	     * @return object representing class of the node
-	     **/
-	    BasicNodeImpl.prototype.definition = function () {
-	        return this.highLevel().definition();
-	    };
-	    /**
-	     * @return for user class instances returns object representing actual user class
-	     **/
-	    BasicNodeImpl.prototype.runtimeDefinition = function () {
-	        return this.highLevel().definition().getAdapter(ramlService.RAMLService).toRuntime();
-	    };
-	    BasicNodeImpl.prototype.toJSON = function (serializeOptions) {
-	        return json2lowlevel.serialize(this.highLevel().lowLevel(), serializeOptions);
-	    };
-	    /**
-	     * @return Whether the element is an optional sibling of trait or resource type
-	     **/
-	    BasicNodeImpl.prototype.optional = function () {
-	        var highLevel = this.highLevel();
-	        return highLevel != null ? highLevel.optional() : false;
-	    };
-	    /**
-	     * @return For siblings of traits or resource types returns an array of optional properties names.
-	     **/
-	    BasicNodeImpl.prototype.optionalProperties = function () {
-	        if (!this.highLevel()) {
-	            return [];
-	        }
-	        return this.highLevel().optionalProperties();
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.getDefaultsCalculator = function () {
-	        if (this.defaultsCalculator) {
-	            return this.defaultsCalculator;
-	        }
-	        if (this.parent()) {
-	            this.defaultsCalculator = this.parent().getDefaultsCalculator();
-	        }
-	        if (!this.defaultsCalculator) {
-	            this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(false);
-	        }
-	        return this.defaultsCalculator;
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    BasicNodeImpl.prototype.setAttributeDefaults = function (attributeDefaults) {
-	        this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(attributeDefaults);
-	    };
-	    BasicNodeImpl.prototype.attributeDefaults = function () {
-	        return this.getDefaultsCalculator() && this.getDefaultsCalculator().isEnabled();
-	    };
-	    BasicNodeImpl.prototype.meta = function () {
-	        return fillElementMeta(this);
-	    };
-	    return BasicNodeImpl;
-	})();
-	exports.BasicNodeImpl = BasicNodeImpl;
-	var AttributeNodeImpl = (function () {
-	    function AttributeNodeImpl(attr) {
-	        this._meta = new ValueMetadataImpl();
-	        this.attr = attr;
-	    }
-	    /**
-	     * @return Underlying High Level attribute node
-	     **/
-	    AttributeNodeImpl.prototype.highLevel = function () {
-	        return this.attr;
-	    };
-	    /**
-	     * @hidden
-	     **/
-	    AttributeNodeImpl.prototype.wrapperClassName = function () {
-	        return 'AttributeNodeImpl';
-	    };
-	    AttributeNodeImpl.prototype.kind = function () {
-	        return 'AttributeNode';
-	    };
-	    /**
-	     * @return Whether the element is an optional sibling of trait or resource type
-	     **/
-	    AttributeNodeImpl.prototype.optional = function () {
-	        var highLevel = this.highLevel();
-	        return highLevel != null ? highLevel.optional() : false;
-	    };
-	    AttributeNodeImpl.prototype.meta = function () {
-	        return this._meta;
-	    };
-	    return AttributeNodeImpl;
-	})();
-	exports.AttributeNodeImpl = AttributeNodeImpl;
-	/**
-	 * @hidden
-	 **/
-	function toStructuredValue(node) {
-	    var value = node.value();
-	    if (typeof value === 'string') {
-	        var mockNode = jsyaml.createNode(value.toString());
-	        mockNode._actualNode().startPosition = node.lowLevel().valueStart();
-	        mockNode._actualNode().endPosition = node.lowLevel().valueEnd();
-	        var stv = new hlImpl.StructuredValue(mockNode, node.parent(), node.property());
-	        return stv;
-	    }
-	    else {
-	        return value;
-	    }
-	}
-	exports.toStructuredValue = toStructuredValue;
-	var TypeInstanceImpl = (function () {
-	    function TypeInstanceImpl(nodes) {
-	        if (!Array.isArray(nodes)) {
-	            this.node = nodes;
-	        }
-	        else {
-	            this.children = nodes;
-	        }
-	    }
-	    TypeInstanceImpl.prototype.properties = function () {
-	        return this.getChildren().map(function (x) { return new TypeInstancePropertyImpl(x); });
-	    };
-	    TypeInstanceImpl.prototype.getChildren = function () {
-	        return (this.node && this.node.children()) || this.children;
-	    };
-	    TypeInstanceImpl.prototype.value = function () {
-	        return this.node && this.node.value();
-	    };
-	    TypeInstanceImpl.prototype.isScalar = function () {
-	        if (!this.node) {
-	            return false;
-	        }
-	        if (this.node.children().length != 0) {
-	            return false;
-	        }
-	        var hl = this.node.highLevelNode();
-	        if (hl) {
-	            var prop = hl.property();
-	            var range = prop.range();
-	            if (range) {
-	                return range.isValueType();
-	            }
-	        }
-	        return true;
-	    };
-	    TypeInstanceImpl.prototype.toJSON = function () {
-	        return new tckDumper.TCKDumper().serializeTypeInstance(this);
-	    };
-	    return TypeInstanceImpl;
-	})();
-	exports.TypeInstanceImpl = TypeInstanceImpl;
-	var TypeInstancePropertyImpl = (function () {
-	    function TypeInstancePropertyImpl(node) {
-	        this.node = node;
-	    }
-	    TypeInstancePropertyImpl.prototype.name = function () {
-	        return this.node.key();
-	    };
-	    TypeInstancePropertyImpl.prototype.value = function () {
-	        if (this.isArray()) {
-	            var children = this.node.children();
-	            return children.length > 0 ? new TypeInstanceImpl(children[0]) : null;
-	        }
-	        else {
-	            return new TypeInstanceImpl(this.node);
-	        }
-	    };
-	    TypeInstancePropertyImpl.prototype.values = function () {
-	        return this.isArray() ? this.node.children().map(function (x) { return new TypeInstanceImpl(x); }) : [new TypeInstanceImpl(this.node)];
-	    };
-	    TypeInstancePropertyImpl.prototype.isArray = function () {
-	        var children = this.node.children();
-	        if (children.length > 0 && children[0].key() == null) {
-	            return true;
-	        }
-	        var hl = this.node.highLevelNode();
-	        if (hl) {
-	            var prop = hl.property();
-	            if (prop) {
-	                var range = prop.range();
-	                if (range) {
-	                    return range.isArray();
-	                }
-	            }
-	        }
-	        return this.node.valueKind() == 3 /* SEQ */;
-	    };
-	    return TypeInstancePropertyImpl;
-	})();
-	exports.TypeInstancePropertyImpl = TypeInstancePropertyImpl;
-	var ValueMetadataImpl = (function () {
-	    function ValueMetadataImpl(_insertedAsDefault, _calculated, _optional) {
-	        if (_insertedAsDefault === void 0) { _insertedAsDefault = false; }
-	        if (_calculated === void 0) { _calculated = false; }
-	        if (_optional === void 0) { _optional = false; }
-	        this._insertedAsDefault = _insertedAsDefault;
-	        this._calculated = _calculated;
-	        this._optional = _optional;
-	    }
-	    ValueMetadataImpl.prototype.calculated = function () {
-	        return this._calculated;
-	    };
-	    ValueMetadataImpl.prototype.insertedAsDefault = function () {
-	        return this._insertedAsDefault;
-	    };
-	    ValueMetadataImpl.prototype.setCalculated = function () {
-	        this._calculated = true;
-	    };
-	    ValueMetadataImpl.prototype.setInsertedAsDefault = function () {
-	        this._insertedAsDefault = true;
-	    };
-	    ValueMetadataImpl.prototype.setOptional = function () {
-	        this._optional = true;
-	    };
-	    ValueMetadataImpl.prototype.optional = function () {
-	        return this._optional;
-	    };
-	    ValueMetadataImpl.prototype.isDefault = function () {
-	        return !(this._insertedAsDefault || this._calculated || this._optional);
-	    };
-	    ValueMetadataImpl.prototype.toJSON = function () {
-	        var obj = {};
-	        if (this._calculated) {
-	            obj['calculated'] = true;
-	        }
-	        if (this._insertedAsDefault) {
-	            obj['insertedAsDefault'] = true;
-	        }
-	        if (this._optional) {
-	            obj['optional'] = true;
-	        }
-	        return obj;
-	    };
-	    return ValueMetadataImpl;
-	})();
-	exports.ValueMetadataImpl = ValueMetadataImpl;
-	var NodeMetadataImpl = (function (_super) {
-	    __extends(NodeMetadataImpl, _super);
-	    function NodeMetadataImpl() {
-	        _super.apply(this, arguments);
-	        this.valuesMeta = {};
-	    }
-	    NodeMetadataImpl.prototype.primitiveValuesMeta = function () {
-	        return this.valuesMeta;
-	    };
-	    NodeMetadataImpl.prototype.registerInsertedAsDefaultValue = function (propName) {
-	        var pMeta = this.valuesMeta[propName];
-	        if (pMeta == null) {
-	            this.valuesMeta[propName] = new ValueMetadataImpl(true);
-	        }
-	        else {
-	            pMeta.setInsertedAsDefault();
-	        }
-	    };
-	    NodeMetadataImpl.prototype.registerCalculatedValue = function (propName) {
-	        var pMeta = this.valuesMeta[propName];
-	        if (pMeta == null) {
-	            this.valuesMeta[propName] = new ValueMetadataImpl(false, true);
-	        }
-	        else {
-	            pMeta.setCalculated();
-	        }
-	    };
-	    NodeMetadataImpl.prototype.registerOptionalValue = function (propName) {
-	        var pMeta = this.valuesMeta[propName];
-	        if (pMeta == null) {
-	            this.valuesMeta[propName] = new ValueMetadataImpl(false, false, true);
-	        }
-	        else {
-	            pMeta.setOptional();
-	        }
-	    };
-	    NodeMetadataImpl.prototype.resetPrimitiveValuesMeta = function () {
-	        this.valuesMeta = {};
-	    };
-	    NodeMetadataImpl.prototype.isDefault = function () {
-	        if (!_super.prototype.isDefault.call(this)) {
-	            return false;
-	        }
-	        return Object.keys(this.valuesMeta).length == 0;
-	    };
-	    NodeMetadataImpl.prototype.toJSON = function () {
-	        var _this = this;
-	        var obj = _super.prototype.toJSON.call(this);
-	        var valuesObj = {};
-	        var propKeys = Object.keys(this.valuesMeta);
-	        if (propKeys.length > 0) {
-	            propKeys.forEach(function (x) {
-	                var childMeta = _this.valuesMeta[x].toJSON();
-	                if (Object.keys(childMeta).length > 0) {
-	                    valuesObj[x] = childMeta;
-	                }
-	            });
-	            obj['primitiveValuesMeta'] = valuesObj;
-	        }
-	        return obj;
-	    };
-	    return NodeMetadataImpl;
-	})(ValueMetadataImpl);
-	exports.NodeMetadataImpl = NodeMetadataImpl;
-	function fillElementMeta(node) {
-	    var meta = node._meta;
-	    meta.resetPrimitiveValuesMeta();
-	    var highLevelNode = node.highLevel();
-	    highLevelNode.definition().allProperties().filter(function (p) { return p.isPrimitive() || universeHelpers.isSecuredByProperty(p); }).forEach(function (p) {
-	        var name = p.nameId();
-	        var attrs = highLevelNode.attributes(name);
-	        var gotValue = false;
-	        var optional = false;
-	        attrs.forEach(function (a) {
-	            gotValue = gotValue || a.value() != null;
-	            optional = optional || a.optional();
-	        });
-	        if (!gotValue) {
-	            var calculator = node.getDefaultsCalculator();
-	            var defVal = calculator.attributeDefaultIfEnabled(highLevelNode, p);
-	            if (defVal != null) {
-	                var insertionKind = calculator.insertionKind(highLevelNode, p);
-	                if (insertionKind == 0 /* CALCULATED */) {
-	                    meta.registerCalculatedValue(name);
-	                }
-	                else if (insertionKind == 1 /* BY_DEFAULT */) {
-	                    meta.registerInsertedAsDefaultValue(name);
-	                }
-	            }
-	        }
-	    });
-	    return meta;
-	}
-	exports.fillElementMeta = fillElementMeta;
-
-
-/***/ },
-/* 68 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var universes = __webpack_require__(54);
-	var universeHelpers = __webpack_require__(62);
-	var services = __webpack_require__(49);
-	var search = __webpack_require__(53);
-	var AttributeDefaultsCalculator = (function () {
-	    /**
-	     *
-	     * @param enabled - if false, defaults calculator will not return defaults from
-	     * attrValueOrDefault method, only original values.
-	     * @constructor
-	     */
-	    function AttributeDefaultsCalculator(enabled) {
-	        this.enabled = enabled;
-	        this.valueCalculators = [
-	            new RequiredPropertyCalculator(),
-	            new TypePropertyCalculator(),
-	            new DisplayNamePropertyCalculator(),
-	            new MediaTypeCalculator()
-	        ];
-	    }
-	    /**
-	     * Return attribute default value if defaults calculator is enabled.
-	     * If attribute value is null or undefined, returns attribute default.
-	     */
-	    AttributeDefaultsCalculator.prototype.attributeDefaultIfEnabled = function (node, attributeProperty) {
-	        if (!this.enabled)
-	            return null;
-	        return this.getAttributeDefault(node, attributeProperty);
-	    };
-	    /**
-	     * Returns attribute default.
-	     */
-	    AttributeDefaultsCalculator.prototype.getAttributeDefault = function (node, attributeProperty) {
-	        if (!node || !attributeProperty)
-	            return null;
-	        try {
-	            return this.getAttributeDefault2(attributeProperty, node);
-	        }
-	        catch (Error) {
-	            console.log(Error);
-	            return null;
-	        }
-	    };
-	    AttributeDefaultsCalculator.prototype.getWrapperAttributeDefault = function (wrapperNode, attributeName) {
-	        var highLevelNode = wrapperNode.highLevel();
-	        if (highLevelNode == null)
-	            return null;
-	        var property = highLevelNode.definition().property(attributeName);
-	        if (property == null)
-	            return null;
-	        return this.getAttributeDefault(highLevelNode, property);
-	    };
-	    /**
-	     * Returns attribute default.
-	     * There are so many arguments instead of just providing a single AST node and getting
-	     * anything we want from it as sometimes we create fake nodes in helpers and thus
-	     * do not have actual high-level nodes at hands.
-	     */
-	    AttributeDefaultsCalculator.prototype.getAttributeDefault2 = function (attributeProperty, node) {
-	        for (var i = 0; i < this.valueCalculators.length; i++) {
-	            var calculator = this.valueCalculators[i];
-	            if (calculator.matches(attributeProperty, node)) {
-	                var value = calculator.calculate(attributeProperty, node);
-	                if (value != null) {
-	                    return value;
-	                }
-	            }
-	        }
-	        //static values defined in definition system via defaultValue, defaultIntegerValue
-	        // and defaultBooleanValue annotations.
-	        if (attributeProperty.defaultValue() != null) {
-	            return attributeProperty.defaultValue();
-	        }
-	        return null;
-	    };
-	    AttributeDefaultsCalculator.prototype.isEnabled = function () {
-	        return this.enabled;
-	    };
-	    AttributeDefaultsCalculator.prototype.insertionKind = function (node, attributeProperty) {
-	        for (var i = 0; i < this.valueCalculators.length; i++) {
-	            var calculator = this.valueCalculators[i];
-	            if (calculator.matches(attributeProperty, node)) {
-	                return calculator.kind();
-	            }
-	        }
-	        if (attributeProperty.defaultValue() != null) {
-	            return 1 /* BY_DEFAULT */;
-	        }
-	        return null;
-	    };
-	    return AttributeDefaultsCalculator;
-	})();
-	exports.AttributeDefaultsCalculator = AttributeDefaultsCalculator;
-	(function (InsertionKind) {
-	    InsertionKind[InsertionKind["CALCULATED"] = 0] = "CALCULATED";
-	    InsertionKind[InsertionKind["BY_DEFAULT"] = 1] = "BY_DEFAULT";
-	})(exports.InsertionKind || (exports.InsertionKind = {}));
-	var InsertionKind = exports.InsertionKind;
-	var MediaTypeCalculator = (function () {
-	    function MediaTypeCalculator() {
-	    }
-	    MediaTypeCalculator.prototype.calculate = function (attributeProperty, node) {
-	        var root = search.declRoot(node);
-	        if (root && universeHelpers.isApiSibling(root.definition())) {
-	            var defaultMediaTypeAttr = root.attr(universes.Universe10.Api.properties.mediaType.name);
-	            if (defaultMediaTypeAttr) {
-	                return defaultMediaTypeAttr.value();
-	            }
-	        }
-	        return null;
-	    };
-	    MediaTypeCalculator.prototype.matches = function (attributeProperty, node) {
-	        if (!universeHelpers.isNameProperty(attributeProperty)) {
-	            return false;
-	        }
-	        var nodeDefinition = node.definition();
-	        if (!nodeDefinition) {
-	            return false;
-	        }
-	        if (!(universeHelpers.isBodyLikeType(nodeDefinition) || universeHelpers.isTypeDeclarationSibling(nodeDefinition))) {
-	            return false;
-	        }
-	        var parentNode = node.parent();
-	        if (parentNode == null) {
-	            return false;
-	        }
-	        var parentDefinition = parentNode.definition();
-	        if (parentDefinition == null) {
-	            return false;
-	        }
-	        if (!(universeHelpers.isResponseType(parentDefinition) || universeHelpers.isMethodBaseSibling(parentDefinition))) {
-	            return false;
-	        }
-	        var ancestor = parentNode;
-	        while (ancestor) {
-	            var aDef = ancestor.definition();
-	            if (universeHelpers.isTraitType(aDef)) {
-	                return false;
-	            }
-	            if (universeHelpers.isResourceTypeType(aDef)) {
-	                return false;
-	            }
-	            ancestor = ancestor.parent();
-	        }
-	        return true;
-	    };
-	    MediaTypeCalculator.prototype.kind = function () {
-	        return 0 /* CALCULATED */;
-	    };
-	    return MediaTypeCalculator;
-	})();
-	var DisplayNamePropertyCalculator = (function () {
-	    function DisplayNamePropertyCalculator() {
-	    }
-	    DisplayNamePropertyCalculator.prototype.calculate = function (attributeProperty, node) {
-	        var nodeDefinition = node.definition();
-	        if (nodeDefinition == null) {
-	            return null;
-	        }
-	        var adapter = nodeDefinition.getAdapter(services.RAMLService);
-	        var keyProperty = adapter.getKeyProp();
-	        if (keyProperty != null) {
-	            var attributeValue = node.attrValue(keyProperty.nameId());
-	            if (attributeValue != null) {
-	                return attributeValue;
-	            }
-	            else {
-	                return new AttributeDefaultsCalculator(true).getAttributeDefault(node, keyProperty);
-	            }
-	        }
-	        return null;
-	    };
-	    DisplayNamePropertyCalculator.prototype.matches = function (attributeProperty, node) {
-	        var nodeDefinition = node.definition();
-	        if (nodeDefinition == null) {
-	            return false;
-	        }
-	        return (universeHelpers.isTypeDeclarationSibling(nodeDefinition) || nodeDefinition.isAssignableFrom(universes.Universe08.Parameter.name) || universeHelpers.isResourceType(nodeDefinition)) && universeHelpers.isDisplayNameProperty(attributeProperty);
-	    };
-	    DisplayNamePropertyCalculator.prototype.kind = function () {
-	        return 0 /* CALCULATED */;
-	    };
-	    return DisplayNamePropertyCalculator;
-	})();
-	var TypePropertyCalculator = (function () {
-	    function TypePropertyCalculator() {
-	    }
-	    TypePropertyCalculator.prototype.calculate = function (attributeProperty, node) {
-	        return "object";
-	    };
-	    TypePropertyCalculator.prototype.matches = function (attributeProperty, node) {
-	        return universeHelpers.isTypeProperty(attributeProperty) && node.definition() != null && universeHelpers.isObjectTypeDeclarationSibling(node.definition());
-	    };
-	    TypePropertyCalculator.prototype.kind = function () {
-	        return 1 /* BY_DEFAULT */;
-	    };
-	    return TypePropertyCalculator;
-	})();
-	var RequiredPropertyCalculator = (function () {
-	    function RequiredPropertyCalculator() {
-	    }
-	    RequiredPropertyCalculator.prototype.calculate = function (attributeProperty, node) {
-	        var nodeDefinition = node.definition();
-	        var nodeProperty = node.property();
-	        if (nodeDefinition == null) {
-	            return null;
-	        }
-	        //if node key is ending with question mark, it optional, thus its "required" == false
-	        var adapter = nodeDefinition.getAdapter(services.RAMLService);
-	        var keyProperty = adapter.getKeyProp();
-	        if (keyProperty != null) {
-	            var attribute = node.attr(keyProperty.nameId());
-	            if (attribute != null && attribute.optional()) {
-	                return false;
-	            }
-	        }
-	        if (nodeProperty != null) {
-	            //the spec is unclear with regard to this parameter, but for now it looks like:
-	            //for query string parameters, form parameters, and request and response headers the default is false
-	            //for URI parameters the default is true
-	            //for base URI parameters - unclear, but according to old JS parser behavior it looks like the default is true
-	            //for all other entities we back drop to what definition system states
-	            if (universeHelpers.isHeadersProperty(nodeProperty) || universeHelpers.isFormParametersProperty(nodeProperty) || universeHelpers.isQueryParametersProperty(nodeProperty)) {
-	                return false;
-	            }
-	            else if (universeHelpers.isUriParametersProperty(nodeProperty) || universeHelpers.isBaseUriParametersProperty(nodeProperty)) {
-	                return true;
-	            }
-	        }
-	        if (attributeProperty.defaultValue() != null) {
-	            return attributeProperty.defaultValue();
-	        }
-	        return null;
-	    };
-	    RequiredPropertyCalculator.prototype.matches = function (attributeProperty, node) {
-	        return universeHelpers.isRequiredProperty(attributeProperty);
-	    };
-	    RequiredPropertyCalculator.prototype.kind = function () {
-	        return 1 /* BY_DEFAULT */;
-	    };
-	    return RequiredPropertyCalculator;
-	})();
-
-
-/***/ },
-/* 69 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	/// <reference path="../../typings/main.d.ts" />
-	var universe = __webpack_require__(54);
-	var core = __webpack_require__(67);
-	var universeHelpers = __webpack_require__(62);
-	function dump(node, serializeMeta) {
-	    if (serializeMeta === void 0) { serializeMeta = true; }
-	    return new TCKDumper(serializeMeta).dump(node, true);
-	}
-	exports.dump = dump;
-	var TCKDumper = (function () {
-	    function TCKDumper(dumpMeta) {
-	        if (dumpMeta === void 0) { dumpMeta = true; }
-	        this.dumpMeta = dumpMeta;
-	        this.transformers = [
-	            new TypeExampleTransformer(),
-	            new ParametersTransformer(),
-	            new TypesTransformer(),
-	            new PropertiesTransformer(),
-	            new ExamplesTransformer(),
-	            new ResponsesTransformer(),
-	            new BodiesTransformer(),
-	            new ReferencesTransformer(),
-	            new SecuritySchemesTransformer(),
-	            new AnnotationTypesTransformer(),
-	            new TraitsTransformer(),
-	            new ResourceTypesTransformer(),
-	            new FacetsTransformer(),
-	            new OneElementArrayTransformer()
-	        ];
-	        this.ignore = new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isDisplayNameProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty)
-	        ]);
-	        this.missingProperties = new PropertiesData();
-	    }
-	    TCKDumper.prototype.printMissingProperties = function () {
-	        return this.missingProperties.print();
-	    };
-	    TCKDumper.prototype.dump = function (node, dumpErrors) {
-	        var _this = this;
-	        if (dumpErrors === void 0) { dumpErrors = false; }
-	        if (node == null) {
-	            return null;
-	        }
-	        if (node instanceof core.BasicNodeImpl) {
-	            var props = {};
-	            var basicNode = node;
-	            var definition = basicNode.highLevel().definition();
-	            definition.allProperties().filter(function (x) { return !_this.ignore.match(basicNode.definition(), x); }).forEach(function (x) {
-	                props[x.nameId()] = x;
-	            });
-	            definition.allCustomProperties().filter(function (x) { return !_this.ignore.match(basicNode.definition(), x); }).forEach(function (x) {
-	                props[x.nameId()] = x;
-	            });
-	            var obj = this.dumpProperties(props, node);
-	            this.serializeMeta(obj, basicNode);
-	            if (dumpErrors) {
-	                var result = {};
-	                result.document = obj;
-	                result.errors = this.dumpErrors(basicNode.errors());
-	                return result;
-	            }
-	            else {
-	                return obj;
-	            }
-	        }
-	        else if (node instanceof core.AttributeNodeImpl) {
-	            var props = {};
-	            var attrNode = node;
-	            var definition = attrNode.highLevel().definition();
-	            definition.allCustomProperties().filter(function (x) { return !_this.ignore.match(attrNode.highLevel().property().range(), x); }).forEach(function (x) {
-	                props[x.nameId()] = x;
-	            });
-	            var isValueType = attrNode.highLevel().property().range().isValueType();
-	            if (isValueType && attrNode['value']) {
-	                var val = attrNode['value']();
-	                if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
-	                    return val;
-	                }
-	            }
-	            var obj = this.dumpProperties(props, node);
-	            this.serializeMeta(obj, attrNode);
-	            return obj;
-	        }
-	        else if (node instanceof core.TypeInstanceImpl) {
-	            return this.serializeTypeInstance(node);
-	        }
-	        else if (node instanceof core.TypeInstancePropertyImpl) {
-	            return this.serializeTypeInstanceProperty(node);
-	        }
-	        return node;
-	    };
-	    TCKDumper.prototype.dumpErrors = function (errors) {
-	        return errors.map(function (x) {
-	            return {
-	                "code": x.code,
-	                "message": x.message,
-	                "path": x.path,
-	                "line": x.line,
-	                "column": x.column,
-	                "position": x.start
-	            };
-	        }).sort(function (x, y) {
-	            if (x.path != y.path) {
-	                return x.path.localeCompare(y.path);
-	            }
-	            if (x.position != y.position) {
-	                return x.position - y.position;
-	            }
-	            return x.code - y.code;
-	        });
-	    };
-	    TCKDumper.prototype.dumpProperties = function (props, node) {
-	        var _this = this;
-	        var obj = {};
-	        Object.keys(props).forEach(function (propName) {
-	            if (!node[propName]) {
-	                _this.missingProperties.addProperty(props[propName], node.kind());
-	                return;
-	            }
-	            var value = node[propName]();
-	            if (Array.isArray(value)) {
-	                var propertyValue = [];
-	                value.forEach(function (x) { return propertyValue.push(_this.dump(x)); });
-	                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
-	                    return;
-	                }
-	                _this.transformers.forEach(function (x) {
-	                    if (x.match(node, props[propName])) {
-	                        propertyValue = x.transform(propertyValue);
-	                    }
-	                });
-	                obj[propName] = propertyValue;
-	            }
-	            else {
-	                var val = _this.dump(value);
-	                if (val == null && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
-	                    return;
-	                }
-	                obj[propName] = val;
-	            }
-	        });
-	        return obj;
-	    };
-	    TCKDumper.prototype.serializeMeta = function (obj, node) {
-	        if (!this.dumpMeta) {
-	            return;
-	        }
-	        var meta = node.meta();
-	        if (!meta.isDefault()) {
-	            obj["__METADATA__"] = meta.toJSON();
-	        }
-	    };
-	    TCKDumper.prototype.serializeTypeInstance = function (inst) {
-	        var _this = this;
-	        if (inst.isScalar()) {
-	            return inst.value();
-	        }
-	        else {
-	            var props = inst.properties();
-	            if (props.length == 0) {
-	                return null;
-	            }
-	            var obj = {};
-	            props.forEach(function (x) { return obj[x.name()] = _this.serializeTypeInstanceProperty(x); });
-	            return obj;
-	        }
-	    };
-	    TCKDumper.prototype.serializeTypeInstanceProperty = function (prop) {
-	        var _this = this;
-	        if (prop.isArray()) {
-	            var values = prop.values();
-	            //if(values.length==0){
-	            //    return null;
-	            //}
-	            var arr = [];
-	            values.forEach(function (x) { return arr.push(_this.serializeTypeInstance(x)); });
-	            return arr;
-	        }
-	        else {
-	            return this.serializeTypeInstance(prop.value());
-	        }
-	    };
-	    TCKDumper.prototype.isDefined = function (node, name) {
-	        var hl = node.highLevel();
-	        if (hl.elementsOfKind(name).length > 0) {
-	            return true;
-	        }
-	        if (hl.attributes(name).length > 0) {
-	            return true;
-	        }
-	        return false;
-	    };
-	    return TCKDumper;
-	})();
-	exports.TCKDumper = TCKDumper;
-	var BasicObjectPropertyMatcher = (function () {
-	    function BasicObjectPropertyMatcher(typeMatcher, propMatcher) {
-	        this.typeMatcher = typeMatcher;
-	        this.propMatcher = propMatcher;
-	    }
-	    BasicObjectPropertyMatcher.prototype.match = function (td, prop) {
-	        return this.typeMatcher(td) && this.propMatcher(prop);
-	    };
-	    return BasicObjectPropertyMatcher;
-	})();
-	var CompositeObjectPropertyMatcher = (function () {
-	    function CompositeObjectPropertyMatcher(matchers) {
-	        this.matchers = matchers;
-	    }
-	    CompositeObjectPropertyMatcher.prototype.match = function (td, prop) {
-	        var l = this.matchers.length;
-	        for (var i = 0; i < l; i++) {
-	            if (this.matchers[i].match(td, prop)) {
-	                return true;
-	            }
-	        }
-	        return false;
-	    };
-	    return CompositeObjectPropertyMatcher;
-	})();
-	var ArrayToMapTransformer = (function () {
-	    function ArrayToMapTransformer(matcher, propName) {
-	        this.matcher = matcher;
-	        this.propName = propName;
-	    }
-	    ArrayToMapTransformer.prototype.match = function (node, prop) {
-	        return this.matcher.match(node.definition(), prop);
-	    };
-	    ArrayToMapTransformer.prototype.transform = function (value) {
-	        var _this = this;
-	        if (Array.isArray(value) && value.length > 0 && value[0][this.propName]) {
-	            var obj = {};
-	            value.forEach(function (x) { return obj[x[_this.propName]] = x; });
-	            return obj;
-	        }
-	        return value;
-	    };
-	    return ArrayToMapTransformer;
-	})();
-	var ParametersTransformer = (function (_super) {
-	    __extends(ParametersTransformer, _super);
-	    function ParametersTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isBaseUriParametersProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isUriParametersProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isQueryParametersProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isQueryParametersProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isHeadersProperty)
-	        ]), "name");
-	    }
-	    return ParametersTransformer;
-	})(ArrayToMapTransformer);
-	var TypesTransformer = (function (_super) {
-	    __extends(TypesTransformer, _super);
-	    function TypesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTypesProperty)
-	        ]), "name");
-	    }
-	    return TypesTransformer;
-	})(ArrayToMapTransformer);
-	var PropertiesTransformer = (function (_super) {
-	    __extends(PropertiesTransformer, _super);
-	    function PropertiesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isObjectTypeDeclarationSibling, universeHelpers.isPropertiesProperty)
-	        ]), "name");
-	    }
-	    return PropertiesTransformer;
-	})(ArrayToMapTransformer);
-	var ResponsesTransformer = (function (_super) {
-	    __extends(ResponsesTransformer, _super);
-	    function ResponsesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isResponsesProperty)
-	        ]), "code");
-	    }
-	    return ResponsesTransformer;
-	})(ArrayToMapTransformer);
-	var ReferencesTransformer = (function (_super) {
-	    __extends(ReferencesTransformer, _super);
-	    function ReferencesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(function (x) { return true; }, universeHelpers.isAnnotationsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isTypeProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isIsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isIsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
-	        ]), "name");
-	    }
-	    return ReferencesTransformer;
-	})(ArrayToMapTransformer);
-	var BodiesTransformer = (function (_super) {
-	    __extends(BodiesTransformer, _super);
-	    function BodiesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isBodyProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isBodyProperty)
-	        ]), "name");
-	    }
-	    return BodiesTransformer;
-	})(ArrayToMapTransformer);
-	var TraitsTransformer = (function (_super) {
-	    __extends(TraitsTransformer, _super);
-	    function TraitsTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTraitsProperty)
-	        ]), "name");
-	    }
-	    return TraitsTransformer;
-	})(ArrayToMapTransformer);
-	var ResourceTypesTransformer = (function (_super) {
-	    __extends(ResourceTypesTransformer, _super);
-	    function ResourceTypesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isResourceTypesProperty)
-	        ]), "name");
-	    }
-	    return ResourceTypesTransformer;
-	})(ArrayToMapTransformer);
-	var FacetsTransformer = (function (_super) {
-	    __extends(FacetsTransformer, _super);
-	    function FacetsTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isFacetsProperty)
-	        ]), "name");
-	    }
-	    return FacetsTransformer;
-	})(ArrayToMapTransformer);
-	var SecuritySchemesTransformer = (function (_super) {
-	    __extends(SecuritySchemesTransformer, _super);
-	    function SecuritySchemesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isSecuritySchemesProperty)
-	        ]), "name");
-	    }
-	    return SecuritySchemesTransformer;
-	})(ArrayToMapTransformer);
-	var AnnotationTypesTransformer = (function (_super) {
-	    __extends(AnnotationTypesTransformer, _super);
-	    function AnnotationTypesTransformer() {
-	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isAnnotationTypesProperty)
-	        ]), "displayName");
-	    }
-	    return AnnotationTypesTransformer;
-	})(ArrayToMapTransformer);
-	var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
-	var exampleContentProp = universe.Universe10.ExampleSpec.properties.content.name;
-	var exampleStructuredContentProp = "structuredContent";
-	var ExamplesTransformer = (function () {
-	    function ExamplesTransformer() {
-	        this.matcher = new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isExamplesProperty);
-	    }
-	    ExamplesTransformer.prototype.match = function (node, prop) {
-	        return this.matcher.match(node.definition(), prop);
-	    };
-	    ExamplesTransformer.prototype.transform = function (value) {
-	        var _this = this;
-	        if (Array.isArray(value) && value.length > 0) {
-	            if (value[0][exampleNameProp]) {
-	                var obj = {};
-	                value.forEach(function (x) { return obj[x[exampleNameProp]] = _this.getActualExample(x); });
-	                return obj;
-	            }
-	            else {
-	                var arr = value.map(function (x) { return _this.getActualExample(x); });
-	                return arr;
-	            }
-	        }
-	        else {
-	            return value;
-	        }
-	    };
-	    ExamplesTransformer.prototype.getActualExample = function (exampleSpecObj) {
-	        if (exampleSpecObj[exampleStructuredContentProp]) {
-	            return exampleSpecObj[exampleStructuredContentProp];
-	        }
-	        return exampleSpecObj[exampleContentProp];
-	    };
-	    return ExamplesTransformer;
-	})();
-	var TypeExampleTransformer = (function () {
-	    function TypeExampleTransformer() {
-	    }
-	    TypeExampleTransformer.prototype.match = function (node, prop) {
-	        return universeHelpers.isTypeDeclarationSibling(prop.range());
-	    };
-	    TypeExampleTransformer.prototype.transform = function (value) {
-	        var isArray = Array.isArray(value);
-	        var arr = isArray ? value : [value];
-	        arr.forEach(function (x) {
-	            var structuredExample = x['structuredExample'];
-	            if (structuredExample) {
-	                x['example'] = structuredExample;
-	                delete x['structuredExample'];
-	            }
-	        });
-	        return isArray ? arr : arr[0];
-	    };
-	    return TypeExampleTransformer;
-	})();
-	var OneElementArrayTransformer = (function () {
-	    function OneElementArrayTransformer() {
-	        this.exceptions = new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isPropertiesProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isResourcesProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType, universeHelpers.isResourcesProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isResourcesProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isResponsesProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isMethodsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isBodyProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isProtocolsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isUsesProperty),
-	            new BasicObjectPropertyMatcher(function (x) { return true; }, function (x) { return x.nameId() == 'enum'; })
-	        ]);
-	    }
-	    OneElementArrayTransformer.prototype.match = function (node, prop) {
-	        return !this.exceptions.match(node.definition(), prop);
-	    };
-	    OneElementArrayTransformer.prototype.transform = function (value) {
-	        if (Array.isArray(value) && value.length == 1) {
-	            return value[0];
-	        }
-	        return value;
-	    };
-	    return OneElementArrayTransformer;
-	})();
-	var PropertiesData = (function () {
-	    function PropertiesData() {
-	        this.map = {};
-	    }
-	    PropertiesData.prototype.addProperty = function (prop, wrapperKind) {
-	        var data = this.map[wrapperKind];
-	        if (!data) {
-	            data = new TypePropertiesData(wrapperKind);
-	            this.map[wrapperKind] = data;
-	        }
-	        data.addProperty(prop);
-	    };
-	    PropertiesData.prototype.print = function () {
-	        var _this = this;
-	        return Object.keys(this.map).map(function (x) { return _this.map[x].print(); }).join('\n') + "\n";
-	    };
-	    return PropertiesData;
-	})();
-	var TypePropertiesData = (function () {
-	    function TypePropertiesData(typeName) {
-	        this.typeName = typeName;
-	        this.map = {};
-	    }
-	    TypePropertiesData.prototype.addProperty = function (prop) {
-	        var name = prop.domain().nameId();
-	        var data = this.map[name];
-	        if (!data) {
-	            data = new TypePropertiesData2(name);
-	            this.map[name] = data;
-	        }
-	        data.addProperty(prop);
-	    };
-	    TypePropertiesData.prototype.print = function () {
-	        var _this = this;
-	        return this.typeName + ':\n' + Object.keys(this.map).map(function (x) { return '    ' + _this.map[x].print(); }).join('\n');
-	    };
-	    return TypePropertiesData;
-	})();
-	var TypePropertiesData2 = (function () {
-	    function TypePropertiesData2(typeName) {
-	        this.typeName = typeName;
-	        this.map = {};
-	    }
-	    TypePropertiesData2.prototype.addProperty = function (prop) {
-	        var name = prop.nameId();
-	        this.map[name] = prop;
-	    };
-	    TypePropertiesData2.prototype.print = function () {
-	        return this.typeName + ': ' + Object.keys(this.map).sort().join(', ');
-	    };
-	    return TypePropertiesData2;
-	})();
-
-
-/***/ },
-/* 70 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/main.d.ts" />
-	var ramlSanitize = __webpack_require__(71);
-	var ramlValidate = __webpack_require__(72);
-	var REGEXP_MATCH = {
-	    number: '[-+]?\\d+(?:\\.\\d+)?',
-	    integer: '[-+]?\\d+',
-	    date: '(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} (?:[0-1]\\d|2[0-3]):[0-5]\\d:[0-5]\\d GMT',
-	    boolean: '(?:true|false)'
-	};
-	var ESCAPE_CHARACTERS = /([.*+?=^!:${}()|[\]\/\\])/g;
-	var REGEXP_REPLACE = new RegExp([
-	    '([.\\/])?\\{([^}]+)\\}',
-	    ESCAPE_CHARACTERS.source
-	].join('|'), 'g');
-	function toRegExp(path, parameters, keys, options) {
-	    var end = options.end !== false;
-	    var strict = options.strict;
-	    var flags = '';
-	    if (!options.sensitive) {
-	        flags += 'i';
-	    }
-	    var route = path.replace(REGEXP_REPLACE, function (match, prefix, key, escape) {
-	        if (escape) {
-	            return '\\' + escape;
-	        }
-	        // Push the current key into the keys array.
-	        keys.push({
-	            name: key,
-	            prefix: prefix || '/'
-	        });
-	        prefix = prefix ? '\\' + prefix : '';
-	        // TODO: Support an array of parameters.
-	        var param = parameters[key];
-	        var capture = param && REGEXP_MATCH[param.type] || '[^' + (prefix || '\\/') + ']+';
-	        var optional = param && param.required === false;
-	        if (Array.isArray(param.enum) && param.enum.length) {
-	            capture = '(?:' + param.enum.map(function (value) {
-	                return String(value).replace(ESCAPE_CHARACTERS, '\\$1');
-	            }).join('|') + ')';
-	        }
-	        return prefix + '(' + capture + ')' + (optional ? '?' : '');
-	    });
-	    var endsWithSlash = path.charAt(path.length - 1) === '/';
-	    // In non-strict mode we allow a slash at the end of match. If the path to
-	    // match already ends with a slash, we remove it for consistency. The slash
-	    // is valid at the end of a path match, not in the middle. This is important
-	    // in non-ending mode, where "/test/" shouldn't match "/test//route".
-	    if (!strict) {
-	        route = (endsWithSlash ? route.slice(0, -2) : route) + '(?:\\/(?=$))?';
-	    }
-	    if (end) {
-	        route += '$';
-	    }
-	    else {
-	        // In non-ending mode, we need the capturing groups to match as much as
-	        // possible by using a positive lookahead to the end or next path segment.
-	        route += strict && endsWithSlash ? '' : '(?=\\/|$)';
-	    }
-	    return new RegExp('^' + route + (end ? '$' : ''), flags);
-	}
-	function decodeParam(param) {
-	    try {
-	        return decodeURIComponent(param);
-	    }
-	    catch (_) {
-	        var err = new Error('Failed to decode param "' + param + '"');
-	        err.status = 400;
-	        throw err;
-	    }
-	}
-	function ramlPathMatch(path, parameters, options) {
-	    options = options || {};
-	    if (path === '/' && options.end === false) {
-	        return truth;
-	    }
-	    parameters = parameters || {};
-	    var keys = [];
-	    var re = toRegExp(path, parameters, keys, options);
-	    var sanitize = ramlSanitize()(parameters);
-	    var validate = ramlValidate()(parameters);
-	    return function (pathname) {
-	        var m = re.exec(pathname);
-	        if (!m) {
-	            return false;
-	        }
-	        if (parameters['mediaTypeExtension']) {
-	            if (m.length > 1 && !m[m.length - 1]) {
-	                var beforeLast = m[m.length - 2];
-	                var ind = beforeLast.lastIndexOf('.');
-	                if (ind >= 0) {
-	                    m[m.length - 2] = beforeLast.substring(0, ind);
-	                    m[m.length - 1] = beforeLast.substring(ind);
-	                }
-	            }
-	        }
-	        var path = m[0];
-	        var params = {};
-	        for (var i = 1; i < m.length; i++) {
-	            var key = keys[i - 1];
-	            var param = m[i];
-	            params[key.name] = param == null ? param : decodeParam(param);
-	        }
-	        params = sanitize(params);
-	        if (!validate(params).valid) {
-	            return false;
-	        }
-	        return {
-	            path: path,
-	            params: params
-	        };
-	    };
-	}
-	function truth(path) {
-	    return { path: '', params: {} };
-	}
-	module.exports = ramlPathMatch;
-
-
-/***/ },
-/* 71 */
-/***/ function(module, exports) {
-
-	/// <reference path="../../typings/main.d.ts" />
-	function isEmpty(value) {
-	    return value == null;
-	}
-	function toString(value) {
-	    return isEmpty(value) ? '' : String(value);
-	}
-	function toBoolean(value) {
-	    return [0, false, '', '0', 'false'].indexOf(value) === -1;
-	}
-	function toNumber(value) {
-	    return isFinite(value) ? Number(value) : null;
-	}
-	function toInteger(value) {
-	    return value % 1 === 0 ? Number(value) : null;
-	}
-	function toDate(value) {
-	    return !isNaN(Date.parse(value)) ? new Date(value) : null;
-	}
-	function toSanitization(parameter, rules, types) {
-	    var parameters = Array.isArray(parameter) ? parameter : [parameter];
-	    var sanitizations = parameters.map(function (parameter) {
-	        var fns = [];
-	        var typeSanitization = types[parameter.type];
-	        if (typeof typeSanitization === 'function') {
-	            fns.push(typeSanitization);
-	        }
-	        Object.keys(parameter).filter(function (key) {
-	            return key !== 'type' && key !== 'repeat' && key !== 'default';
-	        }).forEach(function (key) {
-	            var fn = rules[key];
-	            if (typeof fn === 'function') {
-	                fns.push(fn(parameter[key], key));
-	            }
-	        });
-	        function sanitize(value, key, src) {
-	            for (var i = 0; i < fns.length; i++) {
-	                var fn = fns[i];
-	                var value = fn(value, key, src);
-	                if (value != null) {
-	                    return value;
-	                }
-	            }
-	            return null;
-	        }
-	        return function (value, key, src) {
-	            if (isEmpty(value)) {
-	                if (parameter.default != null) {
-	                    return sanitize(parameter.default, key, src);
-	                }
-	                return parameter.repeat && !parameter.required ? [] : value;
-	            }
-	            if (parameter.repeat) {
-	                var values = Array.isArray(value) ? value : [value];
-	                values = values.map(function (value) {
-	                    return sanitize(value, key, src);
-	                });
-	                return values.some(isEmpty) ? null : value;
-	            }
-	            if (Array.isArray(value)) {
-	                if (value.length > 1) {
-	                    return null;
-	                }
-	                value = value[0];
-	            }
-	            return sanitize(value, key, src);
-	        };
-	    });
-	    return function (value, key, src) {
-	        for (var i = 0; i < sanitizations.length; i++) {
-	            var sanitization = sanitizations[i];
-	            var result = sanitization(value, key, src);
-	            if (result != null) {
-	                return result;
-	            }
-	        }
-	        return value;
-	    };
-	}
-	function sanitize() {
-	    var RULES = {};
-	    var TYPES = {
-	        string: toString,
-	        number: toNumber,
-	        integer: toInteger,
-	        boolean: toBoolean,
-	        date: toDate
-	    };
-	    function rule(parameter) {
-	        return toSanitization(parameter, RULES, TYPES);
-	    }
-	    var sanitize = function (parameterMap) {
-	        if (!parameterMap) {
-	            return function () {
-	                return {};
-	            };
-	        }
-	        var sanitizations = {};
-	        Object.keys(parameterMap).forEach(function (key) {
-	            sanitizations[key] = sanitize.rule(parameterMap[key]);
-	        });
-	        return function (src) {
-	            src = src || {};
-	            var dest = {};
-	            // Iterate the sanitized parameters to get a clean model.
-	            Object.keys(sanitizations).forEach(function (key) {
-	                var value = src[key];
-	                var fn = sanitizations[key];
-	                if (Object.prototype.hasOwnProperty.call(src, key)) {
-	                    dest[key] = fn(value, key, src);
-	                }
-	            });
-	            return dest;
-	        };
-	    };
-	    var s;
-	    s = sanitize;
-	    s.rule = rule;
-	    s.TYPES = TYPES;
-	    s.RULES = RULES;
-	    return s;
-	}
-	module.exports = sanitize;
-
-
-/***/ },
-/* 72 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(Buffer) {/// <reference path="../../typings/main.d.ts" />
-	var _toString = Object.prototype.toString;
-	function isDateType(check) {
-	    return _toString.call(check) === '[object Date]' && !isNaN(check.getTime());
-	}
-	function isBooleanType(check) {
-	    return typeof check === 'boolean';
-	}
-	function isStringType(check) {
-	    return typeof check === 'string';
-	}
-	function isIntegerType(check) {
-	    return typeof check === 'number' && check % 1 === 0;
-	}
-	function isNumberType(check) {
-	    return typeof check === 'number' && isFinite(check);
-	}
-	function isMinimum(min) {
-	    return function (check) {
-	        return check >= min;
-	    };
-	}
-	function isMaximum(max) {
-	    return function (check) {
-	        return check <= max;
-	    };
-	}
-	function isMinimumLength(min) {
-	    return function (check) {
-	        return Buffer.byteLength(check) >= min;
-	    };
-	}
-	function isMaximumLength(max) {
-	    return function (check) {
-	        return Buffer.byteLength(check) <= max;
-	    };
-	}
-	function isEnum(values) {
-	    if (values && values.length != 0) {
-	        return function (check) {
-	            return values.indexOf(check) > -1;
-	        };
-	    }
-	    else {
-	        return function (check) {
-	            return true;
-	        };
-	    }
-	}
-	function isPattern(pattern) {
-	    var regexp = (typeof pattern === 'string') ? new RegExp(pattern) : pattern;
-	    return regexp.test.bind(regexp);
-	}
-	function toValidationResult(valid, key, value, rule, attr) {
-	    return {
-	        valid: valid,
-	        rule: rule,
-	        attr: attr,
-	        value: value,
-	        key: key
-	    };
-	}
-	function toValidationFunction(parameter, rules) {
-	    var validations = [];
-	    Object.keys(parameter).forEach(function (name) {
-	        var rule = rules[name];
-	        if (!rule) {
-	            return;
-	        }
-	        var value = parameter[name];
-	        validations.push([name, rule(value, name), value]);
-	    });
-	    return function (value, key, src) {
-	        for (var i = 0; i < validations.length; i++) {
-	            var validation = validations[i];
-	            var name = validation[0];
-	            var fn = validation[1];
-	            var attr = validation[2];
-	            var valid = fn(value, key, src);
-	            if (!valid) {
-	                return toValidationResult(false, key, value, name, attr);
-	            }
-	        }
-	        return toValidationResult(true, key, value);
-	    };
-	}
-	function toValidation(parameter, rules, types) {
-	    var parameters = Array.isArray(parameter) ? parameter : [parameter];
-	    var isOptional = !parameters.length;
-	    var simpleValidations = [];
-	    var repeatValidations = [];
-	    parameters.forEach(function (parameter) {
-	        var validation = [parameter.type || 'string', toValidationFunction(parameter, rules)];
-	        if (!parameter.required) {
-	            isOptional = true;
-	        }
-	        if (parameter.repeat) {
-	            repeatValidations.push(validation);
-	        }
-	        else {
-	            simpleValidations.push(validation);
-	        }
-	    });
-	    return function (value, key, src) {
-	        if (value == null) {
-	            return toValidationResult(isOptional, key, value, 'required', !isOptional);
-	        }
-	        var isArray = Array.isArray(value);
-	        var values = isArray ? value : [value];
-	        var validations = isArray ? repeatValidations : simpleValidations;
-	        if (!validations.length) {
-	            return toValidationResult(false, key, value, 'repeat', !isArray);
-	        }
-	        var response = null;
-	        var originalValue = value;
-	        validations.some(function (validation) {
-	            var isValidType = values.every(function (value) {
-	                var paramType = validation[0];
-	                var isValidType = types[paramType] && types[paramType](value, key, src);
-	                if (!isValidType) {
-	                    response = toValidationResult(false, key, originalValue, 'type', paramType);
-	                }
-	                return isValidType;
-	            });
-	            if (!isValidType) {
-	                return false;
-	            }
-	            values.every(function (value) {
-	                var fn = validation[1];
-	                response = fn(value, key);
-	                return response.valid;
-	            });
-	            return true;
-	        });
-	        return response;
-	    };
-	}
-	function validate() {
-	    var TYPES = {
-	        date: isDateType,
-	        number: isNumberType,
-	        integer: isIntegerType,
-	        boolean: isBooleanType,
-	        string: isStringType
-	    };
-	    var RULES = {
-	        minimum: isMinimum,
-	        maximum: isMaximum,
-	        minLength: isMinimumLength,
-	        maxLength: isMaximumLength,
-	        'enum': isEnum,
-	        pattern: isPattern
-	    };
-	    function rule(parameter) {
-	        return toValidation(parameter, RULES, TYPES);
-	    }
-	    var v;
-	    var validate = function (parameterMap) {
-	        if (!parameterMap) {
-	            return function (check) {
-	                return { valid: true, errors: [] };
-	            };
-	        }
-	        var validations = {};
-	        Object.keys(parameterMap).forEach(function (key) {
-	            validations[key] = rule(parameterMap[key]);
-	        });
-	        return function (src) {
-	            src = src || {};
-	            var errors = Object.keys(validations).map(function (param) {
-	                var value = src[param];
-	                var fn = validations[param];
-	                return fn(value, param, src);
-	            }).filter(function (result) {
-	                return !result.valid;
-	            });
-	            return {
-	                valid: errors.length === 0,
-	                errors: errors
-	            };
-	        };
-	    };
-	    v = validate;
-	    v.rule = rule;
-	    v.TYPES = TYPES;
-	    v.RULES = RULES;
-	    return v;
-	}
-	module.exports = validate;
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73).Buffer))
-
-/***/ },
-/* 73 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
-	 * The buffer module from node.js, for the browser.
-	 *
-	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
-	 * @license  MIT
-	 */
-	/* eslint-disable no-proto */
-
-	var base64 = __webpack_require__(74)
-	var ieee754 = __webpack_require__(75)
-	var isArray = __webpack_require__(76)
-
-	exports.Buffer = Buffer
-	exports.SlowBuffer = SlowBuffer
-	exports.INSPECT_MAX_BYTES = 50
-	Buffer.poolSize = 8192 // not used by this implementation
-
-	var rootParent = {}
-
-	/**
-	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
-	 *   === true    Use Uint8Array implementation (fastest)
-	 *   === false   Use Object implementation (most compatible, even IE6)
-	 *
-	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
-	 * Opera 11.6+, iOS 4.2+.
-	 *
-	 * Due to various browser bugs, sometimes the Object implementation will be used even
-	 * when the browser supports typed arrays.
-	 *
-	 * Note:
-	 *
-	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
-	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
-	 *
-	 *   - Safari 5-7 lacks support for changing the `Object.prototype.constructor` property
-	 *     on objects.
-	 *
-	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
-	 *
-	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
-	 *     incorrect length in some situations.
-
-	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
-	 * get the Object implementation, which is slower but behaves correctly.
-	 */
-	Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
-	  ? global.TYPED_ARRAY_SUPPORT
-	  : typedArraySupport()
-
-	function typedArraySupport () {
-	  function Bar () {}
-	  try {
-	    var arr = new Uint8Array(1)
-	    arr.foo = function () { return 42 }
-	    arr.constructor = Bar
-	    return arr.foo() === 42 && // typed array instances can be augmented
-	        arr.constructor === Bar && // constructor can be set
-	        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
-	        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
-	  } catch (e) {
-	    return false
-	  }
-	}
-
-	function kMaxLength () {
-	  return Buffer.TYPED_ARRAY_SUPPORT
-	    ? 0x7fffffff
-	    : 0x3fffffff
-	}
-
-	/**
-	 * Class: Buffer
-	 * =============
-	 *
-	 * The Buffer constructor returns instances of `Uint8Array` that are augmented
-	 * with function properties for all the node `Buffer` API functions. We use
-	 * `Uint8Array` so that square bracket notation works as expected -- it returns
-	 * a single octet.
-	 *
-	 * By augmenting the instances, we can avoid modifying the `Uint8Array`
-	 * prototype.
-	 */
-	function Buffer (arg) {
-	  if (!(this instanceof Buffer)) {
-	    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
-	    if (arguments.length > 1) return new Buffer(arg, arguments[1])
-	    return new Buffer(arg)
-	  }
-
-	  this.length = 0
-	  this.parent = undefined
-
-	  // Common case.
-	  if (typeof arg === 'number') {
-	    return fromNumber(this, arg)
-	  }
-
-	  // Slightly less common case.
-	  if (typeof arg === 'string') {
-	    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8')
-	  }
-
-	  // Unusual.
-	  return fromObject(this, arg)
-	}
-
-	function fromNumber (that, length) {
-	  that = allocate(that, length < 0 ? 0 : checked(length) | 0)
-	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
-	    for (var i = 0; i < length; i++) {
-	      that[i] = 0
-	    }
-	  }
-	  return that
-	}
-
-	function fromString (that, string, encoding) {
-	  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8'
-
-	  // Assumption: byteLength() return value is always < kMaxLength.
-	  var length = byteLength(string, encoding) | 0
-	  that = allocate(that, length)
-
-	  that.write(string, encoding)
-	  return that
-	}
-
-	function fromObject (that, object) {
-	  if (Buffer.isBuffer(object)) return fromBuffer(that, object)
-
-	  if (isArray(object)) return fromArray(that, object)
-
-	  if (object == null) {
-	    throw new TypeError('must start with number, buffer, array or string')
-	  }
-
-	  if (typeof ArrayBuffer !== 'undefined') {
-	    if (object.buffer instanceof ArrayBuffer) {
-	      return fromTypedArray(that, object)
-	    }
-	    if (object instanceof ArrayBuffer) {
-	      return fromArrayBuffer(that, object)
-	    }
-	  }
-
-	  if (object.length) return fromArrayLike(that, object)
-
-	  return fromJsonObject(that, object)
-	}
-
-	function fromBuffer (that, buffer) {
-	  var length = checked(buffer.length) | 0
-	  that = allocate(that, length)
-	  buffer.copy(that, 0, 0, length)
-	  return that
-	}
-
-	function fromArray (that, array) {
-	  var length = checked(array.length) | 0
-	  that = allocate(that, length)
-	  for (var i = 0; i < length; i += 1) {
-	    that[i] = array[i] & 255
-	  }
-	  return that
-	}
-
-	// Duplicate of fromArray() to keep fromArray() monomorphic.
-	function fromTypedArray (that, array) {
-	  var length = checked(array.length) | 0
-	  that = allocate(that, length)
-	  // Truncating the elements is probably not what people expect from typed
-	  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
-	  // of the old Buffer constructor.
-	  for (var i = 0; i < length; i += 1) {
-	    that[i] = array[i] & 255
-	  }
-	  return that
-	}
-
-	function fromArrayBuffer (that, array) {
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    // Return an augmented `Uint8Array` instance, for best performance
-	    array.byteLength
-	    that = Buffer._augment(new Uint8Array(array))
-	  } else {
-	    // Fallback: Return an object instance of the Buffer class
-	    that = fromTypedArray(that, new Uint8Array(array))
-	  }
-	  return that
-	}
-
-	function fromArrayLike (that, array) {
-	  var length = checked(array.length) | 0
-	  that = allocate(that, length)
-	  for (var i = 0; i < length; i += 1) {
-	    that[i] = array[i] & 255
-	  }
-	  return that
-	}
-
-	// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
-	// Returns a zero-length buffer for inputs that don't conform to the spec.
-	function fromJsonObject (that, object) {
-	  var array
-	  var length = 0
-
-	  if (object.type === 'Buffer' && isArray(object.data)) {
-	    array = object.data
-	    length = checked(array.length) | 0
-	  }
-	  that = allocate(that, length)
-
-	  for (var i = 0; i < length; i += 1) {
-	    that[i] = array[i] & 255
-	  }
-	  return that
-	}
-
-	if (Buffer.TYPED_ARRAY_SUPPORT) {
-	  Buffer.prototype.__proto__ = Uint8Array.prototype
-	  Buffer.__proto__ = Uint8Array
-	}
-
-	function allocate (that, length) {
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    // Return an augmented `Uint8Array` instance, for best performance
-	    that = Buffer._augment(new Uint8Array(length))
-	    that.__proto__ = Buffer.prototype
-	  } else {
-	    // Fallback: Return an object instance of the Buffer class
-	    that.length = length
-	    that._isBuffer = true
-	  }
-
-	  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1
-	  if (fromPool) that.parent = rootParent
-
-	  return that
-	}
-
-	function checked (length) {
-	  // Note: cannot use `length < kMaxLength` here because that fails when
-	  // length is NaN (which is otherwise coerced to zero.)
-	  if (length >= kMaxLength()) {
-	    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
-	                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
-	  }
-	  return length | 0
-	}
-
-	function SlowBuffer (subject, encoding) {
-	  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding)
-
-	  var buf = new Buffer(subject, encoding)
-	  delete buf.parent
-	  return buf
-	}
-
-	Buffer.isBuffer = function isBuffer (b) {
-	  return !!(b != null && b._isBuffer)
-	}
-
-	Buffer.compare = function compare (a, b) {
-	  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
-	    throw new TypeError('Arguments must be Buffers')
-	  }
-
-	  if (a === b) return 0
-
-	  var x = a.length
-	  var y = b.length
-
-	  var i = 0
-	  var len = Math.min(x, y)
-	  while (i < len) {
-	    if (a[i] !== b[i]) break
-
-	    ++i
-	  }
-
-	  if (i !== len) {
-	    x = a[i]
-	    y = b[i]
-	  }
-
-	  if (x < y) return -1
-	  if (y < x) return 1
-	  return 0
-	}
-
-	Buffer.isEncoding = function isEncoding (encoding) {
-	  switch (String(encoding).toLowerCase()) {
-	    case 'hex':
-	    case 'utf8':
-	    case 'utf-8':
-	    case 'ascii':
-	    case 'binary':
-	    case 'base64':
-	    case 'raw':
-	    case 'ucs2':
-	    case 'ucs-2':
-	    case 'utf16le':
-	    case 'utf-16le':
-	      return true
-	    default:
-	      return false
-	  }
-	}
-
-	Buffer.concat = function concat (list, length) {
-	  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.')
-
-	  if (list.length === 0) {
-	    return new Buffer(0)
-	  }
-
-	  var i
-	  if (length === undefined) {
-	    length = 0
-	    for (i = 0; i < list.length; i++) {
-	      length += list[i].length
-	    }
-	  }
-
-	  var buf = new Buffer(length)
-	  var pos = 0
-	  for (i = 0; i < list.length; i++) {
-	    var item = list[i]
-	    item.copy(buf, pos)
-	    pos += item.length
-	  }
-	  return buf
-	}
-
-	function byteLength (string, encoding) {
-	  if (typeof string !== 'string') string = '' + string
-
-	  var len = string.length
-	  if (len === 0) return 0
-
-	  // Use a for loop to avoid recursion
-	  var loweredCase = false
-	  for (;;) {
-	    switch (encoding) {
-	      case 'ascii':
-	      case 'binary':
-	      // Deprecated
-	      case 'raw':
-	      case 'raws':
-	        return len
-	      case 'utf8':
-	      case 'utf-8':
-	        return utf8ToBytes(string).length
-	      case 'ucs2':
-	      case 'ucs-2':
-	      case 'utf16le':
-	      case 'utf-16le':
-	        return len * 2
-	      case 'hex':
-	        return len >>> 1
-	      case 'base64':
-	        return base64ToBytes(string).length
-	      default:
-	        if (loweredCase) return utf8ToBytes(string).length // assume utf8
-	        encoding = ('' + encoding).toLowerCase()
-	        loweredCase = true
-	    }
-	  }
-	}
-	Buffer.byteLength = byteLength
-
-	// pre-set for values that may exist in the future
-	Buffer.prototype.length = undefined
-	Buffer.prototype.parent = undefined
-
-	function slowToString (encoding, start, end) {
-	  var loweredCase = false
-
-	  start = start | 0
-	  end = end === undefined || end === Infinity ? this.length : end | 0
-
-	  if (!encoding) encoding = 'utf8'
-	  if (start < 0) start = 0
-	  if (end > this.length) end = this.length
-	  if (end <= start) return ''
-
-	  while (true) {
-	    switch (encoding) {
-	      case 'hex':
-	        return hexSlice(this, start, end)
-
-	      case 'utf8':
-	      case 'utf-8':
-	        return utf8Slice(this, start, end)
-
-	      case 'ascii':
-	        return asciiSlice(this, start, end)
-
-	      case 'binary':
-	        return binarySlice(this, start, end)
-
-	      case 'base64':
-	        return base64Slice(this, start, end)
-
-	      case 'ucs2':
-	      case 'ucs-2':
-	      case 'utf16le':
-	      case 'utf-16le':
-	        return utf16leSlice(this, start, end)
-
-	      default:
-	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
-	        encoding = (encoding + '').toLowerCase()
-	        loweredCase = true
-	    }
-	  }
-	}
-
-	Buffer.prototype.toString = function toString () {
-	  var length = this.length | 0
-	  if (length === 0) return ''
-	  if (arguments.length === 0) return utf8Slice(this, 0, length)
-	  return slowToString.apply(this, arguments)
-	}
-
-	Buffer.prototype.equals = function equals (b) {
-	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
-	  if (this === b) return true
-	  return Buffer.compare(this, b) === 0
-	}
-
-	Buffer.prototype.inspect = function inspect () {
-	  var str = ''
-	  var max = exports.INSPECT_MAX_BYTES
-	  if (this.length > 0) {
-	    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
-	    if (this.length > max) str += ' ... '
-	  }
-	  return '<Buffer ' + str + '>'
-	}
-
-	Buffer.prototype.compare = function compare (b) {
-	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
-	  if (this === b) return 0
-	  return Buffer.compare(this, b)
-	}
-
-	Buffer.prototype.indexOf = function indexOf (val, byteOffset) {
-	  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff
-	  else if (byteOffset < -0x80000000) byteOffset = -0x80000000
-	  byteOffset >>= 0
-
-	  if (this.length === 0) return -1
-	  if (byteOffset >= this.length) return -1
-
-	  // Negative offsets start from the end of the buffer
-	  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0)
-
-	  if (typeof val === 'string') {
-	    if (val.length === 0) return -1 // special case: looking for empty string always fails
-	    return String.prototype.indexOf.call(this, val, byteOffset)
-	  }
-	  if (Buffer.isBuffer(val)) {
-	    return arrayIndexOf(this, val, byteOffset)
-	  }
-	  if (typeof val === 'number') {
-	    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
-	      return Uint8Array.prototype.indexOf.call(this, val, byteOffset)
-	    }
-	    return arrayIndexOf(this, [ val ], byteOffset)
-	  }
-
-	  function arrayIndexOf (arr, val, byteOffset) {
-	    var foundIndex = -1
-	    for (var i = 0; byteOffset + i < arr.length; i++) {
-	      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
-	        if (foundIndex === -1) foundIndex = i
-	        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex
-	      } else {
-	        foundIndex = -1
-	      }
-	    }
-	    return -1
-	  }
-
-	  throw new TypeError('val must be string, number or Buffer')
-	}
-
-	// `get` is deprecated
-	Buffer.prototype.get = function get (offset) {
-	  console.log('.get() is deprecated. Access using array indexes instead.')
-	  return this.readUInt8(offset)
-	}
-
-	// `set` is deprecated
-	Buffer.prototype.set = function set (v, offset) {
-	  console.log('.set() is deprecated. Access using array indexes instead.')
-	  return this.writeUInt8(v, offset)
-	}
-
-	function hexWrite (buf, string, offset, length) {
-	  offset = Number(offset) || 0
-	  var remaining = buf.length - offset
-	  if (!length) {
-	    length = remaining
-	  } else {
-	    length = Number(length)
-	    if (length > remaining) {
-	      length = remaining
-	    }
-	  }
-
-	  // must be an even number of digits
-	  var strLen = string.length
-	  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
-
-	  if (length > strLen / 2) {
-	    length = strLen / 2
-	  }
-	  for (var i = 0; i < length; i++) {
-	    var parsed = parseInt(string.substr(i * 2, 2), 16)
-	    if (isNaN(parsed)) throw new Error('Invalid hex string')
-	    buf[offset + i] = parsed
-	  }
-	  return i
-	}
-
-	function utf8Write (buf, string, offset, length) {
-	  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
-	}
-
-	function asciiWrite (buf, string, offset, length) {
-	  return blitBuffer(asciiToBytes(string), buf, offset, length)
-	}
-
-	function binaryWrite (buf, string, offset, length) {
-	  return asciiWrite(buf, string, offset, length)
-	}
-
-	function base64Write (buf, string, offset, length) {
-	  return blitBuffer(base64ToBytes(string), buf, offset, length)
-	}
-
-	function ucs2Write (buf, string, offset, length) {
-	  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
-	}
-
-	Buffer.prototype.write = function write (string, offset, length, encoding) {
-	  // Buffer#write(string)
-	  if (offset === undefined) {
-	    encoding = 'utf8'
-	    length = this.length
-	    offset = 0
-	  // Buffer#write(string, encoding)
-	  } else if (length === undefined && typeof offset === 'string') {
-	    encoding = offset
-	    length = this.length
-	    offset = 0
-	  // Buffer#write(string, offset[, length][, encoding])
-	  } else if (isFinite(offset)) {
-	    offset = offset | 0
-	    if (isFinite(length)) {
-	      length = length | 0
-	      if (encoding === undefined) encoding = 'utf8'
-	    } else {
-	      encoding = length
-	      length = undefined
-	    }
-	  // legacy write(string, encoding, offset, length) - remove in v0.13
-	  } else {
-	    var swap = encoding
-	    encoding = offset
-	    offset = length | 0
-	    length = swap
-	  }
-
-	  var remaining = this.length - offset
-	  if (length === undefined || length > remaining) length = remaining
-
-	  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
-	    throw new RangeError('attempt to write outside buffer bounds')
-	  }
-
-	  if (!encoding) encoding = 'utf8'
-
-	  var loweredCase = false
-	  for (;;) {
-	    switch (encoding) {
-	      case 'hex':
-	        return hexWrite(this, string, offset, length)
-
-	      case 'utf8':
-	      case 'utf-8':
-	        return utf8Write(this, string, offset, length)
-
-	      case 'ascii':
-	        return asciiWrite(this, string, offset, length)
-
-	      case 'binary':
-	        return binaryWrite(this, string, offset, length)
-
-	      case 'base64':
-	        // Warning: maxLength not taken into account in base64Write
-	        return base64Write(this, string, offset, length)
-
-	      case 'ucs2':
-	      case 'ucs-2':
-	      case 'utf16le':
-	      case 'utf-16le':
-	        return ucs2Write(this, string, offset, length)
-
-	      default:
-	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
-	        encoding = ('' + encoding).toLowerCase()
-	        loweredCase = true
-	    }
-	  }
-	}
-
-	Buffer.prototype.toJSON = function toJSON () {
-	  return {
-	    type: 'Buffer',
-	    data: Array.prototype.slice.call(this._arr || this, 0)
-	  }
-	}
-
-	function base64Slice (buf, start, end) {
-	  if (start === 0 && end === buf.length) {
-	    return base64.fromByteArray(buf)
-	  } else {
-	    return base64.fromByteArray(buf.slice(start, end))
-	  }
-	}
-
-	function utf8Slice (buf, start, end) {
-	  end = Math.min(buf.length, end)
-	  var res = []
-
-	  var i = start
-	  while (i < end) {
-	    var firstByte = buf[i]
-	    var codePoint = null
-	    var bytesPerSequence = (firstByte > 0xEF) ? 4
-	      : (firstByte > 0xDF) ? 3
-	      : (firstByte > 0xBF) ? 2
-	      : 1
-
-	    if (i + bytesPerSequence <= end) {
-	      var secondByte, thirdByte, fourthByte, tempCodePoint
-
-	      switch (bytesPerSequence) {
-	        case 1:
-	          if (firstByte < 0x80) {
-	            codePoint = firstByte
-	          }
-	          break
-	        case 2:
-	          secondByte = buf[i + 1]
-	          if ((secondByte & 0xC0) === 0x80) {
-	            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
-	            if (tempCodePoint > 0x7F) {
-	              codePoint = tempCodePoint
-	            }
-	          }
-	          break
-	        case 3:
-	          secondByte = buf[i + 1]
-	          thirdByte = buf[i + 2]
-	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
-	            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
-	            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
-	              codePoint = tempCodePoint
-	            }
-	          }
-	          break
-	        case 4:
-	          secondByte = buf[i + 1]
-	          thirdByte = buf[i + 2]
-	          fourthByte = buf[i + 3]
-	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
-	            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
-	            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
-	              codePoint = tempCodePoint
-	            }
-	          }
-	      }
-	    }
-
-	    if (codePoint === null) {
-	      // we did not generate a valid codePoint so insert a
-	      // replacement char (U+FFFD) and advance only 1 byte
-	      codePoint = 0xFFFD
-	      bytesPerSequence = 1
-	    } else if (codePoint > 0xFFFF) {
-	      // encode to utf16 (surrogate pair dance)
-	      codePoint -= 0x10000
-	      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
-	      codePoint = 0xDC00 | codePoint & 0x3FF
-	    }
-
-	    res.push(codePoint)
-	    i += bytesPerSequence
-	  }
-
-	  return decodeCodePointsArray(res)
-	}
-
-	// Based on http://stackoverflow.com/a/22747272/680742, the browser with
-	// the lowest limit is Chrome, with 0x10000 args.
-	// We go 1 magnitude less, for safety
-	var MAX_ARGUMENTS_LENGTH = 0x1000
-
-	function decodeCodePointsArray (codePoints) {
-	  var len = codePoints.length
-	  if (len <= MAX_ARGUMENTS_LENGTH) {
-	    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
-	  }
-
-	  // Decode in chunks to avoid "call stack size exceeded".
-	  var res = ''
-	  var i = 0
-	  while (i < len) {
-	    res += String.fromCharCode.apply(
-	      String,
-	      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
-	    )
-	  }
-	  return res
-	}
-
-	function asciiSlice (buf, start, end) {
-	  var ret = ''
-	  end = Math.min(buf.length, end)
-
-	  for (var i = start; i < end; i++) {
-	    ret += String.fromCharCode(buf[i] & 0x7F)
-	  }
-	  return ret
-	}
-
-	function binarySlice (buf, start, end) {
-	  var ret = ''
-	  end = Math.min(buf.length, end)
-
-	  for (var i = start; i < end; i++) {
-	    ret += String.fromCharCode(buf[i])
-	  }
-	  return ret
-	}
-
-	function hexSlice (buf, start, end) {
-	  var len = buf.length
-
-	  if (!start || start < 0) start = 0
-	  if (!end || end < 0 || end > len) end = len
-
-	  var out = ''
-	  for (var i = start; i < end; i++) {
-	    out += toHex(buf[i])
-	  }
-	  return out
-	}
-
-	function utf16leSlice (buf, start, end) {
-	  var bytes = buf.slice(start, end)
-	  var res = ''
-	  for (var i = 0; i < bytes.length; i += 2) {
-	    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
-	  }
-	  return res
-	}
-
-	Buffer.prototype.slice = function slice (start, end) {
-	  var len = this.length
-	  start = ~~start
-	  end = end === undefined ? len : ~~end
-
-	  if (start < 0) {
-	    start += len
-	    if (start < 0) start = 0
-	  } else if (start > len) {
-	    start = len
-	  }
-
-	  if (end < 0) {
-	    end += len
-	    if (end < 0) end = 0
-	  } else if (end > len) {
-	    end = len
-	  }
-
-	  if (end < start) end = start
-
-	  var newBuf
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    newBuf = Buffer._augment(this.subarray(start, end))
-	  } else {
-	    var sliceLen = end - start
-	    newBuf = new Buffer(sliceLen, undefined)
-	    for (var i = 0; i < sliceLen; i++) {
-	      newBuf[i] = this[i + start]
-	    }
-	  }
-
-	  if (newBuf.length) newBuf.parent = this.parent || this
-
-	  return newBuf
-	}
-
-	/*
-	 * Need to make sure that buffer isn't trying to write out of bounds.
-	 */
-	function checkOffset (offset, ext, length) {
-	  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
-	  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
-	}
-
-	Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-	  var val = this[offset]
-	  var mul = 1
-	  var i = 0
-	  while (++i < byteLength && (mul *= 0x100)) {
-	    val += this[offset + i] * mul
-	  }
-
-	  return val
-	}
-
-	Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) {
-	    checkOffset(offset, byteLength, this.length)
-	  }
-
-	  var val = this[offset + --byteLength]
-	  var mul = 1
-	  while (byteLength > 0 && (mul *= 0x100)) {
-	    val += this[offset + --byteLength] * mul
-	  }
-
-	  return val
-	}
-
-	Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 1, this.length)
-	  return this[offset]
-	}
-
-	Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 2, this.length)
-	  return this[offset] | (this[offset + 1] << 8)
-	}
-
-	Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 2, this.length)
-	  return (this[offset] << 8) | this[offset + 1]
-	}
-
-	Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-
-	  return ((this[offset]) |
-	      (this[offset + 1] << 8) |
-	      (this[offset + 2] << 16)) +
-	      (this[offset + 3] * 0x1000000)
-	}
-
-	Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-
-	  return (this[offset] * 0x1000000) +
-	    ((this[offset + 1] << 16) |
-	    (this[offset + 2] << 8) |
-	    this[offset + 3])
-	}
-
-	Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-	  var val = this[offset]
-	  var mul = 1
-	  var i = 0
-	  while (++i < byteLength && (mul *= 0x100)) {
-	    val += this[offset + i] * mul
-	  }
-	  mul *= 0x80
-
-	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
-
-	  return val
-	}
-
-	Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-	  var i = byteLength
-	  var mul = 1
-	  var val = this[offset + --i]
-	  while (i > 0 && (mul *= 0x100)) {
-	    val += this[offset + --i] * mul
-	  }
-	  mul *= 0x80
-
-	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
-
-	  return val
-	}
-
-	Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 1, this.length)
-	  if (!(this[offset] & 0x80)) return (this[offset])
-	  return ((0xff - this[offset] + 1) * -1)
-	}
-
-	Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 2, this.length)
-	  var val = this[offset] | (this[offset + 1] << 8)
-	  return (val & 0x8000) ? val | 0xFFFF0000 : val
-	}
-
-	Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 2, this.length)
-	  var val = this[offset + 1] | (this[offset] << 8)
-	  return (val & 0x8000) ? val | 0xFFFF0000 : val
-	}
-
-	Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-
-	  return (this[offset]) |
-	    (this[offset + 1] << 8) |
-	    (this[offset + 2] << 16) |
-	    (this[offset + 3] << 24)
-	}
-
-	Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-
-	  return (this[offset] << 24) |
-	    (this[offset + 1] << 16) |
-	    (this[offset + 2] << 8) |
-	    (this[offset + 3])
-	}
-
-	Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-	  return ieee754.read(this, offset, true, 23, 4)
-	}
-
-	Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 4, this.length)
-	  return ieee754.read(this, offset, false, 23, 4)
-	}
-
-	Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 8, this.length)
-	  return ieee754.read(this, offset, true, 52, 8)
-	}
-
-	Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
-	  if (!noAssert) checkOffset(offset, 8, this.length)
-	  return ieee754.read(this, offset, false, 52, 8)
-	}
-
-	function checkInt (buf, value, offset, ext, max, min) {
-	  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
-	  if (value > max || value < min) throw new RangeError('value is out of bounds')
-	  if (offset + ext > buf.length) throw new RangeError('index out of range')
-	}
-
-	Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
-
-	  var mul = 1
-	  var i = 0
-	  this[offset] = value & 0xFF
-	  while (++i < byteLength && (mul *= 0x100)) {
-	    this[offset + i] = (value / mul) & 0xFF
-	  }
-
-	  return offset + byteLength
-	}
-
-	Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  byteLength = byteLength | 0
-	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
-
-	  var i = byteLength - 1
-	  var mul = 1
-	  this[offset + i] = value & 0xFF
-	  while (--i >= 0 && (mul *= 0x100)) {
-	    this[offset + i] = (value / mul) & 0xFF
-	  }
-
-	  return offset + byteLength
-	}
-
-	Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
-	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
-	  this[offset] = (value & 0xff)
-	  return offset + 1
-	}
-
-	function objectWriteUInt16 (buf, value, offset, littleEndian) {
-	  if (value < 0) value = 0xffff + value + 1
-	  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
-	    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
-	      (littleEndian ? i : 1 - i) * 8
-	  }
-	}
-
-	Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value & 0xff)
-	    this[offset + 1] = (value >>> 8)
-	  } else {
-	    objectWriteUInt16(this, value, offset, true)
-	  }
-	  return offset + 2
-	}
-
-	Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value >>> 8)
-	    this[offset + 1] = (value & 0xff)
-	  } else {
-	    objectWriteUInt16(this, value, offset, false)
-	  }
-	  return offset + 2
-	}
-
-	function objectWriteUInt32 (buf, value, offset, littleEndian) {
-	  if (value < 0) value = 0xffffffff + value + 1
-	  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
-	    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
-	  }
-	}
-
-	Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset + 3] = (value >>> 24)
-	    this[offset + 2] = (value >>> 16)
-	    this[offset + 1] = (value >>> 8)
-	    this[offset] = (value & 0xff)
-	  } else {
-	    objectWriteUInt32(this, value, offset, true)
-	  }
-	  return offset + 4
-	}
-
-	Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value >>> 24)
-	    this[offset + 1] = (value >>> 16)
-	    this[offset + 2] = (value >>> 8)
-	    this[offset + 3] = (value & 0xff)
-	  } else {
-	    objectWriteUInt32(this, value, offset, false)
-	  }
-	  return offset + 4
-	}
-
-	Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) {
-	    var limit = Math.pow(2, 8 * byteLength - 1)
-
-	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
-	  }
-
-	  var i = 0
-	  var mul = 1
-	  var sub = value < 0 ? 1 : 0
-	  this[offset] = value & 0xFF
-	  while (++i < byteLength && (mul *= 0x100)) {
-	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
-	  }
-
-	  return offset + byteLength
-	}
-
-	Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) {
-	    var limit = Math.pow(2, 8 * byteLength - 1)
-
-	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
-	  }
-
-	  var i = byteLength - 1
-	  var mul = 1
-	  var sub = value < 0 ? 1 : 0
-	  this[offset + i] = value & 0xFF
-	  while (--i >= 0 && (mul *= 0x100)) {
-	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
-	  }
-
-	  return offset + byteLength
-	}
-
-	Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
-	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
-	  if (value < 0) value = 0xff + value + 1
-	  this[offset] = (value & 0xff)
-	  return offset + 1
-	}
-
-	Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value & 0xff)
-	    this[offset + 1] = (value >>> 8)
-	  } else {
-	    objectWriteUInt16(this, value, offset, true)
-	  }
-	  return offset + 2
-	}
-
-	Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value >>> 8)
-	    this[offset + 1] = (value & 0xff)
-	  } else {
-	    objectWriteUInt16(this, value, offset, false)
-	  }
-	  return offset + 2
-	}
-
-	Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value & 0xff)
-	    this[offset + 1] = (value >>> 8)
-	    this[offset + 2] = (value >>> 16)
-	    this[offset + 3] = (value >>> 24)
-	  } else {
-	    objectWriteUInt32(this, value, offset, true)
-	  }
-	  return offset + 4
-	}
-
-	Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
-	  value = +value
-	  offset = offset | 0
-	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
-	  if (value < 0) value = 0xffffffff + value + 1
-	  if (Buffer.TYPED_ARRAY_SUPPORT) {
-	    this[offset] = (value >>> 24)
-	    this[offset + 1] = (value >>> 16)
-	    this[offset + 2] = (value >>> 8)
-	    this[offset + 3] = (value & 0xff)
-	  } else {
-	    objectWriteUInt32(this, value, offset, false)
-	  }
-	  return offset + 4
-	}
-
-	function checkIEEE754 (buf, value, offset, ext, max, min) {
-	  if (value > max || value < min) throw new RangeError('value is out of bounds')
-	  if (offset + ext > buf.length) throw new RangeError('index out of range')
-	  if (offset < 0) throw new RangeError('index out of range')
-	}
-
-	function writeFloat (buf, value, offset, littleEndian, noAssert) {
-	  if (!noAssert) {
-	    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
-	  }
-	  ieee754.write(buf, value, offset, littleEndian, 23, 4)
-	  return offset + 4
-	}
-
-	Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
-	  return writeFloat(this, value, offset, true, noAssert)
-	}
-
-	Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
-	  return writeFloat(this, value, offset, false, noAssert)
-	}
-
-	function writeDouble (buf, value, offset, littleEndian, noAssert) {
-	  if (!noAssert) {
-	    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
-	  }
-	  ieee754.write(buf, value, offset, littleEndian, 52, 8)
-	  return offset + 8
-	}
-
-	Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
-	  return writeDouble(this, value, offset, true, noAssert)
-	}
-
-	Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
-	  return writeDouble(this, value, offset, false, noAssert)
-	}
-
-	// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-	Buffer.prototype.copy = function copy (target, targetStart, start, end) {
-	  if (!start) start = 0
-	  if (!end && end !== 0) end = this.length
-	  if (targetStart >= target.length) targetStart = target.length
-	  if (!targetStart) targetStart = 0
-	  if (end > 0 && end < start) end = start
-
-	  // Copy 0 bytes; we're done
-	  if (end === start) return 0
-	  if (target.length === 0 || this.length === 0) return 0
-
-	  // Fatal error conditions
-	  if (targetStart < 0) {
-	    throw new RangeError('targetStart out of bounds')
-	  }
-	  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
-	  if (end < 0) throw new RangeError('sourceEnd out of bounds')
-
-	  // Are we oob?
-	  if (end > this.length) end = this.length
-	  if (target.length - targetStart < end - start) {
-	    end = target.length - targetStart + start
-	  }
-
-	  var len = end - start
-	  var i
-
-	  if (this === target && start < targetStart && targetStart < end) {
-	    // descending copy from end
-	    for (i = len - 1; i >= 0; i--) {
-	      target[i + targetStart] = this[i + start]
-	    }
-	  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
-	    // ascending copy from start
-	    for (i = 0; i < len; i++) {
-	      target[i + targetStart] = this[i + start]
-	    }
-	  } else {
-	    target._set(this.subarray(start, start + len), targetStart)
-	  }
-
-	  return len
-	}
-
-	// fill(value, start=0, end=buffer.length)
-	Buffer.prototype.fill = function fill (value, start, end) {
-	  if (!value) value = 0
-	  if (!start) start = 0
-	  if (!end) end = this.length
-
-	  if (end < start) throw new RangeError('end < start')
-
-	  // Fill 0 bytes; we're done
-	  if (end === start) return
-	  if (this.length === 0) return
-
-	  if (start < 0 || start >= this.length) throw new RangeError('start out of bounds')
-	  if (end < 0 || end > this.length) throw new RangeError('end out of bounds')
-
-	  var i
-	  if (typeof value === 'number') {
-	    for (i = start; i < end; i++) {
-	      this[i] = value
-	    }
-	  } else {
-	    var bytes = utf8ToBytes(value.toString())
-	    var len = bytes.length
-	    for (i = start; i < end; i++) {
-	      this[i] = bytes[i % len]
-	    }
-	  }
-
-	  return this
-	}
-
-	/**
-	 * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
-	 * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
-	 */
-	Buffer.prototype.toArrayBuffer = function toArrayBuffer () {
-	  if (typeof Uint8Array !== 'undefined') {
-	    if (Buffer.TYPED_ARRAY_SUPPORT) {
-	      return (new Buffer(this)).buffer
-	    } else {
-	      var buf = new Uint8Array(this.length)
-	      for (var i = 0, len = buf.length; i < len; i += 1) {
-	        buf[i] = this[i]
-	      }
-	      return buf.buffer
-	    }
-	  } else {
-	    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
-	  }
-	}
-
-	// HELPER FUNCTIONS
-	// ================
-
-	var BP = Buffer.prototype
-
-	/**
-	 * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
-	 */
-	Buffer._augment = function _augment (arr) {
-	  arr.constructor = Buffer
-	  arr._isBuffer = true
-
-	  // save reference to original Uint8Array set method before overwriting
-	  arr._set = arr.set
-
-	  // deprecated
-	  arr.get = BP.get
-	  arr.set = BP.set
-
-	  arr.write = BP.write
-	  arr.toString = BP.toString
-	  arr.toLocaleString = BP.toString
-	  arr.toJSON = BP.toJSON
-	  arr.equals = BP.equals
-	  arr.compare = BP.compare
-	  arr.indexOf = BP.indexOf
-	  arr.copy = BP.copy
-	  arr.slice = BP.slice
-	  arr.readUIntLE = BP.readUIntLE
-	  arr.readUIntBE = BP.readUIntBE
-	  arr.readUInt8 = BP.readUInt8
-	  arr.readUInt16LE = BP.readUInt16LE
-	  arr.readUInt16BE = BP.readUInt16BE
-	  arr.readUInt32LE = BP.readUInt32LE
-	  arr.readUInt32BE = BP.readUInt32BE
-	  arr.readIntLE = BP.readIntLE
-	  arr.readIntBE = BP.readIntBE
-	  arr.readInt8 = BP.readInt8
-	  arr.readInt16LE = BP.readInt16LE
-	  arr.readInt16BE = BP.readInt16BE
-	  arr.readInt32LE = BP.readInt32LE
-	  arr.readInt32BE = BP.readInt32BE
-	  arr.readFloatLE = BP.readFloatLE
-	  arr.readFloatBE = BP.readFloatBE
-	  arr.readDoubleLE = BP.readDoubleLE
-	  arr.readDoubleBE = BP.readDoubleBE
-	  arr.writeUInt8 = BP.writeUInt8
-	  arr.writeUIntLE = BP.writeUIntLE
-	  arr.writeUIntBE = BP.writeUIntBE
-	  arr.writeUInt16LE = BP.writeUInt16LE
-	  arr.writeUInt16BE = BP.writeUInt16BE
-	  arr.writeUInt32LE = BP.writeUInt32LE
-	  arr.writeUInt32BE = BP.writeUInt32BE
-	  arr.writeIntLE = BP.writeIntLE
-	  arr.writeIntBE = BP.writeIntBE
-	  arr.writeInt8 = BP.writeInt8
-	  arr.writeInt16LE = BP.writeInt16LE
-	  arr.writeInt16BE = BP.writeInt16BE
-	  arr.writeInt32LE = BP.writeInt32LE
-	  arr.writeInt32BE = BP.writeInt32BE
-	  arr.writeFloatLE = BP.writeFloatLE
-	  arr.writeFloatBE = BP.writeFloatBE
-	  arr.writeDoubleLE = BP.writeDoubleLE
-	  arr.writeDoubleBE = BP.writeDoubleBE
-	  arr.fill = BP.fill
-	  arr.inspect = BP.inspect
-	  arr.toArrayBuffer = BP.toArrayBuffer
-
-	  return arr
-	}
-
-	var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
-
-	function base64clean (str) {
-	  // Node strips out invalid characters like \n and \t from the string, base64-js does not
-	  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
-	  // Node converts strings with length < 2 to ''
-	  if (str.length < 2) return ''
-	  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
-	  while (str.length % 4 !== 0) {
-	    str = str + '='
-	  }
-	  return str
-	}
-
-	function stringtrim (str) {
-	  if (str.trim) return str.trim()
-	  return str.replace(/^\s+|\s+$/g, '')
-	}
-
-	function toHex (n) {
-	  if (n < 16) return '0' + n.toString(16)
-	  return n.toString(16)
-	}
-
-	function utf8ToBytes (string, units) {
-	  units = units || Infinity
-	  var codePoint
-	  var length = string.length
-	  var leadSurrogate = null
-	  var bytes = []
-
-	  for (var i = 0; i < length; i++) {
-	    codePoint = string.charCodeAt(i)
-
-	    // is surrogate component
-	    if (codePoint > 0xD7FF && codePoint < 0xE000) {
-	      // last char was a lead
-	      if (!leadSurrogate) {
-	        // no lead yet
-	        if (codePoint > 0xDBFF) {
-	          // unexpected trail
-	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-	          continue
-	        } else if (i + 1 === length) {
-	          // unpaired lead
-	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-	          continue
-	        }
-
-	        // valid lead
-	        leadSurrogate = codePoint
-
-	        continue
-	      }
-
-	      // 2 leads in a row
-	      if (codePoint < 0xDC00) {
-	        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-	        leadSurrogate = codePoint
-	        continue
-	      }
-
-	      // valid surrogate pair
-	      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
-	    } else if (leadSurrogate) {
-	      // valid bmp char, but last char was a lead
-	      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-	    }
-
-	    leadSurrogate = null
-
-	    // encode utf8
-	    if (codePoint < 0x80) {
-	      if ((units -= 1) < 0) break
-	      bytes.push(codePoint)
-	    } else if (codePoint < 0x800) {
-	      if ((units -= 2) < 0) break
-	      bytes.push(
-	        codePoint >> 0x6 | 0xC0,
-	        codePoint & 0x3F | 0x80
-	      )
-	    } else if (codePoint < 0x10000) {
-	      if ((units -= 3) < 0) break
-	      bytes.push(
-	        codePoint >> 0xC | 0xE0,
-	        codePoint >> 0x6 & 0x3F | 0x80,
-	        codePoint & 0x3F | 0x80
-	      )
-	    } else if (codePoint < 0x110000) {
-	      if ((units -= 4) < 0) break
-	      bytes.push(
-	        codePoint >> 0x12 | 0xF0,
-	        codePoint >> 0xC & 0x3F | 0x80,
-	        codePoint >> 0x6 & 0x3F | 0x80,
-	        codePoint & 0x3F | 0x80
-	      )
-	    } else {
-	      throw new Error('Invalid code point')
-	    }
-	  }
-
-	  return bytes
-	}
-
-	function asciiToBytes (str) {
-	  var byteArray = []
-	  for (var i = 0; i < str.length; i++) {
-	    // Node's code seems to be doing this and not & 0x7F..
-	    byteArray.push(str.charCodeAt(i) & 0xFF)
-	  }
-	  return byteArray
-	}
-
-	function utf16leToBytes (str, units) {
-	  var c, hi, lo
-	  var byteArray = []
-	  for (var i = 0; i < str.length; i++) {
-	    if ((units -= 2) < 0) break
-
-	    c = str.charCodeAt(i)
-	    hi = c >> 8
-	    lo = c % 256
-	    byteArray.push(lo)
-	    byteArray.push(hi)
-	  }
-
-	  return byteArray
-	}
-
-	function base64ToBytes (str) {
-	  return base64.toByteArray(base64clean(str))
-	}
-
-	function blitBuffer (src, dst, offset, length) {
-	  for (var i = 0; i < length; i++) {
-	    if ((i + offset >= dst.length) || (i >= src.length)) break
-	    dst[i + offset] = src[i]
-	  }
-	  return i
-	}
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73).Buffer, (function() { return this; }())))
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-
-	;(function (exports) {
-		'use strict';
-
-	  var Arr = (typeof Uint8Array !== 'undefined')
-	    ? Uint8Array
-	    : Array
-
-		var PLUS   = '+'.charCodeAt(0)
-		var SLASH  = '/'.charCodeAt(0)
-		var NUMBER = '0'.charCodeAt(0)
-		var LOWER  = 'a'.charCodeAt(0)
-		var UPPER  = 'A'.charCodeAt(0)
-		var PLUS_URL_SAFE = '-'.charCodeAt(0)
-		var SLASH_URL_SAFE = '_'.charCodeAt(0)
-
-		function decode (elt) {
-			var code = elt.charCodeAt(0)
-			if (code === PLUS ||
-			    code === PLUS_URL_SAFE)
-				return 62 // '+'
-			if (code === SLASH ||
-			    code === SLASH_URL_SAFE)
-				return 63 // '/'
-			if (code < NUMBER)
-				return -1 //no match
-			if (code < NUMBER + 10)
-				return code - NUMBER + 26 + 26
-			if (code < UPPER + 26)
-				return code - UPPER
-			if (code < LOWER + 26)
-				return code - LOWER + 26
-		}
-
-		function b64ToByteArray (b64) {
-			var i, j, l, tmp, placeHolders, arr
-
-			if (b64.length % 4 > 0) {
-				throw new Error('Invalid string. Length must be a multiple of 4')
-			}
-
-			// the number of equal signs (place holders)
-			// if there are two placeholders, than the two characters before it
-			// represent one byte
-			// if there is only one, then the three characters before it represent 2 bytes
-			// this is just a cheap hack to not do indexOf twice
-			var len = b64.length
-			placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
-
-			// base64 is 4/3 + up to two characters of the original data
-			arr = new Arr(b64.length * 3 / 4 - placeHolders)
-
-			// if there are placeholders, only get up to the last complete 4 chars
-			l = placeHolders > 0 ? b64.length - 4 : b64.length
-
-			var L = 0
-
-			function push (v) {
-				arr[L++] = v
-			}
-
-			for (i = 0, j = 0; i < l; i += 4, j += 3) {
-				tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
-				push((tmp & 0xFF0000) >> 16)
-				push((tmp & 0xFF00) >> 8)
-				push(tmp & 0xFF)
-			}
-
-			if (placeHolders === 2) {
-				tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
-				push(tmp & 0xFF)
-			} else if (placeHolders === 1) {
-				tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
-				push((tmp >> 8) & 0xFF)
-				push(tmp & 0xFF)
-			}
-
-			return arr
-		}
-
-		function uint8ToBase64 (uint8) {
-			var i,
-				extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
-				output = "",
-				temp, length
-
-			function encode (num) {
-				return lookup.charAt(num)
-			}
-
-			function tripletToBase64 (num) {
-				return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
-			}
-
-			// go through the array every three bytes, we'll deal with trailing stuff later
-			for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
-				temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
-				output += tripletToBase64(temp)
-			}
-
-			// pad the end with zeros, but make sure to not forget the extra bytes
-			switch (extraBytes) {
-				case 1:
-					temp = uint8[uint8.length - 1]
-					output += encode(temp >> 2)
-					output += encode((temp << 4) & 0x3F)
-					output += '=='
-					break
-				case 2:
-					temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
-					output += encode(temp >> 10)
-					output += encode((temp >> 4) & 0x3F)
-					output += encode((temp << 2) & 0x3F)
-					output += '='
-					break
-			}
-
-			return output
-		}
-
-		exports.toByteArray = b64ToByteArray
-		exports.fromByteArray = uint8ToBase64
-	}( false ? (this.base64js = {}) : exports))
-
-
-/***/ },
-/* 75 */
-/***/ function(module, exports) {
-
-	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
-	  var e, m
-	  var eLen = nBytes * 8 - mLen - 1
-	  var eMax = (1 << eLen) - 1
-	  var eBias = eMax >> 1
-	  var nBits = -7
-	  var i = isLE ? (nBytes - 1) : 0
-	  var d = isLE ? -1 : 1
-	  var s = buffer[offset + i]
-
-	  i += d
-
-	  e = s & ((1 << (-nBits)) - 1)
-	  s >>= (-nBits)
-	  nBits += eLen
-	  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
-
-	  m = e & ((1 << (-nBits)) - 1)
-	  e >>= (-nBits)
-	  nBits += mLen
-	  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
-
-	  if (e === 0) {
-	    e = 1 - eBias
-	  } else if (e === eMax) {
-	    return m ? NaN : ((s ? -1 : 1) * Infinity)
-	  } else {
-	    m = m + Math.pow(2, mLen)
-	    e = e - eBias
-	  }
-	  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
-	}
-
-	exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
-	  var e, m, c
-	  var eLen = nBytes * 8 - mLen - 1
-	  var eMax = (1 << eLen) - 1
-	  var eBias = eMax >> 1
-	  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
-	  var i = isLE ? 0 : (nBytes - 1)
-	  var d = isLE ? 1 : -1
-	  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
-
-	  value = Math.abs(value)
-
-	  if (isNaN(value) || value === Infinity) {
-	    m = isNaN(value) ? 1 : 0
-	    e = eMax
-	  } else {
-	    e = Math.floor(Math.log(value) / Math.LN2)
-	    if (value * (c = Math.pow(2, -e)) < 1) {
-	      e--
-	      c *= 2
-	    }
-	    if (e + eBias >= 1) {
-	      value += rt / c
-	    } else {
-	      value += rt * Math.pow(2, 1 - eBias)
-	    }
-	    if (value * c >= 2) {
-	      e++
-	      c /= 2
-	    }
-
-	    if (e + eBias >= eMax) {
-	      m = 0
-	      e = eMax
-	    } else if (e + eBias >= 1) {
-	      m = (value * c - 1) * Math.pow(2, mLen)
-	      e = e + eBias
-	    } else {
-	      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
-	      e = 0
-	    }
-	  }
-
-	  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
-
-	  e = (e << mLen) | m
-	  eLen += mLen
-	  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
-
-	  buffer[offset + i - d] |= s * 128
-	}
-
-
-/***/ },
-/* 76 */
-/***/ function(module, exports) {
-
-	
-	/**
-	 * isArray
-	 */
-
-	var isArray = Array.isArray;
-
-	/**
-	 * toString
-	 */
-
-	var str = Object.prototype.toString;
-
-	/**
-	 * Whether or not the given `val`
-	 * is an array.
-	 *
-	 * example:
-	 *
-	 *        isArray([]);
-	 *        // > true
-	 *        isArray(arguments);
-	 *        // > false
-	 *        isArray('');
-	 *        // > false
-	 *
-	 * @param {mixed} val
-	 * @return {bool}
-	 */
-
-	module.exports = isArray || function (val) {
-	  return !! val && '[object Array]' == str.call(val);
-	};
-
-
-/***/ },
-/* 77 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	var hl = __webpack_require__(2);
-	var hlimpl = __webpack_require__(5);
-	var Error = __webpack_require__(9);
-	var util = __webpack_require__(11);
-	var proxy = __webpack_require__(6);
-	var RamlWrapper = __webpack_require__(1);
-	var RamlWrapper08 = __webpack_require__(78);
-	var wrapperHelper = __webpack_require__(65);
-	var pluralize = __webpack_require__(93);
-	var universeProvider = __webpack_require__(80);
-	var changeCase = __webpack_require__(94);
-	function expandTraitsAndResourceTypes(api) {
-	    if (!(api instanceof RamlWrapper.ApiImpl || api instanceof RamlWrapper08.ApiImpl)) {
-	        return null;
-	    }
-	    return new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
-	}
-	exports.expandTraitsAndResourceTypes = expandTraitsAndResourceTypes;
-	function mergeAPIs(masterUnit, extensionsAndOverlays, mergeMode) {
-	    var masterApi = hl.fromUnit(masterUnit);
-	    if (!masterApi)
-	        throw new Error("couldn't load api from " + masterUnit.absolutePath());
-	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
-	        return masterApi;
-	    }
-	    var currentMaster = masterApi;
-	    var lastExtensionOrOverlay = null;
-	    for (var i = 0; i < extensionsAndOverlays.length; i++) {
-	        var currentUnit = extensionsAndOverlays[i];
-	        var currentApi = hl.fromUnit(currentUnit);
-	        if (!currentApi)
-	            throw new Error("couldn't load api from " + currentUnit.absolutePath());
-	        currentApi.overrideMaster(currentMaster);
-	        currentApi.setMergeMode(mergeMode);
-	        currentMaster = currentApi;
-	        if (i == extensionsAndOverlays.length - 1) {
-	            lastExtensionOrOverlay = currentApi;
-	        }
-	    }
-	    return lastExtensionOrOverlay;
-	}
-	exports.mergeAPIs = mergeAPIs;
-	var TraitsAndResourceTypesExpander = (function () {
-	    function TraitsAndResourceTypesExpander() {
-	    }
-	    TraitsAndResourceTypesExpander.prototype.expandTraitsAndResourceTypes = function (_api) {
-	        var _this = this;
-	        var isRAML1 = _api instanceof RamlWrapper.ApiImpl;
-	        var api = _api;
-	        var traits = wrapperHelper.allTraits(api);
-	        var resourceTypes = wrapperHelper.allResourceTypes(api);
-	        //if ((!traits || traits.length == 0) && (!resourceTypes || resourceTypes.length == 0)) {
-	        //    return api;
-	        //}
-	        if (traits.length == 0 && resourceTypes.length == 0) {
-	            return _api;
-	        }
-	        var llNode = api.highLevel().lowLevel();
-	        this.ramlVersion = _api.highLevel().definition().universe().version();
-	        var topComposite = new proxy.LowLevelCompositeNode(llNode, null, null, this.ramlVersion);
-	        var apiType = isRAML1 ? universeProvider('RAML10').type('Api') : universeProvider('RAML08').type('Api');
-	        var hlNode = new hlimpl.ASTNodeImpl(topComposite, null, apiType, null);
-	        var result = isRAML1 ? new RamlWrapper.ApiImpl(hlNode) : new RamlWrapper08.ApiImpl(hlNode);
-	        result.setAttributeDefaults(_api.getDefaultsCalculator().isEnabled());
-	        this.traitMap = {};
-	        this.resourceTypeMap = {};
-	        result.highLevel().setMergeMode(_api.highLevel().getMergeMode());
-	        if (traits) {
-	            traits.forEach(function (x) { return _this.traitMap[wrapperHelper.qName(x)] = x; });
-	        }
-	        if (resourceTypes) {
-	            resourceTypes.forEach(function (x) { return _this.resourceTypeMap[wrapperHelper.qName(x)] = x; });
-	        }
-	        var resources = result.resources();
-	        resources.forEach(function (x) { return _this.processResource(x); });
-	        return result;
-	    };
-	    TraitsAndResourceTypesExpander.prototype.processResource = function (resource) {
-	        var _this = this;
-	        var resourceData = this.collectResourceData(resource);
-	        if (resource instanceof RamlWrapper.ResourceImpl) {
-	            var mb = resource;
-	        }
-	        var resourceLowLevel = resource.highLevel().lowLevel();
-	        resourceData.filter(function (x) { return x.resourceType != null; }).forEach(function (x) {
-	            var resourceTypeLowLevel = x.resourceType.node.highLevel().lowLevel();
-	            var resourceTypeTransformer = new DefaultTransformer(resource, x.resourceType.transformer);
-	            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer);
-	        });
-	        var methods = resource.methods();
-	        methods.forEach(function (m) {
-	            var methodLowLevel = m.highLevel().lowLevel();
-	            var name = m.method();
-	            resourceData.forEach(function (x) {
-	                var methodTraits = x.methodTraits[name];
-	                if (methodTraits) {
-	                    methodTraits.forEach(function (x) {
-	                        var traitLowLevel = x.node.highLevel().lowLevel();
-	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
-	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
-	                    });
-	                }
-	                var resourceTraits = x.traits;
-	                if (resourceTraits) {
-	                    resourceTraits.forEach(function (x) {
-	                        var traitLowLevel = x.node.highLevel().lowLevel();
-	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
-	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
-	                    });
-	                }
-	            });
-	        });
-	        var resources = resource.resources();
-	        resources.forEach(function (x) { return _this.processResource(x); });
-	    };
-	    TraitsAndResourceTypesExpander.prototype.collectResourceData = function (obj, arr, transformer, occuredResourceTypes) {
-	        var _this = this;
-	        if (arr === void 0) { arr = []; }
-	        if (occuredResourceTypes === void 0) { occuredResourceTypes = {}; }
-	        var ownTraits = this.extractTraits(obj, transformer);
-	        var methodTraitsMap = {};
-	        var methods = obj.methods();
-	        methods.forEach(function (x) {
-	            var methodTraits = _this.extractTraits(x, transformer);
-	            if (methodTraits && methodTraits.length > 0) {
-	                methodTraitsMap[x.method()] = methodTraits;
-	            }
-	        });
-	        var rtData;
-	        var rt = obj.type();
-	        if (rt && !occuredResourceTypes[rt.name()]) {
-	            occuredResourceTypes[rt.name()] = true;
-	            rtData = this.readGenerictData(rt, this.resourceTypeMap, 'resource type', transformer);
-	        }
-	        arr.push({
-	            resourceType: rtData,
-	            traits: ownTraits,
-	            methodTraits: methodTraitsMap
-	        });
-	        if (rtData) {
-	            this.collectResourceData(rtData.node, arr, rtData.transformer, occuredResourceTypes);
-	        }
-	        return arr;
-	    };
-	    TraitsAndResourceTypesExpander.prototype.extractTraits = function (obj, _transformer, occuredTraits) {
-	        var _this = this;
-	        if (occuredTraits === void 0) { occuredTraits = {}; }
-	        var arr = [];
-	        for (var i = -1; i < arr.length; i++) {
-	            var gd = i < 0 ? null : arr[i];
-	            var _obj = gd ? gd.node : obj;
-	            var transformer = gd ? gd.transformer : _transformer;
-	            _obj.is().forEach(function (x) {
-	                var traitData = _this.readGenerictData(x, _this.traitMap, 'trait', transformer);
-	                if (traitData) {
-	                    var name = traitData.name;
-	                    if (!occuredTraits[name]) {
-	                        occuredTraits[name] = true;
-	                        arr.push(traitData);
-	                    }
-	                }
-	            });
-	        }
-	        if (obj instanceof RamlWrapper.MethodImpl) {
-	            var mb = obj;
-	        }
-	        return arr;
-	    };
-	    TraitsAndResourceTypesExpander.prototype.readGenerictData = function (obj, globalMap, template, transformer) {
-	        var value = obj.value();
-	        if (typeof (value) == 'string') {
-	            if (transformer) {
-	                value = transformer.transform(value).value;
-	            }
-	            var node = globalMap[value];
-	            if (node) {
-	                return {
-	                    name: value,
-	                    transformer: null,
-	                    node: node
-	                };
-	            }
-	        }
-	        else if (value instanceof hlimpl.StructuredValue) {
-	            var sv = value;
-	            var name = sv.valueName();
-	            if (transformer) {
-	                name = transformer.transform(name).value;
-	            }
-	            var params = {};
-	            var node = globalMap[name];
-	            //var t = hlimpl.typeFromNode(node.highLevel());
-	            if (node) {
-	                if (this.ramlVersion == 'RAML08' && transformer) {
-	                    sv.children().forEach(function (x) { return params[x.valueName()] = transformer.transform(x.lowLevel().value()).value; });
-	                }
-	                else {
-	                    sv.children().forEach(function (x) { return params[x.valueName()] = x.lowLevel().value(); });
-	                }
-	                return {
-	                    name: name,
-	                    transformer: new ValueTransformer(template, name, params),
-	                    node: node
-	                };
-	            }
-	        }
-	        return null;
-	    };
-	    return TraitsAndResourceTypesExpander;
-	})();
-	var TransformMatches = (function () {
-	    function TransformMatches(name, transformer) {
-	        this.name = name;
-	        this.regexp = new RegExp(TransformMatches.leftTransformRegexp.source + name + TransformMatches.rightTransformRegexp.source);
-	        this.transformer = transformer;
-	    }
-	    TransformMatches.leftTransformRegexp = /\|\s*!\s*/;
-	    TransformMatches.rightTransformRegexp = /\s*$/;
-	    return TransformMatches;
-	})();
-	var transformers = [
-	    new TransformMatches("singularize", function (arg) { return pluralize.singular(arg); }),
-	    new TransformMatches("pluralize", function (arg) { return pluralize.plural(arg); }),
-	    new TransformMatches("uppercase", function (arg) { return arg ? arg.toUpperCase() : arg; }),
-	    new TransformMatches("lowercase", function (arg) { return arg ? arg.toLowerCase() : arg; }),
-	    new TransformMatches("lowercamelcase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        return changeCase.camelCase(arg);
-	    }),
-	    new TransformMatches("uppercamelcase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        var lowerCamelCase = changeCase.camelCase(arg);
-	        return lowerCamelCase[0].toUpperCase() + lowerCamelCase.substring(1, lowerCamelCase.length);
-	    }),
-	    new TransformMatches("lowerunderscorecase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        var snakeCase = changeCase.snake(arg);
-	        return snakeCase.toLowerCase();
-	    }),
-	    new TransformMatches("upperunderscorecase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        var snakeCase = changeCase.snake(arg);
-	        return snakeCase.toUpperCase();
-	    }),
-	    new TransformMatches("lowerhyphencase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        var paramCase = changeCase.param(arg);
-	        return paramCase.toLowerCase();
-	    }),
-	    new TransformMatches("upperhyphencase", function (arg) {
-	        if (!arg) {
-	            return arg;
-	        }
-	        var paramCase = changeCase.param(arg);
-	        return paramCase.toUpperCase();
-	    })
-	];
-	function getTransformNames() {
-	    return transformers.map(function (transformer) { return transformer.name; });
-	}
-	exports.getTransformNames = getTransformNames;
-	function getTransformerForOccurence(occurence) {
-	    var result;
-	    for (var i = 0; i < transformers.length; i++) {
-	        if (occurence.match(transformers[i].regexp)) {
-	            result = transformers[i].transformer;
-	            break;
-	        }
-	    }
-	    return result;
-	}
-	exports.getTransformerForOccurence = getTransformerForOccurence;
-	var ValueTransformer = (function () {
-	    function ValueTransformer(templateKind, templateName, params) {
-	        this.templateKind = templateKind;
-	        this.templateName = templateName;
-	        this.params = params;
-	    }
-	    ValueTransformer.prototype.transform = function (obj) {
-	        var undefParams = {};
-	        var errors = [];
-	        if (typeof (obj) === 'string') {
-	            var str = obj;
-	            var str1 = '';
-	            var prev = 0;
-	            for (var i = str.indexOf('<<'); i >= 0; i = str.indexOf('<<', prev)) {
-	                str1 += str.substring(prev, i);
-	                var i0 = i;
-	                i += '<<'.length;
-	                prev = str.indexOf('>>', i);
-	                var paramOccurence = str.substring(i, prev);
-	                prev += '>>'.length;
-	                var originalString = str.substring(i0, prev);
-	                var val;
-	                var paramName;
-	                var transformer = getTransformerForOccurence(paramOccurence);
-	                if (transformer) {
-	                    var ind = paramOccurence.lastIndexOf('|');
-	                    paramName = paramOccurence.substring(0, ind).trim();
-	                    val = this.params[paramName];
-	                    if (val) {
-	                        val = transformer(val);
-	                    }
-	                }
-	                else {
-	                    paramName = paramOccurence.trim();
-	                    val = this.params[paramName];
-	                }
-	                if (!val) {
-	                    undefParams[paramName] = true;
-	                    val = originalString;
-	                }
-	                str1 += val;
-	            }
-	            var upArr = Object.keys(undefParams);
-	            if (upArr.length > 0) {
-	                var errStr = upArr.join(', ').trim();
-	                var message = "Undefined " + this.templateKind + " parameter" + (upArr.length > 1 ? 's' : '') + ": " + errStr;
-	                var error = {
-	                    code: 3 /* MISSING_REQUIRED_PROPERTY */,
-	                    isWarning: false,
-	                    message: message,
-	                    node: null,
-	                    start: -1,
-	                    end: -1,
-	                    path: null
-	                };
-	                errors.push(error);
-	            }
-	            str1 += str.substring(prev, str.length);
-	            return { value: str1, errors: errors };
-	        }
-	        else {
-	            return { value: obj, errors: errors };
-	        }
-	    };
-	    return ValueTransformer;
-	})();
-	var DefaultTransformer = (function (_super) {
-	    __extends(DefaultTransformer, _super);
-	    function DefaultTransformer(owner, delegate) {
-	        _super.call(this, delegate.templateKind, delegate.templateName, null);
-	        this.owner = owner;
-	        this.delegate = delegate;
-	    }
-	    DefaultTransformer.prototype.transform = function (obj) {
-	        if (obj == null) {
-	            return {
-	                value: obj,
-	                errors: []
-	            };
-	        }
-	        var ownResult = {
-	            value: obj,
-	            errors: []
-	        };
-	        var gotDefaultParam = false;
-	        defaultParameters.forEach(function (x) { return gotDefaultParam = gotDefaultParam || obj.toString().indexOf('<<' + x) >= 0; });
-	        if (gotDefaultParam) {
-	            this.initParams();
-	            ownResult = _super.prototype.transform.call(this, obj);
-	        }
-	        var result = this.delegate.transform(ownResult.value);
-	        return result;
-	    };
-	    DefaultTransformer.prototype.initParams = function () {
-	        var methodName;
-	        var resourcePath = "";
-	        var resourcePathName;
-	        var node = this.owner.highLevel().lowLevel().originalNode().originalNode();
-	        while (node) {
-	            var key = node.key();
-	            if (key != null) {
-	                if (util.stringStartsWith(key, '/')) {
-	                    if (!resourcePathName) {
-	                        var arr = key.split('/');
-	                        resourcePathName = arr[arr.length - 1].replace(/[\/\{\}]/g, '');
-	                    }
-	                    resourcePath = key + resourcePath;
-	                }
-	                else {
-	                    methodName = key;
-	                }
-	            }
-	            node = node.parent();
-	        }
-	        this.params = {
-	            resourcePath: resourcePath,
-	            resourcePathName: resourcePathName
-	        };
-	        if (methodName) {
-	            this.params['methodName'] = methodName;
-	        }
-	    };
-	    return DefaultTransformer;
-	})(ValueTransformer);
-	var defaultParameters = ['resourcePath', 'resourcePathName', 'methodName'];
-
-
-/***/ },
-/* 78 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __extends = this.__extends || function (d, b) {
-	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-	    function __() { this.constructor = d; }
-	    __.prototype = b.prototype;
-	    d.prototype = new __();
-	};
-	var hl = __webpack_require__(2);
-	var services = __webpack_require__(49);
-	var core = __webpack_require__(67);
-	var apiLoader = __webpack_require__(79);
-	var helper = __webpack_require__(91);
-	var RAMLLanguageElementImpl = (function (_super) {
-	    __extends(RAMLLanguageElementImpl, _super);
-	    function RAMLLanguageElementImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
-	     **/
-	    RAMLLanguageElementImpl.prototype.description = function () {
-	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
-	        return "RAMLLanguageElementImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    RAMLLanguageElementImpl.prototype.kind = function () {
-	        return "RAMLLanguageElement";
-	    };
-	    return RAMLLanguageElementImpl;
-	})(core.BasicNodeImpl);
-	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
-	var ValueTypeImpl = (function (_super) {
-	    __extends(ValueTypeImpl, _super);
-	    function ValueTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ValueTypeImpl.prototype.wrapperClassName = function () {
-	        return "ValueTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ValueTypeImpl.prototype.kind = function () {
-	        return "ValueType";
-	    };
-	    /**
-	     * @return JS representation of the node value
-	     **/
-	    ValueTypeImpl.prototype.value = function () {
-	        return this.attr.value();
-	    };
-	    return ValueTypeImpl;
-	})(core.AttributeNodeImpl);
-	exports.ValueTypeImpl = ValueTypeImpl;
-	var AnyTypeImpl = (function (_super) {
-	    __extends(AnyTypeImpl, _super);
-	    function AnyTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    AnyTypeImpl.prototype.wrapperClassName = function () {
-	        return "AnyTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    AnyTypeImpl.prototype.kind = function () {
-	        return "AnyType";
-	    };
-	    return AnyTypeImpl;
-	})(ValueTypeImpl);
-	exports.AnyTypeImpl = AnyTypeImpl;
-	var NumberTypeImpl = (function (_super) {
-	    __extends(NumberTypeImpl, _super);
-	    function NumberTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    NumberTypeImpl.prototype.wrapperClassName = function () {
-	        return "NumberTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    NumberTypeImpl.prototype.kind = function () {
-	        return "NumberType";
-	    };
-	    /**
-	     * @return Number representation of the node value
-	     **/
-	    NumberTypeImpl.prototype.value = function () {
-	        return this.attr.value();
-	    };
-	    return NumberTypeImpl;
-	})(ValueTypeImpl);
-	exports.NumberTypeImpl = NumberTypeImpl;
-	var BooleanTypeImpl = (function (_super) {
-	    __extends(BooleanTypeImpl, _super);
-	    function BooleanTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    BooleanTypeImpl.prototype.wrapperClassName = function () {
-	        return "BooleanTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    BooleanTypeImpl.prototype.kind = function () {
-	        return "BooleanType";
-	    };
-	    /**
-	     * @return Boolean representation of the node value
-	     **/
-	    BooleanTypeImpl.prototype.value = function () {
-	        return this.attr.value();
-	    };
-	    return BooleanTypeImpl;
-	})(ValueTypeImpl);
-	exports.BooleanTypeImpl = BooleanTypeImpl;
-	var ReferenceImpl = (function (_super) {
-	    __extends(ReferenceImpl, _super);
-	    function ReferenceImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ReferenceImpl.prototype.wrapperClassName = function () {
-	        return "ReferenceImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ReferenceImpl.prototype.kind = function () {
-	        return "Reference";
-	    };
-	    /**
-	     * @return StructuredValue object representing the node value
-	     **/
-	    ReferenceImpl.prototype.value = function () {
-	        return core.toStructuredValue(this.attr);
-	    };
-	    ReferenceImpl.prototype.structuredValue = function () {
-	        return helper.structuredValue(this);
-	    };
-	    ReferenceImpl.prototype.name = function () {
-	        return helper.referenceName(this);
-	    };
-	    return ReferenceImpl;
-	})(core.AttributeNodeImpl);
-	exports.ReferenceImpl = ReferenceImpl;
-	var ResourceTypeRefImpl = (function (_super) {
-	    __extends(ResourceTypeRefImpl, _super);
-	    function ResourceTypeRefImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
-	        return "ResourceTypeRefImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ResourceTypeRefImpl.prototype.kind = function () {
-	        return "ResourceTypeRef";
-	    };
-	    ResourceTypeRefImpl.prototype.resourceType = function () {
-	        return helper.referencedResourceType(this);
-	    };
-	    return ResourceTypeRefImpl;
-	})(ReferenceImpl);
-	exports.ResourceTypeRefImpl = ResourceTypeRefImpl;
-	var ResourceTypeImpl = (function (_super) {
-	    __extends(ResourceTypeImpl, _super);
-	    function ResourceTypeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Name of the resource type
-	     **/
-	    ResourceTypeImpl.prototype.name = function () {
-	        return _super.prototype.attribute.call(this, 'name', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set name value
-	     **/
-	    ResourceTypeImpl.prototype.setName = function (param) {
-	        this.highLevel().attrOrCreate("name").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Instructions on how and when the resource type should be used.
-	     **/
-	    ResourceTypeImpl.prototype.usage = function () {
-	        return _super.prototype.attribute.call(this, 'usage', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set usage value
-	     **/
-	    ResourceTypeImpl.prototype.setUsage = function (param) {
-	        this.highLevel().attrOrCreate("usage").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Methods that are part of this resource type definition
-	     **/
-	    ResourceTypeImpl.prototype.methods = function () {
-	        return _super.prototype.elements.call(this, 'methods');
-	    };
-	    /**
-	     * Instantiation of applyed traits
-	     **/
-	    ResourceTypeImpl.prototype.is = function () {
-	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
-	    };
-	    /**
-	     * Instantiation of applyed resource type
-	     **/
-	    ResourceTypeImpl.prototype["type"] = function () {
-	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     **/
-	    ResourceTypeImpl.prototype.securedBy = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * Uri parameters of this resource
-	     **/
-	    ResourceTypeImpl.prototype.uriParameters = function () {
-	        return _super.prototype.elements.call(this, 'uriParameters');
-	    };
-	    /**
-	     * An alternate, human-friendly name for the resource type
-	     **/
-	    ResourceTypeImpl.prototype.displayName = function () {
-	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set displayName value
-	     **/
-	    ResourceTypeImpl.prototype.setDisplayName = function (param) {
-	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ResourceTypeImpl.prototype.wrapperClassName = function () {
-	        return "ResourceTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ResourceTypeImpl.prototype.kind = function () {
-	        return "ResourceType";
-	    };
-	    return ResourceTypeImpl;
-	})(RAMLLanguageElementImpl);
-	exports.ResourceTypeImpl = ResourceTypeImpl;
-	var HasNormalParametersImpl = (function (_super) {
-	    __extends(HasNormalParametersImpl, _super);
-	    function HasNormalParametersImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-	     **/
-	    HasNormalParametersImpl.prototype.queryParameters = function () {
-	        return _super.prototype.elements.call(this, 'queryParameters');
-	    };
-	    /**
-	     * An alternate, human-readable name of the object
-	     **/
-	    HasNormalParametersImpl.prototype.displayName = function () {
-	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set displayName value
-	     **/
-	    HasNormalParametersImpl.prototype.setDisplayName = function (param) {
-	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Headers that allowed at this position
-	     **/
-	    HasNormalParametersImpl.prototype.headers = function () {
-	        return _super.prototype.elements.call(this, 'headers');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
-	        return "HasNormalParametersImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    HasNormalParametersImpl.prototype.kind = function () {
-	        return "HasNormalParameters";
-	    };
-	    return HasNormalParametersImpl;
-	})(RAMLLanguageElementImpl);
-	exports.HasNormalParametersImpl = HasNormalParametersImpl;
-	var ParameterImpl = (function (_super) {
-	    __extends(ParameterImpl, _super);
-	    function ParameterImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createParameter(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * name of the parameter
-	     **/
-	    ParameterImpl.prototype.name = function () {
-	        return _super.prototype.attribute.call(this, 'name', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set name value
-	     **/
-	    ParameterImpl.prototype.setName = function (param) {
-	        this.highLevel().attrOrCreate("name").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * An alternate, human-friendly name for the parameter
-	     **/
-	    ParameterImpl.prototype.displayName = function () {
-	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set displayName value
-	     **/
-	    ParameterImpl.prototype.setDisplayName = function (param) {
-	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
-	     **/
-	    ParameterImpl.prototype["type"] = function () {
-	        return _super.prototype.attribute.call(this, 'type', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set type value
-	     **/
-	    ParameterImpl.prototype.setType = function (param) {
-	        this.highLevel().attrOrCreate("type").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Location of the parameter (can not be edited by user)
-	     **/
-	    ParameterImpl.prototype.location = function () {
-	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ParameterLocationImpl(attr); });
-	    };
-	    /**
-	     * Set to true if parameter is required
-	     **/
-	    ParameterImpl.prototype.required = function () {
-	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
-	    };
-	    /**
-	     * @hidden
-	     * Set required value
-	     **/
-	    ParameterImpl.prototype.setRequired = function (param) {
-	        this.highLevel().attrOrCreate("required").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
-	     **/
-	    ParameterImpl.prototype["default"] = function () {
-	        return _super.prototype.attribute.call(this, 'default');
-	    };
-	    /**
-	     * @hidden
-	     * Set default value
-	     **/
-	    ParameterImpl.prototype.setDefault = function (param) {
-	        this.highLevel().attrOrCreate("default").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
-	     **/
-	    ParameterImpl.prototype.example = function () {
-	        return _super.prototype.attribute.call(this, 'example', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set example value
-	     **/
-	    ParameterImpl.prototype.setExample = function (param) {
-	        this.highLevel().attrOrCreate("example").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-	     **/
-	    ParameterImpl.prototype.repeat = function () {
-	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
-	    };
-	    /**
-	     * @hidden
-	     * Set repeat value
-	     **/
-	    ParameterImpl.prototype.setRepeat = function (param) {
-	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ParameterImpl.prototype.wrapperClassName = function () {
-	        return "ParameterImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ParameterImpl.prototype.kind = function () {
-	        return "Parameter";
-	    };
-	    return ParameterImpl;
-	})(RAMLLanguageElementImpl);
-	exports.ParameterImpl = ParameterImpl;
-	var ParameterLocationImpl = (function () {
-	    function ParameterLocationImpl(attr) {
-	        this.attr = attr;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ParameterLocationImpl.prototype.wrapperClassName = function () {
-	        return "ParameterLocationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ParameterLocationImpl.prototype.kind = function () {
-	        return "ParameterLocation";
-	    };
-	    return ParameterLocationImpl;
-	})();
-	exports.ParameterLocationImpl = ParameterLocationImpl;
-	/**
-	 * Value must be a string
-	 **/
-	var StringTypeDeclarationImpl = (function (_super) {
-	    __extends(StringTypeDeclarationImpl, _super);
-	    function StringTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createStringTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * (Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
-	     **/
-	    StringTypeDeclarationImpl.prototype.pattern = function () {
-	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set pattern value
-	     **/
-	    StringTypeDeclarationImpl.prototype.setPattern = function (param) {
-	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
-	     **/
-	    StringTypeDeclarationImpl.prototype.enum = function () {
-	        return _super.prototype.attributes.call(this, 'enum', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set enum value
-	     **/
-	    StringTypeDeclarationImpl.prototype.setEnum = function (param) {
-	        this.highLevel().attrOrCreate("enum").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
-	     **/
-	    StringTypeDeclarationImpl.prototype.minLength = function () {
-	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
-	    };
-	    /**
-	     * @hidden
-	     * Set minLength value
-	     **/
-	    StringTypeDeclarationImpl.prototype.setMinLength = function (param) {
-	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
-	     **/
-	    StringTypeDeclarationImpl.prototype.maxLength = function () {
-	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
-	    };
-	    /**
-	     * @hidden
-	     * Set maxLength value
-	     **/
-	    StringTypeDeclarationImpl.prototype.setMaxLength = function (param) {
-	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    StringTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "StringTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    StringTypeDeclarationImpl.prototype.kind = function () {
-	        return "StringTypeDeclaration";
-	    };
-	    return StringTypeDeclarationImpl;
-	})(ParameterImpl);
-	exports.StringTypeDeclarationImpl = StringTypeDeclarationImpl;
-	/**
-	 * Value must be a boolean
-	 **/
-	var BooleanTypeDeclarationImpl = (function (_super) {
-	    __extends(BooleanTypeDeclarationImpl, _super);
-	    function BooleanTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    BooleanTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "BooleanTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    BooleanTypeDeclarationImpl.prototype.kind = function () {
-	        return "BooleanTypeDeclaration";
-	    };
-	    return BooleanTypeDeclarationImpl;
-	})(ParameterImpl);
-	exports.BooleanTypeDeclarationImpl = BooleanTypeDeclarationImpl;
-	/**
-	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
-	 **/
-	var NumberTypeDeclarationImpl = (function (_super) {
-	    __extends(NumberTypeDeclarationImpl, _super);
-	    function NumberTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
-	     **/
-	    NumberTypeDeclarationImpl.prototype.minimum = function () {
-	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
-	    };
-	    /**
-	     * @hidden
-	     * Set minimum value
-	     **/
-	    NumberTypeDeclarationImpl.prototype.setMinimum = function (param) {
-	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
-	     **/
-	    NumberTypeDeclarationImpl.prototype.maximum = function () {
-	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
-	    };
-	    /**
-	     * @hidden
-	     * Set maximum value
-	     **/
-	    NumberTypeDeclarationImpl.prototype.setMaximum = function (param) {
-	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    NumberTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "NumberTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    NumberTypeDeclarationImpl.prototype.kind = function () {
-	        return "NumberTypeDeclaration";
-	    };
-	    return NumberTypeDeclarationImpl;
-	})(ParameterImpl);
-	exports.NumberTypeDeclarationImpl = NumberTypeDeclarationImpl;
-	/**
-	 * Value MUST be a integer.
-	 **/
-	var IntegerTypeDeclarationImpl = (function (_super) {
-	    __extends(IntegerTypeDeclarationImpl, _super);
-	    function IntegerTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    IntegerTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "IntegerTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    IntegerTypeDeclarationImpl.prototype.kind = function () {
-	        return "IntegerTypeDeclaration";
-	    };
-	    return IntegerTypeDeclarationImpl;
-	})(NumberTypeDeclarationImpl);
-	exports.IntegerTypeDeclarationImpl = IntegerTypeDeclarationImpl;
-	/**
-	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
-	 **/
-	var DateTypeDeclarationImpl = (function (_super) {
-	    __extends(DateTypeDeclarationImpl, _super);
-	    function DateTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createDateTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    DateTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "DateTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    DateTypeDeclarationImpl.prototype.kind = function () {
-	        return "DateTypeDeclaration";
-	    };
-	    return DateTypeDeclarationImpl;
-	})(ParameterImpl);
-	exports.DateTypeDeclarationImpl = DateTypeDeclarationImpl;
-	/**
-	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
-	 **/
-	var FileTypeDeclarationImpl = (function (_super) {
-	    __extends(FileTypeDeclarationImpl, _super);
-	    function FileTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createFileTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    FileTypeDeclarationImpl.prototype.wrapperClassName = function () {
-	        return "FileTypeDeclarationImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    FileTypeDeclarationImpl.prototype.kind = function () {
-	        return "FileTypeDeclaration";
-	    };
-	    return FileTypeDeclarationImpl;
-	})(ParameterImpl);
-	exports.FileTypeDeclarationImpl = FileTypeDeclarationImpl;
-	/**
-	 * Method object allows description of http methods
-	 **/
-	var MethodBaseImpl = (function (_super) {
-	    __extends(MethodBaseImpl, _super);
-	    function MethodBaseImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
-	     **/
-	    MethodBaseImpl.prototype.responses = function () {
-	        return _super.prototype.elements.call(this, 'responses');
-	    };
-	    /**
-	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
-	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
-	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-	     **/
-	    MethodBaseImpl.prototype.body = function () {
-	        return _super.prototype.elements.call(this, 'body');
-	    };
-	    /**
-	     * A method can override an API's protocols value for that single method by setting a different value for the fields.
-	     **/
-	    MethodBaseImpl.prototype.protocols = function () {
-	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set protocols value
-	     **/
-	    MethodBaseImpl.prototype.setProtocols = function (param) {
-	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Instantiation of applyed traits
-	     **/
-	    MethodBaseImpl.prototype.is = function () {
-	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
-	    };
-	    /**
-	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     **/
-	    MethodBaseImpl.prototype.securedBy = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    MethodBaseImpl.prototype.wrapperClassName = function () {
-	        return "MethodBaseImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    MethodBaseImpl.prototype.kind = function () {
-	        return "MethodBase";
-	    };
-	    return MethodBaseImpl;
-	})(HasNormalParametersImpl);
-	exports.MethodBaseImpl = MethodBaseImpl;
-	var ResponseImpl = (function (_super) {
-	    __extends(ResponseImpl, _super);
-	    function ResponseImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-	     **/
-	    ResponseImpl.prototype.code = function () {
-	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeStringImpl(attr); });
-	    };
-	    /**
-	     * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
-	     * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
-	     *
-	     * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
-	     **/
-	    ResponseImpl.prototype.headers = function () {
-	        return _super.prototype.elements.call(this, 'headers');
-	    };
-	    /**
-	     * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
-	     * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
-	     **/
-	    ResponseImpl.prototype.body = function () {
-	        return _super.prototype.elements.call(this, 'body');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ResponseImpl.prototype.wrapperClassName = function () {
-	        return "ResponseImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ResponseImpl.prototype.kind = function () {
-	        return "Response";
-	    };
-	    /**
-	     * true for codes < 400 and false otherwise
-	     **/
-	    ResponseImpl.prototype.isOkRange = function () {
-	        return helper.isOkRange(this);
-	    };
-	    return ResponseImpl;
-	})(RAMLLanguageElementImpl);
-	exports.ResponseImpl = ResponseImpl;
-	var StringTypeImpl = (function (_super) {
-	    __extends(StringTypeImpl, _super);
-	    function StringTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    StringTypeImpl.prototype.wrapperClassName = function () {
-	        return "StringTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    StringTypeImpl.prototype.kind = function () {
-	        return "StringType";
-	    };
-	    /**
-	     * @return String representation of the node value
-	     **/
-	    StringTypeImpl.prototype.value = function () {
-	        return this.attr.value();
-	    };
-	    return StringTypeImpl;
-	})(ValueTypeImpl);
-	exports.StringTypeImpl = StringTypeImpl;
-	var StatusCodeStringImpl = (function (_super) {
-	    __extends(StatusCodeStringImpl, _super);
-	    function StatusCodeStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    StatusCodeStringImpl.prototype.wrapperClassName = function () {
-	        return "StatusCodeStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    StatusCodeStringImpl.prototype.kind = function () {
-	        return "StatusCodeString";
-	    };
-	    return StatusCodeStringImpl;
-	})(StringTypeImpl);
-	exports.StatusCodeStringImpl = StatusCodeStringImpl;
-	var BodyLikeImpl = (function (_super) {
-	    __extends(BodyLikeImpl, _super);
-	    function BodyLikeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createBodyLike(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Mime type of the request or response body
-	     **/
-	    BodyLikeImpl.prototype.name = function () {
-	        return _super.prototype.attribute.call(this, 'name', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set name value
-	     **/
-	    BodyLikeImpl.prototype.setName = function (param) {
-	        this.highLevel().attrOrCreate("name").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
-	     *
-	     * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
-	     *
-	     * All parsers of RAML MUST be able to interpret JSON Schema [JSON_SCHEMA] and XML Schema [XML_SCHEMA].
-	     *
-	     * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
-	     * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
-	     **/
-	    BodyLikeImpl.prototype.schema = function () {
-	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new SchemaStringImpl(attr); });
-	    };
-	    /**
-	     * Documentation generators MUST use body properties' example attributes to generate example invocations.
-	     * This example shows example attributes for two body property media types.
-	     **/
-	    BodyLikeImpl.prototype.example = function () {
-	        return _super.prototype.attribute.call(this, 'example', function (attr) { return new ExampleStringImpl(attr); });
-	    };
-	    /**
-	     * Web forms REQUIRE special encoding and custom declaration.
-	     * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
-	     * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
-	     **/
-	    BodyLikeImpl.prototype.formParameters = function () {
-	        return _super.prototype.elements.call(this, 'formParameters');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    BodyLikeImpl.prototype.wrapperClassName = function () {
-	        return "BodyLikeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    BodyLikeImpl.prototype.kind = function () {
-	        return "BodyLike";
-	    };
-	    BodyLikeImpl.prototype.schemaContent = function () {
-	        return helper.schemaContent(this);
-	    };
-	    return BodyLikeImpl;
-	})(RAMLLanguageElementImpl);
-	exports.BodyLikeImpl = BodyLikeImpl;
-	/**
-	 * Schema at this moment only two subtypes are supported (json schema and xsd)
-	 **/
-	var SchemaStringImpl = (function (_super) {
-	    __extends(SchemaStringImpl, _super);
-	    function SchemaStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    SchemaStringImpl.prototype.wrapperClassName = function () {
-	        return "SchemaStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    SchemaStringImpl.prototype.kind = function () {
-	        return "SchemaString";
-	    };
-	    return SchemaStringImpl;
-	})(StringTypeImpl);
-	exports.SchemaStringImpl = SchemaStringImpl;
-	/**
-	 * JSON schema
-	 **/
-	var JSonSchemaStringImpl = (function (_super) {
-	    __extends(JSonSchemaStringImpl, _super);
-	    function JSonSchemaStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
-	        return "JSonSchemaStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    JSonSchemaStringImpl.prototype.kind = function () {
-	        return "JSonSchemaString";
-	    };
-	    return JSonSchemaStringImpl;
-	})(SchemaStringImpl);
-	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
-	/**
-	 * XSD schema
-	 **/
-	var XMLSchemaStringImpl = (function (_super) {
-	    __extends(XMLSchemaStringImpl, _super);
-	    function XMLSchemaStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
-	        return "XMLSchemaStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    XMLSchemaStringImpl.prototype.kind = function () {
-	        return "XMLSchemaString";
-	    };
-	    return XMLSchemaStringImpl;
-	})(SchemaStringImpl);
-	exports.XMLSchemaStringImpl = XMLSchemaStringImpl;
-	var ExampleStringImpl = (function (_super) {
-	    __extends(ExampleStringImpl, _super);
-	    function ExampleStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ExampleStringImpl.prototype.wrapperClassName = function () {
-	        return "ExampleStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ExampleStringImpl.prototype.kind = function () {
-	        return "ExampleString";
-	    };
-	    return ExampleStringImpl;
-	})(StringTypeImpl);
-	exports.ExampleStringImpl = ExampleStringImpl;
-	var JSONExampleImpl = (function (_super) {
-	    __extends(JSONExampleImpl, _super);
-	    function JSONExampleImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    JSONExampleImpl.prototype.wrapperClassName = function () {
-	        return "JSONExampleImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    JSONExampleImpl.prototype.kind = function () {
-	        return "JSONExample";
-	    };
-	    return JSONExampleImpl;
-	})(ExampleStringImpl);
-	exports.JSONExampleImpl = JSONExampleImpl;
-	var XMLExampleImpl = (function (_super) {
-	    __extends(XMLExampleImpl, _super);
-	    function XMLExampleImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    XMLExampleImpl.prototype.wrapperClassName = function () {
-	        return "XMLExampleImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    XMLExampleImpl.prototype.kind = function () {
-	        return "XMLExample";
-	    };
-	    return XMLExampleImpl;
-	})(ExampleStringImpl);
-	exports.XMLExampleImpl = XMLExampleImpl;
-	/**
-	 * Needed to set connection between xml related mime types and xsd schema
-	 **/
-	var XMLBodyImpl = (function (_super) {
-	    __extends(XMLBodyImpl, _super);
-	    function XMLBodyImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLBody(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * XSD Schema
-	     **/
-	    XMLBodyImpl.prototype.schema = function () {
-	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new XMLSchemaStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    XMLBodyImpl.prototype.wrapperClassName = function () {
-	        return "XMLBodyImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    XMLBodyImpl.prototype.kind = function () {
-	        return "XMLBody";
-	    };
-	    return XMLBodyImpl;
-	})(BodyLikeImpl);
-	exports.XMLBodyImpl = XMLBodyImpl;
-	/**
-	 * Needed to set connection between json related mime types and json schema
-	 **/
-	var JSONBodyImpl = (function (_super) {
-	    __extends(JSONBodyImpl, _super);
-	    function JSONBodyImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createJSONBody(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * JSON Schema
-	     **/
-	    JSONBodyImpl.prototype.schema = function () {
-	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new JSonSchemaStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    JSONBodyImpl.prototype.wrapperClassName = function () {
-	        return "JSONBodyImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    JSONBodyImpl.prototype.kind = function () {
-	        return "JSONBody";
-	    };
-	    return JSONBodyImpl;
-	})(BodyLikeImpl);
-	exports.JSONBodyImpl = JSONBodyImpl;
-	var TraitRefImpl = (function (_super) {
-	    __extends(TraitRefImpl, _super);
-	    function TraitRefImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    TraitRefImpl.prototype.wrapperClassName = function () {
-	        return "TraitRefImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    TraitRefImpl.prototype.kind = function () {
-	        return "TraitRef";
-	    };
-	    TraitRefImpl.prototype.trait = function () {
-	        return helper.referencedTrait(this);
-	    };
-	    return TraitRefImpl;
-	})(ReferenceImpl);
-	exports.TraitRefImpl = TraitRefImpl;
-	var TraitImpl = (function (_super) {
-	    __extends(TraitImpl, _super);
-	    function TraitImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Name of the trait
-	     **/
-	    TraitImpl.prototype.name = function () {
-	        return _super.prototype.attribute.call(this, 'name', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set name value
-	     **/
-	    TraitImpl.prototype.setName = function (param) {
-	        this.highLevel().attrOrCreate("name").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Instructions on how and when the trait should be used.
-	     **/
-	    TraitImpl.prototype.usage = function () {
-	        return _super.prototype.attribute.call(this, 'usage', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set usage value
-	     **/
-	    TraitImpl.prototype.setUsage = function (param) {
-	        this.highLevel().attrOrCreate("usage").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    TraitImpl.prototype.wrapperClassName = function () {
-	        return "TraitImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    TraitImpl.prototype.kind = function () {
-	        return "Trait";
-	    };
-	    return TraitImpl;
-	})(MethodBaseImpl);
-	exports.TraitImpl = TraitImpl;
-	var SecuritySchemeRefImpl = (function (_super) {
-	    __extends(SecuritySchemeRefImpl, _super);
-	    function SecuritySchemeRefImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    SecuritySchemeRefImpl.prototype.wrapperClassName = function () {
-	        return "SecuritySchemeRefImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    SecuritySchemeRefImpl.prototype.kind = function () {
-	        return "SecuritySchemeRef";
-	    };
-	    SecuritySchemeRefImpl.prototype.securitySchemeName = function () {
-	        return helper.securitySchemeName(this);
-	    };
-	    SecuritySchemeRefImpl.prototype.securityScheme = function () {
-	        return helper.securityScheme(this);
-	    };
-	    return SecuritySchemeRefImpl;
-	})(ReferenceImpl);
-	exports.SecuritySchemeRefImpl = SecuritySchemeRefImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var AbstractSecuritySchemeImpl = (function (_super) {
-	    __extends(AbstractSecuritySchemeImpl, _super);
-	    function AbstractSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createAbstractSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Name of the security scheme
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.name = function () {
-	        return _super.prototype.attribute.call(this, 'name', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set name value
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.setName = function (param) {
-	        this.highLevel().attrOrCreate("name").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-	     **/
-	    AbstractSecuritySchemeImpl.prototype["type"] = function () {
-	        return _super.prototype.attribute.call(this, 'type', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set type value
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.setType = function (param) {
-	        this.highLevel().attrOrCreate("type").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * The description MAY be used to describe a securityScheme.
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.description = function () {
-	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
-	    };
-	    /**
-	     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-	     * Including the security scheme description completes an API documentation.
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.describedBy = function () {
-	        return _super.prototype.element.call(this, 'describedBy');
-	    };
-	    /**
-	     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-	     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.settings = function () {
-	        return _super.prototype.element.call(this, 'settings');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "AbstractSecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    AbstractSecuritySchemeImpl.prototype.kind = function () {
-	        return "AbstractSecurityScheme";
-	    };
-	    return AbstractSecuritySchemeImpl;
-	})(RAMLLanguageElementImpl);
-	exports.AbstractSecuritySchemeImpl = AbstractSecuritySchemeImpl;
-	var SecuritySchemePartImpl = (function (_super) {
-	    __extends(SecuritySchemePartImpl, _super);
-	    function SecuritySchemePartImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemePart(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Headers that allowed at this position
-	     **/
-	    SecuritySchemePartImpl.prototype.headers = function () {
-	        return _super.prototype.elements.call(this, 'headers');
-	    };
-	    /**
-	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-	     **/
-	    SecuritySchemePartImpl.prototype.queryParameters = function () {
-	        return _super.prototype.elements.call(this, 'queryParameters');
-	    };
-	    /**
-	     * Optional array of responses, describing the possible responses that could be sent.
-	     **/
-	    SecuritySchemePartImpl.prototype.responses = function () {
-	        return _super.prototype.elements.call(this, 'responses');
-	    };
-	    /**
-	     * Instantiation of applyed traits
-	     **/
-	    SecuritySchemePartImpl.prototype.is = function () {
-	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
-	    };
-	    /**
-	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     **/
-	    SecuritySchemePartImpl.prototype.securedBy = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * An alternate, human-friendly name for the security scheme part
-	     **/
-	    SecuritySchemePartImpl.prototype.displayName = function () {
-	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set displayName value
-	     **/
-	    SecuritySchemePartImpl.prototype.setDisplayName = function (param) {
-	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * A longer, human-friendly description of the security scheme part
-	     **/
-	    SecuritySchemePartImpl.prototype.description = function () {
-	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    SecuritySchemePartImpl.prototype.wrapperClassName = function () {
-	        return "SecuritySchemePartImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    SecuritySchemePartImpl.prototype.kind = function () {
-	        return "SecuritySchemePart";
-	    };
-	    return SecuritySchemePartImpl;
-	})(MethodBaseImpl);
-	exports.SecuritySchemePartImpl = SecuritySchemePartImpl;
-	var SecuritySchemeSettingsImpl = (function (_super) {
-	    __extends(SecuritySchemeSettingsImpl, _super);
-	    function SecuritySchemeSettingsImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
-	        return "SecuritySchemeSettingsImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    SecuritySchemeSettingsImpl.prototype.kind = function () {
-	        return "SecuritySchemeSettings";
-	    };
-	    return SecuritySchemeSettingsImpl;
-	})(core.BasicNodeImpl);
-	exports.SecuritySchemeSettingsImpl = SecuritySchemeSettingsImpl;
-	var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
-	    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
-	    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-	     **/
-	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
-	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
-	    };
-	    /**
-	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-	     **/
-	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
-	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
-	    };
-	    /**
-	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-	     **/
-	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
-	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
-	        return "OAuth1SecuritySchemeSettingsImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    OAuth1SecuritySchemeSettingsImpl.prototype.kind = function () {
-	        return "OAuth1SecuritySchemeSettings";
-	    };
-	    return OAuth1SecuritySchemeSettingsImpl;
-	})(SecuritySchemeSettingsImpl);
-	exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
-	/**
-	 * This  type describes fixed uris
-	 **/
-	var FixedUriImpl = (function (_super) {
-	    __extends(FixedUriImpl, _super);
-	    function FixedUriImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    FixedUriImpl.prototype.wrapperClassName = function () {
-	        return "FixedUriImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    FixedUriImpl.prototype.kind = function () {
-	        return "FixedUri";
-	    };
-	    return FixedUriImpl;
-	})(StringTypeImpl);
-	exports.FixedUriImpl = FixedUriImpl;
-	var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
-	    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
-	    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
-	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
-	    };
-	    /**
-	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
-	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
-	    };
-	    /**
-	     * A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:
-	     * - authorization_code
-	     * - password
-	     * - client_credentials
-	     * - implicit
-	     * - refresh_token.
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
-	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set authorizationGrants value
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
-	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
-	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set scopes value
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
-	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
-	        return "OAuth2SecuritySchemeSettingsImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    OAuth2SecuritySchemeSettingsImpl.prototype.kind = function () {
-	        return "OAuth2SecuritySchemeSettings";
-	    };
-	    return OAuth2SecuritySchemeSettingsImpl;
-	})(SecuritySchemeSettingsImpl);
-	exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var OAuth2SecuritySchemeImpl = (function (_super) {
-	    __extends(OAuth2SecuritySchemeImpl, _super);
-	    function OAuth2SecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    OAuth2SecuritySchemeImpl.prototype.settings = function () {
-	        return _super.prototype.element.call(this, 'settings');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    OAuth2SecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "OAuth2SecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    OAuth2SecuritySchemeImpl.prototype.kind = function () {
-	        return "OAuth2SecurityScheme";
-	    };
-	    return OAuth2SecuritySchemeImpl;
-	})(AbstractSecuritySchemeImpl);
-	exports.OAuth2SecuritySchemeImpl = OAuth2SecuritySchemeImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var OAuth1SecuritySchemeImpl = (function (_super) {
-	    __extends(OAuth1SecuritySchemeImpl, _super);
-	    function OAuth1SecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    OAuth1SecuritySchemeImpl.prototype.settings = function () {
-	        return _super.prototype.element.call(this, 'settings');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    OAuth1SecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "OAuth1SecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    OAuth1SecuritySchemeImpl.prototype.kind = function () {
-	        return "OAuth1SecurityScheme";
-	    };
-	    return OAuth1SecuritySchemeImpl;
-	})(AbstractSecuritySchemeImpl);
-	exports.OAuth1SecuritySchemeImpl = OAuth1SecuritySchemeImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var BasicSecuritySchemeImpl = (function (_super) {
-	    __extends(BasicSecuritySchemeImpl, _super);
-	    function BasicSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createBasicSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    BasicSecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "BasicSecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    BasicSecuritySchemeImpl.prototype.kind = function () {
-	        return "BasicSecurityScheme";
-	    };
-	    return BasicSecuritySchemeImpl;
-	})(AbstractSecuritySchemeImpl);
-	exports.BasicSecuritySchemeImpl = BasicSecuritySchemeImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var DigestSecuritySchemeImpl = (function (_super) {
-	    __extends(DigestSecuritySchemeImpl, _super);
-	    function DigestSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createDigestSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    DigestSecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "DigestSecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    DigestSecuritySchemeImpl.prototype.kind = function () {
-	        return "DigestSecurityScheme";
-	    };
-	    return DigestSecuritySchemeImpl;
-	})(AbstractSecuritySchemeImpl);
-	exports.DigestSecuritySchemeImpl = DigestSecuritySchemeImpl;
-	/**
-	 * Declares globally referable security schema definition
-	 **/
-	var CustomSecuritySchemeImpl = (function (_super) {
-	    __extends(CustomSecuritySchemeImpl, _super);
-	    function CustomSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createCustomSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    CustomSecuritySchemeImpl.prototype.wrapperClassName = function () {
-	        return "CustomSecuritySchemeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    CustomSecuritySchemeImpl.prototype.kind = function () {
-	        return "CustomSecurityScheme";
-	    };
-	    return CustomSecuritySchemeImpl;
-	})(AbstractSecuritySchemeImpl);
-	exports.CustomSecuritySchemeImpl = CustomSecuritySchemeImpl;
-	var MethodImpl = (function (_super) {
-	    __extends(MethodImpl, _super);
-	    function MethodImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Method that can be called
-	     **/
-	    MethodImpl.prototype.method = function () {
-	        return _super.prototype.attribute.call(this, 'method', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set method value
-	     **/
-	    MethodImpl.prototype.setMethod = function (param) {
-	        this.highLevel().attrOrCreate("method").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     **/
-	    MethodImpl.prototype.securedBy_original = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    MethodImpl.prototype.wrapperClassName = function () {
-	        return "MethodImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    MethodImpl.prototype.kind = function () {
-	        return "Method";
-	    };
-	    /**
-	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-	     **/
-	    MethodImpl.prototype.parentResource = function () {
-	        return helper.parentResource(this);
-	    };
-	    /**
-	     * Api owning the resource as a sibling
-	     **/
-	    MethodImpl.prototype.ownerApi = function () {
-	        return helper.ownerApi(this);
-	    };
-	    /**
-	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
-	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-	     * For other methods throws Exception.
-	     **/
-	    MethodImpl.prototype.methodId = function () {
-	        return helper.methodId(this);
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     **/
-	    MethodImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
-	    };
-	    /**
-	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-	     * returns schemes defined with `securedBy` at API level.
-	     **/
-	    MethodImpl.prototype.allSecuredBy = function () {
-	        return helper.allSecuredBy(this);
-	    };
-	    return MethodImpl;
-	})(MethodBaseImpl);
-	exports.MethodImpl = MethodImpl;
-	/**
-	 * This type currently serves both for absolute and relative urls
-	 **/
-	var UriTemplateImpl = (function (_super) {
-	    __extends(UriTemplateImpl, _super);
-	    function UriTemplateImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    UriTemplateImpl.prototype.wrapperClassName = function () {
-	        return "UriTemplateImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    UriTemplateImpl.prototype.kind = function () {
-	        return "UriTemplate";
-	    };
-	    return UriTemplateImpl;
-	})(StringTypeImpl);
-	exports.UriTemplateImpl = UriTemplateImpl;
-	/**
-	 * This  type describes relative uri templates
-	 **/
-	var RelativeUriStringImpl = (function (_super) {
-	    __extends(RelativeUriStringImpl, _super);
-	    function RelativeUriStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    RelativeUriStringImpl.prototype.wrapperClassName = function () {
-	        return "RelativeUriStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    RelativeUriStringImpl.prototype.kind = function () {
-	        return "RelativeUriString";
-	    };
-	    return RelativeUriStringImpl;
-	})(UriTemplateImpl);
-	exports.RelativeUriStringImpl = RelativeUriStringImpl;
-	/**
-	 * This  type describes absolute uri templates
-	 **/
-	var FullUriTemplateStringImpl = (function (_super) {
-	    __extends(FullUriTemplateStringImpl, _super);
-	    function FullUriTemplateStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    FullUriTemplateStringImpl.prototype.wrapperClassName = function () {
-	        return "FullUriTemplateStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    FullUriTemplateStringImpl.prototype.kind = function () {
-	        return "FullUriTemplateString";
-	    };
-	    return FullUriTemplateStringImpl;
-	})(UriTemplateImpl);
-	exports.FullUriTemplateStringImpl = FullUriTemplateStringImpl;
-	/**
-	 * This sub type of the string represents mime types
-	 **/
-	var MimeTypeImpl = (function (_super) {
-	    __extends(MimeTypeImpl, _super);
-	    function MimeTypeImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    MimeTypeImpl.prototype.wrapperClassName = function () {
-	        return "MimeTypeImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    MimeTypeImpl.prototype.kind = function () {
-	        return "MimeType";
-	    };
-	    return MimeTypeImpl;
-	})(StringTypeImpl);
-	exports.MimeTypeImpl = MimeTypeImpl;
-	/**
-	 * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
-	 **/
-	var MarkdownStringImpl = (function (_super) {
-	    __extends(MarkdownStringImpl, _super);
-	    function MarkdownStringImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    MarkdownStringImpl.prototype.wrapperClassName = function () {
-	        return "MarkdownStringImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    MarkdownStringImpl.prototype.kind = function () {
-	        return "MarkdownString";
-	    };
-	    return MarkdownStringImpl;
-	})(StringTypeImpl);
-	exports.MarkdownStringImpl = MarkdownStringImpl;
-	var ResourceImpl = (function (_super) {
-	    __extends(ResourceImpl, _super);
-	    function ResourceImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Relative URL of this resource from the parent resource
-	     **/
-	    ResourceImpl.prototype.relativeUri = function () {
-	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriStringImpl(attr); });
-	    };
-	    /**
-	     * Instantiation of applyed resource type
-	     **/
-	    ResourceImpl.prototype["type"] = function () {
-	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
-	    };
-	    /**
-	     * Instantiation of applyed traits
-	     **/
-	    ResourceImpl.prototype.is = function () {
-	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     **/
-	    ResourceImpl.prototype.securedBy_original = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * Uri parameters of this resource
-	     **/
-	    ResourceImpl.prototype.uriParameters_original = function () {
-	        return _super.prototype.elements.call(this, 'uriParameters');
-	    };
-	    /**
-	     * Methods that can be called on this resource
-	     **/
-	    ResourceImpl.prototype.methods = function () {
-	        return _super.prototype.elements.call(this, 'methods');
-	    };
-	    /**
-	     * Children resources
-	     **/
-	    ResourceImpl.prototype.resources = function () {
-	        return _super.prototype.elements.call(this, 'resources');
-	    };
-	    /**
-	     * An alternate, human-friendly name for the resource
-	     **/
-	    ResourceImpl.prototype.displayName = function () {
-	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set displayName value
-	     **/
-	    ResourceImpl.prototype.setDisplayName = function (param) {
-	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-	     **/
-	    ResourceImpl.prototype.baseUriParameters = function () {
-	        return _super.prototype.elements.call(this, 'baseUriParameters');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ResourceImpl.prototype.wrapperClassName = function () {
-	        return "ResourceImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ResourceImpl.prototype.kind = function () {
-	        return "Resource";
-	    };
-	    /**
-	     * Path relative to API root
-	     **/
-	    ResourceImpl.prototype.completeRelativeUri = function () {
-	        return helper.completeRelativeUri(this);
-	    };
-	    /**
-	     * baseUri of owning Api concatenated with completeRelativeUri
-	     **/
-	    ResourceImpl.prototype.absoluteUri = function () {
-	        return helper.absoluteUri(this);
-	    };
-	    /**
-	     * Parent resource for non top level resources
-	     **/
-	    ResourceImpl.prototype.parentResource = function () {
-	        return helper.parent(this);
-	    };
-	    /**
-	     * Get child resource by its relative path
-	     **/
-	    ResourceImpl.prototype.childResource = function (relPath) {
-	        return helper.childResource(this, relPath);
-	    };
-	    /**
-	     * Get child method by its name
-	     **/
-	    ResourceImpl.prototype.childMethod = function (method) {
-	        return helper.childMethod(this, method);
-	    };
-	    /**
-	     * Api owning the resource as a sibling
-	     **/
-	    ResourceImpl.prototype.ownerApi = function () {
-	        return helper.ownerApi(this);
-	    };
-	    /**
-	     * Uri parameters of this resource
-	     **/
-	    ResourceImpl.prototype.uriParameters = function () {
-	        return helper.uriParametersPrimary(this);
-	    };
-	    /**
-	     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-	     * Consider a fragment of RAML specification:
-	     * ```yaml
-	     * /resource/{objectId}/{propertyId}:
-	     * uriParameters:
-	     * objectId:
-	     * ```
-	     * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-	     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
-	     **/
-	    ResourceImpl.prototype.allUriParameters = function () {
-	        return helper.uriParameters(this);
-	    };
-	    /**
-	     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
-	     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
-	     **/
-	    ResourceImpl.prototype.absoluteUriParameters = function () {
-	        return helper.absoluteUriParameters(this);
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     **/
-	    ResourceImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
-	    };
-	    /**
-	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-	     * returns schemes defined with `securedBy` at API level.
-	     **/
-	    ResourceImpl.prototype.allSecuredBy = function () {
-	        return helper.allSecuredBy(this);
-	    };
-	    return ResourceImpl;
-	})(RAMLLanguageElementImpl);
-	exports.ResourceImpl = ResourceImpl;
-	var ApiImpl = (function (_super) {
-	    __extends(ApiImpl, _super);
-	    function ApiImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
-	     **/
-	    ApiImpl.prototype.title = function () {
-	        return _super.prototype.attribute.call(this, 'title', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set title value
-	     **/
-	    ApiImpl.prototype.setTitle = function (param) {
-	        this.highLevel().attrOrCreate("title").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
-	     * The API itself is not versioned.
-	     * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
-	     * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
-	     **/
-	    ApiImpl.prototype.version = function () {
-	        return _super.prototype.attribute.call(this, 'version', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set version value
-	     **/
-	    ApiImpl.prototype.setVersion = function (param) {
-	        this.highLevel().attrOrCreate("version").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
-	     * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
-	     * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
-	     **/
-	    ApiImpl.prototype.baseUri = function () {
-	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateStringImpl(attr); });
-	    };
-	    /**
-	     * Base uri parameters are named parameters which described template parameters in the base uri
-	     **/
-	    ApiImpl.prototype.baseUriParameters_original = function () {
-	        return _super.prototype.elements.call(this, 'baseUriParameters');
-	    };
-	    /**
-	     * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
-	     **/
-	    ApiImpl.prototype.uriParameters = function () {
-	        return _super.prototype.elements.call(this, 'uriParameters');
-	    };
-	    /**
-	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-	     **/
-	    ApiImpl.prototype.protocols_original = function () {
-	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set protocols value
-	     **/
-	    ApiImpl.prototype.setProtocols = function (param) {
-	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
-	     * One of the following YAML media types:
-	     * text/yaml
-	     * text/x-yaml
-	     * application/yaml
-	     * application/x-yaml*
-	     * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
-	     * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
-	     * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
-	     **/
-	    ApiImpl.prototype.mediaType = function () {
-	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
-	    };
-	    /**
-	     * To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.
-	     **/
-	    ApiImpl.prototype.schemas = function () {
-	        return _super.prototype.elements.call(this, 'schemas');
-	    };
-	    /**
-	     * Declarations of traits used in this API
-	     **/
-	    ApiImpl.prototype.traits_original = function () {
-	        return _super.prototype.elements.call(this, 'traits');
-	    };
-	    /**
-	     * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
-	     **/
-	    ApiImpl.prototype.securedBy = function () {
-	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
-	    };
-	    /**
-	     * Security schemas that can be applied with securedBy
-	     **/
-	    ApiImpl.prototype.securitySchemes = function () {
-	        return _super.prototype.elements.call(this, 'securitySchemes');
-	    };
-	    /**
-	     * Declaration of resource types used in this API
-	     **/
-	    ApiImpl.prototype.resourceTypes_original = function () {
-	        return _super.prototype.elements.call(this, 'resourceTypes');
-	    };
-	    /**
-	     * Resources are identified by their relative URI, which MUST begin with a slash (/).
-	     * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
-	     * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
-	     * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
-	     **/
-	    ApiImpl.prototype.resources = function () {
-	        return _super.prototype.elements.call(this, 'resources');
-	    };
-	    /**
-	     * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
-	     * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
-	     * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
-	     * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
-	     *
-	     * This example shows an API definition with a single user document.
-	     **/
-	    ApiImpl.prototype.documentation = function () {
-	        return _super.prototype.elements.call(this, 'documentation');
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    ApiImpl.prototype.wrapperClassName = function () {
-	        return "ApiImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    ApiImpl.prototype.kind = function () {
-	        return "Api";
-	    };
-	    /**
-	     * Equivalent API with traits and resource types expanded
-	     **/
-	    ApiImpl.prototype.expand = function () {
-	        return helper.expandTraitsAndResourceTypes(this);
-	    };
-	    /**
-	     * Declarations of traits used in this API
-	     **/
-	    ApiImpl.prototype.traits = function () {
-	        return helper.traitsPrimary(this);
-	    };
-	    /**
-	     * Retrieve all traits including those defined in libraries
-	     **/
-	    ApiImpl.prototype.allTraits = function () {
-	        return helper.allTraits(this);
-	    };
-	    /**
-	     * Declaration of resource types used in this API
-	     **/
-	    ApiImpl.prototype.resourceTypes = function () {
-	        return helper.resourceTypesPrimary(this);
-	    };
-	    /**
-	     * Retrieve all resource types including those defined in libraries
-	     **/
-	    ApiImpl.prototype.allResourceTypes = function () {
-	        return helper.allResourceTypes(this);
-	    };
-	    /**
-	     * Get child resource by its relative path
-	     **/
-	    ApiImpl.prototype.childResource = function (relPath) {
-	        return helper.childResource(this, relPath);
-	    };
-	    /**
-	     * Retrieve all resources of the Api
-	     **/
-	    ApiImpl.prototype.allResources = function () {
-	        return helper.allResources(this);
-	    };
-	    /**
-	     * Base uri parameters are named parameters which described template parameters in the base uri
-	     **/
-	    ApiImpl.prototype.baseUriParameters = function () {
-	        return helper.baseUriParametersPrimary(this);
-	    };
-	    /**
-	     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
-	     * Consider a fragment of RAML specification:
-	     * ```yaml
-	     * version: v1
-	     * baseUri: https://{organization}.example.com/{version}/{service}
-	     * baseUriParameters:
-	     * service:
-	     * ```
-	     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
-	     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
-	     **/
-	    ApiImpl.prototype.allBaseUriParameters = function () {
-	        return helper.baseUriParameters(this);
-	    };
-	    /**
-	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-	     **/
-	    ApiImpl.prototype.protocols = function () {
-	        return helper.protocolsPrimary(this);
-	    };
-	    /**
-	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
-	     * Otherwise, returns protocol, specified in the base URI.
-	     **/
-	    ApiImpl.prototype.allProtocols = function () {
-	        return helper.allProtocols(this);
-	    };
-	    ApiImpl.prototype.RAMLVersion = function () {
-	        return helper.RAMLVersion(this);
-	    };
-	    return ApiImpl;
-	})(RAMLLanguageElementImpl);
-	exports.ApiImpl = ApiImpl;
-	var RAMLSimpleElementImpl = (function (_super) {
-	    __extends(RAMLSimpleElementImpl, _super);
-	    function RAMLSimpleElementImpl() {
-	        _super.apply(this, arguments);
-	    }
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
-	        return "RAMLSimpleElementImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    RAMLSimpleElementImpl.prototype.kind = function () {
-	        return "RAMLSimpleElement";
-	    };
-	    return RAMLSimpleElementImpl;
-	})(core.BasicNodeImpl);
-	exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
-	var DocumentationItemImpl = (function (_super) {
-	    __extends(DocumentationItemImpl, _super);
-	    function DocumentationItemImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * title of documentation section
-	     **/
-	    DocumentationItemImpl.prototype.title = function () {
-	        return _super.prototype.attribute.call(this, 'title', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set title value
-	     **/
-	    DocumentationItemImpl.prototype.setTitle = function (param) {
-	        this.highLevel().attrOrCreate("title").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Content of documentation section
-	     **/
-	    DocumentationItemImpl.prototype.content = function () {
-	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    DocumentationItemImpl.prototype.wrapperClassName = function () {
-	        return "DocumentationItemImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    DocumentationItemImpl.prototype.kind = function () {
-	        return "DocumentationItem";
-	    };
-	    return DocumentationItemImpl;
-	})(RAMLSimpleElementImpl);
-	exports.DocumentationItemImpl = DocumentationItemImpl;
-	/**
-	 * Content of the schema
-	 **/
-	var GlobalSchemaImpl = (function (_super) {
-	    __extends(GlobalSchemaImpl, _super);
-	    function GlobalSchemaImpl(nodeOrKey, setAsTopLevel) {
-	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey, setAsTopLevel);
-	        this.nodeOrKey = nodeOrKey;
-	        this.setAsTopLevel = setAsTopLevel;
-	    }
-	    /**
-	     * Name of the global schema, used to refer on schema content
-	     **/
-	    GlobalSchemaImpl.prototype.key = function () {
-	        return _super.prototype.attribute.call(this, 'key', this.toString);
-	    };
-	    /**
-	     * @hidden
-	     * Set key value
-	     **/
-	    GlobalSchemaImpl.prototype.setKey = function (param) {
-	        this.highLevel().attrOrCreate("key").setValue("" + param);
-	        return this;
-	    };
-	    /**
-	     * Content of the schema
-	     **/
-	    GlobalSchemaImpl.prototype.value = function () {
-	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
-	    };
-	    /**
-	     * @hidden
-	     * @return Actual name of instance class
-	     **/
-	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
-	        return "GlobalSchemaImpl";
-	    };
-	    /**
-	     * @return Actual name of instance interface
-	     **/
-	    GlobalSchemaImpl.prototype.kind = function () {
-	        return "GlobalSchema";
-	    };
-	    return GlobalSchemaImpl;
-	})(RAMLSimpleElementImpl);
-	exports.GlobalSchemaImpl = GlobalSchemaImpl;
-	/**
-	 * @hidden
-	 **/
-	function createApi(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Api");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createRAMLLanguageElement(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("RAMLLanguageElement");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createTypeInstance(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("TypeInstance");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createTypeInstanceProperty(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("TypeInstanceProperty");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createResourceType(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("ResourceType");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createMethod(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Method");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createMethodBase(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("MethodBase");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createHasNormalParameters(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("HasNormalParameters");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createParameter(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Parameter");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createStringTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("StringTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createBooleanTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("BooleanTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createNumberTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("NumberTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createIntegerTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("IntegerTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createDateTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("DateTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createFileTypeDeclaration(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("FileTypeDeclaration");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createResponse(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Response");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createBodyLike(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("BodyLike");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createXMLBody(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("XMLBody");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createJSONBody(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("JSONBody");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createTrait(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Trait");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createAbstractSecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("AbstractSecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createSecuritySchemePart(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("SecuritySchemePart");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createSecuritySchemeSettings(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("SecuritySchemeSettings");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createOAuth1SecuritySchemeSettings(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("OAuth1SecuritySchemeSettings");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createOAuth2SecuritySchemeSettings(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("OAuth2SecuritySchemeSettings");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createOAuth2SecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("OAuth2SecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createOAuth1SecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("OAuth1SecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createBasicSecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("BasicSecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createDigestSecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("DigestSecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createCustomSecurityScheme(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("CustomSecurityScheme");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createResource(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("Resource");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createGlobalSchema(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("GlobalSchema");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createRAMLSimpleElement(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("RAMLSimpleElement");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	/**
-	 * @hidden
-	 **/
-	function createDocumentationItem(key) {
-	    var universe = hl.universeProvider("RAML08");
-	    var nc = universe.type("DocumentationItem");
-	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
-	    return node;
-	}
-	function loadApiSync(apiPath, arg1, arg2) {
-	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
-	}
-	exports.loadApiSync = loadApiSync;
-	function loadRAMLSync(ramlPath, arg1, arg2) {
-	    return apiLoader.loadApi(ramlPath, arg1, arg2).getOrElse(null);
-	}
-	exports.loadRAMLSync = loadRAMLSync;
-	function loadApi(apiPath, arg1, arg2) {
-	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
-	}
-	exports.loadApi = loadApi;
-	function loadRAML(ramlPath, arg1, arg2) {
-	    return apiLoader.loadRAMLAsync(ramlPath, arg1, arg2);
-	}
-	exports.loadRAML = loadRAML;
-	/**
-	 * Gets AST node by runtime type, if runtime type matches any.
-	 * @param runtimeType - runtime type to find the match for
-	 */
-	function getLanguageElementByRuntimeType(runtimeType) {
-	    return apiLoader.getLanguageElementByRuntimeType(runtimeType);
-	}
-	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
-
-
-/***/ },
-/* 79 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/// <reference path="../../typings/main.d.ts" />
-	var RamlWrapper1 = __webpack_require__(1);
-	var path = __webpack_require__(16);
-	var Opt = __webpack_require__(12);
-	var jsyaml = __webpack_require__(15);
-	var hl = __webpack_require__(2);
-	var hlimpl = __webpack_require__(5);
-	var llimpl = __webpack_require__(15);
-	var expander = __webpack_require__(77);
-	var universeDef = __webpack_require__(54);
-	var ramlServices = __webpack_require__(49);
-	var universeProvider = __webpack_require__(80);
-	/***
-	 * Load API synchronously. Detects RAML version and uses corresponding parser.
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
-	 ***/
-	function loadApi(apiPath, arg1, arg2) {
-	    var api = loadRAMLInternal(apiPath, arg1, arg2);
-	    if (false) {
-	        throw new Error("Loaded RAML is not API");
-	    }
-	    else {
-	        return new Opt(api);
-	    }
-	}
-	exports.loadApi = loadApi;
-	/***
-	 * Load RAML synchronously. Detects RAML version and uses corresponding parser.
-	 * @param ramlPath Path to RAML: local file system path or Web URL
-	 * @param options Load options
-	 * @return Opt&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
-	 ***/
-	function loadRAML(ramlPath, arg1, arg2) {
-	    var result = loadRAMLInternal(ramlPath, arg1, arg2);
-	    return new Opt(result);
-	}
-	exports.loadRAML = loadRAML;
-	function loadRAMLInternal(apiPath, arg1, arg2) {
-	    var gotArray = Array.isArray(arg1);
-	    var extensionsAndOverlays = (gotArray ? arg1 : null);
-	    var options = (gotArray ? arg2 : arg1);
-	    options = options || {};
-	    var project = getProject(apiPath, options);
-	    var unitName = path.basename(apiPath);
-	    var unit = project.unit(unitName);
-	    if (arg2 && !extensionsAndOverlays) {
-	        throw new Error("Extensions and overlays list should be defined");
-	    }
-	    var api;
-	    if (unit) {
-	        if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
-	            var extensionUnits = [];
-	            extensionsAndOverlays.forEach(function (currentPath) {
-	                if (!currentPath || currentPath.trim().length == 0) {
-	                    throw new Error("Extensions and overlays list should contain legal file paths");
-	                }
-	            });
-	            extensionsAndOverlays.forEach(function (unitPath) {
-	                extensionUnits.push(project.unit(path.basename(unitPath)));
-	            });
-	            //calling to perform the checks, we do not actually need the api itself
-	            extensionUnits.forEach(function (extensionUnit) { return toApi(extensionUnit, options); });
-	            api = toApi(expander.mergeAPIs(unit, extensionUnits, 0 /* MERGE */), options);
-	        }
-	        else {
-	            api = toApi(unit, options);
-	            api.highLevel().setMergeMode(0 /* MERGE */);
-	        }
-	    }
-	    if (options.rejectOnErrors && api && api.errors().length) {
-	        throw toError(api);
-	    }
-	    if (options.attributeDefaults != null && api) {
-	        api.setAttributeDefaults(options.attributeDefaults);
-	    }
-	    else if (api) {
-	        api.setAttributeDefaults(true);
-	    }
-	    return api;
-	}
-	/***
-	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
-	 * @param apiPath Path to API: local file system path or Web URL
-	 * @param options Load options
-	 * @return Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
-	 ***/
-	function loadApiAsync(apiPath, arg1, arg2) {
-	    var ramlPromise = loadRAMLAsync(apiPath, arg1, arg2);
-	    return ramlPromise.then(function (loadedRaml) {
-	        if (false) {
-	            //TODO check that loaded RAML is API
-	            return Promise.reject("Specified RAML is not API");
-	        }
-	        else {
-	            return loadedRaml;
-	        }
-	    });
-	}
-	exports.loadApiAsync = loadApiAsync;
-	/***
-	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
-	 * @param ramlPath Path to RAML: local file system path or Web URL
-	 * @param options Load options
-	 * @return Promise&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
-	 ***/
-	function loadRAMLAsync(ramlPath, arg1, arg2) {
-	    var gotArray = Array.isArray(arg1);
-	    var extensionsAndOverlays = (gotArray ? arg1 : null);
-	    var options = (gotArray ? arg2 : arg1);
-	    options = options || {};
-	    var project = getProject(ramlPath, options);
-	    var unitName = path.basename(ramlPath);
-	    if (arg2 && !extensionsAndOverlays) {
-	        throw new Error("Extensions and overlays list should be defined");
-	    }
-	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
-	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
-	            masterApi.highLevel().setMergeMode(0 /* MERGE */);
-	            if (options.attributeDefaults != null && masterApi) {
-	                masterApi.setAttributeDefaults(options.attributeDefaults);
-	            }
-	            else if (masterApi) {
-	                masterApi.setAttributeDefaults(true);
-	            }
-	            return masterApi;
-	        });
-	    }
-	    else {
-	        extensionsAndOverlays.forEach(function (currentPath) {
-	            if (!currentPath || currentPath.trim().length == 0) {
-	                throw new Error("Extensions and overlays list should contain legal file paths");
-	            }
-	        });
-	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
-	            var apiPromises = [];
-	            extensionsAndOverlays.forEach(function (extensionUnitPath) {
-	                apiPromises.push(fetchAndLoadApiAsync(project, path.basename(extensionUnitPath), options));
-	            });
-	            return Promise.all(apiPromises).then(function (apis) {
-	                var overlayUnits = [];
-	                apis.forEach(function (currentApi) { return overlayUnits.push(currentApi.highLevel().lowLevel().unit()); });
-	                var result = expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits, 0 /* MERGE */);
-	                if (options.attributeDefaults != null && result) {
-	                    result.setAttributeDefaults(options.attributeDefaults);
-	                }
-	                else if (result) {
-	                    result.setAttributeDefaults(true);
-	                }
-	                return result;
-	            }).then(function (mergedHighLevel) {
-	                return toApi(mergedHighLevel, options);
-	            });
-	        });
-	    }
-	}
-	exports.loadRAMLAsync = loadRAMLAsync;
-	/**
-	 * Gets AST node by runtime type, if runtime type matches any.
-	 * @param runtimeType
-	 */
-	function getLanguageElementByRuntimeType(runtimeType) {
-	    if (runtimeType == null) {
-	        return null;
-	    }
-	    var highLevelNode = runtimeType.getAdapter(ramlServices.RAMLService).getDeclaringNode();
-	    if (highLevelNode == null) {
-	        return null;
-	    }
-	    return highLevelNode.wrapperNode();
-	}
-	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
-	function fetchAndLoadApiAsync(project, unitName, options) {
-	    return llimpl.fetchIncludesAsync(project, unitName).then(function (x) {
-	        try {
-	            var api = toApi(x, options);
-	            if (options.rejectOnErrors && api && api.errors().length) {
-	                return Promise.reject(toError(api));
-	            }
-	            return api;
-	        }
-	        catch (err) {
-	            return Promise.reject(err);
-	        }
-	    });
-	}
-	function getProject(apiPath, options) {
-	    options = options || {};
-	    var includeResolver = options.fsResolver;
-	    var httpResolver = options.httpResolver;
-	    var projectRoot = path.dirname(apiPath);
-	    var project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
-	    return project;
-	}
-	;
-	function toApi(unitOrHighlevel, options, checkApisOverlays) {
-	    if (checkApisOverlays === void 0) { checkApisOverlays = false; }
-	    if (!unitOrHighlevel) {
-	        return null;
-	    }
-	    var unit = null;
-	    var highLevel = null;
-	    if (unitOrHighlevel.isRAMLUnit) {
-	        unit = unitOrHighlevel;
-	    }
-	    else {
-	        highLevel = unitOrHighlevel;
-	        unit = highLevel.lowLevel().unit();
-	    }
-	    var api;
-	    var contents = unit.contents();
-	    var ramlFirstLine = contents.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
-	    if (!ramlFirstLine) {
-	        //TODO throw sensible error
-	        return null;
-	    }
-	    var verStr = ramlFirstLine[1];
-	    var ramlFileType = ramlFirstLine[2];
-	    var typeName;
-	    var apiImpl;
-	    var ramlVersion;
-	    if (verStr == '0.8') {
-	        ramlVersion = 'RAML08';
-	    }
-	    else if (verStr == '1.0') {
-	        ramlVersion = 'RAML10';
-	    }
-	    if (!ramlVersion) {
-	        throw new Error("Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'");
-	    }
-	    if (ramlVersion == 'RAML08' && checkApisOverlays) {
-	        throw new Error('Extensions and overlays are not supported in RAML 0.8.');
-	    }
-	    //if (!ramlFileType || ramlFileType.trim() === "") {
-	    //    if (verStr=='0.8') {
-	    //        typeName = universeDef.Universe08.Api.name;
-	    //        apiImpl = RamlWrapper08.ApiImpl;
-	    //    } else if(verStr=='1.0'){
-	    //        typeName = universeDef.Universe10.Api.name;
-	    //        apiImpl = RamlWrapper1.ApiImpl;
-	    //    }
-	    //} else if (ramlFileType === "Overlay") {
-	    //    apiImpl = RamlWrapper1.OverlayImpl;
-	    //    typeName = universeDef.Universe10.Overlay.name;
-	    //} else if (ramlFileType === "Extension") {
-	    //    apiImpl = RamlWrapper1.ExtensionImpl;
-	    //    typeName = universeDef.Universe10.Extension.name;
-	    //}
-	    var universe = universeProvider(ramlVersion);
-	    var apiType = universe.type(typeName);
-	    if (!highLevel) {
-	        highLevel = hl.fromUnit(unit);
-	    }
-	    //api = new apiImpl(highLevel);
-	    api = highLevel.wrapperNode();
-	    return api;
-	}
-	;
-	function toError(api) {
-	    var error = new Error('Api contains errors.');
-	    error.parserErrors = api.errors();
-	    return error;
-	}
-	exports.toError = toError;
-	function loadApis1(projectRoot, cacheChildren, expandTraitsAndResourceTypes) {
-	    if (cacheChildren === void 0) { cacheChildren = false; }
-	    if (expandTraitsAndResourceTypes === void 0) { expandTraitsAndResourceTypes = true; }
-	    var universe = universeProvider("RAML10");
-	    var apiType = universe.type(universeDef.Universe10.Api.name);
-	    var p = new jsyaml.Project(projectRoot);
-	    var result = [];
-	    p.units().forEach(function (x) {
-	        var lowLevel = x.ast();
-	        if (cacheChildren) {
-	            lowLevel = llimpl.toChildCahcingNode(lowLevel);
-	        }
-	        var api = new RamlWrapper1.ApiImpl(new hlimpl.ASTNodeImpl(lowLevel, null, apiType, null));
-	        if (expandTraitsAndResourceTypes) {
-	            api = expander.expandTraitsAndResourceTypes(api);
-	        }
-	        result.push(api);
-	    });
-	    return result;
-	}
-	exports.loadApis1 = loadApis1;
-
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(global, __dirname) {var fs = __webpack_require__(17);
 	var path = __webpack_require__(16);
-	var tsstruct = __webpack_require__(81);
-	var ts2def = __webpack_require__(85);
+	var tsstruct = __webpack_require__(64);
+	var ts2def = __webpack_require__(68);
 	var universes = {};
 	var locations = {
 	    "RAML10": "../spec-1.0/api.ts",
 	    "RAML08": "../spec-0.8/api.ts"
 	};
 	var jsonDefinitions = {
-	    "RAML10": __webpack_require__(88),
-	    "RAML08": __webpack_require__(89)
+	    "RAML10": __webpack_require__(71),
+	    "RAML08": __webpack_require__(72)
 	};
 	var getUniverse = (function () {
 	    var x = function (key) {
@@ -32059,7 +22967,7 @@ module.exports =
 	            universe.setUniverseVersion(key);
 	            universes[key] = universe;
 	        }
-	        var mediaTypeParser = __webpack_require__(90);
+	        var mediaTypeParser = __webpack_require__(73);
 	        global.mediaTypeParser = mediaTypeParser;
 	        return universe;
 	    };
@@ -32124,18 +23032,18 @@ module.exports =
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), "../../src/raml1/definition-system"))
 
 /***/ },
-/* 81 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Created by kor on 08/05/15.
 	 */
 	/// <reference path="../../../typings/main.d.ts" />
-	var ts = __webpack_require__(82);
-	var tsm = __webpack_require__(83);
+	var ts = __webpack_require__(65);
+	var tsm = __webpack_require__(66);
 	var pth = __webpack_require__(16);
 	var fs = __webpack_require__(17);
-	var tsModel = __webpack_require__(84);
+	var tsModel = __webpack_require__(67);
 	function parse(content) {
 	    return ts.createSourceFile("sample.ts", content, 0 /* ES3 */, "1.4.1", true);
 	}
@@ -32485,13 +23393,13 @@ module.exports =
 
 
 /***/ },
-/* 82 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = {};
 
 /***/ },
-/* 83 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -32501,7 +23409,7 @@ module.exports =
 	    d.prototype = new __();
 	};
 	/// <reference path="../../typings/main.d.ts" />
-	var ts = __webpack_require__(82);
+	var ts = __webpack_require__(65);
 	/***
 	 * This module is designed to match simple patterns on Typescript AST Tree
 	 * it functionality mirrors jsASTMatchers which allows you to match on jsAST
@@ -32862,7 +23770,7 @@ module.exports =
 
 
 /***/ },
-/* 84 */
+/* 67 */
 /***/ function(module, exports) {
 
 	var EnumDeclaration = (function () {
@@ -32880,7 +23788,7 @@ module.exports =
 
 
 /***/ },
-/* 85 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __extends = this.__extends || function (d, b) {
@@ -32890,10 +23798,10 @@ module.exports =
 	    d.prototype = new __();
 	};
 	/// <reference path="../../../typings/main.d.ts" />
-	var tsModel = __webpack_require__(84);
+	var tsModel = __webpack_require__(67);
 	var def = __webpack_require__(3);
 	var _ = __webpack_require__(4);
-	var aHandlers = __webpack_require__(86);
+	var aHandlers = __webpack_require__(69);
 	var services = __webpack_require__(49);
 	var FieldWrapper = (function () {
 	    function FieldWrapper(_field, _clazz) {
@@ -33451,11 +24359,11 @@ module.exports =
 
 
 /***/ },
-/* 86 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var def = __webpack_require__(3);
-	var khttp = __webpack_require__(87);
+	var khttp = __webpack_require__(70);
 	var _ = __webpack_require__(4);
 	var services = __webpack_require__(49);
 	function handleTypeAnnotation(a, rangeType) {
@@ -33827,13 +24735,13 @@ module.exports =
 
 
 /***/ },
-/* 87 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = require("know-your-http-well");
 
 /***/ },
-/* 88 */
+/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -43186,7 +34094,7 @@ module.exports =
 	];
 
 /***/ },
-/* 89 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -45092,30 +36000,6 @@ module.exports =
 							"optional": false
 						},
 						{
-							"name": "is",
-							"type": {
-								"base": {
-									"typeName": "TraitRef",
-									"nameSpace": "",
-									"basicName": "TraitRef",
-									"typeKind": 0,
-									"typeArguments": [],
-									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
-								},
-								"typeKind": 1
-							},
-							"annotations": [
-								{
-									"name": "MetaModel.description",
-									"arguments": [
-										"Instantiation of applyed traits"
-									]
-								}
-							],
-							"valueConstraint": null,
-							"optional": false
-						},
-						{
 							"name": "securedBy",
 							"type": {
 								"base": {
@@ -45481,6 +36365,44 @@ module.exports =
 							],
 							"valueConstraint": null,
 							"optional": false
+						},
+						{
+							"name": "baseUriParameters",
+							"type": {
+								"base": {
+									"typeName": "Params.Parameter",
+									"nameSpace": "Params",
+									"basicName": "Parameter",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"typeKind": 1
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.setsContextValue",
+									"arguments": [
+										"fieldOrParam",
+										true
+									]
+								},
+								{
+									"name": "MetaModel.setsContextValue",
+									"arguments": [
+										"location",
+										"Params.ParameterLocation.BURI"
+									]
+								},
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level."
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
 						}
 					],
 					"isInterface": false,
@@ -45583,6 +36505,30 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										" securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.\nTo indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme."
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "is",
+							"type": {
+								"base": {
+									"typeName": "TraitRef",
+									"nameSpace": "",
+									"basicName": "TraitRef",
+									"typeKind": 0,
+									"typeArguments": [],
+									"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+								},
+								"typeKind": 1
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Instantiation of applyed traits"
 									]
 								}
 							],
@@ -48227,22 +39173,9237 @@ module.exports =
 	];
 
 /***/ },
-/* 90 */
+/* 73 */
 /***/ function(module, exports) {
 
 	module.exports = require("media-typer");
 
 /***/ },
+/* 74 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../typings/main.d.ts" />
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var _ = __webpack_require__(4);
+	var extraInjections = [];
+	function registerInjector(i) {
+	    extraInjections.push(i);
+	}
+	exports.registerInjector = registerInjector;
+	var Adaptable = (function () {
+	    function Adaptable() {
+	        var _this = this;
+	        this.adapters = [];
+	        extraInjections.forEach(function (x) { return x.inject(_this); });
+	    }
+	    Adaptable.prototype.addAdapter = function (q) {
+	        this.adapters.push(q);
+	    };
+	    Adaptable.prototype.getAdapter = function (adapterType) {
+	        var result = null;
+	        this.adapters.forEach(function (x) {
+	            if (x instanceof adapterType) {
+	                result = x;
+	            }
+	        });
+	        return result;
+	    };
+	    return Adaptable;
+	})();
+	exports.Adaptable = Adaptable;
+	var Described = (function (_super) {
+	    __extends(Described, _super);
+	    function Described(_name, _description) {
+	        if (_description === void 0) { _description = ""; }
+	        _super.call(this);
+	        this._name = _name;
+	        this._description = _description;
+	        this._tags = [];
+	        this._annotations = [];
+	    }
+	    Described.prototype.nameId = function () {
+	        return this._name;
+	    };
+	    Described.prototype.description = function () {
+	        return this._description;
+	    };
+	    Described.prototype.addAnnotation = function (a) {
+	        this._annotations.push(a);
+	    };
+	    Described.prototype.removeAnnotation = function (a) {
+	        this._annotations = this._annotations.filter(function (x) { return x != a; });
+	    };
+	    Described.prototype.annotations = function () {
+	        return [].concat(this._annotations);
+	    };
+	    Described.prototype.tags = function () {
+	        return this._tags;
+	    };
+	    Described.prototype.withDescription = function (d) {
+	        this._description = d;
+	        return this;
+	    };
+	    Described.prototype.setName = function (name) {
+	        this._name = name;
+	    };
+	    return Described;
+	})(Adaptable);
+	exports.Described = Described;
+	var ValueRequirement = (function () {
+	    /**
+	     *
+	     * @param name name of the property to discriminate
+	     * @param value expected value of discriminating property
+	     */
+	    function ValueRequirement(name, value) {
+	        this.name = name;
+	        this.value = value;
+	    }
+	    return ValueRequirement;
+	})();
+	exports.ValueRequirement = ValueRequirement;
+	var Annotation = (function (_super) {
+	    __extends(Annotation, _super);
+	    function Annotation(type, parameters) {
+	        _super.call(this, type.nameId());
+	        this.type = type;
+	        this.parameters = parameters;
+	    }
+	    Annotation.prototype.parameterNames = function () {
+	        return Object.keys(this.parameters);
+	    };
+	    Annotation.prototype.parameter = function (name) {
+	        return this.parameters[name];
+	    };
+	    Annotation.prototype.getType = function () {
+	        return this.type;
+	    };
+	    return Annotation;
+	})(Described);
+	exports.Annotation = Annotation;
+	var AbstractType = (function (_super) {
+	    __extends(AbstractType, _super);
+	    function AbstractType(_name, _universe, _path) {
+	        if (_universe === void 0) { _universe = null; }
+	        if (_path === void 0) { _path = ""; }
+	        _super.call(this, _name);
+	        this._universe = _universe;
+	        this._path = _path;
+	        this._customProperties = [];
+	        this._superTypes = [];
+	        this._subTypes = [];
+	        this._requirements = [];
+	        this.fixedFacets = {};
+	        this.uc = false;
+	    }
+	    AbstractType.prototype.properties = function () {
+	        return [];
+	    };
+	    AbstractType.prototype.externalInHierarchy = function () {
+	        var x = this.allSuperTypes();
+	        var res = null;
+	        x.forEach(function (y) {
+	            if (y instanceof ExternalType) {
+	                res = y;
+	            }
+	        });
+	        return res;
+	    };
+	    AbstractType.prototype.allFacets = function (ps) {
+	        if (ps === void 0) { ps = {}; }
+	        if (this._allFacets) {
+	            return this._allFacets;
+	        }
+	        if (ps[this.nameId()]) {
+	            return [];
+	        }
+	        ps[this.typeId()] = this;
+	        var n = {};
+	        if (this.superTypes().length > 0) {
+	            this.superTypes().forEach(function (x) {
+	                if (x instanceof AbstractType) {
+	                    x.allFacets(ps).forEach(function (y) { return n[y.nameId()] = y; });
+	                }
+	            });
+	        }
+	        this.properties().forEach(function (x) { return n[x.nameId()] = x; });
+	        this._allFacets = Object.keys(n).map(function (x) { return n[x]; });
+	        return this._allFacets;
+	    };
+	    AbstractType.prototype.facet = function (name) {
+	        return _.find(this.allFacets(), function (x) { return x.nameId() == name; });
+	    };
+	    AbstractType.prototype.typeId = function () {
+	        return this.nameId();
+	    };
+	    AbstractType.prototype.allProperties = function (ps) {
+	        if (ps === void 0) { ps = {}; }
+	        if (this._props) {
+	            return this._props;
+	        }
+	        if (ps[this.typeId()]) {
+	            return [];
+	        }
+	        ps[this.typeId()] = this;
+	        var n = {};
+	        if (this.superTypes().length > 0) {
+	            this.superTypes().forEach(function (x) {
+	                if (x instanceof AbstractType) {
+	                    x.allProperties(ps).forEach(function (y) { return n[y.nameId()] = y; });
+	                }
+	                else {
+	                    x.allProperties().forEach(function (y) { return n[y.nameId()] = y; });
+	                }
+	            });
+	        }
+	        for (var x in this.getFixedFacets()) {
+	            delete n[x];
+	        }
+	        this.properties().forEach(function (x) { return n[x.nameId()] = x; });
+	        this._props = Object.keys(n).map(function (x) { return n[x]; });
+	        return this._props;
+	    };
+	    AbstractType.prototype.property = function (propName) {
+	        return _.find(this.allProperties(), function (x) { return x.nameId() == propName; });
+	    };
+	    AbstractType.prototype.hasValueTypeInHierarchy = function () {
+	        return _.find(this.allSuperTypes(), function (x) {
+	            var mm = x;
+	            if (mm.uc) {
+	                return false;
+	            }
+	            mm.uc = true;
+	            try {
+	                return x.hasValueTypeInHierarchy();
+	            }
+	            finally {
+	                mm.uc = false;
+	            }
+	        }) != null;
+	    };
+	    AbstractType.prototype.isAnnotationType = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.hasStructure = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.key = function () {
+	        if (this._key) {
+	            return this._key;
+	        }
+	        if (this._universe) {
+	            this._key = this.universe().matched()[this.nameId()];
+	            if (!this._key) {
+	                return null;
+	            }
+	        }
+	        return this._key;
+	    };
+	    AbstractType.prototype.isUserDefined = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.hasArrayInHierarchy = function () {
+	        var arr = _.find(this.allSuperTypes(), function (x) { return x instanceof Array; }) != null;
+	        return arr;
+	    };
+	    AbstractType.prototype.arrayInHierarchy = function () {
+	        var x = this.allSuperTypes();
+	        var res = null;
+	        x.forEach(function (y) {
+	            if (y instanceof Array) {
+	                res = y;
+	            }
+	        });
+	        return res;
+	    };
+	    AbstractType.prototype.unionInHierarchy = function () {
+	        var x = this.allSuperTypes();
+	        var res = null;
+	        x.forEach(function (y) {
+	            if (y instanceof Union) {
+	                res = y;
+	            }
+	        });
+	        return res;
+	    };
+	    AbstractType.prototype.hasExternalInHierarchy = function () {
+	        return _.find(this.allSuperTypes(), function (x) {
+	            var mm = x;
+	            if (mm.uc) {
+	                return false;
+	            }
+	            mm.uc = true;
+	            try {
+	                return x instanceof ExternalType;
+	            }
+	            finally {
+	                mm.uc = false;
+	            }
+	        }) != null;
+	    };
+	    AbstractType.prototype.hasUnionInHierarchy = function () {
+	        return _.find(this.allSuperTypes(), function (x) {
+	            var mm = x;
+	            if (mm.uc) {
+	                return false;
+	            }
+	            mm.uc = true;
+	            try {
+	                return x.hasUnionInHierarchy();
+	            }
+	            finally {
+	                mm.uc = false;
+	            }
+	        }) != null;
+	    };
+	    AbstractType.prototype.fixFacet = function (name, v) {
+	        this.fixedFacets[name] = v;
+	    };
+	    AbstractType.prototype.getFixedFacets = function () {
+	        if (this._af) {
+	            return this._af;
+	        }
+	        var sp = this.allSuperTypes();
+	        var mm = {};
+	        for (var q in this.fixedFacets) {
+	            mm[q] = this.fixedFacets[q];
+	        }
+	        sp.forEach(function (x) {
+	            if (x instanceof AbstractType) {
+	                x.contributeFacets(mm);
+	                var ff = x.fixedFacets;
+	                for (var q in ff) {
+	                    mm[q] = ff[q];
+	                }
+	            }
+	        });
+	        this.contributeFacets(mm);
+	        this._af = mm;
+	        return mm;
+	    };
+	    AbstractType.prototype.contributeFacets = function (x) {
+	    };
+	    AbstractType.prototype.getPath = function () {
+	        return this._path;
+	    };
+	    AbstractType.prototype.setNameAtRuntime = function (name) {
+	        this._nameAtRuntime = name;
+	    };
+	    AbstractType.prototype.getNameAtRuntime = function () {
+	        return this._nameAtRuntime;
+	    };
+	    AbstractType.prototype.universe = function () {
+	        return this._universe;
+	    };
+	    AbstractType.prototype.superTypes = function () {
+	        return [].concat(this._superTypes);
+	    };
+	    AbstractType.prototype.isAssignableFrom = function (typeName) {
+	        if (this.nameId() == typeName) {
+	            if (this.isUserDefined()) {
+	                return false;
+	            }
+	            return true;
+	        }
+	        var currentSuperTypes = this.allSuperTypes();
+	        for (var i = 0; i < currentSuperTypes.length; i++) {
+	            if (currentSuperTypes[i].nameId() == typeName) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    };
+	    AbstractType.prototype.annotationType = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.subTypes = function () {
+	        return [].concat(this._subTypes);
+	    };
+	    AbstractType.prototype.allSubTypes = function () {
+	        var rs = [];
+	        this.subTypes().forEach(function (x) {
+	            rs.push(x);
+	            rs = rs.concat(x.allSubTypes());
+	        });
+	        return _.unique(rs);
+	    };
+	    AbstractType.prototype.allSuperTypes = function () {
+	        var rs = [];
+	        this.allSuperTypesRecurrent(this, {}, rs);
+	        return _.unique(rs);
+	    };
+	    AbstractType.prototype.allSuperTypesRecurrent = function (t, m, result) {
+	        var _this = this;
+	        t.superTypes().forEach(function (x) {
+	            if (!m[x.typeId()]) {
+	                result.push(x);
+	                m[x.typeId()] = x;
+	                _this.allSuperTypesRecurrent(x, m, result);
+	            }
+	        });
+	    };
+	    AbstractType.prototype.addSuperType = function (q) {
+	        q._subTypes.push(this);
+	        this._superTypes.push(q);
+	    };
+	    AbstractType.prototype.addRequirement = function (name, value) {
+	        this._requirements.push(new ValueRequirement(name, value));
+	    };
+	    //FIXME simplify it
+	    AbstractType.prototype.valueRequirements = function () {
+	        return this._requirements;
+	    };
+	    AbstractType.prototype.requiredProperties = function () {
+	        return this.allProperties().filter(function (x) { return x.isRequired(); });
+	    };
+	    AbstractType.prototype.printDetails = function (indent, settings) {
+	        var _this = this;
+	        if (!indent) {
+	            indent = "";
+	        }
+	        if (!settings) {
+	            settings = {
+	                hideProperties: false,
+	                hideSuperTypeProperties: false,
+	                printStandardSuperclasses: false
+	            };
+	        }
+	        var standardIndent = "  ";
+	        var result = "";
+	        var className = this.getTypeClassName();
+	        result += indent + this.nameId() + "[" + className + "]" + "\n";
+	        var properties = this.properties();
+	        if (properties && properties.length > 0 && !settings.hideProperties) {
+	            result += indent + standardIndent + "Properties:\n";
+	            properties.forEach(function (property) {
+	                var propertyType = "";
+	                var propertyRange = property.range();
+	                if (propertyRange instanceof Described) {
+	                    propertyType += propertyRange.nameId();
+	                }
+	                if (propertyRange instanceof AbstractType) {
+	                    propertyType += "[";
+	                    propertyType += propertyRange.getTypeClassName();
+	                    propertyType += "]";
+	                }
+	                result += indent + standardIndent + standardIndent + property.nameId() + " : " + propertyType + "\n";
+	            });
+	        }
+	        var superTypes = this.superTypes();
+	        var filteredSuperTypes = superTypes;
+	        if (superTypes && !settings.printStandardSuperclasses) {
+	            filteredSuperTypes = _.filter(superTypes, function (superType) {
+	                var name = superType instanceof Described ? superType.nameId() : "";
+	                var type = superType instanceof AbstractType ? superType.getTypeClassName() : "";
+	                return !_this.isStandardSuperclass(name, type);
+	            });
+	        }
+	        if (filteredSuperTypes && filteredSuperTypes.length > 0) {
+	            result += indent + standardIndent + "Super types:\n";
+	            filteredSuperTypes.forEach(function (superType) {
+	                result += superType.printDetails(indent + standardIndent + standardIndent, {
+	                    hideProperties: settings.hideSuperTypeProperties,
+	                    hideSuperTypeProperties: settings.hideSuperTypeProperties,
+	                    printStandardSuperclasses: settings.printStandardSuperclasses
+	                });
+	            });
+	        }
+	        return result;
+	    };
+	    AbstractType.prototype.getTypeClassName = function () {
+	        return this.constructor.toString().match(/\w+/g)[1];
+	    };
+	    AbstractType.prototype.isStandardSuperclass = function (nameId, className) {
+	        if (nameId === "TypeDeclaration" && className === "NodeClass")
+	            return true;
+	        if (nameId === "ObjectTypeDeclaration" && className === "NodeClass")
+	            return true;
+	        if (nameId === "RAMLLanguageElement" && className === "NodeClass")
+	            return true;
+	        return false;
+	    };
+	    /**
+	     * Returns example for this type.
+	     * Returned example should be tested for being empty and being expandable.
+	     */
+	    AbstractType.prototype.examples = function () {
+	        return [new ExpandableExampleStub()];
+	    };
+	    /**
+	     * Returns whether this type contain genuine user defined type in its hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    AbstractType.prototype.isGenuineUserDefinedType = function () {
+	        return false;
+	    };
+	    /**
+	     * Returns nearest genuine user-define type in the hierarchy.
+	     * Genuine user defined type is a type user intentionally defined and filled with
+	     * properties or facets, or having user-defined name as opposed to a synthetic user-defined type.
+	     */
+	    AbstractType.prototype.genuineUserDefinedType = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.customProperties = function () {
+	        return [].concat(this._customProperties);
+	    };
+	    AbstractType.prototype.allCustomProperties = function () {
+	        var props = [];
+	        this.superTypes().forEach(function (x) { return props = props.concat(x.allCustomProperties()); });
+	        props = props.concat(this.customProperties());
+	        return props;
+	    };
+	    AbstractType.prototype.registerCustomProperty = function (p) {
+	        if (p.domain() != this) {
+	            throw new Error("Should be already owned by this");
+	        }
+	        if (this._customProperties.indexOf(p) != -1) {
+	            throw new Error("Already included");
+	        }
+	        this._customProperties.push(p);
+	    };
+	    AbstractType.prototype.setCustom = function (val) {
+	        this._isCustom = val;
+	    };
+	    AbstractType.prototype.isCustom = function () {
+	        return this._isCustom;
+	    };
+	    AbstractType.prototype.isUnion = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.union = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isExternal = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.external = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isArray = function () {
+	        return false;
+	    };
+	    AbstractType.prototype.array = function () {
+	        return null;
+	    };
+	    AbstractType.prototype.isValueType = function () {
+	        return false;
+	    };
+	    return AbstractType;
+	})(Described);
+	exports.AbstractType = AbstractType;
+	var ValueType = (function (_super) {
+	    __extends(ValueType, _super);
+	    function ValueType(name, _universe, path, description) {
+	        if (_universe === void 0) { _universe = null; }
+	        if (path === void 0) { path = ""; }
+	        if (description === void 0) { description = ""; }
+	        _super.call(this, name, _universe, path);
+	    }
+	    ValueType.prototype.hasStructure = function () {
+	        return false;
+	    };
+	    ValueType.prototype.hasValueTypeInHierarchy = function () {
+	        return true;
+	    };
+	    ValueType.prototype.isValueType = function () {
+	        return true;
+	    };
+	    ValueType.prototype.isUnionType = function () {
+	        return false;
+	    };
+	    return ValueType;
+	})(AbstractType);
+	exports.ValueType = ValueType;
+	var StructuredType = (function (_super) {
+	    __extends(StructuredType, _super);
+	    function StructuredType() {
+	        _super.apply(this, arguments);
+	        this._properties = [];
+	    }
+	    StructuredType.prototype.hasStructure = function () {
+	        return true;
+	    };
+	    StructuredType.prototype.propertyIndex = function (name) {
+	        var props = this.properties();
+	        for (var i = 0; i < props.length; i++) {
+	            if (props[i].nameId() == name)
+	                return i;
+	        }
+	        return -1;
+	    };
+	    StructuredType.prototype.addProperty = function (name, range) {
+	        return new Property(name).withDomain(this).withRange(range);
+	    };
+	    StructuredType.prototype.allPropertyIndex = function (name) {
+	        var props = this.allProperties();
+	        for (var i = 0; i < props.length; i++) {
+	            if (props[i].nameId() == name)
+	                return i;
+	        }
+	        return -1;
+	    };
+	    StructuredType.prototype.properties = function () {
+	        return [].concat(this._properties);
+	    };
+	    StructuredType.prototype.registerProperty = function (p) {
+	        if (p.domain() != this) {
+	            throw new Error("Should be already owned by this");
+	        }
+	        if (this._properties.indexOf(p) != -1) {
+	            throw new Error("Already included");
+	        }
+	        this._properties.push(p);
+	    };
+	    return StructuredType;
+	})(AbstractType);
+	exports.StructuredType = StructuredType;
+	var Property = (function (_super) {
+	    __extends(Property, _super);
+	    function Property() {
+	        _super.apply(this, arguments);
+	        this._keyShouldStartFrom = null;
+	        this._isRequired = false;
+	        this._isMultiValue = false;
+	        this._descriminates = false;
+	        this._defaultBooleanValue = null;
+	        this._defaultIntegerValue = null;
+	    }
+	    Property.prototype.withMultiValue = function (v) {
+	        if (v === void 0) { v = true; }
+	        this._isMultiValue = v;
+	        return this;
+	    };
+	    Property.prototype.withDescriminating = function (b) {
+	        this._descriminates = b;
+	        return this;
+	    };
+	    Property.prototype.withRequired = function (req) {
+	        this._isRequired = req;
+	        return this;
+	    };
+	    Property.prototype.isRequired = function () {
+	        return this._isRequired;
+	    };
+	    Property.prototype.withKeyRestriction = function (keyShouldStartFrom) {
+	        this._keyShouldStartFrom = keyShouldStartFrom;
+	        return this;
+	    };
+	    Property.prototype.withDomain = function (d, custom) {
+	        if (custom === void 0) { custom = false; }
+	        this._ownerClass = d;
+	        if (custom) {
+	            d.registerCustomProperty(this);
+	        }
+	        else {
+	            d.registerProperty(this);
+	        }
+	        return this;
+	    };
+	    Property.prototype.setDefaultVal = function (s) {
+	        this._defaultValue = s;
+	        return this;
+	    };
+	    Property.prototype.setDefaultBooleanVal = function (s) {
+	        this._defaultBooleanValue = s;
+	        return this;
+	    };
+	    Property.prototype.setDefaultIntegerVal = function (s) {
+	        this._defaultIntegerValue = s;
+	        return this;
+	    };
+	    Property.prototype.defaultValue = function () {
+	        if (this._defaultValue != null) {
+	            return this._defaultValue;
+	        }
+	        else if (this._defaultBooleanValue != null) {
+	            return this._defaultBooleanValue;
+	        }
+	        else if (this._defaultIntegerValue != null) {
+	            return this._defaultIntegerValue;
+	        }
+	        return null;
+	    };
+	    Property.prototype.isPrimitive = function () {
+	        return false;
+	    };
+	    Property.prototype.withRange = function (t) {
+	        this._nodeRange = t;
+	        return this;
+	    };
+	    Property.prototype.isValueProperty = function () {
+	        return this._nodeRange.hasValueTypeInHierarchy();
+	    };
+	    Property.prototype.enumOptions = function () {
+	        if (this._enumOptions && typeof this._enumOptions == 'string') {
+	            return [this._enumOptions + ""];
+	        }
+	        return this._enumOptions;
+	    };
+	    Property.prototype.keyPrefix = function () {
+	        return this._keyShouldStartFrom;
+	    };
+	    Property.prototype.withEnumOptions = function (op) {
+	        this._enumOptions = op;
+	        return this;
+	    };
+	    Property.prototype.withKeyRegexp = function (regexp) {
+	        this._keyRegexp = regexp;
+	        return this;
+	    };
+	    Property.prototype.getKeyRegexp = function () {
+	        return this._keyRegexp;
+	    };
+	    Property.prototype.matchKey = function (k) {
+	        if (k == null) {
+	            return false;
+	        }
+	        if (this._groupName != null) {
+	            return this._groupName == k;
+	        }
+	        else {
+	            if (this._keyShouldStartFrom != null) {
+	                if (k.indexOf(this._keyShouldStartFrom) == 0) {
+	                    return true;
+	                }
+	            }
+	            if (this._enumOptions) {
+	                if (this._enumOptions.indexOf(k) != -1) {
+	                    return true;
+	                }
+	            }
+	            if (this.getKeyRegexp()) {
+	                try {
+	                    if (new RegExp(this.getKeyRegexp()).test(k)) {
+	                        return true;
+	                    }
+	                }
+	                catch (Error) {
+	                }
+	            }
+	            return false;
+	        }
+	    };
+	    Property.prototype.getFacetValidator = function () {
+	        return this.facetValidator;
+	    };
+	    Property.prototype.setFacetValidator = function (f) {
+	        this.facetValidator = f;
+	    };
+	    Property.prototype.domain = function () {
+	        return this._ownerClass;
+	    };
+	    Property.prototype.range = function () {
+	        return this._nodeRange;
+	    };
+	    Property.prototype.isMultiValue = function () {
+	        if (this.range() && this.range().hasArrayInHierarchy()) {
+	            return true;
+	        }
+	        return this._isMultiValue;
+	    };
+	    Property.prototype.isDescriminator = function () {
+	        return this._descriminates;
+	    };
+	    return Property;
+	})(Described);
+	exports.Property = Property;
+	var Union = (function (_super) {
+	    __extends(Union, _super);
+	    function Union() {
+	        _super.apply(this, arguments);
+	    }
+	    Union.prototype.key = function () {
+	        return null;
+	    };
+	    Union.prototype.leftType = function () {
+	        return this.left;
+	    };
+	    Union.prototype.rightType = function () {
+	        return this.right;
+	    };
+	    Union.prototype.isUserDefined = function () {
+	        return true;
+	    };
+	    Union.prototype.unionInHierarchy = function () {
+	        return this;
+	    };
+	    Union.prototype.union = function () {
+	        return this;
+	    };
+	    Union.prototype.hasUnionInHierarchy = function () {
+	        return true;
+	    };
+	    Union.prototype.isUnion = function () {
+	        return true;
+	    };
+	    Union.prototype.hasArrayInHierarchy = function () {
+	        if (this.left && this.right) {
+	            return this.left.hasArrayInHierarchy() || this.right.hasArrayInHierarchy();
+	        }
+	        if (this.left) {
+	            return this.left.hasArrayInHierarchy();
+	        }
+	        if (this.right) {
+	            return this.right.hasArrayInHierarchy();
+	        }
+	    };
+	    return Union;
+	})(AbstractType);
+	exports.Union = Union;
+	var Array = (function (_super) {
+	    __extends(Array, _super);
+	    function Array() {
+	        _super.apply(this, arguments);
+	    }
+	    Array.prototype.hasArrayInHierarchy = function () {
+	        return true;
+	    };
+	    Array.prototype.isArray = function () {
+	        return true;
+	    };
+	    Array.prototype.arrayInHierarchy = function () {
+	        return this;
+	    };
+	    Array.prototype.array = function () {
+	        return this;
+	    };
+	    Array.prototype.isUserDefined = function () {
+	        return true;
+	    };
+	    Array.prototype.componentType = function () {
+	        return this.component;
+	    };
+	    Array.prototype.key = function () {
+	        return null;
+	    };
+	    return Array;
+	})(AbstractType);
+	exports.Array = Array;
+	var ExternalType = (function (_super) {
+	    __extends(ExternalType, _super);
+	    function ExternalType() {
+	        _super.apply(this, arguments);
+	    }
+	    ExternalType.prototype.externalInHierarchy = function () {
+	        return this;
+	    };
+	    ExternalType.prototype.typeId = function () {
+	        return this.schemaString;
+	    };
+	    ExternalType.prototype.schema = function () {
+	        return this.schemaString;
+	    };
+	    ExternalType.prototype.isUserDefined = function () {
+	        return true;
+	    };
+	    ExternalType.prototype.hasExternalInHierarchy = function () {
+	        return true;
+	    };
+	    ExternalType.prototype.isExternal = function () {
+	        return true;
+	    };
+	    ExternalType.prototype.external = function () {
+	        return this;
+	    };
+	    return ExternalType;
+	})(StructuredType);
+	exports.ExternalType = ExternalType;
+	var ExpandableExampleStub = (function () {
+	    function ExpandableExampleStub() {
+	    }
+	    ExpandableExampleStub.prototype.isEmpty = function () {
+	        return true;
+	    };
+	    ExpandableExampleStub.prototype.isJSONString = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.isXMLString = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.isYAML = function () {
+	        return false;
+	    };
+	    ExpandableExampleStub.prototype.asString = function () {
+	        return "";
+	    };
+	    ExpandableExampleStub.prototype.asJSON = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.original = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.expandAsString = function () {
+	        return null;
+	    };
+	    ExpandableExampleStub.prototype.expandAsJSON = function () {
+	        return null;
+	    };
+	    return ExpandableExampleStub;
+	})();
+	exports.ExpandableExampleStub = ExpandableExampleStub;
+
+
+/***/ },
+/* 75 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../../typings/main.d.ts" />
+	var hl = __webpack_require__(2);
+	var _ = __webpack_require__(4);
+	var linter = __webpack_require__(55);
+	var wrapperHelper = __webpack_require__(76);
+	function escapeUri(u) {
+	    var ss = "";
+	    var level = 0;
+	    for (var i = 0; i < u.length; i++) {
+	        var c = u.charAt(i);
+	        if (level == 0) {
+	            ss = ss + c;
+	        }
+	        if (c == '{') {
+	            level++;
+	        }
+	        if (c == '}') {
+	            level--;
+	        }
+	    }
+	    return ss;
+	}
+	var OverloadingValidator = (function () {
+	    function OverloadingValidator() {
+	        this.holder = {};
+	        this.conflicting = {};
+	    }
+	    OverloadingValidator.prototype.validateApi = function (q, v) {
+	        var _this = this;
+	        q.resources().forEach(function (x) {
+	            _this.acceptResource(x);
+	            x.resources().forEach(function (y) { return _this.acceptResource(y); });
+	        });
+	        for (var c in this.conflicting) {
+	            var ms = this.conflicting[c];
+	            //now we should layout parameters by items
+	            var overmapQuery = {};
+	            var overmapHeaders = {};
+	            var pushed = [];
+	            ms.forEach(function (m) {
+	                m.queryParameters().forEach(function (q) {
+	                    var key = q.name();
+	                    if (!q.required()) {
+	                        return;
+	                    }
+	                    var set = overmapQuery[key];
+	                    if (!set) {
+	                        set = [];
+	                        overmapQuery[key] = set;
+	                    }
+	                    set.push(m);
+	                    pushed.push(m);
+	                });
+	                m.headers().forEach(function (q) {
+	                    var key = q.name();
+	                    if (!q.required()) {
+	                        return;
+	                    }
+	                    var set = overmapHeaders[key];
+	                    if (!set) {
+	                        set = [];
+	                        overmapHeaders[key] = set;
+	                    }
+	                    set.push(m);
+	                    pushed.push(m);
+	                });
+	            });
+	            var notPushed = ms.filter(function (x) { return !_.find(pushed, function (y) { return y == x; }); });
+	            if (notPushed.length > 0) {
+	                notPushed.forEach(function (m) {
+	                    v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous", m.highLevel(), true));
+	                });
+	            }
+	            for (var key in overmapQuery) {
+	                var cm = overmapQuery[key];
+	                if (cm.length > 1) {
+	                    var over = {};
+	                    var pushed2 = [];
+	                    cm.forEach(function (m) {
+	                        var pr = _.find(m.queryParameters(), function (x) { return x.name() == key; });
+	                        if (pr['enum']) {
+	                            var ev = pr['enum']();
+	                            if (ev && ev.length > 0) {
+	                                ev.forEach(function (value) {
+	                                    var t = over[value];
+	                                    if (!t) {
+	                                        t = [];
+	                                        over[value] = t;
+	                                    }
+	                                    t.push(m);
+	                                    pushed2.push(m);
+	                                });
+	                            }
+	                        }
+	                    });
+	                    var notPushed2 = cm.filter(function (x) { return !_.find(pushed2, function (y) { return y == x; }); });
+	                    if (notPushed2.length > 0) {
+	                        notPushed2.forEach(function (m) {
+	                            v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous no domain restrictions", m.highLevel(), true));
+	                        });
+	                    }
+	                    for (var k in over) {
+	                        var rs = over[k];
+	                        if (rs.length > 1) {
+	                            rs.forEach(function (m) { return v.accept(linter.createIssue(5 /* KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT */, "method overloading is ambiguous ( enum value " + k + ")", m.highLevel(), true)); });
+	                        }
+	                    }
+	                }
+	            }
+	        }
+	    };
+	    OverloadingValidator.prototype.acceptResource = function (x) {
+	        var _this = this;
+	        x.methods().forEach(function (m) {
+	            _this.acceptMethod(x, m);
+	        });
+	    };
+	    OverloadingValidator.prototype.acceptMethod = function (x, m) {
+	        var uri = escapeUri(wrapperHelper.absoluteUri(x)) + m.method();
+	        var pos = this.holder[uri];
+	        if (!pos) {
+	            pos = [];
+	            this.holder[uri] = pos;
+	        }
+	        pos.push(m);
+	        if (pos.length > 1) {
+	            this.conflicting[uri] = pos;
+	        }
+	        //wrapperHelper.absoluteUri(m.parent().)
+	    };
+	    return OverloadingValidator;
+	})();
+	module.exports = OverloadingValidator;
+
+
+/***/ },
+/* 76 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RamlWrapper = __webpack_require__(1);
+	var factory = __webpack_require__(77);
+	var core = __webpack_require__(78);
+	var ramlPathMatch = __webpack_require__(81);
+	var hl = __webpack_require__(2);
+	var hlimpl = __webpack_require__(5);
+	var linter = __webpack_require__(55);
+	var universeDef = __webpack_require__(54);
+	var universes = __webpack_require__(54);
+	var Opt = __webpack_require__(12);
+	var util = __webpack_require__(11);
+	var typeexpression = __webpack_require__(50);
+	var expander = __webpack_require__(88);
+	var lowLevelProxy = __webpack_require__(6);
+	var search = __webpack_require__(53);
+	var ll = __webpack_require__(15);
+	var json = __webpack_require__(8);
+	var path = __webpack_require__(16);
+	var ramlservices = __webpack_require__(49);
+	var example = __webpack_require__(114);
+	var universeHelpers = __webpack_require__(62);
+	var universeProvider = __webpack_require__(63);
+	function resolveType(p) {
+	    var tpe = typeexpression.typeFromNode(p.highLevel());
+	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
+	}
+	exports.resolveType = resolveType;
+	//__$helperMethod__ Runtime representation of type represented by this AST node
+	function runtimeType(p) {
+	    var tpe = typeexpression.typeFromNode(p.highLevel());
+	    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
+	}
+	exports.runtimeType = runtimeType;
+	function load(pth) {
+	    var m = new ll.Project(path.dirname(pth));
+	    var unit = m.unit(path.basename(pth));
+	    if (unit) {
+	        if (unit.isRAMLUnit()) {
+	            return hl.fromUnit(unit).wrapperNode();
+	        }
+	    }
+	    return null;
+	}
+	exports.load = load;
+	//__$helperMethod__ Path relative to API root
+	function completeRelativeUri(res) {
+	    var uri = '';
+	    var parent = res;
+	    do {
+	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
+	        uri = res.relativeUri().value() + uri;
+	        parent = res.parent();
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
+	    return uri;
+	}
+	exports.completeRelativeUri = completeRelativeUri;
+	/**
+	 * __$helperMethod__
+	 * Equivalent API with traits and resource types expanded
+	 * __$meta__={"name":"expand"}
+	 **/
+	function expandTraitsAndResourceTypes(api) {
+	    var lowLevelNode = api.highLevel().lowLevel();
+	    if (lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode) {
+	        return api;
+	    }
+	    return expander.expandTraitsAndResourceTypes(api);
+	}
+	exports.expandTraitsAndResourceTypes = expandTraitsAndResourceTypes;
+	//__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
+	function absoluteUri(res) {
+	    var uri = '';
+	    var parent = res;
+	    do {
+	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
+	        uri = res.relativeUri().value() + uri;
+	        parent = res.parent();
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
+	    uri = uri.replace(/\/\//g, '/');
+	    var buri = parent.baseUri();
+	    var base = buri ? buri.value() : "";
+	    base = base ? base : '';
+	    if (util.stringEndsWith(base, '/')) {
+	        uri = uri.substring(1);
+	    }
+	    uri = base + uri;
+	    return uri;
+	}
+	exports.absoluteUri = absoluteUri;
+	//__$helperMethod__ validate an instance against type
+	function validateInstance(res, value) {
+	    var tv = new linter.TypeValidator(res.highLevel());
+	    var errors = [];
+	    var vl = {
+	        begin: function () {
+	        },
+	        accept: function (issue) {
+	            errors.push(issue.message);
+	        },
+	        end: function () {
+	        }
+	    };
+	    tv.validate(value, res.runtimeType(), vl, true);
+	    return errors;
+	}
+	exports.validateInstance = validateInstance;
+	function qName(c) {
+	    return hlimpl.qName(c.highLevel(), c.highLevel().root());
+	}
+	exports.qName = qName;
+	/**
+	 * __$helperMethod__
+	 * Retrieve all traits including those defined in libraries
+	 * __$meta__{"name":"traits","override":true}
+	 **/
+	function traitsPrimary(a) {
+	    return allTraits(a);
+	}
+	exports.traitsPrimary = traitsPrimary;
+	//__$helperMethod__ Retrieve all traits including those defined in libraries
+	function allTraits(a) {
+	    return findTemplates(a, function (d) { return universeHelpers.isTraitType(d); });
+	}
+	exports.allTraits = allTraits;
+	/**
+	 * __$helperMethod__
+	 * Retrieve all resource types including those defined in libraries
+	 * __$meta__{"name":"resourceTypes","override":true}
+	 **/
+	function resourceTypesPrimary(a) {
+	    return allResourceTypes(a);
+	}
+	exports.resourceTypesPrimary = resourceTypesPrimary;
+	//__$helperMethod__ Retrieve all resource types including those defined in libraries
+	function allResourceTypes(a) {
+	    return findTemplates(a, function (d) { return universeHelpers.isResourceTypeType(d); });
+	}
+	exports.allResourceTypes = allResourceTypes;
+	function findTemplates(a, filter) {
+	    var arr = search.globalDeclarations(a.highLevel()).filter(function (x) { return filter(x.definition()); });
+	    var ll = a.highLevel().lowLevel();
+	    var nodePath = ll.includePath();
+	    if (!nodePath) {
+	        nodePath = ll.unit().path();
+	    }
+	    var topLevelArr = arr.map(function (x) {
+	        var topLevelNode;
+	        var p = x.lowLevel().unit().path();
+	        if (p != nodePath) {
+	            topLevelNode = factory.buildWrapperNode(x, false);
+	            topLevelNode.meta().setCalculated();
+	        }
+	        else {
+	            topLevelNode = x.wrapperNode();
+	        }
+	        return topLevelNode;
+	    });
+	    return topLevelArr;
+	}
+	;
+	function relativeUriSegments(res) {
+	    var result = [];
+	    var parent = res;
+	    do {
+	        res = parent; //(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
+	        result.push(res.relativeUri().value());
+	        parent = res.parent();
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
+	    return result.reverse();
+	}
+	exports.relativeUriSegments = relativeUriSegments;
+	//__$helperMethod__ For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+	function parentResource(method) {
+	    if (method.parent() instanceof RamlWrapper.ResourceImpl) {
+	        return method.parent();
+	    }
+	    return null;
+	}
+	exports.parentResource = parentResource;
+	/**
+	 * __$helperMethod__
+	 * Parent resource for non top level resources
+	 * __$meta__={"name":"parentResource"}
+	 **/
+	function parent(resource) {
+	    var parent = resource.parent();
+	    if (parent.definition().key().name == universes.Universe10.Resource.name) {
+	        return parent;
+	    }
+	    return null;
+	}
+	exports.parent = parent;
+	//__$helperMethod__ Get child resource by its relative path
+	function childResource(container, relPath) {
+	    if (container == null) {
+	        return null;
+	    }
+	    var resources = container.resources();
+	    if (!resources) {
+	        return null;
+	    }
+	    resources = resources.filter(function (x) { return x.relativeUri().value() == relPath; });
+	    if (resources.length == 0) {
+	        return null;
+	    }
+	    return resources[0];
+	}
+	exports.childResource = childResource;
+	function getResource(container, path) {
+	    if (!container) {
+	        return null;
+	    }
+	    var res = null;
+	    for (var i = 0; i < path.length; i++) {
+	        res = childResource(container, path[i]);
+	        if (!res) {
+	            return null;
+	        }
+	        container = res;
+	    }
+	    return res;
+	}
+	exports.getResource = getResource;
+	//__$helperMethod__ Get child method by its name
+	function childMethod(resource, method) {
+	    if (!resource) {
+	        return null;
+	    }
+	    return resource.methods().filter(function (x) { return x.method() == method; });
+	}
+	exports.childMethod = childMethod;
+	function getMethod(container, path, method) {
+	    var resource = getResource(container, path);
+	    if (!resource) {
+	        return null;
+	    }
+	    return childMethod(resource, method);
+	}
+	exports.getMethod = getMethod;
+	function isApi(obj) {
+	    return universeHelpers.isApiSibling(obj.definition());
+	}
+	;
+	//__$helperMethod__ Api owning the resource as a sibling
+	function ownerApi(method) {
+	    var obj = method;
+	    while (!isApi(obj)) {
+	        obj = obj.parent();
+	    }
+	    return obj;
+	}
+	exports.ownerApi = ownerApi;
+	/**
+	 * __$helperMethod__
+	 * For methods of Resources: `{parent Resource relative path} {methodName}`.
+	 * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	 * For other methods throws Exception.
+	 **/
+	function methodId(method) {
+	    var parent = method.parent();
+	    if (parent instanceof RamlWrapper.ResourceImpl) {
+	        return completeRelativeUri(parent) + ' ' + method.method().toLowerCase();
+	    }
+	    else if (parent instanceof RamlWrapper.ResourceTypeImpl) {
+	        return parent.name() + ' ' + method.method().toLowerCase();
+	    }
+	    throw new Error("Method is supposed to be owned by Resource or ResourceType.\nHere the method is owned by " + method.definition().key().name);
+	}
+	exports.methodId = methodId;
+	//__$helperMethod__ true for codes < 400 and false otherwise
+	function isOkRange(response) {
+	    var str = response.code().value();
+	    var err = ramlservices.validateResponseString(str);
+	    if (err != null) {
+	        return false;
+	    }
+	    try {
+	        if (parseInt(str.charAt(0)) < 4) {
+	            return true;
+	        }
+	    }
+	    catch (e) {
+	    }
+	    return false;
+	}
+	exports.isOkRange = isOkRange;
+	//__$helperMethod__  Retrieve all resources of the Api
+	function allResources(api) {
+	    var resources = [];
+	    var visitor = function (res) {
+	        resources.push(res);
+	        res.resources().forEach(function (x) { return visitor(x); });
+	    };
+	    api.resources().forEach(function (x) { return visitor(x); });
+	    return resources;
+	}
+	exports.allResources = allResources;
+	function matchUri(apiRootRelativeUri, resource) {
+	    var allParameters = {};
+	    while (resource != null) {
+	        uriParameters(resource).forEach(function (x) { return allParameters[x.name()] = new ParamWrapper(x); });
+	        resource = parent(resource);
+	    }
+	    var result = ramlPathMatch(completeRelativeUri(resource), allParameters, {})(apiRootRelativeUri);
+	    if (result) {
+	        return new Opt(Object.keys(result.params).map(function (x) { return new ParamValue(x, result['params'][x]); }));
+	    }
+	    return Opt.empty();
+	}
+	exports.matchUri = matchUri;
+	var schemaContentChars = ['{', '<'];
+	function schema(body, api) {
+	    var schemaNode = body.schema();
+	    if (!schemaNode) {
+	        return Opt.empty();
+	    }
+	    var schemaString = schemaNode;
+	    var isContent = false;
+	    schemaContentChars.forEach(function (x) {
+	        try {
+	            isContent = isContent || schemaString.indexOf(x) >= 0;
+	        }
+	        catch (e) {
+	        }
+	    });
+	    var schDef;
+	    if (isContent) {
+	        schDef = new SchemaDef(schemaString);
+	    }
+	    else {
+	        var globalSchemes = api.schemas().filter(function (x) { return x.key() == schemaString; });
+	        if (globalSchemes.length > 0) {
+	            schDef = new SchemaDef(globalSchemes[0].value().value(), globalSchemes[0].key());
+	        }
+	        else {
+	            return Opt.empty();
+	        }
+	    }
+	    return new Opt(schDef);
+	}
+	exports.schema = schema;
+	/**
+	 * __$helperMethod__
+	 * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * /resource/{objectId}/{propertyId}:
+	 *   uriParameters:
+	 *     objectId:
+	 * ```
+	 * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+	 * but it is among Resource.uriParameters().
+	 * __$meta__={"name":"uriParameters","override": true}
+	 **/
+	function uriParametersPrimary(resource) {
+	    return uriParameters(resource);
+	}
+	exports.uriParametersPrimary = uriParametersPrimary;
+	/**
+	 * __$helperMethod__
+	 * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * /resource/{objectId}/{propertyId}:
+	 *   uriParameters:
+	 *     objectId:
+	 * ```
+	 * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+	 * but it is among Resource.allUriParameters().
+	 * __$meta__={"name":"allUriParameters"}
+	 **/
+	function uriParameters(resource) {
+	    var params = resource.uriParameters_original();
+	    if (!(resource instanceof RamlWrapper.ResourceImpl)) {
+	        return params;
+	    }
+	    var uri = resource.relativeUri().value();
+	    var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
+	    return extractParams(params, uri, resource, propName);
+	}
+	exports.uriParameters = uriParameters;
+	/**
+	 * __$helperMethod__
+	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * version: v1
+	 * baseUri: https://{organization}.example.com/{version}/{service}
+	 * baseUriParameters:
+	 *   service:
+	 * ```
+	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
+	 * but they are among `Api.baseUriParameters()`.
+	 * __$meta__={"name":"baseUriParameters","override":true}
+	 **/
+	function baseUriParametersPrimary(api) {
+	    return baseUriParameters(api);
+	}
+	exports.baseUriParametersPrimary = baseUriParametersPrimary;
+	/**
+	 * __$helperMethod__
+	 * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	 * Consider a fragment of RAML specification:
+	 * ```yaml
+	 * version: v1
+	 * baseUri: https://{organization}.example.com/{version}/{service}
+	 * baseUriParameters:
+	 *   service:
+	 * ```
+	 * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
+	 * but they are among `Api.allBaseUriParameters()`.
+	 * __$meta__={"name":"allBaseUriParameters"}
+	 **/
+	function baseUriParameters(api) {
+	    var uri = api.baseUri() ? api.baseUri().value() : '';
+	    var params = api.baseUriParameters_original();
+	    var propName = universes.Universe10.Api.properties.baseUriParameters.name;
+	    return extractParams(params, uri, api, propName);
+	}
+	exports.baseUriParameters = baseUriParameters;
+	/**
+	 * __$helperMethod__
+	 * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.baseUriParameters()`
+	 * for `Api` owning the `Resource` and `Resource.uriParameters()`.
+	 **/
+	function absoluteUriParameters(res) {
+	    var params = [];
+	    var parent = res;
+	    do {
+	        res = parent;
+	        params = uriParameters(res).concat(params);
+	        parent = res.parent();
+	    } while (parent.definition().key().name == universes.Universe10.Resource.name);
+	    var api = parent;
+	    var baseUri = api.baseUri().value();
+	    var baseUriParams = api.baseUriParameters();
+	    params = baseUriParameters(api).concat(params);
+	    return params;
+	}
+	exports.absoluteUriParameters = absoluteUriParameters;
+	/**
+	 * __$helperMethod__
+	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
+	 * Otherwise, returns protocol, specified in the base URI.
+	 * __$meta__={"name":"protocols","override":true}
+	 **/
+	function protocolsPrimary(api) {
+	    return allProtocols(api);
+	}
+	exports.protocolsPrimary = protocolsPrimary;
+	/**
+	 * __$helperMethod__
+	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
+	 * Otherwise, returns protocol, specified in the base URI.
+	 **/
+	function allProtocols(api) {
+	    var attributeDefaults = api.attributeDefaults();
+	    var result = api.protocols_original();
+	    if (result.length != 0 || !attributeDefaults) {
+	        return result;
+	    }
+	    var baseUriAttr = api.baseUri();
+	    if (baseUriAttr) {
+	        var baseUri = baseUriAttr.value();
+	        if (baseUri) {
+	            var ind = baseUri.indexOf('://');
+	            if (ind >= 0) {
+	                result = [baseUri.substring(0, ind)];
+	            }
+	            if (result.length == 0) {
+	                result = ['HTTP'];
+	            }
+	        }
+	    }
+	    return result;
+	}
+	exports.allProtocols = allProtocols;
+	/**
+	 * __$helperMethod__
+	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+	 * returns schemes defined with `securedBy` at API level.
+	 * __$meta__={"name":"securedBy","override":true}
+	 **/
+	function securedByPrimary(resourceOrMethod) {
+	    return allSecuredBy(resourceOrMethod);
+	}
+	exports.securedByPrimary = securedByPrimary;
+	/**
+	 * __$helperMethod__
+	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+	 * returns schemes defined with `securedBy` at API level.
+	 **/
+	function allSecuredBy(resourceOrMethod) {
+	    var currentSecuredBy = resourceOrMethod.securedBy_original();
+	    if (currentSecuredBy && currentSecuredBy.length > 0) {
+	        return currentSecuredBy;
+	    }
+	    //instanceof, but have to avoid direct usage of instanceof in JS.
+	    var key = resourceOrMethod.highLevel().definition().key();
+	    if (key == universes.Universe10.Method) {
+	        var method = resourceOrMethod;
+	        var resource = method.parentResource();
+	        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
+	            return resource.securedBy_original();
+	        }
+	        return method.ownerApi().securedBy();
+	    }
+	    if (key == universes.Universe10.Resource) {
+	        return resourceOrMethod.ownerApi().securedBy();
+	    }
+	    return currentSecuredBy;
+	}
+	exports.allSecuredBy = allSecuredBy;
+	//export function allSecuredBy(resourceOrMethod : RamlWrapper.ResourceBase | RamlWrapper.Method):RamlWrapper.SecuritySchemeRef[] {
+	//    var currentSecuredBy:RamlWrapper.SecuritySchemeRef[];
+	//    var key = resourceOrMethod.highLevel().definition().key();
+	//    if (key == universes.Universe10.Method){
+	//        currentSecuredBy = (<RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
+	//    }
+	//    else{
+	//        currentSecuredBy = (<RamlWrapper.ResourceBaseImpl>resourceOrMethod).securedBy_original();
+	//    }
+	//    if (currentSecuredBy && currentSecuredBy.length > 0) {
+	//        return currentSecuredBy;
+	//    }
+	//
+	//    //instanceof, but have to avoid direct usage of instanceof in JS.
+	//    if (key == universes.Universe10.Method) {
+	//        var method = (<RamlWrapper.Method>resourceOrMethod);
+	//        var resource = <RamlWrapper.ResourceImpl>method.parentResource();
+	//        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
+	//            return resource.securedBy();
+	//        }
+	//        return method.ownerApi().securedBy();
+	//    }
+	//    if (key == universes.Universe10.Resource){
+	//        return (<RamlWrapper.ResourceImpl>resourceOrMethod).ownerApi().securedBy();
+	//    }
+	//    return currentSecuredBy;
+	//}
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"primary":true}
+	 **/
+	function securitySchemeName(schemeReference) {
+	    var highLevel = schemeReference.highLevel();
+	    if (!highLevel)
+	        return "";
+	    var attributeValue = highLevel.value();
+	    if (!attributeValue)
+	        return "";
+	    return attributeValue.toString();
+	}
+	exports.securitySchemeName = securitySchemeName;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"primary":true}
+	 **/
+	function securityScheme(schemeReference) {
+	    var highLevel = schemeReference.highLevel();
+	    if (!highLevel)
+	        return null;
+	    var declaration = search.findDeclarationByNode(highLevel, 0 /* VALUE_COMPLETION */);
+	    if (!declaration)
+	        return null;
+	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+	        return null;
+	    }
+	    var result = declaration.wrapperNode();
+	    if (!(result instanceof RamlWrapper.AbstractSecuritySchemeImpl)) {
+	        //I do not see how to avoid instanceof here
+	        return null;
+	    }
+	    return result;
+	}
+	exports.securityScheme = securityScheme;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"primary":true}
+	 **/
+	function RAMLVersion(api) {
+	    return api.highLevel().definition().universe().version();
+	}
+	exports.RAMLVersion = RAMLVersion;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"primary":true}
+	 **/
+	function structuredValue(reference) {
+	    var hl = reference.value().lowLevel();
+	    return new core.TypeInstanceImpl(hl);
+	}
+	exports.structuredValue = structuredValue;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"name","primary":true}
+	 **/
+	function referenceName(reference) {
+	    var val = reference.highLevel().value();
+	    return typeof val == 'string' ? val : val.valueName();
+	}
+	exports.referenceName = referenceName;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"trait","primary":true}
+	 **/
+	function referencedTrait(ref) {
+	    return referencedObject(ref);
+	}
+	exports.referencedTrait = referencedTrait;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"annotation","primary":true}
+	 **/
+	function referencedAnnotation(ref) {
+	    return referencedObject(ref);
+	}
+	exports.referencedAnnotation = referencedAnnotation;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"resourceType","primary":true}
+	 **/
+	function referencedResourceType(ref) {
+	    return referencedObject(ref);
+	}
+	exports.referencedResourceType = referencedResourceType;
+	function referencedObject(ref) {
+	    var attr = ref.highLevel();
+	    var parent = attr.parent();
+	    var vn = ref.name();
+	    var cands = attr.property().getAdapter(ramlservices.RAMLPropertyService).referenceTargets(parent).filter(function (x) { return hlimpl.qName(x, parent) == vn; });
+	    if (cands.length == 0) {
+	        return null;
+	    }
+	    return cands[0].wrapperNode();
+	}
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"example","override":true}
+	 **/
+	function getTypeExample(td) {
+	    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
+	    return attrToExampleString(attr);
+	}
+	exports.getTypeExample = getTypeExample;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"structuredExample","primary":true}
+	 **/
+	function getTypeStructuredExample(td) {
+	    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
+	    return exampleAttrToTypeInstance(attr);
+	}
+	exports.getTypeStructuredExample = getTypeStructuredExample;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"content","override":true}
+	 **/
+	function getExampleStringContent(td) {
+	    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
+	    return attrToExampleString(attr);
+	}
+	exports.getExampleStringContent = getExampleStringContent;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"structuredContent","primary":true}
+	 **/
+	function getExampleStructuredContent(td) {
+	    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
+	    return exampleAttrToTypeInstance(attr);
+	}
+	exports.getExampleStructuredContent = getExampleStructuredContent;
+	function attrToExampleString(attr) {
+	    if (!attr) {
+	        return null;
+	    }
+	    var val = attr.value();
+	    if (typeof val == 'string') {
+	        return val;
+	    }
+	    return new example.ExpandableExampleImpl(attr).asString();
+	}
+	function exampleAttrToTypeInstance(attr) {
+	    if (!attr) {
+	        return null;
+	    }
+	    var val = attr.value();
+	    var expandable = new example.ExpandableExampleImpl(attr);
+	    if (expandable.isYAML()) {
+	        return new core.TypeInstanceImpl(attr.lowLevel());
+	    }
+	    var obj = expandable.asJSON();
+	    if (!obj) {
+	        return null;
+	    }
+	    var llNode = attr.lowLevel();
+	    var jsonNode = new json.AstNode(llNode.unit(), obj, llNode.parent(), null, llNode.key());
+	    return new core.TypeInstanceImpl(jsonNode);
+	}
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"fixedFacets","primary":true}
+	 **/
+	function typeFixedFacets(td) {
+	    var fixedFacetAttrs = td.highLevel().attrs().filter(function (x) {
+	        var prop = x.property();
+	        var domain = prop.domain();
+	        var domAdapter = domain.getAdapter(ramlservices.RAMLService);
+	        if (!domAdapter.isUserDefined()) {
+	            return false;
+	        }
+	        var range = prop.range();
+	        var rangeAdapter = range.getAdapter(ramlservices.RAMLService);
+	        if (rangeAdapter.isAnnotation()) {
+	            return false;
+	        }
+	        return true;
+	    });
+	    return new core.TypeInstanceImpl(fixedFacetAttrs.map(function (x) { return x.lowLevel(); }));
+	}
+	exports.typeFixedFacets = typeFixedFacets;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"primary":true}
+	 **/
+	function schemaContent(typeDeclaration) {
+	    var schemaString = typeDeclaration.schema();
+	    if (!schemaString) {
+	        return null;
+	    }
+	    var schemaAttribute = typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
+	    if (!schemaAttribute) {
+	        return schemaString;
+	    }
+	    var declaration = search.findDeclarationByNode(schemaAttribute, 0 /* VALUE_COMPLETION */);
+	    if (!declaration)
+	        return schemaString;
+	    if (!declaration.getKind || declaration.getKind() != 1 /* NODE */) {
+	        return schemaString;
+	    }
+	    //we found the schema declaration and should get its contents
+	    if (declaration.definition().key() != universes.Universe10.GlobalSchema) {
+	        return null;
+	    }
+	    var valueAttribute = declaration.attr(universes.Universe10.GlobalSchema.properties.value.name);
+	    if (valueAttribute == null) {
+	        return null;
+	    }
+	    return valueAttribute.value();
+	}
+	exports.schemaContent = schemaContent;
+	function extractParams(params, uri, owner, propName) {
+	    var ownerHl = owner.highLevel();
+	    var prop = ownerHl.definition().property(propName);
+	    if (!uri) {
+	        return [];
+	    }
+	    var describedParams = {};
+	    params.forEach(function (x) {
+	        var arr = describedParams[x.name()];
+	        if (!arr) {
+	            arr = [];
+	            describedParams[x.name()] = arr;
+	        }
+	        arr.push(x);
+	    });
+	    var allParams = [];
+	    var prev = 0;
+	    var mentionedParams = {};
+	    for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
+	        prev = uri.indexOf('}', ++i);
+	        var paramName = uri.substring(i, prev);
+	        mentionedParams[paramName] = true;
+	        if (describedParams[paramName]) {
+	            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
+	        }
+	        else {
+	            var universe = universeProvider("RAML10");
+	            var nc = universe.type(universeDef.Universe10.TypeDeclaration.name);
+	            var node = nc.getAdapter(ramlservices.RAMLService).createStubNode(null, paramName);
+	            var uriParameter = factory.buildWrapperNode(node);
+	            var hlNode = uriParameter.highLevel();
+	            hlNode.setParent(ownerHl);
+	            uriParameter.meta().setCalculated();
+	            uriParameter.setName(paramName);
+	            hlNode.patchProp(prop);
+	            allParams.push(uriParameter);
+	        }
+	    }
+	    Object.keys(describedParams).filter(function (x) { return !mentionedParams[x]; }).forEach(function (x) { return describedParams[x].forEach(function (y) { return allParams.push(y); }); });
+	    return allParams;
+	}
+	;
+	var SchemaDef = (function () {
+	    function SchemaDef(_content, _name) {
+	        this._content = _content;
+	        this._name = _name;
+	    }
+	    SchemaDef.prototype.name = function () {
+	        return this._name;
+	    };
+	    SchemaDef.prototype.content = function () {
+	        return this._content;
+	    };
+	    return SchemaDef;
+	})();
+	exports.SchemaDef = SchemaDef;
+	var ParamValue = (function () {
+	    function ParamValue(key, value) {
+	        this.key = key;
+	        this.value = value;
+	    }
+	    return ParamValue;
+	})();
+	exports.ParamValue = ParamValue;
+	var ParamWrapper = (function () {
+	    function ParamWrapper(_param) {
+	        this._param = _param;
+	        this.description = _param.description() ? _param.description().value() : this.description;
+	        this.displayName = _param.displayName();
+	        //        this.enum = _param.enum();
+	        this.type = _param.type().length > 0 ? _param.type()[0] : "string";
+	        this.example = _param.example();
+	        this.repeat = _param.repeat();
+	        this.required = _param.required();
+	        this.default = _param.default();
+	    }
+	    return ParamWrapper;
+	})();
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"meta"}
+	 **/
+	function apiMetadata(api) {
+	    var apiImpl = api;
+	    var meta = core.fillElementMeta(apiImpl);
+	    var protocolsOriginal = apiImpl.protocols_original();
+	    if (protocolsOriginal.length == 0) {
+	        var protocols = apiImpl.protocols();
+	        if (protocols.length != 0) {
+	            meta.registerCalculatedValue(universes.Universe10.Api.properties.protocols.name);
+	        }
+	    }
+	    return meta;
+	}
+	exports.apiMetadata = apiMetadata;
+
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var RamlWrapper = __webpack_require__(1);
+	/**
+	 * @hidden
+	 * Build Wrapper node corresponding to the High Level node
+	 **/
+	function buildWrapperNode(node, setAsTopLevel) {
+	    if (setAsTopLevel === void 0) { setAsTopLevel = true; }
+	    var definition = node.definition();
+	    var nodeClassName = definition.nameId();
+	    var wrapperConstructor = classMap[nodeClassName];
+	    if (!wrapperConstructor) {
+	        var priorities = determineSuperclassesPriorities(definition);
+	        var superTypes = definition.allSuperTypes().sort(function (x, y) { return priorities[x.nameId()] - priorities[y.nameId()]; });
+	        var wr = null;
+	        for (var i = 0; i < superTypes.length; i++) {
+	            var superTypeName = superTypes[i].nameId();
+	            wrapperConstructor = classMap[superTypeName];
+	            if (superTypeName == "DataElement") {
+	                wr = superTypeName;
+	                continue;
+	            }
+	            if (superTypeName == "RAMLLanguageElement") {
+	                continue;
+	            }
+	            if (wrapperConstructor) {
+	                break;
+	            }
+	        }
+	        if (!wrapperConstructor) {
+	            wr = superTypeName;
+	        }
+	    }
+	    if (!wrapperConstructor) {
+	        wrapperConstructor = classMap["RAMLLanguageElement"];
+	    }
+	    return wrapperConstructor(node, setAsTopLevel);
+	}
+	exports.buildWrapperNode = buildWrapperNode;
+	function determineSuperclassesPriorities(td, priorities, path) {
+	    if (priorities === void 0) { priorities = {}; }
+	    if (path === void 0) { path = {}; }
+	    var typeName = td.nameId();
+	    if (path[typeName]) {
+	        return;
+	    }
+	    path[typeName] = true;
+	    var rank = (priorities[typeName] != null && priorities[typeName] + 1) || 0;
+	    var superTypes = td.superTypes();
+	    superTypes.forEach(function (x) {
+	        var name = x.nameId();
+	        var r = priorities[name];
+	        if (r == null || rank > r) {
+	            priorities[name] = rank;
+	            determineSuperclassesPriorities(x, priorities, path);
+	        }
+	    });
+	    delete path[typeName];
+	    return priorities;
+	}
+	var classMap = {
+	    "AbstractSecurityScheme": function (x, y) {
+	        return new RamlWrapper.AbstractSecuritySchemeImpl(x, y);
+	    },
+	    "AnnotationRef": function (x) {
+	        return new RamlWrapper.AnnotationRefImpl(x);
+	    },
+	    "AnnotationTarget": function (x) {
+	        return new RamlWrapper.AnnotationTargetImpl(x);
+	    },
+	    "AnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.AnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "AnyType": function (x) {
+	        return new RamlWrapper.AnyTypeImpl(x);
+	    },
+	    "Api": function (x, y) {
+	        return new RamlWrapper.ApiImpl(x, y);
+	    },
+	    "ArrayAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ArrayAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "ArrayTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ArrayTypeDeclarationImpl(x, y);
+	    },
+	    "BasicSecurityScheme": function (x, y) {
+	        return new RamlWrapper.BasicSecuritySchemeImpl(x, y);
+	    },
+	    "BooleanAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.BooleanAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "BooleanType": function (x) {
+	        return new RamlWrapper.BooleanTypeImpl(x);
+	    },
+	    "BooleanTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.BooleanTypeDeclarationImpl(x, y);
+	    },
+	    "ContentType": function (x) {
+	        return new RamlWrapper.ContentTypeImpl(x);
+	    },
+	    "CustomSecurityScheme": function (x, y) {
+	        return new RamlWrapper.CustomSecuritySchemeImpl(x, y);
+	    },
+	    "DateFormatSpec": function (x) {
+	        return new RamlWrapper.DateFormatSpecImpl(x);
+	    },
+	    "DateTypeAnnotationDeclaration": function (x, y) {
+	        return new RamlWrapper.DateTypeAnnotationDeclarationImpl(x, y);
+	    },
+	    "DateTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.DateTypeDeclarationImpl(x, y);
+	    },
+	    "DigestSecurityScheme": function (x, y) {
+	        return new RamlWrapper.DigestSecuritySchemeImpl(x, y);
+	    },
+	    "DocumentationItem": function (x, y) {
+	        return new RamlWrapper.DocumentationItemImpl(x, y);
+	    },
+	    "ExampleSpec": function (x, y) {
+	        return new RamlWrapper.ExampleSpecImpl(x, y);
+	    },
+	    "ExampleString": function (x) {
+	        return new RamlWrapper.ExampleStringImpl(x);
+	    },
+	    "Extension": function (x, y) {
+	        return new RamlWrapper.ExtensionImpl(x, y);
+	    },
+	    "FileTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.FileTypeDeclarationImpl(x, y);
+	    },
+	    "FixedUriString": function (x) {
+	        return new RamlWrapper.FixedUriStringImpl(x);
+	    },
+	    "FullUriTemplateString": function (x) {
+	        return new RamlWrapper.FullUriTemplateStringImpl(x);
+	    },
+	    "FunctionalInterface": function (x) {
+	        return new RamlWrapper.FunctionalInterfaceImpl(x);
+	    },
+	    "GlobalSchema": function (x, y) {
+	        return new RamlWrapper.GlobalSchemaImpl(x, y);
+	    },
+	    "HasNormalParameters": function (x, y) {
+	        return new RamlWrapper.HasNormalParametersImpl(x, y);
+	    },
+	    "ImportDeclaration": function (x, y) {
+	        return new RamlWrapper.ImportDeclarationImpl(x, y);
+	    },
+	    "IntegerTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.IntegerTypeDeclarationImpl(x, y);
+	    },
+	    "JSonSchemaString": function (x) {
+	        return new RamlWrapper.JSonSchemaStringImpl(x);
+	    },
+	    "Library": function (x, y) {
+	        return new RamlWrapper.LibraryImpl(x, y);
+	    },
+	    "LibraryBase": function (x, y) {
+	        return new RamlWrapper.LibraryBaseImpl(x, y);
+	    },
+	    "LocationKind": function (x) {
+	        return new RamlWrapper.LocationKindImpl(x);
+	    },
+	    "MarkdownString": function (x) {
+	        return new RamlWrapper.MarkdownStringImpl(x);
+	    },
+	    "Method": function (x, y) {
+	        return new RamlWrapper.MethodImpl(x, y);
+	    },
+	    "MethodBase": function (x, y) {
+	        return new RamlWrapper.MethodBaseImpl(x, y);
+	    },
+	    "MimeType": function (x) {
+	        return new RamlWrapper.MimeTypeImpl(x);
+	    },
+	    "ModelLocation": function (x) {
+	        return new RamlWrapper.ModelLocationImpl(x);
+	    },
+	    "NumberAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.NumberAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "NumberType": function (x) {
+	        return new RamlWrapper.NumberTypeImpl(x);
+	    },
+	    "NumberTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.NumberTypeDeclarationImpl(x, y);
+	    },
+	    "OAuth1SecurityScheme": function (x, y) {
+	        return new RamlWrapper.OAuth1SecuritySchemeImpl(x, y);
+	    },
+	    "OAuth1SecuritySchemeSettings": function (x, y) {
+	        return new RamlWrapper.OAuth1SecuritySchemeSettingsImpl(x, y);
+	    },
+	    "OAuth2SecurityScheme": function (x, y) {
+	        return new RamlWrapper.OAuth2SecuritySchemeImpl(x, y);
+	    },
+	    "OAuth2SecuritySchemeSettings": function (x, y) {
+	        return new RamlWrapper.OAuth2SecuritySchemeSettingsImpl(x, y);
+	    },
+	    "ObjectAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ObjectAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "ObjectTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ObjectTypeDeclarationImpl(x, y);
+	    },
+	    "Overlay": function (x, y) {
+	        return new RamlWrapper.OverlayImpl(x, y);
+	    },
+	    "PassThroughSecurityScheme": function (x, y) {
+	        return new RamlWrapper.PassThroughSecuritySchemeImpl(x, y);
+	    },
+	    "PassThroughSecuritySchemeSettings": function (x, y) {
+	        return new RamlWrapper.PassThroughSecuritySchemeSettingsImpl(x, y);
+	    },
+	    "RAMLExpression": function (x, y) {
+	        return new RamlWrapper.RAMLExpressionImpl(x, y);
+	    },
+	    "RAMLExpressionAnnotation": function (x, y) {
+	        return new RamlWrapper.RAMLExpressionAnnotationImpl(x, y);
+	    },
+	    "RAMLLanguageElement": function (x, y) {
+	        return new RamlWrapper.RAMLLanguageElementImpl(x, y);
+	    },
+	    "RAMLSelector": function (x) {
+	        return new RamlWrapper.RAMLSelectorImpl(x);
+	    },
+	    "RAMLSimpleElement": function (x, y) {
+	        return new RamlWrapper.RAMLSimpleElementImpl(x, y);
+	    },
+	    "Reference": function (x) {
+	        return new RamlWrapper.ReferenceImpl(x);
+	    },
+	    "RelativeUriString": function (x) {
+	        return new RamlWrapper.RelativeUriStringImpl(x);
+	    },
+	    "Resource": function (x, y) {
+	        return new RamlWrapper.ResourceImpl(x, y);
+	    },
+	    "ResourceBase": function (x, y) {
+	        return new RamlWrapper.ResourceBaseImpl(x, y);
+	    },
+	    "ResourceType": function (x, y) {
+	        return new RamlWrapper.ResourceTypeImpl(x, y);
+	    },
+	    "ResourceTypeRef": function (x) {
+	        return new RamlWrapper.ResourceTypeRefImpl(x);
+	    },
+	    "Response": function (x, y) {
+	        return new RamlWrapper.ResponseImpl(x, y);
+	    },
+	    "SchemaElement": function (x, y) {
+	        return new RamlWrapper.SchemaElementImpl(x, y);
+	    },
+	    "SchemaString": function (x) {
+	        return new RamlWrapper.SchemaStringImpl(x);
+	    },
+	    "SecuritySchemePart": function (x, y) {
+	        return new RamlWrapper.SecuritySchemePartImpl(x, y);
+	    },
+	    "SecuritySchemeRef": function (x) {
+	        return new RamlWrapper.SecuritySchemeRefImpl(x);
+	    },
+	    "SecuritySchemeSettings": function (x, y) {
+	        return new RamlWrapper.SecuritySchemeSettingsImpl(x, y);
+	    },
+	    "StatusCodeString": function (x) {
+	        return new RamlWrapper.StatusCodeStringImpl(x);
+	    },
+	    "StringAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.StringAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "StringType": function (x) {
+	        return new RamlWrapper.StringTypeImpl(x);
+	    },
+	    "StringTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.StringTypeDeclarationImpl(x, y);
+	    },
+	    "Trait": function (x, y) {
+	        return new RamlWrapper.TraitImpl(x, y);
+	    },
+	    "TraitRef": function (x) {
+	        return new RamlWrapper.TraitRefImpl(x);
+	    },
+	    "TypeDeclaration": function (x, y) {
+	        return new RamlWrapper.TypeDeclarationImpl(x, y);
+	    },
+	    "UnionAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.UnionAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "UnionTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.UnionTypeDeclarationImpl(x, y);
+	    },
+	    "UriTemplate": function (x) {
+	        return new RamlWrapper.UriTemplateImpl(x);
+	    },
+	    "ValidityExpression": function (x) {
+	        return new RamlWrapper.ValidityExpressionImpl(x);
+	    },
+	    "ValueAnnotationTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ValueAnnotationTypeDeclarationImpl(x, y);
+	    },
+	    "ValueType": function (x) {
+	        return new RamlWrapper.ValueTypeImpl(x);
+	    },
+	    "ValueTypeDeclaration": function (x, y) {
+	        return new RamlWrapper.ValueTypeDeclarationImpl(x, y);
+	    },
+	    "XMLSchemaString": function (x) {
+	        return new RamlWrapper.XMLSchemaStringImpl(x);
+	    }
+	};
+
+
+/***/ },
+/* 78 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var hlImpl = __webpack_require__(5);
+	var jsyaml = __webpack_require__(15);
+	var ramlService = __webpack_require__(49);
+	var json2lowlevel = __webpack_require__(8);
+	var defaultCalculator = __webpack_require__(79);
+	var yaml = __webpack_require__(7);
+	var search = __webpack_require__(53);
+	var universeHelpers = __webpack_require__(62);
+	var tckDumper = __webpack_require__(80);
+	var BasicNodeImpl = (function () {
+	    /**
+	     * @hidden
+	     **/
+	    function BasicNodeImpl(_node, setAsWrapper) {
+	        if (setAsWrapper === void 0) { setAsWrapper = true; }
+	        this._node = _node;
+	        this._meta = new NodeMetadataImpl(false, false, this.optional());
+	        if (setAsWrapper) {
+	            _node.setWrapperNode(this);
+	        }
+	    }
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.wrapperClassName = function () {
+	        return 'BasicNodeImpl';
+	    };
+	    BasicNodeImpl.prototype.kind = function () {
+	        return 'BasicNode';
+	    };
+	    /**
+	     * @return Direct ancestor in RAML hierarchy
+	     **/
+	    BasicNodeImpl.prototype.parent = function () {
+	        var parent = this._node.parent();
+	        return parent ? parent.wrapperNode() : null;
+	    };
+	    /**
+	     * @hidden
+	     * @return Underlying node of the High Level model
+	     **/
+	    BasicNodeImpl.prototype.highLevel = function () {
+	        return this._node;
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.attributes = function (name, constr) {
+	        var attrs = this._node.attributes(name);
+	        if (!attrs || attrs.length == 0) {
+	            var defaultValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+	            if (defaultValue == null)
+	                return [];
+	            if (constr && (constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
+	                return [constr(defaultValue)];
+	            }
+	            else if (constr) {
+	                return [];
+	            }
+	            return [defaultValue];
+	        }
+	        //TODO not sure if we want to artificially create missing attributes having
+	        //default values
+	        if (constr) {
+	            return attrs.map(function (x) { return constr(x); });
+	        }
+	        else {
+	            return attrs.map(function (x) { return x.value(); });
+	        }
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.attribute = function (name, constr) {
+	        var attr = this._node.attr(name);
+	        if (constr && !(constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
+	            //we're not putting values directly inside anything, besides the default
+	            //convertors for default types we support
+	            if (attr == null)
+	                return null;
+	            return constr(attr);
+	        }
+	        var attributeValue = attr ? attr.value() : null;
+	        if (attributeValue == null) {
+	            attributeValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+	        }
+	        if (attributeValue == null)
+	            return null;
+	        if (constr) {
+	            return constr(attributeValue);
+	        }
+	        else {
+	            return attributeValue;
+	        }
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.elements = function (name) {
+	        var elements = this._node.elementsOfKind(name);
+	        if (!elements) {
+	            return null;
+	        }
+	        return elements.map(function (x) { return x.wrapperNode(); });
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.element = function (name) {
+	        var element = this._node.element(name);
+	        if (!element) {
+	            return null;
+	        }
+	        return element.wrapperNode();
+	    };
+	    /**
+	     * Append node as child
+	     * @param node node to be appended
+	     **/
+	    BasicNodeImpl.prototype.add = function (node) {
+	        this.highLevel().add(node.highLevel());
+	    };
+	    /**
+	     * Append node as property value
+	     * @param node node to be set as property value
+	     * @param prop name of property to set value for
+	     **/
+	    BasicNodeImpl.prototype.addToProp = function (node, prop) {
+	        var hl = node.highLevel();
+	        var pr = this.highLevel().definition().property(prop);
+	        hl._prop = pr;
+	        this.highLevel().add(hl);
+	    };
+	    /**
+	     * Remove node from children set
+	     * @param node node to be removed
+	     **/
+	    BasicNodeImpl.prototype.remove = function (node) {
+	        this.highLevel().remove(node.highLevel());
+	    };
+	    /**
+	     * @return YAML string representing the node
+	     **/
+	    BasicNodeImpl.prototype.dump = function () {
+	        return this.highLevel().dump("yaml");
+	    };
+	    BasicNodeImpl.prototype.toString = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
+	        return obj != null ? obj.toString() : obj;
+	    };
+	    BasicNodeImpl.prototype.toBoolean = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
+	        return obj != null ? obj.toString() == 'true' : obj;
+	    };
+	    BasicNodeImpl.prototype.toNumber = function (arg) {
+	        var obj;
+	        //kind of instanceof for hl.IAttribute without actually calling instanceof
+	        if (arg.lowLevel && arg.property) {
+	            obj = arg.value();
+	        }
+	        else {
+	            obj = arg;
+	        }
+	        if (!obj) {
+	            return obj;
+	        }
+	        try {
+	            var nValue = parseFloat(obj.toString());
+	            return nValue;
+	        }
+	        catch (e) {
+	        }
+	        return Number.MAX_VALUE;
+	    };
+	    /**
+	     * @return Array of errors
+	     **/
+	    BasicNodeImpl.prototype.errors = function () {
+	        var _this = this;
+	        var issues = [];
+	        if (this._node.errors() != null) {
+	            issues = issues.concat(this._node.errors());
+	        }
+	        this._node.attrs().filter(function (x) { return x.errors() != null; }).forEach(function (x) { return issues = issues.concat(x.errors()); });
+	        var lineMapper = this._node.lowLevel().unit().lineMapper();
+	        var result = issues.map(function (x) {
+	            var startPoint = null;
+	            try {
+	                startPoint = lineMapper.position(x.start);
+	            }
+	            catch (e) {
+	                console.warn(e);
+	            }
+	            var endPoint = null;
+	            try {
+	                endPoint = lineMapper.position(x.end);
+	            }
+	            catch (e) {
+	                console.warn(e);
+	            }
+	            var path;
+	            if (x.path) {
+	                path = x.path;
+	            }
+	            else if (x.node) {
+	                path = x.node.lowLevel().unit().path();
+	            }
+	            else {
+	                path = search.declRoot(_this.highLevel()).lowLevel().unit().path();
+	            }
+	            return {
+	                code: x.code,
+	                message: x.message,
+	                path: path,
+	                start: x.start,
+	                end: x.end,
+	                line: startPoint.errorMessage ? null : startPoint.line,
+	                column: startPoint.errorMessage ? null : startPoint.column,
+	                range: [startPoint, endPoint],
+	                isWarning: x.isWarning
+	            };
+	        });
+	        return result;
+	    };
+	    /**
+	     * @return object representing class of the node
+	     **/
+	    BasicNodeImpl.prototype.definition = function () {
+	        return this.highLevel().definition();
+	    };
+	    /**
+	     * @return for user class instances returns object representing actual user class
+	     **/
+	    BasicNodeImpl.prototype.runtimeDefinition = function () {
+	        return this.highLevel().definition().getAdapter(ramlService.RAMLService).toRuntime();
+	    };
+	    BasicNodeImpl.prototype.toJSON = function (serializeOptions) {
+	        return json2lowlevel.serialize(this.highLevel().lowLevel(), serializeOptions);
+	    };
+	    /**
+	     * @return Whether the element is an optional sibling of trait or resource type
+	     **/
+	    BasicNodeImpl.prototype.optional = function () {
+	        var highLevel = this.highLevel();
+	        return highLevel != null ? highLevel.optional() : false;
+	    };
+	    /**
+	     * @return For siblings of traits or resource types returns an array of optional properties names.
+	     **/
+	    BasicNodeImpl.prototype.optionalProperties = function () {
+	        if (!this.highLevel()) {
+	            return [];
+	        }
+	        return this.highLevel().optionalProperties();
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.getDefaultsCalculator = function () {
+	        if (this.defaultsCalculator) {
+	            return this.defaultsCalculator;
+	        }
+	        if (this.parent()) {
+	            this.defaultsCalculator = this.parent().getDefaultsCalculator();
+	        }
+	        if (!this.defaultsCalculator) {
+	            this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(false);
+	        }
+	        return this.defaultsCalculator;
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    BasicNodeImpl.prototype.setAttributeDefaults = function (attributeDefaults) {
+	        this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(attributeDefaults);
+	    };
+	    BasicNodeImpl.prototype.attributeDefaults = function () {
+	        return this.getDefaultsCalculator() && this.getDefaultsCalculator().isEnabled();
+	    };
+	    BasicNodeImpl.prototype.meta = function () {
+	        return fillElementMeta(this);
+	    };
+	    return BasicNodeImpl;
+	})();
+	exports.BasicNodeImpl = BasicNodeImpl;
+	var AttributeNodeImpl = (function () {
+	    function AttributeNodeImpl(attr) {
+	        this._meta = new ValueMetadataImpl();
+	        this.attr = attr;
+	    }
+	    /**
+	     * @return Underlying High Level attribute node
+	     **/
+	    AttributeNodeImpl.prototype.highLevel = function () {
+	        return this.attr;
+	    };
+	    /**
+	     * @hidden
+	     **/
+	    AttributeNodeImpl.prototype.wrapperClassName = function () {
+	        return 'AttributeNodeImpl';
+	    };
+	    AttributeNodeImpl.prototype.kind = function () {
+	        return 'AttributeNode';
+	    };
+	    /**
+	     * @return Whether the element is an optional sibling of trait or resource type
+	     **/
+	    AttributeNodeImpl.prototype.optional = function () {
+	        var highLevel = this.highLevel();
+	        return highLevel != null ? highLevel.optional() : false;
+	    };
+	    AttributeNodeImpl.prototype.meta = function () {
+	        return this._meta;
+	    };
+	    return AttributeNodeImpl;
+	})();
+	exports.AttributeNodeImpl = AttributeNodeImpl;
+	/**
+	 * @hidden
+	 **/
+	function toStructuredValue(node) {
+	    var value = node.value();
+	    if (typeof value === 'string') {
+	        var mockNode = jsyaml.createNode(value.toString());
+	        mockNode._actualNode().startPosition = node.lowLevel().valueStart();
+	        mockNode._actualNode().endPosition = node.lowLevel().valueEnd();
+	        var stv = new hlImpl.StructuredValue(mockNode, node.parent(), node.property());
+	        return stv;
+	    }
+	    else {
+	        return value;
+	    }
+	}
+	exports.toStructuredValue = toStructuredValue;
+	var TypeInstanceImpl = (function () {
+	    function TypeInstanceImpl(nodes) {
+	        if (!Array.isArray(nodes)) {
+	            this.node = nodes;
+	        }
+	        else {
+	            this.children = nodes;
+	        }
+	    }
+	    TypeInstanceImpl.prototype.properties = function () {
+	        return this.getChildren().map(function (x) { return new TypeInstancePropertyImpl(x); });
+	    };
+	    TypeInstanceImpl.prototype.getChildren = function () {
+	        return (this.node && this.node.children()) || this.children;
+	    };
+	    TypeInstanceImpl.prototype.value = function () {
+	        return this.node && this.node.value();
+	    };
+	    TypeInstanceImpl.prototype.isScalar = function () {
+	        if (!this.node) {
+	            return false;
+	        }
+	        if (this.node.children().length != 0) {
+	            return false;
+	        }
+	        var hl = this.node.highLevelNode();
+	        if (hl) {
+	            var prop = hl.property();
+	            var range = prop.range();
+	            if (range) {
+	                return range.isValueType();
+	            }
+	        }
+	        return true;
+	    };
+	    TypeInstanceImpl.prototype.toJSON = function () {
+	        return new tckDumper.TCKDumper().serializeTypeInstance(this);
+	    };
+	    return TypeInstanceImpl;
+	})();
+	exports.TypeInstanceImpl = TypeInstanceImpl;
+	var TypeInstancePropertyImpl = (function () {
+	    function TypeInstancePropertyImpl(node) {
+	        this.node = node;
+	    }
+	    TypeInstancePropertyImpl.prototype.name = function () {
+	        return this.node.key();
+	    };
+	    TypeInstancePropertyImpl.prototype.value = function () {
+	        if (this.isArray()) {
+	            var children = this.node.children();
+	            return children.length > 0 ? new TypeInstanceImpl(children[0]) : null;
+	        }
+	        else {
+	            return new TypeInstanceImpl(this.node);
+	        }
+	    };
+	    TypeInstancePropertyImpl.prototype.values = function () {
+	        return this.isArray() ? this.node.children().map(function (x) { return new TypeInstanceImpl(x); }) : [new TypeInstanceImpl(this.node)];
+	    };
+	    TypeInstancePropertyImpl.prototype.isArray = function () {
+	        var children = this.node.children();
+	        if (children.length > 0 && children[0].key() == null) {
+	            return true;
+	        }
+	        var hl = this.node.highLevelNode();
+	        if (hl) {
+	            var prop = hl.property();
+	            if (prop) {
+	                var range = prop.range();
+	                if (range) {
+	                    return range.isArray();
+	                }
+	            }
+	        }
+	        return this.node.valueKind() == 3 /* SEQ */;
+	    };
+	    return TypeInstancePropertyImpl;
+	})();
+	exports.TypeInstancePropertyImpl = TypeInstancePropertyImpl;
+	var ValueMetadataImpl = (function () {
+	    function ValueMetadataImpl(_insertedAsDefault, _calculated, _optional) {
+	        if (_insertedAsDefault === void 0) { _insertedAsDefault = false; }
+	        if (_calculated === void 0) { _calculated = false; }
+	        if (_optional === void 0) { _optional = false; }
+	        this._insertedAsDefault = _insertedAsDefault;
+	        this._calculated = _calculated;
+	        this._optional = _optional;
+	    }
+	    ValueMetadataImpl.prototype.calculated = function () {
+	        return this._calculated;
+	    };
+	    ValueMetadataImpl.prototype.insertedAsDefault = function () {
+	        return this._insertedAsDefault;
+	    };
+	    ValueMetadataImpl.prototype.setCalculated = function () {
+	        this._calculated = true;
+	    };
+	    ValueMetadataImpl.prototype.setInsertedAsDefault = function () {
+	        this._insertedAsDefault = true;
+	    };
+	    ValueMetadataImpl.prototype.setOptional = function () {
+	        this._optional = true;
+	    };
+	    ValueMetadataImpl.prototype.optional = function () {
+	        return this._optional;
+	    };
+	    ValueMetadataImpl.prototype.isDefault = function () {
+	        return !(this._insertedAsDefault || this._calculated || this._optional);
+	    };
+	    ValueMetadataImpl.prototype.toJSON = function () {
+	        var obj = {};
+	        if (this._calculated) {
+	            obj['calculated'] = true;
+	        }
+	        if (this._insertedAsDefault) {
+	            obj['insertedAsDefault'] = true;
+	        }
+	        if (this._optional) {
+	            obj['optional'] = true;
+	        }
+	        return obj;
+	    };
+	    return ValueMetadataImpl;
+	})();
+	exports.ValueMetadataImpl = ValueMetadataImpl;
+	var NodeMetadataImpl = (function (_super) {
+	    __extends(NodeMetadataImpl, _super);
+	    function NodeMetadataImpl() {
+	        _super.apply(this, arguments);
+	        this.valuesMeta = {};
+	    }
+	    NodeMetadataImpl.prototype.primitiveValuesMeta = function () {
+	        return this.valuesMeta;
+	    };
+	    NodeMetadataImpl.prototype.registerInsertedAsDefaultValue = function (propName) {
+	        var pMeta = this.valuesMeta[propName];
+	        if (pMeta == null) {
+	            this.valuesMeta[propName] = new ValueMetadataImpl(true);
+	        }
+	        else {
+	            pMeta.setInsertedAsDefault();
+	        }
+	    };
+	    NodeMetadataImpl.prototype.registerCalculatedValue = function (propName) {
+	        var pMeta = this.valuesMeta[propName];
+	        if (pMeta == null) {
+	            this.valuesMeta[propName] = new ValueMetadataImpl(false, true);
+	        }
+	        else {
+	            pMeta.setCalculated();
+	        }
+	    };
+	    NodeMetadataImpl.prototype.registerOptionalValue = function (propName) {
+	        var pMeta = this.valuesMeta[propName];
+	        if (pMeta == null) {
+	            this.valuesMeta[propName] = new ValueMetadataImpl(false, false, true);
+	        }
+	        else {
+	            pMeta.setOptional();
+	        }
+	    };
+	    NodeMetadataImpl.prototype.resetPrimitiveValuesMeta = function () {
+	        this.valuesMeta = {};
+	    };
+	    NodeMetadataImpl.prototype.isDefault = function () {
+	        if (!_super.prototype.isDefault.call(this)) {
+	            return false;
+	        }
+	        return Object.keys(this.valuesMeta).length == 0;
+	    };
+	    NodeMetadataImpl.prototype.toJSON = function () {
+	        var _this = this;
+	        var obj = _super.prototype.toJSON.call(this);
+	        var valuesObj = {};
+	        var propKeys = Object.keys(this.valuesMeta);
+	        if (propKeys.length > 0) {
+	            propKeys.forEach(function (x) {
+	                var childMeta = _this.valuesMeta[x].toJSON();
+	                if (Object.keys(childMeta).length > 0) {
+	                    valuesObj[x] = childMeta;
+	                }
+	            });
+	            obj['primitiveValuesMeta'] = valuesObj;
+	        }
+	        return obj;
+	    };
+	    return NodeMetadataImpl;
+	})(ValueMetadataImpl);
+	exports.NodeMetadataImpl = NodeMetadataImpl;
+	function fillElementMeta(node) {
+	    var meta = node._meta;
+	    meta.resetPrimitiveValuesMeta();
+	    var highLevelNode = node.highLevel();
+	    highLevelNode.definition().allProperties().filter(function (p) { return p.isPrimitive() || universeHelpers.isSecuredByProperty(p); }).forEach(function (p) {
+	        var name = p.nameId();
+	        var attrs = highLevelNode.attributes(name);
+	        var gotValue = false;
+	        var optional = false;
+	        attrs.forEach(function (a) {
+	            gotValue = gotValue || a.value() != null;
+	            optional = optional || a.optional();
+	        });
+	        if (!gotValue) {
+	            var calculator = node.getDefaultsCalculator();
+	            var defVal = calculator.attributeDefaultIfEnabled(highLevelNode, p);
+	            if (defVal != null) {
+	                var insertionKind = calculator.insertionKind(highLevelNode, p);
+	                if (insertionKind == 0 /* CALCULATED */) {
+	                    meta.registerCalculatedValue(name);
+	                }
+	                else if (insertionKind == 1 /* BY_DEFAULT */) {
+	                    meta.registerInsertedAsDefaultValue(name);
+	                }
+	            }
+	        }
+	    });
+	    return meta;
+	}
+	exports.fillElementMeta = fillElementMeta;
+
+
+/***/ },
+/* 79 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var universes = __webpack_require__(54);
+	var universeHelpers = __webpack_require__(62);
+	var services = __webpack_require__(49);
+	var search = __webpack_require__(53);
+	var AttributeDefaultsCalculator = (function () {
+	    /**
+	     *
+	     * @param enabled - if false, defaults calculator will not return defaults from
+	     * attrValueOrDefault method, only original values.
+	     * @constructor
+	     */
+	    function AttributeDefaultsCalculator(enabled) {
+	        this.enabled = enabled;
+	        this.valueCalculators = [
+	            new RequiredPropertyCalculator(),
+	            new TypePropertyCalculator(),
+	            new DisplayNamePropertyCalculator(),
+	            new MediaTypeCalculator()
+	        ];
+	    }
+	    /**
+	     * Return attribute default value if defaults calculator is enabled.
+	     * If attribute value is null or undefined, returns attribute default.
+	     */
+	    AttributeDefaultsCalculator.prototype.attributeDefaultIfEnabled = function (node, attributeProperty) {
+	        if (!this.enabled)
+	            return null;
+	        return this.getAttributeDefault(node, attributeProperty);
+	    };
+	    /**
+	     * Returns attribute default.
+	     */
+	    AttributeDefaultsCalculator.prototype.getAttributeDefault = function (node, attributeProperty) {
+	        if (!node || !attributeProperty)
+	            return null;
+	        try {
+	            return this.getAttributeDefault2(attributeProperty, node);
+	        }
+	        catch (Error) {
+	            console.log(Error);
+	            return null;
+	        }
+	    };
+	    AttributeDefaultsCalculator.prototype.getWrapperAttributeDefault = function (wrapperNode, attributeName) {
+	        var highLevelNode = wrapperNode.highLevel();
+	        if (highLevelNode == null)
+	            return null;
+	        var property = highLevelNode.definition().property(attributeName);
+	        if (property == null)
+	            return null;
+	        return this.getAttributeDefault(highLevelNode, property);
+	    };
+	    /**
+	     * Returns attribute default.
+	     * There are so many arguments instead of just providing a single AST node and getting
+	     * anything we want from it as sometimes we create fake nodes in helpers and thus
+	     * do not have actual high-level nodes at hands.
+	     */
+	    AttributeDefaultsCalculator.prototype.getAttributeDefault2 = function (attributeProperty, node) {
+	        for (var i = 0; i < this.valueCalculators.length; i++) {
+	            var calculator = this.valueCalculators[i];
+	            if (calculator.matches(attributeProperty, node)) {
+	                var value = calculator.calculate(attributeProperty, node);
+	                if (value != null) {
+	                    return value;
+	                }
+	            }
+	        }
+	        //static values defined in definition system via defaultValue, defaultIntegerValue
+	        // and defaultBooleanValue annotations.
+	        if (attributeProperty.defaultValue() != null) {
+	            return attributeProperty.defaultValue();
+	        }
+	        return null;
+	    };
+	    AttributeDefaultsCalculator.prototype.isEnabled = function () {
+	        return this.enabled;
+	    };
+	    AttributeDefaultsCalculator.prototype.insertionKind = function (node, attributeProperty) {
+	        for (var i = 0; i < this.valueCalculators.length; i++) {
+	            var calculator = this.valueCalculators[i];
+	            if (calculator.matches(attributeProperty, node)) {
+	                return calculator.kind();
+	            }
+	        }
+	        if (attributeProperty.defaultValue() != null) {
+	            return 1 /* BY_DEFAULT */;
+	        }
+	        return null;
+	    };
+	    return AttributeDefaultsCalculator;
+	})();
+	exports.AttributeDefaultsCalculator = AttributeDefaultsCalculator;
+	(function (InsertionKind) {
+	    InsertionKind[InsertionKind["CALCULATED"] = 0] = "CALCULATED";
+	    InsertionKind[InsertionKind["BY_DEFAULT"] = 1] = "BY_DEFAULT";
+	})(exports.InsertionKind || (exports.InsertionKind = {}));
+	var InsertionKind = exports.InsertionKind;
+	var MediaTypeCalculator = (function () {
+	    function MediaTypeCalculator() {
+	    }
+	    MediaTypeCalculator.prototype.calculate = function (attributeProperty, node) {
+	        var root = search.declRoot(node);
+	        if (root && universeHelpers.isApiSibling(root.definition())) {
+	            var defaultMediaTypeAttr = root.attr(universes.Universe10.Api.properties.mediaType.name);
+	            if (defaultMediaTypeAttr) {
+	                return defaultMediaTypeAttr.value();
+	            }
+	        }
+	        return null;
+	    };
+	    MediaTypeCalculator.prototype.matches = function (attributeProperty, node) {
+	        if (!universeHelpers.isNameProperty(attributeProperty)) {
+	            return false;
+	        }
+	        var nodeDefinition = node.definition();
+	        if (!nodeDefinition) {
+	            return false;
+	        }
+	        if (!(universeHelpers.isBodyLikeType(nodeDefinition) || universeHelpers.isTypeDeclarationSibling(nodeDefinition))) {
+	            return false;
+	        }
+	        var parentNode = node.parent();
+	        if (parentNode == null) {
+	            return false;
+	        }
+	        var parentDefinition = parentNode.definition();
+	        if (parentDefinition == null) {
+	            return false;
+	        }
+	        if (!(universeHelpers.isResponseType(parentDefinition) || universeHelpers.isMethodBaseSibling(parentDefinition))) {
+	            return false;
+	        }
+	        var ancestor = parentNode;
+	        while (ancestor) {
+	            var aDef = ancestor.definition();
+	            if (universeHelpers.isTraitType(aDef)) {
+	                return false;
+	            }
+	            if (universeHelpers.isResourceTypeType(aDef)) {
+	                return false;
+	            }
+	            ancestor = ancestor.parent();
+	        }
+	        return true;
+	    };
+	    MediaTypeCalculator.prototype.kind = function () {
+	        return 0 /* CALCULATED */;
+	    };
+	    return MediaTypeCalculator;
+	})();
+	var DisplayNamePropertyCalculator = (function () {
+	    function DisplayNamePropertyCalculator() {
+	    }
+	    DisplayNamePropertyCalculator.prototype.calculate = function (attributeProperty, node) {
+	        var nodeDefinition = node.definition();
+	        if (nodeDefinition == null) {
+	            return null;
+	        }
+	        var adapter = nodeDefinition.getAdapter(services.RAMLService);
+	        var keyProperty = adapter.getKeyProp();
+	        if (keyProperty != null) {
+	            var attributeValue = node.attrValue(keyProperty.nameId());
+	            if (attributeValue != null) {
+	                return attributeValue;
+	            }
+	            else {
+	                return new AttributeDefaultsCalculator(true).getAttributeDefault(node, keyProperty);
+	            }
+	        }
+	        return null;
+	    };
+	    DisplayNamePropertyCalculator.prototype.matches = function (attributeProperty, node) {
+	        var nodeDefinition = node.definition();
+	        if (nodeDefinition == null) {
+	            return false;
+	        }
+	        return (universeHelpers.isTypeDeclarationSibling(nodeDefinition) || nodeDefinition.isAssignableFrom(universes.Universe08.Parameter.name) || universeHelpers.isResourceType(nodeDefinition)) && universeHelpers.isDisplayNameProperty(attributeProperty);
+	    };
+	    DisplayNamePropertyCalculator.prototype.kind = function () {
+	        return 0 /* CALCULATED */;
+	    };
+	    return DisplayNamePropertyCalculator;
+	})();
+	var TypePropertyCalculator = (function () {
+	    function TypePropertyCalculator() {
+	    }
+	    TypePropertyCalculator.prototype.calculate = function (attributeProperty, node) {
+	        return "object";
+	    };
+	    TypePropertyCalculator.prototype.matches = function (attributeProperty, node) {
+	        return universeHelpers.isTypeProperty(attributeProperty) && node.definition() != null && universeHelpers.isObjectTypeDeclarationSibling(node.definition());
+	    };
+	    TypePropertyCalculator.prototype.kind = function () {
+	        return 1 /* BY_DEFAULT */;
+	    };
+	    return TypePropertyCalculator;
+	})();
+	var RequiredPropertyCalculator = (function () {
+	    function RequiredPropertyCalculator() {
+	    }
+	    RequiredPropertyCalculator.prototype.calculate = function (attributeProperty, node) {
+	        var nodeDefinition = node.definition();
+	        var nodeProperty = node.property();
+	        if (nodeDefinition == null) {
+	            return null;
+	        }
+	        //if node key is ending with question mark, it optional, thus its "required" == false
+	        var adapter = nodeDefinition.getAdapter(services.RAMLService);
+	        var keyProperty = adapter.getKeyProp();
+	        if (keyProperty != null) {
+	            var attribute = node.attr(keyProperty.nameId());
+	            if (attribute != null && attribute.optional()) {
+	                return false;
+	            }
+	        }
+	        if (nodeProperty != null) {
+	            //the spec is unclear with regard to this parameter, but for now it looks like:
+	            //for query string parameters, form parameters, and request and response headers the default is false
+	            //for URI parameters the default is true
+	            //for base URI parameters - unclear, but according to old JS parser behavior it looks like the default is true
+	            //for all other entities we back drop to what definition system states
+	            if (universeHelpers.isHeadersProperty(nodeProperty) || universeHelpers.isFormParametersProperty(nodeProperty) || universeHelpers.isQueryParametersProperty(nodeProperty)) {
+	                return false;
+	            }
+	            else if (universeHelpers.isUriParametersProperty(nodeProperty) || universeHelpers.isBaseUriParametersProperty(nodeProperty)) {
+	                return true;
+	            }
+	        }
+	        if (attributeProperty.defaultValue() != null) {
+	            return attributeProperty.defaultValue();
+	        }
+	        return null;
+	    };
+	    RequiredPropertyCalculator.prototype.matches = function (attributeProperty, node) {
+	        return universeHelpers.isRequiredProperty(attributeProperty);
+	    };
+	    RequiredPropertyCalculator.prototype.kind = function () {
+	        return 1 /* BY_DEFAULT */;
+	    };
+	    return RequiredPropertyCalculator;
+	})();
+
+
+/***/ },
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	/// <reference path="../../typings/main.d.ts" />
+	var universe = __webpack_require__(54);
+	var core = __webpack_require__(78);
+	var universeHelpers = __webpack_require__(62);
+	function dump(node, serializeMeta) {
+	    if (serializeMeta === void 0) { serializeMeta = true; }
+	    return new TCKDumper(serializeMeta).dump(node, true);
+	}
+	exports.dump = dump;
+	var TCKDumper = (function () {
+	    function TCKDumper(dumpMeta) {
+	        if (dumpMeta === void 0) { dumpMeta = true; }
+	        this.dumpMeta = dumpMeta;
+	        this.transformers = [
+	            new TypeExampleTransformer(),
+	            new ParametersTransformer(),
+	            new TypesTransformer(),
+	            new PropertiesTransformer(),
+	            new ExamplesTransformer(),
+	            new ResponsesTransformer(),
+	            new BodiesTransformer(),
+	            new ReferencesTransformer(),
+	            new SecuritySchemesTransformer(),
+	            new AnnotationTypesTransformer(),
+	            new TraitsTransformer(),
+	            new ResourceTypesTransformer(),
+	            new FacetsTransformer(),
+	            new OneElementArrayTransformer()
+	        ];
+	        this.ignore = new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isDisplayNameProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty)
+	        ]);
+	        this.missingProperties = new PropertiesData();
+	    }
+	    TCKDumper.prototype.printMissingProperties = function () {
+	        return this.missingProperties.print();
+	    };
+	    TCKDumper.prototype.dump = function (node, dumpErrors) {
+	        var _this = this;
+	        if (dumpErrors === void 0) { dumpErrors = false; }
+	        if (node == null) {
+	            return null;
+	        }
+	        if (node instanceof core.BasicNodeImpl) {
+	            var props = {};
+	            var basicNode = node;
+	            var definition = basicNode.highLevel().definition();
+	            definition.allProperties().filter(function (x) { return !_this.ignore.match(basicNode.definition(), x); }).forEach(function (x) {
+	                props[x.nameId()] = x;
+	            });
+	            definition.allCustomProperties().filter(function (x) { return !_this.ignore.match(basicNode.definition(), x); }).forEach(function (x) {
+	                props[x.nameId()] = x;
+	            });
+	            var obj = this.dumpProperties(props, node);
+	            this.serializeMeta(obj, basicNode);
+	            if (dumpErrors) {
+	                var result = {};
+	                result.document = obj;
+	                result.errors = this.dumpErrors(basicNode.errors());
+	                return result;
+	            }
+	            else {
+	                return obj;
+	            }
+	        }
+	        else if (node instanceof core.AttributeNodeImpl) {
+	            var props = {};
+	            var attrNode = node;
+	            var definition = attrNode.highLevel().definition();
+	            definition.allCustomProperties().filter(function (x) { return !_this.ignore.match(attrNode.highLevel().property().range(), x); }).forEach(function (x) {
+	                props[x.nameId()] = x;
+	            });
+	            var isValueType = attrNode.highLevel().property().range().isValueType();
+	            if (isValueType && attrNode['value']) {
+	                var val = attrNode['value']();
+	                if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
+	                    return val;
+	                }
+	            }
+	            var obj = this.dumpProperties(props, node);
+	            this.serializeMeta(obj, attrNode);
+	            return obj;
+	        }
+	        else if (node instanceof core.TypeInstanceImpl) {
+	            return this.serializeTypeInstance(node);
+	        }
+	        else if (node instanceof core.TypeInstancePropertyImpl) {
+	            return this.serializeTypeInstanceProperty(node);
+	        }
+	        return node;
+	    };
+	    TCKDumper.prototype.dumpErrors = function (errors) {
+	        return errors.map(function (x) {
+	            return {
+	                "code": x.code,
+	                "message": x.message,
+	                "path": x.path,
+	                "line": x.line,
+	                "column": x.column,
+	                "position": x.start
+	            };
+	        }).sort(function (x, y) {
+	            if (x.path != y.path) {
+	                return x.path.localeCompare(y.path);
+	            }
+	            if (x.position != y.position) {
+	                return x.position - y.position;
+	            }
+	            return x.code - y.code;
+	        });
+	    };
+	    TCKDumper.prototype.dumpProperties = function (props, node) {
+	        var _this = this;
+	        var obj = {};
+	        Object.keys(props).forEach(function (propName) {
+	            if (!node[propName]) {
+	                _this.missingProperties.addProperty(props[propName], node.kind());
+	                return;
+	            }
+	            var value = node[propName]();
+	            if (Array.isArray(value)) {
+	                var propertyValue = [];
+	                value.forEach(function (x) { return propertyValue.push(_this.dump(x)); });
+	                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
+	                    return;
+	                }
+	                _this.transformers.forEach(function (x) {
+	                    if (x.match(node, props[propName])) {
+	                        propertyValue = x.transform(propertyValue);
+	                    }
+	                });
+	                obj[propName] = propertyValue;
+	            }
+	            else {
+	                var val = _this.dump(value);
+	                if (val == null && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
+	                    return;
+	                }
+	                obj[propName] = val;
+	            }
+	        });
+	        return obj;
+	    };
+	    TCKDumper.prototype.serializeMeta = function (obj, node) {
+	        if (!this.dumpMeta) {
+	            return;
+	        }
+	        var meta = node.meta();
+	        if (!meta.isDefault()) {
+	            obj["__METADATA__"] = meta.toJSON();
+	        }
+	    };
+	    TCKDumper.prototype.serializeTypeInstance = function (inst) {
+	        var _this = this;
+	        if (inst.isScalar()) {
+	            return inst.value();
+	        }
+	        else {
+	            var props = inst.properties();
+	            if (props.length == 0) {
+	                return null;
+	            }
+	            var obj = {};
+	            props.forEach(function (x) { return obj[x.name()] = _this.serializeTypeInstanceProperty(x); });
+	            return obj;
+	        }
+	    };
+	    TCKDumper.prototype.serializeTypeInstanceProperty = function (prop) {
+	        var _this = this;
+	        if (prop.isArray()) {
+	            var values = prop.values();
+	            //if(values.length==0){
+	            //    return null;
+	            //}
+	            var arr = [];
+	            values.forEach(function (x) { return arr.push(_this.serializeTypeInstance(x)); });
+	            return arr;
+	        }
+	        else {
+	            return this.serializeTypeInstance(prop.value());
+	        }
+	    };
+	    TCKDumper.prototype.isDefined = function (node, name) {
+	        var hl = node.highLevel();
+	        if (hl.elementsOfKind(name).length > 0) {
+	            return true;
+	        }
+	        if (hl.attributes(name).length > 0) {
+	            return true;
+	        }
+	        return false;
+	    };
+	    return TCKDumper;
+	})();
+	exports.TCKDumper = TCKDumper;
+	var BasicObjectPropertyMatcher = (function () {
+	    function BasicObjectPropertyMatcher(typeMatcher, propMatcher) {
+	        this.typeMatcher = typeMatcher;
+	        this.propMatcher = propMatcher;
+	    }
+	    BasicObjectPropertyMatcher.prototype.match = function (td, prop) {
+	        return this.typeMatcher(td) && this.propMatcher(prop);
+	    };
+	    return BasicObjectPropertyMatcher;
+	})();
+	var CompositeObjectPropertyMatcher = (function () {
+	    function CompositeObjectPropertyMatcher(matchers) {
+	        this.matchers = matchers;
+	    }
+	    CompositeObjectPropertyMatcher.prototype.match = function (td, prop) {
+	        var l = this.matchers.length;
+	        for (var i = 0; i < l; i++) {
+	            if (this.matchers[i].match(td, prop)) {
+	                return true;
+	            }
+	        }
+	        return false;
+	    };
+	    return CompositeObjectPropertyMatcher;
+	})();
+	var ArrayToMapTransformer = (function () {
+	    function ArrayToMapTransformer(matcher, propName) {
+	        this.matcher = matcher;
+	        this.propName = propName;
+	    }
+	    ArrayToMapTransformer.prototype.match = function (node, prop) {
+	        return this.matcher.match(node.definition(), prop);
+	    };
+	    ArrayToMapTransformer.prototype.transform = function (value) {
+	        var _this = this;
+	        if (Array.isArray(value) && value.length > 0 && value[0][this.propName]) {
+	            var obj = {};
+	            value.forEach(function (x) { return obj[x[_this.propName]] = x; });
+	            return obj;
+	        }
+	        return value;
+	    };
+	    return ArrayToMapTransformer;
+	})();
+	var ParametersTransformer = (function (_super) {
+	    __extends(ParametersTransformer, _super);
+	    function ParametersTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isBaseUriParametersProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isUriParametersProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isQueryParametersProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isQueryParametersProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isHeadersProperty)
+	        ]), "name");
+	    }
+	    return ParametersTransformer;
+	})(ArrayToMapTransformer);
+	var TypesTransformer = (function (_super) {
+	    __extends(TypesTransformer, _super);
+	    function TypesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTypesProperty)
+	        ]), "name");
+	    }
+	    return TypesTransformer;
+	})(ArrayToMapTransformer);
+	var PropertiesTransformer = (function (_super) {
+	    __extends(PropertiesTransformer, _super);
+	    function PropertiesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isObjectTypeDeclarationSibling, universeHelpers.isPropertiesProperty)
+	        ]), "name");
+	    }
+	    return PropertiesTransformer;
+	})(ArrayToMapTransformer);
+	var ResponsesTransformer = (function (_super) {
+	    __extends(ResponsesTransformer, _super);
+	    function ResponsesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isResponsesProperty)
+	        ]), "code");
+	    }
+	    return ResponsesTransformer;
+	})(ArrayToMapTransformer);
+	var ReferencesTransformer = (function (_super) {
+	    __extends(ReferencesTransformer, _super);
+	    function ReferencesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(function (x) { return true; }, universeHelpers.isAnnotationsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isTypeProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isIsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isIsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
+	        ]), "name");
+	    }
+	    return ReferencesTransformer;
+	})(ArrayToMapTransformer);
+	var BodiesTransformer = (function (_super) {
+	    __extends(BodiesTransformer, _super);
+	    function BodiesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isBodyProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isBodyProperty)
+	        ]), "name");
+	    }
+	    return BodiesTransformer;
+	})(ArrayToMapTransformer);
+	var TraitsTransformer = (function (_super) {
+	    __extends(TraitsTransformer, _super);
+	    function TraitsTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTraitsProperty)
+	        ]), "name");
+	    }
+	    return TraitsTransformer;
+	})(ArrayToMapTransformer);
+	var ResourceTypesTransformer = (function (_super) {
+	    __extends(ResourceTypesTransformer, _super);
+	    function ResourceTypesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isResourceTypesProperty)
+	        ]), "name");
+	    }
+	    return ResourceTypesTransformer;
+	})(ArrayToMapTransformer);
+	var FacetsTransformer = (function (_super) {
+	    __extends(FacetsTransformer, _super);
+	    function FacetsTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isFacetsProperty)
+	        ]), "name");
+	    }
+	    return FacetsTransformer;
+	})(ArrayToMapTransformer);
+	var SecuritySchemesTransformer = (function (_super) {
+	    __extends(SecuritySchemesTransformer, _super);
+	    function SecuritySchemesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isSecuritySchemesProperty)
+	        ]), "name");
+	    }
+	    return SecuritySchemesTransformer;
+	})(ArrayToMapTransformer);
+	var AnnotationTypesTransformer = (function (_super) {
+	    __extends(AnnotationTypesTransformer, _super);
+	    function AnnotationTypesTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isAnnotationTypesProperty)
+	        ]), "displayName");
+	    }
+	    return AnnotationTypesTransformer;
+	})(ArrayToMapTransformer);
+	var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
+	var exampleContentProp = universe.Universe10.ExampleSpec.properties.content.name;
+	var exampleStructuredContentProp = "structuredContent";
+	var ExamplesTransformer = (function () {
+	    function ExamplesTransformer() {
+	        this.matcher = new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isExamplesProperty);
+	    }
+	    ExamplesTransformer.prototype.match = function (node, prop) {
+	        return this.matcher.match(node.definition(), prop);
+	    };
+	    ExamplesTransformer.prototype.transform = function (value) {
+	        var _this = this;
+	        if (Array.isArray(value) && value.length > 0) {
+	            if (value[0][exampleNameProp]) {
+	                var obj = {};
+	                value.forEach(function (x) { return obj[x[exampleNameProp]] = _this.getActualExample(x); });
+	                return obj;
+	            }
+	            else {
+	                var arr = value.map(function (x) { return _this.getActualExample(x); });
+	                return arr;
+	            }
+	        }
+	        else {
+	            return value;
+	        }
+	    };
+	    ExamplesTransformer.prototype.getActualExample = function (exampleSpecObj) {
+	        if (exampleSpecObj[exampleStructuredContentProp]) {
+	            return exampleSpecObj[exampleStructuredContentProp];
+	        }
+	        return exampleSpecObj[exampleContentProp];
+	    };
+	    return ExamplesTransformer;
+	})();
+	var TypeExampleTransformer = (function () {
+	    function TypeExampleTransformer() {
+	    }
+	    TypeExampleTransformer.prototype.match = function (node, prop) {
+	        return universeHelpers.isTypeDeclarationSibling(prop.range());
+	    };
+	    TypeExampleTransformer.prototype.transform = function (value) {
+	        var isArray = Array.isArray(value);
+	        var arr = isArray ? value : [value];
+	        arr.forEach(function (x) {
+	            var structuredExample = x['structuredExample'];
+	            if (structuredExample) {
+	                x['example'] = structuredExample;
+	                delete x['structuredExample'];
+	            }
+	        });
+	        return isArray ? arr : arr[0];
+	    };
+	    return TypeExampleTransformer;
+	})();
+	var OneElementArrayTransformer = (function () {
+	    function OneElementArrayTransformer() {
+	        this.exceptions = new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling, universeHelpers.isPropertiesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isResourcesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType, universeHelpers.isResourcesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isResourcesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isResponsesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isMethodsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isBodyProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isProtocolsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isUsesProperty),
+	            new BasicObjectPropertyMatcher(function (x) { return true; }, function (x) { return x.nameId() == 'enum'; })
+	        ]);
+	    }
+	    OneElementArrayTransformer.prototype.match = function (node, prop) {
+	        return !this.exceptions.match(node.definition(), prop);
+	    };
+	    OneElementArrayTransformer.prototype.transform = function (value) {
+	        if (Array.isArray(value) && value.length == 1) {
+	            return value[0];
+	        }
+	        return value;
+	    };
+	    return OneElementArrayTransformer;
+	})();
+	var PropertiesData = (function () {
+	    function PropertiesData() {
+	        this.map = {};
+	    }
+	    PropertiesData.prototype.addProperty = function (prop, wrapperKind) {
+	        var data = this.map[wrapperKind];
+	        if (!data) {
+	            data = new TypePropertiesData(wrapperKind);
+	            this.map[wrapperKind] = data;
+	        }
+	        data.addProperty(prop);
+	    };
+	    PropertiesData.prototype.print = function () {
+	        var _this = this;
+	        return Object.keys(this.map).map(function (x) { return _this.map[x].print(); }).join('\n') + "\n";
+	    };
+	    return PropertiesData;
+	})();
+	var TypePropertiesData = (function () {
+	    function TypePropertiesData(typeName) {
+	        this.typeName = typeName;
+	        this.map = {};
+	    }
+	    TypePropertiesData.prototype.addProperty = function (prop) {
+	        var name = prop.domain().nameId();
+	        var data = this.map[name];
+	        if (!data) {
+	            data = new TypePropertiesData2(name);
+	            this.map[name] = data;
+	        }
+	        data.addProperty(prop);
+	    };
+	    TypePropertiesData.prototype.print = function () {
+	        var _this = this;
+	        return this.typeName + ':\n' + Object.keys(this.map).map(function (x) { return '    ' + _this.map[x].print(); }).join('\n');
+	    };
+	    return TypePropertiesData;
+	})();
+	var TypePropertiesData2 = (function () {
+	    function TypePropertiesData2(typeName) {
+	        this.typeName = typeName;
+	        this.map = {};
+	    }
+	    TypePropertiesData2.prototype.addProperty = function (prop) {
+	        var name = prop.nameId();
+	        this.map[name] = prop;
+	    };
+	    TypePropertiesData2.prototype.print = function () {
+	        return this.typeName + ': ' + Object.keys(this.map).sort().join(', ');
+	    };
+	    return TypePropertiesData2;
+	})();
+
+
+/***/ },
+/* 81 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/main.d.ts" />
+	var ramlSanitize = __webpack_require__(82);
+	var ramlValidate = __webpack_require__(83);
+	var REGEXP_MATCH = {
+	    number: '[-+]?\\d+(?:\\.\\d+)?',
+	    integer: '[-+]?\\d+',
+	    date: '(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} (?:[0-1]\\d|2[0-3]):[0-5]\\d:[0-5]\\d GMT',
+	    boolean: '(?:true|false)'
+	};
+	var ESCAPE_CHARACTERS = /([.*+?=^!:${}()|[\]\/\\])/g;
+	var REGEXP_REPLACE = new RegExp([
+	    '([.\\/])?\\{([^}]+)\\}',
+	    ESCAPE_CHARACTERS.source
+	].join('|'), 'g');
+	function toRegExp(path, parameters, keys, options) {
+	    var end = options.end !== false;
+	    var strict = options.strict;
+	    var flags = '';
+	    if (!options.sensitive) {
+	        flags += 'i';
+	    }
+	    var route = path.replace(REGEXP_REPLACE, function (match, prefix, key, escape) {
+	        if (escape) {
+	            return '\\' + escape;
+	        }
+	        // Push the current key into the keys array.
+	        keys.push({
+	            name: key,
+	            prefix: prefix || '/'
+	        });
+	        prefix = prefix ? '\\' + prefix : '';
+	        // TODO: Support an array of parameters.
+	        var param = parameters[key];
+	        var capture = param && REGEXP_MATCH[param.type] || '[^' + (prefix || '\\/') + ']+';
+	        var optional = param && param.required === false;
+	        if (Array.isArray(param.enum) && param.enum.length) {
+	            capture = '(?:' + param.enum.map(function (value) {
+	                return String(value).replace(ESCAPE_CHARACTERS, '\\$1');
+	            }).join('|') + ')';
+	        }
+	        return prefix + '(' + capture + ')' + (optional ? '?' : '');
+	    });
+	    var endsWithSlash = path.charAt(path.length - 1) === '/';
+	    // In non-strict mode we allow a slash at the end of match. If the path to
+	    // match already ends with a slash, we remove it for consistency. The slash
+	    // is valid at the end of a path match, not in the middle. This is important
+	    // in non-ending mode, where "/test/" shouldn't match "/test//route".
+	    if (!strict) {
+	        route = (endsWithSlash ? route.slice(0, -2) : route) + '(?:\\/(?=$))?';
+	    }
+	    if (end) {
+	        route += '$';
+	    }
+	    else {
+	        // In non-ending mode, we need the capturing groups to match as much as
+	        // possible by using a positive lookahead to the end or next path segment.
+	        route += strict && endsWithSlash ? '' : '(?=\\/|$)';
+	    }
+	    return new RegExp('^' + route + (end ? '$' : ''), flags);
+	}
+	function decodeParam(param) {
+	    try {
+	        return decodeURIComponent(param);
+	    }
+	    catch (_) {
+	        var err = new Error('Failed to decode param "' + param + '"');
+	        err.status = 400;
+	        throw err;
+	    }
+	}
+	function ramlPathMatch(path, parameters, options) {
+	    options = options || {};
+	    if (path === '/' && options.end === false) {
+	        return truth;
+	    }
+	    parameters = parameters || {};
+	    var keys = [];
+	    var re = toRegExp(path, parameters, keys, options);
+	    var sanitize = ramlSanitize()(parameters);
+	    var validate = ramlValidate()(parameters);
+	    return function (pathname) {
+	        var m = re.exec(pathname);
+	        if (!m) {
+	            return false;
+	        }
+	        if (parameters['mediaTypeExtension']) {
+	            if (m.length > 1 && !m[m.length - 1]) {
+	                var beforeLast = m[m.length - 2];
+	                var ind = beforeLast.lastIndexOf('.');
+	                if (ind >= 0) {
+	                    m[m.length - 2] = beforeLast.substring(0, ind);
+	                    m[m.length - 1] = beforeLast.substring(ind);
+	                }
+	            }
+	        }
+	        var path = m[0];
+	        var params = {};
+	        for (var i = 1; i < m.length; i++) {
+	            var key = keys[i - 1];
+	            var param = m[i];
+	            params[key.name] = param == null ? param : decodeParam(param);
+	        }
+	        params = sanitize(params);
+	        if (!validate(params).valid) {
+	            return false;
+	        }
+	        return {
+	            path: path,
+	            params: params
+	        };
+	    };
+	}
+	function truth(path) {
+	    return { path: '', params: {} };
+	}
+	module.exports = ramlPathMatch;
+
+
+/***/ },
+/* 82 */
+/***/ function(module, exports) {
+
+	/// <reference path="../../typings/main.d.ts" />
+	function isEmpty(value) {
+	    return value == null;
+	}
+	function toString(value) {
+	    return isEmpty(value) ? '' : String(value);
+	}
+	function toBoolean(value) {
+	    return [0, false, '', '0', 'false'].indexOf(value) === -1;
+	}
+	function toNumber(value) {
+	    return isFinite(value) ? Number(value) : null;
+	}
+	function toInteger(value) {
+	    return value % 1 === 0 ? Number(value) : null;
+	}
+	function toDate(value) {
+	    return !isNaN(Date.parse(value)) ? new Date(value) : null;
+	}
+	function toSanitization(parameter, rules, types) {
+	    var parameters = Array.isArray(parameter) ? parameter : [parameter];
+	    var sanitizations = parameters.map(function (parameter) {
+	        var fns = [];
+	        var typeSanitization = types[parameter.type];
+	        if (typeof typeSanitization === 'function') {
+	            fns.push(typeSanitization);
+	        }
+	        Object.keys(parameter).filter(function (key) {
+	            return key !== 'type' && key !== 'repeat' && key !== 'default';
+	        }).forEach(function (key) {
+	            var fn = rules[key];
+	            if (typeof fn === 'function') {
+	                fns.push(fn(parameter[key], key));
+	            }
+	        });
+	        function sanitize(value, key, src) {
+	            for (var i = 0; i < fns.length; i++) {
+	                var fn = fns[i];
+	                var value = fn(value, key, src);
+	                if (value != null) {
+	                    return value;
+	                }
+	            }
+	            return null;
+	        }
+	        return function (value, key, src) {
+	            if (isEmpty(value)) {
+	                if (parameter.default != null) {
+	                    return sanitize(parameter.default, key, src);
+	                }
+	                return parameter.repeat && !parameter.required ? [] : value;
+	            }
+	            if (parameter.repeat) {
+	                var values = Array.isArray(value) ? value : [value];
+	                values = values.map(function (value) {
+	                    return sanitize(value, key, src);
+	                });
+	                return values.some(isEmpty) ? null : value;
+	            }
+	            if (Array.isArray(value)) {
+	                if (value.length > 1) {
+	                    return null;
+	                }
+	                value = value[0];
+	            }
+	            return sanitize(value, key, src);
+	        };
+	    });
+	    return function (value, key, src) {
+	        for (var i = 0; i < sanitizations.length; i++) {
+	            var sanitization = sanitizations[i];
+	            var result = sanitization(value, key, src);
+	            if (result != null) {
+	                return result;
+	            }
+	        }
+	        return value;
+	    };
+	}
+	function sanitize() {
+	    var RULES = {};
+	    var TYPES = {
+	        string: toString,
+	        number: toNumber,
+	        integer: toInteger,
+	        boolean: toBoolean,
+	        date: toDate
+	    };
+	    function rule(parameter) {
+	        return toSanitization(parameter, RULES, TYPES);
+	    }
+	    var sanitize = function (parameterMap) {
+	        if (!parameterMap) {
+	            return function () {
+	                return {};
+	            };
+	        }
+	        var sanitizations = {};
+	        Object.keys(parameterMap).forEach(function (key) {
+	            sanitizations[key] = sanitize.rule(parameterMap[key]);
+	        });
+	        return function (src) {
+	            src = src || {};
+	            var dest = {};
+	            // Iterate the sanitized parameters to get a clean model.
+	            Object.keys(sanitizations).forEach(function (key) {
+	                var value = src[key];
+	                var fn = sanitizations[key];
+	                if (Object.prototype.hasOwnProperty.call(src, key)) {
+	                    dest[key] = fn(value, key, src);
+	                }
+	            });
+	            return dest;
+	        };
+	    };
+	    var s;
+	    s = sanitize;
+	    s.rule = rule;
+	    s.TYPES = TYPES;
+	    s.RULES = RULES;
+	    return s;
+	}
+	module.exports = sanitize;
+
+
+/***/ },
+/* 83 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer) {/// <reference path="../../typings/main.d.ts" />
+	var _toString = Object.prototype.toString;
+	function isDateType(check) {
+	    return _toString.call(check) === '[object Date]' && !isNaN(check.getTime());
+	}
+	function isBooleanType(check) {
+	    return typeof check === 'boolean';
+	}
+	function isStringType(check) {
+	    return typeof check === 'string';
+	}
+	function isIntegerType(check) {
+	    return typeof check === 'number' && check % 1 === 0;
+	}
+	function isNumberType(check) {
+	    return typeof check === 'number' && isFinite(check);
+	}
+	function isMinimum(min) {
+	    return function (check) {
+	        return check >= min;
+	    };
+	}
+	function isMaximum(max) {
+	    return function (check) {
+	        return check <= max;
+	    };
+	}
+	function isMinimumLength(min) {
+	    return function (check) {
+	        return Buffer.byteLength(check) >= min;
+	    };
+	}
+	function isMaximumLength(max) {
+	    return function (check) {
+	        return Buffer.byteLength(check) <= max;
+	    };
+	}
+	function isEnum(values) {
+	    if (values && values.length != 0) {
+	        return function (check) {
+	            return values.indexOf(check) > -1;
+	        };
+	    }
+	    else {
+	        return function (check) {
+	            return true;
+	        };
+	    }
+	}
+	function isPattern(pattern) {
+	    var regexp = (typeof pattern === 'string') ? new RegExp(pattern) : pattern;
+	    return regexp.test.bind(regexp);
+	}
+	function toValidationResult(valid, key, value, rule, attr) {
+	    return {
+	        valid: valid,
+	        rule: rule,
+	        attr: attr,
+	        value: value,
+	        key: key
+	    };
+	}
+	function toValidationFunction(parameter, rules) {
+	    var validations = [];
+	    Object.keys(parameter).forEach(function (name) {
+	        var rule = rules[name];
+	        if (!rule) {
+	            return;
+	        }
+	        var value = parameter[name];
+	        validations.push([name, rule(value, name), value]);
+	    });
+	    return function (value, key, src) {
+	        for (var i = 0; i < validations.length; i++) {
+	            var validation = validations[i];
+	            var name = validation[0];
+	            var fn = validation[1];
+	            var attr = validation[2];
+	            var valid = fn(value, key, src);
+	            if (!valid) {
+	                return toValidationResult(false, key, value, name, attr);
+	            }
+	        }
+	        return toValidationResult(true, key, value);
+	    };
+	}
+	function toValidation(parameter, rules, types) {
+	    var parameters = Array.isArray(parameter) ? parameter : [parameter];
+	    var isOptional = !parameters.length;
+	    var simpleValidations = [];
+	    var repeatValidations = [];
+	    parameters.forEach(function (parameter) {
+	        var validation = [parameter.type || 'string', toValidationFunction(parameter, rules)];
+	        if (!parameter.required) {
+	            isOptional = true;
+	        }
+	        if (parameter.repeat) {
+	            repeatValidations.push(validation);
+	        }
+	        else {
+	            simpleValidations.push(validation);
+	        }
+	    });
+	    return function (value, key, src) {
+	        if (value == null) {
+	            return toValidationResult(isOptional, key, value, 'required', !isOptional);
+	        }
+	        var isArray = Array.isArray(value);
+	        var values = isArray ? value : [value];
+	        var validations = isArray ? repeatValidations : simpleValidations;
+	        if (!validations.length) {
+	            return toValidationResult(false, key, value, 'repeat', !isArray);
+	        }
+	        var response = null;
+	        var originalValue = value;
+	        validations.some(function (validation) {
+	            var isValidType = values.every(function (value) {
+	                var paramType = validation[0];
+	                var isValidType = types[paramType] && types[paramType](value, key, src);
+	                if (!isValidType) {
+	                    response = toValidationResult(false, key, originalValue, 'type', paramType);
+	                }
+	                return isValidType;
+	            });
+	            if (!isValidType) {
+	                return false;
+	            }
+	            values.every(function (value) {
+	                var fn = validation[1];
+	                response = fn(value, key);
+	                return response.valid;
+	            });
+	            return true;
+	        });
+	        return response;
+	    };
+	}
+	function validate() {
+	    var TYPES = {
+	        date: isDateType,
+	        number: isNumberType,
+	        integer: isIntegerType,
+	        boolean: isBooleanType,
+	        string: isStringType
+	    };
+	    var RULES = {
+	        minimum: isMinimum,
+	        maximum: isMaximum,
+	        minLength: isMinimumLength,
+	        maxLength: isMaximumLength,
+	        'enum': isEnum,
+	        pattern: isPattern
+	    };
+	    function rule(parameter) {
+	        return toValidation(parameter, RULES, TYPES);
+	    }
+	    var v;
+	    var validate = function (parameterMap) {
+	        if (!parameterMap) {
+	            return function (check) {
+	                return { valid: true, errors: [] };
+	            };
+	        }
+	        var validations = {};
+	        Object.keys(parameterMap).forEach(function (key) {
+	            validations[key] = rule(parameterMap[key]);
+	        });
+	        return function (src) {
+	            src = src || {};
+	            var errors = Object.keys(validations).map(function (param) {
+	                var value = src[param];
+	                var fn = validations[param];
+	                return fn(value, param, src);
+	            }).filter(function (result) {
+	                return !result.valid;
+	            });
+	            return {
+	                valid: errors.length === 0,
+	                errors: errors
+	            };
+	        };
+	    };
+	    v = validate;
+	    v.rule = rule;
+	    v.TYPES = TYPES;
+	    v.RULES = RULES;
+	    return v;
+	}
+	module.exports = validate;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(84).Buffer))
+
+/***/ },
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
+	 * The buffer module from node.js, for the browser.
+	 *
+	 * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+	 * @license  MIT
+	 */
+	/* eslint-disable no-proto */
+
+	var base64 = __webpack_require__(85)
+	var ieee754 = __webpack_require__(86)
+	var isArray = __webpack_require__(87)
+
+	exports.Buffer = Buffer
+	exports.SlowBuffer = SlowBuffer
+	exports.INSPECT_MAX_BYTES = 50
+	Buffer.poolSize = 8192 // not used by this implementation
+
+	var rootParent = {}
+
+	/**
+	 * If `Buffer.TYPED_ARRAY_SUPPORT`:
+	 *   === true    Use Uint8Array implementation (fastest)
+	 *   === false   Use Object implementation (most compatible, even IE6)
+	 *
+	 * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+	 * Opera 11.6+, iOS 4.2+.
+	 *
+	 * Due to various browser bugs, sometimes the Object implementation will be used even
+	 * when the browser supports typed arrays.
+	 *
+	 * Note:
+	 *
+	 *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+	 *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+	 *
+	 *   - Safari 5-7 lacks support for changing the `Object.prototype.constructor` property
+	 *     on objects.
+	 *
+	 *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+	 *
+	 *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+	 *     incorrect length in some situations.
+
+	 * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+	 * get the Object implementation, which is slower but behaves correctly.
+	 */
+	Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+	  ? global.TYPED_ARRAY_SUPPORT
+	  : typedArraySupport()
+
+	function typedArraySupport () {
+	  function Bar () {}
+	  try {
+	    var arr = new Uint8Array(1)
+	    arr.foo = function () { return 42 }
+	    arr.constructor = Bar
+	    return arr.foo() === 42 && // typed array instances can be augmented
+	        arr.constructor === Bar && // constructor can be set
+	        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+	        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+	  } catch (e) {
+	    return false
+	  }
+	}
+
+	function kMaxLength () {
+	  return Buffer.TYPED_ARRAY_SUPPORT
+	    ? 0x7fffffff
+	    : 0x3fffffff
+	}
+
+	/**
+	 * Class: Buffer
+	 * =============
+	 *
+	 * The Buffer constructor returns instances of `Uint8Array` that are augmented
+	 * with function properties for all the node `Buffer` API functions. We use
+	 * `Uint8Array` so that square bracket notation works as expected -- it returns
+	 * a single octet.
+	 *
+	 * By augmenting the instances, we can avoid modifying the `Uint8Array`
+	 * prototype.
+	 */
+	function Buffer (arg) {
+	  if (!(this instanceof Buffer)) {
+	    // Avoid going through an ArgumentsAdaptorTrampoline in the common case.
+	    if (arguments.length > 1) return new Buffer(arg, arguments[1])
+	    return new Buffer(arg)
+	  }
+
+	  this.length = 0
+	  this.parent = undefined
+
+	  // Common case.
+	  if (typeof arg === 'number') {
+	    return fromNumber(this, arg)
+	  }
+
+	  // Slightly less common case.
+	  if (typeof arg === 'string') {
+	    return fromString(this, arg, arguments.length > 1 ? arguments[1] : 'utf8')
+	  }
+
+	  // Unusual.
+	  return fromObject(this, arg)
+	}
+
+	function fromNumber (that, length) {
+	  that = allocate(that, length < 0 ? 0 : checked(length) | 0)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+	    for (var i = 0; i < length; i++) {
+	      that[i] = 0
+	    }
+	  }
+	  return that
+	}
+
+	function fromString (that, string, encoding) {
+	  if (typeof encoding !== 'string' || encoding === '') encoding = 'utf8'
+
+	  // Assumption: byteLength() return value is always < kMaxLength.
+	  var length = byteLength(string, encoding) | 0
+	  that = allocate(that, length)
+
+	  that.write(string, encoding)
+	  return that
+	}
+
+	function fromObject (that, object) {
+	  if (Buffer.isBuffer(object)) return fromBuffer(that, object)
+
+	  if (isArray(object)) return fromArray(that, object)
+
+	  if (object == null) {
+	    throw new TypeError('must start with number, buffer, array or string')
+	  }
+
+	  if (typeof ArrayBuffer !== 'undefined') {
+	    if (object.buffer instanceof ArrayBuffer) {
+	      return fromTypedArray(that, object)
+	    }
+	    if (object instanceof ArrayBuffer) {
+	      return fromArrayBuffer(that, object)
+	    }
+	  }
+
+	  if (object.length) return fromArrayLike(that, object)
+
+	  return fromJsonObject(that, object)
+	}
+
+	function fromBuffer (that, buffer) {
+	  var length = checked(buffer.length) | 0
+	  that = allocate(that, length)
+	  buffer.copy(that, 0, 0, length)
+	  return that
+	}
+
+	function fromArray (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	// Duplicate of fromArray() to keep fromArray() monomorphic.
+	function fromTypedArray (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  // Truncating the elements is probably not what people expect from typed
+	  // arrays with BYTES_PER_ELEMENT > 1 but it's compatible with the behavior
+	  // of the old Buffer constructor.
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	function fromArrayBuffer (that, array) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    array.byteLength
+	    that = Buffer._augment(new Uint8Array(array))
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that = fromTypedArray(that, new Uint8Array(array))
+	  }
+	  return that
+	}
+
+	function fromArrayLike (that, array) {
+	  var length = checked(array.length) | 0
+	  that = allocate(that, length)
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	// Deserialize { type: 'Buffer', data: [1,2,3,...] } into a Buffer object.
+	// Returns a zero-length buffer for inputs that don't conform to the spec.
+	function fromJsonObject (that, object) {
+	  var array
+	  var length = 0
+
+	  if (object.type === 'Buffer' && isArray(object.data)) {
+	    array = object.data
+	    length = checked(array.length) | 0
+	  }
+	  that = allocate(that, length)
+
+	  for (var i = 0; i < length; i += 1) {
+	    that[i] = array[i] & 255
+	  }
+	  return that
+	}
+
+	if (Buffer.TYPED_ARRAY_SUPPORT) {
+	  Buffer.prototype.__proto__ = Uint8Array.prototype
+	  Buffer.__proto__ = Uint8Array
+	}
+
+	function allocate (that, length) {
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    // Return an augmented `Uint8Array` instance, for best performance
+	    that = Buffer._augment(new Uint8Array(length))
+	    that.__proto__ = Buffer.prototype
+	  } else {
+	    // Fallback: Return an object instance of the Buffer class
+	    that.length = length
+	    that._isBuffer = true
+	  }
+
+	  var fromPool = length !== 0 && length <= Buffer.poolSize >>> 1
+	  if (fromPool) that.parent = rootParent
+
+	  return that
+	}
+
+	function checked (length) {
+	  // Note: cannot use `length < kMaxLength` here because that fails when
+	  // length is NaN (which is otherwise coerced to zero.)
+	  if (length >= kMaxLength()) {
+	    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+	                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+	  }
+	  return length | 0
+	}
+
+	function SlowBuffer (subject, encoding) {
+	  if (!(this instanceof SlowBuffer)) return new SlowBuffer(subject, encoding)
+
+	  var buf = new Buffer(subject, encoding)
+	  delete buf.parent
+	  return buf
+	}
+
+	Buffer.isBuffer = function isBuffer (b) {
+	  return !!(b != null && b._isBuffer)
+	}
+
+	Buffer.compare = function compare (a, b) {
+	  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+	    throw new TypeError('Arguments must be Buffers')
+	  }
+
+	  if (a === b) return 0
+
+	  var x = a.length
+	  var y = b.length
+
+	  var i = 0
+	  var len = Math.min(x, y)
+	  while (i < len) {
+	    if (a[i] !== b[i]) break
+
+	    ++i
+	  }
+
+	  if (i !== len) {
+	    x = a[i]
+	    y = b[i]
+	  }
+
+	  if (x < y) return -1
+	  if (y < x) return 1
+	  return 0
+	}
+
+	Buffer.isEncoding = function isEncoding (encoding) {
+	  switch (String(encoding).toLowerCase()) {
+	    case 'hex':
+	    case 'utf8':
+	    case 'utf-8':
+	    case 'ascii':
+	    case 'binary':
+	    case 'base64':
+	    case 'raw':
+	    case 'ucs2':
+	    case 'ucs-2':
+	    case 'utf16le':
+	    case 'utf-16le':
+	      return true
+	    default:
+	      return false
+	  }
+	}
+
+	Buffer.concat = function concat (list, length) {
+	  if (!isArray(list)) throw new TypeError('list argument must be an Array of Buffers.')
+
+	  if (list.length === 0) {
+	    return new Buffer(0)
+	  }
+
+	  var i
+	  if (length === undefined) {
+	    length = 0
+	    for (i = 0; i < list.length; i++) {
+	      length += list[i].length
+	    }
+	  }
+
+	  var buf = new Buffer(length)
+	  var pos = 0
+	  for (i = 0; i < list.length; i++) {
+	    var item = list[i]
+	    item.copy(buf, pos)
+	    pos += item.length
+	  }
+	  return buf
+	}
+
+	function byteLength (string, encoding) {
+	  if (typeof string !== 'string') string = '' + string
+
+	  var len = string.length
+	  if (len === 0) return 0
+
+	  // Use a for loop to avoid recursion
+	  var loweredCase = false
+	  for (;;) {
+	    switch (encoding) {
+	      case 'ascii':
+	      case 'binary':
+	      // Deprecated
+	      case 'raw':
+	      case 'raws':
+	        return len
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8ToBytes(string).length
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return len * 2
+	      case 'hex':
+	        return len >>> 1
+	      case 'base64':
+	        return base64ToBytes(string).length
+	      default:
+	        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+	        encoding = ('' + encoding).toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+	Buffer.byteLength = byteLength
+
+	// pre-set for values that may exist in the future
+	Buffer.prototype.length = undefined
+	Buffer.prototype.parent = undefined
+
+	function slowToString (encoding, start, end) {
+	  var loweredCase = false
+
+	  start = start | 0
+	  end = end === undefined || end === Infinity ? this.length : end | 0
+
+	  if (!encoding) encoding = 'utf8'
+	  if (start < 0) start = 0
+	  if (end > this.length) end = this.length
+	  if (end <= start) return ''
+
+	  while (true) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexSlice(this, start, end)
+
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Slice(this, start, end)
+
+	      case 'ascii':
+	        return asciiSlice(this, start, end)
+
+	      case 'binary':
+	        return binarySlice(this, start, end)
+
+	      case 'base64':
+	        return base64Slice(this, start, end)
+
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return utf16leSlice(this, start, end)
+
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+	        encoding = (encoding + '').toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+
+	Buffer.prototype.toString = function toString () {
+	  var length = this.length | 0
+	  if (length === 0) return ''
+	  if (arguments.length === 0) return utf8Slice(this, 0, length)
+	  return slowToString.apply(this, arguments)
+	}
+
+	Buffer.prototype.equals = function equals (b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+	  if (this === b) return true
+	  return Buffer.compare(this, b) === 0
+	}
+
+	Buffer.prototype.inspect = function inspect () {
+	  var str = ''
+	  var max = exports.INSPECT_MAX_BYTES
+	  if (this.length > 0) {
+	    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+	    if (this.length > max) str += ' ... '
+	  }
+	  return '<Buffer ' + str + '>'
+	}
+
+	Buffer.prototype.compare = function compare (b) {
+	  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+	  if (this === b) return 0
+	  return Buffer.compare(this, b)
+	}
+
+	Buffer.prototype.indexOf = function indexOf (val, byteOffset) {
+	  if (byteOffset > 0x7fffffff) byteOffset = 0x7fffffff
+	  else if (byteOffset < -0x80000000) byteOffset = -0x80000000
+	  byteOffset >>= 0
+
+	  if (this.length === 0) return -1
+	  if (byteOffset >= this.length) return -1
+
+	  // Negative offsets start from the end of the buffer
+	  if (byteOffset < 0) byteOffset = Math.max(this.length + byteOffset, 0)
+
+	  if (typeof val === 'string') {
+	    if (val.length === 0) return -1 // special case: looking for empty string always fails
+	    return String.prototype.indexOf.call(this, val, byteOffset)
+	  }
+	  if (Buffer.isBuffer(val)) {
+	    return arrayIndexOf(this, val, byteOffset)
+	  }
+	  if (typeof val === 'number') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT && Uint8Array.prototype.indexOf === 'function') {
+	      return Uint8Array.prototype.indexOf.call(this, val, byteOffset)
+	    }
+	    return arrayIndexOf(this, [ val ], byteOffset)
+	  }
+
+	  function arrayIndexOf (arr, val, byteOffset) {
+	    var foundIndex = -1
+	    for (var i = 0; byteOffset + i < arr.length; i++) {
+	      if (arr[byteOffset + i] === val[foundIndex === -1 ? 0 : i - foundIndex]) {
+	        if (foundIndex === -1) foundIndex = i
+	        if (i - foundIndex + 1 === val.length) return byteOffset + foundIndex
+	      } else {
+	        foundIndex = -1
+	      }
+	    }
+	    return -1
+	  }
+
+	  throw new TypeError('val must be string, number or Buffer')
+	}
+
+	// `get` is deprecated
+	Buffer.prototype.get = function get (offset) {
+	  console.log('.get() is deprecated. Access using array indexes instead.')
+	  return this.readUInt8(offset)
+	}
+
+	// `set` is deprecated
+	Buffer.prototype.set = function set (v, offset) {
+	  console.log('.set() is deprecated. Access using array indexes instead.')
+	  return this.writeUInt8(v, offset)
+	}
+
+	function hexWrite (buf, string, offset, length) {
+	  offset = Number(offset) || 0
+	  var remaining = buf.length - offset
+	  if (!length) {
+	    length = remaining
+	  } else {
+	    length = Number(length)
+	    if (length > remaining) {
+	      length = remaining
+	    }
+	  }
+
+	  // must be an even number of digits
+	  var strLen = string.length
+	  if (strLen % 2 !== 0) throw new Error('Invalid hex string')
+
+	  if (length > strLen / 2) {
+	    length = strLen / 2
+	  }
+	  for (var i = 0; i < length; i++) {
+	    var parsed = parseInt(string.substr(i * 2, 2), 16)
+	    if (isNaN(parsed)) throw new Error('Invalid hex string')
+	    buf[offset + i] = parsed
+	  }
+	  return i
+	}
+
+	function utf8Write (buf, string, offset, length) {
+	  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+	}
+
+	function asciiWrite (buf, string, offset, length) {
+	  return blitBuffer(asciiToBytes(string), buf, offset, length)
+	}
+
+	function binaryWrite (buf, string, offset, length) {
+	  return asciiWrite(buf, string, offset, length)
+	}
+
+	function base64Write (buf, string, offset, length) {
+	  return blitBuffer(base64ToBytes(string), buf, offset, length)
+	}
+
+	function ucs2Write (buf, string, offset, length) {
+	  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+	}
+
+	Buffer.prototype.write = function write (string, offset, length, encoding) {
+	  // Buffer#write(string)
+	  if (offset === undefined) {
+	    encoding = 'utf8'
+	    length = this.length
+	    offset = 0
+	  // Buffer#write(string, encoding)
+	  } else if (length === undefined && typeof offset === 'string') {
+	    encoding = offset
+	    length = this.length
+	    offset = 0
+	  // Buffer#write(string, offset[, length][, encoding])
+	  } else if (isFinite(offset)) {
+	    offset = offset | 0
+	    if (isFinite(length)) {
+	      length = length | 0
+	      if (encoding === undefined) encoding = 'utf8'
+	    } else {
+	      encoding = length
+	      length = undefined
+	    }
+	  // legacy write(string, encoding, offset, length) - remove in v0.13
+	  } else {
+	    var swap = encoding
+	    encoding = offset
+	    offset = length | 0
+	    length = swap
+	  }
+
+	  var remaining = this.length - offset
+	  if (length === undefined || length > remaining) length = remaining
+
+	  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+	    throw new RangeError('attempt to write outside buffer bounds')
+	  }
+
+	  if (!encoding) encoding = 'utf8'
+
+	  var loweredCase = false
+	  for (;;) {
+	    switch (encoding) {
+	      case 'hex':
+	        return hexWrite(this, string, offset, length)
+
+	      case 'utf8':
+	      case 'utf-8':
+	        return utf8Write(this, string, offset, length)
+
+	      case 'ascii':
+	        return asciiWrite(this, string, offset, length)
+
+	      case 'binary':
+	        return binaryWrite(this, string, offset, length)
+
+	      case 'base64':
+	        // Warning: maxLength not taken into account in base64Write
+	        return base64Write(this, string, offset, length)
+
+	      case 'ucs2':
+	      case 'ucs-2':
+	      case 'utf16le':
+	      case 'utf-16le':
+	        return ucs2Write(this, string, offset, length)
+
+	      default:
+	        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+	        encoding = ('' + encoding).toLowerCase()
+	        loweredCase = true
+	    }
+	  }
+	}
+
+	Buffer.prototype.toJSON = function toJSON () {
+	  return {
+	    type: 'Buffer',
+	    data: Array.prototype.slice.call(this._arr || this, 0)
+	  }
+	}
+
+	function base64Slice (buf, start, end) {
+	  if (start === 0 && end === buf.length) {
+	    return base64.fromByteArray(buf)
+	  } else {
+	    return base64.fromByteArray(buf.slice(start, end))
+	  }
+	}
+
+	function utf8Slice (buf, start, end) {
+	  end = Math.min(buf.length, end)
+	  var res = []
+
+	  var i = start
+	  while (i < end) {
+	    var firstByte = buf[i]
+	    var codePoint = null
+	    var bytesPerSequence = (firstByte > 0xEF) ? 4
+	      : (firstByte > 0xDF) ? 3
+	      : (firstByte > 0xBF) ? 2
+	      : 1
+
+	    if (i + bytesPerSequence <= end) {
+	      var secondByte, thirdByte, fourthByte, tempCodePoint
+
+	      switch (bytesPerSequence) {
+	        case 1:
+	          if (firstByte < 0x80) {
+	            codePoint = firstByte
+	          }
+	          break
+	        case 2:
+	          secondByte = buf[i + 1]
+	          if ((secondByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+	            if (tempCodePoint > 0x7F) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	          break
+	        case 3:
+	          secondByte = buf[i + 1]
+	          thirdByte = buf[i + 2]
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+	            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	          break
+	        case 4:
+	          secondByte = buf[i + 1]
+	          thirdByte = buf[i + 2]
+	          fourthByte = buf[i + 3]
+	          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+	            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+	            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+	              codePoint = tempCodePoint
+	            }
+	          }
+	      }
+	    }
+
+	    if (codePoint === null) {
+	      // we did not generate a valid codePoint so insert a
+	      // replacement char (U+FFFD) and advance only 1 byte
+	      codePoint = 0xFFFD
+	      bytesPerSequence = 1
+	    } else if (codePoint > 0xFFFF) {
+	      // encode to utf16 (surrogate pair dance)
+	      codePoint -= 0x10000
+	      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+	      codePoint = 0xDC00 | codePoint & 0x3FF
+	    }
+
+	    res.push(codePoint)
+	    i += bytesPerSequence
+	  }
+
+	  return decodeCodePointsArray(res)
+	}
+
+	// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+	// the lowest limit is Chrome, with 0x10000 args.
+	// We go 1 magnitude less, for safety
+	var MAX_ARGUMENTS_LENGTH = 0x1000
+
+	function decodeCodePointsArray (codePoints) {
+	  var len = codePoints.length
+	  if (len <= MAX_ARGUMENTS_LENGTH) {
+	    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
+	  }
+
+	  // Decode in chunks to avoid "call stack size exceeded".
+	  var res = ''
+	  var i = 0
+	  while (i < len) {
+	    res += String.fromCharCode.apply(
+	      String,
+	      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+	    )
+	  }
+	  return res
+	}
+
+	function asciiSlice (buf, start, end) {
+	  var ret = ''
+	  end = Math.min(buf.length, end)
+
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i] & 0x7F)
+	  }
+	  return ret
+	}
+
+	function binarySlice (buf, start, end) {
+	  var ret = ''
+	  end = Math.min(buf.length, end)
+
+	  for (var i = start; i < end; i++) {
+	    ret += String.fromCharCode(buf[i])
+	  }
+	  return ret
+	}
+
+	function hexSlice (buf, start, end) {
+	  var len = buf.length
+
+	  if (!start || start < 0) start = 0
+	  if (!end || end < 0 || end > len) end = len
+
+	  var out = ''
+	  for (var i = start; i < end; i++) {
+	    out += toHex(buf[i])
+	  }
+	  return out
+	}
+
+	function utf16leSlice (buf, start, end) {
+	  var bytes = buf.slice(start, end)
+	  var res = ''
+	  for (var i = 0; i < bytes.length; i += 2) {
+	    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+	  }
+	  return res
+	}
+
+	Buffer.prototype.slice = function slice (start, end) {
+	  var len = this.length
+	  start = ~~start
+	  end = end === undefined ? len : ~~end
+
+	  if (start < 0) {
+	    start += len
+	    if (start < 0) start = 0
+	  } else if (start > len) {
+	    start = len
+	  }
+
+	  if (end < 0) {
+	    end += len
+	    if (end < 0) end = 0
+	  } else if (end > len) {
+	    end = len
+	  }
+
+	  if (end < start) end = start
+
+	  var newBuf
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    newBuf = Buffer._augment(this.subarray(start, end))
+	  } else {
+	    var sliceLen = end - start
+	    newBuf = new Buffer(sliceLen, undefined)
+	    for (var i = 0; i < sliceLen; i++) {
+	      newBuf[i] = this[i + start]
+	    }
+	  }
+
+	  if (newBuf.length) newBuf.parent = this.parent || this
+
+	  return newBuf
+	}
+
+	/*
+	 * Need to make sure that buffer isn't trying to write out of bounds.
+	 */
+	function checkOffset (offset, ext, length) {
+	  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+	  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+	}
+
+	Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var val = this[offset]
+	  var mul = 1
+	  var i = 0
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul
+	  }
+
+	  return val
+	}
+
+	Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) {
+	    checkOffset(offset, byteLength, this.length)
+	  }
+
+	  var val = this[offset + --byteLength]
+	  var mul = 1
+	  while (byteLength > 0 && (mul *= 0x100)) {
+	    val += this[offset + --byteLength] * mul
+	  }
+
+	  return val
+	}
+
+	Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length)
+	  return this[offset]
+	}
+
+	Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  return this[offset] | (this[offset + 1] << 8)
+	}
+
+	Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  return (this[offset] << 8) | this[offset + 1]
+	}
+
+	Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return ((this[offset]) |
+	      (this[offset + 1] << 8) |
+	      (this[offset + 2] << 16)) +
+	      (this[offset + 3] * 0x1000000)
+	}
+
+	Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset] * 0x1000000) +
+	    ((this[offset + 1] << 16) |
+	    (this[offset + 2] << 8) |
+	    this[offset + 3])
+	}
+
+	Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var val = this[offset]
+	  var mul = 1
+	  var i = 0
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    val += this[offset + i] * mul
+	  }
+	  mul *= 0x80
+
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+	  return val
+	}
+
+	Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+	  var i = byteLength
+	  var mul = 1
+	  var val = this[offset + --i]
+	  while (i > 0 && (mul *= 0x100)) {
+	    val += this[offset + --i] * mul
+	  }
+	  mul *= 0x80
+
+	  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+	  return val
+	}
+
+	Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 1, this.length)
+	  if (!(this[offset] & 0x80)) return (this[offset])
+	  return ((0xff - this[offset] + 1) * -1)
+	}
+
+	Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  var val = this[offset] | (this[offset + 1] << 8)
+	  return (val & 0x8000) ? val | 0xFFFF0000 : val
+	}
+
+	Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 2, this.length)
+	  var val = this[offset + 1] | (this[offset] << 8)
+	  return (val & 0x8000) ? val | 0xFFFF0000 : val
+	}
+
+	Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset]) |
+	    (this[offset + 1] << 8) |
+	    (this[offset + 2] << 16) |
+	    (this[offset + 3] << 24)
+	}
+
+	Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+
+	  return (this[offset] << 24) |
+	    (this[offset + 1] << 16) |
+	    (this[offset + 2] << 8) |
+	    (this[offset + 3])
+	}
+
+	Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+	  return ieee754.read(this, offset, true, 23, 4)
+	}
+
+	Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 4, this.length)
+	  return ieee754.read(this, offset, false, 23, 4)
+	}
+
+	Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length)
+	  return ieee754.read(this, offset, true, 52, 8)
+	}
+
+	Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+	  if (!noAssert) checkOffset(offset, 8, this.length)
+	  return ieee754.read(this, offset, false, 52, 8)
+	}
+
+	function checkInt (buf, value, offset, ext, max, min) {
+	  if (!Buffer.isBuffer(buf)) throw new TypeError('buffer must be a Buffer instance')
+	  if (value > max || value < min) throw new RangeError('value is out of bounds')
+	  if (offset + ext > buf.length) throw new RangeError('index out of range')
+	}
+
+	Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+	  var mul = 1
+	  var i = 0
+	  this[offset] = value & 0xFF
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul) & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  byteLength = byteLength | 0
+	  if (!noAssert) checkInt(this, value, offset, byteLength, Math.pow(2, 8 * byteLength), 0)
+
+	  var i = byteLength - 1
+	  var mul = 1
+	  this[offset + i] = value & 0xFF
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = (value / mul) & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+	  this[offset] = (value & 0xff)
+	  return offset + 1
+	}
+
+	function objectWriteUInt16 (buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffff + value + 1
+	  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; i++) {
+	    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+	      (littleEndian ? i : 1 - i) * 8
+	  }
+	}
+
+	Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	  } else {
+	    objectWriteUInt16(this, value, offset, true)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 8)
+	    this[offset + 1] = (value & 0xff)
+	  } else {
+	    objectWriteUInt16(this, value, offset, false)
+	  }
+	  return offset + 2
+	}
+
+	function objectWriteUInt32 (buf, value, offset, littleEndian) {
+	  if (value < 0) value = 0xffffffff + value + 1
+	  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; i++) {
+	    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+	  }
+	}
+
+	Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset + 3] = (value >>> 24)
+	    this[offset + 2] = (value >>> 16)
+	    this[offset + 1] = (value >>> 8)
+	    this[offset] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, true)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 24)
+	    this[offset + 1] = (value >>> 16)
+	    this[offset + 2] = (value >>> 8)
+	    this[offset + 3] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, false)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1)
+
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+	  }
+
+	  var i = 0
+	  var mul = 1
+	  var sub = value < 0 ? 1 : 0
+	  this[offset] = value & 0xFF
+	  while (++i < byteLength && (mul *= 0x100)) {
+	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) {
+	    var limit = Math.pow(2, 8 * byteLength - 1)
+
+	    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+	  }
+
+	  var i = byteLength - 1
+	  var mul = 1
+	  var sub = value < 0 ? 1 : 0
+	  this[offset + i] = value & 0xFF
+	  while (--i >= 0 && (mul *= 0x100)) {
+	    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+	  }
+
+	  return offset + byteLength
+	}
+
+	Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+	  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+	  if (value < 0) value = 0xff + value + 1
+	  this[offset] = (value & 0xff)
+	  return offset + 1
+	}
+
+	Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	  } else {
+	    objectWriteUInt16(this, value, offset, true)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 8)
+	    this[offset + 1] = (value & 0xff)
+	  } else {
+	    objectWriteUInt16(this, value, offset, false)
+	  }
+	  return offset + 2
+	}
+
+	Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value & 0xff)
+	    this[offset + 1] = (value >>> 8)
+	    this[offset + 2] = (value >>> 16)
+	    this[offset + 3] = (value >>> 24)
+	  } else {
+	    objectWriteUInt32(this, value, offset, true)
+	  }
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+	  value = +value
+	  offset = offset | 0
+	  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+	  if (value < 0) value = 0xffffffff + value + 1
+	  if (Buffer.TYPED_ARRAY_SUPPORT) {
+	    this[offset] = (value >>> 24)
+	    this[offset + 1] = (value >>> 16)
+	    this[offset + 2] = (value >>> 8)
+	    this[offset + 3] = (value & 0xff)
+	  } else {
+	    objectWriteUInt32(this, value, offset, false)
+	  }
+	  return offset + 4
+	}
+
+	function checkIEEE754 (buf, value, offset, ext, max, min) {
+	  if (value > max || value < min) throw new RangeError('value is out of bounds')
+	  if (offset + ext > buf.length) throw new RangeError('index out of range')
+	  if (offset < 0) throw new RangeError('index out of range')
+	}
+
+	function writeFloat (buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+	  return offset + 4
+	}
+
+	Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+	  return writeFloat(this, value, offset, true, noAssert)
+	}
+
+	Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+	  return writeFloat(this, value, offset, false, noAssert)
+	}
+
+	function writeDouble (buf, value, offset, littleEndian, noAssert) {
+	  if (!noAssert) {
+	    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+	  }
+	  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+	  return offset + 8
+	}
+
+	Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+	  return writeDouble(this, value, offset, true, noAssert)
+	}
+
+	Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+	  return writeDouble(this, value, offset, false, noAssert)
+	}
+
+	// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+	Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+	  if (!start) start = 0
+	  if (!end && end !== 0) end = this.length
+	  if (targetStart >= target.length) targetStart = target.length
+	  if (!targetStart) targetStart = 0
+	  if (end > 0 && end < start) end = start
+
+	  // Copy 0 bytes; we're done
+	  if (end === start) return 0
+	  if (target.length === 0 || this.length === 0) return 0
+
+	  // Fatal error conditions
+	  if (targetStart < 0) {
+	    throw new RangeError('targetStart out of bounds')
+	  }
+	  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+	  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+	  // Are we oob?
+	  if (end > this.length) end = this.length
+	  if (target.length - targetStart < end - start) {
+	    end = target.length - targetStart + start
+	  }
+
+	  var len = end - start
+	  var i
+
+	  if (this === target && start < targetStart && targetStart < end) {
+	    // descending copy from end
+	    for (i = len - 1; i >= 0; i--) {
+	      target[i + targetStart] = this[i + start]
+	    }
+	  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+	    // ascending copy from start
+	    for (i = 0; i < len; i++) {
+	      target[i + targetStart] = this[i + start]
+	    }
+	  } else {
+	    target._set(this.subarray(start, start + len), targetStart)
+	  }
+
+	  return len
+	}
+
+	// fill(value, start=0, end=buffer.length)
+	Buffer.prototype.fill = function fill (value, start, end) {
+	  if (!value) value = 0
+	  if (!start) start = 0
+	  if (!end) end = this.length
+
+	  if (end < start) throw new RangeError('end < start')
+
+	  // Fill 0 bytes; we're done
+	  if (end === start) return
+	  if (this.length === 0) return
+
+	  if (start < 0 || start >= this.length) throw new RangeError('start out of bounds')
+	  if (end < 0 || end > this.length) throw new RangeError('end out of bounds')
+
+	  var i
+	  if (typeof value === 'number') {
+	    for (i = start; i < end; i++) {
+	      this[i] = value
+	    }
+	  } else {
+	    var bytes = utf8ToBytes(value.toString())
+	    var len = bytes.length
+	    for (i = start; i < end; i++) {
+	      this[i] = bytes[i % len]
+	    }
+	  }
+
+	  return this
+	}
+
+	/**
+	 * Creates a new `ArrayBuffer` with the *copied* memory of the buffer instance.
+	 * Added in Node 0.12. Only available in browsers that support ArrayBuffer.
+	 */
+	Buffer.prototype.toArrayBuffer = function toArrayBuffer () {
+	  if (typeof Uint8Array !== 'undefined') {
+	    if (Buffer.TYPED_ARRAY_SUPPORT) {
+	      return (new Buffer(this)).buffer
+	    } else {
+	      var buf = new Uint8Array(this.length)
+	      for (var i = 0, len = buf.length; i < len; i += 1) {
+	        buf[i] = this[i]
+	      }
+	      return buf.buffer
+	    }
+	  } else {
+	    throw new TypeError('Buffer.toArrayBuffer not supported in this browser')
+	  }
+	}
+
+	// HELPER FUNCTIONS
+	// ================
+
+	var BP = Buffer.prototype
+
+	/**
+	 * Augment a Uint8Array *instance* (not the Uint8Array class!) with Buffer methods
+	 */
+	Buffer._augment = function _augment (arr) {
+	  arr.constructor = Buffer
+	  arr._isBuffer = true
+
+	  // save reference to original Uint8Array set method before overwriting
+	  arr._set = arr.set
+
+	  // deprecated
+	  arr.get = BP.get
+	  arr.set = BP.set
+
+	  arr.write = BP.write
+	  arr.toString = BP.toString
+	  arr.toLocaleString = BP.toString
+	  arr.toJSON = BP.toJSON
+	  arr.equals = BP.equals
+	  arr.compare = BP.compare
+	  arr.indexOf = BP.indexOf
+	  arr.copy = BP.copy
+	  arr.slice = BP.slice
+	  arr.readUIntLE = BP.readUIntLE
+	  arr.readUIntBE = BP.readUIntBE
+	  arr.readUInt8 = BP.readUInt8
+	  arr.readUInt16LE = BP.readUInt16LE
+	  arr.readUInt16BE = BP.readUInt16BE
+	  arr.readUInt32LE = BP.readUInt32LE
+	  arr.readUInt32BE = BP.readUInt32BE
+	  arr.readIntLE = BP.readIntLE
+	  arr.readIntBE = BP.readIntBE
+	  arr.readInt8 = BP.readInt8
+	  arr.readInt16LE = BP.readInt16LE
+	  arr.readInt16BE = BP.readInt16BE
+	  arr.readInt32LE = BP.readInt32LE
+	  arr.readInt32BE = BP.readInt32BE
+	  arr.readFloatLE = BP.readFloatLE
+	  arr.readFloatBE = BP.readFloatBE
+	  arr.readDoubleLE = BP.readDoubleLE
+	  arr.readDoubleBE = BP.readDoubleBE
+	  arr.writeUInt8 = BP.writeUInt8
+	  arr.writeUIntLE = BP.writeUIntLE
+	  arr.writeUIntBE = BP.writeUIntBE
+	  arr.writeUInt16LE = BP.writeUInt16LE
+	  arr.writeUInt16BE = BP.writeUInt16BE
+	  arr.writeUInt32LE = BP.writeUInt32LE
+	  arr.writeUInt32BE = BP.writeUInt32BE
+	  arr.writeIntLE = BP.writeIntLE
+	  arr.writeIntBE = BP.writeIntBE
+	  arr.writeInt8 = BP.writeInt8
+	  arr.writeInt16LE = BP.writeInt16LE
+	  arr.writeInt16BE = BP.writeInt16BE
+	  arr.writeInt32LE = BP.writeInt32LE
+	  arr.writeInt32BE = BP.writeInt32BE
+	  arr.writeFloatLE = BP.writeFloatLE
+	  arr.writeFloatBE = BP.writeFloatBE
+	  arr.writeDoubleLE = BP.writeDoubleLE
+	  arr.writeDoubleBE = BP.writeDoubleBE
+	  arr.fill = BP.fill
+	  arr.inspect = BP.inspect
+	  arr.toArrayBuffer = BP.toArrayBuffer
+
+	  return arr
+	}
+
+	var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+	function base64clean (str) {
+	  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+	  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+	  // Node converts strings with length < 2 to ''
+	  if (str.length < 2) return ''
+	  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+	  while (str.length % 4 !== 0) {
+	    str = str + '='
+	  }
+	  return str
+	}
+
+	function stringtrim (str) {
+	  if (str.trim) return str.trim()
+	  return str.replace(/^\s+|\s+$/g, '')
+	}
+
+	function toHex (n) {
+	  if (n < 16) return '0' + n.toString(16)
+	  return n.toString(16)
+	}
+
+	function utf8ToBytes (string, units) {
+	  units = units || Infinity
+	  var codePoint
+	  var length = string.length
+	  var leadSurrogate = null
+	  var bytes = []
+
+	  for (var i = 0; i < length; i++) {
+	    codePoint = string.charCodeAt(i)
+
+	    // is surrogate component
+	    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+	      // last char was a lead
+	      if (!leadSurrogate) {
+	        // no lead yet
+	        if (codePoint > 0xDBFF) {
+	          // unexpected trail
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	          continue
+	        } else if (i + 1 === length) {
+	          // unpaired lead
+	          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	          continue
+	        }
+
+	        // valid lead
+	        leadSurrogate = codePoint
+
+	        continue
+	      }
+
+	      // 2 leads in a row
+	      if (codePoint < 0xDC00) {
+	        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	        leadSurrogate = codePoint
+	        continue
+	      }
+
+	      // valid surrogate pair
+	      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
+	    } else if (leadSurrogate) {
+	      // valid bmp char, but last char was a lead
+	      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+	    }
+
+	    leadSurrogate = null
+
+	    // encode utf8
+	    if (codePoint < 0x80) {
+	      if ((units -= 1) < 0) break
+	      bytes.push(codePoint)
+	    } else if (codePoint < 0x800) {
+	      if ((units -= 2) < 0) break
+	      bytes.push(
+	        codePoint >> 0x6 | 0xC0,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else if (codePoint < 0x10000) {
+	      if ((units -= 3) < 0) break
+	      bytes.push(
+	        codePoint >> 0xC | 0xE0,
+	        codePoint >> 0x6 & 0x3F | 0x80,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else if (codePoint < 0x110000) {
+	      if ((units -= 4) < 0) break
+	      bytes.push(
+	        codePoint >> 0x12 | 0xF0,
+	        codePoint >> 0xC & 0x3F | 0x80,
+	        codePoint >> 0x6 & 0x3F | 0x80,
+	        codePoint & 0x3F | 0x80
+	      )
+	    } else {
+	      throw new Error('Invalid code point')
+	    }
+	  }
+
+	  return bytes
+	}
+
+	function asciiToBytes (str) {
+	  var byteArray = []
+	  for (var i = 0; i < str.length; i++) {
+	    // Node's code seems to be doing this and not & 0x7F..
+	    byteArray.push(str.charCodeAt(i) & 0xFF)
+	  }
+	  return byteArray
+	}
+
+	function utf16leToBytes (str, units) {
+	  var c, hi, lo
+	  var byteArray = []
+	  for (var i = 0; i < str.length; i++) {
+	    if ((units -= 2) < 0) break
+
+	    c = str.charCodeAt(i)
+	    hi = c >> 8
+	    lo = c % 256
+	    byteArray.push(lo)
+	    byteArray.push(hi)
+	  }
+
+	  return byteArray
+	}
+
+	function base64ToBytes (str) {
+	  return base64.toByteArray(base64clean(str))
+	}
+
+	function blitBuffer (src, dst, offset, length) {
+	  for (var i = 0; i < length; i++) {
+	    if ((i + offset >= dst.length) || (i >= src.length)) break
+	    dst[i + offset] = src[i]
+	  }
+	  return i
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(84).Buffer, (function() { return this; }())))
+
+/***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+	;(function (exports) {
+		'use strict';
+
+	  var Arr = (typeof Uint8Array !== 'undefined')
+	    ? Uint8Array
+	    : Array
+
+		var PLUS   = '+'.charCodeAt(0)
+		var SLASH  = '/'.charCodeAt(0)
+		var NUMBER = '0'.charCodeAt(0)
+		var LOWER  = 'a'.charCodeAt(0)
+		var UPPER  = 'A'.charCodeAt(0)
+		var PLUS_URL_SAFE = '-'.charCodeAt(0)
+		var SLASH_URL_SAFE = '_'.charCodeAt(0)
+
+		function decode (elt) {
+			var code = elt.charCodeAt(0)
+			if (code === PLUS ||
+			    code === PLUS_URL_SAFE)
+				return 62 // '+'
+			if (code === SLASH ||
+			    code === SLASH_URL_SAFE)
+				return 63 // '/'
+			if (code < NUMBER)
+				return -1 //no match
+			if (code < NUMBER + 10)
+				return code - NUMBER + 26 + 26
+			if (code < UPPER + 26)
+				return code - UPPER
+			if (code < LOWER + 26)
+				return code - LOWER + 26
+		}
+
+		function b64ToByteArray (b64) {
+			var i, j, l, tmp, placeHolders, arr
+
+			if (b64.length % 4 > 0) {
+				throw new Error('Invalid string. Length must be a multiple of 4')
+			}
+
+			// the number of equal signs (place holders)
+			// if there are two placeholders, than the two characters before it
+			// represent one byte
+			// if there is only one, then the three characters before it represent 2 bytes
+			// this is just a cheap hack to not do indexOf twice
+			var len = b64.length
+			placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+
+			// base64 is 4/3 + up to two characters of the original data
+			arr = new Arr(b64.length * 3 / 4 - placeHolders)
+
+			// if there are placeholders, only get up to the last complete 4 chars
+			l = placeHolders > 0 ? b64.length - 4 : b64.length
+
+			var L = 0
+
+			function push (v) {
+				arr[L++] = v
+			}
+
+			for (i = 0, j = 0; i < l; i += 4, j += 3) {
+				tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+				push((tmp & 0xFF0000) >> 16)
+				push((tmp & 0xFF00) >> 8)
+				push(tmp & 0xFF)
+			}
+
+			if (placeHolders === 2) {
+				tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+				push(tmp & 0xFF)
+			} else if (placeHolders === 1) {
+				tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+				push((tmp >> 8) & 0xFF)
+				push(tmp & 0xFF)
+			}
+
+			return arr
+		}
+
+		function uint8ToBase64 (uint8) {
+			var i,
+				extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+				output = "",
+				temp, length
+
+			function encode (num) {
+				return lookup.charAt(num)
+			}
+
+			function tripletToBase64 (num) {
+				return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+			}
+
+			// go through the array every three bytes, we'll deal with trailing stuff later
+			for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+				temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+				output += tripletToBase64(temp)
+			}
+
+			// pad the end with zeros, but make sure to not forget the extra bytes
+			switch (extraBytes) {
+				case 1:
+					temp = uint8[uint8.length - 1]
+					output += encode(temp >> 2)
+					output += encode((temp << 4) & 0x3F)
+					output += '=='
+					break
+				case 2:
+					temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+					output += encode(temp >> 10)
+					output += encode((temp >> 4) & 0x3F)
+					output += encode((temp << 2) & 0x3F)
+					output += '='
+					break
+			}
+
+			return output
+		}
+
+		exports.toByteArray = b64ToByteArray
+		exports.fromByteArray = uint8ToBase64
+	}( false ? (this.base64js = {}) : exports))
+
+
+/***/ },
+/* 86 */
+/***/ function(module, exports) {
+
+	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
+	  var e, m
+	  var eLen = nBytes * 8 - mLen - 1
+	  var eMax = (1 << eLen) - 1
+	  var eBias = eMax >> 1
+	  var nBits = -7
+	  var i = isLE ? (nBytes - 1) : 0
+	  var d = isLE ? -1 : 1
+	  var s = buffer[offset + i]
+
+	  i += d
+
+	  e = s & ((1 << (-nBits)) - 1)
+	  s >>= (-nBits)
+	  nBits += eLen
+	  for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+	  m = e & ((1 << (-nBits)) - 1)
+	  e >>= (-nBits)
+	  nBits += mLen
+	  for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {}
+
+	  if (e === 0) {
+	    e = 1 - eBias
+	  } else if (e === eMax) {
+	    return m ? NaN : ((s ? -1 : 1) * Infinity)
+	  } else {
+	    m = m + Math.pow(2, mLen)
+	    e = e - eBias
+	  }
+	  return (s ? -1 : 1) * m * Math.pow(2, e - mLen)
+	}
+
+	exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
+	  var e, m, c
+	  var eLen = nBytes * 8 - mLen - 1
+	  var eMax = (1 << eLen) - 1
+	  var eBias = eMax >> 1
+	  var rt = (mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0)
+	  var i = isLE ? 0 : (nBytes - 1)
+	  var d = isLE ? 1 : -1
+	  var s = value < 0 || (value === 0 && 1 / value < 0) ? 1 : 0
+
+	  value = Math.abs(value)
+
+	  if (isNaN(value) || value === Infinity) {
+	    m = isNaN(value) ? 1 : 0
+	    e = eMax
+	  } else {
+	    e = Math.floor(Math.log(value) / Math.LN2)
+	    if (value * (c = Math.pow(2, -e)) < 1) {
+	      e--
+	      c *= 2
+	    }
+	    if (e + eBias >= 1) {
+	      value += rt / c
+	    } else {
+	      value += rt * Math.pow(2, 1 - eBias)
+	    }
+	    if (value * c >= 2) {
+	      e++
+	      c /= 2
+	    }
+
+	    if (e + eBias >= eMax) {
+	      m = 0
+	      e = eMax
+	    } else if (e + eBias >= 1) {
+	      m = (value * c - 1) * Math.pow(2, mLen)
+	      e = e + eBias
+	    } else {
+	      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen)
+	      e = 0
+	    }
+	  }
+
+	  for (; mLen >= 8; buffer[offset + i] = m & 0xff, i += d, m /= 256, mLen -= 8) {}
+
+	  e = (e << mLen) | m
+	  eLen += mLen
+	  for (; eLen > 0; buffer[offset + i] = e & 0xff, i += d, e /= 256, eLen -= 8) {}
+
+	  buffer[offset + i - d] |= s * 128
+	}
+
+
+/***/ },
+/* 87 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * isArray
+	 */
+
+	var isArray = Array.isArray;
+
+	/**
+	 * toString
+	 */
+
+	var str = Object.prototype.toString;
+
+	/**
+	 * Whether or not the given `val`
+	 * is an array.
+	 *
+	 * example:
+	 *
+	 *        isArray([]);
+	 *        // > true
+	 *        isArray(arguments);
+	 *        // > false
+	 *        isArray('');
+	 *        // > false
+	 *
+	 * @param {mixed} val
+	 * @return {bool}
+	 */
+
+	module.exports = isArray || function (val) {
+	  return !! val && '[object Array]' == str.call(val);
+	};
+
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var hl = __webpack_require__(2);
+	var hlimpl = __webpack_require__(5);
+	var Error = __webpack_require__(9);
+	var util = __webpack_require__(11);
+	var proxy = __webpack_require__(6);
+	var RamlWrapper = __webpack_require__(1);
+	var RamlWrapper08 = __webpack_require__(89);
+	var wrapperHelper = __webpack_require__(76);
+	var pluralize = __webpack_require__(93);
+	var universeProvider = __webpack_require__(63);
+	var changeCase = __webpack_require__(94);
+	function expandTraitsAndResourceTypes(api) {
+	    if (!(api instanceof RamlWrapper.ApiImpl || api instanceof RamlWrapper08.ApiImpl)) {
+	        return null;
+	    }
+	    return new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
+	}
+	exports.expandTraitsAndResourceTypes = expandTraitsAndResourceTypes;
+	function mergeAPIs(masterUnit, extensionsAndOverlays, mergeMode) {
+	    var masterApi = hl.fromUnit(masterUnit);
+	    if (!masterApi)
+	        throw new Error("couldn't load api from " + masterUnit.absolutePath());
+	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
+	        return masterApi;
+	    }
+	    var currentMaster = masterApi;
+	    var lastExtensionOrOverlay = null;
+	    for (var i = 0; i < extensionsAndOverlays.length; i++) {
+	        var currentUnit = extensionsAndOverlays[i];
+	        var currentApi = hl.fromUnit(currentUnit);
+	        if (!currentApi)
+	            throw new Error("couldn't load api from " + currentUnit.absolutePath());
+	        currentApi.overrideMaster(currentMaster);
+	        currentApi.setMergeMode(mergeMode);
+	        currentMaster = currentApi;
+	        if (i == extensionsAndOverlays.length - 1) {
+	            lastExtensionOrOverlay = currentApi;
+	        }
+	    }
+	    return lastExtensionOrOverlay;
+	}
+	exports.mergeAPIs = mergeAPIs;
+	var TraitsAndResourceTypesExpander = (function () {
+	    function TraitsAndResourceTypesExpander() {
+	    }
+	    TraitsAndResourceTypesExpander.prototype.expandTraitsAndResourceTypes = function (_api) {
+	        var _this = this;
+	        var isRAML1 = _api instanceof RamlWrapper.ApiImpl;
+	        var api = _api;
+	        var traits = wrapperHelper.allTraits(api);
+	        var resourceTypes = wrapperHelper.allResourceTypes(api);
+	        //if ((!traits || traits.length == 0) && (!resourceTypes || resourceTypes.length == 0)) {
+	        //    return api;
+	        //}
+	        if (traits.length == 0 && resourceTypes.length == 0) {
+	            return _api;
+	        }
+	        var llNode = api.highLevel().lowLevel();
+	        this.ramlVersion = _api.highLevel().definition().universe().version();
+	        var topComposite = new proxy.LowLevelCompositeNode(llNode, null, null, this.ramlVersion);
+	        var apiType = isRAML1 ? universeProvider('RAML10').type('Api') : universeProvider('RAML08').type('Api');
+	        var hlNode = new hlimpl.ASTNodeImpl(topComposite, null, apiType, null);
+	        var result = isRAML1 ? new RamlWrapper.ApiImpl(hlNode) : new RamlWrapper08.ApiImpl(hlNode);
+	        result.setAttributeDefaults(_api.getDefaultsCalculator().isEnabled());
+	        this.traitMap = {};
+	        this.resourceTypeMap = {};
+	        result.highLevel().setMergeMode(_api.highLevel().getMergeMode());
+	        if (traits) {
+	            traits.forEach(function (x) { return _this.traitMap[wrapperHelper.qName(x)] = x; });
+	        }
+	        if (resourceTypes) {
+	            resourceTypes.forEach(function (x) { return _this.resourceTypeMap[wrapperHelper.qName(x)] = x; });
+	        }
+	        var resources = result.resources();
+	        resources.forEach(function (x) { return _this.processResource(x); });
+	        return result;
+	    };
+	    TraitsAndResourceTypesExpander.prototype.processResource = function (resource) {
+	        var _this = this;
+	        var resourceData = this.collectResourceData(resource);
+	        if (resource instanceof RamlWrapper.ResourceImpl) {
+	            var mb = resource;
+	        }
+	        var resourceLowLevel = resource.highLevel().lowLevel();
+	        resourceData.filter(function (x) { return x.resourceType != null; }).forEach(function (x) {
+	            var resourceTypeLowLevel = x.resourceType.node.highLevel().lowLevel();
+	            var resourceTypeTransformer = new DefaultTransformer(resource, x.resourceType.transformer);
+	            resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer);
+	        });
+	        var methods = resource.methods();
+	        methods.forEach(function (m) {
+	            var methodLowLevel = m.highLevel().lowLevel();
+	            var name = m.method();
+	            resourceData.forEach(function (x) {
+	                var methodTraits = x.methodTraits[name];
+	                if (methodTraits) {
+	                    methodTraits.forEach(function (x) {
+	                        var traitLowLevel = x.node.highLevel().lowLevel();
+	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
+	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
+	                    });
+	                }
+	                var resourceTraits = x.traits;
+	                if (resourceTraits) {
+	                    resourceTraits.forEach(function (x) {
+	                        var traitLowLevel = x.node.highLevel().lowLevel();
+	                        var traitTransformer = new DefaultTransformer(m, x.transformer);
+	                        methodLowLevel.adopt(traitLowLevel, traitTransformer);
+	                    });
+	                }
+	            });
+	        });
+	        var resources = resource.resources();
+	        resources.forEach(function (x) { return _this.processResource(x); });
+	    };
+	    TraitsAndResourceTypesExpander.prototype.collectResourceData = function (obj, arr, transformer, occuredResourceTypes) {
+	        var _this = this;
+	        if (arr === void 0) { arr = []; }
+	        if (occuredResourceTypes === void 0) { occuredResourceTypes = {}; }
+	        var ownTraits = this.extractTraits(obj, transformer);
+	        var methodTraitsMap = {};
+	        var methods = obj.methods();
+	        methods.forEach(function (x) {
+	            var methodTraits = _this.extractTraits(x, transformer);
+	            if (methodTraits && methodTraits.length > 0) {
+	                methodTraitsMap[x.method()] = methodTraits;
+	            }
+	        });
+	        var rtData;
+	        var rt = obj.type();
+	        if (rt && !occuredResourceTypes[rt.name()]) {
+	            occuredResourceTypes[rt.name()] = true;
+	            rtData = this.readGenerictData(rt, this.resourceTypeMap, 'resource type', transformer);
+	        }
+	        arr.push({
+	            resourceType: rtData,
+	            traits: ownTraits,
+	            methodTraits: methodTraitsMap
+	        });
+	        if (rtData) {
+	            this.collectResourceData(rtData.node, arr, rtData.transformer, occuredResourceTypes);
+	        }
+	        return arr;
+	    };
+	    TraitsAndResourceTypesExpander.prototype.extractTraits = function (obj, _transformer, occuredTraits) {
+	        var _this = this;
+	        if (occuredTraits === void 0) { occuredTraits = {}; }
+	        var arr = [];
+	        for (var i = -1; i < arr.length; i++) {
+	            var gd = i < 0 ? null : arr[i];
+	            var _obj = gd ? gd.node : obj;
+	            var transformer = gd ? gd.transformer : _transformer;
+	            if (!_obj['is']) {
+	                continue;
+	            }
+	            _obj.is().forEach(function (x) {
+	                var traitData = _this.readGenerictData(x, _this.traitMap, 'trait', transformer);
+	                if (traitData) {
+	                    var name = traitData.name;
+	                    if (!occuredTraits[name]) {
+	                        occuredTraits[name] = true;
+	                        arr.push(traitData);
+	                    }
+	                }
+	            });
+	        }
+	        if (obj instanceof RamlWrapper.MethodImpl) {
+	            var mb = obj;
+	        }
+	        return arr;
+	    };
+	    TraitsAndResourceTypesExpander.prototype.readGenerictData = function (obj, globalMap, template, transformer) {
+	        var value = obj.value();
+	        if (typeof (value) == 'string') {
+	            if (transformer) {
+	                value = transformer.transform(value).value;
+	            }
+	            var node = globalMap[value];
+	            if (node) {
+	                return {
+	                    name: value,
+	                    transformer: null,
+	                    node: node
+	                };
+	            }
+	        }
+	        else if (value instanceof hlimpl.StructuredValue) {
+	            var sv = value;
+	            var name = sv.valueName();
+	            if (transformer) {
+	                name = transformer.transform(name).value;
+	            }
+	            var params = {};
+	            var node = globalMap[name];
+	            //var t = hlimpl.typeFromNode(node.highLevel());
+	            if (node) {
+	                if (this.ramlVersion == 'RAML08' && transformer) {
+	                    sv.children().forEach(function (x) { return params[x.valueName()] = transformer.transform(x.lowLevel().value()).value; });
+	                }
+	                else {
+	                    sv.children().forEach(function (x) { return params[x.valueName()] = x.lowLevel().value(); });
+	                }
+	                return {
+	                    name: name,
+	                    transformer: new ValueTransformer(template, name, params),
+	                    node: node
+	                };
+	            }
+	        }
+	        return null;
+	    };
+	    return TraitsAndResourceTypesExpander;
+	})();
+	var TransformMatches = (function () {
+	    function TransformMatches(name, transformer) {
+	        this.name = name;
+	        this.regexp = new RegExp(TransformMatches.leftTransformRegexp.source + name + TransformMatches.rightTransformRegexp.source);
+	        this.transformer = transformer;
+	    }
+	    TransformMatches.leftTransformRegexp = /\|\s*!\s*/;
+	    TransformMatches.rightTransformRegexp = /\s*$/;
+	    return TransformMatches;
+	})();
+	var transformers = [
+	    new TransformMatches("singularize", function (arg) { return pluralize.singular(arg); }),
+	    new TransformMatches("pluralize", function (arg) { return pluralize.plural(arg); }),
+	    new TransformMatches("uppercase", function (arg) { return arg ? arg.toUpperCase() : arg; }),
+	    new TransformMatches("lowercase", function (arg) { return arg ? arg.toLowerCase() : arg; }),
+	    new TransformMatches("lowercamelcase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        return changeCase.camelCase(arg);
+	    }),
+	    new TransformMatches("uppercamelcase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        var lowerCamelCase = changeCase.camelCase(arg);
+	        return lowerCamelCase[0].toUpperCase() + lowerCamelCase.substring(1, lowerCamelCase.length);
+	    }),
+	    new TransformMatches("lowerunderscorecase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        var snakeCase = changeCase.snake(arg);
+	        return snakeCase.toLowerCase();
+	    }),
+	    new TransformMatches("upperunderscorecase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        var snakeCase = changeCase.snake(arg);
+	        return snakeCase.toUpperCase();
+	    }),
+	    new TransformMatches("lowerhyphencase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        var paramCase = changeCase.param(arg);
+	        return paramCase.toLowerCase();
+	    }),
+	    new TransformMatches("upperhyphencase", function (arg) {
+	        if (!arg) {
+	            return arg;
+	        }
+	        var paramCase = changeCase.param(arg);
+	        return paramCase.toUpperCase();
+	    })
+	];
+	function getTransformNames() {
+	    return transformers.map(function (transformer) { return transformer.name; });
+	}
+	exports.getTransformNames = getTransformNames;
+	function getTransformerForOccurence(occurence) {
+	    var result;
+	    for (var i = 0; i < transformers.length; i++) {
+	        if (occurence.match(transformers[i].regexp)) {
+	            result = transformers[i].transformer;
+	            break;
+	        }
+	    }
+	    return result;
+	}
+	exports.getTransformerForOccurence = getTransformerForOccurence;
+	var ValueTransformer = (function () {
+	    function ValueTransformer(templateKind, templateName, params) {
+	        this.templateKind = templateKind;
+	        this.templateName = templateName;
+	        this.params = params;
+	    }
+	    ValueTransformer.prototype.transform = function (obj) {
+	        var undefParams = {};
+	        var errors = [];
+	        if (typeof (obj) === 'string') {
+	            var str = obj;
+	            var str1 = '';
+	            var prev = 0;
+	            for (var i = str.indexOf('<<'); i >= 0; i = str.indexOf('<<', prev)) {
+	                str1 += str.substring(prev, i);
+	                var i0 = i;
+	                i += '<<'.length;
+	                prev = str.indexOf('>>', i);
+	                var paramOccurence = str.substring(i, prev);
+	                prev += '>>'.length;
+	                var originalString = str.substring(i0, prev);
+	                var val;
+	                var paramName;
+	                var transformer = getTransformerForOccurence(paramOccurence);
+	                if (transformer) {
+	                    var ind = paramOccurence.lastIndexOf('|');
+	                    paramName = paramOccurence.substring(0, ind).trim();
+	                    val = this.params[paramName];
+	                    if (val) {
+	                        val = transformer(val);
+	                    }
+	                }
+	                else {
+	                    paramName = paramOccurence.trim();
+	                    val = this.params[paramName];
+	                }
+	                if (!val) {
+	                    undefParams[paramName] = true;
+	                    val = originalString;
+	                }
+	                str1 += val;
+	            }
+	            var upArr = Object.keys(undefParams);
+	            if (upArr.length > 0) {
+	                var errStr = upArr.join(', ').trim();
+	                var message = "Undefined " + this.templateKind + " parameter" + (upArr.length > 1 ? 's' : '') + ": " + errStr;
+	                var error = {
+	                    code: 3 /* MISSING_REQUIRED_PROPERTY */,
+	                    isWarning: false,
+	                    message: message,
+	                    node: null,
+	                    start: -1,
+	                    end: -1,
+	                    path: null
+	                };
+	                errors.push(error);
+	            }
+	            str1 += str.substring(prev, str.length);
+	            return { value: str1, errors: errors };
+	        }
+	        else {
+	            return { value: obj, errors: errors };
+	        }
+	    };
+	    return ValueTransformer;
+	})();
+	var DefaultTransformer = (function (_super) {
+	    __extends(DefaultTransformer, _super);
+	    function DefaultTransformer(owner, delegate) {
+	        _super.call(this, delegate.templateKind, delegate.templateName, null);
+	        this.owner = owner;
+	        this.delegate = delegate;
+	    }
+	    DefaultTransformer.prototype.transform = function (obj) {
+	        if (obj == null) {
+	            return {
+	                value: obj,
+	                errors: []
+	            };
+	        }
+	        var ownResult = {
+	            value: obj,
+	            errors: []
+	        };
+	        var gotDefaultParam = false;
+	        defaultParameters.forEach(function (x) { return gotDefaultParam = gotDefaultParam || obj.toString().indexOf('<<' + x) >= 0; });
+	        if (gotDefaultParam) {
+	            this.initParams();
+	            ownResult = _super.prototype.transform.call(this, obj);
+	        }
+	        var result = this.delegate.transform(ownResult.value);
+	        return result;
+	    };
+	    DefaultTransformer.prototype.initParams = function () {
+	        var methodName;
+	        var resourcePath = "";
+	        var resourcePathName;
+	        var node = this.owner.highLevel().lowLevel().originalNode().originalNode();
+	        while (node) {
+	            var key = node.key();
+	            if (key != null) {
+	                if (util.stringStartsWith(key, '/')) {
+	                    if (!resourcePathName) {
+	                        var arr = key.split('/');
+	                        resourcePathName = arr[arr.length - 1].replace(/[\/\{\}]/g, '');
+	                    }
+	                    resourcePath = key + resourcePath;
+	                }
+	                else {
+	                    methodName = key;
+	                }
+	            }
+	            node = node.parent();
+	        }
+	        this.params = {
+	            resourcePath: resourcePath,
+	            resourcePathName: resourcePathName
+	        };
+	        if (methodName) {
+	            this.params['methodName'] = methodName;
+	        }
+	    };
+	    return DefaultTransformer;
+	})(ValueTransformer);
+	var defaultParameters = ['resourcePath', 'resourcePathName', 'methodName'];
+
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __extends = this.__extends || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    __.prototype = b.prototype;
+	    d.prototype = new __();
+	};
+	var hl = __webpack_require__(2);
+	var services = __webpack_require__(49);
+	var core = __webpack_require__(78);
+	var apiLoader = __webpack_require__(90);
+	var helper = __webpack_require__(91);
+	var RAMLLanguageElementImpl = (function (_super) {
+	    __extends(RAMLLanguageElementImpl, _super);
+	    function RAMLLanguageElementImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
+	     **/
+	    RAMLLanguageElementImpl.prototype.description = function () {
+	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    RAMLLanguageElementImpl.prototype.wrapperClassName = function () {
+	        return "RAMLLanguageElementImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    RAMLLanguageElementImpl.prototype.kind = function () {
+	        return "RAMLLanguageElement";
+	    };
+	    return RAMLLanguageElementImpl;
+	})(core.BasicNodeImpl);
+	exports.RAMLLanguageElementImpl = RAMLLanguageElementImpl;
+	var ValueTypeImpl = (function (_super) {
+	    __extends(ValueTypeImpl, _super);
+	    function ValueTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ValueTypeImpl.prototype.wrapperClassName = function () {
+	        return "ValueTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ValueTypeImpl.prototype.kind = function () {
+	        return "ValueType";
+	    };
+	    /**
+	     * @return JS representation of the node value
+	     **/
+	    ValueTypeImpl.prototype.value = function () {
+	        return this.attr.value();
+	    };
+	    return ValueTypeImpl;
+	})(core.AttributeNodeImpl);
+	exports.ValueTypeImpl = ValueTypeImpl;
+	var AnyTypeImpl = (function (_super) {
+	    __extends(AnyTypeImpl, _super);
+	    function AnyTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    AnyTypeImpl.prototype.wrapperClassName = function () {
+	        return "AnyTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    AnyTypeImpl.prototype.kind = function () {
+	        return "AnyType";
+	    };
+	    return AnyTypeImpl;
+	})(ValueTypeImpl);
+	exports.AnyTypeImpl = AnyTypeImpl;
+	var NumberTypeImpl = (function (_super) {
+	    __extends(NumberTypeImpl, _super);
+	    function NumberTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    NumberTypeImpl.prototype.wrapperClassName = function () {
+	        return "NumberTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    NumberTypeImpl.prototype.kind = function () {
+	        return "NumberType";
+	    };
+	    /**
+	     * @return Number representation of the node value
+	     **/
+	    NumberTypeImpl.prototype.value = function () {
+	        return this.attr.value();
+	    };
+	    return NumberTypeImpl;
+	})(ValueTypeImpl);
+	exports.NumberTypeImpl = NumberTypeImpl;
+	var BooleanTypeImpl = (function (_super) {
+	    __extends(BooleanTypeImpl, _super);
+	    function BooleanTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    BooleanTypeImpl.prototype.wrapperClassName = function () {
+	        return "BooleanTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    BooleanTypeImpl.prototype.kind = function () {
+	        return "BooleanType";
+	    };
+	    /**
+	     * @return Boolean representation of the node value
+	     **/
+	    BooleanTypeImpl.prototype.value = function () {
+	        return this.attr.value();
+	    };
+	    return BooleanTypeImpl;
+	})(ValueTypeImpl);
+	exports.BooleanTypeImpl = BooleanTypeImpl;
+	var ReferenceImpl = (function (_super) {
+	    __extends(ReferenceImpl, _super);
+	    function ReferenceImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ReferenceImpl.prototype.wrapperClassName = function () {
+	        return "ReferenceImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ReferenceImpl.prototype.kind = function () {
+	        return "Reference";
+	    };
+	    /**
+	     * @return StructuredValue object representing the node value
+	     **/
+	    ReferenceImpl.prototype.value = function () {
+	        return core.toStructuredValue(this.attr);
+	    };
+	    ReferenceImpl.prototype.structuredValue = function () {
+	        return helper.structuredValue(this);
+	    };
+	    ReferenceImpl.prototype.name = function () {
+	        return helper.referenceName(this);
+	    };
+	    return ReferenceImpl;
+	})(core.AttributeNodeImpl);
+	exports.ReferenceImpl = ReferenceImpl;
+	var ResourceTypeRefImpl = (function (_super) {
+	    __extends(ResourceTypeRefImpl, _super);
+	    function ResourceTypeRefImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ResourceTypeRefImpl.prototype.wrapperClassName = function () {
+	        return "ResourceTypeRefImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ResourceTypeRefImpl.prototype.kind = function () {
+	        return "ResourceTypeRef";
+	    };
+	    ResourceTypeRefImpl.prototype.resourceType = function () {
+	        return helper.referencedResourceType(this);
+	    };
+	    return ResourceTypeRefImpl;
+	})(ReferenceImpl);
+	exports.ResourceTypeRefImpl = ResourceTypeRefImpl;
+	var ResourceTypeImpl = (function (_super) {
+	    __extends(ResourceTypeImpl, _super);
+	    function ResourceTypeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createResourceType(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Name of the resource type
+	     **/
+	    ResourceTypeImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set name value
+	     **/
+	    ResourceTypeImpl.prototype.setName = function (param) {
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Instructions on how and when the resource type should be used.
+	     **/
+	    ResourceTypeImpl.prototype.usage = function () {
+	        return _super.prototype.attribute.call(this, 'usage', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set usage value
+	     **/
+	    ResourceTypeImpl.prototype.setUsage = function (param) {
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Methods that are part of this resource type definition
+	     **/
+	    ResourceTypeImpl.prototype.methods = function () {
+	        return _super.prototype.elements.call(this, 'methods');
+	    };
+	    /**
+	     * Instantiation of applyed traits
+	     **/
+	    ResourceTypeImpl.prototype.is = function () {
+	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
+	    };
+	    /**
+	     * Instantiation of applyed resource type
+	     **/
+	    ResourceTypeImpl.prototype["type"] = function () {
+	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
+	    };
+	    /**
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     **/
+	    ResourceTypeImpl.prototype.securedBy = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * Uri parameters of this resource
+	     **/
+	    ResourceTypeImpl.prototype.uriParameters = function () {
+	        return _super.prototype.elements.call(this, 'uriParameters');
+	    };
+	    /**
+	     * An alternate, human-friendly name for the resource type
+	     **/
+	    ResourceTypeImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set displayName value
+	     **/
+	    ResourceTypeImpl.prototype.setDisplayName = function (param) {
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+	     **/
+	    ResourceTypeImpl.prototype.baseUriParameters = function () {
+	        return _super.prototype.elements.call(this, 'baseUriParameters');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ResourceTypeImpl.prototype.wrapperClassName = function () {
+	        return "ResourceTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ResourceTypeImpl.prototype.kind = function () {
+	        return "ResourceType";
+	    };
+	    return ResourceTypeImpl;
+	})(RAMLLanguageElementImpl);
+	exports.ResourceTypeImpl = ResourceTypeImpl;
+	var HasNormalParametersImpl = (function (_super) {
+	    __extends(HasNormalParametersImpl, _super);
+	    function HasNormalParametersImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createHasNormalParameters(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+	     **/
+	    HasNormalParametersImpl.prototype.queryParameters = function () {
+	        return _super.prototype.elements.call(this, 'queryParameters');
+	    };
+	    /**
+	     * An alternate, human-readable name of the object
+	     **/
+	    HasNormalParametersImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set displayName value
+	     **/
+	    HasNormalParametersImpl.prototype.setDisplayName = function (param) {
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Headers that allowed at this position
+	     **/
+	    HasNormalParametersImpl.prototype.headers = function () {
+	        return _super.prototype.elements.call(this, 'headers');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    HasNormalParametersImpl.prototype.wrapperClassName = function () {
+	        return "HasNormalParametersImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    HasNormalParametersImpl.prototype.kind = function () {
+	        return "HasNormalParameters";
+	    };
+	    return HasNormalParametersImpl;
+	})(RAMLLanguageElementImpl);
+	exports.HasNormalParametersImpl = HasNormalParametersImpl;
+	var ParameterImpl = (function (_super) {
+	    __extends(ParameterImpl, _super);
+	    function ParameterImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createParameter(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * name of the parameter
+	     **/
+	    ParameterImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set name value
+	     **/
+	    ParameterImpl.prototype.setName = function (param) {
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * An alternate, human-friendly name for the parameter
+	     **/
+	    ParameterImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set displayName value
+	     **/
+	    ParameterImpl.prototype.setDisplayName = function (param) {
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string.
+	     **/
+	    ParameterImpl.prototype["type"] = function () {
+	        return _super.prototype.attribute.call(this, 'type', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set type value
+	     **/
+	    ParameterImpl.prototype.setType = function (param) {
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Location of the parameter (can not be edited by user)
+	     **/
+	    ParameterImpl.prototype.location = function () {
+	        return _super.prototype.attribute.call(this, 'location', function (attr) { return new ParameterLocationImpl(attr); });
+	    };
+	    /**
+	     * Set to true if parameter is required
+	     **/
+	    ParameterImpl.prototype.required = function () {
+	        return _super.prototype.attribute.call(this, 'required', this.toBoolean);
+	    };
+	    /**
+	     * @hidden
+	     * Set required value
+	     **/
+	    ParameterImpl.prototype.setRequired = function (param) {
+	        this.highLevel().attrOrCreate("required").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value.
+	     **/
+	    ParameterImpl.prototype["default"] = function () {
+	        return _super.prototype.attribute.call(this, 'default');
+	    };
+	    /**
+	     * @hidden
+	     * Set default value
+	     **/
+	    ParameterImpl.prototype.setDefault = function (param) {
+	        this.highLevel().attrOrCreate("default").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property.
+	     **/
+	    ParameterImpl.prototype.example = function () {
+	        return _super.prototype.attribute.call(this, 'example', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set example value
+	     **/
+	    ParameterImpl.prototype.setExample = function (param) {
+	        this.highLevel().attrOrCreate("example").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
+	     **/
+	    ParameterImpl.prototype.repeat = function () {
+	        return _super.prototype.attribute.call(this, 'repeat', this.toBoolean);
+	    };
+	    /**
+	     * @hidden
+	     * Set repeat value
+	     **/
+	    ParameterImpl.prototype.setRepeat = function (param) {
+	        this.highLevel().attrOrCreate("repeat").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ParameterImpl.prototype.wrapperClassName = function () {
+	        return "ParameterImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ParameterImpl.prototype.kind = function () {
+	        return "Parameter";
+	    };
+	    return ParameterImpl;
+	})(RAMLLanguageElementImpl);
+	exports.ParameterImpl = ParameterImpl;
+	var ParameterLocationImpl = (function () {
+	    function ParameterLocationImpl(attr) {
+	        this.attr = attr;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ParameterLocationImpl.prototype.wrapperClassName = function () {
+	        return "ParameterLocationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ParameterLocationImpl.prototype.kind = function () {
+	        return "ParameterLocation";
+	    };
+	    return ParameterLocationImpl;
+	})();
+	exports.ParameterLocationImpl = ParameterLocationImpl;
+	/**
+	 * Value must be a string
+	 **/
+	var StringTypeDeclarationImpl = (function (_super) {
+	    __extends(StringTypeDeclarationImpl, _super);
+	    function StringTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createStringTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * (Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity.
+	     **/
+	    StringTypeDeclarationImpl.prototype.pattern = function () {
+	        return _super.prototype.attribute.call(this, 'pattern', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set pattern value
+	     **/
+	    StringTypeDeclarationImpl.prototype.setPattern = function (param) {
+	        this.highLevel().attrOrCreate("pattern").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
+	     **/
+	    StringTypeDeclarationImpl.prototype.enum = function () {
+	        return _super.prototype.attributes.call(this, 'enum', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set enum value
+	     **/
+	    StringTypeDeclarationImpl.prototype.setEnum = function (param) {
+	        this.highLevel().attrOrCreate("enum").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters.
+	     **/
+	    StringTypeDeclarationImpl.prototype.minLength = function () {
+	        return _super.prototype.attribute.call(this, 'minLength', this.toNumber);
+	    };
+	    /**
+	     * @hidden
+	     * Set minLength value
+	     **/
+	    StringTypeDeclarationImpl.prototype.setMinLength = function (param) {
+	        this.highLevel().attrOrCreate("minLength").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters.
+	     **/
+	    StringTypeDeclarationImpl.prototype.maxLength = function () {
+	        return _super.prototype.attribute.call(this, 'maxLength', this.toNumber);
+	    };
+	    /**
+	     * @hidden
+	     * Set maxLength value
+	     **/
+	    StringTypeDeclarationImpl.prototype.setMaxLength = function (param) {
+	        this.highLevel().attrOrCreate("maxLength").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    StringTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "StringTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    StringTypeDeclarationImpl.prototype.kind = function () {
+	        return "StringTypeDeclaration";
+	    };
+	    return StringTypeDeclarationImpl;
+	})(ParameterImpl);
+	exports.StringTypeDeclarationImpl = StringTypeDeclarationImpl;
+	/**
+	 * Value must be a boolean
+	 **/
+	var BooleanTypeDeclarationImpl = (function (_super) {
+	    __extends(BooleanTypeDeclarationImpl, _super);
+	    function BooleanTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createBooleanTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    BooleanTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "BooleanTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    BooleanTypeDeclarationImpl.prototype.kind = function () {
+	        return "BooleanTypeDeclaration";
+	    };
+	    return BooleanTypeDeclarationImpl;
+	})(ParameterImpl);
+	exports.BooleanTypeDeclarationImpl = BooleanTypeDeclarationImpl;
+	/**
+	 * Value MUST be a number. Indicate floating point numbers as defined by YAML.
+	 **/
+	var NumberTypeDeclarationImpl = (function (_super) {
+	    __extends(NumberTypeDeclarationImpl, _super);
+	    function NumberTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createNumberTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * (Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value.
+	     **/
+	    NumberTypeDeclarationImpl.prototype.minimum = function () {
+	        return _super.prototype.attribute.call(this, 'minimum', this.toNumber);
+	    };
+	    /**
+	     * @hidden
+	     * Set minimum value
+	     **/
+	    NumberTypeDeclarationImpl.prototype.setMinimum = function (param) {
+	        this.highLevel().attrOrCreate("minimum").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value.
+	     **/
+	    NumberTypeDeclarationImpl.prototype.maximum = function () {
+	        return _super.prototype.attribute.call(this, 'maximum', this.toNumber);
+	    };
+	    /**
+	     * @hidden
+	     * Set maximum value
+	     **/
+	    NumberTypeDeclarationImpl.prototype.setMaximum = function (param) {
+	        this.highLevel().attrOrCreate("maximum").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    NumberTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "NumberTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    NumberTypeDeclarationImpl.prototype.kind = function () {
+	        return "NumberTypeDeclaration";
+	    };
+	    return NumberTypeDeclarationImpl;
+	})(ParameterImpl);
+	exports.NumberTypeDeclarationImpl = NumberTypeDeclarationImpl;
+	/**
+	 * Value MUST be a integer.
+	 **/
+	var IntegerTypeDeclarationImpl = (function (_super) {
+	    __extends(IntegerTypeDeclarationImpl, _super);
+	    function IntegerTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createIntegerTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    IntegerTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "IntegerTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    IntegerTypeDeclarationImpl.prototype.kind = function () {
+	        return "IntegerTypeDeclaration";
+	    };
+	    return IntegerTypeDeclarationImpl;
+	})(NumberTypeDeclarationImpl);
+	exports.IntegerTypeDeclarationImpl = IntegerTypeDeclarationImpl;
+	/**
+	 * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
+	 **/
+	var DateTypeDeclarationImpl = (function (_super) {
+	    __extends(DateTypeDeclarationImpl, _super);
+	    function DateTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createDateTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    DateTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "DateTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    DateTypeDeclarationImpl.prototype.kind = function () {
+	        return "DateTypeDeclaration";
+	    };
+	    return DateTypeDeclarationImpl;
+	})(ParameterImpl);
+	exports.DateTypeDeclarationImpl = DateTypeDeclarationImpl;
+	/**
+	 * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
+	 **/
+	var FileTypeDeclarationImpl = (function (_super) {
+	    __extends(FileTypeDeclarationImpl, _super);
+	    function FileTypeDeclarationImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createFileTypeDeclaration(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    FileTypeDeclarationImpl.prototype.wrapperClassName = function () {
+	        return "FileTypeDeclarationImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    FileTypeDeclarationImpl.prototype.kind = function () {
+	        return "FileTypeDeclaration";
+	    };
+	    return FileTypeDeclarationImpl;
+	})(ParameterImpl);
+	exports.FileTypeDeclarationImpl = FileTypeDeclarationImpl;
+	/**
+	 * Method object allows description of http methods
+	 **/
+	var MethodBaseImpl = (function (_super) {
+	    __extends(MethodBaseImpl, _super);
+	    function MethodBaseImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createMethodBase(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+	     **/
+	    MethodBaseImpl.prototype.responses = function () {
+	        return _super.prototype.elements.call(this, 'responses');
+	    };
+	    /**
+	     * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
+	     * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
+	     * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+	     **/
+	    MethodBaseImpl.prototype.body = function () {
+	        return _super.prototype.elements.call(this, 'body');
+	    };
+	    /**
+	     * A method can override an API's protocols value for that single method by setting a different value for the fields.
+	     **/
+	    MethodBaseImpl.prototype.protocols = function () {
+	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set protocols value
+	     **/
+	    MethodBaseImpl.prototype.setProtocols = function (param) {
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     **/
+	    MethodBaseImpl.prototype.securedBy = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    MethodBaseImpl.prototype.wrapperClassName = function () {
+	        return "MethodBaseImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    MethodBaseImpl.prototype.kind = function () {
+	        return "MethodBase";
+	    };
+	    return MethodBaseImpl;
+	})(HasNormalParametersImpl);
+	exports.MethodBaseImpl = MethodBaseImpl;
+	var ResponseImpl = (function (_super) {
+	    __extends(ResponseImpl, _super);
+	    function ResponseImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createResponse(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+	     **/
+	    ResponseImpl.prototype.code = function () {
+	        return _super.prototype.attribute.call(this, 'code', function (attr) { return new StatusCodeStringImpl(attr); });
+	    };
+	    /**
+	     * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
+	     * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
+	     *
+	     * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
+	     **/
+	    ResponseImpl.prototype.headers = function () {
+	        return _super.prototype.elements.call(this, 'headers');
+	    };
+	    /**
+	     * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
+	     * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
+	     **/
+	    ResponseImpl.prototype.body = function () {
+	        return _super.prototype.elements.call(this, 'body');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ResponseImpl.prototype.wrapperClassName = function () {
+	        return "ResponseImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ResponseImpl.prototype.kind = function () {
+	        return "Response";
+	    };
+	    /**
+	     * true for codes < 400 and false otherwise
+	     **/
+	    ResponseImpl.prototype.isOkRange = function () {
+	        return helper.isOkRange(this);
+	    };
+	    return ResponseImpl;
+	})(RAMLLanguageElementImpl);
+	exports.ResponseImpl = ResponseImpl;
+	var StringTypeImpl = (function (_super) {
+	    __extends(StringTypeImpl, _super);
+	    function StringTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    StringTypeImpl.prototype.wrapperClassName = function () {
+	        return "StringTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    StringTypeImpl.prototype.kind = function () {
+	        return "StringType";
+	    };
+	    /**
+	     * @return String representation of the node value
+	     **/
+	    StringTypeImpl.prototype.value = function () {
+	        return this.attr.value();
+	    };
+	    return StringTypeImpl;
+	})(ValueTypeImpl);
+	exports.StringTypeImpl = StringTypeImpl;
+	var StatusCodeStringImpl = (function (_super) {
+	    __extends(StatusCodeStringImpl, _super);
+	    function StatusCodeStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    StatusCodeStringImpl.prototype.wrapperClassName = function () {
+	        return "StatusCodeStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    StatusCodeStringImpl.prototype.kind = function () {
+	        return "StatusCodeString";
+	    };
+	    return StatusCodeStringImpl;
+	})(StringTypeImpl);
+	exports.StatusCodeStringImpl = StatusCodeStringImpl;
+	var BodyLikeImpl = (function (_super) {
+	    __extends(BodyLikeImpl, _super);
+	    function BodyLikeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createBodyLike(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Mime type of the request or response body
+	     **/
+	    BodyLikeImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set name value
+	     **/
+	    BodyLikeImpl.prototype.setName = function (param) {
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
+	     *
+	     * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
+	     *
+	     * All parsers of RAML MUST be able to interpret JSON Schema [JSON_SCHEMA] and XML Schema [XML_SCHEMA].
+	     *
+	     * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
+	     * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
+	     **/
+	    BodyLikeImpl.prototype.schema = function () {
+	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new SchemaStringImpl(attr); });
+	    };
+	    /**
+	     * Documentation generators MUST use body properties' example attributes to generate example invocations.
+	     * This example shows example attributes for two body property media types.
+	     **/
+	    BodyLikeImpl.prototype.example = function () {
+	        return _super.prototype.attribute.call(this, 'example', function (attr) { return new ExampleStringImpl(attr); });
+	    };
+	    /**
+	     * Web forms REQUIRE special encoding and custom declaration.
+	     * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
+	     * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
+	     **/
+	    BodyLikeImpl.prototype.formParameters = function () {
+	        return _super.prototype.elements.call(this, 'formParameters');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    BodyLikeImpl.prototype.wrapperClassName = function () {
+	        return "BodyLikeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    BodyLikeImpl.prototype.kind = function () {
+	        return "BodyLike";
+	    };
+	    BodyLikeImpl.prototype.schemaContent = function () {
+	        return helper.schemaContent(this);
+	    };
+	    return BodyLikeImpl;
+	})(RAMLLanguageElementImpl);
+	exports.BodyLikeImpl = BodyLikeImpl;
+	/**
+	 * Schema at this moment only two subtypes are supported (json schema and xsd)
+	 **/
+	var SchemaStringImpl = (function (_super) {
+	    __extends(SchemaStringImpl, _super);
+	    function SchemaStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    SchemaStringImpl.prototype.wrapperClassName = function () {
+	        return "SchemaStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    SchemaStringImpl.prototype.kind = function () {
+	        return "SchemaString";
+	    };
+	    return SchemaStringImpl;
+	})(StringTypeImpl);
+	exports.SchemaStringImpl = SchemaStringImpl;
+	/**
+	 * JSON schema
+	 **/
+	var JSonSchemaStringImpl = (function (_super) {
+	    __extends(JSonSchemaStringImpl, _super);
+	    function JSonSchemaStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    JSonSchemaStringImpl.prototype.wrapperClassName = function () {
+	        return "JSonSchemaStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    JSonSchemaStringImpl.prototype.kind = function () {
+	        return "JSonSchemaString";
+	    };
+	    return JSonSchemaStringImpl;
+	})(SchemaStringImpl);
+	exports.JSonSchemaStringImpl = JSonSchemaStringImpl;
+	/**
+	 * XSD schema
+	 **/
+	var XMLSchemaStringImpl = (function (_super) {
+	    __extends(XMLSchemaStringImpl, _super);
+	    function XMLSchemaStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    XMLSchemaStringImpl.prototype.wrapperClassName = function () {
+	        return "XMLSchemaStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    XMLSchemaStringImpl.prototype.kind = function () {
+	        return "XMLSchemaString";
+	    };
+	    return XMLSchemaStringImpl;
+	})(SchemaStringImpl);
+	exports.XMLSchemaStringImpl = XMLSchemaStringImpl;
+	var ExampleStringImpl = (function (_super) {
+	    __extends(ExampleStringImpl, _super);
+	    function ExampleStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ExampleStringImpl.prototype.wrapperClassName = function () {
+	        return "ExampleStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ExampleStringImpl.prototype.kind = function () {
+	        return "ExampleString";
+	    };
+	    return ExampleStringImpl;
+	})(StringTypeImpl);
+	exports.ExampleStringImpl = ExampleStringImpl;
+	var JSONExampleImpl = (function (_super) {
+	    __extends(JSONExampleImpl, _super);
+	    function JSONExampleImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    JSONExampleImpl.prototype.wrapperClassName = function () {
+	        return "JSONExampleImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    JSONExampleImpl.prototype.kind = function () {
+	        return "JSONExample";
+	    };
+	    return JSONExampleImpl;
+	})(ExampleStringImpl);
+	exports.JSONExampleImpl = JSONExampleImpl;
+	var XMLExampleImpl = (function (_super) {
+	    __extends(XMLExampleImpl, _super);
+	    function XMLExampleImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    XMLExampleImpl.prototype.wrapperClassName = function () {
+	        return "XMLExampleImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    XMLExampleImpl.prototype.kind = function () {
+	        return "XMLExample";
+	    };
+	    return XMLExampleImpl;
+	})(ExampleStringImpl);
+	exports.XMLExampleImpl = XMLExampleImpl;
+	/**
+	 * Needed to set connection between xml related mime types and xsd schema
+	 **/
+	var XMLBodyImpl = (function (_super) {
+	    __extends(XMLBodyImpl, _super);
+	    function XMLBodyImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createXMLBody(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * XSD Schema
+	     **/
+	    XMLBodyImpl.prototype.schema = function () {
+	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new XMLSchemaStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    XMLBodyImpl.prototype.wrapperClassName = function () {
+	        return "XMLBodyImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    XMLBodyImpl.prototype.kind = function () {
+	        return "XMLBody";
+	    };
+	    return XMLBodyImpl;
+	})(BodyLikeImpl);
+	exports.XMLBodyImpl = XMLBodyImpl;
+	/**
+	 * Needed to set connection between json related mime types and json schema
+	 **/
+	var JSONBodyImpl = (function (_super) {
+	    __extends(JSONBodyImpl, _super);
+	    function JSONBodyImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createJSONBody(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * JSON Schema
+	     **/
+	    JSONBodyImpl.prototype.schema = function () {
+	        return _super.prototype.attribute.call(this, 'schema', function (attr) { return new JSonSchemaStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    JSONBodyImpl.prototype.wrapperClassName = function () {
+	        return "JSONBodyImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    JSONBodyImpl.prototype.kind = function () {
+	        return "JSONBody";
+	    };
+	    return JSONBodyImpl;
+	})(BodyLikeImpl);
+	exports.JSONBodyImpl = JSONBodyImpl;
+	var SecuritySchemeRefImpl = (function (_super) {
+	    __extends(SecuritySchemeRefImpl, _super);
+	    function SecuritySchemeRefImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    SecuritySchemeRefImpl.prototype.wrapperClassName = function () {
+	        return "SecuritySchemeRefImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    SecuritySchemeRefImpl.prototype.kind = function () {
+	        return "SecuritySchemeRef";
+	    };
+	    SecuritySchemeRefImpl.prototype.securitySchemeName = function () {
+	        return helper.securitySchemeName(this);
+	    };
+	    SecuritySchemeRefImpl.prototype.securityScheme = function () {
+	        return helper.securityScheme(this);
+	    };
+	    return SecuritySchemeRefImpl;
+	})(ReferenceImpl);
+	exports.SecuritySchemeRefImpl = SecuritySchemeRefImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var AbstractSecuritySchemeImpl = (function (_super) {
+	    __extends(AbstractSecuritySchemeImpl, _super);
+	    function AbstractSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createAbstractSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Name of the security scheme
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set name value
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.setName = function (param) {
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
+	     **/
+	    AbstractSecuritySchemeImpl.prototype["type"] = function () {
+	        return _super.prototype.attribute.call(this, 'type', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set type value
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.setType = function (param) {
+	        this.highLevel().attrOrCreate("type").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * The description MAY be used to describe a securityScheme.
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.description = function () {
+	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+	    };
+	    /**
+	     * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
+	     * Including the security scheme description completes an API documentation.
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.describedBy = function () {
+	        return _super.prototype.element.call(this, 'describedBy');
+	    };
+	    /**
+	     * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
+	     * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.settings = function () {
+	        return _super.prototype.element.call(this, 'settings');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "AbstractSecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    AbstractSecuritySchemeImpl.prototype.kind = function () {
+	        return "AbstractSecurityScheme";
+	    };
+	    return AbstractSecuritySchemeImpl;
+	})(RAMLLanguageElementImpl);
+	exports.AbstractSecuritySchemeImpl = AbstractSecuritySchemeImpl;
+	var SecuritySchemePartImpl = (function (_super) {
+	    __extends(SecuritySchemePartImpl, _super);
+	    function SecuritySchemePartImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createSecuritySchemePart(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Headers that allowed at this position
+	     **/
+	    SecuritySchemePartImpl.prototype.headers = function () {
+	        return _super.prototype.elements.call(this, 'headers');
+	    };
+	    /**
+	     * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+	     **/
+	    SecuritySchemePartImpl.prototype.queryParameters = function () {
+	        return _super.prototype.elements.call(this, 'queryParameters');
+	    };
+	    /**
+	     * Optional array of responses, describing the possible responses that could be sent.
+	     **/
+	    SecuritySchemePartImpl.prototype.responses = function () {
+	        return _super.prototype.elements.call(this, 'responses');
+	    };
+	    /**
+	     * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     **/
+	    SecuritySchemePartImpl.prototype.securedBy = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * An alternate, human-friendly name for the security scheme part
+	     **/
+	    SecuritySchemePartImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set displayName value
+	     **/
+	    SecuritySchemePartImpl.prototype.setDisplayName = function (param) {
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * A longer, human-friendly description of the security scheme part
+	     **/
+	    SecuritySchemePartImpl.prototype.description = function () {
+	        return _super.prototype.attribute.call(this, 'description', function (attr) { return new MarkdownStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    SecuritySchemePartImpl.prototype.wrapperClassName = function () {
+	        return "SecuritySchemePartImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    SecuritySchemePartImpl.prototype.kind = function () {
+	        return "SecuritySchemePart";
+	    };
+	    return SecuritySchemePartImpl;
+	})(MethodBaseImpl);
+	exports.SecuritySchemePartImpl = SecuritySchemePartImpl;
+	var SecuritySchemeSettingsImpl = (function (_super) {
+	    __extends(SecuritySchemeSettingsImpl, _super);
+	    function SecuritySchemeSettingsImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+	        return "SecuritySchemeSettingsImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    SecuritySchemeSettingsImpl.prototype.kind = function () {
+	        return "SecuritySchemeSettings";
+	    };
+	    return SecuritySchemeSettingsImpl;
+	})(core.BasicNodeImpl);
+	exports.SecuritySchemeSettingsImpl = SecuritySchemeSettingsImpl;
+	var OAuth1SecuritySchemeSettingsImpl = (function (_super) {
+	    __extends(OAuth1SecuritySchemeSettingsImpl, _super);
+	    function OAuth1SecuritySchemeSettingsImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecuritySchemeSettings(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
+	     **/
+	    OAuth1SecuritySchemeSettingsImpl.prototype.requestTokenUri = function () {
+	        return _super.prototype.attribute.call(this, 'requestTokenUri', function (attr) { return new FixedUriImpl(attr); });
+	    };
+	    /**
+	     * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+	     **/
+	    OAuth1SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
+	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
+	    };
+	    /**
+	     * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+	     **/
+	    OAuth1SecuritySchemeSettingsImpl.prototype.tokenCredentialsUri = function () {
+	        return _super.prototype.attribute.call(this, 'tokenCredentialsUri', function (attr) { return new FixedUriImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    OAuth1SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+	        return "OAuth1SecuritySchemeSettingsImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    OAuth1SecuritySchemeSettingsImpl.prototype.kind = function () {
+	        return "OAuth1SecuritySchemeSettings";
+	    };
+	    return OAuth1SecuritySchemeSettingsImpl;
+	})(SecuritySchemeSettingsImpl);
+	exports.OAuth1SecuritySchemeSettingsImpl = OAuth1SecuritySchemeSettingsImpl;
+	/**
+	 * This  type describes fixed uris
+	 **/
+	var FixedUriImpl = (function (_super) {
+	    __extends(FixedUriImpl, _super);
+	    function FixedUriImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    FixedUriImpl.prototype.wrapperClassName = function () {
+	        return "FixedUriImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    FixedUriImpl.prototype.kind = function () {
+	        return "FixedUri";
+	    };
+	    return FixedUriImpl;
+	})(StringTypeImpl);
+	exports.FixedUriImpl = FixedUriImpl;
+	var OAuth2SecuritySchemeSettingsImpl = (function (_super) {
+	    __extends(OAuth2SecuritySchemeSettingsImpl, _super);
+	    function OAuth2SecuritySchemeSettingsImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecuritySchemeSettings(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.accessTokenUri = function () {
+	        return _super.prototype.attribute.call(this, 'accessTokenUri', function (attr) { return new FixedUriImpl(attr); });
+	    };
+	    /**
+	     * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationUri = function () {
+	        return _super.prototype.attribute.call(this, 'authorizationUri', function (attr) { return new FixedUriImpl(attr); });
+	    };
+	    /**
+	     * A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:
+	     * - authorization_code
+	     * - password
+	     * - client_credentials
+	     * - implicit
+	     * - refresh_token.
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.authorizationGrants = function () {
+	        return _super.prototype.attributes.call(this, 'authorizationGrants', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set authorizationGrants value
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.setAuthorizationGrants = function (param) {
+	        this.highLevel().attrOrCreate("authorizationGrants").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.scopes = function () {
+	        return _super.prototype.attributes.call(this, 'scopes', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set scopes value
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.setScopes = function (param) {
+	        this.highLevel().attrOrCreate("scopes").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.wrapperClassName = function () {
+	        return "OAuth2SecuritySchemeSettingsImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    OAuth2SecuritySchemeSettingsImpl.prototype.kind = function () {
+	        return "OAuth2SecuritySchemeSettings";
+	    };
+	    return OAuth2SecuritySchemeSettingsImpl;
+	})(SecuritySchemeSettingsImpl);
+	exports.OAuth2SecuritySchemeSettingsImpl = OAuth2SecuritySchemeSettingsImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var OAuth2SecuritySchemeImpl = (function (_super) {
+	    __extends(OAuth2SecuritySchemeImpl, _super);
+	    function OAuth2SecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth2SecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    OAuth2SecuritySchemeImpl.prototype.settings = function () {
+	        return _super.prototype.element.call(this, 'settings');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    OAuth2SecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "OAuth2SecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    OAuth2SecuritySchemeImpl.prototype.kind = function () {
+	        return "OAuth2SecurityScheme";
+	    };
+	    return OAuth2SecuritySchemeImpl;
+	})(AbstractSecuritySchemeImpl);
+	exports.OAuth2SecuritySchemeImpl = OAuth2SecuritySchemeImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var OAuth1SecuritySchemeImpl = (function (_super) {
+	    __extends(OAuth1SecuritySchemeImpl, _super);
+	    function OAuth1SecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createOAuth1SecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    OAuth1SecuritySchemeImpl.prototype.settings = function () {
+	        return _super.prototype.element.call(this, 'settings');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    OAuth1SecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "OAuth1SecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    OAuth1SecuritySchemeImpl.prototype.kind = function () {
+	        return "OAuth1SecurityScheme";
+	    };
+	    return OAuth1SecuritySchemeImpl;
+	})(AbstractSecuritySchemeImpl);
+	exports.OAuth1SecuritySchemeImpl = OAuth1SecuritySchemeImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var BasicSecuritySchemeImpl = (function (_super) {
+	    __extends(BasicSecuritySchemeImpl, _super);
+	    function BasicSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createBasicSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    BasicSecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "BasicSecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    BasicSecuritySchemeImpl.prototype.kind = function () {
+	        return "BasicSecurityScheme";
+	    };
+	    return BasicSecuritySchemeImpl;
+	})(AbstractSecuritySchemeImpl);
+	exports.BasicSecuritySchemeImpl = BasicSecuritySchemeImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var DigestSecuritySchemeImpl = (function (_super) {
+	    __extends(DigestSecuritySchemeImpl, _super);
+	    function DigestSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createDigestSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    DigestSecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "DigestSecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    DigestSecuritySchemeImpl.prototype.kind = function () {
+	        return "DigestSecurityScheme";
+	    };
+	    return DigestSecuritySchemeImpl;
+	})(AbstractSecuritySchemeImpl);
+	exports.DigestSecuritySchemeImpl = DigestSecuritySchemeImpl;
+	/**
+	 * Declares globally referable security schema definition
+	 **/
+	var CustomSecuritySchemeImpl = (function (_super) {
+	    __extends(CustomSecuritySchemeImpl, _super);
+	    function CustomSecuritySchemeImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createCustomSecurityScheme(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    CustomSecuritySchemeImpl.prototype.wrapperClassName = function () {
+	        return "CustomSecuritySchemeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    CustomSecuritySchemeImpl.prototype.kind = function () {
+	        return "CustomSecurityScheme";
+	    };
+	    return CustomSecuritySchemeImpl;
+	})(AbstractSecuritySchemeImpl);
+	exports.CustomSecuritySchemeImpl = CustomSecuritySchemeImpl;
+	var TraitImpl = (function (_super) {
+	    __extends(TraitImpl, _super);
+	    function TraitImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createTrait(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Name of the trait
+	     **/
+	    TraitImpl.prototype.name = function () {
+	        return _super.prototype.attribute.call(this, 'name', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set name value
+	     **/
+	    TraitImpl.prototype.setName = function (param) {
+	        this.highLevel().attrOrCreate("name").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Instructions on how and when the trait should be used.
+	     **/
+	    TraitImpl.prototype.usage = function () {
+	        return _super.prototype.attribute.call(this, 'usage', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set usage value
+	     **/
+	    TraitImpl.prototype.setUsage = function (param) {
+	        this.highLevel().attrOrCreate("usage").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    TraitImpl.prototype.wrapperClassName = function () {
+	        return "TraitImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    TraitImpl.prototype.kind = function () {
+	        return "Trait";
+	    };
+	    return TraitImpl;
+	})(MethodBaseImpl);
+	exports.TraitImpl = TraitImpl;
+	var MethodImpl = (function (_super) {
+	    __extends(MethodImpl, _super);
+	    function MethodImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createMethod(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Method that can be called
+	     **/
+	    MethodImpl.prototype.method = function () {
+	        return _super.prototype.attribute.call(this, 'method', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set method value
+	     **/
+	    MethodImpl.prototype.setMethod = function (param) {
+	        this.highLevel().attrOrCreate("method").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     **/
+	    MethodImpl.prototype.securedBy_original = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * Instantiation of applyed traits
+	     **/
+	    MethodImpl.prototype.is = function () {
+	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    MethodImpl.prototype.wrapperClassName = function () {
+	        return "MethodImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    MethodImpl.prototype.kind = function () {
+	        return "Method";
+	    };
+	    /**
+	     * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+	     **/
+	    MethodImpl.prototype.parentResource = function () {
+	        return helper.parentResource(this);
+	    };
+	    /**
+	     * Api owning the resource as a sibling
+	     **/
+	    MethodImpl.prototype.ownerApi = function () {
+	        return helper.ownerApi(this);
+	    };
+	    /**
+	     * For methods of Resources: `{parent Resource relative path} {methodName}`.
+	     * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+	     * For other methods throws Exception.
+	     **/
+	    MethodImpl.prototype.methodId = function () {
+	        return helper.methodId(this);
+	    };
+	    /**
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     **/
+	    MethodImpl.prototype.securedBy = function () {
+	        return helper.securedByPrimary(this);
+	    };
+	    /**
+	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+	     * returns schemes defined with `securedBy` at API level.
+	     **/
+	    MethodImpl.prototype.allSecuredBy = function () {
+	        return helper.allSecuredBy(this);
+	    };
+	    return MethodImpl;
+	})(MethodBaseImpl);
+	exports.MethodImpl = MethodImpl;
+	var TraitRefImpl = (function (_super) {
+	    __extends(TraitRefImpl, _super);
+	    function TraitRefImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    TraitRefImpl.prototype.wrapperClassName = function () {
+	        return "TraitRefImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    TraitRefImpl.prototype.kind = function () {
+	        return "TraitRef";
+	    };
+	    TraitRefImpl.prototype.trait = function () {
+	        return helper.referencedTrait(this);
+	    };
+	    return TraitRefImpl;
+	})(ReferenceImpl);
+	exports.TraitRefImpl = TraitRefImpl;
+	/**
+	 * This type currently serves both for absolute and relative urls
+	 **/
+	var UriTemplateImpl = (function (_super) {
+	    __extends(UriTemplateImpl, _super);
+	    function UriTemplateImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    UriTemplateImpl.prototype.wrapperClassName = function () {
+	        return "UriTemplateImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    UriTemplateImpl.prototype.kind = function () {
+	        return "UriTemplate";
+	    };
+	    return UriTemplateImpl;
+	})(StringTypeImpl);
+	exports.UriTemplateImpl = UriTemplateImpl;
+	/**
+	 * This  type describes relative uri templates
+	 **/
+	var RelativeUriStringImpl = (function (_super) {
+	    __extends(RelativeUriStringImpl, _super);
+	    function RelativeUriStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    RelativeUriStringImpl.prototype.wrapperClassName = function () {
+	        return "RelativeUriStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    RelativeUriStringImpl.prototype.kind = function () {
+	        return "RelativeUriString";
+	    };
+	    return RelativeUriStringImpl;
+	})(UriTemplateImpl);
+	exports.RelativeUriStringImpl = RelativeUriStringImpl;
+	/**
+	 * This  type describes absolute uri templates
+	 **/
+	var FullUriTemplateStringImpl = (function (_super) {
+	    __extends(FullUriTemplateStringImpl, _super);
+	    function FullUriTemplateStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    FullUriTemplateStringImpl.prototype.wrapperClassName = function () {
+	        return "FullUriTemplateStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    FullUriTemplateStringImpl.prototype.kind = function () {
+	        return "FullUriTemplateString";
+	    };
+	    return FullUriTemplateStringImpl;
+	})(UriTemplateImpl);
+	exports.FullUriTemplateStringImpl = FullUriTemplateStringImpl;
+	/**
+	 * This sub type of the string represents mime types
+	 **/
+	var MimeTypeImpl = (function (_super) {
+	    __extends(MimeTypeImpl, _super);
+	    function MimeTypeImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    MimeTypeImpl.prototype.wrapperClassName = function () {
+	        return "MimeTypeImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    MimeTypeImpl.prototype.kind = function () {
+	        return "MimeType";
+	    };
+	    return MimeTypeImpl;
+	})(StringTypeImpl);
+	exports.MimeTypeImpl = MimeTypeImpl;
+	/**
+	 * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+	 **/
+	var MarkdownStringImpl = (function (_super) {
+	    __extends(MarkdownStringImpl, _super);
+	    function MarkdownStringImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    MarkdownStringImpl.prototype.wrapperClassName = function () {
+	        return "MarkdownStringImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    MarkdownStringImpl.prototype.kind = function () {
+	        return "MarkdownString";
+	    };
+	    return MarkdownStringImpl;
+	})(StringTypeImpl);
+	exports.MarkdownStringImpl = MarkdownStringImpl;
+	var ResourceImpl = (function (_super) {
+	    __extends(ResourceImpl, _super);
+	    function ResourceImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createResource(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Relative URL of this resource from the parent resource
+	     **/
+	    ResourceImpl.prototype.relativeUri = function () {
+	        return _super.prototype.attribute.call(this, 'relativeUri', function (attr) { return new RelativeUriStringImpl(attr); });
+	    };
+	    /**
+	     * Instantiation of applyed resource type
+	     **/
+	    ResourceImpl.prototype["type"] = function () {
+	        return _super.prototype.attribute.call(this, 'type', function (attr) { return new ResourceTypeRefImpl(attr); });
+	    };
+	    /**
+	     * Instantiation of applyed traits
+	     **/
+	    ResourceImpl.prototype.is = function () {
+	        return _super.prototype.attributes.call(this, 'is', function (attr) { return new TraitRefImpl(attr); });
+	    };
+	    /**
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     **/
+	    ResourceImpl.prototype.securedBy_original = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * Uri parameters of this resource
+	     **/
+	    ResourceImpl.prototype.uriParameters_original = function () {
+	        return _super.prototype.elements.call(this, 'uriParameters');
+	    };
+	    /**
+	     * Methods that can be called on this resource
+	     **/
+	    ResourceImpl.prototype.methods = function () {
+	        return _super.prototype.elements.call(this, 'methods');
+	    };
+	    /**
+	     * Children resources
+	     **/
+	    ResourceImpl.prototype.resources = function () {
+	        return _super.prototype.elements.call(this, 'resources');
+	    };
+	    /**
+	     * An alternate, human-friendly name for the resource
+	     **/
+	    ResourceImpl.prototype.displayName = function () {
+	        return _super.prototype.attribute.call(this, 'displayName', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set displayName value
+	     **/
+	    ResourceImpl.prototype.setDisplayName = function (param) {
+	        this.highLevel().attrOrCreate("displayName").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+	     **/
+	    ResourceImpl.prototype.baseUriParameters = function () {
+	        return _super.prototype.elements.call(this, 'baseUriParameters');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ResourceImpl.prototype.wrapperClassName = function () {
+	        return "ResourceImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ResourceImpl.prototype.kind = function () {
+	        return "Resource";
+	    };
+	    /**
+	     * Path relative to API root
+	     **/
+	    ResourceImpl.prototype.completeRelativeUri = function () {
+	        return helper.completeRelativeUri(this);
+	    };
+	    /**
+	     * baseUri of owning Api concatenated with completeRelativeUri
+	     **/
+	    ResourceImpl.prototype.absoluteUri = function () {
+	        return helper.absoluteUri(this);
+	    };
+	    /**
+	     * Parent resource for non top level resources
+	     **/
+	    ResourceImpl.prototype.parentResource = function () {
+	        return helper.parent(this);
+	    };
+	    /**
+	     * Get child resource by its relative path
+	     **/
+	    ResourceImpl.prototype.childResource = function (relPath) {
+	        return helper.childResource(this, relPath);
+	    };
+	    /**
+	     * Get child method by its name
+	     **/
+	    ResourceImpl.prototype.childMethod = function (method) {
+	        return helper.childMethod(this, method);
+	    };
+	    /**
+	     * Api owning the resource as a sibling
+	     **/
+	    ResourceImpl.prototype.ownerApi = function () {
+	        return helper.ownerApi(this);
+	    };
+	    /**
+	     * Uri parameters of this resource
+	     **/
+	    ResourceImpl.prototype.uriParameters = function () {
+	        return helper.uriParametersPrimary(this);
+	    };
+	    /**
+	     * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * /resource/{objectId}/{propertyId}:
+	     * uriParameters:
+	     * objectId:
+	     * ```
+	     * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+	     * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+	     **/
+	    ResourceImpl.prototype.allUriParameters = function () {
+	        return helper.uriParameters(this);
+	    };
+	    /**
+	     * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+	     * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+	     **/
+	    ResourceImpl.prototype.absoluteUriParameters = function () {
+	        return helper.absoluteUriParameters(this);
+	    };
+	    /**
+	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+	     **/
+	    ResourceImpl.prototype.securedBy = function () {
+	        return helper.securedByPrimary(this);
+	    };
+	    /**
+	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+	     * returns schemes defined with `securedBy` at API level.
+	     **/
+	    ResourceImpl.prototype.allSecuredBy = function () {
+	        return helper.allSecuredBy(this);
+	    };
+	    return ResourceImpl;
+	})(RAMLLanguageElementImpl);
+	exports.ResourceImpl = ResourceImpl;
+	var ApiImpl = (function (_super) {
+	    __extends(ApiImpl, _super);
+	    function ApiImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createApi(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
+	     **/
+	    ApiImpl.prototype.title = function () {
+	        return _super.prototype.attribute.call(this, 'title', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set title value
+	     **/
+	    ApiImpl.prototype.setTitle = function (param) {
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
+	     * The API itself is not versioned.
+	     * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
+	     * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
+	     **/
+	    ApiImpl.prototype.version = function () {
+	        return _super.prototype.attribute.call(this, 'version', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set version value
+	     **/
+	    ApiImpl.prototype.setVersion = function (param) {
+	        this.highLevel().attrOrCreate("version").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
+	     * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
+	     * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
+	     **/
+	    ApiImpl.prototype.baseUri = function () {
+	        return _super.prototype.attribute.call(this, 'baseUri', function (attr) { return new FullUriTemplateStringImpl(attr); });
+	    };
+	    /**
+	     * Base uri parameters are named parameters which described template parameters in the base uri
+	     **/
+	    ApiImpl.prototype.baseUriParameters_original = function () {
+	        return _super.prototype.elements.call(this, 'baseUriParameters');
+	    };
+	    /**
+	     * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
+	     **/
+	    ApiImpl.prototype.uriParameters = function () {
+	        return _super.prototype.elements.call(this, 'uriParameters');
+	    };
+	    /**
+	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
+	     **/
+	    ApiImpl.prototype.protocols_original = function () {
+	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set protocols value
+	     **/
+	    ApiImpl.prototype.setProtocols = function (param) {
+	        this.highLevel().attrOrCreate("protocols").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
+	     * One of the following YAML media types:
+	     * text/yaml
+	     * text/x-yaml
+	     * application/yaml
+	     * application/x-yaml*
+	     * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
+	     * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
+	     * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
+	     **/
+	    ApiImpl.prototype.mediaType = function () {
+	        return _super.prototype.attribute.call(this, 'mediaType', function (attr) { return new MimeTypeImpl(attr); });
+	    };
+	    /**
+	     * To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.
+	     **/
+	    ApiImpl.prototype.schemas = function () {
+	        return _super.prototype.elements.call(this, 'schemas');
+	    };
+	    /**
+	     * Declarations of traits used in this API
+	     **/
+	    ApiImpl.prototype.traits_original = function () {
+	        return _super.prototype.elements.call(this, 'traits');
+	    };
+	    /**
+	     * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
+	     **/
+	    ApiImpl.prototype.securedBy = function () {
+	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
+	    };
+	    /**
+	     * Security schemas that can be applied with securedBy
+	     **/
+	    ApiImpl.prototype.securitySchemes = function () {
+	        return _super.prototype.elements.call(this, 'securitySchemes');
+	    };
+	    /**
+	     * Declaration of resource types used in this API
+	     **/
+	    ApiImpl.prototype.resourceTypes_original = function () {
+	        return _super.prototype.elements.call(this, 'resourceTypes');
+	    };
+	    /**
+	     * Resources are identified by their relative URI, which MUST begin with a slash (/).
+	     * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
+	     * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
+	     * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
+	     **/
+	    ApiImpl.prototype.resources = function () {
+	        return _super.prototype.elements.call(this, 'resources');
+	    };
+	    /**
+	     * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
+	     * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
+	     * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
+	     * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
+	     *
+	     * This example shows an API definition with a single user document.
+	     **/
+	    ApiImpl.prototype.documentation = function () {
+	        return _super.prototype.elements.call(this, 'documentation');
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    ApiImpl.prototype.wrapperClassName = function () {
+	        return "ApiImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    ApiImpl.prototype.kind = function () {
+	        return "Api";
+	    };
+	    /**
+	     * Equivalent API with traits and resource types expanded
+	     **/
+	    ApiImpl.prototype.expand = function () {
+	        return helper.expandTraitsAndResourceTypes(this);
+	    };
+	    /**
+	     * Declarations of traits used in this API
+	     **/
+	    ApiImpl.prototype.traits = function () {
+	        return helper.traitsPrimary(this);
+	    };
+	    /**
+	     * Retrieve all traits including those defined in libraries
+	     **/
+	    ApiImpl.prototype.allTraits = function () {
+	        return helper.allTraits(this);
+	    };
+	    /**
+	     * Declaration of resource types used in this API
+	     **/
+	    ApiImpl.prototype.resourceTypes = function () {
+	        return helper.resourceTypesPrimary(this);
+	    };
+	    /**
+	     * Retrieve all resource types including those defined in libraries
+	     **/
+	    ApiImpl.prototype.allResourceTypes = function () {
+	        return helper.allResourceTypes(this);
+	    };
+	    /**
+	     * Get child resource by its relative path
+	     **/
+	    ApiImpl.prototype.childResource = function (relPath) {
+	        return helper.childResource(this, relPath);
+	    };
+	    /**
+	     * Retrieve all resources of the Api
+	     **/
+	    ApiImpl.prototype.allResources = function () {
+	        return helper.allResources(this);
+	    };
+	    /**
+	     * Base uri parameters are named parameters which described template parameters in the base uri
+	     **/
+	    ApiImpl.prototype.baseUriParameters = function () {
+	        return helper.baseUriParametersPrimary(this);
+	    };
+	    /**
+	     * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+	     * Consider a fragment of RAML specification:
+	     * ```yaml
+	     * version: v1
+	     * baseUri: https://{organization}.example.com/{version}/{service}
+	     * baseUriParameters:
+	     * service:
+	     * ```
+	     * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
+	     * Thus, they are not among `Api.baseUriParameters()`, but they are among `Api.allBaseUriParameters()`.
+	     **/
+	    ApiImpl.prototype.allBaseUriParameters = function () {
+	        return helper.baseUriParameters(this);
+	    };
+	    /**
+	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
+	     **/
+	    ApiImpl.prototype.protocols = function () {
+	        return helper.protocolsPrimary(this);
+	    };
+	    /**
+	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
+	     * Otherwise, returns protocol, specified in the base URI.
+	     **/
+	    ApiImpl.prototype.allProtocols = function () {
+	        return helper.allProtocols(this);
+	    };
+	    ApiImpl.prototype.RAMLVersion = function () {
+	        return helper.RAMLVersion(this);
+	    };
+	    return ApiImpl;
+	})(RAMLLanguageElementImpl);
+	exports.ApiImpl = ApiImpl;
+	var RAMLSimpleElementImpl = (function (_super) {
+	    __extends(RAMLSimpleElementImpl, _super);
+	    function RAMLSimpleElementImpl() {
+	        _super.apply(this, arguments);
+	    }
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    RAMLSimpleElementImpl.prototype.wrapperClassName = function () {
+	        return "RAMLSimpleElementImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    RAMLSimpleElementImpl.prototype.kind = function () {
+	        return "RAMLSimpleElement";
+	    };
+	    return RAMLSimpleElementImpl;
+	})(core.BasicNodeImpl);
+	exports.RAMLSimpleElementImpl = RAMLSimpleElementImpl;
+	var DocumentationItemImpl = (function (_super) {
+	    __extends(DocumentationItemImpl, _super);
+	    function DocumentationItemImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createDocumentationItem(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * title of documentation section
+	     **/
+	    DocumentationItemImpl.prototype.title = function () {
+	        return _super.prototype.attribute.call(this, 'title', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set title value
+	     **/
+	    DocumentationItemImpl.prototype.setTitle = function (param) {
+	        this.highLevel().attrOrCreate("title").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Content of documentation section
+	     **/
+	    DocumentationItemImpl.prototype.content = function () {
+	        return _super.prototype.attribute.call(this, 'content', function (attr) { return new MarkdownStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    DocumentationItemImpl.prototype.wrapperClassName = function () {
+	        return "DocumentationItemImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    DocumentationItemImpl.prototype.kind = function () {
+	        return "DocumentationItem";
+	    };
+	    return DocumentationItemImpl;
+	})(RAMLSimpleElementImpl);
+	exports.DocumentationItemImpl = DocumentationItemImpl;
+	/**
+	 * Content of the schema
+	 **/
+	var GlobalSchemaImpl = (function (_super) {
+	    __extends(GlobalSchemaImpl, _super);
+	    function GlobalSchemaImpl(nodeOrKey, setAsTopLevel) {
+	        _super.call(this, (typeof nodeOrKey == "string") ? createGlobalSchema(nodeOrKey) : nodeOrKey, setAsTopLevel);
+	        this.nodeOrKey = nodeOrKey;
+	        this.setAsTopLevel = setAsTopLevel;
+	    }
+	    /**
+	     * Name of the global schema, used to refer on schema content
+	     **/
+	    GlobalSchemaImpl.prototype.key = function () {
+	        return _super.prototype.attribute.call(this, 'key', this.toString);
+	    };
+	    /**
+	     * @hidden
+	     * Set key value
+	     **/
+	    GlobalSchemaImpl.prototype.setKey = function (param) {
+	        this.highLevel().attrOrCreate("key").setValue("" + param);
+	        return this;
+	    };
+	    /**
+	     * Content of the schema
+	     **/
+	    GlobalSchemaImpl.prototype.value = function () {
+	        return _super.prototype.attribute.call(this, 'value', function (attr) { return new SchemaStringImpl(attr); });
+	    };
+	    /**
+	     * @hidden
+	     * @return Actual name of instance class
+	     **/
+	    GlobalSchemaImpl.prototype.wrapperClassName = function () {
+	        return "GlobalSchemaImpl";
+	    };
+	    /**
+	     * @return Actual name of instance interface
+	     **/
+	    GlobalSchemaImpl.prototype.kind = function () {
+	        return "GlobalSchema";
+	    };
+	    return GlobalSchemaImpl;
+	})(RAMLSimpleElementImpl);
+	exports.GlobalSchemaImpl = GlobalSchemaImpl;
+	/**
+	 * @hidden
+	 **/
+	function createApi(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Api");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createRAMLLanguageElement(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("RAMLLanguageElement");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createTypeInstance(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("TypeInstance");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createTypeInstanceProperty(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("TypeInstanceProperty");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createResourceType(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("ResourceType");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createMethod(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Method");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createMethodBase(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("MethodBase");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createHasNormalParameters(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("HasNormalParameters");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createParameter(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Parameter");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createStringTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("StringTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createBooleanTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("BooleanTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createNumberTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("NumberTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createIntegerTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("IntegerTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createDateTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("DateTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createFileTypeDeclaration(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("FileTypeDeclaration");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createResponse(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Response");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createBodyLike(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("BodyLike");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createXMLBody(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("XMLBody");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createJSONBody(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("JSONBody");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createAbstractSecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("AbstractSecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createSecuritySchemePart(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("SecuritySchemePart");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createSecuritySchemeSettings(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("SecuritySchemeSettings");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createOAuth1SecuritySchemeSettings(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("OAuth1SecuritySchemeSettings");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createOAuth2SecuritySchemeSettings(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("OAuth2SecuritySchemeSettings");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createOAuth2SecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("OAuth2SecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createOAuth1SecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("OAuth1SecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createBasicSecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("BasicSecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createDigestSecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("DigestSecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createCustomSecurityScheme(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("CustomSecurityScheme");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createTrait(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Trait");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createResource(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("Resource");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createGlobalSchema(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("GlobalSchema");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createRAMLSimpleElement(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("RAMLSimpleElement");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	/**
+	 * @hidden
+	 **/
+	function createDocumentationItem(key) {
+	    var universe = hl.universeProvider("RAML08");
+	    var nc = universe.type("DocumentationItem");
+	    var node = nc.getAdapter(services.RAMLService).createStubNode(null, key);
+	    return node;
+	}
+	function loadApiSync(apiPath, arg1, arg2) {
+	    return apiLoader.loadApi(apiPath, arg1, arg2).getOrElse(null);
+	}
+	exports.loadApiSync = loadApiSync;
+	function loadRAMLSync(ramlPath, arg1, arg2) {
+	    return apiLoader.loadApi(ramlPath, arg1, arg2).getOrElse(null);
+	}
+	exports.loadRAMLSync = loadRAMLSync;
+	function loadApi(apiPath, arg1, arg2) {
+	    return apiLoader.loadApiAsync(apiPath, arg1, arg2);
+	}
+	exports.loadApi = loadApi;
+	function loadRAML(ramlPath, arg1, arg2) {
+	    return apiLoader.loadRAMLAsync(ramlPath, arg1, arg2);
+	}
+	exports.loadRAML = loadRAML;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType - runtime type to find the match for
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    return apiLoader.getLanguageElementByRuntimeType(runtimeType);
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
+
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/// <reference path="../../typings/main.d.ts" />
+	var RamlWrapper1 = __webpack_require__(1);
+	var path = __webpack_require__(16);
+	var Opt = __webpack_require__(12);
+	var jsyaml = __webpack_require__(15);
+	var hl = __webpack_require__(2);
+	var hlimpl = __webpack_require__(5);
+	var llimpl = __webpack_require__(15);
+	var expander = __webpack_require__(88);
+	var universeDef = __webpack_require__(54);
+	var ramlServices = __webpack_require__(49);
+	var universeProvider = __webpack_require__(63);
+	/***
+	 * Load API synchronously. Detects RAML version and uses corresponding parser.
+	 * @param apiPath Path to API: local file system path or Web URL
+	 * @param options Load options
+	 * @return Opt&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadApi(apiPath, arg1, arg2) {
+	    var api = loadRAMLInternal(apiPath, arg1, arg2);
+	    if (false) {
+	        throw new Error("Loaded RAML is not API");
+	    }
+	    else {
+	        return new Opt(api);
+	    }
+	}
+	exports.loadApi = loadApi;
+	/***
+	 * Load RAML synchronously. Detects RAML version and uses corresponding parser.
+	 * @param ramlPath Path to RAML: local file system path or Web URL
+	 * @param options Load options
+	 * @return Opt&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadRAML(ramlPath, arg1, arg2) {
+	    var result = loadRAMLInternal(ramlPath, arg1, arg2);
+	    return new Opt(result);
+	}
+	exports.loadRAML = loadRAML;
+	function loadRAMLInternal(apiPath, arg1, arg2) {
+	    var gotArray = Array.isArray(arg1);
+	    var extensionsAndOverlays = (gotArray ? arg1 : null);
+	    var options = (gotArray ? arg2 : arg1);
+	    options = options || {};
+	    var project = getProject(apiPath, options);
+	    var unitName = path.basename(apiPath);
+	    var unit = project.unit(unitName);
+	    if (arg2 && !extensionsAndOverlays) {
+	        throw new Error("Extensions and overlays list should be defined");
+	    }
+	    var api;
+	    if (unit) {
+	        if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
+	            var extensionUnits = [];
+	            extensionsAndOverlays.forEach(function (currentPath) {
+	                if (!currentPath || currentPath.trim().length == 0) {
+	                    throw new Error("Extensions and overlays list should contain legal file paths");
+	                }
+	            });
+	            extensionsAndOverlays.forEach(function (unitPath) {
+	                extensionUnits.push(project.unit(path.basename(unitPath)));
+	            });
+	            //calling to perform the checks, we do not actually need the api itself
+	            extensionUnits.forEach(function (extensionUnit) { return toApi(extensionUnit, options); });
+	            api = toApi(expander.mergeAPIs(unit, extensionUnits, 0 /* MERGE */), options);
+	        }
+	        else {
+	            api = toApi(unit, options);
+	            api.highLevel().setMergeMode(0 /* MERGE */);
+	        }
+	    }
+	    if (options.rejectOnErrors && api && api.errors().length) {
+	        throw toError(api);
+	    }
+	    if (options.attributeDefaults != null && api) {
+	        api.setAttributeDefaults(options.attributeDefaults);
+	    }
+	    else if (api) {
+	        api.setAttributeDefaults(true);
+	    }
+	    return api;
+	}
+	/***
+	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
+	 * @param apiPath Path to API: local file system path or Web URL
+	 * @param options Load options
+	 * @return Promise&lt;Api&gt;, where Api belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadApiAsync(apiPath, arg1, arg2) {
+	    var ramlPromise = loadRAMLAsync(apiPath, arg1, arg2);
+	    return ramlPromise.then(function (loadedRaml) {
+	        if (false) {
+	            //TODO check that loaded RAML is API
+	            return Promise.reject("Specified RAML is not API");
+	        }
+	        else {
+	            return loadedRaml;
+	        }
+	    });
+	}
+	exports.loadApiAsync = loadApiAsync;
+	/***
+	 * Load API asynchronously. Detects RAML version and uses corresponding parser.
+	 * @param ramlPath Path to RAML: local file system path or Web URL
+	 * @param options Load options
+	 * @return Promise&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
+	 ***/
+	function loadRAMLAsync(ramlPath, arg1, arg2) {
+	    var gotArray = Array.isArray(arg1);
+	    var extensionsAndOverlays = (gotArray ? arg1 : null);
+	    var options = (gotArray ? arg2 : arg1);
+	    options = options || {};
+	    var project = getProject(ramlPath, options);
+	    var unitName = path.basename(ramlPath);
+	    if (arg2 && !extensionsAndOverlays) {
+	        throw new Error("Extensions and overlays list should be defined");
+	    }
+	    if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
+	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
+	            masterApi.highLevel().setMergeMode(0 /* MERGE */);
+	            if (options.attributeDefaults != null && masterApi) {
+	                masterApi.setAttributeDefaults(options.attributeDefaults);
+	            }
+	            else if (masterApi) {
+	                masterApi.setAttributeDefaults(true);
+	            }
+	            return masterApi;
+	        });
+	    }
+	    else {
+	        extensionsAndOverlays.forEach(function (currentPath) {
+	            if (!currentPath || currentPath.trim().length == 0) {
+	                throw new Error("Extensions and overlays list should contain legal file paths");
+	            }
+	        });
+	        return fetchAndLoadApiAsync(project, unitName, options).then(function (masterApi) {
+	            var apiPromises = [];
+	            extensionsAndOverlays.forEach(function (extensionUnitPath) {
+	                apiPromises.push(fetchAndLoadApiAsync(project, path.basename(extensionUnitPath), options));
+	            });
+	            return Promise.all(apiPromises).then(function (apis) {
+	                var overlayUnits = [];
+	                apis.forEach(function (currentApi) { return overlayUnits.push(currentApi.highLevel().lowLevel().unit()); });
+	                var result = expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits, 0 /* MERGE */);
+	                if (options.attributeDefaults != null && result) {
+	                    result.setAttributeDefaults(options.attributeDefaults);
+	                }
+	                else if (result) {
+	                    result.setAttributeDefaults(true);
+	                }
+	                return result;
+	            }).then(function (mergedHighLevel) {
+	                return toApi(mergedHighLevel, options);
+	            });
+	        });
+	    }
+	}
+	exports.loadRAMLAsync = loadRAMLAsync;
+	/**
+	 * Gets AST node by runtime type, if runtime type matches any.
+	 * @param runtimeType
+	 */
+	function getLanguageElementByRuntimeType(runtimeType) {
+	    if (runtimeType == null) {
+	        return null;
+	    }
+	    var highLevelNode = runtimeType.getAdapter(ramlServices.RAMLService).getDeclaringNode();
+	    if (highLevelNode == null) {
+	        return null;
+	    }
+	    return highLevelNode.wrapperNode();
+	}
+	exports.getLanguageElementByRuntimeType = getLanguageElementByRuntimeType;
+	function fetchAndLoadApiAsync(project, unitName, options) {
+	    return llimpl.fetchIncludesAsync(project, unitName).then(function (x) {
+	        try {
+	            var api = toApi(x, options);
+	            if (options.rejectOnErrors && api && api.errors().length) {
+	                return Promise.reject(toError(api));
+	            }
+	            return api;
+	        }
+	        catch (err) {
+	            return Promise.reject(err);
+	        }
+	    });
+	}
+	function getProject(apiPath, options) {
+	    options = options || {};
+	    var includeResolver = options.fsResolver;
+	    var httpResolver = options.httpResolver;
+	    var projectRoot = path.dirname(apiPath);
+	    var project = new jsyaml.Project(projectRoot, includeResolver, httpResolver);
+	    return project;
+	}
+	;
+	function toApi(unitOrHighlevel, options, checkApisOverlays) {
+	    if (checkApisOverlays === void 0) { checkApisOverlays = false; }
+	    if (!unitOrHighlevel) {
+	        return null;
+	    }
+	    var unit = null;
+	    var highLevel = null;
+	    if (unitOrHighlevel.isRAMLUnit) {
+	        unit = unitOrHighlevel;
+	    }
+	    else {
+	        highLevel = unitOrHighlevel;
+	        unit = highLevel.lowLevel().unit();
+	    }
+	    var api;
+	    var contents = unit.contents();
+	    var ramlFirstLine = contents.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+	    if (!ramlFirstLine) {
+	        //TODO throw sensible error
+	        return null;
+	    }
+	    var verStr = ramlFirstLine[1];
+	    var ramlFileType = ramlFirstLine[2];
+	    var typeName;
+	    var apiImpl;
+	    var ramlVersion;
+	    if (verStr == '0.8') {
+	        ramlVersion = 'RAML08';
+	    }
+	    else if (verStr == '1.0') {
+	        ramlVersion = 'RAML10';
+	    }
+	    if (!ramlVersion) {
+	        throw new Error("Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'");
+	    }
+	    if (ramlVersion == 'RAML08' && checkApisOverlays) {
+	        throw new Error('Extensions and overlays are not supported in RAML 0.8.');
+	    }
+	    //if (!ramlFileType || ramlFileType.trim() === "") {
+	    //    if (verStr=='0.8') {
+	    //        typeName = universeDef.Universe08.Api.name;
+	    //        apiImpl = RamlWrapper08.ApiImpl;
+	    //    } else if(verStr=='1.0'){
+	    //        typeName = universeDef.Universe10.Api.name;
+	    //        apiImpl = RamlWrapper1.ApiImpl;
+	    //    }
+	    //} else if (ramlFileType === "Overlay") {
+	    //    apiImpl = RamlWrapper1.OverlayImpl;
+	    //    typeName = universeDef.Universe10.Overlay.name;
+	    //} else if (ramlFileType === "Extension") {
+	    //    apiImpl = RamlWrapper1.ExtensionImpl;
+	    //    typeName = universeDef.Universe10.Extension.name;
+	    //}
+	    var universe = universeProvider(ramlVersion);
+	    var apiType = universe.type(typeName);
+	    if (!highLevel) {
+	        highLevel = hl.fromUnit(unit);
+	    }
+	    //api = new apiImpl(highLevel);
+	    api = highLevel.wrapperNode();
+	    return api;
+	}
+	;
+	function toError(api) {
+	    var error = new Error('Api contains errors.');
+	    error.parserErrors = api.errors();
+	    return error;
+	}
+	exports.toError = toError;
+	function loadApis1(projectRoot, cacheChildren, expandTraitsAndResourceTypes) {
+	    if (cacheChildren === void 0) { cacheChildren = false; }
+	    if (expandTraitsAndResourceTypes === void 0) { expandTraitsAndResourceTypes = true; }
+	    var universe = universeProvider("RAML10");
+	    var apiType = universe.type(universeDef.Universe10.Api.name);
+	    var p = new jsyaml.Project(projectRoot);
+	    var result = [];
+	    p.units().forEach(function (x) {
+	        var lowLevel = x.ast();
+	        if (cacheChildren) {
+	            lowLevel = llimpl.toChildCahcingNode(lowLevel);
+	        }
+	        var api = new RamlWrapper1.ApiImpl(new hlimpl.ASTNodeImpl(lowLevel, null, apiType, null));
+	        if (expandTraitsAndResourceTypes) {
+	            api = expander.expandTraitsAndResourceTypes(api);
+	        }
+	        result.push(api);
+	    });
+	    return result;
+	}
+	exports.loadApis1 = loadApis1;
+
+
+/***/ },
 /* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RamlWrapper = __webpack_require__(78);
+	var RamlWrapper = __webpack_require__(89);
 	var factory = __webpack_require__(92);
-	var core = __webpack_require__(67);
+	var core = __webpack_require__(78);
 	var hl = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
 	var universes = __webpack_require__(54);
-	var expander = __webpack_require__(77);
+	var expander = __webpack_require__(88);
 	var lowLevelProxy = __webpack_require__(6);
 	var util = __webpack_require__(11);
 	var search = __webpack_require__(53);
@@ -48926,7 +49087,7 @@ module.exports =
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var RamlWrapper = __webpack_require__(78);
+	var RamlWrapper = __webpack_require__(89);
 	/**
 	 * @hidden
 	 * Build Wrapper node corresponding to the High Level node
@@ -49949,7 +50110,7 @@ module.exports =
 /***/ function(module, exports, __webpack_require__) {
 
 	var defs = __webpack_require__(3);
-	var wrapperHelper = __webpack_require__(65);
+	var wrapperHelper = __webpack_require__(76);
 	var services = __webpack_require__(49);
 	var linter = __webpack_require__(55);
 	function createExampleObject(w, generateFakeExamples) {
@@ -50614,6 +50775,7 @@ module.exports =
 	var def = __webpack_require__(3);
 	var high = __webpack_require__(2);
 	var hlimpl = __webpack_require__(5);
+	var proxy = __webpack_require__(6);
 	var search = __webpack_require__(53);
 	var universes = __webpack_require__(54);
 	var universeHelpers = __webpack_require__(62);
@@ -50843,17 +51005,21 @@ module.exports =
 	            }
 	        }
 	    };
-	    BasicNodeBuilder.prototype.processChildren = function (childrenToAdopt, aNode, res, allowsQuestion, km) {
-	        var typeDeclarationName = universes.Universe10.TypeDeclaration.name;
-	        var typePropertyName = universes.Universe10.TypeDeclaration.properties.type.name;
-	        if (aNode.definition() && aNode.definition().isAssignableFrom(typeDeclarationName) && aNode.lowLevel() && km.canBeValue.nameId() === typePropertyName && aNode.lowLevel()._node && aNode.lowLevel()._node.value && aNode.lowLevel()._node.value.kind === 3 /* SEQ */) {
-	            childrenToAdopt.forEach(function (child) {
-	                var property = new hlimpl.ASTPropImpl(child, aNode, km.canBeValue.range(), km.canBeValue);
-	                res.push(property);
-	            });
-	            return res;
+	    BasicNodeBuilder.prototype.isTypeDeclarationShortcut = function (node, property) {
+	        var isTypeDeclarationType = universeHelpers.isTypeProperty(property);
+	        var isTypeDeclaration = node.definition() && universeHelpers.isTypeDeclarationTypeOrDescendant(node.definition());
+	        if (isTypeDeclaration && isTypeDeclarationType && node.lowLevel() && node.lowLevel().valueKind() === 3 /* SEQ */) {
+	            return true;
 	        }
+	        return false;
+	    };
+	    BasicNodeBuilder.prototype.processChildren = function (childrenToAdopt, aNode, res, allowsQuestion, km) {
+	        var _this = this;
 	        childrenToAdopt.forEach(function (x) {
+	            if (km.canBeValue && _this.isTypeDeclarationShortcut(aNode, km.canBeValue)) {
+	                res.push(new hlimpl.ASTPropImpl(x, aNode, km.canBeValue.range(), km.canBeValue));
+	                return;
+	            }
 	            var key = x.key();
 	            //if (x.optional()&&!allowsQuestion) {
 	            //    return;
@@ -51139,7 +51305,9 @@ module.exports =
 	                }
 	            }
 	            else {
-	                res.push(new hlimpl.BasicASTNode(x, aNode));
+	                if (!(x instanceof proxy.LowLevelCompositeNode) || x.primaryNode() != null) {
+	                    res.push(new hlimpl.BasicASTNode(x, aNode));
+	                }
 	            }
 	        });
 	        return res;
