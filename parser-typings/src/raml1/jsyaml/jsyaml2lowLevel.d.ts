@@ -124,6 +124,7 @@ export declare class Project implements lowlevel.IProject {
     setCachedUnitContent(pth: string, cnt: string, tl?: boolean): CompilationUnit;
     resolveAsync(unitPath: string, pathInUnit: string): Promise<lowlevel.ICompilationUnit>;
     resolve(unitPath: string, pathInUnit: string): CompilationUnit;
+    buildPath(pathInUnit: any, unitPath: any): any;
     units(): lowlevel.ICompilationUnit[];
     unitsAsync(): Promise<lowlevel.ICompilationUnit[]>;
     lexerErrors(): Error[];

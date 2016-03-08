@@ -1,15 +1,15 @@
 /// <reference path="../../../typings/main.d.ts" />
 import hl = require("../highLevelAST");
-import wrapper = require("../artifacts/raml10parser");
+import wrapper10 = require("../artifacts/raml10parser");
+import wrapper08 = require("../artifacts/raml08parser");
 declare class OverloadingValidator {
-    protected holder: {
-        [path: string]: wrapper.Method[];
+    protected uriToResources: {
+        [path: string]: Array<wrapper10.Resource | wrapper08.Resource>;
     };
-    protected conflicting: {
-        [path: string]: wrapper.Method[];
+    protected conflictingUriToResources: {
+        [path: string]: Array<wrapper10.Resource | wrapper08.Resource>;
     };
-    validateApi(q: wrapper.ApiImpl, v: hl.ValidationAcceptor): void;
-    acceptResource(x: wrapper.Resource): void;
-    acceptMethod(x: wrapper.Resource, m: wrapper.Method): void;
+    validateApi(api: wrapper10.Api | wrapper08.Api, acceptor: hl.ValidationAcceptor): void;
+    acceptResource(resource: wrapper10.Resource | wrapper08.Resource): void;
 }
 export = OverloadingValidator;
