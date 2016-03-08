@@ -366,6 +366,7 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
     setDefault(param: any): TypeDeclarationImpl;
     /**
      * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+     * @hidden
      **/
     example_original(): string;
     /**
@@ -431,6 +432,7 @@ export declare class TypeDeclarationImpl extends RAMLLanguageElementImpl impleme
     validateInstance(value: any): string[];
     /**
      * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+     * @hidden
      **/
     example(): string;
     structuredExample(): TypeInstance;
@@ -503,6 +505,7 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
     constructor(nodeOrKey: hl.IHighLevelNode | string, setAsTopLevel?: boolean);
     /**
      * String representation of example
+     * @hidden
      **/
     content_original(): string;
     /**
@@ -556,6 +559,7 @@ export declare class ExampleSpecImpl extends RAMLLanguageElementImpl implements 
     kind(): string;
     /**
      * String representation of example
+     * @hidden
      **/
     content(): string;
     structuredContent(): TypeInstance;
@@ -1599,6 +1603,7 @@ export interface ResourceBase extends RAMLLanguageElement {
      * ```
      * Here `propertyId` uri parameter is not described in the `uriParameters` node,
      * but it is among Resource.allUriParameters().
+     * @deprecated
      **/
     allUriParameters(): TypeDeclaration[];
     /**
@@ -1608,6 +1613,7 @@ export interface ResourceBase extends RAMLLanguageElement {
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
+     * @deprecated
      **/
     allSecuredBy(): SecuritySchemeRef[];
 }
@@ -1629,10 +1635,12 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
     "type"(): ResourceTypeRef;
     /**
      * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+     * @hidden
      **/
     securedBy_original(): SecuritySchemeRef[];
     /**
      * Detailed information about any URI parameters of this resource
+     * @hidden
      **/
     uriParameters_original(): TypeDeclaration[];
     /**
@@ -1646,6 +1654,7 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
     kind(): string;
     /**
      * Detailed information about any URI parameters of this resource
+     * @hidden
      **/
     uriParameters(): TypeDeclaration[];
     /**
@@ -1658,15 +1667,18 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
      * ```
      * Here `propertyId` uri parameter is not described in the `uriParameters` node,
      * but it is among Resource.allUriParameters().
+     * @deprecated
      **/
     allUriParameters(): TypeDeclaration[];
     /**
      * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+     * @hidden
      **/
     securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
+     * @deprecated
      **/
     allSecuredBy(): SecuritySchemeRef[];
 }
@@ -1962,6 +1974,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     traits(): Trait[];
     /**
      * Retrieve all traits including those defined in libraries
+     * @deprecated
      **/
     allTraits(): Trait[];
     /**
@@ -1970,6 +1983,7 @@ export interface LibraryBase extends RAMLLanguageElement {
     resourceTypes(): ResourceType[];
     /**
      * Retrieve all resource types including those defined in libraries
+     * @deprecated
      **/
     allResourceTypes(): ResourceType[];
 }
@@ -1997,10 +2011,12 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     types(): TypeDeclaration[];
     /**
      * Declarations of traits for use within this API
+     * @hidden
      **/
     traits_original(): Trait[];
     /**
      * Declarations of resource types for use within this API
+     * @hidden
      **/
     resourceTypes_original(): ResourceType[];
     /**
@@ -2026,18 +2042,22 @@ export declare class LibraryBaseImpl extends RAMLLanguageElementImpl implements 
     kind(): string;
     /**
      * Declarations of traits for use within this API
+     * @hidden
      **/
     traits(): Trait[];
     /**
      * Retrieve all traits including those defined in libraries
+     * @deprecated
      **/
     allTraits(): Trait[];
     /**
      * Declarations of resource types for use within this API
+     * @hidden
      **/
     resourceTypes(): ResourceType[];
     /**
      * Retrieve all resource types including those defined in libraries
+     * @deprecated
      **/
     allResourceTypes(): ResourceType[];
 }
@@ -2658,6 +2678,7 @@ export interface Method extends MethodBase {
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
+     * @deprecated
      **/
     allSecuredBy(): SecuritySchemeRef[];
 }
@@ -2713,6 +2734,7 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     annotations(): AnnotationRef[];
     /**
      * The security schemes that apply to this method
+     * @hidden
      **/
     securedBy_original(): SecuritySchemeRef[];
     /**
@@ -2740,11 +2762,13 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     methodId(): string;
     /**
      * The security schemes that apply to this method
+     * @hidden
      **/
     securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
+     * @deprecated
      **/
     allSecuredBy(): SecuritySchemeRef[];
 }
@@ -3329,6 +3353,7 @@ export interface Api extends LibraryBase {
      * ```
      * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
      * but they are among `Api.allBaseUriParameters()`.
+     * @deprecated
      **/
     allBaseUriParameters(): TypeDeclaration[];
     /**
@@ -3338,6 +3363,7 @@ export interface Api extends LibraryBase {
     /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.
+     * @deprecated
      **/
     allProtocols(): string[];
     meta(): core.NodeMetadata;
@@ -3370,10 +3396,12 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     baseUri(): FullUriTemplateString;
     /**
      * Named parameters used in the baseUri (template)
+     * @hidden
      **/
     baseUriParameters_original(): TypeDeclaration[];
     /**
      * The protocols supported by the API
+     * @hidden
      **/
     protocols_original(): string[];
     /**
@@ -3437,6 +3465,7 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     allResources(): Resource[];
     /**
      * Named parameters used in the baseUri (template)
+     * @hidden
      **/
     baseUriParameters(): TypeDeclaration[];
     /**
@@ -3450,15 +3479,18 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      * ```
      * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
      * but they are among `Api.allBaseUriParameters()`.
+     * @deprecated
      **/
     allBaseUriParameters(): TypeDeclaration[];
     /**
      * The protocols supported by the API
+     * @hidden
      **/
     protocols(): string[];
     /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.
+     * @deprecated
      **/
     allProtocols(): string[];
     RAMLVersion(): string;

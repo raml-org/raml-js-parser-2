@@ -156,7 +156,7 @@ export declare class ASTNodeImpl extends BasicASTNode implements hl.IHighLevelNo
     findById(id: string): hl.IParseResult;
     isAuxilary(): boolean;
     private initilizeKnownIDs(api);
-    private getMaster();
+    getMaster(): hl.IParseResult;
     /**
      * Forcefully sets a master unit for this API, which may be different from the one, current unit points to
      * via masterRef.

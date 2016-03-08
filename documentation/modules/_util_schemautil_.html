@@ -91,7 +91,12 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#createschema" class="tsd-kind-icon">create<wbr>Schema</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#getjsonschema" class="tsd-kind-icon">getJSONSchema</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#getreferences" class="tsd-kind-icon">get<wbr>References</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_util_schemautil_.html#getrefs" class="tsd-kind-icon">get<wbr>Refs</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#getxmlschema" class="tsd-kind-icon">getXMLSchema</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#isscheme" class="tsd-kind-icon">is<wbr>Scheme</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_util_schemautil_.html#iswebpath" class="tsd-kind-icon">is<wbr>Web<wbr>Path</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_util_schemautil_.html#startdownloadingreferencesasync" class="tsd-kind-icon">start<wbr>Downloading<wbr>References<wbr>Async</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,7 +110,7 @@
 					<div class="tsd-signature tsd-kind-icon">ZSchema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L5">util/schemaUtil.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L14">util/schemaUtil.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,7 +120,7 @@
 					<div class="tsd-signature tsd-kind-icon">global<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CACHE</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L13">util/schemaUtil.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L21">util/schemaUtil.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">use<wbr>Lint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L14">util/schemaUtil.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L23">util/schemaUtil.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -136,19 +141,22 @@
 					<a name="createschema" class="tsd-anchor"></a>
 					<h3>create<wbr>Schema</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Schema<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_util_schemautil_.schema.html" class="tsd-signature-type">Schema</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Schema<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, root<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_util_schemautil_.schema.html" class="tsd-signature-type">Schema</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L135">util/schemaUtil.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L429">util/schemaUtil.ts:429</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>content: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>root: <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_util_schemautil_.schema.html" class="tsd-signature-type">Schema</a></h4>
@@ -159,19 +167,74 @@
 					<a name="getjsonschema" class="tsd-anchor"></a>
 					<h3>getJSONSchema</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">getJSONSchema<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">getJSONSchema<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, root<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L114">util/schemaUtil.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L408">util/schemaUtil.ts:408</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>content: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>root: <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="getreferences" class="tsd-anchor"></a>
+					<h3>get<wbr>References</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>References<span class="tsd-signature-symbol">(</span>schemaContent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, unit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L491">util/schemaUtil.ts:491</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>schemaContent: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>unit: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="getrefs" class="tsd-anchor"></a>
+					<h3>get<wbr>Refs</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Refs<span class="tsd-signature-symbol">(</span>promise<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, schemaObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L497">util/schemaUtil.ts:497</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>promise: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>schemaObject: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -188,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L124">util/schemaUtil.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L418">util/schemaUtil.ts:418</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -198,6 +261,78 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="isscheme" class="tsd-anchor"></a>
+					<h3>is<wbr>Scheme</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Scheme<span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L465">util/schemaUtil.ts:465</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>content: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="iswebpath" class="tsd-anchor"></a>
+					<h3>is<wbr>Web<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Web<wbr>Path<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L459">util/schemaUtil.ts:459</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>str: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="startdownloadingreferencesasync" class="tsd-anchor"></a>
+					<h3>start<wbr>Downloading<wbr>References<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Downloading<wbr>References<wbr>Async<span class="tsd-signature-symbol">(</span>schemaContent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, unit<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/util/schemaUtil.ts#L475">util/schemaUtil.ts:475</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>schemaContent: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>unit: <a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -238,7 +373,22 @@
 						<a href="_util_schemautil_.html#getjsonschema" class="tsd-kind-icon">getJSONSchema</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_util_schemautil_.html#getreferences" class="tsd-kind-icon">get<wbr>References</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_util_schemautil_.html#getrefs" class="tsd-kind-icon">get<wbr>Refs</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_util_schemautil_.html#getxmlschema" class="tsd-kind-icon">getXMLSchema</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_util_schemautil_.html#isscheme" class="tsd-kind-icon">is<wbr>Scheme</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_util_schemautil_.html#iswebpath" class="tsd-kind-icon">is<wbr>Web<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_util_schemautil_.html#startdownloadingreferencesasync" class="tsd-kind-icon">start<wbr>Downloading<wbr>References<wbr>Async</a>
 					</li>
 				</ul>
 			</nav>

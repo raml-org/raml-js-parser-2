@@ -4,7 +4,9 @@ export interface ValidationIssue {
 }
 export interface IncludeReference {
     getFragments(): string[];
-    asString(): any;
+    getIncludePath(): string;
+    asString(): string;
+    encodedName(): string;
 }
 export interface ResolvedReference {
     /**
@@ -59,7 +61,7 @@ export declare function getIncludeReferenceResolvers(): IncludeReferenceResolver
  * @param includeString - complete include string
  * @param content - include contents
  */
-export declare function resolveContents(includeString: string, content: string): any;
+export declare function resolveContents(includeString: string, content?: string): any;
 /**
  * Checks all resolvers, finds the suitable one, resolves the reference and returns the result
  * of resolving. Returns null if no suitable resolver is found or resolver itself fails to resolve.

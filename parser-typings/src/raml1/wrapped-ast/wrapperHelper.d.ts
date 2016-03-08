@@ -22,6 +22,10 @@ export declare function qName(c: core.BasicNode): string;
  * __$meta__{"name":"traits","override":true}
  **/
 export declare function traitsPrimary(a: RamlWrapper.LibraryBase): RamlWrapper.Trait[];
+/**
+ * __$helperMethod__ Retrieve all traits including those defined in libraries
+ * __$meta__{"deprecated":true}
+ */
 export declare function allTraits(a: RamlWrapper.LibraryBase): RamlWrapper.Trait[];
 /**
  * __$helperMethod__
@@ -29,6 +33,10 @@ export declare function allTraits(a: RamlWrapper.LibraryBase): RamlWrapper.Trait
  * __$meta__{"name":"resourceTypes","override":true}
  **/
 export declare function resourceTypesPrimary(a: RamlWrapper.LibraryBase): RamlWrapper.ResourceType[];
+/**
+ * __$helperMethod__ Retrieve all resource types including those defined in libraries
+ * __$meta__{"deprecated":true}
+ */
 export declare function allResourceTypes(a: RamlWrapper.LibraryBase): RamlWrapper.ResourceType[];
 export declare function relativeUriSegments(res: RamlWrapper.Resource): string[];
 export declare function parentResource(method: RamlWrapper.Method): RamlWrapper.Resource;
@@ -79,7 +87,7 @@ export declare function uriParametersPrimary(resource: RamlWrapper.ResourceBase)
  * ```
  * Here `propertyId` uri parameter is not described in the `uriParameters` node,
  * but it is among Resource.allUriParameters().
- * __$meta__={"name":"allUriParameters"}
+ * __$meta__={"name":"allUriParameters","deprecated":true}
  **/
 export declare function uriParameters(resource: RamlWrapper.ResourceBase): RamlWrapper.TypeDeclaration[];
 /**
@@ -109,7 +117,7 @@ export declare function baseUriParametersPrimary(api: RamlWrapper.Api): RamlWrap
  * ```
  * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
  * but they are among `Api.allBaseUriParameters()`.
- * __$meta__={"name":"allBaseUriParameters"}
+ * __$meta__={"name":"allBaseUriParameters","deprecated":true}
  **/
 export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.TypeDeclaration[];
 /**
@@ -129,6 +137,7 @@ export declare function protocolsPrimary(api: RamlWrapper.Api): string[];
  * __$helperMethod__
  * Protocols used by the API. Returns the `protocols` property value if it is specified.
  * Otherwise, returns protocol, specified in the base URI.
+ * __$meta__{"deprecated":true}
  **/
 export declare function allProtocols(api: RamlWrapper.Api): string[];
 /**
@@ -142,6 +151,7 @@ export declare function securedByPrimary(resourceOrMethod: RamlWrapper.ResourceB
  * __$helperMethod__
  * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
  * returns schemes defined with `securedBy` at API level.
+ * __$meta__{"deprecated":true}
  **/
 export declare function allSecuredBy(resourceOrMethod: RamlWrapper.ResourceBase | RamlWrapper.Method): RamlWrapper.SecuritySchemeRef[];
 /**

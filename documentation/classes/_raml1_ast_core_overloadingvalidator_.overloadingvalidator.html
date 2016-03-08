@@ -85,14 +85,13 @@
 						<section class="tsd-index-section tsd-is-private-protected tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#conflicting" class="tsd-kind-icon">conflicting</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#holder" class="tsd-kind-icon">holder</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#conflictinguritoresources" class="tsd-kind-icon">conflicting<wbr>Uri<wbr>ToResources</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#uritoresources" class="tsd-kind-icon">uri<wbr>ToResources</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#acceptmethod" class="tsd-kind-icon">accept<wbr>Method</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#acceptresource" class="tsd-kind-icon">accept<wbr>Resource</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_raml1_ast_core_overloadingvalidator_.overloadingvalidator.html#validateapi" class="tsd-kind-icon">validate<wbr>Api</a></li>
 							</ul>
@@ -103,9 +102,27 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
-					<a name="conflicting" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> conflicting</h3>
-					<div class="tsd-signature tsd-kind-icon">conflicting<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="conflictinguritoresources" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> conflicting<wbr>Uri<wbr>ToResources</h3>
+					<div class="tsd-signature tsd-kind-icon">conflicting<wbr>Uri<wbr>ToResources<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L41">raml1/ast.core/overloadingValidator.ts:41</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>path: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="uritoresources" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> uri<wbr>ToResources</h3>
+					<div class="tsd-signature tsd-kind-icon">uri<wbr>ToResources<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L40">raml1/ast.core/overloadingValidator.ts:40</a></li>
@@ -115,25 +132,7 @@
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>path: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.method.html" class="tsd-signature-type">Method</a><span class="tsd-signature-symbol">[]</span></h5>
-							</li>
-						</ul>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
-					<a name="holder" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> holder</h3>
-					<div class="tsd-signature tsd-kind-icon">holder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L39">raml1/ast.core/overloadingValidator.ts:39</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-index-signature">
-								<h5><span class="tsd-signature-symbol">[</span>path: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.method.html" class="tsd-signature-type">Method</a><span class="tsd-signature-symbol">[]</span></h5>
+								<h5><span class="tsd-signature-symbol">[</span>path: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 						</ul>
 					</div>
@@ -142,48 +141,22 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<a name="acceptmethod" class="tsd-anchor"></a>
-					<h3>accept<wbr>Method</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">accept<wbr>Method<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a>, m<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.method.html" class="tsd-signature-type">Method</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L136">raml1/ast.core/overloadingValidator.ts:136</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a></h5>
-								</li>
-								<li>
-									<h5>m: <a href="../interfaces/_raml1_artifacts_raml10parser_.method.html" class="tsd-signature-type">Method</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="acceptresource" class="tsd-anchor"></a>
 					<h3>accept<wbr>Resource</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">accept<wbr>Resource<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">accept<wbr>Resource<span class="tsd-signature-symbol">(</span>resource<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L130">raml1/ast.core/overloadingValidator.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L170">raml1/ast.core/overloadingValidator.ts:170</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>x: <a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a></h5>
+									<h5>resource: <a href="../interfaces/_raml1_artifacts_raml10parser_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.resource.html" class="tsd-signature-type">Resource</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -194,22 +167,22 @@
 					<a name="validateapi" class="tsd-anchor"></a>
 					<h3>validate<wbr>Api</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">validate<wbr>Api<span class="tsd-signature-symbol">(</span>q<span class="tsd-signature-symbol">: </span><a href="_raml1_artifacts_raml10parser_.apiimpl.html" class="tsd-signature-type">ApiImpl</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Api<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L43">raml1/ast.core/overloadingValidator.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/mulesoft-labs/api-workbench/blob/master/src/raml1/ast.core/overloadingValidator.ts#L44">raml1/ast.core/overloadingValidator.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>q: <a href="_raml1_artifacts_raml10parser_.apiimpl.html" class="tsd-signature-type">ApiImpl</a></h5>
+									<h5>api: <a href="../interfaces/_raml1_artifacts_raml10parser_.api.html" class="tsd-signature-type">Api</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_raml1_artifacts_raml08parser_.api.html" class="tsd-signature-type">Api</a></h5>
 								</li>
 								<li>
-									<h5>v: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+									<h5>acceptor: <a href="../interfaces/_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
