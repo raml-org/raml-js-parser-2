@@ -218,6 +218,10 @@ export interface ResourceType extends RAMLLanguageElement {
      * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
      **/
     baseUriParameters(): Parameter[];
+    /**
+     * Returns object representation of parametrized properties of the resource type
+     **/
+    parametrizedProperties(): TypeInstance;
 }
 export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -284,6 +288,7 @@ export declare class ResourceTypeImpl extends RAMLLanguageElementImpl implements
      * @return Actual name of instance interface
      **/
     kind(): string;
+    parametrizedProperties(): TypeInstance;
 }
 export interface HasNormalParameters extends RAMLLanguageElement {
     /**
@@ -1496,6 +1501,10 @@ export interface Trait extends MethodBase {
      * Instructions on how and when the trait should be used.
      **/
     usage(): string;
+    /**
+     * Returns object representation of parametrized properties of the trait
+     **/
+    parametrizedProperties(): TypeInstance;
 }
 export declare class TraitImpl extends MethodBaseImpl implements Trait {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1528,12 +1537,18 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
      * @return Actual name of instance interface
      **/
     kind(): string;
+    parametrizedProperties(): TypeInstance;
 }
 export interface Method extends MethodBase {
     /**
      * Method that can be called
      **/
     method(): string;
+    /**
+     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     **/
+    securedBy(): SecuritySchemeRef[];
     /**
      * Instantiation of applyed traits
      **/
@@ -1557,11 +1572,6 @@ export interface Method extends MethodBase {
      **/
     methodId(): string;
     /**
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     **/
-    securedBy(): SecuritySchemeRef[];
-    /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
      * @deprecated
@@ -1584,9 +1594,8 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     /**
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     * @hidden
      **/
-    securedBy_original(): SecuritySchemeRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Instantiation of applyed traits
      **/
@@ -1618,12 +1627,6 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * For other methods throws Exception.
      **/
     methodId(): string;
-    /**
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     * @hidden
-     **/
-    securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
@@ -1758,6 +1761,11 @@ export interface Resource extends RAMLLanguageElement {
      **/
     is(): TraitRef[];
     /**
+     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+     **/
+    securedBy(): SecuritySchemeRef[];
+    /**
      * Methods that can be called on this resource
      **/
     methods(): Method[];
@@ -1820,11 +1828,6 @@ export interface Resource extends RAMLLanguageElement {
      **/
     absoluteUriParameters(): Parameter[];
     /**
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     **/
-    securedBy(): SecuritySchemeRef[];
-    /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
      * @deprecated
@@ -1850,9 +1853,8 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
     /**
      * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
      * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     * @hidden
      **/
-    securedBy_original(): SecuritySchemeRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Uri parameters of this resource
      * @hidden
@@ -1936,12 +1938,6 @@ export declare class ResourceImpl extends RAMLLanguageElementImpl implements Res
      **/
     absoluteUriParameters(): Parameter[];
     /**
-     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-     * @hidden
-     **/
-    securedBy(): SecuritySchemeRef[];
-    /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
      * @deprecated
@@ -1970,6 +1966,10 @@ export interface Api extends RAMLLanguageElement {
      * URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters
      **/
     uriParameters(): Parameter[];
+    /**
+     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
+     **/
+    protocols(): string[];
     /**
      * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
      * One of the following YAML media types:
@@ -2063,10 +2063,6 @@ export interface Api extends RAMLLanguageElement {
      **/
     allBaseUriParameters(): Parameter[];
     /**
-     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-     **/
-    protocols(): string[];
-    /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.
      * @deprecated
@@ -2115,9 +2111,8 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
     uriParameters(): Parameter[];
     /**
      * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-     * @hidden
      **/
-    protocols_original(): string[];
+    protocols(): string[];
     /**
      * @hidden
      * Set protocols value
@@ -2233,11 +2228,6 @@ export declare class ApiImpl extends RAMLLanguageElementImpl implements Api {
      * @deprecated
      **/
     allBaseUriParameters(): Parameter[];
-    /**
-     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-     * @hidden
-     **/
-    protocols(): string[];
     /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.

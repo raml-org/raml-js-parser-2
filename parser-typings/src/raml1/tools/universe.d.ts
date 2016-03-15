@@ -56,6 +56,9 @@ declare var Universes: {
                 "documentation": {
                     "name": string;
                 };
+                "RAMLVersion": {
+                    "name": string;
+                };
             };
         };
         "DocumentationItem": {
@@ -95,7 +98,14 @@ declare var Universes: {
         };
         "Reference": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "structuredValue": {
+                    "name": string;
+                };
+                "name": {
+                    "name": string;
+                };
+            };
         };
         "DeclaresDynamicType": {
             "name": string;
@@ -194,11 +204,19 @@ declare var Universes: {
         };
         "ResourceTypeRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "resourceType": {
+                    "name": string;
+                };
+            };
         };
         "TraitRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "trait": {
+                    "name": string;
+                };
+            };
         };
         "MethodBase": {
             "name": string;
@@ -209,7 +227,7 @@ declare var Universes: {
                 "body": {
                     "name": string;
                 };
-                "is": {
+                "protocols": {
                     "name": string;
                 };
                 "securedBy": {
@@ -224,6 +242,9 @@ declare var Universes: {
                     "name": string;
                 };
                 "usage": {
+                    "name": string;
+                };
+                "parametrizedProperties": {
                     "name": string;
                 };
             };
@@ -255,6 +276,12 @@ declare var Universes: {
                 "displayName": {
                     "name": string;
                 };
+                "baseUriParameters": {
+                    "name": string;
+                };
+                "parametrizedProperties": {
+                    "name": string;
+                };
             };
         };
         "Method": {
@@ -263,10 +290,10 @@ declare var Universes: {
                 "method": {
                     "name": string;
                 };
-                "protocols": {
+                "securedBy": {
                     "name": string;
                 };
-                "securedBy": {
+                "is": {
                     "name": string;
                 };
             };
@@ -315,9 +342,6 @@ declare var Universes: {
                 "responses": {
                     "name": string;
                 };
-                "is": {
-                    "name": string;
-                };
                 "securedBy": {
                     "name": string;
                 };
@@ -355,7 +379,14 @@ declare var Universes: {
         };
         "SecuritySchemeRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "securitySchemeName": {
+                    "name": string;
+                };
+                "securityScheme": {
+                    "name": string;
+                };
+            };
         };
         "OAuth1SecuritySchemeSettings": {
             "name": string;
@@ -546,6 +577,9 @@ declare var Universes: {
                 "formParameters": {
                     "name": string;
                 };
+                "schemaContent": {
+                    "name": string;
+                };
             };
         };
         "XMLBody": {
@@ -608,14 +642,14 @@ declare var Universes: {
                 "usage": {
                     "name": string;
                 };
+                "name": {
+                    "name": string;
+                };
             };
         };
         "LibraryBase": {
             "name": string;
             "properties": {
-                "name": {
-                    "name": string;
-                };
                 "schemas": {
                     "name": string;
                 };
@@ -700,13 +734,13 @@ declare var Universes: {
                 "displayName": {
                     "name": string;
                 };
-                "name": {
-                    "name": string;
-                };
                 "description": {
                     "name": string;
                 };
                 "annotations": {
+                    "name": string;
+                };
+                "RAMLVersion": {
                     "name": string;
                 };
             };
@@ -718,59 +752,6 @@ declare var Universes: {
                     "name": string;
                 };
                 "content": {
-                    "name": string;
-                };
-            };
-        };
-        "ScriptSpec": {
-            "name": string;
-            "properties": {
-                "language": {
-                    "name": string;
-                };
-                "content": {
-                    "name": string;
-                };
-            };
-        };
-        "ApiDescription": {
-            "name": string;
-            "properties": {
-                "apiFiles": {
-                    "name": string;
-                };
-                "script": {
-                    "name": string;
-                };
-                "type": {
-                    "name": string;
-                };
-            };
-        };
-        "CallbackAPIDescription": {
-            "name": string;
-            "properties": {
-                "callbackFor": {
-                    "name": string;
-                };
-            };
-        };
-        "RAMLProject": {
-            "name": string;
-            "properties": {
-                "relatedProjects": {
-                    "name": string;
-                };
-                "declaredApis": {
-                    "name": string;
-                };
-                "license": {
-                    "name": string;
-                };
-                "overview": {
-                    "name": string;
-                };
-                "url": {
                     "name": string;
                 };
             };
@@ -801,7 +782,14 @@ declare var Universes: {
         };
         "Reference": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "structuredValue": {
+                    "name": string;
+                };
+                "name": {
+                    "name": string;
+                };
+            };
         };
         "DeclaresDynamicType": {
             "name": string;
@@ -888,6 +876,9 @@ declare var Universes: {
                 "annotations": {
                     "name": string;
                 };
+                "structuredContent": {
+                    "name": string;
+                };
             };
         };
         "DataElementProperty": {
@@ -922,9 +913,6 @@ declare var Universes: {
                 "schema": {
                     "name": string;
                 };
-                "usage": {
-                    "name": string;
-                };
                 "type": {
                     "name": string;
                 };
@@ -956,6 +944,15 @@ declare var Universes: {
                     "name": string;
                 };
                 "annotations": {
+                    "name": string;
+                };
+                "fixedFacets": {
+                    "name": string;
+                };
+                "schemaContent": {
+                    "name": string;
+                };
+                "structuredExample": {
                     "name": string;
                 };
             };
@@ -1074,18 +1071,6 @@ declare var Universes: {
                     "name": string;
                 };
             };
-        };
-        "RAMLPointerElement": {
-            "name": string;
-            "properties": {
-                "target": {
-                    "name": string;
-                };
-            };
-        };
-        "pointer": {
-            "name": string;
-            "properties": {};
         };
         "RAMLExpression": {
             "name": string;
@@ -1223,7 +1208,11 @@ declare var Universes: {
         };
         "AnnotationRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "annotation": {
+                    "name": string;
+                };
+            };
         };
         "AnnotationTarget": {
             "name": string;
@@ -1275,11 +1264,19 @@ declare var Universes: {
         };
         "ResourceTypeRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "resourceType": {
+                    "name": string;
+                };
+            };
         };
         "TraitRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "trait": {
+                    "name": string;
+                };
+            };
         };
         "SecuritySchemePart": {
             "name": string;
@@ -1364,7 +1361,14 @@ declare var Universes: {
         };
         "SecuritySchemeRef": {
             "name": string;
-            "properties": {};
+            "properties": {
+                "securitySchemeName": {
+                    "name": string;
+                };
+                "securityScheme": {
+                    "name": string;
+                };
+            };
         };
         "AbstractSecurityScheme": {
             "name": string;
@@ -1454,6 +1458,9 @@ declare var Universes: {
                 "uses": {
                     "name": string;
                 };
+                "parametrizedProperties": {
+                    "name": string;
+                };
             };
         };
         "ResourceBase": {
@@ -1486,6 +1493,9 @@ declare var Universes: {
                     "name": string;
                 };
                 "uses": {
+                    "name": string;
+                };
+                "parametrizedProperties": {
                     "name": string;
                 };
             };

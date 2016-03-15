@@ -112,7 +112,7 @@ export declare function baseUriParameters(api: RamlWrapper.Api): RamlWrapper.Par
  **/
 export declare function absoluteUriParameters(res: RamlWrapper.Resource): RamlWrapper.Parameter[];
 /**
- * __$helperMethod__
+ * _//_$helperMethod__
  * Protocols used by the API. Returns the `protocols` property value if it is specified.
  * Otherwise, returns protocol, specified in the base URI.
  * __$meta__={"name":"protocols","override":true}
@@ -126,7 +126,7 @@ export declare function protocolsPrimary(api: RamlWrapper.Api): string[];
  **/
 export declare function allProtocols(api: RamlWrapper.Api): string[];
 /**
- * __$helperMethod__
+ * _//_$helperMethod__
  * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
  * returns schemes defined with `securedBy` at API level.
  * __$meta__={"name":"securedBy","override":true}
@@ -179,3 +179,8 @@ export declare function referencedResourceType(ref: RamlWrapper.ResourceTypeRef)
  * __$meta__={"primary":true}
  **/
 export declare function schemaContent(bodyDeclaration: RamlWrapper.BodyLike): string;
+/**
+ * __$helperMethod__
+ * __$meta__={"name":"parametrizedProperties","primary":true}
+ **/
+export declare function getTemplateParametrizedProperties(node: RamlWrapper.Trait | RamlWrapper.ResourceType): RamlWrapper.TypeInstance;

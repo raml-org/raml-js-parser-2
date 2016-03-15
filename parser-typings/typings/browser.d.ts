@@ -1,4 +1,5 @@
 /// <reference path="browser/ambient/Q/Q.d.ts" />
+/// <reference path="browser/ambient/abnf/abnf.d.ts" />
 /// <reference path="browser/ambient/arrify/arrify.d.ts" />
 /// <reference path="browser/ambient/atom-extended/atom-extended.d.ts" />
 /// <reference path="browser/ambient/atom/atom.d.ts" />
