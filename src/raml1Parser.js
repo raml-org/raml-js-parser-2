@@ -1989,9 +1989,8 @@ module.exports =
 	    };
 	    /**
 	     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-	     * @hidden
 	     **/
-	    ResourceBaseImpl.prototype.securedBy_original = function () {
+	    ResourceBaseImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
 	    /**
@@ -2035,13 +2034,6 @@ module.exports =
 	     **/
 	    ResourceBaseImpl.prototype.allUriParameters = function () {
 	        return helper.uriParameters(this);
-	    };
-	    /**
-	     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-	     * @hidden
-	     **/
-	    ResourceBaseImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
 	    };
 	    /**
 	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
@@ -2330,6 +2322,9 @@ module.exports =
 	     **/
 	    TraitImpl.prototype.kind = function () {
 	        return "Trait";
+	    };
+	    TraitImpl.prototype.parametrizedProperties = function () {
+	        return helper.getTemplateParametrizedProperties(this);
 	    };
 	    return TraitImpl;
 	})(MethodBaseImpl);
@@ -3130,9 +3125,8 @@ module.exports =
 	    };
 	    /**
 	     * The security schemes that apply to this method
-	     * @hidden
 	     **/
-	    MethodImpl.prototype.securedBy_original = function () {
+	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
 	    /**
@@ -3167,13 +3161,6 @@ module.exports =
 	     **/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
-	    };
-	    /**
-	     * The security schemes that apply to this method
-	     * @hidden
-	     **/
-	    MethodImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
 	    };
 	    /**
 	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
@@ -3415,6 +3402,9 @@ module.exports =
 	     **/
 	    ResourceTypeImpl.prototype.kind = function () {
 	        return "ResourceType";
+	    };
+	    ResourceTypeImpl.prototype.parametrizedProperties = function () {
+	        return helper.getTemplateParametrizedProperties(this);
 	    };
 	    return ResourceTypeImpl;
 	})(ResourceBaseImpl);
@@ -3829,9 +3819,8 @@ module.exports =
 	    };
 	    /**
 	     * The protocols supported by the API
-	     * @hidden
 	     **/
-	    ApiImpl.prototype.protocols_original = function () {
+	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
 	    /**
@@ -3947,13 +3936,6 @@ module.exports =
 	        return helper.baseUriParameters(this);
 	    };
 	    /**
-	     * The protocols supported by the API
-	     * @hidden
-	     **/
-	    ApiImpl.prototype.protocols = function () {
-	        return helper.protocolsPrimary(this);
-	    };
-	    /**
 	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
 	     * Otherwise, returns protocol, specified in the base URI.
 	     * @deprecated
@@ -3963,9 +3945,6 @@ module.exports =
 	    };
 	    ApiImpl.prototype.RAMLVersion = function () {
 	        return helper.RAMLVersion(this);
-	    };
-	    ApiImpl.prototype.meta = function () {
-	        return helper.apiMetadata(this);
 	    };
 	    return ApiImpl;
 	})(LibraryBaseImpl);
@@ -17945,6 +17924,9 @@ module.exports =
 	                },
 	                "documentation": {
 	                    "name": "documentation"
+	                },
+	                "RAMLVersion": {
+	                    "name": "RAMLVersion"
 	                }
 	            }
 	        },
@@ -17985,7 +17967,14 @@ module.exports =
 	        },
 	        "Reference": {
 	            "name": "Reference",
-	            "properties": {}
+	            "properties": {
+	                "structuredValue": {
+	                    "name": "structuredValue"
+	                },
+	                "name": {
+	                    "name": "name"
+	                }
+	            }
 	        },
 	        "DeclaresDynamicType": {
 	            "name": "DeclaresDynamicType",
@@ -18084,11 +18073,19 @@ module.exports =
 	        },
 	        "ResourceTypeRef": {
 	            "name": "ResourceTypeRef",
-	            "properties": {}
+	            "properties": {
+	                "resourceType": {
+	                    "name": "resourceType"
+	                }
+	            }
 	        },
 	        "TraitRef": {
 	            "name": "TraitRef",
-	            "properties": {}
+	            "properties": {
+	                "trait": {
+	                    "name": "trait"
+	                }
+	            }
 	        },
 	        "MethodBase": {
 	            "name": "MethodBase",
@@ -18099,8 +18096,8 @@ module.exports =
 	                "body": {
 	                    "name": "body"
 	                },
-	                "is": {
-	                    "name": "is"
+	                "protocols": {
+	                    "name": "protocols"
 	                },
 	                "securedBy": {
 	                    "name": "securedBy"
@@ -18115,6 +18112,9 @@ module.exports =
 	                },
 	                "usage": {
 	                    "name": "usage"
+	                },
+	                "parametrizedProperties": {
+	                    "name": "parametrizedProperties"
 	                }
 	            }
 	        },
@@ -18144,6 +18144,12 @@ module.exports =
 	                },
 	                "displayName": {
 	                    "name": "displayName"
+	                },
+	                "baseUriParameters": {
+	                    "name": "baseUriParameters"
+	                },
+	                "parametrizedProperties": {
+	                    "name": "parametrizedProperties"
 	                }
 	            }
 	        },
@@ -18153,11 +18159,11 @@ module.exports =
 	                "method": {
 	                    "name": "method"
 	                },
-	                "protocols": {
-	                    "name": "protocols"
-	                },
 	                "securedBy": {
 	                    "name": "securedBy"
+	                },
+	                "is": {
+	                    "name": "is"
 	                }
 	            }
 	        },
@@ -18205,9 +18211,6 @@ module.exports =
 	                "responses": {
 	                    "name": "responses"
 	                },
-	                "is": {
-	                    "name": "is"
-	                },
 	                "securedBy": {
 	                    "name": "securedBy"
 	                },
@@ -18245,7 +18248,14 @@ module.exports =
 	        },
 	        "SecuritySchemeRef": {
 	            "name": "SecuritySchemeRef",
-	            "properties": {}
+	            "properties": {
+	                "securitySchemeName": {
+	                    "name": "securitySchemeName"
+	                },
+	                "securityScheme": {
+	                    "name": "securityScheme"
+	                }
+	            }
 	        },
 	        "OAuth1SecuritySchemeSettings": {
 	            "name": "OAuth1SecuritySchemeSettings",
@@ -18435,6 +18445,9 @@ module.exports =
 	                },
 	                "formParameters": {
 	                    "name": "formParameters"
+	                },
+	                "schemaContent": {
+	                    "name": "schemaContent"
 	                }
 	            }
 	        },
@@ -18497,15 +18510,15 @@ module.exports =
 	            "properties": {
 	                "usage": {
 	                    "name": "usage"
+	                },
+	                "name": {
+	                    "name": "name"
 	                }
 	            }
 	        },
 	        "LibraryBase": {
 	            "name": "LibraryBase",
 	            "properties": {
-	                "name": {
-	                    "name": "name"
-	                },
 	                "schemas": {
 	                    "name": "schemas"
 	                },
@@ -18590,14 +18603,14 @@ module.exports =
 	                "displayName": {
 	                    "name": "displayName"
 	                },
-	                "name": {
-	                    "name": "name"
-	                },
 	                "description": {
 	                    "name": "description"
 	                },
 	                "annotations": {
 	                    "name": "annotations"
+	                },
+	                "RAMLVersion": {
+	                    "name": "RAMLVersion"
 	                }
 	            }
 	        },
@@ -18609,59 +18622,6 @@ module.exports =
 	                },
 	                "content": {
 	                    "name": "content"
-	                }
-	            }
-	        },
-	        "ScriptSpec": {
-	            "name": "ScriptSpec",
-	            "properties": {
-	                "language": {
-	                    "name": "language"
-	                },
-	                "content": {
-	                    "name": "content"
-	                }
-	            }
-	        },
-	        "ApiDescription": {
-	            "name": "ApiDescription",
-	            "properties": {
-	                "apiFiles": {
-	                    "name": "apiFiles"
-	                },
-	                "script": {
-	                    "name": "script"
-	                },
-	                "type": {
-	                    "name": "type"
-	                }
-	            }
-	        },
-	        "CallbackAPIDescription": {
-	            "name": "CallbackAPIDescription",
-	            "properties": {
-	                "callbackFor": {
-	                    "name": "callbackFor"
-	                }
-	            }
-	        },
-	        "RAMLProject": {
-	            "name": "RAMLProject",
-	            "properties": {
-	                "relatedProjects": {
-	                    "name": "relatedProjects"
-	                },
-	                "declaredApis": {
-	                    "name": "declaredApis"
-	                },
-	                "license": {
-	                    "name": "license"
-	                },
-	                "overview": {
-	                    "name": "overview"
-	                },
-	                "url": {
-	                    "name": "url"
 	                }
 	            }
 	        },
@@ -18691,7 +18651,14 @@ module.exports =
 	        },
 	        "Reference": {
 	            "name": "Reference",
-	            "properties": {}
+	            "properties": {
+	                "structuredValue": {
+	                    "name": "structuredValue"
+	                },
+	                "name": {
+	                    "name": "name"
+	                }
+	            }
 	        },
 	        "DeclaresDynamicType": {
 	            "name": "DeclaresDynamicType",
@@ -18777,6 +18744,9 @@ module.exports =
 	                },
 	                "annotations": {
 	                    "name": "annotations"
+	                },
+	                "structuredContent": {
+	                    "name": "structuredContent"
 	                }
 	            }
 	        },
@@ -18812,9 +18782,6 @@ module.exports =
 	                "schema": {
 	                    "name": "schema"
 	                },
-	                "usage": {
-	                    "name": "usage"
-	                },
 	                "type": {
 	                    "name": "type"
 	                },
@@ -18847,6 +18814,15 @@ module.exports =
 	                },
 	                "annotations": {
 	                    "name": "annotations"
+	                },
+	                "fixedFacets": {
+	                    "name": "fixedFacets"
+	                },
+	                "schemaContent": {
+	                    "name": "schemaContent"
+	                },
+	                "structuredExample": {
+	                    "name": "structuredExample"
 	                }
 	            }
 	        },
@@ -18964,18 +18940,6 @@ module.exports =
 	                    "name": "format"
 	                }
 	            }
-	        },
-	        "RAMLPointerElement": {
-	            "name": "RAMLPointerElement",
-	            "properties": {
-	                "target": {
-	                    "name": "target"
-	                }
-	            }
-	        },
-	        "pointer": {
-	            "name": "pointer",
-	            "properties": {}
 	        },
 	        "RAMLExpression": {
 	            "name": "RAMLExpression",
@@ -19113,7 +19077,11 @@ module.exports =
 	        },
 	        "AnnotationRef": {
 	            "name": "AnnotationRef",
-	            "properties": {}
+	            "properties": {
+	                "annotation": {
+	                    "name": "annotation"
+	                }
+	            }
 	        },
 	        "AnnotationTarget": {
 	            "name": "AnnotationTarget",
@@ -19165,11 +19133,19 @@ module.exports =
 	        },
 	        "ResourceTypeRef": {
 	            "name": "ResourceTypeRef",
-	            "properties": {}
+	            "properties": {
+	                "resourceType": {
+	                    "name": "resourceType"
+	                }
+	            }
 	        },
 	        "TraitRef": {
 	            "name": "TraitRef",
-	            "properties": {}
+	            "properties": {
+	                "trait": {
+	                    "name": "trait"
+	                }
+	            }
 	        },
 	        "SecuritySchemePart": {
 	            "name": "SecuritySchemePart",
@@ -19254,7 +19230,14 @@ module.exports =
 	        },
 	        "SecuritySchemeRef": {
 	            "name": "SecuritySchemeRef",
-	            "properties": {}
+	            "properties": {
+	                "securitySchemeName": {
+	                    "name": "securitySchemeName"
+	                },
+	                "securityScheme": {
+	                    "name": "securityScheme"
+	                }
+	            }
 	        },
 	        "AbstractSecurityScheme": {
 	            "name": "AbstractSecurityScheme",
@@ -19343,6 +19326,9 @@ module.exports =
 	                },
 	                "uses": {
 	                    "name": "uses"
+	                },
+	                "parametrizedProperties": {
+	                    "name": "parametrizedProperties"
 	                }
 	            }
 	        },
@@ -19377,6 +19363,9 @@ module.exports =
 	                },
 	                "uses": {
 	                    "name": "uses"
+	                },
+	                "parametrizedProperties": {
+	                    "name": "parametrizedProperties"
 	                }
 	            }
 	        },
@@ -19793,7 +19782,7 @@ module.exports =
 	            }
 	            return;
 	        }
-	        if (t.hasArrayInHierarchy()) {
+	        if (t.hasArrayInHierarchy() && !t.isUnion()) {
 	            this.validateArray(obj, t.arrayInHierarchy(), cb, strict, recursionLevel);
 	        }
 	        else if (t.hasUnionInHierarchy()) {
@@ -20069,6 +20058,11 @@ module.exports =
 	                if (obj != 'true' && obj != 'false') {
 	                    cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "boolean is expected", this.node, !strict));
 	                }
+	            }
+	        }
+	        if (t.key() == universes.Universe08.StringType || t.key() == universes.Universe10.StringType) {
+	            if (typeof obj != 'string') {
+	                cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "string is expected", this.node, !strict));
 	            }
 	        }
 	    };
@@ -23220,8 +23214,12 @@ module.exports =
 	    return p.nameId() === universe.Universe10.Api.properties.annotations.name || p.nameId() === universe.Universe10.Method.properties.annotations.name || p.nameId() === universe.Universe10.Resource.properties.annotations.name || p.nameId() === universe.Universe10.RAMLLanguageElement.properties.annotations.name || p.nameId() === universe.Universe10.ExampleSpec.properties.annotations.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.annotations.name || p.nameId() === universe.Universe10.Response.properties.annotations.name;
 	}
 	exports.isAnnotationsProperty = isAnnotationsProperty;
+	function isAnnotationProperty(p) {
+	    return p.nameId() === universe.Universe10.AnnotationRef.properties.annotation.name;
+	}
+	exports.isAnnotationProperty = isAnnotationProperty;
 	function isIsProperty(p) {
-	    return p.nameId() === universe.Universe10.MethodBase.properties.is.name || p.nameId() === universe.Universe08.MethodBase.properties.is.name || p.nameId() === universe.Universe10.ResourceBase.properties.is.name || p.nameId() === universe.Universe08.ResourceType.properties.is.name || p.nameId() === universe.Universe08.Resource.properties.is.name;
+	    return p.nameId() === universe.Universe10.MethodBase.properties.is.name || p.nameId() === universe.Universe08.Method.properties.is.name || p.nameId() === universe.Universe10.ResourceBase.properties.is.name || p.nameId() === universe.Universe08.ResourceType.properties.is.name || p.nameId() === universe.Universe08.Resource.properties.is.name;
 	}
 	exports.isIsProperty = isIsProperty;
 	function isSecuredByProperty(p) {
@@ -23232,8 +23230,12 @@ module.exports =
 	    return p.nameId() === universe.Universe10.LibraryBase.properties.securitySchemes.name || p.nameId() === universe.Universe08.Api.properties.securitySchemes.name;
 	}
 	exports.isSecuritySchemesProperty = isSecuritySchemesProperty;
+	function isSecuritySchemeProperty(p) {
+	    return p.nameId() === universe.Universe10.SecuritySchemeRef.properties.securityScheme.name || p.nameId() === universe.Universe08.SecuritySchemeRef.properties.securityScheme.name;
+	}
+	exports.isSecuritySchemeProperty = isSecuritySchemeProperty;
 	function isTypeProperty(p) {
-	    return p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.ResourceType.properties.type.name || p.nameId() === universe.Universe08.Resource.properties.type.name || p.nameId() === universe.Universe08.Parameter.properties.type.name || p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe10.ApiDescription.properties.type.name || p.nameId() === universe.Universe10.ResourceBase.properties.type.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
+	    return p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.AbstractSecurityScheme.properties.type.name || p.nameId() === universe.Universe08.ResourceType.properties.type.name || p.nameId() === universe.Universe08.Resource.properties.type.name || p.nameId() === universe.Universe08.Parameter.properties.type.name || p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name || p.nameId() === universe.Universe10.ResourceBase.properties.type.name || p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
 	}
 	exports.isTypeProperty = isTypeProperty;
 	function isPropertiesProperty(p) {
@@ -23245,7 +23247,7 @@ module.exports =
 	}
 	exports.isResponsesProperty = isResponsesProperty;
 	function isProtocolsProperty(p) {
-	    return p.nameId() === universe.Universe10.Api.properties.protocols.name || p.nameId() === universe.Universe08.Api.properties.protocols.name || p.nameId() === universe.Universe08.Method.properties.protocols.name || p.nameId() === universe.Universe10.MethodBase.properties.protocols.name;
+	    return p.nameId() === universe.Universe10.Api.properties.protocols.name || p.nameId() === universe.Universe08.Api.properties.protocols.name || p.nameId() === universe.Universe10.MethodBase.properties.protocols.name;
 	}
 	exports.isProtocolsProperty = isProtocolsProperty;
 	function isNameProperty(p) {
@@ -23265,10 +23267,18 @@ module.exports =
 	    return p.nameId() === universe.Universe08.Api.properties.traits.name || p.nameId() === universe.Universe10.LibraryBase.properties.traits.name;
 	}
 	exports.isTraitsProperty = isTraitsProperty;
+	function isTraitProperty(p) {
+	    return p.nameId() === universe.Universe08.TraitRef.properties.trait.name || p.nameId() === universe.Universe10.TraitRef.properties.trait.name;
+	}
+	exports.isTraitProperty = isTraitProperty;
 	function isResourceTypesProperty(p) {
 	    return p.nameId() === universe.Universe08.Api.properties.resourceTypes.name || p.nameId() === universe.Universe10.LibraryBase.properties.resourceTypes.name;
 	}
 	exports.isResourceTypesProperty = isResourceTypesProperty;
+	function isResourceTypeProperty(p) {
+	    return p.nameId() === universe.Universe08.ResourceTypeRef.properties.resourceType.name || p.nameId() === universe.Universe10.ResourceTypeRef.properties.resourceType.name;
+	}
+	exports.isResourceTypeProperty = isResourceTypeProperty;
 	function isFacetsProperty(p) {
 	    return p.nameId() === universe.Universe10.TypeDeclaration.properties.facets.name;
 	}
@@ -23298,6 +23308,10 @@ module.exports =
 	    //TODO too long to actually list every element having an example, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
 	}
 	exports.isExampleProperty = isExampleProperty;
+	function isEnumProperty(p) {
+	    return p.nameId() === universe.Universe10.StringTypeDeclaration.properties.enum.name || p.nameId() === universe.Universe10.NumberTypeDeclaration.properties.enum.name || p.nameId() === universe.Universe08.StringTypeDeclaration.properties.enum.name;
+	}
+	exports.isEnumProperty = isEnumProperty;
 	function isExamplesProperty(p) {
 	    return p.nameId() === universe.Universe10.TypeDeclaration.properties.examples.name || p.nameId() === "examples";
 	    //TODO too long to actually list every element having an example, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
@@ -23315,6 +23329,10 @@ module.exports =
 	    return p.nameId() === universe.Universe08.Resource.properties.baseUriParameters.name || p.nameId() === universe.Universe08.Api.properties.baseUriParameters.name || p.nameId() === universe.Universe10.Api.properties.baseUriParameters.name;
 	}
 	exports.isBaseUriParametersProperty = isBaseUriParametersProperty;
+	function isRAMLVersionProperty(p) {
+	    return p.nameId() === universe.Universe08.Api.properties.RAMLVersion.name || p.nameId() === universe.Universe10.Api.properties.RAMLVersion.name;
+	}
+	exports.isRAMLVersionProperty = isRAMLVersionProperty;
 	function isUsesProperty(p) {
 	    return p.nameId() === universe.Universe10.LibraryBase.properties.uses.name || p.nameId() === universe.Universe10.Trait.properties.uses.name || p.nameId() === universe.Universe10.ResourceType.properties.uses.name || p.nameId() === universe.Universe10.ResourceTypeOrTrait.properties.uses.name;
 	}
@@ -23368,6 +23386,10 @@ module.exports =
 	    return type.key() == universe.Universe10.AbstractSecurityScheme || type.key() == universe.Universe08.AbstractSecurityScheme;
 	}
 	exports.isSecuritySchemaType = isSecuritySchemaType;
+	function isSecuritySchemeRefType(type) {
+	    return type.key() == universe.Universe10.SecuritySchemeRef || type.key() == universe.Universe08.SecuritySchemeRef;
+	}
+	exports.isSecuritySchemeRefType = isSecuritySchemeRefType;
 	function isTypeDeclarationType(type) {
 	    return type.key() == universe.Universe10.TypeDeclaration;
 	}
@@ -23400,10 +23422,6 @@ module.exports =
 	    return type.key() == universe.Universe10.MethodBase || type.key() == universe.Universe08.MethodBase;
 	}
 	exports.isMethodBaseType = isMethodBaseType;
-	function isPointerType(type) {
-	    return type.key() == universe.Universe10.pointer;
-	}
-	exports.isPointerType = isPointerType;
 	function isRamlExpressionType(type) {
 	    return false;
 	}
@@ -24664,8 +24682,10 @@ module.exports =
 	                var ref = new def.ReferenceType(x.name(), x.getModule().path(), refTo, u);
 	                u.register(ref);
 	            }
-	            var vt = new def.ValueType(x.name(), u, x.getModule().path());
-	            u.register(vt);
+	            else {
+	                var vt = new def.ValueType(x.name(), u, x.getModule().path());
+	                u.register(vt);
+	            }
 	        }
 	        else {
 	            var gt = new def.NodeClass(x.name(), u, x.getModule().path());
@@ -32307,6 +32327,31 @@ module.exports =
 							],
 							"valueConstraint": null,
 							"optional": false
+						},
+						{
+							"name": "parametrizedProperties",
+							"type": {
+								"typeName": "models.TypeInstance",
+								"nameSpace": "models",
+								"basicName": "TypeInstance",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-1.0/methodsAndResources.ts"
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.customHandling",
+									"arguments": []
+								},
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Returns object representation of parametrized properties of the trait"
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
 						}
 					],
 					"isInterface": false,
@@ -32646,6 +32691,31 @@ module.exports =
 									"name": "MetaModel.valueDescription",
 									"arguments": [
 										"An array of libraries"
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "parametrizedProperties",
+							"type": {
+								"typeName": "models.TypeInstance",
+								"nameSpace": "models",
+								"basicName": "TypeInstance",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-1.0/methodsAndResources.ts"
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.customHandling",
+									"arguments": []
+								},
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Returns object representation of parametrized properties of the resource type"
 									]
 								}
 							],
@@ -36651,6 +36721,31 @@ module.exports =
 							],
 							"valueConstraint": null,
 							"optional": false
+						},
+						{
+							"name": "parametrizedProperties",
+							"type": {
+								"typeName": "Sys.TypeInstance",
+								"nameSpace": "Sys",
+								"basicName": "TypeInstance",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.customHandling",
+									"arguments": []
+								},
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Returns object representation of parametrized properties of the trait"
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
 						}
 					],
 					"isInterface": false,
@@ -36929,6 +37024,31 @@ module.exports =
 									"name": "MetaModel.description",
 									"arguments": [
 										"A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level."
+									]
+								}
+							],
+							"valueConstraint": null,
+							"optional": false
+						},
+						{
+							"name": "parametrizedProperties",
+							"type": {
+								"typeName": "Sys.TypeInstance",
+								"nameSpace": "Sys",
+								"basicName": "TypeInstance",
+								"typeKind": 0,
+								"typeArguments": [],
+								"modulePath": "/Users/munch/work/apiworkbench/api-workbench/src/raml1/spec-0.8/methodsAndResources.ts"
+							},
+							"annotations": [
+								{
+									"name": "MetaModel.customHandling",
+									"arguments": []
+								},
+								{
+									"name": "MetaModel.description",
+									"arguments": [
+										"Returns object representation of parametrized properties of the resource type"
 									]
 								}
 							],
@@ -41449,6 +41569,9 @@ module.exports =
 	    ResourceTypeImpl.prototype.kind = function () {
 	        return "ResourceType";
 	    };
+	    ResourceTypeImpl.prototype.parametrizedProperties = function () {
+	        return helper.getTemplateParametrizedProperties(this);
+	    };
 	    return ResourceTypeImpl;
 	})(RAMLLanguageElementImpl);
 	exports.ResourceTypeImpl = ResourceTypeImpl;
@@ -42824,6 +42947,9 @@ module.exports =
 	    TraitImpl.prototype.kind = function () {
 	        return "Trait";
 	    };
+	    TraitImpl.prototype.parametrizedProperties = function () {
+	        return helper.getTemplateParametrizedProperties(this);
+	    };
 	    return TraitImpl;
 	})(MethodBaseImpl);
 	exports.TraitImpl = TraitImpl;
@@ -42851,9 +42977,8 @@ module.exports =
 	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * @hidden
 	     **/
-	    MethodImpl.prototype.securedBy_original = function () {
+	    MethodImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
 	    /**
@@ -42900,14 +43025,6 @@ module.exports =
 	     **/
 	    MethodImpl.prototype.methodId = function () {
 	        return helper.methodId(this);
-	    };
-	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * @hidden
-	     **/
-	    MethodImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
 	    };
 	    /**
 	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
@@ -43092,9 +43209,8 @@ module.exports =
 	    /**
 	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
 	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * @hidden
 	     **/
-	    ResourceImpl.prototype.securedBy_original = function () {
+	    ResourceImpl.prototype.securedBy = function () {
 	        return _super.prototype.attributes.call(this, 'securedBy', function (attr) { return new SecuritySchemeRefImpl(attr); });
 	    };
 	    /**
@@ -43215,14 +43331,6 @@ module.exports =
 	        return helper.absoluteUriParameters(this);
 	    };
 	    /**
-	     * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-	     * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-	     * @hidden
-	     **/
-	    ResourceImpl.prototype.securedBy = function () {
-	        return helper.securedByPrimary(this);
-	    };
-	    /**
 	     * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
 	     * returns schemes defined with `securedBy` at API level.
 	     * @deprecated
@@ -43294,9 +43402,8 @@ module.exports =
 	    };
 	    /**
 	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-	     * @hidden
 	     **/
-	    ApiImpl.prototype.protocols_original = function () {
+	    ApiImpl.prototype.protocols = function () {
 	        return _super.prototype.attributes.call(this, 'protocols', this.toString);
 	    };
 	    /**
@@ -43454,13 +43561,6 @@ module.exports =
 	     **/
 	    ApiImpl.prototype.allBaseUriParameters = function () {
 	        return helper.baseUriParameters(this);
-	    };
-	    /**
-	     * A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.
-	     * @hidden
-	     **/
-	    ApiImpl.prototype.protocols = function () {
-	        return helper.protocolsPrimary(this);
 	    };
 	    /**
 	     * Protocols used by the API. Returns the `protocols` property value if it is specified.
@@ -43931,11 +44031,9 @@ module.exports =
 	var hlImpl = __webpack_require__(5);
 	var jsyaml = __webpack_require__(15);
 	var ramlService = __webpack_require__(49);
-	var json2lowlevel = __webpack_require__(8);
 	var defaultCalculator = __webpack_require__(84);
 	var yaml = __webpack_require__(7);
 	var search = __webpack_require__(53);
-	var universeHelpers = __webpack_require__(67);
 	var tckDumper = __webpack_require__(85);
 	var BasicNodeImpl = (function () {
 	    /**
@@ -43981,13 +44079,7 @@ module.exports =
 	            var defaultValue = this.getDefaultsCalculator().attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
 	            if (defaultValue == null)
 	                return [];
-	            if (constr && (constr == this.toString || constr == this.toBoolean || constr == this.toNumber)) {
-	                return [constr(defaultValue)];
-	            }
-	            else if (constr) {
-	                return [];
-	            }
-	            return [defaultValue];
+	            return Array.isArray(defaultValue) ? defaultValue : [defaultValue];
 	        }
 	        //TODO not sure if we want to artificially create missing attributes having
 	        //default values
@@ -44179,7 +44271,7 @@ module.exports =
 	        return this.highLevel().definition().getAdapter(ramlService.RAMLService).toRuntime();
 	    };
 	    BasicNodeImpl.prototype.toJSON = function (serializeOptions) {
-	        return json2lowlevel.serialize(this.highLevel().lowLevel(), serializeOptions);
+	        return new tckDumper.TCKDumper(serializeOptions).dump(this);
 	    };
 	    /**
 	     * @return Whether the element is an optional sibling of trait or resource type
@@ -44471,7 +44563,7 @@ module.exports =
 	    var meta = node._meta;
 	    meta.resetPrimitiveValuesMeta();
 	    var highLevelNode = node.highLevel();
-	    highLevelNode.definition().allProperties().filter(function (p) { return p.isPrimitive() || universeHelpers.isSecuredByProperty(p); }).forEach(function (p) {
+	    highLevelNode.definition().allProperties().forEach(function (p) {
 	        var name = p.nameId();
 	        var attrs = highLevelNode.attributes(name);
 	        var gotValue = false;
@@ -44520,7 +44612,10 @@ module.exports =
 	            new RequiredPropertyCalculator(),
 	            new TypePropertyCalculator(),
 	            new DisplayNamePropertyCalculator(),
-	            new MediaTypeCalculator()
+	            new MediaTypeCalculator(),
+	            new SecuredByPropertyCalculator(),
+	            new ProtocolsPropertyCalculator(),
+	            new VersionParamEnumCalculator()
 	        ];
 	    }
 	    /**
@@ -44745,6 +44840,132 @@ module.exports =
 	    };
 	    return RequiredPropertyCalculator;
 	})();
+	var SecuredByPropertyCalculator = (function () {
+	    function SecuredByPropertyCalculator() {
+	    }
+	    SecuredByPropertyCalculator.prototype.calculate = function (attributeProperty, node) {
+	        if (universeHelpers.isApiSibling(node.definition())) {
+	            return null;
+	        }
+	        var values;
+	        //instanceof, but have to avoid direct usage of instanceof in JS.
+	        var definition = node.definition();
+	        if (universeHelpers.isMethodType(definition)) {
+	            var resource = node.parent();
+	            if (resource) {
+	                values = resource.wrapperNode().securedBy();
+	            }
+	        }
+	        if (!values || values.length == 0) {
+	            while (node != null && !universeHelpers.isApiSibling(node.definition())) {
+	                node = node.parent();
+	            }
+	            if (node) {
+	                values = node.wrapperNode().securedBy();
+	            }
+	        }
+	        if (values && values.length > 0) {
+	            return values;
+	        }
+	        return null;
+	    };
+	    SecuredByPropertyCalculator.prototype.matches = function (attributeProperty, node) {
+	        var nodeDefinition = node.definition();
+	        if (nodeDefinition == null) {
+	            return false;
+	        }
+	        return universeHelpers.isSecuredByProperty(attributeProperty);
+	    };
+	    SecuredByPropertyCalculator.prototype.kind = function () {
+	        return 0 /* CALCULATED */;
+	    };
+	    return SecuredByPropertyCalculator;
+	})();
+	var ProtocolsPropertyCalculator = (function () {
+	    function ProtocolsPropertyCalculator() {
+	    }
+	    ProtocolsPropertyCalculator.prototype.calculate = function (attributeProperty, node) {
+	        while (node != null && !universeHelpers.isApiSibling(node.definition())) {
+	            node = node.parent();
+	        }
+	        var result;
+	        var baseUriAttr = node.attr(universes.Universe10.Api.properties.baseUri.name);
+	        if (baseUriAttr) {
+	            var baseUri = baseUriAttr.value();
+	            if (baseUri) {
+	                var ind = baseUri.indexOf('://');
+	                if (ind >= 0) {
+	                    result = [baseUri.substring(0, ind).toUpperCase()];
+	                }
+	                if (!result) {
+	                    result = ['HTTP'];
+	                }
+	            }
+	        }
+	        return result;
+	    };
+	    ProtocolsPropertyCalculator.prototype.matches = function (attributeProperty, node) {
+	        if (!universeHelpers.isProtocolsProperty(attributeProperty)) {
+	            return false;
+	        }
+	        var nodeDefinition = node.definition();
+	        var hasAppropriateLocation = false;
+	        if (universeHelpers.isApiSibling(nodeDefinition)) {
+	            hasAppropriateLocation = true;
+	        }
+	        else if (universeHelpers.isResourceType(nodeDefinition)) {
+	            hasAppropriateLocation = true;
+	        }
+	        else if (universeHelpers.isMethodType(nodeDefinition)) {
+	            var parentNode = node.parent();
+	            hasAppropriateLocation = parentNode && universeHelpers.isResourceType(parentNode.definition());
+	        }
+	        return hasAppropriateLocation;
+	    };
+	    ProtocolsPropertyCalculator.prototype.kind = function () {
+	        return 0 /* CALCULATED */;
+	    };
+	    return ProtocolsPropertyCalculator;
+	})();
+	var VersionParamEnumCalculator = (function () {
+	    function VersionParamEnumCalculator() {
+	    }
+	    VersionParamEnumCalculator.prototype.calculate = function (attributeProperty, node) {
+	        while (node != null && !universeHelpers.isApiSibling(node.definition())) {
+	            node = node.parent();
+	        }
+	        var versionAttr = node.attr(universes.Universe10.Api.properties.version.name);
+	        if (versionAttr) {
+	            var versionValue = versionAttr.value();
+	            if (versionValue && versionValue.trim()) {
+	                return [versionValue];
+	            }
+	        }
+	        return null;
+	    };
+	    VersionParamEnumCalculator.prototype.matches = function (attributeProperty, node) {
+	        if (!universeHelpers.isEnumProperty(attributeProperty)) {
+	            return false;
+	        }
+	        var nodeProperty = node.property();
+	        if (!nodeProperty) {
+	            return false;
+	        }
+	        if (!universeHelpers.isBaseUriParametersProperty(nodeProperty)) {
+	            return false;
+	        }
+	        var nameAttr = node.attr(universes.Universe10.TypeDeclaration.properties.name.name);
+	        var paramName = nameAttr && nameAttr.value();
+	        if (paramName != 'version') {
+	            return false;
+	        }
+	        return true;
+	    };
+	    VersionParamEnumCalculator.prototype.kind = function () {
+	        return 0 /* CALCULATED */;
+	    };
+	    return VersionParamEnumCalculator;
+	})();
 
 
 /***/ },
@@ -44761,43 +44982,64 @@ module.exports =
 	var universe = __webpack_require__(54);
 	var core = __webpack_require__(83);
 	var universeHelpers = __webpack_require__(67);
+	var universes = __webpack_require__(54);
 	function dump(node, serializeMeta) {
 	    if (serializeMeta === void 0) { serializeMeta = true; }
-	    return new TCKDumper(serializeMeta).dump(node, true);
+	    return new TCKDumper({
+	        rootNodeDetails: true,
+	        serializeMetadata: serializeMeta
+	    }).dump(node);
 	}
 	exports.dump = dump;
 	var TCKDumper = (function () {
-	    function TCKDumper(dumpMeta) {
-	        if (dumpMeta === void 0) { dumpMeta = true; }
-	        this.dumpMeta = dumpMeta;
+	    function TCKDumper(options) {
+	        this.options = options;
 	        this.transformers = [
-	            new TypeExampleTransformer(),
+	            new ResourcesTransformer(),
 	            new ParametersTransformer(),
 	            new TypesTransformer(),
 	            new PropertiesTransformer(),
-	            new ExamplesTransformer(),
 	            new ResponsesTransformer(),
 	            new BodiesTransformer(),
-	            new ReferencesTransformer(),
+	            new AnnotationsTransformer(),
 	            new SecuritySchemesTransformer(),
 	            new AnnotationTypesTransformer(),
+	            new TemplateParametrizedPropertiesTransformer(),
 	            new TraitsTransformer(),
 	            new ResourceTypesTransformer(),
 	            new FacetsTransformer(),
-	            new OneElementArrayTransformer()
+	            new SchemasTransformer(),
+	            new ProtocolsToUpperCaseTransformer(),
+	            new ResourceTypeMethodsToMapTransformer(),
+	            new ReferencesTransformer()
 	        ];
 	        this.ignore = new CompositeObjectPropertyMatcher([
 	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isDisplayNameProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty)
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isAnnotationRefTypeOrDescendant, universeHelpers.isAnnotationProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemeRefType, universeHelpers.isSecuritySchemeProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isTraitRefType, universeHelpers.isTraitProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeRefType, universeHelpers.isResourceTypeProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isRAMLVersionProperty)
 	        ]);
 	        this.missingProperties = new PropertiesData();
+	        this.options = this.options || {};
+	        if (this.options.serializeMetadata == null) {
+	            this.options.serializeMetadata = true;
+	        }
 	    }
 	    TCKDumper.prototype.printMissingProperties = function () {
 	        return this.missingProperties.print();
 	    };
-	    TCKDumper.prototype.dump = function (node, dumpErrors) {
+	    TCKDumper.prototype.dump = function (node) {
+	        var highLevelNode = node.highLevel();
+	        var highLevelParent = highLevelNode && highLevelNode.parent();
+	        var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
+	        return this.dumpInternal(node, rootNodeDetails);
+	    };
+	    TCKDumper.prototype.dumpInternal = function (node, rootNodeDetails) {
 	        var _this = this;
-	        if (dumpErrors === void 0) { dumpErrors = false; }
+	        if (rootNodeDetails === void 0) { rootNodeDetails = false; }
 	        if (node == null) {
 	            return null;
 	        }
@@ -44813,9 +45055,14 @@ module.exports =
 	            });
 	            var obj = this.dumpProperties(props, node);
 	            this.serializeMeta(obj, basicNode);
-	            if (dumpErrors) {
+	            if (rootNodeDetails) {
 	                var result = {};
-	                result.document = obj;
+	                if (definition) {
+	                    var ramlVersion = definition.universe().version();
+	                    result.ramlVersion = ramlVersion;
+	                    result.type = definition.nameId();
+	                }
+	                result.specification = obj;
 	                result.errors = this.dumpErrors(basicNode.errors());
 	                return result;
 	            }
@@ -44857,7 +45104,8 @@ module.exports =
 	                "path": x.path,
 	                "line": x.line,
 	                "column": x.column,
-	                "position": x.start
+	                "position": x.start,
+	                "range": x.range
 	            };
 	        }).sort(function (x, y) {
 	            if (x.path != y.path) {
@@ -44877,24 +45125,32 @@ module.exports =
 	                _this.missingProperties.addProperty(props[propName], node.kind());
 	                return;
 	            }
+	            var property = props[propName];
 	            var value = node[propName]();
 	            if (Array.isArray(value)) {
 	                var propertyValue = [];
-	                value.forEach(function (x) { return propertyValue.push(_this.dump(x)); });
+	                value.forEach(function (x) { return propertyValue.push(_this.dumpInternal(x)); });
 	                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
 	                    return;
 	                }
 	                _this.transformers.forEach(function (x) {
-	                    if (x.match(node, props[propName])) {
+	                    if (x.match(node, property)) {
 	                        propertyValue = x.transform(propertyValue);
 	                    }
 	                });
 	                obj[propName] = propertyValue;
 	            }
 	            else {
-	                var val = _this.dump(value);
+	                var val = _this.dumpInternal(value);
 	                if (val == null && node instanceof core.BasicNodeImpl && !_this.isDefined(node, propName)) {
 	                    return;
+	                }
+	                if (node instanceof core.BasicNodeImpl) {
+	                    _this.transformers.forEach(function (x) {
+	                        if (x.match(node, property)) {
+	                            val = x.transform(val);
+	                        }
+	                    });
 	                }
 	                obj[propName] = val;
 	            }
@@ -44902,7 +45158,7 @@ module.exports =
 	        return obj;
 	    };
 	    TCKDumper.prototype.serializeMeta = function (obj, node) {
-	        if (!this.dumpMeta) {
+	        if (!this.options.serializeMetadata) {
 	            return;
 	        }
 	        var meta = node.meta();
@@ -44990,12 +45246,49 @@ module.exports =
 	        var _this = this;
 	        if (Array.isArray(value) && value.length > 0 && value[0][this.propName]) {
 	            var obj = {};
-	            value.forEach(function (x) { return obj[x[_this.propName]] = x; });
+	            value.forEach(function (x) {
+	                var key = x[_this.propName];
+	                var previous = obj[key];
+	                if (previous) {
+	                    if (Array.isArray(previous)) {
+	                        previous.push(x);
+	                    }
+	                    else {
+	                        obj[key] = [previous, x];
+	                    }
+	                }
+	                else {
+	                    obj[key] = x;
+	                }
+	            });
 	            return obj;
 	        }
 	        return value;
 	    };
 	    return ArrayToMapTransformer;
+	})();
+	var ArrayToMappingsArrayTransformer = (function () {
+	    function ArrayToMappingsArrayTransformer(matcher, propName) {
+	        this.matcher = matcher;
+	        this.propName = propName;
+	    }
+	    ArrayToMappingsArrayTransformer.prototype.match = function (node, prop) {
+	        return this.matcher.match(node.definition(), prop);
+	    };
+	    ArrayToMappingsArrayTransformer.prototype.transform = function (value) {
+	        var _this = this;
+	        if (Array.isArray(value) && value.length > 0 && value[0][this.propName]) {
+	            var array = [];
+	            value.forEach(function (x) {
+	                var obj = {};
+	                obj[x[_this.propName]] = x;
+	                array.push(obj);
+	            });
+	            return array;
+	        }
+	        return value;
+	    };
+	    return ArrayToMappingsArrayTransformer;
 	})();
 	var ParametersTransformer = (function (_super) {
 	    __extends(ParametersTransformer, _super);
@@ -45005,7 +45298,8 @@ module.exports =
 	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isUriParametersProperty),
 	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isQueryParametersProperty),
 	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isQueryParametersProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isHeadersProperty)
+	            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling, universeHelpers.isHeadersProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isBodyLikeType, universeHelpers.isFormParametersProperty)
 	        ]), "name");
 	    }
 	    return ParametersTransformer;
@@ -45018,7 +45312,7 @@ module.exports =
 	        ]), "name");
 	    }
 	    return TypesTransformer;
-	})(ArrayToMapTransformer);
+	})(ArrayToMappingsArrayTransformer);
 	var PropertiesTransformer = (function (_super) {
 	    __extends(PropertiesTransformer, _super);
 	    function PropertiesTransformer() {
@@ -45037,19 +45331,14 @@ module.exports =
 	    }
 	    return ResponsesTransformer;
 	})(ArrayToMapTransformer);
-	var ReferencesTransformer = (function (_super) {
-	    __extends(ReferencesTransformer, _super);
-	    function ReferencesTransformer() {
+	var AnnotationsTransformer = (function (_super) {
+	    __extends(AnnotationsTransformer, _super);
+	    function AnnotationsTransformer() {
 	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(function (x) { return true; }, universeHelpers.isAnnotationsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isTypeProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isIsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isIsProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
-	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isSecuredByProperty),
+	            new BasicObjectPropertyMatcher(function (x) { return true; }, universeHelpers.isAnnotationsProperty)
 	        ]), "name");
 	    }
-	    return ReferencesTransformer;
+	    return AnnotationsTransformer;
 	})(ArrayToMapTransformer);
 	var BodiesTransformer = (function (_super) {
 	    __extends(BodiesTransformer, _super);
@@ -45065,20 +45354,39 @@ module.exports =
 	    __extends(TraitsTransformer, _super);
 	    function TraitsTransformer() {
 	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTraitsProperty)
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isTraitsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isTraitsProperty)
 	        ]), "name");
 	    }
 	    return TraitsTransformer;
-	})(ArrayToMapTransformer);
+	})(ArrayToMappingsArrayTransformer);
 	var ResourceTypesTransformer = (function (_super) {
 	    __extends(ResourceTypesTransformer, _super);
 	    function ResourceTypesTransformer() {
 	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isResourceTypesProperty)
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isResourceTypesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isResourceTypesProperty)
 	        ]), "name");
 	    }
+	    ResourceTypesTransformer.prototype.transform = function (value) {
+	        value.forEach(function (x) {
+	            var methodsPropertyName = universes.Universe10.ResourceBase.properties.methods.name;
+	            var methods = x[methodsPropertyName];
+	            if (methods) {
+	                methods.forEach(function (m) {
+	                    var keys = Object.keys(m);
+	                    if (keys.length > 0) {
+	                        var methodName = keys[0];
+	                        x[methodName] = m[methodName];
+	                    }
+	                });
+	            }
+	            delete x[methodsPropertyName];
+	        });
+	        return _super.prototype.transform.call(this, value);
+	    };
 	    return ResourceTypesTransformer;
-	})(ArrayToMapTransformer);
+	})(ArrayToMappingsArrayTransformer);
 	var FacetsTransformer = (function (_super) {
 	    __extends(FacetsTransformer, _super);
 	    function FacetsTransformer() {
@@ -45092,11 +45400,12 @@ module.exports =
 	    __extends(SecuritySchemesTransformer, _super);
 	    function SecuritySchemesTransformer() {
 	        _super.call(this, new CompositeObjectPropertyMatcher([
-	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isSecuritySchemesProperty)
+	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isSecuritySchemesProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isSecuritySchemesProperty)
 	        ]), "name");
 	    }
 	    return SecuritySchemesTransformer;
-	})(ArrayToMapTransformer);
+	})(ArrayToMappingsArrayTransformer);
 	var AnnotationTypesTransformer = (function (_super) {
 	    __extends(AnnotationTypesTransformer, _super);
 	    function AnnotationTypesTransformer() {
@@ -45105,7 +45414,16 @@ module.exports =
 	        ]), "displayName");
 	    }
 	    return AnnotationTypesTransformer;
-	})(ArrayToMapTransformer);
+	})(ArrayToMappingsArrayTransformer);
+	var ResourceTypeMethodsToMapTransformer = (function (_super) {
+	    __extends(ResourceTypeMethodsToMapTransformer, _super);
+	    function ResourceTypeMethodsToMapTransformer() {
+	        _super.call(this, new CompositeObjectPropertyMatcher([
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType, universeHelpers.isMethodsProperty)
+	        ]), "method");
+	    }
+	    return ResourceTypeMethodsToMapTransformer;
+	})(ArrayToMappingsArrayTransformer);
 	var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
 	var exampleContentProp = universe.Universe10.ExampleSpec.properties.content.name;
 	var exampleStructuredContentProp = "structuredContent";
@@ -45161,6 +45479,51 @@ module.exports =
 	    };
 	    return TypeExampleTransformer;
 	})();
+	var SchemasTransformer = (function () {
+	    function SchemasTransformer() {
+	        this.matcher = new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isSchemasProperty);
+	    }
+	    SchemasTransformer.prototype.match = function (node, prop) {
+	        return this.matcher.match(node.definition(), prop);
+	    };
+	    SchemasTransformer.prototype.transform = function (value) {
+	        if (Array.isArray(value) && value.length > 0) {
+	            var array = value.map(function (x) {
+	                var obj = {};
+	                obj[x.key] = x.value;
+	                return obj;
+	            });
+	            return array;
+	        }
+	        else {
+	            return value;
+	        }
+	    };
+	    SchemasTransformer.prototype.getActualExample = function (exampleSpecObj) {
+	        if (exampleSpecObj[exampleStructuredContentProp]) {
+	            return exampleSpecObj[exampleStructuredContentProp];
+	        }
+	        return exampleSpecObj[exampleContentProp];
+	    };
+	    return SchemasTransformer;
+	})();
+	var ProtocolsToUpperCaseTransformer = (function () {
+	    function ProtocolsToUpperCaseTransformer() {
+	    }
+	    ProtocolsToUpperCaseTransformer.prototype.match = function (node, prop) {
+	        return universeHelpers.isProtocolsProperty(prop);
+	    };
+	    ProtocolsToUpperCaseTransformer.prototype.transform = function (value) {
+	        if (typeof (value) == 'string') {
+	            return value.toUpperCase();
+	        }
+	        else if (Array.isArray(value)) {
+	            return value.map(function (x) { return x.toUpperCase(); });
+	        }
+	        return value;
+	    };
+	    return ProtocolsToUpperCaseTransformer;
+	})();
 	var OneElementArrayTransformer = (function () {
 	    function OneElementArrayTransformer() {
 	        this.exceptions = new CompositeObjectPropertyMatcher([
@@ -45172,8 +45535,11 @@ module.exports =
 	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isMethodsProperty),
 	            new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isBodyProperty),
 	            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isProtocolsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling, universeHelpers.isProtocolsProperty),
+	            new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling, universeHelpers.isProtocolsProperty),
 	            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isUsesProperty),
-	            new BasicObjectPropertyMatcher(function (x) { return true; }, function (x) { return x.nameId() == 'enum'; })
+	            new BasicObjectPropertyMatcher(function (x) { return true; }, function (x) { return x.nameId() == 'enum'; }),
+	            new BasicObjectPropertyMatcher(function (x) { return true; }, universeHelpers.isSecuredByProperty)
 	        ]);
 	    }
 	    OneElementArrayTransformer.prototype.match = function (node, prop) {
@@ -45186,6 +45552,86 @@ module.exports =
 	        return value;
 	    };
 	    return OneElementArrayTransformer;
+	})();
+	var ResourcesTransformer = (function () {
+	    function ResourcesTransformer() {
+	    }
+	    ResourcesTransformer.prototype.match = function (node, prop) {
+	        return universeHelpers.isResourcesProperty(prop);
+	    };
+	    ResourcesTransformer.prototype.transform = function (value) {
+	        if (!Array.isArray(value)) {
+	            return value;
+	        }
+	        value.forEach(function (x) {
+	            var relUri = x[universes.Universe10.Resource.properties.relativeUri.name];
+	            if (relUri) {
+	                var segments = relUri.trim().split("/");
+	                while (segments.length > 0 && segments[0].length == 0) {
+	                    segments.shift();
+	                }
+	                x["relativeUriPathSegments"] = segments;
+	            }
+	        });
+	        return value;
+	    };
+	    return ResourcesTransformer;
+	})();
+	var TemplateParametrizedPropertiesTransformer = (function () {
+	    function TemplateParametrizedPropertiesTransformer() {
+	    }
+	    TemplateParametrizedPropertiesTransformer.prototype.match = function (node, prop) {
+	        return universeHelpers.isResourceTypesProperty(prop) || universeHelpers.isTraitsProperty(prop);
+	    };
+	    TemplateParametrizedPropertiesTransformer.prototype.transform = function (value) {
+	        if (Array.isArray(value)) {
+	            value.forEach(function (x) {
+	                var propName = universe.Universe10.Trait.properties.parametrizedProperties.name;
+	                var parametrizedProps = x[propName];
+	                if (parametrizedProps) {
+	                    Object.keys(parametrizedProps).forEach(function (y) {
+	                        x[y] = parametrizedProps[y];
+	                    });
+	                    delete x[propName];
+	                }
+	            });
+	        }
+	        return value;
+	    };
+	    return TemplateParametrizedPropertiesTransformer;
+	})();
+	var ReferencesTransformer = (function () {
+	    function ReferencesTransformer() {
+	    }
+	    ReferencesTransformer.prototype.match = function (node, prop) {
+	        return universeHelpers.isSecuredByProperty(prop) || universeHelpers.isIsProperty(prop) || ((universeHelpers.isResourceType(node.highLevel().definition()) || universeHelpers.isResourceTypeType(node.highLevel().definition())) && universeHelpers.isTypeProperty(prop));
+	    };
+	    ReferencesTransformer.prototype.transform = function (value) {
+	        var _this = this;
+	        if (!value) {
+	            return null;
+	        }
+	        if (Array.isArray(value)) {
+	            var array = value.map(function (x) { return _this.toSimpleValue(x); });
+	            return array;
+	        }
+	        else {
+	            return this.toSimpleValue(value);
+	        }
+	    };
+	    ReferencesTransformer.prototype.toSimpleValue = function (x) {
+	        var name = x['name'];
+	        var params = x['structuredValue'];
+	        if (params) {
+	            var obj = {};
+	            obj[name] = params;
+	            return obj;
+	        }
+	        else {
+	            return name;
+	        }
+	    };
+	    return ReferencesTransformer;
 	})();
 	var PropertiesData = (function () {
 	    function PropertiesData() {
@@ -45940,7 +46386,7 @@ module.exports =
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
 	/**
-	 * __$helperMethod__
+	 * _//_$helperMethod__
 	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
 	 * Otherwise, returns protocol, specified in the base URI.
 	 * __$meta__={"name":"protocols","override":true}
@@ -45956,29 +46402,30 @@ module.exports =
 	 * __$meta__{"deprecated":true}
 	 **/
 	function allProtocols(api) {
-	    var attributeDefaults = api.attributeDefaults();
-	    var result = api.protocols_original();
-	    if (result.length != 0 || !attributeDefaults) {
-	        return result;
-	    }
-	    var baseUriAttr = api.baseUri();
-	    if (baseUriAttr) {
-	        var baseUri = baseUriAttr.value();
-	        if (baseUri) {
-	            var ind = baseUri.indexOf('://');
-	            if (ind >= 0) {
-	                result = [baseUri.substring(0, ind)];
-	            }
-	            if (result.length == 0) {
-	                result = ['HTTP'];
-	            }
-	        }
-	    }
-	    return result;
+	    return api.protocols().map(function (x) { return x.toUpperCase(); });
+	    //var attributeDefaults = (<RamlWrapper.ApiImpl>api).attributeDefaults();
+	    //var result = (<RamlWrapper.ApiImpl>api).protocols_original();
+	    //if(result.length!=0||!attributeDefaults){
+	    //    return result;
+	    //}
+	    //var baseUriAttr = api.baseUri();
+	    //if(baseUriAttr) {
+	    //    var baseUri = baseUriAttr.value();
+	    //    if (baseUri) {
+	    //        var ind = baseUri.indexOf('://');
+	    //        if (ind >= 0) {
+	    //            result = [baseUri.substring(0, ind)];
+	    //        }
+	    //        if(result.length==0){
+	    //            result = [ 'HTTP' ];
+	    //        }
+	    //    }
+	    //}
+	    //return result;
 	}
 	exports.allProtocols = allProtocols;
 	/**
-	 * __$helperMethod__
+	 * _//_$helperMethod__
 	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
 	 * returns schemes defined with `securedBy` at API level.
 	 * __$meta__={"name":"securedBy","override":true}
@@ -45994,18 +46441,19 @@ module.exports =
 	 * __$meta__{"deprecated":true}
 	 **/
 	function allSecuredBy(resourceOrMethod) {
-	    var currentSecuredBy = resourceOrMethod.securedBy_original();
-	    if (currentSecuredBy && currentSecuredBy.length > 0) {
-	        return currentSecuredBy;
-	    }
-	    //instanceof, but have to avoid direct usage of instanceof in JS.
-	    if (resourceOrMethod.highLevel().definition().key() == universes.Universe08.Method) {
-	        var resource = resourceOrMethod.parentResource();
-	        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
-	            return resource.securedBy();
-	        }
-	    }
-	    return resourceOrMethod.ownerApi().securedBy();
+	    //var currentSecuredBy = (<RamlWrapper.ResourceImpl|RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
+	    //if (currentSecuredBy && currentSecuredBy.length > 0) {
+	    //    return currentSecuredBy;
+	    //}
+	    //
+	    ////instanceof, but have to avoid direct usage of instanceof in JS.
+	    //if (resourceOrMethod.highLevel().definition().key() == universes.Universe08.Method) {
+	    //    var resource = <RamlWrapper.ResourceImpl>(<RamlWrapper.Method>resourceOrMethod).parentResource();
+	    //    if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
+	    //        return resource.securedBy();
+	    //    }
+	    //}
+	    return resourceOrMethod.securedBy();
 	}
 	exports.allSecuredBy = allSecuredBy;
 	/**
@@ -46122,7 +46570,7 @@ module.exports =
 	            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
 	        }
 	        else {
-	            var uriParameter = new RamlWrapper.ParameterImpl(paramName);
+	            var uriParameter = new RamlWrapper.StringTypeDeclarationImpl(paramName);
 	            uriParameter.setName(paramName);
 	            var hlNode = uriParameter.highLevel();
 	            hlNode.setParent(ownerHl);
@@ -46169,6 +46617,27 @@ module.exports =
 	    return valueAttribute.value();
 	}
 	exports.schemaContent = schemaContent;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"parametrizedProperties","primary":true}
+	 **/
+	function getTemplateParametrizedProperties(node) {
+	    var highLevelNode = node.highLevel();
+	    if (highLevelNode == null) {
+	        return null;
+	    }
+	    var lowLevelNode = highLevelNode.lowLevel();
+	    if (lowLevelNode == null) {
+	        return null;
+	    }
+	    var children = lowLevelNode.children().filter(function (x) { return x.key().indexOf("<<") >= 0; });
+	    if (children.length == 0) {
+	        return null;
+	    }
+	    var result = new core.TypeInstanceImpl(children);
+	    return result;
+	}
+	exports.getTemplateParametrizedProperties = getTemplateParametrizedProperties;
 	//
 	//export class SchemaDef{
 	//
@@ -47230,7 +47699,7 @@ module.exports =
 	}
 	exports.absoluteUriParameters = absoluteUriParameters;
 	/**
-	 * __$helperMethod__
+	 * _//_$helperMethod__
 	 * Protocols used by the API. Returns the `protocols` property value if it is specified.
 	 * Otherwise, returns protocol, specified in the base URI.
 	 * __$meta__={"name":"protocols","override":true}
@@ -47246,29 +47715,30 @@ module.exports =
 	 * __$meta__{"deprecated":true}
 	 **/
 	function allProtocols(api) {
-	    var attributeDefaults = api.attributeDefaults();
-	    var result = api.protocols_original();
-	    if (result.length != 0 || !attributeDefaults) {
-	        return result;
-	    }
-	    var baseUriAttr = api.baseUri();
-	    if (baseUriAttr) {
-	        var baseUri = baseUriAttr.value();
-	        if (baseUri) {
-	            var ind = baseUri.indexOf('://');
-	            if (ind >= 0) {
-	                result = [baseUri.substring(0, ind)];
-	            }
-	            if (result.length == 0) {
-	                result = ['HTTP'];
-	            }
-	        }
-	    }
-	    return result;
+	    return api.protocols().map(function (x) { return x.toUpperCase(); });
+	    //var attributeDefaults = (<RamlWrapper.ApiImpl>api).attributeDefaults();
+	    //var result = (<RamlWrapper.ApiImpl>api).protocols_original();
+	    //if(result.length!=0||!attributeDefaults){
+	    //    return result;
+	    //}
+	    //var baseUriAttr = api.baseUri();
+	    //if(baseUriAttr) {
+	    //    var baseUri = baseUriAttr.value();
+	    //    if (baseUri) {
+	    //        var ind = baseUri.indexOf('://');
+	    //        if (ind >= 0) {
+	    //            result = [baseUri.substring(0, ind)];
+	    //        }
+	    //        if(result.length==0){
+	    //            result = [ 'HTTP' ];
+	    //        }
+	    //    }
+	    //}
+	    //return result;
 	}
 	exports.allProtocols = allProtocols;
 	/**
-	 * __$helperMethod__
+	 * _//_$helperMethod__
 	 * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
 	 * returns schemes defined with `securedBy` at API level.
 	 * __$meta__={"name":"securedBy","override":true}
@@ -47284,53 +47754,27 @@ module.exports =
 	 * __$meta__{"deprecated":true}
 	 **/
 	function allSecuredBy(resourceOrMethod) {
-	    var currentSecuredBy = resourceOrMethod.securedBy_original();
-	    if (currentSecuredBy && currentSecuredBy.length > 0) {
-	        return currentSecuredBy;
-	    }
-	    //instanceof, but have to avoid direct usage of instanceof in JS.
-	    var key = resourceOrMethod.highLevel().definition().key();
-	    if (key == universes.Universe10.Method) {
-	        var method = resourceOrMethod;
-	        var resource = method.parentResource();
-	        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
-	            return resource.securedBy_original();
-	        }
-	        return method.ownerApi().securedBy();
-	    }
-	    if (key == universes.Universe10.Resource) {
-	        return resourceOrMethod.ownerApi().securedBy();
-	    }
-	    return currentSecuredBy;
+	    //var currentSecuredBy = (<RamlWrapper.ResourceBaseImpl|RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
+	    //if (currentSecuredBy && currentSecuredBy.length > 0) {
+	    //    return currentSecuredBy;
+	    //}
+	    //
+	    ////instanceof, but have to avoid direct usage of instanceof in JS.
+	    //var key = resourceOrMethod.highLevel().definition().key();
+	    //if (key == universes.Universe10.Method) {
+	    //    var method = (<RamlWrapper.Method>resourceOrMethod);
+	    //    var resource = <RamlWrapper.ResourceImpl>method.parentResource();
+	    //    if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
+	    //        return resource.securedBy_original();
+	    //    }
+	    //    return method.ownerApi().securedBy();
+	    //}
+	    //if (key == universes.Universe10.Resource) {
+	    //    return (<RamlWrapper.Resource>resourceOrMethod).ownerApi().securedBy();
+	    //}
+	    return resourceOrMethod.securedBy(); //return currentSecuredBy;
 	}
 	exports.allSecuredBy = allSecuredBy;
-	//export function allSecuredBy(resourceOrMethod : RamlWrapper.ResourceBase | RamlWrapper.Method):RamlWrapper.SecuritySchemeRef[] {
-	//    var currentSecuredBy:RamlWrapper.SecuritySchemeRef[];
-	//    var key = resourceOrMethod.highLevel().definition().key();
-	//    if (key == universes.Universe10.Method){
-	//        currentSecuredBy = (<RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
-	//    }
-	//    else{
-	//        currentSecuredBy = (<RamlWrapper.ResourceBaseImpl>resourceOrMethod).securedBy_original();
-	//    }
-	//    if (currentSecuredBy && currentSecuredBy.length > 0) {
-	//        return currentSecuredBy;
-	//    }
-	//
-	//    //instanceof, but have to avoid direct usage of instanceof in JS.
-	//    if (key == universes.Universe10.Method) {
-	//        var method = (<RamlWrapper.Method>resourceOrMethod);
-	//        var resource = <RamlWrapper.ResourceImpl>method.parentResource();
-	//        if (resource && resource.securedBy_original() && resource.securedBy_original().length > 0) {
-	//            return resource.securedBy();
-	//        }
-	//        return method.ownerApi().securedBy();
-	//    }
-	//    if (key == universes.Universe10.Resource){
-	//        return (<RamlWrapper.ResourceImpl>resourceOrMethod).ownerApi().securedBy();
-	//    }
-	//    return currentSecuredBy;
-	//}
 	/**
 	 * __$helperMethod__
 	 * __$meta__={"primary":true}
@@ -47569,7 +48013,7 @@ module.exports =
 	        }
 	        else {
 	            var universe = universeProvider("RAML10");
-	            var nc = universe.type(universeDef.Universe10.TypeDeclaration.name);
+	            var nc = universe.type(universeDef.Universe10.StringTypeDeclaration.name);
 	            var node = nc.getAdapter(ramlservices.RAMLService).createStubNode(null, paramName);
 	            var uriParameter = factory.buildWrapperNode(node);
 	            var hlNode = uriParameter.highLevel();
@@ -47584,6 +48028,27 @@ module.exports =
 	    return allParams;
 	}
 	;
+	/**
+	 * __$helperMethod__
+	 * __$meta__={"name":"parametrizedProperties","primary":true}
+	 **/
+	function getTemplateParametrizedProperties(node) {
+	    var highLevelNode = node.highLevel();
+	    if (highLevelNode == null) {
+	        return null;
+	    }
+	    var lowLevelNode = highLevelNode.lowLevel();
+	    if (lowLevelNode == null) {
+	        return null;
+	    }
+	    var children = lowLevelNode.children().filter(function (x) { return x.key().indexOf("<<") >= 0; });
+	    if (children.length == 0) {
+	        return null;
+	    }
+	    var result = new core.TypeInstanceImpl(children);
+	    return result;
+	}
+	exports.getTemplateParametrizedProperties = getTemplateParametrizedProperties;
 	var SchemaDef = (function () {
 	    function SchemaDef(_content, _name) {
 	        this._content = _content;
@@ -47621,22 +48086,21 @@ module.exports =
 	    return ParamWrapper;
 	})();
 	/**
-	 * __$helperMethod__
+	 * _//_$helperMethod__
 	 * __$meta__={"name":"meta"}
 	 **/
-	function apiMetadata(api) {
-	    var apiImpl = api;
-	    var meta = core.fillElementMeta(apiImpl);
-	    var protocolsOriginal = apiImpl.protocols_original();
-	    if (protocolsOriginal.length == 0) {
-	        var protocols = apiImpl.protocols();
-	        if (protocols.length != 0) {
-	            meta.registerCalculatedValue(universes.Universe10.Api.properties.protocols.name);
-	        }
-	    }
-	    return meta;
-	}
-	exports.apiMetadata = apiMetadata;
+	//export function apiMetadata(api:RamlWrapper.Api):core.NodeMetadata{
+	//    var apiImpl = <RamlWrapper.ApiImpl>api;
+	//    var meta = core.fillElementMeta(apiImpl);
+	//    var protocolsOriginal = apiImpl.protocols_original();
+	//    if(protocolsOriginal.length==0) {
+	//        var protocols = apiImpl.protocols();
+	//        if(protocols.length!=0){
+	//            meta.registerCalculatedValue(universes.Universe10.Api.properties.protocols.name);
+	//        }
+	//    }
+	//    return meta;
+	//} 
 
 
 /***/ },
@@ -51831,8 +52295,14 @@ module.exports =
 	        return newType;
 	    }
 	    else {
+	        var propertiesName = universes.Universe10.ObjectTypeDeclaration.properties.properties.name;
 	        if (p) {
-	            if (p.nameId() == "body" || _.find(x.lowLevel().children(), function (x) { return x.key() == "properties"; })) {
+	            if (p.nameId() == "body" || _.find(x.lowLevel().children(), function (x) { return x.key() === propertiesName; })) {
+	                return x.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name);
+	            }
+	        }
+	        else {
+	            if (!parent && x.lowLevel() && _.find(x.lowLevel().children(), function (x) { return x.key() === propertiesName; })) {
 	                return x.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name);
 	            }
 	        }
@@ -51845,6 +52315,9 @@ module.exports =
 	        var nodeDefenitionName = node.definition().nameId();
 	        var isApi = nodeDefenitionName === universes.Universe10.Api.name || nodeDefenitionName === universes.Universe08.Api.name;
 	        if (!isApi && !node.property() && !node.parent() && node.definition().nameId() === high.getFragmentDefenitionName(node)) {
+	            if (node.definition().isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name)) {
+	                return descriminate(null, null, node);
+	            }
 	            var result = null;
 	            var subTypes = node.definition().allSubTypes();
 	            subTypes.forEach(function (subType) {
@@ -51876,9 +52349,8 @@ module.exports =
 	    try {
 	        if (range == universes.Universe10.TypeDeclaration.name || range == universes.Universe10.AnnotationTypeDeclaration.name) {
 	            var res = desc1(p, parent, x);
-	            //FIXME (think about it later)
-	            if (p) {
-	                if (res != null && ((p.nameId() == universes.Universe10.MethodBase.properties.body.name || p.nameId() == universes.Universe10.Response.properties.headers.name) || p.nameId() == universes.Universe10.Method.properties.queryParameters.name)) {
+	            if (p || (!p && !parent && x.lowLevel())) {
+	                if (p && res != null && ((p.nameId() == universes.Universe10.MethodBase.properties.body.name || p.nameId() == universes.Universe10.Response.properties.headers.name) || p.nameId() == universes.Universe10.Method.properties.queryParameters.name)) {
 	                    var ares = new defs.UserDefinedClass(x.lowLevel().key(), res.universe(), x, x.lowLevel().unit() ? x.lowLevel().unit().path() : "", "");
 	                    ares._superTypes.push(res);
 	                    return ares;

@@ -1590,6 +1590,10 @@ export interface ResourceBase extends RAMLLanguageElement {
      **/
     "type"(): ResourceTypeRef;
     /**
+     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+     **/
+    securedBy(): SecuritySchemeRef[];
+    /**
      * Detailed information about any URI parameters of this resource
      **/
     uriParameters(): TypeDeclaration[];
@@ -1606,10 +1610,6 @@ export interface ResourceBase extends RAMLLanguageElement {
      * @deprecated
      **/
     allUriParameters(): TypeDeclaration[];
-    /**
-     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-     **/
-    securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
@@ -1635,9 +1635,8 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
     "type"(): ResourceTypeRef;
     /**
      * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-     * @hidden
      **/
-    securedBy_original(): SecuritySchemeRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * Detailed information about any URI parameters of this resource
      * @hidden
@@ -1670,11 +1669,6 @@ export declare class ResourceBaseImpl extends RAMLLanguageElementImpl implements
      * @deprecated
      **/
     allUriParameters(): TypeDeclaration[];
-    /**
-     * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
-     * @hidden
-     **/
-    securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
@@ -1910,6 +1904,10 @@ export interface Trait extends MethodBase {
      * You may import library locally here it contents is accessible only inside of this trait
      **/
     uses(): Library[];
+    /**
+     * Returns object representation of parametrized properties of the trait
+     **/
+    parametrizedProperties(): TypeInstance;
 }
 export declare class TraitImpl extends MethodBaseImpl implements Trait {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -1946,6 +1944,7 @@ export declare class TraitImpl extends MethodBaseImpl implements Trait {
      * @return Actual name of instance interface
      **/
     kind(): string;
+    parametrizedProperties(): TypeInstance;
 }
 export interface LibraryBase extends RAMLLanguageElement {
     /**
@@ -2658,6 +2657,10 @@ export interface Method extends MethodBase {
      **/
     annotations(): AnnotationRef[];
     /**
+     * The security schemes that apply to this method
+     **/
+    securedBy(): SecuritySchemeRef[];
+    /**
      * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
      **/
     parentResource(): Resource;
@@ -2671,10 +2674,6 @@ export interface Method extends MethodBase {
      * For other methods throws Exception.
      **/
     methodId(): string;
-    /**
-     * The security schemes that apply to this method
-     **/
-    securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
@@ -2734,9 +2733,8 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
     annotations(): AnnotationRef[];
     /**
      * The security schemes that apply to this method
-     * @hidden
      **/
-    securedBy_original(): SecuritySchemeRef[];
+    securedBy(): SecuritySchemeRef[];
     /**
      * @hidden
      * @return Actual name of instance class
@@ -2760,11 +2758,6 @@ export declare class MethodImpl extends MethodBaseImpl implements Method {
      * For other methods throws Exception.
      **/
     methodId(): string;
-    /**
-     * The security schemes that apply to this method
-     * @hidden
-     **/
-    securedBy(): SecuritySchemeRef[];
     /**
      * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
      * returns schemes defined with `securedBy` at API level.
@@ -2961,6 +2954,10 @@ export interface ResourceType extends ResourceBase {
      * You may import library locally here it contents is accessible only inside of this resource type
      **/
     uses(): Library[];
+    /**
+     * Returns object representation of parametrized properties of the resource type
+     **/
+    parametrizedProperties(): TypeInstance;
 }
 export declare class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -2997,6 +2994,7 @@ export declare class ResourceTypeImpl extends ResourceBaseImpl implements Resour
      * @return Actual name of instance interface
      **/
     kind(): string;
+    parametrizedProperties(): TypeInstance;
 }
 export interface ValidityExpression extends StringType {
 }
@@ -3295,6 +3293,10 @@ export interface Api extends LibraryBase {
      **/
     baseUri(): FullUriTemplateString;
     /**
+     * The protocols supported by the API
+     **/
+    protocols(): string[];
+    /**
      * The default media type to use for request and response bodies (payloads), e.g. "application/json"
      **/
     mediaType(): MimeType;
@@ -3357,16 +3359,11 @@ export interface Api extends LibraryBase {
      **/
     allBaseUriParameters(): TypeDeclaration[];
     /**
-     * The protocols supported by the API
-     **/
-    protocols(): string[];
-    /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.
      * @deprecated
      **/
     allProtocols(): string[];
-    meta(): core.NodeMetadata;
 }
 export declare class ApiImpl extends LibraryBaseImpl implements Api {
     protected nodeOrKey: hl.IHighLevelNode | string;
@@ -3401,9 +3398,8 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
     baseUriParameters_original(): TypeDeclaration[];
     /**
      * The protocols supported by the API
-     * @hidden
      **/
-    protocols_original(): string[];
+    protocols(): string[];
     /**
      * @hidden
      * Set protocols value
@@ -3483,18 +3479,12 @@ export declare class ApiImpl extends LibraryBaseImpl implements Api {
      **/
     allBaseUriParameters(): TypeDeclaration[];
     /**
-     * The protocols supported by the API
-     * @hidden
-     **/
-    protocols(): string[];
-    /**
      * Protocols used by the API. Returns the `protocols` property value if it is specified.
      * Otherwise, returns protocol, specified in the base URI.
      * @deprecated
      **/
     allProtocols(): string[];
     RAMLVersion(): string;
-    meta(): core.NodeMetadata;
 }
 export interface Overlay extends Api {
     /**

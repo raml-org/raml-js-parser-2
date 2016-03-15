@@ -2,8 +2,8 @@ import hl = require("../highLevelAST");
 import ll = require("../lowLevelAST");
 import hlImpl = require("../highLevelImpl");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel");
-import json2lowlevel = require('../jsyaml/json2lowLevel');
 import defaultCalculator = require("./defaultCalculator");
+import tckDumper = require("../../util/TCKDumper");
 export interface AbstractWrapperNode {
     /**
      * @hidden
@@ -37,11 +37,11 @@ export interface BasicNode extends AbstractWrapperNode {
      **/
     runtimeDefinition(): hl.ITypeDefinition;
     /**
-     * Turn model node into an object. Should not be relied on for API analysis and manipulation by the parser users.
+     * Turns model node into an object.
      * @param node Model node
      * @return Stringifyable object representation of the node.
      **/
-    toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
+    toJSON(serializeOptions?: tckDumper.SerializeOptions): any;
     /**
      * @return For siblings of traits or resource types returns an array of optional properties names.
      **/
@@ -125,7 +125,7 @@ export declare class BasicNodeImpl implements BasicNode {
      * @return for user class instances returns object representing actual user class
      **/
     runtimeDefinition(): hl.ITypeDefinition;
-    toJSON(serializeOptions?: json2lowlevel.SerializeOptions): any;
+    toJSON(serializeOptions?: tckDumper.SerializeOptions): any;
     /**
      * @return Whether the element is an optional sibling of trait or resource type
      **/
@@ -239,18 +239,7 @@ export interface RamlParserError {
 export interface ApiLoadingError extends Error {
     parserErrors: RamlParserError[];
 }
-export interface TypeInstance {
-    properties(): TypeInstanceProperty[];
-    isScalar(): boolean;
-    value(): any;
-}
-export interface TypeInstanceProperty {
-    name(): string;
-    value(): TypeInstance;
-    values(): TypeInstance[];
-    isArray(): boolean;
-}
-export declare class TypeInstanceImpl implements TypeInstance {
+export declare class TypeInstanceImpl {
     constructor(nodes: ll.ILowLevelASTNode | ll.ILowLevelASTNode[]);
     protected node: ll.ILowLevelASTNode;
     protected children: ll.ILowLevelASTNode[];
@@ -260,7 +249,7 @@ export declare class TypeInstanceImpl implements TypeInstance {
     isScalar(): any;
     toJSON(): any;
 }
-export declare class TypeInstancePropertyImpl implements TypeInstanceProperty {
+export declare class TypeInstancePropertyImpl {
     protected node: ll.ILowLevelASTNode;
     constructor(node: ll.ILowLevelASTNode);
     name(): string;
