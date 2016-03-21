@@ -8,9 +8,11 @@ export declare function indent(lev: number, str?: string): string;
 export declare function print(lev: number, str?: string): void;
 export declare function replaceNewlines(s: string, rep?: string): string;
 export declare function trimEnd(s: string): string;
+export declare function trim(s: string): string;
 export declare function splitOnLines(text: string): string[];
 export declare function startsWith(s: string, suffix: string): boolean;
 export declare function endsWith(s: string, suffix: string): boolean;
+export declare function capitalize(s: string): string;
 export declare class TextRange {
     private contents;
     private start;

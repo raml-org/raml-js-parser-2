@@ -9920,7 +9920,7 @@
 		        }
 		        if (this._node.kind == 0 /* SCALAR */) {
 		            //TODO WHAT IS IT IS INCLUDE ACTUALLY
-		            if (!toString && this._node['valueObject'] != null) {
+		            if (!toString && ("" + this._node['valueObject'] === this._node['value'])) {
 		                return this._node['valueObject'];
 		            }
 		            return this._node['value'];
@@ -14388,6 +14388,10 @@
 		    return s.substring(0, pos);
 		}
 		exports.trimEnd = trimEnd;
+		function trim(s) {
+		    return trimStart(trimEnd(s));
+		}
+		exports.trim = trim;
 		function splitOnLines(text) {
 		    var lines = text.match(/^.*((\r\n|\n|\r)|$)/gm);
 		    return lines;
@@ -14413,6 +14417,10 @@
 		    return true;
 		}
 		exports.endsWith = endsWith;
+		function capitalize(s) {
+		    return s.charAt(0).toUpperCase() + s.slice(1);
+		}
+		exports.capitalize = capitalize;
 		var TextRange = (function () {
 		    function TextRange(contents, start, end) {
 		        this.contents = contents;
@@ -20181,7 +20189,9 @@
 		            }
 		        }
 		        if (t.key() == universes.Universe08.StringType || t.key() == universes.Universe10.StringType) {
-		            if (typeof obj != 'string') {
+		            //right now it is unclear of what to do with numbers and boolean, user type into string properties.
+		            //until this is decided and fixed, we allow it.
+		            if (typeof obj != 'string' && typeof obj != 'number' && typeof obj != 'boolean') {
 		                cb.accept(this.createIssue(7 /* INVALID_VALUE_SCHEMA */, "string is expected", this.node, !strict));
 		            }
 		        }
@@ -21449,8 +21459,14 @@
 		                });
 		            }
 		        }
+		        if (universeHelpers.isResourceTypeType(node.definition())) {
+		            if (node.value() == null && node.lowLevel().value(true) === "null") {
+		                acceptor.accept(createIssue(7 /* INVALID_VALUE_SCHEMA */, "Resource type can not be null", node));
+		            }
+		        }
 		        checkPropertyQuard(node, acceptor);
-		        if (typeof node.value() == 'string' && !node.definition().getAdapter(services.RAMLService).allowValue()) {
+		        var nodeValue = node.value();
+		        if ((typeof nodeValue == 'string' || typeof nodeValue == 'number' || typeof nodeValue == 'boolean') && !node.definition().getAdapter(services.RAMLService).allowValue()) {
 		            if (node.parent()) {
 		                var i = createIssue(9 /* NODE_HAS_VALUE */, "node " + node.name() + " can not be a scalar", node);
 		                acceptor.accept(i);
@@ -44154,6 +44170,7 @@
 		var defaultCalculator = __webpack_require__(84);
 		var yaml = __webpack_require__(7);
 		var search = __webpack_require__(53);
+		var universeHelpers = __webpack_require__(67);
 		var tckDumper = __webpack_require__(85);
 		var BasicNodeImpl = (function () {
 		    /**
@@ -44162,7 +44179,7 @@
 		    function BasicNodeImpl(_node, setAsWrapper) {
 		        if (setAsWrapper === void 0) { setAsWrapper = true; }
 		        this._node = _node;
-		        this._meta = new NodeMetadataImpl(false, false, this.optional());
+		        this._meta = new NodeMetadataImpl(false, false, universeHelpers.isMethodType(this.highLevel().definition()) && this.optional());
 		        if (setAsWrapper) {
 		            _node.setWrapperNode(this);
 		        }
@@ -44477,8 +44494,8 @@
 		 **/
 		function toStructuredValue(node) {
 		    var value = node.value();
-		    if (typeof value === 'string') {
-		        var mockNode = jsyaml.createNode(value.toString());
+		    if (typeof value === 'string' || value == null) {
+		        var mockNode = jsyaml.createNode(value);
 		        mockNode._actualNode().startPosition = node.lowLevel().valueStart();
 		        mockNode._actualNode().endPosition = node.lowLevel().valueEnd();
 		        var stv = new hlImpl.StructuredValue(mockNode, node.parent(), node.property());
@@ -44692,6 +44709,9 @@
 		            gotValue = gotValue || a.value() != null;
 		            optional = optional || a.optional();
 		        });
+		        //if(optional){
+		        //    meta.registerOptionalValue(name);
+		        //}
 		        if (!gotValue) {
 		            var calculator = node.getDefaultsCalculator();
 		            var defVal = calculator.attributeDefaultIfEnabled(highLevelNode, p);
@@ -45118,6 +45138,7 @@
 		            new ResourcesTransformer(),
 		            new ParametersTransformer(),
 		            new TypesTransformer(),
+		            new UsesTransformer(),
 		            new PropertiesTransformer(),
 		            new ResponsesTransformer(),
 		            new BodiesTransformer(),
@@ -45433,6 +45454,15 @@
 		    }
 		    return TypesTransformer;
 		})(ArrayToMappingsArrayTransformer);
+		var UsesTransformer = (function (_super) {
+		    __extends(UsesTransformer, _super);
+		    function UsesTransformer() {
+		        _super.call(this, new CompositeObjectPropertyMatcher([
+		            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling, universeHelpers.isUsesProperty)
+		        ]), "name");
+		    }
+		    return UsesTransformer;
+		})(ArrayToMapTransformer);
 		var PropertiesTransformer = (function (_super) {
 		    __extends(PropertiesTransformer, _super);
 		    function PropertiesTransformer() {
@@ -46635,7 +46665,7 @@
 		 **/
 		function referenceName(reference) {
 		    var val = reference.highLevel().value();
-		    return typeof val == 'string' ? val : val.valueName();
+		    return typeof val == 'string' || val == null ? val : val.valueName();
 		}
 		exports.referenceName = referenceName;
 		/**
@@ -47393,7 +47423,6 @@
 		var ramlservices = __webpack_require__(49);
 		var example = __webpack_require__(98);
 		var universeHelpers = __webpack_require__(67);
-		var universeProvider = __webpack_require__(68);
 		function resolveType(p) {
 		    var tpe = typeexpression.typeFromNode(p.highLevel());
 		    return tpe.getAdapter(ramlservices.RAMLService).toRuntime();
@@ -47954,7 +47983,7 @@
 		 **/
 		function referenceName(reference) {
 		    var val = reference.highLevel().value();
-		    return typeof val == 'string' ? val : val.valueName();
+		    return (typeof val == 'string') || val == null ? val : val.valueName();
 		}
 		exports.referenceName = referenceName;
 		/**
@@ -48108,7 +48137,8 @@
 		exports.schemaContent = schemaContent;
 		function extractParams(params, uri, owner, propName) {
 		    var ownerHl = owner.highLevel();
-		    var prop = ownerHl.definition().property(propName);
+		    var definition = ownerHl.definition();
+		    var prop = definition.property(propName);
 		    if (!uri) {
 		        return [];
 		    }
@@ -48132,7 +48162,7 @@
 		            describedParams[paramName].forEach(function (x) { return allParams.push(x); });
 		        }
 		        else {
-		            var universe = universeProvider("RAML10");
+		            var universe = definition.universe();
 		            var nc = universe.type(universeDef.Universe10.StringTypeDeclaration.name);
 		            var node = nc.getAdapter(ramlservices.RAMLService).createStubNode(null, paramName);
 		            var uriParameter = factory.buildWrapperNode(node);
