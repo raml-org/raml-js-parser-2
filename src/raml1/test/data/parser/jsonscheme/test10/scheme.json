@@ -1,0 +1,24 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema",
+    "type":"object",
+    "properties":{
+        "name":{
+            "type":"string",
+            "required":true
+        },
+        "child": {
+          "$ref": "#/definitions/InnerType"
+        }
+    },
+    "definitions":{
+        "InnerType":{
+            "type":"object",
+            "properties":{
+                "innerTypeName":{
+                    "type":"string",
+                    "required":true
+                }
+            }
+        }
+    }
+}

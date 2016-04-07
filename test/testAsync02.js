@@ -1,7 +1,7 @@
 console.log('RAML 1.0 JS Parser Test');
 
 var path = require("path");
-var raml1Parser = require('../src/raml1Parser');
+var raml1Parser = require('../dist/index');
 var XMLHttpRequestConstructor = require("xmlhttprequest").XMLHttpRequest;
 var fs = require("fs")
 

@@ -1,0 +1,20 @@
+#%RAML 1.0 
+title: Example API
+version: v1
+resourceTypes:
+  collection:
+    get:
+      is: paged
+    post:
+  member:
+    get:
+    patch:
+    delete:
+traits:
+  chargeable:
+    headers:
+      dept_code:
+  paged:
+    queryParameters:
+      start:
+        type: number

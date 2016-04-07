@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: WebOfMe
+mediaType: application/json
+types:
+  MyT^ype:
+    type: value
+    facets:
+      hello: number
+
+  qaa: string
+
+/hello.get: (query.q:MyType)=>MyType

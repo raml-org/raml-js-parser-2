@@ -1,0 +1,4 @@
+- apiList:      !include api-list.yaml
+- searchable:   !include searchable.yaml
+- serverErrors: !include server-errors.yaml
+- clientErrors: !include client-errors.yaml

@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: Some types
+types:
+  Person:
+    properties:
+      name: string
+      lastName: string
+      wishList: Product[]
+  Product:
+    type: object
+    discriminator: kind
+    properties:
+      kind: string
+      name: string
+      price:
+        type: moneyPrice
+        currency: USD
+  Car:
+    type: Product
+    #discriminator value
+    discriminatorValue: car
+    properties:
+      gallonsPerMile: number
+  Aicraft:
+    type: Product
+  #union types
+  Vehicle: Car | Aicraft
+  StoreMap:
+    properties:
+      name: string
+      #simple map evolve it to something more complex
+      []: Product
+  #declaring value type
+  moneyPrice:
+    type: number
+    description: amount of money
+    minimum: 0.0
+    facets:
+      currency:
+        type: string
+        enum: [ USD, EURO, RUB ]

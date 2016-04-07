@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Some types
+types:
+  Type1:
+    properties:
+      num1: number
+      str1: string
+  Type2:
+    properties:
+      num2: number
+      str3: string
+
+  Type3:
+    type: Type1 | Type2
+

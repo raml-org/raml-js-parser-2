@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: A
+types:
+  Hello:
+/ff:
+  get:
+    signature: ()=>Hello
+  post:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Hello

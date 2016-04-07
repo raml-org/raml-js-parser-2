@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test
+traits:
+  - TestTrait:
+      headers:
+        Retry-After:
+          description: Number of seconds to wait.
+          type: integer
+          required: true
+          example: 10
+/test:
+  post:
+    is: [TestTrait]
+    responses:
+      201:

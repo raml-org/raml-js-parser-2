@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: ResourceTypeToResource_exp
+version: 1
+baseUri: https://example.com/{version}
+resourceTypes:
+  - rt0: !include resourceTypes/rt0.raml
+/root-resource:
+  type: rt0
+  get:
+    description: Get object
+    queryParameters:
+      type:
+        type: string
+        description: object type
+  post:
+    description: Create object
+    queryParameters:
+      index:
+        type: number
+        description: object index
+      type:
+        type: string
+        description: object type

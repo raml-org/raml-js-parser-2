@@ -1,0 +1,28 @@
+description: |
+  Bearer token Authentication. Users need to get the token from the Anypoint Authentication Service.
+type: x-token
+describedBy:
+  headers:
+    Authorization:
+      description: |
+        Bearer token
+      type: string
+      example: |
+        bearer b325e95c-2cd7-11e5-b345-feff819cdc9f
+  responses:
+    401:
+      description: Unauthorized. Your token is invalid and could not be identified as a user.
+      headers:
+        WWW-Authenticate:
+      body:
+        application/json:
+          schema: !include schemas/error-schema.json
+          example: |
+            { "message" : "Invalid token" }
+    403:
+      description: Forbidden. Your token is valid but you have no permissions to access the resource.
+      body:
+        application/json:
+          schema: !include schemas/error-schema.json
+          example: |
+            { "message" : "You are not authorized to perform this request"}

@@ -1,0 +1,12 @@
+{
+  "firstName" : "Juan",
+  "lastName" : "Ferrer",
+  "email" : "jferrer@mulesoft.com",
+  "phoneNumber" : "111-111-1111",
+  "enabled" : true,
+  "properties" : {
+    "cs_auth" :{
+      "country" : "Argentina"
+    }
+  }
+}

@@ -1,0 +1,1183 @@
+#%RAML 0.8
+title:     API Platform V2 API
+mediaType: application/json
+baseUri:   https://anypoint.mulesoft.com/apiplatform/repository/v2
+
+schemas:       !include schemas/schemas.yaml
+resourceTypes: !include resource-types/resource-types.yaml
+traits:        !include traits/traits.yaml
+securitySchemes:
+  - oauth_2_0: !include security/oauth_2_0.yaml
+
+securedBy: [ oauth_2_0 ]
+/public:
+  /apis:
+    description: |
+      Search through all public APIs within the Anypoint Platform.
+    securedBy: [ null ]
+    type:      apiSearch
+
+# Admin endpoints
+/organizations:
+  description:  | 
+    Organizations are the container entity for all API Portal-related resources.
+  post:
+    description: Create a new organization.
+    body:
+      application/json:
+        schema: newOrganization
+    responses:
+      201:
+        description: Created successfully
+        body:
+          application/json:
+      400:
+        description: Bad Request
+      500:
+        description: An unknown error occurred
+
+  /active:
+    get:
+      description: Get the active organization.
+      responses:
+        200:
+          description: Successful
+          body:
+            application/json:
+              example: !include examples/organization.json
+
+  /{organizationId}:
+    description: The organization's data
+    type: collectionItem
+    uriParameters:
+      organizationId:
+        type:     string
+        pattern:  "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+        required: true
+    get:
+      description: Get the organization.
+      queryParameters:
+        extended:
+          description: Retrieve extended information from Core Services
+          type: boolean
+          required: false
+          example: true
+        resolveTheme:
+          description: Resolve theme inheritance
+          type: boolean
+          required: false
+          example: true
+      responses:
+        200:
+          description: Successful
+          body:
+            application/json:
+              example: !include examples/organization.json
+        400:
+          description: Bad Request
+        500:
+          description: An unknown error occurred
+    put:
+      description: Update the organization.
+      body:
+        application/json:
+          schema: updateOrganization
+      responses:
+        200:
+          description: Successful
+          body:
+            application/json:
+        400:
+          description: Bad Request
+        500:
+          description: An unknown error occurred
+    delete:
+      description: Delete the organization.
+      responses:
+        204:
+          description: Organization deleted.
+
+    /permissions:
+      description: A list of available permissions
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/organization-permissions.json
+
+    /environments:
+      description: A list of available environments to deploy to.
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/environments.json
+
+    /theme:
+      get:
+        description: Get the organization theme.
+        body:
+          application/json:
+            example: !include examples/theme.json
+      put:
+        description: Update the organization theme.
+        body:
+          application/json:
+      /default:
+        get:
+          description: Get the default theme for an organization.
+          body:
+            application/json:
+              example: !include examples/theme.json
+
+    /files:
+      post:
+        description: Stores the Portal File and returns an object with information to retrieve it
+        body:
+          multipart/form-data:
+        responses:
+          201:
+            description: Data to retrieve the stored file
+            body:
+              application/json:
+
+      /upload:
+        post:
+          description: Upload an organization file.
+          body:
+            multipart/form-data:
+          responses:
+            200:
+              description: Successful
+              body:
+                application/json:
+
+            400:
+              description: Bad Request
+            500:
+              description: An unknown error occurred
+
+    /apis:
+      description: A collection of APIs
+      type:
+        collection:
+          baseType: apiSearch
+
+      /by-name:
+        get:
+          description: |
+            Returns a single api that matches the passed-in api name.
+            Returns null if no match is found.
+          queryParameters:
+            apiName:
+              type: string
+              required: true
+          body:
+            application/json:
+              example: !include examples/api.json
+
+      /versions/by-endpoint:
+        get:
+          description: Returns a list of API versions for a given list of endpoints
+          queryParameters:
+            uris:
+              type: string
+              required: true
+              repeat: true
+          body:
+            application/json:
+              example: !include examples/version-by-endpoint.json
+
+      /versions/by-name:
+        get:
+          description: |
+            Returns a single api that matches the passed-in api name
+            and api version name. Returns null if no match is found.
+          queryParameters:
+            apiName:
+              type: string
+              required: true
+            versionName:
+              type: string
+              required: true
+          body:
+            application/json:
+              example: !include examples/version.json
+
+      /versions/tiers:
+        get:
+          description: |
+            Returns permitted SLA tiers within an organization. It means every
+            SLA tier that belongs to API version requesting user has access to.
+          body:
+            application/json:
+              example: !include examples/tiers.json
+
+      /versions/contracts/applications:
+        get:
+          description: |
+            Returns permitted applications within an organization. It means every
+            applications that has a contract with an API version requesting user
+            has access to.
+          body:
+            application/json:
+              example: !include examples/applications.json
+
+      /{apiId}:
+        description: An API
+        type: collectionItem
+        uriParameters:
+          apiId:
+            type: integer
+            minimum: 1
+            maximum: 2147483647
+        get:
+          description: |
+            Returns an API
+          body:
+            application/json:
+              example: !include examples/api.json
+        patch:
+          body:
+            application/json:
+              schema: updateApi
+        delete:
+
+        /portals:
+          description: A collection of API portals
+          get:
+            description: Returns a collection of API portals
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: !include examples/portals.json
+
+        /permissions:
+          post:
+            description: Grant a user view access to this API
+            body:
+              application/json:
+
+        /versions:
+          description: A collection of API versions
+          type:
+            collection:
+              baseType: baseCollection
+          get:
+            description: |
+              Returns a list of API versions
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: !include examples/versions.json
+          post:
+            body:
+              application/json:
+                schema: newVersion
+
+          /{apiVersionId}:
+            description: An API version
+            type: collectionItem
+            uriParameters:
+              apiVersionId:
+                type: integer
+                minimum: 1
+                maximum: 2147483647
+            get:
+              description: |
+                Returns an API version
+              responses:
+                200:
+                  body:
+                    application/json:
+                      example: !include examples/version.json
+            patch:
+              body:
+                application/json:
+                  schema: updateVersion
+            put:
+              body:
+                application/json:
+                  schema: updateVersion
+
+            delete:
+
+            /users:
+              description: |
+                Proxy for core services that return users
+              get:
+                description: Search for users
+                queryParameters:
+                  search:
+                    type: string
+                    required: true
+                responses:
+                  200:
+                    body:
+                      application/json:
+                        example: !include examples/users.json
+
+              /by-roles:
+                description: |
+                  Proxy for core services that return users for a given set of roles and context parameters.
+                  Users are returned with an extra "roles" property containing the core services id of
+                  the subset of passed-in roles of which they are a member.
+                get:
+                  description: Search for users
+                  responses:
+                    200:
+                      body:
+                        application/json:
+                          example: !include examples/users.json
+              /owners:
+                get:
+                  description: return all owners of an API version
+                  responses:
+                    200:
+                      body:
+                        application/json:
+                          example: !include examples/users.json
+
+            /permissions:
+              post:
+                description: Grant a user admin access to this API version
+                body:
+                  application/json:
+              delete:
+                description: Revoke a user's admin access to this API version
+                queryParameters:
+                  userId:
+                    type: string
+                    required: true
+
+            /portal:
+              get:
+                description: Returns the portal associated with the API versions
+                responses:
+                  200:
+                    body:
+                      application/json:
+                        example: !include examples/portal.json
+
+              post:
+                description: Create a portal and associates it with an API version
+                body:
+                  application/json:
+
+              patch:
+                description: Create a portal and associates it with an API version
+                body:
+                  application/json:
+
+              /permissions:
+                post:
+                  description: Grant a user view access to this portal
+                  body:
+                    application/json:
+                delete:
+                  description: Revoke a user's view access to portal
+                  queryParameters:
+                    userId:
+                      type: string
+                      required: true
+
+              /pages:
+                type:
+                  collection:
+                    baseType: baseCollection
+                get:
+                  description: Returns all pages of the portal
+                  responses:
+                    200:
+                      body:
+                        application/json:
+                          example: !include examples/pages.json
+
+                /{pageId}:
+                  type: collectionItem
+                  uriParameters:
+                    pageId:
+                      type: integer
+                      minimum: 1
+                      maximum: 2147483647
+
+                  /widgets:
+                    get:
+                      description: Returns all content widgets of a page
+                    patch:
+                      description: Updates the collection of widgets
+                      body:
+                        application/json:
+
+              /theme:
+                get:
+                  description: Get the portal theme.
+                  body:
+                    application/json:
+                put:
+                  description: Update the portal theme.
+                  body:
+                    application/json:
+
+              /files:
+                /upload:
+                  post:
+                    description: Upload an api portal file.
+                    body:
+                      multipart/form-data:
+                    responses:
+                      200:
+                        description: Successful
+                        body:
+                          application/json:
+                      400:
+                        description: Bad Request
+                      500:
+                        description: An unknown error occurred
+
+                /{fileId}:
+                  delete:
+                    description: Removes the Portal file
+                    responses:
+                      200:
+                        description: Successful portal file deletion
+                  get:
+                    description: Gets the portal file.
+                    responses:
+                      200:
+                        description: Portal file stream
+
+            /addRootRaml:
+              post:
+                description: Adds the root RAML for this API version
+                body:
+                  application/json:
+                    schema:
+                      addRootRaml
+
+            /definition:
+              description: The fully resolved RAML spec for this version of the API
+              get:
+                description: Gets the RAML SPEC
+
+            /endpoint:
+              description: The endpoint associated with the API version
+
+              get:
+                description: Returns the endpoint associated with the API version
+                responses:
+                  200:
+                    description: Successful
+                  400:
+                    description: Bad request
+                  404:
+                    description: No endpoint found for this API version
+
+              post:
+                description: Creates an endpoint for the API version
+                body:
+                  application/json:
+                responses:
+                  201:
+                    description: The endpoint has been created
+                    body:
+                      application/json:
+                  400:
+                    description: Bad request
+                  409:
+                    description: The endpoint URL already exists
+
+              put:
+                description: Updates the endpoint associated with the API version
+                body:
+                  application/json:
+                responses:
+                  200:
+                    description: The endpoint has been updated
+                    body:
+                      application/json:
+                  409:
+                    description: The endpoint URL already exists
+
+              delete:
+                description: Deletes the endpoint associated with the API version
+                responses:
+                  200:
+                    description: The endpoint has been succesfully deleted
+
+              patch:
+                body:
+                  application/json:
+
+              /active:
+                post:
+                  description: Records activity for an API version
+                  body:
+                    application/json:
+                  responses:
+                    201:
+                      description: The API version activity has been recorded
+                      body:
+                        application/json:
+
+            /files:
+              description: A collection of API version RAML files and directories
+              type:
+                collection:
+                  baseType: baseCollection
+
+              /export:
+                get:
+                  description: Exports all files in the filesystem as a ZIP file
+                  responses:
+                    200:
+              /{apiVersionFileId}:
+                description: An API version RAML file (or directory)
+                type: collectionItem
+                uriParameters:
+                  apiVersionFileId:
+                    type: integer
+                    minimum: 1
+                    maximum: 2147483647
+            /policies:
+              description: A collection of API version policies
+              type:
+                collection:
+                  baseType: baseCollection
+              get:
+                queryParameters:
+                  standalone:
+                    type: boolean
+                  version:
+                    type: string
+
+              /{policyId}:
+                description: An API version policy
+                type: collectionItem
+                uriParameters:
+                  policyId:
+                    type: integer
+                    minimum: 1
+                    maximum: 2147483647
+            /tags:
+              description: Manages an API version tags
+
+              /{tag}:
+                uriParameters:
+                  tag:
+                    maxLength: 150
+                post:
+                  description: Adds a tag to an API version
+                  body:
+                    application/json:
+
+                delete:
+                  description: Removes a tag from an API version
+
+            /tiers:
+              description: Manages API version tiers.
+
+              get:
+                description: Retrieves a list of tiers for the supplied api version.
+                is: [ searchable ]
+                queryParameters:
+                  active:
+                    description: Retrieve only active tiers if set to true
+                    type: boolean
+                    required: false
+                    example: true
+                responses:
+                  200:
+                    description: Successful
+                  400:
+                    description: Bad request
+                  404:
+                    description: No tiers found for this API version
+
+              post:
+                description: Creates a sla tier for the API version
+                body:
+                  application/json:
+                    schema: newTier
+                responses:
+                  201:
+                    description: The tier has been created
+                    body:
+                      application/json:
+                  400:
+                    description: Bad request
+                  409:
+                    description: The tier URL already exists
+
+              /{tierId}:
+                description: A particular tier associated with the API version.
+
+                put:
+                  description: Update a tier associated with an API version.
+                  body:
+                    application/json:
+                      schema: newTier
+                  responses:
+                    200:
+                      description: The tier has been successfully updated.
+                      body:
+                        application/json:
+                    400:
+                      description: Bad request.
+                    409:
+                      description: The tier URL already exists.
+
+                delete:
+                  description: Delete a tier that has no active applications.
+                  responses:
+                    204:
+                      description: The tier has been deleted.
+
+            /contracts:
+              description: Contracts associated with the API version
+
+              get:
+                description: Retrieves a list of applications with contracts with the API version.
+                is: [ searchable ]
+
+              /{contractId}:
+                description: A particular contract associated with the API version.
+
+                get:
+                  description: Retrieves a specific contract for the API version.
+
+                patch:
+                  description: Patches contract conditions.
+                  body:
+                    application/json:
+                      schema: patchContract
+
+                delete:
+                  description: Deletes contract.
+                  responses:
+                    204:
+                      description: Contract deleted.
+                    400:
+                      description: Mandatory query string parameter not being provided.
+                    404:
+                      description: The contract cannot be found.
+
+                /approveTierChange:
+                  description: Approves contract tier change request.
+                  post:
+                    description: Approves contract tier change request.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+                /approve:
+                  description: Approves contract.
+                  post:
+                    description: Approves contract.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+                /reject:
+                  description: Rejects contract.
+                  post:
+                    description: Rejects contract.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+                /rejectTierChange:
+                  description: Rejects contract tier change request.
+                  post:
+                    description: Rejects contract tier change request.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+                /restore:
+                  description: Restores contract.
+                  post:
+                    description: Restores contract.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+                /revoke:
+                  description: Revokes contract.
+                  post:
+                    description: Revokes contract.
+                    body:
+                      application/json:
+                        schema: updateContractStatus
+
+            /proxy:
+              description: Gets a proxy
+              get:
+                description: Gets a proxy
+                responses:
+                  200:
+                    body:
+                      application/zip:
+              /deployment:
+                post:
+                  body:
+                    application/json:
+                patch:
+                  body:
+                    application/json:
+                /status:
+                  get:
+                    description: Retrieves the deployment details of a version
+                    body:
+                      application/json:
+
+    /policy-templates:
+      description: |
+        Policy Templates are the basis for creating new policies.
+        The platform provides out of the box with several policies and new
+        ones can be added by MuleSoft Support Team if needed.
+      get:
+        description: Retrieve a list of policy templates.
+        responses:
+          200:
+            description: Successful
+            body:
+              application/json:
+                example: |
+                  {
+                    "policyTemplates": [{
+                      "name": "HTTP Basic Authentication",
+                      "id": "http-basic-authentication",
+                      "description": "All service calls must include security credentials that match those specified in the policy.",
+                      "category": "Security",
+                      "type": "system",
+                      "providedCharacteristics": [
+                        "Requires Authentication"
+                      ],
+                      "requiredCharacteristics": [
+                        "Security Manager"
+                      ]
+                    }]
+                  }
+          400:
+            description: Bad Request
+
+          406:
+            description: The requested accept type is not supported
+
+          500:
+            description: An unknown error occurred
+
+      /{policyTemplateId}:
+        uriParameters:
+          policyTemplateId:
+            type: integer
+            minimum: 1
+            maximum: 2147483647
+
+        get:
+          description: |
+            Retrieve specific details from the policy template, including the full
+            XML that is being injected as well as all of its configuration parameters.
+          responses:
+            200:
+              description: Successful
+              body:
+                application/json:
+                  example: |
+                    {
+                      "name": "HTTP Basic Authentication",
+                      "description": "All service calls must include security credentials that match those specified in the policy.",
+                      "template": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<policy xmlns=\"http://www.mulesoft.org/schema/mule/policy\"\n        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n        xmlns:mule-ss=\"http://www.mulesoft.org/schema/mule/spring-security\"\n        xsi:schemaLocation=\"http://www.mulesoft.org/schema/mule/policy http://www.mulesoft.org/schema/mule/policy/current/mule-policy.xsd\n              http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/schema/mule/spring-security/current/mule-spring-security.xsd\"></policy>",
+                      "category": "Security",
+                      "type": "system",
+                      "providedCharacteristics": [
+                        "Requires Authentication"
+                      ],
+                      "requiredCharacteristics": [
+                        "Security Manager"
+                      ],
+                      "configuration": []
+                    }
+
+            400:
+              description: Bad Request
+
+            404:
+              description: There is no policy template defined under the specified id.
+
+            406:
+              description: The requested accept type is not supported
+
+            500:
+              description: An unknown error occurred
+
+    /custom-policy-templates:
+      description: |
+        Custom Policy Templates are the basis for creating new policies.
+        The platform provides out of the box with several policies and new
+        ones can be added using this API.
+      type:
+        collection:
+          baseType: baseCollection
+
+      get:
+        description: Retrieves a list of custom policy templates.
+        is: [ searchable ]
+
+      /{customPolicyTemplateId}:
+        description: A custom policy template
+        type: collectionItem
+        uriParameters:
+          customPolicyTemplateId:
+            type: integer
+            minimum: 1
+            maximum: 2147483647
+
+        /configuration:
+          get:
+            description: The XML configuration for the custom policy template
+            responses:
+              200:
+                body:
+                  application/xml:
+                    example: |
+                      <?xml version="1.0" encoding="UTF-8"?>
+                      <policy online="true"
+                              xmlns="http://www.mulesoft.org/schema/mule/policy"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:spring="http://www.springframework.org/schema/beans"
+                              xmlns:mule-ss="http://www.mulesoft.org/schema/mule/spring-security"
+                              xmlns:ss="http://www.springframework.org/schema/security"
+                              xsi:schemaLocation="http://www.mulesoft.org/schema/mule/policy http://www.mulesoft.org/schema/mule/policy/current/mule-policy.xsd
+                                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                                    http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/schema/mule/spring-security/3.3/mule-spring-security.xsd
+                                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+                          <spring:beans>
+                              <ss:authentication-manager alias="{{policyId}}-authentication-manager">
+                                  <ss:authentication-provider>
+                                      <ss:user-service id="userService">
+                                          <ss:user name="{{username}}" password="{{password}}" authorities="ROLE_ADMIN"/>
+                                      </ss:user-service>
+                                  </ss:authentication-provider>
+                              </ss:authentication-manager>
+                          </spring:beans>
+                          <mule-ss:security-manager name="{{policyId}}-security-manager">
+                              <mule-ss:delegate-security-provider name="{{policyId}}-security-provider" delegate-ref="{{policyId}}-authentication-manager" />
+                          </mule-ss:security-manager>
+                      </policy>
+
+        /definition:
+          get:
+            description: The YAML definition for the custom policy template
+            responses:
+              200:
+                body:
+                  application/yaml:
+                    example: |
+                      ---
+                      id: custom-security-manager
+                      name: Custom security manager
+                      description: Provides a custom security manager that can authenticate only a single user.
+                      category: Security
+                      standalone: false
+                      requiresConnectivity: false
+                      providedCharacteristics:
+                        - Security manager
+                      requiredCharacteristics: []
+                      configuration:
+                        - propertyName: username
+                          name: Username
+                          description:
+                          type: string
+                          optional: false
+                          sensitive: false
+                          allowMultiple: false
+                        - propertyName: password
+                          name: Password
+                          description:
+                          type: string
+                          optional: false
+                          sensitive: true
+                          allowMultiple: false
+
+    /portals:
+      description: A collection of API portals within organization
+      type:
+        collection:
+          baseType: baseCollection
+
+    /applications:
+      description: A collection of applications that consume APIs via contracts
+      type:
+        collection:
+          baseType: baseCollection
+
+      get:
+        description: Retrieves a list of applications.
+        is: [ searchable ]
+
+      /{applicationId}:
+        description: An application
+        type: collectionItem
+        uriParameters:
+          applicationId:
+            type: integer
+            minimum: 1
+            maximum: 2147483647
+
+        /secret/reset:
+          description: Resets client secret for application
+          post:
+            body:
+              application/json:
+            responses:
+              201:
+                body:
+                  application/json:
+                    schema: |
+                      {
+                        "$schema": "http:\/\/json-schema.org\/draft-03\/schema",
+                        "type": "object",
+                        "required": true,
+                        "properties": {
+                          "clientSecret": {
+                            "type": "string",
+                            "required": true
+                          }
+                        }
+                      }
+
+        /party-ids:
+          description: Party Ids associated with the application
+          get:
+            description: Retrieves a list of Party Ids for a specific api version
+            queryParameters:
+              apiVersionId:
+                type: integer
+                required: true
+
+        /contracts:
+          description: Contracts associated with the application
+          type:
+            collection:
+              baseType: baseCollection
+
+          get:
+            description: Retrieves a list of applications with contracts with the application.
+            is: [ searchable ]
+
+          post:
+            description: Creates new contract between an API version and the application.
+            body:
+              application/json:
+                schema: newContract
+
+          /{contractId}:
+            description: A particular contract associated with the application.
+
+            get:
+              description: Retrieves a specific contract for the application.
+
+            patch:
+              description: Patches contract conditions.
+              body:
+                application/json:
+                  schema: patchContract
+
+            delete:
+              description: Deletes contract.
+              responses:
+                204:
+                  description: Contract deleted.
+                400:
+                  description: Mandatory query string parameter not being provided.
+                404:
+                  description: The contract cannot be found.
+
+    /contracts:
+      get:
+    #    description:|
+    #      Returns a single contract (including application information and SLA tier), for a combination of API version ID and a Core Services application ID
+        queryParameters:
+          apiVersionId:
+            type: integer
+            required: true
+          coreServicesId:
+            type: string
+            required: true
+        responses:
+          200:
+
+    /deployment-targets:
+      description: A collection of deploy targets for Hybrid deploymentTargets
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+
+    # Public endpoints
+    /public:
+      /permissions:
+        description: A list of available permissions
+        get:
+          responses:
+            200:
+              body:
+                application/json:
+
+      /portals:
+        description: |
+          A collection of API portals within an organization. When performing a search by passing in 'query=foo' as a string, it is equivalent to passing in the following combination: 'query[name]=foo&query[version]=foo&query[description]=foo&query[tags]=foo&query[matchAll]=false'.
+        type: apiExtendedSearch
+
+      /apis/{apiId}:
+        description: An API
+        type: collectionItem
+        uriParameters:
+          apiId:
+            type: integer
+            minimum: 1
+            maximum: 2147483647
+
+        /versions/{apiVersionId}:
+          description: An API version
+          type: collectionItem
+          uriParameters:
+            apiVersionId:
+              type: integer
+              minimum: 1
+              maximum: 2147483647
+
+          /portal:
+            get:
+
+            /pages/{pageId}/widgets:
+              get:
+
+            /files/{fileId}:
+              get:
+                description: Retrieve the file by file id. Content-type will be set based on the content-type originally received.
+                responses:
+                  200:
+                    description: Successful.
+                  404:
+                    description: Not Found.
+
+          /tiers:
+            get:
+
+          /definition:
+            description: The fully resolved RAML spec for this version of the API
+            type: collectionItem
+            get:
+              description: Gets the RAML SPEC
+
+          /files:
+            description: Serves RAML files for the portal.
+            get:
+              description: Redirect to the root RAML file.
+              responses:
+                302:
+                  description: Temporary redirect to the root RAML file.
+                404:
+                  description: No RAML file found.
+
+            /root:
+              get:
+                description: Retrieve the root RAML file contents.
+                responses:
+                  200:
+                    description: Successful.
+                  404:
+                    description: Not Found.
+
+            /{fileName}:
+              get:
+                description: Retrieve the RAML contents by file name.
+                responses:
+                  200:
+                    description: Successful.
+                  404:
+                    description: Not Found.
+
+# Cross Tenant endpoints
+/policies:
+  /{policyId}:
+    description: An application
+    type: collectionItem
+    uriParameters:
+      policyId:
+        type: integer
+        minimum: 1
+        maximum: 2147483647
+    get:
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "audit": {
+                  "created": {
+                    "date": "2014-09-22T14:15:23.238Z"
+                  },
+                  "updated": {
+                  }
+                },
+                "organizationId": 1,
+                "id": 1,
+                "apiVersionId": 10,
+                "policyTemplateId": "1",
+                "configurationData": {
+                  "username": "asd"
+                },
+                "template": {
+                  "id": 1,
+                  "name": "Custom Policy Template 1 v1",
+                  "description": "Provides a custom security manager that can authenticate only a single user.",
+                  "category": "Security",
+                  "type": "custom",
+                  "standalone": false,
+                  "requiresConnectivity": false,
+                  "providedCharacteristics": [
+                    "Security manager"
+                  ],
+                  "requiredCharacteristics": [
+                  ],
+                  "configuration": [
+                    {
+                      "propertyName": "username",
+                      "name": "Username",
+                      "description": null,
+                      "type": "string",
+                      "optional": false,
+                      "sensitive": false,
+                      "allowMultiple": false
+                    },
+                    {
+                      "propertyName": "password",
+                      "name": "Password",
+                      "description": null,
+                      "type": "string",
+                      "optional": false,
+                      "sensitive": true,
+                      "allowMultiple": false
+                    }
+                  ],
+                  "custom": true
+                },
+                "type": "custom"
+              }
+
+/ch-domains/{domainName}:
+  description: Returns information about the availability desired CH domain
+  get:
+    responses:
+      200:
+        body:
+          application/json:

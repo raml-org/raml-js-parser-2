@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: test
+baseUri: api.{domain}/{mediaType}
+protocols:
+  - HTTP
+  - HTTPS
+baseUriParameters:
+  domain:
+    description: Api base uri parameter domain
+    example: example.com
+    default: test.com
+    enum: [example.com, test.com, newdomain.com]

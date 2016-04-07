@@ -1,0 +1,103 @@
+{
+  "access_token": {
+    "access_token": "64ed7879-90df-4f65-8d3d-4867a3fed5a1",
+    "expires_in": 1151
+  },
+  "client": {
+    "client_id": "LAsqv0u55VTAjcw7LBHnPg53hY2es3oE",
+    "name": "Admin Client",
+    "redirect_uris": [],
+    "grant_types": [
+      "authorization_code",
+      "refresh_token",
+      "validate_bearer",
+      "password",
+      "client_credentials",
+      "implicit"
+    ]
+  },
+  "user": {
+    "id": "a23c0943-1cc4-47f1-aea2-cb6c2c2fca6a",
+    "createdAt": "2014-07-27T20:56:02.112Z",
+    "updatedAt": "2014-12-17T15:57:40.250Z",
+    "firstName": "Chris",
+    "lastName": "Mordue",
+    "email": "christopher.mordue@mulesoft.com",
+    "phoneNumber": "+1 123-456-7890",
+    "username": "sundaycmordue",
+    "enabled": true,
+    "deleted": false,
+    "organizationPreferences": {
+      "0a14e2fd-1cfe-4310-acbc-54bf93eb8420": {
+        "defaultEnvironment": "a6217e66-faf1-4c17-bbbc-8c008ef4c8c6"
+      }
+    },
+    "organization": {
+      "name": "Mordue's Sundays testing",
+      "id": "0a14e2fd-1cfe-4310-acbc-54bf93eb8420",
+      "createdAt": "2014-07-27T20:56:02.125Z",
+      "ownerId": "a23c0943-1cc4-47f1-aea2-cb6c2c2fca6a",
+      "updatedAt": "2015-01-29T18:34:54.570Z",
+      "clientId": "3b8650722f5847b1abf51f769c173514",
+      "domain": "mordues-sundays",
+      "isFederated": false,
+      "parentOrganizationIds": [],
+      "subOrganizationIds": [],
+      "tenantOrganizationIds": [],
+      "idprovider_id": "mulesoft",
+      "properties": {
+        "cs_auth": {
+          "session_timeout": 1200000
+        }
+      },
+      "entitlements": {
+        "createSubOrgs": false,
+        "createEnvironments": false,
+        "hybrid": { "enabled": false },
+        "globalDeployment": false,
+        "vCoresProduction": { "assigned": 1, "reassigned": 0 },
+        "vCoresSandbox": { "assigned": 1, "reassigned": 0 }
+      },
+      "isMaster": true
+    },
+    "memberOfOrganizations": [
+      {
+        "name": "Mordue's Sundays testing",
+        "id": "0a14e2fd-1cfe-4310-acbc-54bf93eb8420",
+        "createdAt": "2014-07-27T20:56:02.125Z",
+        "ownerId": "a23c0943-1cc4-47f1-aea2-cb6c2c2fca6a",
+        "updatedAt": "2015-01-29T18:34:54.570Z",
+        "clientId": "3b8650722f5847b1abf51f769c173514",
+        "domain": "mordues-sundays",
+        "isFederated": false,
+        "parentOrganizationIds": [],
+        "parentId": null,
+        "parentName": null,
+        "subOrganizationIds": [],
+        "tenantOrganizationIds": [],
+        "idprovider_id": "mulesoft",
+        "isMaster": true
+      }
+    ],
+    "contributorOfOrganizations": [
+      {
+        "name": "Mordue's Sundays testing",
+        "id": "0a14e2fd-1cfe-4310-acbc-54bf93eb8420",
+        "createdAt": "2014-07-27T20:56:02.125Z",
+        "ownerId": "a23c0943-1cc4-47f1-aea2-cb6c2c2fca6a",
+        "updatedAt": "2015-01-29T18:34:54.570Z",
+        "clientId": "3b8650722f5847b1abf51f769c173514",
+        "domain": "mordues-sundays",
+        "isFederated": false,
+        "parentOrganizationIds": [],
+        "parentId": null,
+        "parentName": null,
+        "subOrganizationIds": [],
+        "tenantOrganizationIds": [],
+        "idprovider_id": "mulesoft",
+        "isMaster": true
+      }
+    ],
+    "properties": {}
+  }
+}

@@ -1,0 +1,710 @@
+#%RAML 0.8
+baseUri: http://mocksvc.mulesoft.com/mocks/e01b5a4b-7621-4e6b-be9a-190447eb8cf3
+title: Application Management API
+mediaType: application/json
+resourceTypes:
+  - readOnlyCollection:
+      get:
+        description: Returns a list of <<resourcePathName>>
+        responses:
+          200:
+            description: A list of <<resourcePathName>>
+            body:
+              application/json:
+                schema: <<resourcePathName>>
+          401:
+            description: The authentication token is invalid
+          403:
+            description: The user identified by the token does not have sufficient privileges to view or modify this resource
+
+  - collection:
+      type: readOnlyCollection
+
+      post:
+        description: Creates a new <<resourcePathName|!singularize>>
+        body:
+          application/json:
+            schema: new<<resourcePathName | !singularize>>
+        responses:
+          201:
+            description: The new <<resourcePathName|!singularize>> has been successfully created
+            headers:
+              Location:
+                description: uri of new resource
+                type: string
+                required: true
+          401:
+            description: The authentication token is invalid
+          403:
+            description: The user identified by the token does not have sufficient privileges to view or modify this resource
+
+
+  - readOnlyCollectionItem:
+      description: An instance of a single <<resourcePathName|!singularize>>
+      get:
+        description: Returns an instance of a single <<resourcePathName|!singularize>>
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<resourcePathName|!singularize>>
+          401:
+            description: The authentication token is invalid
+          403:
+            description: The user identified by the token does not have sufficient privileges to view or modify this resource
+          404:
+            description: The <<resourcePathName|!singularize>> does not exist
+  - collectionItem:
+      type: readOnlyCollectionItem
+      description: An instance of a single <<resourcePathName|!singularize>>
+      put:
+        body:
+          application/json:
+            schema: new<<resourcePathName|!singularize>>
+        description: Updates a single <<resourcePathName|!singularize>>
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<resourcePathName|!singularize>>
+          401:
+            description: The authentication token is invalid
+          403:
+            description: The user identified by the token does not have sufficient privileges to view or modify this resource
+
+      delete:
+        description: Deletes the instance of the <<resourcePathName|!singularize>> specified
+        responses:
+          204:
+            description: The <<resourcePathName|!singularize>> has been deleted successfully
+          401:
+            description: The authentication token is invalid
+          403:
+            description: The user identified by the token does not have sufficient privileges to view or modify this resource
+
+traits:
+  - searchable:
+      queryParameters:
+        offset:
+          description: Skip over a number of elements by specifying an offset value for the query
+          type: integer
+          required: false
+          example: 20
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+        limit:
+          description: Limit the number of elements on the response
+          type: integer
+          required: false
+          example: 80
+          default: 100
+          minimum: 10
+          maximum: 250
+        sort:
+          description: Property to sort by
+          type: string
+          required: false
+          example: name
+        ascending:
+          description: Order for sorting
+          type: boolean
+          required: false
+          example: true
+        query:
+          description: Search criteria
+          type: string
+          required: false
+          example:
+
+/auth/exchangeToken:
+  description: Exchanges an access token obtained from another authentication provider for an access token that can be used in the Anypoint Platform. The resulting token must be used to authenticate all other requests to the Anypoint Platform's Management API. 
+  post:
+    description: Returns an authentication token for the Anypoint Platform by exchanging a token from another authentication provider. The response also contains information about the authenticated user.
+    body:
+      example: |
+        {
+          "token": "Your token from the authentication provider",
+          "clientId": "The application's client ID",
+          "clientSecret": "The application's client secret",
+        }
+    responses:
+      200:
+        body:
+          example: |
+            {
+              "username": "api_creator",
+              "email": "api.platform.qa+api_creator@gmail.com",
+              "firstName": "Api",
+              "lastName": "Creator",
+              "token": "The new authentication token to use",
+              "organization": {
+                "id": 1,
+                "domain": "mulesoft-inc",
+                "isFederated": false
+              },
+              "isOrganizationOwner": false,
+              "isApiCreator": true
+            }
+    
+/repository/public/organizations/{organizationId}:
+  description: The root URI for all calls made against an organization.
+  uriParameters:
+    organizationId:
+      description: The organization's ID
+      type: integer
+      minimum: 1
+      maximum: 2147483647
+
+  /portals:
+    description: All of the APIs that have a portal in an organization the user has access to. These can be public portals, or portals for which the user has been granted access to read.
+    type: readOnlyCollection
+    get:
+      is: [searchable]
+      description: Returns a list of APIs with all of its versions to which the user has read access to.
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "total": 1,
+                "apis": [
+                  {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-21T16:59:53.735Z"
+                      },
+                      "updated": {
+                        "date": "2014-08-21T19:05:54.665Z"
+                      }
+                    },
+                    "organizationId": 910,
+                    "id": 1346,
+                    "name": "Application Management",
+                    "versions": [
+                      {
+                        "organizationId": 910,
+                        "id": 1338,
+                        "apiId": 1346,
+                        "portalId": 556,
+                        "name": "1.0.0",
+                        "description": "Exposes the Application management capabilities of the Anypoint Platform for APIs for use by external sites. Typically used by custom developer\/API portal destinations.",
+                        "tags": [
+                          "api platform"
+                        ],
+                        "order": 1,
+                        "rootFileId": 2449,
+                        "deprecated": false
+                      }
+                    ]
+                  }
+                ]
+              }
+
+  /apis/{apiId}/versions/{apiVersionId}:
+    description: The root URI for an APIs portal
+    uriParameters:
+      apiId:
+        description: The API's ID
+        type: integer
+        minimum: 1
+        maximum: 2147483647
+      apiVersionId:
+        description: The API version's ID
+        type: integer
+        minimum: 1
+        maximum: 2147483647
+    /portal:
+      description: A portal associated with this API version. The portal includes all of the pages and all content.
+      type: readOnlyCollectionItem
+      get:
+        responses:
+          200:
+            body:
+              example: |
+                  {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-21T19:03:19.198Z"
+                      },
+                      "updated": {
+                        "date": "2014-08-21T19:04:02.804Z"
+                      }
+                    },
+                    "organizationId": 910,
+                    "id": 556,
+                    "isPublic": true,
+                    "theme": null,
+                    "api": {
+                      "audit": {
+                        "created": {
+                          "date": "2014-08-21T16:59:53.735Z"
+                        },
+                        "updated": {
+                          "date": "2014-08-21T19:05:54.665Z"
+                        }
+                      },
+                      "organizationId": 910,
+                      "id": 1346,
+                      "name": "Application Management",
+                      "versions": [
+                        {
+                          "audit": {
+                            "created": {
+                              "date": "2014-08-21T16:59:53.735Z"
+                            },
+                            "updated": {
+                              "date": "2014-08-21T19:05:58.651Z"
+                            }
+                          },
+                          "organizationId": 910,
+                          "id": 1338,
+                          "apiId": 1346,
+                          "portalId": 556,
+                          "name": "1.0.0",
+                          "description": "Exposes the Application management capabilities of the Anypoint Platform for APIs for use by external sites. Typically used by custom developer\/API portal destinations",
+                          "tags": [
+                            "api platform"
+                          ],
+                          "order": 1,
+                          "rootFileId": 2449,
+                          "deprecated": false,
+                          "endpoint": null
+                        }
+                      ]
+                    },
+                    "apiVersion": {
+                      "audit": {
+                        "created": {
+                          "date": "2014-08-21T16:59:53.735Z"
+                        },
+                        "updated": {
+                          "date": "2014-08-21T19:05:58.651Z"
+                        }
+                      },
+                      "organizationId": 910,
+                      "id": 1338,
+                      "apiId": 1346,
+                      "portalId": 556,
+                      "name": "1.0.0",
+                      "description": "Exposes the Application management capabilities of the Anypoint Platform for APIs for use by external sites. Typically used by custom developer\/API portal destinations.",
+                      "tags": [
+                        "api platform"
+                      ],
+                      "order": 1,
+                      "rootFileId": 2449,
+                      "deprecated": false,
+                      "endpoint": null,
+                      "permissions": {
+                        "update": true
+                      }
+                    },
+                    "pages": [
+                      {
+                        "audit": {
+                          "created": {
+                            "date": "2014-08-21T19:03:19.198Z"
+                          },
+                          "updated": {
+                            
+                          }
+                        },
+                        "id": 1221,
+                        "organizationId": 910,
+                        "portalId": 556,
+                        "name": "Home",
+                        "order": 0,
+                        "type": "markdown",
+                        "data": "Exposes the Application management capabilities of the Anypoint Platform for APIs for use by external sites. Typically used by custom developer\/API portal destinations.",
+                        "draftData": "Exposes the Application management capabilities of the Anypoint Platform for APIs for use by external sites. Typically used by custom developer\/API portal destinations.",
+                        "draftName": "Home"
+                      },
+                      {
+                        "audit": {
+                          "created": {
+                            "date": "2014-08-21T19:03:19.198Z"
+                          },
+                          "updated": {
+                            
+                          }
+                        },
+                        "id": 1222,
+                        "organizationId": 910,
+                        "portalId": 556,
+                        "name": "API reference",
+                        "order": 1,
+                        "type": "console",
+                        "data": null,
+                        "draftData": null,
+                        "draftName": "API reference"
+                      }
+                    ]
+                  }
+    /tiers:
+      description: All the SLA tiers in this API version
+      type: readOnlyCollection
+      get:
+        responses:
+          200:
+            body:
+              example: |
+                {
+                  "total": 2,
+                  "tiers": [
+                    {
+                      "audit": {
+                        "created": {
+                          "date": "2014-08-22T14:45:12.550Z"
+                        },
+                        "updated": {
+                          
+                        }
+                      },
+                      "organizationId": 910,
+                      "id": 205,
+                      "apiVersionId": 1338,
+                      "name": "Gold",
+                      "maximumRequests": 100,
+                      "timePeriodInMilliseconds": "1000",
+                      "status": "ACTIVE",
+                      "autoApprove": false,
+                      "applicationCount": 0
+                    },
+                    {
+                      "audit": {
+                        "created": {
+                          "date": "2014-08-22T14:45:24.403Z"
+                        },
+                        "updated": {
+                          
+                        }
+                      },
+                      "organizationId": 910,
+                      "id": 206,
+                      "apiVersionId": 1338,
+                      "name": "Bronze",
+                      "maximumRequests": 100,
+                      "timePeriodInMilliseconds": "1000",
+                      "status": "ACTIVE",
+                      "autoApprove": false,
+                      "applicationCount": 0
+                    }
+                  ]
+                }
+
+/repository/applications:
+  description: All the applications this user owns. In order for a user to be able to request access to a managed API, an application must be registered in the system.
+  type: collection
+  get:
+    is: [ searchable ]
+    responses:
+      200:
+        body:
+          example: |
+            {
+              "applications": [
+                {
+                  "audit": {
+                    "created": {
+                      "date": "2014-08-22T14:37:41.114Z"
+                    },
+                    "updated": {
+                      
+                    }
+                  },
+                  "organizationId": 910,
+                  "id": 168,
+                  "name": "New Application",
+                  "description": "A new application that calls some API",
+                  "coreServicesId": "934e52f9e65345fdb4f81d659bf36e06",
+                  "url": "http:\/\/coolapp.com"
+                }
+              ],
+              "total": 1
+            }
+  post:
+    body:
+      example: |
+        {
+          "grantTypes": [
+            
+          ],
+          "name": "New Application",
+          "description": "A new application that calls some API",
+          "url": "http:\/\/coolapp.com",
+          "redirectUri": "http:\/\/coolapp.com\/oauth_callback"
+        }
+    responses:
+      201:
+        body:
+          example: |
+            {
+              "grantTypes": [
+                
+              ],
+              "name": "New Application",
+              "description": "A new application that calls some API",
+              "url": "http:\/\/coolapp.com",
+              "redirectUri": "http:\/\/coolapp.com\/oauth_callback",
+              "coreServicesId": "934e52f9e65345fdb4f81d659bf36e06",
+              "clientId": "934e52f9e65345fdb4f81d659bf36e06",
+              "clientSecret": "5fa9ffc33df14405bab08c2b70fa03cb",
+              "audit": {
+                "created": {
+                  "date": "2014-08-22T14:37:41.114Z"
+                },
+                "updated": {
+                  
+                }
+              },
+              "organizationId": 910,
+              "id": 168
+            }
+
+  /{appId}:
+    description: An application
+    type: collectionItem
+    uriParameters:
+      appId:
+        type: integer
+        minimum: 1
+        maximum: 2147483647
+    get:
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "audit": {
+                  "created": {
+                    "date": "2014-08-22T14:37:41.114Z"
+                  },
+                  "updated": {
+                    
+                  }
+                },
+                "organizationId": 910,
+                "id": 168,
+                "name": "New Application",
+                "description": "A new application that calls some API",
+                "coreServicesId": "934e52f9e65345fdb4f81d659bf36e06",
+                "url": "http:\/\/coolapp.com",
+                "grantTypes": [
+                  
+                ],
+                "redirectUri": "http:\/\/coolapp.com\/oauth_callback",
+                "clientId": "934e52f9e65345fdb4f81d659bf36e06",
+                "clientSecret": "fe2b990bc0784ef2a38ae95bec068d6e"
+              }
+    put:
+      body:
+        example: |
+          {
+            "name": "New Application",
+            "description": "A new application that calls some API",
+            "url": "http:\/\/coolapp.com",
+            "grantTypes": [
+              
+            ],
+            "redirectUri": "http:\/\/coolapp.com\/oauth_callback"
+          }
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "audit": {
+                  "created": {
+                    "date": "2014-08-22T14:37:41.114Z"
+                  },
+                  "updated": {
+                    "date": "2014-08-22T15:04:26.547Z"
+                  }
+                },
+                "organizationId": 910,
+                "id": 168,
+                "name": "New Application",
+                "description": "A new application that calls some API",
+                "coreServicesId": "934e52f9e65345fdb4f81d659bf36e06",
+                "url": "http:\/\/coolapp.com",
+                "grantTypes": [
+                  
+                ],
+                "redirectUri": "http:\/\/coolapp.com\/oauth_callback",
+                "clientId": "934e52f9e65345fdb4f81d659bf36e06",
+                "clientSecret": "fe2b990bc0784ef2a38ae95bec068d6e",
+                "appId": 168
+              }
+    /secret/reset:
+      description: Resets client secret for application
+      post:
+        body:
+        responses:
+          201:
+            body:
+                example: |
+                  {
+                    "clientSecret": "new client secret"
+                  }
+
+    /contracts:
+      description: Contracts associated with the application
+      type: collection
+
+      get:
+        description: Retrieves a list of contracts for the application.
+        is: [ searchable ]
+        responses:
+          200:
+            body:
+              example: |
+                [
+                  {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-27T20:46:10.603Z"
+                      },
+                      "updated": {
+                        
+                      }
+                    },
+                    "id": 279,
+                    "status": "PENDING",
+                    "tier": {
+                      "audit": {
+                        "created": {
+                          
+                        },
+                        "updated": {
+                          
+                        }
+                      },
+                      "id": 205,
+                      "name": "Gold",
+                      "maximumRequests": 100,
+                      "timePeriodInMilliseconds": "1000"
+                    },
+                    "apiVersion": {
+                      "audit": {
+                        "created": {
+                          
+                        },
+                        "updated": {
+                          
+                        }
+                      },
+                      "id": 1338,
+                      "name": "1.0.0",
+                      "api": {
+                        "audit": {
+                          "created": {
+                            
+                          },
+                          "updated": {
+                            
+                          }
+                        },
+                        "id": 1346,
+                        "name": "Application Management"
+                      }
+                    }
+                  }
+                ]
+      post:
+        description: Creates new contract between an API version and the application.
+        body:
+          schema: newcontract
+          example: |
+            {
+              "apiVersionId": 1338,
+              "applicationId": 168,
+              "requestedTierId": 205
+            }
+        responses:
+          201:
+            body:
+              example: |
+                {
+                  "audit": {
+                    "created": {
+                      "date": "2014-08-22T14:47:26.463Z"
+                    },
+                    "updated": {
+                      
+                    }
+                  },
+                  "organizationId": 910,
+                  "id": 238,
+                  "status": "PENDING",
+                  "approvedDate": null,
+                  "rejectedDate": null,
+                  "revokedDate": null,
+                  "applicationId": 168,
+                  "application": {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-22T14:37:41.114Z"
+                      },
+                      "updated": {
+                        
+                      }
+                    },
+                    "id": 168,
+                    "name": "New Application",
+                    "description": "A new application that calls some API",
+                    "coreServicesId": "934e52f9e65345fdb4f81d659bf36e06",
+                    "url": "http:\/\/coolapp.com",
+                    "owner": "Damian Martinez",
+                    "email": "dmartinez@mulesoft.com"
+                  },
+                  "tierId": 205,
+                  "tier": {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-22T14:45:12.550Z"
+                      },
+                      "updated": {
+                        
+                      }
+                    },
+                    "id": 205,
+                    "name": "Gold",
+                    "maximumRequests": 100,
+                    "timePeriodInMilliseconds": "1000",
+                    "status": "ACTIVE",
+                    "autoApprove": false
+                  },
+                  "requestedTierId": 205,
+                  "requestedTier": {
+                    "audit": {
+                      "created": {
+                        "date": "2014-08-22T14:45:12.550Z"
+                      },
+                      "updated": {
+                        
+                      }
+                    },
+                    "id": 205,
+                    "name": "Gold",
+                    "maximumRequests": 100,
+                    "timePeriodInMilliseconds": "1000",
+                    "status": "ACTIVE",
+                    "autoApprove": false
+                  },
+                  "apiVersionId": 1338
+                }
+
+      /{contractId}:
+        description: A particular contract associated with the application.
+        delete:
+          description: Deletes a contract.
+        patch:
+          description: Allows changing the requested SLA tier for an unaccepted application.
+          body:
+            application/json:
+              example: |
+                {
+                  "requestedTierId": 206
+                }
+          responses:
+              200:

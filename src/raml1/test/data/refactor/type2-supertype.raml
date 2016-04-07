@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: GeoNames
+types:
+  TestType1:
+    properties:
+      name11: string
+  TestType2:
+    type: TestType
+    properties:
+      name21: string
+  TestType3:
+    type: TestType2
+    properties:
+      name31: string
+  SuperType:
+    properties:
+      name12: string
+      name13: string

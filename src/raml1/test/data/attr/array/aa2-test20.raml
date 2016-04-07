@@ -1,0 +1,14 @@
+#%RAML 0.8
+title: New API
+version: v1
+mediaType: application/json
+baseUri: http://samplehost.com
+/resource:
+  is:
+    - paged
+    - secured
+    - xxx
+  get:
+    responses:
+      200:
+         body:

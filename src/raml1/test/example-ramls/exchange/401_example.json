@@ -1,0 +1,6 @@
+{
+  "message": "Unauthorized",
+  "error": {
+    "stack": "Some stacktrace"
+  }
+}

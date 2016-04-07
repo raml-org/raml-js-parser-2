@@ -1,0 +1,33 @@
+#%RAML 1.0 Library
+
+uses:
+  - Common: !include common.raml
+
+types:
+
+  ###############
+  # Group:
+  ###############
+
+  Group-base:
+    properties:
+      name:
+        required: true
+
+  Group-new:
+    type: Group-base
+    properties:
+      ITAuth:
+        description: The authorization received from IT
+        required: true
+
+  Group-update:
+    properties:
+      name:
+
+  Group:
+    type: [ Group-base, Common.Record-base ]
+    properties:
+      groupnum:
+        type: Common.StaticGroupNums | Common.DynamicGroupNum
+        required: true

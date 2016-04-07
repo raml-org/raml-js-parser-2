@@ -1,0 +1,15 @@
+#%RAML 0.8
+title: New API
+version: v1
+mediaType: application/json
+baseUri: http://samplehost.com
+/resource:
+  is:
+    - aaa
+    - bbb
+    - ccc
+
+  get:
+    responses:
+      200:
+         body:

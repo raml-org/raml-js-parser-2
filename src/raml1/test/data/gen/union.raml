@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Type1:
+    properties:
+      str1: string
+      num1: number
+
+  Type2:
+    properties:
+      str2: string
+      num2: number
+
+  Type3:
+    properties:
+      str3: string
+      prop3: Type1|Type2
+
+  Type4:
+    properties:
+      str4: string
+      prop4: boolean|Type1

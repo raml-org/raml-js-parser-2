@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+/someSegment/{userId}:
+  uriParameters:
+      userId: string
+  post:
+    body:
+        text/xml:
+            properties:
+                name: string

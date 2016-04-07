@@ -1,0 +1,21 @@
+#%RAML 1.0 ResourceType
+
+###############
+# Member:
+###############
+
+get:
+  responses:
+    200:
+      body:
+        type: <<typename>>
+patch:
+  body:
+    type: <<typename-update>>
+  responses:
+    200:
+      body:
+        type: <<typename>>
+delete:
+  responses:
+    204:

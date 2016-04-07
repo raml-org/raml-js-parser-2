@@ -1,0 +1,26 @@
+#%RAML 1.0 Resource Types
+
+###############
+# Collection:
+###############
+
+collection:
+  get:
+    responses:
+      200:
+        body:
+          properties:
+            total:
+              type: number
+              required: true
+            members: <<typename>>[]
+  post:
+    body:
+      type: <<typename-new>>
+    responses:
+      201:
+        headers:
+          Location:
+            required: true
+        body:
+          type: <<typename>>

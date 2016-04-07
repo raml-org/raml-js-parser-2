@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: WebOfMe
+version: v1
+types:
+  sss:
+    type: number
+mediaType: application/json
+resourceTypes:
+  collection:
+    get:
+      queryParameters:
+        page:
+          description: Starting page
+          type: number
+      responses:
+        204:
+           body:
+             type:
+               properties:
+                 totalNumber:
+                   description: Number of items in this collection
+                   type: number
+                 items: <<item>>[]
+        201:
+          body:
+            schema:
+              properties:
+                totalNumber:
+                  description:
+                  type: sss
+                items: <<item>>[]
+types:
+  User:
+    properties:
+      firstName:
+      lastName:
+      email:
+        type: string
+        pattern: .*\@.+
+/users:
+  get:
+  type:
+    collection:
+      item: User

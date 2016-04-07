@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: Test
+
+types:
+  TestType:
+    properties:
+      firstProp: string
+      secondProp: string
+    examples:
+      First:
+        content: |
+          {
+            "firstProp" : "apiFirstProp",
+            "secondProp" : "apiSecondProp"
+          }
+      Second:
+        content:
+          firstProp: "apiFirstPropYaml"
+          secondProp: "apiSecondPropYaml"

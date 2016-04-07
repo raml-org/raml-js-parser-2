@@ -1,0 +1,26 @@
+{
+  "api-workbench" : {
+    "build" : "gulp build",
+    "test" : "gulp test"
+  },
+  "raml-js-parser-2" : {
+    "build" : "npm run build",
+    "test" : "gulp test"
+  },
+  "raml-definition-system" : {
+    "build" : "npm run build"
+  },
+  "raml-typesystem" : {
+    "build" : "npm run build",
+    "test" : "npm run test-cov"
+  },
+  "ts-structure-parser" : {
+    "build" : "npm run build"
+  },
+  "atom-ui-lib" : {
+    "build" : "npm run build"
+  },
+  "yaml-ast-parser" : {
+    "build" : "npm run build"
+  }
+}

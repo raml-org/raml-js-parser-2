@@ -1,0 +1,31 @@
+#%RAML 1.0
+title: API Gateway Test API
+version: 1.0.0
+description: Move your app forward with the Uber API
+baseUri: https://api.uber.com
+mediaType: application/json
+securitySchemes:
+  key:
+    type: Pass Through
+    describedBy:
+      headers:
+        x-api-key:
+/products:
+  displayName: Product Types
+  description: |
+    The Products endpoint returns information about the *Uber* products
+    offered at a given location. The response includes the display name
+    and other details about each product, and lists the products in the
+    proper display order.
+  get:
+    queryParameters:
+      latitude:
+        type: number
+        format: double
+        required: true
+        description: Latitude component of location
+      longitude:
+        type: number
+        format: double
+        required: true
+        description: Longitude component of location

@@ -1,0 +1,11 @@
+serializationShemes:
+  myArrays:
+    type: collectionFormat
+    format: multy
+
+/items:
+   get:
+     queryParameters:
+       onlyAllow:
+          type: string
+          serialization: myArrays

@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: Example with responses
+mediaType: application/json
+securitySchemes:
+  s1:
+    type: OAuth 1.0
+    settings:
+      requestTokenUri: ded
+      authorizationUri: ded
+      tokenCredentialsUri: de
+      signatures: [HMAC-SHA1, PLAINTEXT]

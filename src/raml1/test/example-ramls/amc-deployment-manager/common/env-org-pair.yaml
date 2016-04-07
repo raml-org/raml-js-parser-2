@@ -1,0 +1,7 @@
+ headers:
+  X-ANYPNT-ENV-ID:
+    example: 54c2d14ce4b0f1b1b84ec175
+    description: Identifier of the environment where the api user is currently working.
+  X-ANYPNT-ORG-ID:
+    example: e950b9c6-cfcd-4ca2-8e74-982d5dba96af
+    description:  Identifier of the sub org where the api user is currently working.

@@ -1,0 +1,253 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Seed1:
+    properties:
+      str1: string
+      num1: number
+  Seed2:
+    properties:
+      str2: string
+      num2: number
+  Seed3:
+    properties:
+      str3: string
+      num3: number
+  Seed41:
+    type: Seed1
+    properties:
+      str4: string
+      num4: number
+  Type1:
+    type: [Seed2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1
+      }
+    properties:
+      type1_num_1:
+        type: number
+      type1_bool_1:
+        type: boolean
+  Type2:
+    type: [Type1]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "type2_bool_1": true,
+        "type2_str_1": "str"
+      }
+    properties:
+      type2_str_1:
+        type: string
+      type2_bool_1:
+        type: boolean
+  Type3:
+    type: [Seed1,Seed3]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str3": "str",
+        "num3": 1,
+        "type3_num_1": 1,
+        "type3_str_1": "str"
+      }
+    properties:
+      type3_str_1:
+        type: string
+      type3_num_1:
+        type: number
+  Type4:
+    type: [Type1,Seed3]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "str3": "str",
+        "num3": 1,
+        "type4_bool_1": true,
+        "type4_prop_1": {}
+      }
+    properties:
+      type4_prop_1:
+        type: object
+      type4_bool_1:
+        type: boolean
+  Type5:
+    type: Seed2|object
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type6:
+    type: object
+    example: |
+      {
+        "type6_num_2": 1,
+        "type6_num_1": 1
+      }
+    properties:
+      type6_num_1:
+        type: number
+      type6_num_2:
+        type: number
+  Type7:
+    type: [Type4]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "str3": "str",
+        "num3": 1,
+        "type4_bool_1": true,
+        "type4_prop_1": {},
+        "type7_num_1": 1,
+        "type7_prop_1": {}
+      }
+    properties:
+      type7_prop_1:
+        type: object
+      type7_num_1:
+        type: number
+  Type8:
+    type: [Seed2,Type2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "type2_bool_1": true,
+        "type2_str_1": "str",
+        "type8_prop_2": {},
+        "type8_prop_1": 1
+      }
+    properties:
+      type8_prop_1:
+        type: number|((((boolean))))
+      type8_prop_2:
+        type: object
+  Type9:
+    type: [Seed1,Type1]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "type9_prop_2": 1,
+        "type9_prop_1": {}
+      }
+    properties:
+      type9_prop_1:
+        type: object
+      type9_prop_2:
+        type: (number|((number)|(boolean)))
+  Type10:
+    type: [Type2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_num_1": 1,
+        "type2_bool_1": true,
+        "type2_str_1": "str",
+        "type10_str_2": "str",
+        "type10_str_1": "str"
+      }
+    properties:
+      type10_str_1:
+        type: string
+      type10_str_2:
+        type: string
+
+/res1:
+  post:
+    body:
+      application/json:
+        type: [Type2]
+        example: |
+          {
+            "str2": "str",
+            "num2": 1,
+            "type1_num_1": 1,
+            "type1_bool_1": true,
+            "type2_str_1": "str",
+            "type2_bool_1": true
+          }
+/res2:
+  post:
+    body:
+      application/json:
+        type: object
+        example: {}
+/res3:
+  post:
+    body:
+      application/json:
+        type: [Type1,Seed41]
+        example: |
+          {
+            "str2": "str",
+            "num2": 1,
+            "type1_num_1": 1,
+            "type1_bool_1": true,
+            "str1": "str",
+            "num1": 1,
+            "str4": "str",
+            "num4": 1
+          }
+/res4:
+  post:
+    body:
+      application/json:
+        type: [Type8,Type6]
+        example: |
+          {
+            "str2": "str",
+            "num2": 1,
+            "type1_num_1": 1,
+            "type1_bool_1": true,
+            "type2_str_1": "str",
+            "type2_bool_1": true,
+            "type8_prop_1": 1,
+            "type8_prop_2": {},
+            "type6_num_1": 1,
+            "type6_num_2": 1
+          }
+/res5:
+  post:
+    body:
+      application/json:
+        type: [Type9,Type8]
+        example: |
+          {
+            "str1": "str",
+            "num1": 1,
+            "str2": "str",
+            "num2": 1,
+            "type1_num_1": 1,
+            "type1_bool_1": true,
+            "type9_prop_1": {},
+            "type9_prop_2": 1,
+            "type2_str_1": "str",
+            "type2_bool_1": true,
+            "type8_prop_1": 1,
+            "type8_prop_2": {}
+          }

@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://anypoint.io/amc/serverGroup",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "http://anypoint.io/amc/serverGroup/id",
+      "type": "integer"
+    },
+    "timeCreated": {
+      "id": "http://anypoint.io/amc/serverGroup/timeCreated",
+      "type": "integer"
+    },
+    "timeUpdated": {
+      "id": "http://anypoint.io/amc/serverGroup/timeUpdated",
+      "type": "integer"
+    },
+    "name": {
+      "id": "http://anypoint.io/amc/serverGroup/name",
+      "type": "string"
+    },
+    "servers": {
+      "id": "http://anypoint.io/amc/serverGroup/servers",
+      "type": "array",
+      "items": [
+        {
+          "$ref": "http://anypoint.io/amc/server"
+        }
+      ]
+    },
+    "type": {
+      "id": "http://anypoint.io/amc/serverGroup/type",
+      "type": "string",
+      "enum":[
+        "SERVER_GROUP"
+      ]
+    },
+    "status": {
+      "id": "http://anypoint.io/amc/serverGroup/status",
+      "type": "string",
+      "enum":[
+        "CREATED",
+        "RUNNING",
+        "EMPTY",
+        "CONNECTED",
+        "DISCONNECTED",
+        "PARTIAL"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "timeCreated",
+    "timeUpdated",
+    "name",
+    "servers",
+    "type",
+    "status"
+  ]
+}

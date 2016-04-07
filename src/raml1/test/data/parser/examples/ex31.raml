@@ -1,0 +1,54 @@
+#%RAML 1.0 Library
+usage: Gmail types
+types:
+  Header:
+    type: object
+    properties:
+      name: string
+      value: string
+  Message:
+    type: object
+    properties:
+      id?: string
+
+      payload?:
+        type: object
+        properties:
+          mimeType?: string
+          filename?: string
+          headers: Header[]
+          body?:
+            type: object
+            properties:
+              size?: number
+              data?: string
+          parts?: Message[]
+      sizeEstimate?: number
+
+  Thread:
+    type: object
+    properties:
+      id?: string
+      historyId?: string
+      messages?: Message[]
+    example:
+      id : "146df5d64e5cb7dc"
+      historyId : "535370"
+      messages :
+        - id : "146df5d64e5cb7dc"
+          payload :
+            mimeType : "text/plain"
+            filename : ""
+            headers :
+              - name : "Received"
+                value : "from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700"
+              - name : "Date"
+                value : "Fri, 27 Jun 2014 15:06:18 -0700"
+              - name : "Message-Id"
+                value : "<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>"
+              - name : "From"
+                value : "someaccount@gmail.com"
+            body :
+              size : 1
+              data : ""
+          sizeEstimate : 331

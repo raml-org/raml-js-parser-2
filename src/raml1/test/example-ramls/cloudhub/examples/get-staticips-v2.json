@@ -1,0 +1,19 @@
+{
+  "total": 2,
+  "data": [
+    {
+      "regionId": "us-east-1",
+      "regionName": "US East (N. Virginia)",
+      "type": "vpc",
+      "address": "0.0.0.0",
+      "state": "IN_USE"
+    },
+    {
+      "regionId": "us-west-2",
+      "regionName": "US West (Oregon)",
+      "type": "vpc",
+      "address": "0.0.0.0",
+      "state": "ASSIGNED"
+    }
+  ]
+}

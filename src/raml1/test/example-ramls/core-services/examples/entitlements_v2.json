@@ -1,0 +1,10 @@
+{
+  "hybrid": {
+    "enabled": true
+  },
+  "createEnvironments": true,
+  "globalDeployment": true,
+  "createSubOrgs": true,
+  "vCoresProduction": { "assigned": 1, "reassigned": 0 },
+  "vCoresSandbox": { "assigned": 1, "reassigned": 0 }
+}

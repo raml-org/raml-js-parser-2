@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Mulesoft",
+  "domain": "anypoint-mulesoft",
+  "core_services_id": "68ef9520-24e9-4cf2-b2f5-620025690913",
+  "objects_amount_limit": 25,
+  "owner_name": "Lorem Ipsum",
+  "owner_email": "lorem@ipsum.com",
+  "owner_phone": "5491177544646",
+  "current_amount": 17
+}

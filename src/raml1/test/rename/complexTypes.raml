@@ -1,0 +1,59 @@
+#%RAML 1.0
+title: Pets api
+types:
+  Product:
+    discriminator: kind
+    properties:
+      name: string
+      kind: string
+      price: string
+  Food:
+    type: Product
+  Pet:
+    type: Product
+    properties:
+      character:
+        enum: [friendly, active, lazy, calm]
+traits:
+  FilterableByPrice:
+    queryParameters:
+      priceLessThen: number
+      priceMoreThen: number
+resourceTypes:
+  collection:
+    get:
+      responses:
+        200:
+          body:
+            application/json: <<item>>[]
+    post:
+      body:
+        application/json: <<item>>
+  item:
+     put:
+       body:
+         application/json: <<item>>
+     delete:
+       responses:
+         204:
+/products:
+  type: { collection: {item: Product} }
+  get:
+    is: FilterableByPrice
+    queryParameters:
+      hhh:
+       enum: [food, pet]
+  /{id}:
+    type: { item: {item : Product} }
+/food:
+  type: { collection: {item: Food} }
+  get:
+    is: FilterableByPrice
+  /{id}:
+    type: { item: {item : Food} }
+/pets:
+  type: { collection: {item: Pet} }
+  get:
+    is: FilterableByPrice
+  /{id}:
+    type: { item: {item : Pet} }

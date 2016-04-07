@@ -1,0 +1,13 @@
+{
+  "multitenanted":false,
+  "vpnEnabled":false,
+  "domain":"example-app",
+  "region":"us-east-1",
+  "muleVersion": "3.5.0",
+  "workers": 1,
+  "workerType": "Medium",
+  "persistentQueues": false,
+  "multitenanted": false,
+  "monitoringAutoRestart": true
+  
+}

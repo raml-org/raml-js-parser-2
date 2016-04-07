@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Annotations 002.
+version: v1
+baseUri: http://api.samplehost.com/{version}
+annotationTypes:
+
+  childAnnotation:
+    type: baseAnnotation
+    properties:
+      childProperty1:
+        default: enum_defaultValue
+        enum:
+          - enum_defaultValue
+          - enum_value1
+          - enum_value2
+      childProperty2?:
+        type: number
+        default: 22
+
+types:
+  baseAnnotation:
+    properties:
+      baseProperty1:
+        properties:
+          field1?:
+          field2:
+            type:  number
+      baseProperty2?:
+
+  MyType:
+    (childAnnotation):
+      baseProperty1:
+        field1: field1_value
+        field2: 15
+      baseProperty2: baseProperty2_value
+      childProperty1: enum_value1
+      childProperty2: 17
+
+/helloWorld:
+  get:
+    (childAnnotation):
+      baseProperty1:
+        field2: 19
+      childProperty1: enum_value2

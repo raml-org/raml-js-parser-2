@@ -1,0 +1,52 @@
+{
+  "name":"Name",
+  "summary":"summary",
+  "description":"some description",
+  "video_caption":"some video caption",
+  "icon_url":"http://someurl.com",
+  "youtube_video_url":"http://another.com",
+  "metadata":[
+    {
+      "id":19356,
+      "object_id":273,
+      "label":"Some label group",
+      "type":"tag",
+      "text":"Good-tag",
+      "value":"Good-tag"
+    },
+    {
+      "id":19357,
+      "object_id":273,
+      "label":"Some label group",
+      "type":"tag",
+      "text":"Another-tag",
+      "value":"Another-tag"
+    }
+  ],
+  "versions":[
+    {
+      "id":874,
+      "object_id":273,
+      "mule_version_id":"3.5",
+      "download_url":"http://somevalidurl.com",
+      "doc_url":"http://anotherValidUrl.com",
+      "feature_id":null,
+      "object_version":"1.2",
+      "api_version":null,
+      "website":null,
+      "muleVersion":{
+        "id":"3.5",
+        "connectors_update_site_url":"http://repository.mulesoft.org/connectors/releases/3.5.0",
+        "doc_url":"http://www.mulesoft.org/documentation/display/current/Home",
+        "feature_id":null,
+        "active":true
+      },
+      "actions":[
+        {
+          "type":"download"
+        }
+      ],
+      "isSuggested":true
+    }
+  ]
+}

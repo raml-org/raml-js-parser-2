@@ -1,0 +1,96 @@
+{
+  "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+  "createdAt": "2015-03-13T18:03:21.748Z",
+  "updatedAt": "2015-03-13T18:03:28.089Z",
+  "firstName": "Organization",
+  "lastName": "Owner",
+  "email": "api.platform.qa+o_o@gmail.com",
+  "phoneNumber": "111-111-1111",
+  "username": "organization_owner",
+  "enabled": true,
+  "deleted": false,
+  "organization": {
+    "name": "MuleSoft Inc",
+    "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+    "createdAt": "2015-03-13T18:03:23.869Z",
+    "updatedAt": "2015-03-13T18:03:24.207Z",
+    "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+    "clientId": "b63237d9c5d444ea95147065e0711161",
+    "domain": "mulesoft-inc",
+    "idprovider_id": "mulesoft",
+    "isFederated": false,
+    "parentOrganizationIds": [],
+    "subOrganizationIds": [
+      "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+    ],
+    "tenantOrganizationIds": [],
+    "isMaster": true,
+    "properties": {},
+    "entitlements": {
+      "createSubOrgs": false,
+      "createEnvironments": false,
+      "hybrid": { "enabled": false },
+      "globalDeployment": false,
+      "vCoresProduction": { "assigned": 1, "reassigned": 0 },
+      "vCoresSandbox": { "assigned": 1, "reassigned": 0 }
+    },
+    "owner": {
+      "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "username": "organization_owner",
+      "firstName": "Organization",
+      "lastName": "Owner",
+      "email": "api.platform.qa+o_o@gmail.com",
+      "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "enabled": true
+    }
+  },
+  "organizationPreferences": {
+    "f0c9b011-980e-4928-9430-e60e3a97c043": {
+      "defaultEnvironment": "a6217e66-faf1-4c17-bbbc-8c008ef4c8c6"
+    }
+  },
+  "properties": {},
+  "memberOfOrganizations": [
+    {
+      "name": "MuleSoft Inc",
+      "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "createdAt": "2015-03-13T18:03:23.869Z",
+      "updatedAt": "2015-03-13T18:03:24.207Z",
+      "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "clientId": "b63237d9c5d444ea95147065e0711161",
+      "domain": "mulesoft-inc",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentId": null,
+      "parentName": null,
+      "parentOrganizationIds": [],
+      "subOrganizationIds": [
+        "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+      ],
+      "tenantOrganizationIds": [],
+      "isMaster": true
+    }
+  ],
+  "contributorOfOrganizations": [
+    {
+      "name": "MuleSoft Inc",
+      "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "createdAt": "2015-03-13T18:03:23.869Z",
+      "updatedAt": "2015-03-13T18:03:24.207Z",
+      "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "clientId": "b63237d9c5d444ea95147065e0711161",
+      "domain": "mulesoft-inc",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentId": null,
+      "parentName": null,
+      "parentOrganizationIds": [],
+      "subOrganizationIds": [
+        "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+      ],
+      "tenantOrganizationIds": [],
+      "isMaster": true
+    }
+  ],
+  "access_token": "ce4a34a6-4d89-43dc-9696-29df56cf0b1b"
+}

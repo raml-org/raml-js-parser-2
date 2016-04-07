@@ -1,0 +1,10 @@
+{
+  "client_id": "im_client",
+  "name": "Implicit",
+  "redirect_uris": ["http://localhost/callback"],
+  "grant_types": ["implicit"],
+  "properties": {
+    "additional": "meta-data"
+  },
+  "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+}

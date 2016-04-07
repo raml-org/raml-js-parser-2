@@ -1,0 +1,120 @@
+#%RAML 1.0
+title: Anypoint Platform Audit Log API
+baseUri: https://auditlog.anypoint.mulesoft.com/
+version: v1
+securedBy: [oauth_2_0]
+securitySchemes:
+  - oauth_2_0: !include oauth_2_0.yaml
+
+schemas:
+  - logQueryResult: !include logQueryResult.schema.json
+  - logQuery: !include logQuery.schema.json
+
+/v1:
+  /organizations:
+    /{id}:
+      description: The id of the organization whose data is being queried
+
+      /query:
+        post:
+          description: |
+            Searches for log entries. Query parameters are documented in the logQuery schema.
+            Entries returned will match the entries that were passed in, and are sorted in
+            ascending timestamp order (oldest to newest.)
+          body:
+            application/json:
+              schema: logQuery
+          responses:
+              200:
+                body:
+                  application/json:
+                    schema: logQueryResult
+      /users:
+        get:
+          description: Gets all user ids that have log entries, sorted in ascending order
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    [ "userId1", "userId2" ]
+
+      /platforms:
+        get:
+          description: |
+            Gets all products that have log entries. Products are Anypoint services
+            such as the API Platform. Results are returned in ascending alphabetical
+            order.
+          responses:
+              200:
+                body:
+                  application/json:
+                    example: |
+                      [ "api-platform", "cloudhub" ]
+
+        /{platform}:
+          description: |
+            The platform to filter by. Retrieved using the /platform call described above.
+
+          /object_types:
+            get:
+              description: |
+                Gets all object types that have log entries within the specified platform.
+                Object types identify the business object that was acted upon. For example,
+                users, APIs, API versions, applications, contracts and roles. Results are
+                returned in ascending alphabetical order.
+              responses:
+                200:
+                  body:
+                    application/json:
+                      example: |
+                        [ "api", "api version", "contract", "application" ]
+
+            /{object_type}:
+              description: |
+                The object type to filter by. Retrieved using the /object_types call described above.
+
+              /objects:
+                get:
+                  description: |
+                    Gets all objects that have log entries. Objects are instances of
+                    object types. For example, a particular API or user. Objects are
+                    returned in ascending object type order. Within each object type,
+                    objects are sorted by name. Note that this list may be quite large.
+                  responses:
+                    200:
+                      body:
+                        application/json:
+                          example: |
+                            [
+                              { "objectId": "9898", "objectName": "Shipping API" },
+                              { "objectId": "2342", "objectName": "Traffic API" }
+                            ]
+
+                /{object_id}:
+                  description: |
+                    The object id to filter on. Must match the platform and object type specified
+                    a-priori in the request path.
+
+                  /children:
+                    get:
+                      description: |
+                        Gets all objects that are children of the object with the request path's
+                        object_id. For example, API versions for a given API.
+                      responses:
+                        200:
+                          body:
+                            application/json:
+                              example: |
+                                [
+                                  { "objectId": "123", "objectType": "api version", "objectName": "V2.3.1" },
+                                  { "objectId": "321", "objectType": "api version", "objectName": "V2.3.2" }
+                                ]
+/ping:
+  get:
+    responses:
+      200:
+/healthcheck:
+  get:
+    responses:
+      200:

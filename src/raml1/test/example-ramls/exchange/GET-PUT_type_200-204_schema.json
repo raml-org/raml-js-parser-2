@@ -1,0 +1,28 @@
+{
+  "type":"object",
+  "$schema":"http://json-schema.org/draft-03/schema",
+  "id":"http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "active":{
+      "type":"boolean",
+      "id":"http://jsonschema.net/active",
+      "required":false
+    },
+    "id":{
+      "type":"number",
+      "id":"http://jsonschema.net/id",
+      "required":false
+    },
+    "name":{
+      "type":"string",
+      "id":"http://jsonschema.net/name",
+      "required":false
+    },
+    "applied":{
+      "type":"boolean",
+      "id":"http://jsonschema.net/recipe",
+      "required":false
+    }
+  }
+}

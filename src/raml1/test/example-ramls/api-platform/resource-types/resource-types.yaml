@@ -1,0 +1,5 @@
+- baseCollection:       !include empty.yaml
+- collection:           !include collection.yaml
+- collectionItem:       !include collection-item.yaml
+- apiSearch:            !include api-search.yaml
+- apiExtendedSearch:    !include api-extended-search.yaml

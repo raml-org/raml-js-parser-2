@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Product set",
+    "type": "array",
+    "items": {
+        "title": "Product",
+        "type": "object",
+        "properties": {
+            "xxname": {
+                "type": "string"
+            },
+            "id": {
+                "description": "The unique identifier for a product",
+                "type": "number"
+            },
+            "name": {
+                "type": "string"
+            },
+            "aaname2": {
+                "type": "string"
+            }
+        },
+        "required": ["id", "name", "price"]
+    }
+}

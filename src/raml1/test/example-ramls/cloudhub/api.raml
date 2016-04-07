@@ -1,0 +1,987 @@
+#%RAML 0.8
+title: Cloudhub
+version: V1
+baseUri: https://anypoint.mulesoft.com/cloudhub/api
+securedBy: [oauth_2_0]
+protocols: [ HTTPS ]
+securitySchemes:
+    - oauth_2_0:
+        description: |
+            CloudHub supports OAuth 2.0 for authenticating all API requests.
+        type: OAuth 2.0
+        describedBy:
+            headers:
+                Authorization:
+                    description: |
+                       Used to send a valid OAuth 2 access token. Do not use
+                       with the "access_token" query string parameter.
+                    type: string
+            queryParameters:
+                access_token:
+                    description: |
+                       Used to send a valid OAuth 2 access token. Do not use together with
+                       the "Authorization" header
+                    type: string
+            responses:
+                401:
+                    description: |
+                        Bad or expired token. This can happen if the user or Dropbox
+                        revoked or expired an access token. To fix, you should re-
+                        authenticate the user.
+                403:
+                    description: |
+                        Bad OAuth request (wrong consumer key, bad nonce, expired
+                        timestamp...). Unfortunately, re-authenticating the user won't help here.
+        settings:
+          authorizationUri:  https://anypoint.mulesoft.com/accounts/oauth2/authorize
+          accessTokenUri: https://anypoint.mulesoft.com/accounts/oauth2/token
+          authorizationGrants: [ token ]
+
+traits:
+  - environment_based:
+      usage: usage
+      description: Some requests require authentication.
+      headers:
+        X-ANYPNT-ENV-ID:
+          required: true
+          type: string
+          description: |
+            The ID of your current environment
+          example: 6ebdb30c-b6bf-4d75-b8ba-61cb87b5ed4b
+  - paged_response:
+      description: Supports paging
+      queryParameters:
+
+      
+/v2: 
+  /applications: 
+    description: |
+      Applications resource
+    is: [environment_based]
+    get: 
+      description: |
+        Retrieve all applications in the specified environment. 
+        Requires 'Read Applications' role.
+      queryParameters: 
+        retrieveStatistics: 
+          type: boolean
+          default: false
+          description: "Include statistics for each application in the response"
+        period: 
+          default: 3600000
+          description: Number of milliseconds of statistics to gather
+     
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include "examples/get-applications-v2.json"
+    /{domain}: 
+      description: |
+        A single application
+      is: [environment_based]
+      uriParameters:
+        domain:
+          description: Application domain name
+          example: example-app
+      get: 
+        description: |
+          Retrieve a single application by name.
+          Requires 'Read Applications' role.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include examples/get-application-v2.json
+      put: 
+        description: |
+          Update a single application.
+          Requires 'Manage Settings' role.
+        body: 
+          application/json: 
+            example: !include examples/put-application-v2.json
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include "examples/get-applications.json"
+      /dashboardStats: 
+        description: Dashboard statistics
+        is: [environment_based]
+        get: 
+          description: |
+            Retrieve statistics for an application or specific application workers.
+            Requires 'Read Applications' role.
+          queryParameters: 
+            workerIds:
+              example: workerIds=i-100ca3e0
+              description: |
+                Specify which worker to retrieve statistics for. Can be specified multiple times to retrieve statistics for multiple workers. If not specified, statistics for all workers are retrieved.
+              default: 
+            statistics:
+              description: | 
+                Specify which statistics to retrieve. If not specified, retrieve all statistics
+            startDate: 
+              description: |
+                ISO format date string representing the first date to retrieve statistics. If not specified, defaults to endDate - 24 hours.
+              example: 2015-05-09T04:57:28.572Z
+            endDate: 
+              description: |
+                ISO format date string representing the last date to retrieve statistics. If not specified, defaults to now.
+              example: 2015-05-09T05:59:23.572Z
+            interval: 
+              default: 900000 (15 minutes)
+              type: integer
+              description: Amount of time between samples in milliseconds. 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  example: !include examples/get-dashboardstats.json
+      /files: 
+        is: [environment_based]
+        description: |
+          Deploy or re-deploy an application with the specified application file.
+        post: 
+          description: |
+            Deploy or re-deploy an application with the specified application file.
+            Requires 'Manage Settings' role.
+          body:             
+            multipart/form-data: 
+              formParameters:
+                file:
+                  description: |
+                    Contents of a Mule application file
+                  type: file
+                  required: true
+                staticIp:
+                  description: |
+                    Ip address to serve the application on
+                  example: 10.4.5.20
+                  required: false
+                  type: string
+          responses: 
+            200: 
+              description: |
+               Application deployment queued successfully. 
+      /queueStatistics: 
+        description: Retrieve statistics for persistent queues.
+        is: [environment_based]
+        get: 
+          description: |
+            Retrieve statistics for persistent queues.
+            Requires 'Read Applications' role.
+          queryParameters: 
+            queueName:
+              description: |
+               Specify the name of the queue to retrieve data for
+              type: string
+              example: queue-1
+              required: true
+            statistics: 
+              repeat: true
+              description: |
+                Specifiy which statistics to retrieve
+              required: false
+              default: queued, inFlight, added, dequeued
+              example: ?statistics=queued&statistics=added
+              type: string
+            startDate: 
+              description: |
+                ISO format date string representing the first date to retrieve statistics. If not specified, defaults to endDate - 24 hours.
+              example: 2015-05-09T04:57:28.572Z
+              required: false
+            endDate: 
+              description: |
+                ISO format date string representing the last date to retrieve statistics. If not specified, defaults to now.
+              example: 2015-05-09T05:59:23.572Z
+              required: false
+            interval: 
+              default: 300000 (5 minutes)
+              type: integer
+              description: |
+                Amount of time between samples in milliseconds.  
+              required: false
+            limit: 
+              type: integer
+              default: 20
+              description: |
+                Maximum number of queues to retrieve statistics for.
+            offset: 
+              type: integer
+              default: 0
+              description: |
+                Index of the first queue to retrieve. Used for paging results. 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  example: !include examples/get-queuestatistics-v2.json
+      /staticips:
+        is: [environment_based]
+        description: Manage the static Ips
+        get:
+          description: |
+            Retrieve all the static IP addresses related with the application
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include examples/get-staticips-v2.json
+        post:
+          description: |
+            Request a static IP for the application.
+          body:
+            application/json:
+              schema: |
+                {
+                  "type": "object",
+                  "properties": {
+                      "region": {
+                          "type": "string",
+                          "enum": ["us-east-1", "us-west-1", "us-west-2", "ap-southeast-1", "ap-southeast-2", "eu-west-1"]
+                      }
+                  }
+                }
+          responses:
+              200:
+                description: |
+                  Static IP is assigned to the application
+              400:
+        /{ip}:
+          is: [environment_based]
+          uriParameters:
+            ip:
+              description: the IP address
+              example: 0.0.0.0
+          delete:
+            description:
+              Release the static IP address back to the pool.
+            responses:
+              204:
+                description: |
+                  IP address is successfully released back to the pool.
+              404:
+                description: |
+                  The IP address cannot be found, or the IP address doesn't belong to the application.
+              
+
+/account: 
+  is: [environment_based]
+  description: |
+    User account
+  get: 
+    description: |
+      Retrieve information about the logged-in user.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-account.json
+
+/alerts: 
+  is: [environment_based]
+  description: |
+    Alerts resource
+  delete: 
+    description: |
+      Delete one or more alerts.
+      Requires 'Manage Alerts' role.
+    body:
+      application/json: 
+        example: |
+          ["_1635","_1638"]
+    responses: 
+      204:
+        description: |
+          Alerts deleted successfully 
+  post: 
+    description: |
+      Create a new alert.
+      Requires 'Manage Alerts' role.
+    body: 
+      application/json: 
+        example: !include examples/post-alert.json
+    responses: 
+      201:
+        description: |
+          The 'Location' response header indicates the URL of the newly created alert.
+  get: 
+    description: |
+      Retrieve alerts for the current environment.
+      Requires 'Read Applications' role.
+    queryParameters: 
+      application: 
+        type: string
+        description: |
+          Only include alerts for this application domain.
+        example: example-app
+      limit: 
+        type: integer
+        description: |
+          Maximum number of alerts to return 
+      offset: 
+        type: integer
+        description: |
+          Index of the first alert to retrieve. Used for paging results.  
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-alerts.json
+  /{alertid}: 
+    description: |
+      A single alert
+    is: [environment_based]
+    get: 
+      description: |
+        Retrieve a specific alert.
+        Requires 'Read Applications' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-alert.json
+    put: 
+      description: |
+        Update specified alert.
+        Requires 'Manage Alerts' role.
+      body: 
+        application/json: 
+          example: !include examples/put-alert.json
+      responses: 
+        204: 
+          description: |
+            Alert updated successfully
+    delete: 
+      description: |
+        Delete specified alert.
+        Requires 'Manage Alerts' role.
+      responses: 
+        204: 
+          description: |
+            Alert deleted successfully
+/applications: 
+  description: |
+    Applications resource (V1)
+  is: [environment_based]
+  get: 
+    description: |
+      Retrieve all applications in the specified environment. 
+      Requires 'Read Applications' role.
+    queryParameters:  
+      retrieveStatistics: 
+         type: boolean
+         description: "Include statistics for each application in the response"
+      period: 
+         default: 3600000
+         description: "Number of milliseconds of statistics to gather"
+      intervalCount: 
+        default: 50
+        description: Amount of time between samples in milliseconds.
+    responses: 
+      200: 
+        body:
+          application/json: 
+            example: !include examples/get-applications.json
+  post: 
+    description: |
+      Create a new application. 
+      Requires 'Create Applications' role.
+    body: 
+      application/json: 
+        example: !include examples/post-applications-request.json
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-application.json
+  /domains/{domain}:
+    description: |
+      Domain name availability
+    get: 
+      description: |
+        Check if the specified domain is available.
+        Requires 'Read Applications' role.
+      responses: 
+        400:
+          description: Domain name is invalid.
+        200: 
+          description: Domain name is valid. Availability specified in the response body.
+          body: 
+            application/json: 
+              example: |
+                { "available":true }
+  /supportedMuleVersions: 
+    is: [environment_based]
+    description: |
+      Mule runtimes.
+    get: 
+      description: |
+        Retrieve list of available Mule runtimes.
+        Requires 'Read Applications' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-supportedMuleVersions.json
+  /{domain}:
+    description: |
+      A single application
+    is: [environment_based] 
+    get: 
+      description: |
+        Retrieve a single application by name.
+        Requires 'Read Applications' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-application.json
+    put: 
+      description: |
+        Update a single application.
+        Requires 'Manage Settings' role.
+      body: 
+        application/json: 
+          example: !include examples/put-application.json
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-application.json
+    delete: 
+      description: |
+        Delete a single application.
+        Requires 'Delete applications' role.
+      responses: 
+        200: 
+          description: Application deleted successfully.
+    /download/{filename}: 
+      description: |
+        Retrieve the Mule package file for the application.
+      is: [environment_based]
+      get: 
+        description: |
+          Requires 'Download Applications' role.
+        responses: 
+          200: 
+            body: 
+              application/octet-stream:
+
+    /logs: 
+      is: [environment_based]
+      description: |
+        Retrieve log messages for the application, ordered newest to oldest.
+      get: 
+        queryParameters: 
+          worker: 
+            type: string
+            description: |
+              Worker Id to retrieve log entries for.
+            example: worker-3
+          startDate: 
+            description: |
+              ISO format date string representing the first date to retrieve log entries for.
+            example: 2015-05-09T04:57:28.572Z
+          endDate: 
+            description: |
+              ISO format date string representing the last date to retrieve log entries for.
+            example: 2015-05-09T05:59:23.572Z
+          priority: 
+          search: 
+            type: string
+            description: |
+              String to search for in the log
+          limit: 
+            type: integer
+            default: 100
+            description: |
+              Maximum number of entries to retrieve statistics for.
+          offset: 
+            type: integer
+            default: 0
+            description: |
+              Index of the first entry to retrieve. Used for paging results. 
+          tail: 
+            type: boolean
+            default: false
+            description: |
+              Retrieve entries ordered newest to oldest.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include examples/get-logs.json
+    
+
+    /notifications: 
+      is: [environment_based]
+      description: |
+        Retrieve notifications for the applications
+      get: 
+        queryParameters: 
+          status: 
+            description: |
+              If specified, filter the notifications by status. 'read' or 'unread'. 
+            example: unread
+          limit: 
+            type: integer
+            default: 25
+            description: |
+              Maximum number of notifications to retrieve.
+          offset: 
+            type: integer
+            default: 0
+            description: |
+              Index of the first notification to retrieve. Used for paging results. 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include examples/get-notifications.json
+    /schedules: 
+      description: Application schedules
+      get: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+      put: 
+        body: 
+          application/json: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+      /{jobId}: 
+        get: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+        put: 
+          body: 
+            application/json: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+        /run: 
+          post: 
+            responses: 
+              200: 
+                body: 
+                  application/json: 
+    /settings: 
+      /tracking: 
+        get: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+        put: 
+          body: 
+            application/json: 
+          responses: 
+            200: 
+    /statistics: 
+      description: |
+        Retrieve application statistics
+      is: [environment_based]
+      get: 
+        queryParameters: 
+          period: 
+          startDate: 
+            description: |
+              ISO format date string representing the first date to retrieve statistics. If not specified, defaults to endDate - 1 week.
+            example: 2015-05-09T04:57:28.572Z
+          endDate: 
+            description: |
+              ISO format date string representing the last date to retrieve statistics. If not specified, defaults to now.
+            example: 2015-05-09T05:59:23.572Z 
+          intervalCount: 
+            default: 50
+            description: Amount of time between samples in milliseconds.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include examples/get-app-statistics.json
+
+    /status: 
+      description: |
+        Application status
+      is: [environment_based]
+      post: 
+        description: |
+          Update status of the application.
+          Requires 'Manage Settings' role
+        body:
+          application/json:
+            example: !include examples/post-application-status-request.json
+      get: 
+        description: |
+          Retrieve status of the application.
+          Requires 'Read Applications' role.
+        responses: 
+          200: 
+            description: |
+              UNDEPLOYED - Application has no active servers
+              DEPLOYING - Some servers are in the process of deploying, but none are running
+              STARTED - App deployment is successfully completed on at least one server, which is
+              UNDEPLOYING - App is in the process of shutting down
+              DEPLOY_FAILED - No deploying or running servers; last deployment attempt was a startup
+              DELETED - The application is marked like deleted and as soon as all related the app resources 
+            body: 
+              text/plain: 
+                example: STARTED
+    
+    /tracking: 
+      /custom-keys: 
+        is: [environment_based]
+        get: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+      /searches: 
+        is: [environment_based]
+        get: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+        /{name}:
+          is: [environment_based] 
+          post: 
+            body: 
+              application/json: 
+            responses: 
+              200: 
+          put: 
+            body: 
+              application/json: 
+            responses: 
+              200: 
+          delete: 
+            body: 
+              application/json: 
+            responses: 
+              200: 
+      /statistics:
+        is: [environment_based] 
+        post: 
+          description: |
+            Retrieve a list of application statistics, filtered by parameters passed in the request body.
+            Requires 'Read Applications' role.
+          body: 
+            application/json: 
+              example: !include examples/post-tracking-transactions-request.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  example: !include examples/post-tracking-statistics.json
+        get: 
+          description: |
+            Retrieve a list of application statistics.
+            Requires 'Read Applications' role.
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  example: !include examples/post-tracking-statistics.json
+      /transactions: 
+        description: |
+          Application transactions
+        is: [environment_based]
+        post: 
+          description: |
+            Retrieve a list of application transactions, filtered by parameters
+            passed in the request body.
+            Requires 'Read Applications' role.
+          queryParameters: 
+            offset: 
+              type: integer
+              description: |
+                Index of the first event to retrieve. Used for paging results.  
+            count: 
+              type: integer
+              default: 50
+              description: |
+                Maximum number of events to return
+            total: 
+              type: boolean
+              default: false
+              description: |
+                If true, the response is an object with a list of events and a total field. Used for paging.
+          body: 
+            application/json: 
+              example: !include examples/post-tracking-transactions-request.json
+          responses: 
+            200: 
+              body: 
+                application/json: 
+                  example: !include examples/post-tracking-transactions.json
+        /{transactionId}: 
+          description: A single transaction
+          is: [environment_based]
+          get: 
+            description: |
+              Retrieve the events for a single application transaction.
+              Requires 'Read Applications' role.
+            responses: 
+              200: 
+                body: 
+                  application/json: 
+                    example: !include examples/get-transaction.json
+          /{flowName}/replay: 
+            description: Replay transaction
+            is: [environment_based]
+            get: 
+              description: |
+                Replay the flow for this transaction. Returns the id of the new flow.
+              responses: 
+                200: 
+                  body: 
+                    application/json: 
+                      example: |
+                        { "id": "flow-id" }
+    /workers: 
+      description: Application workers
+      is: [environment_based]
+      get: 
+        description: |
+          Retrieve workers for the application.
+          Requires 'Read Applications' role.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                example: !include examples/get-application-workers.json
+
+/mule-versions: 
+  description: Mule runtimes
+  get: 
+    description: | 
+      Retrieve all supported Mule versions 
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-mule-versions.json
+/notifications: 
+  description: Application notifications
+  is: [environment_based]
+  post: 
+    description: |
+      Create a new notification
+    body: 
+      application/json: 
+        example: !include examples/post-notification-request.json
+    responses: 
+      201: 
+  get: 
+    description: |
+      Retrieve notifications.
+      Requires 'Read Applications' role.
+    queryParameters: 
+      domain: 
+        type: string
+        description: | 
+          Limit notifications to a single application domain
+      limit: 
+        type: integer
+        default: 25
+        description: |
+          Maximum number of notifications to retrieve.
+      offset: 
+        type: integer
+        default: 0
+        description: |
+          Index of the first notification to retrieve.
+      status: 
+        type: string
+        description: |
+          If specified, filter the notifications by status. 'read' or 'unread'. 
+        example: unread
+      search: 
+        type: string
+        description: |
+          If specified, only return notifications where the message contains this string. (Insensitive)
+        example: find me
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-notifications.json
+  put: 
+    description: |
+      Mark all notifications for this application as read or unread.
+      Requires 'Read Applications' role.
+    queryParameters: 
+      domain: 
+        description: |
+          Mark all notifications for this application domain
+        type: string
+        example: example-app
+    body: 
+      application/json: 
+        example: |
+          { "status": "read" }
+    responses: 
+      204: 
+  
+  /{id}: 
+    description: A single notification
+    is: [environment_based]
+    get: 
+      description: |
+        Retrieve a single notification.
+        Requires 'Read Applications' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-notification.json
+    put: 
+      description: |
+        Mark a single notification  as read or unread.
+        Requires 'Read Applications' role.
+      body: 
+        application/json: 
+          example: |
+            { "status": "read" }
+      responses: 
+        204: 
+
+/organization: 
+  description: Organization resource
+  is: [environment_based]
+  get: 
+    description: |
+      Retrieve the organization attached to the current environment.
+      Requires 'Organization Admin' role.
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-organization.json
+  /plan:
+    description: Subscription plan
+    is: [environment_based] 
+    get: 
+      description: |
+        Retrieve the subscription plan details for the organization.
+        Requires 'Organization Admin' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-organization-plan.json
+  /usage: 
+    description: Usage details
+    is: [environment_based]
+    get: 
+      description: |
+        Retrieve the the vCore / worker usage for the organization.
+        Requires 'Organization Admin' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-organization-usage.json
+  /{orgid}: 
+    description: A single organization
+    is: [environment_based]
+    get: 
+      description: |
+        Retrieve a single organization.
+        Requires 'Organization Admin' role.
+      responses: 
+        200: 
+          body: 
+            application/json: 
+              example: !include examples/get-organization.json
+/organizations: 
+  description: Organizations resource
+  /{orgid}: 
+    description: A single organization
+    /usage: 
+      description: Usage details
+      get: 
+        description: |
+          Retrieve the the vCore / worker / staticIP usage for the organization.
+          Requires 'Organization Admin' role.
+        responses: 
+          200: 
+            body: 
+              application/json: 
+                schema: |
+                  { "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Organization Usage Statistics",
+                  "properties": {
+                     "productionVCoresConsumed":  { "type": "number" },
+                     "sandboxVCoresConsumed": { "type": "number" },
+                     "staticIpsConsumed": { "type": "integer" }
+                  },
+                  "required": [ "productionVCoresConsumed", "sandboxVCoresConsumed", "staticIpsConsumed" ]
+                  }
+                example: !include examples/get-organizations-usage.json
+  
+/ping: 
+  description: Endpoint to test connectivity.
+  get: 
+    responses: 
+      200: 
+        body: 
+          text/plain: 
+            example: pong
+/queues: 
+  is: [environment_based]
+  /{queueId}: 
+    /clear: 
+      put: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+    /statistics: 
+      get: 
+        responses: 
+          200: 
+            body: 
+              application/json: 
+      /{statistic}: 
+        get: 
+          queryParameters: 
+            startDate: 
+            endDate: 
+            interval: 
+          responses: 
+            200: 
+              body: 
+                application/json: 
+/regions: 
+  description: |
+    Retrieve all CloudHub worker regions
+  get: 
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-regions.json
+
+/users/current/permissions: 
+  description: User permissions
+  is: [environment_based]
+  get: 
+    description: |
+      Retrieve the permissions for the current user
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            example: !include examples/get-permissions.json

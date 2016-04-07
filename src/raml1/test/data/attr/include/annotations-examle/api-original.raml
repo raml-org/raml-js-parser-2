@@ -1,0 +1,98 @@
+#%RAML 1.0
+title: Sample API
+mediaType: application/json
+uses:
+  - crud: !include crud-annotations.raml
+types:
+  - searchableString:
+      type: string
+      (crud.sortable):
+      (crud.searchable):
+  - entity:
+      discriminator: kind
+      properties:
+        id:
+          type: number
+          (crud.id):
+          #scope: [ list , read , update ]
+        kind:
+          type: string
+          required: true
+          (crud.searchable):
+          (crud.sortable):
+        name:
+          type: string
+          (crud.searchable):
+          (crud.sortable):
+
+        createdBy:
+          type: number
+          (crud.refTo): {entity : $top.user}
+          (crud.searchable):
+        createdAt:
+          type: date
+          (crud.searchable):
+          (crud.sortable):
+        modifiedAt:
+          type: date
+          (crud.searchable):
+          (crud.sortable):
+  - user:
+     type: entity
+     properties:
+       entitiesCreatedByUser:
+         (crud.paged): {pageSize: 100}
+         (crud.inverseOf): { entity : $top.entity.createdBy}
+
+         type: entity[]
+
+  - animal:
+      type: entity
+      example:
+        id: 2
+        name: "Vinni"
+        kind: Cat
+        createdBy: 50
+        createdAt: 20-11-2015
+        modifiedAt: 21-11-2015
+  - animals:
+      type: animal[]
+
+  - cat:
+      type: animal
+      properties:
+        huntingSkill:
+          type: integer
+  - dog:
+      type: animal
+      properties:
+        packSize:
+          type: integer
+  - petGroup:
+      type: entity
+      properties:
+        members:
+          type: animal[]
+/animals:
+ get:
+   (crud.list):
+   body:
+     schema: animals
+ post:
+   body:
+   (crud.create):
+ /{id}:
+   uriParameters:
+     id:
+       type: number
+       (crud.refTo): {entity : $top.animal}
+   get:
+     responses:
+       200:
+         body:
+           schema: animal
+
+   put:
+     body:
+       schema: animal
+   delete:

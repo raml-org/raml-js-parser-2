@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: test
+resourceTypes:
+  - TestResorceType:
+      post:
+        description: Allows to create new <<objectName | !singularize>>
+        body:
+          application/json:
+            schema: New<<objectName | !singularize>>
+/test:
+  type:  { TestResorceType: {objectName : nonExistItem} }

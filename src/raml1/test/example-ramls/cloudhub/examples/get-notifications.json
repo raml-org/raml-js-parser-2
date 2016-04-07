@@ -1,0 +1,13 @@
+{
+   "total":1,
+   "data":[
+      {
+         "id":"5553812ee4b0a1b2e9faf2f9",
+         "domain":"jeff-1amstudios-test",
+         "message":"hello world",
+         "createdAt":"2015-05-13T16:51:58.854Z",
+         "read":false,
+         "href":"http://anypoint.mulesoft.com:8080/api/notifications/5553812ee4b0a1b2e9faf2f9"
+      }
+   ]
+}

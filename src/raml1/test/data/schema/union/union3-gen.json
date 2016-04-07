@@ -1,0 +1,36 @@
+{
+  "title": "Type3",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "union": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "num1": {
+              "type": "number"
+            },
+            "str1": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "num2": {
+              "type": "number"
+            },
+            "str3": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

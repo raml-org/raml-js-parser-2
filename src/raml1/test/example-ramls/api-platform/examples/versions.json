@@ -1,0 +1,35 @@
+[
+  {
+    "audit": {
+      "created": {
+        "date": "2015-07-28T13:54:12.874Z"
+      },
+      "updated": {
+        "date": "2015-07-28T13:55:02.494Z"
+      }
+    },
+    "masterOrganizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+    "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+    "id": 20,
+    "apiId": 5,
+    "portalId": 39,
+    "name": "nihil 20",
+    "description": "sint officiis et ut incidunt quidem amet quasi minus sint blanditiis dolore odio soluta nulla pariatur voluptatem vel error sapiente non eos similique enim numquam aperiam aut aut facilis eaque optio tempora reiciendis libero nostrum et ullam molestias recusandae dolorum at voluptas provident velit molestiae eius velit iure voluptas quis",
+    "tags": [
+      "debitis",
+      "incidunt",
+      "ea",
+      "sunt",
+      "et",
+      "assumenda",
+      "dolor",
+      "ut",
+      "itaque",
+      "labore"
+    ],
+    "order": 5,
+    "rootFileId": 44,
+    "deprecated": false,
+    "deployment": null
+  }
+]

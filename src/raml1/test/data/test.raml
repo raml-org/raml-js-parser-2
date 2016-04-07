@@ -1,0 +1,46 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Seed1:
+    properties:
+      str1: string
+      num1: number
+  Seed2:
+    properties:
+      str2: string
+      num2: number
+  Seed3:
+    properties:
+      str3: string
+      num3: number
+  Seed41:
+    type: Seed1
+    properties:
+      str4: string
+      num4: number
+  Type1:
+    type: [Seed1]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "type1_prop_1": {},
+        "type1_str_1": "str"
+      }
+    properties:
+      type1_str_1:
+        type: string
+      type1_prop_1:
+        type: ((Seed1)|(((Seed2))))|Seed3
+
+/res1:
+  post:
+    body:
+      application/json:
+        type: [Seed3]
+        example: |
+          {
+            "str3": "str",
+            "num3": 1
+          }

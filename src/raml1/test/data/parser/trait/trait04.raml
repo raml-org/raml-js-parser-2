@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: test
+types:
+  - TestType:
+      type: object
+      properties:
+        field: string
+      example:
+        field: value
+traits:
+  - TestTrait:
+      queryParameters:
+        limit:
+          type: integer
+          default: <<limitDefault>>
+/test:
+  get:
+    is: [TestTrait: {limitDefault : 50}]
+    responses:
+      200:

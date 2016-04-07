@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: Testing annotations
+types:
+  sss:
+    properties:
+
+  qq:
+    type: sss
+resourceTypes:
+  z:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: <<tt>>
+/g:
+  type: { z: {tt : sss} }
+/g1:
+  type: { z: {tt : qq} }
+/g2:
+  type: { z: {tt : qq2} }

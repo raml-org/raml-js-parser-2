@@ -1,0 +1,24 @@
+/// <reference path="../../../../typings/main.d.ts" />
+import assert = require("assert")
+import util = require("../test-utils")
+
+//import _=require("underscore")
+//import fs = require("fs")
+//import abnf = require('abnf');
+//import path = require("path")
+
+//import yll=require("../jsyaml/jsyaml2lowLevel")
+//import yaml=require("../jsyaml/yamlAST")
+//import hl=require("../highLevelAST")
+//import tools = require("./testTools")
+//import testgen = require("./testgen/testgen")
+//import bnfgen = require("./testgen/bnfgen")
+//import exgen = require("./testgen/exgen")
+//import gu = require("./testgen/gen-util")
+//import resgen = require("./testgen/resgen")
+//import parser = require("../artifacts/raml10parser");
+//import servergen = require("../tools/servergen/servergen")
+//import mkdirp = require('mkdirp');
+
+describe('Parser Tests',function() {
+

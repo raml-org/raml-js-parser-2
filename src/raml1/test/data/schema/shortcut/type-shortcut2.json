@@ -1,0 +1,27 @@
+{
+  "title": "User",
+  "type": "object",
+  "properties": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "age": {
+      "type": "number"
+    },
+    "field": {
+      "type": "object",
+      "properties": {
+        "aaa": {
+          "type": "string"
+        },
+        "bbb": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

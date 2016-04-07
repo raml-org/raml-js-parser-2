@@ -1,0 +1,1278 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ApiImpl | RAML JS Parser 2</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script src="../assets/js/modernizr.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">RAML JS Parser 2</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_src_raml1_artifacts_raml08parser_.html">&quot;src/raml1/artifacts/raml08parser&quot;</a>
+				</li>
+				<li>
+					<a href="_src_raml1_artifacts_raml08parser_.apiimpl.html">ApiImpl</a>
+				</li>
+			</ul>
+			<h1>Class ApiImpl</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html" class="tsd-signature-type">RAMLLanguageElementImpl</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ApiImpl</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_src_raml1_highlevelast_.basicnode.html" class="tsd-signature-type">BasicNode</a></li>
+					<li><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.ramllanguageelement.html" class="tsd-signature-type">RAMLLanguageElement</a></li>
+					<li><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html" class="tsd-signature-type">Api</a></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#_meta" class="tsd-kind-icon">_meta</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#_node" class="tsd-kind-icon">_node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#nodeorkey" class="tsd-kind-icon">node<wbr>OrKey</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#setastoplevel" class="tsd-kind-icon">set<wbr>AsTop<wbr>Level</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#ramlversion" class="tsd-kind-icon">RAMLVersion</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#addtoprop" class="tsd-kind-icon">add<wbr>ToProp</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#allbaseuriparameters" class="tsd-kind-icon">all<wbr>Base<wbr>Uri<wbr>Parameters</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#allprotocols" class="tsd-kind-icon">all<wbr>Protocols</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#allresourcetypes" class="tsd-kind-icon">all<wbr>Resource<wbr>Types</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#allresources" class="tsd-kind-icon">all<wbr>Resources</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#alltraits" class="tsd-kind-icon">all<wbr>Traits</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#attributedefaults" class="tsd-kind-icon">attribute<wbr>Defaults</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#baseuri" class="tsd-kind-icon">base<wbr>Uri</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#childresource" class="tsd-kind-icon">child<wbr>Resource</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#definition" class="tsd-kind-icon">definition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#description" class="tsd-kind-icon">description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#documentation" class="tsd-kind-icon">documentation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#dump" class="tsd-kind-icon">dump</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#errors" class="tsd-kind-icon">errors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#expand" class="tsd-kind-icon">expand</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#kind" class="tsd-kind-icon">kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#mediatype" class="tsd-kind-icon">media<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#meta" class="tsd-kind-icon">meta</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#optional" class="tsd-kind-icon">optional</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#optionalproperties" class="tsd-kind-icon">optional<wbr>Properties</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#parent" class="tsd-kind-icon">parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#protocols" class="tsd-kind-icon">protocols</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#remove" class="tsd-kind-icon">remove</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#resources" class="tsd-kind-icon">resources</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#runtimedefinition" class="tsd-kind-icon">runtime<wbr>Definition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#schemas" class="tsd-kind-icon">schemas</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#securedby" class="tsd-kind-icon">secured<wbr>By</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#securityschemes" class="tsd-kind-icon">security<wbr>Schemes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#title" class="tsd-kind-icon">title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#toany" class="tsd-kind-icon">to<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#toboolean" class="tsd-kind-icon">to<wbr>Boolean</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#tojson" class="tsd-kind-icon">toJSON</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#tonumber" class="tsd-kind-icon">to<wbr>Number</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#uriparameters" class="tsd-kind-icon">uri<wbr>Parameters</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html#version" class="tsd-kind-icon">version</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Impl<span class="tsd-signature-symbol">(</span>nodeOrKey<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, setAsTopLevel<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_raml1_artifacts_raml08parser_.apiimpl.html" class="tsd-signature-type">ApiImpl</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites BasicNodeImpl.__constructor</p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2093">src/raml1/artifacts/raml08parser.ts:2093</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nodeOrKey: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> setAsTopLevel: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_src_raml1_artifacts_raml08parser_.apiimpl.html" class="tsd-signature-type">ApiImpl</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="_meta" class="tsd-anchor"></a>
+					<h3>_meta</h3>
+					<div class="tsd-signature tsd-kind-icon">_meta<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_wrapped_ast_parsercore_.nodemetadataimpl.html" class="tsd-signature-type">NodeMetadataImpl</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#_meta">_meta</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L27">src/raml1/wrapped-ast/parserCore.ts:27</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+					<a name="_node" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _node</h3>
+					<div class="tsd-signature tsd-kind-icon">_node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#_node">_node</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L34">src/raml1/wrapped-ast/parserCore.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="nodeorkey" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> node<wbr>OrKey</h3>
+					<div class="tsd-signature tsd-kind-icon">node<wbr>OrKey<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2094">src/raml1/artifacts/raml08parser.ts:2094</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="setastoplevel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> set<wbr>AsTop<wbr>Level</h3>
+					<div class="tsd-signature tsd-kind-icon">set<wbr>AsTop<wbr>Level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2094">src/raml1/artifacts/raml08parser.ts:2094</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="ramlversion" class="tsd-anchor"></a>
+					<h3>RAMLVersion</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">RAMLVersion<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#ramlversion">RAMLVersion</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2372">src/raml1/artifacts/raml08parser.ts:2372</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="add" class="tsd-anchor"></a>
+					<h3>add</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#add">add</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L150">src/raml1/wrapped-ast/parserCore.ts:150</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append node as child</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>node to be appended</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="addtoprop" class="tsd-anchor"></a>
+					<h3>add<wbr>ToProp</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>ToProp<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a>, prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#addtoprop">addToProp</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L159">src/raml1/wrapped-ast/parserCore.ts:159</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append node as property value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>node to be set as property value</p>
+									</div>
+								</li>
+								<li>
+									<h5>prop: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>name of property to set value for</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="allbaseuriparameters" class="tsd-anchor"></a>
+					<h3>all<wbr>Base<wbr>Uri<wbr>Parameters</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Base<wbr>Uri<wbr>Parameters<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#allbaseuriparameters">allBaseUriParameters</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2358">src/raml1/artifacts/raml08parser.ts:2358</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve an ordered list of all base uri parameters regardless of whether they are described in <code>baseUriParameters</code> or not
+									Consider a fragment of RAML specification:</p>
+									<pre><code class="lang-yaml">version: v1
+baseUri: https://{organization}.example.com/{version}/{service}
+baseUriParameters:
+service:
+</code></pre>
+									<p>Here <code>version</code> and <code>organization</code> are base uri parameters which are not described in the <code>baseUriParameters</code> node,
+									Thus, they are not among <code>Api.baseUriParameters()</code>, but they are among <code>Api.allBaseUriParameters()</code>.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="allprotocols" class="tsd-anchor"></a>
+					<h3>all<wbr>Protocols</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Protocols<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#allprotocols">allProtocols</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2368">src/raml1/artifacts/raml08parser.ts:2368</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Protocols used by the API. Returns the <code>protocols</code> property value if it is specified.
+									Otherwise, returns protocol, specified in the base URI.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="allresourcetypes" class="tsd-anchor"></a>
+					<h3>all<wbr>Resource<wbr>Types</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Resource<wbr>Types<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resourcetype.html" class="tsd-signature-type">ResourceType</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#allresourcetypes">allResourceTypes</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2315">src/raml1/artifacts/raml08parser.ts:2315</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve all resource types including those defined in libraries</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resourcetype.html" class="tsd-signature-type">ResourceType</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="allresources" class="tsd-anchor"></a>
+					<h3>all<wbr>Resources</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Resources<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#allresources">allResources</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2331">src/raml1/artifacts/raml08parser.ts:2331</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve all resources of the Api</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="alltraits" class="tsd-anchor"></a>
+					<h3>all<wbr>Traits</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">all<wbr>Traits<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.trait.html" class="tsd-signature-type">Trait</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#alltraits">allTraits</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2297">src/raml1/artifacts/raml08parser.ts:2297</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieve all traits including those defined in libraries *</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.trait.html" class="tsd-signature-type">Trait</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="attributedefaults" class="tsd-anchor"></a>
+					<h3>attribute<wbr>Defaults</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">attribute<wbr>Defaults<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#attributedefaults">attributeDefaults</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L351">src/raml1/wrapped-ast/parserCore.ts:351</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="baseuri" class="tsd-anchor"></a>
+					<h3>base<wbr>Uri</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">base<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.fulluritemplatestring.html" class="tsd-signature-type">FullUriTemplateString</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#baseuri">baseUri</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2141">src/raml1/artifacts/raml08parser.ts:2141</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>(Optional during development; Required after implementation) A RESTful API&#39;s resources are defined relative to the API&#39;s base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property&#39;s value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
+										The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client&#39;s users.
+									If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.fulluritemplatestring.html" class="tsd-signature-type">FullUriTemplateString</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="childresource" class="tsd-anchor"></a>
+					<h3>child<wbr>Resource</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">child<wbr>Resource<span class="tsd-signature-symbol">(</span>relPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#childresource">childResource</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2323">src/raml1/artifacts/raml08parser.ts:2323</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get child resource by its relative path</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>relPath: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="definition" class="tsd-anchor"></a>
+					<h3>definition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#definition">definition</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#definition">definition</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L289">src/raml1/wrapped-ast/parserCore.ts:289</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
+							<p>object representing class of the node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="description" class="tsd-anchor"></a>
+					<h3>description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.markdownstring.html" class="tsd-signature-type">MarkdownString</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#description">description</a></p>
+								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html">RAMLLanguageElementImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html#description">description</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L77">src/raml1/artifacts/raml08parser.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.markdownstring.html" class="tsd-signature-type">MarkdownString</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="documentation" class="tsd-anchor"></a>
+					<h3>documentation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">documentation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.documentationitem.html" class="tsd-signature-type">DocumentationItem</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#documentation">documentation</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2258">src/raml1/artifacts/raml08parser.ts:2258</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
+										Documentation-generators MUST include all the sections in an API definition&#39;s documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
+										To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
+									Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].</p>
+								</div>
+								<p>This example shows an API definition with a single user document.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.documentationitem.html" class="tsd-signature-type">DocumentationItem</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="dump" class="tsd-anchor"></a>
+					<h3>dump</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">dump<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#dump">dump</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L177">src/raml1/wrapped-ast/parserCore.ts:177</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>YAML string representing the node</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="errors" class="tsd-anchor"></a>
+					<h3>errors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">errors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#errors">errors</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#errors">errors</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L234">src/raml1/wrapped-ast/parserCore.ts:234</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>Array of errors</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="expand" class="tsd-anchor"></a>
+					<h3>expand</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">expand<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html" class="tsd-signature-type">Api</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#expand">expand</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2279">src/raml1/artifacts/raml08parser.ts:2279</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Equivalent API with traits and resource types expanded</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html" class="tsd-signature-type">Api</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+					<a name="kind" class="tsd-anchor"></a>
+					<h3>kind</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">kind<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#kind">kind</a></p>
+								<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html">RAMLLanguageElementImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html#kind">kind</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2273">src/raml1/artifacts/raml08parser.ts:2273</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Actual name of instance interface</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="mediatype" class="tsd-anchor"></a>
+					<h3>media<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">media<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.mimetype.html" class="tsd-signature-type">MimeType</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#mediatype">mediaType</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2192">src/raml1/artifacts/raml08parser.ts:2192</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>(Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property&#39;s value MAY be a single string with a valid media type:
+										One of the following YAML media types:
+										text/yaml
+										text/x-yaml
+										application/yaml
+										application/x-yaml<em>
+											Any type from the list of IANA MIME Media Types, <a href="http://www.iana.org/assignments/media-types">http://www.iana.org/assignments/media-types</a>
+										A custom type that conforms to the regular expression, &quot;application/[A-Za-z.-0-1]</em>+?(json|xml)&quot;
+									For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header&#39;s mediaType list.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.mimetype.html" class="tsd-signature-type">MimeType</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="meta" class="tsd-anchor"></a>
+					<h3>meta</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.nodemetadata.html" class="tsd-signature-type">NodeMetadata</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#meta">meta</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#meta">meta</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L355">src/raml1/wrapped-ast/parserCore.ts:355</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.nodemetadata.html" class="tsd-signature-type">NodeMetadata</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="optional" class="tsd-anchor"></a>
+					<h3>optional</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">optional<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#optional">optional</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#optional">optional</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L310">src/raml1/wrapped-ast/parserCore.ts:310</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>Whether the element is an optional sibling of trait or resource type</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="optionalproperties" class="tsd-anchor"></a>
+					<h3>optional<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">optional<wbr>Properties<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#optionalproperties">optionalProperties</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#optionalproperties">optionalProperties</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L318">src/raml1/wrapped-ast/parserCore.ts:318</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>For siblings of traits or resource types returns an array of optional properties names.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="parent" class="tsd-anchor"></a>
+					<h3>parent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.basicnode.html" class="tsd-signature-type">BasicNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#parent">parent</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#parent">parent</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L54">src/raml1/wrapped-ast/parserCore.ts:54</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html" class="tsd-signature-type">BasicNode</a></h4>
+							<p>Direct ancestor in RAML hierarchy</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="protocols" class="tsd-anchor"></a>
+					<h3>protocols</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">protocols<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#protocols">protocols</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2166">src/raml1/artifacts/raml08parser.ts:2166</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values <code>HTTP</code> and/or <code>HTTPS</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="remove" class="tsd-anchor"></a>
+					<h3>remove</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#remove">remove</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L170">src/raml1/wrapped-ast/parserCore.ts:170</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove node from children set</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html" class="tsd-signature-type">BasicNodeImpl</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>node to be removed</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="resources" class="tsd-anchor"></a>
+					<h3>resources</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">resources<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#resources">resources</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2245">src/raml1/artifacts/raml08parser.ts:2245</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resources are identified by their relative URI, which MUST begin with a slash (/).
+										A resource defined as a root-level property is called a top-level resource. Its property&#39;s key is the resource&#39;s URI relative to the baseUri.
+										A resource defined as a child property of another resource is called a nested resource, and its property&#39;s key is its URI relative to its parent resource&#39;s URI.
+									Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. &quot;/bom/items&quot; may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if &quot;/bom&quot; is itself a resource then &quot;/items&quot; should be a nested resource of &quot;/bom&quot;, while &quot;/bom/items&quot; should not be used.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="runtimedefinition" class="tsd-anchor"></a>
+					<h3>runtime<wbr>Definition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">runtime<wbr>Definition<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#runtimedefinition">runtimeDefinition</a></p>
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#runtimedefinition">runtimeDefinition</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L296">src/raml1/wrapped-ast/parserCore.ts:296</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
+							<p>for user class instances returns object representing actual user class</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="schemas" class="tsd-anchor"></a>
+					<h3>schemas</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">schemas<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.globalschema.html" class="tsd-signature-type">GlobalSchema</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#schemas">schemas</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2200">src/raml1/artifacts/raml08parser.ts:2200</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.globalschema.html" class="tsd-signature-type">GlobalSchema</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="securedby" class="tsd-anchor"></a>
+					<h3>secured<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">secured<wbr>By<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.securityschemeref.html" class="tsd-signature-type">SecuritySchemeRef</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#securedby">securedBy</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2217">src/raml1/artifacts/raml08parser.ts:2217</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.securityschemeref.html" class="tsd-signature-type">SecuritySchemeRef</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="securityschemes" class="tsd-anchor"></a>
+					<h3>security<wbr>Schemes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">security<wbr>Schemes<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.abstractsecurityscheme.html" class="tsd-signature-type">AbstractSecurityScheme</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#securityschemes">securitySchemes</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2225">src/raml1/artifacts/raml08parser.ts:2225</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Security schemas that can be applied with securedBy</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.abstractsecurityscheme.html" class="tsd-signature-type">AbstractSecurityScheme</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="title" class="tsd-anchor"></a>
+					<h3>title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">title<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#title">title</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2100">src/raml1/artifacts/raml08parser.ts:2100</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The title property is a short plain text description of the RESTful API. The title property&#39;s value SHOULD be suitable for use as a title for the contained user documentation.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="toany" class="tsd-anchor"></a>
+					<h3>to<wbr>Any</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Any<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#toany">toAny</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L193">src/raml1/wrapped-ast/parserCore.ts:193</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="toboolean" class="tsd-anchor"></a>
+					<h3>to<wbr>Boolean</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Boolean<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#toboolean">toBoolean</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L197">src/raml1/wrapped-ast/parserCore.ts:197</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="tojson" class="tsd-anchor"></a>
+					<h3>toJSON</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">toJSON<span class="tsd-signature-symbol">(</span>serializeOptions<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_util_tckdumper_.serializeoptions.html" class="tsd-signature-type">SerializeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tojson">toJSON</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L303">src/raml1/wrapped-ast/parserCore.ts:303</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> serializeOptions: <a href="../interfaces/_src_util_tckdumper_.serializeoptions.html" class="tsd-signature-type">SerializeOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="tonumber" class="tsd-anchor"></a>
+					<h3>to<wbr>Number</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Number<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tonumber">toNumber</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L210">src/raml1/wrapped-ast/parserCore.ts:210</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tostring">toString</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L181">src/raml1/wrapped-ast/parserCore.ts:181</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="uriparameters" class="tsd-anchor"></a>
+					<h3>uri<wbr>Parameters</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">uri<wbr>Parameters<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#uriparameters">uriParameters</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2158">src/raml1/artifacts/raml08parser.ts:2158</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property&#39;s attributes as named parameters</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.parameter.html" class="tsd-signature-type">Parameter</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="version" class="tsd-anchor"></a>
+					<h3>version</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">version<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html">Api</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.api.html#version">version</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/ddenisenko/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L2121">src/raml1/artifacts/raml08parser.ts:2121</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
+										The API itself is not versioned.
+										The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API&#39;s resources, constitutes a version change.
+									The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, &quot;v3&quot;, &quot;v3.0&quot;, and &quot;V3&quot; are all allowed, but are not considered to be equal.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html">"src/raml1/artifacts/raml08parser"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html#getlanguageelementbyruntimetype" class="tsd-kind-icon">get<wbr>Language<wbr>Element<wbr>ByRuntime<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html#loadapi" class="tsd-kind-icon">load<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html#loadapisync" class="tsd-kind-icon">load<wbr>Api<wbr>Sync</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html#loadraml" class="tsd-kind-icon">loadRAML</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_artifacts_raml08parser_.html#loadramlsync" class="tsd-kind-icon">loadRAMLSync</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

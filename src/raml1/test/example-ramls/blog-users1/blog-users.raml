@@ -1,0 +1,66 @@
+#%RAML 1.0
+title: A CRUD API for Users and Groups
+mediaType: application/json
+
+uses:
+  - Common:  !include libraries/types/common.raml
+  - Users:  !include libraries/types/user.raml
+  - Groups: !include libraries/types/group.raml
+
+resourceTypes:
+  - collection: !include resourceTypes/collection.raml
+  - member: !include resourceTypes/member.raml
+  - deleteOnlyMember: !include resourceTypes/delete-only-member.raml
+
+###############
+# API:
+###############
+
+/users:
+  description: All the users
+  type:
+    collection:
+      typename: Users.User-base
+      typename-new: Users.User-new
+  /{userId}:
+    description: A specific user
+    uriParameters:
+      userId: Common.RecordId
+    type:
+      member:
+        typename: Users.User
+        typename-update: Users.User-update
+    /groups:
+      description: The groups to which this user belongs
+      type:
+        collection:
+          typename: Groups.Group
+          typename-new: Common.RecordId
+      /{groupId}:
+        type: deleteOnlyMember
+        delete:
+          description: Remove this user from this group
+/groups:
+  description: All the groups
+  type:
+    collection:
+      typename: Groups.Group
+      typename-new: Groups.Group-new
+  /{groupId}:
+    description: A specific group
+    uriParameters:
+      groupId: Common.RecordId
+    type:
+      member:
+        typename: Groups.Group
+        typename-update: Groups.Group-update
+    /users:
+      description: The users belonging to this group
+      type:
+        collection:
+          typename: Users.User
+          typename-new: Users.User-new
+      /{userId}:
+        type: deleteOnlyMember
+        delete:
+          description: Remove this user from this group

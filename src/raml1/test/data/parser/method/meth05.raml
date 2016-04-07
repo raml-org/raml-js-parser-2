@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: test
+/test:
+  post:
+    queryParameters:
+      status:
+        description: The status.
+        required: true
+        enum:
+          - accepted
+          - rejected
+          - pending
+    body:
+      application/json:
+    responses:
+      201:

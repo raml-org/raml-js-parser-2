@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: Some types
+types:
+  Type1:
+    properties:
+      num1: number
+      str1: string
+  Person:
+    properties:
+      name: string
+      lastName: string
+      wishList: string[]
+      union: string | number | Type1

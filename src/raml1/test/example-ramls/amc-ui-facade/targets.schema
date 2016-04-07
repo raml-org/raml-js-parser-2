@@ -1,0 +1,121 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Targets list",
+    "type": "array",
+    "items": {
+        "title": "Target",
+        "type": "object",
+        "properties": {
+            "name": {"type": "string"},
+            "type": {
+                "enum": [ "CLOUDHUB", "SERVER", "SERVER_GROUP", "CLUSTER"]
+            },
+            "status": {
+                "status": {"enum": [ "CREATED", "RUNNING", "CONNECTED", "DISCONNECTED", "EMPTY", "PARTIAL", "UNAVAILABLE"]}
+            },
+            "id": {
+                "description": "This is the id of the Hybrid target resource. Only present on a Hybrid target.",
+                "type": "number"
+            },
+            "deployments": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "artifact": {
+                            "type": "object",
+                            "properties": {
+                                "type": {"enum": [ "APPLICATION"]},
+                                "id": {"type": "number"},
+                                "name": {"type": "string"}
+                            },
+                            "required": [ "type", "id", "name"]
+                        },
+                        "status": {"enum": [ "CLOUDHUB", "SERVER", "SERVER_GROUP"]}
+                    },
+                    "required": [ "artifact", "status"]
+                }
+            },
+            "details": {
+                "type": "object",
+                "properties": {
+                    "servers": {
+                        "description": "Servers list of a server group or cluster. Only present in target type CLUSTER or SERVER_GROUP.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "number"},
+                                "name": {"type": "string"},
+                                "details": {
+                                    "type": "object",
+                                    "properties": {
+                                        "runtimeVersion": {
+                                            "description": "Mule's version or gateway's version of a single server target",
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "description": "Specifies if a single server target is a mule or a gateway server",
+                                            "enum": [ 'GATEWAY', 'MULE']
+                                        },
+                                        "agentVersion": {
+                                            "description": "Agent's version of a single server target",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [ "type", "agentVersion", "runtimeVersion"]
+                                },
+                                "timeLastMessageReceived": {"type": "string"},
+                                "type": {
+                                    "enum": [ "CLOUDHUB", "SERVER", "SERVER_GROUP"]
+                                },
+                                "status": {
+                                    "enum": [ "CREATED", "RUNNING", "CONNECTED", "DISCONNECTED"]
+                                },
+                            },
+                            "required": [ "id", "name", "status", "type", "details", "timeLastMessageReceived"]
+                        }
+                    },
+                    "runtimeVersion": {
+                        "description": "Mule's version or gateway's version of a single server target. Only present for target type SERVER.",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "Specifies if a single server target is a mule or a gateway server. Only present for target type SERVER.",
+                        "enum": [ "GATEWAY", "MULE"]
+                    },
+                    "agentVersion": {
+                        "description": "Agent's version of a single server target. Only present for target type SERVER.",
+                        "type": "string"
+                    },
+                    "currentClusteringIP": {
+                        "description": "Current clustering IP. Only present for target type SERVER.",
+                        "type": "string"
+                    },
+                    "nodeId": {
+                        "description": "Id of the node when using clustering. Only present for target type SERVER.",
+                        "type": "number"
+                    },
+                    "addresses": {
+                        "description": "List of IPs and network interfaces where the server is running. Only present for target type SERVER.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "ip": {"type": "string"},
+                                "networkInterface": {"type": "string"}
+                            },
+                            "required": [ "ip", "networkInterface"]
+                        }
+                    },
+                    "multicastEnabled": {
+                        "description": "Specifies if the cluster has multicast enabled. Only present for target type CLUSTER.",
+                        "type": "boolean"
+                    }
+                },
+                "required": []
+            }
+        },
+        "required": [ "name", "type"]
+    }
+}

@@ -1,0 +1,82 @@
+#%RAML 1.0
+title: TraitsAndResourceTypeMix_exp
+version: 1
+baseUri: https://example.com/{version}
+traits:
+  - trait0: !include traits/trait0.raml
+  - trait1: !include traits/trait1.raml
+  - payload: !include traits/payload.raml
+  - response800: !include traits/response800.raml
+  - response900: !include traits/response900.raml
+resourceTypes:
+  - rt1: !include resourceTypes/rt1.raml
+/root-resource:
+  type: rt1
+  is: [ trait0, trait1, response800, response900 ]
+  get:
+    description: Get object
+    queryParameters:
+      type:
+        type: string
+        description: object type
+      id:
+        type: number
+        description: object id
+      name:
+        type: string
+        description: object name
+      name1:
+        type: string
+        description: object name1
+    responses:
+      200:
+      404:
+        description: not found
+      250:
+      251:
+        body:
+          applicaiton/json:
+      454:
+        description: not found
+      800:
+        description: test 800 response
+        body:
+          text/plain:
+      900:
+        description: test 900 response
+        body:
+          application/xml:
+  post:
+    is: payload
+    description: Create object
+    queryParameters:
+      name:
+        type: string
+        description: object name
+      id1:
+        type: number
+        description: object id1
+      name1:
+        type: string
+        description: object name1
+    body:
+      application/json:
+        example: !include examples/payload.json
+    responses:
+      200:
+      201:
+        body:
+          applicaiton/json:
+      404:
+        description: not found
+      250:
+      454:
+        description: not found
+      800:
+        description: test 800 response
+        body:
+          text/plain:
+      900:
+        description: test 900 response
+        body:
+          application/xml:

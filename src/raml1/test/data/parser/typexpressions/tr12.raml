@@ -1,0 +1,31 @@
+#%RAML 1.0 Library
+types:
+  expression:
+    type: string
+    (validatorProvider): "33"
+    (completionProvider): "script to complete in expressions in ide"
+  script:
+    type: string
+    minLength: 1
+annotationTypes:
+  requiredWhen:
+    allowedTargets: TypeDeclaration
+    properties:
+      value: expression
+  validWhen:
+    allowedTargets: TypeDeclaration
+    properties:
+      value: expression
+  condition:
+    allowedTargets: Trait
+    properties:
+      value: expression
+  depricated:
+  validatorProvider: script
+  completionProvider: script
+  location:
+    properties:
+      value:
+        properties:
+          x: number
+          y: number

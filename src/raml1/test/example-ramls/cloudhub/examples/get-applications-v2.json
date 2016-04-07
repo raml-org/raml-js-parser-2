@@ -1,0 +1,83 @@
+[
+   {
+      "domain":"example-app",
+      "fullDomain":"example-app.cloudhub.io",
+      "description":"",
+      "properties":{
+
+      },
+      "propertiesOptions":{
+
+      },
+      "status":"STARTED",
+      "workers":{
+         "type":{
+            "name":"Medium",
+            "weight":1.0,
+            "cpu":"1 vCore",
+            "memory":"1.5 GB memory"
+         },
+         "amount":1,
+         "remainingOrgWorkers":1.0,
+         "totalOrgWorkers":1.0,
+         "recentStatistics":{
+            "transactions":0,
+            "cpu":0.95
+         }
+      },
+      "lastUpdateTime":1425571830350,
+      "fileName":"example-app.zip",
+      "muleVersion":{
+         "version":"3.6.0",
+         "state":"ACTIVE",
+         "vpnSupported":true,
+         "monitoringSupported":true,
+         "persistentQueuesSupported":true,
+         "log4j1Used":false
+      },
+      "supportedVersions":[
+         {
+            "version":"3.5.0",
+            "state":"ACTIVE",
+            "vpnSupported":true,
+            "monitoringSupported":true,
+            "persistentQueuesSupported":true,
+            "log4j1Used":true
+         },
+         {
+            "version":"3.6.0",
+            "state":"ACTIVE",
+            "vpnSupported":true,
+            "monitoringSupported":true,
+            "persistentQueuesSupported":true,
+            "log4j1Used":false
+         },
+      ],
+      "tenants":0,
+      "userId":"54f7ed7ae4b0d48f31a3099e",
+      "userName":"fred-smith",
+      "vpnConfig":{
+         "network":"203.0.113.0",
+         "mask":27
+      },
+      "persistentQueues":false,
+      "persistentQueuesEncryptionEnabled":false,
+      "persistentQueuesEncrypted":false,
+      "monitoringEnabled":true,
+      "monitoringAutoRestart":true,
+      "staticIPsEnabled":false,
+      "multitenanted":false,
+      "hasFile":true,
+      "secureDataGatewayEnabled":false,
+      "vpnEnabled":false,
+      "trackingSettings":{
+         "trackingLevel":"DISABLED"
+      },
+      "logLevels":[
+
+      ],
+      "ipAddresses":[
+
+      ]
+   }
+]

@@ -1,0 +1,152 @@
+{
+  "user": {
+    "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+    "createdAt": "2015-03-13T18:03:21.748Z",
+    "updatedAt": "2015-03-13T18:03:28.089Z",
+    "firstName": "Organization",
+    "lastName": "Owner",
+    "email": "api.platform.qa+o_o@gmail.com",
+    "phoneNumber": "111-111-1111",
+    "username": "organization_owner",
+    "enabled": true,
+    "deleted": false,
+    "memberOfOrganizations": [
+      {
+        "name": "MuleSoft Inc",
+        "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "createdAt": "2015-03-13T18:03:23.869Z",
+        "updatedAt": "2015-03-13T18:03:24.207Z",
+        "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+        "clientId": "b63237d9c5d444ea95147065e0711161",
+        "domain": "mulesoft-inc",
+        "idprovider_id": "mulesoft",
+        "isFederated": false,
+        "parentOrganizationIds": [],
+        "subOrganizationIds": [
+          "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+        ],
+        "tenantOrganizationIds": [],
+        "isMaster": true
+      }
+    ],
+    "organization": {
+      "name": "MuleSoft Inc",
+      "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "createdAt": "2015-03-13T18:03:23.869Z",
+      "updatedAt": "2015-03-13T18:03:24.207Z",
+      "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "clientId": "b63237d9c5d444ea95147065e0711161",
+      "domain": "mulesoft-inc",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentOrganizationIds": [],
+      "subOrganizationIds": [
+        "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+      ],
+      "tenantOrganizationIds": [],
+      "isMaster": true,
+      "properties": {},
+      "owner": {
+        "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+        "username": "organization_owner",
+        "firstName": "Organization",
+        "lastName": "Owner",
+        "email": "api.platform.qa+o_o@gmail.com",
+        "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "enabled": true
+      },
+      "subOrganizations": [
+        {
+          "name": "Sales",
+          "id": "07fd6c5b-0036-48a3-b2af-3194c06bed6c",
+          "createdAt": "2015-03-13T18:03:28.663Z",
+          "updatedAt": "2015-03-13T18:03:28.669Z",
+          "ownerId": "e3c4c70d-bf11-4f64-8cc6-b75b5d2200a6",
+          "clientId": "696e3d7104f6456fa06f21a9e05d9067",
+          "domain": "sales",
+          "idprovider_id": "mulesoft",
+          "isFederated": false,
+          "parentOrganizationIds": [
+            "f0c9b011-980e-4928-9430-e60e3a97c043"
+          ],
+          "subOrganizationIds": [],
+          "tenantOrganizationIds": [],
+          "isMaster": false,
+          "subOrganizations": [],
+          "owner": {
+            "id": "e3c4c70d-bf11-4f64-8cc6-b75b5d2200a6",
+            "username": "sales_director",
+            "firstName": "Sales",
+            "lastName": "Director",
+            "email": "api.platform.qa+sales_director@gmail.com",
+            "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "enabled": true
+          }
+        }
+      ]
+    }
+  },
+  "permissions": {
+    "invites": {
+      "view": true,
+      "create": true
+    },
+    "roles": {
+      "view": true,
+      "create": true,
+      "edit": true
+    },
+    "organization": {
+      "view": true,
+      "edit": false
+    },
+    "clientSecret": {
+      "view": true
+    },
+    "identityManagement": {
+      "view": true
+    },
+    "profile": {
+      "view": true,
+      "edit": true
+    },
+    "resetPassword": {
+      "view": true
+    },
+    "environments": {
+      "view": true,
+      "create": true,
+      "edit": true
+    },
+    "defaultRegion": {
+      "view": true,
+      "edit": true
+    },
+    "subscription": {
+      "view": true
+    },
+    "users": {
+      "view": true,
+      "create": true
+    },
+    "cloudhub": {
+      "view": true
+    }
+  },
+  "accessToken": "fd139fe0-dc81-46f3-b75d-bfe7eefbe834",
+  "apiPlatform": {
+    "adminSite": {
+      "baseUri": "https://anypoint.mulesoft.com/apiplatform/router/#/access_token=fd139fe0-dc81-46f3-b75d-bfe7eefbe834&token_type=bearer&state="
+    }
+  },
+  "cloudhub": {
+    "baseUri": "https://anypoint.mulesoft.com/cloudhub",
+    "deleteEnvironment": "disabled"
+  },
+  "exchange": {
+    "baseUri": "https://anypoint.mulesoft.com/exchange",
+    "config": {
+      "view": false
+    }
+  }
+}

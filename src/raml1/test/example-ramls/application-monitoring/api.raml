@@ -1,0 +1,128 @@
+#%RAML 0.8
+title: CloudHub Application Monitoring API
+version: v0.1
+
+#baseUri: https://localhost:8093/
+#baseUri: http://mocksvc.mulesoft.com/mocks/d8a76472-c2a6-4851-8ec0-bde68b640c33
+baseUri: http://mocksvc.mulesoft.com/mocks/13a19f79-b2bb-49f6-9f1d-f2a20cf462e6/mocks/d8a76472-c2a6-4851-8ec0-bde68b640c33
+protocols: [ HTTPS ]
+schemas:
+  - appmonitor-rule: !include schemas/appmonitor-rule.schema
+  - appmonitor-action: !include schemas/appmonitor-action.schema
+  - appmonitoring: !include schemas/appmonitoring.schema
+  - post-response: !include schemas/post-response.schema
+
+securitySchemes:
+  - oauth_2_0:
+      description: |
+          Core Services bearer token authentication
+      type: OAuth 2.0
+      describedBy:
+          headers:
+              Authorization:
+                  description: |
+                     Bearer token acquired from Core Services
+                  type: string
+      settings:
+        authorizationUri: https://anypoint.mulesoft.com/oauth2/authorize
+        accessTokenUri: https://anypoint.mulesoft.com/oauth2/token
+        authorizationGrants: [ code, token, owner, permissions ]
+
+/api/applications:
+  /{applicationDomain}:
+    uriParameters:
+      applicationDomain:
+        description: |
+          CloudHub application domain name
+    /monitoring:
+      get:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Retrieve monitoring policy for specified application
+        responses:
+          200:
+            description: |
+              Success
+            body:
+              application/json:
+                schema: appmonitor
+                example: !include examples/appmonitor.json
+      put:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Update the monitoring policy for specified application.
+        body:
+          application/json:
+            schema: appmonitoring
+            example: !include examples/appmonitor-put.json
+        responses:
+          201:
+            description: |
+              Created
+            body:
+              application/json:
+                schema: post-response
+                example: !include examples/appmonitor-post-response.json
+      delete:
+          securedBy: [ oauth_2_0 ]
+          description: |
+            Delete the monitoring policy
+          responses:
+            204:
+              description: |
+                Delete successful
+    /rules/:
+      post:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Set the monitoring policy for specified application.
+        body:
+          application/json:
+            schema: appmonitor-rule
+            example: !include examples/appmonitor-rule.json
+        responses:
+          201:
+            description: |
+              Created
+            body:
+              application/json:
+                schema: post-response
+                example: !include examples/appmonitor-post-response.json
+
+    /rules/{ruleId}:
+      get:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Retrieve a single monitoring rule
+        responses:
+          200:
+            description: |
+              Success
+            body:
+              application/json:
+                schema: appmonitor-rule.schema
+                example: !include examples/appmonitor-rule.json
+      put:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Update a single monitoring rule
+        body:
+          application/json:
+            schema: appmonitor-rule
+            example: !include examples/appmonitor-rule.json
+        responses:
+          200:
+            description: |
+              Success
+            body:
+              application/json:
+                schema: appmonitor-rule.schema
+                example: !include examples/appmonitor-rule.json
+      delete:
+        securedBy: [ oauth_2_0 ]
+        description: |
+          Delete a single monitoring rule
+        responses:
+          204:
+            description: |
+              Delete successful

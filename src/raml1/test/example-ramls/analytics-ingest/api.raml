@@ -1,0 +1,47 @@
+#%RAML 0.8
+title: Analytics Ingest
+version: 2.0
+
+/:
+  post:
+    description: |
+      JSON input array of events describing "hits" on an HTTP API.
+    body:
+      application/vnd.mulesoft.analytics.http-event+json;v=2:
+        schema: |
+          {
+            "$schema": "http://json-schema.org/schema",
+            "type": "object",
+            "required": ["org_id", "api_id", "received_ts", "replied_ts", "verb", "status_code" ],
+            "properties": {
+              "org_id": { "type": "string" },
+              "api_id": { "type": "string" },
+              "api_version_id": { "type": "string" },
+              "host_id": { "type": "string" },
+              "client_id": { "type": "string" },
+              "transaction_id": { "type": "string" },
+              "received_ts": { "type": "iso datetime" },
+              "replied_ts": { "type": "iso datetime" },
+              "client_ip": { "type": "ip address"},
+              "verb": { "type": "string" },
+              "path": { "type": "string" },
+              "status_code": { "type": "int" },
+              "user_agent": { "type": "string" },
+              "request_bytes": { "type": "long" },
+              "response_bytes": { "type": "long" },
+              "request_disposition": { "enum": ["PROCESSED", "BLOCKED"] },
+              "policy_violation": {
+                "type": "object",
+                "oneOf": [{ "$ref": "#definitions/policy_violation" }]
+              }
+            },
+            "definitions": {
+              "policy_violation": {
+                "type": "object",
+                "properties": {
+                  "policy_id": { "type": "string" },
+                  "outcome": { "enum": ["VIOLATION", "ERROR"] }
+                }
+              }
+            }
+          }

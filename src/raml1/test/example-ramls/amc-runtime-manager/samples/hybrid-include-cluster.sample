@@ -1,0 +1,27 @@
+{
+  "id": 4930,
+  "timeCreated": 1438007055399,
+  "timeUpdated": 1438007055399,
+  "name": "clusterName",
+  "multicastEnabled": true,
+  "servers": [
+    {
+      "id": 1333,
+      "timeCreated": 1435862255216,
+      "timeUpdated": 1438007055399,
+      "name": "clusteredServer",
+      "serverType": "GATEWAY",
+      "type": "SERVER",
+      "muleVersion": "3.7.0-SNAPSHOT",
+      "gatewayVersion": "2.0.0-RC1",
+      "agentVersion": null,
+      "status": "CREATED",
+      "addresses": [],
+      "currentClusteringIp": null,
+      "clusterId": 4930,
+      "clusterName": "clusterName"
+    }
+  ],
+  "type": "CLUSTER",
+  "status": "CREATED"
+}

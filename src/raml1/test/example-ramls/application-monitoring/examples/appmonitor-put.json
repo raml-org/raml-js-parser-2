@@ -1,0 +1,23 @@
+{
+  "enabled": true,
+  "rules": [
+    {
+      "name": "Scaleup if CPU > 80%",
+      "resourceTrigger": {
+        "metric": "cpu",
+        "operator": "above",
+        "value": 50
+      },
+      "actions": [
+        {
+          "type": "scaleup",
+          "scaleType": "workerCount",
+          "maxScale": 4
+        },
+        {
+          "type": "notify"
+        }
+      ]
+    }
+  ]
+}

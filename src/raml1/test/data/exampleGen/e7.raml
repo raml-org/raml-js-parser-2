@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: API with Types
+baseUri: /media
+types:
+  Person:
+    type: object
+    properties:
+      firstname: string
+      lastname: string
+      age: number
+    example:
+      firstname: Juan
+      lastname: Coen
+      age: 31
+  Department:
+    type: object
+    properties:
+      name: string
+    example:
+      name: Engineering
+  User:
+    type: Person
+    properties:
+      id:
+        type: number
+        example: 12345678
+      department: Department

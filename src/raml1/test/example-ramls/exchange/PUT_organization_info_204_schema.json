@@ -1,0 +1,23 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required":false,
+  "properties":{
+    "owner_name": {
+      "type":"string",
+      "id": "http://jsonschema.net/name",
+      "required":false
+    },
+    "owner_email": {
+      "type":"string",
+      "id": "http://jsonschema.net/domain",
+      "required":false
+    },
+    "owner_phone": {
+      "type":"string",
+      "id": "http://jsonschema.net/core_services_id",
+      "required":false
+    }
+  }
+}

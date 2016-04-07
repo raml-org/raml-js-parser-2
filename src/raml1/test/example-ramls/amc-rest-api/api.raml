@@ -1,0 +1,238 @@
+#%RAML 0.8
+title: hybrid-rest-services
+version: 0.4
+mediaType: application/json
+securedBy: [x-token]
+baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
+
+securitySchemes:
+  - x-token: !include security-bearer.yaml
+      
+traits:
+  - errorCodes: !include common/error-codes.yaml
+  - env-org-pair: !include common/env-org-pair.yaml
+    
+resourceTypes:
+  - collection: !include common/collection.yaml
+  - collection-item: !include common/collection-item.yaml
+  - servers-collection: !include common/servers-collection.yaml
+
+/servers:
+  is: [env-org-pair]
+  type:
+      servers-collection:
+        exampleItem: !include samples/hybrid-include-server.sample
+  description: A server is an instance of Mule. It can be used as a deployment target.
+  post:
+    description: Register a server. Responds with signed certificate to be added in the keystore living under the mule/conf folder.
+    body:
+      application/json: 
+        example: !include samples/register-server.sample
+        schema: !include schemas/create-server-schema.json
+    responses:
+      200:
+        headers:
+          X-ANYPNT-ENV-ID:
+            description: Environment where the server was created.
+          X-ANYPNT-ORG-ID:
+            description: Organization where the server was created.
+        body:
+          application/octet-stream:
+  get:
+    queryParameters:
+      belongsTo:
+        description: If it is part of a group o not. Optional.
+        enum: [SERVER_GROUP, CLUSTER, NO_GROUP]
+    responses:
+      200:
+  /{serverId}:
+      is: [env-org-pair]
+      type:
+        collection-item:
+          exampleItem: !include samples/hybrid-include-server.sample
+          schemaItem: !include schemas/server-schema.json
+      get:
+        responses:
+          200:
+      patch:
+        description: Allows user to modify the server name
+        body:
+          example: |
+            { "name" : "newName" }
+        responses:
+          202:
+      delete:
+        description: >
+          Forcibly remove the server from Hybrid:
+          <li> Removes the server from its server group.
+          <li> Deletes related server artifacts from all deployments. Does not attempt to nicely undeploy the server artifacts from the server. Records are simply deleted.
+          <li> If the server is connected, the connection is terminated and will not be accepted in future.
+          <br><br>
+          To cleanly delete a server, first:
+          <li> Remove the server from its group.
+          <li> Delete all deployments whose deployment target is this server.
+          <li> Wait until all applications are undeployed.
+        responses:
+          204: 
+  /registrationToken:
+      is: [env-org-pair]
+      description: Get a registration token. This token needs to be used to register a new server.
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include samples/registration-token.sample
+                schema: !include schemas/registration-token-schema.json
+                
+/serverGroups:
+  is: [env-org-pair]
+  type:
+    collection:
+      exampleItem: !include samples/hybrid-include-serverGroup.sample
+  post:
+    description: Create a server group.
+    body:
+      application/json:
+        example: |
+          {
+            "name": "Group2",
+            "serverIds": [  71, 72 ]
+          }
+    responses:
+      201:
+  get:
+    description: List Server Groups
+    responses:
+      200:
+  /{serverGroupId}:
+    is: [env-org-pair]
+    type:
+      collection-item:
+        exampleItem: !include samples/hybrid-include-serverGroup.sample
+        schemaItem: !include schemas/server-group-schema.json
+    get:
+      responses:
+        200:
+    /servers/{serverId}:
+      is: [env-org-pair]
+      post:
+        description: Add server to server group. Any artifacts deployed to this server group will be deployed to the new server. Returns the updated server. 
+        responses:
+          201:
+            body:
+              application/json:
+                example: !include samples/hybrid-include-serverGroup.sample
+                schema: !include schemas/server-group-schema.json
+      delete:
+        description: Remove server from server group.  This undeploys any artifacts from the server which are deployed to this server group.
+        responses:
+          204:
+/clusters:
+  is: [env-org-pair]
+  type:
+    collection:
+      exampleItem: !include samples/hybrid-include-cluster.sample
+  post:
+    description: Create a Cluster
+    body:
+      application/json:
+        example: !include samples/hybrid-create-cluster.sample
+        schema: !include schemas/cluster-creation-schema.json
+    responses:
+      201:
+  get:
+    description: List Clusters
+    responses:
+      200:
+  /{clusterId}:
+    is: [env-org-pair]
+    type:
+      collection-item:
+        exampleItem: !include samples/hybrid-include-cluster.sample
+        schemaItem: !include schemas/cluster-schema.json
+    get:
+      responses:
+        200:
+    /servers/{serverId}:
+      is: [env-org-pair]
+      post:
+        description: Add server to the cluster. Any artifacts deployed to this server group will be deployed to the new server. Returns the updated server. 
+        responses:
+          201:
+            body:
+              application/json:
+                example: !include samples/hybrid-include-cluster.sample
+                schema: !include schemas/cluster-schema.json
+      delete:
+        description: Remove server from the cluster.  This undeploys any artifacts from the server which are deployed to this cluster.
+        responses:
+          204:
+/applications:
+  is: [env-org-pair]
+  type:
+    collection:
+      exampleItem: !include samples/hybrid-include-application.sample
+  description: Lists the artifact deployed in a mule/gateway instance (applications)
+  post:
+    description: Deploy an artifact to a deployment target. Initiates deployment and creates server artifacts.
+    body:
+      multipart/form-data:
+        formParameters:
+          file:
+            description: The file to be uploaded
+            type: file
+          artifactName:
+            description: The name of the artifact.
+            type: string
+          targetId:
+            description: the id of the target.
+            type: string
+    responses:
+      201:
+  get:
+    description: Get deployed applications that matches the query params
+    queryParameters:
+      applicationId:  
+        description: Retrieves a unique application.
+        type: number
+      targetId:  
+        description: Retrieve all the applicatons deployed in a target.
+        type: number
+      satus:
+        description: Deployment status
+        enum: [STARTED, STARTING, UNDEPLOYED, DEPLOYMENT_FAILED, PARTIALLY_STARTED]
+    responses:
+      200:
+  /{applicationId}: 
+    is: [env-org-pair]  
+    type:
+      collection-item:
+        exampleItem: !include samples/hybrid-include-application.sample
+        schemaItem: !include schemas/application-schema.json
+    get:
+      description: Get The application deployment/status information
+      responses:
+        200:
+    delete:
+      description: Undeploy artifact from all servers in deployment target and delete the deployment
+      responses:
+        204:
+          description: Undeployment is in progress.
+    patch:
+      description: Redeploys the app with a new artifact. If the file is not specified in the request then hybrid redeploys the same file that is in the server. If the content type is application/json then it allows to change the status of the deployed application from started to stopped or from stopped to started. No other application status change is allowed.
+      body:
+        multipart/form-data:
+        application/json:
+          example: |
+            { "desiredStatus": "STOPPED"}
+      responses:
+        202:
+    /artifact:
+      is: [env-org-pair]
+      get:
+        description: Gets the artifact binary
+        responses:
+          200:
+            body:
+              application/octet-stream:

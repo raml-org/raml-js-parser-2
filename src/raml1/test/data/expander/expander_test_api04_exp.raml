@@ -1,0 +1,34 @@
+#%RAML 1.0
+title: TraitToResource_exp
+version: 1
+baseUri: https://example.com/{version}
+traits:
+  - trait0: !include traits/trait0.raml
+/root-resource:
+  is: [ trait0 ]
+  get:
+    description: Get object
+    queryParameters:
+      id:
+        type: number
+        description: object id
+      name:
+        type: string
+        description: object name
+    responses:
+      200:
+      404:
+        description: not found
+  post:
+    description: Create object
+    queryParameters:
+      name:
+        type: string
+        description: object name
+    responses:
+      200:
+      201:
+        body:
+          applicaiton/json:
+      404:
+        description: not found

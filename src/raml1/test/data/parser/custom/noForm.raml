@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: d
+/get:
+  get:
+    body:
+      multipart/form-data:
+        properties:
+          x: file
+    responses:
+      200:
+        body:
+          application/json:

@@ -1,0 +1,5 @@
+expr   = union
+union  = term 0*1("|" term)
+term   = type
+type   = custom / "object"
+custom = "Type"

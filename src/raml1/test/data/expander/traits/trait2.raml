@@ -1,0 +1,18 @@
+description: some description
+queryParameters:
+  id?:
+    type: number
+    description: object id
+  name:
+    type: string
+    enum:
+      - val1
+      - val2
+      - val3
+responses:
+  200:
+  201?:
+    body:
+      applicaiton/json:
+  404:
+    description: not found

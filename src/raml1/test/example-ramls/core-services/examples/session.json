@@ -1,0 +1,9 @@
+{
+  "timeout": {
+    "unit": "milliseconds",
+    "duration": 3600000,
+    "timeLeft": 3599968,
+    "timeUsed": 32,
+    "expires": 1422910648297
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "authorization_code": "20460a62-bbdc-469d-9330-5eec892abd05",
+  "client_id": "ro_client",
+  "redirect_uri": "http://localhost/callback",
+  "user_id": "user1.test",
+  "session_id": "4d6882380a504c3a9fd91de0da20cf6c"
+}

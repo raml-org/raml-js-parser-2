@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: test
+
+types:
+  TestEnum:
+    type: string
+    enum: [First, Second, Third]
+  TestStringType:
+    type: string
+    facets:
+      testFacet: TestEnum
+  TestStringSubtype:
+    type: TestStringType
+    testFacet: First

@@ -1,0 +1,32 @@
+[
+  {
+    "id":1,
+    "name":"template",
+    "active":true
+  },
+  {
+    "id":2,
+    "name":"connector",
+    "active":false
+  },
+  {
+    "id":3,
+    "name":"example",
+    "active":true
+  },
+  {
+    "id":8,
+    "name":"API",
+    "active":false
+  },
+  {
+    "id":5,
+    "name":"studio-add-on",
+    "active":false
+  },
+  {
+    "id":4,
+    "name":"other",
+    "active":false
+  }
+]

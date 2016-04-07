@@ -1,0 +1,24 @@
+{
+   "id":"_1635",
+   "name":"test-alert",
+   "href":"http://anypoint.mulesoft.com:8080/api/alerts/1635",
+   "condition":{
+      "application":"example-app",
+      "event":{
+         "type":"deployment_failure"
+      }
+   },
+   "enabled":true,
+   "email":{
+      "users":[
+
+      ],
+      "others":[
+         "fredsmith@example.com"
+      ],
+      "subject":"Deployment Failure",
+      "body":"The deployment of your application ${app} has failed. The error was: ${message}\nPlease see your https://anypoint.mulesoft.com/cloudhub/#/console/applications/${app}/logs for more details.\n\nMuleSoft CloudHub | https://anypoint.mulesoft.com/cloudhub/",
+      "replyTo":""
+   }
+}
+   

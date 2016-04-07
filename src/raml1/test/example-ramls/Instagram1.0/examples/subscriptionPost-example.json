@@ -1,0 +1,13 @@
+{
+  "meta" : {
+    "code" : 200
+  } ,
+  "data" : {
+    "object" : "location" ,
+    "object_id" : "247423995" ,
+    "aspect" : "media" ,
+    "callback_url" : "http://my-redirect-url.my-host.com" ,
+    "type" : "subscription" ,
+    "id" : "4613492"
+  }
+}

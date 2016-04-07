@@ -1,0 +1,554 @@
+#%RAML 0.8
+title: Mule Agent API
+version: 1.0
+mediaType: application/json
+baseUri: /mule
+
+traits:
+ - errorCodes: 
+      responses:
+        403: 
+          description: Forbidden if the handler is disabled. 
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+ - messageHandlerEnablementCodes:
+      responses:
+        200:
+          description: A component representing the handler. 
+          body:
+            application/json:
+              example: |
+                {
+                  componentId: "tsdfsdf98asd9f87a9sdf9",
+                  enabled: true
+                }
+        404:
+          description: The message handler does not exists.
+        500:
+          description: The operation fails.
+ - componentEnablementCodes:
+      responses:
+        200:
+          description: The component information.
+          body:
+            application/json:
+              example: |
+                {
+                  component: "componentName",
+                  enabled: true
+                }
+        404:
+          description: The component does not exists.
+          body:
+            application/json:
+              example: |
+                {
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+        500:
+          description: The operation fails.
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+ - componentConfigurationCodes:
+      responses:
+        200:
+          description: |
+              The full component configuration
+          body:
+            application/json:
+              example: |
+                {
+                  "serviceHandlerTypes": [
+                    "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                  ],
+                  "injectedHandlers": [
+                    {
+                      "name": "com.mulesoft.agent.monitoring.publisher.CloudwatchMonitorPublisher",
+                      "path": "/mule/agent/cloudwatch.agent.monitor.publisher/configuration",
+                      "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                    },
+                    {
+                      "name": "com.mulesoft.agent.monitoring.publisher.GraphiteMonitorPublisher",
+                      "path": "/mule/agent/mule.agent.graphite.jmx.internal.handler/configuration",
+                      "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                    },
+                    {
+                      "name": "com.mulesoft.agent.monitoring.publisher.NagiosMonitorPublisher",
+                      "path": "/mule/agent/mule.agent.nagios.jmx.internal.handler/configuration",
+                      "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                    },
+                    {
+                      "name": "com.mulesoft.agent.monitoring.publisher.ZabbixMonitorPublisher",
+                      "path": "/mule/agent/mule.agent.zabbix.jmx.internal.handler/configuration",
+                      "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                    }
+                  ],
+                  "frequencyTimeUnit": "MINUTES",
+                  "frequency": "150"
+                }
+        400:
+          description: |
+              The JSON is invalid.
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+        403:
+          description: |
+              The handler or the service are disabled
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+        404:
+          description: |
+              The component doesn't exist
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+      
+ - applicationErrorCodes:
+      responses:
+        404:
+          description: The application does not exist.
+ - domainErrorCodes:
+      responses:
+        404:
+          description: The domain does not exist.
+
+/agent:
+  get:
+    is: [errorCodes]
+    description: |
+        Returns a list of properties of the Agent and the Mule Instance
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                agentApiVersion: "1.0.0",
+                muleVersion: "3.6.0"
+              }
+  /components:
+    get:
+      is: [errorCodes]
+      description: |
+          Returns list of components that contain the ids and status of the different external message handlers,  internal message handler and services in the Mule Agent.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                [
+                  {
+                    componentId: "external.handlers.switch.rest.request.handler", 
+                    enabled: true
+                  }
+                ]
+
+  /{component}:
+    get:
+      is: [errorCodes]
+      description: |
+          Returns a JSON representing the service's configuration.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                   "serviceHandlerTypes": [
+                       "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                   ],
+                   "injectedHandlers": [
+                       {
+                           "name": "com.mulesoft.agent.monitoring.publisher.CloudwatchMonitorPublisher",
+                           "path": "/mule/agent/cloudwatch.agent.monitor.publisher/configuration",
+                           "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                       },
+                       {
+                           "name": "com.mulesoft.agent.monitoring.publisher.GraphiteMonitorPublisher",
+                           "path": "/mule/agent/mule.agent.graphite.jmx.internal.handler/configuration",
+                           "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                       },
+                       {
+                           "name": "com.mulesoft.agent.monitoring.publisher.NagiosMonitorPublisher",
+                           "path": "/mule/agent/mule.agent.nagios.jmx.internal.handler/configuration",
+                           "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                       },
+                       {
+                           "name": "com.mulesoft.agent.monitoring.publisher.ZabbixMonitorPublisher",
+                           "path": "/mule/agent/mule.agent.zabbix.jmx.internal.handler/configuration",
+                           "type": "java.util.List<com.mulesoft.agent.domain.monitoring.Metric>"
+                       }
+                   ],
+                   "frequencyTimeUnit": "MINUTES",
+                   "frequency": "150"
+                }
+    patch:
+      is: [errorCodes, componentConfigurationCodes]
+      description: |
+          Changes the configuration of the component by overriding the values of the properties passed
+          in the JSON.
+      body:
+        application/json:
+          example: |
+            {
+              "frequencyTimeUnit": "SECONDS",
+              "frequency": "150"
+            }
+        
+    put:
+      is: [errorCodes, componentConfigurationCodes]
+      description: |
+          Changes the configuration of the component by overriding the full configuration with the
+          one passed in the JSON.
+      body:
+        application/json:
+          example: |
+            {
+              "frequencyTimeUnit": "SECONDS",
+              "frequency": "150"
+            } 
+    /enable:
+      put:
+        is: [errorCodes, componentEnablementCodes]
+        description: |
+            Enables a service.
+    /disable:
+      put:
+        is: [errorCodes, componentEnablementCodes]
+        description: |
+              Disables a service.
+/domains:
+  get:
+    is: [errorCodes]
+    description: |
+        Returns all existing domains in Mule.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                { 
+                  name: 'myDomain1',
+                  applications:[
+                    {
+                      name: 'application1',
+                      domain: 'myDomain1',
+                      state: 'CREATED'
+                    },
+                    {
+                      name: 'otherApplication2',
+                      domain: 'myDomain1',
+                      state: 'STARTED'
+                    }
+                  ]
+                },
+                { 
+                  name: 'myDomain2',
+                  applications:[
+                    {
+                      name: 'otherApplication1',
+                      domain: 'myDomain2',
+                      state: 'CREATED'
+                    },
+                    {
+                      name: 'otherApplication2',
+                      domain: 'myDomain2',
+                      state: 'STARTED'
+                    }
+                  ]
+                }
+              ]
+  /{domain}:
+    get:
+      is: [errorCodes, domainErrorCodes]
+      description: |
+          Returns all the details of the domain requested.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                { 
+                  name: 'myDomain2',
+                  applications: [
+                    {
+                      name: 'otherApplication1',
+                      domain: 'myDomain2',
+                      state: 'CREATED'
+                    },
+                    {
+                    name: 'otherApplication2',
+                    domain: 'myDomain2',
+                    state: 'STARTED'
+                    }
+                  ]
+                }
+    put:
+      is: [errorCodes]
+      description: |
+          Deploys or redeploys a domain in Mule using the name passed in the PUT body.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  domain: "domainName", 
+                  status: "Deployment attempt started" 
+                }
+        500:
+          description: Another application is already deploying.
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+    delete:
+      is: [errorCodes, domainErrorCodes]
+      description: |
+          Undeploys a domain from Mule.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  domain: "domainName",
+                  status: "Undeployment attempt started"
+                } 
+        500:
+          description: Another application is already deploying.
+          body:
+            application/json:
+              example: |
+                { 
+                  "errorType": "errorType",
+                  "errorMessage": "Error Message"
+                }
+    /restart:
+      put:
+        is: [errorCodes, domainErrorCodes]
+        description: |
+          Restarts a domain from Mule.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    domain: "domainName",
+                    status: "Restart attempt started"
+                  } 
+          500:
+            description: Another application is already deploying.
+            body:
+              application/json:
+                example: |
+                  { 
+                    "errorType": "errorType",
+                    "errorMessage": "Error Message"
+                  }
+        
+/applications:
+  get:
+    is: [errorCodes]
+    description: |
+          Returns all existing applications in Mule.
+    responses:
+      200:
+        description: |
+            The list of applications. The parameter state may have the values CREATED, INITIALISED, STARTED, STOPPED or DESTROYED.
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  name: 'application1', 
+                  domain: 'domain1', 
+                  state: 'CREATED'
+                },
+                {
+                  name: 'application2',
+                  domain: 'domain2',
+                  state: 'STARTED'
+                }
+              ] 
+  /{application}:
+    get:
+      is: [errorCodes, applicationErrorCodes]
+      description: |
+          Gets a particular application.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  name: 'application1', 
+                  domain: 'domain1', 
+                  state: 'STARTED'
+                }
+    put:
+      is: [errorCodes]
+      description: |
+          Redeploys/creates an application to Mule using the name and URL passed in the POST body.
+      body:
+        application/json:
+          example: |
+            {
+              "url":"file://tmp/myapp.zip"
+            }
+        application/octet-stream:
+      responses:
+        201:
+          description: If the application does not exist then it is created with the name in the URL
+          body:
+            application/json:
+              example: |
+                { 
+                  application: {
+                  name: "applicationName"
+                  },
+                status: "Deployment attempt started"
+                }
+        202:
+          description: The re-deployment request is accepted, the application exists and is going to be redeploy
+          body: 
+            application/json:
+              example: |
+                {
+                  application: {
+                    name: "applicationName"
+                  },
+                  status: "Redeployment attempt started"
+                }
+        500:
+          description: The deploymet/redeployment request could not be initialised. The installation phase of the mule application could not be done. No deployment/redeployment will be perform.
+          body: 
+            application/json:
+              example: |
+                {
+                  errorType: "ConcurrentDeploymentException",
+                  errorMessage: "There is another application being deployed at this moment"
+                }
+    delete:
+      is: [errorCodes, applicationErrorCodes]
+      description: |
+          Undeploys an application from Mule.
+      responses:
+        202:
+          body:
+            application/json:
+              example: |
+                {
+                  application: {
+                    name: "applicationName"
+                  },
+                  status: "Undeployment attempt started"
+                }
+    /stop:
+      put:
+        is: [errorCodes, applicationErrorCodes]
+        description: |
+            Stops an application.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    application: {
+                      name: "applicationName",
+                      domain: "domainName",
+                      state: "STOPPED"
+                    },
+                      status: "Stop attempt started"
+                  }
+          412:
+            description: The application is already stopped.
+            body:
+              application/json:
+                example: |
+                  {
+                    application: {
+                      name: "applicationName",
+                      domain: "domainName",
+                      state: "STOPPED"
+                    }
+                  }
+    /start:
+      put:
+        is: [errorCodes, applicationErrorCodes]
+        description: |
+            Starts an application.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    application: {
+                      name: "applicationName",
+                      domain: "domainName",
+                      state: "STARTED"
+                    },
+                      status: "Start attempt started"
+                  }
+          412:
+            description: The application is already started.
+            body:
+              application/json:
+                example: |
+                  {
+                    application: {
+                      name: "applicationName",
+                      domain: "domainName",
+                      state: "STARTED"
+                    }
+                  }
+    /restart:
+      put:
+        is: [errorCodes, applicationErrorCodes]
+        description: |
+            Retarts an application.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                   {
+                      application: {
+                        name: "applicationName",
+                        domain: "domainName",
+                        state: "STARTED"
+                      },
+                      status: "Restart attempt started"
+                   }

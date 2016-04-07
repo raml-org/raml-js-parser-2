@@ -1,0 +1,33 @@
+{
+   "fileChecksum":"",
+   "fileSource":"",
+   "muleVersion":{
+      "version":"3.6.0"
+   },
+   "properties":{
+      "key1":"value1"
+   },
+   "logLevels":[
+
+   ],
+   "trackingSettings":{
+      "trackingLevel":"DISABLED"
+   },
+   "region":"us-east-1",
+   "multitenanted":false,
+   "vpnEnabled":false,
+   "secureDataGatewayEnabled":false,
+   "persistentQueues":false,
+   "persistentQueuesEncrypted":false,
+   "monitoringEnabled":true,
+   "monitoringAutoRestart":true,
+   "workers":{
+      "type":{
+         "name":"Medium",
+         "weight":1,
+         "cpu":"1 vCore",
+         "memory":"1.5 GB memory"
+      },
+      "amount":1
+   }
+}

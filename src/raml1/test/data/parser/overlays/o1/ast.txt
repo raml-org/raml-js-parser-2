@@ -1,0 +1,26 @@
+Overlay <-- 
+  title : StringType  =  Extension
+  masterRef : StringType  =  api.raml
+  Trait <-- traits
+    name : StringType  =  env-org-pair
+    displayName : StringType  =  overlayDisplayName
+    name : StringType  =  env-org-pair
+    displayName : StringType  =  masterDisplayName
+  title : StringType  =  hybrid-rest-services
+  version : StringType  =  0.4
+  mediaType : MimeType  =  application/json
+  securedBy : SecuritySchemeRef  =  x-ttt
+  protocols : StringType  =  HTTP
+  DigestSecurityScheme <-- securitySchemes
+    name : StringType  =  x-ttt
+    type : StringType  =  Digest Authentication
+  baseUri : FullUriTemplateString  =  https://anypoint.mulesoft.com/hybrid/api/v1
+  Trait <-- traits
+    name : StringType  =  env-org-pair
+    displayName : StringType  =  masterDisplayName
+  ResourceType <-- resourceTypes
+    name : StringType  =  servers-collection
+  Resource <-- resources
+    relativeUri : RelativeUriString  =  /servers
+    is : TraitRef  =  env-org-pair
+    securedBy : SecuritySchemeRef  =  x-ttt

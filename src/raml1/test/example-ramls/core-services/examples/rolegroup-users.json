@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "id": "462ddd98-edd2-423b-9218-9f8e0f4c42ba",
+      "username": "anypointadmin",
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "email": "mulesoft.library+admin@gmail.com",
+      "organizationId": "68ef9520-24e9-4cf2-b2f5-620025690913",
+      "enabled": true,
+      "context_params": {}
+    }
+  ],
+  "total": 1
+}

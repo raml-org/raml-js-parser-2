@@ -1,0 +1,76 @@
+{
+  "data": [
+    {
+      "id": "3c91e5ca-fe58-441f-b6ab-a2be0a684bbf",
+      "name": "Create Applications"
+    },
+    {
+      "id": "4b3b5050-2f33-4740-9b63-dccc421b9f92",
+      "name": "Delete Applications"
+    },
+    {
+      "id": "4e2a978e-0c79-4131-bebf-a653fd8ba039",
+      "name": "Download Applications"
+    },
+    {
+      "id": "26500650-0fd6-4045-aa5f-8c749ce278e4",
+      "name": "Manage Alerts"
+    },
+    {
+      "id": "51de3390-9bfe-4bcc-a790-6016b820ba92",
+      "name": "Manage Application Data"
+    },
+    {
+      "id": "9c459fa4-3259-4204-951f-a0d26fe87eef",
+      "name": "Manage Queues"
+    },
+    {
+      "id": "009b5d47-e107-4375-91c0-62ddac10abac",
+      "name": "Manage Schedules"
+    },
+    {
+      "id": "4db01de7-89db-473e-8591-606204e9baab",
+      "name": "Manage Settings"
+    },
+    {
+      "id": "c4034ae3-f65f-4d0a-9047-4288dedaedd6",
+      "name": "Manage Tenants"
+    },
+    {
+      "id": "674c9f7a-ee81-44d7-b25f-eb938d8e69b1",
+      "name": "Read Applications"
+    },
+    {
+      "id": "fa6b43ac-c436-11e4-8dfc-aa07a5b093db",
+      "name": "Add Servers"
+    },
+    {
+      "id": "8b7ca75e-e94a-11e4-b02c-1681e6b88ec1",
+      "name": "Delete Servers"
+    },
+    {
+      "id": "8b7caaba-e94a-11e4-b02c-1681e6b88ec1",
+      "name": "Read Servers"
+    },
+    {
+      "id": "631a1821-8dab-4ece-965c-f85de93b4ae6",
+      "name": "Modify Servers"
+    },
+    {
+      "id": "e5df881e-e2e8-11e4-8a00-1681e6b88ec1",
+      "name": "Add Server Groups"
+    },
+    {
+      "id": "8b7cace0-e94a-11e4-b02c-1681e6b88ec1",
+      "name": "Delete Server Groups"
+    },
+    {
+      "id": "8b7caf06-e94a-11e4-b02c-1681e6b88ec1",
+      "name": "Modify Server Groups"
+    },
+    {
+      "id": "8b7cb370-e94a-11e4-b02c-1681e6b88ec1",
+      "name": "Read Server Groups"
+    }
+  ]
+}

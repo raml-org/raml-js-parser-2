@@ -1,0 +1,25 @@
+is: [ response800, response900 ]
+get:
+  description: Get object
+  queryParameters:
+    index?:
+      type: number
+      description: object index
+    type:
+      type: string
+      description: object type
+    id:
+  responses:
+    251:
+post:
+  is: payload
+  queryParameters:
+    id1:
+  responses:
+    201:
+    300?:
+      body:
+        application/json:
+delete?:
+  responses:
+    204:

@@ -1,0 +1,23 @@
+Overlay <-- 
+  masterRef : StringType  =  api.raml
+  ObjectTypeDeclaration <-- types
+    name : StringType  =  TestType
+    StringTypeDeclaration <-- properties
+      name : StringType  =  firstProp
+      type : StringType  =  string
+    StringTypeDeclaration <-- properties
+      name : StringType  =  secondProp
+      type : StringType  =  string
+    ExampleSpec <-- examples
+      name : StringType  =  First
+      content : StringType  =  {
+  "firstProp" : "overlay2FirstProp",
+  "secondProp" : "overlay2SecondProp"
+}
+
+    ExampleSpec <-- examples
+      name : StringType  =  Second
+      content : StringType  =  [object Object]
+        {"content":{"firstProp":"overlay2FirstPropYaml","secondProp":"overlay2SecondPropYaml"}}
+
+  title : StringType  =  Test

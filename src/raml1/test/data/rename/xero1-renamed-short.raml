@@ -1,0 +1,29 @@
+#%RAML 0.8
+title: Xero.com API
+version: 2.35
+baseUri: https://api.xero.com/api.xro/2.0
+mediaType: application/xml
+schemas:
+  - account:
+  - accounts:
+resourceTypes:
+  - xeroResource:
+      description: aaa
+  - collection:
+traits:
+  - filtered:
+      description: aaa
+/Contacts1:
+  get:
+    is: [ xxx , ordered , modifiedAfter , paginated ]
+  put:
+    is: [ xxx , ordered , modifiedAfter , paginated ]
+/Contacts2:
+  get:
+    is: [ xxx , ordered , modifiedAfter , paginated ]
+  put:
+    is: [ xxx , ordered , modifiedAfter , paginated ]
+
+/Contacts3:
+  get:
+    is: [ xxx , ordered , modifiedAfter , paginated ]

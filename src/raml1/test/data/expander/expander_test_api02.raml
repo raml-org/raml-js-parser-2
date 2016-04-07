@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: TraitToMethod
+version: 1
+baseUri: https://example.com/{version}
+traits:
+  - trait0: !include traits/trait0.raml
+/root-resource:
+  get:
+    is: [ trait0 ]
+    description: Get object
+    queryParameters:
+      id:
+  post:
+    is: [ trait0 ]
+    description: Create object
+    responses:
+      201:

@@ -1,0 +1,14 @@
+#%RAML 0.8
+title: GeoNames
+baseUri: http://api.geonames.org
+/resource1:
+  type: multiformat
+  description: new desciption
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            schema: postal-codes-xml
+/resource2:
+  get:

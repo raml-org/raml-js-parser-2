@@ -1,0 +1,22 @@
+{
+  "data": [
+    {
+      "role_id": "73a5c3c3-ef75-4291-b51e-a69f998eeea2",
+      "context_params": {
+        "org": "a248f5de-70c3-480e-a35f-35cee4d91c5d"
+      },
+      "name": "Organization Owner",
+      "description": "Organization Owner allows full administration of users and full access to create and manage all APIs"
+    },
+    {
+      "role_id": "96bf8032-9e54-4031-9bee-bc5f59f9f4e5",
+      "context_params": {
+        "org": "a248f5de-70c3-480e-a35f-35cee4d91c5d",
+        "user": "6c611d76-8f9c-40be-86dd-e73458ad6b0c"
+      },
+      "name": "Organization User",
+      "description": "Organization User"
+    }
+  ],
+  "total": 2
+}

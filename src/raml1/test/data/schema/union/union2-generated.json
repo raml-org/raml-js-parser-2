@@ -1,0 +1,40 @@
+{
+  "title": "Person",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "wishList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "union": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "num1": {
+              "type": "number"
+            },
+            "str1": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

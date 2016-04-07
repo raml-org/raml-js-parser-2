@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "created_at": "2015-02-02T21:45:33.433Z",
+      "role_group_assignment_id": "380dbe7c-dc1d-4dcc-8b98-3669c767db29",
+      "role_group_id": "d9029399-1415-473f-809c-263c8f7278fd",
+      "role_id": "d74ef94a-4292-4896-b860-b05bd7f90d6d",
+      "name": "Organization Owner",
+      "description": "Organization Owner allows full administration of users and full access to create and manage all APIs",
+      "internal": false,
+      "org_id": "68ef9520-24e9-4cf2-b2f5-620025690913",
+      "context_params": {
+        "org": "68ef9520-24e9-4cf2-b2f5-620025690913"
+      }
+    }
+  ],
+  "total": 1
+}

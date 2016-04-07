@@ -1,0 +1,925 @@
+#%RAML 0.8
+title: GeoNames
+baseUri: http://api.geonames.org
+schemas:
+  - postal-codes-xml: !include schemas/postal-codes-xml-schema.xsd
+  - astergdem-xml: !include schemas/astergdem-xml-schema.xsd
+  - astergdem: !include schemas/astergdem-schema.json
+  - records-xml: !include schemas/records-xml-schema.xsd
+  - neighbourhood-xml: !include schemas/neighbourhood-xml-schema.xsd
+  - features-xml: !include schemas/features-xml-schema.xsd
+  - siblings-xml: !include schemas/siblings-xml-schema.xsd
+  - cities-xml: !include schemas/cities-xml-schema.xsd
+  - exception-xml: !include schemas/exeption-xml-schema.xsd
+  - exception: !include schemas/exeption-schema.json
+  - findNearByPostalCode-xml: !include schemas/findNearByPostalCode-xml-schema.xsd
+  - findNearByPostalCode: !include schemas/findNearByPostalCode-schema.json
+  - countryInfo-xml: !include schemas/countryInfo-xml-schema.xsd
+  - findNearbyPlaceName-xml: !include schemas/findNearbyPlaceName-xml-schema.xsd
+  - findNearbyPlaceName: !include schemas/findNearbyPlaceName-schema.json
+  - findNearby-xml: !include schemas/findNearby-xml-schema.xsd
+  - findNearby: !include schemas/findNearby-schema.json
+  - extendedFindNearby-xml: !include schemas/extendedFindNearby-xml-schema.xsd
+  - get: !include schemas/get-schema.json
+  - hierarchy-xml: !include schemas/hierarchy-xml-schema.xsd
+  - findNearbyWikipedia-xml: !include schemas/findNearbyWikipedia-xml-schema.xsd
+  - wikipediaSearch-xml: !include schemas/wikipediaSearch-xml-schema.xsd
+  - wikipediaBoundingBox-xml: !include schemas/wikipediaBoundingBox-xml-schema.xsd
+  - cities: !include schemas/cities-schema.json
+  - earthquakes: !include schemas/earthquakes-schema.json
+  - weather: !include schemas/weather-schema.json
+  - weatherIcao: !include schemas/weatherIcao-schema.json
+  - findNearByWeather-xml: !include schemas/findNearByWeather-xml-schema.xsd
+  - findNearByWeather: !include schemas/findNearByWeather-schema.json
+  - findNearestAddress-xml: !include schemas/findNearestAddress-xml-schema.xsd
+  - findNearestIntersection-xml: !include schemas/findNearestIntersection-xml-schema.xsd
+  - findNearbyStreets-xml: !include schemas/findNearbyStreets-xml-schema.xsd
+  - findNearestIntersectionOSM-xml: !include schemas/findNearestIntersectionOSM-xml-schema.xsd
+  - findNearestIntersectionOSM: !include schemas/findNearestIntersectionOSM-schema.json
+  - findNearbyStreetsOSM-xml: !include schemas/findNearbyStreetsOSM-xml-schema.xsd
+  - findNearbyPOIsOSM-xml: !include schemas/findNearbyPOIsOSM-xml-schema.xsd
+  - findNearbyPOIsOSM: !include schemas/findNearbyPOIsOSM-schema.json
+  - countryCode-xml: !include schemas/countryCode-xml-schema.xsd
+  - countryCode: !include schemas/countryCode-schema.json
+  - countrySubdivision-xml: !include schemas/countrySubdivision-xml-schema.xsd
+  - ocean-xml: !include schemas/ocean-xml-schema.xsd
+  - neighbourhood: !include schemas/neighbourhood-schema.json
+  - timezone-xml: !include schemas/timezone-xml-schema.xsd
+  - timezone: !include schemas/timezone-schema.json
+  - gtopo30-xml: !include schemas/gtopo30-xml-schema.xsd
+  - gtopo30: !include schemas/gtopo30-schema.json
+  - countryInfo: !include schemas/countryInfo-schema.json
+  - search-xml: !include schemas/search-xml-schema.xsd
+  - postal-codes: !include schemas/postal-codes-schema.json
+  - search: !include schemas/search-schema.json
+  - postalCodeLookup: !include schemas/postalCodeLookup-schema.json
+  - countrySubdivision: !include schemas/countrySubdivision-schema.json
+  - earthquakes-xml: !include schemas/earthquakes-xml-schema.xsd
+  - findNearbyStreets: !include schemas/findNearbyStreets-schema.json
+  - findNearbyStreetsOSM: !include schemas/findNearbyStreetsOSM-schema.json
+  - findNearbyWikipedia: !include schemas/findNearbyWikipedia-schema.json
+  - findNearestAddress: !include schemas/findNearestAddress-schema.json
+  - findNearestIntersection: !include schemas/findNearestIntersection-schema.json
+  - get-xml: !include schemas/get-xml-schema.xsd
+  - hierarchy: !include schemas/hierarchy-schema.json
+  - neighbours-xml: !include schemas/neighbours-xml-schema.xsd
+  - neighbours: !include schemas/neighbours-schema.json
+  - records: !include schemas/records-schema.json
+  - ocean: !include schemas/ocean-schema.json
+  - postalCodeCountryInfo-xml: !include schemas/postalCodeCountryInfo-xml-schema.xsd
+  - postalCodeCountryInfo: !include schemas/postalCodeCountryInfo-schema.json
+  - features: !include schemas/features-schema.json
+  - siblings: !include schemas/siblings-schema.json
+  - srtm-xml: !include schemas/srtm-xml-schema.xsd
+  - srtm: !include schemas/srtm-schema.json
+  - weather-xml: !include schemas/weather-xml-schema.xsd
+  - weatherIcao-xml: !include schemas/weatherIcao-xml-schema.xsd
+  - wikipediaBoundingBox: !include schemas/wikipediaBoundingBox-schema.json
+  - wikipediaSearch: !include schemas/wikipediaSearch-schema.json
+resourceTypes:
+  - multiformat: !include resourceTypes/multiformat.raml
+  - base: !include resourceTypes/base.raml
+traits:
+  - acceptsArea: !include traits/acceptsArea.raml
+  - hasStyle: !include traits/hasStyle.raml
+  - acceptsPoint: !include traits/acceptsPoint.raml
+  - wikipediaQuery: !include traits/wikipediaQuery.raml
+/postalCodeSearch{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ acceptsArea , hasStyle ]
+    description: |
+      Webservice for the GeoNames full text search in xml and json format. 
+      Returns a list of postal codes and places for the placename/postalcode query as xml document 
+      For the US the first returned zip code is determined using zip code area shapes, the following zip codes are based on the centroid. For all other supported countries all returned postal codes are based on centroids.
+    queryParameters: 
+      postalcode: 
+        description: postal code
+        example: postalcode=9011
+      postalcode_startsWith: 
+        description: the first characters or letters of a postal code
+      placename: 
+        description: "all fields : placename,postal code, country, admin name (Important:urlencoded utf8)"
+      "placename_startsWith  ": 
+        description: the first characters of a place name
+      country: 
+        description: "Default is all countries. string : country code, ISO-3166 (optional)"
+      countryBias: 
+        description: records from the countryBias are listed first
+      maxRows: 
+        description: the maximal number of rows in the document returned by the service. Default is 10
+        type: integer
+        default: 10
+      operator: 
+        description: "the operator 'AND' searches for all terms in the placename parameter, the operator 'OR' searches for any term, default = AND"
+        enum: [ AND , OR ]
+        default: AND
+      isReduced: 
+        description: "default is 'false', when set to 'true' only the UK outer codes are returned. Attention: the default value on the commercial servers is currently set to 'true'. It will be changed later to 'false'."
+        type: boolean
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: postal-codes-xml
+            example: !include examples/postal-codes-xml-example.xml
+          application/json: 
+            schema: postal-codes
+            example: !include examples/postal-codes-example.json
+/extendedFindNearby: 
+  type: base
+  get: 
+    is: [ acceptsPoint ]
+    description: |
+      Result : returns the most detailed information available for the lat/lng query as xml document 
+      It is a combination of several services.
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: extendedFindNearby-xml
+            example: !include examples/extendedFindNearby-xml-example.xml
+/astergdem{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ acceptsPoint ]
+    description: ' Result : a single number giving the elevation in meters according to aster gdem, ocean areas have been masked as "no data" and have been assigned a value of -9999 '
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: astergdem-xml
+            example: !include examples/astergdem-xml-example.xml
+          application/json: 
+            schema: astergdem
+            example: !include examples/astergdem-example.json
+  post: 
+/children{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Result: returns a list of GeoName records "
+    queryParameters: 
+      geonameId: 
+        description: the geonameId of the parent
+        example: geonameId=3175395
+      maxRows: 
+        description: number of rows returned, default is 200
+        type: integer
+        default: 200
+      hierarchy: 
+        description: "this optional parameter allows to use other hiearchies then the default administrative hierarchy. So far only 'tourism' is implemented."
+        example: hierarchy=tourism
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: records-xml
+            example: !include examples/records-xml-example.xml
+          application/json: 
+            schema: records
+            example: !include examples/records-example.json
+/cities{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ acceptsArea ]
+    description: "Result : returns a list of cities and placenames in the bounding box, ordered by relevancy (capital/population). Placenames close together are filterered out and only the larger name is included in the resulting list."
+    queryParameters: 
+      "callback ": 
+        description: name of javascript function (optional parameter)
+      "lang ": 
+        description: language of placenames and wikipedia urls (default = en)
+        default: en
+      "maxRows ": 
+        description: maximal number of rows returned (default = 10)
+        type: integer
+        default: 10
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: cities-xml
+            example: !include examples/cities-xml-example.xml
+          application/json: 
+            schema: cities
+            example: !include examples/cities-example.json
+/findNearbyPostalCodes{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: "Result : returns a list of postalcodes and places for the lat/lng query as xml document. The result is sorted by distance. For Canada the FSA is returned (first 3 characters of full postal code) "
+    queryParameters: 
+      "radius ": 
+        type: integer
+      "style ": 
+        enum: 
+          - SHORT
+          - FULL
+          - MEDIUM
+          - LONG
+      "maxRows ": 
+        description: the maximal number of rows in the document returned by the service.
+        default: 5
+      postalcode: 
+        description: posta lcode
+      country: 
+        description: Default is all countries.
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearByPostalCode-xml
+            example: !include examples/findNearByPostalCode-xml-example.xml
+          application/json: 
+            schema: findNearByPostalCode
+            example: !include examples/findNearByPostalCode-example.json
+/findNearbyPlaceName{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ acceptsPoint , hasStyle ]
+    description: "Result : returns the closest populated place (feature class=P) for the lat/lng query as xml document. The unit of the distance element is 'km'. "
+    queryParameters: 
+      lang: 
+        description: "language of returned 'name' element (the pseudo language code 'local' will return it in local language)"
+      radius: 
+        description: radius in km (optional)
+      maxRows: 
+        description: max number of rows (default 10)
+        default: 10
+      localCountry: 
+        description: in border areas this parameter will restrict the search on the local country,
+        type: boolean
+        default: true
+      cities: 
+        description: " optional filter parameter with three possible values 'cities1000', 'cities5000','cities15000"
+        enum: 
+          - cities15000
+          - cities5000
+          - cities1000
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearbyPlaceName-xml
+            example: !include examples/findNearbyPlaceName-xml-example.xml
+          application/json: 
+            schema: findNearbyPlaceName
+            example: !include examples/findNearbyPlaceName-example.json
+/findNearby{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    is: [ hasStyle ]
+    description: "Result : returns the closest toponym for the lat/lng query as xml document "
+    queryParameters: 
+      featureClass: 
+      featureCode: 
+      radius: 
+        description: radius in km (optional)
+      "maxRows ": 
+        description: max number of rows (default 10)
+        default: 10
+      localCountry: 
+        description: in border areas this parameter will restrict the search on the local country
+        default: true
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearby-xml
+            example: !include examples/findNearby-xml-example.xml
+          application/json: 
+            schema: findNearby
+            example: !include examples/findNearby-example.json
+/hierarchy{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Result : returns a list of GeoName records, ordered by hierarchy level. The top hierarchy (continent) is the first element in the list "
+    queryParameters: 
+      "geonameId ": 
+        description: the geonameId for the hierarchy
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: hierarchy-xml
+            example: !include examples/hierarchy-xml-example.xml
+          application/json: 
+            schema: hierarchy
+            example: !include examples/hierarchy-example.json
+/contains{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: returns all features within the GeoName feature for the given geoNameId. It only returns contained features when a polygon boundary for the input feature is defined.
+    queryParameters: 
+      "geonameId ": 
+        description: the geonameId for enclosing feature
+        example: geonameId=2746385
+      featureClass: 
+        description: filter by featureClass (optional)
+      featureCode: 
+        description: filter by featureCode (optional)
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: features-xml
+            example: !include examples/features-xml-example.xml
+          application/json: 
+            schema: features
+            example: !include examples/features-example.json
+/siblings{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: Returns all siblings of a GeoNames toponym with feature class A.
+    queryParameters: 
+      geonameId: 
+        description: the geonameId for the siblings
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: siblings-xml
+            example: !include examples/siblings-xml-example.xml
+          application/json: 
+            schema: siblings
+            example: !include examples/siblings-example.json
+/findNearbyWikipedia{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    is: [ wikipediaQuery ]
+    description: |
+      This service comes in two flavors. You can either pass the lat/long or a postalcode/placename.
+      Result : returns a list of wikipedia entries as xml document 
+    queryParameters: 
+      "radius ": 
+      "maxRows ": 
+        default: 5
+      "country ": 
+        description: default = all countries
+      postalcode: 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearbyWikipedia-xml
+            example: !include examples/findNearbyWikipedia-xml-example.xml
+          application/json: 
+            schema: findNearbyWikipedia
+            example: !include examples/findNearbyWikipedia-example.json
+/wikipediaSearch{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    is: [ wikipediaQuery ]
+    description: "Result : returns the wikipedia entries found for the searchterm as xml document"
+    queryParameters: 
+      "maxRows ": 
+        default: 10
+      q: 
+        description: place name
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: wikipediaSearch-xml
+            example: !include examples/wikipediaSearch-xml-example.xml
+          application/json: 
+            schema: wikipediaSearch
+            example: !include examples/wikipediaSearch-example.json
+/wikipediaBoundingBox{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsArea ]
+  get: 
+    is: [ wikipediaQuery ]
+    description: "Result : returns the wikipedia entries within the bounding box as xml document "
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: wikipediaBoundingBox-xml
+            example: !include examples/wikipediaBoundingBox-xml-example.xml
+          application/json: 
+            schema: wikipediaBoundingBox
+            example: !include examples/wikipediaBoundingBox-example.json
+/findNearByWeather{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: "Result : returns a weather station with the most recent weather observation"
+    queryParameters: 
+      "callback ": 
+        description: name of javascript function (optional parameter)
+      radius: 
+        description: search radius, only weather stations within this radius are considered
+        default: 100km
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearByWeather-xml
+            example: !include examples/findNearByWeather-xml-example.xml
+          application/json: 
+            schema: findNearByWeather
+            example: !include examples/findNearByWeather-example.json
+/findNearestAddress{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint , acceptsPoint ]
+  get: 
+    description: |
+      Finds the nearest street and address for a given lat/lng pair.
+      Result : returns the nearest address for the given latitude/longitude, the street number is an 'educated guess' using an interpolation of street number at the end of a street segment.
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearestAddress-xml
+            example: !include examples/findNearestAddress-xml-example.xml
+          application/json: 
+            schema: findNearestAddress
+            example: !include examples/findNearestAddress-example.json
+/findNearestIntersection{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: "Result : returns the nearest intersection for the given latitude/longitude"
+    queryParameters: 
+      filter: 
+        description: only return intersections with streets of a mtfcc equal or higher then the filter
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearestIntersection-xml
+            example: !include examples/findNearestIntersection-xml-example.xml
+          application/json: 
+            schema: findNearestIntersection
+            example: !include examples/findNearestIntersection-example.json
+/findNearbyStreets{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      Finds the nearest street for a given lat/lng pair.
+      Result : returns the nearest street segments for the given latitude/longitude
+      Restriction : this webservice is only available for the US.
+    queryParameters: 
+      maxRows: 
+      radius: 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearbyStreets-xml
+            example: !include examples/findNearbyStreets-xml-example.xml
+          application/json: 
+            schema: findNearbyStreets
+            example: !include examples/findNearbyStreets-example.json
+/findNearestIntersectionOSM{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      Finds the nearest street and the next crossing street for a given lat/lng pair.
+      Result : returns the nearest intersection for the given latitude/longitude
+    queryParameters: 
+      "radius ": 
+      "maxRows ": 
+        default: 10
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearestIntersectionOSM-xml
+            example: !include examples/findNearestIntersectionOSM-xml-example.xml
+          application/json: 
+            schema: findNearestIntersectionOSM
+            example: !include examples/findNearestIntersectionOSM-example.json
+/findNearbyStreetsOSM{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      Finds the nearest streets for a given lat/lng pair.
+      Result: returns the nearest street segments for the given latitude/longitude
+    queryParameters: 
+      "radius ": 
+      "maxRows ": 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearbyStreetsOSM-xml
+            example: !include examples/findNearbyStreetsOSM-xml-example.xml
+          application/json: 
+            schema: findNearbyStreetsOSM
+            example: !include examples/findNearbyStreetsOSM-example.json
+/findNearbyPOIsOSM{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: Finds the nearest points of interests for a given lat/lng pair.
+    queryParameters: 
+      "radius ": 
+      "maxRows ": 
+        default: 10
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: findNearbyPOIsOSM-xml
+            example: !include examples/findNearbyPOIsOSM-xml-example.xml
+          application/json: 
+            schema: findNearbyPOIsOSM
+            example: !include examples/findNearbyPOIsOSM-example.json
+/countrySubdivision{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      The iso country code and the administrative subdivision of any given point.
+      Result : returns the country and the administrative subdivison (state, province,...) for the given latitude/longitude
+    queryParameters: 
+      "lang ": 
+        description: (default= names in local language)
+      "radius ": 
+        description: (buffer in km for closest country in coastal areas, a positive buffer expands the positiv area whereas a negative buffer reduces it
+      level: 
+        example: FR
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: countrySubdivision-xml
+            example: !include examples/countrySubdivision-xml-example.xml
+          application/json: 
+            schema: countrySubdivision
+            example: !include examples/countrySubdivision-example.json
+/ocean{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      The name of the ocean or sea.
+      Result : returns the ocean or sea for the given latitude/longitude
+    queryParameters: 
+      radius: 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: ocean-xml
+            example: !include examples/ocean-xml-example.xml
+          application/json: 
+            schema: ocean
+            example: !include examples/ocean-example.json
+/neighbourhood{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      The neighbourhood for US cities. Data provided by Zillow under cc-by-sa license.
+      Result : returns the neighbourhood for the given latitude/longitude
+    queryParameters: 
+      "geonameId ": 
+        description: the geonameId for the neighbours (country or ADM)
+      country: 
+        description: the country code (alternative parameter instead of the geonameId)
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: neighbourhood-xml
+            example: !include examples/neighbourhood-xml-example.xml
+          application/json: 
+            schema: neighbourhood
+            example: !include examples/neighbourhood-example.json
+/timezone{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: "Result : the timezone at the lat/lng with gmt offset (1. January) and dst offset (1. July) "
+    queryParameters: 
+      "radius ": 
+        description: buffer in km for closest timezone in coastal areas
+      "date ": 
+        description: date for sunrise/sunset
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: timezone-xml
+            example: !include examples/timezone-xml-example.xml
+          application/json: 
+            schema: timezone
+            example: !include examples/timezone-example.json
+/gtopo30{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: GTOPO30 is a global digital elevation model (DEM) with a horizontal grid spacing of 30 arc seconds (approximately 1 kilometer). GTOPO30 was derived from several raster and vector sources of topographic information.
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: gtopo30-xml
+            example: !include examples/gtopo30-xml-example.xml
+          application/json: 
+            schema: gtopo30
+            example: !include examples/gtopo30-example.json
+/countryInfo{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Result : Country information : Capital, Population, Area in square km, Bounding Box of mainland (excluding offshore islands)"
+    queryParameters: 
+      "country ": 
+        description: (default = all countries)
+      lang: 
+        description: ISO-639-1 language code (en,de,fr,it,es,...)
+        default: english
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: countryInfo-xml
+            example: !include examples/countryInfo-xml-example.xml
+          application/json: 
+            schema: countryInfo
+            example: !include examples/countryInfo-example.json
+/search{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsArea ]
+  get: 
+    is: [ hasStyle ]
+    description: returns the names found for the searchterm as xml or json document, the search is using an AND operator
+    queryParameters: 
+      q: 
+        description: "search over all attributes of a place : place name, country name, continent, admin codes,... (Important:urlencoded utf8)"
+        required: true
+        example: q=london
+      name: 
+        description: "place name only (Important:urlencoded utf8)"
+      name_equals: 
+        description: exact place name
+      name_startsWith: 
+        description: place name starts with given characters
+      maxRows: 
+        description: the maximal number of rows in the document returned by the service. Default is 100, the maximal allowed value is 1000.
+        type: integer
+        example: maxRows=10
+      startRow: 
+        description: Used for paging results. If you want to get results 30 to 40, use startRow=30 and maxRows=10. Default is 0.
+        type: integer
+      country: 
+        description: "Default is all countries. The country parameter may occur more than once, example: country=FR&country=GP"
+      countryBias: 
+        description: records from the countryBias are listed first
+      continentCode: 
+        description: restricts the search for toponym of the given continent.
+      adminCode1: 
+        description: code of administrative subdivision
+      featureClass: 
+        description: "this parameter may occur more than once, example: featureClass=P&featureClass=A"
+        type: integer
+      featureCode: 
+        description: "(default= all feature codes); this parameter may occur more than once, example: featureCode=PPLC&featureCode=PPLX"
+      lang: 
+        description: |
+          "place name and country name will be returned in the specified language. Default is English. 
+          Feature classes and codes are only available in English and Bulgarian. Any help in translating is welcome."
+      type: 
+        description: the format type of the returned document, default = xml
+        enum: 
+          - json
+          - rdf
+          - xml
+        default: xml
+      isNameRequired: 
+        description: |
+          "At least one of the search term needs to be part of the place name. Example : A normal search for Berlin will return all places within the state of Berlin. If we only want to find places with 'Berlin' in the name we set the parameter isNameRequired to 'true'. 
+          The difference to the name_equals parameter is that this will allow searches for 'Berlin, Germany' as only one search term needs to be part of the name."
+        type: boolean
+      tag: 
+        description: search for toponyms tagged with the specified tag
+        example: tag=skiresort@marc
+      operator: 
+        description: "default is 'AND', with the operator 'OR' not all search terms need to be matched by the response"
+        enum: [ AND , OR ]
+        default: AND
+      charset: 
+        description: "default is 'UTF8', defines the encoding used for the document returned by the web service."
+        default: UTF8
+      fuzzy: 
+        description: "default is '1', defines the fuzziness of the search terms. float between 0 and 1."
+        type: number
+        default: 1
+        example: fuzzy=0.8
+      searchlang: 
+        description: in combination with the name parameter, the search will only consider names in the specified language. Used for instance to query for IATA airport codes.
+      orderby: 
+        description: "in combination with the name_startsWith, if set to 'relevance' than the result is sorted by relevance."
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: search-xml
+            example: !include examples/search-xml-example.xml
+          application/json: 
+            schema: search
+            example: !include examples/search-example.json
+/countryCode{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    description: |
+      The iso country code of any given point.
+      Result : returns the iso country code for the given latitude/longitude
+      With the parameter type=xml this service returns an xml document with iso country code and country name. The optional parameter lang can be used to specify the language the country name should be in. JSON output is produced with type=JSON
+    queryParameters: 
+      type: 
+        description: media type
+        enum: [ JSON , xml ]
+      lang: 
+      "radius ": 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: countryCode-xml
+            example: !include examples/countryCode-xml-example.xml
+          application/json: 
+            schema: countryCode
+            example: !include examples/countryCode-example.json
+/earthquakes{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsArea ]
+  get: 
+    description: "Result : returns a list of earthquakes, ordered by magnitude"
+    queryParameters: 
+      "callback ": 
+        description: name of javascript function (optional parameter)
+      "date ": 
+        description: "date of earthquakes 'yyyy-MM-dd', optional parameter, earthquakes older or equal the given date sorted by date,magnitude"
+      "minMagnitude ": 
+        description: minimal magnitude, optional parameter
+      "maxRows ": 
+        default: 10
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: earthquakes
+            example: !include examples/earthquakes-example.json
+          application/xml: 
+            schema: earthquakes-xml
+            example: !include examples/earthquakes-xml-example.xml
+/get{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ hasStyle ]
+    description: "Result : returns the attribute of the geoNames feature with the given geonameId as xml document"
+    queryParameters: 
+      geonameId: 
+      "lang ": 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: get-xml
+            example: !include examples/get-xml-example.xml
+          application/json: 
+            schema: get
+            example: !include examples/get-example.json
+/neighbours{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Returns all neighbours for a country or administrative division. (coverage: all countries on country level, and lower levels as specified here: supported levels)"
+    queryParameters: 
+      geonameId: 
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: neighbours-xml
+            example: !include examples/neighbours-xml-example.xml
+          application/json: 
+            schema: neighbours
+            example: !include examples/neighbours-example.json
+/postalCodeCountryInfo{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Result : countries for which postal code geocoding is available."
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: postalCodeCountryInfo-xml
+            example: !include examples/postalCodeCountryInfo-xml-example.xml
+          application/json: 
+            schema: postalCodeCountryInfo
+            example: !include examples/postalCodeCountryInfo-example.json
+/srtm3{mediaTypeSuffix}: 
+  type: multiformat
+  is: [ acceptsPoint ]
+  get: 
+    is: [ acceptsPoint ]
+    description: 'sample area: ca 90m x 90m Result : a single number giving the elevation in meters according to srtm3, ocean areas have been masked as "no data" and have been assigned a value of -32768 '
+    responses: 
+      200: 
+        body: 
+          application/xml: 
+            schema: srtm-xml
+            example: !include examples/srtm-xml-example.xml
+          application/json: 
+            schema: srtm
+            example: !include examples/srtm-example.json
+  post: 
+    description: 'sample area: ca 90m x 90m Result : a single number giving the elevation in meters according to srtm3, ocean areas have been masked as "no data" and have been assigned a value of -32768 '
+/weather{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    is: [ acceptsArea ]
+    description: "Result : returns a list of weather stations with the most recent weather observation"
+    queryParameters: 
+      "callback ": 
+        description: name of javascript function (optional parameter)
+      "maxRows ": 
+        description: maximal number of rows returned
+        default: 10
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: weather
+            example: !include examples/weather-example.json
+          application/xml: 
+            schema: weather-xml
+            example: !include examples/weather-xml-example.xml
+/weatherIcao{mediaTypeSuffix}: 
+  type: multiformat
+  get: 
+    description: "Result : returns the weather station and the most recent weather observation for the ICAO code"
+    queryParameters: 
+      "ICAO ": 
+        description: International Civil Aviation Organization (ICAO) code
+      "callback ": 
+        description: name of javascript function (optional parameter)
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: weatherIcao
+            example: !include examples/weatherIcao-example.json
+          application/xml: 
+            schema: weatherIcao-xml
+            example: !include examples/weatherIcao-xml-example.xml
+/rssToGeoRSS: 
+  type: base
+  get: 
+    description: |
+      returns a RSS feed with latitude and longitude for each entry where the geonames search engine has found a relevant location. Already existant GeoRSS elements in the feed remain unchanged. There is an upper limit of 20 entries for performance reasons.
+    queryParameters: 
+      feedUrl: 
+        description: The url of the RSS feed to search locations for and to convert to GeoRSS. The feed has to be syntactically correct, i.e. wellformed xml and valid rss/atom.
+        required: true
+      feedLanguage: 
+        description: "The language of the feed, this information is needed by the geonames search engine to find relevant locations. Default : No value = automatic language detection."
+      type: 
+        description: "The output RSS dialect of the conversion. Default : same RSS dialect as input feed."
+      geoRSS: 
+        description: The GeoRSS output encoding used for lat/lng. See www.georss.org for details. Default is w3cGeo.
+      addUngeocodedItems: 
+        description: Items that could not be geocoded are removed from the response document. Setting the parameter addUngeocodedItems=true will include the ungeocoded items in the response.
+        type: boolean
+        default: true
+      country: 
+        description: Restrict geocoding to a given country. This parameter may improve the results of the geocoder for feeds focusing on a single country.
+/postalCodeLookup{mediaTypeSuffix}: 
+  type: multiformat
+  uriParameters: 
+    mediaTypeSuffix: 
+      enum: [ JSON ]
+  get: 
+    description: "Result : returns a list of places for the given postalcode in JSON format, sorted by postalcode,placename "
+    queryParameters: 
+      postalcode: 
+        description: postal code
+      country: 
+        description: Default is all countries.
+        example: country=AT
+      "maxRows ": 
+        description: the maximal number of rows in the document returned by the service.
+        default: 20
+      callback: 
+      "charset ": 
+        description: "default is 'UTF8', defines the encoding used for the document returned by the web service."
+        default: UTF8
+    responses: 
+      200: 
+        body: 
+          application/json: 
+            schema: postalCodeLookup
+            example: !include examples/postalCodeLookup-example.json
+documentation: 
+  - title: Headline
+    content: !include docs/headline.md

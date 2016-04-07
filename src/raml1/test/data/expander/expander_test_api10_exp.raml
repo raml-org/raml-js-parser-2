@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Pluralize
+version: 1
+baseUri: https://example.com/{version}
+resourceTypes:
+  - rt_pluralize: !include resourceTypes/rt_pluralize.raml
+/root-resource:
+  type: { rt_pluralize: { objSing: "User", objPlur: "Users" } }
+  get:
+    description: Retrieve Users
+  post:
+    description: Create User

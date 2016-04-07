@@ -1,0 +1,36 @@
+[
+  {
+    name: “CloudHub”,
+    type: “CLOUDHUB”
+  },
+  {
+    deployments: [
+      {
+        artifact: {
+          fileChecksum: "f22f54a521ee8013a5d0b4961027e422073894f8",
+          fileName: "estefa_test_1.zip",
+          lastUpdateTime: 1432133490659,
+          name: "AppWe"
+        },
+        id: "4",
+        lastReportedStatus: "UNDEPLOYED"
+      }
+    ],
+    details: {
+      addresses: [
+        {
+          ip: "123.5.4.3", 
+          networkInterface: "eth0"
+        }
+      ],
+      agentVersion: "1.0.1-SNAPSHOT",
+      nodeId: 0,
+      runtimeVersion: "3.6.0",
+      type: "MULE"
+    },
+    id: "19",
+    name: "SERVE23",
+    status: "DISCONNECTED",
+    type: "SERVER"
+  }
+]

@@ -1,0 +1,13 @@
+responses:
+  400:
+    description: Bad Request.
+    body:
+      application/json:
+        example: |
+              { "message" : "Your request does not have the correct values"}
+  404:
+    description: Resource not found
+    body:
+      application/json:
+        example: |
+          { "message" : "Invalid Resource"}
