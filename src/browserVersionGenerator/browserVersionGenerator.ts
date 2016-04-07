@@ -8,10 +8,11 @@ var webpack = require("webpack");
 import depMan=require("../raml1/tools/dependencyManager");
 import fsutil=require("../util/fsutil");
 import cp = require('child_process')
+import _=require("underscore")
 
-function createBrowserPackage() {
+function createBrowserPackage(minify = true) {
+    console.log("Minify: " + minify);
     var rootPath = path.join(__dirname, "../../");
-    console.log("The PATH is: " + rootPath);
 
     var rootFile = path.join(rootPath, "/dist/index.js");
 
@@ -23,7 +24,7 @@ function createBrowserPackage() {
 
     copyStaticBrowserPackageContents(targetFolder, path.join(rootPath, "package.json"));
 
-    webPackForBrowser(rootPath, rootFile, targetFile, null);
+    webPackForBrowser(rootPath, rootFile, targetFile, minify);
 }
 
 /**
@@ -33,9 +34,16 @@ function createBrowserPackage() {
  * @param targetFileName
  * @param callback
  */
-function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFile : string, callback?:()=>void) {
+function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFile : string, minify: boolean) {
     console.log("Preparing to Webpack browser bundle:");
+
     var plugins = [];
+    if (minify) {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: { warnings: false }
+        }));
+    }
 
     var relativeFilePath = path.relative(parserRootFolder, rootFile);
     relativeFilePath = "./"+relativeFilePath;
@@ -111,10 +119,6 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
         console.log("Webpack Building Browser Bundle:");
 
         console.log(stats.toString({reasons : true, errorDetails: true}));
-
-        if(callback) {
-            callback();
-        }
     });
 }
 
@@ -139,4 +143,10 @@ function copyStaticBrowserPackageContents(browserDestinationPath : string, packa
 
 }
 
-createBrowserPackage();
+var args:string[] = process.argv;
+
+if (_.find(args,arg=>arg=="-dev")) {
+    createBrowserPackage(false);
+} else {
+    createBrowserPackage();
+}

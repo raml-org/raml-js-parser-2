@@ -8,6 +8,7 @@
     "generateTopLevel" : "node dist/topLevelGenerator/buildParsers.js",
     "generateDocumentation" : "node dist/raml1/tools/packageTSParser.js -skipSources",
     "generateBrowserVersion" : "node dist/browserVersionGenerator/browserVersionGenerator.js",
+    "generateBrowserVersionDev" : "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
     "pullall" : "node dist/devUtil/devUtils.js pullall",
     "buildall" : "node dist/devUtil/devUtils.js buildall",
     "testall" : "node dist/devUtil/devUtils.js testall"
