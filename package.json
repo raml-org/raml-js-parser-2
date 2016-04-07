@@ -1,5 +1,5 @@
 {
-  "name": "raml-js-parser",
+  "name": "raml-1-parser",
   "version": "0.0.7",
   "main": "dist/index.js",
   "scripts": {
