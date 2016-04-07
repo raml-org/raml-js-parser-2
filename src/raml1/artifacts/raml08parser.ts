@@ -23,9 +23,8 @@ import BooleanType = pApi.BooleanType;
 import Reference = pApi.Reference;
 import TypeInstance = pApi.TypeInstance;
 import TypeInstanceProperty = pApi.TypeInstanceProperty;
-import ResourceTypeRef = pApi.ResourceTypeRef;
-import ResourceType = pApi.ResourceType;
-import Method = pApi.Method;
+import TraitRef = pApi.TraitRef;
+import Trait = pApi.Trait;
 import MethodBase = pApi.MethodBase;
 import HasNormalParameters = pApi.HasNormalParameters;
 import Parameter = pApi.Parameter;
@@ -59,8 +58,9 @@ import OAuth1SecurityScheme = pApi.OAuth1SecurityScheme;
 import BasicSecurityScheme = pApi.BasicSecurityScheme;
 import DigestSecurityScheme = pApi.DigestSecurityScheme;
 import CustomSecurityScheme = pApi.CustomSecurityScheme;
-import Trait = pApi.Trait;
-import TraitRef = pApi.TraitRef;
+import Method = pApi.Method;
+import ResourceTypeRef = pApi.ResourceTypeRef;
+import ResourceType = pApi.ResourceType;
 import UriTemplate = pApi.UriTemplate;
 import RelativeUriString = pApi.RelativeUriString;
 import FullUriTemplateString = pApi.FullUriTemplateString;
@@ -72,7 +72,7 @@ import DocumentationItem = pApi.DocumentationItem;
 export class RAMLLanguageElementImpl extends core.BasicNodeImpl implements RAMLLanguageElement{
 
         /**
-         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
          **/
 description(  ):MarkdownString{
              return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
@@ -199,146 +199,22 @@ name(  ):string{
         }
 }
 
-export class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef{
+export class TraitRefImpl extends ReferenceImpl implements TraitRef{
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "ResourceTypeRefImpl";}
+wrapperClassName(  ):string{return "TraitRefImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "ResourceTypeRef";}
+kind(  ):string{return "TraitRef";}
 
-resourceType(  ):ResourceType{
-            return helper.referencedResourceType(this);
-        }
-}
-
-export class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResourceType(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the resource type
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Instructions on how and when the resource type should be used.
-         **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set usage value
-         **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Methods that are part of this resource type definition
-         **/
-methods(  ):Method[]{
-             return <Method[]>super.elements('methods');
-         }
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]{
-             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
-         }
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef{
-             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
-         }
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
-         }
-
-
-        /**
-         * Uri parameters of this resource
-         **/
-uriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('uriParameters');
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the resource type
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('baseUriParameters');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ResourceTypeImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "ResourceType";}
-
-parametrizedProperties(  ):TypeInstance{
-            return helper.getTemplateParametrizedProperties(this);
+trait(  ):Trait{
+            return helper.referencedTrait(this);
         }
 }
 
@@ -755,7 +631,7 @@ kind(  ):string{return "IntegerTypeDeclaration";}
 
 
 /**
- * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
+ * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3.
  **/
 export class DateTypeDeclarationImpl extends ParameterImpl implements DateTypeDeclaration{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
@@ -812,9 +688,7 @@ responses(  ):Response[]{
 
 
         /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
-         * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
-         * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
          **/
 body(  ):BodyLike[]{
              return <BodyLike[]>super.elements('body');
@@ -840,9 +714,7 @@ setProtocols( param:string ){
 
 
         /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
          **/
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
@@ -875,10 +747,7 @@ code(  ):StatusCodeString{
 
 
         /**
-         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
-         * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
-         * 
-         * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
+         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
          **/
 headers(  ):Parameter[]{
              return <Parameter[]>super.elements('headers');
@@ -886,8 +755,7 @@ headers(  ):Parameter[]{
 
 
         /**
-         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
-         * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
+         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
          **/
 body(  ):BodyLike[]{
              return <BodyLike[]>super.elements('body');
@@ -974,14 +842,7 @@ setName( param:string ){
 
 
         /**
-         * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
-         * 
-         * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
-         * 
-         * All parsers of RAML MUST be able to interpret JSON Schema [JSON_SCHEMA] and XML Schema [XML_SCHEMA].
-         * 
-         * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
-         * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
+         * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type. The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data. All parsers of RAML MUST be able to interpret JSON Schema and XML Schema. Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline. Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
          **/
 schema(  ):SchemaString{
              return <SchemaString>super.attribute('schema', (attr:hl.IAttribute)=>new SchemaStringImpl(attr));
@@ -990,7 +851,6 @@ schema(  ):SchemaString{
 
         /**
          * Documentation generators MUST use body properties' example attributes to generate example invocations.
-         * This example shows example attributes for two body property media types.
          **/
 example(  ):ExampleString{
              return <ExampleString>super.attribute('example', (attr:hl.IAttribute)=>new ExampleStringImpl(attr));
@@ -998,9 +858,7 @@ example(  ):ExampleString{
 
 
         /**
-         * Web forms REQUIRE special encoding and custom declaration.
-         * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
-         * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
+         * Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.
          **/
 formParameters(  ):Parameter[]{
              return <Parameter[]>super.elements('formParameters');
@@ -1252,7 +1110,7 @@ setType( param:string ){
 
 
         /**
-         * The description MAY be used to describe a securityScheme.
+         * The description attribute MAY be used to describe a security schemes property.
          **/
 description(  ):MarkdownString{
              return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
@@ -1260,8 +1118,7 @@ description(  ):MarkdownString{
 
 
         /**
-         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-         * Including the security scheme description completes an API documentation.
+         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
          **/
 describedBy(  ):SecuritySchemePart{
              return <SecuritySchemePart>super.element('describedBy');
@@ -1269,8 +1126,7 @@ describedBy(  ):SecuritySchemePart{
 
 
         /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-         * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
 settings(  ):SecuritySchemeSettings{
              return <SecuritySchemeSettings>super.element('settings');
@@ -1319,9 +1175,7 @@ responses(  ):Response[]{
 
 
         /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
          **/
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
@@ -1447,7 +1301,7 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
-         * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+         * The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
          **/
 accessTokenUri(  ):FixedUri{
              return <FixedUri>super.attribute('accessTokenUri', (attr:hl.IAttribute)=>new FixedUriImpl(attr));
@@ -1455,7 +1309,7 @@ accessTokenUri(  ):FixedUri{
 
 
         /**
-         * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+         * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
          **/
 authorizationUri(  ):FixedUri{
              return <FixedUri>super.attribute('authorizationUri', (attr:hl.IAttribute)=>new FixedUriImpl(attr));
@@ -1463,12 +1317,7 @@ authorizationUri(  ):FixedUri{
 
 
         /**
-         * A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:
-         * - authorization_code
-         * - password
-         * - client_credentials
-         * - implicit
-         * - refresh_token.
+         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.
          **/
 authorizationGrants(  ):string[]{
              return <string[]>super.attributes('authorizationGrants', this.toString);
@@ -1486,7 +1335,7 @@ setAuthorizationGrants( param:string ){
 
 
         /**
-         * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+         * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
          **/
 scopes(  ):string[]{
              return <string[]>super.attributes('scopes', this.toString);
@@ -1629,63 +1478,6 @@ wrapperClassName(  ):string{return "CustomSecuritySchemeImpl";}
 kind(  ):string{return "CustomSecurityScheme";}
 }
 
-export class TraitImpl extends MethodBaseImpl implements Trait{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the trait
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Instructions on how and when the trait should be used.
-         **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set usage value
-         **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "TraitImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Trait";}
-
-parametrizedProperties(  ):TypeInstance{
-            return helper.getTemplateParametrizedProperties(this);
-        }
-}
-
 export class MethodImpl extends MethodBaseImpl implements Method{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
@@ -1709,8 +1501,7 @@ setMethod( param:string ){
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
@@ -1782,22 +1573,202 @@ allSecuredBy(  ):SecuritySchemeRef[]{
         }
 }
 
-export class TraitRefImpl extends ReferenceImpl implements TraitRef{
+export class TraitImpl extends MethodBaseImpl implements Trait{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "TraitRefImpl";}
+wrapperClassName(  ):string{return "TraitImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "TraitRef";}
+kind(  ):string{return "Trait";}
 
-trait(  ):Trait{
-            return helper.referencedTrait(this);
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
+}
+
+export class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ResourceTypeRefImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "ResourceTypeRef";}
+
+resourceType(  ):ResourceType{
+            return helper.referencedResourceType(this);
+        }
+}
+
+export class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResourceType(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Name of the resource type
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Instructions on how and when the resource type should be used.
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Methods that are part of this resource type definition
+         **/
+methods(  ):Method[]{
+             return <Method[]>super.elements('methods');
+         }
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]{
+             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
+         }
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef{
+             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
+         }
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]{
+             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
+         }
+
+
+        /**
+         * Uri parameters of this resource
+         **/
+uriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('uriParameters');
+         }
+
+
+        /**
+         * An alternate, human-friendly name for the resource type
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('baseUriParameters');
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ResourceTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "ResourceType";}
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
         }
 }
 
@@ -1925,8 +1896,7 @@ is(  ):TraitRef[]{
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
@@ -2095,7 +2065,7 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
-         * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
+         * The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation.
          **/
 title(  ):string{
              return <string>super.attribute('title', this.toString);
@@ -2113,10 +2083,7 @@ setTitle( param:string ){
 
 
         /**
-         * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
-         * The API itself is not versioned.
-         * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
-         * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
+         * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if: The API itself is not versioned. The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change. The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, 'v3', 'v3.0', and 'V3' are all allowed, but are not considered to be equal.
          **/
 version(  ):string{
              return <string>super.attribute('version', this.toString);
@@ -2134,9 +2101,7 @@ setVersion( param:string ){
 
 
         /**
-         * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
-         * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
-         * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
+         * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification RFC2396 or a Level 1 Template URI as defined in RFC6570. The baseUri property SHOULD only be used as a reference value.
          **/
 baseUri(  ):FullUriTemplateString{
              return <FullUriTemplateString>super.attribute('baseUri', (attr:hl.IAttribute)=>new FullUriTemplateStringImpl(attr));
@@ -2179,15 +2144,7 @@ setProtocols( param:string ){
 
 
         /**
-         * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
-         * One of the following YAML media types:
-         * text/yaml
-         * text/x-yaml
-         * application/yaml
-         * application/x-yaml*
-         * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
-         * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
-         * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
+         * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type described in the specification.
          **/
 mediaType(  ):MimeType{
              return <MimeType>super.attribute('mediaType', (attr:hl.IAttribute)=>new MimeTypeImpl(attr));
@@ -2212,7 +2169,7 @@ traits_original(  ):Trait[]{
 
 
         /**
-         * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
+         * A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.
          **/
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
@@ -2220,7 +2177,7 @@ securedBy(  ):SecuritySchemeRef[]{
 
 
         /**
-         * Security schemas that can be applied with securedBy
+         * Security schemes that can be applied using securedBy
          **/
 securitySchemes(  ):AbstractSecurityScheme[]{
              return <AbstractSecurityScheme[]>super.elements('securitySchemes');
@@ -2237,10 +2194,7 @@ resourceTypes_original(  ):ResourceType[]{
 
 
         /**
-         * Resources are identified by their relative URI, which MUST begin with a slash (/).
-         * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
-         * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
-         * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
+         * Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.
          **/
 resources(  ):Resource[]{
              return <Resource[]>super.elements('resources');
@@ -2248,12 +2202,7 @@ resources(  ):Resource[]{
 
 
         /**
-         * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
-         * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
-         * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
-         * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
-         * 
-         * This example shows an API definition with a single user document.
+         * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.
          **/
 documentation(  ):DocumentationItem[]{
              return <DocumentationItem[]>super.elements('documentation');
@@ -2522,19 +2471,9 @@ function createTypeInstanceProperty(key:string){
 /**
  * @hidden
  **/
-function createResourceType(key:string){
+function createTrait(key:string){
     var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("ResourceType");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createMethod(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Method");
+    var nc=<def.NodeClass>universe.type("Trait");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -2772,9 +2711,19 @@ function createCustomSecurityScheme(key:string){
 /**
  * @hidden
  **/
-function createTrait(key:string){
+function createMethod(key:string){
     var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Trait");
+    var nc=<def.NodeClass>universe.type("Method");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createResourceType(key:string){
+    var universe=def.getUniverse("RAML08");
+    var nc=<def.NodeClass>universe.type("ResourceType");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }

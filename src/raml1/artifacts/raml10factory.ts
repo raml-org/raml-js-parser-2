@@ -97,8 +97,6 @@ var classMap = {
 
     "CustomSecurityScheme": (x,y)=>{return new RamlWrapper.CustomSecuritySchemeImpl(x,y)},
 
-    "DateFormatSpec": (x)=>{return new RamlWrapper.DateFormatSpecImpl(x)},
-
     "DateTypeAnnotationDeclaration": (x,y)=>{return new RamlWrapper.DateTypeAnnotationDeclarationImpl(x,y)},
 
     "DateTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTypeDeclarationImpl(x,y)},
@@ -118,8 +116,6 @@ var classMap = {
     "FixedUriString": (x)=>{return new RamlWrapper.FixedUriStringImpl(x)},
 
     "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
-
-    "FunctionalInterface": (x)=>{return new RamlWrapper.FunctionalInterfaceImpl(x)},
 
     "GlobalSchema": (x,y)=>{return new RamlWrapper.GlobalSchemaImpl(x,y)},
 
@@ -171,13 +167,7 @@ var classMap = {
 
     "PassThroughSecuritySchemeSettings": (x,y)=>{return new RamlWrapper.PassThroughSecuritySchemeSettingsImpl(x,y)},
 
-    "RAMLExpression": (x,y)=>{return new RamlWrapper.RAMLExpressionImpl(x,y)},
-
-    "RAMLExpressionAnnotation": (x,y)=>{return new RamlWrapper.RAMLExpressionAnnotationImpl(x,y)},
-
     "RAMLLanguageElement": (x,y)=>{return new RamlWrapper.RAMLLanguageElementImpl(x,y)},
-
-    "RAMLSelector": (x)=>{return new RamlWrapper.RAMLSelectorImpl(x)},
 
     "RAMLSimpleElement": (x,y)=>{return new RamlWrapper.RAMLSimpleElementImpl(x,y)},
 
@@ -194,8 +184,6 @@ var classMap = {
     "ResourceTypeRef": (x)=>{return new RamlWrapper.ResourceTypeRefImpl(x)},
 
     "Response": (x,y)=>{return new RamlWrapper.ResponseImpl(x,y)},
-
-    "SchemaElement": (x,y)=>{return new RamlWrapper.SchemaElementImpl(x,y)},
 
     "SchemaString": (x)=>{return new RamlWrapper.SchemaStringImpl(x)},
 
@@ -225,13 +213,7 @@ var classMap = {
 
     "UriTemplate": (x)=>{return new RamlWrapper.UriTemplateImpl(x)},
 
-    "ValidityExpression": (x)=>{return new RamlWrapper.ValidityExpressionImpl(x)},
-
-    "ValueAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.ValueAnnotationTypeDeclarationImpl(x,y)},
-
     "ValueType": (x)=>{return new RamlWrapper.ValueTypeImpl(x)},
-
-    "ValueTypeDeclaration": (x,y)=>{return new RamlWrapper.ValueTypeDeclarationImpl(x,y)},
 
     "XMLSchemaString": (x)=>{return new RamlWrapper.XMLSchemaStringImpl(x)}
 

@@ -5,7 +5,7 @@ import core=require("../../raml1/wrapped-ast/parserCoreApi");
 export interface RAMLLanguageElement extends core.BasicNode{
 
         /**
-         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
          **/
 description(  ):MarkdownString
 }
@@ -102,75 +102,12 @@ values(  ):TypeInstance[]
 isArray(  ):boolean
 }
 
-export interface ResourceTypeRef extends Reference{
+export interface TraitRef extends Reference{
 
         /**
-         * Returns referenced resource type
+         * Returns referenced trait
          **/
-resourceType(  ):ResourceType
-}
-
-export interface ResourceType extends RAMLLanguageElement{
-
-        /**
-         * Name of the resource type
-         **/
-name(  ):string
-
-
-        /**
-         * Instructions on how and when the resource type should be used.
-         **/
-usage(  ):string
-
-
-        /**
-         * Methods that are part of this resource type definition
-         **/
-methods(  ):Method[]
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * Uri parameters of this resource
-         **/
-uriParameters(  ):Parameter[]
-
-
-        /**
-         * An alternate, human-friendly name for the resource type
-         **/
-displayName(  ):string
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]
-
-
-        /**
-         * Returns object representation of parametrized properties of the resource type
-         **/
-parametrizedProperties(  ):TypeInstance
+trait(  ):Trait
 }
 
 export interface HasNormalParameters extends RAMLLanguageElement{
@@ -307,7 +244,7 @@ export interface IntegerTypeDeclaration extends NumberTypeDeclaration{}
 
 
 /**
- * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616].
+ * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3.
  **/
 export interface DateTypeDeclaration extends Parameter{}
 
@@ -330,9 +267,7 @@ responses(  ):Response[]
 
 
         /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
-         * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
-         * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
          **/
 body(  ):BodyLike[]
 
@@ -344,9 +279,7 @@ protocols(  ):string[]
 
 
         /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
          **/
 securedBy(  ):SecuritySchemeRef[]
 }
@@ -360,17 +293,13 @@ code(  ):StatusCodeString
 
 
         /**
-         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property.
-         * API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
-         * 
-         * In the following example, the header x-metadata-{?} is used to send metadata that has been saved with the media.
+         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
          **/
 headers(  ):Parameter[]
 
 
         /**
-         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined.
-         * For APIs without a priori knowledge of the response types for their responses, "* /*" MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if "* /*" is used.
+         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
          **/
 body(  ):BodyLike[]
 
@@ -400,29 +329,19 @@ name(  ):string
 
 
         /**
-         * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type.
-         * 
-         * The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data.
-         * 
-         * All parsers of RAML MUST be able to interpret JSON Schema [JSON_SCHEMA] and XML Schema [XML_SCHEMA].
-         * 
-         * Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline.
-         * Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property (see Named Parameters, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
+         * The structure of a request or response body MAY be further specified by the schema property under the appropriate media type. The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data. All parsers of RAML MUST be able to interpret JSON Schema and XML Schema. Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline. Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type.
          **/
 schema(  ):SchemaString
 
 
         /**
          * Documentation generators MUST use body properties' example attributes to generate example invocations.
-         * This example shows example attributes for two body property media types.
          **/
 example(  ):ExampleString
 
 
         /**
-         * Web forms REQUIRE special encoding and custom declaration.
-         * If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting.
-         * The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes
+         * Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.
          **/
 formParameters(  ):Parameter[]
 
@@ -514,21 +433,19 @@ name(  ):string
 
 
         /**
-         * The description MAY be used to describe a securityScheme.
+         * The description attribute MAY be used to describe a security schemes property.
          **/
 description(  ):MarkdownString
 
 
         /**
-         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-         * Including the security scheme description completes an API documentation.
+         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
          **/
 describedBy(  ):SecuritySchemePart
 
 
         /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-         * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
 settings(  ):SecuritySchemeSettings
 }
@@ -554,9 +471,7 @@ responses(  ):Response[]
 
 
         /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         * Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
@@ -604,30 +519,25 @@ export interface FixedUri extends StringType{}
 export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
 
         /**
-         * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+         * The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
          **/
 accessTokenUri(  ):FixedUri
 
 
         /**
-         * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+         * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
          **/
 authorizationUri(  ):FixedUri
 
 
         /**
-         * A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:
-         * - authorization_code
-         * - password
-         * - client_credentials
-         * - implicit
-         * - refresh_token.
+         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.
          **/
 authorizationGrants(  ):string[]
 
 
         /**
-         * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+         * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
          **/
 scopes(  ):string[]
 }
@@ -666,26 +576,6 @@ export interface DigestSecurityScheme extends AbstractSecurityScheme{}
  **/
 export interface CustomSecurityScheme extends AbstractSecurityScheme{}
 
-export interface Trait extends MethodBase{
-
-        /**
-         * Name of the trait
-         **/
-name(  ):string
-
-
-        /**
-         * Instructions on how and when the trait should be used.
-         **/
-usage(  ):string
-
-
-        /**
-         * Returns object representation of parametrized properties of the trait
-         **/
-parametrizedProperties(  ):TypeInstance
-}
-
 export interface Method extends MethodBase{
 
         /**
@@ -695,8 +585,7 @@ method(  ):string
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
@@ -741,12 +630,94 @@ methodId(  ):string
 allSecuredBy(  ):SecuritySchemeRef[]
 }
 
-export interface TraitRef extends Reference{
+export interface Trait extends MethodBase{
 
         /**
-         * Returns referenced trait
+         * Name of the trait
          **/
-trait(  ):Trait
+name(  ):string
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * Returns object representation of parametrized properties of the trait
+         **/
+parametrizedProperties(  ):TypeInstance
+}
+
+export interface ResourceTypeRef extends Reference{
+
+        /**
+         * Returns referenced resource type
+         **/
+resourceType(  ):ResourceType
+}
+
+export interface ResourceType extends RAMLLanguageElement{
+
+        /**
+         * Name of the resource type
+         **/
+name(  ):string
+
+
+        /**
+         * Instructions on how and when the resource type should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * Methods that are part of this resource type definition
+         **/
+methods(  ):Method[]
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Uri parameters of this resource
+         **/
+uriParameters(  ):Parameter[]
+
+
+        /**
+         * An alternate, human-friendly name for the resource type
+         **/
+displayName(  ):string
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]
+
+
+        /**
+         * Returns object representation of parametrized properties of the resource type
+         **/
+parametrizedProperties(  ):TypeInstance
 }
 
 
@@ -800,8 +771,7 @@ is(  ):TraitRef[]
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
@@ -905,24 +875,19 @@ allSecuredBy(  ):SecuritySchemeRef[]
 export interface Api extends RAMLLanguageElement{
 
         /**
-         * The title property is a short plain text description of the RESTful API. The title property's value SHOULD be suitable for use as a title for the contained user documentation.
+         * The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation.
          **/
 title(  ):string
 
 
         /**
-         * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if:
-         * The API itself is not versioned.
-         * The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change.
-         * The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, "v3", "v3.0", and "V3" are all allowed, but are not considered to be equal.
+         * If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if: The API itself is not versioned. The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change. The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, 'v3', 'v3.0', and 'V3' are all allowed, but are not considered to be equal.
          **/
 version(  ):string
 
 
         /**
-         * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification [RFC2396] or a Level 1 Template URI as defined in RFC 6570 [RFC6570].
-         * The baseUri property SHOULD only be used as a reference value. API client generators MAY make the baseUri configurable by the API client's users.
-         * If the baseUri value is a Level 1 Template URI, the following reserved base URI parameters are available for replacement:
+         * (Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification RFC2396 or a Level 1 Template URI as defined in RFC6570. The baseUri property SHOULD only be used as a reference value.
          **/
 baseUri(  ):FullUriTemplateString
 
@@ -940,15 +905,7 @@ protocols(  ):string[]
 
 
         /**
-         * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type:
-         * One of the following YAML media types:
-         * text/yaml
-         * text/x-yaml
-         * application/yaml
-         * application/x-yaml*
-         * Any type from the list of IANA MIME Media Types, http://www.iana.org/assignments/media-types
-         * A custom type that conforms to the regular expression, "application/[A-Za-z.-0-1]*+?(json|xml)"
-         * For any combination of resource and operation in the API, if a media type is specified as a key of the body property for that resource and operation, or if a media type is specified in the mediaType property, the body MUST be in the specified media types. Moreover, if the client specifies an Accepts header containing multiple media types that are allowed by the specification for the requested resource and operation, the server SHOULD return a body using the media type in the Accepts header's mediaType list.
+         * (Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type described in the specification.
          **/
 mediaType(  ):MimeType
 
@@ -960,33 +917,25 @@ schemas(  ):GlobalSchema[]
 
 
         /**
-         * A list of the security schemas to apply to all methods, these must be defined in the securitySchemes declaration.
+         * A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
 
         /**
-         * Security schemas that can be applied with securedBy
+         * Security schemes that can be applied using securedBy
          **/
 securitySchemes(  ):AbstractSecurityScheme[]
 
 
         /**
-         * Resources are identified by their relative URI, which MUST begin with a slash (/).
-         * A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri.
-         * A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI.
-         * Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. "/bom/items" may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if "/bom" is itself a resource then "/items" should be a nested resource of "/bom", while "/bom/items" should not be used.
+         * Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.
          **/
 resources(  ):Resource[]
 
 
         /**
-         * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context.
-         * Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared.
-         * To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document.
-         * Documentation-generators MUST process the content field as if it was defined using Markdown [MARKDOWN].
-         * 
-         * This example shows an API definition with a single user document.
+         * The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.
          **/
 documentation(  ):DocumentationItem[]
 

@@ -33,7 +33,7 @@ import core=require("../../raml1/wrapped-ast/parserCoreApi");
 export interface RAMLLanguageElement extends core.BasicNode{
 
         /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
 
@@ -452,13 +452,7 @@ maxLength(  ):number
 enum(  ):string[]
 }
 
-
-/**
- * Value must be a boolean
- **/
-export interface ValueTypeDeclaration extends TypeDeclaration{}
-
-export interface ValueAnnotationTypeDeclaration extends ValueTypeDeclaration,AnnotationTypeDeclaration{}
+export interface StringAnnotationTypeDeclaration extends StringTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
@@ -466,7 +460,7 @@ export interface ValueAnnotationTypeDeclaration extends ValueTypeDeclaration,Ann
  **/
 export interface BooleanTypeDeclaration extends TypeDeclaration{}
 
-export interface BooleanAnnotationTypeDeclaration extends BooleanTypeDeclaration,ValueAnnotationTypeDeclaration{}
+export interface BooleanAnnotationTypeDeclaration extends BooleanTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
@@ -516,33 +510,15 @@ export interface IntegerTypeDeclaration extends NumberTypeDeclaration{
 format(  ):string
 }
 
-export interface NumberAnnotationTypeDeclaration extends NumberTypeDeclaration,ValueAnnotationTypeDeclaration{}
-
-export interface StringAnnotationTypeDeclaration extends StringTypeDeclaration,ValueAnnotationTypeDeclaration{}
-
-export interface RAMLExpression extends TypeDeclaration{}
-
-export interface RAMLExpressionAnnotation extends RAMLExpression,AnnotationTypeDeclaration{}
-
-export interface SchemaElement extends TypeDeclaration{}
+export interface NumberAnnotationTypeDeclaration extends NumberTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
- * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3 [RFC2616]. or according to specified date format
+ * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
  **/
 export interface DateTypeDeclaration extends TypeDeclaration{
-dateFormat(  ):DateFormatSpec
+format(  ):string
 }
-
-export interface StringType extends ValueType{
-
-        /**
-         * @return String representation of the node value
-         **/
-value(  ):string
-}
-
-export interface DateFormatSpec extends StringType{}
 
 export interface DateTypeAnnotationDeclaration extends DateTypeDeclaration,AnnotationTypeDeclaration{}
 
@@ -570,75 +546,70 @@ minLength(  ):number
 maxLength(  ):number
 }
 
-export interface ContentType extends StringType{}
-
-export interface ResourceTypeRef extends Reference{
+export interface StringType extends ValueType{
 
         /**
-         * Returns referenced resource type
+         * @return String representation of the node value
          **/
-resourceType(  ):ResourceType
+value(  ):string
 }
 
-export interface ResourceBase extends RAMLLanguageElement{
+export interface ContentType extends StringType{}
+
+export interface SecuritySchemeRef extends Reference{
 
         /**
-         * Methods that are part of this resource type definition
+         * Returns the name of security scheme, this reference refers to.
          **/
-methods(  ):Method[]
-
-
-        /**
-         * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section. Individual methods may override this declaration
-         **/
-is(  ):TraitRef[]
+securitySchemeName(  ):string
 
 
         /**
-         * The resource type which this resource inherits. . See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+         * Returns AST node of security scheme, this reference refers to, or null.
          **/
-"type"(  ):ResourceTypeRef
+securityScheme(  ):AbstractSecurityScheme
+}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface AbstractSecurityScheme extends RAMLLanguageElement{
+
+        /**
+         * Name of the security scheme
+         **/
+name(  ):string
 
 
         /**
-         * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
+         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
          **/
-securedBy(  ):SecuritySchemeRef[]
+"type"(  ):string
 
 
         /**
-         * Detailed information about any URI parameters of this resource
+         * The description MAY be used to describe a securityScheme.
          **/
-uriParameters(  ):TypeDeclaration[]
+description(  ):MarkdownString
 
 
         /**
-         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-         * Consider a fragment of RAML specification:
-         * ```yaml
-         * /resource/{objectId}/{propertyId}:
-         * uriParameters:
-         * objectId:
-         * ```
-         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-         * but it is among Resource.allUriParameters().
-         * @deprecated
+         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
          **/
-allUriParameters(  ):TypeDeclaration[]
+describedBy(  ):SecuritySchemePart
 
 
         /**
-         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-         * returns schemes defined with `securedBy` at API level.
-         * @deprecated
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
-allSecuredBy(  ):SecuritySchemeRef[]
+settings(  ):SecuritySchemeSettings
 }
 
 export interface HasNormalParameters extends RAMLLanguageElement{
 
         /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
          **/
 queryParameters(  ):TypeDeclaration[]
 
@@ -664,9 +635,7 @@ responses(  ):Response[]
 
 
         /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create.
-         * Resources CAN have alternate representations. For example, an API might support both JSON and XML representations.
-         * A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
          **/
 body(  ):TypeDeclaration[]
 
@@ -684,8 +653,7 @@ is(  ):TraitRef[]
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]
 }
@@ -842,56 +810,94 @@ usage(  ):string
 name(  ):string
 }
 
-export interface SecuritySchemeRef extends Reference{
+export interface Method extends MethodBase{
 
         /**
-         * Returns the name of security scheme, this reference refers to.
+         * Method that can be called
          **/
-securitySchemeName(  ):string
+method(  ):string
 
 
         /**
-         * Returns AST node of security scheme, this reference refers to, or null.
+         * An alternate, human-friendly name for the method (in the resource's context).
          **/
-securityScheme(  ):AbstractSecurityScheme
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface AbstractSecurityScheme extends RAMLLanguageElement{
-
-        /**
-         * Name of the security scheme
-         **/
-name(  ):string
+displayName(  ):string
 
 
         /**
-         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-         **/
-"type"(  ):string
-
-
-        /**
-         * The description MAY be used to describe a securityScheme.
+         * A longer, human-friendly description of the method (in the resource's context)
          **/
 description(  ):MarkdownString
 
 
         /**
-         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes.
-         * Including the security scheme description completes an API documentation.
+         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
          **/
-describedBy(  ):SecuritySchemePart
+queryString(  ):TypeDeclaration
 
 
         /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared.
-         * It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
+         * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
          **/
-settings(  ):SecuritySchemeSettings
+queryParameters(  ):TypeDeclaration[]
+
+
+        /**
+         * Detailed information about any request headers needed by this method.
+         **/
+headers(  ):TypeDeclaration[]
+
+
+        /**
+         * Some methods admit request bodies, which are described by this property.
+         **/
+body(  ):TypeDeclaration[]
+
+
+        /**
+         * A list of the traits to apply to this method.
+         **/
+is(  ):TraitRef[]
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * The security schemes that apply to this method
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+         **/
+parentResource(  ):Resource
+
+
+        /**
+         * Api owning the resource as a sibling
+         **/
+ownerApi(  ):Api
+
+
+        /**
+         * For methods of Resources: `{parent Resource relative path} {methodName}`.
+         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+         * For other methods throws Exception.
+         **/
+methodId(  ):string
+
+
+        /**
+         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+         * returns schemes defined with `securedBy` at API level.
+         * @deprecated
+         **/
+allSecuredBy(  ):SecuritySchemeRef[]
 }
 
 export interface SecuritySchemePart extends MethodBase{
@@ -903,7 +909,7 @@ headers(  ):TypeDeclaration[]
 
 
         /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
          **/
 queryParameters(  ):TypeDeclaration[]
 
@@ -915,7 +921,7 @@ queryString(  ):TypeDeclaration
 
 
         /**
-         * Optional array of responses, describing the possible responses that could be sent. See [[raml-10-spec-responses|Responses]] section.
+         * Optional array of responses, describing the possible responses that could be sent.
          **/
 responses(  ):Response[]
 
@@ -927,8 +933,7 @@ is(  ):TraitRef[]
 
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         * To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
@@ -946,7 +951,7 @@ description(  ):MarkdownString
 
 
         /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name. See [[raml-10-spec-annotations|the section on annotations]].
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
          **/
 annotations(  ):AnnotationRef[]
 }
@@ -988,30 +993,25 @@ export interface FixedUriString extends StringType{}
 export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
 
         /**
-         * The URI of the Token Endpoint as defined in RFC6749 [RFC6748] Section 3.2. Not required forby implicit grant type.
+         * The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
          **/
 accessTokenUri(  ):FixedUriString
 
 
         /**
-         * The URI of the Authorization Endpoint as defined in RFC6749 [RFC6748] Section 3.1. Required forby authorization_code and implicit grant types.
+         * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
          **/
 authorizationUri(  ):FixedUriString
 
 
         /**
-         * A list of the Authorization grants supported by the API as defined in RFC6749 [RFC6749] Sections 4.1, 4.2, 4.3 and 4.4, can be any of:
-         * - authorization_code
-         * - password
-         * - client_credentials
-         * - implicit
-         * - refresh_token.
+         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.
          **/
 authorizationGrants(  ):string[]
 
 
         /**
-         * A list of scopes supported by the security scheme as defined in RFC6749 [RFC6749] Section 3.3
+         * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
          **/
 scopes(  ):string[]
 }
@@ -1072,86 +1072,59 @@ export interface DigestSecurityScheme extends AbstractSecurityScheme{}
  **/
 export interface CustomSecurityScheme extends AbstractSecurityScheme{}
 
-export interface Method extends MethodBase{
+export interface ResourceTypeRef extends Reference{
 
         /**
-         * Method that can be called
+         * Returns referenced resource type
          **/
-method(  ):string
+resourceType(  ):ResourceType
+}
 
+export interface ResourceBase extends RAMLLanguageElement{
 
         /**
-         * An alternate, human-friendly name for the method (in the resource's context).
+         * Methods that are part of this resource type definition
          **/
-displayName(  ):string
+methods(  ):Method[]
 
 
         /**
-         * A longer, human-friendly description of the method (in the resource's context)
-         **/
-description(  ):MarkdownString
-
-
-        /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration
-
-
-        /**
-         * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Detailed information about any request headers needed by this method.
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * Some methods admit request bodies, which are described by this property.
-         **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * A list of the traits to apply to this method. See [[raml-10-spec-applying-resource-types-and-traits|Applying Resource Types and Traits]] section.
+         * A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration
          **/
 is(  ):TraitRef[]
 
 
         /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         * The resource type which this resource inherits.
          **/
-annotations(  ):AnnotationRef[]
+"type"(  ):ResourceTypeRef
 
 
         /**
-         * The security schemes that apply to this method
+         * The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.
          **/
 securedBy(  ):SecuritySchemeRef[]
 
 
         /**
-         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+         * Detailed information about any URI parameters of this resource
          **/
-parentResource(  ):Resource
+uriParameters(  ):TypeDeclaration[]
 
 
         /**
-         * Api owning the resource as a sibling
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * but it is among Resource.allUriParameters().
+         * @deprecated
          **/
-ownerApi(  ):Api
-
-
-        /**
-         * For methods of Resources: `{parent Resource relative path} {methodName}`.
-         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-         * For other methods throws Exception.
-         **/
-methodId(  ):string
+allUriParameters(  ):TypeDeclaration[]
 
 
         /**
@@ -1281,10 +1254,6 @@ uses(  ):Library[]
 parametrizedProperties(  ):TypeInstance
 }
 
-export interface ValidityExpression extends StringType{}
-
-export interface FunctionalInterface extends StringType{}
-
 
 /**
  * Schema at this moment only two subtypes are supported (json schema and xsd)
@@ -1308,8 +1277,6 @@ export interface XMLSchemaString extends SchemaString{}
  * Examples at this moment only two subtypes are supported (json  and xml)
  **/
 export interface ExampleString extends StringType{}
-
-export interface RAMLSelector extends StringType{}
 
 
 /**
@@ -1380,7 +1347,7 @@ title(  ):string
 
 
         /**
-         * The version of the API, e.g. "v1"
+         * The version of the API, e.g. 'v1'
          **/
 version(  ):string
 
@@ -1422,7 +1389,7 @@ documentation(  ):DocumentationItem[]
 
 
         /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
 
@@ -1502,7 +1469,7 @@ usage(  ):string
 
 
         /**
-         * Location of a valid RAML API definition (or overlay or extension), the overlay is applied to,
+         * Location of a valid RAML API definition (or overlay or extension), the overlay is applied to.
          **/
 masterRef(  ):string
 
@@ -1522,7 +1489,7 @@ usage(  ):string
 
 
         /**
-         * Location of a valid RAML API definition (or overlay or extension), the extension is applied to,
+         * Location of a valid RAML API definition (or overlay or extension), the extension is applied to
          **/
 masterRef(  ):string
 
