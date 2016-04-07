@@ -26,15 +26,43 @@ Getting started guide: https://github.com/raml-org/raml-js-parser-2/blob/master/
 
 ## Creating standalone browser package
 
-Clone repository: `clone repository using git`, call `npm install -d`
+Clone repository: `git clone https://github.com/raml-org/raml-js-parser-2.git`
+
+Install modules: `npm install`
+
+Install typings CLI if needed: `npm install typings --global`
+
+Install parser typings: `typings install`
 
 Build : `npm run build`
 
-Create browser package: `npm run generateBrowserVersion`, this will generate the package in `browserVersion` folder.
+Generate browser package: `npm run generateBrowserVersion`, this will generate the package in `browserVersion` folder.
 
-##Setting development environment:
+To generate debug-friendly browser package: `npm run generateBrowserVersionDev`
 
-In order to setup development environment you also need to install and `npm link` RAML dependencies from the corresponding repositories.
+## Setting up parser development environment
+
+Install typings CLI if needed: `npm install typings --global`
+
+Clone repositories:
+* `git clone https://github.com/mulesoft-labs/yaml-ast-parser.git`
+* `git clone https://github.com/mulesoft-labs/ts-structure-parser.git`
+* `git clone https://github.com/raml-org/typesystem-ts.git`
+* `git clone https://github.com/raml-org/raml-definition-system.git`
+* `git clone https://github.com/raml-org/raml-js-parser-2.git`
+
+For each repository, preserving the order:
+* Install modules: `npm install`
+* Install typings: `typings install`
+* Set up npm link: `npm link`
+
+For each repository, preserving the order:
+* Open dependencies: `cd node_modules`
+* For each module `<module_name>` in `node_modules` belonging to the list above: `rm -rf <module_name>`
+* For each module `<module_name>` in `node_modules` belonging to the list above: `npm link <module_name>`
+
+For each repository, preserving the order:
+* Build : `npm run build`
 
 ![RAML Parser dependencies](RAML Parser.png)
 
