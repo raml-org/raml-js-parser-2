@@ -1,12 +1,10 @@
 /// <reference path="../../typings/main.d.ts" />
 import def=require("raml-definition-system")
-import _=require("underscore")
 import td=require("./TSDeclModel")
-import core=require("../raml1/wrapped-ast/parserCore")
 import util=require("../util/index")
-import helperMethodExtractor=require("./helperMethodExtractor")
-import typesystem = def.rt;
-import nominals = typesystem.nominalTypes;
+import tsModel = require("ts-structure-parser")
+import helperMethodExtractor = tsModel.helperMethodExtractor
+import nominals = def.rt.nominalTypes;
 
 
 import path = require("path")
