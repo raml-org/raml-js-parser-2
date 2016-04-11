@@ -33,12 +33,6 @@ import core=require("../../raml1/wrapped-ast/parserCoreApi");
 export interface RAMLLanguageElement extends core.BasicNode{
 
         /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string
-
-
-        /**
          * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
          **/
 description(  ):MarkdownString
@@ -163,6 +157,12 @@ name(  ):string
 
 
         /**
+         * The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
+
+        /**
          * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
          **/
 facets(  ):TypeDeclaration[]
@@ -199,12 +199,6 @@ locationKind(  ):LocationKind
 
 
         /**
-         * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         **/
-examples(  ):ExampleSpec[]
-
-
-        /**
          * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
          **/
 repeat(  ):boolean
@@ -215,11 +209,7 @@ repeat(  ):boolean
          **/
 required(  ):boolean
 
-
-        /**
-         * An alternate, human-friendly name for the type
-         **/
-displayName(  ):string
+xml(  ):XMLFacetInfo
 
 
         /**
@@ -274,48 +264,36 @@ export interface ModelLocation extends core.AbstractWrapperNode{}
 
 export interface LocationKind extends core.AbstractWrapperNode{}
 
-export interface ExampleSpec extends RAMLLanguageElement{
+export interface XMLFacetInfo extends core.BasicNode{
 
         /**
-         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+         * If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types.
          **/
-strict(  ):boolean
+attribute(  ):boolean
 
 
         /**
-         * Example identifier, if specified
+         * If wrapped is set to true, a type instance should be wrapped in its own XML element. It can not be true for scalar types and it can not be true at the same moment when attribute is true.
+         **/
+wrapped(  ):boolean
+
+
+        /**
+         * Allows to override the name of the XML element or XML attribute in it's XML representation.
          **/
 name(  ):string
 
 
         /**
-         * An alternate, human-friendly name for the example
+         * Allows to configure the name of the XML namespace.
          **/
-displayName(  ):string
+namespace(  ):string
 
 
         /**
-         * A longer, human-friendly description of the example
+         * Allows to configure the prefix which will be used during serialization to XML.
          **/
-description(  ):MarkdownString
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
-         * Returns object representation of example, if possible
-         **/
-structuredContent(  ):TypeInstance
-
-
-        /**
-         * String representation of example
-         **/
-content(  ):string
+prefix(  ):string
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration{
@@ -366,13 +344,7 @@ export interface ArrayAnnotationTypeDeclaration extends ArrayTypeDeclaration,Ann
  **/
 export interface AnnotationTarget extends ValueType{}
 
-export interface UnionTypeDeclaration extends TypeDeclaration{
-
-        /**
-         * Type property name to be used as a discriminator or boolean
-         **/
-discriminator(  ):string
-}
+export interface UnionTypeDeclaration extends TypeDeclaration{}
 
 export interface UnionAnnotationTypeDeclaration extends UnionTypeDeclaration,AnnotationTypeDeclaration{}
 
@@ -514,6 +486,36 @@ export interface NumberAnnotationTypeDeclaration extends NumberTypeDeclaration,A
 
 
 /**
+ * the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)
+ **/
+export interface DateOnly extends TypeDeclaration{}
+
+
+/**
+ * the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)
+ **/
+export interface TimeOnly extends TypeDeclaration{}
+
+
+/**
+ * combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)
+ **/
+export interface DateTimeOnly extends TypeDeclaration{}
+
+
+/**
+ * a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.
+ **/
+export interface DateTime extends TypeDeclaration{
+
+        /**
+         * Format used for this date time rfc3339 or rfc2616
+         **/
+format(  ):string
+}
+
+
+/**
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
  **/
 export interface DateTypeDeclaration extends TypeDeclaration{
@@ -556,54 +558,12 @@ value(  ):string
 
 export interface ContentType extends StringType{}
 
-export interface SecuritySchemeRef extends Reference{
+export interface TraitRef extends Reference{
 
         /**
-         * Returns the name of security scheme, this reference refers to.
+         * Returns referenced trait
          **/
-securitySchemeName(  ):string
-
-
-        /**
-         * Returns AST node of security scheme, this reference refers to, or null.
-         **/
-securityScheme(  ):AbstractSecurityScheme
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface AbstractSecurityScheme extends RAMLLanguageElement{
-
-        /**
-         * Name of the security scheme
-         **/
-name(  ):string
-
-
-        /**
-         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-         **/
-"type"(  ):string
-
-
-        /**
-         * The description MAY be used to describe a securityScheme.
-         **/
-description(  ):MarkdownString
-
-
-        /**
-         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
-         **/
-describedBy(  ):SecuritySchemePart
-
-
-        /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-         **/
-settings(  ):SecuritySchemeSettings
+trait(  ):Trait
 }
 
 export interface HasNormalParameters extends RAMLLanguageElement{
@@ -625,6 +585,60 @@ headers(  ):TypeDeclaration[]
          **/
 queryString(  ):TypeDeclaration
 }
+
+export interface SecuritySchemePart extends HasNormalParameters{
+
+        /**
+         * Information about the expected responses to a request
+         **/
+responses(  ):Response[]
+
+
+        /**
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
+         **/
+annotations(  ):AnnotationRef[]
+}
+
+export interface Response extends RAMLLanguageElement{
+
+        /**
+         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         **/
+code(  ):StatusCodeString
+
+
+        /**
+         * Detailed information about any response headers returned by this method
+         **/
+headers(  ):TypeDeclaration[]
+
+
+        /**
+         * The body of the response: a body declaration
+         **/
+body(  ):TypeDeclaration[]
+
+
+        /**
+         * A longer, human-friendly description of the response
+         **/
+description(  ):MarkdownString
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * true for codes < 400 and false otherwise
+         **/
+isOkRange(  ):boolean
+}
+
+export interface StatusCodeString extends StringType{}
 
 export interface MethodBase extends HasNormalParameters{
 
@@ -658,302 +672,60 @@ is(  ):TraitRef[]
 securedBy(  ):SecuritySchemeRef[]
 }
 
-export interface Response extends RAMLLanguageElement{
+export interface SecuritySchemeRef extends Reference{
 
         /**
-         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         * Returns the name of security scheme, this reference refers to.
          **/
-code(  ):StatusCodeString
-
-
-        /**
-         * Detailed information about any response headers returned by this method
-         **/
-headers(  ):TypeDeclaration[]
+securitySchemeName(  ):string
 
 
         /**
-         * The body of the response: a body declaration
+         * Returns AST node of security scheme, this reference refers to, or null.
          **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * An alternate, human-friendly name for the response
-         **/
-displayName(  ):string
-
-
-        /**
-         * A longer, human-friendly description of the response
-         **/
-description(  ):MarkdownString
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
-         * true for codes < 400 and false otherwise
-         **/
-isOkRange(  ):boolean
+securityScheme(  ):AbstractSecurityScheme
 }
 
-export interface StatusCodeString extends StringType{}
 
-export interface TraitRef extends Reference{
-
-        /**
-         * Returns referenced trait
-         **/
-trait(  ):Trait
-}
-
-export interface Trait extends MethodBase{
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface AbstractSecurityScheme extends core.BasicNode{
 
         /**
-         * Name of the trait
+         * Name of the security scheme
          **/
 name(  ):string
 
 
         /**
-         * Instructions on how and when the trait should be used.
+         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
          **/
-usage(  ):string
+"type"(  ):string
 
 
         /**
-         * You may import library locally here it contents is accessible only inside of this trait
-         **/
-uses(  ):Library[]
-
-
-        /**
-         * Returns object representation of parametrized properties of the trait
-         **/
-parametrizedProperties(  ):TypeInstance
-}
-
-export interface LibraryBase extends RAMLLanguageElement{
-
-        /**
-         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
-         **/
-schemas(  ):GlobalSchema[]
-
-
-        /**
-         * Declarations of (data) types for use within this API
-         **/
-types(  ):TypeDeclaration[]
-
-
-        /**
-         * Declarations of annotation types for use by annotations
-         **/
-annotationTypes(  ):AnnotationTypeDeclaration[]
-
-
-        /**
-         * Declarations of security schemes for use within this API.
-         **/
-securitySchemes(  ):AbstractSecurityScheme[]
-
-
-        /**
-         * Importing libraries
-         **/
-uses(  ):Library[]
-
-
-        /**
-         * Declarations of traits for use within this API
-         **/
-traits(  ):Trait[]
-
-
-        /**
-         * Retrieve all traits including those defined in libraries
-         * @deprecated
-         **/
-allTraits(  ):Trait[]
-
-
-        /**
-         * Declarations of resource types for use within this API
-         **/
-resourceTypes(  ):ResourceType[]
-
-
-        /**
-         * Retrieve all resource types including those defined in libraries
-         * @deprecated
-         **/
-allResourceTypes(  ):ResourceType[]
-}
-
-export interface Library extends LibraryBase{
-
-        /**
-         * contains description of why library exist
-         **/
-usage(  ):string
-
-
-        /**
-         * Namespace which the library is imported under
-         **/
-name(  ):string
-}
-
-export interface Method extends MethodBase{
-
-        /**
-         * Method that can be called
-         **/
-method(  ):string
-
-
-        /**
-         * An alternate, human-friendly name for the method (in the resource's context).
-         **/
-displayName(  ):string
-
-
-        /**
-         * A longer, human-friendly description of the method (in the resource's context)
+         * The description MAY be used to describe a securityScheme.
          **/
 description(  ):MarkdownString
 
 
         /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
+         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
          **/
-queryString(  ):TypeDeclaration
+describedBy(  ):SecuritySchemePart
 
 
         /**
-         * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Detailed information about any request headers needed by this method.
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * Some methods admit request bodies, which are described by this property.
-         **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * A list of the traits to apply to this method.
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
-         * The security schemes that apply to this method
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-         **/
-parentResource(  ):Resource
-
-
-        /**
-         * Api owning the resource as a sibling
-         **/
-ownerApi(  ):Api
-
-
-        /**
-         * For methods of Resources: `{parent Resource relative path} {methodName}`.
-         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-         * For other methods throws Exception.
-         **/
-methodId(  ):string
-
-
-        /**
-         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-         * returns schemes defined with `securedBy` at API level.
-         * @deprecated
-         **/
-allSecuredBy(  ):SecuritySchemeRef[]
-}
-
-export interface SecuritySchemePart extends MethodBase{
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration
-
-
-        /**
-         * Optional array of responses, describing the possible responses that could be sent.
-         **/
-responses(  ):Response[]
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * An alternate, human-friendly name for the security scheme part
+         * The displayName attribute specifies the security scheme display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
 
 
         /**
-         * A longer, human-friendly description of the security scheme part
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
-description(  ):MarkdownString
-
-
-        /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
-         **/
-annotations(  ):AnnotationRef[]
+settings(  ):SecuritySchemeSettings
 }
 
 export interface SecuritySchemeSettings extends core.BasicNode{}
@@ -1016,20 +788,6 @@ authorizationGrants(  ):string[]
 scopes(  ):string[]
 }
 
-export interface PassThroughSecuritySchemeSettings extends SecuritySchemeSettings{
-
-        /**
-         * Name of query parameter used to pass key
-         **/
-queryParameterName(  ):string
-
-
-        /**
-         * Name of header used to pass key
-         **/
-headerName(  ):string
-}
-
 
 /**
  * Declares globally referable security scheme definition
@@ -1051,7 +809,7 @@ settings(  ):OAuth1SecuritySchemeSettings
  * Declares globally referable security scheme definition
  **/
 export interface PassThroughSecurityScheme extends AbstractSecurityScheme{
-settings(  ):PassThroughSecuritySchemeSettings
+settings(  ):SecuritySchemeSettings
 }
 
 
@@ -1071,6 +829,74 @@ export interface DigestSecurityScheme extends AbstractSecurityScheme{}
  * Declares globally referable security scheme definition
  **/
 export interface CustomSecurityScheme extends AbstractSecurityScheme{}
+
+export interface Method extends MethodBase{
+
+        /**
+         * Method that can be called
+         **/
+method(  ):string
+
+
+        /**
+         * The displayName attribute specifies the method display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
+
+        /**
+         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+         **/
+parentResource(  ):Resource
+
+
+        /**
+         * Api owning the resource as a sibling
+         **/
+ownerApi(  ):Api
+
+
+        /**
+         * For methods of Resources: `{parent Resource relative path} {methodName}`.
+         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+         * For other methods throws Exception.
+         **/
+methodId(  ):string
+
+
+        /**
+         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+         * returns schemes defined with `securedBy` at API level.
+         * @deprecated
+         **/
+allSecuredBy(  ):SecuritySchemeRef[]
+}
+
+export interface Trait extends MethodBase{
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string
+
+
+        /**
+         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * Returns object representation of parametrized properties of the trait
+         **/
+parametrizedProperties(  ):TypeInstance
+}
 
 export interface ResourceTypeRef extends Reference{
 
@@ -1144,15 +970,15 @@ relativeUri(  ):RelativeUriString
 
 
         /**
-         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
+         * The displayName attribute specifies the resource display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
-resources(  ):Resource[]
+displayName(  ):string
 
 
         /**
-         * An alternate, human-friendly name for the resource.
+         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
          **/
-displayName(  ):string
+resources(  ):Resource[]
 
 
         /**
@@ -1231,6 +1057,12 @@ export interface RelativeUriString extends UriTemplate{}
 export interface ResourceType extends ResourceBase{
 
         /**
+         * The displayName attribute specifies the resource type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
+
+        /**
          * Name of the resource type
          **/
 name(  ):string
@@ -1240,12 +1072,6 @@ name(  ):string
          * Instructions on how and when the resource type should be used.
          **/
 usage(  ):string
-
-
-        /**
-         * You may import library locally here it contents is accessible only inside of this resource type
-         **/
-uses(  ):Library[]
 
 
         /**
@@ -1304,9 +1130,61 @@ title(  ):string
 content(  ):MarkdownString
 }
 
+export interface LibraryBase extends RAMLLanguageElement{
+
+        /**
+         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
+         **/
+schemas(  ):GlobalSchema[]
+
+
+        /**
+         * Declarations of (data) types for use within this API
+         **/
+types(  ):TypeDeclaration[]
+
+
+        /**
+         * Declarations of annotation types for use by annotations
+         **/
+annotationTypes(  ):AnnotationTypeDeclaration[]
+
+
+        /**
+         * Declarations of security schemes for use within this API.
+         **/
+securitySchemes(  ):AbstractSecurityScheme[]
+
+
+        /**
+         * Declarations of traits for use within this API
+         **/
+traits(  ):Trait[]
+
+
+        /**
+         * Retrieve all traits including those defined in libraries
+         * @deprecated
+         **/
+allTraits(  ):Trait[]
+
+
+        /**
+         * Declarations of resource types for use within this API
+         **/
+resourceTypes(  ):ResourceType[]
+
+
+        /**
+         * Retrieve all resource types including those defined in libraries
+         * @deprecated
+         **/
+allResourceTypes(  ):ResourceType[]
+}
+
 export interface RAMLSimpleElement extends core.BasicNode{}
 
-export interface ImportDeclaration extends RAMLSimpleElement{
+export interface UsesDeclaration extends RAMLSimpleElement{
 
         /**
          * Name prefix (without dot) used to refer imported declarations
@@ -1315,9 +1193,13 @@ key(  ):string
 
 
         /**
-         * Content of the declared namespace
+         * Content of the schema
          **/
-value(  ):Library
+value(  ):string
+}
+
+export interface FragmentDeclaration extends RAMLSimpleElement{
+uses(  ):UsesDeclaration[]
 }
 
 
@@ -1336,6 +1218,20 @@ key(  ):string
          * Content of the schema
          **/
 value(  ):SchemaString
+}
+
+export interface Library extends LibraryBase{
+
+        /**
+         * contains description of why library exist
+         **/
+usage(  ):string
+
+
+        /**
+         * Namespace which the library is imported under
+         **/
+name(  ):string
 }
 
 export interface Api extends LibraryBase{
@@ -1367,7 +1263,7 @@ protocols(  ):string[]
         /**
          * The default media type to use for request and response bodies (payloads), e.g. "application/json"
          **/
-mediaType(  ):MimeType
+mediaType(  ):MimeType[]
 
 
         /**
@@ -1386,12 +1282,6 @@ resources(  ):Resource[]
          * Additional overall documentation for the API
          **/
 documentation(  ):DocumentationItem[]
-
-
-        /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string
 
 
         /**
@@ -1471,7 +1361,7 @@ usage(  ):string
         /**
          * Location of a valid RAML API definition (or overlay or extension), the overlay is applied to.
          **/
-masterRef(  ):string
+extends(  ):string
 
 
         /**
@@ -1491,7 +1381,7 @@ usage(  ):string
         /**
          * Location of a valid RAML API definition (or overlay or extension), the extension is applied to
          **/
-masterRef(  ):string
+extends(  ):string
 
 
         /**

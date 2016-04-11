@@ -211,7 +211,7 @@ function isExampleProp(d:hl.IProperty){
     if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
         return false;
     }
-    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name||d.nameId()==universes.Universe10.ExampleSpec.properties.content.name)&&( d.domain().key()!=universes.Universe10.DocumentationItem&& d.domain().key()!=universes.Universe08.DocumentationItem);
+    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name)&&( d.domain().key()!=universes.Universe10.DocumentationItem&& d.domain().key()!=universes.Universe08.DocumentationItem);
 }
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
@@ -454,7 +454,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     }
                     if (highLevelNode.property()) {
                         if (highLevelNode.property().nameId() ==
-                            universes.Universe10.Method.properties.body.name) {//FIXME
+                            universes.Universe10.MethodBase.properties.body.name) {//FIXME
                             new MediaTypeValidator().validate(a, v);
                             return;
                         }
@@ -668,7 +668,7 @@ class CompositePropertyValidator implements PropertyValidator{
             node.property().range().key() == universes.Universe10.MimeType)||
             (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name
             &&node.parent().property().nameId()==
-            universes.Universe10.Method.properties.body.name)) {//FIXME
+            universes.Universe10.MethodBase.properties.body.name)) {//FIXME
             new MediaTypeValidator().validate(node,v);
             return;
         }
@@ -2313,7 +2313,7 @@ export class ExampleValidator implements PropertyValidator{
                 if (sampleRoot.parent().parent()) {
                     var ppc = sampleRoot.parent().parent().definition().key();
                     if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
-                        if (sampleRoot.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
+                        if (sampleRoot.parent().property().nameId() == universes.Universe10.HasNormalParameters.properties.queryParameters.name) {
 
                         }
                         else {
@@ -2394,9 +2394,9 @@ export class ExampleValidator implements PropertyValidator{
     }
     getSchemaFromModel(node:hl.IAttribute):IShema{
         var p=node.parent();
-        if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
-            p=p.parent();
-        }
+        // if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
+        //     p=p.parent();
+        // }
         return this.typeValidator(p, node);
 
     }
@@ -2785,8 +2785,8 @@ function getMediaType2(node:hl.IAttribute){
                 return node.parent().name();
             }
             if (ppc==universes.Universe08.Method||ppc==universes.Universe10.Method) {
-                if (node.parent().property().nameId()==universes.Universe10.Method.properties.queryParameters.name
-                    ||node.parent().property().nameId()==universes.Universe10.Method.properties.headers.name){
+                if (node.parent().property().nameId()==universes.Universe10.HasNormalParameters.properties.queryParameters.name
+                    ||node.parent().property().nameId()==universes.Universe10.HasNormalParameters.properties.headers.name){
                     return null;
                 }
                 return node.parent().name();
@@ -2909,7 +2909,7 @@ export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,
         }
     }
     if (original){
-        if (node.property()&&node.property().nameId()==universes.Universe10.LibraryBase.properties.uses.name&&node.parent()!=null){
+        if (node.property()&&node.property().nameId()==universes.Universe10.FragmentDeclaration.properties.uses.name&&node.parent()!=null){
             pr=node.property();//FIXME there should be other cases
             node=node.parent();
         }
@@ -2941,7 +2941,7 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
     }
     if (original){
         if (rootCalculationAnchor.property()&&rootCalculationAnchor.property().nameId()
-            ==universes.Universe10.LibraryBase.properties.uses.name&&rootCalculationAnchor.parent()!=null){
+            ==universes.Universe10.FragmentDeclaration.properties.uses.name&&rootCalculationAnchor.parent()!=null){
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
     }

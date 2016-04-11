@@ -97,6 +97,12 @@ var classMap = {
 
     "CustomSecurityScheme": (x,y)=>{return new RamlWrapper.CustomSecuritySchemeImpl(x,y)},
 
+    "DateOnly": (x,y)=>{return new RamlWrapper.DateOnlyImpl(x,y)},
+
+    "DateTime": (x,y)=>{return new RamlWrapper.DateTimeImpl(x,y)},
+
+    "DateTimeOnly": (x,y)=>{return new RamlWrapper.DateTimeOnlyImpl(x,y)},
+
     "DateTypeAnnotationDeclaration": (x,y)=>{return new RamlWrapper.DateTypeAnnotationDeclarationImpl(x,y)},
 
     "DateTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTypeDeclarationImpl(x,y)},
@@ -104,8 +110,6 @@ var classMap = {
     "DigestSecurityScheme": (x,y)=>{return new RamlWrapper.DigestSecuritySchemeImpl(x,y)},
 
     "DocumentationItem": (x,y)=>{return new RamlWrapper.DocumentationItemImpl(x,y)},
-
-    "ExampleSpec": (x,y)=>{return new RamlWrapper.ExampleSpecImpl(x,y)},
 
     "ExampleString": (x)=>{return new RamlWrapper.ExampleStringImpl(x)},
 
@@ -115,13 +119,13 @@ var classMap = {
 
     "FixedUriString": (x)=>{return new RamlWrapper.FixedUriStringImpl(x)},
 
+    "FragmentDeclaration": (x,y)=>{return new RamlWrapper.FragmentDeclarationImpl(x,y)},
+
     "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
 
     "GlobalSchema": (x,y)=>{return new RamlWrapper.GlobalSchemaImpl(x,y)},
 
     "HasNormalParameters": (x,y)=>{return new RamlWrapper.HasNormalParametersImpl(x,y)},
-
-    "ImportDeclaration": (x,y)=>{return new RamlWrapper.ImportDeclarationImpl(x,y)},
 
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
 
@@ -165,8 +169,6 @@ var classMap = {
 
     "PassThroughSecurityScheme": (x,y)=>{return new RamlWrapper.PassThroughSecuritySchemeImpl(x,y)},
 
-    "PassThroughSecuritySchemeSettings": (x,y)=>{return new RamlWrapper.PassThroughSecuritySchemeSettingsImpl(x,y)},
-
     "RAMLLanguageElement": (x,y)=>{return new RamlWrapper.RAMLLanguageElementImpl(x,y)},
 
     "RAMLSimpleElement": (x,y)=>{return new RamlWrapper.RAMLSimpleElementImpl(x,y)},
@@ -201,6 +203,8 @@ var classMap = {
 
     "StringTypeDeclaration": (x,y)=>{return new RamlWrapper.StringTypeDeclarationImpl(x,y)},
 
+    "TimeOnly": (x,y)=>{return new RamlWrapper.TimeOnlyImpl(x,y)},
+
     "Trait": (x,y)=>{return new RamlWrapper.TraitImpl(x,y)},
 
     "TraitRef": (x)=>{return new RamlWrapper.TraitRefImpl(x)},
@@ -213,7 +217,11 @@ var classMap = {
 
     "UriTemplate": (x)=>{return new RamlWrapper.UriTemplateImpl(x)},
 
+    "UsesDeclaration": (x,y)=>{return new RamlWrapper.UsesDeclarationImpl(x,y)},
+
     "ValueType": (x)=>{return new RamlWrapper.ValueTypeImpl(x)},
+
+    "XMLFacetInfo": (x,y)=>{return new RamlWrapper.XMLFacetInfoImpl(x,y)},
 
     "XMLSchemaString": (x)=>{return new RamlWrapper.XMLSchemaStringImpl(x)}
 

@@ -650,18 +650,18 @@ export function getTypeStructuredExample(td:RamlWrapper.TypeDeclaration):RamlWra
  * __$helperMethod__
  * __$meta__={"name":"content","override":true}
  **/
-export function getExampleStringContent(td:RamlWrapper.ExampleSpec):string{
-    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-    return attrToExampleString(attr);
+export function getExampleStringContent(td:any):string{
+    // var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
+    // return attrToExampleString(attr);
+    return null;
 }
 
 /**
  * __$helperMethod__
  * __$meta__={"name":"structuredContent","primary":true}
  **/
-export function getExampleStructuredContent(td:RamlWrapper.ExampleSpec):RamlWrapper.TypeInstance{
-    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-    return <RamlWrapper.TypeInstance><any>exampleAttrToTypeInstance(attr);
+export function getExampleStructuredContent(td:any):RamlWrapper.TypeInstance{
+   return null;
 }
 
 function attrToExampleString(attr:hl.IAttribute):string{

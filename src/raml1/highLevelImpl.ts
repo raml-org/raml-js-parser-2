@@ -770,7 +770,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     parsedType():rTypes.IParsedType{
 
         if (!this._ptype){
-            if (this.property()&&this.property().nameId()==universes.Universe10.Method.properties.body.name){
+            if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
                 this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),true);
             }
             else {
@@ -979,7 +979,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     private calculateMasterByRef() : hl.IParseResult {
         var masterReference = _.find(this.lowLevel().children(),
-                x=>x.key()==universes.Universe10.Overlay.properties.masterRef.name);
+                x=>x.key()=="extends");
 
         if (!masterReference || !masterReference.value()) {
             return null;

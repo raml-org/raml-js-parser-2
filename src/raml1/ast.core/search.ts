@@ -60,8 +60,10 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     }
     try {
         h.elements().forEach(x=> {
-            if (x.definition().key() == universes.Universe10.Library) {
-                rs = rs.concat(findDeclarations(x));
+            if (x.definition().key()== universes.Universe10.UsesDeclaration) {
+                var mm=x.attr("value");
+                console.log(mm.value());
+
             }
             rs.push(x);
         });
@@ -503,9 +505,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
 }
 export function findExampleContentType(node : hl.IAttribute) : hl.INodeDefinition {
     var p=node.parent();
-    if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
-        p=p.parent();
-    }
+
     return <hl.INodeDefinition>p.localType();
 }
 
@@ -518,8 +518,6 @@ export function parseDocumentationContent(attribute : hl.IAttribute, type : hl.I
 
 export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var typeExampleName10 = universes.Universe10.TypeDeclaration.properties.example.name;
-    var typeExamplesName10 = universes.Universe10.TypeDeclaration.properties.examples.name;
-    var contentName10 = universes.Universe10.ExampleSpec.properties.content.name;
     var objectName10 = universes.Universe10.ObjectTypeDeclaration.name;
 
     if (!(node instanceof hlimpl.ASTPropImpl)){
@@ -531,13 +529,7 @@ export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var parentProperty = parent && parent.property();
     var parentPropertyName = parentProperty && parentProperty.nameId();
 
-    if(contentName10 === property.name() && property.isString()) {
-        if(parent instanceof hlimpl.ASTNodeImpl && (typeExamplesName10 === parentPropertyName || typeExampleName10 === parentPropertyName)){
-            if(parent.parent() instanceof hlimpl.ASTNodeImpl && parent.parent().definition().isAssignableFrom(objectName10)) {
-                return true;
-            }
-        }
-    } else if(typeExampleName10 === property.name() && property.isString()) {
+    if(typeExampleName10 === property.name() && property.isString()) {
         if(parent instanceof hlimpl.ASTNodeImpl && parent.definition().isAssignableFrom(objectName10)) {
             return true;
         }

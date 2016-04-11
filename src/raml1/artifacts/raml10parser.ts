@@ -57,7 +57,7 @@ import AnnotationTypeDeclaration = pApi.AnnotationTypeDeclaration;
 import TypeDeclaration = pApi.TypeDeclaration;
 import ModelLocation = pApi.ModelLocation;
 import LocationKind = pApi.LocationKind;
-import ExampleSpec = pApi.ExampleSpec;
+import XMLFacetInfo = pApi.XMLFacetInfo;
 import ArrayTypeDeclaration = pApi.ArrayTypeDeclaration;
 import ArrayAnnotationTypeDeclaration = pApi.ArrayAnnotationTypeDeclaration;
 import AnnotationTarget = pApi.AnnotationTarget;
@@ -72,32 +72,34 @@ import BooleanAnnotationTypeDeclaration = pApi.BooleanAnnotationTypeDeclaration;
 import NumberTypeDeclaration = pApi.NumberTypeDeclaration;
 import IntegerTypeDeclaration = pApi.IntegerTypeDeclaration;
 import NumberAnnotationTypeDeclaration = pApi.NumberAnnotationTypeDeclaration;
+import DateOnly = pApi.DateOnly;
+import TimeOnly = pApi.TimeOnly;
+import DateTimeOnly = pApi.DateTimeOnly;
+import DateTime = pApi.DateTime;
 import DateTypeDeclaration = pApi.DateTypeDeclaration;
 import DateTypeAnnotationDeclaration = pApi.DateTypeAnnotationDeclaration;
 import FileTypeDeclaration = pApi.FileTypeDeclaration;
 import ContentType = pApi.ContentType;
-import SecuritySchemeRef = pApi.SecuritySchemeRef;
-import AbstractSecurityScheme = pApi.AbstractSecurityScheme;
-import SecuritySchemePart = pApi.SecuritySchemePart;
-import MethodBase = pApi.MethodBase;
-import HasNormalParameters = pApi.HasNormalParameters;
-import Response = pApi.Response;
-import StatusCodeString = pApi.StatusCodeString;
 import TraitRef = pApi.TraitRef;
 import Trait = pApi.Trait;
-import Library = pApi.Library;
-import Method = pApi.Method;
+import MethodBase = pApi.MethodBase;
+import HasNormalParameters = pApi.HasNormalParameters;
+import SecuritySchemePart = pApi.SecuritySchemePart;
+import Response = pApi.Response;
+import StatusCodeString = pApi.StatusCodeString;
+import SecuritySchemeRef = pApi.SecuritySchemeRef;
+import AbstractSecurityScheme = pApi.AbstractSecurityScheme;
 import SecuritySchemeSettings = pApi.SecuritySchemeSettings;
 import OAuth1SecuritySchemeSettings = pApi.OAuth1SecuritySchemeSettings;
 import FixedUriString = pApi.FixedUriString;
 import OAuth2SecuritySchemeSettings = pApi.OAuth2SecuritySchemeSettings;
-import PassThroughSecuritySchemeSettings = pApi.PassThroughSecuritySchemeSettings;
 import OAuth2SecurityScheme = pApi.OAuth2SecurityScheme;
 import OAuth1SecurityScheme = pApi.OAuth1SecurityScheme;
 import PassThroughSecurityScheme = pApi.PassThroughSecurityScheme;
 import BasicSecurityScheme = pApi.BasicSecurityScheme;
 import DigestSecurityScheme = pApi.DigestSecurityScheme;
 import CustomSecurityScheme = pApi.CustomSecurityScheme;
+import Method = pApi.Method;
 import ResourceTypeRef = pApi.ResourceTypeRef;
 import ResourceType = pApi.ResourceType;
 import ResourceBase = pApi.ResourceBase;
@@ -113,28 +115,12 @@ import MimeType = pApi.MimeType;
 import DocumentationItem = pApi.DocumentationItem;
 import GlobalSchema = pApi.GlobalSchema;
 import RAMLSimpleElement = pApi.RAMLSimpleElement;
-import ImportDeclaration = pApi.ImportDeclaration;
+import UsesDeclaration = pApi.UsesDeclaration;
+import FragmentDeclaration = pApi.FragmentDeclaration;
+import Library = pApi.Library;
 import Overlay = pApi.Overlay;
 import Extension = pApi.Extension;
 export class RAMLLanguageElementImpl extends core.BasicNodeImpl implements RAMLLanguageElement{
-
-        /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
 
         /**
          * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
@@ -318,6 +304,24 @@ setName( param:string ){
 
 
         /**
+         * The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
          * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
          **/
 facets(  ):TypeDeclaration[]{
@@ -399,8 +403,8 @@ setDefault( param:any ){
          * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
          * @hidden
          **/
-example_original(  ):string{
-             return <string>super.attribute('example', this.toString);
+example_original(  ):any{
+             return <any>super.attribute('example', this.toAny);
          }
 
 
@@ -408,18 +412,10 @@ example_original(  ):string{
          * @hidden
          * Set example value
          **/
-setExample( param:string ){
+setExample( param:any ){
             this.highLevel().attrOrCreate("example").setValue(""+param);
             return this;
         }
-
-
-        /**
-         * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         **/
-examples(  ):ExampleSpec[]{
-             return <ExampleSpec[]>super.elements('examples');
-         }
 
 
         /**
@@ -457,23 +453,9 @@ setRequired( param:boolean ){
             return this;
         }
 
-
-        /**
-         * An alternate, human-friendly name for the type
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
+xml(  ):XMLFacetInfo{
+             return <XMLFacetInfo>super.element('xml');
          }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -576,49 +558,46 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
 kind(  ):string{return "LocationKind";}
 }
 
-export class ExampleSpecImpl extends RAMLLanguageElementImpl implements ExampleSpec{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createExampleSpec(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
+export class XMLFacetInfoImpl extends core.BasicNodeImpl implements XMLFacetInfo{
 
         /**
-         * String representation of example
-         * @hidden
+         * If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types.
          **/
-content_original(  ):string{
-             return <string>super.attribute('content', this.toString);
+attribute(  ):boolean{
+             return <boolean>super.attribute('attribute', this.toBoolean);
          }
 
 
         /**
          * @hidden
-         * Set content value
+         * Set attribute value
          **/
-setContent( param:string ){
-            this.highLevel().attrOrCreate("content").setValue(""+param);
+setAttribute( param:boolean ){
+            this.highLevel().attrOrCreate("attribute").setValue(""+param);
             return this;
         }
 
 
         /**
-         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+         * If wrapped is set to true, a type instance should be wrapped in its own XML element. It can not be true for scalar types and it can not be true at the same moment when attribute is true.
          **/
-strict(  ):boolean{
-             return <boolean>super.attribute('strict', this.toBoolean);
+wrapped(  ):boolean{
+             return <boolean>super.attribute('wrapped', this.toBoolean);
          }
 
 
         /**
          * @hidden
-         * Set strict value
+         * Set wrapped value
          **/
-setStrict( param:boolean ){
-            this.highLevel().attrOrCreate("strict").setValue(""+param);
+setWrapped( param:boolean ){
+            this.highLevel().attrOrCreate("wrapped").setValue(""+param);
             return this;
         }
 
 
         /**
-         * Example identifier, if specified
+         * Allows to override the name of the XML element or XML attribute in it's XML representation.
          **/
 name(  ):string{
              return <string>super.attribute('name', this.toString);
@@ -636,63 +615,52 @@ setName( param:string ){
 
 
         /**
-         * An alternate, human-friendly name for the example
+         * Allows to configure the name of the XML namespace.
          **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
+namespace(  ):string{
+             return <string>super.attribute('namespace', this.toString);
          }
 
 
         /**
          * @hidden
-         * Set displayName value
+         * Set namespace value
          **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+setNamespace( param:string ){
+            this.highLevel().attrOrCreate("namespace").setValue(""+param);
             return this;
         }
 
 
         /**
-         * A longer, human-friendly description of the example
+         * Allows to configure the prefix which will be used during serialization to XML.
          **/
-description(  ):MarkdownString{
-             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+prefix(  ):string{
+             return <string>super.attribute('prefix', this.toString);
          }
 
 
         /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         * @hidden
+         * Set prefix value
          **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
+setPrefix( param:string ){
+            this.highLevel().attrOrCreate("prefix").setValue(""+param);
+            return this;
+        }
 
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "ExampleSpecImpl";}
+wrapperClassName(  ):string{return "XMLFacetInfoImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "ExampleSpec";}
-
-
-        /**
-         * String representation of example
-         * @hidden
-         **/
-content(  ):string{
-            return helper.getExampleStringContent(this);
-        }
-
-structuredContent(  ):TypeInstance{
-            return helper.getExampleStructuredContent(this);
-        }
+kind(  ):string{return "XMLFacetInfo";}
 }
 
 export class ArrayTypeDeclarationImpl extends TypeDeclarationImpl implements ArrayTypeDeclaration{
@@ -838,24 +806,6 @@ kind(  ):string{return "AnnotationTarget";}
 
 export class UnionTypeDeclarationImpl extends TypeDeclarationImpl implements UnionTypeDeclaration{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUnionTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Type property name to be used as a discriminator or boolean
-         **/
-discriminator(  ):string{
-             return <string>super.attribute('discriminator', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set discriminator value
-         **/
-setDiscriminator( param:string ){
-            this.highLevel().attrOrCreate("discriminator").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -1465,6 +1415,108 @@ kind(  ):string{return "NumberAnnotationTypeDeclaration";}
 
 
 /**
+ * the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)
+ **/
+export class DateOnlyImpl extends TypeDeclarationImpl implements DateOnly{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateOnly(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateOnlyImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateOnly";}
+}
+
+
+/**
+ * the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)
+ **/
+export class TimeOnlyImpl extends TypeDeclarationImpl implements TimeOnly{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTimeOnly(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "TimeOnlyImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "TimeOnly";}
+}
+
+
+/**
+ * combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)
+ **/
+export class DateTimeOnlyImpl extends TypeDeclarationImpl implements DateTimeOnly{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTimeOnly(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateTimeOnlyImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateTimeOnly";}
+}
+
+
+/**
+ * a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.
+ **/
+export class DateTimeImpl extends TypeDeclarationImpl implements DateTime{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTime(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Format used for this date time rfc3339 or rfc2616
+         **/
+format(  ):string{
+             return <string>super.attribute('format', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set format value
+         **/
+setFormat( param:string ){
+            this.highLevel().attrOrCreate("format").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateTimeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateTime";}
+}
+
+
+/**
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
  **/
 export class DateTypeDeclarationImpl extends TypeDeclarationImpl implements DateTypeDeclaration{
@@ -1685,108 +1737,23 @@ wrapperClassName(  ):string{return "AnnotationTypeDeclarationImpl";}
 kind(  ):string{return "AnnotationTypeDeclaration";}
 }
 
-export class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef{
+export class TraitRefImpl extends ReferenceImpl implements TraitRef{
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "SecuritySchemeRefImpl";}
+wrapperClassName(  ):string{return "TraitRefImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "SecuritySchemeRef";}
+kind(  ):string{return "TraitRef";}
 
-securitySchemeName(  ):string{
-            return helper.securitySchemeName(this);
+trait(  ):Trait{
+            return helper.referencedTrait(this);
         }
-
-securityScheme(  ):AbstractSecurityScheme{
-            return helper.securityScheme(this);
-        }
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createAbstractSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the security scheme
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
-         **/
-"type"(  ):string{
-             return <string>super.attribute('type', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set type value
-         **/
-setType( param:string ){
-            this.highLevel().attrOrCreate("type").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * The description MAY be used to describe a securityScheme.
-         **/
-description(  ):MarkdownString{
-             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
-         }
-
-
-        /**
-         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
-         **/
-describedBy(  ):SecuritySchemePart{
-             return <SecuritySchemePart>super.element('describedBy');
-         }
-
-
-        /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-         **/
-settings(  ):SecuritySchemeSettings{
-             return <SecuritySchemeSettings>super.element('settings');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "AbstractSecuritySchemeImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "AbstractSecurityScheme";}
 }
 
 export class HasNormalParametersImpl extends RAMLLanguageElementImpl implements HasNormalParameters{
@@ -1828,6 +1795,119 @@ wrapperClassName(  ):string{return "HasNormalParametersImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "HasNormalParameters";}
+}
+
+export class SecuritySchemePartImpl extends HasNormalParametersImpl implements SecuritySchemePart{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Information about the expected responses to a request
+         **/
+responses(  ):Response[]{
+             return <Response[]>super.elements('responses');
+         }
+
+
+        /**
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
+         **/
+annotations(  ):AnnotationRef[]{
+             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "SecuritySchemePart";}
+}
+
+export class ResponseImpl extends RAMLLanguageElementImpl implements Response{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         **/
+code(  ):StatusCodeString{
+             return <StatusCodeString>super.attribute('code', (attr:hl.IAttribute)=>new StatusCodeStringImpl(attr));
+         }
+
+
+        /**
+         * Detailed information about any response headers returned by this method
+         **/
+headers(  ):TypeDeclaration[]{
+             return <TypeDeclaration[]>super.elements('headers');
+         }
+
+
+        /**
+         * The body of the response: a body declaration
+         **/
+body(  ):TypeDeclaration[]{
+             return <TypeDeclaration[]>super.elements('body');
+         }
+
+
+        /**
+         * A longer, human-friendly description of the response
+         **/
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]{
+             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ResponseImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Response";}
+
+
+        /**
+         * true for codes < 400 and false otherwise
+         **/
+isOkRange(  ):boolean{
+            return helper.isOkRange(this);
+        }
+}
+
+export class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "StatusCodeStringImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "StatusCodeString";}
 }
 
 export class MethodBaseImpl extends HasNormalParametersImpl implements MethodBase{
@@ -1897,129 +1977,37 @@ wrapperClassName(  ):string{return "MethodBaseImpl";}
 kind(  ):string{return "MethodBase";}
 }
 
-export class ResponseImpl extends RAMLLanguageElementImpl implements Response{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-         **/
-code(  ):StatusCodeString{
-             return <StatusCodeString>super.attribute('code', (attr:hl.IAttribute)=>new StatusCodeStringImpl(attr));
-         }
-
-
-        /**
-         * Detailed information about any response headers returned by this method
-         **/
-headers(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('headers');
-         }
-
-
-        /**
-         * The body of the response: a body declaration
-         **/
-body(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('body');
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the response
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A longer, human-friendly description of the response
-         **/
-description(  ):MarkdownString{
-             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
-         }
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
+export class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef{
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "ResponseImpl";}
+wrapperClassName(  ):string{return "SecuritySchemeRefImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "Response";}
+kind(  ):string{return "SecuritySchemeRef";}
 
+securitySchemeName(  ):string{
+            return helper.securitySchemeName(this);
+        }
 
-        /**
-         * true for codes < 400 and false otherwise
-         **/
-isOkRange(  ):boolean{
-            return helper.isOkRange(this);
+securityScheme(  ):AbstractSecurityScheme{
+            return helper.securityScheme(this);
         }
 }
 
-export class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString{
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export class AbstractSecuritySchemeImpl extends core.BasicNodeImpl implements AbstractSecurityScheme{
 
         /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "StatusCodeStringImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "StatusCodeString";}
-}
-
-export class TraitRefImpl extends ReferenceImpl implements TraitRef{
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "TraitRefImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "TraitRef";}
-
-trait(  ):Trait{
-            return helper.referencedTrait(this);
-        }
-}
-
-export class TraitImpl extends MethodBaseImpl implements Trait{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the trait
+         * Name of the security scheme
          **/
 name(  ):string{
              return <string>super.attribute('name', this.toString);
@@ -2037,236 +2025,41 @@ setName( param:string ){
 
 
         /**
-         * Instructions on how and when the trait should be used.
+         * The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them.
          **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
+"type"(  ):string{
+             return <string>super.attribute('type', this.toString);
          }
 
 
         /**
          * @hidden
-         * Set usage value
+         * Set type value
          **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
+setType( param:string ){
+            this.highLevel().attrOrCreate("type").setValue(""+param);
             return this;
         }
 
 
         /**
-         * You may import library locally here it contents is accessible only inside of this trait
+         * The description MAY be used to describe a securityScheme.
          **/
-uses(  ):Library[]{
-             return <Library[]>super.elements('uses');
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
          }
 
 
         /**
-         * @hidden
-         * @return Actual name of instance class
+         * A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.
          **/
-wrapperClassName(  ):string{return "TraitImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Trait";}
-
-parametrizedProperties(  ):TypeInstance{
-            return helper.getTemplateParametrizedProperties(this);
-        }
-}
-
-export class LibraryBaseImpl extends RAMLLanguageElementImpl implements LibraryBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibraryBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
-         **/
-schemas(  ):GlobalSchema[]{
-             return <GlobalSchema[]>super.elements('schemas');
+describedBy(  ):SecuritySchemePart{
+             return <SecuritySchemePart>super.element('describedBy');
          }
 
 
         /**
-         * Declarations of (data) types for use within this API
-         **/
-types(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('types');
-         }
-
-
-        /**
-         * Declarations of traits for use within this API
-         * @hidden
-         **/
-traits_original(  ):Trait[]{
-             return <Trait[]>super.elements('traits');
-         }
-
-
-        /**
-         * Declarations of resource types for use within this API
-         * @hidden
-         **/
-resourceTypes_original(  ):ResourceType[]{
-             return <ResourceType[]>super.elements('resourceTypes');
-         }
-
-
-        /**
-         * Declarations of annotation types for use by annotations
-         **/
-annotationTypes(  ):AnnotationTypeDeclaration[]{
-             return <AnnotationTypeDeclaration[]>super.elements('annotationTypes');
-         }
-
-
-        /**
-         * Declarations of security schemes for use within this API.
-         **/
-securitySchemes(  ):AbstractSecurityScheme[]{
-             return <AbstractSecurityScheme[]>super.elements('securitySchemes');
-         }
-
-
-        /**
-         * Importing libraries
-         **/
-uses(  ):Library[]{
-             return <Library[]>super.elements('uses');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "LibraryBaseImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "LibraryBase";}
-
-
-        /**
-         * Declarations of traits for use within this API
-         * @hidden
-         **/
-traits(  ):Trait[]{
-            return helper.traitsPrimary(this);
-        }
-
-
-        /**
-         * Retrieve all traits including those defined in libraries
-         * @deprecated
-         **/
-allTraits(  ):Trait[]{
-            return helper.allTraits(this);
-        }
-
-
-        /**
-         * Declarations of resource types for use within this API
-         * @hidden
-         **/
-resourceTypes(  ):ResourceType[]{
-            return helper.resourceTypesPrimary(this);
-        }
-
-
-        /**
-         * Retrieve all resource types including those defined in libraries
-         * @deprecated
-         **/
-allResourceTypes(  ):ResourceType[]{
-            return helper.allResourceTypes(this);
-        }
-}
-
-export class LibraryImpl extends LibraryBaseImpl implements Library{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibrary(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * contains description of why library exist
-         **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set usage value
-         **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Namespace which the library is imported under
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "LibraryImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Library";}
-}
-
-export class MethodImpl extends MethodBaseImpl implements Method{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Method that can be called
-         **/
-method(  ):string{
-             return <string>super.attribute('method', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set method value
-         **/
-setMethod( param:string ){
-            this.highLevel().attrOrCreate("method").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * An alternate, human-friendly name for the method (in the resource's context).
+         * The displayName attribute specifies the security scheme display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string{
              return <string>super.attribute('displayName', this.toString);
@@ -2284,66 +2077,10 @@ setDisplayName( param:string ){
 
 
         /**
-         * A longer, human-friendly description of the method (in the resource's context)
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
-description(  ):MarkdownString{
-             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
-         }
-
-
-        /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration{
-             return <TypeDeclaration>super.element('queryString');
-         }
-
-
-        /**
-         * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
-         **/
-queryParameters(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('queryParameters');
-         }
-
-
-        /**
-         * Detailed information about any request headers needed by this method.
-         **/
-headers(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('headers');
-         }
-
-
-        /**
-         * Some methods admit request bodies, which are described by this property.
-         **/
-body(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('body');
-         }
-
-
-        /**
-         * A list of the traits to apply to this method.
-         **/
-is(  ):TraitRef[]{
-             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
-         }
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
-         * The security schemes that apply to this method
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
+settings(  ):SecuritySchemeSettings{
+             return <SecuritySchemeSettings>super.element('settings');
          }
 
 
@@ -2351,148 +2088,13 @@ securedBy(  ):SecuritySchemeRef[]{
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "MethodImpl";}
+wrapperClassName(  ):string{return "AbstractSecuritySchemeImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "Method";}
-
-
-        /**
-         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
-         **/
-parentResource(  ):Resource{
-            return helper.parentResource(this);
-        }
-
-
-        /**
-         * Api owning the resource as a sibling
-         **/
-ownerApi(  ):Api{
-            return helper.ownerApi(this);
-        }
-
-
-        /**
-         * For methods of Resources: `{parent Resource relative path} {methodName}`.
-         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
-         * For other methods throws Exception.
-         **/
-methodId(  ):string{
-            return helper.methodId(this);
-        }
-
-
-        /**
-         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-         * returns schemes defined with `securedBy` at API level.
-         * @deprecated
-         **/
-allSecuredBy(  ):SecuritySchemeRef[]{
-            return helper.allSecuredBy(this);
-        }
-}
-
-export class SecuritySchemePartImpl extends MethodBaseImpl implements SecuritySchemePart{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('headers');
-         }
-
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):TypeDeclaration[]{
-             return <TypeDeclaration[]>super.elements('queryParameters');
-         }
-
-
-        /**
-         * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration{
-             return <TypeDeclaration>super.element('queryString');
-         }
-
-
-        /**
-         * Optional array of responses, describing the possible responses that could be sent.
-         **/
-responses(  ):Response[]{
-             return <Response[]>super.elements('responses');
-         }
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]{
-             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
-         }
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the security scheme part
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A longer, human-friendly description of the security scheme part
-         **/
-description(  ):MarkdownString{
-             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
-         }
-
-
-        /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "SecuritySchemePart";}
+kind(  ):string{return "AbstractSecurityScheme";}
 }
 
 export class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings{
@@ -2657,59 +2259,6 @@ wrapperClassName(  ):string{return "OAuth2SecuritySchemeSettingsImpl";}
 kind(  ):string{return "OAuth2SecuritySchemeSettings";}
 }
 
-export class PassThroughSecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements PassThroughSecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createPassThroughSecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of query parameter used to pass key
-         **/
-queryParameterName(  ):string{
-             return <string>super.attribute('queryParameterName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set queryParameterName value
-         **/
-setQueryParameterName( param:string ){
-            this.highLevel().attrOrCreate("queryParameterName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Name of header used to pass key
-         **/
-headerName(  ):string{
-             return <string>super.attribute('headerName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set headerName value
-         **/
-setHeaderName( param:string ){
-            this.highLevel().attrOrCreate("headerName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "PassThroughSecuritySchemeSettingsImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "PassThroughSecuritySchemeSettings";}
-}
-
 
 /**
  * Declares globally referable security scheme definition
@@ -2767,8 +2316,8 @@ kind(  ):string{return "OAuth1SecurityScheme";}
 export class PassThroughSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements PassThroughSecurityScheme{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createPassThroughSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
-settings(  ):PassThroughSecuritySchemeSettings{
-             return <PassThroughSecuritySchemeSettings>super.element('settings');
+settings(  ):SecuritySchemeSettings{
+             return <SecuritySchemeSettings>super.element('settings');
          }
 
 
@@ -2846,6 +2395,170 @@ wrapperClassName(  ):string{return "CustomSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "CustomSecurityScheme";}
+}
+
+export class MethodImpl extends MethodBaseImpl implements Method{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Method that can be called
+         **/
+method(  ):string{
+             return <string>super.attribute('method', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set method value
+         **/
+setMethod( param:string ){
+            this.highLevel().attrOrCreate("method").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * The displayName attribute specifies the method display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "MethodImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Method";}
+
+
+        /**
+         * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
+         **/
+parentResource(  ):Resource{
+            return helper.parentResource(this);
+        }
+
+
+        /**
+         * Api owning the resource as a sibling
+         **/
+ownerApi(  ):Api{
+            return helper.ownerApi(this);
+        }
+
+
+        /**
+         * For methods of Resources: `{parent Resource relative path} {methodName}`.
+         * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
+         * For other methods throws Exception.
+         **/
+methodId(  ):string{
+            return helper.methodId(this);
+        }
+
+
+        /**
+         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+         * returns schemes defined with `securedBy` at API level.
+         * @deprecated
+         **/
+allSecuredBy(  ):SecuritySchemeRef[]{
+            return helper.allSecuredBy(this);
+        }
+}
+
+export class TraitImpl extends MethodBaseImpl implements Trait{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "TraitImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Trait";}
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
 }
 
 export class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef{
@@ -2974,15 +2687,7 @@ relativeUri(  ):RelativeUriString{
 
 
         /**
-         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
-         **/
-resources(  ):Resource[]{
-             return <Resource[]>super.elements('resources');
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the resource.
+         * The displayName attribute specifies the resource display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string{
              return <string>super.attribute('displayName', this.toString);
@@ -2997,6 +2702,14 @@ setDisplayName( param:string ){
             this.highLevel().attrOrCreate("displayName").setValue(""+param);
             return this;
         }
+
+
+        /**
+         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
+         **/
+resources(  ):Resource[]{
+             return <Resource[]>super.elements('resources');
+         }
 
 
         /**
@@ -3147,6 +2860,24 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
+         * The displayName attribute specifies the resource type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
          * Name of the resource type
          **/
 name(  ):string{
@@ -3180,14 +2911,6 @@ setUsage( param:string ){
             this.highLevel().attrOrCreate("usage").setValue(""+param);
             return this;
         }
-
-
-        /**
-         * You may import library locally here it contents is accessible only inside of this resource type
-         **/
-uses(  ):Library[]{
-             return <Library[]>super.elements('uses');
-         }
 
 
         /**
@@ -3364,6 +3087,109 @@ wrapperClassName(  ):string{return "DocumentationItemImpl";}
 kind(  ):string{return "DocumentationItem";}
 }
 
+export class LibraryBaseImpl extends RAMLLanguageElementImpl implements LibraryBase{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibraryBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
+         **/
+schemas(  ):GlobalSchema[]{
+             return <GlobalSchema[]>super.elements('schemas');
+         }
+
+
+        /**
+         * Declarations of (data) types for use within this API
+         **/
+types(  ):TypeDeclaration[]{
+             return <TypeDeclaration[]>super.elements('types');
+         }
+
+
+        /**
+         * Declarations of traits for use within this API
+         * @hidden
+         **/
+traits_original(  ):Trait[]{
+             return <Trait[]>super.elements('traits');
+         }
+
+
+        /**
+         * Declarations of resource types for use within this API
+         * @hidden
+         **/
+resourceTypes_original(  ):ResourceType[]{
+             return <ResourceType[]>super.elements('resourceTypes');
+         }
+
+
+        /**
+         * Declarations of annotation types for use by annotations
+         **/
+annotationTypes(  ):AnnotationTypeDeclaration[]{
+             return <AnnotationTypeDeclaration[]>super.elements('annotationTypes');
+         }
+
+
+        /**
+         * Declarations of security schemes for use within this API.
+         **/
+securitySchemes(  ):AbstractSecurityScheme[]{
+             return <AbstractSecurityScheme[]>super.elements('securitySchemes');
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "LibraryBaseImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "LibraryBase";}
+
+
+        /**
+         * Declarations of traits for use within this API
+         * @hidden
+         **/
+traits(  ):Trait[]{
+            return helper.traitsPrimary(this);
+        }
+
+
+        /**
+         * Retrieve all traits including those defined in libraries
+         * @deprecated
+         **/
+allTraits(  ):Trait[]{
+            return helper.allTraits(this);
+        }
+
+
+        /**
+         * Declarations of resource types for use within this API
+         * @hidden
+         **/
+resourceTypes(  ):ResourceType[]{
+            return helper.resourceTypesPrimary(this);
+        }
+
+
+        /**
+         * Retrieve all resource types including those defined in libraries
+         * @deprecated
+         **/
+allResourceTypes(  ):ResourceType[]{
+            return helper.allResourceTypes(this);
+        }
+}
+
 export class RAMLSimpleElementImpl extends core.BasicNodeImpl implements RAMLSimpleElement{
 
         /**
@@ -3379,8 +3205,8 @@ wrapperClassName(  ):string{return "RAMLSimpleElementImpl";}
 kind(  ):string{return "RAMLSimpleElement";}
 }
 
-export class ImportDeclarationImpl extends RAMLSimpleElementImpl implements ImportDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createImportDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+export class UsesDeclarationImpl extends RAMLSimpleElementImpl implements UsesDeclaration{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUsesDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3402,10 +3228,41 @@ setKey( param:string ){
 
 
         /**
-         * Content of the declared namespace
+         * Content of the schema
          **/
-value(  ):Library{
-             return <Library>super.element('value');
+value(  ):string{
+             return <string>super.attribute('value', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set value value
+         **/
+setValue( param:string ){
+            this.highLevel().attrOrCreate("value").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "UsesDeclarationImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "UsesDeclaration";}
+}
+
+export class FragmentDeclarationImpl extends RAMLSimpleElementImpl implements FragmentDeclaration{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFragmentDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+uses(  ):UsesDeclaration[]{
+             return <UsesDeclaration[]>super.elements('uses');
          }
 
 
@@ -3413,13 +3270,13 @@ value(  ):Library{
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "ImportDeclarationImpl";}
+wrapperClassName(  ):string{return "FragmentDeclarationImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "ImportDeclaration";}
+kind(  ):string{return "FragmentDeclaration";}
 }
 
 
@@ -3467,6 +3324,59 @@ wrapperClassName(  ):string{return "GlobalSchemaImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "GlobalSchema";}
+}
+
+export class LibraryImpl extends LibraryBaseImpl implements Library{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibrary(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * contains description of why library exist
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Namespace which the library is imported under
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "LibraryImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Library";}
 }
 
 export class ApiImpl extends LibraryBaseImpl implements Api{
@@ -3547,8 +3457,8 @@ setProtocols( param:string ){
         /**
          * The default media type to use for request and response bodies (payloads), e.g. "application/json"
          **/
-mediaType(  ):MimeType{
-             return <MimeType>super.attribute('mediaType', (attr:hl.IAttribute)=>new MimeTypeImpl(attr));
+mediaType(  ):MimeType[]{
+             return <MimeType[]>super.attributes('mediaType', (attr:hl.IAttribute)=>new MimeTypeImpl(attr));
          }
 
 
@@ -3574,24 +3484,6 @@ resources(  ):Resource[]{
 documentation(  ):DocumentationItem[]{
              return <DocumentationItem[]>super.elements('documentation');
          }
-
-
-        /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -3713,17 +3605,17 @@ setUsage( param:string ){
         /**
          * Location of a valid RAML API definition (or overlay or extension), the overlay is applied to.
          **/
-masterRef(  ):string{
-             return <string>super.attribute('masterRef', this.toString);
+extends(  ):string{
+             return <string>super.attribute('extends', this.toString);
          }
 
 
         /**
          * @hidden
-         * Set masterRef value
+         * Set extends value
          **/
-setMasterRef( param:string ){
-            this.highLevel().attrOrCreate("masterRef").setValue(""+param);
+setExtends( param:string ){
+            this.highLevel().attrOrCreate("extends").setValue(""+param);
             return this;
         }
 
@@ -3784,17 +3676,17 @@ setUsage( param:string ){
         /**
          * Location of a valid RAML API definition (or overlay or extension), the extension is applied to
          **/
-masterRef(  ):string{
-             return <string>super.attribute('masterRef', this.toString);
+extends(  ):string{
+             return <string>super.attribute('extends', this.toString);
          }
 
 
         /**
          * @hidden
-         * Set masterRef value
+         * Set extends value
          **/
-setMasterRef( param:string ){
-            this.highLevel().attrOrCreate("masterRef").setValue(""+param);
+setExtends( param:string ){
+            this.highLevel().attrOrCreate("extends").setValue(""+param);
             return this;
         }
 
@@ -3903,9 +3795,9 @@ function createTypeDeclaration(key:string){
 /**
  * @hidden
  **/
-function createExampleSpec(key:string){
+function createXMLFacetInfo(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("ExampleSpec");
+    var nc=<def.NodeClass>universe.type("XMLFacetInfo");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -4043,6 +3935,46 @@ function createNumberAnnotationTypeDeclaration(key:string){
 /**
  * @hidden
  **/
+function createDateOnly(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("DateOnly");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createTimeOnly(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("TimeOnly");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createDateTimeOnly(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("DateTimeOnly");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createDateTime(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("DateTime");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
 function createDateTypeDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("DateTypeDeclaration");
@@ -4073,19 +4005,9 @@ function createFileTypeDeclaration(key:string){
 /**
  * @hidden
  **/
-function createAbstractSecurityScheme(key:string){
+function createTrait(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("AbstractSecurityScheme");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createSecuritySchemePart(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("SecuritySchemePart");
+    var nc=<def.NodeClass>universe.type("Trait");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -4113,6 +4035,16 @@ function createHasNormalParameters(key:string){
 /**
  * @hidden
  **/
+function createSecuritySchemePart(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("SecuritySchemePart");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
 function createResponse(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("Response");
@@ -4123,29 +4055,9 @@ function createResponse(key:string){
 /**
  * @hidden
  **/
-function createTrait(key:string){
+function createAbstractSecurityScheme(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("Trait");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createLibrary(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("Library");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createMethod(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("Method");
+    var nc=<def.NodeClass>universe.type("AbstractSecurityScheme");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -4176,16 +4088,6 @@ function createOAuth1SecuritySchemeSettings(key:string){
 function createOAuth2SecuritySchemeSettings(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("OAuth2SecuritySchemeSettings");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createPassThroughSecuritySchemeSettings(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("PassThroughSecuritySchemeSettings");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -4253,6 +4155,16 @@ function createCustomSecurityScheme(key:string){
 /**
  * @hidden
  **/
+function createMethod(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("Method");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
 function createResourceType(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("ResourceType");
@@ -4313,9 +4225,29 @@ function createRAMLSimpleElement(key:string){
 /**
  * @hidden
  **/
-function createImportDeclaration(key:string){
+function createUsesDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("ImportDeclaration");
+    var nc=<def.NodeClass>universe.type("UsesDeclaration");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createFragmentDeclaration(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("FragmentDeclaration");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createLibrary(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("Library");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
