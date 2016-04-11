@@ -9,9 +9,10 @@
     "generateDocumentation" : "node dist/raml1/tools/packageTSParser.js -skipSources",
     "generateBrowserVersion" : "node dist/browserVersionGenerator/browserVersionGenerator.js",
     "generateBrowserVersionDev" : "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
-    "pullall" : "node dist/devUtil/devUtils.js pullall",
-    "buildall" : "node dist/devUtil/devUtils.js buildall",
-    "testall" : "node dist/devUtil/devUtils.js testall"
+    "pullall" : "dev-env-installer pullall",
+    "buildall" : "dev-env-installer buildall",
+    "testall" : "dev-env-installer testall",
+    "devInstall": "dev-env-installer install"
   },
   "dependencies": {
     "base64url": "^1.0.6",
@@ -67,7 +68,8 @@
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
     "chai-as-promised": "^5.2.0",
-    "json-loader":"^0.5.1"
+    "json-loader":"^0.5.1",
+    "dev-env-installer":"^0.0.1"
   },
   "browser": {
     "fs": false,
