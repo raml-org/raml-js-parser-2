@@ -22,11 +22,6 @@
     "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git",
     "installTypings" : true
   },
-  "atom-ui-lib" : {
-    "build" : "npm run build",
-    "gitUrl" : "https://github.com/mulesoft-labs/ui-libs.git",
-    "installTypings" : true
-  },
   "yaml-ast-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/yaml-ast-parser.git"
