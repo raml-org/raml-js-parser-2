@@ -263,10 +263,6 @@ runtimeType(  ):hl.ITypeDefinition
          **/
 validateInstance( value:any ):string[]
 
-
-        /**
-         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         **/
 example(  ):string
 }
 
@@ -311,10 +307,6 @@ annotations(  ):AnnotationRef[]
          **/
 structuredContent(  ):TypeInstance
 
-
-        /**
-         * String representation of example
-         **/
 content(  ):string
 }
 
@@ -771,7 +763,7 @@ uses(  ):Library[]
 
 
         /**
-         * Declarations of traits for use within this API
+         * Retrieve all traits including those defined in libraries
          **/
 traits(  ):Trait[]
 
@@ -784,7 +776,7 @@ allTraits(  ):Trait[]
 
 
         /**
-         * Declarations of resource types for use within this API
+         * Retrieve all resource types including those defined in libraries
          **/
 resourceTypes(  ):ResourceType[]
 
@@ -1107,7 +1099,15 @@ securedBy(  ):SecuritySchemeRef[]
 
 
         /**
-         * Detailed information about any URI parameters of this resource
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * but it is among Resource.uriParameters().
          **/
 uriParameters(  ):TypeDeclaration[]
 
@@ -1431,7 +1431,16 @@ allResources(  ):Resource[]
 
 
         /**
-         * Named parameters used in the baseUri (template)
+         * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * version: v1
+         * baseUri: https://{organization}.example.com/{version}/{service}
+         * baseUriParameters:
+         * service:
+         * ```
+         * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
+         * but they are among `Api.baseUriParameters()`.
          **/
 baseUriParameters(  ):TypeDeclaration[]
 

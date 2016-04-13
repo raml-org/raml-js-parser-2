@@ -2017,7 +2017,6 @@ ownerApi(  ):Api{
 
         /**
          * Uri parameters of this resource
-         * @hidden
          **/
 uriParameters(  ):Parameter[]{
             return helper.uriParametersPrimary(this);
@@ -2232,7 +2231,6 @@ expand(  ):Api{
 
         /**
          * Declarations of traits used in this API
-         * @hidden
          **/
 traits(  ):Trait[]{
             return helper.traitsPrimary(this);
@@ -2250,7 +2248,6 @@ allTraits(  ):Trait[]{
 
         /**
          * Declaration of resource types used in this API
-         * @hidden
          **/
 resourceTypes(  ):ResourceType[]{
             return helper.resourceTypesPrimary(this);
@@ -2284,7 +2281,6 @@ allResources(  ):Resource[]{
 
         /**
          * Base uri parameters are named parameters which described template parameters in the base uri
-         * @hidden
          **/
 baseUriParameters(  ):Parameter[]{
             return helper.baseUriParametersPrimary(this);
