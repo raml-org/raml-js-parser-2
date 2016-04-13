@@ -33,6 +33,7 @@
     "raml-parser": "^0.8.11",
     "then-request": "^2.2.0",
     "ts-structure-parser": "^0.0.6",
+    "ts-model": "^0.0.7",
     "typescript-compiler": "1.4.1-2",
     "underscore": "^1.8.3",
     "wrench": "^1.5.8",

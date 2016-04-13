@@ -1,6 +1,6 @@
 /// <reference path="../../typings/main.d.ts" />
 import def=require("raml-definition-system")
-import td=require("./TSDeclModel")
+import td=require("ts-model")
 import util=require("../util/index")
 import tsModel = require("ts-structure-parser")
 import helperMethodExtractor = tsModel.helperMethodExtractor
@@ -268,11 +268,13 @@ export class ParserGenerator{
 
             var methodName = m.wrapperMethodName;
             var existing = this.getExistingMethods(decl, methodName);
+            var existingComment:string = "";
             if(isImpl){
                 existing.forEach(x=>{
                     x.name += '_original';
                     var comment = x._comment || "";
                     if(comment.trim().length>0){
+                        existingComment = comment;
                         comment += "\n";
                     }
                     x._comment = comment + "@hidden";
@@ -289,8 +291,8 @@ export class ParserGenerator{
                 }
                 comment += '@deprecated';
             }
-            if(existing.length>0){
-                method._comment = existing[0]._comment;
+            if(existingComment.length>0){
+                method._comment = existingComment;
             }
             else if(comment.trim().length>0) {
                 method._comment = comment;
