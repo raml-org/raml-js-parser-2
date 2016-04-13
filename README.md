@@ -66,6 +66,4 @@ For each repository, preserving the order:
 For each repository, preserving the order:
 * Build : `npm run build`
 
-![RAML Parser dependencies](RAML Parser.png)
-
 How to test: `gulp test`
