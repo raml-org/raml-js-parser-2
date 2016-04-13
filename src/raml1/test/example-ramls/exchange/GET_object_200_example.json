@@ -1,0 +1,144 @@
+{
+  "name_url":"name-url",
+  "organization_id":1,
+  "id":273,
+  "name":"Name",
+  "summary":"summary",
+  "description":"some description",
+  "icon_url":"http://someurl.com",
+  "type_id":1,
+  "download_url":null,
+  "video_caption":"some video caption",
+  "created_at":"2015-01-28T19:41:12.822Z",
+  "updated_at":"2015-01-28T19:41:12.822Z",
+  "owner":"anypointadmin",
+  "state":"unpublished",
+  "youtube_video_url":"http://another.com",
+  "metadata":[
+    {
+      "id":19356,
+      "object_id":273,
+      "label":"Some label group",
+      "type":"tag",
+      "text":"Good-tag",
+      "value":"Good-tag"
+    },
+    {
+      "id":19357,
+      "object_id":273,
+      "label":"Some label group",
+      "type":"tag",
+      "text":"Another-tag",
+      "value":"Another-tag"
+    }
+  ],
+  "versions":[
+    {
+      "id":874,
+      "object_id":273,
+      "mule_version_id":"3.5",
+      "download_url":"http://somevalidurl.com",
+      "doc_url":"http://anotherValidUrl.com",
+      "feature_id":null,
+      "object_version":"1.2",
+      "api_version":null,
+      "website":null,
+      "muleVersion":{
+        "id":"3.5",
+        "connectors_update_site_url":"http://repository.mulesoft.org/connectors/releases/3.5.0",
+        "doc_url":"http://www.mulesoft.org/documentation/display/current/Home",
+        "feature_id":null,
+        "active":true
+      },
+      "actions":[
+        {
+          "type":"download"
+        }
+      ],
+      "isSuggested":true
+    }
+  ],
+  "organization":{
+    "id":1,
+    "name":"MuleSoft"
+  },
+  "type":{
+    "id":1,
+    "name":"template",
+    "active":true,
+    "recipe":{
+      "body":[
+        "header",
+        "video",
+        "description",
+        "versions"
+      ]
+    },
+    "actions":{
+      "download":{
+        "active":true,
+        "label":"Download"
+      },
+      "install":{
+        "active":false,
+        "label":"Install in Studio"
+      },
+      "open":{
+        "active":true,
+        "label":"Open in Studio"
+      },
+      "gotolink":{
+        "active":true,
+        "label":"Go to link"
+      },
+      "api":{
+        "active":false,
+        "label":""
+      }
+    },
+    "versions_recipe":[
+      [
+        {
+          "label":"Template version",
+          "attribute":"object_version"
+        },
+        {
+          "label":"Runtime version",
+          "attribute":"mule_version_id"
+        }
+      ],
+      [
+        {
+          "options":[
+            {
+              "label":"Download",
+              "attribute":"download_url",
+              "hint":"Url to file",
+              "placeholder":"http://some.link.com/some-file.zip",
+              "type":"url"
+            },
+            {
+              "label":"Link",
+              "attribute":"website",
+              "hint":"Website",
+              "placeholder":"http://web.site.com",
+              "type":"url"
+            },
+            {
+              "label":"No link"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "label":"Documentation URL",
+          "attribute":"doc_url",
+          "optional":true,
+          "type":"url"
+        }
+      ]
+    ],
+    "tos":"http://www.mulesoft.com/sites/default/files/template_license_v3.doc"
+  }
+}

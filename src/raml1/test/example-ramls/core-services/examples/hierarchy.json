@@ -1,0 +1,201 @@
+{
+  "name": "MuleSoft Inc",
+  "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+  "createdAt": "2015-03-13T18:03:23.869Z",
+  "updatedAt": "2015-03-13T18:03:24.207Z",
+  "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+  "clientId": "b63237d9c5d444ea95147065e0711161",
+  "domain": "mulesoft-inc",
+  "idprovider_id": "mulesoft",
+  "isFederated": false,
+  "parentOrganizationIds": [],
+  "subOrganizationIds": [
+    "bec472ed-dbeb-48b5-b978-0984394673a6",
+    "0d12b66b-ee6a-4d66-b36c-6aeee637cde2",
+    "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+  ],
+  "tenantOrganizationIds": [],
+  "isMaster": true,
+  "properties": null,
+  "owner": {
+    "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+    "username": "organization_owner",
+    "firstName": "Organization",
+    "lastName": "Owner",
+    "email": "api.platform.qa+o_o@gmail.com",
+    "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+    "enabled": true
+  },
+  "subOrganizations": [
+    {
+      "name": "Sales",
+      "id": "07fd6c5b-0036-48a3-b2af-3194c06bed6c",
+      "createdAt": "2015-03-13T18:03:28.663Z",
+      "updatedAt": "2015-03-13T18:03:28.669Z",
+      "ownerId": "e3c4c70d-bf11-4f64-8cc6-b75b5d2200a6",
+      "clientId": "696e3d7104f6456fa06f21a9e05d9067",
+      "domain": "sales",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentOrganizationIds": [
+        "f0c9b011-980e-4928-9430-e60e3a97c043"
+      ],
+      "subOrganizationIds": [],
+      "tenantOrganizationIds": [],
+      "isMaster": false,
+      "subOrganizations": [],
+      "owner": {
+        "id": "e3c4c70d-bf11-4f64-8cc6-b75b5d2200a6",
+        "username": "sales_director",
+        "firstName": "Sales",
+        "lastName": "Director",
+        "email": "api.platform.qa+sales_director@gmail.com",
+        "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "enabled": true
+      }
+    },
+    {
+      "name": "Engineering",
+      "id": "bec472ed-dbeb-48b5-b978-0984394673a6",
+      "createdAt": "2015-03-13T18:03:28.356Z",
+      "updatedAt": "2015-03-13T18:03:28.363Z",
+      "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "clientId": "33b046c20d4f448fad768af6394ce341",
+      "domain": "engineering",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentOrganizationIds": [
+        "f0c9b011-980e-4928-9430-e60e3a97c043"
+      ],
+      "subOrganizationIds": [
+        "4b1240fd-e1df-44a8-9949-6778c3d3dd91",
+        "bea09f72-33ce-43ce-82fe-32f9f0bd49ea",
+        "d156efa0-04c3-41fa-a2d3-e0b428d2cb4e"
+      ],
+      "tenantOrganizationIds": [],
+      "isMaster": false,
+      "subOrganizations": [
+        {
+          "name": "API Platform",
+          "id": "4b1240fd-e1df-44a8-9949-6778c3d3dd91",
+          "createdAt": "2015-03-13T18:03:28.407Z",
+          "updatedAt": "2015-03-13T18:03:28.415Z",
+          "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+          "clientId": "74a2b53b218c410aba751e40bbd6995e",
+          "domain": "api-platform",
+          "idprovider_id": "mulesoft",
+          "isFederated": false,
+          "parentOrganizationIds": [
+            "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "bec472ed-dbeb-48b5-b978-0984394673a6"
+          ],
+          "subOrganizationIds": [],
+          "tenantOrganizationIds": [],
+          "isMaster": false,
+          "subOrganizations": [],
+          "owner": {
+            "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+            "username": "organization_owner",
+            "firstName": "Organization",
+            "lastName": "Owner",
+            "email": "api.platform.qa+o_o@gmail.com",
+            "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "enabled": true
+          }
+        },
+        {
+          "name": "Mule ESB",
+          "id": "bea09f72-33ce-43ce-82fe-32f9f0bd49ea",
+          "createdAt": "2015-03-13T18:03:28.484Z",
+          "updatedAt": "2015-03-13T18:03:28.494Z",
+          "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+          "clientId": "33d79234ef0746918ac2e56271ceafe7",
+          "domain": "mule-esb",
+          "idprovider_id": "mulesoft",
+          "isFederated": false,
+          "parentOrganizationIds": [
+            "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "bec472ed-dbeb-48b5-b978-0984394673a6"
+          ],
+          "subOrganizationIds": [],
+          "tenantOrganizationIds": [],
+          "isMaster": false,
+          "subOrganizations": [],
+          "owner": {
+            "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+            "username": "organization_owner",
+            "firstName": "Organization",
+            "lastName": "Owner",
+            "email": "api.platform.qa+o_o@gmail.com",
+            "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "enabled": true
+          }
+        },
+        {
+          "name": "CloudHub",
+          "id": "d156efa0-04c3-41fa-a2d3-e0b428d2cb4e",
+          "createdAt": "2015-03-13T18:03:28.525Z",
+          "updatedAt": "2015-03-13T18:03:28.547Z",
+          "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+          "clientId": "36b929441ead4576b2fcf66fa98a2ca9",
+          "domain": "cloudhub",
+          "idprovider_id": "mulesoft",
+          "isFederated": false,
+          "parentOrganizationIds": [
+            "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "bec472ed-dbeb-48b5-b978-0984394673a6"
+          ],
+          "subOrganizationIds": [],
+          "tenantOrganizationIds": [],
+          "isMaster": false,
+          "subOrganizations": [],
+          "owner": {
+            "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+            "username": "organization_owner",
+            "firstName": "Organization",
+            "lastName": "Owner",
+            "email": "api.platform.qa+o_o@gmail.com",
+            "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+            "enabled": true
+          }
+        }
+      ],
+      "owner": {
+        "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+        "username": "organization_owner",
+        "firstName": "Organization",
+        "lastName": "Owner",
+        "email": "api.platform.qa+o_o@gmail.com",
+        "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "enabled": true
+      }
+    },
+    {
+      "name": "Finance",
+      "id": "0d12b66b-ee6a-4d66-b36c-6aeee637cde2",
+      "createdAt": "2015-03-13T18:03:28.575Z",
+      "updatedAt": "2015-03-13T18:03:28.594Z",
+      "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "clientId": "1245b108cb7d4961931e59418d785002",
+      "domain": "finance",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "parentOrganizationIds": [
+        "f0c9b011-980e-4928-9430-e60e3a97c043"
+      ],
+      "subOrganizationIds": [],
+      "tenantOrganizationIds": [],
+      "isMaster": false,
+      "subOrganizations": [],
+      "owner": {
+        "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+        "username": "organization_owner",
+        "firstName": "Organization",
+        "lastName": "Owner",
+        "email": "api.platform.qa+o_o@gmail.com",
+        "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "enabled": true
+      }
+    }
+  ]
+}

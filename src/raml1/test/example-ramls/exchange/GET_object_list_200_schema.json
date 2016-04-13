@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required" : true,
+  "type" : "array",
+  "properties": {
+    "id": { "required": true, "type": "number" },
+    "name": { "required": true, "type": "string" },
+    "summary": { "required": false, "type": ["string","null"] },
+    "icon_url": { "required": false, "type": ["string","null"] },
+    "owner": { "required": true, "type": "string" },
+    "name_url": { "required": true, "type": "string" },
+    "type_id": { "required": true, "type": "number" },
+    "organization": { "required": true, "type": "object" },
+    "versions": { "required": true, "type": "array" },
+    "rank": { "required": true, "type": "number" },
+    "is_full_match": { "required": true, "type": "boolean" },
+    "type": { "required": true, "type": "object" },
+    "youtube_vide_url": { "required": false, "type": ["string","null"] },
+    "video_caption": { "required": false, "type": ["string","null"] }
+  }
+}

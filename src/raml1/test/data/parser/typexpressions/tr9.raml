@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Slack types
+types:
+  ChannelItem:
+    type: object
+    properties:
+      topic?: object
+      purpose:
+        type: object
+        properties:
+          value: string
+          creator: string
+          last_set: string
+    example:
+      purpose:
+
+      topic:
+        value: "Fun times"
+        creator: "U024BE7LV"
+        last_set: "1369677212"
+      purpose:
+        value: "This channel is for fun"
+        creator: "U024BE7LH"
+        last_set: "1360782804"

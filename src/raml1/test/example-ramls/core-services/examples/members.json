@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "4b353f44-6486-42ae-ae77-18b4032f9643",
+      "username": "uzer1.test",
+      "firstName": "Uzer",
+      "lastName": "1",
+      "email": "api.platform.qa+uzer@gmail.com",
+      "organizationId": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "enabled": true
+    }
+  ],
+  "total": 1
+}

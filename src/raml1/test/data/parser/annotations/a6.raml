@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+types:
+  Point:
+    type: object
+    properties:
+      x: number
+      y: number
+annotationTypes:
+  Label:
+    properties:
+      point: Point[]
+/hee:
+  (Label):
+      point:
+        -
+          x: 4
+          y: 3
+        -
+          x: 3
+          y: 1

@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://anypoint.io/amc/application",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "http://anypoint.io/amc/application/id",
+      "type": "integer"
+    },
+    "timeCreated": {
+      "id": "http://anypoint.io/amc/application/timeCreated",
+      "type": "integer"
+    },
+    "timeUpdated": {
+      "id": "http://anypoint.io/amc/application/timeUpdated",
+      "type": "integer"
+    },
+    "serverArtifacts": {
+      "id": "http://anypoint.io/amc/application/serverArtifacts",
+      "type": "array",
+      "items": [
+        {
+          "id": "http://anypoint.io/amc/application/serverArtifacts/0",
+          "type": "object",
+          "properties": {
+            "id": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/id",
+              "type": "integer"
+            },
+            "timeCreated": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/timeCreated",
+              "type": "integer"
+            },
+            "timeUpdated": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/timeUpdated",
+              "type": "integer"
+            },
+            "artifactName": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifactName",
+              "type": "string"
+            },
+            "artifact": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact/id",
+                  "type": "integer"
+                },
+                "name": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact/name",
+                  "type": "string"
+                },
+                "fileName": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact/fileName",
+                  "type": "string"
+                },
+                "fileChecksum": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact/fileChecksum",
+                  "type": "string"
+                },
+                "timeUpdated": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/0/artifact/timeUpdated",
+                  "type": "integer"
+                }
+              }
+            },
+            "deploymentId": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/deploymentId",
+              "type": "integer"
+            },
+            "serverId": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/serverId",
+              "type": "integer"
+            },
+            "lastReportedStatus": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/lastReportedStatus",
+              "type": "string"
+            },
+            "desiredStatus": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/desiredStatus",
+              "type": "string"
+            },
+            "message": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/message",
+              "type": "string"
+            },
+            "discovered": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/0/discovered",
+              "type": "boolean"
+            }
+          }
+        },
+        {
+          "id": "http://anypoint.io/amc/application/serverArtifacts/1",
+          "type": "object",
+          "properties": {
+            "id": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/id",
+              "type": "integer"
+            },
+            "timeCreated": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/timeCreated",
+              "type": "integer"
+            },
+            "timeUpdated": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/timeUpdated",
+              "type": "integer"
+            },
+            "artifactName": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifactName",
+              "type": "string"
+            },
+            "artifact": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact/id",
+                  "type": "integer"
+                },
+                "name": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact/name",
+                  "type": "string"
+                },
+                "fileName": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact/fileName",
+                  "type": "string"
+                },
+                "fileChecksum": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact/fileChecksum",
+                  "type": "string"
+                },
+                "timeUpdated": {
+                  "id": "http://anypoint.io/amc/application/serverArtifacts/1/artifact/timeUpdated",
+                  "type": "integer"
+                }
+              }
+            },
+            "deploymentId": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/deploymentId",
+              "type": "integer"
+            },
+            "serverId": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/serverId",
+              "type": "integer"
+            },
+            "lastReportedStatus": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/lastReportedStatus",
+              "type": "string",
+              "enum":[
+
+              ]
+            },
+            "desiredStatus": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/desiredStatus",
+              "type": "string",
+              "enum":[
+
+              ]
+            },
+            "message": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/message",
+              "type": "string"
+            },
+            "discovered": {
+              "id": "http://anypoint.io/amc/application/serverArtifacts/1/discovered",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "desiredStatus": {
+      "id": "http://anypoint.io/amc/application/desiredStatus",
+      "type": "string",
+      "enum":[
+        "STARTING",
+        "PARTIALLY_STARTED",
+        "DEPLOYMENT_FAILED",
+        "STARTED",
+        "STOPPED",
+        "UNDEPLOYING",
+        "UNDEPLOYED",
+        "UPDATED"
+      ]
+    },
+    "artifact": {
+      "id": "http://anypoint.io/amc/application/artifact",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://anypoint.io/amc/application/artifact/id",
+          "type": "integer"
+        },
+        "name": {
+          "id": "http://anypoint.io/amc/application/artifact/name",
+          "type": "string"
+        },
+        "fileName": {
+          "id": "http://anypoint.io/amc/application/artifact/fileName",
+          "type": "string"
+        },
+        "fileChecksum": {
+          "id": "http://anypoint.io/amc/application/artifact/fileChecksum",
+          "type": "string"
+        },
+        "timeUpdated": {
+          "id": "http://anypoint.io/amc/application/artifact/timeUpdated",
+          "type": "integer"
+        }
+      }
+    },
+    "target": {
+      "id": "http://anypoint.io/amc/application/target",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://anypoint.io/amc/application/target/id",
+          "type": "integer"
+        },
+        "timeCreated": {
+          "id": "http://anypoint.io/amc/application/target/timeCreated",
+          "type": "integer"
+        },
+        "timeUpdated": {
+          "id": "http://anypoint.io/amc/application/target/timeUpdated",
+          "type": "integer"
+        },
+        "name": {
+          "id": "http://anypoint.io/amc/application/target/name",
+          "type": "string"
+        },
+        "servers": {
+          "id": "http://anypoint.io/amc/application/target/servers",
+          "type": "array",
+          "items": [
+            {
+              "$ref": "http://anypoint.io/amc/server"
+            }
+          ]
+        },
+        "type": {
+          "id": "http://anypoint.io/amc/application/target/type",
+          "type": "string",
+          "enum":[
+            "SERVER",
+            "CLUSTER",
+            "SERVER_GROUP"
+          ]
+        },
+        "status": {
+          "id": "http://anypoint.io/amc/application/target/status",
+          "type": "string"
+        }
+      }
+    },
+    "lastReportedStatus": {
+      "id": "http://anypoint.io/amc/application/lastReportedStatus",
+      "type": "string",
+      "enum":[
+        "STARTING",
+        "PARTIALLY_STARTED",
+        "DEPLOYMENT_FAILED",
+        "STARTED",
+        "STOPPED",
+        "UNDEPLOYING",
+        "UNDEPLOYED",
+        "UPDATED"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "timeCreated",
+    "timeUpdated",
+    "serverArtifacts",
+    "desiredStatus",
+    "artifact",
+    "target",
+    "lastReportedStatus"
+  ]
+}

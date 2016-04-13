@@ -1,0 +1,6 @@
+{
+  "message": "No template found for id X",
+  "error": {
+    "stack": "Some stacktrace"
+  }
+}

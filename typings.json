@@ -1,0 +1,17 @@
+{
+  "ambientDependencies": {
+    "Q": "github:DefinitelyTyped/DefinitelyTyped/q/Q.d.ts#be0b6b394f77a59e192ad7cfec18078706e44db5",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#3b2ed809b9e8f7dc4fcc1d80199129a0b73fb277",
+    "underscore": "github:DefinitelyTyped/DefinitelyTyped/underscore/underscore.d.ts#56295f5058cac7ae458540423c50ac2dcf9fc711",
+    "es6-promise": "github:DefinitelyTyped/DefinitelyTyped/es6-promise/es6-promise.d.ts#95d860879fb90c405aeb13eea7b8564f9c0df2bf",
+    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#95ce1d9e8212be19d36aa8ccecb48303cc5c87f9",
+    "chai": "github:DefinitelyTyped/DefinitelyTyped/chai/chai.d.ts#be0b6b394f77a59e192ad7cfec18078706e44db5",
+    "pluralize": "file:custom_typings/pluralize.d.ts",
+    "lrucache": "file:custom_typings/lrucache.d.ts",
+    "mkdirp": "github:DefinitelyTyped/DefinitelyTyped/mkdirp/mkdirp.d.ts#52fa2b9ce36f2c5843204e9bfbaada7cded9b47a",
+    "marked": "github:DefinitelyTyped/DefinitelyTyped/marked/marked.d.ts#d93cab373e6f15928b1d4475fe63a65691cdc468",
+    "har": "file:custom_typings/har.d.ts",
+    "raml": "file:custom_typings/raml.d.ts",
+    "invariant": "file:custom_typings/invariant.d.ts"
+  }
+}

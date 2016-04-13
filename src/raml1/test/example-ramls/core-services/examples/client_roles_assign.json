@@ -1,0 +1,10 @@
+{
+  "20460a62-bbdc-469d-9330-5eec892abd05": {
+    "org": "ms",
+    "env": "test"
+  },
+  "20460a62-bbdc-469d-9660-5eec892abd05": {
+    "org": "ms",
+    "env": "dev"
+  }
+}

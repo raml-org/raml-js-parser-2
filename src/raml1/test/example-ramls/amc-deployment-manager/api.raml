@@ -1,0 +1,87 @@
+#%RAML 0.8
+title: hybrid-rest-services
+version: 0.4
+mediaType: application/json
+securedBy: [x-token]
+#baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
+baseUri: http://mocksvc.mulesoft.com/mocks/9265a7ff-b6c5-4e71-b545-7de22f5635c5/hybrid/api/v1
+
+securitySchemes:
+  - x-token: !include security-bearer.yaml
+
+traits:
+  - errorCodes: !include common/error-codes.yaml
+  - env-org-pair: !include common/env-org-pair.yaml
+
+resourceTypes:
+  - collection: !include common/collection.yaml
+  - collection-item: !include common/collection-item.yaml
+
+/applications:
+  is: [env-org-pair]
+  type:
+    collection:
+      exampleItem: !include samples/hybrid-include-application.sample
+  description: Lists the artifact deployed in a mule/gateway instance (applications)
+  post:
+    description: Deploy an artifact to a deployment target. Initiates deployment and creates server artifacts.
+    body:
+      multipart/form-data:
+        formParameters:
+          file:
+            description: The file to be uploaded
+            type: file
+          artifactName:
+            description: The name of the artifact.
+            type: string
+          targetId:
+            description: the id of the target.
+            type: string
+    responses:
+      201:
+  get:
+    description: Get deployed applications that matches the query params
+    queryParameters:
+      applicationId:
+        description: Retrieves a unique application.
+        type: number
+      targetId:
+        description: Retrieve all the applicatons deployed in a target.
+        type: number
+      satus:
+        description: Deployment status
+        enum: [STARTED, STARTING, UNDEPLOYED, DEPLOYMENT_FAILED, PARTIALLY_STARTED]
+    responses:
+      200:
+  /{applicationId}:
+    is: [env-org-pair]
+    type:
+      collection-item:
+        exampleItem: !include samples/hybrid-include-application.sample
+        schemaItem: !include schemas/application-schema.json
+    get:
+      description: Get The application deployment/status information
+      responses:
+        200:
+    delete:
+      description: Undeploy artifact from all servers in deployment target and delete the deployment
+      responses:
+        204:
+          description: Undeployment is in progress.
+    patch:
+      description: Redeploys the app with a new artifact. If the file is not specified in the request then hybrid redeploys the same file that is in the server. If the content type is application/json then it allows to change the status of the deployed application from started to stopped or from stopped to started. No other application status change is allowed.
+      body:
+        multipart/form-data:
+        application/json:
+          example: |
+            { "desiredStatus": "STOPPED"}
+      responses:
+        202:
+    /artifact:
+      is: [env-org-pair]
+      get:
+        description: Gets the artifact binary
+        responses:
+          200:
+            body:
+              application/octet-stream:

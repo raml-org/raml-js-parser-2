@@ -1,0 +1,19 @@
+Extension <-- 
+  title : StringType  =  Extension2
+  masterRef : StringType  =  api.raml
+  TestStringType <-- types
+    name : StringType  =  TestStringSubtype
+    testFacet : TestEnum  =  Third
+    type : StringType  =  TestStringType
+  StringTypeDeclaration <-- types
+    name : StringType  =  TestEnum
+    type : StringType  =  string
+    enum : StringType  =  First
+    enum : StringType  =  Second
+    enum : StringType  =  Third
+  StringTypeDeclaration <-- types
+    name : StringType  =  TestStringType
+    type : StringType  =  string
+    TestEnum <-- facets
+      name : StringType  =  testFacet
+      type : StringType  =  TestEnum

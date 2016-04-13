@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: hybrid-rest-services
+version: 0.4
+mediaType: application/json
+baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
+traits:
+  - env-org-pair:
+resourceTypes:
+  - servers-collection:
+/servers:
+  is: [env-org-pair]

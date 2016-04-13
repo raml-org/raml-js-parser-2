@@ -1,0 +1,16 @@
+#%RAML 1.0
+
+title: Api
+
+types:
+  MyType: !include subdir/scheme.json
+
+/resource:
+  get:
+    body:
+      application/json:
+        type: MyType
+        example:
+          parentName: somename
+          child:
+            childName1: anothername

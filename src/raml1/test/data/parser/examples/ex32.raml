@@ -1,0 +1,64 @@
+#%RAML 1.0
+title: Blah
+version: v1
+baseUri: https://api.instagram.com/{version}/
+types:
+  TestType:
+      properties:
+        name: string
+        name2: string
+        name3: TestType4
+  TestType2:
+      type: TestType
+      properties:
+        name4: string
+  TestType3:
+      type: TestType2
+      properties:
+        name5: string
+  TestType4:
+      type: object
+      properties:
+        proppp : string
+/test:
+  #/helloWorldddd1234ddd.post: (body:TestType2, query.bbb:number, header.blah:string)=> {201:TestType2,200:TestType}
+  /helloWorldddd1234ddd2:
+    get:
+      queryParameters:
+        bbb:
+          type: number
+      headers:
+        blah:
+          type: string
+      responses:
+        201:
+          body:
+            application/json:
+              schema: |
+                {
+                  "required": true,
+                  "$schema": "http://json-schema.org/draft-03/schema",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "required": false,
+                      "type": "string"
+                    }
+                  }
+                }
+        200:
+          body:
+            application/json:
+              schema: '{"required": true,"$schema": "http://json-schema.org/draft-03/schema","type": "object","properties": {  "message": {"required": false,"type": "string"}}}'
+        202:
+          body:
+            application/json:
+              type: TestType
+              example: |
+                {
+                  "name" : "blah",
+                  "name2" : "blah",
+                  "name3" : {
+                      proppp: "123245"
+                  }
+                }

@@ -1,0 +1,31 @@
+{
+   "searchParameters":[
+      {
+         "name":"transactionId",
+         "value":"123",
+         "operator":"like"
+      },
+      {
+         "name":"flowName",
+         "value":"jeff",
+         "operator":"like"
+      },
+      {
+         "name":"exceptionMessage",
+         "value":"ex",
+         "operator":"like"
+      },
+      {
+         "name":"processingTime",
+         "value":"1",
+         "operator":">="
+      },
+      {
+         "name":"processingTime",
+         "value":"1000",
+         "operator":"<="
+      }
+   ],
+   "startDate":"2015-05-13T12:54:13.847Z",
+   "endDate":"2015-05-13T13:54:13.847Z"
+}

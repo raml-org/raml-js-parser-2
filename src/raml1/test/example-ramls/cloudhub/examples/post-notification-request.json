@@ -1,0 +1,8 @@
+{
+  "domain": "jeff-1amstudios-test",
+  "message": "hello world",
+  "transactionId": "id",
+  "customProperties": [
+    { "prop": "value" }  
+  ]
+}

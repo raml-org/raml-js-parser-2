@@ -1,0 +1,28 @@
+#%RAML 1.0 Library
+
+types:
+
+  ###############
+  # Common:
+  ###############
+
+  Email:
+    pattern: "^\\w+(\\.\\w+)?@company.com"
+
+  StaticGroupNums:
+    enum: [ 12, 26, 30, 31, 32 ]
+
+  DynamicGroupNum:
+    pattern: "D\\-\\d+"
+
+  RecordId: # All ids are of this type
+    type: number
+
+  Record-base: # Any record in the system should have an id and a creation date
+    properties:
+      id:
+        type: RecordId
+        required: true
+      created:
+        type: date
+        required: true

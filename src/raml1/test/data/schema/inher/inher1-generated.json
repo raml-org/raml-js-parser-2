@@ -1,0 +1,19 @@
+{
+  "title": "Type11",
+  "type": "object",
+  "properties": {
+    "num1": {
+      "type": "number"
+    },
+    "str1": {
+      "type": "string"
+    },
+    "num11": {
+      "type": "number"
+    },
+    "str11": {
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

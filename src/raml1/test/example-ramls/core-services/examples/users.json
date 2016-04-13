@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "id": "4b353f44-6486-42ae-ae77-18b4032f9643",
+      "username": "uzer1.test",
+      "firstName": "Uzer",
+      "lastName": "1",
+      "email": "api.platform.qa+uzer@gmail.com",
+      "enabled": true,
+      "organization": {
+        "name": "MuleSoft Inc",
+        "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+        "createdAt": "2015-02-03T00:20:06.125Z",
+        "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+        "updatedAt": "2015-02-03T00:20:06.205Z",
+        "clientId": "1e4ea687b8794c679fe325b2e3550a17",
+        "domain": "mulesoft-inc",
+        "idprovider_id": "mulesoft",
+        "properties": {},
+        "entitlements": {
+          "createSubOrgs": false,
+          "createEnvironments": false,
+          "hybrid": { "enabled": false },
+          "globalDeployment": false,
+          "vCoresProduction": { "assigned": 1, "reassigned": 0 },
+          "vCoresSandbox": { "assigned": 1, "reassigned": 0 }
+        },
+        "isFederated": false,
+        "isMaster": true,
+        "parentOrganizationIds": [],
+        "subOrganizationIds": [],
+        "tenantOrganizationIds": []
+      }
+    }
+  ],
+  "total": 1
+}

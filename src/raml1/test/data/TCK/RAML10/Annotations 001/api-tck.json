@@ -1,0 +1,304 @@
+{
+    "ramlVersion": "RAML10",
+    "type": "Api",
+    "specification": {
+        "types": [
+            {
+                "MyType": {
+                    "displayName": "MyType",
+                    "annotations": {
+                        "simpleAnnotation": {
+                            "structuredValue": "simpleAnnotation_value_on_type",
+                            "name": "simpleAnnotation"
+                        },
+                        "objectAnnotation": {
+                            "structuredValue": {
+                                "property1": {
+                                    "field1": "field1_value",
+                                    "field2": 15
+                                },
+                                "property2": "baseProperty2_value"
+                            },
+                            "name": "objectAnnotation"
+                        }
+                    },
+                    "name": "MyType",
+                    "type": [
+                        "string"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                        "primitiveValuesMeta": {
+                            "displayName": {
+                                "calculated": true
+                            },
+                            "type": {
+                                "insertedAsDefault": true
+                            },
+                            "repeat": {
+                                "insertedAsDefault": true
+                            },
+                            "required": {
+                                "insertedAsDefault": true
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "annotationTypes": [
+            {
+                "simpleAnnotation": {
+                    "displayName": "simpleAnnotation",
+                    "name": "simpleAnnotation",
+                    "type": [
+                        "string"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "pattern": "[a-zA-Z0-9]{8,32}",
+                    "minLength": 8,
+                    "maxLength": 64,
+                    "__METADATA__": {
+                        "primitiveValuesMeta": {
+                            "displayName": {
+                                "calculated": true
+                            },
+                            "type": {
+                                "insertedAsDefault": true
+                            },
+                            "repeat": {
+                                "insertedAsDefault": true
+                            },
+                            "required": {
+                                "insertedAsDefault": true
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "objectAnnotation": {
+                    "displayName": "objectAnnotation",
+                    "name": "objectAnnotation",
+                    "type": [
+                        "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "properties": {
+                        "property1": {
+                            "displayName": "property1",
+                            "name": "property1",
+                            "type": [
+                                "object"
+                            ],
+                            "repeat": false,
+                            "required": true,
+                            "properties": {
+                                "field1": {
+                                    "displayName": "field1",
+                                    "name": "field1",
+                                    "type": [
+                                        "string"
+                                    ],
+                                    "repeat": false,
+                                    "required": false,
+                                    "__METADATA__": {
+                                        "primitiveValuesMeta": {
+                                            "displayName": {
+                                                "calculated": true
+                                            },
+                                            "type": {
+                                                "insertedAsDefault": true
+                                            },
+                                            "repeat": {
+                                                "insertedAsDefault": true
+                                            },
+                                            "required": {
+                                                "insertedAsDefault": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "field2": {
+                                    "displayName": "field2",
+                                    "name": "field2",
+                                    "type": [
+                                        "number"
+                                    ],
+                                    "repeat": false,
+                                    "required": true,
+                                    "__METADATA__": {
+                                        "primitiveValuesMeta": {
+                                            "displayName": {
+                                                "calculated": true
+                                            },
+                                            "repeat": {
+                                                "insertedAsDefault": true
+                                            },
+                                            "required": {
+                                                "insertedAsDefault": true
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "__METADATA__": {
+                                "primitiveValuesMeta": {
+                                    "displayName": {
+                                        "calculated": true
+                                    },
+                                    "type": {
+                                        "insertedAsDefault": true
+                                    },
+                                    "repeat": {
+                                        "insertedAsDefault": true
+                                    },
+                                    "required": {
+                                        "insertedAsDefault": true
+                                    }
+                                }
+                            }
+                        },
+                        "property2": {
+                            "displayName": "property2",
+                            "name": "property2",
+                            "type": [
+                                "string"
+                            ],
+                            "repeat": false,
+                            "required": false,
+                            "__METADATA__": {
+                                "primitiveValuesMeta": {
+                                    "displayName": {
+                                        "calculated": true
+                                    },
+                                    "type": {
+                                        "insertedAsDefault": true
+                                    },
+                                    "repeat": {
+                                        "insertedAsDefault": true
+                                    },
+                                    "required": {
+                                        "insertedAsDefault": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "__METADATA__": {
+                        "primitiveValuesMeta": {
+                            "displayName": {
+                                "calculated": true
+                            },
+                            "type": {
+                                "insertedAsDefault": true
+                            },
+                            "repeat": {
+                                "insertedAsDefault": true
+                            },
+                            "required": {
+                                "insertedAsDefault": true
+                            }
+                        }
+                    }
+                }
+            }
+        ],
+        "title": "TCK Sample. RAML 1.0 Annotations 001.",
+        "version": "v1",
+        "baseUri": "http://api.samplehost.com/{version}",
+        "baseUriParameters": {
+            "version": {
+                "displayName": "version",
+                "name": "version",
+                "type": [
+                    "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "enum": [
+                    "v1"
+                ],
+                "__METADATA__": {
+                    "calculated": true,
+                    "primitiveValuesMeta": {
+                        "displayName": {
+                            "calculated": true
+                        },
+                        "type": {
+                            "insertedAsDefault": true
+                        },
+                        "repeat": {
+                            "insertedAsDefault": true
+                        },
+                        "required": {
+                            "insertedAsDefault": true
+                        },
+                        "enum": {
+                            "calculated": true
+                        }
+                    }
+                }
+            }
+        },
+        "protocols": [
+            "HTTP"
+        ],
+        "resources": [
+            {
+                "displayName": "/helloWorld",
+                "methods": [
+                    {
+                        "annotations": {
+                            "simpleAnnotation": {
+                                "structuredValue": "simpleAnnotation_value_on_method",
+                                "name": "simpleAnnotation"
+                            },
+                            "objectAnnotation": {
+                                "structuredValue": {
+                                    "property1": {
+                                        "field2": 19
+                                    }
+                                },
+                                "name": "objectAnnotation"
+                            }
+                        },
+                        "protocols": [
+                            "HTTP"
+                        ],
+                        "method": "get",
+                        "__METADATA__": {
+                            "primitiveValuesMeta": {
+                                "protocols": {
+                                    "calculated": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "relativeUri": "/helloWorld",
+                "__METADATA__": {
+                    "primitiveValuesMeta": {
+                        "displayName": {
+                            "calculated": true
+                        }
+                    }
+                },
+                "relativeUriPathSegments": [
+                    "helloWorld"
+                ]
+            }
+        ],
+        "__METADATA__": {
+            "primitiveValuesMeta": {
+                "protocols": {
+                    "calculated": true
+                }
+            }
+        }
+    },
+    "errors": []
+}

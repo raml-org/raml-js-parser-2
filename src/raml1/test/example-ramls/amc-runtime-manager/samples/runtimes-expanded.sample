@@ -1,0 +1,105 @@
+{
+  "data": {
+    "clusters": [
+      {
+        "id": 4930,
+        "href":"clusters/4930",
+        "timeCreated": 1438007055399,
+        "timeUpdated": 1438007055399,
+        "name": "clusterName",
+        "multicastEnabled": true,
+        "servers": [
+          {
+            "id": 1333,
+            "timeCreated": 1435862255216,
+            "timeUpdated": 1438007055399,
+            "name": "clusteredServer",
+            "serverType": "GATEWAY",
+            "type": "SERVER",
+            "muleVersion": "3.7.0-SNAPSHOT",
+            "gatewayVersion": "2.0.0-RC1",
+            "agentVersion": null,
+            "status": "CREATED",
+            "addresses": [],
+            "currentClusteringIp": null,
+            "clusterId": 4930,
+            "clusterName": "clusterName"
+          }
+        ],
+        "status": "CREATED"
+      }
+    ],
+    "servers": [
+      {
+        "id": 2194,
+        "href":"servers/2194",
+        "timeCreated": 1437495853061,
+        "timeUpdated": 1437512467554,
+        "name": "clustering-server",
+        "serverType": "MULE",
+        "muleVersion": "3.6.1",
+        "agentVersion": "1.1.1",
+        "status": "DISCONNECTED",
+        "addresses": [
+          {
+            "ip": "172.16.12.169",
+            "networkInterface": "en0"
+          }
+        ],
+        "currentClusteringIp": null,
+        "clusterId": 2195,
+        "clusterName": "Cluster-1"
+      }
+    ],
+    "serverGroups": [
+      {
+        "id": 73,
+        "href":"serversGroups/73",
+        "timeCreated": 1432247776992,
+        "timeUpdated": 1432247776992,
+        "name": "Group2",
+        "servers": [
+          {
+            "id": 71,
+            "timeCreated": 1432247665613,
+            "timeUpdated": 1432301095608,
+            "name": "Server71",
+            "serverType": "MULE",
+            "type": "SERVER",
+            "muleVersion": "3.6.2",
+            "agentVersion": "1.0.1-SNAPSHOT",
+            "status": "DISCONNECTED",
+            "serverGroupId": 73,
+            "serverGroupName": "Group2",
+            "addresses": [
+              {
+                "ip": "172.16.12.169",
+                "networkInterface": "en0"
+              }
+            ]
+          },
+          {
+            "id": 72,
+            "timeCreated": 1432247685261,
+            "timeUpdated": 1432303178444,
+            "name": "Server73",
+            "serverType": "MULE",
+            "type": "SERVER",
+            "muleVersion": "3.6.2",
+            "agentVersion": "1.0.1-SNAPSHOT",
+            "status": "DISCONNECTED",
+            "serverGroupId": 73,
+            "serverGroupName": "Group2",
+            "addresses": [
+              {
+                "ip": "172.16.12.168",
+                "networkInterface": "en0"
+              }
+            ]
+          }
+        ],
+        "status": "DISCONNECTED"
+      }
+    ]
+  }
+}

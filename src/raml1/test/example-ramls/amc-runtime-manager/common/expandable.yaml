@@ -1,0 +1,5 @@
+queryParameters:
+  expand:
+    description: If user wants to expand the whole object, or just get minimum information
+    type: boolean
+    default: true

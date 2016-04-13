@@ -1,0 +1,8 @@
+{
+  "label": "Pattern",
+  "name": "Migration",
+  "query": {
+    "predefined_search_terms": "Migration"
+  },
+  "types": [1]
+}

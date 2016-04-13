@@ -1,0 +1,30 @@
+#%RAML 1.0 Library
+usage: My CRUD Annotations Library
+annotationTypes:
+  - id:
+     allowMultiple: false
+  - searchable:
+  - sortable:
+  - paged:
+      properties:
+        pageSize: integer
+  - refTo:
+      properties:
+        entity:
+          type: pointer
+          target: $$.**.ObjectTypeDeclaration
+  - inverseOf:
+      properties:
+        entity:
+          type: pointer
+          target: $$.**.TypeDeclaration
+  - create:
+      allowedTargets: Method
+  - update:
+      allowedTargets: Method
+  - delete:
+      allowedTargets: Method
+  - get:
+       allowedTargets: Method
+  - list:
+       allowedTargets: Method

@@ -1,0 +1,36 @@
+{
+  "owner":"anypointadmin",
+  "type_id":1,
+  "versions":[
+    {
+      "isSuggested":true,
+      "object_version":"1.2",
+      "mule_version_id":"3.5",
+      "download_url":"http://somevalidurl.com",
+      "doc_url":"http://anotherValidUrl.com"
+    }
+  ],
+  "name":"Name",
+  "name_url":"name-url",
+  "icon_url":"http://someurl.com",
+  "summary":"summary",
+  "youtube_video_url":"http://another.com",
+  "video_caption":"some video caption",
+  "description":"some description",
+  "metadata":[
+    {
+      "label":"Some label group",
+      "type":"tag",
+      "values":[
+        {
+          "text":"Good-tag",
+          "value":"Good-tag"
+        },
+        {
+          "text":"Another-tag",
+          "value":"Another-tag"
+        }
+      ]
+    }
+  ]
+}

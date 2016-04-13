@@ -1,0 +1,8 @@
+Overlay <-- 
+  title : StringType  =  Overlay2
+  masterRef : StringType  =  api.raml
+  Resource <-- resources
+    relativeUri : RelativeUriString  =  /resource
+    displayName : StringType  =  Test3
+  Resource <-- resources
+    relativeUri : RelativeUriString  =  /anotherResource

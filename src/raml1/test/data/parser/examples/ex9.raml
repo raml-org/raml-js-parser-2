@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Test named parameters
+types:
+  dept_code:
+    pattern: ^\d+\-\w+$
+
+traits:
+  chargeable:
+    headers:
+      X-Dept:
+        type: dept_code[]
+        examples:
+          one_dept:
+            strict: true
+            content:
+              - X-Dept: 230-OCTO

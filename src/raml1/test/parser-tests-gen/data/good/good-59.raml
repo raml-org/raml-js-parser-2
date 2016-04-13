@@ -1,0 +1,167 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Seed1:
+    properties:
+      str1: string
+      num1: number
+  Seed2:
+    properties:
+      str2: string
+      num2: number
+  Seed3:
+    properties:
+      str3: string
+      num3: number
+  Seed41:
+    type: Seed1
+    properties:
+      str4: string
+      num4: number
+  Type1:
+    type: [Seed2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1,
+        "type1_bool_1": true,
+        "type1_str_1": "str"
+      }
+    properties:
+      type1_str_1:
+        type: string
+      type1_bool_1:
+        type: boolean
+  Type2:
+    type: [Seed1,Seed3]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str3": "str",
+        "num3": 1,
+        "type2_str_1": "str",
+        "type2_bool_1": true
+      }
+    properties:
+      type2_bool_1:
+        type: boolean
+      type2_str_1:
+        type: string
+  Type3:
+    type: Seed3|object
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+  Type4:
+    type: object|Seed41
+    example: {}
+  Type5:
+    type: Seed3|Type2
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+  Type6:
+    type: [Type2,Seed1]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str3": "str",
+        "num3": 1,
+        "type2_str_1": "str",
+        "type2_bool_1": true,
+        "type6_num_1": 1,
+        "type6_bool_1": true
+      }
+    properties:
+      type6_bool_1:
+        type: boolean
+      type6_num_1:
+        type: number
+  Type7:
+    type: Type3
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+  Type8:
+    type: [Type7]
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+  Type9:
+    type: [Type4]
+    example: {}
+  Type10:
+    type: [Seed3,Type4]
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+
+/res1:
+  post:
+    body:
+      application/json:
+        type: Type7
+        example: |
+          {
+            "str3": "str",
+            "num3": 1
+          }
+/res2:
+  post:
+    body:
+      application/json:
+        type: Type6|Seed2
+        example: |
+          {
+            "str1": "str",
+            "num1": 1,
+            "str3": "str",
+            "num3": 1,
+            "type2_bool_1": true,
+            "type2_str_1": "str",
+            "type6_bool_1": true,
+            "type6_num_1": 1
+          }
+/res3:
+  post:
+    body:
+      application/json:
+        type: [Seed3]
+        example: |
+          {
+            "str3": "str",
+            "num3": 1
+          }
+/res4:
+  post:
+    body:
+      application/json:
+        type: [Type3,Type8]
+        example: |
+          {
+            "str3": "str",
+            "num3": 1
+          }
+/res5:
+  post:
+    body:
+      application/json:
+        type: [Type3]
+        example: |
+          {
+            "str3": "str",
+            "num3": 1
+          }

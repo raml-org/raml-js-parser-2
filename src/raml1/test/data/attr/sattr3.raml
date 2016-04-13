@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: WebOfMe
+version: v1
+mediaType: application/json
+resourceTypes:
+  collection:
+    get:
+      queryParameters:
+        page:
+          description: Starting page
+          type: number
+      responses:
+        200:
+           body:
+             properties:
+               totalNumber:
+                 description: Number of items in this collection
+                 type: number
+               items: <<item>>[]
+types:
+  User:
+    properties:
+      firstName:
+      lastName:
+      us_phone:
+        pattern: ^\(\d{3}\)\-\d{3}\-\d{4}$
+/users:
+  type:
+    collection:
+      item: User
+/person:
+  get

@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: SameTraitForMethodAndResourceType
+version: 1
+baseUri: https://example.com/{version}
+resourceTypes:
+  - rt_with_trait: !include resourceTypes/rt_with_trait.raml
+traits:
+  - trait2: !include traits/trait2.raml
+  - trait2_param: !include traits/trait2_param.raml
+/root-resource:
+  type: rt_with_trait
+  is: [ trait2, { trait2_param: { param0: "object", param1: "value" } } ]
+  get:
+    is: [ trait2, { trait2_param: { param0: "object", param1: "value" } } ]
+    queryParameters:
+      name:
+        enum:
+          - val3
+          - val4
+          - val5

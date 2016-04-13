@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: t
+types:
+  t0:
+    properties:
+      t: number
+  t1:
+    type: t0
+    properties:
+      x: string
+  t2:
+    type: t1
+    properties:
+      x: number
+      t: number

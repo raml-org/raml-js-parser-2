@@ -1,0 +1,11 @@
+#%RAML 1.0 ApiOverlay
+title: Slave RAML
+masterRef: master.raml
+uses:
+  - decls:  !include lib/decls.raml
+/elements:
+  get:
+    description: |
+      describing your method here
+    #lets add some annotation
+    (decls.important):

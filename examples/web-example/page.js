@@ -1,4 +1,4 @@
-var raml1Parser = require('../../src/raml1Parser')
+var raml1Parser = require('../../dist/index')
 
 
 var onClick = function() {

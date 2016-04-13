@@ -1,0 +1,16 @@
+#%RAML 0.8
+title: API
+mediaType: application/json
+schemas:
+  - schema1: schema-1
+  - schema2: schema-2
+/birds:
+  /{id}:
+    put:
+      body:
+        application/json:
+          schema: aaa
+          example: bbb
+        application/xml:
+          schema: ccc
+          example: ddd

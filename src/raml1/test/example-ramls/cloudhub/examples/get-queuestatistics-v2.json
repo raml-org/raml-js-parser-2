@@ -1,0 +1,28 @@
+{
+   "queues":[
+      {
+         "id":"54f7ed78e4b0d48f31a30891_54f87d13e4b0d48f320c66cb_A9452D1A86C11FD2E70F2481D99B31",
+         "name":"seda.queue(helloworldFlow.stage1)",
+         "queued":0,
+         "inFlight":0,
+         "status":"NORMAL"
+      }
+   ],
+   "queueStatistics":[
+      {
+         "id":"54f7ed78e4b0d48f31a30891_54f87d13e4b0d48f320c66cb_A9452D1A86C11FD2E70F2481D99B31",
+         "statistics":{
+            "queued":{
+
+            },
+            "inFlight":{
+
+            },
+            "dequeued":{
+
+            }
+         }
+      }
+   ],
+   "total":1
+}

@@ -1,0 +1,49 @@
+{
+   "subscriptionLevel":"Free",
+   "maxProductionWorkers":1,
+   "maxSandboxWorkers":1,
+   "workerTypes":[
+      {
+         "name":"Micro",
+         "workerVal":0.1,
+         "weight":0.1,
+         "cpu":"0.1 vCores",
+         "memory":"500 MB memory"
+      },
+      {
+         "name":"Small",
+         "workerVal":0.2,
+         "weight":0.2,
+         "cpu":"0.2 vCores",
+         "memory":"1 GB memory"
+      },
+      {
+         "name":"Medium",
+         "workerVal":1.0,
+         "weight":1.0,
+         "cpu":"1 vCore",
+         "memory":"1.5 GB memory"
+      },
+      {
+         "name":"Large",
+         "workerVal":2.0,
+         "weight":2.0,
+         "cpu":"2 vCores",
+         "memory":"3.5 GB meomory"
+      },
+      {
+         "name":"xLarge",
+         "workerVal":4.0,
+         "weight":4.0,
+         "cpu":"4 vCores",
+         "memory":"7.5 GB memory"
+      }
+   ],
+   "maxStandardConnectors":5,
+   "maxPremiumConnectors":1,
+   "apiFabric":false,
+   "secureDataGateway":true,
+   "roleBasedAccess":true,
+   "globalCloud":false,
+   "directVpn":false
+}

@@ -1,0 +1,6 @@
+{
+  "grant_type": "authorization_code",
+  "redirect_uri": "http://localhost/callback",
+  "client_id": "ro_client",
+  "code": "20460a62-bbdc-469d-9330-5eec892abd05"
+}

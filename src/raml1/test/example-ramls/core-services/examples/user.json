@@ -1,0 +1,24 @@
+{
+  "id": "5197cdf3-36c9-4bcb-8840-5779e961c746",
+  "createdAt": "2015-01-29T00:00:53.315Z",
+  "updatedAt": "2015-01-29T00:00:55.163Z",
+  "firstName": "Organization",
+  "lastName": "Owner",
+  "email": "core_services@mulesoft.com",
+  "phoneNumber": "111-111-1111",
+  "username": "max",
+  "enabled": true,
+  "deleted": false,
+  "organization": {
+    "name": "MuleSoft Inc",
+    "id": "fd541678-6cdb-4863-82ee-c615444a6af1",
+    "createdAt": "2015-01-29T00:00:53.534Z",
+    "ownerId": "5197cdf3-36c9-4bcb-8840-5779e961c746",
+    "updatedAt": "2015-01-29T00:00:53.589Z",
+    "clientId": "9dbc422897204a4eb42016a513ca3123",
+    "domain": "mulesoft-inc",
+    "idprovider_id": "mulesoft",
+    "properties": {}
+  },
+  "properties": {}
+}

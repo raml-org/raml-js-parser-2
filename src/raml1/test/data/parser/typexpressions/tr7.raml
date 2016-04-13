@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: Slack types
+types:
+  ChannelItem:
+    properties:
+      d: number
+      members?: string[]
+      element: number
+    example:
+      d: 4
+  Channels:
+    properties:
+      channels?: ChannelItem[]

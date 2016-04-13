@@ -1,0 +1,13 @@
+#%RAML 0.8
+title: API For ISO3166 Module
+version: v1
+
+schemas:
+  - TestSchema:
+
+
+/test:
+  get:
+    body:
+      application/json:
+        schema: !include testSchema.json

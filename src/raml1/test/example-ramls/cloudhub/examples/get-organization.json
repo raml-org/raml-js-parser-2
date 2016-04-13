@@ -1,0 +1,82 @@
+{
+   "id":"54f7ed78e4b0d48f31a30891",
+   "csId":"e8ceea04-621e-4f69-a3c8-3f68ad7a99e2",
+   "name":"Example Org",
+   "adminUserId":"54f7ed7ae4b0d48f31a3099e",
+   "adminUsername":"fred-smith",
+   "created":"2015-03-05T05:45:28.652Z",
+   "updated":"2015-03-05T05:45:28.652Z",
+   "enabled":true,
+   "expiration":{
+      "date":"2015-04-04T05:45:28.652Z"
+   },
+   "globalDeployment":{
+      "enabled":false
+   },
+   "multitenancy":{
+      "enabled":false,
+      "maxTenants":0
+   },
+   "plan":{
+      "subscriptionLevel":"Free",
+      "maxProductionWorkers":1,
+      "maxSandboxWorkers":1,
+      "workerTypes":[
+         {
+            "name":"Micro",
+            "workerVal":0.1,
+            "weight":0.1,
+            "cpu":"0.1 vCores",
+            "memory":"500 MB memory"
+         },
+         {
+            "name":"Small",
+            "workerVal":0.2,
+            "weight":0.2,
+            "cpu":"0.2 vCores",
+            "memory":"1 GB memory"
+         },
+         {
+            "name":"Medium",
+            "workerVal":1.0,
+            "weight":1.0,
+            "cpu":"1 vCore",
+            "memory":"1.5 GB memory"
+         },
+         {
+            "name":"Large",
+            "workerVal":2.0,
+            "weight":2.0,
+            "cpu":"2 vCores",
+            "memory":"3.5 GB meomory"
+         },
+         {
+            "name":"xLarge",
+            "workerVal":4.0,
+            "weight":4.0,
+            "cpu":"4 vCores",
+            "memory":"7.5 GB memory"
+         }
+      ],
+      "maxStandardConnectors":5,
+      "maxPremiumConnectors":1,
+      "apiFabric":false,
+      "secureDataGateway":true,
+      "roleBasedAccess":true,
+      "directVpn":false
+   },
+   "downloadApplicationsEnabled":true,
+   "persistentQueuesEncryptionEnabled":false,
+   "usage":{
+      "sandboxes":0,
+      "productions":1,
+      "standardConnectors":0,
+      "premiumConnectors":0,
+      "productionApplications":1,
+      "sandboxApplications":0,
+      "productionTenants":0,
+      "sandboxTenants":0,
+      "productionWorkers":1.0,
+      "sandboxWorkers":0.0
+   }
+}

@@ -1,0 +1,14 @@
+{
+   "data":[
+      {
+         "version":"3.5.2",
+         "state":"ACTIVE",
+         "vpnSupported":false,
+         "monitoringSupported":false,
+         "persistentQueuesSupported":false,
+         "log4j1Used":true,
+         "default":false
+      }
+   ],
+   "total":16
+}

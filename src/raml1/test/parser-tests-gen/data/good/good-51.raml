@@ -1,0 +1,130 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Seed1:
+    properties:
+      str1: string
+      num1: number
+  Seed2:
+    properties:
+      str2: string
+      num2: number
+  Seed3:
+    properties:
+      str3: string
+      num3: number
+  Seed41:
+    type: Seed1
+    properties:
+      str4: string
+      num4: number
+  Type1:
+    type: [Seed3,Seed2]
+    example: |
+      {
+        "str3": "str",
+        "num3": 1,
+        "str2": "str",
+        "num2": 1,
+        "type1_prop_1": {},
+        "type1_bool_1": true
+      }
+    properties:
+      type1_bool_1:
+        type: boolean
+      type1_prop_1:
+        type: object
+  Type2:
+    type: object|object
+    example: {}
+  Type3:
+    type: Type2|Seed3
+    example: {}
+  Type4:
+    type: [Seed1]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "type4_prop_2": {},
+        "type4_prop_1": {}
+      }
+    properties:
+      type4_prop_1:
+        type: object
+      type4_prop_2:
+        type: object
+  Type5:
+    type: [Type2]
+    example: {}
+  Type6:
+    type: Seed1|object
+    example: |
+      {
+        "str1": "str",
+        "num1": 1
+      }
+  Type7:
+    type: object|Seed3
+    example: {}
+  Type8:
+    type: object|Type6
+    example: {}
+  Type9:
+    type: [Seed41,Type6]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str4": "str",
+        "num4": 1
+      }
+  Type10:
+    type: Type4|object
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "type4_prop_2": {},
+        "type4_prop_1": {}
+      }
+
+/res1:
+  post:
+    body:
+      application/json:
+        type: Type8|object
+        example: {}
+/res2:
+  post:
+    body:
+      application/json:
+        type: [Type8,Type1]
+        example: |
+          {
+            "str3": "str",
+            "num3": 1,
+            "str2": "str",
+            "num2": 1,
+            "type1_bool_1": true,
+            "type1_prop_1": {}
+          }
+/res3:
+  post:
+    body:
+      application/json:
+        type: object
+        example: {}
+/res4:
+  post:
+    body:
+      application/json:
+        type: [Type2]
+        example: {}
+/res5:
+  post:
+    body:
+      application/json:
+        type: object
+        example: {}

@@ -1,0 +1,16 @@
+{
+  "component":{
+    "id":"1234",
+    "runtimeName":"mule.agent.tracking.handler.splunk"
+  },
+  "enabled":true,
+  "configuration":{
+    "user":"defaul.user",
+    "pass":"default.pass",
+    "host":"10.0.0.1",
+    "scheme": "https",
+    "sslSecurityProtocol":"TLSv1_2",
+    "splunkIndexName":"et",
+    "splunkSource":"mule"
+  }
+}

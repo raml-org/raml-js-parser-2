@@ -1,0 +1,87 @@
+{
+  "type": "object",
+  "$schema": "http:\/\/json-schema.org\/draft-03\/schema",
+  "required": false,
+  "properties": {
+    "count": {
+      "type": "number",
+      "required": false
+    },
+    "pages": {
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "dates": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "created": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "by": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                      "userId": {
+                        "type": "number",
+                        "required": false
+                      },
+                      "userName": {
+                        "type": "string",
+                        "required": false
+                      }
+                    }
+                  },
+                  "date": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              },
+              "updated": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "by": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                      "userId": {
+                        "type": "number",
+                        "required": false
+                      },
+                      "userName": {
+                        "type": "string",
+                        "required": false
+                      }
+                    }
+                  },
+                  "date": {
+                    "type": "number",
+                    "required": false
+                  }
+                }
+              }
+            }
+          },
+          "id": {
+            "type": "number",
+            "required": false
+          },
+          "name": {
+            "type": "string",
+            "required": false
+          },
+          "portalId": {
+            "type": "number",
+            "required": false
+          }
+        }
+      }
+    }
+  }
+}

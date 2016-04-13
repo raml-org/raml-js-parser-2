@@ -1,0 +1,9 @@
+expr   =  term 0*1("|" term)
+
+; exclude arrays for a while...
+; term   =  type / type "[]" / "(" expr ")"
+term   =  type / "(" expr ")"
+
+type   =  basic / custom
+basic  =  "string" / "number" / "boolean"
+custom =  "Type"

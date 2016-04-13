@@ -1,0 +1,133 @@
+#%RAML 0.8
+title: Analytics Events Export
+version: 1.0
+baseUri: https://anypoint.mulesoft.com/analytics/{version}/{orgId}
+securitySchemes:
+  - oauth_2_0: !include security/oauth_2_0.yaml
+    
+/events:
+  get:
+    description: Queries for events in either JSON or CSV format
+    queryParameters:
+      apiIds:
+        displayName: API Ids
+        type: string
+        description: Comma-delimeted list of API ids to include in query. Omit or specify 'all' or '*' to include all APIs.
+        example: 1,2,3
+        required: false
+      apiVersionIds:
+        displayName: API Ids
+        type: string
+        description: |
+          Comma-delimeted list of API version ids to include in query. Omit or specify 'all' or '*' to include all API versions.
+          Ignored if no value was specified for API ids.
+        example: 42,43,44
+        required: false
+      fields:
+        displayName: Fields
+        type: string
+        description: |
+          The fields to include in the export. Required for CSV export. For JSON export, if 
+          omitted, will include all fields. For a full list of fields, GET the /events/fields
+          resource, described below. A list that can be either comma- or period-delimeted.
+          Timestamp, API Name, API ID, API Version, API Version ID are always included.
+        example: Application Name,Browser,City,Client IP
+        required: false
+      format:
+        displayName: Data Format
+        type: string
+        example: csv
+        description: Either csv or json; determines the serialization format of the returned data
+        required: true
+      countOnly:
+        displayName: Count Only
+        type: boolean
+        example: true
+        description: |
+          When this field is present and set to ‘true’, only the number of events that a given 
+          query will return is returned. This is particularly helpful when paginating a response.
+          The format of the response depends upon the 'format' field.
+        required: false
+      maxResults:
+        displayName: Max Results
+        type: integer
+        example: 100
+        description: Maximum number of events to return. Default value is 10000. Pass -1 to return all results
+        required: false
+      startDate:
+        displayName: Start Date
+        example: 1994-11-05T08:15:30-05:00
+        description:
+          Date and time, as described by http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()
+        type: date
+        required: false
+      endDate:
+        displayName: End Date
+        example: 1994-11-05T08:15:30-05:00
+        description:
+          Date and time, as described by http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTimeParser()
+        type: date
+        required: false
+      duration:
+        displayName: Duration
+        type: string
+        example: 45m
+        description: |
+          The duration over which the report should return data. Consists of an integer number denoting quantity
+          and a single-letter suffix denoting units. Suffix is one of: 
+          'd': Days
+          'h': Hours
+          'm': Minutes
+          's': Seconds
+          So to cover a duration of one week, pass '7d' as the duration. To cover half a minute, send '30s'.
+        required: false
+      pathPrefix:
+        displayName: Path Prefix
+        type: string
+        example: /products/electronics
+        description: Filter results by event resource path, used when reporting against a particular REST resource root
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {"API Name":"2804","API Version":"3100","Application":"45b26463cc404eed80c3bbdf37abb522","Request Outcome":"PROCESSED","Verb":"GET","Resource Path":"/api/teams","Status Code":200,"Violated Policy Name":null,"User Agent Name":"curl","User Agent Version":"7.24.0","Browser":"Other","OS Family":"Other","OS Version":null,"OS Major Version":null,"OS Minor Version":null,"Hardware Platform":"Other","Timezone":null,"City":null,"Country":null,"Continent":null,"Postal Code":null}
+              {"API Name":"2804","API Version":"3100","Application":"45b26463cc404eed80c3bbdf37abb522","Request Outcome":"PROCESSED","Verb":"GET","Resource Path":"/api/teams","Status Code":200,"Violated Policy Name":null,"User Agent Name":"Mozilla","User Agent Version":"5.0","Browser":"Other","OS Family":"Other","OS Version":null,"OS Major Version":null,"OS Minor Version":null,"Hardware Platform":"Other","Timezone":null,"City":null,"Country":null,"Continent":null,"Postal Code":null}
+              {"API Name":"2804","API Version":"3100","Application":"45b26463cc404eed80c3bbdf37abb522","Request Outcome":"PROCESSED","Verb":"GET","Resource Path":"/api/teams","Status Code":200,"Violated Policy Name":null,"User Agent Name":"Mozilla","User Agent Version":"5.0","Browser":"Other","OS Family":"Other","OS Version":null,"OS Major Version":null,"OS Minor Version":null,"Hardware Platform":"Other","Timezone":null,"City":null,"Country":null,"Continent":null,"Postal Code":null}
+          text/csv:
+            example: |
+              API Name,API Version,Application,Browser,City,Client IP,Continent,Country,Hardware Platform,OS Family,OS Major Version,OS Minor Version,OS Version,Postal Code,Request Outcome,Resource Path,Status Code,Timezone,User Agent Name,User Agent Version,Verb,Violated Policy Name
+              2447,2554,78bb15c6132047d0ae771ad09e83cf27,Chrome,,,Europe,Netherlands,Other,Windows 7,,,,,PROCESSED,/bar,200,Europe/Amsterdam,Mozilla,5,POST,
+              2447,2554,62849596d6e24f10b75a09ad64c69a94,Chrome,Satka,,Europe,Russia,Other,Mac OS X,10,9,,456910,PROCESSED,/baz-qux,200,Asia/Yekaterinburg,Mozilla,5,GET,
+  
+  /fields:
+    get:
+      description: Gets all possible fields that can be passed into the /events resource
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "fields": [
+                    "Browser","User Agent Name","User Agent Version","OS Family","OS Version","API Version"
+                  ]
+                };
+              schema: fields
+schemas:
+- fields: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    }          

@@ -1,0 +1,6 @@
+expr   = union / array
+union  = term 0*1("|" term)
+term   = type
+array  = "[" custom 0*1("," custom) "]"
+type   = custom / "object"
+custom = "Type"

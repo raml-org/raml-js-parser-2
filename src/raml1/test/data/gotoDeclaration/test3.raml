@@ -1,0 +1,38 @@
+#%RAML 1.0
+title: H
+types:
+  Hello:
+    type: object
+    properties:
+      x: number
+      y: number
+  MyType:
+    type: object
+  SSS:
+    type: object
+    properties:
+      sss: string
+
+annotationTypes:
+  test:
+    properties:
+      q: Hello
+annotations:
+  - test:
+      q:
+        x: 4
+        y: 3
+schemas:
+  cccc:
+resourceTypes:
+  cccccc:
+/fff:
+  annotations:
+    - test: {q : {x: 1, y: 4}}
+  type: ccc^ccc
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: cccc

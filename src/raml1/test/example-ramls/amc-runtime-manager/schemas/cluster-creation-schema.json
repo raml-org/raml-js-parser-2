@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://anypoint.io/amc/clusterCreation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "id": "http://anypoint.io/amc/clusterCreation/name",
+      "type": "string"
+    },
+    "multicastEnabled": {
+      "id": "http://anypoint.io/amc/clusterCreation/multicastEnabled",
+      "type": "boolean"
+    },
+    "servers": {
+      "id": "http://anypoint.io/amc/clusterCreation/servers",
+      "type": "array",
+      "items": {
+        "id": "http://anypoint.io/amc/clusterCreation/servers/0",
+        "type": "object",
+        "properties": {
+          "id": {
+            "id": "http://anypoint.io/amc/clusterCreation/servers/0/id",
+            "type": "integer"
+          },
+          "serverIp": {
+            "id": "http://anypoint.io/amc/clusterCreation/servers/0/serverIp",
+            "type": "string"
+          }
+        },
+        "required":[
+          "id"
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "multicastEnabled",
+    "servers"
+  ]
+}

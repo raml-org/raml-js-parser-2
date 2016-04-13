@@ -1,0 +1,41 @@
+#%RAML 1.0
+
+title: World Music API
+baseUri: http://{domain}.{country}.api.com/{version}
+version: v1
+types:
+  CustomTestType:
+    type: object
+    properties:
+      name: string
+      id: number
+resourceTypes:
+  - collectionMember:
+  - collection:
+traits:
+  - paged:
+      queryParameters:
+        pages:
+          description: The number of pages to return
+          type: number
+  - secured: !include /bla/bla/secured.yml
+/songs:
+  type: collection
+  is: [ paged, secured ]
+  get:
+    queryParameters:
+      genre:
+        description: filter the songs by genre
+        enum: [ rock, pop , folk ]
+  post:
+  /{singetId}_{songId}:
+    type: collectionMember
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: CustomTestType
+    delete:
+      description: |
+        This method will *delete* an **individual song**

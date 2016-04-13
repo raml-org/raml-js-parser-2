@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required" : true,
+  "type" : "array",
+  "properties":{
+    "predefined_search_terms": {
+      "type":"array",
+      "properties": {
+        "id":{
+          "type":"string"
+        },
+        "name": {
+          "type":"string"
+        },
+        "query": {
+          "type":"object",
+          "properties":{
+            "predefined_search_terms":{
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+    "label": {
+      "type":"string"
+    },
+    "types": {
+      "type": "array"
+    }
+  }
+}

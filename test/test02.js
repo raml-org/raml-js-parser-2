@@ -1,10 +1,10 @@
 console.log('RAML 1.0 JS Parser Test');
 
 var path = require("path");
-var raml1Parser = require('../src/raml1Parser');
+var raml1Parser = require('../dist/index');
 var fs = require("fs")
 
-var api = raml1Parser.loadApiSync(path.resolve(__dirname, "../raml-specs/XKCD/api.raml"),{
+var api = raml1Parser.loadApiSync(path.resolve(__dirname, "./raml-specs/XKCD/api.raml"),{
 
 	fsResolver: {
 

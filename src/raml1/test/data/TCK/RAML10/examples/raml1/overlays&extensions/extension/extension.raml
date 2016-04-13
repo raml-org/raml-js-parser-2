@@ -1,0 +1,12 @@
+#%RAML 1.0 ApiExtension
+title: ApiExtension
+baseUri: http://myItems.com
+masterRef: master.raml
+uses:
+  - decls:  !include lib/decls.raml
+/items:
+  get:
+    description: |
+      describing your method here
+    #lets add some annotation
+    (decls.important):

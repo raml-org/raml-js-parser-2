@@ -1,0 +1,6 @@
+{
+  "message": "complexity should be a string",
+  "error": {
+    "stack": "Some stacktrace"
+  }
+}

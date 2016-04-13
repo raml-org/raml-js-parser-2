@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "properties":{
+    "additionalInfo": { "required": true, "type": "string" },
+    "contactEmail": { "required": true, "type": "string" },
+    "contactPhone": { "required": true, "type": "string" },
+    "organization":{
+      "required": true,
+      "type":"object",
+      "properties":{
+        "name": { "required": true, "type": "string" },
+        "id": { "required": true, "type": "string" },
+        "createdAt": { "required": true, "type": "string" },
+        "ownerId": { "required": true, "type": "string" },
+        "updatedAt": { "required": true, "type": "string" },
+        "clientId": { "required": true, "type": "string" },
+        "domain": { "required": true, "type": "string" },
+        "idprovider_id": { "required": true, "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+description: Collection of available <<resourcePathName>> in Hybrid.
+get:
+  description: Get a list of <<resourcePathName>>.
+  responses:
+    200:
+      body:
+        application/json:
+          example: |
+            { "data": [
+                <<exampleItem>>
+              ]
+            }
+post:
+  body:
+    application/json:
+      schema: #<<resourcePathName|!singularize>>
+  responses:
+    201:
+      body:
+        application/json:
+          example: |
+            { "data": <<exampleItem>>
+            }

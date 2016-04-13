@@ -1,0 +1,48 @@
+[
+  {
+    "client_id": "ac_client",
+    "name": "Authorization Code",
+    "redirect_uris": ["http://localhost:3004/auth/callback"],
+    "grant_types": [
+      "authorization_code",
+      "refresh_token"
+    ],
+    "properties": {"additional": "meta-data"},
+    "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+  },
+  {
+    "client_id": "rs_client",
+    "name": "Resource Server",
+    "grant_types": ["urn:ietf:params:oauth:grant-type:validate_token"],
+    "properties": {"additional": "meta-data"},
+    "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+  },
+  {
+    "client_id": "ro_client",
+    "name": "Resource Owner",
+    "grant_types": [
+      "password",
+      "refresh_token"
+    ],
+    "properties": {"additional": "meta-data"},
+    "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+  },
+  {
+    "client_id": "cc_client",
+    "name": "Client Credentials",
+    "grant_types": ["client_credentials"],
+    "properties": {"additional": "meta-data"},
+    "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+  },
+  {
+    "client_id": "im_client",
+    "name": "Implicit",
+    "redirect_uris": ["http://localhost:3004/auth/callback"],
+    "grant_types": [
+      "implicit",
+      "urn:ietf:params:oauth:grant-type:validate_token"
+    ],
+    "properties": {"additional": "meta-data"},
+    "org_id": "40260a62-bbdc-469d-9330-5eec892abbbb"
+  }
+]

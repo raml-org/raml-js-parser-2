@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: Example with responses
+mediaType: application/json
+types:
+  Invoice:
+
+    properties:
+      amount:
+        type: number
+        minimum: 0
+      vendorName:
+  HelloWorld: !include test.json
+
+/invoices:
+  get:
+    responses:
+      200:
+        body:
+          type: Invoice
+          properties:
+            id: number
+  post:
+    body:
+      type: Invoice
+    responses:
+      201:
+        headers:
+          Location:
+            example: /invoices/45612
+        body:
+          application/json:
+            type: !include test.json
+
+      422:
+        body:
+          properties:
+            error:
+          example:
+            error: Amount cannot be negative

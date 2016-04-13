@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: My API With Types
+types:
+  Account:
+    type: !include files/account.json
+  Moderator:
+    type: Account
+    properties:
+      accessRuleId: integer

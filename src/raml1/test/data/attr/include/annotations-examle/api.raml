@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Sample API
+mediaType: application/json
+uses:
+  - crud: !include crud-annotations.raml
+types:
+  - searchableString:
+      type: string
+      (crud.sortable):
+      (crud.searchable):
+/animals:
+ get:
+   (crud.list):
+   body:
+     schema: animals

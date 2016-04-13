@@ -1,0 +1,37 @@
+description: Get an entity representing a <<resourcePathName|!singularize>>
+get:
+  description: |
+    Get the <<resourcePathName|!singularize>>
+    with id =
+    {<<resourcePathName|!singularize>>Id}
+  responses:
+    200:
+      body:
+        application/json:
+          example: |
+           { "data": 
+              <<exampleItem>>
+            }
+    404:
+      body:
+        application/json:
+          example: |
+            {"message": "<<resourcePathName|!singularize>> not found" }
+patch:
+  responses:
+    202:
+        body:
+          application/json:
+            example: |
+             { "data": 
+                <<modifiedItem>>
+              }
+put:
+  responses:
+    202:
+        body:
+          application/json:
+            example: |
+             { "data": 
+                <<modifiedItem>>
+              }

@@ -1,0 +1,30 @@
+#%RAML 1.0
+
+title: World Music API
+version: v1
+types:
+  Product:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      price:
+        minimum: 0
+        type: number
+      tags:
+        minItems: 1
+        uniqueItems: true
+        type: string[]
+      dimensions:
+        type: object
+        properties:
+          length:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+      warehouseLocation:
+        type: undefined

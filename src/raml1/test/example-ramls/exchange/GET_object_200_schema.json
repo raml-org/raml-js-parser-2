@@ -1,0 +1,528 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "name_url": {
+      "id": "http://jsonschema.net/name_url",
+      "type": "string"
+    },
+    "organization_id": {
+      "id": "http://jsonschema.net/organization_id",
+      "type": "integer"
+    },
+    "id": {
+      "id": "http://jsonschema.net/id",
+      "type": "integer"
+    },
+    "name": {
+      "id": "http://jsonschema.net/name",
+      "type": "string"
+    },
+    "summary": {
+      "id": "http://jsonschema.net/summary",
+      "type": "string"
+    },
+    "description": {
+      "id": "http://jsonschema.net/description",
+      "type": "string"
+    },
+    "icon_url": {
+      "id": "http://jsonschema.net/icon_url",
+      "type": "string"
+    },
+    "type_id": {
+      "id": "http://jsonschema.net/type_id",
+      "type": "integer"
+    },
+    "download_url": {
+      "id": "http://jsonschema.net/download_url",
+      "type": "null"
+    },
+    "video_caption": {
+      "id": "http://jsonschema.net/video_caption",
+      "type": "string"
+    },
+    "created_at": {
+      "id": "http://jsonschema.net/created_at",
+      "type": "string"
+    },
+    "updated_at": {
+      "id": "http://jsonschema.net/updated_at",
+      "type": "string"
+    },
+    "owner": {
+      "id": "http://jsonschema.net/owner",
+      "type": "string"
+    },
+    "state": {
+      "id": "http://jsonschema.net/state",
+      "type": "string"
+    },
+    "youtube_video_url": {
+      "id": "http://jsonschema.net/youtube_video_url",
+      "type": "string"
+    },
+    "metadata": {
+      "id": "http://jsonschema.net/metadata",
+      "type": "array",
+      "items": [
+        {
+          "id": "http://jsonschema.net/metadata/0",
+          "type": "object",
+          "properties": {
+            "id": {
+              "id": "http://jsonschema.net/metadata/0/id",
+              "type": "integer"
+            },
+            "object_id": {
+              "id": "http://jsonschema.net/metadata/0/object_id",
+              "type": "integer"
+            },
+            "label": {
+              "id": "http://jsonschema.net/metadata/0/label",
+              "type": "string"
+            },
+            "type": {
+              "id": "http://jsonschema.net/metadata/0/type",
+              "type": "string"
+            },
+            "text": {
+              "id": "http://jsonschema.net/metadata/0/text",
+              "type": "string"
+            },
+            "value": {
+              "id": "http://jsonschema.net/metadata/0/value",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "id": "http://jsonschema.net/metadata/1",
+          "type": "object",
+          "properties": {
+            "id": {
+              "id": "http://jsonschema.net/metadata/1/id",
+              "type": "integer"
+            },
+            "object_id": {
+              "id": "http://jsonschema.net/metadata/1/object_id",
+              "type": "integer"
+            },
+            "label": {
+              "id": "http://jsonschema.net/metadata/1/label",
+              "type": "string"
+            },
+            "type": {
+              "id": "http://jsonschema.net/metadata/1/type",
+              "type": "string"
+            },
+            "text": {
+              "id": "http://jsonschema.net/metadata/1/text",
+              "type": "string"
+            },
+            "value": {
+              "id": "http://jsonschema.net/metadata/1/value",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "versions": {
+      "id": "http://jsonschema.net/versions",
+      "type": "array",
+      "items": {
+        "id": "http://jsonschema.net/versions/0",
+        "type": "object",
+        "properties": {
+          "id": {
+            "id": "http://jsonschema.net/versions/0/id",
+            "type": "integer"
+          },
+          "object_id": {
+            "id": "http://jsonschema.net/versions/0/object_id",
+            "type": "integer"
+          },
+          "mule_version_id": {
+            "id": "http://jsonschema.net/versions/0/mule_version_id",
+            "type": "string"
+          },
+          "download_url": {
+            "id": "http://jsonschema.net/versions/0/download_url",
+            "type": "string"
+          },
+          "doc_url": {
+            "id": "http://jsonschema.net/versions/0/doc_url",
+            "type": "string"
+          },
+          "feature_id": {
+            "id": "http://jsonschema.net/versions/0/feature_id",
+            "type": "null"
+          },
+          "object_version": {
+            "id": "http://jsonschema.net/versions/0/object_version",
+            "type": "string"
+          },
+          "api_version": {
+            "id": "http://jsonschema.net/versions/0/api_version",
+            "type": "null"
+          },
+          "website": {
+            "id": "http://jsonschema.net/versions/0/website",
+            "type": "null"
+          },
+          "muleVersion": {
+            "id": "http://jsonschema.net/versions/0/muleVersion",
+            "type": "object",
+            "properties": {
+              "id": {
+                "id": "http://jsonschema.net/versions/0/muleVersion/id",
+                "type": "string"
+              },
+              "connectors_update_site_url": {
+                "id": "http://jsonschema.net/versions/0/muleVersion/connectors_update_site_url",
+                "type": "string"
+              },
+              "doc_url": {
+                "id": "http://jsonschema.net/versions/0/muleVersion/doc_url",
+                "type": "string"
+              },
+              "feature_id": {
+                "id": "http://jsonschema.net/versions/0/muleVersion/feature_id",
+                "type": "null"
+              },
+              "active": {
+                "id": "http://jsonschema.net/versions/0/muleVersion/active",
+                "type": "boolean"
+              }
+            }
+          },
+          "actions": {
+            "id": "http://jsonschema.net/versions/0/actions",
+            "type": "array",
+            "items": {
+              "id": "http://jsonschema.net/versions/0/actions/0",
+              "type": "object",
+              "properties": {
+                "type": {
+                  "id": "http://jsonschema.net/versions/0/actions/0/type",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "isSuggested": {
+            "id": "http://jsonschema.net/versions/0/isSuggested",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "organization": {
+      "id": "http://jsonschema.net/organization",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://jsonschema.net/organization/id",
+          "type": "integer"
+        },
+        "name": {
+          "id": "http://jsonschema.net/organization/name",
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "id": "http://jsonschema.net/type",
+      "type": "object",
+      "properties": {
+        "id": {
+          "id": "http://jsonschema.net/type/id",
+          "type": "integer"
+        },
+        "name": {
+          "id": "http://jsonschema.net/type/name",
+          "type": "string"
+        },
+        "active": {
+          "id": "http://jsonschema.net/type/active",
+          "type": "boolean"
+        },
+        "recipe": {
+          "id": "http://jsonschema.net/type/recipe",
+          "type": "object",
+          "properties": {
+            "body": {
+              "id": "http://jsonschema.net/type/recipe/body",
+              "type": "array",
+              "items": [
+                {
+                  "id": "http://jsonschema.net/type/recipe/body/0",
+                  "type": "string"
+                },
+                {
+                  "id": "http://jsonschema.net/type/recipe/body/1",
+                  "type": "string"
+                },
+                {
+                  "id": "http://jsonschema.net/type/recipe/body/2",
+                  "type": "string"
+                },
+                {
+                  "id": "http://jsonschema.net/type/recipe/body/3",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "actions": {
+          "id": "http://jsonschema.net/type/actions",
+          "type": "object",
+          "properties": {
+            "download": {
+              "id": "http://jsonschema.net/type/actions/download",
+              "type": "object",
+              "properties": {
+                "active": {
+                  "id": "http://jsonschema.net/type/actions/download/active",
+                  "type": "boolean"
+                },
+                "label": {
+                  "id": "http://jsonschema.net/type/actions/download/label",
+                  "type": "string"
+                }
+              }
+            },
+            "install": {
+              "id": "http://jsonschema.net/type/actions/install",
+              "type": "object",
+              "properties": {
+                "active": {
+                  "id": "http://jsonschema.net/type/actions/install/active",
+                  "type": "boolean"
+                },
+                "label": {
+                  "id": "http://jsonschema.net/type/actions/install/label",
+                  "type": "string"
+                }
+              }
+            },
+            "open": {
+              "id": "http://jsonschema.net/type/actions/open",
+              "type": "object",
+              "properties": {
+                "active": {
+                  "id": "http://jsonschema.net/type/actions/open/active",
+                  "type": "boolean"
+                },
+                "label": {
+                  "id": "http://jsonschema.net/type/actions/open/label",
+                  "type": "string"
+                }
+              }
+            },
+            "gotolink": {
+              "id": "http://jsonschema.net/type/actions/gotolink",
+              "type": "object",
+              "properties": {
+                "active": {
+                  "id": "http://jsonschema.net/type/actions/gotolink/active",
+                  "type": "boolean"
+                },
+                "label": {
+                  "id": "http://jsonschema.net/type/actions/gotolink/label",
+                  "type": "string"
+                }
+              }
+            },
+            "api": {
+              "id": "http://jsonschema.net/type/actions/api",
+              "type": "object",
+              "properties": {
+                "active": {
+                  "id": "http://jsonschema.net/type/actions/api/active",
+                  "type": "boolean"
+                },
+                "label": {
+                  "id": "http://jsonschema.net/type/actions/api/label",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "versions_recipe": {
+          "id": "http://jsonschema.net/type/versions_recipe",
+          "type": "array",
+          "items": [
+            {
+              "id": "http://jsonschema.net/type/versions_recipe/0",
+              "type": "array",
+              "items": [
+                {
+                  "id": "http://jsonschema.net/type/versions_recipe/0/0",
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "id": "http://jsonschema.net/type/versions_recipe/0/0/label",
+                      "type": "string"
+                    },
+                    "attribute": {
+                      "id": "http://jsonschema.net/type/versions_recipe/0/0/attribute",
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "id": "http://jsonschema.net/type/versions_recipe/0/1",
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "id": "http://jsonschema.net/type/versions_recipe/0/1/label",
+                      "type": "string"
+                    },
+                    "attribute": {
+                      "id": "http://jsonschema.net/type/versions_recipe/0/1/attribute",
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "id": "http://jsonschema.net/type/versions_recipe/1",
+              "type": "array",
+              "items": {
+                "id": "http://jsonschema.net/type/versions_recipe/1/0",
+                "type": "object",
+                "properties": {
+                  "options": {
+                    "id": "http://jsonschema.net/type/versions_recipe/1/0/options",
+                    "type": "array",
+                    "items": [
+                      {
+                        "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0",
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0/label",
+                            "type": "string"
+                          },
+                          "attribute": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0/attribute",
+                            "type": "string"
+                          },
+                          "hint": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0/hint",
+                            "type": "string"
+                          },
+                          "placeholder": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0/placeholder",
+                            "type": "string"
+                          },
+                          "type": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/0/type",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1",
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1/label",
+                            "type": "string"
+                          },
+                          "attribute": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1/attribute",
+                            "type": "string"
+                          },
+                          "hint": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1/hint",
+                            "type": "string"
+                          },
+                          "placeholder": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1/placeholder",
+                            "type": "string"
+                          },
+                          "type": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/1/type",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "id": "http://jsonschema.net/type/versions_recipe/1/0/options/2",
+                        "type": "object",
+                        "properties": {
+                          "label": {
+                            "id": "http://jsonschema.net/type/versions_recipe/1/0/options/2/label",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "id": "http://jsonschema.net/type/versions_recipe/2",
+              "type": "array",
+              "items": {
+                "id": "http://jsonschema.net/type/versions_recipe/2/0",
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "id": "http://jsonschema.net/type/versions_recipe/2/0/label",
+                    "type": "string"
+                  },
+                  "attribute": {
+                    "id": "http://jsonschema.net/type/versions_recipe/2/0/attribute",
+                    "type": "string"
+                  },
+                  "optional": {
+                    "id": "http://jsonschema.net/type/versions_recipe/2/0/optional",
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "id": "http://jsonschema.net/type/versions_recipe/2/0/type",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "tos": {
+          "id": "http://jsonschema.net/type/tos",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "name_url",
+    "organization_id",
+    "id",
+    "name",
+    "summary",
+    "description",
+    "icon_url",
+    "type_id",
+    "download_url",
+    "video_caption",
+    "created_at",
+    "updated_at",
+    "owner",
+    "state",
+    "youtube_video_url",
+    "metadata",
+    "versions",
+    "organization",
+    "type"
+  ]
+}

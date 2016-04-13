@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Example of request bodies
+mediaType: application/json
+types:
+  Person:
+    type: object
+    properties:
+      x: number
+resourceTypes:
+  ee: !include type.raml
+/hello:
+  type: ee

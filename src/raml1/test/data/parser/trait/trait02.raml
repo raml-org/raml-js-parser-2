@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: test
+traits:
+  - TestTrait:
+      queryParameters:
+        limit:
+          type: integer
+/test:
+  post:
+    is: [TestTrait]
+    responses:
+      201:

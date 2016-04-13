@@ -1,0 +1,10 @@
+{
+  "name": "clusteName",
+  "multicastEnabled": true,
+  "servers": [
+    {
+      "id": 1,
+      "serverIp": "172.16.12.169"
+    }
+  ]
+}

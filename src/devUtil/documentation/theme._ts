@@ -1,0 +1,154 @@
+/// <reference path="../../../../typings/main.d.ts" />
+import fs = require("fs");
+//import td = require("td");
+
+class RamlParserTheme extends td.output.DefaultTheme {
+
+    constructor(renderer, basePath) {
+        super(renderer, basePath);
+
+        //method to patch page parameters before rendering
+        renderer.on(td.output.Renderer.EVENT_BEGIN_PAGE, this.onRendererBeginPage, this, 10000);
+
+        //method to patch page parameters after rendering
+        renderer.on(td.output.Renderer.EVENT_END_PAGE, this.onRendererEndPage, this, -10);
+    }
+
+    pageMap:any = {};
+
+    urlMap:{[key:string]:td.models.UrlMapping} = {};
+
+    getUrls(project:td.models.ProjectReflection):td.models.UrlMapping[] {
+
+        var entryPoint = this.getEntryPoint(project);
+        entryPoint.children = entryPoint.children.filter(x=>{
+            var url = td.output.DefaultTheme.getUrl(x);
+            return url.indexOf("_typings_") < 0;
+        });
+    
+        var owner = this;
+        var urls = super.getUrls(project);
+        urls.forEach(x=>owner.urlMap[x.url]=x);
+        return urls;
+    }
+
+    onRendererBeginPage(page:td.output.OutputPageEvent) {
+        if (page.filename.indexOf('_src_index_.html') >= 0) {
+            page.model.comment = new td.models.Comment(null, this.getComment(page));
+            this.pageMap[page.filename] = {
+                name: page.model.name,
+                kindString: page.model.kindString
+            };
+            //page.model.name = 'RAML JS Parser';
+            page.model.kindString = '';
+        }
+
+        var processHierarchy = function(x){
+            if (!x) {
+                return;
+            }
+            if (x.types) {
+                x.types = x.types.filter(y=>{
+                    return !y.reflection || y.reflection.url.indexOf('raml08') < 0;
+                });
+            }
+            processHierarchy(x.next);
+        };
+
+        var processModel = function(x) {
+
+            //removing classes groups from module pages
+            if (x.groups) {
+                x.groups = x.groups.filter(group=>{
+                    return group.kind != td.models.ReflectionKind.Class;
+                });
+            }
+
+            //removing RAML 0.8 siblings
+            //processHierarchy(x.typeHierarchy);
+
+            //removing all implementers
+            if (x.implementedBy) {
+                x.implementedBy = [];
+//                x.implementedBy.filter(x=>{
+//                    return !x.reflection || x.reflection.url.indexOf('raml08') < 0;
+//                });
+            }
+
+            //removing classes from modules
+            if (x.children) {
+                x.children = x.children.filter(x=>{
+                    return x.kind != td.models.ReflectionKind.Class;
+                });
+            }
+
+            if (x.children) {
+                x.children.forEach(ch=>processModel(ch));
+            }
+        };
+        processModel(page.model);
+    }
+
+    onRendererEndPage(page:td.output.OutputPageEvent) {
+
+        if (this.pageMap[page.filename]) {
+            var entry = this.pageMap[page.filename];
+            page.model.name = entry.name;
+            page.model.kindString = entry.kindString;
+        }
+
+        if (page.filename.indexOf('index.html') >= 0) {
+            page.contents = indexRedirect;
+        }
+    }
+
+    private getComment(page:td.output.OutputPageEvent) {
+        var srcPath = this.urlMap[page.url].model.originalName;
+        var content = fs.readFileSync(srcPath).toString();
+        var ind = content.indexOf('/**');
+        if (ind < 0) {
+            return null;
+        }
+        if(content.substring(0,ind).trim().length>0){
+            return null;
+        }
+        var ind1 = content.indexOf('**/',ind);
+        if (ind1 < 0) {
+            return null;
+        }
+        ind1 += '**/'.length;
+        var comment = content.substring(ind, ind1);
+        return refineComment(comment);
+    }
+
+}
+
+var indexRedirect:string = `<!doctype html>
+<html class="default no-js">
+<!doctype html>
+<html class="default no-js">
+<head>
+	<script type="text/javascript">
+            window.location.href = "./modules/_src_index_.html"
+        </script>
+        <title>Page Redirection</title>
+</head>
+
+</html>
+`;
+
+function refineComment(str:string):string {
+
+    return str.split('\n').map((x, i, arr)=> {
+        if (i == 0) {
+            return x.replace(/^[\s]*[\/][\*]+/, '').trim();
+        }
+        else if (i == arr.length - 1) {
+            return x.replace(/[\*]+[\/][\s]*$/, '').trim();
+        }
+        else {
+            return x.replace(/^[\s]*[\*]/, '').replace(/[\*][\s]*$/, '').trim();
+        }
+    }).join('\n').trim();
+}
+export = RamlParserTheme

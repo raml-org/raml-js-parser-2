@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+types:
+  User:
+    properties:
+      name: string
+
+/someSegment/{someJsonObject}:
+  uriParameters:
+      someJsonObject: User
+  get:
+    responses:
+      200:

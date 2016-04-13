@@ -1,0 +1,33 @@
+{
+  "title": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "typed": {
+      "type": "object",
+      "properties": {
+        "num1": {
+          "type": "number"
+        },
+        "str1": {
+          "type": "string"
+        },
+        "num2": {
+          "type": "number"
+        },
+        "str2": {
+          "type": "string"
+        },
+        "num12": {
+          "type": "number"
+        },
+        "str12": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

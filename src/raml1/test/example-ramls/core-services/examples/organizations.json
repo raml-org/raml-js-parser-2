@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "name": "core services sub",
+      "id": "fc6f4fc3-39a2-4b24-8895-c3705ff73d81",
+      "createdAt": "Mon Feb 09 2015 17:47:26 GMT-0300 (ART)",
+      "updatedAt": "Mon Feb 09 2015 17:47:26 GMT-0300 (ART)",
+      "ownerId": "6db86c8c-535c-45e4-b7d7-45049c39b69b",
+      "clientId": "bc18269f208843eba1a4fbebd410c364",
+      "domain": "core-services-sub",
+      "idprovider_id": "mulesoft",
+      "isFederated": false,
+      "isMaster": true,
+      "parentOrganizationIds": [ "6623d567-e2af-42f4-871b-5c602c247633" ],
+      "subOrganizationIds": [],
+      "tenantOrganizationIds": [],
+      "sessionTimeout": 60
+    }
+  ],
+  "total": 1
+}

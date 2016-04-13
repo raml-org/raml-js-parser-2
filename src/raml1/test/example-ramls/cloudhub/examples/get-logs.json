@@ -1,0 +1,19 @@
+{
+   "data":[
+      {
+         "sequenceNumber":1431232081458,
+         "timestamp":1431232081908,
+         "serverId":"i0331cdfc",
+         "message":"Registering ping flow injector...",
+         "priority":"INFO"
+      },
+      {
+         "sequenceNumber":1431232081459,
+         "timestamp":1431232081943,
+         "serverId":"i0331cdfc",
+         "message":"The PersistentQueueManager is NOT configured. The normal VM queue manager will be used.",
+         "priority":"INFO"
+      },
+   ],
+   "total":320
+}

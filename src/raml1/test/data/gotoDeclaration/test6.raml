@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: d
+mediaType: application/json
+uses:
+  l: !include ./ll.raml
+types:
+  hello:
+    properties:
+      xxx: l.ff
+    example:
+      xxx: 3
+annotationTypes:
+  myAnnotation:
+    properties:
+      param: number
+
+(myAnnotation):
+      pa^ram : 1
+/q:
+  get:
+    queryParameters:
+      a: hello

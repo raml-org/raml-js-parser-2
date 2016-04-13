@@ -1,0 +1,18 @@
+#%RAML 0.8
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+resourceTypes:
+  - base :
+      get?:
+        queryParameters:
+          username:
+            required: <<required>>
+            example: username=demo
+/helloWorld:
+  type: {base: {required: true}}
+  get:
+    responses:
+      200:
+        body:

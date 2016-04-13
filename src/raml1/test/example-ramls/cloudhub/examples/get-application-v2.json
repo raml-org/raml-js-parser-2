@@ -1,0 +1,58 @@
+{
+   "id":"54f87d13e4b0d48f320c66cb",
+   "href":"http://anypoint.mulesoft.com:8080/api/applications/example-app",
+   "domain":"jeff-1amstudios-test",
+   "fullDomain":"example-app.cloudhub.io",
+   "description":"",
+   "properties":{
+
+   },
+   "propertiesOptions":{
+
+   },
+   "status":"STARTED",
+   "workers":1,
+   "workerType":"Medium",
+   "workerStatuses":[
+      {
+         "id":"i-100ca3e0",
+         "host":"54.173.54.208",
+         "port":0,
+         "status":"STARTED",
+         "staticIPEnabled":false
+      }
+   ],
+   "lastUpdateTime":1425571830350,
+   "filename":"exampleapp.zip",
+   "remainingWorkerCount":0,
+   "muleVersion":"3.6.0",
+   "supportedVersions":[
+      "3.3.2",
+      "3.4.0",
+      "3.5.0",
+      "3.4.1",
+      "3.6.0",
+   ],
+   "instanceSize":"m3.medium",
+   "tenants":0,
+   "userId":"54f7ed7ae4b0d48f31a3099e",
+   "userName":"fred-smith",
+   "vpnConfig":{
+      "network":"203.0.113.0",
+      "mask":27
+   },
+   "hasFile":true,
+   "staticIPsEnabled":false,
+   "multitenanted":false,
+   "persistentQueues":false,
+   "monitoringAutoRestart":true,
+   "encryptedPersistentQueues":false,
+   "ipAddresses":[
+
+   ],
+   "secureDataGateway":{
+      "connected":false
+   },
+   "secureDataGatewayEnabled":false,
+   "vpnEnabled":false
+}

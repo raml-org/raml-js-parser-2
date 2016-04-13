@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "resourceTrigger": {
+      "metric": {
+        "type": { "enum": [ "cpu", "memory", "transactions" ] }
+      },
+      "value": { "type": "int" },
+      "operator": {
+        "type": { "enum": [ "above", "below" ] }
+      }
+    },
+    "scheduleTrigger": {
+      "time": { "type": "string" },
+      "dayOfWeek": {
+        "type": { "enum": [ "0", "1", "2", "3", "4", "5", "6", "*" ] }
+      }
+    },
+    "actions": {
+      "$ref": "appmonitor-action",
+      "type": "array"
+    }
+  }
+}
