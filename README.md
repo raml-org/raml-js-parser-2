@@ -48,6 +48,7 @@ Install typings CLI if needed: `npm install typings --global`
 
 Clone repositories:
 * `git clone https://github.com/mulesoft-labs/yaml-ast-parser.git`
+* `git clone https://github.com/mulesoft-labs/ts-model`
 * `git clone https://github.com/mulesoft-labs/ts-structure-parser.git`
 * `git clone https://github.com/raml-org/typesystem-ts.git`
 * `git clone https://github.com/raml-org/raml-definition-system.git`
