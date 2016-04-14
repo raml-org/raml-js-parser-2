@@ -2,10 +2,21 @@
 
 npm-debug.log
 
-/src/**/*.js
-/src/**/*.js.map
-/src/**/*.d.ts
-
 *.iml
 
+.project
+.settings
+
 /browserVersion
+
+/src
+
+gulpfile.js
+
+tsconfig.json
+
+typings.json
+
+RAML Parser.png
+
+.travis.yml
