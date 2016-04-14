@@ -24,7 +24,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
                 //This is only case of nested hierarchy
                 continue;
             }
-            if (superTypeName=="RAMLLanguageElement"){
+            if (superTypeName=="hl.BasicNode"){
                 //depth first
                 continue;
             }
@@ -37,7 +37,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         }
     }
     if (!wrapperConstructor){
-        wrapperConstructor = classMap["RAMLLanguageElement"]
+        wrapperConstructor = classMap["hl.BasicNode"]
 
     }
     return wrapperConstructor(node,setAsTopLevel);

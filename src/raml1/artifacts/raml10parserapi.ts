@@ -30,13 +30,7 @@
 import hl=require("../../raml1/highLevelAST");
 import core=require("../../raml1/wrapped-ast/parserCoreApi");
 
-export interface RAMLLanguageElement extends core.BasicNode{
-
-        /**
-         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
-         **/
-description(  ):MarkdownString
-
+export interface Annotable extends core.BasicNode{
 
         /**
          * Most of RAML model elements may have attached annotations decribing additional meta data about this element
@@ -51,6 +45,60 @@ export interface ValueType extends core.AttributeNode{
          **/
 value(  ):any
 }
+
+export interface StringType extends ValueType{
+
+        /**
+         * @return String representation of the node value
+         **/
+value(  ):string
+}
+
+
+/**
+ * This type currently serves both for absolute and relative urls
+ **/
+export interface UriTemplate extends StringType{}
+
+
+/**
+ * This  type describes relative uri templates
+ **/
+export interface RelativeUriString extends UriTemplate{}
+
+
+/**
+ * This  type describes absolute uri templates
+ **/
+export interface FullUriTemplateString extends UriTemplate{}
+
+export interface StatusCodeString extends StringType{}
+
+
+/**
+ * This  type describes fixed uris
+ **/
+export interface FixedUriString extends StringType{}
+
+export interface ContentType extends StringType{}
+
+
+/**
+ * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
+ **/
+export interface MarkdownString extends StringType{}
+
+
+/**
+ * Schema at this moment only two subtypes are supported (json schema and xsd)
+ **/
+export interface SchemaString extends StringType{}
+
+
+/**
+ * This sub type of the string represents mime types
+ **/
+export interface MimeType extends StringType{}
 
 export interface AnyType extends ValueType{}
 
@@ -69,6 +117,12 @@ export interface BooleanType extends ValueType{
          **/
 value(  ):boolean
 }
+
+
+/**
+ * Elements to which this Annotation can be applied (enum)
+ **/
+export interface AnnotationTarget extends ValueType{}
 
 export interface Reference extends core.AttributeNode{
 
@@ -136,19 +190,37 @@ values(  ):TypeInstance[]
 isArray(  ):boolean
 }
 
-
-/**
- * Annotations allow you to attach information to your API
- **/
-export interface AnnotationRef extends Reference{
+export interface TraitRef extends Reference{
 
         /**
-         * Returns referenced annotation
+         * Returns referenced trait
          **/
-annotation(  ):AnnotationTypeDeclaration
+trait(  ):Trait
 }
 
-export interface TypeDeclaration extends RAMLLanguageElement{
+export interface HasNormalParameters extends Annotable{
+
+        /**
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         **/
+queryParameters(  ):TypeDeclaration[]
+
+
+        /**
+         * Headers that allowed at this position
+         **/
+headers(  ):TypeDeclaration[]
+
+
+        /**
+         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
+         **/
+queryString(  ):TypeDeclaration
+
+description(  ):string
+}
+
+export interface TypeDeclaration extends Annotable{
 
         /**
          * name of the parameter
@@ -209,13 +281,25 @@ repeat(  ):boolean
          **/
 required(  ):boolean
 
-xml(  ):XMLFacetInfo
-
 
         /**
          * A longer, human-friendly description of the type
          **/
-description(  ):MarkdownString
+description(  ):string
+
+xml(  ):XMLFacetInfo
+
+
+        /**
+         * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
+         **/
+allowedTargets(  ):AnnotationTarget[]
+
+
+        /**
+         * Whether the type represents annotation
+         **/
+isAnnotation(  ):boolean
 
 
         /**
@@ -264,7 +348,7 @@ export interface ModelLocation extends core.AbstractWrapperNode{}
 
 export interface LocationKind extends core.AbstractWrapperNode{}
 
-export interface XMLFacetInfo extends core.BasicNode{
+export interface XMLFacetInfo extends Annotable{
 
         /**
          * If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types.
@@ -322,31 +406,7 @@ minItems(  ):number
 maxItems(  ):number
 }
 
-export interface AnnotationTypeDeclaration extends TypeDeclaration{
-
-        /**
-         * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
-         **/
-allowedTargets(  ):AnnotationTarget[]
-
-
-        /**
-         * Instructions on how and when to use this annotation in a RAML spec.
-         **/
-usage(  ):string
-}
-
-export interface ArrayAnnotationTypeDeclaration extends ArrayTypeDeclaration,AnnotationTypeDeclaration{}
-
-
-/**
- * Elements to which this Annotation can be applied (enum)
- **/
-export interface AnnotationTarget extends ValueType{}
-
 export interface UnionTypeDeclaration extends TypeDeclaration{}
-
-export interface UnionAnnotationTypeDeclaration extends UnionTypeDeclaration,AnnotationTypeDeclaration{}
 
 export interface ObjectTypeDeclaration extends TypeDeclaration{
 
@@ -392,8 +452,6 @@ discriminator(  ):string
 discriminatorValue(  ):string
 }
 
-export interface ObjectAnnotationTypeDeclaration extends ObjectTypeDeclaration,AnnotationTypeDeclaration{}
-
 
 /**
  * Value must be a string
@@ -424,15 +482,11 @@ maxLength(  ):number
 enum(  ):string[]
 }
 
-export interface StringAnnotationTypeDeclaration extends StringTypeDeclaration,AnnotationTypeDeclaration{}
-
 
 /**
  * Value must be a boolean
  **/
 export interface BooleanTypeDeclaration extends TypeDeclaration{}
-
-export interface BooleanAnnotationTypeDeclaration extends BooleanTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
@@ -482,31 +536,29 @@ export interface IntegerTypeDeclaration extends NumberTypeDeclaration{
 format(  ):string
 }
 
-export interface NumberAnnotationTypeDeclaration extends NumberTypeDeclaration,AnnotationTypeDeclaration{}
-
 
 /**
  * the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)
  **/
-export interface DateOnly extends TypeDeclaration{}
+export interface DateOnlyTypeDeclaration extends TypeDeclaration{}
 
 
 /**
  * the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)
  **/
-export interface TimeOnly extends TypeDeclaration{}
+export interface TimeOnlyTypeDeclaration extends TypeDeclaration{}
 
 
 /**
  * combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)
  **/
-export interface DateTimeOnly extends TypeDeclaration{}
+export interface DateTimeOnlyTypeDeclaration extends TypeDeclaration{}
 
 
 /**
  * a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.
  **/
-export interface DateTime extends TypeDeclaration{
+export interface DateTimeTypeDeclaration extends TypeDeclaration{
 
         /**
          * Format used for this date time rfc3339 or rfc2616
@@ -518,11 +570,7 @@ format(  ):string
 /**
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
  **/
-export interface DateTypeDeclaration extends TypeDeclaration{
-format(  ):string
-}
-
-export interface DateTypeAnnotationDeclaration extends DateTypeDeclaration,AnnotationTypeDeclaration{}
+export interface DateTypeDeclaration extends TypeDeclaration{}
 
 
 /**
@@ -548,44 +596,6 @@ minLength(  ):number
 maxLength(  ):number
 }
 
-export interface StringType extends ValueType{
-
-        /**
-         * @return String representation of the node value
-         **/
-value(  ):string
-}
-
-export interface ContentType extends StringType{}
-
-export interface TraitRef extends Reference{
-
-        /**
-         * Returns referenced trait
-         **/
-trait(  ):Trait
-}
-
-export interface HasNormalParameters extends RAMLLanguageElement{
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration
-}
-
 export interface SecuritySchemePart extends HasNormalParameters{
 
         /**
@@ -600,7 +610,7 @@ responses(  ):Response[]
 annotations(  ):AnnotationRef[]
 }
 
-export interface Response extends RAMLLanguageElement{
+export interface Response extends Annotable{
 
         /**
          * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
@@ -623,7 +633,7 @@ body(  ):TypeDeclaration[]
         /**
          * A longer, human-friendly description of the response
          **/
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
@@ -637,8 +647,6 @@ annotations(  ):AnnotationRef[]
          **/
 isOkRange(  ):boolean
 }
-
-export interface StatusCodeString extends StringType{}
 
 export interface MethodBase extends HasNormalParameters{
 
@@ -690,7 +698,7 @@ securityScheme(  ):AbstractSecurityScheme
 /**
  * Declares globally referable security scheme definition
  **/
-export interface AbstractSecurityScheme extends core.BasicNode{
+export interface AbstractSecurityScheme extends Annotable{
 
         /**
          * Name of the security scheme
@@ -728,7 +736,7 @@ displayName(  ):string
 settings(  ):SecuritySchemeSettings
 }
 
-export interface SecuritySchemeSettings extends core.BasicNode{}
+export interface SecuritySchemeSettings extends Annotable{}
 
 export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings{
 
@@ -755,12 +763,6 @@ tokenCredentialsUri(  ):FixedUriString
          **/
 signatures(  ):string[]
 }
-
-
-/**
- * This  type describes fixed uris
- **/
-export interface FixedUriString extends StringType{}
 
 export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
 
@@ -906,7 +908,7 @@ export interface ResourceTypeRef extends Reference{
 resourceType(  ):ResourceType
 }
 
-export interface ResourceBase extends RAMLLanguageElement{
+export interface ResourceBase extends Annotable{
 
         /**
          * Methods that are part of this resource type definition
@@ -924,6 +926,8 @@ is(  ):TraitRef[]
          * The resource type which this resource inherits.
          **/
 "type"(  ):ResourceTypeRef
+
+description(  ):string
 
 
         /**
@@ -984,7 +988,7 @@ resources(  ):Resource[]
         /**
          * A longer, human-friendly description of the resource.
          **/
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
@@ -1036,24 +1040,6 @@ ownerApi(  ):Api
 absoluteUriParameters(  ):TypeDeclaration[]
 }
 
-
-/**
- * This type currently serves both for absolute and relative urls
- **/
-export interface UriTemplate extends StringType{}
-
-
-/**
- * This  type describes absolute uri templates
- **/
-export interface FullUriTemplateString extends UriTemplate{}
-
-
-/**
- * This  type describes relative uri templates
- **/
-export interface RelativeUriString extends UriTemplate{}
-
 export interface ResourceType extends ResourceBase{
 
         /**
@@ -1082,41 +1068,35 @@ parametrizedProperties(  ):TypeInstance
 
 
 /**
- * Schema at this moment only two subtypes are supported (json schema and xsd)
+ * Annotations allow you to attach information to your API
  **/
-export interface SchemaString extends StringType{}
+export interface AnnotationRef extends Reference{
+
+        /**
+         * Returns referenced annotation
+         **/
+annotation(  ):TypeDeclaration
+}
+
+export interface UsesDeclaration extends Annotable{
+
+        /**
+         * Name prefix (without dot) used to refer imported declarations
+         **/
+key(  ):string
 
 
-/**
- * JSON schema
- **/
-export interface JSonSchemaString extends SchemaString{}
+        /**
+         * Pass to the used library
+         **/
+value(  ):string
+}
 
+export interface FragmentDeclaration extends Annotable{
+uses(  ):UsesDeclaration[]
+}
 
-/**
- * XSD schema
- **/
-export interface XMLSchemaString extends SchemaString{}
-
-
-/**
- * Examples at this moment only two subtypes are supported (json  and xml)
- **/
-export interface ExampleString extends StringType{}
-
-
-/**
- * This sub type of the string represents mime types
- **/
-export interface MimeType extends StringType{}
-
-
-/**
- * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
- **/
-export interface MarkdownString extends StringType{}
-
-export interface DocumentationItem extends RAMLLanguageElement{
+export interface DocumentationItem extends Annotable{
 
         /**
          * Title of documentation section
@@ -1130,12 +1110,38 @@ title(  ):string
 content(  ):MarkdownString
 }
 
-export interface LibraryBase extends RAMLLanguageElement{
+export interface ExampleSpec extends Annotable{
+
+        /**
+         * String representation of example
+         **/
+value(  ):any
+
+
+        /**
+         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+         **/
+strict(  ):boolean
+
+
+        /**
+         * Example identifier, if specified
+         **/
+name(  ):string
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+}
+
+export interface LibraryBase extends Annotable{
 
         /**
          * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
          **/
-schemas(  ):GlobalSchema[]
+schemas(  ):TypeDeclaration[]
 
 
         /**
@@ -1147,7 +1153,7 @@ types(  ):TypeDeclaration[]
         /**
          * Declarations of annotation types for use by annotations
          **/
-annotationTypes(  ):AnnotationTypeDeclaration[]
+annotationTypes(  ):TypeDeclaration[]
 
 
         /**
@@ -1180,44 +1186,6 @@ resourceTypes(  ):ResourceType[]
          * @deprecated
          **/
 allResourceTypes(  ):ResourceType[]
-}
-
-export interface RAMLSimpleElement extends core.BasicNode{}
-
-export interface UsesDeclaration extends RAMLSimpleElement{
-
-        /**
-         * Name prefix (without dot) used to refer imported declarations
-         **/
-key(  ):string
-
-
-        /**
-         * Content of the schema
-         **/
-value(  ):string
-}
-
-export interface FragmentDeclaration extends RAMLSimpleElement{
-uses(  ):UsesDeclaration[]
-}
-
-
-/**
- * Content of the schema
- **/
-export interface GlobalSchema extends RAMLSimpleElement{
-
-        /**
-         * Name of the global schema, used to refer on schema content
-         **/
-key(  ):string
-
-
-        /**
-         * Content of the schema
-         **/
-value(  ):SchemaString
 }
 
 export interface Library extends LibraryBase{
@@ -1282,12 +1250,6 @@ resources(  ):Resource[]
          * Additional overall documentation for the API
          **/
 documentation(  ):DocumentationItem[]
-
-
-        /**
-         * A longer, human-friendly description of the API
-         **/
-description(  ):MarkdownString
 
 
         /**

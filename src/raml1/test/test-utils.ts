@@ -399,7 +399,7 @@ export function loadApiOptions08(apiPath:string, options : any){
   return opt.getOrThrow();
 }
 
-export function loadRAML(ramlPath : string) : RamlWrapper.RAMLLanguageElement | RamlWrapper08.RAMLLanguageElement {
+export function loadRAML(ramlPath : string) : hl.BasicNode {
   var opt = apiLoader.loadRAML(ramlPath);
   return opt.getOrThrow();
 }
