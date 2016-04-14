@@ -1,0 +1,28 @@
+[
+  {
+    "id": 520,
+    "code": "f2e8dfab-6699-4889-831f-6dc6f8428cb0",
+    "invited_at": "2015-01-30T22:23:55.433Z",
+    "invited_email": "christopher.mordue@mulesoft.com",
+    "invited_by_user": {
+      "id": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+      "username": "organization_owner",
+      "first_name": "Organization2",
+      "last_name": "Owner"
+    },
+    "invited_to_org": {
+      "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+      "name": "MuleSoft Inc"
+    },
+    "expires_at": "2015-04-10T22:23:55.433Z",
+    "status": "INVITED",
+    "completed_at": null,
+    "completed_by_user": null,
+    "role_groups": [
+      {
+        "name": "Organization Administrators",
+        "role_group_id": "0b19f6df-ed81-4fd1-b5e7-4921f5e46f4c"
+      }
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "name": "Scaledown if memory < 10%",
+  "resourceTrigger": {
+    "metric": "memory",
+    "operator": "below",
+    "value": 10
+  },
+  "actions": [
+    {
+      "type": "scaledown",
+      "scaleType": "workerSize",
+      "minScale": 0.2
+    },
+    {
+      "type": "notify"
+    }
+  ]
+}

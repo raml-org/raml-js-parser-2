@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Some API
+
+types:
+  SomeType1:
+    type: object
+    properties:
+      prop1: SomeType2
+  SomeType2:
+    type: object
+    properties:
+      prop2: SomeType1

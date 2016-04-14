@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: test
+/{id}:
+  get:
+    queryParameters:
+      r:
+        required: true
+        enum: [a]
+/{vid}:
+  get:
+    queryParameters:
+      r:
+        required: true
+        enum: [a,b]

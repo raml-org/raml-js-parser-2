@@ -1,0 +1,9 @@
+#%RAML 0.8
+title: Blah
+mediaType: application/json
+/test:
+  get:
+    body:
+      application/json:
+        schema: aaa
+        example: !include ./examples/aaa.json

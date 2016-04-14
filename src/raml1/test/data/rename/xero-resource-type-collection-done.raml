@@ -1,0 +1,17 @@
+#%RAML 0.8
+title: New API
+version: v1
+mediaType: application/json
+baseUri: http://samplehost.com
+
+resourceTypes:
+  - abc:
+      description: xxx
+  - xxx:
+      description: zzz
+
+/hello:
+  type: abc
+
+/world:
+  type: { xxx: { name: bankTransaction } }

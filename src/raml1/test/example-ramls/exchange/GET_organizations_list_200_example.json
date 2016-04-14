@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Mulesoft",
+    "domain": "",
+    "core_services_id": "b2844826-bb5a-4ba1-afdc-3fcb8765e834",
+    "owner_name": "Lorem Ipsum",
+    "owner_email": "lorem@ipsum.com",
+    "owner_phone": "5491177544646"
+  },
+  {
+    "id": 2,
+    "name": "Testing",
+    "domain": "testing",
+    "core_services_id": "",
+    "owner_name": "Lorem Ipsum",
+    "owner_email": "lorem@ipsum.com",
+    "owner_phone": "5491112345678"
+  }
+]

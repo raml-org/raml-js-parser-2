@@ -1,0 +1,212 @@
+#%RAML 0.8
+title: Cloudhub New Logging
+version: 1.0.0
+baseUri: https://dev.anypoint.mulesoft.com/cloudhub
+protocols: [ HTTPS ]
+
+traits:
+  - chAuthRequired:
+      headers:
+          X-ANYPNT-ENV-ID:
+            required: true
+            example: 5440a051e4b0547173e7bb60
+          Authorization:
+            required: true
+            example: BasicSecurityScheme a2JhYnVzaGtpbjg4Ok11bGUyMDEz
+
+/api/v2/applications:
+  /{domain}:
+    uriParameters:
+      domain:
+        required: true
+        example: 360-new-logs
+    /deployments:
+      is: [chAuthRequired]
+      get:
+          description: Get list of application deployments
+          queryParameters:
+            limit:
+              default: 25
+              description: result limit
+              type: integer
+              required: false
+            offset:
+              default: 0
+              description: result offset
+              type: integer
+              required: false
+            orderByDate:
+              default: ASC
+              description: result ordering
+              type: string
+              required: false
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      "data": [
+                        {
+                          "deploymentId": "55820019e4b05e73aedbc244",
+                          "createTime": "2015-06-17T23:17:45.886Z",
+                          "startTime": "2015-06-17T23:17:46.338Z",
+                          "endTime": "2015-06-17T23:21:35.408Z",
+                          "instances": [
+                            {
+                              "instanceId": "i-8b29cd58",
+                              "publicIPAddress": "54.175.30.207",
+                              "status": "STARTED",
+                              "region": "us-east-1"
+                            }
+                          ]
+                        }
+                      ],
+                      "total": 3
+                    }
+      /{deploymentId}:
+        uriParameters:
+          deploymentId:
+            required: true
+            example: 55ae8526e4b046c45954ca8d
+        /logs:
+          is: [chAuthRequired]
+          get:
+            description: Get application deployment logs
+            queryParameters:
+              limit:
+                default: 100
+                description: result limit
+                type: integer
+                required: false
+              limitMsgLen:
+                default: 0
+                description: message length limit
+                type: integer
+                required: false
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: |
+                      {
+                        "data": [
+                          {
+                            "loggerName": "com.mulesoft.ch.logging.appender.log4j.Log4JCloudhubAppenderLiveTest",
+                            "threadName": "pool-2-thread-2",
+                            "timestamp": 1434613457699,
+                            "message": "J4J-Test!",
+                            "priority": "INFO",
+                            "tenantId": "tenantId",
+                            "instanceId": "i-8b29cd58"
+                          }
+                        ],
+                        "total": 5
+                      }
+    /instances:
+      /{instanceId}:
+        uriParameters:
+          instanceId:
+            required: true
+            example: i-ff5ddd16
+        /logs:
+          is: [chAuthRequired]
+          get:
+            description: Get worker/instance logs from head or tail
+            queryParameters:
+              limit:
+                default: 100
+                description: result limit
+                type: integer
+                required: false
+              limitMsgLen:
+                default: 0
+                description: message length limit
+                type: integer
+                required: false
+              offset:
+                default: 0
+                description: result offset
+                type: integer
+                required: false
+              chunk:
+                default: 2
+                description: chunk from search result
+                type: integer
+                required: false
+              tail:
+                default: false
+                description: tail or head
+                type: boolean
+                required: false
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: |
+                      {
+                        "data": [
+                          {
+                            "loggerName": "com.mulesoft.ch.logging.appender.log4j2.Log4J2CloudhubAppenderLiveTest",
+                            "threadName": "pool-3-thread-4",
+                            "timestamp": 1434613137709,
+                            "message": "L4J2-Test!",
+                            "priority": "INFO",
+                            "tenantId": "tenantId"
+                          }
+                        ],
+                        "total": 4
+                      }
+        /log-file:
+          is: [chAuthRequired]
+          get:
+            description: Get worker/instance log file
+            responses:
+              200:
+                body:
+                  application/octet-stream:
+    /logs:
+      is: [chAuthRequired]
+      post:
+        description: Search application logs
+        body:
+          application/json:
+            example: |
+              {
+                "deploymentId": "55ae8526e4b046c45954ca8d",
+                "instanceId": "i-ff5ddd16",
+                "tenantId": "",
+                "startTime": 0,
+                "endTime": 1437500983188,
+                "text": "",
+                "priority": "INFO",
+                "loggerName": "org.mule.api.processor.LoggerMessageProcessor",
+                "threadName": "[360-new-logs].logstressFlow1.stage1.02",
+                "limit": 100,
+                "limitMsgLen": 20,
+                "descending": true,
+                "upperId": "",
+                "lowerId": ""
+              }
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  [
+                    {
+                      "recordId": "557a92fae4b02607ff51ef5c5590c8b9e4b0708e2fb5eb90i-00e511fe1435552136000000000009490",
+                      "deploymentId": "5590c8b9e4b0708e2fb5eb90",
+                      "instanceId": "i-00e511fe",
+                      "line": 0,
+                      "event": {
+                          "loggerName": "org.mule.api.processor.LoggerMessageProcessor",
+                          "threadName": "[new-logs].logstressFlow1.stage1.02",
+                          "timestamp": 1435600665840,
+                          "message": "Mon Jun 29 17:57:45 UTC 2015-c9da4930-cc1c-4ff5-a181-ed42aebc72de 1000",
+                          "priority": "INFO",
+                          "tenantId": ""
+                        }
+                      }
+                    }
+                  ]

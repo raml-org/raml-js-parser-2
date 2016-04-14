@@ -1,0 +1,28 @@
+{
+  "versions": [
+    {
+      "id": "All",
+      "name": "All",
+      "isActive": false
+    },
+    {
+      "id": "11401",
+      "apiId": "11038",
+      "portalId": null,
+      "name": "0.3.8",
+      "isActive": true
+    }
+  ],
+  "roles": [
+    {
+      "role_id": "6f233440-be39-4083-b10a-a5eea995ee52",
+      "name": "API Version Owner",
+      "isAssigned": true
+    },
+    {
+      "role_id": "a81d5360-64fe-40cc-9f1d-f5ed40d227ca",
+      "name": "Portal Viewer",
+      "isAssigned": false
+    }
+  ]
+}

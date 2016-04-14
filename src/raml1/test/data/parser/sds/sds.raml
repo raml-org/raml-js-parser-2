@@ -1,0 +1,58 @@
+#%RAML 1.0 Library
+#Correct description of sds subset in sds
+types:
+  SDSObject:
+    properties:
+      displayName?: string
+      description?: string
+      #annotations: Annotation{}
+  Library:
+    type: SDSObject
+    properties:
+      title?: string
+      version?: string
+      #uses: Library{}
+      #types: Type{}
+      #annotationTypes: AnnotationTypeDeclaration{}
+  Type:
+    type: SDSObject
+    discriminator: 'type'
+    properties:
+      type?: type-expression[]
+      required?: boolean #only valid in property context
+  ObjectType:
+    type: Type
+    properties:
+      properties:
+        #type: Type{}
+  ArrayType:
+    type: Type
+    properties:
+      uniqueItems: boolean
+      minItems: boolean
+      maxItems: boolean
+  PrimitiveType:
+    type: Type
+    properties:
+      #typeProperties?: Type{}
+      enum?: string[]
+  StringType:
+    type: PrimitiveType
+    properties:
+      patern:
+  AnnotationTypeDeclaration:
+    type: SDSObject
+    properties:
+      #properties: Type{}
+      allowMultiple: boolean
+      allowedTargets: scope[]
+  Annotation:
+    type:  SDSObject
+    additionalProperties:
+      type: any
+  #Value types
+
+  type-expression:
+    type: string
+  scope:
+    type: string

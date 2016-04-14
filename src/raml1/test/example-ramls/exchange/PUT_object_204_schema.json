@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "properties": {
+    "name": { "required": true, "type": "string" },
+    "summary": { "required": false, "type": ["string","null"] },
+    "icon_url": { "required": false, "type": ["string","null"] },
+    "youtube_video_url": { "required": false, "type": ["string","null"] },
+    "video_caption": { "required": false, "type": ["string","null"] },
+    "description": { "required":false, "type":["string","null"] },
+    "metadata": { "required":false, "type":["array", "null"] },
+    "versions": {
+      "required":false,
+      "type":["array", "null"],
+      "properties" : {
+        "object_version": { "required": false, "type": "string" },
+        "mule_version": { "required": false, "type": "string" },
+        "download_url": { "required": false, "type": "string" },
+        "doc_url": { "required": false, "type": "string" },
+        "feature_id": { "required": false, "type": "string" },
+        "api_version": { "required": false, "type": "string" },
+        "website": { "required": false, "type": "string" }
+      }
+    }
+  }
+}

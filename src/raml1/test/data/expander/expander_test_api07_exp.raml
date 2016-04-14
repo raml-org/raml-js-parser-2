@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: ParametrizedResourceTypeToResource_exp
+version: 1
+baseUri: https://example.com/{version}
+resourceTypes:
+  - rt0_param: !include resourceTypes/rt0_param.raml
+/root-resource:
+  type: { rt0_param: { param0: "object", param1: "value" } }
+  get:
+    description: Extract object value
+    queryParameters:
+      type:
+        type: string
+        description: object type
+  put:
+    description: Update object
+    responses:
+      200:
+        application/json:

@@ -1,0 +1,52 @@
+#%RAML 1.0
+title: Hello
+types:
+  A:
+    properties:
+      fffaa: string
+  Person:
+    type: A
+    properties:
+      firstName:
+      lastName:
+      age?:
+    example:
+
+      firstName: Denis Denisenko
+      lastName: ss
+      fffaa: s
+    examples:
+      c:
+        content:
+          firstName: Pavel
+          lastName: Petrochenko
+          fffaa: d
+          #age: number
+      a:
+        content:
+          firstName: Pavel
+          lastName: Denisenko
+          age: number
+          fffaa: c
+  С:
+  bucket-content:
+       properties:
+         Key:
+         LastModified:
+         ETag:
+         Size:
+         StorageClass:
+         Owner:
+           type: object
+           properties:
+               ID:
+               DisplayName:
+
+/persons.get: ()=>Person[]
+/hello:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: Person

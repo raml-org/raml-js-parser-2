@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: Example with responses
+mediaType: application/json
+securitySchemes:
+  apiKey:
+    type: Pass Through
+    settings:
+      queryParameterName: h
+      headerName: h

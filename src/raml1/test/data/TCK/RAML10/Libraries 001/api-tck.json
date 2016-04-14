@@ -1,0 +1,105 @@
+{
+    "ramlVersion": "RAML10",
+    "type": "Api",
+    "specification": {
+        "traits": [
+            {
+                "libTrait1": {
+                    "name": "libTrait1",
+                    "__METADATA__": {
+                        "calculated": true
+                    }
+                }
+            },
+            {
+                "libTrait2": {
+                    "name": "libTrait2",
+                    "__METADATA__": {
+                        "calculated": true
+                    }
+                }
+            },
+            {
+                "ownTrait1": {
+                    "name": "ownTrait1"
+                }
+            },
+            {
+                "ownTrait2": {
+                    "name": "ownTrait2"
+                }
+            }
+        ],
+        "resourceTypes": [
+            {
+                "libResourceType1": {
+                    "name": "libResourceType1",
+                    "__METADATA__": {
+                        "calculated": true
+                    }
+                }
+            },
+            {
+                "libResourceType2": {
+                    "name": "libResourceType2",
+                    "__METADATA__": {
+                        "calculated": true
+                    }
+                }
+            },
+            {
+                "ownResourceType1": {
+                    "name": "ownResourceType1"
+                }
+            },
+            {
+                "ownResourceType2": {
+                    "name": "ownResourceType2"
+                }
+            }
+        ],
+        "uses": {
+            "lib": {
+                "traits": [
+                    {
+                        "libTrait1": {
+                            "name": "libTrait1"
+                        }
+                    },
+                    {
+                        "libTrait2": {
+                            "name": "libTrait2"
+                        }
+                    }
+                ],
+                "resourceTypes": [
+                    {
+                        "libResourceType1": {
+                            "name": "libResourceType1"
+                        }
+                    },
+                    {
+                        "libResourceType2": {
+                            "name": "libResourceType2"
+                        }
+                    }
+                ],
+                "name": "lib"
+            }
+        },
+        "title": "TCK Sample. RAML 1.0 Libraries 001.",
+        "version": "v1",
+        "baseUri": "https://example.com/raml",
+        "protocols": [
+            "HTTPS"
+        ],
+        "__METADATA__": {
+            "primitiveValuesMeta": {
+                "protocols": {
+                    "calculated": true
+                }
+            }
+        }
+    },
+    "errors": []
+}

@@ -1,0 +1,390 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "properties": {
+              "distance": {
+                "type": "number"
+              },
+              "type": {
+                "type": "string"
+              },
+              "users_in_photo": {
+                "type": "string"
+              },
+              "filter": {
+                "type": "string"
+              },
+              "tags": {
+                "type": "array"
+              },
+              "comments": {
+                "properties": {
+                  "data": {
+                    "properties": {
+                      "created_time": {
+                        "type": "string"
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "from": {
+                        "properties": {
+                          "username": {
+                            "type": "string"
+                          },
+                          "full_name": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "profile_picture": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "count": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "likes": {
+                "properties": {
+                  "count": {
+                    "type": "integer"
+                  },
+                  "data": {
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "full_name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "profile_picture": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "link": {
+                "type": "string"
+              },
+              "user": {
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "profile_picture": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "created_time": {
+                "type": "string"
+              },
+              "images": {
+                "properties": {
+                  "low_resolution": {
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "integer"
+                      },
+                      "height": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "thumbnail": {
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "integer"
+                      },
+                      "height": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "standard_resolution": {
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "integer"
+                      },
+                      "height": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "id": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "distance": {
+                "type": "number"
+              },
+              "type": {
+                "type": "string"
+              },
+              "videos": {
+                "properties": {
+                  "low_resolution": {
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "integer"
+                      },
+                      "height": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "standard_resolution": {
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "width": {
+                        "type": "integer"
+                      },
+                      "height": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "users_in_photo": {
+                    "type": "string"
+                  },
+                  "filter": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "array"
+                  },
+                  "comments": {
+                    "properties": {
+                      "data": {
+                        "items": [
+                          {
+                            "properties": {
+                              "created_time": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "from": {
+                                "properties": {
+                                  "username": {
+                                    "type": "string"
+                                  },
+                                  "full_name": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "profile_picture": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "id": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "count": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "caption": {
+                    "type": "string"
+                  },
+                  "likes": {
+                    "properties": {
+                      "count": {
+                        "type": "integer"
+                      },
+                      "data": {
+                        "items": [
+                          {
+                            "properties": {
+                              "username": {
+                                "type": "string"
+                              },
+                              "full_name": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "profile_picture": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ],
+                        "type": "array"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "link": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "full_name": {
+                        "type": "string"
+                      },
+                      "profile_picture": {
+                        "type": "string"
+                      },
+                      "bio": {
+                        "type": "string"
+                      },
+                      "website": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "created_time": {
+                    "type": "string"
+                  },
+                  "images": {
+                    "properties": {
+                      "low_resolution": {
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "integer"
+                          },
+                          "height": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "thumbnail": {
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "integer"
+                          },
+                          "height": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "standard_resolution": {
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "integer"
+                          },
+                          "height": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "location": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

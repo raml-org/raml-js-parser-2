@@ -1,0 +1,33 @@
+{
+  "title": "Person",
+  "type": "object",
+  "properties": {
+    "typed": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "num1": {
+              "type": "number"
+            },
+            "str1": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "num2": {
+              "type": "number"
+            },
+            "str2": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Products
+uses:
+  types: !include types.raml
+annotationTypes:
+  Tag: string
+/products:
+  get:
+    #using annotations
+    (Tag): Demo
+    responses:
+      200:
+        body:
+          application/json:
+            #using type from library
+            type: types.Vehicle

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://anypoint.io/amc",
+  "type": "object",
+  "properties": {
+    "gatewayVersion": {
+      "id": "http://anypoint.io/amc/gatewayVersion",
+      "type": "string"
+    },
+    "signatureRequest": {
+      "id": "http://anypoint.io/amc/signatureRequest",
+      "type": "string"
+    },
+    "muleLabel": {
+      "id": "http://anypoint.io/amc/muleLabel",
+      "type": "string"
+    },
+    "muleVersion": {
+      "id": "http://anypoint.io/amc/muleVersion",
+      "type": "string"
+    }
+  },
+  "required": [
+    "signatureRequest",
+    "muleLabel"
+  ]
+}

@@ -1,0 +1,12 @@
+#%RAML 1.0
+title:
+/res:
+  post:
+    body:
+      application/json:
+        type: types.ModifyLabels
+    responses:
+      200:
+        body:
+          application/json:
+            type: types.Message

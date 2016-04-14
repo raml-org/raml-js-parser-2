@@ -1,0 +1,39 @@
+[
+  {
+    "access_token": "20460a62-bbdc-469d-9330-5eec892abd05",
+    "expires_in": 3600,
+    "client_id": "ac_client",
+    "refresh_token": "39169c51-7fb5-45bd-a119-e78565b9cc2f",
+    "authorization_context": "user",
+    "user_id": "user1.test"
+  }
+  {
+    "access_token": "20460a62-bbdc-469d-9330-5eec892abd05",
+    "expires_in": 3600,
+    "authorization_context": "client",
+    "client_id": "rs_client"
+  }
+  {
+    "access_token": "20460a62-bbdc-469d-9330-5eec892abd05",
+    "expires_in": 3600,
+    "client_id": "ro_client",
+    "refresh_token": "39169c51-7fb5-45bd-a119-e78565b9cc2f",
+    "authorization_context": "user",
+    "user_id": "user1.test"
+  }
+  {
+    "access_token": "20460a62-bbdc-469d-9330-5eec892abd05",
+    "expires_in": 3600,
+    "client_id": "cc_client",
+    "refresh_token": "39169c51-7fb5-45bd-a119-e78565b9cc2f",
+    "authorization_context": "user",
+    "user_id": "user1.test"
+  }
+  {
+    "access_token": "20460a62-bbdc-469d-9330-5eec892abd05",
+    "expires_in": 3600,
+    "client_id": "im_client",
+    "authorization_context": "user",
+    "user_id": "user1.test"
+  }
+]

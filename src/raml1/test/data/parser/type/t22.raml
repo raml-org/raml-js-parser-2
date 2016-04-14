@@ -1,0 +1,31 @@
+#%RAML 1.0
+title: test
+types:
+  - TypeBase:
+      type: object
+      properties:
+        baseField: string
+      example:
+        baseField: name
+  - TestType:
+      type: TypeBase
+      properties:
+        field: string
+      example:
+        baseField: name
+        field: value
+/test:
+  post:
+    body:
+      application/json: TestType
+    responses:
+      201:
+        body:
+          application/json:
+            type: TestType
+            properties:
+              additionalField: string
+            example:
+              field: any text
+              baseField: any text
+              additionalField: any text

@@ -1,0 +1,6 @@
+{
+  "title": "Audit Log Query response - note that we cannot reference logEntry from here - see https://github.com/raml-org/raml-spec/issues/109",
+  "type": [ {
+    "type": "object"
+  } ]
+}

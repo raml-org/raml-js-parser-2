@@ -1,0 +1,41 @@
+|
+  {
+    "title": "Product",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "number",
+        "minimum": "0"
+      },
+      "tags": {
+        "type": "array",
+        "uniqueItems": "true",
+        "minItems": "1",
+        "items": {
+          "type": "string"
+        }
+      },
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          }
+        }
+      },
+      "warehouseLocation": {}
+    },
+    "$schema": "http://json-schema.org/draft-04/schema#"
+  }

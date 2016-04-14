@@ -1,0 +1,51 @@
+[
+  {
+    artifact: {
+      fileName: "test-app-hello.zip",
+      lastUpdateTime: 1434656673159,
+      name: "yaniv-app"
+    },
+    details: {
+      domain: "yaniv-app.qa2.cloudhub.io",
+      recentStatistics: {
+        cpu: 0,
+        transactions: 0
+      }
+    },
+    id: "yaniv-app",
+    lastReportedStatus: "UNDEPLOYED",
+    target: {
+      type: "CLOUDHUB"
+    }
+  },
+  {
+    artifact: {
+      fileChecksum: "f04c76d73925c3ea262645bd529c78c6afe56881",
+      fileName: "testsfdcapp.zip",
+      lastUpdateTime: 1437607778537,
+      name: "testsfdc"
+    },
+    details: {
+      serverArtifacts: [
+        {
+          lastReportedStatus: "STARTED",
+          message: "",
+          target: {
+            id: "2955"
+            name: "demo-splunk",
+            status: "DISCONNECTED",
+            type: "SERVER"
+          }
+        }
+      ]
+    },
+    id: "4181",
+    lastReportedStatus: "UNDEPLOYED",
+    target: {
+      id: "2955",
+      name: "demo-splunk",
+      status: "DISCONNECTED",
+      type: "SERVER"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required" : true,
+  "type" : "object",
+  "properties": {
+    "count": { "required": true, "type": "number" }
+  }
+}

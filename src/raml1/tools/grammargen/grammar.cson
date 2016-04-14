@@ -1,0 +1,2089 @@
+'fileTypes': [
+  'raml'
+]
+'name': 'RAML'
+'patterns': [
+  {
+    'begin': '(^[ \\t]+)?(?=#)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.whitespace.comment.leading.yaml'
+    'end': '(?!\\G)'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+    ]
+  }
+  {
+    'match': '^---\\s*$'
+    'name': 'constant.language.document.yaml'
+  }
+  {
+    'match': '^\\.\\.\\.\\s*$'
+    'name': 'constant.language.document.yaml'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'constant.language.directive.yaml'
+      '2':
+        'name': 'constant.language.version.yaml'
+    'match': '^(%YAML\\s+(\\d+\\.\\d+))$'
+    'name': 'constant.other.directive.yaml'
+  }
+  {
+    'captures':
+      '1':
+        'name': 'constant.language.directive.yaml'
+      '2':
+        'name': 'constant.language.tag.name.yaml'
+      '3':
+        'name': 'constant.language.tag.uri.yaml'
+    'match': '^((?:%TAG)(?:\\s+)(\\!(?:[^\\!]*\\!)?)(?:\\s+)([^$]*))$'
+    'name': 'constant.other.tag.directive.yaml'
+  }
+  {
+    'begin': '^(\\s*)(?:(-)|(?:(-\\s*)?(description\\s*(:))))\\s*(\\||>)'
+    'beginCaptures':
+      '2':
+        'name': 'punctuation.definition.entry.yaml'
+      '3':
+        'name': 'punctuation.definition.entry.yaml'
+      '4':
+        'name': 'entity.name.function.yaml'
+      '5':
+        'name': 'punctuation.separator.key-value.yaml'
+    'end': '^(?!^\\1)|^(?=\\1(-|\\w+\\s*:)|#)'
+    'name': 'markup.raw.description.raml'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#markdown'
+      }
+    ]
+  }
+  {
+    'begin': '^(\\s*)(?:(-)|(?:(-\\s*)?(content\\s*(:))))\\s*(\\||>)'
+    'beginCaptures':
+      '2':
+        'name': 'punctuation.definition.entry.yaml'
+      '3':
+        'name': 'punctuation.definition.entry.yaml'
+      '4':
+        'name': 'entity.name.function.yaml'
+      '5':
+        'name': 'punctuation.separator.key-value.yaml'
+    'end': '^(?!^\\1)|^(?=\\1(-|\\w+\\s*:)|#)'
+    'name': 'markup.raw.description.raml'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#markdown'
+      }
+    ]
+  }
+  {
+    'begin': '^[ \\t]*(baseUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.key-value'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#uri'
+      }
+    ]
+  }
+  
+  {
+    'begin': '^[ \\t]*(name)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(parameters)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(allowMultiple)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(allowedTargets)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(fields)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(type)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(values)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(displayName)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(description)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(annotations)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(location)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(default)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(example)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(repeat)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(pattern)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(enum)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(minLength)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(maxLength)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(minimum)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(maximum)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(queryParameters)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(headers)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(mime)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(schema)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(formParameters)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(code)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(body)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(requestTokenUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(authorizationUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(tokenCredentialsUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(accessTokenUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(authorizationGrants)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(scopes)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(describedBy)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(settings)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(responses)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(is)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(securedBy)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(methods)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(method)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(protocols)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(relativeUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(uriParameters)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(resources)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(baseUriParameters)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(key)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(value)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(title)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(version)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(baseUri)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(mediaType)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(schemas)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(traits)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(annotationTypes)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(parameterTypes)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(securitySchemes)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(resourceTypes)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(documentation)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*(content)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'constant.character.method.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.method'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+
+  {
+    'begin': '^[ \\t]*((?!\\/)[^:]+)(:)((?:(\\![\\w\\!]+)\\s+?)?|\\Z|(?#))'
+    'beginCaptures':
+      '1':
+        'name': 'entity.name.function.yaml'
+      '2':
+        'name': 'punctuation.colon.key-value.yaml'
+      '3':
+        'name': 'support.type.tag.yaml'
+    'end': '$'
+    'name': 'meta.key-value'
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#scalars'
+      }
+    ]
+  }
+]
+'repository':
+  'markdown':
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#ampersand'
+      }
+      {
+        'include': '#bracket'
+      }
+      {
+        'include': '#bold'
+      }
+      {
+        'include': '#italic'
+      }
+      {
+        'include': '#raw'
+      }
+      {
+        'include': '#escape'
+      }
+      {
+        'include': '#image-inline'
+      }
+      {
+        'include': '#image-ref'
+      }
+      {
+        'include': '#link-email'
+      }
+      {
+        'include': '#link-inet'
+      }
+      {
+        'include': '#link-inline'
+      }
+      {
+        'include': '#link-ref'
+      }
+      {
+        'include': '#link-ref-literal'
+      }
+    ]
+    'repository':
+      'ampersand':
+        'comment': '\n                                                Markdown will convert this for us. We match it so that the\n                                                HTML grammar will not mark it up as invalid.\n                                        '
+        'match': '&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)'
+        'name': 'meta.other.valid-ampersand.markdown'
+      'bold':
+        'begin': '(?x)\n                                                                (\\*\\*|__)(?=\\S)                                                                # Open\n                                                                (?=\n                                                                        (\n                                                                            <[^>]*+>                                                        # HTML tags\n                                                                          | (?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>\n                                                                                                                                                        # Raw\n                                                                          | \\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+                        # Escapes\n                                                                          | \\[\n                                                                                (\n                                                                                        (?<square>                                        # Named group\n                                                                                                        [^\\[\\]\\\\]                                # Match most chars\n                                                                                          | \\\\.                                                # Escaped chars\n                                                                                          | \\[ \\g<square>*+ \\]                # Nested brackets\n                                                                                        )*+\n                                                                                        \\]\n                                                                                        (\n                                                                                                (                                                        # Reference Link\n                                                                                                        [ ]?                                        # Optional space\n                                                                                                        \\[[^\\]]*+\\]                                # Ref name\n                                                                                                )\n                                                                                          | (                                                        # Inline Link\n                                                                                                        \\(                                                # Opening paren\n                                                                                                                [ \\t]*+                                # Optional whtiespace\n                                                                                                                <?(.*?)>?                        # URL\n                                                                                                                [ \\t]*+                                # Optional whtiespace\n                                                                                                                (                                        # Optional Title\n                                                                                                                        (?<title>[\'"])\n                                                                                                                        (.*?)\n                                                                                                                        \\k<title>\n                                                                                                                )?\n                                                                                                        \\)\n                                                                                                )\n                                                                                        )\n                                                                                )\n                                                                          | (?!(?<=\\S)\\1).                                                # Everything besides\n                                                                                                                                                        # style closer\n                                                                        )++\n                                                                        (?<=\\S)\\1                                                                # Close\n                                                                )\n                                                        '
+        'captures':
+          '1':
+            'name': 'punctuation.definition.bold.markdown'
+        'end': '(?<=\\S)(\\1)'
+        'name': 'markup.bold.markdown'
+        'patterns': [
+          {
+            'applyEndPatternLast': 1
+            'begin': '(?=<[^>]*?>)'
+            'end': '(?<=>)'
+            'patterns': [
+              {
+                'include': 'text.html.basic'
+              }
+            ]
+          }
+          {
+            'include': '#escape'
+          }
+          {
+            'include': '#ampersand'
+          }
+          {
+            'include': '#bracket'
+          }
+          {
+            'include': '#raw'
+          }
+          {
+            'include': '#italic'
+          }
+          {
+            'include': '#image-inline'
+          }
+          {
+            'include': '#link-inline'
+          }
+          {
+            'include': '#link-inet'
+          }
+          {
+            'include': '#link-email'
+          }
+          {
+            'include': '#image-ref'
+          }
+          {
+            'include': '#link-ref-literal'
+          }
+          {
+            'include': '#link-ref'
+          }
+        ]
+      'bracket':
+        'comment': '\n                                                Markdown will convert this for us. We match it so that the\n                                                HTML grammar will not mark it up as invalid.\n                                        '
+        'match': '<(?![a-z/?\\$!])'
+        'name': 'meta.other.valid-bracket.markdown'
+      'escape':
+        'match': '\\\\[-`*_#+.!(){}\\[\\]\\\\>]'
+        'name': 'constant.character.escape.markdown'
+      'image-inline':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '2':
+            'name': 'string.other.link.description.markdown'
+          '4':
+            'name': 'punctuation.definition.string.end.markdown'
+          '5':
+            'name': 'invalid.illegal.whitespace.markdown'
+          '6':
+            'name': 'punctuation.definition.metadata.markdown'
+          '7':
+            'name': 'punctuation.definition.link.markdown'
+          '8':
+            'name': 'markup.underline.link.image.markdown'
+          '9':
+            'name': 'punctuation.definition.link.markdown'
+          '10':
+            'name': 'string.other.link.description.title.markdown'
+          '11':
+            'name': 'punctuation.definition.string.markdown'
+          '12':
+            'name': 'punctuation.definition.string.markdown'
+          '13':
+            'name': 'string.other.link.description.title.markdown'
+          '14':
+            'name': 'punctuation.definition.string.markdown'
+          '15':
+            'name': 'punctuation.definition.string.markdown'
+          '16':
+            'name': 'punctuation.definition.metadata.markdown'
+        'match': '(?x:\n                                                \\!                                                        # Images start with !\n                                                (\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])\n                                                                                                        # Match the link text.\n                                                ([ ])?                                                # Space not allowed\n                                                (\\()                                                # Opening paren for url\n                                                        (<?)(\\S+?)(>?)                        # The url\n                                                        [ \\t]*                                        # Optional whitespace\n                                                        (?:\n                                                                  ((\\().+?(\\)))                # Match title in parens…\n                                                                | ((").+?("))                # or in quotes.\n                                                        )?                                                # Title is optional\n                                                        \\s*                                                # Optional whitespace\n                                                (\\))\n                                         )'
+        'name': 'meta.image.inline.markdown'
+      'image-ref':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '2':
+            'name': 'string.other.link.description.markdown'
+          '4':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '5':
+            'name': 'punctuation.definition.constant.markdown'
+          '6':
+            'name': 'constant.other.reference.link.markdown'
+          '7':
+            'name': 'punctuation.definition.constant.markdown'
+        'match': '\\!(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(.*?)(\\])'
+        'name': 'meta.image.reference.markdown'
+      'italic':
+        'begin': '(?x)\n                                                                (\\*|_)(?=\\S)                                                                # Open\n                                                                (?=\n                                                                        (\n                                                                            <[^>]*+>                                                        # HTML tags\n                                                                          | (?<raw>`+)([^`]|(?!(?<!`)\\k<raw>(?!`))`)*+\\k<raw>\n                                                                                                                                                        # Raw\n                                                                          | \\\\[\\\\`*_{}\\[\\]()#.!+\\->]?+                        # Escapes\n                                                                          | \\[\n                                                                                (\n                                                                                        (?<square>                                        # Named group\n                                                                                                        [^\\[\\]\\\\]                                # Match most chars\n                                                                                          | \\\\.                                                # Escaped chars\n                                                                                          | \\[ \\g<square>*+ \\]                # Nested brackets\n                                                                                        )*+\n                                                                                        \\]\n                                                                                        (\n                                                                                                (                                                        # Reference Link\n                                                                                                        [ ]?                                        # Optional space\n                                                                                                        \\[[^\\]]*+\\]                                # Ref name\n                                                                                                )\n                                                                                          | (                                                        # Inline Link\n                                                                                                        \\(                                                # Opening paren\n                                                                                                                [ \\t]*+                                # Optional whtiespace\n                                                                                                                <?(.*?)>?                        # URL\n                                                                                                                [ \\t]*+                                # Optional whtiespace\n                                                                                                                (                                        # Optional Title\n                                                                                                                        (?<title>[\'"])\n                                                                                                                        (.*?)\n                                                                                                                        \\k<title>\n                                                                                                                )?\n                                                                                                        \\)\n                                                                                                )\n                                                                                        )\n                                                                                )\n                                                                          | \\1\\1                                                                # Must be bold closer\n                                                                          | (?!(?<=\\S)\\1).                                                # Everything besides\n                                                                                                                                                        # style closer\n                                                                        )++\n                                                                        (?<=\\S)\\1                                                                # Close\n                                                                )\n                                                        '
+        'captures':
+          '1':
+            'name': 'punctuation.definition.italic.markdown'
+        'end': '(?<=\\S)(\\1)((?!\\1)|(?=\\1\\1))'
+        'name': 'markup.italic.markdown'
+        'patterns': [
+          {
+            'begin': '#'
+            'beginCaptures':
+              '0':
+                'name': 'punctuation.definition.comment.yaml'
+            'end': '\\Z|\\n'
+            'name': 'comment.line.number-sign.yaml'
+          }
+          {
+            'applyEndPatternLast': 1
+            'begin': '(?=<[^>]*?>)'
+            'end': '(?<=>)'
+            'patterns': [
+              {
+                'include': 'text.html.basic'
+              }
+            ]
+          }
+          {
+            'include': '#escape'
+          }
+          {
+            'include': '#ampersand'
+          }
+          {
+            'include': '#bracket'
+          }
+          {
+            'include': '#raw'
+          }
+          {
+            'include': '#bold'
+          }
+          {
+            'include': '#image-inline'
+          }
+          {
+            'include': '#link-inline'
+          }
+          {
+            'include': '#link-inet'
+          }
+          {
+            'include': '#link-email'
+          }
+          {
+            'include': '#image-ref'
+          }
+          {
+            'include': '#link-ref-literal'
+          }
+          {
+            'include': '#link-ref'
+          }
+        ]
+      'link-email':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.link.markdown'
+          '2':
+            'name': 'markup.underline.link.markdown'
+          '4':
+            'name': 'punctuation.definition.link.markdown'
+        'match': '(<)((?:mailto:)?[-.\\w]+@[-a-z0-9]+(\\.[-a-z0-9]+)*\\.[a-z]+)(>)'
+        'name': 'meta.link.email.lt-gt.markdown'
+      'link-inet':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.link.markdown'
+          '2':
+            'name': 'markup.underline.link.markdown'
+          '3':
+            'name': 'punctuation.definition.link.markdown'
+        'match': '(<)((?:https?|ftp)://.*?)(>)'
+        'name': 'meta.link.inet.markdown'
+      'link-inline':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '2':
+            'name': 'string.other.link.title.markdown'
+          '4':
+            'name': 'punctuation.definition.string.end.markdown'
+          '5':
+            'name': 'invalid.illegal.whitespace.markdown'
+          '6':
+            'name': 'punctuation.definition.metadata.markdown'
+          '7':
+            'name': 'punctuation.definition.link.markdown'
+          '8':
+            'name': 'markup.underline.link.markdown'
+          '9':
+            'name': 'punctuation.definition.link.markdown'
+          '10':
+            'name': 'string.other.link.description.title.markdown'
+          '11':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '12':
+            'name': 'punctuation.definition.string.end.markdown'
+          '13':
+            'name': 'string.other.link.description.title.markdown'
+          '14':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '15':
+            'name': 'punctuation.definition.string.end.markdown'
+          '16':
+            'name': 'punctuation.definition.metadata.markdown'
+        'match': '(?x:\n                                                (\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])\n                                                                                                        # Match the link text.\n                                                ([ ])?                                                # Space not allowed\n                                                (\\()                                                # Opening paren for url\n                                                        (<?)(.*?)(>?)                        # The url\n                                                        [ \\t]*                                        # Optional whitespace\n                                                        (?:\n                                                                  ((\\().+?(\\)))                # Match title in parens…\n                                                                | ((").+?("))                # or in quotes.\n                                                        )?                                                # Title is optional\n                                                        \\s*                                                # Optional whitespace\n                                                (\\))\n                                         )'
+        'name': 'meta.link.inline.markdown'
+      'link-ref':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '2':
+            'name': 'string.other.link.title.markdown'
+          '4':
+            'name': 'punctuation.definition.string.end.markdown'
+          '5':
+            'name': 'punctuation.definition.constant.begin.markdown'
+          '6':
+            'name': 'constant.other.reference.link.markdown'
+          '7':
+            'name': 'punctuation.definition.constant.end.markdown'
+        'match': '(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)([^\\]]*+)(\\])'
+        'name': 'meta.link.reference.markdown'
+      'link-ref-literal':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.markdown'
+          '2':
+            'name': 'string.other.link.title.markdown'
+          '4':
+            'name': 'punctuation.definition.string.end.markdown'
+          '5':
+            'name': 'punctuation.definition.constant.begin.markdown'
+          '6':
+            'name': 'punctuation.definition.constant.end.markdown'
+        'match': '(\\[)((?<square>[^\\[\\]\\\\]|\\\\.|\\[\\g<square>*+\\])*+)(\\])[ ]?(\\[)(\\])'
+        'name': 'meta.link.reference.literal.markdown'
+      'raw':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.raw.markdown'
+          '2': {}
+          '3':
+            'name': 'punctuation.definition.raw.markdown'
+        'match': '(`+)([^`]|(?!(?<!`)\\1(?!`))`)*+(\\1)'
+        'name': 'markup.raw.inline.markdown'
+  'scalars':
+    'patterns': [
+      {
+        'begin': '#'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.comment.yaml'
+        'end': '\\Z|\\n'
+        'name': 'comment.line.number-sign.yaml'
+      }
+      {
+        'include': '#boolean'
+      }
+      {
+        'include': '#float'
+      }
+      {
+        'include': '#int'
+      }
+      {
+        'include': '#single-quote'
+      }
+      {
+        'include': '#double-quote'
+      }
+      {
+        'include': '#unquoted'
+      }
+    ]
+    'repository':
+      'boolean':
+        'captures':
+          '1':
+            'name': 'constant.language.boolean.yaml'
+        'match': '\\b(y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|False|FALSE|on|On|ON|off|Off|OFF)\\b'
+      'double-quote':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.yaml'
+          '2':
+            'name': 'string.double-quoted.yaml'
+          '3':
+            'name': 'punctuation.definition.string.end.yaml'
+        'match': '(")([^"]*)(")'
+      'float':
+        'captures':
+          '1':
+            'name': 'constant.numeric.yaml'
+        'match': '([-+]?([0-9][0-9_]*)?\\.[0-9.]*([eE][-+][0-9]+)?)|([-+]?[0-9][0-9_]*(:[0-5]?[0-9])+\\.[0-9_]*)|([-+]?\\.(inf|Inf|INF))|(\\.(nan|NaN|NAN))'
+      'int':
+        'captures':
+          '1':
+            'name': 'constant.numeric.yaml'
+        'match': '([-+]?(0|[1-9][0-9_]*))'
+      'single-quote':
+        'captures':
+          '1':
+            'name': 'punctuation.definition.string.begin.yaml'
+          '2':
+            'name': 'string.single-quoted.yaml'
+          '3':
+            'name': 'punctuation.definition.string.end.yaml'
+        'match': '(\')([^\']*)(\')'
+      'unquoted':
+        'captures':
+          '1':
+            'name': 'string.unquoted.yaml'
+        'match': '(.*?)(?=$)'
+  'uri':
+    'captures':
+      '1':
+        'name': 'markup.underline.link.yaml'
+    'match': '(.*?)(?=$)'
+    'name': 'meta.link.inline.markdown'
+'scopeName': 'source.raml'

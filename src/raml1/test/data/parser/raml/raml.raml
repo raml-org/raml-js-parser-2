@@ -1,0 +1,38 @@
+#%RAML 1.0 Library
+uses:
+  sds: !include ../sds/sds.raml
+types:
+  RamlElement:
+    type: sds.SDSObject
+  RamlLibrary:
+    type: sds.Library
+    properties:
+      #resourceTypes: ResourceType{}
+      #traits: Trait{}
+      #securitySchemas: SecurityScheme{}
+      #securitySchemeTypes: SecuritySchemeType{}
+  Method:
+    type: RamlElement
+    properties:
+      #queryParameters?: sds.Type{} #keyed by query param name
+      #headers?: sds.Type{} #keyed by header name
+      #body?: sds.Type{} #keyed by media type
+      #responses: Response{} #keyed by response status
+  Response:
+    type: RamlElement
+    properties:
+      #headers?: sds.Type{}
+      #body?: sds.Type{} #keyed by media type
+  Resource:
+    type: RamlElement
+    properties:
+      [method#get|post|put]: Method
+      [resource#/.*]: Resource
+  RamlApi:
+    type: RamlLibrary
+    properties:
+      [resource#/.*]: Resource
+  ResourceType:
+  Trait: 
+  SecurityScheme:
+  SecuritySchemeType:

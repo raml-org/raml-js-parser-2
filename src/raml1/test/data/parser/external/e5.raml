@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: A
+types:
+  mySchema: |
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "Product",
+      "description": "A product from Acme's catalog",
+      "type": "object",
+      "properties": {
+          "id": {
+              "description": "The unique identifier for a product",
+              "type": "string"
+          }
+      },
+      "required": ["id"]
+    }
+
+  z2:
+    properties:
+      c: mySchema
+    example:
+      c:
+        id: "2"

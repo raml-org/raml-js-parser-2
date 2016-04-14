@@ -1,0 +1,35 @@
+#%RAML 0.8
+title: Hybrid Combo API
+version: v0.3
+baseUri: https://anypoint.mulesoft.com/hybrid/api/v1/combo
+
+resourceTypes:
+  - collection:
+      description: Collection of available <<resourcePathName>> in Hybrid or CloudHub services.
+      get:
+        description: Get a list of <<resourcePathName>>.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  { data: [
+                      <<exampleItem>>
+                    ]
+                  }
+                schema: |
+                  <<itemSchema>>
+
+/deployments:
+  description: A deployment made through CloudHub or Hybrid systems.
+  type:
+    collection:
+      exampleItem: !include deployments.sample
+      itemSchema: !include deployments.schema
+
+/targets:
+  description: A target is where an application gets deployed. It could be through CloudHub or any server, server group or cluster registered in Hybrid services.
+  type:
+    collection:
+      exampleItem: !include targets.sample
+      itemSchema: !include targets.schema

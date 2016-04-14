@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+resourceTypes:
+  MyResourceType:
+    post:
+      body:
+        text/xml:
+          properties:
+            name: string

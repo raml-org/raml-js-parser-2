@@ -1,0 +1,15 @@
+{
+  "description": "my app",
+  "workers": 1,
+  "workerYype": "Medium",
+  "muleVersion": "3.5.0",
+  "properties": {
+    "name": "value1"
+  },
+  "filename": "mule-app.zip",
+  "region": "us-east-1",
+  "secureDataGatewayEnabled": false,
+  "persistentQueues": false,
+  "monitoringAutoRestart": false,
+  "vpnEnabled": false
+}

@@ -1,0 +1,34 @@
+#%RAML 1.0 Library
+
+uses:
+  - Common: !include common.raml
+
+types:
+
+  ###############
+  # User:
+  ###############
+
+  User-base:
+    properties:
+      firstname:
+        required: true
+      lastname:
+        required: true
+
+  User-new:
+    type: User-base
+    properties:
+      HRAuth:
+        description: The authorization received from HR
+        required: true
+
+  User-update:
+    properties:
+      firstname:
+      lastname:
+
+  User:
+    type: [ User-base, Common.Record-base ]
+    properties:
+      emails: Common.Email[]

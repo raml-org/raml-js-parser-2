@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: Annotation with arbitrary properties
+annotationTypes:
+  suborg:
+    properties:
+
+/assets:
+  (suborg):
+        manager:
+          name: Tom
+        superintendent:
+          name: Bob
+/foods:
+  (suborg):
+        manager:
+            name: Tom
+        superintendent:
+            name: Bob

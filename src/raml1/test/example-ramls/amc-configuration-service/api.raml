@@ -1,0 +1,68 @@
+#%RAML 0.8
+title: AMC-Configuration-Manager
+version: 1.0
+mediaType: application/json
+securedBy: [x-token]
+#baseUri: https://anypoint.mulesoft.com/configurer/api/v1
+baseUri: http://mocksvc.mulesoft.com/mocks/3bf1f788-d944-4a7b-a995-413b31208475/configurer/api/v1
+
+securitySchemes:
+  - x-token: !include security-bearer.yaml
+
+traits:
+  - errorCodes: !include common/error-codes.yaml
+  - env-org-pair: !include common/env-org-pair.yaml
+
+resourceTypes:
+  - collection: !include common/collection.yaml
+  - collection-item: !include common/collection-item.yaml
+
+/targets/{targetId}/components:
+  is: [env-org-pair]
+  description: |
+    List all the component installed in that target and configured in that target.
+  type:
+    collection:
+      exampleItem: !include samples/collection-splunk.sample
+  get:
+    responses:
+      200:
+  post:
+    is: [env-org-pair]
+    description: |
+      Install a new component into the target. The information provided is template id of the component in the metadata
+    body:
+      application/json:
+        example: |
+              {
+                "componentMetadataId": "123443"
+              }
+    responses:
+      202:
+        body:
+          application/json:
+  /{componentId}:
+    is: [env-org-pair]
+    description: |
+      Get the configuration of a particular component in a particular target.
+    type:
+      collection-item:
+        exampleItem: !include samples/splunk.sample
+        modifiedItem: !include samples/splunk-modified.sample
+    patch:
+      description: |
+        Modify the configuration of a particular component under a particular target. There is no a particular schema for the body this call. The schema depends on the component.
+      responses:
+        202:
+    put:
+      description:  |
+        Change the entire configuration for a particular component under a target. There is no a particular schema for the body this call. The schema depends on the component.
+      responses:
+        202:
+    delete:
+        description: |
+          Unistall the component from the target
+        responses:
+          202:
+            body:
+              application/json:

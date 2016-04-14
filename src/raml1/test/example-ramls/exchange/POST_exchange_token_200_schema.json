@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "token":{
+    "type":"string"
+  },
+  "user":{
+    "type":"object",
+    "properties":{
+      "account":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type": "string"
+          },
+          "createdAt":{
+            "type": "date"
+          },
+          "updatedAt":{
+            "type": "date"
+          },
+          "firstName":{
+            "type": "string"
+          },
+          "lastName":{
+            "type": "string"
+          },
+          "email":{
+            "type": "string"
+          },
+          "phoneNumber":{
+            "type": "string"
+          },
+          "username":{
+            "type": "string"
+          },
+          "enabled":{
+            "type": "boolean"
+          },
+          "deleted":{
+            "type": "boolean"
+          },
+          "organization":{
+            "type":"object",
+            "properties": {
+              "name":{
+                "type": "string"
+              },
+                "domain":{
+                "type": "string"
+              },
+              "id":{
+                "type": "integer"
+              },
+              "objects_amount_limit":{
+                "type": "integer"
+              }
+            }
+          },
+          "properties":{
+            "type":"object"
+          },
+          "permissions":{
+            "type":"object",
+            "properties":{
+              "read":{
+                "type":"array"
+              },
+              "create":{
+                "type":"array"
+              },
+              "update":{
+                "type":"array"
+              },
+              "delete":{
+                "type":"array"
+              },
+              "list":{
+                "type":"array"
+              },
+              "requestpublish":{
+                "type":"array"
+              },
+              "publish":{
+                "type":"array"
+              },
+              "unpublish":{
+                "type":"array"
+              }
+            }
+          }
+        }
+      },
+      "domain":{
+        "type": "string"
+      }
+    }
+  }
+}

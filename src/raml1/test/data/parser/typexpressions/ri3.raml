@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Example of request bodies
+mediaType: application/json
+types:
+  Person: object
+  q: number
+  Man:
+    type: [ "Person | number" ]
+  C:
+    type: [ "number | string", Person ]
+  D:
+    type: [ q, Person]
+  E:
+    type: [ number , Person ]

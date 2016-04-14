@@ -1,0 +1,14 @@
+{
+  "type": "api",
+  "action": "create",
+  "organizationId": "0a14e2fd-1cfe-4310-acbc-54bf93eb8420",
+  "userId": "a23c0943-1cc4-47f1-aea2-cb6c2c2fca6a",
+  "dateTime": "2014-07-27T20:56:02.146Z",
+  "object": {
+    "apiId": 1077,
+    "apiName": "Anypoint Notifications",
+    "description": "Notifications API to let subscribers know of changes in the Anypoint Platform. Think Webhooks.",
+    "id": 973,
+    "name": "0.1"
+  }
+}

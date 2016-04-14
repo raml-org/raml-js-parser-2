@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: New API
+version: v1
+mediaType: application/json
+baseUri: http://samplehost.com
+resourceTypes:
+  restype: !include inc/restype.raml
+traits:
+  - zzz:
+/hello:
+  is:
+  get:
+    responses:
+      200:
+         body:
+           application/xml:
+             description: rw
+           application/json:
+             description:
+             schema: www
+             example: !include ./examples/www.json
+         displayName: sss
+         description: osiso
+/world:
+  type: restype

@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Type1:
+    properties:
+      str1: string
+      num1: number
+      obj1:
+        properties:
+          str11: string
+          num11: number
+
+  Type2:
+    type: Type1
+    properties:
+      str2: string
+      num2: number
+
+  Type2:
+    type: [Type1]
+    properties:
+      str2: string
+      num2: number

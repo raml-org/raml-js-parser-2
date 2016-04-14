@@ -1,0 +1,16 @@
+delete?: 
+  responses: 
+    503: 
+      description: |
+        Server Unavailable. Check Your Rate Limits.
+post?: 
+  responses: 
+    503: 
+      description: |
+        Server Unavailable. Check Your Rate Limits.
+get?: 
+  is: [ limitable , acceptCallback ]
+  responses: 
+    503: 
+      description: |
+        Server Unavailable. Check Your Rate Limits.

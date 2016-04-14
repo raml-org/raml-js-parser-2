@@ -1,0 +1,85 @@
+{
+  "$schema": "http:\/\/json-schema.org\/draft-03\/schema",
+  "properties": {
+    "configuration": {
+      "items": {
+        "properties": {
+          "key": {
+            "required": true,
+            "type": "string"
+          },
+          "value": {
+            "required": true,
+            "type": "string"
+          }
+        },
+        "required": true,
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "name": {
+      "required": true,
+      "type": "string"
+    },
+    "notes": {
+      "required": true,
+      "type": "string"
+    },
+    "policyTemplateId": {
+      "required": true,
+      "type": "string"
+    },
+    "policyTemplateName": {
+      "required": true,
+      "type": "string",
+      "readonly": true
+    },
+    "createdAt": {
+      "format": "date-time",
+      "required": false,
+      "type": "string",
+      "readonly": true
+    },
+    "lastUpdated": {
+      "format": "date-time",
+      "required": false,
+      "type": "string",
+      "readonly": true
+    },
+    "category": {
+      "required": true,
+      "type": "string",
+      "enum": [
+        "Security",
+        "Quality of Service",
+        "Auditing",
+        "Compliance"
+      ],
+      "readonly": true
+    },
+    "providedCharacteristics": {
+      "items": {
+        "type": "string"
+      },
+      "required": true,
+      "type": "array",
+      "readonly": true
+    },
+    "requiredCharacteristics": {
+      "items": {
+        "type": "string"
+      },
+      "required": true,
+      "type": "array",
+      "readonly": true
+    },
+    "inUse": {
+      "type": "boolean",
+      "required": true,
+      "readonly": true
+    }
+  },
+  "required": true,
+  "type": "object"
+}

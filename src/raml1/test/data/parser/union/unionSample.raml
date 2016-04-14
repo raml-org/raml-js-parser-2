@@ -1,0 +1,16 @@
+#%RAML 1.0 Api
+#masterRef: apigateway.raml
+title: AA
+types:
+  A:
+    properties:
+      name: string
+  B:
+    properties:
+      fff: string
+  Hello: A | B
+annotationTypes:
+  FFF: Hello
+/products:
+  (FFF):
+    fff: ss  

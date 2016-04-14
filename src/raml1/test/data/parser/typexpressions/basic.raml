@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: WebOfMe
+version: v1
+mediaType: application/json
+annotationTypes:
+  xxx:
+    properties:
+      v: string
+types:
+  email:
+    type: string
+    facets:
+      domain: string
+  email2:
+    type: string
+  Person:
+    type: object
+  Man:
+    type: Person
+    properties:
+      hasWife: boolean
+  Lizard:
+    type:  email
+    domain: dded
+  Pat:
+    type: Man | Lizard
+/hello:
+  (xxx):
+       v: "33"
+  get:
+    queryParameters:
+      mail:
+        type: email
+        pattern: domain
+        domain: mulesoft.com

@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: WebOfMe
+version: v1
+mediaType: application/json
+types:
+  User:
+    properties:
+      firstName:
+      lastName: string[][]
+/person:
+  get:
+    signature: (query.offset?:number)=>string[][]
+  put: (body:User)=> string|number

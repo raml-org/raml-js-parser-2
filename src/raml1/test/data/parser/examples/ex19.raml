@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: d
+types:
+  SmallArray:
+    type: number[]
+    minItems: 5
+annotationTypes:
+  x:
+    properties:
+      cc: SmallArray
+  y:
+(x):
+     cc: [1,2,3,4]
+(y): "a"

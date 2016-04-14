@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "role_group_id": "a62d817d-bde8-4f32-a8f7-993905890b4a",
+      "name": "Organization Administrators",
+      "description": "Organization Administrators",
+      "context_params": {},
+      "user_role_group_id": "0120071d-2c0d-4a71-9c76-718a7e3e54f1"
+    }
+  ],
+  "total": 1
+}

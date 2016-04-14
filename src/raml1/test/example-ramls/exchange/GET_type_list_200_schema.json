@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required" : true,
+  "type" : "array",
+  "properties": {
+    "id": { "required": true, "type": "number" },
+    "name": { "required": true, "type": "string" },
+    "active": { "required": true, "type": "string" }
+  }
+}

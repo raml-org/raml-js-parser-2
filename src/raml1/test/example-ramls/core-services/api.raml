@@ -1,0 +1,2447 @@
+#%RAML 0.8
+title: Core Services API Reference
+mediaType: application/json
+baseUri: https://anypoint.mulesoft.com/accounts
+
+/api:
+  /access_tokens:
+    description: |
+      Access to issued access tokens
+
+    get:
+      description: |
+        Get all issued access tokens
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/access_tokens.json
+
+    /me:
+      description: |
+        Access to the client and (optionally) user info associated with the bearer token
+
+      get:
+        description: |
+          Get the client and (optionally) user info
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/access_token.json
+
+  /authorization_codes:
+    description: |
+      Access to issued authorization codes
+
+    get:
+      description: |
+        Get all issued authorization codes
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/authorization_codes.json
+
+    /{authorization_code}:
+      description: |
+        Access to an authorization code
+
+      get:
+        description: |
+          Get a single authorization code
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/authorization_code.json
+
+  /authorize:
+
+    get:
+      description: Authorize for a single resource
+      queryParameters:
+        namespace:
+          type: string
+        action:
+          type: string
+        resource:
+          type: string
+      body:
+        application/json:
+          example: !include examples/authorize.json
+      responses:
+        200:
+        400:
+        401:
+
+    post:
+      description: Authorize for many resources
+      body:
+        application/json:
+          example: !include examples/authorize_many.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/authorize_many_response.json
+        400:
+        401:
+
+    /client:
+
+      get:
+        queryParameters:
+          client_id:
+            type: string
+          client_secret:
+            type: string
+          namespace:
+            type: string
+          action:
+            type: string
+          resource:
+            type: string
+        body:
+          application/json:
+            example: !include examples/authorize_client.json
+        responses:
+          200:
+          400:
+          401:
+
+  /clients:
+    description: |
+      Access to clients
+
+    get:
+      description: |
+        Get all clients
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/clients.json
+
+    post:
+      description: |
+        Create a new client
+      body:
+        application/json:
+          example: !include examples/client.json
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/client_response.json
+
+    /{client_id}:
+      description: |
+        Access to a client
+
+      get:
+        description: |
+          Get a single client
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include examples/client_response.json
+      patch:
+        description: |
+          Patches a single client
+        queryParameters:
+          resetSecret:
+            description: Asks service to reset secret as part of this operation
+            type: boolean
+        body:
+          application/json:
+            example: !include examples/client_response.json
+        responses:
+          200:
+          400:
+          404:
+
+      delete:
+        description: |
+          Deletes a single client
+        responses:
+          200:
+          400:
+          404:
+
+      /roles:
+        description: |
+          Access to a client's roles
+
+        get:
+          description: |
+            Return a list of roles that are assigned to a client
+          responses:
+            200:
+              body:
+                application/json:
+                  example: !include examples/client_roles_response.json
+            400:
+            401:
+
+        post:
+          description: |
+            Assign a list of roles to a client
+          body:
+            application/json:
+              example: !include examples/client_roles_assign.json
+          responses:
+            200:
+            400:
+            401:
+
+        delete:
+          description: |
+            Unassign a list of roles from a client
+          body:
+            application/json:
+              example: !include examples/client_roles_assign.json
+          responses:
+            200:
+            400:
+            401:
+
+        /{role_id}:
+
+          get:
+            description: |
+              Return a role is assigned to a client
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: !include examples/client_roles_response.json
+              400:
+              401:
+
+          post:
+            description: |
+              Assign a role to a client
+            body:
+              application/json:
+                example: !include examples/client_role_assign.json
+            responses:
+              200:
+              400:
+              401:
+
+          delete:
+            description: |
+              Unassign a role from a client
+            responses:
+              200:
+              400:
+              401:
+
+  /cs:
+    description: |
+      API specific to Core Services's UI.
+      This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+
+    get:
+      description: |
+        Retrieves Anypoint product suite data & user/org/permission information about the caller.
+        This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/cs.json
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+        500:
+          description: An unknown error occurred
+
+    /apis:
+      description: |
+        API information.
+        This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+
+      get:
+        description: |
+          Retrieves API information.
+          This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+        queryParameters:
+          search:
+            description: a search string to use for partial matches of APIs
+            type: string
+          limit:
+            description: pagination parameter for how many results to return
+            type: integer
+            default: 10
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/cs-apis.json
+          401:
+            description: Unauthorized
+          403:
+            description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+          500:
+            description: An unknown error occurred
+
+    /permissions:
+      description: |
+        Permissions for API resources.
+        This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+
+      /users/{userId}/apis:
+        description: |
+          Permissions for API resources for this user.
+          This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+        uriParameters:
+          userId:
+            description: The ID of the user in GUID format
+            type: string
+
+        get:
+          description: |
+            Retrieves the permission data for APIs that this user has access to.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          queryParameters:
+            search:
+              description: a search string to use for partial matches of APIs
+              type: string
+            limit:
+              description: pagination parameter for how many results to return
+              type: integer
+              default: 10
+            offset:
+              description: pagination parameter to start returning results from this position of matches
+              type: integer
+              default: 25
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/cs-user-apis.json
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: |
+            Assigns a set of API permissions to the user.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-user-apis-row.json
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: OK
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        put:
+          description: |
+            Assigns/unassigns a set of API permission to the user.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-user-apis-update.json
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: OK
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: |
+            Assigns a set of API permissions to the user.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-user-apis-row.json
+          responses:
+            204:
+              description: Success
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+    /organizations:
+      /{orgId}:
+        /cloudhubRoles:
+          get:
+            description: Retrieve the list of CloudHub roles that can be assigned to a user or role group.  If the supplied orgId has the hybrid entitlement enabled, then hybrid roles will be added to the list as well.
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/cloudhub-hybrid-roles.json
+
+      /rolegroups/{roleGroupId}/apis:
+        description: |
+          Permissions for API resources for this user
+          This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+        uriParameters:
+          roleGroupId:
+            description: The ID of the role group in GUID format
+            type: string
+
+        get:
+          description: Retrieves the permission data for APIs that this rolegroup provides access to
+          queryParameters:
+            search:
+              description: a search string to use for partial matches of APIs
+              type: string
+            limit:
+              description: pagination parameter for how many results to return
+              type: integer
+              default: 10
+            offset:
+              description: pagination parameter to start returning results from this position of matches
+              type: integer
+              default: 25
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/cs-rolegroup-apis.json
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: |
+            Assigns a set of API permissions to the rolegroup.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-rolegroup-apis-row.json
+          responses:
+            200:
+              description: Success
+              body:
+                text/plain:
+                  example: OK
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        put:
+          description: |
+            Assigns/unassigns a set of API permissions to the rolegroup.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-rolegroup-apis-update.json
+          responses:
+            200:
+              description: Success
+              body:
+                text/plain:
+                  example: OK
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: |
+            Assigns a set of API permissions to the rolegroup.
+            This API may change/disappear at any time without prior notification; there are no backwards compatibility guarantees for format, function or existence across multiple releases.
+          body:
+            application/json:
+              example: !include examples/cs-rolegroup-apis-row.json
+          responses:
+            204:
+              description: Success
+            401:
+              description: Unauthorized
+            403:
+              description: Forbidden to use this api call (is your access token for an application rather than an end user?).
+            500:
+              description: An unknown error occurred
+
+
+
+  /environments:
+    description: Environments resource
+
+    /{environmentId}:
+      description: Environment by id
+      uriParameters:
+        environmentId:
+          description: The id of an environment
+          type: string
+
+      get:
+        description: Retrieves an environment by id
+        responses:
+          200:
+            description: Returns the environment
+            body:
+              application/json:
+                example: !include examples/environment.json
+          404:
+            description: No environment exists with that id
+
+      put:
+        description: Update an environment, implemented as a patch. Note that only the name is allowed to be updated, isProduction can not.
+        body:
+          application/json:
+            example: !include examples/environment-update-withOrgId.json
+        responses:
+          200:
+            description: Returns the updated environment
+            body:
+              application/json:
+                example: !include examples/environment.json
+          404:
+            description: No environment exists with that id
+
+  /invites:
+    description: Invite people to join your organization
+
+    get:
+      description: get outstanding or expired invites that match the criteria
+      queryParameters:
+        search:
+          description: a search string to use for partial matches of invited emails
+          type: string
+        orgId:
+          description: the id of the organization that the invites are for joining.
+          type: string
+        limit:
+          description: pagination parameter for how many results to return
+          type: integer
+          default: 0
+        offset:
+          description: pagination parameter to start returning results from this position of matches
+          type: integer
+          default: 25
+
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/invites.json
+        400:
+          description: Bad request; unknown organization, bad parameter or other failure
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    post:
+      description: Invite a person to join your organization
+      body:
+        application/json:
+          example: !include examples/invite-new.json
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/invites.json
+        400:
+          description: Bad request; unknown organization, bad parameter or other failure
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    delete:
+      description: Invite a person to join your organization
+      body:
+        application/json:
+          example: !include examples/invite-ids-array.json
+      responses:
+        204:
+          description: Success
+        400:
+          description: Bad request; unknown organization, bad parameter or no invite was deleted
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    /{inviteId}:
+      description: Invite resource
+      uriParameters:
+        inviteId:
+          description: The ID of the invite
+          type: integer
+
+      get:
+        description: get an invite
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/invite.json
+          400:
+            description: Bad request; bad parameter or other failure
+          401:
+            description: Unauthorized
+          404:
+            description: No invite exists for the given inviteId
+          500:
+            description: An unknown error occurred
+
+    /resend:
+      description: Resend invites
+
+      post:
+        description: Resend a list of invites
+        body:
+          application/json:
+            example: !include examples/invite-ids-array.json
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/invites-resend-response.json
+          400:
+            description: No invites were sent
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+  /logout:
+    description: logout of the Anypoint Platform
+
+    get:
+      description: destroy the user's session and logout from the Anypoint Platform
+      responses:
+        200:
+          description: Success; logout was called via ajax so no redirect
+        302:
+          description: Success; logout was not called via ajax so redirect to the login page
+
+  /me:
+    description: all about the caller
+
+    get:
+      description: Retrieve information about the caller
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/me.json
+        400:
+          description: An unknown error occurred
+        401:
+          description: Unauthorized
+
+  /notifications:
+    description: Make Anypoint Platform activity known to subscribers; think webhooks.
+
+    post:
+      description: Send
+      body:
+        application/json:
+          example: !include examples/notification.json
+      responses:
+        200:
+          description: Success
+          body:
+            text/plain:
+              example: OK
+        400:
+          description: Bad request; invalid notification format
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+  /organizationname/{organizationName}:
+    uriParameters:
+      organizationName:
+        description: The name of the organization
+        type: string
+    get:
+      description: Check if organization name is being used
+      responses:
+        204:
+          description: The organization name is already taken
+        404:
+          description: The organization name is available
+
+  /organizations:
+    description: Organizations Resource
+
+    get:
+      description: Retrieves a list of organizations
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/organizations.json
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    post:
+      description: Creates a new organization (or Business Group if a parentOrganizationId is provided)
+      body:
+        application/json:
+          example: !include examples/organization-new.json
+      responses:
+        201:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/organization.json
+        400:
+          description: Invalid or incomplete body
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    /{orgId}:
+      description: A single organization
+      uriParameters:
+        orgId:
+          description: The ID of the organization in GUID format
+          type: string
+
+      get:
+        description: Returns the referenced organization
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/organization-get.json
+          401:
+            description: Unauthorized
+
+          500:
+            description: An unknown error occurred
+
+      put:
+        description: Updates the referenced organization
+        body:
+          application/json:
+            example: !include examples/organization-update.json
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/organization.json
+          400:
+            description: Invalid or incomplete body
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      delete:
+        description: Deletes the referenced organization
+        responses:
+          200:
+            description: Success
+          400:
+            description: Invalid or incomplete body
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      /entitlements:
+        description: Entitlements for a given organization
+
+        get:
+          description: Returns the entitlements for the organization
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{name}:
+          description: Entitlement by name
+          uriParameters:
+            name:
+              description: The name of an entitlement
+              type: string
+
+          get:
+            description: Get an entitlement by name
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              404:
+                description: Entitlement with that name does not exists
+              500:
+                description: An unknown error occurred
+
+          put:
+            description: Update an entitlement
+            body:
+              application/json:
+                example: !include examples/entitlement.json
+
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              404:
+                description: Entitlement with that name does not exists
+              500:
+                description: An unknown error occurred
+
+      /environments:
+        description: Environments from an organization
+
+        get:
+          description: Returns all matching environments
+          queryParameters:
+            isProduction:
+              description: Whether returns only production or non-production environments
+              type: boolean
+              required: false
+            search:
+              description: Case insensitive search on the environment name
+              type: string
+              required: false
+            name:
+              description: Case sensitive match on the environment name
+              type: string
+              required: false
+            limit:
+              description: pagination parameter for how many results to return
+              type: integer
+              default: 0
+            offset:
+              description: pagination parameter to start returning results from this position of matches
+              type: integer
+              default: 0
+
+          responses:
+            200:
+              description: Returns environments
+              body:
+                application/json:
+                  example: !include examples/environments.json
+
+        post:
+          description: Creates an environment
+          body:
+            application/json:
+              example: !include examples/environment-new.json
+          responses:
+            201:
+              description: Environment created. Returns the newly created environment
+              body:
+                application/json:
+                  example: !include examples/environment.json
+            400:
+              description: Failed to create the environment because of invalid input. Often times it is the name containing invalid characters (names must be alpha-numeric and between 2 & 65 characters long).
+            403:
+              description: The organization is not entitled to be able to create new environments.
+
+        /{environmentId}:
+          description: Environment by id
+          uriParameters:
+            environmentId:
+              description: The id of an environment
+              type: string
+
+          get:
+            description: Retrieves an environment by id
+            responses:
+              200:
+                description: Returns the environment
+                body:
+                  application/json:
+                    example: !include examples/environment.json
+              404:
+                description: No environment exists with that id
+
+          put:
+            description: Update an environment, implemented as a patch. Note that only the name is allowed to be updated, isProduction can not.
+            body:
+              application/json:
+                example: !include examples/environment-update.json
+            responses:
+              200:
+                description: Returns the updated environment
+                body:
+                  application/json:
+                    example: !include examples/environment.json
+              404:
+                description: No environment exists with that id
+
+          delete:
+            description: Delete an environment
+            responses:
+              204:
+                description: Successful. Returns zero length body
+              404:
+                description: No environment exists with that id
+
+      /environmentsMigration:
+        description: Environments migrations
+
+        post:
+          description: Allows creation of an environment by just persisting data, rather than creating other objects (e.j. rolegroups or rolegroup assignments).
+          body:
+            application/json:
+              example: !include examples/environment-migrate.json
+          responses:
+            201:
+              description: Successful. The environment has been migrated
+              body:
+                application/json:
+                  example: !include examples/environment.json
+            404:
+              description: No organization exists with that id
+
+      /hierarchy:
+        description: get related organizations in hierarchical structure
+
+        get:
+          description: get Business Groups (down to the leaves) of this organization.
+
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/hierarchy.json
+            400:
+              description: Bad request; unknown organization.
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+      /invites:
+        description: Invite people to join the organization
+
+        get:
+          description: get outstanding or expired invites that match the criteria
+          queryParameters:
+            search:
+              description: a search string to use for partial matches of invited emails
+              type: string
+            limit:
+              description: pagination parameter for how many results to return
+              type: integer
+              default: 25
+            offset:
+              description: pagination parameter to start returning results from this position of matches
+              type: integer
+              default: 0
+
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/invites.json
+            400:
+              description: Bad request; unknown organization, bad parameter or other failure
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Invite a person to join the organization
+          body:
+            application/json:
+              example: !include examples/invite-new.json
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/invites.json
+            400:
+              description: Bad request; unknown organization, bad parameter or other failure
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Invite a person to join your organization
+          body:
+            application/json:
+              example: !include examples/invite-ids-array.json
+          responses:
+            204:
+              description: Success
+            400:
+              description: Bad request; unknown organization, bad parameter or no invite was deleted
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{inviteId}:
+          description: Invite resource
+
+          get:
+            description: get an invite
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/invite.json
+              400:
+                description: Bad request; bad parameter or other failure
+              401:
+                description: Unauthorized
+              404:
+                description: No invite exists in this organization for the given inviteId
+              500:
+                description: An unknown error occurred
+
+        /resend:
+          description: Resend invites
+
+          post:
+            description: Resend a list of invites
+            body:
+              application/json:
+                example: !include examples/invite-ids-array.json
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/invites-resend-response.json
+              400:
+                description: One or more of the invites are not in the organization or no invites were sent
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+      /provider:
+        description: Identity provider information for the organization
+
+        get:
+          description: Returns the identity provider details
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/provider.json
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        put:
+          description: Updates the identity provider details
+          body:
+            application/json:
+              example: !include examples/provider.json
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Revert to using the default identity provider
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+      /members:
+        description: Organization membership
+
+        get:
+          description: Get members from an organization
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/members.json
+            404:
+              description: The organization does not exist
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        put:
+          description: Add a group of users to the organization by their IDs
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            204:
+              description: Success
+            400:
+              description: Invalid IDs or some users could not be added to the org
+            404:
+              description: The organization does not exist
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Remove a group of users from the organization by their IDs
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            204:
+              description: Success
+            400:
+              description: Invalid IDs or some users could not be removed from the org
+            404:
+              description: The organization does not exist
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{userId}:
+          uriParameters:
+            userId:
+              description: The ID of the user in GUID format
+              type: string
+
+          put:
+            description: Add the user to the organization
+            body:
+              application/json:
+                example: !include examples/guid-array.json
+            responses:
+              204:
+                description: Success
+              400:
+                description: Invalid ID or this user could not be added to the org
+              401:
+                description: Unauthorized
+              404:
+                description: The organization does not exist
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Remove the user from the organization
+            body:
+              application/json:
+                example: !include examples/guid-array.json
+            responses:
+              204:
+                description: Success
+              400:
+                description: Invalid ID or this user could not be removed from the org
+              401:
+                description: Unauthorized
+              404:
+                description: The organization does not exist
+              500:
+                description: An unknown error occurred
+
+      /roles:
+        description: Roles by organization
+
+        get:
+          description: Returns roles for a given organization
+          queryParameters:
+            name:
+              description: The name of a role
+            description:
+              description: The description of a role
+            include_internal:
+              description: Include internal roles
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Insert a new role into an organization
+          body:
+            application/json:
+              example: !include examples/role-update.json
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+      /rolegroups:
+        description: Role groups that belong to this organization
+
+        get:
+          description: Returns all role groups that belong to this organization
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/rolegroups.json
+            401:
+              description: Unauthorized
+            404:
+              description: The organization does not exist
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Creates a role group for this org
+          body:
+            application/json:
+              example: !include examples/rolegroup-new.json
+          responses:
+            201:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/rolegroup.json
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Deletes role groups that belong to this organization
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{roleGroupId}:
+          uriParameters:
+            roleGroupId:
+              description: GUID of the organization role group
+
+          get:
+            description: Returns a role group
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/rolegroup.json
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          put:
+            description: Updates a role group
+            body:
+              application/json:
+                example: !include examples/rolegroup-new.json
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/rolegroup.json
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Deletes a role group
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          /roles:
+            description: Roles assigned to this role group
+
+            get:
+              description: Returns all roles assigned to this role group
+              responses:
+                200:
+                  description: Success
+                  body:
+                    application/json:
+                      example: !include examples/rolegroup-role-assignments.json
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            post:
+              description: Assigns roles to this role group
+              body:
+                application/json:
+                  example: !include examples/rolegroup-role-assignment-new.json
+              responses:
+                200:
+                  description: Success
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            delete:
+              description: Removes roles from this role group
+              body:
+                application/json:
+                  example: !include examples/rolegroup-role-assignment-new.json
+              responses:
+                200:
+                  description: Success
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+          /users:
+            description: Users assigned to this role group
+
+            get:
+              description: Returns users assigned to this role group
+              responses:
+                200:
+                  description: Success
+                  body:
+                    application/json:
+                      example: !include examples/rolegroup-users.json
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            post:
+              description: Assigns a group of users to this role group
+              body:
+                application/json:
+                  example: !include examples/guid-array.json
+              responses:
+                200:
+                  description: Success
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            delete:
+              description: Unassigns a group of users from this role group
+              body:
+                application/json:
+                  example: !include examples/guid-array.json
+              responses:
+                200:
+                  description: Success
+                401:
+                  description: Unauthorized
+                409:
+                  description: Could not unassign role group
+                500:
+                  description: An unknown error occurred
+
+            /{userId}:
+              uriParameters:
+                userId:
+                  description: GUID of the user to assign
+                  type: string
+
+              post:
+                description: Assigns this user to the role group
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+                  500:
+                    description: An unknown error occurred
+
+              delete:
+                description: Removes this user from the role group
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+                  500:
+                    description: An unknown error occurred
+
+      /users:
+        description: Users that belong to the organization
+
+        get:
+          description: Returns a group of users that belong to the organization
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/users.json
+            401:
+              description: Unauthorized
+            404:
+              description: Organization does not exist
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Creates a group of users under the organization
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            404:
+              description: Organization does not exist
+            500:
+              description: An unknown error occurred
+
+        put:
+          description: Update a group of users
+          body:
+            application/json:
+              example: !include examples/users-update.json
+          responses:
+            204:
+              description: Success
+            400:
+              description: Invalid data in body or not all users are part of the specified org
+            401:
+              description: Unauthorized
+            404:
+              description: Organization does not exist
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Deletes a group of users
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            204:
+              description: Success
+            401:
+              description: Unauthorized
+            404:
+              description: Organization does not exist
+            500:
+              description: An unknown error occurred
+
+        /{userId}:
+          description: A single user that belongs to the organization
+          uriParameters:
+            userId:
+              description: The ID of the user in GUID format
+              type: string
+
+          get:
+            description: Returns a single user
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/user.json
+              401:
+                description: Unauthorized
+              404:
+                description: User does not exist
+
+          put:
+            description: Updates a single user
+            body:
+              application/json:
+                example: !include examples/user-update.json
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/user.json
+              400:
+                description: Invalid data in body
+              401:
+                description: Unauthorized
+              404:
+                description: User does not exist
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Deletes a user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              404:
+                description: User does not exist
+              500:
+                description: An unknown error occurred
+
+          /rolegroups:
+            description: Role groups assigned to the user
+
+            get:
+              description: Returns the role groups assigned to the user
+              responses:
+                200:
+                  description: Success
+                  body:
+                    application/json:
+                      example: !include examples/rolegroups.json
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            /{roleGroupId}:
+              description: A single role group assigned to the user
+              uriParameters:
+                roleGroupId:
+                  description: The ID of the role group in GUID format
+
+              post:
+                description: Assigns the role group to the user
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+
+              delete:
+                description: Unassigns the role group from the user
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+
+          /roles:
+            description: Roles assigned to the user
+
+            get:
+              description: Returns a list of roles assigned to the user
+              responses:
+                200:
+                  description: Success
+                  body:
+                    application/json:
+                      example: !include examples/user-roles.json
+                401:
+                  description: Unauthorized
+                500:
+                  description: An unknown error occurred
+
+            /{roleId}:
+              uriParameters:
+                roleId:
+                  description: The ID of the role in GUID format
+
+              post:
+                description: Assign a role to the user
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+                  500:
+                    description: An unknown error occurred
+
+              delete:
+                description: Unassign a role from the user
+                responses:
+                  200:
+                    description: Success
+                  401:
+                    description: Unauthorized
+                  500:
+                    description: An unknown error occurred
+
+  /profile:
+    get:
+      description: Returns the user bound to the provided access token
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/profile.json
+        401:
+          description: Unauthorized. There is no user attached to the token
+
+  /recover:
+    description: recover user's account
+
+    /password:
+      post:
+        description: sends a 'forgot password' email with password reset link to the email associated with the given username
+        body:
+          application/json:
+            example: !include examples/recover-password.json
+        responses:
+          200:
+            description: email was sent or user with username does not exist
+            body:
+              text/plain:
+                example: OK
+          400:
+            description: Bad request; missing username parameter
+          500:
+            description: An unknown error occurred
+
+      /{code}:
+        description: reset password
+        uriParameters:
+          code:
+            description: A code sent in a password reset email used to prove the bearer has the right to change a user's password
+            type: string
+
+        get:
+          description: Checks the validity of the password reset code
+          responses:
+            200:
+              description: the code is valid
+              body:
+                text/plain:
+                  example: OK
+            404:
+              description: the code does not exist
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Sets a new password for the user associated with the password reset code
+          body:
+            application/json:
+              example: !include examples/change-password.json
+          responses:
+            200:
+              description: the password was successfully set
+              body:
+                text/plain:
+                  example: OK
+            400:
+              description: the code does not exist
+            404:
+              description: any of the code, password or confirmPassword are missing or password and confirmPassword do not match
+            500:
+              description: An unknown error occurred
+
+    /username:
+      post:
+        description: sends email with list of usernames associated with the given email
+        body:
+          application/json:
+            example: !include examples/recover-username.json
+        responses:
+          200:
+            description: email was sent or no users are associated with the given email
+            body:
+              text/plain:
+                example: OK
+          400:
+            description: Bad request; missing email parameter
+          500:
+            description: An unknown error occurred
+
+  /roles:
+    description: Roles resource
+
+    get:
+      description: Retrieves a list of roles
+      queryParameters:
+        name:
+          description: The name of a role
+        description:
+          description: The description of a role
+        include_internal:
+          description: Include internal roles
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    post:
+      description: Insert a new role
+      body:
+        application/json:
+          example: !include examples/role-update.json
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    delete:
+      description: Delete existing roles
+      body:
+        application/json:
+          example: !include examples/guid-array.json
+      responses:
+        200:
+          description: Success
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    /users:
+      description: Users by role
+
+      get:
+        description: Retrieve users by roles
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+    /{roleId}:
+      description: A single role
+      uriParameters:
+        roleId:
+          description: The ID of the role in GUID format
+
+      get:
+        description: Returns a single role by ID
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      delete:
+        description: Deletes a role
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      /users:
+        description: Users by role
+
+        get:
+          description: Returns users for a single role
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Unassign users from a given role
+          queryParameters:
+            user_id:
+              description: An ID from a client to remove the given role
+
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+      /clients:
+        description: Unassign clients from a given role
+
+        delete:
+          queryParameters:
+            client_id:
+              description: An ID from a client to remove the given role
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+      /permissions:
+        description: Permissions by a single role
+
+        post:
+          description: Assign permissions to a given role
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Unassign permissions from a role
+          body:
+            application/json:
+              example: !include examples/guid-array.json
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{permissionId}:
+          description: Single permission in a role
+          uriParameters:
+            permissionId:
+              description: The ID of the permission in GUID format
+
+          get:
+            description: Guess if permission is in role
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          post:
+            description: Assign a single permission to a given role
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Unassign a single permission from a role
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+  /session:
+    description: The session associated with the caller
+
+    get:
+      description: Retrieves session timeout meta data
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/session.json
+        500:
+          description: An unknown error occurred
+    post:
+      description: Extend the session timeout time
+      responses:
+        204:
+          description: Success
+        500:
+          description: An unknown error occurred
+
+  /signup:
+    description: Signup for for the Anypoint Platform
+
+    get:
+      description: Retrieves data about joining an organization
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/signup.json
+        400:
+          description: Missing or invalid invite code
+        500:
+          description: An unknown error occurred
+
+    post:
+      description: Signup for a new organization or join an existing one
+      body:
+        application/json:
+          example: !include examples/signup-accept-invite.json
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: null
+        400:
+          description: Bad request; invalid or missing fields; username, password, email, firstName, lastName or user already exists, etc.
+        500:
+          description: An unknown error occurred
+
+  /status:
+    description: Application health
+
+    get:
+      description: Retrieves whether of not the application is ok
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: |
+                {"ok":true}
+
+  /users:
+    description: Users Resource
+
+    get:
+      description: Returns a group of users
+      responses:
+        200:
+          description: Success
+        500:
+          description: An unknown error occurred
+
+    put:
+      description: Update a group of users
+      body:
+        application/json:
+          example: !include examples/users-update.json
+      responses:
+        204:
+          description: Success
+        400:
+          description: Invalid data in body
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    delete:
+      description: Delete a group of users
+      body:
+        application/json:
+          example: !include examples/guid-array.json
+      responses:
+        204:
+          description: Success
+        401:
+          description: Unauthorized
+        500:
+          description: An unknown error occurred
+
+    /me:
+      get:
+        description: Returns the user bound to the provided access token
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/user.json
+          401:
+            description: Unauthorized. There is no user attached to the token
+
+    /{userId}:
+      description: A single user
+      uriParameters:
+        userId:
+          description: The ID of the user in GUID format
+          type: string
+
+      get:
+        description: Returns a single user
+        responses:
+          200:
+            description: Success
+            body:
+              application/json:
+                example: !include examples/user.json
+          401:
+            description: Unauthorized
+          404:
+            description: User does not exist
+          500:
+            description: An unknown error occurred
+
+      post:
+        description: Creates new users
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      put:
+        description: Updates a single user
+        body:
+          application/json:
+            example: !include examples/user-update.json
+        responses:
+          200:
+            description: Success
+          400:
+            description: Invalid data in body
+          401:
+            description: Unauthorized
+          404:
+            description: User does not exist
+          500:
+            description: An unknown error occurred
+
+      delete:
+        description: Deletes a user
+        responses:
+          200:
+            description: Success
+          401:
+            description: Unauthorized
+          500:
+            description: An unknown error occurred
+
+      /assignments:
+        description: Permissions assigned to the user
+
+        post:
+          description: Returns a list of permissions assigned to the user
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{param}/values:
+          uriParameters:
+            param:
+              description: Context parameter key
+
+          get:
+            description: Returns the value assigned to the key
+            responses:
+              200:
+                description: Success
+                body:
+                  application/json:
+                    example: !include examples/guid-array.json
+              500:
+                description: An unknown error occurred
+
+      /permissions:
+        description: Permissions assigned to the user
+
+        get:
+          description: Returns a list of permissions assigned to the user
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        post:
+          description: Assign a list of permissions to the user
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        delete:
+          description: Unassign a list of permissions from a user
+          responses:
+            200:
+              description: Success
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{permissionId}:
+          description: A single permission assigned to the user
+
+          get:
+            description: Returns a single permission assigned to the user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          post:
+            description: Assign a permission to the user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Unassign a permission from the user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+      /roles:
+        description: Roles assigned to the user
+
+        get:
+          description: Returns a list of roles assigned to the user
+          responses:
+            200:
+              description: Success
+              body:
+                application/json:
+                  example: !include examples/user-roles.json
+            401:
+              description: Unauthorized
+            500:
+              description: An unknown error occurred
+
+        /{roleId}:
+          description: A role assigned to the user
+          uriParameters:
+            roleId:
+              description: The ID of the role in GUID format
+              type: string
+
+          post:
+            description: Assign a role to the user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+          delete:
+            description: Unassign a role from the user
+            responses:
+              200:
+                description: Success
+              401:
+                description: Unauthorized
+              500:
+                description: An unknown error occurred
+
+  /username/{username}:
+    uriParameters:
+      username:
+        description: Username to search
+        type: string
+
+    get:
+      description: Check if the username is already taken
+      responses:
+        200:
+          description: Username exists
+        404:
+          description: Username if available
+
+  /version:
+    description: Application version
+
+    get:
+      description: Retrieve the version info for the application
+      responses:
+        200:
+          description: Success
+          body:
+            application/json:
+              example: !include examples/version.json
+        404:
+          description: Version information could not be gathered (likely a filesystem error). See logs for details.
+        500:
+          description: An unknown error occurred
+
+  /v2:
+    description: API version 2
+
+    /organizations:
+      description: Organizations
+
+      /{organizationId}:
+        description: A single organization
+        uriParameters:
+          organizationId:
+            description: The id of the organization
+
+        /entitlements:
+          description: Entitlements for an organization
+
+          get:
+            description: Returns the entitlements for the organization
+            responses:
+              200:
+                description: Return entitlements for this organization
+                body:
+                  application/json:
+                    example: !include examples/entitlements_v2.json
+
+          put:
+            description: Sets one or more values for entitlements
+            body:
+              application/json:
+                example: !include examples/entitlements_v2.json
+            responses:
+              200:
+                description: Entitlement has been modified
+                body:
+                  application/json:
+                    example: !include examples/entitlements_v2.json
+              404:
+                description: Resource does not exist
+
+
+          /{entitlementName}:
+            uriParameters:
+              entitlementName:
+                description: The name of the entitlement
+            get:
+              description: Returns the name and value of the specified entitlement
+              responses:
+                200:
+                  description: Returns entitlement
+                  body:
+                    application/json:
+                      example: !include examples/entitlements-new_v2.json
+                404:
+                  description: Resource does not exists
+
+/login:
+  description: login to the Anypoint Platform
+
+  post:
+    description: login to the Anypoint Platform
+    body:
+      application/json:
+        example: !include examples/login.json
+    responses:
+      200:
+        description: Success; returns the bearer token for the user's session
+        body:
+          application/json:
+            example: !include examples/login-token.json
+      302:
+        description: Success; redirect the user to the application they were trying to visit
+      401:
+        description: Invalid username or password
+      403:
+        description: The user is disabled and cannot login
+
+  /receive-id:
+    description: receive login information from federated identity management systems
+
+    post:
+      description: receive saml assertions from federated identity management systems
+      body:
+        text/plain:
+          example: TODO
+      responses:
+        302:
+          description: Success; redirects to continue an oauth login flow
+        401:
+          description: invalid saml assertion
+
+  /{domain}:
+    description: organization specific login
+    uriParameters:
+      domain:
+        description: domain name to identify the organization to identify what identity management system needs to authentication the user.
+        type: string
+
+    get:
+      description: get redirected to the organization specific login page
+      responses:
+        302:
+          description: Success; redirects to the appropriate login page for the organization
+        404:
+          description: no organization exists with the given domain
+
+/oauth2:
+  description: oauth 2 routes
+
+  /authorize:
+    description: oauth 2 authorization route for non-federated users
+
+    get:
+      description: oauth 2 authorization route to have the user authorize an application defined in our system
+      queryParameters:
+        redirect_uri:
+          description: redirect uri for the application
+          type: string
+          required: true
+        response_type:
+          description: describes the type of object that the application wishes to receive upon success
+          type: string
+          enum: [ 'code', 'token' ]
+          required: true
+        client_id:
+          description: the application's client_id that identifies the application
+          type: string
+          required: true
+        state:
+          description: a parameter with a string that will be supplied in a redirect back to the application upon success
+          type: string
+      responses:
+        302:
+          description: Success; redirects the user to the page to authentication & authorize the application if not logged in, or to the original application if logged in
+        400:
+          description: Bad request; an invalid redirect_uri, response_type or client_id
+        500:
+          description: An unknown error occurred
+
+    /{domain}:
+      description: oauth 2 authorization route for federated or non-federated users
+      uriParameters:
+        domain:
+          description: domain name to identify the organization to identify what identity management system needs to authentication the user.
+          type: string
+
+      get:
+        description: oauth 2 authorization route that will route federated users to their authentication system and non-federated users to ours
+        queryParameters:
+          redirect_uri:
+            description: redirect uri for the application
+            type: string
+            required: true
+          response_type:
+            description: describes the type of object that the application wishes to receive upon success
+            type: string
+            enum: [ 'code', 'token' ]
+            required: true
+          client_id:
+            description: the application's client_id that identifies the application
+            type: string
+            required: true
+          state:
+            description: a parameter with a string that will be supplied in a redirect back to the application upon success
+            type: string
+        responses:
+          302:
+            description: Success; redirects the user to the page to authentication & authorize the application if not logged in, or to the original application if logged in
+          400:
+            description: Bad request; an invalid redirect_uri, response_type or client_id
+          500:
+            description: An unknown error occurred
+
+  /token:
+    description: oauth 2 token resource
+
+    post:
+      description: create or retrieve an oauth 2 token
+      body:
+        application/json:
+          example: !include examples/token-new.json
+      responses:
+        200:
+          description: success
+
+/support:
+  description: Support portal
+
+  get:
+    description: Redirect to the support portal or the getting help documentation
+    responses:
+      302:
+        description: Location header contains the link to sso into the support portal, the link to the getting help documentation or (if not signed in) the signin page
+      500:
+        description: Support portal not available or an unknown error occurred

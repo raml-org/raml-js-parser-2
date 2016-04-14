@@ -1,0 +1,140 @@
+#%RAML 1.0
+title: Seed
+version: v1
+types:
+  Seed1:
+    properties:
+      str1: string
+      num1: number
+  Seed2:
+    properties:
+      str2: string
+      num2: number
+  Seed3:
+    properties:
+      str3: string
+      num3: number
+  Seed41:
+    type: Seed1
+    properties:
+      str4: string
+      num4: number
+  Type1:
+    type: object|object
+    example: {}
+  Type2:
+    type: [Type1,Seed2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type3:
+    type: [Type2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type4:
+    type: [Type2,Type3]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type5:
+    type: Seed3|Seed41
+    example: |
+      {
+        "str3": "str",
+        "num3": 1
+      }
+  Type6:
+    type: [Seed41]
+    example: |
+      {
+        "str1": "str",
+        "num1": 1,
+        "str4": "str",
+        "num4": 1,
+        "type6_num_2": 1,
+        "type6_num_1": 1
+      }
+    properties:
+      type6_num_1:
+        type: number
+      type6_num_2:
+        type: number
+  Type7:
+    type: [Seed2,Type2]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type8:
+    type: [Type3]
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type9:
+    type: Type7
+    example: |
+      {
+        "str2": "str",
+        "num2": 1
+      }
+  Type10:
+    type: object
+    example: |
+      {
+        "type10_num_1": 1,
+        "type10_prop_1": {}
+      }
+    properties:
+      type10_prop_1:
+        type: (number|Type9)|Type3
+      type10_num_1:
+        type: number
+
+/res1:
+  post:
+    body:
+      application/json:
+        type: object|object
+        example: {}
+/res2:
+  post:
+    body:
+      application/json:
+        type: [Type9]
+        example: |
+          {
+            "str2": "str",
+            "num2": 1
+          }
+/res3:
+  post:
+    body:
+      application/json:
+        type: Type7|Type5
+        example: |
+          {
+            "str2": "str",
+            "num2": 1
+          }
+/res4:
+  post:
+    body:
+      application/json:
+        type: [Type4]
+        example: {}
+/res5:
+  post:
+    body:
+      application/json:
+        type: object|Type2
+        example: {}

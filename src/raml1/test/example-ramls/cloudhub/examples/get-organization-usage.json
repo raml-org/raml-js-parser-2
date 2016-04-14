@@ -1,0 +1,12 @@
+{
+"sandboxes": 0,
+"productions": 1,
+"standardConnectors": 0,
+"premiumConnectors": 0,
+"productionApplications": 1,
+"sandboxApplications": 0,
+"productionTenants": 0,
+"sandboxTenants": 0,
+"productionWorkers": 1,
+"sandboxWorkers": 0
+}

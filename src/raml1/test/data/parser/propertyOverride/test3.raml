@@ -1,0 +1,22 @@
+#%RAML 1.0
+
+title: test
+
+types:
+  PropertyType1:
+    properties:
+      name: string
+  PropertyType2:
+    type: PropertyType1
+    properties:
+      name2: string
+  PropertyType3:
+    properties:
+      name: boolean
+  Type1:
+    properties:
+      testProperty: PropertyType1
+  Type2:
+    type: Type1
+    properties:
+      testProperty: PropertyType3

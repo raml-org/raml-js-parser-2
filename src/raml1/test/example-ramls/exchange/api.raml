@@ -1,0 +1,278 @@
+#%RAML 0.8
+title: Anypoint Exchange
+version: 1.0.0
+baseUri: https://anypoint.mulesoft.com/exchange/api
+securedBy: [x-token]
+securitySchemes:
+  - x-token:
+      description: You first need to obtain an access token from Core Services (aka CS). Please, review https://github.com/mulesoft/authentication-server/blob/develop/README.md to find out how to get it. Once you have your CS token, you should follow instructions explain in /exchangeToken endpoint.
+      type: x-token
+traits:
+  - errorCodes:
+      responses:
+        400:
+          description: Bad Request.
+          body:
+            application/json:
+              schema: !include 4XX_schema.json
+              example: !include 400_example.json
+        404:
+          description: Resource not found
+          body:
+            application/json:
+              schema: !include 4XX_schema.json
+              example: !include 404_example.json
+  - authenticated:
+      responses:
+        401:
+          description: Unauthorized.
+          body:
+            application/json:
+              schema: !include 4XX_schema.json
+              example: !include 401_example.json
+
+/exchangeToken:
+  is: [errorCodes]
+  securedBy: [null]
+  post:
+    description: Trade a Core Service's token for an Exchange Token. The new token should be sent as an 'authorization' cookie in the next requests.
+    body:
+      application/json:
+        schema: !include POST_exchange_token_schema.json
+        example: !include POST_exchange_token_example.json
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include POST_exchange_token_200_schema.json
+            example: !include POST_exchange_token_200_example.json
+
+/{organization}/objects:
+  is: [errorCodes, authenticated]
+  get:
+    queryParameters:
+      page:
+        displayName: Page
+        type: number
+        description: The page number of the retrieved results. 0 means all pages.
+        example: 1
+        required: false
+        default: 0
+      perPage:
+        displayName: Response size
+        type: number
+        description: Amount of objects retrieved in the response
+        example: 10
+        required: false
+      sortBy:
+        displayName: Sort By
+        type: string
+        description: Order criteria for the objects retrieved in the response. Possible values are name, updated_at.
+        example: updated_at
+        required: false
+      searchTerms:
+        displayName: Search Terms
+        type: string
+        description: Filter results that (partially) match the input
+        required: false
+        example: Some string
+      include:
+        displayName: Include
+        type: string
+        description: tells the API to include Mulesoft Public content in the response. Currently there is only one possible value.
+        example: public
+        required: false
+      types:
+        displayName: Types
+        type: string
+        description: tells the API which object types to include in the response. If you don't know the type number, you can use the /types endpoint to get them. For more than one type, &types=1&types=2, etc...
+        example: "1"
+        required: false
+
+    description: Get a paginated set of objects that belongs to the specified organization in the endpoint uri.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include GET_object_list_200_schema.json
+            example: !include GET_object_list_200_example.json
+  post:
+    description: Create a new object.
+    responses:
+      201:
+        description: Object Created.
+    body:
+      application/json:
+        schema: !include POST_object_201_schema.json
+        example: !include POST_object_201_example.json
+
+  /{id}:
+    get:
+      description: Get a particular object by its Id.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include GET_object_200_schema.json
+              example: !include GET_object_200_example.json
+    put:
+      description: Update an existing object.
+      responses:
+        204:
+          description: Object Updated.
+      body:
+        application/json:
+          schema: !include PUT_object_204_schema.json
+          example: !include PUT_object_204_example.json
+    delete:
+      description: Delete an existing object.
+      responses:
+        204:
+          description: Object deleted.
+
+    /publish:
+      put:
+        body:
+          application/json:
+        description: Publish an object so it's visible to all members in the organization.
+        responses:
+          204:
+            description: Object updated.
+    /unpublish:
+      put:
+        body:
+          application/json:
+        description: Unpublish an object so it's only visible to the owner or an admin.
+        responses:
+          204:
+            description: Object updated.
+
+/{organization}/predefinedSearchTerms:
+  is: [errorCodes, authenticated]
+  get:
+    queryParameters:
+      types:
+        displayName: Types
+        type: string
+        description: tells the API which types, the requested predefinedSearchTerms should be asociated to. If you don't know the type number, you can use the /types endpoint to get them. For more than one type, &types=1&types=2, etc...
+        example: "1"
+        required: false
+
+    description: Get all posible Predefined Search Terms
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include GET_predefined_search_terms_list_200_schema.json
+            example: !include GET_predefined_search_terms_list_200_example.json
+  post:
+    description: Create new Predefined Search Term group.
+    responses:
+        201:
+          description: Predefined Search Term created.
+    body:
+        application/json:
+          schema: !include POST_predefined_search_terms_201_schema.json
+          example: !include POST_predefined_search_terms_201_example.json
+  put:
+      description: Update all Predefined Search Terms. As a responde the complete list of Predefined Search Terms is returned.
+      responses:
+        201:
+          description: Predefined Search Terms updated.
+      body:
+        application/json:
+          schema: !include PUT_predefined_search_terms_201_schema.json
+          #example: !include PUT_predefined_search_terms_201_example.json
+
+/{organization}/types:
+  is: [errorCodes, authenticated]
+  get:
+    description: Retrieve a list of types.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include GET_type_list_200_schema.json
+            example: !include GET_type_list_200_example.json
+
+  /{id}:
+    get:
+      description: Get a particular type by its Id.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include GET-PUT_type_200-204_schema.json
+              example: !include GET-PUT_type_200-204_example.json
+    put:
+      description: Update an existing type.
+      responses:
+        204:
+          description: Type Updated.
+      body:
+        application/json:
+          schema: !include GET-PUT_type_200-204_schema.json
+          example: !include GET-PUT_type_200-204_example.json
+
+/objectsAmount:
+  is: [errorCodes, authenticated]
+  get:
+    description: Retrieve amount of objects created in Exchange.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include GET_objects_amount_200_schema.json
+            example: !include GET_objects_amount_200_example.json
+
+/organizations:
+  is: [errorCodes, authenticated]
+  get:
+    description: Get Organizations Info. The info is only Exchange related. You need special rights to use this endpoint.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include GET_organizations_list_200_schema.json
+            example: !include GET_organizations_list_200_example.json
+
+  /{organization}:
+    get:
+      description: Get Information about a particular Organization
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include GET_organization_info_200_schema.json
+              example: !include GET_organization_info_200_example.json
+
+    /ownerInfo:
+      put:
+        description: Update information related to the owner of an existing organization.
+        responses:
+          204:
+            description: Organization Updated.
+        body:
+          application/json:
+            schema: !include PUT_organization_info_204_schema.json
+            example: !include PUT_organization_info_204_example.json
+
+/capacityIncrease:
+  is: [errorCodes, authenticated]
+  post:
+    description: Register an Exchange capacity increase request
+    responses:
+        201:
+          description: Exchange capacity increase requested successfully
+    body:
+      application/json:
+        schema: !include POST_capacity_increase_schema.json
+        example: !include POST_capacity_increase_example.json
+  get:
+    description: Return a CSV with all Exchange capacity increase requests
+    responses:
+      200:
+        body:
+          text/csv:
+            example: |
+              id,organization_id,contact_email,contact_phone,additional_info,current_objects_limit,objects_count,organization_name,organization_core_services_id,organization_owner_id,organization_client_id,organization_domain,created_at,updated_at

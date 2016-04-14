@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: Dropbox API
+uses:
+  types: !include m01_library.raml
+/man:
+  get:
+    responses:
+      200:
+        body:
+          application/json: types.Person

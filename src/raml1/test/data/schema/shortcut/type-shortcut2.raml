@@ -1,0 +1,15 @@
+#%RAML 1.0 
+title: API with Types
+types:
+  Type1:
+    type: object
+    properties:
+      aaa: string
+      bbb: string
+  User:
+    type: object
+    properties:
+      firstname: string
+      lastname:  string
+      age:       number
+      field: Type1

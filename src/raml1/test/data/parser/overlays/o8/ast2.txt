@@ -1,0 +1,10 @@
+Overlay <-- 
+  usage : StringType  =  Spanish localization
+  masterRef : StringType  =  api.raml
+  DocumentationItem <-- documentation
+    title : StringType  =  Introducción
+    content : MarkdownString  =  El acceso automatizado a los libros
+  DocumentationItem <-- documentation
+    title : StringType  =  Licencias
+    content : MarkdownString  =  Por favor respeta los derechos de autor de los libros
+  title : StringType  =  Book Library API

@@ -1,0 +1,38 @@
+get:
+  is: [searchable, apiList]
+  queryParameters:
+    requireRaml:
+      type: boolean
+      required: false
+      default: true
+    query[name]:
+      type: string
+      required: false
+      description: |
+        A list of keywords for matching API name in a search. Used in conjunction with other 'query[xxx]' to perform advanced search. Note: when any of 'query[xxx]' is used, the query parameter 'query' would be disregarded.
+    query[version]:
+      type: string
+      required: false
+      description: |
+        A list of keywords for matching API version name in a search. Used in conjunction with other 'query[xxx]' to perform advanced search. Note: when any of 'query[xxx]' is used, the query parameter 'query' would be disregarded.
+    query[tags]:
+      type: string
+      required: false
+      description: |
+        A list of keywords for matching API version tags in a search. Used in conjunction with other 'query[xxx]' to perform advanced search. Note: when any of 'query[xxx]' is used, the query parameter 'query' would be disregarded.
+    query[description]:
+      type: string
+      required: false
+      description: |
+        A list of keywords for matching API version description in a search. Used in conjunction with other 'query[xxx]' to perform advanced search. Note: when any of 'query[xxx]' is used, the query parameter 'query' would be disregarded.
+    query[matchAll]:
+      type: boolean
+      required: false
+      default: false
+      description: |
+        A boolean value that determines how other 'query[xxx]' values should work together in an advanced search. When 'matchAll' is true, all other 'query[xxx]' would be chained with an 'AND' when performing a search, otherwise they are chained with an 'OR'. Note: when any of 'query[xxx]' is used, the query parameter 'query' would be disregarded.
+    organizationId:
+      type: string
+      required: false
+      description: |
+        The organization ID that the search should be run in. If not provided, search would be performed within the organization which the login user is under.

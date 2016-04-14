@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://anypoint.io/amc",
+  "type": "object",
+  "properties": {
+    "data": {
+      "id": "http://anypoint.io/amc/data",
+      "type": "string"
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

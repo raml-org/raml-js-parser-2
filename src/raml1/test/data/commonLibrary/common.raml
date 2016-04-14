@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+types:
+  url: string
+  script: string
+annotationTypes:
+  LibraryLocation:
+    properties:
+      value: url
+  FacetInstanceValidator:
+    properties:
+      value: script
+  TypeValidator:
+    properties:
+      value: script
+(LibraryLocation): http://raml.org/library/common.raml

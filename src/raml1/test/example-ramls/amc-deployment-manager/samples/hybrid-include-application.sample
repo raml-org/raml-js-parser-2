@@ -1,0 +1,80 @@
+{
+  "id": 42,
+  "timeCreated": 1430777912941,
+  "timeUpdated": 1430777916635,
+  "serverArtifacts": [
+    {
+      "id": 35,
+      "timeCreated": 1430777912955,
+      "timeUpdated": 1430777912955,
+      "artifactName": "mule-app-test-54576",
+      "artifact": {
+        "id": 32,
+        "type": "APPLICATION",
+        "name": "mule-app-test-54576"
+      },
+      "applicationId": 42,
+      "serverId": 44,
+      "lastReportedStatus": "DEPLOYING",
+      "desiredStatus": "DEPLOYED",
+      "message": null,
+      "discovered": false
+    },
+    {
+      "id": 36,
+      "timeCreated": 1430777912964,
+      "timeUpdated": 1430777916611,
+      "artifactName": "mule-app-test-54576",
+      "artifact": {
+        "id": 32,
+        "type": "APPLICATION",
+        "name": "mule-app-test-54576"
+      },
+      "applicationId": 42,
+      "serverId": 43,
+      "lastReportedStatus": "STARTED",
+      "desiredStatus": "DEPLOYED",
+      "message": null,
+      "discovered": false
+    }
+  ],
+  "desiredStatus": "STARTED",
+  "lastReportedStatus": "PARTIALLY_STARTED",
+  "artifact": {
+    "id": 32,
+    "type": "APPLICATION",
+    "name": "mule-app-test-54576"
+  },
+  "target": {
+    "id": 45,
+    "timeCreated": 1430777909414,
+    "timeUpdated": 1430777918647,
+    "name": "test-mule-group-54576",
+    "servers": [
+      {
+        "id": 44,
+        "timeCreated": 1430777894462,
+        "timeUpdated": 1430777910626,
+        "name": "test-mule-2-54576",
+        "serverType": "MULE",
+        "muleVersion": "3.6.0",
+        "agentVersion": "1.0.1-SNAPSHOT",
+        "status": "DISCONNECTED",
+        "serverGroupId": 45,
+        "serverGroupName": "test-mule-group-54576"
+      },
+      {
+        "id": 43,
+        "timeCreated": 1430777890063,
+        "timeUpdated": 1430777918771,
+        "name": "test-mule-1-54576",
+        "serverType": "MULE",
+        "muleVersion": "3.6.0",
+        "agentVersion": "1.0.1-SNAPSHOT",
+        "status": "RUNNING"
+      }
+    ],
+    "discoveredArtifactNames": [],
+    "status": "PARTIAL"
+  }
+}

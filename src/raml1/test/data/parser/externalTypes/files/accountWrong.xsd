@@ -1,0 +1,37 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="TwilioResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Account">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Sid"/>
+                            <xs:element type="xs:string" name="FriendlyName"/>
+                            <xs:element type="xs:string" name="Type"/>
+                            <xs:element type="xs:string" name="Status"/>
+                            <xs:element type="xs:string" name="DateCreated"/>
+                            <xs:element type="xs:string" name="DateUpdated"/>
+                            <xs:element type="xs:string" name="AuthToken"/>
+                            <xs:element type="xs:string" name="Uri"/>
+                            <xs:element name="SubresourceUris">
+                                <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type="xs:string" name="AvailablePhoneNumbers"/>
+                                    <xs:element type="xs:string" name="Calls"/>
+                                    <xs:element type="xs:string" name="Conferences"/>
+                                    <xs:element type="xs:string" name="IncomingPhoneNumbers"/>
+                                    <xs:element type="xs:string" name="Notifications"/>
+                                    <xs:element type="xs:string" name="OutgoingCallerIds"/>
+                                    <xs:element type="xs:string" name="Recordings"/>
+                                    <xs:element type="xs:string" name="Sandbox"/>
+                                    <xs:element type="xs:string" name="SMSMessages"/>
+                                    <xs:element type="xs:string" name="Transcriptions"/>
+                                </xs:sequence>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

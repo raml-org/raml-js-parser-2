@@ -1,0 +1,25 @@
+#%RAML 1.0
+
+title: World Music API
+version: v1
+types:
+  Type1:
+    properties:
+      num1: number
+      str1: string
+  Type2:
+    properties:
+      num2: number
+      str2: string
+  Type12:
+    type: [Type1,Type2]
+    properties:
+      num12: number
+      str12: string
+  Product:
+    type: object
+    properties:
+      name:
+        type: string
+      typed:
+        type: Type12

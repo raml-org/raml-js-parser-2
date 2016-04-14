@@ -1,0 +1,15 @@
+{
+  "title": "Type1",
+  "type": "object",
+  "properties": {
+    "colors": {
+      "type": "string",
+      "enum": [
+        "red",
+        "green",
+        "blue"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}

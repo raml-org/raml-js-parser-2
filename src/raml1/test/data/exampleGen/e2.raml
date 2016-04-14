@@ -1,0 +1,72 @@
+#%RAML 1.0
+title: a
+types:
+  Person:
+    properties:
+      name:
+        type: string
+        example: Pavel
+      lastname:
+        type: string
+        example: Petrochenko
+      age:
+        type: number
+        example: 33
+  Programmer:
+    type: Person
+    properties:
+      knowsLanguages:
+        type: string[]
+        example: ["Java","C++"]
+  Programmers: Programmer[]
+  Dog:
+    properties:
+      name: string
+      age: number
+    examples:
+      TestSample: !include dogsample.raml
+
+  Dog2:
+    properties:
+      name: string
+      age: number
+    example: !include dog2sample.json
+
+  ManWithDog:
+      properties:
+        name:
+          type: string
+          example: !include attributeSample.txt
+        d: Dog2
+  ManWithDog2:
+      properties:
+        name:
+          type: string
+          example: "Pavel"
+        d: Dog
+  ManWithExamples:
+      properties:
+        name:
+          type: string
+          example: "Pavel"
+        d: Dog
+      examples:
+        m1:
+          content:
+            mmm: 2
+  Amount:
+    type: number
+    example: 30
+  Amounts:
+    type: Amount[]
+  IAmUnion:
+    type: Amount| string
+  RecordId:
+    usage: An id of any record in the system
+    type: number
+  MYBool:
+    usage: An id of any record in the system
+    type: boolean
+  MYString:
+     usage: An id of any record in the system
+     type: string

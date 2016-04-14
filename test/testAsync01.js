@@ -1,7 +1,7 @@
 console.log('RAML 1.0 JS Parser Test');
 
 var path = require("path");
-var raml1Parser = require('../src/raml1Parser');
+var raml1Parser = require('../dist/index');
 
 raml1Parser.loadApi("https://raw.githubusercontent.com/raml-apis/XKCD/production/api.raml")
    .then( function(api){

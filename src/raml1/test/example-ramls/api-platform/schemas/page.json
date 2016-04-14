@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "required": false,
+  "properties": {
+    "dates": {
+      "type": "object",
+      "required": false,
+      "properties": {
+        "created": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "by": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "userId": {
+                  "type": "number",
+                  "required": false
+                },
+                "userName": {
+                  "type": "string",
+                  "required": false
+                }
+              }
+            },
+            "date": {
+              "type": "number",
+              "required": false
+            }
+          }
+        },
+        "updated": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "by": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "userId": {
+                  "type": "number",
+                  "required": false
+                },
+                "userName": {
+                  "type": "string",
+                  "required": false
+                }
+              }
+            },
+            "date": {
+              "type": "number",
+              "required": false
+            }
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "number",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "portalId": {
+      "type": "number",
+      "required": false
+    }
+  }
+}

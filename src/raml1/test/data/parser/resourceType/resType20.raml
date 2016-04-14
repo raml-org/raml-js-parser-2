@@ -1,0 +1,34 @@
+#%RAML 1.0
+title: test
+types:
+  - TestType:
+      type: object
+      properties:
+        field: string
+      example:
+        field: value
+schemas:
+  - TestSchema: |
+      {
+        "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object" ,
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+resourceTypes:
+  - TestResorceType:
+      post:
+      get:
+      put:
+      delete:
+      options:
+      head:
+      patch:
+/test:
+  type:  TestResorceType

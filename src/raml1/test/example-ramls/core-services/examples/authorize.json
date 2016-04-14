@@ -1,0 +1,5 @@
+{
+  "namespace": "namespace",
+  "action": "GET",
+  "resource": "/api"
+}

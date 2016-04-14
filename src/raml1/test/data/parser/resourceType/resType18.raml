@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: test
+types:
+  - TestType:
+      type: object
+      properties:
+        field: string
+      example:
+        field: value
+schemas:
+  - TestSchema: |
+      {
+        "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object" ,
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+resourceTypes:
+  - TestResorceType:
+      post:
+        description: Allows to create new <<objectName | !singularize>>
+        body:
+          application/json:
+            schema: <<objectName | !singularize>>
+/test:
+  type:  { TestResorceType: {objectName : TestType} }

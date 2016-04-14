@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: Facets tests
+uses:
+  common: !include ./common.raml
+types:
+  formattedDate:
+    facets:
+      format:
+        type: string
+        (common.FacetInstanceValidator):  !include facetValidator.js
+  myDate:
+    type: formattedDate
+    format: yyyy
+
+annotationTypes:
+  EEE:
+    properties:
+      microDate: myDate
+(EEE):
+     microDate: yyyy

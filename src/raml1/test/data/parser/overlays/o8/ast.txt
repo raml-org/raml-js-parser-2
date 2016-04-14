@@ -1,0 +1,10 @@
+Overlay <-- 
+  usage : StringType  =  Russian localization
+  masterRef : StringType  =  api.raml
+  DocumentationItem <-- documentation
+    title : StringType  =  Вступление
+    content : MarkdownString  =  Автоматический доступ к книгам
+  DocumentationItem <-- documentation
+    title : StringType  =  Лицензия
+    content : MarkdownString  =  Пожалуйста соблюдайте лицензионное соглашение
+  title : StringType  =  Book Library API

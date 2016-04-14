@@ -1,0 +1,86 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Deployments list",
+    "type": "array",
+    "items": {
+        "title": "Deployment",
+        "type": "object",
+        "properties": {
+            "target": {
+                "type": "object",
+                "properties": {
+                    "id": {"type": "number"},
+                    "type": {"enum": [ "CLOUDHUB", "SERVER", "SERVER_GROUP", "CLUSTER"]},
+                    "name": {"type": "string"},
+                    "status": {"enum": [ "CREATED", "RUNNING", "CONNECTED", "DISCONNECTED", "EMPTY", "PARTIAL", "UNAVAILABLE"]}
+                },
+                "required": ["type"]
+            },
+            "artifact": {
+                "type": "object",
+                "properties": {
+                    "lastUpdateTime": {"type": "number"},
+                    "name": {"type": "string"},
+                    "fileName": {"type": "string"},
+                    "fileChecksum": {"type": "string"}
+                },
+                "required": [ "name", "fileName"]
+            },
+            "lastReportedStatus": {
+                "enum": [ "DEPLOYING",  "DEPLOYED", "PARTIALLY_DEPLOYED", "DEPLOYMENT_FAILED", "STARTING", "STARTED", "STOPPING", "STOPPED", "UNDEPLOYING", "UNDEPLOYED", "UPDATING"]
+            },
+            "details": {
+                "type": "object",
+                "properties": {
+                    "serverArtifacts": {
+                        "description": "This is a Hybrid deployment detail. Only present for Hybrid deployments.",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "target": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {"type": "number"},
+                                        "type": {"enum": [ "CLOUDHUB", "SERVER", "SERVER_GROUP", "CLUSTER"]},
+                                        "name": {"type": "string"},
+                                        "status": {"enum": [ "CREATED", "RUNNING", "CONNECTED", "DISCONNECTED", "EMPTY", "PARTIAL", "UNAVAILABLE"]}
+                                    },
+                                    "required": [ "type"]
+                                },
+                                "lastReportedStatus": {
+                                    "enum": [ "INITIALISING", "INITIALISED", "STARTING", "STARTED", "STOPPING", "STOPPED", "DISPOSING", "DISPOSED", "DEPLOYING", "UNDEPLOYING", "UNDEPLOYED", "DEPLOYMENT_FAILED", "UPDATED"]
+                                },
+                                "message": {"type": "string"}
+                            },
+                            "required": [ "target", "status"]
+                        }
+                    },
+                    "domain": {
+                        "description": "This is a CloudHub deployment detail. Only present for CloudHub deployments.",
+                        "type": "string"
+                    },
+                    "recentStatistics": {
+                        "description": "This is a CloudHub deployment detail. Onli present for CloudHub deployments.",
+                        "type": "object",
+                        "properties": {
+                            "cpu": {"type": "number"},
+                            "transactions": {"type": "number"}
+                        },
+                        "required": [ "cpu", "transactions"]
+                    },
+                    "deploymentUpdateStatus": {
+                        "description": "This is a CloudHub deployment detail. Only present for CloudHub deployments.",
+                        "type": "string"
+                    }
+                },
+                "required": []
+            },
+            "id": {
+                "description": "This is the id of the Hybrid deployment resource. Only present for Hybrid deployments.",
+                "type": "number"
+            }
+        },
+        "required": ["target", "artifact", "status", "details"]
+    }
+}

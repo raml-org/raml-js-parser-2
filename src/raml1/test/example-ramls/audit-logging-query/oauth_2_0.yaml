@@ -1,0 +1,22 @@
+description: |
+  Designed specifically to work with Hypertext Transfer Protocol (HTTP),
+  OAuth allows access tokens to be issued to third-party clients by an
+  authorization server, with the approval of the resource owner. The
+  client then uses the access token to access the protected resources
+  hosted by the resource server. OAuth is commonly used as a way for
+  Internet users to log into third party websites using without exposing
+  their password.
+type: OAuth 2.0
+describedBy:
+  headers:
+    Authorization:
+      description: |
+        Used to send a valid OAuth 2 access token.
+      type: string
+  responses:
+    404:
+      description: Unauthorized
+settings:
+  authorizationUri: https://anypoint.mulesoft.com/accounts/oauth2/authorize
+  accessTokenUri: https://anypoint.mulesoft.com/accounts/oauth2/token
+  authorizationGrants: [ token ]

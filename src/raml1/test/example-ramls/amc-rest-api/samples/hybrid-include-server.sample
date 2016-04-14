@@ -1,0 +1,20 @@
+{
+  "id": 2194,
+  "timeCreated": 1437495853061,
+  "timeUpdated": 1437512467554,
+  "name": "clustering-server",
+  "serverType": "MULE",
+  "type": "SERVER",
+  "muleVersion": "3.6.1",
+  "agentVersion": "1.1.1",
+  "status": "DISCONNECTED",
+  "addresses": [
+      {
+          "ip": "172.16.12.169",
+          "networkInterface": "en0"
+      }
+  ],
+  "currentClusteringIp": null,
+  "clusterId": 2195,
+  "clusterName": "Cluster-1"
+}

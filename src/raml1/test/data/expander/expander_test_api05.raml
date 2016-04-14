@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: MultipleTraitsToResource
+version: 1
+baseUri: https://example.com/{version}
+traits:
+  - trait0: !include traits/trait0.raml
+  - trait1: !include traits/trait1.raml
+/root-resource:
+  is: [ trait0, trait1 ]
+  get:
+    description: Get object
+    queryParameters:
+      id:
+    responses:
+      251:
+  post:
+    description: Create object
+    queryParameters:
+      id1:
+    responses:
+      201:

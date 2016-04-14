@@ -1,0 +1,20 @@
+{
+  "name": "core services",
+  "ownerId": "6db86c8c-535c-45e4-b7d7-45049c39b69b",
+  "idprovider_id": "mulesoft.com:core-services",
+  "properties": {
+    "identity_management" : {
+      "saml" : {
+        "name" : "SAML 2.0"
+      }
+    }
+  },
+  "sessionTimeout": 60,
+  "entitlements": {
+    "createEnvironments": false,
+    "globalDeployment": false,
+    "createSubOrgs": true,
+    "vCoresProduction": { "assigned": 0.5 },
+    "vCoresSandbox": { "assigned": 0 }
+  }
+}

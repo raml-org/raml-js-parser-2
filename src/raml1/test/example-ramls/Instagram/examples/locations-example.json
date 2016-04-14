@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "code": 200
+  },
+  "data": [
+    {
+      "latitude": 48.850059509,
+      "id": "125983371",
+      "longitude": 2.294613838,
+      "name": "cairo universty, ElSheikh Zaid branch"
+    },
+    {
+      "latitude": 48.850191,
+      "id": "46295095",
+      "longitude": 2.294195,
+      "name": "82 Boulevard De Grenelle"
+    },
+    {
+      "latitude": 48.850232,
+      "id": "17463171",
+      "longitude": 2.294276,
+      "name": "Monan chaussure"
+    },
+    {
+      "latitude": 48.849993048,
+      "id": "58664053",
+      "longitude": 2.294816312,
+      "name": "Rue Juge"
+    },
+    {
+      "latitude": 48.850235602,
+      "id": "3277432",
+      "longitude": 2.294731778,
+      "name": "Pizza Di Napoli"
+    },
+    {
+      "latitude": 48.85030795,
+      "id": "3632655",
+      "longitude": 2.294114341,
+      "name": "Marche Grenelle"
+    },
+    {
+      "latitude": 48.850311575,
+      "id": "47202559",
+      "longitude": 2.294123981,
+      "name": "London Styl'"
+    },
+    {
+      "latitude": 48.84975,
+      "id": "16095374",
+      "longitude": 2.294726,
+      "name": "Sami Coiffure 2000"
+    }
+  ]
+}

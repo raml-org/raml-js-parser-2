@@ -1,0 +1,33 @@
+{
+  "oauth2_authorization_provider": {
+    "name": "OAuth 2.0 Authorization Provider",
+    "url": "https://ping.mulesoft.com/as/authorization.oauth2"
+  },
+  "oauth2_client_provider": {
+    "name": "OAuth 2.0 Client Provider",
+    "url": "https://ping.mulesoft.com/pf-ws/rest/oauth/clients",
+    "username": "william.adama",
+    "password": "sosayweall"
+  },
+  "oauth2_token_provider": {
+    "name": "OAuth 2.0 Token Provider",
+    "url": "https://ping.mulesoft.com/as/token.oauth2"
+  },
+  "oauth2_token_validation_provider": {
+    "name": "OAuth 2.0 Token Validation Provider",
+    "url": "https://ping.mulesoft.com/as/token.oauth2",
+    "client_id": "6f83983f625140579322d1c3e46f7e7d",
+    "client_secret": "3625e06e4be548b391E19DC2D790E7F9"
+  },
+  "saml": {
+    "name": "SAML 2.0",
+    "issuer": "mulesoft.com",
+    "public_key": "MIIDBDCCAeygAwIBAgIGAUb+qnaGMA0GCSqGSIb3DQEBBA=",
+    "audience": "anypoint.mulesoft.com",
+    "bypass_expiration": true
+  },
+  "service_provider": {
+    "name": "Identity Federation Service Provider",
+    "url": "https://ping.mulesoft.com/idp/startSSO.ping?PartnerSpId=anypoint.mulesoft.com"
+  }
+}

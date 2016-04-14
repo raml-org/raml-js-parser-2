@@ -1,0 +1,64 @@
+{
+  "title": "Audit Log Query Schema",
+  "type": "object",
+  "description": "Queries for log entries. Note that all filters below will be ANDed to each other.",
+  "properties": {
+    "startDate": {
+      "type": [ "string", "integer" ],
+      "faker": "date.past",
+      "description": "Starting time, expressed in Unix milliseconds or ISO 8601 date, e.g. '2011-10-10T14:48:00'"
+    },
+    "endDate": {
+      "type": [ "string", "integer" ],
+      "faker": "date.past",
+      "description": "Ending time, expressed in Unix milliseconds or ISO 8601 date, e.g. '2011-1-1'"
+    },
+    "userIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries belonging to the given users"
+    },
+    "objectIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries containing at least one of the given object ids"
+    },
+    "parentIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries whose objects are children of the given parent ids"
+    },
+    "platforms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries belonging to the platforms"
+    },
+    "objectTypes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries for objects of the given types"
+    },
+    "actions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": "true",
+      "description": "Limits results to only log entries describing one of the given set of actions"
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200,
+      "description": "Limits the number of log entries returned. Note that no more than 200 entries will ever be returned from this service"
+    },
+    "failed": {
+      "type": "boolean",
+      "description": "Limits results to only log entries with the given 'failed' status"
+    }
+  },
+  "required": ["startDate"]
+}

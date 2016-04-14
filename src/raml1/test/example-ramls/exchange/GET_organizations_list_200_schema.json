@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "required" : true,
+  "type" : "array",
+  "properties": {
+    "id": { "required": true, "type": "number" },
+    "name": { "required": true, "type": "string" },
+    "domain": { "required": true, "type": "string" },
+    "core_services_id": { "required": true, "type": "string" },
+    "owner_name": { "required": true, "type": "string" },
+    "owner_email": { "required": true, "type": "string" },
+    "owner_phone": { "required": true, "type": "string" }
+  }
+}

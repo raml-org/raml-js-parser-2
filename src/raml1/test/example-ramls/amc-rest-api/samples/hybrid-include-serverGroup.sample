@@ -1,0 +1,48 @@
+{
+    "id": 73,
+    "timeCreated": 1432247776992,
+    "timeUpdated": 1432247776992,
+    "name": "Group2",
+    "servers": [
+        {
+            "id": 71,
+            "timeCreated": 1432247665613,
+            "timeUpdated": 1432301095608,
+            "name": "Server71",
+            "serverType": "MULE",
+            "type": "SERVER",
+            "muleVersion": "3.6.2",
+            "agentVersion": "1.0.1-SNAPSHOT",
+            "status": "DISCONNECTED",
+            "serverGroupId": 73,
+            "serverGroupName": "Group2",
+            "addresses": [
+                  {
+                      "ip": "172.16.12.169",
+                      "networkInterface": "en0"
+                  }
+              ]
+        },
+        {
+            "id": 72,
+            "timeCreated": 1432247685261,
+            "timeUpdated": 1432303178444,
+            "name": "Server73",
+            "serverType": "MULE",
+            "type": "SERVER",
+            "muleVersion": "3.6.2",
+            "agentVersion": "1.0.1-SNAPSHOT",
+            "status": "DISCONNECTED",
+            "serverGroupId": 73,
+            "serverGroupName": "Group2",
+            "addresses": [
+                  {
+                      "ip": "172.16.12.168",
+                      "networkInterface": "en0"
+                  }
+              ]
+        }
+    ],
+    "type": "SERVER_GROUP",
+    "status": "DISCONNECTED"
+}

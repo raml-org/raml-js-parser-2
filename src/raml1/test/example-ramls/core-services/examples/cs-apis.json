@@ -1,0 +1,40 @@
+{
+  "data": {
+    "apis": [
+      {
+        "id": "1077",
+        "name": "CS Notifications",
+        "versions": [
+          {
+            "id": "All",
+            "name": "All",
+            "isActive": false
+          },
+          {
+            "id": "973",
+            "apiId": "1077",
+            "portalId": "377",
+            "name": "0.1"
+          },
+          {
+            "id": "1897",
+            "apiId": "1077",
+            "portalId": "734",
+            "name": "0.2"
+          }
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "role_id": "6f233440-be39-4083-b10a-a5eea995ee52",
+        "name": "API Version Owner"
+      },
+      {
+        "role_id": "a81d5360-64fe-40cc-9f1d-f5ed40d227ca",
+        "name": "Portal Viewer"
+      }
+    ]
+  },
+  "total": 1
+}

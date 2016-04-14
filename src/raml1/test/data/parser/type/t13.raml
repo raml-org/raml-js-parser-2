@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: Some API
+
+types:
+    FirstType:
+        properties:
+            name: string
+    SecondType:
+        properties:
+            age: number
+    SomeType:
+      type: FirstType | SecondType
+      properties: 

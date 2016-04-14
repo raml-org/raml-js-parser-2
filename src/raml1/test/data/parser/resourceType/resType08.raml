@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+resourceTypes:
+  MyResourceType:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              properties:
+                name: string
+
+/segment:
+  type: MyResourceType

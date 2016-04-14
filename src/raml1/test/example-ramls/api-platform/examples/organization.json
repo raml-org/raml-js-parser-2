@@ -1,0 +1,21 @@
+{
+  "audit": {
+    "created": {
+      "date": "2015-07-28T13:54:12.585Z"
+    },
+    "updated": {}
+  },
+  "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+  "terms": "velit corrupti accusamus et enim harum atque iste dignissimos laborum ratione ullam sequi cupiditate quam quia accusantium nihil dolorem soluta expedita et qui sapiente molestiae molestias debitis distinctio corporis et voluptatem in repellendus deserunt sed dolor non et labore quisquam omnis eum voluptates est quia alias possimus suscipit libero hic",
+  "theme": {
+    "headerBgColor": "#e63737",
+    "headerBtnBgColor": "#b52a2a",
+    "headerTextColor": "white",
+    "headerBtnTextColor": "white",
+    "headerLogoKey": "org/f0c9b011-980e-4928-9430-e60e3a97c043/9ee4acf0-3bee-11e5-b1bc-19c1166905cd",
+    "headerLogoUrl": "/apiplatform/repository/v2/organizations/f0c9b011-980e-4928-9430-e60e3a97c043/public/theme/logo"
+  },
+  "isMaster": true,
+  "parentOrganizationIds": [],
+  "name": "MuleSoft Inc"
+}

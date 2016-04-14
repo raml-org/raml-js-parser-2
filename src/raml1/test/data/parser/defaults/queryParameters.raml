@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: GitHub API
+version: v3
+baseUri: https://api.github.com/{version}
+/users:
+  get:
+    description: Get a list of users
+    queryParameters:
+      page:
+        description: Specify the page that you want to retrieve
+        type: integer
+        required: true
+        example: 1

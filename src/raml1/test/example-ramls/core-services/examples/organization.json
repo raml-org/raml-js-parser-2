@@ -1,0 +1,29 @@
+{
+  "name": "MuleSoft Inc",
+  "id": "f0c9b011-980e-4928-9430-e60e3a97c043",
+  "createdAt": "2015-03-13T18:03:23.869Z",
+  "updatedAt": "2015-03-13T18:03:24.207Z",
+  "ownerId": "57e281b5-ec5b-4701-80a0-92a936a68da3",
+  "clientId": "b63237d9c5d444ea95147065e0711161",
+  "domain": "mulesoft-inc",
+  "idprovider_id": "mulesoft",
+  "isFederated": false,
+  "parentOrganizationIds": [],
+  "subOrganizationIds": [
+    "07fd6c5b-0036-48a3-b2af-3194c06bed6c"
+  ],
+  "entitlements": {
+    "hybrid": {
+      "enabled": true
+    },
+    "createEnvironments": true,
+    "globalDeployment": true,
+    "createSubOrgs": true,
+    "vCoresProduction": { "assigned": 1, "reassigned": 0 },
+    "vCoresSandbox": { "assigned": 1, "reassigned": 0 }
+  },
+  "tenantOrganizationIds": [],
+  "isMaster": true,
+  "sessionTimeout": 60,
+  "properties": {}
+}

@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: WebOfMe
+mediaType: application/json
+types:
+  MyType:
+    type: value
+    facets:
+      hello: number
+
+  qaa: string
+
+/hello:
+   get:
+     responses:
+        200:
+          body: My^Type

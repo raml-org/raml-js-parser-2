@@ -1,0 +1,23 @@
+types:
+  - Product:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        price:
+          type: number
+        tags:
+          type: array
+        dimensions:
+          type: object
+          properties:
+            length:
+              type: number
+            width:
+              type: number
+            height:
+              type: number
+        warehouseLocation:
+          type: undefined

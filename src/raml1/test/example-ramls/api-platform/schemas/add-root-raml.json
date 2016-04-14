@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "$schema": "http:\/\/json-schema.org\/draft-03\/schema",
+  "required": false,
+  "properties": {
+    "apiId": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647,
+      "required": true
+    },
+    "apiName": {
+      "type": "string",
+      "maxLength": 150,
+      "required": true
+    },
+    "apiVersionId": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647,
+      "required": true
+    },
+    "data": {
+      "type": "string",
+      "required": true
+    },
+    "isDirectory": {
+      "type": "boolean",
+      "enum": [
+        false
+      ],
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 150,
+      "required": true
+    }
+  }
+}

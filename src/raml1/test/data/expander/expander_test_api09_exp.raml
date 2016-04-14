@@ -1,0 +1,53 @@
+#%RAML 1.0
+title: ParametrizedTraitsAndResourceTypesMix_exp
+version: 1
+baseUri: https://example.com/{version}
+traits:
+  - trait0_param: !include traits/trait0_param.raml
+  - trait1_param: !include traits/trait1_param.raml
+/root-resource:
+  is: [ { trait0_param : { method : "Get/post", object: "value" } }, { trait1_param: { param0: "object", param1: "value" } } ]
+  get:
+    description: Get/post value
+    queryParameters:
+      id:
+        type: number
+        description: some description
+      name:
+        type: string
+        description: object name
+      name1:
+        type: string
+        description: Name1 of the object value
+    responses:
+      200:
+      404:
+        description: not found
+      250:
+      251:
+        body:
+          applicaiton/json:
+      454:
+        description: not found
+  post:
+    description: Get/post value
+    queryParameters:
+      name:
+        type: string
+        description: object name
+      id1:
+        type: number
+        description: object id1
+      name1:
+        type: string
+        description: Name1 of the object value
+    responses:
+      200:
+      201:
+        body:
+          applicaiton/json:
+      404:
+        description: not found
+      250:
+      454:
+        description: not found

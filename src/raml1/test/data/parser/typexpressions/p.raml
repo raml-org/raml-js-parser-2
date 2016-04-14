@@ -1,0 +1,26 @@
+#%RAML 1.0
+title: Demonstration of types
+types:
+  moneyPrice: number
+  Product:
+    discriminator: kind
+    properties:
+      kind: string
+      name: string
+      price:
+        type: moneyPrice
+    examples:
+      - content:
+          "kind": "cell phone"
+          "name": "Nokia"
+          "price": 200
+      - content:
+          "kind": "Car"
+          "name": "Ford"
+          "price": 20000
+
+  Car:
+    type: Product
+    discriminatorValue: Car
+    properties:
+      gallonsPerMile: number
