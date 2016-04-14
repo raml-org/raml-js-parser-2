@@ -837,7 +837,15 @@ ownerApi(  ):Api
 
 
         /**
-         * Uri parameters of this resource
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * but it is among Resource.uriParameters().
          **/
 uriParameters(  ):Parameter[]
 
@@ -951,10 +959,6 @@ RAMLVersion(  ):string
          **/
 expand(  ):Api
 
-
-        /**
-         * Declarations of traits used in this API
-         **/
 traits(  ):Trait[]
 
 
@@ -964,10 +968,6 @@ traits(  ):Trait[]
          **/
 allTraits(  ):Trait[]
 
-
-        /**
-         * Declaration of resource types used in this API
-         **/
 resourceTypes(  ):ResourceType[]
 
 
@@ -991,7 +991,16 @@ allResources(  ):Resource[]
 
 
         /**
-         * Base uri parameters are named parameters which described template parameters in the base uri
+         * Retrieve an ordered list of all base uri parameters regardless of whether they are described in `baseUriParameters` or not
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * version: v1
+         * baseUri: https://{organization}.example.com/{version}/{service}
+         * baseUriParameters:
+         * service:
+         * ```
+         * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
+         * but they are among `Api.baseUriParameters()`.
          **/
 baseUriParameters(  ):Parameter[]
 

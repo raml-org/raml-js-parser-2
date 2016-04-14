@@ -1,5 +1,7 @@
 # RAML 1.0 JS Parser <sup>(beta)</sup>
 
+[![Build Status](https://travis-ci.org/raml-org/raml-js-parser-2.svg?branch=master)](https://travis-ci.org/raml-org/raml-js-parser-2)
+
 See http://raml.org for more information about RAML.
 
 This parser is at a beta state of development, as part of the API Workbench development cycle (http://apiworkbench.com).
@@ -46,6 +48,7 @@ Install typings CLI if needed: `npm install typings --global`
 
 Clone repositories:
 * `git clone https://github.com/mulesoft-labs/yaml-ast-parser.git`
+* `git clone https://github.com/mulesoft-labs/ts-model.git`
 * `git clone https://github.com/mulesoft-labs/ts-structure-parser.git`
 * `git clone https://github.com/raml-org/typesystem-ts.git`
 * `git clone https://github.com/raml-org/raml-definition-system.git`
@@ -63,7 +66,5 @@ For each repository, preserving the order:
 
 For each repository, preserving the order:
 * Build : `npm run build`
-
-![RAML Parser dependencies](RAML Parser.png)
 
 How to test: `gulp test`

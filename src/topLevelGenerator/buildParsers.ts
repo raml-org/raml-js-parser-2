@@ -7,15 +7,9 @@
  *
  **/
 import fs=require("fs")
-import path=require("path")
-import jsyaml=require("../raml1/jsyaml/jsyaml2lowLevel")
-import ll=require("../raml1/lowLevelAST")
-import defs=require("raml-definition-system")
-import hl=require("../raml1/highLevelAST")
-import hlimpl=require("../raml1/highLevelImpl")
 import wrapped=require("./wrappedParserGen")
-import docGen=require("../raml1/tools/docGen")
-import universeProvider = require("../raml1/definition-system/universeProvider");
+import def = require("raml-definition-system");
+import path = require("path")
 
 //target paths
 
@@ -29,11 +23,9 @@ var parserImplementationTargetPath08=path.join(__dirname, artifactsFolderPath + 
 var factoryTargetPath10=path.join(__dirname, artifactsFolderPath + "/raml10factory.ts").toString();
 var factoryTargetPath08=path.join(__dirname, artifactsFolderPath + "/raml08factory.ts").toString();
 
-var docmodel=path.join(__dirname, artifactsFolderPath + "/ramlSpec.html").toString();
-
 //generation
 
-var universe10 = universeProvider("RAML10");
+var universe10 = def.getUniverse("RAML10");
 var apiType10=universe10.type("Api");
 var parserGenerator10 = wrapped.def2Parser(apiType10);
 var parserInterfaceContent10 = parserGenerator10.serializeInterfaceToString();
@@ -47,7 +39,7 @@ fs.writeFileSync(parserImplementationTargetPath10, parserImplementationContent10
 fs.writeFileSync(factoryTargetPath10, factoryContent10);
 
 
-var universe08 = universeProvider("RAML08");
+var universe08 = def.getUniverse("RAML08");
 var apiType08=universe08.type("Api");
 var parserGenerator08 = wrapped.def2Parser(apiType08);
 var parserInterfaceContent08 = parserGenerator08.serializeInterfaceToString();
