@@ -1,17 +1,17 @@
 {
   "name": "raml-1-parser",
-  "version": "0.0.8",
+  "version": "0.2.0",
   "main": "dist/index.js",
   "scripts": {
-    "compile" : "rimraf dist && tsc",
+    "compile": "rimraf dist && tsc",
     "build": "npm run compile && npm run generateTopLevel",
-    "generateTopLevel" : "node dist/topLevelGenerator/buildParsers.js",
-    "generateDocumentation" : "node dist/raml1/tools/packageTSParser.js -skipSources",
-    "generateBrowserVersion" : "node dist/browserVersionGenerator/browserVersionGenerator.js",
-    "generateBrowserVersionDev" : "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
-    "pullall" : "dev-env-installer pullall",
-    "buildall" : "dev-env-installer buildall",
-    "testall" : "dev-env-installer testall",
+    "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
+    "generateDocumentation": "node dist/raml1/tools/packageTSParser.js -skipSources",
+    "generateBrowserVersion": "node dist/browserVersionGenerator/browserVersionGenerator.js",
+    "generateBrowserVersionDev": "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
+    "pullall": "dev-env-installer pullall",
+    "buildall": "dev-env-installer buildall",
+    "testall": "dev-env-installer testall",
     "devInstall": "dev-env-installer install"
   },
   "dependencies": {
@@ -69,9 +69,9 @@
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
     "chai-as-promised": "^5.2.0",
-    "json-loader":"^0.5.1",
-    "dev-env-installer":"^0.0.2",
-    "rimraf":"*"
+    "json-loader": "^0.5.1",
+    "dev-env-installer": "^0.0.2",
+    "rimraf": "*"
   },
   "browser": {
     "fs": false,
