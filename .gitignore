@@ -2,19 +2,19 @@
 
 npm-debug.log
 
+*.iml
+
+.project
+.settings
+
+/browserVersion
+
 /src/**/*.js
 /src/**/*.js.map
 /src/**/*.d.ts
-
-*.iml
-
-/browserVersion
 
 !/src/devUtil/documentation/theme.js
 
 /typings/
 
 /dist/
-
-.project
-.settings
