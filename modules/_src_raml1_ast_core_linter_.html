@@ -1,0 +1,1681 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>&quot;src/raml1/ast.core/linter&quot; | RAML JS Parser 2</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script src="../assets/js/modernizr.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">RAML JS Parser 2</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="_src_raml1_ast_core_linter_.html">&quot;src/raml1/ast.core/linter&quot;</a>
+				</li>
+			</ul>
+			<h1>External module &quot;src/raml1/ast.core/linter&quot;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_src_raml1_ast_core_linter_.ishema.html" class="tsd-kind-icon">IShema</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_src_raml1_ast_core_linter_.nametoint.html" class="tsd-kind-icon">Name<wbr>ToInt</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_src_raml1_ast_core_linter_.nodevalidator.html" class="tsd-kind-icon">Node<wbr>Validator</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_src_raml1_ast_core_linter_.propertyvalidator.html" class="tsd-kind-icon">Property<wbr>Validator</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#astnodeimpl" class="tsd-kind-icon">ASTNode<wbr>Impl</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#astpropimpl" class="tsd-kind-icon">ASTProp<wbr>Impl</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#error" class="tsd-kind-icon">Error</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#max_recursion_level" class="tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#changecase" class="tsd-kind-icon">change<wbr>Case</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#loophole" class="tsd-kind-icon">loophole</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#mediatypeparser" class="tsd-kind-icon">media<wbr>Type<wbr>Parser</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#parameterpropertytoname" class="tsd-kind-icon">parameter<wbr>Property<wbr>ToName</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#pluralize" class="tsd-kind-icon">pluralize</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#settings" class="tsd-kind-icon">settings</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#typetoname" class="tsd-kind-icon">type<wbr>ToName</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#checkpropertyquard" class="tsd-kind-icon">check<wbr>Property<wbr>Quard</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#checkresourcetypereference" class="tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#checktraitreference" class="tsd-kind-icon">check<wbr>Trait<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#cleanupincludesflag" class="tsd-kind-icon">cleanup<wbr>Includes<wbr>Flag</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#createissue" class="tsd-kind-icon">create<wbr>Issue</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#createllissue" class="tsd-kind-icon">createLLIssue</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#evalinsandbox" class="tsd-kind-icon">eval<wbr>InSandbox</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#findelementatpath" class="tsd-kind-icon">find<wbr>Element<wbr>AtPath</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#gethumanreadablenodename" class="tsd-kind-icon">get<wbr>Human<wbr>Readable<wbr>Node<wbr>Name</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#getmediatype" class="tsd-kind-icon">get<wbr>Media<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#getmediatype2" class="tsd-kind-icon">get<wbr>Media<wbr>Type2</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#hastemplateargs" class="tsd-kind-icon">has<wbr>Template<wbr>Args</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#isexampleprop" class="tsd-kind-icon">is<wbr>Example<wbr>Prop</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#isjson" class="tsd-kind-icon">is<wbr>Json</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#istypeorschema" class="tsd-kind-icon">is<wbr>Type<wbr>OrSchema</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#isvalidarray" class="tsd-kind-icon">is<wbr>Valid<wbr>Array</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#isvalidpropertyvalue" class="tsd-kind-icon">is<wbr>Valid<wbr>Property<wbr>Value</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#isvalidvaluetype" class="tsd-kind-icon">is<wbr>Valid<wbr>Value<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#isxml" class="tsd-kind-icon">isXML</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#lintnode" class="tsd-kind-icon">lint<wbr>Node</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#lintwithfile" class="tsd-kind-icon">lint<wbr>With<wbr>File</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#localerror" class="tsd-kind-icon">local<wbr>Error</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#locallowlevelerror" class="tsd-kind-icon">local<wbr>Low<wbr>Level<wbr>Error</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#mappath" class="tsd-kind-icon">map<wbr>Path</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#namefornonreference" class="tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#restrictunknownnodeerror" class="tsd-kind-icon">restrict<wbr>Unknown<wbr>Node<wbr>Error</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#specializereferenceerror" class="tsd-kind-icon">specialize<wbr>Reference<wbr>Error</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#toreadablename" class="tsd-kind-icon">to<wbr>Readable<wbr>Name</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#typeofcontainingtemplate" class="tsd-kind-icon">type<wbr>OfContaining<wbr>Template</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#validate" class="tsd-kind-icon">validate</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#validatebasic" class="tsd-kind-icon">validate<wbr>Basic</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#validateincludes" class="tsd-kind-icon">validate<wbr>Includes</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#validateregexp" class="tsd-kind-icon">validate<wbr>Regexp</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#validateresponsestring" class="tsd-kind-icon">validate<wbr>Response<wbr>String</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_linter_.html#reserved_template_parameters" class="tsd-kind-icon">RESERVED_<wbr>TEMPLATE_<wbr>PARAMETERS</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_linter_.html#allowoverride" class="tsd-kind-icon">allow<wbr>Override</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external tsd-is-not-exported">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="astnodeimpl" class="tsd-anchor"></a>
+					<h3>ASTNode<wbr>Impl</h3>
+					<div class="tsd-signature tsd-kind-icon">ASTNode<wbr>Impl<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_highlevelimpl_.astnodeimpl.html" class="tsd-signature-type">ASTNodeImpl</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L43">src/raml1/ast.core/linter.ts:43</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="astpropimpl" class="tsd-anchor"></a>
+					<h3>ASTProp<wbr>Impl</h3>
+					<div class="tsd-signature tsd-kind-icon">ASTProp<wbr>Impl<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_highlevelimpl_.astpropimpl.html" class="tsd-signature-type">ASTPropImpl</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L44">src/raml1/ast.core/linter.ts:44</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="error" class="tsd-anchor"></a>
+					<h3>Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">yaml.Error</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L12">src/raml1/ast.core/linter.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="max_recursion_level" class="tsd-anchor"></a>
+					<h3>MAX_<wbr>RECURSION_<wbr>LEVEL</h3>
+					<div class="tsd-signature tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L63">src/raml1/ast.core/linter.ts:63</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="changecase" class="tsd-anchor"></a>
+					<h3>change<wbr>Case</h3>
+					<div class="tsd-signature tsd-kind-icon">change<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L40">src/raml1/ast.core/linter.ts:40</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="loophole" class="tsd-anchor"></a>
+					<h3>loophole</h3>
+					<div class="tsd-signature tsd-kind-icon">loophole<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L58">src/raml1/ast.core/linter.ts:58</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="mediatypeparser" class="tsd-anchor"></a>
+					<h3>media<wbr>Type<wbr>Parser</h3>
+					<div class="tsd-signature tsd-kind-icon">media<wbr>Type<wbr>Parser<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L34">src/raml1/ast.core/linter.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+					<a name="parameterpropertytoname" class="tsd-anchor"></a>
+					<h3>parameter<wbr>Property<wbr>ToName</h3>
+					<div class="tsd-signature tsd-kind-icon">parameter<wbr>Property<wbr>ToName<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1180">src/raml1/ast.core/linter.ts:1180</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="pluralize" class="tsd-anchor"></a>
+					<h3>pluralize</h3>
+					<div class="tsd-signature tsd-kind-icon">pluralize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L41">src/raml1/ast.core/linter.ts:41</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="settings" class="tsd-anchor"></a>
+					<h3>settings</h3>
+					<div class="tsd-signature tsd-kind-icon">settings<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_ast_core_linter_.lintersettings.html" class="tsd-signature-type">LinterSettings</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L49">src/raml1/ast.core/linter.ts:49</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+					<a name="typetoname" class="tsd-anchor"></a>
+					<h3>type<wbr>ToName</h3>
+					<div class="tsd-signature tsd-kind-icon">type<wbr>ToName<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1161">src/raml1/ast.core/linter.ts:1161</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checkpropertyquard" class="tsd-anchor"></a>
+					<h3>check<wbr>Property<wbr>Quard</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Property<wbr>Quard<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L84">src/raml1/ast.core/linter.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>n: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checkreference" class="tsd-anchor"></a>
+					<h3>check<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Reference<span class="tsd-signature-symbol">(</span>pr<span class="tsd-signature-symbol">: </span><a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, vl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1255">src/raml1/ast.core/linter.ts:1255</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pr: <a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+								<li>
+									<h5>vl: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>cb: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checkresourcetypereference" class="tsd-anchor"></a>
+					<h3>check<wbr>Resource<wbr>Type<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1345">src/raml1/ast.core/linter.ts:1345</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="checktraitreference" class="tsd-anchor"></a>
+					<h3>check<wbr>Trait<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Trait<wbr>Reference<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1298">src/raml1/ast.core/linter.ts:1298</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="cleanupincludesflag" class="tsd-anchor"></a>
+					<h3>cleanup<wbr>Includes<wbr>Flag</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">cleanup<wbr>Includes<wbr>Flag<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L499">src/raml1/ast.core/linter.ts:499</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="createissue" class="tsd-anchor"></a>
+					<h3>create<wbr>Issue</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Issue<span class="tsd-signature-symbol">(</span>c<span class="tsd-signature-symbol">: </span><a href="../enums/_src_raml1_highlevelast_.issuecode.html" class="tsd-signature-type">IssueCode</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, w<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2892">src/raml1/ast.core/linter.ts:2892</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>c: <a href="../enums/_src_raml1_highlevelast_.issuecode.html" class="tsd-signature-type">IssueCode</a></h5>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> w: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="createllissue" class="tsd-anchor"></a>
+					<h3>createLLIssue</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">createLLIssue<span class="tsd-signature-symbol">(</span>issueCode<span class="tsd-signature-symbol">: </span><a href="../enums/_src_raml1_highlevelast_.issuecode.html" class="tsd-signature-type">IssueCode</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, rootCalculationAnchor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, isWarning<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2925">src/raml1/ast.core/linter.ts:2925</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>issueCode: <a href="../enums/_src_raml1_highlevelast_.issuecode.html" class="tsd-signature-type">IssueCode</a></h5>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h5>
+								</li>
+								<li>
+									<h5>rootCalculationAnchor: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> isWarning: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="evalinsandbox" class="tsd-anchor"></a>
+					<h3>eval<wbr>InSandbox</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">eval<wbr>InSandbox<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, thisArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L59">src/raml1/ast.core/linter.ts:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>code: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>thisArg: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="findelementatpath" class="tsd-anchor"></a>
+					<h3>find<wbr>Element<wbr>AtPath</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Element<wbr>AtPath<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.ivalidationpath.html" class="tsd-signature-type">IValidationPath</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1619">src/raml1/ast.core/linter.ts:1619</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>n: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>p: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.ivalidationpath.html" class="tsd-signature-type">IValidationPath</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="gethumanreadablenodename" class="tsd-anchor"></a>
+					<h3>get<wbr>Human<wbr>Readable<wbr>Node<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Human<wbr>Readable<wbr>Node<wbr>Name<span class="tsd-signature-symbol">(</span>astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1193">src/raml1/ast.core/linter.ts:1193</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="getmediatype" class="tsd-anchor"></a>
+					<h3>get<wbr>Media<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Media<wbr>Type<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2762">src/raml1/ast.core/linter.ts:2762</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="getmediatype2" class="tsd-anchor"></a>
+					<h3>get<wbr>Media<wbr>Type2</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Media<wbr>Type2<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2773">src/raml1/ast.core/linter.ts:2773</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="hastemplateargs" class="tsd-anchor"></a>
+					<h3>has<wbr>Template<wbr>Args</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Template<wbr>Args<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L397">src/raml1/ast.core/linter.ts:397</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="isexampleprop" class="tsd-anchor"></a>
+					<h3>is<wbr>Example<wbr>Prop</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Example<wbr>Prop<span class="tsd-signature-symbol">(</span>d<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L207">src/raml1/ast.core/linter.ts:207</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>d: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="isjson" class="tsd-anchor"></a>
+					<h3>is<wbr>Json</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Json<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2756">src/raml1/ast.core/linter.ts:2756</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="istypeorschema" class="tsd-anchor"></a>
+					<h3>is<wbr>Type<wbr>OrSchema</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Type<wbr>OrSchema<span class="tsd-signature-symbol">(</span>d<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L204">src/raml1/ast.core/linter.ts:204</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>d: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="isvalid" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, h<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a>, attr<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L728">src/raml1/ast.core/linter.ts:728</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>t: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+								</li>
+								<li>
+									<h5>h: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>p: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> attr: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="isvalidarray" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid<wbr>Array</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Array<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, h<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a>, attr<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L737">src/raml1/ast.core/linter.ts:737</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>t: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+								</li>
+								<li>
+									<h5>h: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>v: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>p: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> attr: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="isvalidpropertyvalue" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid<wbr>Property<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Property<wbr>Value<span class="tsd-signature-symbol">(</span>pr<span class="tsd-signature-symbol">: </span><a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a>, vl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, c<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1232">src/raml1/ast.core/linter.ts:1232</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>pr: <a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>vl: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>c: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="isvalidvaluetype" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid<wbr>Value<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<wbr>Value<wbr>Type<span class="tsd-signature-symbol">(</span>t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a>, h<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a>, attr<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L743">src/raml1/ast.core/linter.ts:743</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>t: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h5>
+								</li>
+								<li>
+									<h5>h: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>v: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>p: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> attr: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="isxml" class="tsd-anchor"></a>
+					<h3>isXML</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">isXML<span class="tsd-signature-symbol">(</span>s<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2759">src/raml1/ast.core/linter.ts:2759</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>s: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="lintnode" class="tsd-anchor"></a>
+					<h3>lint<wbr>Node</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">lint<wbr>Node<span class="tsd-signature-symbol">(</span>astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L96">src/raml1/ast.core/linter.ts:96</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="lintwithfile" class="tsd-anchor"></a>
+					<h3>lint<wbr>With<wbr>File</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">lint<wbr>With<wbr>File<span class="tsd-signature-symbol">(</span>customLinter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, acceptor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L71">src/raml1/ast.core/linter.ts:71</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>customLinter: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>acceptor: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="localerror" class="tsd-anchor"></a>
+					<h3>local<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">local<wbr>Error<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, c<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, w<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, p<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, prop<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2799">src/raml1/ast.core/linter.ts:2799</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>c: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>w: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>p: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>prop: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iproperty.html" class="tsd-signature-type">IProperty</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>extras<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>is<wbr>Warning<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>start<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>unit<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="locallowlevelerror" class="tsd-anchor"></a>
+					<h3>local<wbr>Low<wbr>Level<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">local<wbr>Low<wbr>Level<wbr>Error<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, highLevelAnchor<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, issueCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, isWarning<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2856">src/raml1/ast.core/linter.ts:2856</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h5>
+								</li>
+								<li>
+									<h5>highLevelAnchor: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>issueCode: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>isWarning: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.validationissue.html" class="tsd-signature-type">ValidationIssue</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="mappath" class="tsd-anchor"></a>
+					<h3>map<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">map<wbr>Path<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, e<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.istatus.html" class="tsd-signature-type">IStatus</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1613">src/raml1/ast.core/linter.ts:1613</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+								<li>
+									<h5>e: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.istatus.html" class="tsd-signature-type">IStatus</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="namefornonreference" class="tsd-anchor"></a>
+					<h3>name<wbr>For<wbr>Non<wbr>Reference</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference<span class="tsd-signature-symbol">(</span>astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1395">src/raml1/ast.core/linter.ts:1395</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="restrictunknownnodeerror" class="tsd-anchor"></a>
+					<h3>restrict<wbr>Unknown<wbr>Node<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">restrict<wbr>Unknown<wbr>Node<wbr>Error<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../classes/_src_raml1_highlevelimpl_.basicastnode.html" class="tsd-signature-type">BasicASTNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L237">src/raml1/ast.core/linter.ts:237</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../classes/_src_raml1_highlevelimpl_.basicastnode.html" class="tsd-signature-type">BasicASTNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="specializereferenceerror" class="tsd-anchor"></a>
+					<h3>specialize<wbr>Reference<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">specialize<wbr>Reference<wbr>Error<span class="tsd-signature-symbol">(</span>originalMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, property<span class="tsd-signature-symbol">: </span><a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a>, astNode<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1379">src/raml1/ast.core/linter.ts:1379</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sometimes we need a more specialized message for the bad references, which diviate from a general algorithm.
+										Like listing possible values etc.
+									This method is responsible for such cases.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>originalMessage: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>property: <a href="../classes/_node_modules_raml_definition_system_dist_definitionsystem_d_.property.html" class="tsd-signature-type">Property</a></h5>
+								</li>
+								<li>
+									<h5>astNode: <a href="../interfaces/_src_raml1_highlevelast_.iattribute.html" class="tsd-signature-type">IAttribute</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="toreadablename" class="tsd-anchor"></a>
+					<h3>to<wbr>Readable<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Readable<wbr>Name<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, toLowerCase<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, pluralize_<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2529">src/raml1/ast.core/linter.ts:2529</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>template: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> toLowerCase: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> pluralize_: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="typeofcontainingtemplate" class="tsd-anchor"></a>
+					<h3>type<wbr>OfContaining<wbr>Template</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">type<wbr>OfContaining<wbr>Template<span class="tsd-signature-symbol">(</span>h<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L219">src/raml1/ast.core/linter.ts:219</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>For descendants of templates returns template type. Returns null for all other nodes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>h: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="validate" class="tsd-anchor"></a>
+					<h3>validate</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L412">src/raml1/ast.core/linter.ts:412</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="validatebasic" class="tsd-anchor"></a>
+					<h3>validate<wbr>Basic</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Basic<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../classes/_src_raml1_highlevelimpl_.basicastnode.html" class="tsd-signature-type">BasicASTNode</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, requiredOnly<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L308">src/raml1/ast.core/linter.ts:308</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../classes/_src_raml1_highlevelimpl_.basicastnode.html" class="tsd-signature-type">BasicASTNode</a></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> requiredOnly: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="validateincludes" class="tsd-anchor"></a>
+					<h3>validate<wbr>Includes</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Includes<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L505">src/raml1/ast.core/linter.ts:505</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="validateregexp" class="tsd-anchor"></a>
+					<h3>validate<wbr>Regexp</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Regexp<span class="tsd-signature-symbol">(</span>cleanedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, v<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a>, node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L529">src/raml1/ast.core/linter.ts:529</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cleanedValue: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>v: <a href="../interfaces/_src_raml1_highlevelast_.validationacceptor.html" class="tsd-signature-type">ValidationAcceptor</a></h5>
+								</li>
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_highlevelast_.iparseresult.html" class="tsd-signature-type">IParseResult</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+					<a name="validateresponsestring" class="tsd-anchor"></a>
+					<h3>validate<wbr>Response<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Response<wbr>String<span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L2955">src/raml1/ast.core/linter.ts:2955</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>v: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
+					<a name="reserved_template_parameters" class="tsd-anchor"></a>
+					<h3>RESERVED_<wbr>TEMPLATE_<wbr>PARAMETERS</h3>
+					<div class="tsd-signature tsd-kind-icon">RESERVED_<wbr>TEMPLATE_<wbr>PARAMETERS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L65">src/raml1/ast.core/linter.ts:65</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="reserved_template_parameters.methodname" class="tsd-anchor"></a>
+						<h3>method<wbr>Name</h3>
+						<div class="tsd-signature tsd-kind-icon">method<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L67">src/raml1/ast.core/linter.ts:67</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="reserved_template_parameters.resourcepath" class="tsd-anchor"></a>
+						<h3>resource<wbr>Path</h3>
+						<div class="tsd-signature tsd-kind-icon">resource<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L68">src/raml1/ast.core/linter.ts:68</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external">
+						<a name="reserved_template_parameters.resourcepathname" class="tsd-anchor"></a>
+						<h3>resource<wbr>Path<wbr>Name</h3>
+						<div class="tsd-signature tsd-kind-icon">resource<wbr>Path<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L66">src/raml1/ast.core/linter.ts:66</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="allowoverride" class="tsd-anchor"></a>
+					<h3>allow<wbr>Override</h3>
+					<div class="tsd-signature tsd-kind-icon">allow<wbr>Override<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.body" class="tsd-anchor"></a>
+						<h3>body</h3>
+						<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.headers" class="tsd-anchor"></a>
+						<h3>headers</h3>
+						<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.methods" class="tsd-anchor"></a>
+						<h3>methods</h3>
+						<div class="tsd-signature tsd-kind-icon">methods<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.queryparameters" class="tsd-anchor"></a>
+						<h3>query<wbr>Parameters</h3>
+						<div class="tsd-signature tsd-kind-icon">query<wbr>Parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.resources" class="tsd-anchor"></a>
+						<h3>resources</h3>
+						<div class="tsd-signature tsd-kind-icon">resources<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-external tsd-is-not-exported">
+						<a name="allowoverride.responses" class="tsd-anchor"></a>
+						<h3>responses</h3>
+						<div class="tsd-signature tsd-kind-icon">responses<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/linter.ts#L1472">src/raml1/ast.core/linter.ts:1472</a></li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html">"src/raml1/ast.core/linter"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="../interfaces/_src_raml1_ast_core_linter_.ishema.html" class="tsd-kind-icon">IShema</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../interfaces/_src_raml1_ast_core_linter_.nametoint.html" class="tsd-kind-icon">Name<wbr>ToInt</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../interfaces/_src_raml1_ast_core_linter_.nodevalidator.html" class="tsd-kind-icon">Node<wbr>Validator</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+						<a href="../interfaces/_src_raml1_ast_core_linter_.propertyvalidator.html" class="tsd-kind-icon">Property<wbr>Validator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#astnodeimpl" class="tsd-kind-icon">ASTNode<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#astpropimpl" class="tsd-kind-icon">ASTProp<wbr>Impl</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#error" class="tsd-kind-icon">Error</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#max_recursion_level" class="tsd-kind-icon">MAX_<wbr>RECURSION_<wbr>LEVEL</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#changecase" class="tsd-kind-icon">change<wbr>Case</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#loophole" class="tsd-kind-icon">loophole</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#mediatypeparser" class="tsd-kind-icon">media<wbr>Type<wbr>Parser</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#parameterpropertytoname" class="tsd-kind-icon">parameter<wbr>Property<wbr>ToName</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#pluralize" class="tsd-kind-icon">pluralize</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#settings" class="tsd-kind-icon">settings</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#typetoname" class="tsd-kind-icon">type<wbr>ToName</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#checkpropertyquard" class="tsd-kind-icon">check<wbr>Property<wbr>Quard</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#checkreference" class="tsd-kind-icon">check<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#checkresourcetypereference" class="tsd-kind-icon">check<wbr>Resource<wbr>Type<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#checktraitreference" class="tsd-kind-icon">check<wbr>Trait<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#cleanupincludesflag" class="tsd-kind-icon">cleanup<wbr>Includes<wbr>Flag</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#createissue" class="tsd-kind-icon">create<wbr>Issue</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#createllissue" class="tsd-kind-icon">createLLIssue</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#evalinsandbox" class="tsd-kind-icon">eval<wbr>InSandbox</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#findelementatpath" class="tsd-kind-icon">find<wbr>Element<wbr>AtPath</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#gethumanreadablenodename" class="tsd-kind-icon">get<wbr>Human<wbr>Readable<wbr>Node<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#getmediatype" class="tsd-kind-icon">get<wbr>Media<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#getmediatype2" class="tsd-kind-icon">get<wbr>Media<wbr>Type2</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#hastemplateargs" class="tsd-kind-icon">has<wbr>Template<wbr>Args</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#isexampleprop" class="tsd-kind-icon">is<wbr>Example<wbr>Prop</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#isjson" class="tsd-kind-icon">is<wbr>Json</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#istypeorschema" class="tsd-kind-icon">is<wbr>Type<wbr>OrSchema</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#isvalidarray" class="tsd-kind-icon">is<wbr>Valid<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#isvalidpropertyvalue" class="tsd-kind-icon">is<wbr>Valid<wbr>Property<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#isvalidvaluetype" class="tsd-kind-icon">is<wbr>Valid<wbr>Value<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#isxml" class="tsd-kind-icon">isXML</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#lintnode" class="tsd-kind-icon">lint<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#lintwithfile" class="tsd-kind-icon">lint<wbr>With<wbr>File</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#localerror" class="tsd-kind-icon">local<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#locallowlevelerror" class="tsd-kind-icon">local<wbr>Low<wbr>Level<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#mappath" class="tsd-kind-icon">map<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#namefornonreference" class="tsd-kind-icon">name<wbr>For<wbr>Non<wbr>Reference</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#restrictunknownnodeerror" class="tsd-kind-icon">restrict<wbr>Unknown<wbr>Node<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#specializereferenceerror" class="tsd-kind-icon">specialize<wbr>Reference<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#toreadablename" class="tsd-kind-icon">to<wbr>Readable<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#typeofcontainingtemplate" class="tsd-kind-icon">type<wbr>OfContaining<wbr>Template</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#validate" class="tsd-kind-icon">validate</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#validatebasic" class="tsd-kind-icon">validate<wbr>Basic</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#validateincludes" class="tsd-kind-icon">validate<wbr>Includes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#validateregexp" class="tsd-kind-icon">validate<wbr>Regexp</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#validateresponsestring" class="tsd-kind-icon">validate<wbr>Response<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external">
+						<a href="_src_raml1_ast_core_linter_.html#reserved_template_parameters" class="tsd-kind-icon">RESERVED_<wbr>TEMPLATE_<wbr>PARAMETERS</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_linter_.html#allowoverride" class="tsd-kind-icon">allow<wbr>Override</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
