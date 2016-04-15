@@ -243,7 +243,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex33.raml"));
     })
     it ("example inside of inplace type" ,function(){
-        testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed", "specifying unknown facet:format"]);
+        testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed"]);
     })
     it ("aws example" ,function(){
         testErrors(util.data("parser/examples/ex35.raml"), ["enum facet can only contain unique items"]);
@@ -775,6 +775,13 @@ describe('JSON schemes tests', function () {
         testErrorsByNumber(util.data("parser/jsonscheme/test11/apiInvalid.raml"), 1);
     })
 });
+
+describe("Include tests + typesystem",function (){
+    it("Include test" ,function() {
+        this.timeout(15000);
+        testErrorsByNumber(util.data("parser/include/includeTypes.raml"), 0);
+    })
+})
 
 
 describe('Parse strings', function () {
