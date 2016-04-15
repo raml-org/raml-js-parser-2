@@ -748,6 +748,12 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         if (this._node.valueKind()==yaml.Kind.SEQ){
             return rTypes.NodeKind.ARRAY;
         }
+        if (this._node.valueKind()==yaml.Kind.INCLUDE_REF){
+            if (this._node.children().length>0){
+                //we can safely assume that it is map in the type system in this case
+                return rTypes.NodeKind.MAP;
+            }
+        }
         return rTypes.NodeKind.SCALAR;
     }
 }
