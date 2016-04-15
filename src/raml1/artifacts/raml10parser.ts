@@ -775,7 +775,6 @@ validateInstance( value:any ):string[]{
 
         /**
          * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         * @hidden
          **/
 example(  ):string{
             return helper.getTypeExample(this);
@@ -2433,7 +2432,6 @@ kind(  ):string{return "ResourceBase";}
 
         /**
          * Detailed information about any URI parameters of this resource
-         * @hidden
          **/
 uriParameters(  ):TypeDeclaration[]{
             return helper.uriParametersPrimary(this);
@@ -2964,7 +2962,6 @@ kind(  ):string{return "LibraryBase";}
 
         /**
          * Declarations of traits for use within this API
-         * @hidden
          **/
 traits(  ):Trait[]{
             return helper.traitsPrimary(this);
@@ -2982,7 +2979,6 @@ allTraits(  ):Trait[]{
 
         /**
          * Declarations of resource types for use within this API
-         * @hidden
          **/
 resourceTypes(  ):ResourceType[]{
             return helper.resourceTypesPrimary(this);
@@ -3205,7 +3201,6 @@ allResources(  ):Resource[]{
 
         /**
          * Named parameters used in the baseUri (template)
-         * @hidden
          **/
 baseUriParameters(  ):TypeDeclaration[]{
             return helper.baseUriParametersPrimary(this);

@@ -499,7 +499,7 @@ class ResourceTypeMethodsToMapTransformer extends ArrayToMappingsArrayTransforme
 }
 
 var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
-var exampleContentProp = universe.Universe10.ExampleSpec.properties.content.name;
+var exampleContentProp = universe.Universe10.ExampleSpec.properties.value.name;
 var exampleStructuredContentProp = "structuredContent";
 
 class ExamplesTransformer implements Transformation{

@@ -169,7 +169,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
             var km = new KeyMatcher(node.definition().allProperties());
-            if (node.parent()==null||node.parent().lowLevel().unit()!=node.lowLevel().unit()){
+            if (node.parent()==null||node.lowLevel().includePath()){
                 var u=node.definition().universe();
                 if (u.version()=="RAML10"){
                     u.type("FragmentDeclaration").allProperties().forEach(x=>km.add(x));

@@ -78,6 +78,9 @@ export function getIncludeReference(includeString : string) : IncludeReference {
     if(!includeString) {
         return null;
     }
+    if (typeof includeString!="string"){
+        includeString=""+includeString;
+    }
 
     var index = includeString.indexOf("#");
 
