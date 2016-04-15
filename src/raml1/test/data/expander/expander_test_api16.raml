@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: RAML spec
+types:
+  tree_v1_0_0:
+  tree_v1_0_1:
+traits:
+  - responding-xml:
+      responses:
+        200?:
+          description: OK
+          body:
+            application/<<type>>+xml:
+              type: <<type>>
+  - responding-xml2:
+      responses:
+        200?:
+          description: OK
+          body:
+            application/<<type>>+xml:
+              type: <<type>>
+/test:
+  get:
+    is: [
+      responding-xml: {
+        type: tree_v1_0_0,
+      },
+      responding-xml2: {
+        type: tree_v1_0_1,
+      },
+    ]
+    responses:
+      200:

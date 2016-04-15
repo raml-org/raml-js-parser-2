@@ -297,6 +297,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             var isPrimary = x == this.primaryNode();
             x.originalNode().children().forEach(y=> {
                 var key = y.key();
+                if(x.transformer()){
+                    key = x.transformer().transform(key).value;
+                }
                 if(this.skipKey(key,isPrimary)){
                     return;
                 }
