@@ -1292,7 +1292,60 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
 
         return true;
     }
+
+    if(isDuplicateSibling(astNode) && universeHelpers.isTraitRefType(astNode.definition())) {
+        var message = "Duplicate trait reference '" + vl + "'.";
+
+        var spesializedMessage = specializeReferenceError(message, pr, astNode)
+
+        cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, spesializedMessage, astNode));
+
+        return true;
+    }
+
     return false;
+}
+
+function isDuplicateSibling(attr: hl.IAttribute): boolean{
+    var siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
+    
+    if(!siblingName) {
+        return false;
+    }
+    
+    var parent = attr.parent &&  attr.parent();
+        
+    if(!parent) {
+        return false;
+    }
+
+    var propertyName = attr.name && attr.name();
+
+    if(!propertyName) {
+        return false;
+    }
+
+    var siblings = parent.attributes && parent.attributes(propertyName);
+
+    if(!siblings) {
+        return false;
+    }
+
+    if(siblings.length === 0) {
+        return false;
+    }
+    
+    var count = 0;
+
+    siblings.forEach(sibling => {
+        var name = sibling.value && sibling.value() && sibling.value().valueName && sibling.value().valueName();
+
+        if(name === siblingName) {
+            count++;
+        }
+    });
+
+    return count > 1;
 }
 
 function checkTraitReference(property:def.Property, astNode:hl.IAttribute, acceptor:hl.ValidationAcceptor) {
