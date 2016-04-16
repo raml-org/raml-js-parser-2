@@ -3118,6 +3118,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 var val = mapping.value;
                 //console.log('mapping: ' + mapping.key.value + ' ' + val.kind);
                 if(json) {
+                    if(!val) {
+                        xbuf.append('\n');
+                        break;
+                    }
                     xbuf.append(mapping.key.value);
                     xbuf.append(': ');
                     if(val.kind == yaml.Kind.SCALAR) {
