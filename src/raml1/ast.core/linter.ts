@@ -948,6 +948,9 @@ class NormalValidator implements PropertyValidator{
         }
         var values=pr.enumOptions();
         if (values) {
+            if(typeof vl !== 'string') {
+                return;
+            }
             if (typeof values == 'string') {
                 if (values != vl) {
                     if (vl && (vl.indexOf("x-") == 0) && pr.nameId() == universes.Universe08.AbstractSecurityScheme.properties.type.name) {//Some magic I copied a from a couple of lines below @Denis
