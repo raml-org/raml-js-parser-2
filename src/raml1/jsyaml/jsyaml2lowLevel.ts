@@ -118,6 +118,10 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
     resolve(p:string):lowlevel.ICompilationUnit {
+        if (typeof p!="string")
+        {
+            p=""+p;
+        }
         var unit=this._project.resolve(this._path,p);
         return unit;
     }
@@ -501,6 +505,9 @@ export class FSResolverImpl implements ExtendedFSResolver{
 
 
     content(path:string):string{
+        if (typeof path!="string"){
+            path=""+path;
+        }
         if (!fs.existsSync(path)){
             return null;
         }

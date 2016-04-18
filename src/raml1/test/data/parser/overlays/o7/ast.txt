@@ -1,6 +1,6 @@
 Overlay <-- 
   title : StringType  =  Overlay2
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   Resource <-- resources
     relativeUri : RelativeUriString  =  /resource
     displayName : StringType  =  Test3

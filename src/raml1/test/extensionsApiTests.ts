@@ -23,10 +23,10 @@ describe('Extension API', function () {
         assert(api.wrapperClassName() === "OverlayImpl");
 
         var overlay = <RamlWrapper.Overlay>api;
-        assert(overlay.masterRef() === "librarybooks.raml");
+        assert(overlay.extends() === "librarybooks.raml");
 
         var pathToRes = overlay.highLevel().lowLevel().unit().absolutePath();
-        var newPath = path.resolve(path.dirname(pathToRes), overlay.masterRef());
+        var newPath = path.resolve(path.dirname(pathToRes), overlay.extends());
 
         var opt2 = apiLoader.loadApi(newPath, { expandTraitsAndResourceTypes: false });
         assert(opt2.isDefined());

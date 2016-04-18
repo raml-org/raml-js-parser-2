@@ -29,37 +29,37 @@ var WEBPACK_OUTPUT_OPTIONS = {
 var tsWatch = false;
 
 var testFiles = [
-  //'src/**/*.test.js',
-  //'test/**/*.js',
-  'dist/raml1/test/model-editing-tests-attrs.js',
-  'dist/raml1/test/model-editing-tests-add.js',
-  'dist/raml1/test/model-editing-tests-refactoring.js',
-  'dist/raml1/test/model-editing-tests-remove.js',
-  'dist/raml1/test/model-editing-tests-sig.js',
-  'dist/raml1/test/schema-model-tests.js',
-  ////
-  'dist/raml1/test/parserTests.js',
-  'dist/raml1/test/parserTests2.js',
-  'dist/raml1/test/parserASTTests.js',
-  'dist/raml1/test/traits-and-resource-types-expanding-tests.js',
-  'dist/raml1/test/helpersTest.js',
-  'dist/raml1/test/gotoDeclarationTests.js',
-  'dist/raml1/test/findUsagesTests.js',
-  'dist/raml1/test/exampleGenTests.js',
-  'dist/raml1/test/typeSystemTests.js',
-  'dist/raml1/test/runtimeExampleTests.js',
-  'dist/raml1/test/TCK.js',
-  //
-  'src/raml1/test/data/parser/test/specs/optionals.js',
-  'src/raml1/test/data/parser/test/specs/parser.js',
-  'src/raml1/test/data/parser/test/specs/protocols.js',
-  'src/raml1/test/data/parser/test/specs/regressions.js',
-  'src/raml1/test/data/parser/test/specs/resourceTypes.js',
-  'src/raml1/test/data/parser/test/specs/resourceTypesValidations.js',
-  'src/raml1/test/data/parser/test/specs/traits.js',
-  'src/raml1/test/data/parser/test/specs/transformations.js',
-  'src/raml1/test/data/parser/test/specs/validator.js',
-  'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js'
+    'src/**/*.test.js',
+    'test/**/*.js',
+   'dist/raml1/test/model-editing-tests-attrs.js',
+    'dist/raml1/test/model-editing-tests-add.js',
+   'dist/raml1/test/model-editing-tests-refactoring.js',
+   'dist/raml1/test/model-editing-tests-remove.js',
+   'dist/raml1/test/model-editing-tests-sig.js',
+   'dist/raml1/test/schema-model-tests.js',
+  // ////
+   'dist/raml1/test/parserTests.js',
+   'dist/raml1/test/parserTests2.js',
+   'dist/raml1/test/parserASTTests.js',
+   'dist/raml1/test/traits-and-resource-types-expanding-tests.js',
+   'dist/raml1/test/helpersTest.js',
+   'dist/raml1/test/gotoDeclarationTests.js',
+   'dist/raml1/test/findUsagesTests.js',
+   'dist/raml1/test/exampleGenTests.js',
+   'dist/raml1/test/typeSystemTests.js',
+   'dist/raml1/test/runtimeExampleTests.js',
+   //'dist/raml1/test/TCK.js',
+  // //
+   'src/raml1/test/data/parser/test/specs/optionals.js',
+   'src/raml1/test/data/parser/test/specs/parser.js',
+   'src/raml1/test/data/parser/test/specs/protocols.js',
+   'src/raml1/test/data/parser/test/specs/regressions.js',
+   'src/raml1/test/data/parser/test/specs/resourceTypes.js',
+   'src/raml1/test/data/parser/test/specs/resourceTypesValidations.js',
+   'src/raml1/test/data/parser/test/specs/traits.js',
+   'src/raml1/test/data/parser/test/specs/transformations.js',
+   'src/raml1/test/data/parser/test/specs/validator.js',
+   'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js'
 ]
 
 gulp.task('testExpand:ts', function () {

@@ -683,39 +683,39 @@ describe('Helper methods', function () {
         var type = header.type();
         assert.equal(type, "string");
     });
-
-    it('TypeDeclaration.schemaContent 1 #1.0', function () {
-        var api = util.loadApiOptions1(util.data("helper/schema1_10.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var method = tools.collectionItem(resource.methods(), 0);
-        var body = tools.collectionItem(method.body(), 0);
-        var schemaContents : string = body.schemaContent();
-        assert.equal(schemaContents.indexOf("required"), 5);
-    });
-
-    it('TypeDeclaration.schemaContent 2 #1.0', function () {
-        var api = util.loadApiOptions1(util.data("helper/schema2_10.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var method = tools.collectionItem(resource.methods(), 0);
-        var body = tools.collectionItem(method.body(), 0);
-        var schemaContents : string = body.schemaContent();
-        assert.equal(schemaContents.indexOf("required"), 5);
-    });
-
-    it('TypeDeclaration.schemaContent 3 #1.0', function () {
-        var api = util.loadApiOptions1(util.data("helper/schema3_10.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var method = tools.collectionItem(resource.methods(), 0);
-        var body = tools.collectionItem(method.body(), 0);
-        var schemaContents : string = body.schemaContent();
-        assert.equal(schemaContents.indexOf("required"), 5);
-    });
+    //This is not relevant any more
+    // it('TypeDeclaration.schemaContent 1 #1.0', function () {
+    //     var api = util.loadApiOptions1(util.data("helper/schema1_10.raml"),
+    //         {attributeDefaults:true});
+    //
+    //     var resource = tools.collectionItem(api.resources(), 0);
+    //     var method = tools.collectionItem(resource.methods(), 0);
+    //     var body = tools.collectionItem(method.body(), 0);
+    //     var schemaContents : string = body.schemaContent();
+    //     assert.equal(schemaContents.indexOf("required"), 5);
+    // });
+    //
+    // it('TypeDeclaration.schemaContent 2 #1.0', function () {
+    //     var api = util.loadApiOptions1(util.data("helper/schema2_10.raml"),
+    //         {attributeDefaults:true});
+    //
+    //     var resource = tools.collectionItem(api.resources(), 0);
+    //     var method = tools.collectionItem(resource.methods(), 0);
+    //     var body = tools.collectionItem(method.body(), 0);
+    //     var schemaContents : string = body.schemaContent();
+    //     assert.equal(schemaContents.indexOf("required"), 5);
+    // });
+    //
+    // it('TypeDeclaration.schemaContent 3 #1.0', function () {
+    //     var api = util.loadApiOptions1(util.data("helper/schema3_10.raml"),
+    //         {attributeDefaults:true});
+    //
+    //     var resource = tools.collectionItem(api.resources(), 0);
+    //     var method = tools.collectionItem(resource.methods(), 0);
+    //     var body = tools.collectionItem(method.body(), 0);
+    //     var schemaContents : string = body.schemaContent();
+    //     assert.equal(schemaContents.indexOf("required"), 5);
+    // });
 
     it('TypeDeclaration.schemaContent 1 #0.8', function () {
         var api = util.loadApiOptions08(util.data("helper/schema1_08.raml"),

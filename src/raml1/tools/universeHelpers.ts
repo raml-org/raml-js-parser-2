@@ -23,8 +23,7 @@ export function isUsageProperty(p:hl.IProperty) : boolean {
 }
 
 export function isMasterRefProperty(p:hl.IProperty) : boolean {
-    return p.nameId() == universe.Universe10.Overlay.properties.masterRef.name ||
-        p.nameId() == universe.Universe10.Extension.properties.masterRef.name;
+    return p.nameId() =="extends" ;
 }
 
 export function isDescriptionPropertyName(name : string) : boolean {
@@ -48,7 +47,6 @@ export function isRequiredPropertyName(name : string) : boolean {
 
 export function isDisplayNamePropertyName(name : string) : boolean {
     return name === universe.Universe10.TypeDeclaration.properties.displayName.name ||
-        name === universe.Universe10.RAMLLanguageElement.properties.displayName.name ||
         name === "displayName";
     //TODO too long to actually list every element having displayname, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
 }
@@ -83,9 +81,7 @@ export function isHeadersPropertyName(name : string) : boolean {
         name === universe.Universe08.Response.properties.headers.name ||
         name === universe.Universe08.SecuritySchemePart.properties.headers.name ||
         name === universe.Universe10.HasNormalParameters.properties.headers.name ||
-        name === universe.Universe10.Response.properties.headers.name ||
-        name === universe.Universe10.SecuritySchemePart.properties.headers.name ||
-        name === universe.Universe10.Method.properties.headers.name;
+        name === universe.Universe10.Response.properties.headers.name
 }
 
 export function isFormParametersProperty(p:hl.IProperty) : boolean {
@@ -103,18 +99,12 @@ export function isQueryParametersProperty(p:hl.IProperty) : boolean {
 export function isQueryParametersPropertyName(name : string) : boolean {
     return name === universe.Universe08.HasNormalParameters.properties.queryParameters.name ||
         name === universe.Universe08.SecuritySchemePart.properties.queryParameters.name ||
-        name === universe.Universe10.HasNormalParameters.properties.queryParameters.name ||
-        name === universe.Universe10.SecuritySchemePart.properties.queryParameters.name ||
-        name === universe.Universe10.Method.properties.queryParameters.name;
+        name === universe.Universe10.HasNormalParameters.properties.queryParameters.name
 }
 
 export function isAnnotationsProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.Api.properties.annotations.name ||
     //p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.annotations.name ||
-    p.nameId() === universe.Universe10.Method.properties.annotations.name ||
-    p.nameId() === universe.Universe10.Resource.properties.annotations.name ||
-    p.nameId() === universe.Universe10.RAMLLanguageElement.properties.annotations.name ||
-    p.nameId() === universe.Universe10.ExampleSpec.properties.annotations.name ||
     p.nameId() === universe.Universe10.TypeDeclaration.properties.annotations.name ||
     p.nameId() === universe.Universe10.Response.properties.annotations.name;
 }
@@ -138,10 +128,7 @@ export function isSecuredByProperty(p:hl.IProperty) : boolean {
     p.nameId() === universe.Universe10.MethodBase.properties.securedBy.name ||
     p.nameId() === universe.Universe08.MethodBase.properties.securedBy.name ||
     p.nameId() === universe.Universe08.ResourceType.properties.securedBy.name ||
-    p.nameId() === universe.Universe10.Method.properties.securedBy.name ||
-    p.nameId() === universe.Universe08.Method.properties.securedBy.name ||
     p.nameId() === universe.Universe08.Resource.properties.securedBy.name ||
-    //p.nameId() === universe.Universe10.AbstractSecurityScheme.properties.securedBy.name ||
     p.nameId() === universe.Universe10.ResourceBase.properties.securedBy.name;
 }
 
@@ -162,8 +149,6 @@ export function isTypeProperty(p:hl.IProperty) : boolean {
     p.nameId() === universe.Universe08.ResourceType.properties.type.name ||
     p.nameId() === universe.Universe08.Resource.properties.type.name ||
     p.nameId() === universe.Universe08.Parameter.properties.type.name ||
-    p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name ||
-    p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name ||
     p.nameId() === universe.Universe10.ResourceBase.properties.type.name ||
     p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
 }
@@ -198,8 +183,7 @@ export function isBodyProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.MethodBase.properties.body.name ||
     p.nameId() === universe.Universe08.MethodBase.properties.body.name ||
     p.nameId() === universe.Universe10.Response.properties.body.name ||
-    p.nameId() === universe.Universe08.Response.properties.body.name ||
-    p.nameId() === universe.Universe10.Method.properties.body.name;
+    p.nameId() === universe.Universe08.Response.properties.body.name
 }
 
 export function isSchemaProperty(p:hl.IProperty) : boolean {
@@ -273,15 +257,12 @@ export function isEnumProperty(p:hl.IProperty) : boolean {
 }
 
 export function isExamplesProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe10.TypeDeclaration.properties.examples.name ||
-        p.nameId() === "examples";
-    //TODO too long to actually list every element having an example, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
+    return p.nameId() === universe.Universe10.TypeDeclaration.properties.example.name
 }
 
 export function isValueProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.GlobalSchema.properties.value.name ||
-    p.nameId() === universe.Universe08.GlobalSchema.properties.value.name ||
-    p.nameId() === universe.Universe10.ImportDeclaration.properties.value.name;
+    p.nameId() === universe.Universe08.GlobalSchema.properties.value.name
 }
 
 export function isUriParametersProperty(p:hl.IProperty) : boolean {
@@ -306,10 +287,7 @@ export function isRAMLVersionProperty(p:hl.IProperty) : boolean {
 }
 
 export function isUsesProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe10.LibraryBase.properties.uses.name ||
-        p.nameId() === universe.Universe10.Trait.properties.uses.name ||
-        p.nameId() === universe.Universe10.ResourceType.properties.uses.name ||
-        p.nameId() === universe.Universe10.ResourceTypeOrTrait.properties.uses.name;
+    return p.nameId() === universe.Universe10.FragmentDeclaration.properties.uses.name;
 
 }
 
@@ -418,13 +396,7 @@ export function isMethodBaseType(type: hl.INodeDefinition | hl.ITypeDefinition) 
     type.key() == universe.Universe08.MethodBase;
 }
 
-export function isRamlExpressionType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return false;
-}
 
-export function isRamlSelectorType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return type.key() == universe.Universe10.RAMLSelector;
-}
 
 export function isLibraryType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.Library;

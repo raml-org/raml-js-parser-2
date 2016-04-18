@@ -1,9 +1,9 @@
 #%RAML 1.0 ApiExtension
 title: ApiExtension
 baseUri: http://myItems.com
-masterRef: master.raml
+extends: master.raml
 uses:
-  - decls:  !include lib/decls.raml
+  - decls:  lib/decls.raml
 /items:
   get:
     description: |

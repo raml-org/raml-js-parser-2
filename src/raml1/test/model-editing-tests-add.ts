@@ -224,11 +224,11 @@ describe('Low level model: insert', function () {
       var api = util.loadApi(util.data(util.data('add/api-schemas-empty.raml')), true);
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
       var node;
 
       node = <high.ASTNodeImpl>stubs.createStubNode(type,util.apiType.property("schemas"), 'schema1');
-      node.attrOrCreate("value").setValue('aaa');
+      node.attrOrCreate("type").setValue('aaa');
       //node.createAttr("value", "");
       //node.attr("value").setValue('bbb');
       api.add(node);
@@ -242,16 +242,16 @@ describe('Low level model: insert', function () {
       var api = util.loadApi(util.data(util.data('add/api-schemas-empty.raml')), true);
       //api.lowLevel().show('API:');
 
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
       var node;
 
       node = stubs.createStubNode(type,util.apiType.property("schemas"), 'schema1');
-      node.attrOrCreate("value").setValue('aaa');
+      node.attrOrCreate("type").setValue('aaa');
       api.add(node);
       //api.lowLevel().show('UPDATED NODE (SCHEMA1):');
 
       node = stubs.createStubNode(type,util.apiType.property("schemas"), 'schema2');
-      node.attrOrCreate("value").setValue('bbb');
+      node.attrOrCreate("type").setValue('bbb');
       api.add(node);
       //api.lowLevel().show('UPDATED NODE (SCHEMA2):');
 
@@ -263,9 +263,9 @@ describe('Low level model: insert', function () {
       var api = util.loadApi(util.data(util.data('add/api-schemas-one.raml')), true);
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
       var node = stubs.createStubNode(type,util.apiType.property("schemas"), 'schema1');
-      node.attrOrCreate("value").setValue('bbb');
+      node.attrOrCreate("type").setValue('bbb');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
 
@@ -284,17 +284,17 @@ describe('Low level model: insert', function () {
       var code = response.attr('code').value();
       var body = response.element('body');
       var bodyType = <def.NodeClass>body.definition();
-      var schemaType = <def.NodeClass>util.universe.type("GlobalSchema");
+      var schemaType = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       var node;
 
       node = stubs.createStubNode(schemaType,util.apiType.property("schemas"), 'schema1');
-      node.attrOrCreate("value").setValue('aaa');
+      node.attrOrCreate("type").setValue('aaa');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA1):');
 
       node = stubs.createStubNode(schemaType,util.apiType.property("schemas"), 'schema2');
-      node.attrOrCreate("value").setValue('bbb');
+      node.attrOrCreate("type").setValue('bbb');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA2):');
 
@@ -304,7 +304,7 @@ describe('Low level model: insert', function () {
 
     it('insert schema after body already inserted #schema-body2', function () {
       var api = util.loadApi(util.data(util.data('add/api-body-exists.raml')), true);
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
@@ -318,7 +318,7 @@ describe('Low level model: insert', function () {
       var node;
 
       node = <any>stubs.createStubNode(type,util.apiType.property("schemas"),"schema1");
-      node.attrOrCreate("value").setValue('schema text 1');
+      node.attrOrCreate("type").setValue('schema text 1');
       api.add(node);
 
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
@@ -339,7 +339,7 @@ describe('Low level model: insert', function () {
       var code = response.attr('code').value();
       var body = response.element('body');
       var bodyType = <def.NodeClass>body.definition();
-      var schemaType = <def.NodeClass>util.universe.type("GlobalSchema");
+      var schemaType = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       var node;
 
@@ -351,12 +351,12 @@ describe('Low level model: insert', function () {
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (BODY1):');
 
       node = stubs.createStubNode(schemaType,util.apiType.property("schemas"), 'schema1');
-      node.attrOrCreate("value").setValue('aaa');
+      node.attrOrCreate("type").setValue('aaa');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA1):');
 
       node = stubs.createStubNode(schemaType,util.apiType.property("schemas"), 'schema2');
-      node.attrOrCreate("value").setValue('bbb');
+      node.attrOrCreate("type").setValue('bbb');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA2):');
 
@@ -373,7 +373,7 @@ describe('Low level model: insert', function () {
 
     it('insert body and schema #schema-xxx', function () {
       var api = util.loadApi(util.data(util.data('add/api-body-empty.raml')), true);
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
@@ -394,7 +394,7 @@ describe('Low level model: insert', function () {
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (BODY):');
 
       node = <any>stubs.createStubNode(type,util.apiType.property("schemas"),"schema1");
-      node.attrOrCreate("value").setValue('schema text 1');
+      node.attrOrCreate("type").setValue('schema text 1');
       api.add(node);
 
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
@@ -406,7 +406,7 @@ describe('Low level model: insert', function () {
 
     it('insert body and schema twice #schema4', function () {
       var api = util.loadApi(util.data(util.data('add/api-body-empty.raml')), true);
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
@@ -427,7 +427,7 @@ describe('Low level model: insert', function () {
       //console.log('');
 
       node = <any>stubs.createStubNode(type,util.apiType.property("schemas"),"schema1");
-      node.attrOrCreate("value").setValue('schema text 1');
+      node.attrOrCreate("type").setValue('schema text 1');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
       //console.log('');
@@ -440,7 +440,7 @@ describe('Low level model: insert', function () {
       //console.log('');
 
       node = <any>stubs.createStubNode(type,util.apiType.property("schemas"),"schema2");
-      node.attrOrCreate("value").setValue('schema text 2');
+      node.attrOrCreate("type").setValue('schema text 2');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA2):');
       //console.log('');

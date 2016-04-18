@@ -2778,7 +2778,7 @@ export function loadApiSync(apiPath:string, arg1?:string[]|coreApi.Options, arg2
 }
 
 
-export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):RAMLLanguageElement{
+export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):hl.BasicNode{
 
         return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
 }
@@ -2797,7 +2797,7 @@ export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:co
 }
 
 
-export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<RAMLLanguageElement>{
+export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<hl.BasicNode>{
 
         return apiLoader.loadRAMLAsync(ramlPath,arg1,arg2);
 }

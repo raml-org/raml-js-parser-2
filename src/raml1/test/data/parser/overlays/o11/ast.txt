@@ -1,6 +1,6 @@
 Extension <-- 
   title : StringType  =  Extension
-  masterRef : StringType  =  NewOverlay.raml
+  extends : StringType  =  NewOverlay.raml
   Resource <-- resources
     relativeUri : RelativeUriString  =  /resource
     displayName : StringType  =  Test3
