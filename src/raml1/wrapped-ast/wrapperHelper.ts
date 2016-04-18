@@ -320,30 +320,30 @@ export function matchUri(apiRootRelativeUri:string, resource:RamlWrapper.Resourc
 
 var schemaContentChars:string[] = [ '{', '<' ];
 
-export function schema(body:RamlWrapper.TypeDeclaration, api:RamlWrapper.Api):Opt<SchemaDef>{
-
-    var schemaNode = body.schema();
-    if(!schemaNode){
-        return Opt.empty<SchemaDef>();
-    }
-    var schemaString = schemaNode;
-    var isContent:boolean = false;
-    schemaContentChars.forEach(x=>{try{ isContent = isContent||schemaString.indexOf(x)>=0}catch(e){}});
-    var schDef:SchemaDef;
-    if(isContent) {
-        schDef = new SchemaDef(schemaString);
-    }
-    else{
-        var globalSchemes = api.schemas().filter(x=>x.key()==schemaString);
-        if(globalSchemes.length>0){
-            schDef = new SchemaDef(globalSchemes[0].value().value(),globalSchemes[0].key());
-        }
-        else{
-            return Opt.empty<SchemaDef>();
-        }
-    }
-    return new Opt<SchemaDef>(schDef);
-}
+// export function schema(body:RamlWrapper.TypeDeclaration, api:RamlWrapper.Api):Opt<SchemaDef>{
+//
+//     var schemaNode = body.schema();
+//     if(!schemaNode){
+//         return Opt.empty<SchemaDef>();
+//     }
+//     var schemaString = schemaNode;
+//     var isContent:boolean = false;
+//     schemaContentChars.forEach(x=>{try{ isContent = isContent||schemaString.indexOf(x)>=0}catch(e){}});
+//     var schDef:SchemaDef;
+//     if(isContent) {
+//         schDef = new SchemaDef(schemaString);
+//     }
+//     else{
+//         var globalSchemes = api.schemas().filter(x=>x.name()==schemaString);
+//         if(globalSchemes.length>0){
+//             schDef = new SchemaDef(globalSchemes[0].type(),globalSchemes[0].name());
+//         }
+//         else{
+//             return Opt.empty<SchemaDef>();
+//         }
+//     }
+//     return new Opt<SchemaDef>(schDef);
+// }
 
 /**
  * __$helperMethod__
@@ -604,8 +604,8 @@ export function referencedTrait(ref:RamlWrapper.TraitRef):RamlWrapper.Trait{
  * __$helperMethod__
  * __$meta__={"name":"annotation","primary":true}
  **/
-export function referencedAnnotation(ref:RamlWrapper.AnnotationRef):RamlWrapper.AnnotationTypeDeclaration{
-    return <RamlWrapper.AnnotationTypeDeclaration>referencedObject(ref);
+export function referencedAnnotation(ref:RamlWrapper.AnnotationRef):RamlWrapper.TypeDeclaration{
+    return <RamlWrapper.TypeDeclaration>referencedObject(ref);
 }
 
 /**
@@ -650,18 +650,18 @@ export function getTypeStructuredExample(td:RamlWrapper.TypeDeclaration):RamlWra
  * __$helperMethod__
  * __$meta__={"name":"content","override":true}
  **/
-export function getExampleStringContent(td:RamlWrapper.ExampleSpec):string{
-    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-    return attrToExampleString(attr);
+export function getExampleStringContent(td:any):string{
+    // var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
+    // return attrToExampleString(attr);
+    return null;
 }
 
 /**
  * __$helperMethod__
  * __$meta__={"name":"structuredContent","primary":true}
  **/
-export function getExampleStructuredContent(td:RamlWrapper.ExampleSpec):RamlWrapper.TypeInstance{
-    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-    return <RamlWrapper.TypeInstance><any>exampleAttrToTypeInstance(attr);
+export function getExampleStructuredContent(td:any):RamlWrapper.TypeInstance{
+   return null;
 }
 
 function attrToExampleString(attr:hl.IAttribute):string{
@@ -858,7 +858,7 @@ class ParamWrapper implements Raml08Parser.BasicNamedParameter{
 
     constructor(private _param:RamlWrapper.TypeDeclaration){
 
-        this.description = _param.description() ? _param.description().value() : this.description;
+        this.description = _param.description() ? _param.description() : this.description;
 
         this.displayName = _param.displayName();
 

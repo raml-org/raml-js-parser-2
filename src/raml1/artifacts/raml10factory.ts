@@ -24,7 +24,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
                 //This is only case of nested hierarchy
                 continue;
             }
-            if (superTypeName=="RAMLLanguageElement"){
+            if (superTypeName=="hl.BasicNode"){
                 //depth first
                 continue;
             }
@@ -37,7 +37,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         }
     }
     if (!wrapperConstructor){
-        wrapperConstructor = classMap["RAMLLanguageElement"]
+        wrapperConstructor = classMap["hl.BasicNode"]
 
     }
     return wrapperConstructor(node,setAsTopLevel);
@@ -71,23 +71,19 @@ var classMap = {
 
     "AbstractSecurityScheme": (x,y)=>{return new RamlWrapper.AbstractSecuritySchemeImpl(x,y)},
 
+    "Annotable": (x,y)=>{return new RamlWrapper.AnnotableImpl(x,y)},
+
     "AnnotationRef": (x)=>{return new RamlWrapper.AnnotationRefImpl(x)},
 
     "AnnotationTarget": (x)=>{return new RamlWrapper.AnnotationTargetImpl(x)},
-
-    "AnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.AnnotationTypeDeclarationImpl(x,y)},
 
     "AnyType": (x)=>{return new RamlWrapper.AnyTypeImpl(x)},
 
     "Api": (x,y)=>{return new RamlWrapper.ApiImpl(x,y)},
 
-    "ArrayAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.ArrayAnnotationTypeDeclarationImpl(x,y)},
-
     "ArrayTypeDeclaration": (x,y)=>{return new RamlWrapper.ArrayTypeDeclarationImpl(x,y)},
 
     "BasicSecurityScheme": (x,y)=>{return new RamlWrapper.BasicSecuritySchemeImpl(x,y)},
-
-    "BooleanAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.BooleanAnnotationTypeDeclarationImpl(x,y)},
 
     "BooleanType": (x)=>{return new RamlWrapper.BooleanTypeImpl(x)},
 
@@ -97,7 +93,11 @@ var classMap = {
 
     "CustomSecurityScheme": (x,y)=>{return new RamlWrapper.CustomSecuritySchemeImpl(x,y)},
 
-    "DateTypeAnnotationDeclaration": (x,y)=>{return new RamlWrapper.DateTypeAnnotationDeclarationImpl(x,y)},
+    "DateOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.DateOnlyTypeDeclarationImpl(x,y)},
+
+    "DateTimeOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTimeOnlyTypeDeclarationImpl(x,y)},
+
+    "DateTimeTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTimeTypeDeclarationImpl(x,y)},
 
     "DateTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTypeDeclarationImpl(x,y)},
 
@@ -107,25 +107,19 @@ var classMap = {
 
     "ExampleSpec": (x,y)=>{return new RamlWrapper.ExampleSpecImpl(x,y)},
 
-    "ExampleString": (x)=>{return new RamlWrapper.ExampleStringImpl(x)},
-
     "Extension": (x,y)=>{return new RamlWrapper.ExtensionImpl(x,y)},
 
     "FileTypeDeclaration": (x,y)=>{return new RamlWrapper.FileTypeDeclarationImpl(x,y)},
 
     "FixedUriString": (x)=>{return new RamlWrapper.FixedUriStringImpl(x)},
 
-    "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
+    "FragmentDeclaration": (x,y)=>{return new RamlWrapper.FragmentDeclarationImpl(x,y)},
 
-    "GlobalSchema": (x,y)=>{return new RamlWrapper.GlobalSchemaImpl(x,y)},
+    "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
 
     "HasNormalParameters": (x,y)=>{return new RamlWrapper.HasNormalParametersImpl(x,y)},
 
-    "ImportDeclaration": (x,y)=>{return new RamlWrapper.ImportDeclarationImpl(x,y)},
-
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
-
-    "JSonSchemaString": (x)=>{return new RamlWrapper.JSonSchemaStringImpl(x)},
 
     "Library": (x,y)=>{return new RamlWrapper.LibraryImpl(x,y)},
 
@@ -143,8 +137,6 @@ var classMap = {
 
     "ModelLocation": (x)=>{return new RamlWrapper.ModelLocationImpl(x)},
 
-    "NumberAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.NumberAnnotationTypeDeclarationImpl(x,y)},
-
     "NumberType": (x)=>{return new RamlWrapper.NumberTypeImpl(x)},
 
     "NumberTypeDeclaration": (x,y)=>{return new RamlWrapper.NumberTypeDeclarationImpl(x,y)},
@@ -157,19 +149,11 @@ var classMap = {
 
     "OAuth2SecuritySchemeSettings": (x,y)=>{return new RamlWrapper.OAuth2SecuritySchemeSettingsImpl(x,y)},
 
-    "ObjectAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.ObjectAnnotationTypeDeclarationImpl(x,y)},
-
     "ObjectTypeDeclaration": (x,y)=>{return new RamlWrapper.ObjectTypeDeclarationImpl(x,y)},
 
     "Overlay": (x,y)=>{return new RamlWrapper.OverlayImpl(x,y)},
 
     "PassThroughSecurityScheme": (x,y)=>{return new RamlWrapper.PassThroughSecuritySchemeImpl(x,y)},
-
-    "PassThroughSecuritySchemeSettings": (x,y)=>{return new RamlWrapper.PassThroughSecuritySchemeSettingsImpl(x,y)},
-
-    "RAMLLanguageElement": (x,y)=>{return new RamlWrapper.RAMLLanguageElementImpl(x,y)},
-
-    "RAMLSimpleElement": (x,y)=>{return new RamlWrapper.RAMLSimpleElementImpl(x,y)},
 
     "Reference": (x)=>{return new RamlWrapper.ReferenceImpl(x)},
 
@@ -195,11 +179,11 @@ var classMap = {
 
     "StatusCodeString": (x)=>{return new RamlWrapper.StatusCodeStringImpl(x)},
 
-    "StringAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.StringAnnotationTypeDeclarationImpl(x,y)},
-
     "StringType": (x)=>{return new RamlWrapper.StringTypeImpl(x)},
 
     "StringTypeDeclaration": (x,y)=>{return new RamlWrapper.StringTypeDeclarationImpl(x,y)},
+
+    "TimeOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.TimeOnlyTypeDeclarationImpl(x,y)},
 
     "Trait": (x,y)=>{return new RamlWrapper.TraitImpl(x,y)},
 
@@ -207,14 +191,14 @@ var classMap = {
 
     "TypeDeclaration": (x,y)=>{return new RamlWrapper.TypeDeclarationImpl(x,y)},
 
-    "UnionAnnotationTypeDeclaration": (x,y)=>{return new RamlWrapper.UnionAnnotationTypeDeclarationImpl(x,y)},
-
     "UnionTypeDeclaration": (x,y)=>{return new RamlWrapper.UnionTypeDeclarationImpl(x,y)},
 
     "UriTemplate": (x)=>{return new RamlWrapper.UriTemplateImpl(x)},
 
+    "UsesDeclaration": (x,y)=>{return new RamlWrapper.UsesDeclarationImpl(x,y)},
+
     "ValueType": (x)=>{return new RamlWrapper.ValueTypeImpl(x)},
 
-    "XMLSchemaString": (x)=>{return new RamlWrapper.XMLSchemaStringImpl(x)}
+    "XMLFacetInfo": (x,y)=>{return new RamlWrapper.XMLFacetInfoImpl(x,y)}
 
 };

@@ -539,10 +539,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","object is expected"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","Issues in the used library:./common.raml"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["object is expected"]);
+        testErrors(util.data("commonLibrary/api2.raml"),["issues in the used library:./common.raml"]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/raml1/test/data/commonLibrary/common.raml"]);
@@ -651,7 +651,7 @@ describe('Parser regression tests', function () {
     })
 
     it ("library is not user class" ,function(){
-        testErrors(util.data("parser/raml/raml.raml"),["It is only allowed to use scalar properties as discriminators"]);
+        testErrors(util.data("parser/raml/raml.raml"),["Issues in the used library:../sds/sds.raml"]);
     })
     it ("library from christian" ,function(){
         testErrors(util.data("parser/libraries/christian/api.raml"));
@@ -908,9 +908,9 @@ describe('Fragment loading', function () {
         var fragmentName = fragment.definition().nameId();
         assert.equal(fragmentName, "Trait")
     });
-    it('AnnotationTypeDeclaration loading', function () {
-        testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
-    });
+    // it('AnnotationTypeDeclaration loading', function () {
+    //     testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
+    // });
 });
 
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {

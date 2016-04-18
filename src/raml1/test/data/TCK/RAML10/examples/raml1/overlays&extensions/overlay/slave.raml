@@ -1,8 +1,8 @@
 #%RAML 1.0 ApiOverlay
 title: Slave RAML
-masterRef: master.raml
+extends: master.raml
 uses:
-  - decls:  !include lib/decls.raml
+  - decls:  lib/decls.raml
 /elements:
   get:
     description: |

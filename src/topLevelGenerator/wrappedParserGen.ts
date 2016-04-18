@@ -555,11 +555,11 @@ ${this.ramlVersion=='RAML10'?
  * @param ramlPath Path to RAML: local file system path or Web URL
  * @param options Load options
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
- * @return RAMLLanguageElement instance.
+ * @return hl.BasicNode instance.
  **/
-export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],options?:coreApi.Options):RAMLLanguageElement
+export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],options?:coreApi.Options):hl.BasicNode
 `:''}
-export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):RAMLLanguageElement{
+export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):hl.BasicNode{
 
         return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
 }
@@ -588,15 +588,15 @@ export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:co
 
 ${this.ramlVersion=='RAML10'?
 `/**
- * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the resulting RAMLLanguageElement contains errors and the 'rejectOnErrors' option is set to 'true'.
+ * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the resulting hl.BasicNode contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param ramlPath Path to RAML: local file system path or Web URL
  * @param options Load options
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
- * @return Promise&lt;RAMLLanguageElement&gt;.
+ * @return Promise&lt;hl.BasicNode&gt;.
  **/
-export function loadRAML(ramlPath:string,extensionsAndOverlays:string[], options?:coreApi.Options):Promise<RAMLLanguageElement>;
+export function loadRAML(ramlPath:string,extensionsAndOverlays:string[], options?:coreApi.Options):Promise<hl.BasicNode>;
 `:''}
-export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<RAMLLanguageElement>{
+export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<hl.BasicNode>{
 
         return apiLoader.loadRAMLAsync(ramlPath,arg1,arg2);
 }
@@ -677,7 +677,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
                 //This is only case of nested hierarchy
                 continue;
             }
-            if (superTypeName=="RAMLLanguageElement"){
+            if (superTypeName=="hl.BasicNode"){
                 //depth first
                 continue;
             }
@@ -690,7 +690,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         }
     }
     if (!wrapperConstructor){
-        wrapperConstructor = classMap["RAMLLanguageElement"]
+        wrapperConstructor = classMap["hl.BasicNode"]
 
     }
     return wrapperConstructor(node,setAsTopLevel);

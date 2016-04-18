@@ -42,10 +42,10 @@ export function loadApiSync(apiPath:string, arg1?:string[]|parserCore.Options,
  * @return RAMLLanguageElement instance.
  **/
 export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],
-                             options?:parserCore.Options):api10.RAMLLanguageElement|api08.RAMLLanguageElement
+                             options?:parserCore.Options):hl.BasicNode
 
 export function loadRAMLSync(ramlPath:string, arg1?:string[]|parserCore.Options,
-                             arg2?:parserCore.Options):api10.RAMLLanguageElement|api08.RAMLLanguageElement{
+                             arg2?:parserCore.Options):hl.BasicNode{
 
     return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
 }
@@ -81,10 +81,10 @@ export function loadApi(apiPath:string, arg1?:string[]|parserCore.Options,
  * @return Promise&lt;RAMLLanguageElement&gt;.
  **/
 export function loadRAML(ramlPath:string,extensionsAndOverlays:string[],
-                         options?:parserCore.Options):Promise<api10.RAMLLanguageElement|api08.RAMLLanguageElement>;
+                         options?:parserCore.Options):Promise<hl.BasicNode>;
 
 export function loadRAML(ramlPath:string, arg1?:string[]|parserCore.Options,
-                         arg2?:parserCore.Options):Promise<api10.RAMLLanguageElement|api08.RAMLLanguageElement>{
+                         arg2?:parserCore.Options):Promise<hl.BasicNode>{
 
     return apiLoader.loadRAMLAsync(ramlPath,arg1,arg2);
 }

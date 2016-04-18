@@ -38,17 +38,23 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
         nm=nm.substring(0,ind);
     }
 
-    while (true){
-
-        var np=x.parent();
-        if (!np||np==dr){
-            break;
+    if (x.lowLevel().unit()!=context.lowLevel().unit()){
+        var root:BasicASTNode=<BasicASTNode><any>context.root();
+        if (!root.unitMap){
+            root.unitMap={};
+            root.asElement().elements().forEach(x=> {
+                if (x.definition().key()== universes.Universe10.UsesDeclaration) {
+                    var mm=x.attr("value");
+                    var unit=root.lowLevel().unit().resolve(mm.value());
+                    if (unit!=null) {
+                        root.unitMap[unit.absolutePath()]=x.attr("key").value();
+                    }
+                }
+           });
         }
-        else{
-            if (np.definition().key()==universes.Universe10.Library&&np.parent()){
-                nm=np.name()+"."+nm;
-            }
-            x=np;
+        var prefix=root.unitMap[x.lowLevel().unit().absolutePath()];
+        if (prefix) {
+            return prefix + "." + nm;
         }
     }
     return nm;
@@ -56,6 +62,9 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
 
 export class BasicASTNode implements hl.IParseResult {
     private _hashkey : string;
+
+
+    unitMap:{ [path:string]:string };
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -674,9 +683,11 @@ export interface ParseNode {
 
     kind(): number
 }
+
+
 export class LowLevelWrapperForTypeSystem implements ParseNode{
 
-    constructor(private _node:ll.ILowLevelASTNode){
+    constructor(protected _node:ll.ILowLevelASTNode){
 
     }
 
@@ -708,10 +719,14 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         return this._node.value();
     }
     children(){
+        if (this.key()=="uses"&&!this._node.parent().parent()){
+            return this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x))
+        }
         return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x));
     }
     childWithKey(k:string):ParseNode
     {
+
         var mm=this._node.children();
         for (var i=0;i<mm.length;i++){
             if (mm[i].key()==k){
@@ -740,6 +755,26 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
             }
         }
         return rTypes.NodeKind.SCALAR;
+    }
+}
+export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
+    children(){
+        var s=this._node.unit().resolve(this.value());
+        if (s&&s.isRAMLUnit()){
+            return new LowLevelWrapperForTypeSystem(s.ast()).children();
+        }
+        return [];
+    }
+    childWithKey(k:string):ParseNode
+    {
+
+        var mm=this.children();
+        for (var i=0;i<mm.length;i++){
+            if (mm[i].key()==k){
+                return mm[i];
+            }
+        }
+        return null;
     }
 }
 export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelNode{
@@ -776,11 +811,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     parsedType():rTypes.IParsedType{
 
         if (!this._ptype){
-            if (this.property()&&this.property().nameId()==universes.Universe10.Method.properties.body.name){
+            if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
                 this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),true);
             }
             else {
-                var annotation=this.definition().isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name);
+                var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
                 this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),false,annotation);
             }
         }
@@ -985,7 +1020,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     private calculateMasterByRef() : hl.IParseResult {
         var masterReference = _.find(this.lowLevel().children(),
-                x=>x.key()==universes.Universe10.Overlay.properties.masterRef.name);
+                x=>x.key()=="extends");
 
         if (!masterReference || !masterReference.value()) {
             return null;

@@ -28,6 +28,10 @@ class KeyMatcher{
         this.canBeValue=_.find(_props,x=>(<defs.Property>x).canBeValue());
     }
 
+    add(p:hl.IProperty){
+        this._props.push(p);
+    }
+
     match(key:string):def.Property{
         var _res:hl.IProperty=null;
         var lastPref=""
@@ -91,7 +95,6 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         try {
             if (cha['currentChildren']){
                 return cha['currentChildren'];
-
             }
             if (!node.definition()) {
                 return;
@@ -166,6 +169,12 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
             var km = new KeyMatcher(node.definition().allProperties());
+            if (node.parent()==null||node.lowLevel().includePath()){
+                var u=node.definition().universe();
+                if (u.version()=="RAML10"){
+                    u.type("FragmentDeclaration").allProperties().forEach(x=>km.add(x));
+                }
+            }
             var aNode = <ASTNodeImpl>node;
 
             var allowsQuestion = aNode._allowQuestion || node.definition().getAdapter(services.RAMLService).getAllowQuestion();
@@ -715,7 +724,7 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
     var n:any=x.lowLevel()
     if (p) {
 
-        if (p.nameId() == universes.Universe10.LibraryBase.properties.uses.name &&
+        if (p.nameId() == universes.Universe10.FragmentDeclaration.properties.uses.name &&
             p.range().nameId() == universes.Universe10.Library.name) {
             //return null;
         }
@@ -735,7 +744,7 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
             if (p || (!p && !parent && x.lowLevel())) {
                 if (p && res != null && ((p.nameId() ==universes.Universe10.MethodBase.properties.body.name
                     || p.nameId() ==universes.Universe10.Response.properties.headers.name) ||
-                    p.nameId() ==universes.Universe10.Method.properties.queryParameters.name)) {
+                    p.nameId() ==universes.Universe10.HasNormalParameters.properties.queryParameters.name)) {
                     var ares = new defs.UserDefinedClass(x.lowLevel().key(), <defs.Universe>res.universe(), x, x.lowLevel().unit() ? x.lowLevel().unit().path() : "", "");
                     ares._superTypes.push(res);
                     return ares;
