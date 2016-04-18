@@ -163,6 +163,29 @@ function fillReferenceType(result:defs.UserDefinedClass,def:hl.ITypeDefinition):
     }
     return result;
 }
+
+class AnnotationType extends defs.UserDefinedClass{
+    allProperties(ps:{[name:string]:defs.ITypeDefinition}={}):defs.Property[]{
+        var rs=this.superTypes()[0].allProperties();
+        if (rs.length==1&&rs[0].nameId()=="annotations"){
+            var up=new defs.UserDefinedProp("value");
+            up.withDomain(this);
+            up._node=this.getAdapter(defs.RAMLService).getDeclaringNode();
+            up.withCanBeValue();
+            up.withRequired(false);
+            var tp=this.superTypes()[0];
+            rs=[];
+            up.withRange(up._node.asElement().definition().universe().type("string"));
+            rs.push(up);
+
+        }
+        return <any>rs;
+    }
+
+    isAnnotationType(){
+        return true;
+    }
+}
 export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     if (!node){
         return null;
@@ -185,7 +208,7 @@ export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     if (node.property()&&node.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name){
         //var st=node.definition().getAdapter(services.RAMLService).toRuntime();
 
-        var result:defs.UserDefinedClass = new defs.AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node,upath, "");
+        var result:defs.UserDefinedClass = new AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node,upath, "");
         var st=getSimpleType(node);
         result._superTypes.push(st);
 

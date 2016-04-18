@@ -1,20 +1,9 @@
 Overlay <-- 
   title : StringType  =  Overlay
   extends : StringType  =  api.raml
-  Library <-- uses
-    name : StringType  =  lib
-    TestAnnotationType <-- annotationTypes
-      name : StringType  =  TestAnnotationType
-      type : StringType  =  string
-    AnotherAnnotationType <-- annotationTypes
-      name : StringType  =  AnotherAnnotationType
-      type : StringType  =  object
-      StringTypeDeclaration <-- properties
-        name : StringType  =  firstProp
-        type : StringType  =  string
-      NumberTypeDeclaration <-- properties
-        name : StringType  =  secondProp
-        type : StringType  =  number
+  UsesDeclaration <-- uses
+    key : StringType  =  lib
+    value : StringType  =  lib.raml
   Resource <-- resources
     relativeUri : RelativeUriString  =  /servers
     annotations : AnnotationRef  =  [object Object]
