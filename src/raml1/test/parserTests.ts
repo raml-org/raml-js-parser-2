@@ -908,9 +908,9 @@ describe('Fragment loading', function () {
         var fragmentName = fragment.definition().nameId();
         assert.equal(fragmentName, "Trait")
     });
-    it('AnnotationTypeDeclaration loading', function () {
-        testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
-    });
+    // it('AnnotationTypeDeclaration loading', function () {
+    //     testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
+    // });
 });
 
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {

@@ -2504,32 +2504,6 @@ resources(  ):Resource[]{
 
 
         /**
-         * A longer, human-friendly description of the resource.
-         **/
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
          * @hidden
          * @return Actual name of instance class
          **/
@@ -3152,6 +3126,24 @@ resources(  ):Resource[]{
 documentation(  ):DocumentationItem[]{
              return <DocumentationItem[]>super.elements('documentation');
          }
+
+
+        /**
+         * A longer, human-friendly description of the API
+         **/
+description(  ):string{
+             return <string>super.attribute('description', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set description value
+         **/
+setDescription( param:string ){
+            this.highLevel().attrOrCreate("description").setValue(""+param);
+            return this;
+        }
 
 
         /**

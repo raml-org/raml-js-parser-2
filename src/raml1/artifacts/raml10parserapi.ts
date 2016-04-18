@@ -990,18 +990,6 @@ resources(  ):Resource[]
 
 
         /**
-         * A longer, human-friendly description of the resource.
-         **/
-description(  ):string
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
          * Path relative to API root
          **/
 completeRelativeUri(  ):string
@@ -1254,6 +1242,12 @@ resources(  ):Resource[]
          * Additional overall documentation for the API
          **/
 documentation(  ):DocumentationItem[]
+
+
+        /**
+         * A longer, human-friendly description of the API
+         **/
+description(  ):string
 
 
         /**

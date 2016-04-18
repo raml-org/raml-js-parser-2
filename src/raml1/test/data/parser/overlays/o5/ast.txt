@@ -1,6 +1,6 @@
 Overlay <--
   title : StringType  =  Overlay 2
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   Library <-- uses
     name : StringType  =  lib
     TestAnnotationType <-- annotationTypes

@@ -1,5 +1,5 @@
 Overlay <-- 
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   ObjectTypeDeclaration <-- types
     name : StringType  =  TestType
     StringTypeDeclaration <-- properties

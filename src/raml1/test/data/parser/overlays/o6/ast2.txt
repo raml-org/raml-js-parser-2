@@ -1,6 +1,6 @@
 Extension <-- 
   title : StringType  =  Extension2
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   TestStringType <-- types
     name : StringType  =  TestStringSubtype
     testFacet : TestEnum  =  Third
