@@ -12,9 +12,11 @@ type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 import services=defs
 import linter=require("./linter")
-interface TemplateApplication{
+export interface TemplateApplication{
     tp:hl.ITypeDefinition
     attr:hl.IAttribute
+    path:string[],
+    optional:boolean
 }
 
 ramlTypes.setPropertyConstructor(x=>{
@@ -22,50 +24,62 @@ ramlTypes.setPropertyConstructor(x=>{
     v.unmerge();
     return v;
 });
-interface TemplateData{
+export interface TemplateData{
     [name:string]:TemplateApplication[]
 }
-function templateFields(node:hl.IParseResult,d:TemplateData){
+function templateFields(node:hl.IParseResult,d:TemplateData,path:string[]=[],optional:boolean=false){
+    var optional1 = optional || node.optional();
+    if(optional1!=optional){
+        path.push("/")
+    }
+    optional = optional1;
     var u=<defs.Universe>node.root().definition().universe();
-    node.children().forEach(x=>templateFields(x,d));
+    node.children().forEach(x=>templateFields(x,d,path.concat(x.property()?x.property().nameId():""),optional));
     if (node instanceof hlimpl.ASTPropImpl){
         var prop=<ASTPropImpl>node;
         //TODO RECURSIVE PARAMETERS
         var v=prop.value();
         if (typeof v=='string'){
             var strV=<string>v;
-            handleValue(strV, d, prop,false,u);
+            handleValue(strV, d, prop,false,u,path,optional);
         }
-        else{
-            node.lowLevel().visit(x=>{
-                if (x.value()){
-                    var strV=x.value()+"";
-                    handleValue(strV,d,prop,true,u);
-
-                }
-                return true;
-            })
-        }
+        // else{
+        //     node.lowLevel().visit(x=>{
+        //         if (x.value()){
+        //             var strV=x.value()+"";
+        //             handleValue(strV,d,prop,true,u,path,optional);
+        //
+        //         }
+        //         return true;
+        //     })
+        // }
     }
     else if (node instanceof hlimpl.BasicASTNode){
         var v=node.lowLevel().value();
         if (typeof v=='string'){
             var strV=<string>v;
-            handleValue(strV, d, null,false,u);
+            handleValue(strV, d, null,false,u,path,optional);
         }
-        else{
-            node.lowLevel().visit(x=>{
-                if (x.value()){
-                    var strV=x.value()+"";
-                    handleValue(strV,d,null,true,u);
-
-                }
-                return true;
-            })
-        }
+        // else{
+        //     node.lowLevel().visit(x=>{
+        //         if (x.value()){
+        //             var strV=x.value()+"";
+        //             handleValue(strV,d,null,true,u,path,optional);
+        //
+        //         }
+        //         return true;
+        //     })
+        // }
     }
 }
-var handleValue = function (strV:string, d:TemplateData, prop:ASTPropImpl,allwaysString:boolean,u:defs.Universe) {
+var handleValue = function (
+    strV:string,
+    d:TemplateData,
+    prop:ASTPropImpl,
+    allwaysString:boolean,
+    u:defs.Universe,
+    path:string[],
+    optional:boolean) {
     var ps = 0;
     while (true) {
         var pos = strV.indexOf("<<", ps);
@@ -101,14 +115,18 @@ var handleValue = function (strV:string, d:TemplateData, prop:ASTPropImpl,allway
             //FIX ME NOT WHOLE TEMPLATES
             if (q) {
                 q.push({
-                   tp:r,
-                   attr:prop
+                    tp:r,
+                    attr:prop,
+                    path:path,
+                    optional:optional
                 });
             }
             else {
                 d[parameterUsage] = [{
                     tp:r,
-                    attr:prop
+                    attr:prop,
+                    path:path,
+                    optional:optional
                 }]
             }
         }
@@ -124,6 +142,17 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         var prop = new defs.UserDefinedProp(x);
         //prop._node=node;
         prop.withDomain(result);
+        var paths:string[][]=[];
+        var optional = true;
+        usages[x].forEach(x=>{
+            optional = optional && x.optional;
+            paths.push(x.path);
+        });
+        if(optional) {
+            paths = _.unique(paths);
+            prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
+        }
+        
         var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != universes.Universe08.StringType.name);
         prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(universes.Universe08.StringType.name));
         prop.withRequired(true)

@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+title: Test API
+baseUri: http://example.api.com/{version}
+version: v1
+resourceTypes:
+  rt:
+      get?:
+        description: <<param1>>
+/resource:
+  type: { rt : { param1: value } }
+  get:

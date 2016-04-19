@@ -2,6 +2,7 @@
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
+import proxy=require("../ast.core/LowLevelASTProxy")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")
@@ -1595,7 +1596,24 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,message,node))
             }
         });
+        var isInlinedTemplate = node.definition().getAdapter(services.RAMLService).isInlinedTemplates();
         node.definition().requiredProperties().forEach(x=>{
+            if (isInlinedTemplate){
+                var paths:string[][] = x.getAdapter(services.RAMLPropertyService).meta("templatePaths");
+                if(paths){
+                    var parent = node.parent();
+                    var hasSufficientChild = false;
+                    for(var path of paths){
+                        if(this.checkPath(parent,path)){
+                            hasSufficientChild = true;
+                            break;
+                        }
+                    }
+                    if(!hasSufficientChild){
+                        return;
+                    }
+                }
+            }
             var r=x.range();
             if (r.hasArrayInHierarchy()){
                 r=r.arrayInHierarchy().componentType();
@@ -1619,7 +1637,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 if(!gotValue){
                     var msg="Missing required property " + x.nameId();
 
-                    if (node.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
+                    if (isInlinedTemplate){
                         msg="value was not provided for parameter: "+x.nameId();
                     }
                     var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, msg, node)
@@ -1634,6 +1652,53 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 }
             }
         });
+    }
+    checkPath(node:hl.IHighLevelNode,
+              path:string[],
+              insideOptional:boolean=false):boolean{
+
+        if(path.length==0){
+            return insideOptional;
+        }
+        var segment = path[0];
+        if(segment=="/"){
+            return this.checkPath(node,path.slice(1));
+        }
+        if(segment.length==0){
+            return true;
+        }
+        if(path.length==1){
+            var attr = node.attr(segment);
+            var lowLevel = node.lowLevel();
+            if(attr!=null){
+                if(lowLevel instanceof proxy.LowLevelCompositeNode){
+                    var prim = (<proxy.LowLevelCompositeNode>attr.lowLevel()).primaryNode();
+                    return prim==null||prim.value() == null;
+                }
+                return attr.value() == null;
+            }
+            else{
+                return insideOptional;
+            }
+        }
+        else{
+            var elements = node.elementsOfKind(segment);
+            var lowLevel = node.lowLevel();
+            if(lowLevel instanceof proxy.LowLevelCompositeNode){
+                elements = elements.filter(x=>(<proxy.LowLevelCompositeNode>x.lowLevel()).primaryNode()!=null);
+            }
+            if(elements.length==0){
+                return insideOptional;
+            }
+            var path1 = path.slice(1);
+            for(var e of elements){
+                if(this.checkPath(e,path1,insideOptional)){
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }
 class ScalarQuoteValidator implements NodeValidator {
