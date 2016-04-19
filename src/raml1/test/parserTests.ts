@@ -490,6 +490,9 @@ describe('Parser regression tests', function () {
     it ("custom api" ,function(){
         testErrors(util.data("parser/custom/api.raml"), ["Missing required property title"]);//Ok for now lets improve later
     })
+    it ("discriminator can only be used at top level" ,function(){
+        testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later
+    })
     it ("halt" ,function(){
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
     })
