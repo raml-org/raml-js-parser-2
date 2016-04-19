@@ -674,15 +674,15 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/external/e2.raml"));
     })
 
-    it ("external 3" ,function(){
-        testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
-    })
-    it ("external 4" ,function(){
-        testErrors(util.data("parser/external/e4.raml"),["Example does not conform to schema:Content is not valid according to schema:Missing required property: \\w+ \\w+"]);
-    })
-    it ("external 5" ,function(){
-        testErrors(util.data("parser/external/e5.raml"));
-    })
+    // it ("external 3" ,function(){
+    //     testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
+    // })
+    // it ("external 4" ,function(){
+    //     testErrors(util.data("parser/external/e4.raml"),["Example does not conform to schema:Content is not valid according to schema:Missing required property: \\w+ \\w+"]);
+    // })
+    // it ("external 5" ,function(){
+    //     testErrors(util.data("parser/external/e5.raml"));
+    // })
 });
 
 describe('JSON schemes tests', function () {

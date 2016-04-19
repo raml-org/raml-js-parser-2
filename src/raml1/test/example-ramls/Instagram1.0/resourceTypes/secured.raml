@@ -13,7 +13,7 @@ post?:
     200:
       body:
         application/json:
-          schema: types.OkStatus | string
+          type: types.OkStatus | string
           example: !include ../examples/ok-status-example.json
   securedBy:
     - oauth_2_0:
