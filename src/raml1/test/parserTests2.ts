@@ -81,11 +81,11 @@ describe('API parsing', function() {
 //        testErrors(util.data('parser/api/api15.raml'));
 //    });
 
-    it('Should parse api description', function(){
+    it('Should parse resource description', function(){
         testErrors(util.data('parser/api/api27.raml'));
     });
 
-    it('Should parse api description with markdown', function(){
+    it('Should parse resource description with markdown', function(){
         testErrors(util.data('parser/api/api28.raml'));
     });
 

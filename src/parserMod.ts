@@ -2,7 +2,9 @@ import parser10api = require("./raml1/artifacts/raml10parserapi")
 import parser10impl = require("./raml1/artifacts/raml10parser")
 import coreApi=require("./raml1/wrapped-ast/parserCoreApi");
 import coreImpl=require("./raml1/wrapped-ast/parserCore");
-import highLevel = require("./raml1/highLevelAST")
+import highLevel = require("./raml1/highLevelAST");
+import stubs = require("./raml1/stubs");
+import defSys = require("raml-definition-system")
 
 
 export function createTypeDeclaration(typeName : string) : parser10api.TypeDeclaration {
@@ -19,7 +21,11 @@ export function setTypeDeclarationSchema(type: parser10api.TypeDeclaration, sche
 }
 
 export function setTypeDeclarationExample(type: parser10api.TypeDeclaration, example : string) {
-    (<parser10impl.TypeDeclarationImpl> type).setExample(example);
+    var exampleSpecType = defSys.getUniverse("RAML10").type(defSys.universesInfo.Universe10.ExampleSpec.name);
+    var examplePropName = defSys.universesInfo.Universe10.TypeDeclaration.properties.example.name;
+    var stubNode = stubs.createStubNode(exampleSpecType,type.definition().property(examplePropName));
+    (<parser10impl.ExampleSpecImpl>stubNode.wrapperNode()).setValue(example);
+    type.highLevel().add(stubNode);
 }
 
 export function addChild(parent : highLevel.BasicNode, child : highLevel.BasicNode) : void {

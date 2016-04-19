@@ -65,10 +65,11 @@ import TypeInstanceProperty = pApi.TypeInstanceProperty;
 import TraitRef = pApi.TraitRef;
 import Trait = pApi.Trait;
 import MethodBase = pApi.MethodBase;
-import HasNormalParameters = pApi.HasNormalParameters;
+import Operation = pApi.Operation;
 import TypeDeclaration = pApi.TypeDeclaration;
 import ModelLocation = pApi.ModelLocation;
 import LocationKind = pApi.LocationKind;
+import ExampleSpec = pApi.ExampleSpec;
 import XMLFacetInfo = pApi.XMLFacetInfo;
 import ArrayTypeDeclaration = pApi.ArrayTypeDeclaration;
 import UnionTypeDeclaration = pApi.UnionTypeDeclaration;
@@ -83,8 +84,8 @@ import DateTimeOnlyTypeDeclaration = pApi.DateTimeOnlyTypeDeclaration;
 import DateTimeTypeDeclaration = pApi.DateTimeTypeDeclaration;
 import DateTypeDeclaration = pApi.DateTypeDeclaration;
 import FileTypeDeclaration = pApi.FileTypeDeclaration;
-import SecuritySchemePart = pApi.SecuritySchemePart;
 import Response = pApi.Response;
+import SecuritySchemePart = pApi.SecuritySchemePart;
 import SecuritySchemeRef = pApi.SecuritySchemeRef;
 import AbstractSecurityScheme = pApi.AbstractSecurityScheme;
 import SecuritySchemeSettings = pApi.SecuritySchemeSettings;
@@ -104,7 +105,6 @@ import Resource = pApi.Resource;
 import UsesDeclaration = pApi.UsesDeclaration;
 import FragmentDeclaration = pApi.FragmentDeclaration;
 import DocumentationItem = pApi.DocumentationItem;
-import ExampleSpec = pApi.ExampleSpec;
 import Library = pApi.Library;
 import Overlay = pApi.Overlay;
 import Extension = pApi.Extension;
@@ -460,8 +460,8 @@ trait(  ):Trait{
         }
 }
 
-export class HasNormalParametersImpl extends AnnotableImpl implements HasNormalParameters{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createHasNormalParameters(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+export class OperationImpl extends AnnotableImpl implements Operation{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOperation(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -487,32 +487,26 @@ queryString(  ):TypeDeclaration{
              return <TypeDeclaration>super.element('queryString');
          }
 
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
-         }
-
 
         /**
-         * @hidden
-         * Set description value
+         * Information about the expected responses to a request
          **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
+responses(  ):Response[]{
+             return <Response[]>super.elements('responses');
+         }
 
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "HasNormalParametersImpl";}
+wrapperClassName(  ):string{return "OperationImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "HasNormalParameters";}
+kind(  ):string{return "Operation";}
 }
 
 export class TypeDeclarationImpl extends AnnotableImpl implements TypeDeclaration{
@@ -635,21 +629,10 @@ setDefault( param:any ){
 
         /**
          * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         * @hidden
          **/
-example_original(  ):any{
-             return <any>super.attribute('example', this.toAny);
+example(  ):ExampleSpec[]{
+             return <ExampleSpec[]>super.elements('example');
          }
-
-
-        /**
-         * @hidden
-         * Set example value
-         **/
-setExample( param:any ){
-            this.highLevel().attrOrCreate("example").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -772,18 +755,6 @@ validateInstance( value:any ):string[]{
             return helper.validateInstance(this, value);
         }
 
-
-        /**
-         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
-         **/
-example(  ):string{
-            return helper.getTypeExample(this);
-        }
-
-structuredExample(  ):TypeInstance{
-            return helper.getTypeStructuredExample(this);
-        }
-
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
         }
@@ -825,6 +796,89 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LocationKind";}
+}
+
+export class ExampleSpecImpl extends AnnotableImpl implements ExampleSpec{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createExampleSpec(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * String representation of example
+         **/
+value(  ):any{
+             return <any>super.attribute('value', this.toAny);
+         }
+
+
+        /**
+         * @hidden
+         * Set value value
+         **/
+setValue( param:any ){
+            this.highLevel().attrOrCreate("value").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+         **/
+strict(  ):boolean{
+             return <boolean>super.attribute('strict', this.toBoolean);
+         }
+
+
+        /**
+         * @hidden
+         * Set strict value
+         **/
+setStrict( param:boolean ){
+            this.highLevel().attrOrCreate("strict").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Example identifier, if specified
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]{
+             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ExampleSpecImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "ExampleSpec";}
+
+structuredValue(  ):TypeInstance{
+            return helper.getExampleStructuredValue(this);
+        }
 }
 
 export class XMLFacetInfoImpl extends AnnotableImpl implements XMLFacetInfo{
@@ -1595,39 +1649,6 @@ wrapperClassName(  ):string{return "FileTypeDeclarationImpl";}
 kind(  ):string{return "FileTypeDeclaration";}
 }
 
-export class SecuritySchemePartImpl extends HasNormalParametersImpl implements SecuritySchemePart{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Information about the expected responses to a request
-         **/
-responses(  ):Response[]{
-             return <Response[]>super.elements('responses');
-         }
-
-
-        /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "SecuritySchemePart";}
-}
-
 export class ResponseImpl extends AnnotableImpl implements Response{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
@@ -1703,16 +1724,33 @@ isOkRange(  ):boolean{
         }
 }
 
-export class MethodBaseImpl extends HasNormalParametersImpl implements MethodBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethodBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+export class SecuritySchemePartImpl extends OperationImpl implements SecuritySchemePart{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
-         * Information about the expected responses to a request
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
          **/
-responses(  ):Response[]{
-             return <Response[]>super.elements('responses');
+annotations(  ):AnnotationRef[]{
+             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
          }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "SecuritySchemePart";}
+}
+
+export class MethodBaseImpl extends OperationImpl implements MethodBase{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethodBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1755,6 +1793,24 @@ is(  ):TraitRef[]{
 securedBy(  ):SecuritySchemeRef[]{
              return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
          }
+
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
 
 
         /**
@@ -2287,24 +2343,6 @@ setName( param:string ){
 
 
         /**
-         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
          * Instructions on how and when the trait should be used.
          **/
 usage(  ):string{
@@ -2318,6 +2356,24 @@ usage(  ):string{
          **/
 setUsage( param:string ){
             this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
             return this;
         }
 
@@ -2500,6 +2556,32 @@ setDisplayName( param:string ){
          **/
 resources(  ):Resource[]{
              return <Resource[]>super.elements('resources');
+         }
+
+
+        /**
+         * A longer, human-friendly description of the resource.
+         **/
+description(  ):string{
+             return <string>super.attribute('description', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set description value
+         **/
+setDescription( param:string ){
+            this.highLevel().attrOrCreate("description").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]{
+             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
          }
 
 
@@ -2694,7 +2776,7 @@ setKey( param:string ){
 
 
         /**
-         * Pass to the used library
+         * Content of the schema
          **/
 value(  ):string{
              return <string>super.attribute('value', this.toString);
@@ -2786,85 +2868,6 @@ wrapperClassName(  ):string{return "DocumentationItemImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DocumentationItem";}
-}
-
-export class ExampleSpecImpl extends AnnotableImpl implements ExampleSpec{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createExampleSpec(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * String representation of example
-         **/
-value(  ):any{
-             return <any>super.attribute('value', this.toAny);
-         }
-
-
-        /**
-         * @hidden
-         * Set value value
-         **/
-setValue( param:any ){
-            this.highLevel().attrOrCreate("value").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
-         **/
-strict(  ):boolean{
-             return <boolean>super.attribute('strict', this.toBoolean);
-         }
-
-
-        /**
-         * @hidden
-         * Set strict value
-         **/
-setStrict( param:boolean ){
-            this.highLevel().attrOrCreate("strict").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Example identifier, if specified
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ExampleSpecImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "ExampleSpec";}
 }
 
 export class LibraryBaseImpl extends AnnotableImpl implements LibraryBase{
@@ -3126,24 +3129,6 @@ resources(  ):Resource[]{
 documentation(  ):DocumentationItem[]{
              return <DocumentationItem[]>super.elements('documentation');
          }
-
-
-        /**
-         * A longer, human-friendly description of the API
-         **/
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -3446,9 +3431,9 @@ function createMethodBase(key:string){
 /**
  * @hidden
  **/
-function createHasNormalParameters(key:string){
+function createOperation(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("HasNormalParameters");
+    var nc=<def.NodeClass>universe.type("Operation");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -3459,6 +3444,16 @@ function createHasNormalParameters(key:string){
 function createTypeDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("TypeDeclaration");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createExampleSpec(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("ExampleSpec");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -3606,9 +3601,9 @@ function createFileTypeDeclaration(key:string){
 /**
  * @hidden
  **/
-function createSecuritySchemePart(key:string){
+function createResponse(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("SecuritySchemePart");
+    var nc=<def.NodeClass>universe.type("Response");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -3616,9 +3611,9 @@ function createSecuritySchemePart(key:string){
 /**
  * @hidden
  **/
-function createResponse(key:string){
+function createSecuritySchemePart(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("Response");
+    var nc=<def.NodeClass>universe.type("SecuritySchemePart");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -3789,16 +3784,6 @@ function createFragmentDeclaration(key:string){
 function createDocumentationItem(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("DocumentationItem");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createExampleSpec(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("ExampleSpec");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }

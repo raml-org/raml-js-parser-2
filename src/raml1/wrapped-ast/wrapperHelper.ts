@@ -630,38 +630,11 @@ function referencedObject(ref:RamlWrapper.Reference):core.BasicNode{
 
 /**
  * __$helperMethod__
- * __$meta__={"name":"example","override":true}
+ * __$meta__={"name":"structuredValue","primary":true}
  **/
-export function getTypeExample(td:RamlWrapper.TypeDeclaration):string{
-    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
-    return attrToExampleString(attr);
-}
-
-/**
- * __$helperMethod__
- * __$meta__={"name":"structuredExample","primary":true}
- **/
-export function getTypeStructuredExample(td:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
-    var attr = td.highLevel().attr(universeDef.Universe10.TypeDeclaration.properties.example.name);
+export function getExampleStructuredValue(td:RamlWrapper.ExampleSpec):RamlWrapper.TypeInstance{
+    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.value.name);
     return <RamlWrapper.TypeInstance><any>exampleAttrToTypeInstance(attr);
-}
-
-/**
- * __$helperMethod__
- * __$meta__={"name":"content","override":true}
- **/
-export function getExampleStringContent(td:any):string{
-    // var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.content.name);
-    // return attrToExampleString(attr);
-    return null;
-}
-
-/**
- * __$helperMethod__
- * __$meta__={"name":"structuredContent","primary":true}
- **/
-export function getExampleStructuredContent(td:any):RamlWrapper.TypeInstance{
-   return null;
 }
 
 function attrToExampleString(attr:hl.IAttribute):string{

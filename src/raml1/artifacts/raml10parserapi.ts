@@ -198,7 +198,7 @@ export interface TraitRef extends Reference{
 trait(  ):Trait
 }
 
-export interface HasNormalParameters extends Annotable{
+export interface Operation extends Annotable{
 
         /**
          * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
@@ -217,7 +217,11 @@ headers(  ):TypeDeclaration[]
          **/
 queryString(  ):TypeDeclaration
 
-description(  ):string
+
+        /**
+         * Information about the expected responses to a request
+         **/
+responses(  ):Response[]
 }
 
 export interface TypeDeclaration extends Annotable{
@@ -271,6 +275,12 @@ locationKind(  ):LocationKind
 
 
         /**
+         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         **/
+example(  ):ExampleSpec[]
+
+
+        /**
          * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
          **/
 repeat(  ):boolean
@@ -321,12 +331,6 @@ schemaContent(  ):string
 
 
         /**
-         * Returns object representation of example, if possible
-         **/
-structuredExample(  ):TypeInstance
-
-
-        /**
          * Runtime representation of type represented by this AST node
          **/
 runtimeType(  ):hl.ITypeDefinition
@@ -336,13 +340,43 @@ runtimeType(  ):hl.ITypeDefinition
          * validate an instance against type
          **/
 validateInstance( value:any ):string[]
-
-example(  ):string
 }
 
 export interface ModelLocation extends core.AbstractWrapperNode{}
 
 export interface LocationKind extends core.AbstractWrapperNode{}
+
+export interface ExampleSpec extends Annotable{
+
+        /**
+         * String representation of example
+         **/
+value(  ):any
+
+
+        /**
+         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
+         **/
+strict(  ):boolean
+
+
+        /**
+         * Example identifier, if specified
+         **/
+name(  ):string
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * Returns object representation of example, if possible
+         **/
+structuredValue(  ):TypeInstance
+}
 
 export interface XMLFacetInfo extends Annotable{
 
@@ -592,20 +626,6 @@ minLength(  ):number
 maxLength(  ):number
 }
 
-export interface SecuritySchemePart extends HasNormalParameters{
-
-        /**
-         * Information about the expected responses to a request
-         **/
-responses(  ):Response[]
-
-
-        /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
-         **/
-annotations(  ):AnnotationRef[]
-}
-
 export interface Response extends Annotable{
 
         /**
@@ -644,13 +664,15 @@ annotations(  ):AnnotationRef[]
 isOkRange(  ):boolean
 }
 
-export interface MethodBase extends HasNormalParameters{
+export interface SecuritySchemePart extends Operation{
 
         /**
-         * Information about the expected responses to a request
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
          **/
-responses(  ):Response[]
+annotations(  ):AnnotationRef[]
+}
 
+export interface MethodBase extends Operation{
 
         /**
          * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
@@ -674,6 +696,10 @@ is(  ):TraitRef[]
          * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
          **/
 securedBy(  ):SecuritySchemeRef[]
+
+description(  ):MarkdownString
+
+displayName(  ):string
 }
 
 export interface SecuritySchemeRef extends Reference{
@@ -879,15 +905,15 @@ name(  ):string
 
 
         /**
-         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string
-
-
-        /**
          * Instructions on how and when the trait should be used.
          **/
 usage(  ):string
+
+
+        /**
+         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
 
 
         /**
@@ -990,6 +1016,18 @@ resources(  ):Resource[]
 
 
         /**
+         * A longer, human-friendly description of the resource.
+         **/
+description(  ):string
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
          * Path relative to API root
          **/
 completeRelativeUri(  ):string
@@ -1079,7 +1117,7 @@ key(  ):string
 
 
         /**
-         * Pass to the used library
+         * Content of the schema
          **/
 value(  ):string
 }
@@ -1100,32 +1138,6 @@ title(  ):string
          * Content of documentation section
          **/
 content(  ):MarkdownString
-}
-
-export interface ExampleSpec extends Annotable{
-
-        /**
-         * String representation of example
-         **/
-value(  ):any
-
-
-        /**
-         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
-         **/
-strict(  ):boolean
-
-
-        /**
-         * Example identifier, if specified
-         **/
-name(  ):string
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
 }
 
 export interface LibraryBase extends Annotable{
@@ -1242,12 +1254,6 @@ resources(  ):Resource[]
          * Additional overall documentation for the API
          **/
 documentation(  ):DocumentationItem[]
-
-
-        /**
-         * A longer, human-friendly description of the API
-         **/
-description(  ):string
 
 
         /**

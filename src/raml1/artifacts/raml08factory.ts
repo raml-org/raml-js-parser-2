@@ -101,8 +101,6 @@ var classMap = {
 
     "GlobalSchema": (x,y)=>{return new RamlWrapper.GlobalSchemaImpl(x,y)},
 
-    "HasNormalParameters": (x,y)=>{return new RamlWrapper.HasNormalParametersImpl(x,y)},
-
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
 
     "JSONBody": (x,y)=>{return new RamlWrapper.JSONBodyImpl(x,y)},

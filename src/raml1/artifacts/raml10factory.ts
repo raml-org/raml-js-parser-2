@@ -117,8 +117,6 @@ var classMap = {
 
     "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
 
-    "HasNormalParameters": (x,y)=>{return new RamlWrapper.HasNormalParametersImpl(x,y)},
-
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
 
     "Library": (x,y)=>{return new RamlWrapper.LibraryImpl(x,y)},
@@ -150,6 +148,8 @@ var classMap = {
     "OAuth2SecuritySchemeSettings": (x,y)=>{return new RamlWrapper.OAuth2SecuritySchemeSettingsImpl(x,y)},
 
     "ObjectTypeDeclaration": (x,y)=>{return new RamlWrapper.ObjectTypeDeclarationImpl(x,y)},
+
+    "Operation": (x,y)=>{return new RamlWrapper.OperationImpl(x,y)},
 
     "Overlay": (x,y)=>{return new RamlWrapper.OverlayImpl(x,y)},
 
