@@ -205,12 +205,12 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
 
       it('set str value to missed attribute #attributes17', function () {
         var api = util.loadApi(util.data('attr/attr3.raml'), true);
-        api.attrOrCreate('description').setValue('hello');
+        api.attrOrCreate('baseUri').setValue('http://samplehost.com');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         //var text = (<jsyaml.ASTNode>api.attr('description').lowLevel()).text();
-        util.assertText(api.attr('description'), 'description: hello');
-        util.assertValue(api.attr('description'), 'hello');
+        util.assertText(api.attr('baseUri'), 'baseUri: http://samplehost.com');
+        util.assertValue(api.attr('baseUri'), 'http://samplehost.com');
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr3-test17.raml"));
       });
 
@@ -319,7 +319,7 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         //(<jsyaml.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
         var sval = stubs.genStructuredValue('aaa', 'bbb', [{key: 'key1', value: 'value1'}], api);
         //api.attrOrCreate('description');
-        api.attrOrCreate('description').setValue(sval);
+        api.attrOrCreate('baseUri').setValue(sval);
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr3-test24.raml"));
@@ -330,13 +330,13 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         //(<jsyaml.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
         var sval = stubs.genStructuredValue('aaa', 'bbb', [{key: 'key1', value: 'value1'}], api);
         //api.attrOrCreate('description');
-        api.attrOrCreate('description').setValue(sval);
+        api.attrOrCreate('baseUri').setValue(sval);
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr4-test25.raml"));
 
         //var text = (<jsyaml.ASTNode>api.attr("description").lowLevel()).text();
-        util.assertText(api.attr("description"), "description:{key1: value1}");
+        util.assertText(api.attr("baseUri"), "baseUri:{key1: value1}");
       });
 
       it('set str value to empty attribute2 #attributes26', function () {
@@ -344,13 +344,13 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         //(<jsyaml.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
         var sval = stubs.genStructuredValue('aaa', 'bbb', [{key: 'key1', value: 'value1'}], api);
         //api.attrOrCreate('description');
-        api.attrOrCreate('description').setValue(sval);
+        api.attrOrCreate('baseUri').setValue(sval);
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr41-test26.raml"));
 
         //var text = (<jsyaml.ASTNode>api.attr("description").lowLevel()).text();
-        util.assertText(api.attr("description"), "description:{key1: value1}");
+        util.assertText(api.attr("baseUri"), "baseUri:{key1: value1}");
       });
 
     });
@@ -410,16 +410,16 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       it('set structured value #sattr2', function () {
         var api = util.loadApi(util.data('attr/sattr2.raml'), true);
         //api.attrOrCreate('displayName').setValue('x123456789');
-        api.attrOrCreate('description').setValue('z123456789');
+        api.attrOrCreate('baseUri').setValue('http://samplehost.com');
         api.attrOrCreate('version').setValue('v1-change#3');
 
         assert.equal(api.attr('version').value(), 'v1-change#3');
         //assert.equal(api.attr('displayName').value(), 'x123456789');
-        assert.equal(api.attr('description').value(), 'z123456789');
+        assert.equal(api.attr('baseUri').value(), 'http://samplehost.com');
 
         assert.equal((<jsyaml.ASTNode>api.attr('version').lowLevel()).text(), 'version: v1-change#3');
         //assert.equal((<jsyaml.ASTNode>api.attr('displayName').lowLevel()).text(), 'displayName: x123456789');
-        assert.equal((<jsyaml.ASTNode>api.attr('description').lowLevel()).text(), 'description: z123456789');
+        assert.equal((<jsyaml.ASTNode>api.attr('baseUri').lowLevel()).text(), 'baseUri: http://samplehost.com');
 
         //console.log("Contents:\n" + api.lowLevel().unit().contents());
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/sattr2-test.raml"));
@@ -429,16 +429,16 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         var api = util.loadApi(util.data('attr/sattr3.raml'), true);
         //console.log("Contents:\n" + api.lowLevel().unit().contents());
         //api.attrOrCreate('displayName').setValue('x123456789');
-        api.attrOrCreate('description').setValue('z123456789');
+        api.attrOrCreate('baseUri').setValue('http://samplehost.com');
         api.attrOrCreate('version').setValue('v1-change#3');
 
         assert.equal(api.attr('version').value(), 'v1-change#3');
         //assert.equal(api.attr('displayName').value(), 'x123456789');
-        assert.equal(api.attr('description').value(), 'z123456789');
+        assert.equal(api.attr('baseUri').value(), 'http://samplehost.com');
 
         assert.equal((<jsyaml.ASTNode>api.attr('version').lowLevel()).text(), 'version: v1-change#3');
         //assert.equal((<jsyaml.ASTNode>api.attr('displayName').lowLevel()).text(), 'displayName: x123456789');
-        assert.equal((<jsyaml.ASTNode>api.attr('description').lowLevel()).text(), 'description: z123456789');
+        assert.equal((<jsyaml.ASTNode>api.attr('baseUri').lowLevel()).text(), 'baseUri: http://samplehost.com');
 
         //console.log("Contents:\n" + api.lowLevel().unit().contents());
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/sattr3-test.raml"));

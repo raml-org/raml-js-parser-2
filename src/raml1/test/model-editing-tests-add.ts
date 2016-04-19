@@ -29,17 +29,17 @@ describe('Low level model: insert', function () {
       util.compareToFile(api.lowLevel().unit().contents(), util.data("add/api-add-version-attribute.raml"));
     });
 
-    it('should create new description attribute #desc1', function () {
-      var api = util.loadApi(util.data('api.raml'), true);
-      api.add(stubs.createAttr(util.apiType.property("description"),"new attribute"));
+    it('should create new baseUri attribute #desc1', function () {
+      var api = util.loadApi(util.data('test-api.raml'), true);
+      api.add(stubs.createAttr(util.apiType.property("baseUri"),"http://samplehost.com"));
       //console.log(api.lowLevel().unit().contents());
       util.compareToFile(api.lowLevel().unit().contents(), util.data("add/api-add-description-attribute.raml"));
     });
 
-    it('should insert description in another context #desc2', function () {
+    it('should insert baseUri in another context #desc2', function () {
       var api = util.loadApi(util.data('test-api.raml'), true);
       var apiType = <def.NodeClass>util.universe.type("Api");
-      api.add(stubs.createAttr(apiType.property("description"),"v2"));
+      api.add(stubs.createAttr(apiType.property("baseUri"),"http://samplehost.com"));
       //console.log(api.lowLevel().unit().contents());
       util.compareToFile(api.lowLevel().unit().contents(), util.data("add/api-add-description-attribute2.raml"));
     });
