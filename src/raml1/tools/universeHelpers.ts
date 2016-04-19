@@ -162,8 +162,6 @@ export function isTypeProperty(p:hl.IProperty) : boolean {
     p.nameId() === universe.Universe08.ResourceType.properties.type.name ||
     p.nameId() === universe.Universe08.Resource.properties.type.name ||
     p.nameId() === universe.Universe08.Parameter.properties.type.name ||
-    p.nameId() === universe.Universe10.MimeTypeModel.properties.type.name ||
-    p.nameId() === universe.Universe08.MimeTypeModel.properties.type.name ||
     p.nameId() === universe.Universe10.ResourceBase.properties.type.name ||
     p.nameId() === universe.Universe10.TypeDeclaration.properties.type.name;
 }
@@ -420,10 +418,6 @@ export function isMethodBaseType(type: hl.INodeDefinition | hl.ITypeDefinition) 
 
 export function isRamlExpressionType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return false;
-}
-
-export function isRamlSelectorType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return type.key() == universe.Universe10.RAMLSelector;
 }
 
 export function isLibraryType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
