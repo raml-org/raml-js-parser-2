@@ -1596,7 +1596,22 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,message,node))
             }
         });
+        var t:proxy.ValueTransformer;
         var isInlinedTemplate = node.definition().getAdapter(services.RAMLService).isInlinedTemplates();
+        if(isInlinedTemplate) {
+            var paramsMap:{[key:string]:string} = {};
+            for (var ch of node.lowLevel().children()) {
+                paramsMap[ch.key()] = ch.value(true);
+            }
+            var templateKind = universeHelpers.isTraitsProperty(node.property()) ? "trait" : "resource type";
+            var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(), paramsMap);
+            var parent = node.parent();
+            var def = parent.definition();
+            while(parent!=null && !universeHelpers.isResourceType(def)&&!universeHelpers.isMethodType(def)){
+                parent = parent.parent();
+            }
+            t = new expander.DefaultTransformer(<any>parent, vt);
+        }
         node.definition().requiredProperties().forEach(x=>{
             if (isInlinedTemplate){
                 var paths:string[][] = x.getAdapter(services.RAMLPropertyService).meta("templatePaths");
@@ -1604,7 +1619,8 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     var parent = node.parent();
                     var hasSufficientChild = false;
                     for(var path of paths){
-                        if(this.checkPathSufficiency(parent,path,node.property())){
+                        path = path.map(x=>t.transform(x).value);
+                        if(this.checkPathSufficiency(parent.lowLevel(),path,node.property())){
                             hasSufficientChild = true;
                             break;
                         }
@@ -1653,64 +1669,50 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             }
         });
     }
-    checkPathSufficiency(node:hl.IHighLevelNode,
+    checkPathSufficiency(node:ll.ILowLevelASTNode,
                          path:string[],
                          prop:hl.IProperty):boolean{
 
         if(path.length==0){
             return false;
         }
+        if(node==null){
+            return false;
+        }
         var segment = path[0];
+        if(segment==null){
+            return false;
+        }
         if(segment=="/"){
             return this.checkPathSufficiency(node,path.slice(1),prop);
         }
         if(segment.length==0){
             return true;
         }
+        var children = node.children().filter(x=>x.key()==segment);
+        if(children.length==0){
+            path.indexOf("/")<0;
+        }
+        var lowLevel:ll.ILowLevelASTNode = children[0];
+        if(lowLevel instanceof proxy.LowLevelCompositeNode){
+            lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
+        }
+        if(lowLevel==null){
+            return path.indexOf("/")<0;
+        }
+        if(lowLevel.key()=="type"){
+                return true;
+        }
+
         if(path.length==1){
-            var lowLevel:ll.ILowLevelASTNode;
-            var hlName:string;
-            var attr = node.attr(segment);
-            if(attr!=null) {
-                lowLevel = attr.lowLevel();
-                hlName = attr.name();
-            }
-            else{
-                var element = node.element(segment);
-                if(element!=null){
-                    lowLevel = element.lowLevel();
-                    hlName = element.name();
-                }
-            }
-            if(lowLevel!=null){
-                if(lowLevel instanceof proxy.LowLevelCompositeNode){
-                    lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
-                }
-                if(hlName==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
-                    return true;
-                }
-                return lowLevel==null||lowLevel.value() == null;
-            }
-            else{
-                return path.indexOf("/")<0;
-            }
+            // if(hlName==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
+            //     return true;
+            // }
+            return lowLevel==null||lowLevel.value() == null;
         }
         else{
-            var elements = node.elementsOfKind(segment);
-            var lowLevel = node.lowLevel();
-            if(lowLevel instanceof proxy.LowLevelCompositeNode){
-                elements = elements.filter(x=>(<proxy.LowLevelCompositeNode>x.lowLevel()).primaryNode()!=null);
-            }
-            if(elements.length==0){
-                return path.indexOf("/")<0;
-            }
             var path1 = path.slice(1);
-            for(var e of elements){
-                if(this.checkPathSufficiency(e,path1,prop)){
-                    return true;
-                }
-            }
-            return false;
+            return this.checkPathSufficiency(lowLevel,path1,prop);
         }
 
     }
