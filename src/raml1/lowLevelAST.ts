@@ -129,6 +129,7 @@ export interface ILowLevelASTNode{
     addChild(n:ILowLevelASTNode, pos?: number)
 
     execute(cmd:CompositeCommand)
+    isAnnotatedScalar():boolean
 
     dump():string
     dumpToObject(full?:boolean):any

@@ -469,7 +469,7 @@ describe('Type', function(){
     });
 
     it('No properties allowed inside union types declaration', function(){
-        testErrors(util.data('parser/type/t13.raml'), ["unknown facet:properties"]);
+        testErrors(util.data('parser/type/t13.raml'));
     });
 
     // #1847

@@ -390,6 +390,15 @@ describe('Parser regression tests', function () {
     it ("annotations25" ,function(){
         testErrors(util.data("parser/annotations/a25.raml"));
     })
+    it ("annotations26 (annotated scalar)" ,function(){
+        testErrors(util.data("parser/annotations/a26.raml"));
+    })
+    it ("annotations27 (annotated scalar (validation))" ,function(){
+        testErrors(util.data("parser/annotations/a27.raml"),["number is expected"]);
+    })
+    it ("annotations28 (annotated scalar (unknown))" ,function(){
+        testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation (z2)"]);
+    })
     it ("properties shortcut" ,function(){
         testErrors(util.data("parser/typexpressions/p.raml"));
     })
@@ -489,6 +498,12 @@ describe('Parser regression tests', function () {
     //})
     it ("custom api" ,function(){
         testErrors(util.data("parser/custom/api.raml"), ["Missing required property title"]);//Ok for now lets improve later
+    })
+    it ("discriminator can only be used at top level" ,function(){
+        testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later
+    })
+    it ("schemas and types are mutually exclusive" ,function(){
+        testErrorsByNumber(util.data("parser/custom/schemasAndTypes.raml"), 1);//Ok for now lets improve later
     })
     it ("halt" ,function(){
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
@@ -674,15 +689,15 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/external/e2.raml"));
     })
 
-    it ("external 3" ,function(){
-        testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
-    })
-    it ("external 4" ,function(){
-        testErrors(util.data("parser/external/e4.raml"),["Example does not conform to schema:Content is not valid according to schema:Missing required property: \\w+ \\w+"]);
-    })
-    it ("external 5" ,function(){
-        testErrors(util.data("parser/external/e5.raml"));
-    })
+    // it ("external 3" ,function(){
+    //     testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
+    // })
+    // it ("external 4" ,function(){
+    //     testErrors(util.data("parser/external/e4.raml"),["Example does not conform to schema:Content is not valid according to schema:Missing required property: \\w+ \\w+"]);
+    // })
+    // it ("external 5" ,function(){
+    //     testErrors(util.data("parser/external/e5.raml"));
+    // })
 });
 
 describe('JSON schemes tests', function () {

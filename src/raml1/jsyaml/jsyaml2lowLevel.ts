@@ -2410,6 +2410,28 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         this._node=n;
     }
 
+    isAnnotatedScalar(){
+        if (this.kind()==yaml.Kind.MAPPING&&this.unit()) {
+
+            if (this.valueKind() == yaml.Kind.MAP&&this._node.value.mappings) {
+                var isScalar = (<yaml.YamlMap>this._node).value.mappings.length>0;
+                (<yaml.YamlMap>this._node).value.mappings.forEach(x=> {
+                    if (x.key.value === "value") {
+                        return;
+                    }
+                    if(x.key.value) {
+                        if (x.key.value.charAt(0) == '(' && x.key.value.charAt(x.key.value.length - 1) == ')') {
+                            return;
+                        }
+                    }
+                    isScalar = false;
+                });
+                return isScalar;
+            }
+        }
+        return false;
+    }
+
     value(toString?:boolean):any {
         if (!this._node){
             return "";
@@ -2430,7 +2452,17 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (map.value==null){
                 return null;
             }
+            if (this.isAnnotatedScalar()){
+                var child= new ASTNode(map.value,this._unit,this,null,null);
+                var ch=child.children();
+                for (var i=0;i<ch.length;i++){
+                    if (ch[i].key()==="value"){
+                        return ch[i].value();
+                    }
+                }
+            }
             return new ASTNode(map.value,this._unit,this,null,null).value(toString);
+
         }
         if (this._node.kind==yaml.Kind.INCLUDE_REF){
             //here we should resolve include
@@ -2466,7 +2498,6 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 //handle map with one member case differently
                 return new ASTNode(amap.mappings[0],this._unit,this,null,null);
             }
-
         }
         if (this._node.kind==yaml.Kind.SEQ){
             var aseq:yaml.YAMLSequence=<yaml.YAMLSequence>this._node;

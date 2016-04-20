@@ -329,6 +329,10 @@ export interface IAttribute extends IParseResult {
     owningWrapper():{node:BasicNode; property:string};
 
     findReferencedValue():IHighLevelNode
+    
+    isAnnotatedScalar():boolean;
+
+    annotations():IParseResult[];
 }
 
 export interface IHighLevelNode extends IParseResult {

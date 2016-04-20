@@ -505,6 +505,23 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             new TypeDeclarationValidator().validate(highLevelNode,v);
             return;
         }
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)){
+            var hasSchemas:boolean=false;
+            var hasTypes:boolean=false;
+            var vv:ll.ILowLevelASTNode;
+            highLevelNode.lowLevel().children().forEach(x=>{
+                if (x.key()=="schemas"){
+                    hasSchemas=true;
+                    vv=x;
+                }
+                if (x.key()=="types"){
+                    hasTypes=true;
+                }
+            })
+            if (hasSchemas&&hasTypes){
+                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+            }
+        }
 
         var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
 
@@ -658,6 +675,7 @@ class CompositePropertyValidator implements PropertyValidator{
         var vl=node.value();
         if (!node.property().range().hasStructure()){
             if (vl instanceof hlimpl.StructuredValue&&!(<def.Property>node.property()).isSelfNode()){
+
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
                 if (isTypeOrSchema(node.property())){
                     if (node.property().domain().key()==universes.Universe08.BodyLike){
@@ -679,7 +697,20 @@ class CompositePropertyValidator implements PropertyValidator{
                     }
                 }
             }
+            if (node.isAnnotatedScalar()){
+
+                var fvl=new FixedFacetsValidator()
+                node.annotations().forEach(x=>{
+                   if (x.isElement()){
+                       fvl.validate(x.asElement(),v);
+                   }
+                   else{
+                       v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "unknown annotation "+x.name(), x));
+                   }
+                });
+            }
         }
+
 
 
         if (typeof vl=='string'&&vl.indexOf("<<")!=-1){
