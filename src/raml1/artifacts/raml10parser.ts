@@ -628,10 +628,18 @@ setDefault( param:any ){
 
 
         /**
-         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         * An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
          **/
 example(  ):ExampleSpec[]{
              return <ExampleSpec[]>super.elements('example');
+         }
+
+
+        /**
+         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.
+         **/
+examples(  ):ExampleSpec[]{
+             return <ExampleSpec[]>super.elements('examples');
          }
 
 
