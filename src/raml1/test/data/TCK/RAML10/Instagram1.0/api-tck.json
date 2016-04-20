@@ -560,14 +560,12 @@
                   "application/json": {
                     "displayName": "application/json",
                     "name": "application/json",
-                    "schema": "types.OkStatus | string",
-                    "type": [
-                      "object"
+                    "schema": [
+                      "types.OkStatus | string"
                     ],
                     "example": "{\n    \"meta\": {\n        \"code\": 200\n    }, \n    \"data\": null\n}",
                     "repeat": false,
                     "required": true,
-                    "schemaContent": "types.OkStatus | string",
                     "structuredExample": {
                       "meta": {
                         "code": 200
@@ -7574,14 +7572,12 @@
                               "application/json": {
                                 "displayName": "application/json",
                                 "name": "application/json",
-                                "schema": "types.OkStatus | string",
-                                "type": [
-                                  "object"
+                                "schema": [
+                                  "types.OkStatus | string"
                                 ],
                                 "example": "{\n    \"meta\": {\n        \"code\": 200\n    }, \n    \"data\": null\n}",
                                 "repeat": false,
                                 "required": true,
-                                "schemaContent": "types.OkStatus | string",
                                 "structuredExample": {
                                   "meta": {
                                     "code": 200
@@ -7890,14 +7886,12 @@
                           "application/json": {
                             "displayName": "application/json",
                             "name": "application/json",
-                            "schema": "types.OkStatus | string",
-                            "type": [
-                              "object"
+                            "schema": [
+                              "types.OkStatus | string"
                             ],
                             "example": "{\n    \"meta\": {\n        \"code\": 200\n    }, \n    \"data\": null\n}",
                             "repeat": false,
                             "required": true,
-                            "schemaContent": "types.OkStatus | string",
                             "structuredExample": {
                               "meta": {
                                 "code": 200

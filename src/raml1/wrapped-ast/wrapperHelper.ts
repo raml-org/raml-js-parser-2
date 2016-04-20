@@ -322,11 +322,13 @@ var schemaContentChars:string[] = [ '{', '<' ];
 
 export function schema(body:RamlWrapper.TypeDeclaration, api:RamlWrapper.Api):Opt<SchemaDef>{
 
-    var schemaNode = body.schema();
-    if(!schemaNode){
+    var schemaNames = body.schema();
+    if(!schemaNames || schemaNames.length == 0){
         return Opt.empty<SchemaDef>();
     }
-    var schemaString = schemaNode;
+
+    var schemaString = schemaNames[0];
+
     var isContent:boolean = false;
     schemaContentChars.forEach(x=>{try{ isContent = isContent||schemaString.indexOf(x)>=0}catch(e){}});
     var schDef:SchemaDef;
@@ -718,43 +720,43 @@ export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.Type
     return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(node);
 }
 
-/**
- * __$helperMethod__
- * __$meta__={"primary":true}
- **/
-export function schemaContent(typeDeclaration : RamlWrapper.TypeDeclaration) : string {
-    var schemaString = typeDeclaration.schema();
-    if(!schemaString){
-        return null;
-    }
-
-    var schemaAttribute =
-        typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
-    if (!schemaAttribute) {
-        return schemaString;
-    }
-
-    var declaration = search.findDeclarationByNode(schemaAttribute, search.LocationKind.VALUE_COMPLETION);
-    if (!declaration) return schemaString;
-
-    if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {
-        return schemaString;
-    }
-
-    //we found the schema declaration and should get its contents
-
-    if ((<hl.IHighLevelNode>declaration).definition().key() != universes.Universe10.GlobalSchema) {
-        return schemaString;
-    }
-
-    var valueAttribute =
-        (<hl.IHighLevelNode>declaration).attr(universes.Universe10.GlobalSchema.properties.value.name);
-    if (valueAttribute == null) {
-        return null;
-    }
-
-    return valueAttribute.value();
-}
+// /**
+//  * __$helperMethod__
+//  * __$meta__={"primary":true}
+//  **/
+// export function schemaContent(typeDeclaration : RamlWrapper.TypeDeclaration) : string {
+//     var schemaString = typeDeclaration.schema();
+//     if(!schemaString){
+//         return null;
+//     }
+//
+//     var schemaAttribute =
+//         typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
+//     if (!schemaAttribute) {
+//         return schemaString;
+//     }
+//
+//     var declaration = search.findDeclarationByNode(schemaAttribute, search.LocationKind.VALUE_COMPLETION);
+//     if (!declaration) return schemaString;
+//
+//     if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {
+//         return schemaString;
+//     }
+//
+//     //we found the schema declaration and should get its contents
+//
+//     if ((<hl.IHighLevelNode>declaration).definition().key() != universes.Universe10.GlobalSchema) {
+//         return schemaString;
+//     }
+//
+//     var valueAttribute =
+//         (<hl.IHighLevelNode>declaration).attr(universes.Universe10.GlobalSchema.properties.value.name);
+//     if (valueAttribute == null) {
+//         return null;
+//     }
+//
+//     return valueAttribute.value();
+// }
 
 function extractParams(
     params:RamlWrapper.TypeDeclaration[],

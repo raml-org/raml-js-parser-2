@@ -328,8 +328,8 @@ facets(  ):TypeDeclaration[]{
         /**
          * Alias for the equivalent "type" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "type" property, as the "schema" alias for that property name may be removed in a future RAML version. The "type" property allows for XML and JSON schemas.
          **/
-schema(  ):string{
-             return <string>super.attribute('schema', this.toString);
+schema(  ):string[]{
+             return <string[]>super.attributes('schema', this.toString);
          }
 
 
@@ -534,10 +534,6 @@ structuredExample(  ):TypeInstance{
 
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
-        }
-
-schemaContent(  ):string{
-            return helper.schemaContent(this);
         }
 }
 
