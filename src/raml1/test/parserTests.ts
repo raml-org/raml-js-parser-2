@@ -445,6 +445,9 @@ describe('Parser regression tests', function () {
     it ("inheritance rules2" ,function(){
         testErrors(util.data("parser/typexpressions/ri2.raml"));//Ok for now lets improve later
     })
+    it ("multiple default media types" ,function(){
+        testErrors(util.data("parser/media/m4.raml"));
+    })
 
     //TODO correct test after bug fix
     it ("inheritance rules3" ,function(){

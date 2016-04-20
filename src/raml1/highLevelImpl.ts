@@ -901,6 +901,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             node.setHighLevelNode(this);
         }
     }
+    
+    _computedKey:string;
 
 
     patchProp(pr:hl.IProperty){

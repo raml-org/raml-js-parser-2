@@ -191,9 +191,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                     if(isDefaultMediaType) {
                         var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
-                        if (!isInsideTraitOrResourceType) {
-                            var vl = aNode.computedValue(universes.Universe10.Api.properties.mediaType.name);
-                            (<hlimpl.ASTPropImpl>keyAttr).overrideValue(vl);
+                        if (!isInsideTraitOrResourceType&&aNode._computedKey) {
+
+                            (<hlimpl.ASTPropImpl>keyAttr).overrideValue(aNode._computedKey);
                         }
                     }
                 }
@@ -343,12 +343,15 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var ch = x.children();
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
-
+                        var values:any[]=[]
                         ch.forEach(y=> {
                             var pi = new hlimpl.ASTPropImpl(y, aNode, range, p)
                             res.push(pi)
+                            values.push(y.value());
                         });
-
+                        if (p.isInherited()) {
+                            aNode.setComputed(p.nameId(), values);
+                        }
                     }
                     else {
 
@@ -472,70 +475,74 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                     if (nc.getAdapter(services.RAMLService).getCanInherit().length > 0) {
                                         nc.getAdapter(services.RAMLService).getCanInherit().forEach(v=> {
-                                            var vl = aNode.computedValue(v);
-                                            if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
-                                                if (!_.find(x.children(), x=>x.key() == vl)) {
-                                                    //we can create inherited node;
-                                                    var pc=aNode.parent().definition().key();
-                                                    var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
-                                                    if (pc == universes.Universe10.MethodBase ||pc == universes.Universe08.MethodBase) {
-                                                        node.setComputed("form", "true")//FIXME
-                                                    }
+                                            var originalValue = aNode.computedValue(v);
+                                            var actualValue:any[]=Array.isArray(originalValue)?originalValue:[originalValue];
+                                            for (var pos=0;pos<actualValue.length;pos++) {
+                                                var vl=actualValue[pos];
+                                                if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
+                                                    if (!_.find(x.children(), x=>x.key() == vl)) {
+                                                        //we can create inherited node;
+                                                        var pc = aNode.parent().definition().key();
+                                                        var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
+                                                        (<any>node)._computedKey=vl;
+                                                        if (pc == universes.Universe10.MethodBase || pc == universes.Universe08.MethodBase) {
+                                                            node.setComputed("form", "true")//FIXME
+                                                        }
 
-                                                    var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
-                                                    var t = descriminate(p, aNode, node);
-                                                    if (t) {
-                                                        if(!isInsideTraitOrResourceType) {
-                                                            (<defs.NodeClass>t).setName(vl);
+                                                        var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
+                                                        var t = descriminate(p, aNode, node);
+                                                        if (t) {
+                                                            if (!isInsideTraitOrResourceType) {
+                                                                (<defs.NodeClass>t).setName(vl);
+                                                            }
+                                                            node.patchType(<any>t)
                                                         }
-                                                        node.patchType(<any>t)
+                                                        var ch = node.children();
+                                                        //this are false unknowns actual unknowns will be reported by parent node
+                                                        node._children = ch.filter(x=>!x.isUnknown())
+                                                        node._allowQuestion = allowsQuestion;
+                                                        inherited.push(node);
+                                                        node.children().forEach(x=> {
+                                                            if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
+                                                                var atr = <ASTPropImpl>x;
+                                                                atr._computed = true;
+                                                                return;
+                                                            }
+                                                            if (x.isElement()) {
+                                                                if (!x.property().getAdapter(services.RAMLPropertyService).isMerged()) {
+                                                                    filter[x.property().nameId()] = true;
+                                                                }
+                                                            }
+                                                            if ((<defs.Property>x.property()).isAnnotation()) {
+                                                                var atr = <ASTPropImpl>x;
+                                                                var vl = atr.value();
+                                                                var strVal = "";
+                                                                if (vl instanceof hlimpl.StructuredValue) {
+                                                                    strVal = (<hlimpl.StructuredValue>vl).valueName();
+                                                                }
+                                                                else {
+                                                                    strVal = "" + vl;
+                                                                }
+                                                                filter["(" + strVal + ")"] = true;
+                                                            }
+                                                            else {
+                                                                filter[x.name()] = true;
+                                                            }
+                                                        })
+                                                        var ap = node.definition().allProperties();
+                                                        ap.forEach(p=> {
+                                                            if (p.getAdapter(services.RAMLPropertyService).isKey()) {
+                                                                return;
+                                                            }
+                                                            if (p.getAdapter(services.RAMLPropertyService).isSystem()) {
+                                                                return;
+                                                            }
+                                                            if (node.lowLevel().children().some(x=>x.key() == p.nameId())) {
+                                                                filter[p.nameId()] = true;
+                                                            }
+                                                        });
+                                                        node._computed = true;
                                                     }
-                                                    var ch = node.children();
-                                                    //this are false unknowns actual unknowns will be reported by parent node
-                                                    node._children = ch.filter(x=>!x.isUnknown())
-
-                                                    node._allowQuestion = allowsQuestion;
-                                                    inherited.push(node);
-                                                    node.children().forEach(x=> {
-                                                        if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
-                                                            var atr = <ASTPropImpl>x;
-                                                            atr._computed = true;
-                                                            return;
-                                                        }
-                                                        if (x.isElement()) {
-                                                            if (!x.property().getAdapter(services.RAMLPropertyService).isMerged()) {
-                                                                filter[x.property().nameId()] = true;
-                                                            }
-                                                        }
-                                                        if ((<defs.Property>x.property()).isAnnotation()){
-                                                            var atr = <ASTPropImpl>x;
-                                                            var vl=atr.value();
-                                                            var strVal="";
-                                                            if (vl instanceof hlimpl.StructuredValue){
-                                                                strVal=(<hlimpl.StructuredValue>vl).valueName();
-                                                            }
-                                                            else{
-                                                                strVal=""+vl;
-                                                            }
-                                                            filter["("+strVal+")"] = true;
-                                                        }
-                                                        else {
-                                                            filter[x.name()] = true;
-                                                        }
-                                                    })
-                                                    var ap=node.definition().allProperties();
-                                                    ap.forEach(p=> {
-                                                        if (p.getAdapter(services.RAMLPropertyService).isKey()) {
-                                                            return;
-                                                        }
-                                                        if (p.getAdapter(services.RAMLPropertyService).isSystem()) {
-                                                            return;
-                                                        }
-                                                        if (node.lowLevel().children().some(x=>x.key() == p.nameId())) {
-                                                            filter[p.nameId()] = true;
-                                                        }
-                                                    });
-                                                    node._computed = true;
                                                 }
                                             }
                                         })
