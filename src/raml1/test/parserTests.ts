@@ -493,6 +493,9 @@ describe('Parser regression tests', function () {
     it ("discriminator can only be used at top level" ,function(){
         testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later
     })
+    it ("schemas and types are mutually exclusive" ,function(){
+        testErrorsByNumber(util.data("parser/custom/schemasAndTypes.raml"), 1);//Ok for now lets improve later
+    })
     it ("halt" ,function(){
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
     })

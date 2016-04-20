@@ -504,6 +504,23 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             new TypeDeclarationValidator().validate(highLevelNode,v);
             return;
         }
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)){
+            var hasSchemas:boolean=false;
+            var hasTypes:boolean=false;
+            var vv:ll.ILowLevelASTNode;
+            highLevelNode.lowLevel().children().forEach(x=>{
+                if (x.key()=="schemas"){
+                    hasSchemas=true;
+                    vv=x;
+                }
+                if (x.key()=="types"){
+                    hasTypes=true;
+                }
+            })
+            if (hasSchemas&&hasTypes){
+                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+            }
+        }
 
         var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
 
