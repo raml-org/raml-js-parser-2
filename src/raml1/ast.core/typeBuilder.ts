@@ -142,17 +142,10 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         var prop = new defs.UserDefinedProp(x);
         //prop._node=node;
         prop.withDomain(result);
-        var paths:string[][]=[];
-        var optional = true;
-        usages[x].forEach(x=>{
-            optional = optional && x.optional;
-            paths.push(x.path);
-        });
-        if(optional) {
-            paths = _.unique(paths);
-            prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
-        }
-        
+        var paths:string[][] = usages[x].map(x=>x.path);
+        paths = _.unique(paths);
+        prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
+
         var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != universes.Universe08.StringType.name);
         prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(universes.Universe08.StringType.name));
         prop.withRequired(true)

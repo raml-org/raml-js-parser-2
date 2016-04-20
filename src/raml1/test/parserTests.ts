@@ -938,6 +938,9 @@ describe('Optional template parameters tests', function () {
     it("Should not report error on unspecified parameter, which is not used after expansion #6.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api08.raml"));
     });
+    it("Should not report error on unspecified parameter, which is not used after expansion #7.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api09.raml"));
+    });
 });
 
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {

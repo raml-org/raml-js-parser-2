@@ -1604,7 +1604,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     var parent = node.parent();
                     var hasSufficientChild = false;
                     for(var path of paths){
-                        if(this.checkPath(parent,path)){
+                        if(this.checkPathSufficiency(parent,path,node.property())){
                             hasSufficientChild = true;
                             break;
                         }
@@ -1653,32 +1653,34 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             }
         });
     }
-    checkPath(node:hl.IHighLevelNode,
-              path:string[],
-              insideOptional:boolean=false):boolean{
+    checkPathSufficiency(node:hl.IHighLevelNode,
+                         path:string[],
+                         prop:hl.IProperty):boolean{
 
         if(path.length==0){
-            return insideOptional;
+            return false;
         }
         var segment = path[0];
         if(segment=="/"){
-            return this.checkPath(node,path.slice(1));
+            return this.checkPathSufficiency(node,path.slice(1),prop);
         }
         if(segment.length==0){
             return true;
         }
         if(path.length==1){
             var attr = node.attr(segment);
-            var lowLevel = node.lowLevel();
             if(attr!=null){
+                var lowLevel = attr.lowLevel();
                 if(lowLevel instanceof proxy.LowLevelCompositeNode){
-                    var prim = (<proxy.LowLevelCompositeNode>attr.lowLevel()).primaryNode();
-                    return prim==null||prim.value() == null;
+                    lowLevel = (<proxy.LowLevelCompositeNode>attr.lowLevel()).primaryNode();
                 }
-                return attr.value() == null;
+                if(attr.name()==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
+                    return true;
+                }
+                return lowLevel==null||lowLevel.value() == null;
             }
             else{
-                return insideOptional;
+                return path.indexOf("/")<0;
             }
         }
         else{
@@ -1688,11 +1690,11 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 elements = elements.filter(x=>(<proxy.LowLevelCompositeNode>x.lowLevel()).primaryNode()!=null);
             }
             if(elements.length==0){
-                return insideOptional;
+                return path.indexOf("/")<0;
             }
             var path1 = path.slice(1);
             for(var e of elements){
-                if(this.checkPath(e,path1,insideOptional)){
+                if(this.checkPathSufficiency(e,path1,prop)){
                     return true;
                 }
             }
