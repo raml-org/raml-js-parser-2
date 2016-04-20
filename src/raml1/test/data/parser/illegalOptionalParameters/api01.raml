@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+title: Test API
+baseUri: http://example.api.com/{version}
+version: v1
+resourceTypes:
+  rt:
+    get:
+      queryParameters:
+        param1?:
+          type: boolean
+      responses:
+        200?:
+          body:
+            application/json:
