@@ -28,7 +28,7 @@ type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
 import contentprovider = require('../util/contentprovider')
-
+type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     var dr=search.declRoot(context);
     var nm=x.name();
@@ -409,6 +409,37 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         }
         return false;
     }
+    isAnnotatedScalar(){
+        if (!this.property().isAnnotation()&&!this.property().isKey()) {
+            return this.lowLevel().isAnnotatedScalar();
+        }
+        return false;
+    }
+
+
+    annotations():hl.IParseResult[]{
+        var ch=this.lowLevel().children();
+        var annotations:hl.IParseResult[]=[];
+        var u=this.definition().universe().type(universes.Universe10.LibraryBase.name);
+        if (!u){
+            return annotations;
+        }
+        var pr=u.property("annotations");
+        for (var i=0;i<ch.length;i++){
+            var child=ch[i];
+            if (child.key()!=="value"){
+                var vl=new StructuredValue(child,this.parent(),pr);
+                var highLevel=vl.toHighLevel();
+                if (!highLevel){
+                    annotations.push(new BasicASTNode(child,this.parent()));
+                }
+                else{
+                    annotations.push(highLevel);
+                }
+            }
+        }
+        return annotations;
+    }
 
     constructor(node:ll.ILowLevelASTNode, parent:hl.IHighLevelNode, private _def:hl.IValueTypeDefinition, private _prop:hl.IProperty, private fromKey:boolean = false) {
         super(node, parent)
@@ -509,6 +540,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         }
 
         var isString = this.property()!=null && universeHelpers.isStringTypeType(this.property().range());
+
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
             if (!actualValue||actualValue instanceof jsyaml.ASTNode){
@@ -519,7 +551,20 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             }
         }
         if (actualValue instanceof jsyaml.ASTNode||actualValue instanceof proxy.LowLevelProxyNode) {
-            return new StructuredValue(<ll.ILowLevelASTNode>actualValue,this.parent(),this._prop);
+            var isAnnotatedScalar=false;
+            if (!this.property().range().hasStructure()){
+                if (this._node.isAnnotatedScalar()){
+                    this._node.children().forEach(x=>{
+                        if (x.key()==="value"){
+                            actualValue=x.value(isString);
+                            isAnnotatedScalar=true;
+                        }
+                    })
+                }
+            }
+            if (!isAnnotatedScalar) {
+                return new StructuredValue(<ll.ILowLevelASTNode>actualValue, this.parent(), this._prop);
+            }
         }
         if(typeof(actualValue)=='string'&&textutil.isMultiLineValue(actualValue)) {
             var res = this.convertMultivalueToString(actualValue);

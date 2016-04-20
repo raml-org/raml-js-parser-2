@@ -370,16 +370,17 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                 }
 
                                 if (rng == "string" || rng == "number" || rng == "boolean") {
+                                    if (!x.isAnnotatedScalar()){
+                                        attrNode.errorMessage = "property '"+p.groupName() + "' must be a " + rng;
 
-                                    attrNode.errorMessage = "property '"+p.groupName() + "' must be a " + rng;
-
-                                    if (x.children().length==0&&p.groupName()=="enum"){
-                                        attrNode.errorMessage = "enum is empty";
-                                        if (x.valueKind()==yaml.Kind.MAP){
-                                            attrNode.errorMessage = "the value of enum must be an array"
+                                        if (x.children().length==0&&p.groupName()=="enum"){
+                                            attrNode.errorMessage = "enum is empty";
+                                            if (x.valueKind()==yaml.Kind.MAP){
+                                                attrNode.errorMessage = "the value of enum must be an array"
+                                            }
                                         }
-                                    }
 
+                                    }
                                 }
                             }
                         }

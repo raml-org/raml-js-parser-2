@@ -674,6 +674,7 @@ class CompositePropertyValidator implements PropertyValidator{
         var vl=node.value();
         if (!node.property().range().hasStructure()){
             if (vl instanceof hlimpl.StructuredValue&&!(<def.Property>node.property()).isSelfNode()){
+
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
                 if (isTypeOrSchema(node.property())){
                     if (node.property().domain().key()==universes.Universe08.BodyLike){
@@ -695,7 +696,20 @@ class CompositePropertyValidator implements PropertyValidator{
                     }
                 }
             }
+            if (node.isAnnotatedScalar()){
+
+                var fvl=new FixedFacetsValidator()
+                node.annotations().forEach(x=>{
+                   if (x.isElement()){
+                       fvl.validate(x.asElement(),v);
+                   }
+                   else{
+                       v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "unknown annotation "+x.name(), x));
+                   }
+                });
+            }
         }
+
 
 
         if (typeof vl=='string'&&vl.indexOf("<<")!=-1){

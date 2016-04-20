@@ -390,6 +390,15 @@ describe('Parser regression tests', function () {
     it ("annotations25" ,function(){
         testErrors(util.data("parser/annotations/a25.raml"));
     })
+    it ("annotations26 (annotated scalar)" ,function(){
+        testErrors(util.data("parser/annotations/a26.raml"));
+    })
+    it ("annotations27 (annotated scalar (validation))" ,function(){
+        testErrors(util.data("parser/annotations/a27.raml"),["number is expected"]);
+    })
+    it ("annotations28 (annotated scalar (unknown))" ,function(){
+        testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation (z2)"]);
+    })
     it ("properties shortcut" ,function(){
         testErrors(util.data("parser/typexpressions/p.raml"));
     })
