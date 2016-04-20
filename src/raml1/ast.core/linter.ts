@@ -2,6 +2,7 @@
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
+import proxy=require("../ast.core/LowLevelASTProxy")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")
@@ -1626,7 +1627,40 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,message,node))
             }
         });
+        var t:proxy.ValueTransformer;
+        var isInlinedTemplate = node.definition().getAdapter(services.RAMLService).isInlinedTemplates();
+        if(isInlinedTemplate) {
+            var paramsMap:{[key:string]:string} = {};
+            for (var ch of node.lowLevel().children()) {
+                paramsMap[ch.key()] = ch.value(true);
+            }
+            var templateKind = universeHelpers.isTraitsProperty(node.property()) ? "trait" : "resource type";
+            var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(), paramsMap);
+            var parent = node.parent();
+            var def = parent.definition();
+            while(parent!=null && !universeHelpers.isResourceType(def)&&!universeHelpers.isMethodType(def)){
+                parent = parent.parent();
+            }
+            t = new expander.DefaultTransformer(<any>parent, vt);
+        }
         node.definition().requiredProperties().forEach(x=>{
+            if (isInlinedTemplate){
+                var paths:string[][] = x.getAdapter(services.RAMLPropertyService).meta("templatePaths");
+                if(paths){
+                    var parent = node.parent();
+                    var hasSufficientChild = false;
+                    for(var path of paths){
+                        path = path.map(x=>t.transform(x).value);
+                        if(this.checkPathSufficiency(parent.lowLevel(),path,node.property())){
+                            hasSufficientChild = true;
+                            break;
+                        }
+                    }
+                    if(!hasSufficientChild){
+                        return;
+                    }
+                }
+            }
             var r=x.range();
             if (r.hasArrayInHierarchy()){
                 r=r.arrayInHierarchy().componentType();
@@ -1650,7 +1684,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 if(!gotValue){
                     var msg="Missing required property " + x.nameId();
 
-                    if (node.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
+                    if (isInlinedTemplate){
                         msg="value was not provided for parameter: "+x.nameId();
                     }
                     var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, msg, node)
@@ -1665,6 +1699,53 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 }
             }
         });
+    }
+    checkPathSufficiency(node:ll.ILowLevelASTNode,
+                         path:string[],
+                         prop:hl.IProperty):boolean{
+
+        if(path.length==0){
+            return false;
+        }
+        if(node==null){
+            return false;
+        }
+        var segment = path[0];
+        if(segment==null){
+            return false;
+        }
+        if(segment=="/"){
+            return this.checkPathSufficiency(node,path.slice(1),prop);
+        }
+        if(segment.length==0){
+            return true;
+        }
+        var children = node.children().filter(x=>x.key()==segment);
+        if(children.length==0){
+            path.indexOf("/")<0;
+        }
+        var lowLevel:ll.ILowLevelASTNode = children[0];
+        if(lowLevel instanceof proxy.LowLevelCompositeNode){
+            lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
+        }
+        if(lowLevel==null){
+            return path.indexOf("/")<0;
+        }
+        if(lowLevel.key()=="type"){
+                return true;
+        }
+
+        if(path.length==1){
+            // if(hlName==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
+            //     return true;
+            // }
+            return lowLevel==null||lowLevel.value() == null;
+        }
+        else{
+            var path1 = path.slice(1);
+            return this.checkPathSufficiency(lowLevel,path1,prop);
+        }
+
     }
 }
 class ScalarQuoteValidator implements NodeValidator {

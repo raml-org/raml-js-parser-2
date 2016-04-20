@@ -931,6 +931,36 @@ describe('Fragment loading', function () {
     // });
 });
 
+describe('Optional template parameters tests', function () {
+    it("Should not report error on unspecified parameter, which is not used after expansion #1.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api01.raml"));
+    });
+    it("Should report error on unspecified parameter, which is used after expansion #1.", function () {
+        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api02.raml"),1);
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #2.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api03.raml"));
+    });
+    it("Should report error on unspecified parameter, which is used after expansion #2.", function () {
+        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api04.raml"),1);
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #3.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api05.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #4.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api06.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #5.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api07.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #6.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api08.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #7.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api09.raml"));
+    });
+});
+
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
     var api = util.loadApi(p);
     var errors:any = util.validateNode(api);
