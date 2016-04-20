@@ -1668,13 +1668,25 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             return true;
         }
         if(path.length==1){
+            var lowLevel:ll.ILowLevelASTNode;
+            var hlName:string;
             var attr = node.attr(segment);
-            if(attr!=null){
-                var lowLevel = attr.lowLevel();
-                if(lowLevel instanceof proxy.LowLevelCompositeNode){
-                    lowLevel = (<proxy.LowLevelCompositeNode>attr.lowLevel()).primaryNode();
+            if(attr!=null) {
+                lowLevel = attr.lowLevel();
+                hlName = attr.name();
+            }
+            else{
+                var element = node.element(segment);
+                if(element!=null){
+                    lowLevel = element.lowLevel();
+                    hlName = element.name();
                 }
-                if(attr.name()==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
+            }
+            if(lowLevel!=null){
+                if(lowLevel instanceof proxy.LowLevelCompositeNode){
+                    lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
+                }
+                if(hlName==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
                     return true;
                 }
                 return lowLevel==null||lowLevel.value() == null;

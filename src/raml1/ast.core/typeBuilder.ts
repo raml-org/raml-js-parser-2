@@ -43,16 +43,16 @@ function templateFields(node:hl.IParseResult,d:TemplateData,path:string[]=[],opt
             var strV=<string>v;
             handleValue(strV, d, prop,false,u,path,optional);
         }
-        // else{
-        //     node.lowLevel().visit(x=>{
-        //         if (x.value()){
-        //             var strV=x.value()+"";
-        //             handleValue(strV,d,prop,true,u,path,optional);
-        //
-        //         }
-        //         return true;
-        //     })
-        // }
+        else{
+            node.lowLevel().visit(x=>{
+                if (x.value()){
+                    var strV=x.value()+"";
+                    handleValue(strV,d,prop,true,u,path,optional);
+
+                }
+                return true;
+            })
+        }
     }
     else if (node instanceof hlimpl.BasicASTNode){
         var v=node.lowLevel().value();
@@ -60,16 +60,16 @@ function templateFields(node:hl.IParseResult,d:TemplateData,path:string[]=[],opt
             var strV=<string>v;
             handleValue(strV, d, null,false,u,path,optional);
         }
-        // else{
-        //     node.lowLevel().visit(x=>{
-        //         if (x.value()){
-        //             var strV=x.value()+"";
-        //             handleValue(strV,d,null,true,u,path,optional);
-        //
-        //         }
-        //         return true;
-        //     })
-        // }
+        else{
+            node.lowLevel().visit(x=>{
+                if (x.value()){
+                    var strV=x.value()+"";
+                    handleValue(strV,d,null,true,u,path,optional);
+
+                }
+                return true;
+            })
+        }
     }
 }
 var handleValue = function (
