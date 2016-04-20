@@ -2776,18 +2776,18 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 });
             }
 
-            //if(node.optional()){
-            //    if(universeHelpers.isIsProperty(prop)){
-            //        var template = typeOfContainingTemplate(aNode.parent());
-            //        if(template) {
-            //            var templateNamePlural = toReadableName(template);
-            //            var message = "Optional scalar properties are not allowed in "
-            //                 + templateNamePlural + " and their descendants: " + prop.nameId() + "?";
-            //            var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, message, node, false);
-            //            v.accept(issue);
-            //        }
-            //    }
-            //}
+            var def = node.asElement().definition();
+            if(node.optional()&&def.universe().version()=="RAML10"){
+                var prop = node.property();
+                var isParam = universeHelpers.isQueryParametersProperty(prop)
+                    ||universeHelpers.isUriParametersProperty(prop)
+                    ||universeHelpers.isHeadersProperty(prop);
+
+                if(!universeHelpers.isMethodType(def)&&!(universeHelpers.isTypeDeclarationType(def)&&isParam)){
+                   var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, "Only method nodes can be optional", node, false);
+                   v.accept(issue);
+               }
+            }
         }
 
 
