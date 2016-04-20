@@ -257,7 +257,7 @@ export function isEnumProperty(p:hl.IProperty) : boolean {
 }
 
 export function isExamplesProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe10.TypeDeclaration.properties.example.name
+    return p.nameId() === universe.Universe10.TypeDeclaration.properties.example.name||p.nameId() === universe.Universe10.TypeDeclaration.properties.examples.name
 }
 
 export function isValueProperty(p:hl.IProperty) : boolean {
