@@ -62,9 +62,13 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
     private stu:boolean;
     private _lineMapper:lowlevel.LineMapper;
-
+    private _hl:highlevel.IParseResult
     highLevel():highlevel.IParseResult{
-        return hli.fromUnit(this);
+        if (this._hl){
+            return this._hl;
+        }
+        this._hl= hli.fromUnit(this);
+        return this._hl;
     }
     isStubUnit(){
         return this.stu;
@@ -177,6 +181,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     updateContentSafe(n:string){
         this._content=n;
         this._lineMapper = null;
+        this._hl=null;
     }
 
 

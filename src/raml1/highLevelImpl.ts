@@ -337,8 +337,12 @@ export class StructuredValue implements hl.IStructuredValue{
         return this.node;
     }
 
+    private _hl:hl.IHighLevelNode;
     toHighLevel(parent?: hl.IHighLevelNode):hl.IHighLevelNode{
         if (!parent && this._parent) parent = this._parent;
+        if (this._hl){
+            return this._hl;
+        }
         var vn=this.valueName();
         var cands=search.referenceTargets(this._pr, parent).filter(x=>qName(x,parent)==vn);
         if (cands&&cands[0]){
@@ -349,6 +353,7 @@ export class StructuredValue implements hl.IStructuredValue{
                     node.setComputed(y.name,y.value)
                 })
             }
+            this._hl=node;
             return node;
         }
         //if (this._pr.range()){
@@ -525,7 +530,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         this._value = value;
     }
 
-
+    private _sval:StructuredValue;
     value():any {
         if (this._value){
             return this._value
@@ -564,7 +569,11 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 }
             }
             if (!isAnnotatedScalar) {
-                return new StructuredValue(<ll.ILowLevelASTNode>actualValue, this.parent(), this._prop);
+                if (this._sval){
+                    return this._sval;
+                }
+                this._sval= new StructuredValue(<ll.ILowLevelASTNode>actualValue, this.parent(), this._prop);
+                return this._sval;
             }
         }
         if(typeof(actualValue)=='string'&&textutil.isMultiLineValue(actualValue)) {

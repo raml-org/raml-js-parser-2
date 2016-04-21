@@ -31,7 +31,6 @@ export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
 
 };
 export function globalDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
-
     var decl = declRoot(h);
     return findDeclarations(decl);
 
