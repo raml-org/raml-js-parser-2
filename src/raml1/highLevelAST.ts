@@ -15,6 +15,11 @@ export interface AbstractWrapperNode {
      * @return Actual name of instance interface
      **/
     kind():string
+
+    /**
+     * @return RAML version of the node. "RAML10" for RAML 1.0 and "RAML08" for RAML 0.8.
+     */
+    RAMLVersion():string
 }
 export interface SerializeOptions{
 

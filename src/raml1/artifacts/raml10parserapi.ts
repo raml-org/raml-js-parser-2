@@ -1502,3 +1502,669 @@ masterRef(  ):string
          **/
 title(  ):string
 }
+
+/**
+ * Custom type guard for Api. Returns true if node is instance of Api. Returns false otherwise.
+ * Also returns false for super interfaces of Api.
+ */
+export function isApi(node: core.AbstractWrapperNode) : node is Api {
+    return node.kind() == "Api" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for LibraryBase. Returns true if node is instance of LibraryBase. Returns false otherwise.
+ * Also returns false for super interfaces of LibraryBase.
+ */
+export function isLibraryBase(node: core.AbstractWrapperNode) : node is LibraryBase {
+    return node.kind() == "LibraryBase" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for RAMLLanguageElement. Returns true if node is instance of RAMLLanguageElement. Returns false otherwise.
+ * Also returns false for super interfaces of RAMLLanguageElement.
+ */
+export function isRAMLLanguageElement(node: core.AbstractWrapperNode) : node is RAMLLanguageElement {
+    return node.kind() == "RAMLLanguageElement" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MarkdownString. Returns true if node is instance of MarkdownString. Returns false otherwise.
+ * Also returns false for super interfaces of MarkdownString.
+ */
+export function isMarkdownString(node: core.AbstractWrapperNode) : node is MarkdownString {
+    return node.kind() == "MarkdownString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for StringType. Returns true if node is instance of StringType. Returns false otherwise.
+ * Also returns false for super interfaces of StringType.
+ */
+export function isStringType(node: core.AbstractWrapperNode) : node is StringType {
+    return node.kind() == "StringType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ValueType. Returns true if node is instance of ValueType. Returns false otherwise.
+ * Also returns false for super interfaces of ValueType.
+ */
+export function isValueType(node: core.AbstractWrapperNode) : node is ValueType {
+    return node.kind() == "ValueType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for AnyType. Returns true if node is instance of AnyType. Returns false otherwise.
+ * Also returns false for super interfaces of AnyType.
+ */
+export function isAnyType(node: core.AbstractWrapperNode) : node is AnyType {
+    return node.kind() == "AnyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for NumberType. Returns true if node is instance of NumberType. Returns false otherwise.
+ * Also returns false for super interfaces of NumberType.
+ */
+export function isNumberType(node: core.AbstractWrapperNode) : node is NumberType {
+    return node.kind() == "NumberType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for BooleanType. Returns true if node is instance of BooleanType. Returns false otherwise.
+ * Also returns false for super interfaces of BooleanType.
+ */
+export function isBooleanType(node: core.AbstractWrapperNode) : node is BooleanType {
+    return node.kind() == "BooleanType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Reference. Returns true if node is instance of Reference. Returns false otherwise.
+ * Also returns false for super interfaces of Reference.
+ */
+export function isReference(node: core.AbstractWrapperNode) : node is Reference {
+    return node.kind() == "Reference" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for AnnotationRef. Returns true if node is instance of AnnotationRef. Returns false otherwise.
+ * Also returns false for super interfaces of AnnotationRef.
+ */
+export function isAnnotationRef(node: core.AbstractWrapperNode) : node is AnnotationRef {
+    return node.kind() == "AnnotationRef" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for AnnotationTypeDeclaration. Returns true if node is instance of AnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of AnnotationTypeDeclaration.
+ */
+export function isAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is AnnotationTypeDeclaration {
+    return node.kind() == "AnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for TypeDeclaration. Returns true if node is instance of TypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of TypeDeclaration.
+ */
+export function isTypeDeclaration(node: core.AbstractWrapperNode) : node is TypeDeclaration {
+    return node.kind() == "TypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ModelLocation. Returns true if node is instance of ModelLocation. Returns false otherwise.
+ * Also returns false for super interfaces of ModelLocation.
+ */
+export function isModelLocation(node: core.AbstractWrapperNode) : node is ModelLocation {
+    return node.kind() == "ModelLocation" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for LocationKind. Returns true if node is instance of LocationKind. Returns false otherwise.
+ * Also returns false for super interfaces of LocationKind.
+ */
+export function isLocationKind(node: core.AbstractWrapperNode) : node is LocationKind {
+    return node.kind() == "LocationKind" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ExampleSpec. Returns true if node is instance of ExampleSpec. Returns false otherwise.
+ * Also returns false for super interfaces of ExampleSpec.
+ */
+export function isExampleSpec(node: core.AbstractWrapperNode) : node is ExampleSpec {
+    return node.kind() == "ExampleSpec" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ArrayTypeDeclaration. Returns true if node is instance of ArrayTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of ArrayTypeDeclaration.
+ */
+export function isArrayTypeDeclaration(node: core.AbstractWrapperNode) : node is ArrayTypeDeclaration {
+    return node.kind() == "ArrayTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ArrayAnnotationTypeDeclaration. Returns true if node is instance of ArrayAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of ArrayAnnotationTypeDeclaration.
+ */
+export function isArrayAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is ArrayAnnotationTypeDeclaration {
+    return node.kind() == "ArrayAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for AnnotationTarget. Returns true if node is instance of AnnotationTarget. Returns false otherwise.
+ * Also returns false for super interfaces of AnnotationTarget.
+ */
+export function isAnnotationTarget(node: core.AbstractWrapperNode) : node is AnnotationTarget {
+    return node.kind() == "AnnotationTarget" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for UnionTypeDeclaration. Returns true if node is instance of UnionTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of UnionTypeDeclaration.
+ */
+export function isUnionTypeDeclaration(node: core.AbstractWrapperNode) : node is UnionTypeDeclaration {
+    return node.kind() == "UnionTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for UnionAnnotationTypeDeclaration. Returns true if node is instance of UnionAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of UnionAnnotationTypeDeclaration.
+ */
+export function isUnionAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is UnionAnnotationTypeDeclaration {
+    return node.kind() == "UnionAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ObjectTypeDeclaration. Returns true if node is instance of ObjectTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of ObjectTypeDeclaration.
+ */
+export function isObjectTypeDeclaration(node: core.AbstractWrapperNode) : node is ObjectTypeDeclaration {
+    return node.kind() == "ObjectTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ObjectAnnotationTypeDeclaration. Returns true if node is instance of ObjectAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of ObjectAnnotationTypeDeclaration.
+ */
+export function isObjectAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is ObjectAnnotationTypeDeclaration {
+    return node.kind() == "ObjectAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for StringTypeDeclaration. Returns true if node is instance of StringTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of StringTypeDeclaration.
+ */
+export function isStringTypeDeclaration(node: core.AbstractWrapperNode) : node is StringTypeDeclaration {
+    return node.kind() == "StringTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for StringAnnotationTypeDeclaration. Returns true if node is instance of StringAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of StringAnnotationTypeDeclaration.
+ */
+export function isStringAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is StringAnnotationTypeDeclaration {
+    return node.kind() == "StringAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for BooleanTypeDeclaration. Returns true if node is instance of BooleanTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of BooleanTypeDeclaration.
+ */
+export function isBooleanTypeDeclaration(node: core.AbstractWrapperNode) : node is BooleanTypeDeclaration {
+    return node.kind() == "BooleanTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for BooleanAnnotationTypeDeclaration. Returns true if node is instance of BooleanAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of BooleanAnnotationTypeDeclaration.
+ */
+export function isBooleanAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is BooleanAnnotationTypeDeclaration {
+    return node.kind() == "BooleanAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for NumberTypeDeclaration. Returns true if node is instance of NumberTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of NumberTypeDeclaration.
+ */
+export function isNumberTypeDeclaration(node: core.AbstractWrapperNode) : node is NumberTypeDeclaration {
+    return node.kind() == "NumberTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for IntegerTypeDeclaration. Returns true if node is instance of IntegerTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of IntegerTypeDeclaration.
+ */
+export function isIntegerTypeDeclaration(node: core.AbstractWrapperNode) : node is IntegerTypeDeclaration {
+    return node.kind() == "IntegerTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for NumberAnnotationTypeDeclaration. Returns true if node is instance of NumberAnnotationTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of NumberAnnotationTypeDeclaration.
+ */
+export function isNumberAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is NumberAnnotationTypeDeclaration {
+    return node.kind() == "NumberAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTypeDeclaration. Returns true if node is instance of DateTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of DateTypeDeclaration.
+ */
+export function isDateTypeDeclaration(node: core.AbstractWrapperNode) : node is DateTypeDeclaration {
+    return node.kind() == "DateTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTypeAnnotationDeclaration. Returns true if node is instance of DateTypeAnnotationDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of DateTypeAnnotationDeclaration.
+ */
+export function isDateTypeAnnotationDeclaration(node: core.AbstractWrapperNode) : node is DateTypeAnnotationDeclaration {
+    return node.kind() == "DateTypeAnnotationDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FileTypeDeclaration. Returns true if node is instance of FileTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of FileTypeDeclaration.
+ */
+export function isFileTypeDeclaration(node: core.AbstractWrapperNode) : node is FileTypeDeclaration {
+    return node.kind() == "FileTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ContentType. Returns true if node is instance of ContentType. Returns false otherwise.
+ * Also returns false for super interfaces of ContentType.
+ */
+export function isContentType(node: core.AbstractWrapperNode) : node is ContentType {
+    return node.kind() == "ContentType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SecuritySchemeRef. Returns true if node is instance of SecuritySchemeRef. Returns false otherwise.
+ * Also returns false for super interfaces of SecuritySchemeRef.
+ */
+export function isSecuritySchemeRef(node: core.AbstractWrapperNode) : node is SecuritySchemeRef {
+    return node.kind() == "SecuritySchemeRef" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for AbstractSecurityScheme. Returns true if node is instance of AbstractSecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of AbstractSecurityScheme.
+ */
+export function isAbstractSecurityScheme(node: core.AbstractWrapperNode) : node is AbstractSecurityScheme {
+    return node.kind() == "AbstractSecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SecuritySchemePart. Returns true if node is instance of SecuritySchemePart. Returns false otherwise.
+ * Also returns false for super interfaces of SecuritySchemePart.
+ */
+export function isSecuritySchemePart(node: core.AbstractWrapperNode) : node is SecuritySchemePart {
+    return node.kind() == "SecuritySchemePart" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MethodBase. Returns true if node is instance of MethodBase. Returns false otherwise.
+ * Also returns false for super interfaces of MethodBase.
+ */
+export function isMethodBase(node: core.AbstractWrapperNode) : node is MethodBase {
+    return node.kind() == "MethodBase" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for HasNormalParameters. Returns true if node is instance of HasNormalParameters. Returns false otherwise.
+ * Also returns false for super interfaces of HasNormalParameters.
+ */
+export function isHasNormalParameters(node: core.AbstractWrapperNode) : node is HasNormalParameters {
+    return node.kind() == "HasNormalParameters" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Response. Returns true if node is instance of Response. Returns false otherwise.
+ * Also returns false for super interfaces of Response.
+ */
+export function isResponse(node: core.AbstractWrapperNode) : node is Response {
+    return node.kind() == "Response" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for StatusCodeString. Returns true if node is instance of StatusCodeString. Returns false otherwise.
+ * Also returns false for super interfaces of StatusCodeString.
+ */
+export function isStatusCodeString(node: core.AbstractWrapperNode) : node is StatusCodeString {
+    return node.kind() == "StatusCodeString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for TraitRef. Returns true if node is instance of TraitRef. Returns false otherwise.
+ * Also returns false for super interfaces of TraitRef.
+ */
+export function isTraitRef(node: core.AbstractWrapperNode) : node is TraitRef {
+    return node.kind() == "TraitRef" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Trait. Returns true if node is instance of Trait. Returns false otherwise.
+ * Also returns false for super interfaces of Trait.
+ */
+export function isTrait(node: core.AbstractWrapperNode) : node is Trait {
+    return node.kind() == "Trait" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Library. Returns true if node is instance of Library. Returns false otherwise.
+ * Also returns false for super interfaces of Library.
+ */
+export function isLibrary(node: core.AbstractWrapperNode) : node is Library {
+    return node.kind() == "Library" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Method. Returns true if node is instance of Method. Returns false otherwise.
+ * Also returns false for super interfaces of Method.
+ */
+export function isMethod(node: core.AbstractWrapperNode) : node is Method {
+    return node.kind() == "Method" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SecuritySchemeSettings. Returns true if node is instance of SecuritySchemeSettings. Returns false otherwise.
+ * Also returns false for super interfaces of SecuritySchemeSettings.
+ */
+export function isSecuritySchemeSettings(node: core.AbstractWrapperNode) : node is SecuritySchemeSettings {
+    return node.kind() == "SecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for OAuth1SecuritySchemeSettings. Returns true if node is instance of OAuth1SecuritySchemeSettings. Returns false otherwise.
+ * Also returns false for super interfaces of OAuth1SecuritySchemeSettings.
+ */
+export function isOAuth1SecuritySchemeSettings(node: core.AbstractWrapperNode) : node is OAuth1SecuritySchemeSettings {
+    return node.kind() == "OAuth1SecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FixedUriString. Returns true if node is instance of FixedUriString. Returns false otherwise.
+ * Also returns false for super interfaces of FixedUriString.
+ */
+export function isFixedUriString(node: core.AbstractWrapperNode) : node is FixedUriString {
+    return node.kind() == "FixedUriString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for OAuth2SecuritySchemeSettings. Returns true if node is instance of OAuth2SecuritySchemeSettings. Returns false otherwise.
+ * Also returns false for super interfaces of OAuth2SecuritySchemeSettings.
+ */
+export function isOAuth2SecuritySchemeSettings(node: core.AbstractWrapperNode) : node is OAuth2SecuritySchemeSettings {
+    return node.kind() == "OAuth2SecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for PassThroughSecuritySchemeSettings. Returns true if node is instance of PassThroughSecuritySchemeSettings. Returns false otherwise.
+ * Also returns false for super interfaces of PassThroughSecuritySchemeSettings.
+ */
+export function isPassThroughSecuritySchemeSettings(node: core.AbstractWrapperNode) : node is PassThroughSecuritySchemeSettings {
+    return node.kind() == "PassThroughSecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for OAuth2SecurityScheme. Returns true if node is instance of OAuth2SecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of OAuth2SecurityScheme.
+ */
+export function isOAuth2SecurityScheme(node: core.AbstractWrapperNode) : node is OAuth2SecurityScheme {
+    return node.kind() == "OAuth2SecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for OAuth1SecurityScheme. Returns true if node is instance of OAuth1SecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of OAuth1SecurityScheme.
+ */
+export function isOAuth1SecurityScheme(node: core.AbstractWrapperNode) : node is OAuth1SecurityScheme {
+    return node.kind() == "OAuth1SecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for PassThroughSecurityScheme. Returns true if node is instance of PassThroughSecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of PassThroughSecurityScheme.
+ */
+export function isPassThroughSecurityScheme(node: core.AbstractWrapperNode) : node is PassThroughSecurityScheme {
+    return node.kind() == "PassThroughSecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for BasicSecurityScheme. Returns true if node is instance of BasicSecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of BasicSecurityScheme.
+ */
+export function isBasicSecurityScheme(node: core.AbstractWrapperNode) : node is BasicSecurityScheme {
+    return node.kind() == "BasicSecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DigestSecurityScheme. Returns true if node is instance of DigestSecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of DigestSecurityScheme.
+ */
+export function isDigestSecurityScheme(node: core.AbstractWrapperNode) : node is DigestSecurityScheme {
+    return node.kind() == "DigestSecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for CustomSecurityScheme. Returns true if node is instance of CustomSecurityScheme. Returns false otherwise.
+ * Also returns false for super interfaces of CustomSecurityScheme.
+ */
+export function isCustomSecurityScheme(node: core.AbstractWrapperNode) : node is CustomSecurityScheme {
+    return node.kind() == "CustomSecurityScheme" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ResourceTypeRef. Returns true if node is instance of ResourceTypeRef. Returns false otherwise.
+ * Also returns false for super interfaces of ResourceTypeRef.
+ */
+export function isResourceTypeRef(node: core.AbstractWrapperNode) : node is ResourceTypeRef {
+    return node.kind() == "ResourceTypeRef" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ResourceType. Returns true if node is instance of ResourceType. Returns false otherwise.
+ * Also returns false for super interfaces of ResourceType.
+ */
+export function isResourceType(node: core.AbstractWrapperNode) : node is ResourceType {
+    return node.kind() == "ResourceType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ResourceBase. Returns true if node is instance of ResourceBase. Returns false otherwise.
+ * Also returns false for super interfaces of ResourceBase.
+ */
+export function isResourceBase(node: core.AbstractWrapperNode) : node is ResourceBase {
+    return node.kind() == "ResourceBase" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Resource. Returns true if node is instance of Resource. Returns false otherwise.
+ * Also returns false for super interfaces of Resource.
+ */
+export function isResource(node: core.AbstractWrapperNode) : node is Resource {
+    return node.kind() == "Resource" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for RelativeUriString. Returns true if node is instance of RelativeUriString. Returns false otherwise.
+ * Also returns false for super interfaces of RelativeUriString.
+ */
+export function isRelativeUriString(node: core.AbstractWrapperNode) : node is RelativeUriString {
+    return node.kind() == "RelativeUriString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for UriTemplate. Returns true if node is instance of UriTemplate. Returns false otherwise.
+ * Also returns false for super interfaces of UriTemplate.
+ */
+export function isUriTemplate(node: core.AbstractWrapperNode) : node is UriTemplate {
+    return node.kind() == "UriTemplate" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FullUriTemplateString. Returns true if node is instance of FullUriTemplateString. Returns false otherwise.
+ * Also returns false for super interfaces of FullUriTemplateString.
+ */
+export function isFullUriTemplateString(node: core.AbstractWrapperNode) : node is FullUriTemplateString {
+    return node.kind() == "FullUriTemplateString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SchemaString. Returns true if node is instance of SchemaString. Returns false otherwise.
+ * Also returns false for super interfaces of SchemaString.
+ */
+export function isSchemaString(node: core.AbstractWrapperNode) : node is SchemaString {
+    return node.kind() == "SchemaString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for JSonSchemaString. Returns true if node is instance of JSonSchemaString. Returns false otherwise.
+ * Also returns false for super interfaces of JSonSchemaString.
+ */
+export function isJSonSchemaString(node: core.AbstractWrapperNode) : node is JSonSchemaString {
+    return node.kind() == "JSonSchemaString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for XMLSchemaString. Returns true if node is instance of XMLSchemaString. Returns false otherwise.
+ * Also returns false for super interfaces of XMLSchemaString.
+ */
+export function isXMLSchemaString(node: core.AbstractWrapperNode) : node is XMLSchemaString {
+    return node.kind() == "XMLSchemaString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ExampleString. Returns true if node is instance of ExampleString. Returns false otherwise.
+ * Also returns false for super interfaces of ExampleString.
+ */
+export function isExampleString(node: core.AbstractWrapperNode) : node is ExampleString {
+    return node.kind() == "ExampleString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MimeType. Returns true if node is instance of MimeType. Returns false otherwise.
+ * Also returns false for super interfaces of MimeType.
+ */
+export function isMimeType(node: core.AbstractWrapperNode) : node is MimeType {
+    return node.kind() == "MimeType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DocumentationItem. Returns true if node is instance of DocumentationItem. Returns false otherwise.
+ * Also returns false for super interfaces of DocumentationItem.
+ */
+export function isDocumentationItem(node: core.AbstractWrapperNode) : node is DocumentationItem {
+    return node.kind() == "DocumentationItem" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for GlobalSchema. Returns true if node is instance of GlobalSchema. Returns false otherwise.
+ * Also returns false for super interfaces of GlobalSchema.
+ */
+export function isGlobalSchema(node: core.AbstractWrapperNode) : node is GlobalSchema {
+    return node.kind() == "GlobalSchema" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for RAMLSimpleElement. Returns true if node is instance of RAMLSimpleElement. Returns false otherwise.
+ * Also returns false for super interfaces of RAMLSimpleElement.
+ */
+export function isRAMLSimpleElement(node: core.AbstractWrapperNode) : node is RAMLSimpleElement {
+    return node.kind() == "RAMLSimpleElement" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ImportDeclaration. Returns true if node is instance of ImportDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of ImportDeclaration.
+ */
+export function isImportDeclaration(node: core.AbstractWrapperNode) : node is ImportDeclaration {
+    return node.kind() == "ImportDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Overlay. Returns true if node is instance of Overlay. Returns false otherwise.
+ * Also returns false for super interfaces of Overlay.
+ */
+export function isOverlay(node: core.AbstractWrapperNode) : node is Overlay {
+    return node.kind() == "Overlay" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Extension. Returns true if node is instance of Extension. Returns false otherwise.
+ * Also returns false for super interfaces of Extension.
+ */
+export function isExtension(node: core.AbstractWrapperNode) : node is Extension {
+    return node.kind() == "Extension" && node.RAMLVersion() == "RAML10";
+}
+

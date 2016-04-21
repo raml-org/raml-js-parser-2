@@ -127,6 +127,7 @@ export class ParserGenerator{
 
         this.addImplementationMethod(dcl,'wrapperClassName', 'string',`return "${typeName}Impl";`,'@hidden\n@return Actual name of instance class');
         this.addImplementationMethod(dcl,'kind', 'string',`return "${typeName}";`,'@return Actual name of instance interface');
+        this.addImplementationMethod(dcl,'RAMLVersion', 'string',`return "${this.ramlVersion}";`,'@return RAML version of the node');
 
         if(typeName=='ValueType'){
             var valueComment = '@return JS representation of the node value';
@@ -479,7 +480,8 @@ Set ${x.nameId()} value`;
         var isRaml1 = this.ramlVersion == 'RAML10';
 
         return this.serializeInterfaceImportsToString()
-            + this.interfaceModule.serializeToString();
+            + this.interfaceModule.serializeToString()
+            + this.serializeInstanceofMethodsToString();
     }
 
     serializeImplementationToString() {
@@ -498,6 +500,28 @@ import hl=require("../../raml1/highLevelAST");
 import core=require("../../raml1/wrapped-ast/parserCoreApi");
 
 `;
+    }
+
+    serializeInstanceofMethodsToString() {
+        var result = "";
+        Object.keys(this.processed).forEach(processedName=>{
+            if (processedName == "TypeInstance"
+                || processedName == "TypeInstanceProperty") return;
+
+            var instanceofMethod = `
+/**
+ * Custom type guard for ${processedName}. Returns true if node is instance of ${processedName}. Returns false otherwise.
+ * Also returns false for super interfaces of ${processedName}.
+ */
+export function is${processedName}(node: core.AbstractWrapperNode) : node is ${processedName} {
+    return node.kind() == "${processedName}" && node.RAMLVersion() == "${this.ramlVersion}";
+}
+
+`;
+            result += instanceofMethod;
+        });
+
+        return result;
     }
 
     serializeImplementationImportsToString() {

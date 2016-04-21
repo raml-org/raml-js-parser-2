@@ -163,6 +163,12 @@ wrapperClassName(  ):string{return "RAMLLanguageElementImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "RAMLLanguageElement";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ValueTypeImpl extends core.AttributeNodeImpl implements ValueType{
@@ -178,6 +184,12 @@ wrapperClassName(  ):string{return "ValueTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ValueType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "undefined";}
 
 
         /**
@@ -199,6 +211,12 @@ wrapperClassName(  ):string{return "AnyTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "AnyType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class NumberTypeImpl extends ValueTypeImpl implements NumberType{
@@ -214,6 +232,12 @@ wrapperClassName(  ):string{return "NumberTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NumberType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -238,6 +262,12 @@ kind(  ):string{return "BooleanType";}
 
 
         /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
          * @return Boolean representation of the node value
          **/
 value(  ):boolean{return this.attr.value();}
@@ -256,6 +286,12 @@ wrapperClassName(  ):string{return "ReferenceImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Reference";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -289,6 +325,12 @@ wrapperClassName(  ):string{return "AnnotationRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "AnnotationRef";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 annotation(  ):AnnotationTypeDeclaration{
             return helper.referencedAnnotation(this);
@@ -506,6 +548,12 @@ kind(  ):string{return "TypeDeclaration";}
 
 
         /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
          * Runtime representation of type represented by this AST node
          **/
 runtimeType(  ):hl.ITypeDefinition{
@@ -552,6 +600,12 @@ wrapperClassName(  ):string{return "ModelLocationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ModelLocation";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class LocationKindImpl implements LocationKind{
@@ -569,6 +623,12 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LocationKind";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ExampleSpecImpl extends RAMLLanguageElementImpl implements ExampleSpec{
@@ -678,6 +738,12 @@ kind(  ):string{return "ExampleSpec";}
 
 
         /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
          * String representation of example
          **/
 content(  ):string{
@@ -766,6 +832,12 @@ wrapperClassName(  ):string{return "ArrayTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ArrayTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ArrayAnnotationTypeDeclarationImpl extends ArrayTypeDeclarationImpl implements ArrayAnnotationTypeDeclaration{
@@ -809,6 +881,12 @@ wrapperClassName(  ):string{return "ArrayAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ArrayAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -828,6 +906,12 @@ wrapperClassName(  ):string{return "AnnotationTargetImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "AnnotationTarget";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class UnionTypeDeclarationImpl extends TypeDeclarationImpl implements UnionTypeDeclaration{
@@ -863,6 +947,12 @@ wrapperClassName(  ):string{return "UnionTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "UnionTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class UnionAnnotationTypeDeclarationImpl extends UnionTypeDeclarationImpl implements UnionAnnotationTypeDeclaration{
@@ -906,6 +996,12 @@ wrapperClassName(  ):string{return "UnionAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "UnionAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ObjectTypeDeclarationImpl extends TypeDeclarationImpl implements ObjectTypeDeclaration{
@@ -1019,6 +1115,12 @@ wrapperClassName(  ):string{return "ObjectTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ObjectTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ObjectAnnotationTypeDeclarationImpl extends ObjectTypeDeclarationImpl implements ObjectAnnotationTypeDeclaration{
@@ -1062,6 +1164,12 @@ wrapperClassName(  ):string{return "ObjectAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ObjectAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1155,6 +1263,12 @@ wrapperClassName(  ):string{return "StringTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StringTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class StringAnnotationTypeDeclarationImpl extends StringTypeDeclarationImpl implements StringAnnotationTypeDeclaration{
@@ -1198,6 +1312,12 @@ wrapperClassName(  ):string{return "StringAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StringAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1219,6 +1339,12 @@ wrapperClassName(  ):string{return "BooleanTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class BooleanAnnotationTypeDeclarationImpl extends BooleanTypeDeclarationImpl implements BooleanAnnotationTypeDeclaration{
@@ -1262,6 +1388,12 @@ wrapperClassName(  ):string{return "BooleanAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1373,6 +1505,12 @@ wrapperClassName(  ):string{return "NumberTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NumberTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1412,6 +1550,12 @@ wrapperClassName(  ):string{return "IntegerTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "IntegerTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class NumberAnnotationTypeDeclarationImpl extends NumberTypeDeclarationImpl implements NumberAnnotationTypeDeclaration{
@@ -1455,6 +1599,12 @@ wrapperClassName(  ):string{return "NumberAnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NumberAnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1490,6 +1640,12 @@ wrapperClassName(  ):string{return "DateTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class DateTypeAnnotationDeclarationImpl extends DateTypeDeclarationImpl implements DateTypeAnnotationDeclaration{
@@ -1533,6 +1689,12 @@ wrapperClassName(  ):string{return "DateTypeAnnotationDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTypeAnnotationDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -1598,6 +1760,12 @@ wrapperClassName(  ):string{return "FileTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FileTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class StringTypeImpl extends ValueTypeImpl implements StringType{
@@ -1613,6 +1781,12 @@ wrapperClassName(  ):string{return "StringTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StringType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -1634,6 +1808,12 @@ wrapperClassName(  ):string{return "ContentTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ContentType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class AnnotationTypeDeclarationImpl extends TypeDeclarationImpl implements AnnotationTypeDeclaration{
@@ -1677,6 +1857,12 @@ wrapperClassName(  ):string{return "AnnotationTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "AnnotationTypeDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef{
@@ -1692,6 +1878,12 @@ wrapperClassName(  ):string{return "SecuritySchemeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeRef";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 securitySchemeName(  ):string{
             return helper.securitySchemeName(this);
@@ -1781,6 +1973,12 @@ wrapperClassName(  ):string{return "AbstractSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "AbstractSecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class HasNormalParametersImpl extends RAMLLanguageElementImpl implements HasNormalParameters{
@@ -1822,6 +2020,12 @@ wrapperClassName(  ):string{return "HasNormalParametersImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "HasNormalParameters";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class MethodBaseImpl extends HasNormalParametersImpl implements MethodBase{
@@ -1889,6 +2093,12 @@ wrapperClassName(  ):string{return "MethodBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "MethodBase";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ResponseImpl extends RAMLLanguageElementImpl implements Response{
@@ -1967,6 +2177,12 @@ kind(  ):string{return "Response";}
 
 
         /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
          * true for codes < 400 and false otherwise
          **/
 isOkRange(  ):boolean{
@@ -1987,6 +2203,12 @@ wrapperClassName(  ):string{return "StatusCodeStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StatusCodeString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class TraitRefImpl extends ReferenceImpl implements TraitRef{
@@ -2002,6 +2224,12 @@ wrapperClassName(  ):string{return "TraitRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "TraitRef";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 trait(  ):Trait{
             return helper.referencedTrait(this);
@@ -2067,6 +2295,12 @@ wrapperClassName(  ):string{return "TraitImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Trait";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 parametrizedProperties(  ):TypeInstance{
             return helper.getTemplateParametrizedProperties(this);
@@ -2146,6 +2380,12 @@ wrapperClassName(  ):string{return "LibraryBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LibraryBase";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -2233,6 +2473,12 @@ wrapperClassName(  ):string{return "LibraryImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Library";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class MethodImpl extends MethodBaseImpl implements Method{
@@ -2350,6 +2596,12 @@ wrapperClassName(  ):string{return "MethodImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Method";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -2485,6 +2737,12 @@ wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemePart";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings{
@@ -2500,6 +2758,12 @@ wrapperClassName(  ):string{return "SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeSettings";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth1SecuritySchemeSettings{
@@ -2559,6 +2823,12 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecuritySchemeSettings";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2578,6 +2848,12 @@ wrapperClassName(  ):string{return "FixedUriStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FixedUriString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings{
@@ -2647,6 +2923,12 @@ wrapperClassName(  ):string{return "OAuth2SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth2SecuritySchemeSettings";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class PassThroughSecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements PassThroughSecuritySchemeSettings{
@@ -2700,6 +2982,12 @@ wrapperClassName(  ):string{return "PassThroughSecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "PassThroughSecuritySchemeSettings";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2725,6 +3013,12 @@ wrapperClassName(  ):string{return "OAuth2SecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth2SecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2750,6 +3044,12 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2775,6 +3075,12 @@ wrapperClassName(  ):string{return "PassThroughSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "PassThroughSecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2796,6 +3102,12 @@ wrapperClassName(  ):string{return "BasicSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BasicSecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2817,6 +3129,12 @@ wrapperClassName(  ):string{return "DigestSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DigestSecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -2838,6 +3156,12 @@ wrapperClassName(  ):string{return "CustomSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "CustomSecurityScheme";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef{
@@ -2853,6 +3177,12 @@ wrapperClassName(  ):string{return "ResourceTypeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceTypeRef";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 resourceType(  ):ResourceType{
             return helper.referencedResourceType(this);
@@ -2915,6 +3245,12 @@ wrapperClassName(  ):string{return "ResourceBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceBase";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 
 
         /**
@@ -3020,6 +3356,12 @@ kind(  ):string{return "Resource";}
 
 
         /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
          * Path relative to API root
          **/
 completeRelativeUri(  ):string{
@@ -3093,6 +3435,12 @@ wrapperClassName(  ):string{return "UriTemplateImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "UriTemplate";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3112,6 +3460,12 @@ wrapperClassName(  ):string{return "FullUriTemplateStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FullUriTemplateString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3131,6 +3485,12 @@ wrapperClassName(  ):string{return "RelativeUriStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "RelativeUriString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType{
@@ -3193,6 +3553,12 @@ wrapperClassName(  ):string{return "ResourceTypeImpl";}
          **/
 kind(  ):string{return "ResourceType";}
 
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
 parametrizedProperties(  ):TypeInstance{
             return helper.getTemplateParametrizedProperties(this);
         }
@@ -3215,6 +3581,12 @@ wrapperClassName(  ):string{return "SchemaStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SchemaString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3234,6 +3606,12 @@ wrapperClassName(  ):string{return "JSonSchemaStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "JSonSchemaString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3253,6 +3631,12 @@ wrapperClassName(  ):string{return "XMLSchemaStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "XMLSchemaString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3272,6 +3656,12 @@ wrapperClassName(  ):string{return "ExampleStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ExampleString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3291,6 +3681,12 @@ wrapperClassName(  ):string{return "MimeTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "MimeType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3310,6 +3706,12 @@ wrapperClassName(  ):string{return "MarkdownStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "MarkdownString";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class DocumentationItemImpl extends RAMLLanguageElementImpl implements DocumentationItem{
@@ -3353,6 +3755,12 @@ wrapperClassName(  ):string{return "DocumentationItemImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DocumentationItem";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class RAMLSimpleElementImpl extends core.BasicNodeImpl implements RAMLSimpleElement{
@@ -3368,6 +3776,12 @@ wrapperClassName(  ):string{return "RAMLSimpleElementImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "RAMLSimpleElement";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ImportDeclarationImpl extends RAMLSimpleElementImpl implements ImportDeclaration{
@@ -3411,6 +3825,12 @@ wrapperClassName(  ):string{return "ImportDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ImportDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -3458,6 +3878,12 @@ wrapperClassName(  ):string{return "GlobalSchemaImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "GlobalSchema";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ApiImpl extends LibraryBaseImpl implements Api{
@@ -3615,6 +4041,13 @@ kind(  ):string{return "Api";}
 
 
         /**
+         * @return RAML version of the node
+         * @hidden
+         **/
+RAMLVersion_original(  ):string{return "RAML10";}
+
+
+        /**
          * Equivalent API with traits and resource types expanded
          **/
 expand(  ):Api{
@@ -3673,6 +4106,10 @@ allProtocols(  ):string[]{
             return helper.allProtocols(this);
         }
 
+
+        /**
+         * @return RAML version of the node
+         **/
 RAMLVersion(  ):string{
             return helper.RAMLVersion(this);
         }
@@ -3747,6 +4184,12 @@ wrapperClassName(  ):string{return "OverlayImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Overlay";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ExtensionImpl extends ApiImpl implements Extension{
@@ -3818,6 +4261,12 @@ wrapperClassName(  ):string{return "ExtensionImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Extension";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 /**

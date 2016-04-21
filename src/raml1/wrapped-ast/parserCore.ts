@@ -355,6 +355,10 @@ export class BasicNodeImpl implements hl.BasicNode{
     meta():NodeMetadata{
         return fillElementMeta(this);
     }
+
+    RAMLVersion():string{
+        return this.highLevel().definition().universe().version();
+    }
 }
 
 
@@ -395,6 +399,10 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
     meta():ValueMetadataImpl{
         return this._meta;
+    }
+
+    RAMLVersion():string{
+        return this.highLevel().definition().universe().version();
     }
 }
 
