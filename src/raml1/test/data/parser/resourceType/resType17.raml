@@ -1,13 +1,13 @@
 #%RAML 1.0
 title: test
 types:
-  - TestType:
+  TestType:
       type: object
       properties:
         field: string
       example:
         field: value
-  - TestSchema: |
+  TestSchema: |
       {
         "$schema": "http://json-schema.org/draft-03/schema",
         "type": "object" ,
@@ -21,7 +21,7 @@ types:
         }
       }
 resourceTypes:
-  - TestResorceType:
+   TestResorceType:
       post:
         description: Allows to create new <<objectName | !singularize>>
         body:

@@ -3,7 +3,7 @@ title: ParametrizedResourceTypeToResource_exp
 version: 1
 baseUri: https://example.com/{version}
 resourceTypes:
-  - rt0_param: !include resourceTypes/rt0_param.raml
+   rt0_param: !include resourceTypes/rt0_param.raml
 /root-resource:
   type: { rt0_param: { param0: "object", param1: "value" } }
   get:

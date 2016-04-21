@@ -31,12 +31,12 @@ var tsWatch = false;
 var testFiles = [
     'src/**/*.test.js',
     'test/**/*.js',
-    'dist/raml1/test/model-editing-tests-attrs.js',
-     'dist/raml1/test/model-editing-tests-add.js',
-    'dist/raml1/test/model-editing-tests-refactoring.js',
-    'dist/raml1/test/model-editing-tests-remove.js',
-    'dist/raml1/test/model-editing-tests-sig.js',
-    'dist/raml1/test/schema-model-tests.js',
+     'dist/raml1/test/model-editing-tests-attrs.js',
+      'dist/raml1/test/model-editing-tests-add.js',
+     'dist/raml1/test/model-editing-tests-refactoring.js',
+     'dist/raml1/test/model-editing-tests-remove.js',
+     'dist/raml1/test/model-editing-tests-sig.js',
+     'dist/raml1/test/schema-model-tests.js',
   // ////
     'dist/raml1/test/parserTests.js',
    'dist/raml1/test/parserTests2.js',
@@ -48,8 +48,8 @@ var testFiles = [
    'dist/raml1/test/exampleGenTests.js',
    'dist/raml1/test/typeSystemTests.js',
    'dist/raml1/test/runtimeExampleTests.js',
-   //'dist/raml1/test/TCK.js',
-  // //
+  //  //'dist/raml1/test/TCK.js',
+  // // //
    'src/raml1/test/data/parser/test/specs/optionals.js',
    'src/raml1/test/data/parser/test/specs/parser.js',
    'src/raml1/test/data/parser/test/specs/protocols.js',

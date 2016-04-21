@@ -436,19 +436,32 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                     }
                                     if (x.valueKind()==yaml.Kind.SCALAR){
                                         if (p.range().key()==universes.Universe08.AbstractSecurityScheme) {
-                                            var error = new hlimpl.BasicASTNode(x, aNode);
+                                            var error = new hlimpl.BasicASTNode(x.parent(), aNode);
                                             error.errorMessage = "property: '" + p.nameId() + "' must be a map"
                                             res.push(error);
                                         }
                                     }
                                 }
+                                var exit=false;
                                 chld.forEach(y=> {
+                                    if (exit){
+                                        return;
+                                    }
                                     //TODO TRACK GROUP KEY
                                     var cld = y.children()
                                     if (!y.key() && cld.length == 1) {
-                                        var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
-                                        node._allowQuestion = allowsQuestion;
-                                        rs.push(node);
+                                        if (aNode.universe().version() == "RAML10"&&!aNode.parent()) {
+                                            var bnode = new hlimpl.BasicASTNode(x, aNode);
+                                            res.push(bnode);
+                                            bnode.needMap = true;
+                                            bnode.knownProperty=p;
+                                            exit=true;
+                                        }
+                                        else {
+                                            var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
+                                            node._allowQuestion = allowsQuestion;
+                                            rs.push(node);
+                                        }
                                     }
                                     else {
                                         if (aNode.universe().version() == "RAML10") {
@@ -465,7 +478,6 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                         }
                                     }
                                 })
-
                             }
                             else {
                                 var filter:any = {}

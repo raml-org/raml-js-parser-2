@@ -3,8 +3,8 @@ title: MultipleParametrizedTraitsToMethod_exp
 version: 1
 baseUri: https://example.com/{version}
 traits:
-  - trait0_param: !include traits/trait0_param.raml
-  - trait1_param: !include traits/trait1_param.raml
+   trait0_param: !include traits/trait0_param.raml
+   trait1_param: !include traits/trait1_param.raml
 /root-resource:
   get:
     is: [ { trait0_param : { method : "Get", object: "value" } }, { trait1_param: { param0: "object", param1: "value" } } ]

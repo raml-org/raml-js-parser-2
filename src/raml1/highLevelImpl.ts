@@ -117,6 +117,7 @@ export class BasicASTNode implements hl.IParseResult {
     }
     knownProperty:hl.IProperty
     needSequence:boolean
+    needMap:boolean
     unresolvedRef:string
     errorMessage: string
 

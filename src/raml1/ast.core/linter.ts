@@ -360,6 +360,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         if (node.needSequence){
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "node: " + node.name()+" should be wrapped in sequence", node));
         }
+        if (node.needMap){
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (node.knownProperty?node.knownProperty.nameId():"")+" should be map in RAML 1.0", node));
+            return
+        }
         if (node.unresolvedRef){
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + node.lowLevel().value()+" can not be resolved", node));
 

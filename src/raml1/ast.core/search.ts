@@ -62,13 +62,15 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
         h.elements().forEach(x=> {
             if (x.definition().key()== universes.Universe10.UsesDeclaration) {
                 var mm=x.attr("value");
-                var unit=h.root().lowLevel().unit().resolve(mm.value());
-                if (unit!=null) {
-                    unit.highLevel().children().forEach(x=> {
-                        if (x.isElement()) {
-                            rs.push(x.asElement());
-                        }
-                    })
+                if (mm) {
+                    var unit = h.root().lowLevel().unit().resolve(mm.value());
+                    if (unit != null) {
+                        unit.highLevel().children().forEach(x=> {
+                            if (x.isElement()) {
+                                rs.push(x.asElement());
+                            }
+                        })
+                    }
                 }
             }
             else {
