@@ -817,13 +817,15 @@ export class Project implements lowlevel.IProject{
                 this.pathToUnit[absPath] = this.unit(absPath, true);
             }
 
+            var wrappedUnit: CompilationUnit  = this.pathToUnit[absPath];
+
             var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
 
             if (this.pathToUnit[refPath]){
                 return this.pathToUnit[refPath];
             }
 
-            this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
+            this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, wrappedUnit && wrappedUnit.contents()), false, this, refPath);
 
             return this.pathToUnit[refPath];
         }
