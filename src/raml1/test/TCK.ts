@@ -11,26 +11,32 @@ import fs = require("fs")
 
 describe('TCK tests',function() {
     it("Types", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Types 001/api.raml');
     });
 
     it("Trait 001", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Traits/Trait 001/api.raml');
     });
 
     it("Annotations 001", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Annotations 001/api.raml');
     });
 
     it("Annotations 002", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Annotations 002/api.raml');
     });
 
     it("Annotations 003", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Annotations 003/api.raml');
     });
 
     it("Bodies 001", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Bodies/Body 001/api.raml');
     });
 
@@ -45,39 +51,46 @@ describe('TCK tests',function() {
     });
 
     it("Libraries 001", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML10/Libraries 001/api.raml');
     });
 
     it("Form Parameters", function () {
+        this.timeout(15000);
         testAPI('TCK/RAML08/Form Parameters/api.raml');
     });
 
 
     it("Overlays 001", function () {
+        this.timeout(15000);
         testAPI("TCK/RAML10/Overlays 001/apigateway.raml", [
             "TCK/RAML10/Overlays 001/apigateway-aws-overlay.raml"
         ]);
     });
 
     it("Overlays 002", function () {
+        this.timeout(15000);
         testAPI("TCK/RAML10/Overlays 002/api.raml", [
             "TCK/RAML10/Overlays 002/overlay.raml"
         ]);
     });
 
     it("Overlays 003", function () {
+        this.timeout(15000);
         testAPI("TCK/RAML10/Overlays 003/api.raml", [
             "TCK/RAML10/Overlays 003/overlay.raml"
         ]);
     });
 
     it("Extension example", function () {
+        this.timeout(15000);
         testAPI("TCK/RAML10/examples/raml1/overlays&extensions/extension/master.raml", [
             "TCK/RAML10/examples/raml1/overlays&extensions/extension/extension.raml"
         ],"TCK/RAML10/examples/raml1/overlays&extensions/extension/master-tck.json");
     });
 
     it("Overlay example", function () {
+        this.timeout(15000);
         testAPI("TCK/RAML10/examples/raml1/overlays&extensions/overlay/master.raml", [
             "TCK/RAML10/examples/raml1/overlays&extensions/overlay/slave.raml"
         ],"TCK/RAML10/examples/raml1/overlays&extensions/overlay/master-tck.json");

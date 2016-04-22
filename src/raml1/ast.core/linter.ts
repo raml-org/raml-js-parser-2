@@ -2929,13 +2929,15 @@ class TemplateCyclesDetector implements NodeValidator {
         for(var i = 0 ; i < templatesRefs.length ; i++){
             var ref = templatesRefs[i];
             var val = ref.value();
-            var refName = typeof(val)=='string' ? val : val.valueName();
-            var template = templatesMap[refName];
-            if(template!=null) {
-                var newCycles = this.findCyclesInDefinition(
-                    template, propName, templatesMap, nextOccuredTemplates);
+            if (val) {
+                var refName = typeof(val) == 'string' ? val : val.valueName();
+                var template = templatesMap[refName];
+                if (template != null) {
+                    var newCycles = this.findCyclesInDefinition(
+                        template, propName, templatesMap, nextOccuredTemplates);
 
-                newCycles.forEach(x=>occuredCycles.push(x));
+                    newCycles.forEach(x=>occuredCycles.push(x));
+                }
             }
         }
 
