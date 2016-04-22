@@ -371,6 +371,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         if (node.knownProperty&&node.lowLevel().value()!=null){
             //if (!node.lowLevel().)
             if (node.lowLevel().includeErrors().length==0) {
+
+                if (node.name()=="body"&&node.computedValue("mediaType")){
+                    return;
+                }
                 v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
             }
         }
