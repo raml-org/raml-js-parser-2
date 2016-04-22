@@ -29,8 +29,6 @@ export function isMasterRefProperty(p:hl.IProperty) : boolean {
 
 export function isDescriptionPropertyName(name : string) : boolean {
     return name === universe.Universe10.TypeDeclaration.properties.description.name ||
-        name === universe.Universe10.RAMLLanguageElement.properties.description.name ||
-        name === universe.Universe08.RAMLLanguageElement.properties.description.name ||
         name === "description";
     //TODO too long to actually list every element having a description, so a couple of checks to cause compile error, and a simple equals check. Also we do not want to affect performance that much.
 }
@@ -78,10 +76,10 @@ export function isHeadersProperty(p:hl.IProperty) : boolean {
 }
 
 export function isHeadersPropertyName(name : string) : boolean {
-    return name === universe.Universe08.HasNormalParameters.properties.headers.name ||
+    return name === universe.Universe08.MethodBase.properties.headers.name ||
         name === universe.Universe08.Response.properties.headers.name ||
         name === universe.Universe08.SecuritySchemePart.properties.headers.name ||
-        name === universe.Universe10.HasNormalParameters.properties.headers.name ||
+        name === universe.Universe10.MethodBase.properties.headers.name ||
         name === universe.Universe10.Response.properties.headers.name
 }
 
@@ -98,9 +96,9 @@ export function isQueryParametersProperty(p:hl.IProperty) : boolean {
 }
 
 export function isQueryParametersPropertyName(name : string) : boolean {
-    return name === universe.Universe08.HasNormalParameters.properties.queryParameters.name ||
+    return name === universe.Universe08.MethodBase.properties.queryParameters.name ||
         name === universe.Universe08.SecuritySchemePart.properties.queryParameters.name ||
-        name === universe.Universe10.HasNormalParameters.properties.queryParameters.name
+        name === universe.Universe10.MethodBase.properties.queryParameters.name
 }
 
 export function isAnnotationsProperty(p:hl.IProperty) : boolean {
@@ -262,8 +260,7 @@ export function isExamplesProperty(p:hl.IProperty) : boolean {
 }
 
 export function isValueProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe10.GlobalSchema.properties.value.name ||
-    p.nameId() === universe.Universe08.GlobalSchema.properties.value.name
+    return p.nameId() === universe.Universe08.GlobalSchema.properties.value.name
 }
 
 export function isUriParametersProperty(p:hl.IProperty) : boolean {
@@ -347,8 +344,7 @@ export function isResourceTypeRefType(type: hl.INodeDefinition | hl.ITypeDefinit
 }
 
 export function isGlobalSchemaType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return type.key() == universe.Universe10.GlobalSchema ||
-    type.key() == universe.Universe08.GlobalSchema;
+    return type.key() == universe.Universe08.GlobalSchema;
 }
 
 export function isSecuritySchemaType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
@@ -379,7 +375,7 @@ export function isOverlayType(type: hl.INodeDefinition | hl.ITypeDefinition) : b
 }
 
 export function isAnnotationTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return type.key() == universe.Universe10.AnnotationTypeDeclaration;
+    return false;
 }
 
 export function isResourceTypeType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
@@ -449,14 +445,10 @@ export function isTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITypeDefi
     return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
 }
 
+
 export function isMethodBaseSibling(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.isAssignableFrom(universe.Universe10.MethodBase.name) ||
         type.isAssignableFrom(universe.Universe08.MethodBase.name);
-}
-
-export function isHasNormalParametersSibling(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
-    return type.isAssignableFrom(universe.Universe10.HasNormalParameters.name) ||
-        type.isAssignableFrom(universe.Universe08.HasNormalParameters.name);
 }
 
 

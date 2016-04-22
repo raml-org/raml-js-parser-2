@@ -486,7 +486,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         if (c){
             var vl=c.attr("value");
             var ck=c.definition().key();
-            if (ck===universes.Universe08.GlobalSchema||ck===universes.Universe10.GlobalSchema) {
+            if (ck===universes.Universe08.GlobalSchema) {
                 if (vl) {
                     var actualValue = vl.value();
                     if (actualValue) {

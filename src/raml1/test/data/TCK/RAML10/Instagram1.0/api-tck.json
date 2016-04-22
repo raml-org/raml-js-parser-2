@@ -785,9 +785,8 @@
                                     "application/json": {
                                         "name": "application/json",
                                         "displayName": "application/json",
-                                        "schema": "types.OkStatus | string",
-                                        "type": [
-                                            "object"
+                                        "schema": [
+                                            "types.OkStatus | string"
                                         ],
                                         "example": {
                                             "meta": {
@@ -797,7 +796,6 @@
                                         },
                                         "repeat": false,
                                         "required": true,
-                                        "schemaContent": "types.OkStatus | string",
                                         "__METADATA__": {
                                             "primitiveValuesMeta": {
                                                 "displayName": {
@@ -2100,9 +2098,8 @@
                                                             "application/json": {
                                                                 "name": "application/json",
                                                                 "displayName": "application/json",
-                                                                "schema": "types.OkStatus | string",
-                                                                "type": [
-                                                                    "object"
+                                                                "schema": [
+                                                                    "types.OkStatus | string"
                                                                 ],
                                                                 "example": {
                                                                     "meta": {
@@ -2112,7 +2109,6 @@
                                                                 },
                                                                 "repeat": false,
                                                                 "required": true,
-                                                                "schemaContent": "types.OkStatus | string",
                                                                 "__METADATA__": {
                                                                     "primitiveValuesMeta": {
                                                                         "displayName": {
@@ -2458,9 +2454,8 @@
                                                     "application/json": {
                                                         "name": "application/json",
                                                         "displayName": "application/json",
-                                                        "schema": "types.OkStatus | string",
-                                                        "type": [
-                                                            "object"
+                                                        "schema": [
+                                                            "types.OkStatus | string"
                                                         ],
                                                         "example": {
                                                             "meta": {
@@ -2470,7 +2465,6 @@
                                                         },
                                                         "repeat": false,
                                                         "required": true,
-                                                        "schemaContent": "types.OkStatus | string",
                                                         "__METADATA__": {
                                                             "primitiveValuesMeta": {
                                                                 "displayName": {
