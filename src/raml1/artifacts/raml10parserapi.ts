@@ -36,6 +36,12 @@ export interface Annotable extends core.BasicNode{
          * Most of RAML model elements may have attached annotations decribing additional meta data about this element
          **/
 annotations(  ):AnnotationRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):AnnotableScalarsAnnotations
 }
 
 export interface ValueType extends core.AttributeNode{
@@ -340,6 +346,12 @@ runtimeType(  ):hl.ITypeDefinition
          * validate an instance against type
          **/
 validateInstance( value:any ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):TypeDeclarationScalarsAnnotations
 }
 
 export interface ModelLocation extends core.AbstractWrapperNode{}
@@ -420,6 +432,60 @@ namespace(  ):string
          * Allows to configure the prefix which will be used during serialization to XML.
          **/
 prefix(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotations
+}
+
+
+/**
+ * Annotable scalar properties annotations accessor
+ **/
+export interface AnnotableScalarsAnnotations{
+
+        /**
+         * Annotable.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]
+}
+
+
+/**
+ * XMLFacetInfo scalar properties annotations accessor
+ **/
+export interface XMLFacetInfoScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * XMLFacetInfo.attribute annotations
+         **/
+attribute(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.wrapped annotations
+         **/
+wrapped(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.namespace annotations
+         **/
+namespace(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.prefix annotations
+         **/
+prefix(  ):AnnotationRef[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration{
@@ -446,6 +512,120 @@ minItems(  ):number
          * Maximum amount of items in array
          **/
 maxItems(  ):number
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * TypeDeclaration scalar properties annotations accessor
+ **/
+export interface TypeDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * TypeDeclaration.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.schema annotations
+         **/
+schema(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.type annotations
+         **/
+"type"(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.location annotations
+         **/
+location(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.locationKind annotations
+         **/
+locationKind(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.default annotations
+         **/
+"default"(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.repeat annotations
+         **/
+repeat(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.required annotations
+         **/
+required(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.allowedTargets annotations
+         **/
+allowedTargets(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.isAnnotation annotations
+         **/
+isAnnotation(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]
+}
+
+
+/**
+ * ArrayTypeDeclaration scalar properties annotations accessor
+ **/
+export interface ArrayTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * ArrayTypeDeclaration.uniqueItems annotations
+         **/
+uniqueItems(  ):AnnotationRef[]
+
+
+        /**
+         * ArrayTypeDeclaration.minItems annotations
+         **/
+minItems(  ):AnnotationRef[]
+
+
+        /**
+         * ArrayTypeDeclaration.maxItems annotations
+         **/
+maxItems(  ):AnnotationRef[]
 }
 
 export interface UnionTypeDeclaration extends TypeDeclaration{}
@@ -492,6 +672,42 @@ discriminator(  ):string
          * The value of discriminator for the type.
          **/
 discriminatorValue(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ObjectTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * ObjectTypeDeclaration scalar properties annotations accessor
+ **/
+export interface ObjectTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * ObjectTypeDeclaration.minProperties annotations
+         **/
+minProperties(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.maxProperties annotations
+         **/
+maxProperties(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.discriminator annotations
+         **/
+discriminator(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.discriminatorValue annotations
+         **/
+discriminatorValue(  ):AnnotationRef[]
 }
 
 
@@ -522,6 +738,42 @@ maxLength(  ):number
          * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
          **/
 enum(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):StringTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * StringTypeDeclaration scalar properties annotations accessor
+ **/
+export interface StringTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * StringTypeDeclaration.pattern annotations
+         **/
+pattern(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[]
 }
 
 
@@ -564,6 +816,12 @@ format(  ):string
          * A numeric instance is valid against "multipleOf" if the result of the division of the instance by this keyword's value is an integer.
          **/
 multipleOf(  ):number
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):NumberTypeDeclarationScalarsAnnotations
 }
 
 
@@ -576,6 +834,60 @@ export interface IntegerTypeDeclaration extends NumberTypeDeclaration{
          * Value format
          **/
 format(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):IntegerTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * NumberTypeDeclaration scalar properties annotations accessor
+ **/
+export interface NumberTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * NumberTypeDeclaration.minimum annotations
+         **/
+minimum(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.maximum annotations
+         **/
+maximum(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.multipleOf annotations
+         **/
+multipleOf(  ):AnnotationRef[]
+}
+
+
+/**
+ * IntegerTypeDeclaration scalar properties annotations accessor
+ **/
+export interface IntegerTypeDeclarationScalarsAnnotations extends NumberTypeDeclarationScalarsAnnotations{
+
+        /**
+         * IntegerTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
 }
 
 
@@ -606,6 +918,24 @@ export interface DateTimeTypeDeclaration extends TypeDeclaration{
          * Format used for this date time rfc3339 or rfc2616
          **/
 format(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):DateTimeTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * DateTimeTypeDeclaration scalar properties annotations accessor
+ **/
+export interface DateTimeTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * DateTimeTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
 }
 
 
@@ -636,6 +966,36 @@ minLength(  ):number
          * The maxLength attribute specifies the parameter value's maximum number of bytes.
          **/
 maxLength(  ):number
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):FileTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * FileTypeDeclaration scalar properties annotations accessor
+ **/
+export interface FileTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * FileTypeDeclaration.fileTypes annotations
+         **/
+fileTypes(  ):AnnotationRef[]
+
+
+        /**
+         * FileTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]
+
+
+        /**
+         * FileTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]
 }
 
 export interface Response extends Annotable{
@@ -674,12 +1034,60 @@ annotations(  ):AnnotationRef[]
          * true for codes < 400 and false otherwise
          **/
 isOkRange(  ):boolean
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResponseScalarsAnnotations
+}
+
+
+/**
+ * Response scalar properties annotations accessor
+ **/
+export interface ResponseScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Response.code annotations
+         **/
+code(  ):AnnotationRef[]
+
+
+        /**
+         * Response.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * Response.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]
 }
 
 export interface SecuritySchemePart extends Operation{
 
         /**
          * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):SecuritySchemePartScalarsAnnotations
+}
+
+
+/**
+ * SecuritySchemePart scalar properties annotations accessor
+ **/
+export interface SecuritySchemePartScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * SecuritySchemePart.annotations annotations
          **/
 annotations(  ):AnnotationRef[]
 }
@@ -712,6 +1120,12 @@ securedBy(  ):SecuritySchemeRef[]
 description(  ):MarkdownString
 
 displayName(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodBaseScalarsAnnotations
 }
 
 export interface SecuritySchemeRef extends Reference{
@@ -768,6 +1182,12 @@ displayName(  ):string
          * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
 settings(  ):SecuritySchemeSettings
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):AbstractSecuritySchemeScalarsAnnotations
 }
 
 export interface SecuritySchemeSettings extends Annotable{}
@@ -796,6 +1216,42 @@ tokenCredentialsUri(  ):FixedUriString
          * List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT
          **/
 signatures(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OAuth1SecuritySchemeSettingsScalarsAnnotations
+}
+
+
+/**
+ * OAuth1SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export interface OAuth1SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * OAuth1SecuritySchemeSettings.requestTokenUri annotations
+         **/
+requestTokenUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.authorizationUri annotations
+         **/
+authorizationUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.tokenCredentialsUri annotations
+         **/
+tokenCredentialsUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.signatures annotations
+         **/
+signatures(  ):AnnotationRef[]
 }
 
 export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
@@ -822,6 +1278,42 @@ authorizationGrants(  ):string[]
          * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
          **/
 scopes(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OAuth2SecuritySchemeSettingsScalarsAnnotations
+}
+
+
+/**
+ * OAuth2SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export interface OAuth2SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * OAuth2SecuritySchemeSettings.accessTokenUri annotations
+         **/
+accessTokenUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.authorizationUri annotations
+         **/
+authorizationUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.authorizationGrants annotations
+         **/
+authorizationGrants(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.scopes annotations
+         **/
+scopes(  ):AnnotationRef[]
 }
 
 
@@ -866,6 +1358,36 @@ export interface DigestSecurityScheme extends AbstractSecurityScheme{}
  **/
 export interface CustomSecurityScheme extends AbstractSecurityScheme{}
 
+
+/**
+ * AbstractSecurityScheme scalar properties annotations accessor
+ **/
+export interface AbstractSecuritySchemeScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * AbstractSecurityScheme.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * AbstractSecurityScheme.type annotations
+         **/
+"type"(  ):AnnotationRef[]
+
+
+        /**
+         * AbstractSecurityScheme.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * AbstractSecurityScheme.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+}
+
 export interface Method extends MethodBase{
 
         /**
@@ -906,6 +1428,66 @@ methodId(  ):string
          * @deprecated
          **/
 allSecuredBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodScalarsAnnotations
+}
+
+
+/**
+ * MethodBase scalar properties annotations accessor
+ **/
+export interface MethodBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * MethodBase.protocols annotations
+         **/
+protocols(  ):AnnotationRef[]
+
+
+        /**
+         * MethodBase.is annotations
+         **/
+is(  ):AnnotationRef[]
+
+
+        /**
+         * MethodBase.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]
+
+
+        /**
+         * MethodBase.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * MethodBase.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+}
+
+
+/**
+ * Method scalar properties annotations accessor
+ **/
+export interface MethodScalarsAnnotations extends MethodBaseScalarsAnnotations{
+
+        /**
+         * Method.method annotations
+         **/
+method(  ):AnnotationRef[]
+
+
+        /**
+         * Method.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
 }
 
 export interface Trait extends MethodBase{
@@ -932,6 +1514,36 @@ displayName(  ):string
          * Returns object representation of parametrized properties of the trait
          **/
 parametrizedProperties(  ):TypeInstance
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):TraitScalarsAnnotations
+}
+
+
+/**
+ * Trait scalar properties annotations accessor
+ **/
+export interface TraitScalarsAnnotations extends MethodBaseScalarsAnnotations{
+
+        /**
+         * Trait.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * Trait.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Trait.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
 }
 
 export interface ResourceTypeRef extends Reference{
@@ -1005,6 +1617,12 @@ allUriParameters(  ):TypeDeclaration[]
          * @deprecated
          **/
 allSecuredBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceBaseScalarsAnnotations
 }
 
 export interface Resource extends ResourceBase{
@@ -1080,6 +1698,72 @@ ownerApi(  ):Api
          * for `Api` owning the `Resource` and `Resource.uriParameters()`.
          **/
 absoluteUriParameters(  ):TypeDeclaration[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceScalarsAnnotations
+}
+
+
+/**
+ * ResourceBase scalar properties annotations accessor
+ **/
+export interface ResourceBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * ResourceBase.is annotations
+         **/
+is(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceBase.type annotations
+         **/
+"type"(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceBase.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceBase.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]
+}
+
+
+/**
+ * Resource scalar properties annotations accessor
+ **/
+export interface ResourceScalarsAnnotations extends ResourceBaseScalarsAnnotations{
+
+        /**
+         * Resource.relativeUri annotations
+         **/
+relativeUri(  ):AnnotationRef[]
+
+
+        /**
+         * Resource.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * Resource.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * Resource.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]
 }
 
 export interface ResourceType extends ResourceBase{
@@ -1106,6 +1790,36 @@ usage(  ):string
          * Returns object representation of parametrized properties of the resource type
          **/
 parametrizedProperties(  ):TypeInstance
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceTypeScalarsAnnotations
+}
+
+
+/**
+ * ResourceType scalar properties annotations accessor
+ **/
+export interface ResourceTypeScalarsAnnotations extends ResourceBaseScalarsAnnotations{
+
+        /**
+         * ResourceType.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceType.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceType.usage annotations
+         **/
+usage(  ):AnnotationRef[]
 }
 
 
@@ -1132,6 +1846,30 @@ key(  ):string
          * Content of the schema
          **/
 value(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.key annotations
+         **/
+key(  ):AnnotationRef[]
+
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]
 }
 
 export interface FragmentDeclaration extends Annotable{
@@ -1150,6 +1888,30 @@ title(  ):string
          * Content of documentation section
          **/
 content(  ):MarkdownString
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):DocumentationItemScalarsAnnotations
+}
+
+
+/**
+ * DocumentationItem scalar properties annotations accessor
+ **/
+export interface DocumentationItemScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * DocumentationItem.title annotations
+         **/
+title(  ):AnnotationRef[]
+
+
+        /**
+         * DocumentationItem.content annotations
+         **/
+content(  ):AnnotationRef[]
 }
 
 export interface LibraryBase extends Annotable{
@@ -1216,6 +1978,30 @@ usage(  ):string
          * Namespace which the library is imported under
          **/
 name(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):LibraryScalarsAnnotations
+}
+
+
+/**
+ * Library scalar properties annotations accessor
+ **/
+export interface LibraryScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Library.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Library.name annotations
+         **/
+name(  ):AnnotationRef[]
 }
 
 export interface Api extends LibraryBase{
@@ -1335,6 +2121,12 @@ allBaseUriParameters(  ):TypeDeclaration[]
          * @deprecated
          **/
 allProtocols(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ApiScalarsAnnotations
 }
 
 export interface Overlay extends Api{
@@ -1355,6 +2147,84 @@ extends(  ):string
          * Short plain-text label for the API
          **/
 title(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OverlayScalarsAnnotations
+}
+
+
+/**
+ * Api scalar properties annotations accessor
+ **/
+export interface ApiScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Api.title annotations
+         **/
+title(  ):AnnotationRef[]
+
+
+        /**
+         * Api.version annotations
+         **/
+version(  ):AnnotationRef[]
+
+
+        /**
+         * Api.baseUri annotations
+         **/
+baseUri(  ):AnnotationRef[]
+
+
+        /**
+         * Api.protocols annotations
+         **/
+protocols(  ):AnnotationRef[]
+
+
+        /**
+         * Api.mediaType annotations
+         **/
+mediaType(  ):AnnotationRef[]
+
+
+        /**
+         * Api.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]
+
+
+        /**
+         * Api.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]
+}
+
+
+/**
+ * Overlay scalar properties annotations accessor
+ **/
+export interface OverlayScalarsAnnotations extends ApiScalarsAnnotations{
+
+        /**
+         * Overlay.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Overlay.extends annotations
+         **/
+extends(  ):AnnotationRef[]
+
+
+        /**
+         * Overlay.title annotations
+         **/
+title(  ):AnnotationRef[]
 }
 
 export interface Extension extends Api{
@@ -1375,6 +2245,36 @@ extends(  ):string
          * Short plain-text label for the API
          **/
 title(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ExtensionScalarsAnnotations
+}
+
+
+/**
+ * Extension scalar properties annotations accessor
+ **/
+export interface ExtensionScalarsAnnotations extends ApiScalarsAnnotations{
+
+        /**
+         * Extension.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Extension.extends annotations
+         **/
+extends(  ):AnnotationRef[]
+
+
+        /**
+         * Extension.title annotations
+         **/
+title(  ):AnnotationRef[]
 }
 
 /**

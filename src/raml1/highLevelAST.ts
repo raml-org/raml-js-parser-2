@@ -337,7 +337,7 @@ export interface IAttribute extends IParseResult {
     
     isAnnotatedScalar():boolean;
 
-    annotations():IParseResult[];
+    annotations():IAttribute[];
 }
 
 export interface IHighLevelNode extends IParseResult {
