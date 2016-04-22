@@ -13,7 +13,6 @@ import tckDumper = require("../../util/TCKDumper")
 import yaml=require("yaml-ast-parser")
 
 import parserCoreApi = require("./parserCoreApi")
-import {AttributeNode} from "../../../dist/raml1/wrapped-ast/parserCoreApi";
 
 export type AbstractWrapperNode=hl.AbstractWrapperNode;
 export type BasicNode=hl.BasicNode;
