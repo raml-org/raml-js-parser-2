@@ -7,7 +7,6 @@ import stubs = require("./raml1/stubs");
 import defSys = require("raml-definition-system")
 import jsyaml=require("./raml1/jsyaml/jsyaml2lowLevel")
 import ll=require("./raml1/lowLevelAST")
-import {universeHelpers} from "../dist/index";
 
 
 export function createTypeDeclaration(typeName : string) : parser10api.TypeDeclaration {
