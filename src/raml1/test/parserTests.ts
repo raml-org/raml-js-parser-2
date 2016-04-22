@@ -685,6 +685,57 @@ describe('Parser regression tests', function () {
     // })
 });
 
+describe('XSD schemes tests', function () {
+    it("XSD Scheme test 1" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 2" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 3" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 4" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 5" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 6" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 7" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 8" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 9" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 10" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 11" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 12" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 13" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 14" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 15" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 16" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
+    })
+});
+
 describe('JSON schemes tests', function () {
     it("JSON Scheme test 1" ,function() {
         this.timeout(15000);
