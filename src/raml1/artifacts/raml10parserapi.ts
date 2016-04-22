@@ -247,7 +247,7 @@ facets(  ):TypeDeclaration[]
         /**
          * Alias for the equivalent "type" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "type" property, as the "schema" alias for that property name may be removed in a future RAML version. The "type" property allows for XML and JSON schemas.
          **/
-schema(  ):string
+schema(  ):string[]
 
 
         /**
@@ -328,12 +328,6 @@ annotations(  ):AnnotationRef[]
          * Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.
          **/
 fixedFacets(  ):TypeInstance
-
-
-        /**
-         * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
-         **/
-schemaContent(  ):string
 
 
         /**
