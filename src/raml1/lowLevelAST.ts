@@ -42,6 +42,16 @@ export interface ICompilationUnit{
     lineMapper():LineMapper;
 
     highLevel():IParseResult;
+
+    /**
+     * Returns true if this unit is overlay or extension, false otherwise.
+     */
+    isOverlayOrExtension() : boolean;
+
+    /**
+     * Returns master reference if presents, null otherwise.
+     */
+    getMasterReferenceNode() : ILowLevelASTNode;
     //ramlVersion():string
 }
 

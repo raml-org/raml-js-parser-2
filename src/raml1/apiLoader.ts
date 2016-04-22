@@ -212,7 +212,7 @@ export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition
 }
 
 function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, options: parserCoreApi.Options) {
-    return llimpl.fetchIncludesAsync(project,unitName).then(x=>{
+    return llimpl.fetchIncludesAndMasterAsync(project,unitName).then(x=>{
         try {
             var api = toApi(x, options);
             if (options.rejectOnErrors && api && api.errors().length) {

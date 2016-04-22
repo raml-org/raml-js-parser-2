@@ -183,6 +183,21 @@ export class TCKDumper{
             }
             var property = props[propName];
             var value = node[propName]();
+
+            if ((<coreApi.BasicNode>node).definition
+                && universeHelpers.isTypeDeclarationSibling((<coreApi.BasicNode>node).definition())
+                && universeHelpers.isTypeProperty(property)) {
+
+                //custom handling of not adding "type" property to the types having "schema" inside, even though the property actually exist,
+                // thus making "type" and "schema" arrays mutually exclusive in JSON.
+                if (props[universe.Universe10.TypeDeclaration.properties.schema.name]) {
+                    var schemaValue =node[universe.Universe10.TypeDeclaration.properties.schema.name]();
+                    if(schemaValue != null && (!Array.isArray(schemaValue) || schemaValue.length != 0)) {
+                        return;
+                    }
+                }
+            }
+
             if (Array.isArray(value)) {
                 var propertyValue:any[] = [];
                 for(var val of value){

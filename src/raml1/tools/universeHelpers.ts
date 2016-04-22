@@ -23,7 +23,8 @@ export function isUsageProperty(p:hl.IProperty) : boolean {
 }
 
 export function isMasterRefProperty(p:hl.IProperty) : boolean {
-    return p.nameId() =="extends" ;
+    return p.nameId() == universe.Universe10.Overlay.properties.extends.name ||
+        p.nameId() == universe.Universe10.Extension.properties.extends.name;
 }
 
 export function isDescriptionPropertyName(name : string) : boolean {

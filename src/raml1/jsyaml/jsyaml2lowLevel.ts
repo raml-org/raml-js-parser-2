@@ -14,6 +14,7 @@ import URL = require("url")
 import refResolvers = require("./includeRefResolvers")
 import schemes = require('../../util/schemaUtil');
 import resolversApi = require("./resolversApi")
+import universes=require("../tools/universe")
 
 var Error=yaml.YAMLException
 export var Kind={
@@ -200,6 +201,49 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     //    return this._ramlVersion;
     //}
 
+    /**
+     * Returns true if this unit is overlay or extension, false otherwise.
+     */
+    isOverlayOrExtension() : boolean {
+        var contents = this.contents();
+
+        var spec = "";
+        var ptype = null;
+        var num = 0;
+        var pt = 0;
+
+        for (var n = 0; n < contents.length; n++) {
+            var c = contents.charAt(n);
+            if (c == '\r' || c == '\n') {
+                if (spec) {
+                    ptype = contents.substring(pt, n).trim();
+                }
+                else {
+                    spec = contents.substring(0, n).trim();
+                }
+                break;
+            }
+            if (c == ' ') {
+                num++;
+                if (!spec && num == 2) {
+                    spec = contents.substring(0, n);
+                    pt = n;
+                }
+            }
+        }
+
+        return ptype == "Extension" || ptype == "Overlay";
+    }
+
+    /**
+     * Returns master reference if presents, null otherwise.
+     */
+    getMasterReferenceNode() : lowlevel.ILowLevelASTNode {
+
+        return _.find(this.ast().children(),
+            x=>x.key()==universes.Universe10.Overlay.properties.masterRef.name);
+
+    }
 }
 
 /**
@@ -3516,7 +3560,38 @@ export function getDefinitionForLowLevelNode(node:lowlevel.ILowLevelASTNode):hig
     return <highlevel.INodeDefinition>prop.range();
 }
 
-export function fetchIncludesAsync(project:lowlevel.IProject,apiPath:string):Promise<lowlevel.ICompilationUnit>{
+function fetchMasterReference(unit: lowlevel.ICompilationUnit, map:{[key:string]:boolean},
+    errors:{[key:string]:string}, lMap:{[key:string]:lowlevel.ILowLevelASTNode[]}) {
+
+    if (!unit.isOverlayOrExtension()) return;
+
+    var masterReferenceNode = unit.getMasterReferenceNode();
+    if (!masterReferenceNode) return;
+
+    var masterReferenceText = masterReferenceNode.value();
+    if (!masterReferenceText) return;
+
+    var unitPath = path.dirname(unit.absolutePath());
+    var absIncludePath = toAbsolutePath(unitPath, masterReferenceText);
+
+    if(map[absIncludePath]){
+        return;
+    }
+
+    if(errors[absIncludePath]){
+        masterReferenceNode.errors().push(new Error(errors[masterReferenceText]));
+        return;
+    }
+
+    var arr = lMap[absIncludePath];
+    if(!arr){
+        arr = [];
+        lMap[absIncludePath] = arr;
+    }
+    arr.push(masterReferenceNode);
+}
+
+export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:string):Promise<lowlevel.ICompilationUnit>{
 
     var map:{[key:string]:boolean}={};
     var errors:{[key:string]:string}={};
@@ -3531,6 +3606,9 @@ export function fetchIncludesAsync(project:lowlevel.IProject,apiPath:string):Pro
         while(ind<units.length) {
             var unit = units[ind];
             var unitPath = path.dirname(unit.absolutePath());
+
+            fetchMasterReference(unit, map, errors, lMap);
+
             var includeNodes = unit.getIncludeNodes();
             includeNodes.forEach(x=>{
                 var ip = x.includePath();
@@ -3561,6 +3639,7 @@ export function fetchIncludesAsync(project:lowlevel.IProject,apiPath:string):Pro
                 }
                 arr.push(x);
             });
+
             ind++;
         }
         var unitPaths = Object.keys(lMap);

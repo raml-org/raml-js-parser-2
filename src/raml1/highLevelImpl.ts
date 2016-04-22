@@ -1077,14 +1077,16 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     }
 
     private calculateMasterByRef() : hl.IParseResult {
-        var masterReference = _.find(this.lowLevel().children(),
-                x=>x.key()=="extends");
+        var unit = this.lowLevel().unit();
+        if (!unit) return null;
 
-        if (!masterReference || !masterReference.value()) {
+        var masterReferenceNode = unit.getMasterReferenceNode();
+
+        if (!masterReferenceNode || !masterReferenceNode.value()) {
             return null;
         }
 
-        var masterPath = masterReference.value();
+        var masterPath = masterReferenceNode.value();
 
         var masterUnit = (<jsyaml.Project>this.lowLevel().unit().project()).resolve(this.lowLevel().unit().path(),masterPath);
         if (!masterUnit) {
