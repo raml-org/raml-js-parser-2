@@ -709,12 +709,14 @@ class CompositePropertyValidator implements PropertyValidator{
 
                 var fvl=new FixedFacetsValidator()
                 node.annotations().forEach(x=>{
-                   if (x.isElement()){
-                       fvl.validate(x.asElement(),v);
-                   }
-                   else{
-                       v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "unknown annotation "+x.name(), x));
-                   }
+                    var vl = x.value();
+                    var highLevel=vl.toHighLevel();
+                    if (!highLevel){
+                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "unknown annotation "+vl.valueName(), x));
+                    }
+                    else{
+                        fvl.validate(highLevel,v);
+                    }
                 });
             }
         }

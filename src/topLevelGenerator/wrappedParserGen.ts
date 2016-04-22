@@ -162,6 +162,83 @@ export class ParserGenerator{
         if(isCustom){
             this.implementationModule.removeChild(dcl);
         }
+        this.generatePrimitivesAnnotations(u,idcl,dcl);
+    }
+
+    private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSClassDecl,classModel:td.TSClassDecl){
+
+        if((<def.NodeClass>u).isCustom()){
+            return;
+        }
+
+        if(u.universe().version()!="RAML10") {
+            return;
+        }
+
+        if(u.isValueType()){
+            return;
+        }
+
+
+        var scalarProperties = u.properties().filter(x=>x.range().isValueType());
+        if(scalarProperties.length==0){
+            return;
+        }
+        var typeName = u.nameId();
+
+        var iName = typeName + "ScalarsAnnotations";
+        var idcl = new td.TSInterface(this.interfaceModule, iName);
+        var typeComment = typeName + " scalar properties annotations accessor";
+        idcl._comment = typeComment;
+        var cName = typeName + "ScalarsAnnotationsImpl";
+        var dcl = new td.TSClassDecl(this.implementationModule, cName);
+        dcl._comment = typeComment;
+
+        dcl.implements.push(new td.TSSimpleTypeReference(td.Universe,idcl.name));
+
+        var superTypes = u.superTypes();
+        while(superTypes.length>0){
+            var superType = superTypes[0];
+            if(superType.properties().filter(x=>x.range().isValueType()).length>0){
+                var superTypeName = superType.nameId();
+                var superInterfaceName = superTypeName+ "ScalarsAnnotations";
+                idcl.extends.push(new td.TSSimpleTypeReference(td.Universe, superInterfaceName));
+                dcl.extends.push(new td.TSSimpleTypeReference(td.Universe, superTypeName + "ScalarsAnnotationsImpl"));
+                break;
+            }
+            superTypes = superType.superTypes();
+        }
+        if(dcl.extends.length==0){
+            var _constructor = new td.TSConstructor(dcl);
+            _constructor.parameters = [
+                new td.Param(
+                    _constructor,
+                    'node',
+                    td.ParamLocation.OTHER,
+                    new td.TSSimpleTypeReference(td.Universe, 'hl.IHighLevelNode'))
+            ];
+            _constructor._body = '';
+        }
+
+        for(var prop of scalarProperties){
+            var propName = prop.nameId();
+            var methodComment = typeName+"."+propName+ " annotations";
+            var body = `
+        var attr = this.node.attr("${propName}");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+`;
+            this.addInterfaceMethod(idcl,propName,"AnnotationRef[]",methodComment);
+            this.addImplementationMethod(dcl,propName,"AnnotationRef[]",body,methodComment)
+
+        }
+
+        this.addInterfaceMethod(interfaceModel,"scalarsAnnotations"
+            ,iName,"Scalar properties annotations accessor");
+
+        this.addImplementationMethod(classModel,"scalarsAnnotations"
+            ,cName,"return new "+cName+"(this.highLevel());","Scalar properties annotations accessor");
     }
 
     private addInterfaceMethod(
@@ -528,7 +605,12 @@ export function is${processedName}(node: core.AbstractWrapperNode) : node is ${p
 
         var apiInterfaceImports = "";
         Object.keys(this.processed).forEach(processedName=>{
-           apiInterfaceImports += ("import " + processedName + " = pApi." + processedName + ";\n");
+            apiInterfaceImports += ("import " + processedName + " = pApi." + processedName + ";\n");
+            var scalarsAnnotationsaccessorname = processedName+"ScalarsAnnotations";
+            if(this.interfaceModule.getInterface(scalarsAnnotationsaccessorname)!=null){
+                apiInterfaceImports += ("import " + scalarsAnnotationsaccessorname
+                        + " = pApi." + scalarsAnnotationsaccessorname + ";\n");
+            }
         });
 
         return `${this.ramlVersion == 'RAML10' ? raml10parserJsDoc : ''}

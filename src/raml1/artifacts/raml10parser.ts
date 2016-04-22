@@ -41,8 +41,10 @@ import pApi = require("./raml10parserapi");
 import helper=require("../../raml1/wrapped-ast/wrapperHelper")
 
 import Api = pApi.Api;
+import ApiScalarsAnnotations = pApi.ApiScalarsAnnotations;
 import LibraryBase = pApi.LibraryBase;
 import Annotable = pApi.Annotable;
+import AnnotableScalarsAnnotations = pApi.AnnotableScalarsAnnotations;
 import AnnotationRef = pApi.AnnotationRef;
 import Reference = pApi.Reference;
 import ValueType = pApi.ValueType;
@@ -64,33 +66,49 @@ import TypeInstance = pApi.TypeInstance;
 import TypeInstanceProperty = pApi.TypeInstanceProperty;
 import TraitRef = pApi.TraitRef;
 import Trait = pApi.Trait;
+import TraitScalarsAnnotations = pApi.TraitScalarsAnnotations;
 import MethodBase = pApi.MethodBase;
+import MethodBaseScalarsAnnotations = pApi.MethodBaseScalarsAnnotations;
 import Operation = pApi.Operation;
 import TypeDeclaration = pApi.TypeDeclaration;
+import TypeDeclarationScalarsAnnotations = pApi.TypeDeclarationScalarsAnnotations;
 import ModelLocation = pApi.ModelLocation;
 import LocationKind = pApi.LocationKind;
 import ExampleSpec = pApi.ExampleSpec;
 import XMLFacetInfo = pApi.XMLFacetInfo;
+import XMLFacetInfoScalarsAnnotations = pApi.XMLFacetInfoScalarsAnnotations;
 import ArrayTypeDeclaration = pApi.ArrayTypeDeclaration;
+import ArrayTypeDeclarationScalarsAnnotations = pApi.ArrayTypeDeclarationScalarsAnnotations;
 import UnionTypeDeclaration = pApi.UnionTypeDeclaration;
 import ObjectTypeDeclaration = pApi.ObjectTypeDeclaration;
+import ObjectTypeDeclarationScalarsAnnotations = pApi.ObjectTypeDeclarationScalarsAnnotations;
 import StringTypeDeclaration = pApi.StringTypeDeclaration;
+import StringTypeDeclarationScalarsAnnotations = pApi.StringTypeDeclarationScalarsAnnotations;
 import BooleanTypeDeclaration = pApi.BooleanTypeDeclaration;
 import NumberTypeDeclaration = pApi.NumberTypeDeclaration;
+import NumberTypeDeclarationScalarsAnnotations = pApi.NumberTypeDeclarationScalarsAnnotations;
 import IntegerTypeDeclaration = pApi.IntegerTypeDeclaration;
+import IntegerTypeDeclarationScalarsAnnotations = pApi.IntegerTypeDeclarationScalarsAnnotations;
 import DateOnlyTypeDeclaration = pApi.DateOnlyTypeDeclaration;
 import TimeOnlyTypeDeclaration = pApi.TimeOnlyTypeDeclaration;
 import DateTimeOnlyTypeDeclaration = pApi.DateTimeOnlyTypeDeclaration;
 import DateTimeTypeDeclaration = pApi.DateTimeTypeDeclaration;
+import DateTimeTypeDeclarationScalarsAnnotations = pApi.DateTimeTypeDeclarationScalarsAnnotations;
 import DateTypeDeclaration = pApi.DateTypeDeclaration;
 import FileTypeDeclaration = pApi.FileTypeDeclaration;
+import FileTypeDeclarationScalarsAnnotations = pApi.FileTypeDeclarationScalarsAnnotations;
 import Response = pApi.Response;
+import ResponseScalarsAnnotations = pApi.ResponseScalarsAnnotations;
 import SecuritySchemePart = pApi.SecuritySchemePart;
+import SecuritySchemePartScalarsAnnotations = pApi.SecuritySchemePartScalarsAnnotations;
 import SecuritySchemeRef = pApi.SecuritySchemeRef;
 import AbstractSecurityScheme = pApi.AbstractSecurityScheme;
+import AbstractSecuritySchemeScalarsAnnotations = pApi.AbstractSecuritySchemeScalarsAnnotations;
 import SecuritySchemeSettings = pApi.SecuritySchemeSettings;
 import OAuth1SecuritySchemeSettings = pApi.OAuth1SecuritySchemeSettings;
+import OAuth1SecuritySchemeSettingsScalarsAnnotations = pApi.OAuth1SecuritySchemeSettingsScalarsAnnotations;
 import OAuth2SecuritySchemeSettings = pApi.OAuth2SecuritySchemeSettings;
+import OAuth2SecuritySchemeSettingsScalarsAnnotations = pApi.OAuth2SecuritySchemeSettingsScalarsAnnotations;
 import OAuth2SecurityScheme = pApi.OAuth2SecurityScheme;
 import OAuth1SecurityScheme = pApi.OAuth1SecurityScheme;
 import PassThroughSecurityScheme = pApi.PassThroughSecurityScheme;
@@ -98,16 +116,25 @@ import BasicSecurityScheme = pApi.BasicSecurityScheme;
 import DigestSecurityScheme = pApi.DigestSecurityScheme;
 import CustomSecurityScheme = pApi.CustomSecurityScheme;
 import Method = pApi.Method;
+import MethodScalarsAnnotations = pApi.MethodScalarsAnnotations;
 import ResourceTypeRef = pApi.ResourceTypeRef;
 import ResourceType = pApi.ResourceType;
+import ResourceTypeScalarsAnnotations = pApi.ResourceTypeScalarsAnnotations;
 import ResourceBase = pApi.ResourceBase;
+import ResourceBaseScalarsAnnotations = pApi.ResourceBaseScalarsAnnotations;
 import Resource = pApi.Resource;
+import ResourceScalarsAnnotations = pApi.ResourceScalarsAnnotations;
 import UsesDeclaration = pApi.UsesDeclaration;
+import UsesDeclarationScalarsAnnotations = pApi.UsesDeclarationScalarsAnnotations;
 import FragmentDeclaration = pApi.FragmentDeclaration;
 import DocumentationItem = pApi.DocumentationItem;
+import DocumentationItemScalarsAnnotations = pApi.DocumentationItemScalarsAnnotations;
 import Library = pApi.Library;
+import LibraryScalarsAnnotations = pApi.LibraryScalarsAnnotations;
 import Overlay = pApi.Overlay;
+import OverlayScalarsAnnotations = pApi.OverlayScalarsAnnotations;
 import Extension = pApi.Extension;
+import ExtensionScalarsAnnotations = pApi.ExtensionScalarsAnnotations;
 export class AnnotableImpl extends core.BasicNodeImpl implements Annotable{
 
         /**
@@ -135,6 +162,12 @@ kind(  ):string{return "Annotable";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):AnnotableScalarsAnnotationsImpl{return new AnnotableScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class ValueTypeImpl extends core.AttributeNodeImpl implements ValueType{
@@ -904,6 +937,12 @@ examples(  ):ExampleSpec[]{
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):TypeDeclarationScalarsAnnotationsImpl{return new TypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class ModelLocationImpl implements ModelLocation{
@@ -1063,6 +1102,92 @@ kind(  ):string{return "XMLFacetInfo";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotationsImpl{return new XMLFacetInfoScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Annotable scalar properties annotations accessor
+ **/
+export class AnnotableScalarsAnnotationsImpl implements AnnotableScalarsAnnotations{
+constructor( protected node:hl.IHighLevelNode ){}
+
+
+        /**
+         * Annotable.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * XMLFacetInfo scalar properties annotations accessor
+ **/
+export class XMLFacetInfoScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements XMLFacetInfoScalarsAnnotations{
+
+        /**
+         * XMLFacetInfo.attribute annotations
+         **/
+attribute(  ):AnnotationRef[]{
+        var attr = this.node.attr("attribute");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * XMLFacetInfo.wrapped annotations
+         **/
+wrapped(  ):AnnotationRef[]{
+        var attr = this.node.attr("wrapped");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * XMLFacetInfo.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * XMLFacetInfo.namespace annotations
+         **/
+namespace(  ):AnnotationRef[]{
+        var attr = this.node.attr("namespace");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * XMLFacetInfo.prefix annotations
+         **/
+prefix(  ):AnnotationRef[]{
+        var attr = this.node.attr("prefix");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ArrayTypeDeclarationImpl extends TypeDeclarationImpl implements ArrayTypeDeclaration{
@@ -1148,6 +1273,200 @@ kind(  ):string{return "ArrayTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotationsImpl{return new ArrayTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * TypeDeclaration scalar properties annotations accessor
+ **/
+export class TypeDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements TypeDeclarationScalarsAnnotations{
+
+        /**
+         * TypeDeclaration.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.schema annotations
+         **/
+schema(  ):AnnotationRef[]{
+        var attr = this.node.attr("schema");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.type annotations
+         **/
+"type"(  ):AnnotationRef[]{
+        var attr = this.node.attr("type");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.location annotations
+         **/
+location(  ):AnnotationRef[]{
+        var attr = this.node.attr("location");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.locationKind annotations
+         **/
+locationKind(  ):AnnotationRef[]{
+        var attr = this.node.attr("locationKind");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.default annotations
+         **/
+"default"(  ):AnnotationRef[]{
+        var attr = this.node.attr("default");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.repeat annotations
+         **/
+repeat(  ):AnnotationRef[]{
+        var attr = this.node.attr("repeat");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.required annotations
+         **/
+required(  ):AnnotationRef[]{
+        var attr = this.node.attr("required");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.allowedTargets annotations
+         **/
+allowedTargets(  ):AnnotationRef[]{
+        var attr = this.node.attr("allowedTargets");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.isAnnotation annotations
+         **/
+isAnnotation(  ):AnnotationRef[]{
+        var attr = this.node.attr("isAnnotation");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * TypeDeclaration.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * ArrayTypeDeclaration scalar properties annotations accessor
+ **/
+export class ArrayTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements ArrayTypeDeclarationScalarsAnnotations{
+
+        /**
+         * ArrayTypeDeclaration.uniqueItems annotations
+         **/
+uniqueItems(  ):AnnotationRef[]{
+        var attr = this.node.attr("uniqueItems");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ArrayTypeDeclaration.minItems annotations
+         **/
+minItems(  ):AnnotationRef[]{
+        var attr = this.node.attr("minItems");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ArrayTypeDeclaration.maxItems annotations
+         **/
+maxItems(  ):AnnotationRef[]{
+        var attr = this.node.attr("maxItems");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class UnionTypeDeclarationImpl extends TypeDeclarationImpl implements UnionTypeDeclaration{
@@ -1290,6 +1609,62 @@ kind(  ):string{return "ObjectTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ObjectTypeDeclarationScalarsAnnotationsImpl{return new ObjectTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * ObjectTypeDeclaration scalar properties annotations accessor
+ **/
+export class ObjectTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements ObjectTypeDeclarationScalarsAnnotations{
+
+        /**
+         * ObjectTypeDeclaration.minProperties annotations
+         **/
+minProperties(  ):AnnotationRef[]{
+        var attr = this.node.attr("minProperties");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ObjectTypeDeclaration.maxProperties annotations
+         **/
+maxProperties(  ):AnnotationRef[]{
+        var attr = this.node.attr("maxProperties");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ObjectTypeDeclaration.discriminator annotations
+         **/
+discriminator(  ):AnnotationRef[]{
+        var attr = this.node.attr("discriminator");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ObjectTypeDeclaration.discriminatorValue annotations
+         **/
+discriminatorValue(  ):AnnotationRef[]{
+        var attr = this.node.attr("discriminatorValue");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -1389,6 +1764,62 @@ kind(  ):string{return "StringTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):StringTypeDeclarationScalarsAnnotationsImpl{return new StringTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * StringTypeDeclaration scalar properties annotations accessor
+ **/
+export class StringTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements StringTypeDeclarationScalarsAnnotations{
+
+        /**
+         * StringTypeDeclaration.pattern annotations
+         **/
+pattern(  ):AnnotationRef[]{
+        var attr = this.node.attr("pattern");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * StringTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]{
+        var attr = this.node.attr("minLength");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * StringTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]{
+        var attr = this.node.attr("maxLength");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * StringTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[]{
+        var attr = this.node.attr("enum");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -1533,6 +1964,12 @@ kind(  ):string{return "NumberTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):NumberTypeDeclarationScalarsAnnotationsImpl{return new NumberTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
 }
 
 
@@ -1578,6 +2015,90 @@ kind(  ):string{return "IntegerTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):IntegerTypeDeclarationScalarsAnnotationsImpl{return new IntegerTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * NumberTypeDeclaration scalar properties annotations accessor
+ **/
+export class NumberTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements NumberTypeDeclarationScalarsAnnotations{
+
+        /**
+         * NumberTypeDeclaration.minimum annotations
+         **/
+minimum(  ):AnnotationRef[]{
+        var attr = this.node.attr("minimum");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * NumberTypeDeclaration.maximum annotations
+         **/
+maximum(  ):AnnotationRef[]{
+        var attr = this.node.attr("maximum");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * NumberTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[]{
+        var attr = this.node.attr("enum");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * NumberTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]{
+        var attr = this.node.attr("format");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * NumberTypeDeclaration.multipleOf annotations
+         **/
+multipleOf(  ):AnnotationRef[]{
+        var attr = this.node.attr("multipleOf");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * IntegerTypeDeclaration scalar properties annotations accessor
+ **/
+export class IntegerTypeDeclarationScalarsAnnotationsImpl extends NumberTypeDeclarationScalarsAnnotationsImpl implements IntegerTypeDeclarationScalarsAnnotations{
+
+        /**
+         * IntegerTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]{
+        var attr = this.node.attr("format");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -1704,6 +2225,29 @@ kind(  ):string{return "DateTimeTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):DateTimeTypeDeclarationScalarsAnnotationsImpl{return new DateTimeTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * DateTimeTypeDeclaration scalar properties annotations accessor
+ **/
+export class DateTimeTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements DateTimeTypeDeclarationScalarsAnnotations{
+
+        /**
+         * DateTimeTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]{
+        var attr = this.node.attr("format");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -1802,6 +2346,51 @@ kind(  ):string{return "FileTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):FileTypeDeclarationScalarsAnnotationsImpl{return new FileTypeDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * FileTypeDeclaration scalar properties annotations accessor
+ **/
+export class FileTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationScalarsAnnotationsImpl implements FileTypeDeclarationScalarsAnnotations{
+
+        /**
+         * FileTypeDeclaration.fileTypes annotations
+         **/
+fileTypes(  ):AnnotationRef[]{
+        var attr = this.node.attr("fileTypes");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * FileTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]{
+        var attr = this.node.attr("minLength");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * FileTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]{
+        var attr = this.node.attr("maxLength");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ResponseImpl extends AnnotableImpl implements Response{
@@ -1883,6 +2472,51 @@ RAMLVersion(  ):string{return "RAML10";}
 isOkRange(  ):boolean{
             return helper.isOkRange(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResponseScalarsAnnotationsImpl{return new ResponseScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Response scalar properties annotations accessor
+ **/
+export class ResponseScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements ResponseScalarsAnnotations{
+
+        /**
+         * Response.code annotations
+         **/
+code(  ):AnnotationRef[]{
+        var attr = this.node.attr("code");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Response.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Response.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class SecuritySchemePartImpl extends OperationImpl implements SecuritySchemePart{
@@ -1914,6 +2548,29 @@ kind(  ):string{return "SecuritySchemePart";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):SecuritySchemePartScalarsAnnotationsImpl{return new SecuritySchemePartScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * SecuritySchemePart scalar properties annotations accessor
+ **/
+export class SecuritySchemePartScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements SecuritySchemePartScalarsAnnotations{
+
+        /**
+         * SecuritySchemePart.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class MethodBaseImpl extends OperationImpl implements MethodBase{
@@ -1997,6 +2654,12 @@ kind(  ):string{return "MethodBase";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodBaseScalarsAnnotationsImpl{return new MethodBaseScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef{
@@ -2131,6 +2794,12 @@ kind(  ):string{return "AbstractSecurityScheme";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):AbstractSecuritySchemeScalarsAnnotationsImpl{return new AbstractSecuritySchemeScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class SecuritySchemeSettingsImpl extends AnnotableImpl implements SecuritySchemeSettings{
@@ -2219,6 +2888,62 @@ kind(  ):string{return "OAuth1SecuritySchemeSettings";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OAuth1SecuritySchemeSettingsScalarsAnnotationsImpl{return new OAuth1SecuritySchemeSettingsScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * OAuth1SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export class OAuth1SecuritySchemeSettingsScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements OAuth1SecuritySchemeSettingsScalarsAnnotations{
+
+        /**
+         * OAuth1SecuritySchemeSettings.requestTokenUri annotations
+         **/
+requestTokenUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("requestTokenUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.authorizationUri annotations
+         **/
+authorizationUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("authorizationUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.tokenCredentialsUri annotations
+         **/
+tokenCredentialsUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("tokenCredentialsUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.signatures annotations
+         **/
+signatures(  ):AnnotationRef[]{
+        var attr = this.node.attr("signatures");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings{
@@ -2294,6 +3019,62 @@ kind(  ):string{return "OAuth2SecuritySchemeSettings";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OAuth2SecuritySchemeSettingsScalarsAnnotationsImpl{return new OAuth2SecuritySchemeSettingsScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * OAuth2SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export class OAuth2SecuritySchemeSettingsScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements OAuth2SecuritySchemeSettingsScalarsAnnotations{
+
+        /**
+         * OAuth2SecuritySchemeSettings.accessTokenUri annotations
+         **/
+accessTokenUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("accessTokenUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.authorizationUri annotations
+         **/
+authorizationUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("authorizationUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.authorizationGrants annotations
+         **/
+authorizationGrants(  ):AnnotationRef[]{
+        var attr = this.node.attr("authorizationGrants");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.scopes annotations
+         **/
+scopes(  ):AnnotationRef[]{
+        var attr = this.node.attr("scopes");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -2470,6 +3251,56 @@ kind(  ):string{return "CustomSecurityScheme";}
 RAMLVersion(  ):string{return "RAML10";}
 }
 
+
+/**
+ * AbstractSecurityScheme scalar properties annotations accessor
+ **/
+export class AbstractSecuritySchemeScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements AbstractSecuritySchemeScalarsAnnotations{
+
+        /**
+         * AbstractSecurityScheme.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * AbstractSecurityScheme.type annotations
+         **/
+"type"(  ):AnnotationRef[]{
+        var attr = this.node.attr("type");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * AbstractSecurityScheme.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * AbstractSecurityScheme.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
 export class MethodImpl extends MethodBaseImpl implements Method{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
@@ -2563,6 +3394,101 @@ methodId(  ):string{
 allSecuredBy(  ):SecuritySchemeRef[]{
             return helper.allSecuredBy(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodScalarsAnnotationsImpl{return new MethodScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * MethodBase scalar properties annotations accessor
+ **/
+export class MethodBaseScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements MethodBaseScalarsAnnotations{
+
+        /**
+         * MethodBase.protocols annotations
+         **/
+protocols(  ):AnnotationRef[]{
+        var attr = this.node.attr("protocols");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * MethodBase.is annotations
+         **/
+is(  ):AnnotationRef[]{
+        var attr = this.node.attr("is");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * MethodBase.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]{
+        var attr = this.node.attr("securedBy");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * MethodBase.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * MethodBase.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * Method scalar properties annotations accessor
+ **/
+export class MethodScalarsAnnotationsImpl extends MethodBaseScalarsAnnotationsImpl implements MethodScalarsAnnotations{
+
+        /**
+         * Method.method annotations
+         **/
+method(  ):AnnotationRef[]{
+        var attr = this.node.attr("method");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Method.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class TraitImpl extends MethodBaseImpl implements Trait{
@@ -2644,6 +3570,51 @@ RAMLVersion(  ):string{return "RAML10";}
 parametrizedProperties(  ):TypeInstance{
             return helper.getTemplateParametrizedProperties(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):TraitScalarsAnnotationsImpl{return new TraitScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Trait scalar properties annotations accessor
+ **/
+export class TraitScalarsAnnotationsImpl extends MethodBaseScalarsAnnotationsImpl implements TraitScalarsAnnotations{
+
+        /**
+         * Trait.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Trait.usage annotations
+         **/
+usage(  ):AnnotationRef[]{
+        var attr = this.node.attr("usage");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Trait.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ResourceTypeRefImpl extends ReferenceImpl implements ResourceTypeRef{
@@ -2782,6 +3753,12 @@ allUriParameters(  ):TypeDeclaration[]{
 allSecuredBy(  ):SecuritySchemeRef[]{
             return helper.allSecuredBy(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceBaseScalarsAnnotationsImpl{return new ResourceBaseScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class ResourceImpl extends ResourceBaseImpl implements Resource{
@@ -2922,6 +3899,112 @@ ownerApi(  ):Api{
 absoluteUriParameters(  ):TypeDeclaration[]{
             return helper.absoluteUriParameters(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceScalarsAnnotationsImpl{return new ResourceScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * ResourceBase scalar properties annotations accessor
+ **/
+export class ResourceBaseScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements ResourceBaseScalarsAnnotations{
+
+        /**
+         * ResourceBase.is annotations
+         **/
+is(  ):AnnotationRef[]{
+        var attr = this.node.attr("is");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ResourceBase.type annotations
+         **/
+"type"(  ):AnnotationRef[]{
+        var attr = this.node.attr("type");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ResourceBase.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ResourceBase.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]{
+        var attr = this.node.attr("securedBy");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * Resource scalar properties annotations accessor
+ **/
+export class ResourceScalarsAnnotationsImpl extends ResourceBaseScalarsAnnotationsImpl implements ResourceScalarsAnnotations{
+
+        /**
+         * Resource.relativeUri annotations
+         **/
+relativeUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("relativeUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Resource.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Resource.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Resource.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType{
@@ -3003,6 +4086,51 @@ RAMLVersion(  ):string{return "RAML10";}
 parametrizedProperties(  ):TypeInstance{
             return helper.getTemplateParametrizedProperties(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceTypeScalarsAnnotationsImpl{return new ResourceTypeScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * ResourceType scalar properties annotations accessor
+ **/
+export class ResourceTypeScalarsAnnotationsImpl extends ResourceBaseScalarsAnnotationsImpl implements ResourceTypeScalarsAnnotations{
+
+        /**
+         * ResourceType.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]{
+        var attr = this.node.attr("displayName");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ResourceType.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ResourceType.usage annotations
+         **/
+usage(  ):AnnotationRef[]{
+        var attr = this.node.attr("usage");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 
@@ -3091,6 +4219,40 @@ kind(  ):string{return "UsesDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotationsImpl{return new UsesDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export class UsesDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements UsesDeclarationScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.key annotations
+         **/
+key(  ):AnnotationRef[]{
+        var attr = this.node.attr("key");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]{
+        var attr = this.node.attr("value");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class FragmentDeclarationImpl extends AnnotableImpl implements FragmentDeclaration{
@@ -3167,6 +4329,40 @@ kind(  ):string{return "DocumentationItem";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):DocumentationItemScalarsAnnotationsImpl{return new DocumentationItemScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * DocumentationItem scalar properties annotations accessor
+ **/
+export class DocumentationItemScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements DocumentationItemScalarsAnnotations{
+
+        /**
+         * DocumentationItem.title annotations
+         **/
+title(  ):AnnotationRef[]{
+        var attr = this.node.attr("title");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * DocumentationItem.content annotations
+         **/
+content(  ):AnnotationRef[]{
+        var attr = this.node.attr("content");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class LibraryBaseImpl extends AnnotableImpl implements LibraryBase{
@@ -3333,6 +4529,40 @@ kind(  ):string{return "Library";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):LibraryScalarsAnnotationsImpl{return new LibraryScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Library scalar properties annotations accessor
+ **/
+export class LibraryScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements LibraryScalarsAnnotations{
+
+        /**
+         * Library.usage annotations
+         **/
+usage(  ):AnnotationRef[]{
+        var attr = this.node.attr("usage");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Library.name annotations
+         **/
+name(  ):AnnotationRef[]{
+        var attr = this.node.attr("name");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ApiImpl extends LibraryBaseImpl implements Api{
@@ -3536,6 +4766,12 @@ allProtocols(  ):string[]{
 RAMLVersion(  ):string{
             return helper.RAMLVersion(this);
         }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ApiScalarsAnnotationsImpl{return new ApiScalarsAnnotationsImpl(this.highLevel());}
 }
 
 export class OverlayImpl extends ApiImpl implements Overlay{
@@ -3613,6 +4849,134 @@ kind(  ):string{return "Overlay";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OverlayScalarsAnnotationsImpl{return new OverlayScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Api scalar properties annotations accessor
+ **/
+export class ApiScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements ApiScalarsAnnotations{
+
+        /**
+         * Api.title annotations
+         **/
+title(  ):AnnotationRef[]{
+        var attr = this.node.attr("title");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.version annotations
+         **/
+version(  ):AnnotationRef[]{
+        var attr = this.node.attr("version");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.baseUri annotations
+         **/
+baseUri(  ):AnnotationRef[]{
+        var attr = this.node.attr("baseUri");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.protocols annotations
+         **/
+protocols(  ):AnnotationRef[]{
+        var attr = this.node.attr("protocols");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.mediaType annotations
+         **/
+mediaType(  ):AnnotationRef[]{
+        var attr = this.node.attr("mediaType");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[]{
+        var attr = this.node.attr("securedBy");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.annotations annotations
+         **/
+annotations(  ):AnnotationRef[]{
+        var attr = this.node.attr("annotations");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+}
+
+
+/**
+ * Overlay scalar properties annotations accessor
+ **/
+export class OverlayScalarsAnnotationsImpl extends ApiScalarsAnnotationsImpl implements OverlayScalarsAnnotations{
+
+        /**
+         * Overlay.usage annotations
+         **/
+usage(  ):AnnotationRef[]{
+        var attr = this.node.attr("usage");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Overlay.extends annotations
+         **/
+extends(  ):AnnotationRef[]{
+        var attr = this.node.attr("extends");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Overlay.title annotations
+         **/
+title(  ):AnnotationRef[]{
+        var attr = this.node.attr("title");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 export class ExtensionImpl extends ApiImpl implements Extension{
@@ -3690,6 +5054,51 @@ kind(  ):string{return "Extension";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ExtensionScalarsAnnotationsImpl{return new ExtensionScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Extension scalar properties annotations accessor
+ **/
+export class ExtensionScalarsAnnotationsImpl extends ApiScalarsAnnotationsImpl implements ExtensionScalarsAnnotations{
+
+        /**
+         * Extension.usage annotations
+         **/
+usage(  ):AnnotationRef[]{
+        var attr = this.node.attr("usage");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Extension.extends annotations
+         **/
+extends(  ):AnnotationRef[]{
+        var attr = this.node.attr("extends");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Extension.title annotations
+         **/
+title(  ):AnnotationRef[]{
+        var attr = this.node.attr("title");
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        return <AnnotationRef[]>result;
+}
 }
 
 /**

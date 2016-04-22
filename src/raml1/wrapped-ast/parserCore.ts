@@ -72,20 +72,13 @@ export class BasicNodeImpl implements hl.BasicNode{
         var attrs:hl.IAttribute[] = this._node.attributes(name);
         if(!attrs || attrs.length == 0){
             var defaultValue = this.getDefaultsCalculator().
-                attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+            attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
             if (defaultValue == null) return [];
             return Array.isArray(defaultValue) ? defaultValue : [ defaultValue ];
         }
-
         //TODO not sure if we want to artificially create missing attributes having
         //default values
-
-        if(constr){
-            return attrs.map(x=>constr(x));
-        }
-        else{
-            return attrs.map(x=>x.value());
-        }
+        return attributesToValues(attrs,constr);
     }
 
     /**
@@ -567,6 +560,8 @@ export class ExampleSpecImpl extends BasicNodeImpl{
         return this._annotations;
     }
 
+    scalarsAnnotations():any{ return <any>{}; }
+
 }
 
 export type ValueMetaData=hl.ValueMetadata;
@@ -712,4 +707,14 @@ export function fillElementMeta(node:BasicNodeImpl):NodeMetadataImpl{
         }
     });
     return meta;
+}
+
+export function attributesToValues(attrs:hl.IAttribute[], constr?:(attr:hl.IAttribute)=>any):any[]{
+
+    if(constr){
+        return attrs.map(x=>constr(x));
+    }
+    else{
+        return attrs.map(x=>x.value());
+    }
 }
