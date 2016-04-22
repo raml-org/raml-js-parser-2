@@ -936,13 +936,15 @@ describe('Optional template parameters tests', function () {
         testErrors(util.data("parser/optionalTemplateParameters/api01.raml"));
     });
     it("Should report error on unspecified parameter, which is used after expansion #1.", function () {
-        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api02.raml"),1);
+        testErrors(util.data("parser/optionalTemplateParameters/api02.raml")
+            ,["value was not provided for parameter: param1"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #2.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api03.raml"));
     });
     it("Should report error on unspecified parameter, which is used after expansion #2.", function () {
-        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api04.raml"),1);
+        testErrors(util.data("parser/optionalTemplateParameters/api04.raml")
+            ,["value was not provided for parameter: param1"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #3.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api05.raml"));
@@ -960,7 +962,8 @@ describe('Optional template parameters tests', function () {
         testErrors(util.data("parser/optionalTemplateParameters/api09.raml"));
     });
     it("Only methods are permitted to be optional in sense of templates expansion.", function () {
-        testErrorsByNumber(util.data("parser/illegalOptionalParameters/api01.raml"),1);
+        testErrors(util.data("parser/illegalOptionalParameters/api01.raml")
+            ,["Only method nodes can be optional"]);
     });
 });
 
