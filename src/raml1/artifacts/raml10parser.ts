@@ -784,10 +784,6 @@ examples(  ):ExampleSpec[]{
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
         }
-
-schemaContent(  ):string{
-            return helper.schemaContent(this);
-        }
 }
 
 export class ModelLocationImpl implements ModelLocation{

@@ -362,7 +362,6 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return false;
         }
         var methodDef = universes.Universe08.Method;
-        var hasNormalParametersDef = universes.Universe08.HasNormalParameters;
         var resourceDef = universes.Universe08.Resource
 
         //if(key==hasNormalParametersDef.properties.displayName.name

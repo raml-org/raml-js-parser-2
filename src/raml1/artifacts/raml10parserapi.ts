@@ -328,12 +328,7 @@ annotations(  ):AnnotationRef[]
          * Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.
          **/
 fixedFacets(  ):TypeInstance
-
-
-        /**
-         * Returns schema content for the cases when schema is inlined, when schema is included, and when schema is a reference.
-         **/
-schemaContent(  ):string
+        
 
 
         /**

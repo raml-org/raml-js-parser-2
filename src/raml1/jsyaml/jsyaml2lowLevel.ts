@@ -241,7 +241,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     getMasterReferenceNode() : lowlevel.ILowLevelASTNode {
 
         return _.find(this.ast().children(),
-            x=>x.key()==universes.Universe10.Overlay.properties.masterRef.name);
+            x=>x.key()==universes.Universe10.Overlay.properties.extends.name);
 
     }
 }
