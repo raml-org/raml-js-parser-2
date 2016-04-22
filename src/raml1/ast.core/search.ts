@@ -241,8 +241,7 @@ export function referenceTargets(p0:hl.IProperty,c:hl.IHighLevelNode):hl.IHighLe
     if (p.getAdapter(ramlServices.RAMLPropertyService).isTypeExpr()){
         var definitionNodes = globalDeclarations(c).filter(node=>{
             var nc=node.definition().key();
-            if (nc===universes.Universe08.GlobalSchema
-                ||nc===universes.Universe10.GlobalSchema){
+            if (nc===universes.Universe08.GlobalSchema){
                 return true;
             }
             return node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name);
@@ -276,8 +275,7 @@ export function enumValues(p:def.Property,c:hl.IHighLevelNode):string[]{
         {
             var definitionNodes = globalDeclarations(c).filter(node=>{
                 var nc=node.definition().key();
-                if (nc===universes.Universe08.GlobalSchema
-                    ||nc===universes.Universe10.GlobalSchema){
+                if (nc===universes.Universe08.GlobalSchema){
                     return true;
                 }
                 return (node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name))
@@ -299,9 +297,7 @@ export function enumValues(p:def.Property,c:hl.IHighLevelNode):string[]{
                 if (p.range().universe().version()=="RAML10"){
                     if (p.range().hasValueTypeInHierarchy()){
                         var definitionNodes = globalDeclarations(c).filter(node=>{
-                            if (node.definition().key()==universes.Universe10.GlobalSchema){
-                                return true;
-                            }
+
                             return node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
                         })
                         rs= definitionNodes.map(x=>hlimpl.qName(x,c));

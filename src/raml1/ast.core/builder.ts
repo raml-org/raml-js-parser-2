@@ -118,7 +118,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             }
             if (node.definition().hasUnionInHierarchy()){
                 if (true &&
-                    (node.parent() && node.property().nameId()==universes.Universe10.RAMLLanguageElement.properties.annotations.name)){
+                    (node.parent() && node.property().nameId()==universes.Universe10.LibraryBase.properties.annotations.name)){
                 var optins=getAllOptions(node.definition().unionInHierarchy());
                 var actualResult=null;
                 var bestResult=null;
@@ -216,38 +216,39 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         //else {
                             res.push(new hlimpl.ASTPropImpl(node.lowLevel(), node, km.canBeValue.range(), km.canBeValue));
                         //}
-                    } else if (node.definition().isAssignableFrom(universes.Universe10.Annotation.name) &&
-                        node.definition().property("value")) {
-                        //"value" is a magic property name we do not have reflected in serialized def. system, so have to use plain string
-
-                        var lowLevelNode = node.lowLevel();
-
-                        var valueAttribute = _.find(lowLevelNode.children(), child=>{
-
-                            return child.kind() == yaml.Kind.MAPPING && child.key() && child.key() == "value";
-                        });
-
-                        if (!valueAttribute) {
-                            //annotation reference is not a scalar and does not have value attribute, but has value defined in the annotation declaration
-                            //that means user wants to use a shortcut and specify value object directly under annotation
-
-                            var valueProperty = node.definition().property("value")
-
-                            //creating "value" high-level node referencing the same low-level node so the children can be collected
-                            var valueNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node, valueProperty.range(), valueProperty);
-                            return [valueNode];
-                        }
                     }
+                    // else if (node.definition().isAssignableFrom(universes.Universe10.Annotation.name) &&
+                    //     node.definition().property("value")) {
+                    //     //"value" is a magic property name we do not have reflected in serialized def. system, so have to use plain string
+                    //
+                    //     var lowLevelNode = node.lowLevel();
+                    //
+                    //     var valueAttribute = _.find(lowLevelNode.children(), child=>{
+                    //
+                    //         return child.kind() == yaml.Kind.MAPPING && child.key() && child.key() == "value";
+                    //     });
+                    //
+                    //     if (!valueAttribute) {
+                    //         //annotation reference is not a scalar and does not have value attribute, but has value defined in the annotation declaration
+                    //         //that means user wants to use a shortcut and specify value object directly under annotation
+                    //
+                    //         var valueProperty = node.definition().property("value")
+                    //
+                    //         //creating "value" high-level node referencing the same low-level node so the children can be collected
+                    //         var valueNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node, valueProperty.range(), valueProperty);
+                    //         return [valueNode];
+                    //     }
+                    // }
                 }
             }
             else {
-                if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (
-                        km.canBeValue.range().hasUnionInHierarchy() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
-
-                    //check check for annotation is just for safety, generally, imho, we should go inside for any unions
-                    var ch = new hlimpl.ASTNodeImpl(node.lowLevel(), aNode, <hl.INodeDefinition>km.canBeValue.range(), km.canBeValue);
-                    return [ch];
-                }
+                // if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (
+                //         km.canBeValue.range().hasUnionInHierarchy() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
+                //
+                //     //check check for annotation is just for safety, generally, imho, we should go inside for any unions
+                //     var ch = new hlimpl.ASTNodeImpl(node.lowLevel(), aNode, <hl.INodeDefinition>km.canBeValue.range(), km.canBeValue);
+                //     return [ch];
+                // }
             }
 
             aNode._children = res;
@@ -273,10 +274,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
             return res;
         }finally{
-            if (ch) {
-                delete cha['currentChildren'];
-                //delete cha['level'];
-            }
+            
         }
     }
 
@@ -718,7 +716,7 @@ export function doDescrimination(node:hl.IHighLevelNode) {
         var isApi = nodeDefenitionName === universes.Universe10.Api.name || nodeDefenitionName === universes.Universe08.Api.name;
 
         if (!isApi && !node.property() && !node.parent() && node.definition().nameId() === hlimpl.getFragmentDefenitionName(node)) {
-            if(node.definition().isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name)) {
+            if(node.property()&&node.property().nameId()===universes.Universe10.LibraryBase.properties.annotationTypes.name) {
                 return descriminate(null, null, node);
             }
 
@@ -757,14 +755,13 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
         n._node['descriminate'] = 1;
     }
     try {
-        if (range == universes.Universe10.TypeDeclaration.name
-            ||range == universes.Universe10.AnnotationTypeDeclaration.name) {
+        if (range == universes.Universe10.TypeDeclaration.name) {
 
             var res = desc1(p, parent, x);
             if (p || (!p && !parent && x.lowLevel())) {
                 if (p && res != null && ((p.nameId() ==universes.Universe10.MethodBase.properties.body.name
                     || p.nameId() ==universes.Universe10.Response.properties.headers.name) ||
-                    p.nameId() ==universes.Universe10.HasNormalParameters.properties.queryParameters.name)) {
+                    p.nameId() ==universes.Universe10.MethodBase.properties.queryParameters.name)) {
                     var ares = new defs.UserDefinedClass(x.lowLevel().key(), <defs.Universe>res.universe(), x, x.lowLevel().unit() ? x.lowLevel().unit().path() : "", "");
                     ares._superTypes.push(res);
                     return ares;
@@ -829,17 +826,17 @@ function descriminateAnnotationType(type:defs.IType):defs.IType{
                     candidate = rat;
                     continue;
                 }
-                candidate = type.universe().type(universes.Universe10.UnionAnnotationTypeDeclaration.name);
+                candidate = type.universe().type(universes.Universe10.UnionTypeDeclaration.name);
                 break;
             }
             if((<defs.AbstractType>t).isArray()){
-                candidate = type.universe().type(universes.Universe10.ArrayAnnotationTypeDeclaration.name);
+                candidate = type.universe().type(universes.Universe10.ArrayTypeDeclaration.name);
                 break;
             }
             var subTypes = t.subTypes();
             for(var j = 0 ; j < subTypes.length ; j++){
                 var st = subTypes[j];
-                if(st.isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name)){
+                if(st.isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
                     if(candidate==null){
                         candidate = st;
                     }
@@ -849,7 +846,7 @@ function descriminateAnnotationType(type:defs.IType):defs.IType{
                 }
             }
         }
-        return candidate != null ? candidate : type.universe().type(universes.Universe10.AnnotationTypeDeclaration.name);
+        return candidate != null ? candidate : type.universe().type(universes.Universe10.TypeDeclaration.name);
     }
 
 var isInTtraitOrResourceType = function (aNode) {

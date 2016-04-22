@@ -878,22 +878,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return err;
             }
         }
-        if (t.key() == universes.Universe08.JSonSchemaString||t.key() == universes.Universe10.JSonSchemaString) {
-            var jsshema = su.getJSONSchema(v, new contentprovider.ContentProvider(h.lowLevel().unit()));
 
-            if (jsshema instanceof Error){
-                (<any>jsshema).canBeRef=true;
-            }
-            return jsshema;
-        }
-        if (t.key() == universes.Universe08.XMLSchemaString||t.key() == universes.Universe10.XMLSchemaString) {
-            var xmlschema = su.getXMLSchema(v);
-
-            if (xmlschema instanceof Error){
-                (<any>xmlschema).canBeRef=true;
-            }
-            return xmlschema;
-        }
         if (t.key() == universes.Universe08.BooleanType||t.isAssignableFrom(universes.Universe10.BooleanType.name)) {
             if (!(v === 'true' || v === 'false' || v === true || v === false)){
                 return new Error("'true' or 'false' is expected here")
@@ -1236,7 +1221,6 @@ export var typeToName = {}
 typeToName[universes.Universe08.Trait.name] = "trait";
 typeToName[universes.Universe08.ResourceType.name] = "resource type";
 typeToName[universes.Universe10.Trait.name] = "trait";
-typeToName[universes.Universe10.AnnotationTypeDeclaration.name] = "annotation type";
 typeToName[universes.Universe10.ResourceType.name] = "resource type";
 typeToName[universes.Universe10.AbstractSecurityScheme.name] = "security scheme";
 typeToName[universes.Universe10.Method.name] = "method";
@@ -1251,13 +1235,13 @@ typeToName[universes.Universe08.BodyLike.name] = "body";
 
 
 export var parameterPropertyToName = {}
-parameterPropertyToName[universes.Universe08.HasNormalParameters.properties.headers.name] = "header";
-parameterPropertyToName[universes.Universe08.HasNormalParameters.properties.queryParameters.name] = "query parameter";
+parameterPropertyToName[universes.Universe08.MethodBase.properties.headers.name] = "header";
+parameterPropertyToName[universes.Universe08.MethodBase.properties.queryParameters.name] = "query parameter";
 parameterPropertyToName[universes.Universe08.Api.properties.uriParameters.name] = "uri parameter";
 parameterPropertyToName[universes.Universe08.Api.properties.baseUriParameters.name] = "base uri parameter";
 parameterPropertyToName[universes.Universe08.BodyLike.properties.formParameters.name] = "form parameter";
-parameterPropertyToName[universes.Universe10.HasNormalParameters.properties.headers.name] = "header";
-parameterPropertyToName[universes.Universe10.HasNormalParameters.properties.queryParameters.name] = "query parameter";
+parameterPropertyToName[universes.Universe10.MethodBase.properties.headers.name] = "header";
+parameterPropertyToName[universes.Universe10.MethodBase.properties.queryParameters.name] = "query parameter";
 parameterPropertyToName[universes.Universe10.ResourceBase.properties.uriParameters.name] = "uri parameter";
 parameterPropertyToName[universes.Universe10.Api.properties.baseUriParameters.name] = "base uri parameter";
 parameterPropertyToName[universes.Universe10.MethodBase.properties.body.name] = "body";
@@ -2519,7 +2503,7 @@ export class ExampleValidator implements PropertyValidator{
                 if (sampleRoot.parent().parent()) {
                     var ppc = sampleRoot.parent().parent().definition().key();
                     if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
-                        if (sampleRoot.parent().property().nameId() == universes.Universe10.HasNormalParameters.properties.queryParameters.name) {
+                        if (sampleRoot.parent().property().nameId() == universes.Universe10.MethodBase.properties.queryParameters.name) {
 
                         }
                         else {
@@ -2991,8 +2975,8 @@ function getMediaType2(node:hl.IAttribute){
                 return node.parent().name();
             }
             if (ppc==universes.Universe08.Method||ppc==universes.Universe10.Method) {
-                if (node.parent().property().nameId()==universes.Universe10.HasNormalParameters.properties.queryParameters.name
-                    ||node.parent().property().nameId()==universes.Universe10.HasNormalParameters.properties.headers.name){
+                if (node.parent().property().nameId()==universes.Universe10.MethodBase.properties.queryParameters.name
+                    ||node.parent().property().nameId()==universes.Universe10.MethodBase.properties.headers.name){
                     return null;
                 }
                 return node.parent().name();
