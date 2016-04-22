@@ -105,8 +105,6 @@ var classMap = {
 
     "DocumentationItem": (x,y)=>{return new RamlWrapper.DocumentationItemImpl(x,y)},
 
-    "ExampleSpec": (x,y)=>{return new RamlWrapper.ExampleSpecImpl(x,y)},
-
     "Extension": (x,y)=>{return new RamlWrapper.ExtensionImpl(x,y)},
 
     "FileTypeDeclaration": (x,y)=>{return new RamlWrapper.FileTypeDeclarationImpl(x,y)},

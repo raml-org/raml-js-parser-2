@@ -277,7 +277,7 @@ locationKind(  ):LocationKind
         /**
          * An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
          **/
-example(  ):ExampleSpec[]
+example(  ):ExampleSpec
 
 
         /**
@@ -370,6 +370,18 @@ strict(  ):boolean
          * Example identifier, if specified
          **/
 name(  ):string
+
+
+        /**
+         * An alternate, human-friendly name for the example
+         **/
+displayName(  ):string
+
+
+        /**
+         * A longer, human-friendly description of the example
+         **/
+description(  ):string
 
 
         /**

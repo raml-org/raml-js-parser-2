@@ -1,9 +1,9 @@
-#%RAML 1.0 ApiExtension
+#%RAML 1.0 Extension
 title: ApiExtension
 baseUri: http://myItems.com
 extends: master.raml
 uses:
-  - decls:  lib/decls.raml
+  decls:  lib/decls.raml
 /items:
   get:
     description: |

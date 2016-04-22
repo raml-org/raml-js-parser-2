@@ -629,16 +629,18 @@ setDefault( param:any ){
 
         /**
          * An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         * @hidden
          **/
-example(  ):ExampleSpec[]{
-             return <ExampleSpec[]>super.elements('example');
+example_original(  ):ExampleSpec{
+             return <ExampleSpec>super.element('example');
          }
 
 
         /**
          * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.
+         * @hidden
          **/
-examples(  ):ExampleSpec[]{
+examples_original(  ):ExampleSpec[]{
              return <ExampleSpec[]>super.elements('examples');
          }
 
@@ -763,6 +765,22 @@ validateInstance( value:any ):string[]{
             return helper.validateInstance(this, value);
         }
 
+
+        /**
+         * An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         **/
+example(  ):ExampleSpec{
+            return helper.getTypeExample(this);
+        }
+
+
+        /**
+         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.
+         **/
+examples(  ):ExampleSpec[]{
+            return helper.getTypeExamples(this);
+        }
+
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
         }
@@ -804,89 +822,6 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LocationKind";}
-}
-
-export class ExampleSpecImpl extends AnnotableImpl implements ExampleSpec{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createExampleSpec(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * String representation of example
-         **/
-value(  ):any{
-             return <any>super.attribute('value', this.toAny);
-         }
-
-
-        /**
-         * @hidden
-         * Set value value
-         **/
-setValue( param:any ){
-            this.highLevel().attrOrCreate("value").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
-         **/
-strict(  ):boolean{
-             return <boolean>super.attribute('strict', this.toBoolean);
-         }
-
-
-        /**
-         * @hidden
-         * Set strict value
-         **/
-setStrict( param:boolean ){
-            this.highLevel().attrOrCreate("strict").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Example identifier, if specified
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]{
-             return <AnnotationRef[]>super.attributes('annotations', (attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ExampleSpecImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "ExampleSpec";}
-
-structuredValue(  ):TypeInstance{
-            return helper.getExampleStructuredValue(this);
-        }
 }
 
 export class XMLFacetInfoImpl extends AnnotableImpl implements XMLFacetInfo{

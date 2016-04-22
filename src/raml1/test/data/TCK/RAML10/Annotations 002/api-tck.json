@@ -5,8 +5,8 @@
         "types": [
             {
                 "baseAnnotation": {
-                    "displayName": "baseAnnotation",
                     "name": "baseAnnotation",
+                    "displayName": "baseAnnotation",
                     "type": [
                         "object"
                     ],
@@ -14,8 +14,8 @@
                     "required": true,
                     "properties": {
                         "baseProperty1": {
-                            "displayName": "baseProperty1",
                             "name": "baseProperty1",
+                            "displayName": "baseProperty1",
                             "type": [
                                 "object"
                             ],
@@ -23,8 +23,8 @@
                             "required": true,
                             "properties": {
                                 "field1": {
-                                    "displayName": "field1",
                                     "name": "field1",
+                                    "displayName": "field1",
                                     "type": [
                                         "string"
                                     ],
@@ -48,8 +48,8 @@
                                     }
                                 },
                                 "field2": {
-                                    "displayName": "field2",
                                     "name": "field2",
+                                    "displayName": "field2",
                                     "type": [
                                         "number"
                                     ],
@@ -88,8 +88,8 @@
                             }
                         },
                         "baseProperty2": {
-                            "displayName": "baseProperty2",
                             "name": "baseProperty2",
+                            "displayName": "baseProperty2",
                             "type": [
                                 "string"
                             ],
@@ -133,7 +133,6 @@
             },
             {
                 "MyType": {
-                    "displayName": "MyType",
                     "annotations": {
                         "childAnnotation": {
                             "structuredValue": {
@@ -149,6 +148,7 @@
                         }
                     },
                     "name": "MyType",
+                    "displayName": "MyType",
                     "type": [
                         "string"
                     ],
@@ -176,8 +176,8 @@
         "annotationTypes": [
             {
                 "childAnnotation": {
-                    "displayName": "childAnnotation",
                     "name": "childAnnotation",
+                    "displayName": "childAnnotation",
                     "type": [
                         "baseAnnotation"
                     ],
@@ -185,8 +185,8 @@
                     "required": true,
                     "properties": {
                         "childProperty1": {
-                            "displayName": "childProperty1",
                             "name": "childProperty1",
+                            "displayName": "childProperty1",
                             "type": [
                                 "string"
                             ],
@@ -216,8 +216,8 @@
                             }
                         },
                         "childProperty2": {
-                            "displayName": "childProperty2",
                             "name": "childProperty2",
+                            "displayName": "childProperty2",
                             "type": [
                                 "number"
                             ],
@@ -260,8 +260,8 @@
         "baseUri": "http://api.samplehost.com/{version}",
         "baseUriParameters": {
             "version": {
-                "displayName": "version",
                 "name": "version",
+                "displayName": "version",
                 "type": [
                     "string"
                 ],
@@ -297,7 +297,6 @@
         ],
         "resources": [
             {
-                "displayName": "/helloWorld",
                 "methods": [
                     {
                         "annotations": {
@@ -325,6 +324,7 @@
                     }
                 ],
                 "relativeUri": "/helloWorld",
+                "displayName": "/helloWorld",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {

@@ -21,11 +21,12 @@ export function setTypeDeclarationSchema(type: parser10api.TypeDeclaration, sche
 }
 
 export function setTypeDeclarationExample(type: parser10api.TypeDeclaration, example : string) {
-    var exampleSpecType = defSys.getUniverse("RAML10").type(defSys.universesInfo.Universe10.ExampleSpec.name);
-    var examplePropName = defSys.universesInfo.Universe10.TypeDeclaration.properties.example.name;
-    var stubNode = stubs.createStubNode(exampleSpecType,type.definition().property(examplePropName));
-    (<parser10impl.ExampleSpecImpl>stubNode.wrapperNode()).setValue(example);
-    type.highLevel().add(stubNode);
+    // var exampleSpecType = defSys.getUniverse("RAML10").type(defSys.universesInfo.Universe10.ExampleSpec.name);
+    // var examplePropName = defSys.universesInfo.Universe10.TypeDeclaration.properties.example.name;
+    // var stubNode = stubs.createStubNode(exampleSpecType,type.definition().property(examplePropName));
+    // (<parser10impl.ExampleSpecImpl>stubNode.wrapperNode()).setValue(example);
+    // type.highLevel().add(stubNode);
+    
 }
 
 export function addChild(parent : highLevel.BasicNode, child : highLevel.BasicNode) : void {

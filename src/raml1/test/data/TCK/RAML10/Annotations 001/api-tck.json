@@ -5,7 +5,6 @@
         "types": [
             {
                 "MyType": {
-                    "displayName": "MyType",
                     "annotations": {
                         "simpleAnnotation": {
                             "structuredValue": "simpleAnnotation_value_on_type",
@@ -23,6 +22,7 @@
                         }
                     },
                     "name": "MyType",
+                    "displayName": "MyType",
                     "type": [
                         "string"
                     ],
@@ -50,8 +50,8 @@
         "annotationTypes": [
             {
                 "simpleAnnotation": {
-                    "displayName": "simpleAnnotation",
                     "name": "simpleAnnotation",
+                    "displayName": "simpleAnnotation",
                     "type": [
                         "string"
                     ],
@@ -80,8 +80,8 @@
             },
             {
                 "objectAnnotation": {
-                    "displayName": "objectAnnotation",
                     "name": "objectAnnotation",
+                    "displayName": "objectAnnotation",
                     "type": [
                         "object"
                     ],
@@ -89,8 +89,8 @@
                     "required": true,
                     "properties": {
                         "property1": {
-                            "displayName": "property1",
                             "name": "property1",
+                            "displayName": "property1",
                             "type": [
                                 "object"
                             ],
@@ -98,8 +98,8 @@
                             "required": true,
                             "properties": {
                                 "field1": {
-                                    "displayName": "field1",
                                     "name": "field1",
+                                    "displayName": "field1",
                                     "type": [
                                         "string"
                                     ],
@@ -123,8 +123,8 @@
                                     }
                                 },
                                 "field2": {
-                                    "displayName": "field2",
                                     "name": "field2",
+                                    "displayName": "field2",
                                     "type": [
                                         "number"
                                     ],
@@ -163,8 +163,8 @@
                             }
                         },
                         "property2": {
-                            "displayName": "property2",
                             "name": "property2",
+                            "displayName": "property2",
                             "type": [
                                 "string"
                             ],
@@ -212,8 +212,8 @@
         "baseUri": "http://api.samplehost.com/{version}",
         "baseUriParameters": {
             "version": {
-                "displayName": "version",
                 "name": "version",
+                "displayName": "version",
                 "type": [
                     "string"
                 ],
@@ -249,7 +249,6 @@
         ],
         "resources": [
             {
-                "displayName": "/helloWorld",
                 "methods": [
                     {
                         "annotations": {
@@ -280,6 +279,7 @@
                     }
                 ],
                 "relativeUri": "/helloWorld",
+                "displayName": "/helloWorld",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {

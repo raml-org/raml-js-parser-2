@@ -5,15 +5,14 @@
         "types": [
             {
                 "Zip": {
-                    "displayName": "Zip",
                     "name": "Zip",
+                    "displayName": "Zip",
                     "type": [
                         "number"
                     ],
-                    "example": "630128",
+                    "example": 630128,
                     "repeat": false,
                     "required": true,
-                    "structuredExample": 630128,
                     "__METADATA__": {
                         "primitiveValuesMeta": {
                             "displayName": {
@@ -26,23 +25,35 @@
                                 "insertedAsDefault": true
                             }
                         }
+                    },
+                    "structuredExample": {
+                        "value": 630128,
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": 630128
                     }
                 }
             },
             {
                 "Address": {
-                    "displayName": "Address",
                     "name": "Address",
+                    "displayName": "Address",
                     "type": [
                         "object"
                     ],
-                    "example": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
+                    "example": {
+                        "country": "US",
+                        "city": "SF",
+                        "street": "Geary Street",
+                        "house": "77, Suite 400",
+                        "zip": 94108
+                    },
                     "repeat": false,
                     "required": true,
                     "properties": {
                         "country": {
-                            "displayName": "country",
                             "name": "country",
+                            "displayName": "country",
                             "type": [
                                 "string"
                             ],
@@ -72,8 +83,8 @@
                             }
                         },
                         "city": {
-                            "displayName": "city",
                             "name": "city",
+                            "displayName": "city",
                             "type": [
                                 "string"
                             ],
@@ -97,8 +108,8 @@
                             }
                         },
                         "street": {
-                            "displayName": "street",
                             "name": "street",
+                            "displayName": "street",
                             "type": [
                                 "string"
                             ],
@@ -122,8 +133,8 @@
                             }
                         },
                         "house": {
-                            "displayName": "house",
                             "name": "house",
+                            "displayName": "house",
                             "type": [
                                 "string"
                             ],
@@ -147,8 +158,8 @@
                             }
                         },
                         "zip": {
-                            "displayName": "zip",
                             "name": "zip",
+                            "displayName": "zip",
                             "type": [
                                 "Zip"
                             ],
@@ -169,13 +180,6 @@
                             }
                         }
                     },
-                    "structuredExample": {
-                        "country": "US",
-                        "city": "SF",
-                        "street": "Geary Street",
-                        "house": "77, Suite 400",
-                        "zip": 94108
-                    },
                     "__METADATA__": {
                         "primitiveValuesMeta": {
                             "displayName": {
@@ -191,13 +195,31 @@
                                 "insertedAsDefault": true
                             }
                         }
+                    },
+                    "structuredExample": {
+                        "value": {
+                            "country": "US",
+                            "city": "SF",
+                            "street": "Geary Street",
+                            "house": "77, Suite 400",
+                            "zip": 94108
+                        },
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                            "country": "US",
+                            "city": "SF",
+                            "street": "Geary Street",
+                            "house": "77, Suite 400",
+                            "zip": 94108
+                        }
                     }
                 }
             },
             {
                 "Email": {
-                    "displayName": "Email",
                     "name": "Email",
+                    "displayName": "Email",
                     "type": [
                         "string"
                     ],
@@ -222,17 +244,23 @@
                                 "insertedAsDefault": true
                             }
                         }
+                    },
+                    "structuredExample": {
+                        "value": "press@mulesoft.com",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": "press@mulesoft.com"
                     }
                 }
             },
             {
                 "User": {
-                    "displayName": "User",
                     "name": "User",
+                    "displayName": "User",
                     "facets": {
                         "role": {
-                            "displayName": "role",
                             "name": "role",
+                            "displayName": "role",
                             "type": [
                                 "string"
                             ],
@@ -268,8 +296,19 @@
                     ],
                     "examples": [
                         {
-                            "content": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
-                            "structuredContent": {
+                            "value": {
+                                "id": 11,
+                                "name": "John Johnson",
+                                "email": "press@mulesoft.com",
+                                "phone": "+7-913-111-1111",
+                                "address": {
+                                    "country": "RUS",
+                                    "city": "Novosibirsk",
+                                    "zip": 630090
+                                }
+                            },
+                            "strict": true,
+                            "structuredValue": {
                                 "id": 11,
                                 "name": "John Johnson",
                                 "email": "press@mulesoft.com",
@@ -282,8 +321,19 @@
                             }
                         },
                         {
-                            "content": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
-                            "structuredContent": {
+                            "value": {
+                                "id": 12,
+                                "name": "John Johnson",
+                                "email": "press1@mulesoft.com",
+                                "phone": "+1-222-222-2222",
+                                "address": {
+                                    "country": "US",
+                                    "city": "SF",
+                                    "zip": 123456
+                                }
+                            },
+                            "strict": true,
+                            "structuredValue": {
                                 "id": 12,
                                 "name": "John Johnson",
                                 "email": "press1@mulesoft.com",
@@ -300,8 +350,8 @@
                     "required": true,
                     "properties": {
                         "id": {
-                            "displayName": "id",
                             "name": "id",
+                            "displayName": "id",
                             "type": [
                                 "number"
                             ],
@@ -322,8 +372,8 @@
                             }
                         },
                         "name": {
-                            "displayName": "name",
                             "name": "name",
+                            "displayName": "name",
                             "type": [
                                 "string"
                             ],
@@ -347,8 +397,8 @@
                             }
                         },
                         "email": {
-                            "displayName": "email",
                             "name": "email",
+                            "displayName": "email",
                             "type": [
                                 "Email"
                             ],
@@ -369,8 +419,8 @@
                             }
                         },
                         "phone": {
-                            "displayName": "phone",
                             "name": "phone",
+                            "displayName": "phone",
                             "type": [
                                 "string"
                             ],
@@ -397,8 +447,8 @@
                             }
                         },
                         "address": {
-                            "displayName": "address",
                             "name": "address",
+                            "displayName": "address",
                             "type": [
                                 "Address"
                             ],
@@ -439,16 +489,28 @@
             },
             {
                 "Manager": {
-                    "displayName": "Manager",
                     "name": "Manager",
+                    "displayName": "Manager",
                     "type": [
                         "User"
                     ],
                     "examples": [
                         {
-                            "content": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
+                            "value": {
+                                "id": 11,
+                                "name": "John Johnson",
+                                "email": "press@mulesoft.com",
+                                "phone": "+7-913-111-1111",
+                                "address": {
+                                    "country": "RUS",
+                                    "city": "Novosibirsk",
+                                    "zip": 630090
+                                },
+                                "managerId": 77
+                            },
+                            "strict": true,
                             "name": "manager1",
-                            "structuredContent": {
+                            "structuredValue": {
                                 "id": 11,
                                 "name": "John Johnson",
                                 "email": "press@mulesoft.com",
@@ -462,9 +524,21 @@
                             }
                         },
                         {
-                            "content": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
+                            "value": {
+                                "id": 12,
+                                "name": "John Johnson",
+                                "email": "press1@mulesoft.com",
+                                "phone": "+1-222-222-2222",
+                                "address": {
+                                    "country": "US",
+                                    "city": "SF",
+                                    "zip": 123456
+                                },
+                                "managerId": 88
+                            },
+                            "strict": true,
                             "name": "manager2",
-                            "structuredContent": {
+                            "structuredValue": {
                                 "id": 12,
                                 "name": "John Johnson",
                                 "email": "press1@mulesoft.com",
@@ -482,8 +556,8 @@
                     "required": true,
                     "properties": {
                         "managerId": {
-                            "displayName": "managerId",
                             "name": "managerId",
+                            "displayName": "managerId",
                             "type": [
                                 "number"
                             ],
@@ -524,8 +598,8 @@
             },
             {
                 "Admin": {
-                    "displayName": "Admin",
                     "name": "Admin",
+                    "displayName": "Admin",
                     "type": [
                         "User"
                     ],
@@ -533,8 +607,8 @@
                     "required": true,
                     "properties": {
                         "adminId": {
-                            "displayName": "adminId",
                             "name": "adminId",
+                            "displayName": "adminId",
                             "type": [
                                 "number"
                             ],
@@ -575,8 +649,8 @@
             },
             {
                 "SuperAdmin": {
-                    "displayName": "SuperAdmin",
                     "name": "SuperAdmin",
+                    "displayName": "SuperAdmin",
                     "type": [
                         "Admin"
                     ],
@@ -599,8 +673,8 @@
             },
             {
                 "Team": {
-                    "displayName": "Team",
                     "name": "Team",
+                    "displayName": "Team",
                     "type": [
                         "object"
                     ],
@@ -608,8 +682,8 @@
                     "required": true,
                     "properties": {
                         "id": {
-                            "displayName": "id",
                             "name": "id",
+                            "displayName": "id",
                             "type": [
                                 "number"
                             ],
@@ -630,8 +704,8 @@
                             }
                         },
                         "title": {
-                            "displayName": "title",
                             "name": "title",
+                            "displayName": "title",
                             "type": [
                                 "string"
                             ],
@@ -656,8 +730,8 @@
                             }
                         },
                         "manager": {
-                            "displayName": "manager",
                             "name": "manager",
+                            "displayName": "manager",
                             "type": [
                                 "Manager"
                             ],
@@ -678,8 +752,8 @@
                             }
                         },
                         "admin": {
-                            "displayName": "admin",
                             "name": "admin",
+                            "displayName": "admin",
                             "type": [
                                 "Admin|SuperAdmin"
                             ],
@@ -700,8 +774,8 @@
                             }
                         },
                         "members": {
-                            "displayName": "members",
                             "name": "members",
+                            "displayName": "members",
                             "type": [
                                 "(User|Team)[]"
                             ],
@@ -722,8 +796,8 @@
                             }
                         },
                         "info": {
-                            "displayName": "info",
                             "name": "info",
+                            "displayName": "info",
                             "type": [
                                 "object"
                             ],
@@ -731,8 +805,8 @@
                             "required": true,
                             "properties": {
                                 "address": {
-                                    "displayName": "address",
                                     "name": "address",
+                                    "displayName": "address",
                                     "type": [
                                         "Address"
                                     ],
@@ -753,8 +827,8 @@
                                     }
                                 },
                                 "email": {
-                                    "displayName": "email",
                                     "name": "email",
+                                    "displayName": "email",
                                     "type": [
                                         "Email"
                                     ],
@@ -775,8 +849,8 @@
                                     }
                                 },
                                 "size": {
-                                    "displayName": "size",
                                     "name": "size",
+                                    "displayName": "size",
                                     "type": [
                                         "number"
                                     ],
@@ -839,8 +913,8 @@
         "baseUri": "http://api.samplehost.com/{version}",
         "baseUriParameters": {
             "version": {
-                "displayName": "version",
                 "name": "version",
+                "displayName": "version",
                 "type": [
                     "string"
                 ],
@@ -876,7 +950,6 @@
         ],
         "resources": [
             {
-                "displayName": "/teams",
                 "methods": [
                     {
                         "responses": {
@@ -884,8 +957,8 @@
                                 "code": "200",
                                 "body": {
                                     "application/xml": {
-                                        "displayName": "application/xml",
                                         "name": "application/xml",
+                                        "displayName": "application/xml",
                                         "type": [
                                             "Team[]"
                                         ],
@@ -921,14 +994,13 @@
                         }
                     },
                     {
-                        "description": "create new team with desired title",
                         "responses": {
                             "204": {
                                 "code": "204",
                                 "body": {
                                     "application/json": {
-                                        "displayName": "application/json",
                                         "name": "application/json",
+                                        "displayName": "application/json",
                                         "type": [
                                             "User"
                                         ],
@@ -956,8 +1028,8 @@
                         },
                         "body": {
                             "application/json": {
-                                "displayName": "application/json",
                                 "name": "application/json",
+                                "displayName": "application/json",
                                 "type": [
                                     "object"
                                 ],
@@ -965,8 +1037,8 @@
                                 "required": true,
                                 "properties": {
                                     "title": {
-                                        "displayName": "title",
                                         "name": "title",
+                                        "displayName": "title",
                                         "type": [
                                             "string"
                                         ],
@@ -1012,6 +1084,7 @@
                         "protocols": [
                             "HTTP"
                         ],
+                        "description": "create new team with desired title",
                         "method": "post",
                         "__METADATA__": {
                             "primitiveValuesMeta": {
@@ -1023,9 +1096,9 @@
                     }
                 ],
                 "relativeUri": "/teams",
+                "displayName": "/teams",
                 "resources": [
                     {
-                        "displayName": "/{id}",
                         "methods": [
                             {
                                 "responses": {
@@ -1033,8 +1106,8 @@
                                         "code": "200",
                                         "body": {
                                             "application/json": {
-                                                "displayName": "application/json",
                                                 "name": "application/json",
+                                                "displayName": "application/json",
                                                 "type": [
                                                     "Team"
                                                 ],
@@ -1060,8 +1133,8 @@
                                         "code": "404",
                                         "body": {
                                             "text/plain": {
-                                                "displayName": "text/plain",
                                                 "name": "text/plain",
+                                                "displayName": "text/plain",
                                                 "type": [
                                                     "object"
                                                 ],
@@ -1102,8 +1175,8 @@
                         ],
                         "uriParameters": {
                             "id": {
-                                "displayName": "id",
                                 "name": "id",
+                                "displayName": "id",
                                 "type": [
                                     "string"
                                 ],
@@ -1129,6 +1202,7 @@
                             }
                         },
                         "relativeUri": "/{id}",
+                        "displayName": "/{id}",
                         "__METADATA__": {
                             "primitiveValuesMeta": {
                                 "displayName": {
@@ -1153,7 +1227,6 @@
                 ]
             },
             {
-                "displayName": "/users",
                 "methods": [
                     {
                         "responses": {
@@ -1161,8 +1234,8 @@
                                 "code": "200",
                                 "body": {
                                     "application/json": {
-                                        "displayName": "application/json",
                                         "name": "application/json",
+                                        "displayName": "application/json",
                                         "type": [
                                             "User[]"
                                         ],
@@ -1199,6 +1272,7 @@
                     }
                 ],
                 "relativeUri": "/users",
+                "displayName": "/users",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {
@@ -1211,7 +1285,6 @@
                 ]
             },
             {
-                "displayName": "/users/{id}",
                 "methods": [
                     {
                         "responses": {
@@ -1219,8 +1292,8 @@
                                 "code": "200",
                                 "body": {
                                     "application/json": {
-                                        "displayName": "application/json",
                                         "name": "application/json",
+                                        "displayName": "application/json",
                                         "type": [
                                             "User"
                                         ],
@@ -1261,8 +1334,8 @@
                 ],
                 "uriParameters": {
                     "id": {
-                        "displayName": "id",
                         "name": "id",
+                        "displayName": "id",
                         "type": [
                             "string"
                         ],
@@ -1288,6 +1361,7 @@
                     }
                 },
                 "relativeUri": "/users/{id}",
+                "displayName": "/users/{id}",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {

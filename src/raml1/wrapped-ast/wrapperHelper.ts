@@ -628,55 +628,60 @@ function referencedObject(ref:RamlWrapper.Reference):core.BasicNode{
     return cands[0].wrapperNode();
 }
 
+function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):core.ExampleSpecImpl[] {
+
+    var runtimeDefinition = node.runtimeDefinition();
+    if(!runtimeDefinition){
+        return [];
+    }
+    var hlParent = node.highLevel();
+    var property = hlParent.definition().property(isSingle?"example":"examples");
+    var universe = defs.getUniverse("RAML10");
+    var definition = universe.type(universeDef.Universe10.ExampleSpec.name);
+
+    var expandables = runtimeDefinition.examples().filter(x=>!x.isEmpty() && x.isSingle()==isSingle);
+    return expandables.map(x=>{
+        var obj = x.asJSON();
+        var llParent = hlParent.lowLevel();
+        var key = x.isSingle() ? "example" : null;
+        var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
+        var hlNode = new hlimpl.ASTNodeImpl(jsonNode,hlParent,definition,property);
+
+        var wrapperAnnotations:RamlWrapperImpl.AnnotationRefImpl[] = [];
+        var annotations = x.annotations();
+        if(annotations) {
+            var aProp = universe.type("Annotable").property("annotations");
+            for (var aName of Object.keys(annotations)) {
+                var aObj = annotations[aName];
+                var aJson = new json.AstNode(llParent.unit(),aObj,jsonNode,null,"("+aName+")");
+                var aHlNode = new hlimpl.ASTPropImpl(aJson,hlNode,aProp.range(),aProp)
+                var wAnnotation = new RamlWrapperImpl.AnnotationRefImpl(aHlNode);
+                wrapperAnnotations.push(wAnnotation);
+            }
+        }
+        return new core.ExampleSpecImpl(hlNode,x,wrapperAnnotations);
+    });
+};
+
 /**
  * __$helperMethod__
- * __$meta__={"name":"structuredValue","primary":true}
+ * __$meta__={"name":"example","primary":true}
  **/
-export function getExampleStructuredValue(td:RamlWrapper.ExampleSpec):RamlWrapper.TypeInstance{
-    var attr = td.highLevel().attr(universeDef.Universe10.ExampleSpec.properties.value.name);
-    return <RamlWrapper.TypeInstance><any>exampleAttrToTypeInstance(attr);
+export function getTypeExample(td:RamlWrapper.TypeDeclaration):RamlWrapper.ExampleSpec{
+    var examples = getExpandableExamples(td,true);
+    if(examples.length>0){
+        return <RamlWrapper.ExampleSpec>examples[0];
+    }
+    return null;
 }
 
-function attrToExampleString(attr:hl.IAttribute):string{
-    if(!attr){
-        return null;
-    }
-    var val = attr.value();
-    if(typeof val == 'string'){
-        return val;
-    }
-    var expandable = toTSExample(attr);
-    return expandable.asString();
+/**
+ * __$helperMethod__
+ * __$meta__={"name":"examples","primary":true}
+ **/
+export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.ExampleSpec[]{
+    return <RamlWrapper.ExampleSpec[]>getExpandableExamples(td);
 }
-
-var toTSExample = function (attr:hl.IAttribute) {
-    var q = attr.parent();
-    var index = 0;
-    if (attr.name() == "content") {
-        q = q.parent();
-        index = attr.parent().parent().elementsOfKind("examples").indexOf(attr.parent());
-    }
-    var expandable = q.localType().examples()[index];
-    return expandable;
-};
-function exampleAttrToTypeInstance(attr:hl.IAttribute):RamlWrapper.TypeInstance{
-    if(!attr){
-        return null;
-    }
-    var val = attr.value();
-    var expandable = toTSExample(attr);
-    var obj = expandable.asJSON();
-    if(!obj || typeof(obj)=="string"){
-        return null;
-    }
-    if(expandable.isYAML()){
-        return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(attr.lowLevel());
-    }
-    var llNode = attr.lowLevel();
-    var jsonNode = new json.AstNode(llNode.unit(),obj,llNode.parent(),null,llNode.key());
-    return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(jsonNode);
-}
-
 
 /**
  * __$helperMethod__

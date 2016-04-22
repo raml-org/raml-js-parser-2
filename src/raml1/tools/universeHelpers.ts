@@ -457,3 +457,17 @@ export function isHasNormalParametersSibling(type: hl.INodeDefinition | hl.IType
     return type.isAssignableFrom(universe.Universe10.HasNormalParameters.name) ||
         type.isAssignableFrom(universe.Universe08.HasNormalParameters.name);
 }
+
+
+
+
+export function isSecuritySchemePartType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.key() == universe.Universe10.SecuritySchemePart ||
+        type.key() == universe.Universe08.SecuritySchemePart;
+}
+
+export function isMediaTypeProperty(p:hl.IProperty) : boolean {
+    return p.nameId() === universe.Universe08.Api.properties.mediaType.name ||
+        p.nameId() === universe.Universe10.Api.properties.mediaType.name;
+
+}

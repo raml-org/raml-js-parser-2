@@ -27,7 +27,7 @@ export class TCKDumper{
 
     private transformers:Transformation[] = [
         new ResourcesTransformer(),
-        //new TypeExampleTransformer(),
+        new TypeExampleTransformer(),
         new ParametersTransformer(),
         new TypesTransformer(),
         new UsesTransformer(),
@@ -43,10 +43,10 @@ export class TCKDumper{
         new ResourceTypesTransformer(),
         new FacetsTransformer(),
         new SchemasTransformer(),
-        //new OneElementArrayTransformer(),
         new ProtocolsToUpperCaseTransformer(),
         new ResourceTypeMethodsToMapTransformer(),
-        new ReferencesTransformer()
+        new ReferencesTransformer(),
+        new OneElementArrayTransformer()
     ];
 
     private ignore:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
@@ -94,6 +94,20 @@ export class TCKDumper{
             this.serializeMeta(obj,basicNode);
             if(rootNodeDetails){
                 var result:any = {};
+                var hl = node.highLevel();
+                var usesElements = hl.elementsOfKind("uses");
+                if(usesElements.length>0){
+                    var usesEntries = []
+                    for(var ue of usesElements){
+                        var name = ue.attr("key").value();
+                        var value = ue.attr("value").value();
+                        usesEntries.push({
+                            name: name,
+                            value: value
+                        });
+                    }
+                    obj["uses"] = usesEntries;
+                }
                 if(definition){
                     var ramlVersion = definition.universe().version();
                     result.ramlVersion = ramlVersion;
@@ -170,17 +184,19 @@ export class TCKDumper{
             var property = props[propName];
             var value = node[propName]();
             if (Array.isArray(value)) {
-                var propertyValue:any = [];
-                value.forEach(x=>propertyValue.push(this.dumpInternal(x)));
+                var propertyValue:any[] = [];
+                for(var val of value){
+                    var dumped = this.dumpInternal(val);
+                    propertyValue.push(dumped);
+                }
                 if(propertyValue.length==0 && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
                     return;
                 }
-                this.transformers.forEach(x=>{
-
+                for(var x of this.transformers){
                     if(x.match(node, property)){
                         propertyValue = x.transform(propertyValue);
                     }
-                });
+                }
                 obj[propName] = propertyValue;
             }
             else {
@@ -355,8 +371,12 @@ class ParametersTransformer extends ArrayToMapTransformer{
             new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isBaseUriParametersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isUriParametersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isHeadersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isBodyLikeType,universeHelpers.isFormParametersProperty)
         ]),"name");
     }
@@ -547,10 +567,10 @@ class TypeExampleTransformer implements Transformation{
         var isArray = Array.isArray(value);
         var arr = isArray ? value : [ value ];
         arr.forEach(x=>{
-            var structuredExample = x['structuredExample'];
+            var structuredExample = x['example'];
             if(structuredExample){
-                x['example'] = structuredExample;
-                delete x['structuredExample'];
+                x['example'] = structuredExample.value;
+                x['structuredExample'] = structuredExample;
             }
         });
         return isArray ? arr : arr[0];
@@ -609,24 +629,13 @@ class ProtocolsToUpperCaseTransformer implements Transformation{
 
 class OneElementArrayTransformer implements Transformation{
 
-    exceptions:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
-        new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling,universeHelpers.isPropertiesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isResponsesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isMethodsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResponseType,universeHelpers.isBodyProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isUsesProperty),
-        new BasicObjectPropertyMatcher(x=>true,x=>x.nameId()=='enum'),
-        new BasicObjectPropertyMatcher(x=>true,universeHelpers.isSecuredByProperty)
+    usecases:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
+        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isMediaTypeProperty)
     ]);
 
+
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return !this.exceptions.match(node.definition(),prop);
+        return this.usecases.match(node.definition(),prop);
     }
 
     transform(value:any){

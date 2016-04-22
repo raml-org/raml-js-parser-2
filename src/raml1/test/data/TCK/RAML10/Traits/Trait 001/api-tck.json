@@ -24,7 +24,6 @@
         ],
         "resources": [
             {
-                "displayName": "/resource",
                 "methods": [
                     {
                         "responses": {
@@ -32,19 +31,23 @@
                                 "code": "200",
                                 "body": {
                                     "application/xml": {
-                                        "displayName": "application/xml",
                                         "name": "application/xml",
+                                        "displayName": "application/xml",
                                         "type": [
                                             "object"
                                         ],
                                         "examples": [
                                             {
-                                                "content": "<doc><property1>value1</property1></doc>\n",
-                                                "name": "one"
+                                                "value": "<doc><property1>value1</property1></doc>\n",
+                                                "strict": true,
+                                                "name": "one",
+                                                "structuredValue": "<doc><property1>value1</property1></doc>\n"
                                             },
                                             {
-                                                "content": "<doc><property2>value2</property2></doc>\n",
-                                                "name": "two"
+                                                "value": "<doc><property2>value2</property2></doc>\n",
+                                                "strict": true,
+                                                "name": "two",
+                                                "structuredValue": "<doc><property2>value2</property2></doc>\n"
                                             }
                                         ],
                                         "repeat": false,
@@ -87,6 +90,7 @@
                     }
                 ],
                 "relativeUri": "/resource",
+                "displayName": "/resource",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {

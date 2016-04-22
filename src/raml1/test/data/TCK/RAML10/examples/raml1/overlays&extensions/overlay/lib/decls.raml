@@ -2,11 +2,11 @@
 annotationTypes:
   important:
 types:
-  - Url:
+  Url:
       type: string
       pattern:  |
         dd
-  - Entity:
+  Entity:
       properties:
         type: object
         name: string
@@ -17,7 +17,7 @@ types:
         createdAt: date
         modifiedAt: date
         createdBy: User
-  - User:
+  User:
       type: Entity
       properties:
         createdItems:
