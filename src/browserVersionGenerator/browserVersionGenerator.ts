@@ -79,6 +79,7 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "concat-stream" : true,
                 // "esprima" : true,
                 "fs" : true,
+                "libxml-xsd" : true,
                 // "http-response-object" : true,
                 // "json-schema-compatibility" : true,
                 // "json-stable-stringify" : true,
