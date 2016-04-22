@@ -251,12 +251,154 @@ export interface ResourceTypeRef extends Reference{
 resourceType(  ):ResourceType
 }
 
-export interface RAMLLanguageElement extends core.BasicNode{
+export interface ResourceType extends core.BasicNode{
+
+        /**
+         * Name of the resource type
+         **/
+name(  ):string
+
+
+        /**
+         * Instructions on how and when the resource type should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * Methods that are part of this resource type definition
+         **/
+methods(  ):Method[]
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Uri parameters of this resource
+         **/
+uriParameters(  ):Parameter[]
+
+
+        /**
+         * An alternate, human-friendly name for the resource type
+         **/
+displayName(  ):string
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]
+
 
         /**
          * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
          **/
 description(  ):MarkdownString
+
+
+        /**
+         * Returns object representation of parametrized properties of the resource type
+         **/
+parametrizedProperties(  ):TypeInstance
+}
+
+
+/**
+ * Method object allows description of http methods
+ **/
+export interface MethodBase extends core.BasicNode{
+
+        /**
+         * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+         **/
+responses(  ):Response[]
+
+
+        /**
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         **/
+body(  ):BodyLike[]
+
+
+        /**
+         * A method can override an API's protocols value for that single method by setting a different value for the fields.
+         **/
+protocols(  ):string[]
+
+
+        /**
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]
+
+
+        /**
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         **/
+queryParameters(  ):Parameter[]
+
+
+        /**
+         * Headers that allowed at this position
+         **/
+headers(  ):Parameter[]
+
+description(  ):MarkdownString
+}
+
+export interface Response extends core.BasicNode{
+
+        /**
+         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         **/
+code(  ):StatusCodeString
+
+
+        /**
+         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
+         **/
+headers(  ):Parameter[]
+
+
+        /**
+         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
+         **/
+body(  ):BodyLike[]
+
+
+        /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString
+
+
+        /**
+         * true for codes < 400 and false otherwise
+         **/
+isOkRange(  ):boolean
 }
 
 export interface StringType extends ValueType{
@@ -267,13 +409,9 @@ export interface StringType extends ValueType{
 value(  ):string
 }
 
+export interface StatusCodeString extends StringType{}
 
-/**
- * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
- **/
-export interface MarkdownString extends StringType{}
-
-export interface Parameter extends RAMLLanguageElement{
+export interface Parameter extends core.BasicNode{
 
         /**
          * name of the parameter
@@ -321,9 +459,21 @@ example(  ):string
          * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
          **/
 repeat(  ):boolean
+
+
+        /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString
 }
 
 export interface ParameterLocation extends core.AbstractWrapperNode{}
+
+
+/**
+ * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+ **/
+export interface MarkdownString extends StringType{}
 
 
 /**
@@ -396,34 +546,6 @@ export interface DateTypeDeclaration extends Parameter{}
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  **/
 export interface FileTypeDeclaration extends Parameter{}
-
-export interface Response extends RAMLLanguageElement{
-
-        /**
-         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-         **/
-code(  ):StatusCodeString
-
-
-        /**
-         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
-         **/
-headers(  ):Parameter[]
-
-
-        /**
-         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
-         **/
-body(  ):BodyLike[]
-
-
-        /**
-         * true for codes < 400 and false otherwise
-         **/
-isOkRange(  ):boolean
-}
-
-export interface StatusCodeString extends StringType{}
 
 export interface BodyLike extends core.BasicNode{
 
@@ -511,206 +633,6 @@ export interface JSONBody extends BodyLike{
 schema(  ):JSonSchemaString
 }
 
-export interface Resource extends RAMLLanguageElement{
-
-        /**
-         * Relative URL of this resource from the parent resource
-         **/
-relativeUri(  ):RelativeUriString
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * Methods that can be called on this resource
-         **/
-methods(  ):Method[]
-
-
-        /**
-         * Children resources
-         **/
-resources(  ):Resource[]
-
-
-        /**
-         * An alternate, human-friendly name for the resource
-         **/
-displayName(  ):string
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]
-
-
-        /**
-         * Path relative to API root
-         **/
-completeRelativeUri(  ):string
-
-
-        /**
-         * baseUri of owning Api concatenated with completeRelativeUri
-         **/
-absoluteUri(  ):string
-
-
-        /**
-         * Parent resource for non top level resources
-         **/
-parentResource(  ):Resource
-
-
-        /**
-         * Get child resource by its relative path
-         **/
-childResource( relPath:string ):Resource
-
-
-        /**
-         * Get child method by its name
-         **/
-childMethod( method:string ):Method[]
-
-
-        /**
-         * Api owning the resource as a sibling
-         **/
-ownerApi(  ):Api
-
-
-        /**
-         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-         * Consider a fragment of RAML specification:
-         * ```yaml
-         * /resource/{objectId}/{propertyId}:
-         * uriParameters:
-         * objectId:
-         * ```
-         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-         * but it is among Resource.uriParameters().
-         **/
-uriParameters(  ):Parameter[]
-
-
-        /**
-         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-         * Consider a fragment of RAML specification:
-         * ```yaml
-         * /resource/{objectId}/{propertyId}:
-         * uriParameters:
-         * objectId:
-         * ```
-         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-         * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
-         * @deprecated
-         **/
-allUriParameters(  ):Parameter[]
-
-
-        /**
-         * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
-         * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
-         **/
-absoluteUriParameters(  ):Parameter[]
-
-
-        /**
-         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-         * returns schemes defined with `securedBy` at API level.
-         * @deprecated
-         **/
-allSecuredBy(  ):SecuritySchemeRef[]
-}
-
-
-/**
- * This type currently serves both for absolute and relative urls
- **/
-export interface UriTemplate extends StringType{}
-
-
-/**
- * This  type describes relative uri templates
- **/
-export interface RelativeUriString extends UriTemplate{}
-
-export interface TraitRef extends Reference{
-
-        /**
-         * Returns referenced trait
-         **/
-trait(  ):Trait
-}
-
-
-/**
- * Method object allows description of http methods
- **/
-export interface MethodBase extends RAMLLanguageElement{
-
-        /**
-         * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
-         **/
-responses(  ):Response[]
-
-
-        /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-         **/
-body(  ):BodyLike[]
-
-
-        /**
-         * A method can override an API's protocols value for that single method by setting a different value for the fields.
-         **/
-protocols(  ):string[]
-
-
-        /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]
-
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):Parameter[]
-
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):Parameter[]
-
-displayName(  ):string
-}
-
 export interface SecuritySchemeRef extends Reference{
 
         /**
@@ -729,7 +651,7 @@ securityScheme(  ):AbstractSecurityScheme
 /**
  * Declares globally referable security schema definition
  **/
-export interface AbstractSecurityScheme extends RAMLLanguageElement{
+export interface AbstractSecurityScheme extends core.BasicNode{
 
         /**
          * Name of the security scheme
@@ -764,6 +686,12 @@ settings(  ):SecuritySchemeSettings
 export interface SecuritySchemePart extends MethodBase{
 
         /**
+         * An alternate, human-friendly name for the security scheme part
+         **/
+displayName(  ):string
+
+
+        /**
          * Instantiation of applyed traits
          **/
 is(  ):TraitRef[]
@@ -788,15 +716,43 @@ responses(  ):Response[]
 
 
         /**
-         * An alternate, human-friendly name for the security scheme part
+         * A longer, human-friendly description of the security scheme part
+         **/
+description(  ):MarkdownString
+}
+
+export interface TraitRef extends Reference{
+
+        /**
+         * Returns referenced trait
+         **/
+trait(  ):Trait
+}
+
+export interface Trait extends MethodBase{
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * An alternate, human-friendly name for the trait
          **/
 displayName(  ):string
 
 
         /**
-         * A longer, human-friendly description of the security scheme part
+         * Returns object representation of parametrized properties of the trait
          **/
-description(  ):MarkdownString
+parametrizedProperties(  ):TypeInstance
 }
 
 export interface SecuritySchemeSettings extends core.BasicNode{}
@@ -902,12 +858,6 @@ is(  ):TraitRef[]
 
 
         /**
-         * An alternate, human-friendly name for the method
-         **/
-displayName(  ):string
-
-
-        /**
          * For methods of Resources returns parent resource. For methods of ResourceTypes returns null.
          **/
 parentResource(  ):Resource
@@ -935,99 +885,23 @@ methodId(  ):string
 allSecuredBy(  ):SecuritySchemeRef[]
 }
 
-export interface Trait extends MethodBase{
-
-        /**
-         * Name of the trait
-         **/
-name(  ):string
-
-
-        /**
-         * Instructions on how and when the trait should be used.
-         **/
-usage(  ):string
-
-
-        /**
-         * An alternate, human-friendly name for the trait
-         **/
-displayName(  ):string
-
-
-        /**
-         * Returns object representation of parametrized properties of the trait
-         **/
-parametrizedProperties(  ):TypeInstance
-}
-
-export interface ResourceType extends RAMLLanguageElement{
-
-        /**
-         * Name of the resource type
-         **/
-name(  ):string
-
-
-        /**
-         * Instructions on how and when the resource type should be used.
-         **/
-usage(  ):string
-
-
-        /**
-         * Methods that are part of this resource type definition
-         **/
-methods(  ):Method[]
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-
-
-        /**
-         * Uri parameters of this resource
-         **/
-uriParameters(  ):Parameter[]
-
-
-        /**
-         * An alternate, human-friendly name for the resource type
-         **/
-displayName(  ):string
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]
-
-
-        /**
-         * Returns object representation of parametrized properties of the resource type
-         **/
-parametrizedProperties(  ):TypeInstance
-}
-
 
 /**
  * This sub type of the string represents mime types
  **/
 export interface MimeType extends StringType{}
+
+
+/**
+ * This type currently serves both for absolute and relative urls
+ **/
+export interface UriTemplate extends StringType{}
+
+
+/**
+ * This  type describes relative uri templates
+ **/
+export interface RelativeUriString extends UriTemplate{}
 
 
 /**
@@ -1067,6 +941,142 @@ key(  ):string
          * Content of the schema
          **/
 value(  ):SchemaString
+}
+
+export interface Resource extends core.BasicNode{
+
+        /**
+         * Relative URL of this resource from the parent resource
+         **/
+relativeUri(  ):RelativeUriString
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Methods that can be called on this resource
+         **/
+methods(  ):Method[]
+
+
+        /**
+         * Children resources
+         **/
+resources(  ):Resource[]
+
+
+        /**
+         * An alternate, human-friendly name for the resource
+         **/
+displayName(  ):string
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]
+
+
+        /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString
+
+
+        /**
+         * Path relative to API root
+         **/
+completeRelativeUri(  ):string
+
+
+        /**
+         * baseUri of owning Api concatenated with completeRelativeUri
+         **/
+absoluteUri(  ):string
+
+
+        /**
+         * Parent resource for non top level resources
+         **/
+parentResource(  ):Resource
+
+
+        /**
+         * Get child resource by its relative path
+         **/
+childResource( relPath:string ):Resource
+
+
+        /**
+         * Get child method by its name
+         **/
+childMethod( method:string ):Method[]
+
+
+        /**
+         * Api owning the resource as a sibling
+         **/
+ownerApi(  ):Api
+
+
+        /**
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * but it is among Resource.uriParameters().
+         **/
+uriParameters(  ):Parameter[]
+
+
+        /**
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+         * @deprecated
+         **/
+allUriParameters(  ):Parameter[]
+
+
+        /**
+         * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+         * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+         **/
+absoluteUriParameters(  ):Parameter[]
+
+
+        /**
+         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+         * returns schemes defined with `securedBy` at API level.
+         * @deprecated
+         **/
+allSecuredBy(  ):SecuritySchemeRef[]
 }
 
 /**
@@ -1169,20 +1179,38 @@ export function isResourceType(node: core.AbstractWrapperNode) : node is Resourc
 
 
 /**
- * Custom type guard for RAMLLanguageElement. Returns true if node is instance of RAMLLanguageElement. Returns false otherwise.
- * Also returns false for super interfaces of RAMLLanguageElement.
+ * Custom type guard for Method. Returns true if node is instance of Method. Returns false otherwise.
+ * Also returns false for super interfaces of Method.
  */
-export function isRAMLLanguageElement(node: core.AbstractWrapperNode) : node is RAMLLanguageElement {
-    return node.kind() == "RAMLLanguageElement" && node.RAMLVersion() == "RAML08";
+export function isMethod(node: core.AbstractWrapperNode) : node is Method {
+    return node.kind() == "Method" && node.RAMLVersion() == "RAML08";
 }
 
 
 /**
- * Custom type guard for MarkdownString. Returns true if node is instance of MarkdownString. Returns false otherwise.
- * Also returns false for super interfaces of MarkdownString.
+ * Custom type guard for MethodBase. Returns true if node is instance of MethodBase. Returns false otherwise.
+ * Also returns false for super interfaces of MethodBase.
  */
-export function isMarkdownString(node: core.AbstractWrapperNode) : node is MarkdownString {
-    return node.kind() == "MarkdownString" && node.RAMLVersion() == "RAML08";
+export function isMethodBase(node: core.AbstractWrapperNode) : node is MethodBase {
+    return node.kind() == "MethodBase" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for Response. Returns true if node is instance of Response. Returns false otherwise.
+ * Also returns false for super interfaces of Response.
+ */
+export function isResponse(node: core.AbstractWrapperNode) : node is Response {
+    return node.kind() == "Response" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for StatusCodeString. Returns true if node is instance of StatusCodeString. Returns false otherwise.
+ * Also returns false for super interfaces of StatusCodeString.
+ */
+export function isStatusCodeString(node: core.AbstractWrapperNode) : node is StatusCodeString {
+    return node.kind() == "StatusCodeString" && node.RAMLVersion() == "RAML08";
 }
 
 
@@ -1201,6 +1229,15 @@ export function isParameter(node: core.AbstractWrapperNode) : node is Parameter 
  */
 export function isParameterLocation(node: core.AbstractWrapperNode) : node is ParameterLocation {
     return node.kind() == "ParameterLocation" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for MarkdownString. Returns true if node is instance of MarkdownString. Returns false otherwise.
+ * Also returns false for super interfaces of MarkdownString.
+ */
+export function isMarkdownString(node: core.AbstractWrapperNode) : node is MarkdownString {
+    return node.kind() == "MarkdownString" && node.RAMLVersion() == "RAML08";
 }
 
 
@@ -1255,24 +1292,6 @@ export function isDateTypeDeclaration(node: core.AbstractWrapperNode) : node is 
  */
 export function isFileTypeDeclaration(node: core.AbstractWrapperNode) : node is FileTypeDeclaration {
     return node.kind() == "FileTypeDeclaration" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for Response. Returns true if node is instance of Response. Returns false otherwise.
- * Also returns false for super interfaces of Response.
- */
-export function isResponse(node: core.AbstractWrapperNode) : node is Response {
-    return node.kind() == "Response" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for StatusCodeString. Returns true if node is instance of StatusCodeString. Returns false otherwise.
- * Also returns false for super interfaces of StatusCodeString.
- */
-export function isStatusCodeString(node: core.AbstractWrapperNode) : node is StatusCodeString {
-    return node.kind() == "StatusCodeString" && node.RAMLVersion() == "RAML08";
 }
 
 
@@ -1358,51 +1377,6 @@ export function isJSONBody(node: core.AbstractWrapperNode) : node is JSONBody {
 
 
 /**
- * Custom type guard for Resource. Returns true if node is instance of Resource. Returns false otherwise.
- * Also returns false for super interfaces of Resource.
- */
-export function isResource(node: core.AbstractWrapperNode) : node is Resource {
-    return node.kind() == "Resource" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for RelativeUriString. Returns true if node is instance of RelativeUriString. Returns false otherwise.
- * Also returns false for super interfaces of RelativeUriString.
- */
-export function isRelativeUriString(node: core.AbstractWrapperNode) : node is RelativeUriString {
-    return node.kind() == "RelativeUriString" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for TraitRef. Returns true if node is instance of TraitRef. Returns false otherwise.
- * Also returns false for super interfaces of TraitRef.
- */
-export function isTraitRef(node: core.AbstractWrapperNode) : node is TraitRef {
-    return node.kind() == "TraitRef" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for Trait. Returns true if node is instance of Trait. Returns false otherwise.
- * Also returns false for super interfaces of Trait.
- */
-export function isTrait(node: core.AbstractWrapperNode) : node is Trait {
-    return node.kind() == "Trait" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
- * Custom type guard for MethodBase. Returns true if node is instance of MethodBase. Returns false otherwise.
- * Also returns false for super interfaces of MethodBase.
- */
-export function isMethodBase(node: core.AbstractWrapperNode) : node is MethodBase {
-    return node.kind() == "MethodBase" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
  * Custom type guard for SecuritySchemeRef. Returns true if node is instance of SecuritySchemeRef. Returns false otherwise.
  * Also returns false for super interfaces of SecuritySchemeRef.
  */
@@ -1426,6 +1400,24 @@ export function isAbstractSecurityScheme(node: core.AbstractWrapperNode) : node 
  */
 export function isSecuritySchemePart(node: core.AbstractWrapperNode) : node is SecuritySchemePart {
     return node.kind() == "SecuritySchemePart" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for TraitRef. Returns true if node is instance of TraitRef. Returns false otherwise.
+ * Also returns false for super interfaces of TraitRef.
+ */
+export function isTraitRef(node: core.AbstractWrapperNode) : node is TraitRef {
+    return node.kind() == "TraitRef" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for Trait. Returns true if node is instance of Trait. Returns false otherwise.
+ * Also returns false for super interfaces of Trait.
+ */
+export function isTrait(node: core.AbstractWrapperNode) : node is Trait {
+    return node.kind() == "Trait" && node.RAMLVersion() == "RAML08";
 }
 
 
@@ -1511,20 +1503,20 @@ export function isCustomSecurityScheme(node: core.AbstractWrapperNode) : node is
 
 
 /**
- * Custom type guard for Method. Returns true if node is instance of Method. Returns false otherwise.
- * Also returns false for super interfaces of Method.
- */
-export function isMethod(node: core.AbstractWrapperNode) : node is Method {
-    return node.kind() == "Method" && node.RAMLVersion() == "RAML08";
-}
-
-
-/**
  * Custom type guard for MimeType. Returns true if node is instance of MimeType. Returns false otherwise.
  * Also returns false for super interfaces of MimeType.
  */
 export function isMimeType(node: core.AbstractWrapperNode) : node is MimeType {
     return node.kind() == "MimeType" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for RelativeUriString. Returns true if node is instance of RelativeUriString. Returns false otherwise.
+ * Also returns false for super interfaces of RelativeUriString.
+ */
+export function isRelativeUriString(node: core.AbstractWrapperNode) : node is RelativeUriString {
+    return node.kind() == "RelativeUriString" && node.RAMLVersion() == "RAML08";
 }
 
 
@@ -1552,5 +1544,14 @@ export function isRAMLSimpleElement(node: core.AbstractWrapperNode) : node is RA
  */
 export function isDocumentationItem(node: core.AbstractWrapperNode) : node is DocumentationItem {
     return node.kind() == "DocumentationItem" && node.RAMLVersion() == "RAML08";
+}
+
+
+/**
+ * Custom type guard for Resource. Returns true if node is instance of Resource. Returns false otherwise.
+ * Also returns false for super interfaces of Resource.
+ */
+export function isResource(node: core.AbstractWrapperNode) : node is Resource {
+    return node.kind() == "Resource" && node.RAMLVersion() == "RAML08";
 }
 

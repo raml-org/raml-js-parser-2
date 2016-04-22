@@ -703,6 +703,57 @@ describe('Parser regression tests', function () {
     // })
 });
 
+describe('XSD schemes tests', function () {
+    it("XSD Scheme test 1" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 2" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 3" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 4" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 5" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 6" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 7" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 8" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 9" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 10" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 11" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 12" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 13" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 14" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 15" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 16" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
+    })
+});
+
 describe('JSON schemes tests', function () {
     it("JSON Scheme test 1" ,function() {
         this.timeout(15000);
@@ -936,13 +987,15 @@ describe('Optional template parameters tests', function () {
         testErrors(util.data("parser/optionalTemplateParameters/api01.raml"));
     });
     it("Should report error on unspecified parameter, which is used after expansion #1.", function () {
-        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api02.raml"),1);
+        testErrors(util.data("parser/optionalTemplateParameters/api02.raml")
+            ,["value was not provided for parameter: param1"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #2.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api03.raml"));
     });
     it("Should report error on unspecified parameter, which is used after expansion #2.", function () {
-        testErrorsByNumber(util.data("parser/optionalTemplateParameters/api04.raml"),1);
+        testErrors(util.data("parser/optionalTemplateParameters/api04.raml")
+            ,["value was not provided for parameter: param1"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #3.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api05.raml"));
@@ -960,7 +1013,8 @@ describe('Optional template parameters tests', function () {
         testErrors(util.data("parser/optionalTemplateParameters/api09.raml"));
     });
     it("Only methods are permitted to be optional in sense of templates expansion.", function () {
-        testErrorsByNumber(util.data("parser/illegalOptionalParameters/api01.raml"),1);
+        testErrors(util.data("parser/illegalOptionalParameters/api01.raml")
+            ,["Only method nodes can be optional"]);
     });
 });
 
