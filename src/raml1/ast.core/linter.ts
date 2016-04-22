@@ -371,6 +371,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         if (node.knownProperty&&node.lowLevel().value()!=null){
             //if (!node.lowLevel().)
             if (node.lowLevel().includeErrors().length==0) {
+
+                if (node.name()=="body"&&node.computedValue("mediaType")){
+                    return;
+                }
                 v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
             }
         }
@@ -1638,10 +1642,10 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             for (var ch of node.lowLevel().children()) {
                 paramsMap[ch.key()] = ch.value(true);
             }
-            var templateKind = universeHelpers.isTraitsProperty(node.property()) ? "trait" : "resource type";
+            var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
             var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(), paramsMap);
             var parent = node.parent();
-            var def = parent.definition();
+            var def = parent?parent.definition():node.definition();
             while(parent!=null && !universeHelpers.isResourceType(def)&&!universeHelpers.isMethodType(def)){
                 parent = parent.parent();
             }
