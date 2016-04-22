@@ -133,8 +133,6 @@ var classMap = {
 
     "ParameterLocation": (x)=>{return new RamlWrapper.ParameterLocationImpl(x)},
 
-    "RAMLLanguageElement": (x,y)=>{return new RamlWrapper.RAMLLanguageElementImpl(x,y)},
-
     "RAMLSimpleElement": (x,y)=>{return new RamlWrapper.RAMLSimpleElementImpl(x,y)},
 
     "Reference": (x)=>{return new RamlWrapper.ReferenceImpl(x)},

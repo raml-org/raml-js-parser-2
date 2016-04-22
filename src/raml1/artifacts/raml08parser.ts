@@ -25,18 +25,19 @@ import TypeInstance = pApi.TypeInstance;
 import TypeInstanceProperty = pApi.TypeInstanceProperty;
 import ResourceTypeRef = pApi.ResourceTypeRef;
 import ResourceType = pApi.ResourceType;
-import RAMLLanguageElement = pApi.RAMLLanguageElement;
-import MarkdownString = pApi.MarkdownString;
+import Method = pApi.Method;
+import MethodBase = pApi.MethodBase;
+import Response = pApi.Response;
+import StatusCodeString = pApi.StatusCodeString;
 import Parameter = pApi.Parameter;
 import ParameterLocation = pApi.ParameterLocation;
+import MarkdownString = pApi.MarkdownString;
 import StringTypeDeclaration = pApi.StringTypeDeclaration;
 import BooleanTypeDeclaration = pApi.BooleanTypeDeclaration;
 import NumberTypeDeclaration = pApi.NumberTypeDeclaration;
 import IntegerTypeDeclaration = pApi.IntegerTypeDeclaration;
 import DateTypeDeclaration = pApi.DateTypeDeclaration;
 import FileTypeDeclaration = pApi.FileTypeDeclaration;
-import Response = pApi.Response;
-import StatusCodeString = pApi.StatusCodeString;
 import BodyLike = pApi.BodyLike;
 import SchemaString = pApi.SchemaString;
 import JSonSchemaString = pApi.JSonSchemaString;
@@ -46,14 +47,11 @@ import JSONExample = pApi.JSONExample;
 import XMLExample = pApi.XMLExample;
 import XMLBody = pApi.XMLBody;
 import JSONBody = pApi.JSONBody;
-import Resource = pApi.Resource;
-import RelativeUriString = pApi.RelativeUriString;
-import TraitRef = pApi.TraitRef;
-import Trait = pApi.Trait;
-import MethodBase = pApi.MethodBase;
 import SecuritySchemeRef = pApi.SecuritySchemeRef;
 import AbstractSecurityScheme = pApi.AbstractSecurityScheme;
 import SecuritySchemePart = pApi.SecuritySchemePart;
+import TraitRef = pApi.TraitRef;
+import Trait = pApi.Trait;
 import SecuritySchemeSettings = pApi.SecuritySchemeSettings;
 import OAuth1SecuritySchemeSettings = pApi.OAuth1SecuritySchemeSettings;
 import FixedUri = pApi.FixedUri;
@@ -63,11 +61,12 @@ import OAuth1SecurityScheme = pApi.OAuth1SecurityScheme;
 import BasicSecurityScheme = pApi.BasicSecurityScheme;
 import DigestSecurityScheme = pApi.DigestSecurityScheme;
 import CustomSecurityScheme = pApi.CustomSecurityScheme;
-import Method = pApi.Method;
 import MimeType = pApi.MimeType;
+import RelativeUriString = pApi.RelativeUriString;
 import GlobalSchema = pApi.GlobalSchema;
 import RAMLSimpleElement = pApi.RAMLSimpleElement;
 import DocumentationItem = pApi.DocumentationItem;
+import Resource = pApi.Resource;
 export class ApiImpl extends core.BasicNodeImpl implements Api{
 
         /**
@@ -452,7 +451,109 @@ resourceType(  ):ResourceType{
         }
 }
 
-export class RAMLLanguageElementImpl extends core.BasicNodeImpl implements RAMLLanguageElement{
+export class ResourceTypeImpl extends core.BasicNodeImpl implements ResourceType{
+
+        /**
+         * Name of the resource type
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Instructions on how and when the resource type should be used.
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Methods that are part of this resource type definition
+         **/
+methods(  ):Method[]{
+             return <Method[]>super.elements('methods');
+         }
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]{
+             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
+         }
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef{
+             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
+         }
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]{
+             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
+         }
+
+
+        /**
+         * Uri parameters of this resource
+         **/
+uriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('uriParameters');
+         }
+
+
+        /**
+         * An alternate, human-friendly name for the resource type
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('baseUriParameters');
+         }
+
 
         /**
          * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
@@ -466,13 +567,161 @@ description(  ):MarkdownString{
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "RAMLLanguageElementImpl";}
+wrapperClassName(  ):string{return "ResourceTypeImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "RAMLLanguageElement";}
+kind(  ):string{return "ResourceType";}
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
+}
+
+
+/**
+ * Method object allows description of http methods
+ **/
+export class MethodBaseImpl extends core.BasicNodeImpl implements MethodBase{
+
+        /**
+         * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
+         **/
+responses(  ):Response[]{
+             return <Response[]>super.elements('responses');
+         }
+
+
+        /**
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         **/
+body(  ):BodyLike[]{
+             return <BodyLike[]>super.elements('body');
+         }
+
+
+        /**
+         * A method can override an API's protocols value for that single method by setting a different value for the fields.
+         **/
+protocols(  ):string[]{
+             return <string[]>super.attributes('protocols', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set protocols value
+         **/
+setProtocols( param:string ){
+            this.highLevel().attrOrCreate("protocols").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
+         **/
+securedBy(  ):SecuritySchemeRef[]{
+             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
+         }
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('baseUriParameters');
+         }
+
+
+        /**
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         **/
+queryParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('queryParameters');
+         }
+
+
+        /**
+         * Headers that allowed at this position
+         **/
+headers(  ):Parameter[]{
+             return <Parameter[]>super.elements('headers');
+         }
+
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "MethodBaseImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "MethodBase";}
+}
+
+export class ResponseImpl extends core.BasicNodeImpl implements Response{
+
+        /**
+         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         **/
+code(  ):StatusCodeString{
+             return <StatusCodeString>super.attribute('code', (attr:hl.IAttribute)=>new StatusCodeStringImpl(attr));
+         }
+
+
+        /**
+         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
+         **/
+headers(  ):Parameter[]{
+             return <Parameter[]>super.elements('headers');
+         }
+
+
+        /**
+         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
+         **/
+body(  ):BodyLike[]{
+             return <BodyLike[]>super.elements('body');
+         }
+
+
+        /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ResponseImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Response";}
+
+
+        /**
+         * true for codes < 400 and false otherwise
+         **/
+isOkRange(  ):boolean{
+            return helper.isOkRange(this);
+        }
 }
 
 export class StringTypeImpl extends ValueTypeImpl implements StringType{
@@ -496,28 +745,22 @@ kind(  ):string{return "StringType";}
 value(  ):string{return this.attr.value();}
 }
 
-
-/**
- * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
- **/
-export class MarkdownStringImpl extends StringTypeImpl implements MarkdownString{
+export class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString{
 
         /**
          * @hidden
          * @return Actual name of instance class
          **/
-wrapperClassName(  ):string{return "MarkdownStringImpl";}
+wrapperClassName(  ):string{return "StatusCodeStringImpl";}
 
 
         /**
          * @return Actual name of instance interface
          **/
-kind(  ):string{return "MarkdownString";}
+kind(  ):string{return "StatusCodeString";}
 }
 
-export class ParameterImpl extends RAMLLanguageElementImpl implements Parameter{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createParameter(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
+export class ParameterImpl extends core.BasicNodeImpl implements Parameter{
 
         /**
          * name of the parameter
@@ -654,6 +897,14 @@ setRepeat( param:boolean ){
 
 
         /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
          * @hidden
          * @return Actual name of instance class
          **/
@@ -681,6 +932,25 @@ wrapperClassName(  ):string{return "ParameterLocationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ParameterLocation";}
+}
+
+
+/**
+ * Mardown string is a string which can contain markdown as an extension this markdown should support links with RAML Pointers since 1.0
+ **/
+export class MarkdownStringImpl extends StringTypeImpl implements MarkdownString{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "MarkdownStringImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "MarkdownString";}
 }
 
 
@@ -917,70 +1187,6 @@ wrapperClassName(  ):string{return "FileTypeDeclarationImpl";}
 kind(  ):string{return "FileTypeDeclaration";}
 }
 
-export class ResponseImpl extends RAMLLanguageElementImpl implements Response{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-         **/
-code(  ):StatusCodeString{
-             return <StatusCodeString>super.attribute('code', (attr:hl.IAttribute)=>new StatusCodeStringImpl(attr));
-         }
-
-
-        /**
-         * An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.
-         **/
-headers(  ):Parameter[]{
-             return <Parameter[]>super.elements('headers');
-         }
-
-
-        /**
-         * Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `* /*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `* /*` is used.
-         **/
-body(  ):BodyLike[]{
-             return <BodyLike[]>super.elements('body');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ResponseImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Response";}
-
-
-        /**
-         * true for codes < 400 and false otherwise
-         **/
-isOkRange(  ):boolean{
-            return helper.isOkRange(this);
-        }
-}
-
-export class StatusCodeStringImpl extends StringTypeImpl implements StatusCodeString{
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "StatusCodeStringImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "StatusCodeString";}
-}
-
 export class BodyLikeImpl extends core.BasicNodeImpl implements BodyLike{
 
         /**
@@ -1210,356 +1416,6 @@ wrapperClassName(  ):string{return "JSONBodyImpl";}
 kind(  ):string{return "JSONBody";}
 }
 
-export class ResourceImpl extends RAMLLanguageElementImpl implements Resource{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResource(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Relative URL of this resource from the parent resource
-         **/
-relativeUri(  ):RelativeUriString{
-             return <RelativeUriString>super.attribute('relativeUri', (attr:hl.IAttribute)=>new RelativeUriStringImpl(attr));
-         }
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef{
-             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
-         }
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]{
-             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
-         }
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
-         }
-
-
-        /**
-         * Uri parameters of this resource
-         * @hidden
-         **/
-uriParameters_original(  ):Parameter[]{
-             return <Parameter[]>super.elements('uriParameters');
-         }
-
-
-        /**
-         * Methods that can be called on this resource
-         **/
-methods(  ):Method[]{
-             return <Method[]>super.elements('methods');
-         }
-
-
-        /**
-         * Children resources
-         **/
-resources(  ):Resource[]{
-             return <Resource[]>super.elements('resources');
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the resource
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('baseUriParameters');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ResourceImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Resource";}
-
-
-        /**
-         * Path relative to API root
-         **/
-completeRelativeUri(  ):string{
-            return helper.completeRelativeUri(this);
-        }
-
-
-        /**
-         * baseUri of owning Api concatenated with completeRelativeUri
-         **/
-absoluteUri(  ):string{
-            return helper.absoluteUri(this);
-        }
-
-
-        /**
-         * Parent resource for non top level resources
-         **/
-parentResource(  ):Resource{
-            return helper.parent(this);
-        }
-
-
-        /**
-         * Get child resource by its relative path
-         **/
-childResource( relPath:string ):Resource{
-            return helper.childResource(this, relPath);
-        }
-
-
-        /**
-         * Get child method by its name
-         **/
-childMethod( method:string ):Method[]{
-            return helper.childMethod(this, method);
-        }
-
-
-        /**
-         * Api owning the resource as a sibling
-         **/
-ownerApi(  ):Api{
-            return helper.ownerApi(this);
-        }
-
-
-        /**
-         * Uri parameters of this resource
-         **/
-uriParameters(  ):Parameter[]{
-            return helper.uriParametersPrimary(this);
-        }
-
-
-        /**
-         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
-         * Consider a fragment of RAML specification:
-         * ```yaml
-         * /resource/{objectId}/{propertyId}:
-         * uriParameters:
-         * objectId:
-         * ```
-         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
-         * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
-         * @deprecated
-         **/
-allUriParameters(  ):Parameter[]{
-            return helper.uriParameters(this);
-        }
-
-
-        /**
-         * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
-         * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
-         **/
-absoluteUriParameters(  ):Parameter[]{
-            return helper.absoluteUriParameters(this);
-        }
-
-
-        /**
-         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
-         * returns schemes defined with `securedBy` at API level.
-         * @deprecated
-         **/
-allSecuredBy(  ):SecuritySchemeRef[]{
-            return helper.allSecuredBy(this);
-        }
-}
-
-
-/**
- * This type currently serves both for absolute and relative urls
- **/
-export class UriTemplateImpl extends StringTypeImpl implements UriTemplate{
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "UriTemplateImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "UriTemplate";}
-}
-
-
-/**
- * This  type describes relative uri templates
- **/
-export class RelativeUriStringImpl extends UriTemplateImpl implements RelativeUriString{
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "RelativeUriStringImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "RelativeUriString";}
-}
-
-export class TraitRefImpl extends ReferenceImpl implements TraitRef{
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "TraitRefImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "TraitRef";}
-
-trait(  ):Trait{
-            return helper.referencedTrait(this);
-        }
-}
-
-
-/**
- * Method object allows description of http methods
- **/
-export class MethodBaseImpl extends RAMLLanguageElementImpl implements MethodBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethodBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.
-         **/
-responses(  ):Response[]{
-             return <Response[]>super.elements('responses');
-         }
-
-
-        /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-         **/
-body(  ):BodyLike[]{
-             return <BodyLike[]>super.elements('body');
-         }
-
-
-        /**
-         * A method can override an API's protocols value for that single method by setting a different value for the fields.
-         **/
-protocols(  ):string[]{
-             return <string[]>super.attributes('protocols', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set protocols value
-         **/
-setProtocols( param:string ){
-            this.highLevel().attrOrCreate("protocols").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
-         }
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('baseUriParameters');
-         }
-
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('queryParameters');
-         }
-
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):Parameter[]{
-             return <Parameter[]>super.elements('headers');
-         }
-
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "MethodBaseImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "MethodBase";}
-}
-
 export class SecuritySchemeRefImpl extends ReferenceImpl implements SecuritySchemeRef{
 
         /**
@@ -1587,9 +1443,7 @@ securityScheme(  ):AbstractSecurityScheme{
 /**
  * Declares globally referable security schema definition
  **/
-export class AbstractSecuritySchemeImpl extends RAMLLanguageElementImpl implements AbstractSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createAbstractSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
+export class AbstractSecuritySchemeImpl extends core.BasicNodeImpl implements AbstractSecurityScheme{
 
         /**
          * Name of the security scheme
@@ -1669,6 +1523,24 @@ constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLeve
 
 
         /**
+         * An alternate, human-friendly name for the security scheme part
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
          * Instantiation of applyed traits
          **/
 is(  ):TraitRef[]{
@@ -1701,24 +1573,6 @@ responses(  ):Response[]{
 
 
         /**
-         * An alternate, human-friendly name for the security scheme part
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
          * A longer, human-friendly description of the security scheme part
          **/
 description(  ):MarkdownString{
@@ -1737,6 +1591,100 @@ wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemePart";}
+}
+
+export class TraitRefImpl extends ReferenceImpl implements TraitRef{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "TraitRefImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "TraitRef";}
+
+trait(  ):Trait{
+            return helper.referencedTrait(this);
+        }
+}
+
+export class TraitImpl extends MethodBaseImpl implements Trait{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string{
+             return <string>super.attribute('name', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set name value
+         **/
+setName( param:string ){
+            this.highLevel().attrOrCreate("name").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string{
+             return <string>super.attribute('usage', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set usage value
+         **/
+setUsage( param:string ){
+            this.highLevel().attrOrCreate("usage").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * An alternate, human-friendly name for the trait
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "TraitImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Trait";}
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
 }
 
 export class SecuritySchemeSettingsImpl extends core.BasicNodeImpl implements SecuritySchemeSettings{
@@ -2027,24 +1975,6 @@ is(  ):TraitRef[]{
 
 
         /**
-         * An alternate, human-friendly name for the method
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
          * @hidden
          * @return Actual name of instance class
          **/
@@ -2093,204 +2023,6 @@ allSecuredBy(  ):SecuritySchemeRef[]{
         }
 }
 
-export class TraitImpl extends MethodBaseImpl implements Trait{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the trait
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Instructions on how and when the trait should be used.
-         **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set usage value
-         **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * An alternate, human-friendly name for the trait
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "TraitImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "Trait";}
-
-parametrizedProperties(  ):TypeInstance{
-            return helper.getTemplateParametrizedProperties(this);
-        }
-}
-
-export class ResourceTypeImpl extends RAMLLanguageElementImpl implements ResourceType{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResourceType(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name of the resource type
-         **/
-name(  ):string{
-             return <string>super.attribute('name', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set name value
-         **/
-setName( param:string ){
-            this.highLevel().attrOrCreate("name").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Instructions on how and when the resource type should be used.
-         **/
-usage(  ):string{
-             return <string>super.attribute('usage', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set usage value
-         **/
-setUsage( param:string ){
-            this.highLevel().attrOrCreate("usage").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Methods that are part of this resource type definition
-         **/
-methods(  ):Method[]{
-             return <Method[]>super.elements('methods');
-         }
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]{
-             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
-         }
-
-
-        /**
-         * Instantiation of applyed resource type
-         **/
-"type"(  ):ResourceTypeRef{
-             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
-         }
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]{
-             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
-         }
-
-
-        /**
-         * Uri parameters of this resource
-         **/
-uriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('uriParameters');
-         }
-
-
-        /**
-         * An alternate, human-friendly name for the resource type
-         **/
-displayName(  ):string{
-             return <string>super.attribute('displayName', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set displayName value
-         **/
-setDisplayName( param:string ){
-            this.highLevel().attrOrCreate("displayName").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
-         **/
-baseUriParameters(  ):Parameter[]{
-             return <Parameter[]>super.elements('baseUriParameters');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "ResourceTypeImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "ResourceType";}
-
-parametrizedProperties(  ):TypeInstance{
-            return helper.getTemplateParametrizedProperties(this);
-        }
-}
-
 
 /**
  * This sub type of the string represents mime types
@@ -2308,6 +2040,44 @@ wrapperClassName(  ):string{return "MimeTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "MimeType";}
+}
+
+
+/**
+ * This type currently serves both for absolute and relative urls
+ **/
+export class UriTemplateImpl extends StringTypeImpl implements UriTemplate{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "UriTemplateImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "UriTemplate";}
+}
+
+
+/**
+ * This  type describes relative uri templates
+ **/
+export class RelativeUriStringImpl extends UriTemplateImpl implements RelativeUriString{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "RelativeUriStringImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "RelativeUriString";}
 }
 
 
@@ -2434,6 +2204,204 @@ wrapperClassName(  ):string{return "GlobalSchemaImpl";}
 kind(  ):string{return "GlobalSchema";}
 }
 
+export class ResourceImpl extends core.BasicNodeImpl implements Resource{
+
+        /**
+         * Relative URL of this resource from the parent resource
+         **/
+relativeUri(  ):RelativeUriString{
+             return <RelativeUriString>super.attribute('relativeUri', (attr:hl.IAttribute)=>new RelativeUriStringImpl(attr));
+         }
+
+
+        /**
+         * Instantiation of applyed resource type
+         **/
+"type"(  ):ResourceTypeRef{
+             return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
+         }
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]{
+             return <TraitRef[]>super.attributes('is', (attr:hl.IAttribute)=>new TraitRefImpl(attr));
+         }
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]{
+             return <SecuritySchemeRef[]>super.attributes('securedBy', (attr:hl.IAttribute)=>new SecuritySchemeRefImpl(attr));
+         }
+
+
+        /**
+         * Uri parameters of this resource
+         * @hidden
+         **/
+uriParameters_original(  ):Parameter[]{
+             return <Parameter[]>super.elements('uriParameters');
+         }
+
+
+        /**
+         * Methods that can be called on this resource
+         **/
+methods(  ):Method[]{
+             return <Method[]>super.elements('methods');
+         }
+
+
+        /**
+         * Children resources
+         **/
+resources(  ):Resource[]{
+             return <Resource[]>super.elements('resources');
+         }
+
+
+        /**
+         * An alternate, human-friendly name for the resource
+         **/
+displayName(  ):string{
+             return <string>super.attribute('displayName', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set displayName value
+         **/
+setDisplayName( param:string ){
+            this.highLevel().attrOrCreate("displayName").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.
+         **/
+baseUriParameters(  ):Parameter[]{
+             return <Parameter[]>super.elements('baseUriParameters');
+         }
+
+
+        /**
+         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown.
+         **/
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "ResourceImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "Resource";}
+
+
+        /**
+         * Path relative to API root
+         **/
+completeRelativeUri(  ):string{
+            return helper.completeRelativeUri(this);
+        }
+
+
+        /**
+         * baseUri of owning Api concatenated with completeRelativeUri
+         **/
+absoluteUri(  ):string{
+            return helper.absoluteUri(this);
+        }
+
+
+        /**
+         * Parent resource for non top level resources
+         **/
+parentResource(  ):Resource{
+            return helper.parent(this);
+        }
+
+
+        /**
+         * Get child resource by its relative path
+         **/
+childResource( relPath:string ):Resource{
+            return helper.childResource(this, relPath);
+        }
+
+
+        /**
+         * Get child method by its name
+         **/
+childMethod( method:string ):Method[]{
+            return helper.childMethod(this, method);
+        }
+
+
+        /**
+         * Api owning the resource as a sibling
+         **/
+ownerApi(  ):Api{
+            return helper.ownerApi(this);
+        }
+
+
+        /**
+         * Uri parameters of this resource
+         **/
+uriParameters(  ):Parameter[]{
+            return helper.uriParametersPrimary(this);
+        }
+
+
+        /**
+         * Retrieve an ordered list of all uri parameters including those which are not described in the `uriParameters` node.
+         * Consider a fragment of RAML specification:
+         * ```yaml
+         * /resource/{objectId}/{propertyId}:
+         * uriParameters:
+         * objectId:
+         * ```
+         * Here `propertyId` uri parameter is not described in the `uriParameters` node,
+         * Thus, it is not among Resource.uriParameters(), but it is among Resource.allUriParameters().
+         * @deprecated
+         **/
+allUriParameters(  ):Parameter[]{
+            return helper.uriParameters(this);
+        }
+
+
+        /**
+         * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.allBaseUriParameters()`
+         * for `Api` owning the `Resource` and `Resource.allUriParameters()`.
+         **/
+absoluteUriParameters(  ):Parameter[]{
+            return helper.absoluteUriParameters(this);
+        }
+
+
+        /**
+         * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
+         * returns schemes defined with `securedBy` at API level.
+         * @deprecated
+         **/
+allSecuredBy(  ):SecuritySchemeRef[]{
+            return helper.allSecuredBy(this);
+        }
+}
+
 /**
  * @hidden
  **/
@@ -2477,9 +2445,29 @@ function createResourceType(key:string){
 /**
  * @hidden
  **/
-function createRAMLLanguageElement(key:string){
+function createMethod(key:string){
     var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("RAMLLanguageElement");
+    var nc=<def.NodeClass>universe.type("Method");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createMethodBase(key:string){
+    var universe=def.getUniverse("RAML08");
+    var nc=<def.NodeClass>universe.type("MethodBase");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createResponse(key:string){
+    var universe=def.getUniverse("RAML08");
+    var nc=<def.NodeClass>universe.type("Response");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -2557,16 +2545,6 @@ function createFileTypeDeclaration(key:string){
 /**
  * @hidden
  **/
-function createResponse(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Response");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
 function createBodyLike(key:string){
     var universe=def.getUniverse("RAML08");
     var nc=<def.NodeClass>universe.type("BodyLike");
@@ -2597,36 +2575,6 @@ function createJSONBody(key:string){
 /**
  * @hidden
  **/
-function createResource(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Resource");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createTrait(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Trait");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createMethodBase(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("MethodBase");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
 function createAbstractSecurityScheme(key:string){
     var universe=def.getUniverse("RAML08");
     var nc=<def.NodeClass>universe.type("AbstractSecurityScheme");
@@ -2640,6 +2588,16 @@ function createAbstractSecurityScheme(key:string){
 function createSecuritySchemePart(key:string){
     var universe=def.getUniverse("RAML08");
     var nc=<def.NodeClass>universe.type("SecuritySchemePart");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createTrait(key:string){
+    var universe=def.getUniverse("RAML08");
+    var nc=<def.NodeClass>universe.type("Trait");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -2727,16 +2685,6 @@ function createCustomSecurityScheme(key:string){
 /**
  * @hidden
  **/
-function createMethod(key:string){
-    var universe=def.getUniverse("RAML08");
-    var nc=<def.NodeClass>universe.type("Method");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
 function createGlobalSchema(key:string){
     var universe=def.getUniverse("RAML08");
     var nc=<def.NodeClass>universe.type("GlobalSchema");
@@ -2760,6 +2708,16 @@ function createRAMLSimpleElement(key:string){
 function createDocumentationItem(key:string){
     var universe=def.getUniverse("RAML08");
     var nc=<def.NodeClass>universe.type("DocumentationItem");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
+function createResource(key:string){
+    var universe=def.getUniverse("RAML08");
+    var nc=<def.NodeClass>universe.type("Resource");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
