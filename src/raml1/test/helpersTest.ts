@@ -758,7 +758,7 @@ describe('Helper methods', function () {
         assert.equal(resource.scalarsAnnotations().description()[0].annotation().name(), "a1");
         assert.equal(resource.scalarsAnnotations().displayName()[0].annotation().name(), "a2");
         assert.equal(resource.scalarsAnnotations().description()[0].structuredValue().value(), 5);
-        assert.equal(resource.scalarsAnnotations().displayName().structuredValue().value(), "value1");
+        assert.equal(resource.scalarsAnnotations().displayName()[0].structuredValue().value(), "value1");
     });
 
 
