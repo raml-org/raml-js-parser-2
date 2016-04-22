@@ -84,6 +84,20 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     lineMapper():lowlevel.LineMapper{ return new lowlevel.LineMapperImpl(this.contents(),this.absolutePath()); }
     
     resolve(p: string) : lowlevel.ICompilationUnit { return null; } // TODO FIXME 
+
+    /**
+     * Returns true if this unit is overlay or extension, false otherwise.
+     */
+    isOverlayOrExtension() : boolean {
+        return false;
+    }
+
+    /**
+     * Returns master reference if presents, null otherwise.
+     */
+    getMasterReferenceNode() : lowlevel.ILowLevelASTNode {
+        return null;
+    }
 }
 
 //export interface IProject{
