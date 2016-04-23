@@ -65,7 +65,7 @@
     "mocha": "^2.2.1",
     "chai": "^2.2.0",
     "typescript": "1.8.7",
-    "webpack": "^1.12.14",
+    "webpack": "1.4.2",
     "gulp": "^3.9.1",
     "gulp-mocha": "^2.2.0",
     "chai-as-promised": "^5.2.0",
