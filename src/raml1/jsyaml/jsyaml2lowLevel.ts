@@ -789,20 +789,24 @@ export class Project implements lowlevel.IProject{
 
             var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
 
-            if (this.pathToUnit[refPath]) {
-                result = this.pathToUnit[refPath];
-            } else {
-                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
-
-                result = this.pathToUnit[refPath];
-            }
+            // if (this.pathToUnit[refPath]) {
+            //     result = this.pathToUnit[refPath];
+            // } else {
+            //     this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
+            //
+            //     result = this.pathToUnit[refPath];
+            // }
 
             this.pathToUnit[absPath] ? Promise.resolve(result).then((unit: CompilationUnit) => {
-                return result;
+                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, this.pathToUnit[absPath].contents()), false, this, refPath);
+                
+                return this.pathToUnit[refPath];
             }) : this.unitAsync(absPath, true).then((unit: CompilationUnit) => {
                 this.pathToUnit[absPath] = unit;
 
-                return result;
+                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, this.pathToUnit[absPath].contents()), false, this, refPath);
+
+                return this.pathToUnit[refPath];
             });
         }
 
