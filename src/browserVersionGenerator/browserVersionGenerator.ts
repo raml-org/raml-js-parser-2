@@ -38,12 +38,12 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
     console.log("Preparing to Webpack browser bundle:");
 
     var plugins = [];
-    if (minify) {
-        plugins.push(new webpack.optimize.UglifyJsPlugin({
-            minimize: true,
-            compress: { warnings: false }
-        }));
-    }
+    // if (minify) {
+    //     plugins.push(new webpack.optimize.UglifyJsPlugin({
+    //         minimize: true,
+    //         compress: { warnings: false }
+    //     }));
+    // }
 
     var relativeFilePath = path.relative(parserRootFolder, rootFile);
     relativeFilePath = "./"+relativeFilePath;
@@ -79,6 +79,8 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "concat-stream" : true,
                 // "esprima" : true,
                 "fs" : true,
+                "libxml-xsd" : true,
+                "ws" : true,
                 // "http-response-object" : true,
                 // "json-schema-compatibility" : true,
                 // "json-stable-stringify" : true,

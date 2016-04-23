@@ -423,10 +423,10 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     }
 
 
-    annotations():hl.IParseResult[]{
+    annotations():hl.IAttribute[]{
         var ch=this.lowLevel().children();
-        var annotations:hl.IParseResult[]=[];
-        var u=this.definition().universe().type(universes.Universe10.LibraryBase.name);
+        var annotations:hl.IAttribute[]=[];
+        var u=this.definition().universe().type(universes.Universe10.Annotable.name);
         if (!u){
             return annotations;
         }
@@ -434,14 +434,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         for (var i=0;i<ch.length;i++){
             var child=ch[i];
             if (child.key()!=="value"){
-                var vl=new StructuredValue(child,this.parent(),pr);
-                var highLevel=vl.toHighLevel();
-                if (!highLevel){
-                    annotations.push(new BasicASTNode(child,this.parent()));
-                }
-                else{
-                    annotations.push(highLevel);
-                }
+                var attr = new ASTPropImpl(child,this.parent(),pr.range(),pr);
+                annotations.push(attr);                
             }
         }
         return annotations;
