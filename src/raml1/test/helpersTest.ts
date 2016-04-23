@@ -779,5 +779,15 @@ describe('Helper methods', function () {
         assert.equal(ann11.structuredValue().value(), "value2");
     });
 
+    it('Multiple media types 1', function () {
+        var api = util.loadApiOptions08(util.data("parser/media/m5.raml"),
+            {attributeDefaults: true});
+
+        var mediaTypes = <any[]>api.mediaType();
+        assert.equal(mediaTypes.length,2);
+        assert.equal(mediaTypes[0].value(),"application/xml");
+        assert.equal(mediaTypes[1].value(),"application/json");
+    });
+
 
 });
