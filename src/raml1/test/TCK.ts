@@ -12,7 +12,7 @@ import fs = require("fs")
 describe('TCK tests',function() {
     it("Types", function () {
         this.timeout(15000);
-        testAPI('TCK/RAML10/Types 001/api.raml');
+        testAPI('parser/annotations/a30.raml');
     });
 
     it("Trait 001", function () {

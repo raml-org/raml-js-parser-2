@@ -179,8 +179,16 @@ export class ParserGenerator{
             return;
         }
 
+        if(u.isAssignableFrom('TypeInstance')){
+            return;
+        }
 
-        var scalarProperties = u.properties().filter(x=>x.range().isValueType());
+        if(u.isAssignableFrom('TypeInstanceProperty')){
+            return;
+        }
+
+
+        var scalarProperties = u.properties().filter(x=>x.range().isValueType()&&!(<def.Property>x).isFromParentKey());
         if(scalarProperties.length==0){
             return;
         }
@@ -222,15 +230,35 @@ export class ParserGenerator{
 
         for(var prop of scalarProperties){
             var propName = prop.nameId();
-            var methodComment = typeName+"."+propName+ " annotations";
-            var body = `
+            var returnType;
+            var body;
+            if(prop.isMultiValue()||prop.range().isArray()){
+                returnType = "AnnotationRef[][]";
+                body = `
+        var attrs = this.node.attributes("${propName}");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
+`;
+            }
+            else {
+                returnType = "AnnotationRef[]";
+                body = `
         var attr = this.node.attr("${propName}");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 `;
-            this.addInterfaceMethod(idcl,propName,"AnnotationRef[]",methodComment);
-            this.addImplementationMethod(dcl,propName,"AnnotationRef[]",body,methodComment)
+            }
+
+            var methodComment = typeName+"."+propName+ " annotations";
+            this.addInterfaceMethod(idcl,propName,returnType,methodComment);
+            this.addImplementationMethod(dcl,propName,returnType,body,methodComment)
 
         }
 

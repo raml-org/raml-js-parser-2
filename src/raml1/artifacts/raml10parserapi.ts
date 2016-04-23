@@ -449,7 +449,7 @@ export interface AnnotableScalarsAnnotations{
         /**
          * Annotable.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 
@@ -527,12 +527,6 @@ scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotations
 export interface TypeDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * TypeDeclaration.name annotations
-         **/
-name(  ):AnnotationRef[]
-
-
-        /**
          * TypeDeclaration.displayName annotations
          **/
 displayName(  ):AnnotationRef[]
@@ -541,13 +535,13 @@ displayName(  ):AnnotationRef[]
         /**
          * TypeDeclaration.schema annotations
          **/
-schema(  ):AnnotationRef[]
+schema(  ):AnnotationRef[][]
 
 
         /**
          * TypeDeclaration.type annotations
          **/
-"type"(  ):AnnotationRef[]
+"type"(  ):AnnotationRef[][]
 
 
         /**
@@ -589,7 +583,7 @@ description(  ):AnnotationRef[]
         /**
          * TypeDeclaration.allowedTargets annotations
          **/
-allowedTargets(  ):AnnotationRef[]
+allowedTargets(  ):AnnotationRef[][]
 
 
         /**
@@ -601,7 +595,7 @@ isAnnotation(  ):AnnotationRef[]
         /**
          * TypeDeclaration.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 
@@ -773,7 +767,7 @@ maxLength(  ):AnnotationRef[]
         /**
          * StringTypeDeclaration.enum annotations
          **/
-enum(  ):AnnotationRef[]
+enum(  ):AnnotationRef[][]
 }
 
 
@@ -863,7 +857,7 @@ maximum(  ):AnnotationRef[]
         /**
          * NumberTypeDeclaration.enum annotations
          **/
-enum(  ):AnnotationRef[]
+enum(  ):AnnotationRef[][]
 
 
         /**
@@ -983,7 +977,7 @@ export interface FileTypeDeclarationScalarsAnnotations extends TypeDeclarationSc
         /**
          * FileTypeDeclaration.fileTypes annotations
          **/
-fileTypes(  ):AnnotationRef[]
+fileTypes(  ):AnnotationRef[][]
 
 
         /**
@@ -1049,12 +1043,6 @@ scalarsAnnotations(  ):ResponseScalarsAnnotations
 export interface ResponseScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * Response.code annotations
-         **/
-code(  ):AnnotationRef[]
-
-
-        /**
          * Response.description annotations
          **/
 description(  ):AnnotationRef[]
@@ -1063,7 +1051,7 @@ description(  ):AnnotationRef[]
         /**
          * Response.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 export interface SecuritySchemePart extends Operation{
@@ -1089,7 +1077,7 @@ export interface SecuritySchemePartScalarsAnnotations extends AnnotableScalarsAn
         /**
          * SecuritySchemePart.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 export interface MethodBase extends Operation{
@@ -1251,7 +1239,7 @@ tokenCredentialsUri(  ):AnnotationRef[]
         /**
          * OAuth1SecuritySchemeSettings.signatures annotations
          **/
-signatures(  ):AnnotationRef[]
+signatures(  ):AnnotationRef[][]
 }
 
 export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
@@ -1307,13 +1295,13 @@ authorizationUri(  ):AnnotationRef[]
         /**
          * OAuth2SecuritySchemeSettings.authorizationGrants annotations
          **/
-authorizationGrants(  ):AnnotationRef[]
+authorizationGrants(  ):AnnotationRef[][]
 
 
         /**
          * OAuth2SecuritySchemeSettings.scopes annotations
          **/
-scopes(  ):AnnotationRef[]
+scopes(  ):AnnotationRef[][]
 }
 
 
@@ -1363,12 +1351,6 @@ export interface CustomSecurityScheme extends AbstractSecurityScheme{}
  * AbstractSecurityScheme scalar properties annotations accessor
  **/
 export interface AbstractSecuritySchemeScalarsAnnotations extends AnnotableScalarsAnnotations{
-
-        /**
-         * AbstractSecurityScheme.name annotations
-         **/
-name(  ):AnnotationRef[]
-
 
         /**
          * AbstractSecurityScheme.type annotations
@@ -1445,19 +1427,19 @@ export interface MethodBaseScalarsAnnotations extends AnnotableScalarsAnnotation
         /**
          * MethodBase.protocols annotations
          **/
-protocols(  ):AnnotationRef[]
+protocols(  ):AnnotationRef[][]
 
 
         /**
          * MethodBase.is annotations
          **/
-is(  ):AnnotationRef[]
+is(  ):AnnotationRef[][]
 
 
         /**
          * MethodBase.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]
+securedBy(  ):AnnotationRef[][]
 
 
         /**
@@ -1477,12 +1459,6 @@ displayName(  ):AnnotationRef[]
  * Method scalar properties annotations accessor
  **/
 export interface MethodScalarsAnnotations extends MethodBaseScalarsAnnotations{
-
-        /**
-         * Method.method annotations
-         **/
-method(  ):AnnotationRef[]
-
 
         /**
          * Method.displayName annotations
@@ -1527,12 +1503,6 @@ scalarsAnnotations(  ):TraitScalarsAnnotations
  * Trait scalar properties annotations accessor
  **/
 export interface TraitScalarsAnnotations extends MethodBaseScalarsAnnotations{
-
-        /**
-         * Trait.name annotations
-         **/
-name(  ):AnnotationRef[]
-
 
         /**
          * Trait.usage annotations
@@ -1715,7 +1685,7 @@ export interface ResourceBaseScalarsAnnotations extends AnnotableScalarsAnnotati
         /**
          * ResourceBase.is annotations
          **/
-is(  ):AnnotationRef[]
+is(  ):AnnotationRef[][]
 
 
         /**
@@ -1733,7 +1703,7 @@ description(  ):AnnotationRef[]
         /**
          * ResourceBase.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]
+securedBy(  ):AnnotationRef[][]
 }
 
 
@@ -1741,12 +1711,6 @@ securedBy(  ):AnnotationRef[]
  * Resource scalar properties annotations accessor
  **/
 export interface ResourceScalarsAnnotations extends ResourceBaseScalarsAnnotations{
-
-        /**
-         * Resource.relativeUri annotations
-         **/
-relativeUri(  ):AnnotationRef[]
-
 
         /**
          * Resource.displayName annotations
@@ -1763,7 +1727,7 @@ description(  ):AnnotationRef[]
         /**
          * Resource.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 export interface ResourceType extends ResourceBase{
@@ -1811,12 +1775,6 @@ displayName(  ):AnnotationRef[]
 
 
         /**
-         * ResourceType.name annotations
-         **/
-name(  ):AnnotationRef[]
-
-
-        /**
          * ResourceType.usage annotations
          **/
 usage(  ):AnnotationRef[]
@@ -1859,12 +1817,6 @@ scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
  * UsesDeclaration scalar properties annotations accessor
  **/
 export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
-
-        /**
-         * UsesDeclaration.key annotations
-         **/
-key(  ):AnnotationRef[]
-
 
         /**
          * UsesDeclaration.value annotations
@@ -1996,12 +1948,6 @@ export interface LibraryScalarsAnnotations extends AnnotableScalarsAnnotations{
          * Library.usage annotations
          **/
 usage(  ):AnnotationRef[]
-
-
-        /**
-         * Library.name annotations
-         **/
-name(  ):AnnotationRef[]
 }
 
 export interface Api extends LibraryBase{
@@ -2182,25 +2128,25 @@ baseUri(  ):AnnotationRef[]
         /**
          * Api.protocols annotations
          **/
-protocols(  ):AnnotationRef[]
+protocols(  ):AnnotationRef[][]
 
 
         /**
          * Api.mediaType annotations
          **/
-mediaType(  ):AnnotationRef[]
+mediaType(  ):AnnotationRef[][]
 
 
         /**
          * Api.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]
+securedBy(  ):AnnotationRef[][]
 
 
         /**
          * Api.annotations annotations
          **/
-annotations(  ):AnnotationRef[]
+annotations(  ):AnnotationRef[][]
 }
 
 
