@@ -139,6 +139,7 @@ export interface ILowLevelASTNode{
     addChild(n:ILowLevelASTNode, pos?: number)
 
     execute(cmd:CompositeCommand)
+    isAnnotatedScalar():boolean
 
     dump():string
     dumpToObject(full?:boolean):any
@@ -341,8 +342,8 @@ Unit path: ${this.absPath}`);
         var l = this.content.length;
         for(var i = 0 ; i < l; i++){
 
-            if(this.content.charAt(i)=='\n'){
-                if(i < l-1 && this.content.charAt(i+1)=='\r'){
+            if(this.content.charAt(i)=='\r'){
+                if(i < l-1 && this.content.charAt(i+1)=='\n'){
                     this.mapping.push(i-ind + 2);
                     ind = i+2;
                     i++;
@@ -352,7 +353,7 @@ Unit path: ${this.absPath}`);
                     ind = i+1;
                 }
             }
-            else if(this.content.charAt(i)=='\r'){
+            else if(this.content.charAt(i)=='\n'){
                 this.mapping.push(i-ind + 1);
                 ind = i+1;
             }

@@ -10,15 +10,15 @@ types:
       name: string
       id: number
 resourceTypes:
-  - collectionMember:
-  - collection:
+   collectionMember:
+   collection:
 traits:
-  - paged:
+   paged:
       queryParameters:
         pages:
           description: The number of pages to return
           type: number
-  - secured: !include /bla/bla/secured.yml
+   secured: !include /bla/bla/secured.yml
 /songs:
   type: collection
   is: [ paged, secured ]

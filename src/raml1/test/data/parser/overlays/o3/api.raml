@@ -5,15 +5,15 @@ mediaType: application/json
 securedBy: x-ttt
 protocols: HTTP
 securitySchemes:
-  - x-ttt:
+   x-ttt:
       type: Digest Authentication
 
 baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
 traits:
-  - env-org-pair:
+   env-org-pair:
       displayName: masterDisplayName
 resourceTypes:
-  - servers-collection:
+   servers-collection:
 /servers:
   is: env-org-pair
   securedBy: x-ttt

@@ -1,0 +1,9 @@
+#%RAML 1.0
+title: Blah
+
+types:
+  SomeType:
+        type: !include schema.xsd#City
+        example:  |
+          <country><country_name>France</country_name>
+          <population>59.7</population></country>

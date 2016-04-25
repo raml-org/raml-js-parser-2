@@ -162,6 +162,111 @@ export class ParserGenerator{
         if(isCustom){
             this.implementationModule.removeChild(dcl);
         }
+        this.generatePrimitivesAnnotations(u,idcl,dcl);
+    }
+
+    private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSClassDecl,classModel:td.TSClassDecl){
+
+        if((<def.NodeClass>u).isCustom()){
+            return;
+        }
+
+        if(u.universe().version()!="RAML10") {
+            return;
+        }
+
+        if(u.isValueType()){
+            return;
+        }
+
+        if(u.isAssignableFrom('TypeInstance')){
+            return;
+        }
+
+        if(u.isAssignableFrom('TypeInstanceProperty')){
+            return;
+        }
+
+
+        var scalarProperties = u.properties().filter(x=>x.range().isValueType()&&!(<def.Property>x).isFromParentKey());
+        if(scalarProperties.length==0){
+            return;
+        }
+        var typeName = u.nameId();
+
+        var iName = typeName + "ScalarsAnnotations";
+        var idcl = new td.TSInterface(this.interfaceModule, iName);
+        var typeComment = typeName + " scalar properties annotations accessor";
+        idcl._comment = typeComment;
+        var cName = typeName + "ScalarsAnnotationsImpl";
+        var dcl = new td.TSClassDecl(this.implementationModule, cName);
+        dcl._comment = typeComment;
+
+        dcl.implements.push(new td.TSSimpleTypeReference(td.Universe,idcl.name));
+
+        var superTypes = u.superTypes();
+        while(superTypes.length>0){
+            var superType = superTypes[0];
+            if(superType.properties().filter(x=>x.range().isValueType()).length>0){
+                var superTypeName = superType.nameId();
+                var superInterfaceName = superTypeName+ "ScalarsAnnotations";
+                idcl.extends.push(new td.TSSimpleTypeReference(td.Universe, superInterfaceName));
+                dcl.extends.push(new td.TSSimpleTypeReference(td.Universe, superTypeName + "ScalarsAnnotationsImpl"));
+                break;
+            }
+            superTypes = superType.superTypes();
+        }
+        if(dcl.extends.length==0){
+            var _constructor = new td.TSConstructor(dcl);
+            _constructor.parameters = [
+                new td.Param(
+                    _constructor,
+                    'node',
+                    td.ParamLocation.OTHER,
+                    new td.TSSimpleTypeReference(td.Universe, 'hl.IHighLevelNode'))
+            ];
+            _constructor._body = '';
+        }
+
+        for(var prop of scalarProperties){
+            var propName = prop.nameId();
+            var returnType;
+            var body;
+            if(prop.isMultiValue()||prop.range().isArray()){
+                returnType = "AnnotationRef[][]";
+                body = `
+        var attrs = this.node.attributes("${propName}");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
+`;
+            }
+            else {
+                returnType = "AnnotationRef[]";
+                body = `
+        var attr = this.node.attr("${propName}");
+        if(attr==null){
+          return [];
+        }
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+        return <AnnotationRef[]>result;
+`;
+            }
+
+            var methodComment = typeName+"."+propName+ " annotations";
+            this.addInterfaceMethod(idcl,propName,returnType,methodComment);
+            this.addImplementationMethod(dcl,propName,returnType,body,methodComment)
+
+        }
+
+        this.addInterfaceMethod(interfaceModel,"scalarsAnnotations"
+            ,iName,"Scalar properties annotations accessor");
+
+        this.addImplementationMethod(classModel,"scalarsAnnotations"
+            ,cName,"return new "+cName+"(this.highLevel());","Scalar properties annotations accessor");
     }
 
     private addInterfaceMethod(
@@ -528,7 +633,12 @@ export function is${processedName}(node: core.AbstractWrapperNode) : node is ${p
 
         var apiInterfaceImports = "";
         Object.keys(this.processed).forEach(processedName=>{
-           apiInterfaceImports += ("import " + processedName + " = pApi." + processedName + ";\n");
+            apiInterfaceImports += ("import " + processedName + " = pApi." + processedName + ";\n");
+            var scalarsAnnotationsaccessorname = processedName+"ScalarsAnnotations";
+            if(this.interfaceModule.getInterface(scalarsAnnotationsaccessorname)!=null){
+                apiInterfaceImports += ("import " + scalarsAnnotationsaccessorname
+                        + " = pApi." + scalarsAnnotationsaccessorname + ";\n");
+            }
         });
 
         return `${this.ramlVersion == 'RAML10' ? raml10parserJsDoc : ''}
@@ -579,11 +689,11 @@ ${this.ramlVersion=='RAML10'?
  * @param ramlPath Path to RAML: local file system path or Web URL
  * @param options Load options
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
- * @return RAMLLanguageElement instance.
+ * @return hl.BasicNode instance.
  **/
-export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],options?:coreApi.Options):RAMLLanguageElement
+export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],options?:coreApi.Options):hl.BasicNode
 `:''}
-export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):RAMLLanguageElement{
+export function loadRAMLSync(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):hl.BasicNode{
 
         return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
 }
@@ -612,15 +722,15 @@ export function loadApi(apiPath:string, arg1?:string[]|coreApi.Options, arg2?:co
 
 ${this.ramlVersion=='RAML10'?
 `/**
- * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the resulting RAMLLanguageElement contains errors and the 'rejectOnErrors' option is set to 'true'.
+ * Load RAML asynchronously. May load both Api and Typed fragments. The Promise is rejected with [[ApiLoadingError]] if the resulting hl.BasicNode contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param ramlPath Path to RAML: local file system path or Web URL
  * @param options Load options
  * @param extensionsAndOverlays Paths to extensions and overlays to be applied listed in the order of application. Relevant for RAML 1.0 only.
- * @return Promise&lt;RAMLLanguageElement&gt;.
+ * @return Promise&lt;hl.BasicNode&gt;.
  **/
-export function loadRAML(ramlPath:string,extensionsAndOverlays:string[], options?:coreApi.Options):Promise<RAMLLanguageElement>;
+export function loadRAML(ramlPath:string,extensionsAndOverlays:string[], options?:coreApi.Options):Promise<hl.BasicNode>;
 `:''}
-export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<RAMLLanguageElement>{
+export function loadRAML(ramlPath:string, arg1?:string[]|coreApi.Options, arg2?:coreApi.Options):Promise<hl.BasicNode>{
 
         return apiLoader.loadRAMLAsync(ramlPath,arg1,arg2);
 }
@@ -701,7 +811,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
                 //This is only case of nested hierarchy
                 continue;
             }
-            if (superTypeName=="RAMLLanguageElement"){
+            if (superTypeName=="hl.BasicNode"){
                 //depth first
                 continue;
             }
@@ -714,7 +824,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         }
     }
     if (!wrapperConstructor){
-        wrapperConstructor = classMap["RAMLLanguageElement"]
+        wrapperConstructor = classMap["hl.BasicNode"]
 
     }
     return wrapperConstructor(node,setAsTopLevel);

@@ -34,7 +34,9 @@ describe('API parsing', function() {
     it('Should parse baseUriParameters', function(){
         testErrors(util.data('parser/api/api04.raml'));
     });
-
+    it('Should not allow using sequences in global map declarations', function(){
+        testErrors(util.data('parser/api/api01-r.raml'),["resourceTypes should be map in RAML 1.0"]);
+    });
     it('Should parse mediaType', function(){
         testErrors(util.data('parser/api/api05.raml'));
     });
@@ -81,11 +83,11 @@ describe('API parsing', function() {
 //        testErrors(util.data('parser/api/api15.raml'));
 //    });
 
-    it('Should parse api description', function(){
+    it('Should parse resource description', function(){
         testErrors(util.data('parser/api/api27.raml'));
     });
 
-    it('Should parse api description with markdown', function(){
+    it('Should parse resource description with markdown', function(){
         testErrors(util.data('parser/api/api28.raml'));
     });
 

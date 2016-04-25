@@ -11,6 +11,6 @@ export interface SchemaDef{
     name()
     content()
 }
-export function schema(body:api.TypeDeclaration, api:api.Api):Opt<SchemaDef> {
-    return wh.schema(body,api);
-}
+//  function schema(body:api.TypeDeclaration, api:api.Api):Opt<SchemaDef> {
+//     return wh.schema(body,api);
+// }

@@ -2,6 +2,7 @@ import hl=require("../highLevelAST");
 import ll=require("../lowLevelAST");
 import hlImpl=require("../highLevelImpl");
 import jsyaml=require("../jsyaml/jsyaml2lowLevel");
+import json=require("../jsyaml/json2lowLevel");
 import def=require("raml-definition-system");
 var ramlService=def;
 import json2lowlevel = require('../jsyaml/json2lowLevel');
@@ -71,20 +72,13 @@ export class BasicNodeImpl implements hl.BasicNode{
         var attrs:hl.IAttribute[] = this._node.attributes(name);
         if(!attrs || attrs.length == 0){
             var defaultValue = this.getDefaultsCalculator().
-                attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+            attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
             if (defaultValue == null) return [];
             return Array.isArray(defaultValue) ? defaultValue : [ defaultValue ];
         }
-
         //TODO not sure if we want to artificially create missing attributes having
         //default values
-
-        if(constr){
-            return attrs.map(x=>constr(x));
-        }
-        else{
-            return attrs.map(x=>x.value());
-        }
+        return attributesToValues(attrs,constr);
     }
 
     /**
@@ -524,6 +518,52 @@ export class TypeInstancePropertyImpl{
     }
 }
 
+export class ExampleSpecImpl extends BasicNodeImpl{
+
+    constructor(hlNode:hl.IHighLevelNode,protected expandable, protected _annotations:AttributeNodeImpl[]){
+        super(hlNode);
+    }
+
+    value():any{
+        if(this.expandable.isJSONString()||this.expandable.isYAML()) {
+            return this.expandable.asJSON();
+        }
+        return this.expandable.original();
+    }
+
+    structuredValue():TypeInstanceImpl{
+        var obj = this.value();
+        var llParent = this._node.lowLevel();
+        var key = this.expandable.isSingle() ? "example" : null;
+        var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
+        return new TypeInstanceImpl(jsonNode);
+
+    }
+
+    strict():boolean{
+        return this.expandable.strict();
+    }
+
+    description():string{
+        return this.expandable.description();
+    }
+
+    name():string{
+        return this.expandable.name();
+    }
+
+    displayName():string{
+        return this.expandable.displayName();
+    }
+
+    annotations():any[]{
+        return this._annotations;
+    }
+
+    scalarsAnnotations():any{ return <any>{}; }
+
+}
+
 export type ValueMetaData=hl.ValueMetadata;
 export type NodeMetadata=hl.NodeMetadata;
 
@@ -667,4 +707,14 @@ export function fillElementMeta(node:BasicNodeImpl):NodeMetadataImpl{
         }
     });
     return meta;
+}
+
+export function attributesToValues(attrs:hl.IAttribute[], constr?:(attr:hl.IAttribute)=>any):any[]{
+
+    if(constr){
+        return attrs.map(x=>constr(x));
+    }
+    else{
+        return attrs.map(x=>x.value());
+    }
 }

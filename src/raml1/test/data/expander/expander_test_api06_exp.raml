@@ -3,13 +3,13 @@ title: TraitsAndResourceTypeMix_exp
 version: 1
 baseUri: https://example.com/{version}
 traits:
-  - trait0: !include traits/trait0.raml
-  - trait1: !include traits/trait1.raml
-  - payload: !include traits/payload.raml
-  - response800: !include traits/response800.raml
-  - response900: !include traits/response900.raml
+   trait0: !include traits/trait0.raml
+   trait1: !include traits/trait1.raml
+   payload: !include traits/payload.raml
+   response800: !include traits/response800.raml
+   response900: !include traits/response900.raml
 resourceTypes:
-  - rt1: !include resourceTypes/rt1.raml
+   rt1: !include resourceTypes/rt1.raml
 /root-resource:
   type: rt1
   is: [ trait0, trait1, response800, response900 ]

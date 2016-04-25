@@ -1,6 +1,8 @@
+
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml=require("../jsyaml/jsyaml2lowLevel")
+import proxy=require("../ast.core/LowLevelASTProxy")
 import defs=require("raml-definition-system")
 import hl=require("../highLevelAST")
 import ll=require("../lowLevelAST")
@@ -211,7 +213,7 @@ function isExampleProp(d:hl.IProperty){
     if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
         return false;
     }
-    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name||d.nameId()==universes.Universe10.ExampleSpec.properties.content.name)&&( d.domain().key()!=universes.Universe10.DocumentationItem&& d.domain().key()!=universes.Universe08.DocumentationItem);
+    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name)&&( d.domain().key()!=universes.Universe10.DocumentationItem&& d.domain().key()!=universes.Universe08.DocumentationItem);
 }
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
@@ -358,6 +360,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         if (node.needSequence){
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "node: " + node.name()+" should be wrapped in sequence", node));
         }
+        if (node.needMap){
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (node.knownProperty?node.knownProperty.nameId():"")+" should be map in RAML 1.0", node));
+            return
+        }
         if (node.unresolvedRef){
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + node.lowLevel().value()+" can not be resolved", node));
 
@@ -365,6 +371,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         if (node.knownProperty&&node.lowLevel().value()!=null){
             //if (!node.lowLevel().)
             if (node.lowLevel().includeErrors().length==0) {
+
+                if (node.name()=="body"&&node.computedValue("mediaType")){
+                    return;
+                }
                 v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
             }
         }
@@ -419,15 +429,44 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     }
     if (node.isAttr()){
         new CompositePropertyValidator().validate(<hl.IAttribute>node,v);
-
     }
     else if (node.isElement()){
 
         var highLevelNode = <hl.IHighLevelNode>node;
 
-        if (highLevelNode.definition().isAnnotationType()){
+        if (highLevelNode.definition().isAnnotationType()||highLevelNode.property()&&highLevelNode.property().nameId()=="annotations"){
             new FixedFacetsValidator().validate(highLevelNode,v);
             return;
+        }
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.UsesDeclaration.name)){
+            var vn=highLevelNode.attr(universes.Universe10.UsesDeclaration.properties.value.name);
+            if (vn&&vn.value()){
+                var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
+                if (!rs){
+                    v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Can not resolve library from path:"+vn.value(),highLevelNode,false));
+                }
+                else{
+
+                   var issues:hl.ValidationIssue[]=[];
+                   rs.highLevel().validate({
+                       begin(){
+
+                       },
+                       accept(x:hl.ValidationIssue){
+                            issues.push(x);
+                       },
+                       end(){
+
+                       }
+                   });
+                   if (issues.length>0){
+                       var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
+                       issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
+                       brand.extras=issues;
+                       v.accept(brand);
+                   }
+                }
+            }
         }
         if (highLevelNode.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
             if (typeOfContainingTemplate(highLevelNode)){
@@ -454,7 +493,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     }
                     if (highLevelNode.property()) {
                         if (highLevelNode.property().nameId() ==
-                            universes.Universe10.Method.properties.body.name) {//FIXME
+                            universes.Universe10.MethodBase.properties.body.name) {//FIXME
                             new MediaTypeValidator().validate(a, v);
                             return;
                         }
@@ -473,6 +512,23 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             new NodeSpecificValidator().validate(highLevelNode,v);
             new TypeDeclarationValidator().validate(highLevelNode,v);
             return;
+        }
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)){
+            var hasSchemas:boolean=false;
+            var hasTypes:boolean=false;
+            var vv:ll.ILowLevelASTNode;
+            highLevelNode.lowLevel().children().forEach(x=>{
+                if (x.key()=="schemas"){
+                    hasSchemas=true;
+                    vv=x;
+                }
+                if (x.key()=="types"){
+                    hasTypes=true;
+                }
+            })
+            if (hasSchemas&&hasTypes){
+                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+            }
         }
 
         var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
@@ -627,6 +683,7 @@ class CompositePropertyValidator implements PropertyValidator{
         var vl=node.value();
         if (!node.property().range().hasStructure()){
             if (vl instanceof hlimpl.StructuredValue&&!(<def.Property>node.property()).isSelfNode()){
+
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
                 if (isTypeOrSchema(node.property())){
                     if (node.property().domain().key()==universes.Universe08.BodyLike){
@@ -648,7 +705,22 @@ class CompositePropertyValidator implements PropertyValidator{
                     }
                 }
             }
+            if (node.isAnnotatedScalar()){
+
+                var fvl=new FixedFacetsValidator()
+                node.annotations().forEach(x=>{
+                    var vl = x.value();
+                    var highLevel=vl.toHighLevel();
+                    if (!highLevel){
+                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "unknown annotation "+vl.valueName(), x));
+                    }
+                    else{
+                        fvl.validate(highLevel,v);
+                    }
+                });
+            }
         }
+
 
 
         if (typeof vl=='string'&&vl.indexOf("<<")!=-1){
@@ -668,7 +740,7 @@ class CompositePropertyValidator implements PropertyValidator{
             node.property().range().key() == universes.Universe10.MimeType)||
             (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name
             &&node.parent().property().nameId()==
-            universes.Universe10.Method.properties.body.name)) {//FIXME
+            universes.Universe10.MethodBase.properties.body.name)) {//FIXME
             new MediaTypeValidator().validate(node,v);
             return;
         }
@@ -808,22 +880,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                 return err;
             }
         }
-        if (t.key() == universes.Universe08.JSonSchemaString||t.key() == universes.Universe10.JSonSchemaString) {
-            var jsshema = su.getJSONSchema(v, new contentprovider.ContentProvider(h.lowLevel().unit()));
 
-            if (jsshema instanceof Error){
-                (<any>jsshema).canBeRef=true;
-            }
-            return jsshema;
-        }
-        if (t.key() == universes.Universe08.XMLSchemaString||t.key() == universes.Universe10.XMLSchemaString) {
-            var xmlschema = su.getXMLSchema(v);
-
-            if (xmlschema instanceof Error){
-                (<any>xmlschema).canBeRef=true;
-            }
-            return xmlschema;
-        }
         if (t.key() == universes.Universe08.BooleanType||t.isAssignableFrom(universes.Universe10.BooleanType.name)) {
             if (!(v === 'true' || v === 'false' || v === true || v === false)){
                 return new Error("'true' or 'false' is expected here")
@@ -1166,7 +1223,6 @@ export var typeToName = {}
 typeToName[universes.Universe08.Trait.name] = "trait";
 typeToName[universes.Universe08.ResourceType.name] = "resource type";
 typeToName[universes.Universe10.Trait.name] = "trait";
-typeToName[universes.Universe10.AnnotationTypeDeclaration.name] = "annotation type";
 typeToName[universes.Universe10.ResourceType.name] = "resource type";
 typeToName[universes.Universe10.AbstractSecurityScheme.name] = "security scheme";
 typeToName[universes.Universe10.Method.name] = "method";
@@ -1181,13 +1237,13 @@ typeToName[universes.Universe08.BodyLike.name] = "body";
 
 
 export var parameterPropertyToName = {}
-parameterPropertyToName[universes.Universe08.HasNormalParameters.properties.headers.name] = "header";
-parameterPropertyToName[universes.Universe08.HasNormalParameters.properties.queryParameters.name] = "query parameter";
+parameterPropertyToName[universes.Universe08.MethodBase.properties.headers.name] = "header";
+parameterPropertyToName[universes.Universe08.MethodBase.properties.queryParameters.name] = "query parameter";
 parameterPropertyToName[universes.Universe08.Api.properties.uriParameters.name] = "uri parameter";
 parameterPropertyToName[universes.Universe08.Api.properties.baseUriParameters.name] = "base uri parameter";
 parameterPropertyToName[universes.Universe08.BodyLike.properties.formParameters.name] = "form parameter";
-parameterPropertyToName[universes.Universe10.HasNormalParameters.properties.headers.name] = "header";
-parameterPropertyToName[universes.Universe10.HasNormalParameters.properties.queryParameters.name] = "query parameter";
+parameterPropertyToName[universes.Universe10.MethodBase.properties.headers.name] = "header";
+parameterPropertyToName[universes.Universe10.MethodBase.properties.queryParameters.name] = "query parameter";
 parameterPropertyToName[universes.Universe10.ResourceBase.properties.uriParameters.name] = "uri parameter";
 parameterPropertyToName[universes.Universe10.Api.properties.baseUriParameters.name] = "base uri parameter";
 parameterPropertyToName[universes.Universe10.MethodBase.properties.body.name] = "body";
@@ -1565,7 +1621,40 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,message,node))
             }
         });
+        var t:proxy.ValueTransformer;
+        var isInlinedTemplate = node.definition().getAdapter(services.RAMLService).isInlinedTemplates();
+        if(isInlinedTemplate) {
+            var paramsMap:{[key:string]:string} = {};
+            for (var ch of node.lowLevel().children()) {
+                paramsMap[ch.key()] = ch.value(true);
+            }
+            var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
+            var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(), paramsMap);
+            var parent = node.parent();
+            var def = parent?parent.definition():node.definition();
+            while(parent!=null && !universeHelpers.isResourceType(def)&&!universeHelpers.isMethodType(def)){
+                parent = parent.parent();
+            }
+            t = new expander.DefaultTransformer(<any>parent, vt);
+        }
         node.definition().requiredProperties().forEach(x=>{
+            if (isInlinedTemplate){
+                var paths:string[][] = x.getAdapter(services.RAMLPropertyService).meta("templatePaths");
+                if(paths){
+                    var parent = node.parent();
+                    var hasSufficientChild = false;
+                    for(var path of paths){
+                        path = path.map(x=>t.transform(x).value);
+                        if(this.checkPathSufficiency(parent.lowLevel(),path,node.property())){
+                            hasSufficientChild = true;
+                            break;
+                        }
+                    }
+                    if(!hasSufficientChild){
+                        return;
+                    }
+                }
+            }
             var r=x.range();
             if (r.hasArrayInHierarchy()){
                 r=r.arrayInHierarchy().componentType();
@@ -1589,7 +1678,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 if(!gotValue){
                     var msg="Missing required property " + x.nameId();
 
-                    if (node.definition().getAdapter(services.RAMLService).isInlinedTemplates()){
+                    if (isInlinedTemplate){
                         msg="value was not provided for parameter: "+x.nameId();
                     }
                     var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, msg, node)
@@ -1604,6 +1693,53 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 }
             }
         });
+    }
+    checkPathSufficiency(node:ll.ILowLevelASTNode,
+                         path:string[],
+                         prop:hl.IProperty):boolean{
+
+        if(path.length==0){
+            return false;
+        }
+        if(node==null){
+            return false;
+        }
+        var segment = path[0];
+        if(segment==null){
+            return false;
+        }
+        if(segment=="/"){
+            return this.checkPathSufficiency(node,path.slice(1),prop);
+        }
+        if(segment.length==0){
+            return true;
+        }
+        var children = node.children().filter(x=>x.key()==segment);
+        if(children.length==0){
+            path.indexOf("/")<0;
+        }
+        var lowLevel:ll.ILowLevelASTNode = children[0];
+        if(lowLevel instanceof proxy.LowLevelCompositeNode){
+            lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
+        }
+        if(lowLevel==null){
+            return path.indexOf("/")<0;
+        }
+        if(lowLevel.key()=="type"){
+                return true;
+        }
+
+        if(path.length==1){
+            // if(hlName==prop.nameId()&&node.definition().nameId()==prop.domain().nameId()){
+            //     return true;
+            // }
+            return lowLevel==null||lowLevel.value() == null;
+        }
+        else{
+            var path1 = path.slice(1);
+            return this.checkPathSufficiency(lowLevel,path1,prop);
+        }
+
     }
 }
 class ScalarQuoteValidator implements NodeValidator {
@@ -1916,8 +2052,8 @@ class OverlayNodesValidator implements NodeValidator{
             && universeHelpers.isTypeDeclarationTypeOrDescendant(definition)) return true;
 
         //as we allow types, it is logical to also allow schemas as "schemas are only aliases for types"
-        if (universeHelpers.isSchemasProperty(property) &&
-            universeHelpers.isGlobalSchemaType(definition)) return true;
+        if (universeHelpers.isSchemasProperty(property)
+            && universeHelpers.isTypeDeclarationTypeOrDescendant(definition)) return true;
 
         //accepting documentation
         if (node.parent() == root && universeHelpers.isDocumentationProperty(property)
@@ -2369,7 +2505,7 @@ export class ExampleValidator implements PropertyValidator{
                 if (sampleRoot.parent().parent()) {
                     var ppc = sampleRoot.parent().parent().definition().key();
                     if (ppc == universes.Universe08.Method || ppc == universes.Universe10.Method) {
-                        if (sampleRoot.parent().property().nameId() == universes.Universe10.Method.properties.queryParameters.name) {
+                        if (sampleRoot.parent().property().nameId() == universes.Universe10.MethodBase.properties.queryParameters.name) {
 
                         }
                         else {
@@ -2450,9 +2586,9 @@ export class ExampleValidator implements PropertyValidator{
     }
     getSchemaFromModel(node:hl.IAttribute):IShema{
         var p=node.parent();
-        if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
-            p=p.parent();
-        }
+        // if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
+        //     p=p.parent();
+        // }
         return this.typeValidator(p, node);
 
     }
@@ -2634,18 +2770,18 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 });
             }
 
-            //if(node.optional()){
-            //    if(universeHelpers.isIsProperty(prop)){
-            //        var template = typeOfContainingTemplate(aNode.parent());
-            //        if(template) {
-            //            var templateNamePlural = toReadableName(template);
-            //            var message = "Optional scalar properties are not allowed in "
-            //                 + templateNamePlural + " and their descendants: " + prop.nameId() + "?";
-            //            var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, message, node, false);
-            //            v.accept(issue);
-            //        }
-            //    }
-            //}
+            var def = node.asElement().definition();
+            if(node.optional()&&def.universe().version()=="RAML10"){
+                var prop = node.property();
+                var isParam = universeHelpers.isQueryParametersProperty(prop)
+                    ||universeHelpers.isUriParametersProperty(prop)
+                    ||universeHelpers.isHeadersProperty(prop);
+
+                if(!universeHelpers.isMethodType(def)&&!(universeHelpers.isTypeDeclarationType(def)&&isParam)){
+                   var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, "Only method nodes can be optional", node, false);
+                   v.accept(issue);
+               }
+            }
         }
 
 
@@ -2793,13 +2929,15 @@ class TemplateCyclesDetector implements NodeValidator {
         for(var i = 0 ; i < templatesRefs.length ; i++){
             var ref = templatesRefs[i];
             var val = ref.value();
-            var refName = typeof(val)=='string' ? val : val.valueName();
-            var template = templatesMap[refName];
-            if(template!=null) {
-                var newCycles = this.findCyclesInDefinition(
-                    template, propName, templatesMap, nextOccuredTemplates);
+            if (val) {
+                var refName = typeof(val) == 'string' ? val : val.valueName();
+                var template = templatesMap[refName];
+                if (template != null) {
+                    var newCycles = this.findCyclesInDefinition(
+                        template, propName, templatesMap, nextOccuredTemplates);
 
-                newCycles.forEach(x=>occuredCycles.push(x));
+                    newCycles.forEach(x=>occuredCycles.push(x));
+                }
             }
         }
 
@@ -2841,8 +2979,8 @@ function getMediaType2(node:hl.IAttribute){
                 return node.parent().name();
             }
             if (ppc==universes.Universe08.Method||ppc==universes.Universe10.Method) {
-                if (node.parent().property().nameId()==universes.Universe10.Method.properties.queryParameters.name
-                    ||node.parent().property().nameId()==universes.Universe10.Method.properties.headers.name){
+                if (node.parent().property().nameId()==universes.Universe10.MethodBase.properties.queryParameters.name
+                    ||node.parent().property().nameId()==universes.Universe10.MethodBase.properties.headers.name){
                     return null;
                 }
                 return node.parent().name();
@@ -2965,7 +3103,7 @@ export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,
         }
     }
     if (original){
-        if (node.property()&&node.property().nameId()==universes.Universe10.LibraryBase.properties.uses.name&&node.parent()!=null){
+        if (node.property()&&node.property().nameId()==universes.Universe10.FragmentDeclaration.properties.uses.name&&node.parent()!=null){
             pr=node.property();//FIXME there should be other cases
             node=node.parent();
         }
@@ -2997,7 +3135,7 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
     }
     if (original){
         if (rootCalculationAnchor.property()&&rootCalculationAnchor.property().nameId()
-            ==universes.Universe10.LibraryBase.properties.uses.name&&rootCalculationAnchor.parent()!=null){
+            ==universes.Universe10.FragmentDeclaration.properties.uses.name&&rootCalculationAnchor.parent()!=null){
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
     }

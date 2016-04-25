@@ -1,11 +1,11 @@
 #%RAML 1.0
 title: test
 types:
-  - TypeBase:
+   TypeBase:
       type: object
       properties:
         baseField: string
-  - TestType:
+   TestType:
       type: TypeBase
       properties:
         field: string
@@ -20,7 +20,7 @@ types:
               additionalField: string
             examples:
               aaa:
-                content:
+
                   additionalField: asd
                   baseField: asdasd
                   field: asdds

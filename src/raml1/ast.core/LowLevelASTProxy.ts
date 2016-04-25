@@ -30,6 +30,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
         return this._originalNode.keyKind();
     }
 
+    isAnnotatedScalar(){
+        return this._originalNode.isAnnotatedScalar()
+    }
+
     actual(){
         if (this._originalNode){
             return this._originalNode.actual();
@@ -358,7 +362,6 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return false;
         }
         var methodDef = universes.Universe08.Method;
-        var hasNormalParametersDef = universes.Universe08.HasNormalParameters;
         var resourceDef = universes.Universe08.Resource
 
         //if(key==hasNormalParametersDef.properties.displayName.name

@@ -4,7 +4,9 @@
 
 See http://raml.org for more information about RAML.
 
-This parser is at a beta state of development, as part of the API Workbench development cycle (http://apiworkbench.com).
+This parser is at a beta state of development , as part of the API Workbench development cycle (http://apiworkbench.com).
+
+it is expected to be compiliant against RC2 version or RAML 1.0 specification.
 
 ## Installation
 ```

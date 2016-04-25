@@ -471,7 +471,7 @@ class TransformationBuffer{
     }
 }
 
-class ValueTransformer implements proxy.ValueTransformer{
+export class ValueTransformer implements proxy.ValueTransformer{
 
     constructor(
         templateKind:string,
@@ -556,7 +556,7 @@ class ValueTransformer implements proxy.ValueTransformer{
     }
 }
 
-class DefaultTransformer extends ValueTransformer{
+export class DefaultTransformer extends ValueTransformer{
 
     constructor(
         owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,

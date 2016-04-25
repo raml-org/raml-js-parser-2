@@ -1,4 +1,5 @@
 import RamlWrapper = require("../raml1/artifacts/raml08parserapi")
+import core = require("../raml1/wrapped-ast/parserCore")
 var path = require('path');
 var tools =require("../raml1/test/testTools")
 var _ =require("underscore")
@@ -438,7 +439,7 @@ function serializeActions(_m:Array<RamlWrapper.Method>, api:RamlWrapper.Api, has
  * @param node
  * @param jsonToWriteTo
  */
-function serializeNodeDisplayName(node: RamlWrapper.RAMLLanguageElement, jsonToWriteTo: any) {
+function serializeNodeDisplayName(node: core.BasicNode, jsonToWriteTo: any) {
     var nodeAsAny : any = node;
     try {
         if (!nodeAsAny.displayName) {
@@ -468,7 +469,7 @@ function serializeNodeDisplayName(node: RamlWrapper.RAMLLanguageElement, jsonToW
  * @param node
  * @param jsonToWriteTo
  */
-function serializeNodeRepeat(node: RamlWrapper.RAMLLanguageElement, jsonToWriteTo: any) {
+function serializeNodeRepeat(node: core.BasicNode, jsonToWriteTo: any) {
     var nodeAsAny : any = node;
     try {
         if (!nodeAsAny.repeat) {

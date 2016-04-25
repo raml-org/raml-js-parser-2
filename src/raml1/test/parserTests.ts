@@ -390,6 +390,15 @@ describe('Parser regression tests', function () {
     it ("annotations25" ,function(){
         testErrors(util.data("parser/annotations/a25.raml"));
     })
+    it ("annotations26 (annotated scalar)" ,function(){
+        testErrors(util.data("parser/annotations/a26.raml"));
+    })
+    it ("annotations27 (annotated scalar (validation))" ,function(){
+        testErrors(util.data("parser/annotations/a27.raml"),["number is expected"]);
+    })
+    it ("annotations28 (annotated scalar (unknown))" ,function(){
+        testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation (z2)"]);
+    })
     it ("properties shortcut" ,function(){
         testErrors(util.data("parser/typexpressions/p.raml"));
     })
@@ -435,6 +444,9 @@ describe('Parser regression tests', function () {
     })
     it ("inheritance rules2" ,function(){
         testErrors(util.data("parser/typexpressions/ri2.raml"));//Ok for now lets improve later
+    })
+    it ("multiple default media types" ,function(){
+        testErrors(util.data("parser/media/m4.raml"));
     })
 
     //TODO correct test after bug fix
@@ -490,6 +502,12 @@ describe('Parser regression tests', function () {
     it ("custom api" ,function(){
         testErrors(util.data("parser/custom/api.raml"), ["Missing required property title"]);//Ok for now lets improve later
     })
+    it ("discriminator can only be used at top level" ,function(){
+        testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later
+    })
+    it ("schemas and types are mutually exclusive" ,function(){
+        testErrorsByNumber(util.data("parser/custom/schemasAndTypes.raml"), 1);//Ok for now lets improve later
+    })
     it ("halt" ,function(){
         testErrorsByNumber(util.data("parser/custom/halt.raml"),2,1);//Ok for now lets improve later
     })
@@ -539,10 +557,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","object is expected"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","Issues in the used library:./common.raml"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["object is expected"]);
+        testErrors(util.data("commonLibrary/api2.raml"),["issues in the used library:./common.raml"]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/raml1/test/data/commonLibrary/common.raml"]);
@@ -651,7 +669,7 @@ describe('Parser regression tests', function () {
     })
 
     it ("library is not user class" ,function(){
-        testErrors(util.data("parser/raml/raml.raml"),["It is only allowed to use scalar properties as discriminators"]);
+        testErrors(util.data("parser/raml/raml.raml"),["Issues in the used library:../sds/sds.raml"]);
     })
     it ("library from christian" ,function(){
         testErrors(util.data("parser/libraries/christian/api.raml"));
@@ -683,6 +701,57 @@ describe('Parser regression tests', function () {
     // it ("external 5" ,function(){
     //     testErrors(util.data("parser/external/e5.raml"));
     // })
+});
+
+describe('XSD schemes tests', function () {
+    it("XSD Scheme test 1" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 2" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test1/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 3" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 4" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test2/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 5" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 6" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test3/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 7" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 8" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test4/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 9" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 10" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test5/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 11" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 12" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test6/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 13" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 14" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test7/apiInvalid.raml"), 1);
+    })
+    it("XSD Scheme test 15" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiValid.raml"), 0);
+    })
+    it("XSD Scheme test 16" ,function() {
+        testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
+    })
 });
 
 describe('JSON schemes tests', function () {
@@ -908,8 +977,44 @@ describe('Fragment loading', function () {
         var fragmentName = fragment.definition().nameId();
         assert.equal(fragmentName, "Trait")
     });
-    it('AnnotationTypeDeclaration loading', function () {
-        testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
+    // it('AnnotationTypeDeclaration loading', function () {
+    //     testErrorsByNumber(util.data("parser/fragment/AnnotationTypeDeclaration.raml"), 0);
+    // });
+});
+
+describe('Optional template parameters tests', function () {
+    it("Should not report error on unspecified parameter, which is not used after expansion #1.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api01.raml"));
+    });
+    it("Should report error on unspecified parameter, which is used after expansion #1.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api02.raml")
+            ,["value was not provided for parameter: param1"]);
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #2.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api03.raml"));
+    });
+    it("Should report error on unspecified parameter, which is used after expansion #2.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api04.raml")
+            ,["value was not provided for parameter: param1"]);
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #3.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api05.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #4.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api06.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #5.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api07.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #6.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api08.raml"));
+    });
+    it("Should not report error on unspecified parameter, which is not used after expansion #7.", function () {
+        testErrors(util.data("parser/optionalTemplateParameters/api09.raml"));
+    });
+    it("Only methods are permitted to be optional in sense of templates expansion.", function () {
+        testErrors(util.data("parser/illegalOptionalParameters/api01.raml")
+            ,["Only method nodes can be optional"]);
     });
 });
 

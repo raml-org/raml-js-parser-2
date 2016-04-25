@@ -1,11 +1,11 @@
 #%RAML 1.0
 title: API Gateway Test API
 version: 1.0.0
-description: Move your app forward with the Uber API
 baseUri: https://api.uber.com
 mediaType: application/json
 types:  # Move to overlay file
   amazon-apigateway-method:
+    type: string
     enum: [ GET, PATCH, PUT, POST, DELETE, PATCH ]
     example: POST
   amazon-apigateway-status:

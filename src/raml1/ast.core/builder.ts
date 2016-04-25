@@ -28,6 +28,10 @@ class KeyMatcher{
         this.canBeValue=_.find(_props,x=>(<defs.Property>x).canBeValue());
     }
 
+    add(p:hl.IProperty){
+        this._props.push(p);
+    }
+
     match(key:string):def.Property{
         var _res:hl.IProperty=null;
         var lastPref=""
@@ -91,7 +95,6 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         try {
             if (cha['currentChildren']){
                 return cha['currentChildren'];
-
             }
             if (!node.definition()) {
                 return;
@@ -115,7 +118,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             }
             if (node.definition().hasUnionInHierarchy()){
                 if (true &&
-                    (node.parent() && node.property().nameId()==universes.Universe10.RAMLLanguageElement.properties.annotations.name)){
+                    (node.parent() && node.property().nameId()==universes.Universe10.LibraryBase.properties.annotations.name)){
                 var optins=getAllOptions(node.definition().unionInHierarchy());
                 var actualResult=null;
                 var bestResult=null;
@@ -166,6 +169,12 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
             }
             var km = new KeyMatcher(node.definition().allProperties());
+            if (node.parent()==null||node.lowLevel().includePath()){
+                var u=node.definition().universe();
+                if (u.version()=="RAML10"){
+                    u.type("FragmentDeclaration").allProperties().forEach(x=>km.add(x));
+                }
+            }
             var aNode = <ASTNodeImpl>node;
 
             var allowsQuestion = aNode._allowQuestion || node.definition().getAdapter(services.RAMLService).getAllowQuestion();
@@ -182,9 +191,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                     if(isDefaultMediaType) {
                         var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
-                        if (!isInsideTraitOrResourceType) {
-                            var vl = aNode.computedValue(universes.Universe10.Api.properties.mediaType.name);
-                            (<hlimpl.ASTPropImpl>keyAttr).overrideValue(vl);
+                        if (!isInsideTraitOrResourceType&&aNode._computedKey) {
+
+                            (<hlimpl.ASTPropImpl>keyAttr).overrideValue(aNode._computedKey);
                         }
                     }
                 }
@@ -207,38 +216,39 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         //else {
                             res.push(new hlimpl.ASTPropImpl(node.lowLevel(), node, km.canBeValue.range(), km.canBeValue));
                         //}
-                    } else if (node.definition().isAssignableFrom(universes.Universe10.Annotation.name) &&
-                        node.definition().property("value")) {
-                        //"value" is a magic property name we do not have reflected in serialized def. system, so have to use plain string
-
-                        var lowLevelNode = node.lowLevel();
-
-                        var valueAttribute = _.find(lowLevelNode.children(), child=>{
-
-                            return child.kind() == yaml.Kind.MAPPING && child.key() && child.key() == "value";
-                        });
-
-                        if (!valueAttribute) {
-                            //annotation reference is not a scalar and does not have value attribute, but has value defined in the annotation declaration
-                            //that means user wants to use a shortcut and specify value object directly under annotation
-
-                            var valueProperty = node.definition().property("value")
-
-                            //creating "value" high-level node referencing the same low-level node so the children can be collected
-                            var valueNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node, valueProperty.range(), valueProperty);
-                            return [valueNode];
-                        }
                     }
+                    // else if (node.definition().isAssignableFrom(universes.Universe10.Annotation.name) &&
+                    //     node.definition().property("value")) {
+                    //     //"value" is a magic property name we do not have reflected in serialized def. system, so have to use plain string
+                    //
+                    //     var lowLevelNode = node.lowLevel();
+                    //
+                    //     var valueAttribute = _.find(lowLevelNode.children(), child=>{
+                    //
+                    //         return child.kind() == yaml.Kind.MAPPING && child.key() && child.key() == "value";
+                    //     });
+                    //
+                    //     if (!valueAttribute) {
+                    //         //annotation reference is not a scalar and does not have value attribute, but has value defined in the annotation declaration
+                    //         //that means user wants to use a shortcut and specify value object directly under annotation
+                    //
+                    //         var valueProperty = node.definition().property("value")
+                    //
+                    //         //creating "value" high-level node referencing the same low-level node so the children can be collected
+                    //         var valueNode = new hlimpl.ASTNodeImpl(node.lowLevel(), node, valueProperty.range(), valueProperty);
+                    //         return [valueNode];
+                    //     }
+                    // }
                 }
             }
             else {
-                if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (
-                        km.canBeValue.range().hasUnionInHierarchy() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
-
-                    //check check for annotation is just for safety, generally, imho, we should go inside for any unions
-                    var ch = new hlimpl.ASTNodeImpl(node.lowLevel(), aNode, <hl.INodeDefinition>km.canBeValue.range(), km.canBeValue);
-                    return [ch];
-                }
+                // if (km.canBeValue && (km.canBeValue.range() instanceof def.NodeClass || (
+                //         km.canBeValue.range().hasUnionInHierarchy() && node.definition().isAssignableFrom(universes.Universe10.Annotation.name)))) {
+                //
+                //     //check check for annotation is just for safety, generally, imho, we should go inside for any unions
+                //     var ch = new hlimpl.ASTNodeImpl(node.lowLevel(), aNode, <hl.INodeDefinition>km.canBeValue.range(), km.canBeValue);
+                //     return [ch];
+                // }
             }
 
             aNode._children = res;
@@ -264,10 +274,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
             return res;
         }finally{
-            if (ch) {
-                delete cha['currentChildren'];
-                //delete cha['level'];
-            }
+            
         }
     }
 
@@ -334,12 +341,15 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var ch = x.children();
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
-
+                        var values:any[]=[]
                         ch.forEach(y=> {
                             var pi = new hlimpl.ASTPropImpl(y, aNode, range, p)
                             res.push(pi)
+                            values.push(y.value());
                         });
-
+                        if (p.isInherited()) {
+                            aNode.setComputed(p.nameId(), values);
+                        }
                     }
                     else {
 
@@ -361,16 +371,17 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                 }
 
                                 if (rng == "string" || rng == "number" || rng == "boolean") {
+                                    if (!x.isAnnotatedScalar()){
+                                        attrNode.errorMessage = "property '"+p.groupName() + "' must be a " + rng;
 
-                                    attrNode.errorMessage = "property '"+p.groupName() + "' must be a " + rng;
-
-                                    if (x.children().length==0&&p.groupName()=="enum"){
-                                        attrNode.errorMessage = "enum is empty";
-                                        if (x.valueKind()==yaml.Kind.MAP){
-                                            attrNode.errorMessage = "the value of enum must be an array"
+                                        if (x.children().length==0&&p.groupName()=="enum"){
+                                            attrNode.errorMessage = "enum is empty";
+                                            if (x.valueKind()==yaml.Kind.MAP){
+                                                attrNode.errorMessage = "the value of enum must be an array"
+                                            }
                                         }
-                                    }
 
+                                    }
                                 }
                             }
                         }
@@ -423,19 +434,32 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                     }
                                     if (x.valueKind()==yaml.Kind.SCALAR){
                                         if (p.range().key()==universes.Universe08.AbstractSecurityScheme) {
-                                            var error = new hlimpl.BasicASTNode(x, aNode);
+                                            var error = new hlimpl.BasicASTNode(x.parent(), aNode);
                                             error.errorMessage = "property: '" + p.nameId() + "' must be a map"
                                             res.push(error);
                                         }
                                     }
                                 }
+                                var exit=false;
                                 chld.forEach(y=> {
+                                    if (exit){
+                                        return;
+                                    }
                                     //TODO TRACK GROUP KEY
                                     var cld = y.children()
                                     if (!y.key() && cld.length == 1) {
-                                        var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
-                                        node._allowQuestion = allowsQuestion;
-                                        rs.push(node);
+                                        if (aNode.universe().version() == "RAML10"&&!aNode.parent()) {
+                                            var bnode = new hlimpl.BasicASTNode(x, aNode);
+                                            res.push(bnode);
+                                            bnode.needMap = true;
+                                            bnode.knownProperty=p;
+                                            exit=true;
+                                        }
+                                        else {
+                                            var node = new hlimpl.ASTNodeImpl(cld[0], aNode, <any> range, p);
+                                            node._allowQuestion = allowsQuestion;
+                                            rs.push(node);
+                                        }
                                     }
                                     else {
                                         if (aNode.universe().version() == "RAML10") {
@@ -452,7 +476,6 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                         }
                                     }
                                 })
-
                             }
                             else {
                                 var filter:any = {}
@@ -462,70 +485,74 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                     if (nc.getAdapter(services.RAMLService).getCanInherit().length > 0) {
                                         nc.getAdapter(services.RAMLService).getCanInherit().forEach(v=> {
-                                            var vl = aNode.computedValue(v);
-                                            if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
-                                                if (!_.find(x.children(), x=>x.key() == vl)) {
-                                                    //we can create inherited node;
-                                                    var pc=aNode.parent().definition().key();
-                                                    var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
-                                                    if (pc == universes.Universe10.MethodBase ||pc == universes.Universe08.MethodBase) {
-                                                        node.setComputed("form", "true")//FIXME
-                                                    }
+                                            var originalValue = aNode.computedValue(v);
+                                            var actualValue:any[]=Array.isArray(originalValue)?originalValue:[originalValue];
+                                            for (var pos=0;pos<actualValue.length;pos++) {
+                                                var vl=actualValue[pos];
+                                                if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
+                                                    if (!_.find(x.children(), x=>x.key() == vl)) {
+                                                        //we can create inherited node;
+                                                        var pc = aNode.parent().definition().key();
+                                                        var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
+                                                        (<any>node)._computedKey=vl;
+                                                        if (pc == universes.Universe10.MethodBase || pc == universes.Universe08.MethodBase) {
+                                                            node.setComputed("form", "true")//FIXME
+                                                        }
 
-                                                    var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
-                                                    var t = descriminate(p, aNode, node);
-                                                    if (t) {
-                                                        if(!isInsideTraitOrResourceType) {
-                                                            (<defs.NodeClass>t).setName(vl);
+                                                        var isInsideTraitOrResourceType = isInTtraitOrResourceType(aNode);
+                                                        var t = descriminate(p, aNode, node);
+                                                        if (t) {
+                                                            if (!isInsideTraitOrResourceType) {
+                                                                (<defs.NodeClass>t).setName(vl);
+                                                            }
+                                                            node.patchType(<any>t)
                                                         }
-                                                        node.patchType(<any>t)
+                                                        var ch = node.children();
+                                                        //this are false unknowns actual unknowns will be reported by parent node
+                                                        node._children = ch.filter(x=>!x.isUnknown())
+                                                        node._allowQuestion = allowsQuestion;
+                                                        inherited.push(node);
+                                                        node.children().forEach(x=> {
+                                                            if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
+                                                                var atr = <ASTPropImpl>x;
+                                                                atr._computed = true;
+                                                                return;
+                                                            }
+                                                            if (x.isElement()) {
+                                                                if (!x.property().getAdapter(services.RAMLPropertyService).isMerged()) {
+                                                                    filter[x.property().nameId()] = true;
+                                                                }
+                                                            }
+                                                            if ((<defs.Property>x.property()).isAnnotation()) {
+                                                                var atr = <ASTPropImpl>x;
+                                                                var vl = atr.value();
+                                                                var strVal = "";
+                                                                if (vl instanceof hlimpl.StructuredValue) {
+                                                                    strVal = (<hlimpl.StructuredValue>vl).valueName();
+                                                                }
+                                                                else {
+                                                                    strVal = "" + vl;
+                                                                }
+                                                                filter["(" + strVal + ")"] = true;
+                                                            }
+                                                            else {
+                                                                filter[x.name()] = true;
+                                                            }
+                                                        })
+                                                        var ap = node.definition().allProperties();
+                                                        ap.forEach(p=> {
+                                                            if (p.getAdapter(services.RAMLPropertyService).isKey()) {
+                                                                return;
+                                                            }
+                                                            if (p.getAdapter(services.RAMLPropertyService).isSystem()) {
+                                                                return;
+                                                            }
+                                                            if (node.lowLevel().children().some(x=>x.key() == p.nameId())) {
+                                                                filter[p.nameId()] = true;
+                                                            }
+                                                        });
+                                                        node._computed = true;
                                                     }
-                                                    var ch = node.children();
-                                                    //this are false unknowns actual unknowns will be reported by parent node
-                                                    node._children = ch.filter(x=>!x.isUnknown())
-
-                                                    node._allowQuestion = allowsQuestion;
-                                                    inherited.push(node);
-                                                    node.children().forEach(x=> {
-                                                        if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
-                                                            var atr = <ASTPropImpl>x;
-                                                            atr._computed = true;
-                                                            return;
-                                                        }
-                                                        if (x.isElement()) {
-                                                            if (!x.property().getAdapter(services.RAMLPropertyService).isMerged()) {
-                                                                filter[x.property().nameId()] = true;
-                                                            }
-                                                        }
-                                                        if ((<defs.Property>x.property()).isAnnotation()){
-                                                            var atr = <ASTPropImpl>x;
-                                                            var vl=atr.value();
-                                                            var strVal="";
-                                                            if (vl instanceof hlimpl.StructuredValue){
-                                                                strVal=(<hlimpl.StructuredValue>vl).valueName();
-                                                            }
-                                                            else{
-                                                                strVal=""+vl;
-                                                            }
-                                                            filter["("+strVal+")"] = true;
-                                                        }
-                                                        else {
-                                                            filter[x.name()] = true;
-                                                        }
-                                                    })
-                                                    var ap=node.definition().allProperties();
-                                                    ap.forEach(p=> {
-                                                        if (p.getAdapter(services.RAMLPropertyService).isKey()) {
-                                                            return;
-                                                        }
-                                                        if (p.getAdapter(services.RAMLPropertyService).isSystem()) {
-                                                            return;
-                                                        }
-                                                        if (node.lowLevel().children().some(x=>x.key() == p.nameId())) {
-                                                            filter[p.nameId()] = true;
-                                                        }
-                                                    });
-                                                    node._computed = true;
                                                 }
                                             }
                                         })
@@ -689,7 +716,7 @@ export function doDescrimination(node:hl.IHighLevelNode) {
         var isApi = nodeDefenitionName === universes.Universe10.Api.name || nodeDefenitionName === universes.Universe08.Api.name;
 
         if (!isApi && !node.property() && !node.parent() && node.definition().nameId() === hlimpl.getFragmentDefenitionName(node)) {
-            if(node.definition().isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name)) {
+            if(node.property()&&node.property().nameId()===universes.Universe10.LibraryBase.properties.annotationTypes.name) {
                 return descriminate(null, null, node);
             }
 
@@ -715,7 +742,7 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
     var n:any=x.lowLevel()
     if (p) {
 
-        if (p.nameId() == universes.Universe10.LibraryBase.properties.uses.name &&
+        if (p.nameId() == universes.Universe10.FragmentDeclaration.properties.uses.name &&
             p.range().nameId() == universes.Universe10.Library.name) {
             //return null;
         }
@@ -728,14 +755,13 @@ function descriminate (p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevel
         n._node['descriminate'] = 1;
     }
     try {
-        if (range == universes.Universe10.TypeDeclaration.name
-            ||range == universes.Universe10.AnnotationTypeDeclaration.name) {
+        if (range == universes.Universe10.TypeDeclaration.name) {
 
             var res = desc1(p, parent, x);
             if (p || (!p && !parent && x.lowLevel())) {
                 if (p && res != null && ((p.nameId() ==universes.Universe10.MethodBase.properties.body.name
                     || p.nameId() ==universes.Universe10.Response.properties.headers.name) ||
-                    p.nameId() ==universes.Universe10.Method.properties.queryParameters.name)) {
+                    p.nameId() ==universes.Universe10.MethodBase.properties.queryParameters.name)) {
                     var ares = new defs.UserDefinedClass(x.lowLevel().key(), <defs.Universe>res.universe(), x, x.lowLevel().unit() ? x.lowLevel().unit().path() : "", "");
                     ares._superTypes.push(res);
                     return ares;
@@ -800,17 +826,17 @@ function descriminateAnnotationType(type:defs.IType):defs.IType{
                     candidate = rat;
                     continue;
                 }
-                candidate = type.universe().type(universes.Universe10.UnionAnnotationTypeDeclaration.name);
+                candidate = type.universe().type(universes.Universe10.UnionTypeDeclaration.name);
                 break;
             }
             if((<defs.AbstractType>t).isArray()){
-                candidate = type.universe().type(universes.Universe10.ArrayAnnotationTypeDeclaration.name);
+                candidate = type.universe().type(universes.Universe10.ArrayTypeDeclaration.name);
                 break;
             }
             var subTypes = t.subTypes();
             for(var j = 0 ; j < subTypes.length ; j++){
                 var st = subTypes[j];
-                if(st.isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name)){
+                if(st.isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
                     if(candidate==null){
                         candidate = st;
                     }
@@ -820,7 +846,7 @@ function descriminateAnnotationType(type:defs.IType):defs.IType{
                 }
             }
         }
-        return candidate != null ? candidate : type.universe().type(universes.Universe10.AnnotationTypeDeclaration.name);
+        return candidate != null ? candidate : type.universe().type(universes.Universe10.TypeDeclaration.name);
     }
 
 var isInTtraitOrResourceType = function (aNode) {

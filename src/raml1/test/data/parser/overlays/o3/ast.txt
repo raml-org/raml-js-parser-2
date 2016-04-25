@@ -1,6 +1,6 @@
 Overlay <-- 
   title : StringType  =  Extension2
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   Trait <-- traits
     name : StringType  =  env-org-pair
     displayName : StringType  =  overlayDisplayName2

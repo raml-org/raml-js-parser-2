@@ -3,10 +3,10 @@ title: Demo
 version: v1
 baseUri: http://api.samplehost.com
 securitySchemes:
-  - oauth2:
-      type: OAuth 2.0
-  - null:
-      type: OAuth 2.0
+  oauth2:
+    type: OAuth 2.0
+  null:
+    type: OAuth 2.0
 
 /resource:
   get:
@@ -17,10 +17,10 @@ securitySchemes:
           application/xml:
             examples:
               one:
-                content: |
+                value: |
                   <doc><property1>value1</property1></doc>
                   
               two:
-                content: |
+                value: |
                   <doc><property2>value2</property2></doc>
                   

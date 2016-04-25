@@ -1,7 +1,7 @@
 #%RAML 1.0
 title: test
 schemas:
-  - account: |
+  account: |
       {
         "$schema": "http://json-schema.org/draft-03/schema",
         "type": "object" ,
@@ -14,14 +14,13 @@ schemas:
           }
         }
       }
-types:
-  - TypeBase:
+  TypeBase:
       type: object
       properties:
         baseField: string
       example:
         baseField: name
-  - TestType:
+  TestType:
       type: TypeBase
       properties:
         field: string
