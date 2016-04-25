@@ -831,19 +831,9 @@ setRequired( param:boolean ){
         /**
          * A longer, human-friendly description of the type
          **/
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
          }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
 
 xml(  ):XMLFacetInfo{
              return <XMLFacetInfo>super.element('xml');
@@ -2522,19 +2512,9 @@ body(  ):TypeDeclaration[]{
         /**
          * A longer, human-friendly description of the response
          **/
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
          }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -3781,19 +3761,9 @@ is(  ):TraitRef[]{
              return <ResourceTypeRef>super.attribute('type', (attr:hl.IAttribute)=>new ResourceTypeRefImpl(attr));
          }
 
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
          }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
 
 
         /**
@@ -3914,19 +3884,9 @@ resources(  ):Resource[]{
         /**
          * A longer, human-friendly description of the resource.
          **/
-description(  ):string{
-             return <string>super.attribute('description', this.toString);
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
          }
-
-
-        /**
-         * @hidden
-         * Set description value
-         **/
-setDescription( param:string ){
-            this.highLevel().attrOrCreate("description").setValue(""+param);
-            return this;
-        }
 
 
         /**

@@ -518,52 +518,6 @@ export class TypeInstancePropertyImpl{
     }
 }
 
-export class ExampleSpecImpl extends BasicNodeImpl{
-
-    constructor(hlNode:hl.IHighLevelNode,protected expandable, protected _annotations:AttributeNodeImpl[]){
-        super(hlNode);
-    }
-
-    value():any{
-        if(this.expandable.isJSONString()||this.expandable.isYAML()) {
-            return this.expandable.asJSON();
-        }
-        return this.expandable.original();
-    }
-
-    structuredValue():TypeInstanceImpl{
-        var obj = this.value();
-        var llParent = this._node.lowLevel();
-        var key = this.expandable.isSingle() ? "example" : null;
-        var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
-        return new TypeInstanceImpl(jsonNode);
-
-    }
-
-    strict():boolean{
-        return this.expandable.strict();
-    }
-
-    description():string{
-        return this.expandable.description();
-    }
-
-    name():string{
-        return this.expandable.name();
-    }
-
-    displayName():string{
-        return this.expandable.displayName();
-    }
-
-    annotations():any[]{
-        return this._annotations;
-    }
-
-    scalarsAnnotations():any{ return <any>{}; }
-
-}
-
 export type ValueMetaData=hl.ValueMetadata;
 export type NodeMetadata=hl.NodeMetadata;
 

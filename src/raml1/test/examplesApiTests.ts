@@ -64,7 +64,7 @@ describe('Example API tests.',function(){
         assert(!example.strict());
         assert.equal(example.name(),null);
         assert.equal(example.displayName(),"myExample");
-        assert.equal(example.description(),"example of ObjectType3");
+        assert.equal(example.description().value(),"example of ObjectType3");
         var annotations = example.annotations();
         assert.equal(annotations.length,2);
         var aRef0 = annotations[0];
@@ -84,7 +84,7 @@ describe('Example API tests.',function(){
         assert(!example1.strict());
         assert.equal(example1.name(),null);
         assert.equal(example1.displayName(),"myExample1");
-        assert.equal(example1.description(),"example 1 of ObjectType3");
+        assert.equal(example1.description().value(),"example 1 of ObjectType3");
         var annotations1 = example1.annotations();
         assert.equal(annotations1.length,2);
         var aRef10 = annotations1[0];
@@ -100,7 +100,7 @@ describe('Example API tests.',function(){
         assert(!example2.strict());
         assert.equal(example2.name(),null);
         assert.equal(example2.displayName(),"myExample2");
-        assert.equal(example2.description(),"example 2 of ObjectType3");
+        assert.equal(example2.description().value(),"example 2 of ObjectType3");
         var annotations2 = example2.annotations();
         assert.equal(annotations2.length,2);
         var aRef20 = annotations2[0];
@@ -120,7 +120,7 @@ describe('Example API tests.',function(){
         assert(!example1.strict());
         assert.equal(example1.name(),"example1");
         assert.equal(example1.displayName(),"myExample1");
-        assert.equal(example1.description(),"example 1 of ObjectType3");
+        assert.equal(example1.description().value(),"example 1 of ObjectType3");
         var annotations1 = example1.annotations();
         assert.equal(annotations1.length,2);
         var aRef10 = annotations1[0];
@@ -136,7 +136,7 @@ describe('Example API tests.',function(){
         assert(!example2.strict());
         assert.equal(example2.name(),"example2");
         assert.equal(example2.displayName(),"myExample2");
-        assert.equal(example2.description(),"example 2 of ObjectType3");
+        assert.equal(example2.description().value(),"example 2 of ObjectType3");
         var annotations2 = example2.annotations();
         assert.equal(annotations2.length,2);
         var aRef20 = annotations2[0];

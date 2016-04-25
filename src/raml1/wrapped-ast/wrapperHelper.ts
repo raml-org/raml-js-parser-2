@@ -628,7 +628,7 @@ function referencedObject(ref:RamlWrapper.Reference):core.BasicNode{
     return cands[0].wrapperNode();
 }
 
-function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):core.ExampleSpecImpl[] {
+function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):ExampleSpecImpl[] {
 
     var runtimeDefinition = node.runtimeDefinition();
     if(!runtimeDefinition){
@@ -659,7 +659,7 @@ function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):core.
                 wrapperAnnotations.push(wAnnotation);
             }
         }
-        return new core.ExampleSpecImpl(hlNode,x,wrapperAnnotations);
+        return new ExampleSpecImpl(hlNode,x,wrapperAnnotations);
     });
 };
 
@@ -836,7 +836,7 @@ class ParamWrapper implements Raml08Parser.BasicNamedParameter{
 
     constructor(private _param:RamlWrapper.TypeDeclaration){
 
-        this.description = _param.description() ? _param.description() : this.description;
+        this.description = _param.description() ? _param.description().value() : this.description;
 
         this.displayName = _param.displayName();
 
@@ -887,3 +887,59 @@ class ParamWrapper implements Raml08Parser.BasicNamedParameter{
 //    }
 //    return meta;
 //}
+
+
+export class ExampleSpecImpl extends core.BasicNodeImpl{
+
+    constructor(hlNode:hl.IHighLevelNode,protected expandable, protected _annotations:core.AttributeNodeImpl[]){
+        super(hlNode);
+    }
+
+    value():any{
+        if(this.expandable.isJSONString()||this.expandable.isYAML()) {
+            return this.expandable.asJSON();
+        }
+        return this.expandable.original();
+    }
+
+    structuredValue():core.TypeInstanceImpl{
+        var obj = this.value();
+        var llParent = this._node.lowLevel();
+        var key = this.expandable.isSingle() ? "example" : null;
+        var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
+        return new core.TypeInstanceImpl(jsonNode);
+
+    }
+
+    strict():boolean{
+        return this.expandable.strict();
+    }
+
+    description():RamlWrapper.MarkdownString{
+        var descriptionValue = this.expandable.description();
+        if(descriptionValue==null&&descriptionValue!==null){
+            return null;
+        }
+        var attr = stubs.createAttr(
+            this._node.definition().property(universeDef.Universe10.ExampleSpec.properties.description.name),
+            descriptionValue);
+
+        var result = new RamlWrapperImpl.MarkdownStringImpl(attr);
+        return result;
+    }
+
+    name():string{
+        return this.expandable.name();
+    }
+
+    displayName():string{
+        return this.expandable.displayName();
+    }
+
+    annotations():any[]{
+        return this._annotations;
+    }
+
+    scalarsAnnotations():any{ return <any>{}; }
+
+}
