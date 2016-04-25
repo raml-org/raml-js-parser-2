@@ -80,11 +80,21 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
 
-    getIncludeNodes(): lowlevel.ILowLevelASTNode[]
+    getIncludeNodes(): { includePath(): string}[]
     {
         var ast=<ASTNode>this.ast();
-        var arr:lowlevel.ILowLevelASTNode[] = [];
+        var arr:{ includePath(): string}[] = [];
         ast.gatherIncludes(arr);
+
+        ast.children().forEach(x=>{
+            if (x.key()=="uses"){
+                x.children().forEach(y=>{
+                    arr.push({
+                        includePath(){return y.value()}
+                    })
+                })
+            }
+        })
         return arr;
     }
     cloneToProject(p:Project){
@@ -2113,7 +2123,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         this._includesContents = includesContents;
     }
 
-    gatherIncludes(s:lowlevel.ILowLevelASTNode[]=[],inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true){
+    gatherIncludes(s:{ includePath(): string}[]=[],inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true){
             if (this._node==null){
                 return;//TODO FIXME
             }
@@ -3563,7 +3573,7 @@ export function getDefinitionForLowLevelNode(node:lowlevel.ILowLevelASTNode):hig
 }
 
 function fetchMasterReference(unit: lowlevel.ICompilationUnit, map:{[key:string]:boolean},
-    errors:{[key:string]:string}, lMap:{[key:string]:lowlevel.ILowLevelASTNode[]}) {
+    errors:{[key:string]:string}, lMap:{[key:string]:{ includePath():string}[]}) {
 
     if (!unit.isOverlayOrExtension()) return;
 
@@ -3604,7 +3614,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
     var processUnits = (ind:number):Promise<any>=>{
         var refs: Promise<any>[] = [];
 
-        var lMap:{[key:string]:lowlevel.ILowLevelASTNode[]} = {};
+        var lMap:{[key:string]:{ includePath(): string}[]} = {};
         while(ind<units.length) {
             var unit = units[ind];
             var unitPath = path.dirname(unit.absolutePath());
@@ -3631,8 +3641,10 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     return;
                 }
                 if(errors[absIncludePath]){
-                    x.errors().push(new Error(errors[ip]));
-                    return;
+                    if ((<any>x).errors) {
+                        (<any>x).errors().push(new Error(errors[ip]));
+                        return;
+                    }
                 }
                 var arr = lMap[absIncludePath];
                 if(!arr){
@@ -3656,7 +3668,11 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     units.push(x);
                 }
             },x=>{
-                lMap[unitPath].forEach(node=>node.errors().push(new Error(x)));
+                lMap[unitPath].forEach(node=>{
+                    if ((<any>node).errors) {
+                        (<any>node).errors().push(new Error(x))
+                    }
+                });
                 errors[unitPath] = x;
             }));
         });
