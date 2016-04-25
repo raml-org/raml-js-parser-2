@@ -761,5 +761,33 @@ describe('Helper methods', function () {
         assert.equal(resource.scalarsAnnotations().displayName()[0].structuredValue().value(), "value1");
     });
 
+    it('Scalar properties annotations 2', function () {
+        var api:any = util.loadApiOptions08(util.data("parser/annotations/a30.raml"),
+            {attributeDefaults:true});
+
+        var ann00 = api.scalarsAnnotations().mediaType()[0][0];
+        var ann01 = api.scalarsAnnotations().mediaType()[0][1];
+        var ann10 = api.scalarsAnnotations().mediaType()[1][0];
+        var ann11 = api.scalarsAnnotations().mediaType()[1][1];
+        assert.equal(ann00.annotation().name(), "a1");
+        assert.equal(ann01.annotation().name(), "a2");
+        assert.equal(ann00.annotation().name(), "a1");
+        assert.equal(ann01.annotation().name(), "a2");
+        assert.equal(ann00.structuredValue().value(), 1);
+        assert.equal(ann01.structuredValue().value(), "value1");
+        assert.equal(ann10.structuredValue().value(), 2);
+        assert.equal(ann11.structuredValue().value(), "value2");
+    });
+
+    it('Multiple media types 1', function () {
+        var api = util.loadApiOptions08(util.data("parser/media/m5.raml"),
+            {attributeDefaults: true});
+
+        var mediaTypes = <any[]>api.mediaType();
+        assert.equal(mediaTypes.length,2);
+        assert.equal(mediaTypes[0].value(),"application/xml");
+        assert.equal(mediaTypes[1].value(),"application/json");
+    });
+
 
 });

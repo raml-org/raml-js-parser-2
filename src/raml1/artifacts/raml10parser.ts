@@ -1121,11 +1121,13 @@ constructor( protected node:hl.IHighLevelNode ){}
         /**
          * Annotable.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -1140,8 +1142,11 @@ export class XMLFacetInfoScalarsAnnotationsImpl extends AnnotableScalarsAnnotati
          **/
 attribute(  ):AnnotationRef[]{
         var attr = this.node.attr("attribute");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1151,8 +1156,11 @@ attribute(  ):AnnotationRef[]{
          **/
 wrapped(  ):AnnotationRef[]{
         var attr = this.node.attr("wrapped");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1162,8 +1170,11 @@ wrapped(  ):AnnotationRef[]{
          **/
 name(  ):AnnotationRef[]{
         var attr = this.node.attr("name");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1173,8 +1184,11 @@ name(  ):AnnotationRef[]{
          **/
 namespace(  ):AnnotationRef[]{
         var attr = this.node.attr("namespace");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1184,8 +1198,11 @@ namespace(  ):AnnotationRef[]{
          **/
 prefix(  ):AnnotationRef[]{
         var attr = this.node.attr("prefix");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -1288,23 +1305,15 @@ scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotationsImpl{return new Arr
 export class TypeDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements TypeDeclarationScalarsAnnotations{
 
         /**
-         * TypeDeclaration.name annotations
-         **/
-name(  ):AnnotationRef[]{
-        var attr = this.node.attr("name");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * TypeDeclaration.displayName annotations
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1312,22 +1321,26 @@ displayName(  ):AnnotationRef[]{
         /**
          * TypeDeclaration.schema annotations
          **/
-schema(  ):AnnotationRef[]{
-        var attr = this.node.attr("schema");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+schema(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("schema");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * TypeDeclaration.type annotations
          **/
-"type"(  ):AnnotationRef[]{
-        var attr = this.node.attr("type");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+"type"(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("type");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -1336,8 +1349,11 @@ schema(  ):AnnotationRef[]{
          **/
 location(  ):AnnotationRef[]{
         var attr = this.node.attr("location");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1347,8 +1363,11 @@ location(  ):AnnotationRef[]{
          **/
 locationKind(  ):AnnotationRef[]{
         var attr = this.node.attr("locationKind");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1358,8 +1377,11 @@ locationKind(  ):AnnotationRef[]{
          **/
 "default"(  ):AnnotationRef[]{
         var attr = this.node.attr("default");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1369,8 +1391,11 @@ locationKind(  ):AnnotationRef[]{
          **/
 repeat(  ):AnnotationRef[]{
         var attr = this.node.attr("repeat");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1380,8 +1405,11 @@ repeat(  ):AnnotationRef[]{
          **/
 required(  ):AnnotationRef[]{
         var attr = this.node.attr("required");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1391,8 +1419,11 @@ required(  ):AnnotationRef[]{
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1400,11 +1431,13 @@ description(  ):AnnotationRef[]{
         /**
          * TypeDeclaration.allowedTargets annotations
          **/
-allowedTargets(  ):AnnotationRef[]{
-        var attr = this.node.attr("allowedTargets");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+allowedTargets(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("allowedTargets");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -1413,8 +1446,11 @@ allowedTargets(  ):AnnotationRef[]{
          **/
 isAnnotation(  ):AnnotationRef[]{
         var attr = this.node.attr("isAnnotation");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1422,11 +1458,13 @@ isAnnotation(  ):AnnotationRef[]{
         /**
          * TypeDeclaration.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -1441,8 +1479,11 @@ export class ArrayTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationS
          **/
 uniqueItems(  ):AnnotationRef[]{
         var attr = this.node.attr("uniqueItems");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1452,8 +1493,11 @@ uniqueItems(  ):AnnotationRef[]{
          **/
 minItems(  ):AnnotationRef[]{
         var attr = this.node.attr("minItems");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1463,8 +1507,11 @@ minItems(  ):AnnotationRef[]{
          **/
 maxItems(  ):AnnotationRef[]{
         var attr = this.node.attr("maxItems");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -1628,8 +1675,11 @@ export class ObjectTypeDeclarationScalarsAnnotationsImpl extends TypeDeclaration
          **/
 minProperties(  ):AnnotationRef[]{
         var attr = this.node.attr("minProperties");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1639,8 +1689,11 @@ minProperties(  ):AnnotationRef[]{
          **/
 maxProperties(  ):AnnotationRef[]{
         var attr = this.node.attr("maxProperties");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1650,8 +1703,11 @@ maxProperties(  ):AnnotationRef[]{
          **/
 discriminator(  ):AnnotationRef[]{
         var attr = this.node.attr("discriminator");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1661,8 +1717,11 @@ discriminator(  ):AnnotationRef[]{
          **/
 discriminatorValue(  ):AnnotationRef[]{
         var attr = this.node.attr("discriminatorValue");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -1783,8 +1842,11 @@ export class StringTypeDeclarationScalarsAnnotationsImpl extends TypeDeclaration
          **/
 pattern(  ):AnnotationRef[]{
         var attr = this.node.attr("pattern");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1794,8 +1856,11 @@ pattern(  ):AnnotationRef[]{
          **/
 minLength(  ):AnnotationRef[]{
         var attr = this.node.attr("minLength");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1805,8 +1870,11 @@ minLength(  ):AnnotationRef[]{
          **/
 maxLength(  ):AnnotationRef[]{
         var attr = this.node.attr("maxLength");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -1814,11 +1882,13 @@ maxLength(  ):AnnotationRef[]{
         /**
          * StringTypeDeclaration.enum annotations
          **/
-enum(  ):AnnotationRef[]{
-        var attr = this.node.attr("enum");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+enum(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("enum");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -2034,8 +2104,11 @@ export class NumberTypeDeclarationScalarsAnnotationsImpl extends TypeDeclaration
          **/
 minimum(  ):AnnotationRef[]{
         var attr = this.node.attr("minimum");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2045,8 +2118,11 @@ minimum(  ):AnnotationRef[]{
          **/
 maximum(  ):AnnotationRef[]{
         var attr = this.node.attr("maximum");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2054,11 +2130,13 @@ maximum(  ):AnnotationRef[]{
         /**
          * NumberTypeDeclaration.enum annotations
          **/
-enum(  ):AnnotationRef[]{
-        var attr = this.node.attr("enum");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+enum(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("enum");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -2067,8 +2145,11 @@ enum(  ):AnnotationRef[]{
          **/
 format(  ):AnnotationRef[]{
         var attr = this.node.attr("format");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2078,8 +2159,11 @@ format(  ):AnnotationRef[]{
          **/
 multipleOf(  ):AnnotationRef[]{
         var attr = this.node.attr("multipleOf");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -2095,8 +2179,11 @@ export class IntegerTypeDeclarationScalarsAnnotationsImpl extends NumberTypeDecl
          **/
 format(  ):AnnotationRef[]{
         var attr = this.node.attr("format");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -2244,8 +2331,11 @@ export class DateTimeTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarati
          **/
 format(  ):AnnotationRef[]{
         var attr = this.node.attr("format");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -2363,11 +2453,13 @@ export class FileTypeDeclarationScalarsAnnotationsImpl extends TypeDeclarationSc
         /**
          * FileTypeDeclaration.fileTypes annotations
          **/
-fileTypes(  ):AnnotationRef[]{
-        var attr = this.node.attr("fileTypes");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+fileTypes(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("fileTypes");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -2376,8 +2468,11 @@ fileTypes(  ):AnnotationRef[]{
          **/
 minLength(  ):AnnotationRef[]{
         var attr = this.node.attr("minLength");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2387,8 +2482,11 @@ minLength(  ):AnnotationRef[]{
          **/
 maxLength(  ):AnnotationRef[]{
         var attr = this.node.attr("maxLength");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -2487,23 +2585,15 @@ scalarsAnnotations(  ):ResponseScalarsAnnotationsImpl{return new ResponseScalars
 export class ResponseScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements ResponseScalarsAnnotations{
 
         /**
-         * Response.code annotations
-         **/
-code(  ):AnnotationRef[]{
-        var attr = this.node.attr("code");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * Response.description annotations
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2511,11 +2601,13 @@ description(  ):AnnotationRef[]{
         /**
          * Response.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -2565,11 +2657,13 @@ export class SecuritySchemePartScalarsAnnotationsImpl extends AnnotableScalarsAn
         /**
          * SecuritySchemePart.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -2907,8 +3001,11 @@ export class OAuth1SecuritySchemeSettingsScalarsAnnotationsImpl extends Annotabl
          **/
 requestTokenUri(  ):AnnotationRef[]{
         var attr = this.node.attr("requestTokenUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2918,8 +3015,11 @@ requestTokenUri(  ):AnnotationRef[]{
          **/
 authorizationUri(  ):AnnotationRef[]{
         var attr = this.node.attr("authorizationUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2929,8 +3029,11 @@ authorizationUri(  ):AnnotationRef[]{
          **/
 tokenCredentialsUri(  ):AnnotationRef[]{
         var attr = this.node.attr("tokenCredentialsUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -2938,11 +3041,13 @@ tokenCredentialsUri(  ):AnnotationRef[]{
         /**
          * OAuth1SecuritySchemeSettings.signatures annotations
          **/
-signatures(  ):AnnotationRef[]{
-        var attr = this.node.attr("signatures");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+signatures(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("signatures");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -3038,8 +3143,11 @@ export class OAuth2SecuritySchemeSettingsScalarsAnnotationsImpl extends Annotabl
          **/
 accessTokenUri(  ):AnnotationRef[]{
         var attr = this.node.attr("accessTokenUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3049,8 +3157,11 @@ accessTokenUri(  ):AnnotationRef[]{
          **/
 authorizationUri(  ):AnnotationRef[]{
         var attr = this.node.attr("authorizationUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3058,22 +3169,26 @@ authorizationUri(  ):AnnotationRef[]{
         /**
          * OAuth2SecuritySchemeSettings.authorizationGrants annotations
          **/
-authorizationGrants(  ):AnnotationRef[]{
-        var attr = this.node.attr("authorizationGrants");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+authorizationGrants(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("authorizationGrants");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * OAuth2SecuritySchemeSettings.scopes annotations
          **/
-scopes(  ):AnnotationRef[]{
-        var attr = this.node.attr("scopes");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+scopes(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("scopes");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -3258,23 +3373,15 @@ RAMLVersion(  ):string{return "RAML10";}
 export class AbstractSecuritySchemeScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements AbstractSecuritySchemeScalarsAnnotations{
 
         /**
-         * AbstractSecurityScheme.name annotations
-         **/
-name(  ):AnnotationRef[]{
-        var attr = this.node.attr("name");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * AbstractSecurityScheme.type annotations
          **/
 "type"(  ):AnnotationRef[]{
         var attr = this.node.attr("type");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3284,8 +3391,11 @@ name(  ):AnnotationRef[]{
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3295,8 +3405,11 @@ description(  ):AnnotationRef[]{
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -3411,33 +3524,39 @@ export class MethodBaseScalarsAnnotationsImpl extends AnnotableScalarsAnnotation
         /**
          * MethodBase.protocols annotations
          **/
-protocols(  ):AnnotationRef[]{
-        var attr = this.node.attr("protocols");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+protocols(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("protocols");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * MethodBase.is annotations
          **/
-is(  ):AnnotationRef[]{
-        var attr = this.node.attr("is");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+is(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("is");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * MethodBase.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]{
-        var attr = this.node.attr("securedBy");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+securedBy(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("securedBy");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -3446,8 +3565,11 @@ securedBy(  ):AnnotationRef[]{
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3457,8 +3579,11 @@ description(  ):AnnotationRef[]{
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -3470,23 +3595,15 @@ displayName(  ):AnnotationRef[]{
 export class MethodScalarsAnnotationsImpl extends MethodBaseScalarsAnnotationsImpl implements MethodScalarsAnnotations{
 
         /**
-         * Method.method annotations
-         **/
-method(  ):AnnotationRef[]{
-        var attr = this.node.attr("method");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * Method.displayName annotations
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -3585,23 +3702,15 @@ scalarsAnnotations(  ):TraitScalarsAnnotationsImpl{return new TraitScalarsAnnota
 export class TraitScalarsAnnotationsImpl extends MethodBaseScalarsAnnotationsImpl implements TraitScalarsAnnotations{
 
         /**
-         * Trait.name annotations
-         **/
-name(  ):AnnotationRef[]{
-        var attr = this.node.attr("name");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * Trait.usage annotations
          **/
 usage(  ):AnnotationRef[]{
         var attr = this.node.attr("usage");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3611,8 +3720,11 @@ usage(  ):AnnotationRef[]{
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -3916,11 +4028,13 @@ export class ResourceBaseScalarsAnnotationsImpl extends AnnotableScalarsAnnotati
         /**
          * ResourceBase.is annotations
          **/
-is(  ):AnnotationRef[]{
-        var attr = this.node.attr("is");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+is(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("is");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
@@ -3929,8 +4043,11 @@ is(  ):AnnotationRef[]{
          **/
 "type"(  ):AnnotationRef[]{
         var attr = this.node.attr("type");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3940,8 +4057,11 @@ is(  ):AnnotationRef[]{
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3949,11 +4069,13 @@ description(  ):AnnotationRef[]{
         /**
          * ResourceBase.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]{
-        var attr = this.node.attr("securedBy");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+securedBy(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("securedBy");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -3964,23 +4086,15 @@ securedBy(  ):AnnotationRef[]{
 export class ResourceScalarsAnnotationsImpl extends ResourceBaseScalarsAnnotationsImpl implements ResourceScalarsAnnotations{
 
         /**
-         * Resource.relativeUri annotations
-         **/
-relativeUri(  ):AnnotationRef[]{
-        var attr = this.node.attr("relativeUri");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * Resource.displayName annotations
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3990,8 +4104,11 @@ displayName(  ):AnnotationRef[]{
          **/
 description(  ):AnnotationRef[]{
         var attr = this.node.attr("description");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -3999,11 +4116,13 @@ description(  ):AnnotationRef[]{
         /**
          * Resource.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -4105,19 +4224,11 @@ export class ResourceTypeScalarsAnnotationsImpl extends ResourceBaseScalarsAnnot
          **/
 displayName(  ):AnnotationRef[]{
         var attr = this.node.attr("displayName");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
-         * ResourceType.name annotations
-         **/
-name(  ):AnnotationRef[]{
-        var attr = this.node.attr("name");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4127,8 +4238,11 @@ name(  ):AnnotationRef[]{
          **/
 usage(  ):AnnotationRef[]{
         var attr = this.node.attr("usage");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -4234,23 +4348,15 @@ scalarsAnnotations(  ):UsesDeclarationScalarsAnnotationsImpl{return new UsesDecl
 export class UsesDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements UsesDeclarationScalarsAnnotations{
 
         /**
-         * UsesDeclaration.key annotations
-         **/
-key(  ):AnnotationRef[]{
-        var attr = this.node.attr("key");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
          * UsesDeclaration.value annotations
          **/
 value(  ):AnnotationRef[]{
         var attr = this.node.attr("value");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -4348,8 +4454,11 @@ export class DocumentationItemScalarsAnnotationsImpl extends AnnotableScalarsAnn
          **/
 title(  ):AnnotationRef[]{
         var attr = this.node.attr("title");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4359,8 +4468,11 @@ title(  ):AnnotationRef[]{
          **/
 content(  ):AnnotationRef[]{
         var attr = this.node.attr("content");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -4548,19 +4660,11 @@ export class LibraryScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsIm
          **/
 usage(  ):AnnotationRef[]{
         var attr = this.node.attr("usage");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
-         * Library.name annotations
-         **/
-name(  ):AnnotationRef[]{
-        var attr = this.node.attr("name");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -4868,8 +4972,11 @@ export class ApiScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl i
          **/
 title(  ):AnnotationRef[]{
         var attr = this.node.attr("title");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4879,8 +4986,11 @@ title(  ):AnnotationRef[]{
          **/
 version(  ):AnnotationRef[]{
         var attr = this.node.attr("version");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4890,8 +5000,11 @@ version(  ):AnnotationRef[]{
          **/
 baseUri(  ):AnnotationRef[]{
         var attr = this.node.attr("baseUri");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4899,44 +5012,52 @@ baseUri(  ):AnnotationRef[]{
         /**
          * Api.protocols annotations
          **/
-protocols(  ):AnnotationRef[]{
-        var attr = this.node.attr("protocols");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+protocols(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("protocols");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * Api.mediaType annotations
          **/
-mediaType(  ):AnnotationRef[]{
-        var attr = this.node.attr("mediaType");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+mediaType(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("mediaType");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * Api.securedBy annotations
          **/
-securedBy(  ):AnnotationRef[]{
-        var attr = this.node.attr("securedBy");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+securedBy(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("securedBy");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 
 
         /**
          * Api.annotations annotations
          **/
-annotations(  ):AnnotationRef[]{
-        var attr = this.node.attr("annotations");
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
-        return <AnnotationRef[]>result;
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
 }
 }
 
@@ -4951,8 +5072,11 @@ export class OverlayScalarsAnnotationsImpl extends ApiScalarsAnnotationsImpl imp
          **/
 usage(  ):AnnotationRef[]{
         var attr = this.node.attr("usage");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4962,8 +5086,11 @@ usage(  ):AnnotationRef[]{
          **/
 extends(  ):AnnotationRef[]{
         var attr = this.node.attr("extends");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -4973,8 +5100,11 @@ extends(  ):AnnotationRef[]{
          **/
 title(  ):AnnotationRef[]{
         var attr = this.node.attr("title");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }
@@ -5073,8 +5203,11 @@ export class ExtensionScalarsAnnotationsImpl extends ApiScalarsAnnotationsImpl i
          **/
 usage(  ):AnnotationRef[]{
         var attr = this.node.attr("usage");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -5084,8 +5217,11 @@ usage(  ):AnnotationRef[]{
          **/
 extends(  ):AnnotationRef[]{
         var attr = this.node.attr("extends");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 
@@ -5095,8 +5231,11 @@ extends(  ):AnnotationRef[]{
          **/
 title(  ):AnnotationRef[]{
         var attr = this.node.attr("title");
+        if(attr==null){
+          return [];
+        }
         var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(attr:hl.IAttribute)=>new AnnotationRefImpl(attr));
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
 }

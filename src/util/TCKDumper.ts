@@ -91,6 +91,7 @@ export class TCKDumper{
                 props[x.nameId()] = x;
             });
             var obj = this.dumpProperties(props, node);
+            this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
             if(rootNodeDetails){
                 var result:any = {};
@@ -138,6 +139,7 @@ export class TCKDumper{
                 }
             }
             var obj = this.dumpProperties(props,node);
+            this.serializeScalarsAnnotations(obj,node,props);
             this.serializeMeta(obj,attrNode);
             return obj;
         }
@@ -230,6 +232,34 @@ export class TCKDumper{
             }
         });
         return obj;
+    }
+
+    serializeScalarsAnnotations(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode,props:{[key:string]:nominals.IProperty}){
+        if(node["scalarsAnnotations"]){
+            var val={};
+            var accessor = node["scalarsAnnotations"]();
+            for(var propName of Object.keys(props)){
+                if(accessor[propName]){
+                    var arr:any[] = accessor[propName]();
+                    if(arr.length>0){
+                        if(Array.isArray(arr[0])){
+
+                            var arr1 = [];
+                            arr.forEach((x,i)=>{arr1.push(x.map(y=>this.dumpInternal(y)))});
+                            if(arr1.filter(x=>x.length>0).length>0){
+                                val[propName] = arr1;
+                            }
+                        }
+                        else {
+                            val[propName] = arr.map(x=>this.dumpInternal(x));
+                        }
+                    }
+                }
+            }
+            if(Object.keys(val).length>0){
+                obj["scalarsAnnotations"] = val;
+            }
+        }
     }
 
     serializeMeta(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode){

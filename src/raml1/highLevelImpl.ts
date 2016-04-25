@@ -433,7 +433,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         var pr=u.property("annotations");
         for (var i=0;i<ch.length;i++){
             var child=ch[i];
-            if (child.key()!=="value"){
+            var key = child.key();
+            if (key[0]==("(")&&key[key.length-1]==(")")){
                 var attr = new ASTPropImpl(child,this.parent(),pr.range(),pr);
                 annotations.push(attr);                
             }
