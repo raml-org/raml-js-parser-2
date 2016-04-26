@@ -35,7 +35,7 @@ export interface ICompilationUnit{
     /**
      * gathers includes over ast without actual resolving of units;
      */
-    getIncludeNodes(): ILowLevelASTNode[]
+    getIncludeNodes(): { includePath(): string}[]
 
     updateContent(newContent:string);//unsafe remove later
 
