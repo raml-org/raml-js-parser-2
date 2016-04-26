@@ -307,7 +307,7 @@ required(  ):boolean
         /**
          * A longer, human-friendly description of the type
          **/
-description(  ):MarkdownString
+description(  ):string
 
 xml(  ):XMLFacetInfo
 
@@ -387,7 +387,7 @@ displayName(  ):string
         /**
          * A longer, human-friendly description of the example
          **/
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
@@ -1015,7 +1015,7 @@ body(  ):TypeDeclaration[]
         /**
          * A longer, human-friendly description of the response
          **/
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
@@ -1543,7 +1543,7 @@ is(  ):TraitRef[]
          **/
 "type"(  ):ResourceTypeRef
 
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
@@ -1618,7 +1618,7 @@ resources(  ):Resource[]
         /**
          * A longer, human-friendly description of the resource.
          **/
-description(  ):MarkdownString
+description(  ):string
 
 
         /**
