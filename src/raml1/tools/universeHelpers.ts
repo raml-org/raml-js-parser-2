@@ -464,3 +464,11 @@ export function isMediaTypeProperty(p:hl.IProperty) : boolean {
         p.nameId() === universe.Universe10.Api.properties.mediaType.name;
 
 }
+
+export function isRAML08Type(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.universe().version()=="RAML08";
+}
+
+export function isRAML10Type(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.universe().version()=="RAML10";
+}

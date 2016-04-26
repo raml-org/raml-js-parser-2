@@ -10,9 +10,15 @@ import path = require("path")
 import fs = require("fs")
 
 describe('TCK tests',function() {
-    it("Types", function () {
+    it("Types 001", function () {
         this.timeout(15000);
         testAPI('TCK/RAML10/Types 001/api.raml');
+    });
+
+
+    it("Types 002", function () {
+        this.timeout(15000);
+        testAPI('TCK/RAML10/Types 002/api.raml');
     });
 
     it("Trait 001", function () {

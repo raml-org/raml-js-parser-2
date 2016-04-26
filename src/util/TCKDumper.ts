@@ -69,10 +69,10 @@ export class TCKDumper{
         var highLevelNode = node.highLevel();
         var highLevelParent = highLevelNode && highLevelNode.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        return this.dumpInternal(node, rootNodeDetails);
+        return this.dumpInternal(node, rootNodeDetails, true);
     }
 
-    dumpInternal(node:any,rootNodeDetails:boolean=false):any{
+    dumpInternal(node:any,rootNodeDetails:boolean=false,dumpUses:boolean=false):any{
 
         if(node==null){
             return null;
@@ -93,12 +93,11 @@ export class TCKDumper{
             var obj = this.dumpProperties(props, node);
             this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
-            if(rootNodeDetails){
-                var result:any = {};
+            if(dumpUses){
                 var hl = node.highLevel();
                 var usesElements = hl.elementsOfKind("uses");
                 if(usesElements.length>0){
-                    var usesEntries = []
+                    var usesEntries = [];
                     for(var ue of usesElements){
                         var name = ue.attr("key").value();
                         var value = ue.attr("value").value();
@@ -109,6 +108,9 @@ export class TCKDumper{
                     }
                     obj["uses"] = usesEntries;
                 }
+            }
+            if(rootNodeDetails){
+                var result:any = {};
                 if(definition){
                     var ramlVersion = definition.universe().version();
                     result.ramlVersion = ramlVersion;
@@ -432,7 +434,10 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTypesProperty)
+            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTypesProperty),
+            new BasicObjectPropertyMatcher(
+                x=>universeHelpers.isLibraryBaseSibling(x)&&universeHelpers.isRAML10Type(x)
+                ,universeHelpers.isSchemasProperty)
         ]),"name");
     }
 
@@ -624,7 +629,8 @@ class TypeExampleTransformer implements Transformation{
 
 class SchemasTransformer implements Transformation{
 
-    protected matcher = new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isSchemasProperty);
+    protected matcher = new BasicObjectPropertyMatcher(
+        x=>universeHelpers.isApiType(x)&&universeHelpers.isRAML08Type(x),universeHelpers.isSchemasProperty);
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
         return this.matcher.match(node.definition(),prop);
