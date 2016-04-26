@@ -915,7 +915,7 @@ export class ExampleSpecImpl extends core.BasicNodeImpl{
         return this.expandable.strict();
     }
 
-    description():string{
+    description():RamlWrapper.MarkdownString{
         var descriptionValue = this.expandable.description();
         if(descriptionValue==null&&descriptionValue!==null){
             return null;
