@@ -732,6 +732,8 @@ export interface ParseNode {
     childWithKey(k:string):ParseNode;
 
     kind(): number
+
+
 }
 
 
@@ -814,6 +816,10 @@ export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
             return new LowLevelWrapperForTypeSystem(s.ast()).children();
         }
         return [];
+    }
+
+    anchor(){
+        return this._node.actual();
     }
     childWithKey(k:string):ParseNode
     {

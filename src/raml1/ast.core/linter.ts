@@ -387,7 +387,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
     if (node.markCh()&&!node.allowRecursive()){
-
+        if (!node.property()){
+            return;
+        }
         v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Recursive definition: " + node.name(), node));
         return;
     }

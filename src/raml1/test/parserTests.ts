@@ -677,6 +677,12 @@ describe('Parser regression tests', function () {
     it ("library in resource type fragment" ,function(){
         testErrors(util.data("parser/libraries/fragment/api.raml"));
     })
+    it ("library require 1" ,function(){
+        testErrors(util.data("parser/libraries/require/a.raml"));
+    })
+    it ("library require 2" ,function(){
+        testErrors(util.data("parser/libraries/require/b.raml"));
+    })
     it ("more complex union types1",function(){
             testErrors(util.data("parser/union/apigateway-aws-overlay.raml"));
 
