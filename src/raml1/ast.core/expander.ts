@@ -139,37 +139,7 @@ class TraitsAndResourceTypesExpander {
 
         var resourceData:ResourceGenericData[] = this.collectResourceData(resource);
 
-        if (resource instanceof RamlWrapperImpl.ResourceImpl){
-            var mb=<RamlWrapperImpl.ResourceImpl>resource;
-            //var signature=mb.signature();
-            //if (signature) {
-            //    var trait=sig.convertToTrait(sig.parse(mb.highLevel().attr("signature")))
-            //    var cm=trait.highLevel().lowLevel();
-            //    var vl=resource.relativeUri().value();
-            //    var indExof=vl.lastIndexOf(".");
-            //    if (indExof!=-1) {
-            //        var composite = new proxy.LowLevelCompositeNode(cm, null, null);
-            //        (<any>trait.highLevel())._node = composite;
-            //        (<proxy.LowLevelCompositeNode>resource.highLevel().lowLevel()).setKeyOverride(vl.substr(0,indExof))
-            //        var me=new RamlWrapper.MethodImpl(vl.substr(indExof+1));
-            //        var rt=new RamlWrapper.ResourceTypeImpl("$$$signature");
-            //        rt.add(me);
-            //        trait.highLevel().elements().forEach(x=>me.highLevel().add(x));
-            //        var composite = new proxy.LowLevelCompositeNode(rt.highLevel().lowLevel(), null, null);
-            //        (<any>rt.highLevel())._node = composite;
-            //        var val:GenericData = {
-            //            name: "$$$signature",
-            //            node: rt,
-            //            transformer: null
-            //        };
-            //        resourceData = (<ResourceGenericData[]>[ {
-            //            resourceType:val,
-            //            traits: [],
-            //            methodTraits: {}
-            //        } ]).concat(resourceData);
-            //    }
-            //}
-        }
+
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
@@ -272,28 +242,8 @@ class TraitsAndResourceTypesExpander {
                 }
             });
         }
-
-        if (obj instanceof RamlWrapperImpl.MethodImpl){
-            var mb=<RamlWrapper.Method>obj;
-            //var signature=mb.signature();
-            //if (signature) {
-            //    var trait=sig.convertToTrait(sig.parse(mb.highLevel().attr("signature")))
-            //    var cm=trait.highLevel().lowLevel();
-            //    var composite=new proxy.LowLevelCompositeNode(cm,null,null);
-            //    (<any>trait.highLevel())._node=composite;
-            //    var val:GenericData={
-            //        name:"$$$signature",
-            //        node:trait,
-            //        transformer:null
-            //    }
-            //    occuredTraits["$$$signature"]=true;
-            //    arr = [val].concat(arr);
-            //    //this.extractTraits(trait, occuredTraits);
-            //}
-        }
         return arr;
     }
-
 
     readGenerictData(obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
                      globalMap:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType},
@@ -341,7 +291,6 @@ class TraitsAndResourceTypesExpander {
         }
         return null;
     }
-
 }
 
 class TransformMatches {

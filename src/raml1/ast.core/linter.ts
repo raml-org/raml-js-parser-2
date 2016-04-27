@@ -3089,6 +3089,17 @@ export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
+    if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
+        var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
+        while (!proxyNode.primaryNode()){
+            if (!original){
+                original=localError(node,c,w,message,true,pr);
+                message +="(template expansion affected)"
+            }
+            node=node.parent();
+            proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
+        }
+    }
     if (node) {
         pr=node.property();
 

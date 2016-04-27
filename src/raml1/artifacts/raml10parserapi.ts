@@ -349,6 +349,12 @@ validateInstance( value:any ):string[]
 
 
         /**
+         * validate an instance against type
+         **/
+validateInstanceWithDetailedStatuses( value:any ):any
+
+
+        /**
          * A base type which the current type extends, or more generally a type expression.
          **/
 "type"(  ):string[]

@@ -961,6 +961,12 @@ describe('Property override tests',function(){
     it ("existing include should not report any errros",function(){
         testErrors(util.data("parser/custom/includes2.raml"));
     });
+    it ("should parse types which are valid only after expansion",function(){
+        testErrors(util.data("parser/templates/validAfterExpansion.raml"));
+    });
+    it ("should not accept resouces  which are not valid only after expansion",function(){
+        testErrorsByNumber(util.data("parser/templates/invalidAfterExpansion.raml"),1);
+    });
 });
 describe('Line mapper tests',function() {
     it("Test that columns and line numbers start from 1", function () {

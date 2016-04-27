@@ -93,10 +93,13 @@ export function absoluteUri(res:RamlWrapper.Resource):string{
 }
 //__$helperMethod__ validate an instance against type
 export function validateInstance(res:RamlWrapper.TypeDeclaration, value: any):string[]{
-    return [];
+    return res.runtimeType().validate(value).map(x=>x.getMessage());
     //throw new Error("Fix me");
 }
-
+//__$helperMethod__ validate an instance against type
+export function validateInstanceWithDetailedStatuses(res:RamlWrapper.TypeDeclaration, value: any): any{
+    return res.runtimeType().validate(value);
+}
 
 export function qName(c:core.BasicNode):string{
     return hlimpl.qName(c.highLevel(),c.highLevel().root());
