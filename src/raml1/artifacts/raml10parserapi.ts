@@ -500,6 +500,38 @@ namespace(  ):AnnotationRef[]
 prefix(  ):AnnotationRef[]
 }
 
+export interface UsesDeclaration extends Annotable{
+
+        /**
+         * Name prefix (without dot) used to refer imported declarations
+         **/
+key(  ):string
+
+
+        /**
+         * Content of the schema
+         **/
+value(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]
+}
+
 export interface ArrayTypeDeclaration extends TypeDeclaration{
 
         /**
@@ -1804,38 +1836,6 @@ export interface AnnotationRef extends Reference{
 annotation(  ):TypeDeclaration
 }
 
-export interface UsesDeclaration extends Annotable{
-
-        /**
-         * Name prefix (without dot) used to refer imported declarations
-         **/
-key(  ):string
-
-
-        /**
-         * Content of the schema
-         **/
-value(  ):string
-
-
-        /**
-         * Scalar properties annotations accessor
-         **/
-scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
-}
-
-
-/**
- * UsesDeclaration scalar properties annotations accessor
- **/
-export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
-
-        /**
-         * UsesDeclaration.value annotations
-         **/
-value(  ):AnnotationRef[]
-}
-
 export interface DocumentationItem extends Annotable{
 
         /**
@@ -2497,6 +2497,15 @@ export function isXMLFacetInfo(node: core.AbstractWrapperNode) : node is XMLFace
 
 
 /**
+ * Custom type guard for UsesDeclaration. Returns true if node is instance of UsesDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of UsesDeclaration.
+ */
+export function isUsesDeclaration(node: core.AbstractWrapperNode) : node is UsesDeclaration {
+    return node.kind() == "UsesDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
  * Custom type guard for ArrayTypeDeclaration. Returns true if node is instance of ArrayTypeDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of ArrayTypeDeclaration.
  */
@@ -2776,15 +2785,6 @@ export function isResource(node: core.AbstractWrapperNode) : node is Resource {
 
 
 /**
- * Custom type guard for UsesDeclaration. Returns true if node is instance of UsesDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of UsesDeclaration.
- */
-export function isUsesDeclaration(node: core.AbstractWrapperNode) : node is UsesDeclaration {
-    return node.kind() == "UsesDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for DocumentationItem. Returns true if node is instance of DocumentationItem. Returns false otherwise.
  * Also returns false for super interfaces of DocumentationItem.
  */
@@ -2819,3 +2819,17 @@ export function isExtension(node: core.AbstractWrapperNode) : node is Extension 
     return node.kind() == "Extension" && node.RAMLVersion() == "RAML10";
 }
 
+
+/**
+ * Check if the AST node represents fragment
+ */
+export function isFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):boolean{
+    return node.highLevel().parent()==null;
+}
+
+/**
+ * Convert fragment representing node to FragmentDeclaration instance.
+ */
+export function asFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):FragmentDeclaration{
+    return isFragment(node)?<FragmentDeclaration><any>node:null;
+}

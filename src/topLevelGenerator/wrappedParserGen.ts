@@ -5,7 +5,7 @@ import util=require("../util/index")
 import tsModel = require("ts-structure-parser")
 import helperMethodExtractor = tsModel.helperMethodExtractor
 import nominals = def.rt.nominalTypes;
-
+import _ = require("underscore")
 
 import path = require("path")
 
@@ -448,7 +448,8 @@ export class ParserGenerator{
 
     extractSecondarySupertypes(type:def.IType):def.IType[]{
 
-        var superTypes = type.superTypes();
+        
+        var superTypes = type.superTypes().concat(type.getAdapter(def.RAMLService).possibleInterfaces());
         if(superTypes.length<2){
             return [];
         }
@@ -586,7 +587,8 @@ Set ${x.nameId()} value`;
 
         return this.serializeInterfaceImportsToString()
             + this.interfaceModule.serializeToString()
-            + this.serializeInstanceofMethodsToString();
+            + this.serializeInstanceofMethodsToString()
+            + this.createIsFragmentMethod();
     }
 
     serializeImplementationToString() {
@@ -766,6 +768,35 @@ function create${p}(key:string){
             };
         }
         return res;
+    }
+
+    createIsFragmentMethod():string{
+
+        var fragmentClasses = Object.keys(this.processed)
+            .map(x=>this.processed[x])
+            .filter(x=>_.find(x.getAdapter(def.RAMLService).possibleInterfaces()
+                                ,y=>y.nameId()=="FragmentDeclaration")!=null);
+
+        if(fragmentClasses.length==0){
+            return "";
+        }
+
+        var typeNamesString = fragmentClasses.map(x=>x.nameId()).join("|");
+        return `
+/**
+ * Check if the AST node represents fragment
+ */
+export function isFragment(node:${typeNamesString}):boolean{
+    return node.highLevel().parent()==null;
+}
+
+/**
+ * Convert fragment representing node to FragmentDeclaration instance.
+ */
+export function asFragment(node:${typeNamesString}):FragmentDeclaration{
+    return isFragment(node)?<FragmentDeclaration><any>node:null;
+}
+`;
     }
 
     nodeFactory(highLevelASTLocation:string,parserLocation:string):string{

@@ -9,6 +9,8 @@ import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
 
+import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
+
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
     return new TCKDumper({
         rootNodeDetails : true,
@@ -93,6 +95,15 @@ export class TCKDumper{
             var obj = this.dumpProperties(props, node);
             this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
+            if(this.canBeFragment(node)){
+                if(RamlWrapper10.isFragment(<any>node)){
+                    var fragment = RamlWrapper10.asFragment(<any>node);
+                    var uses = fragment.uses();
+                    if(uses.length>0){
+                        obj["uses"] = uses.map(x=>x.toJSON());
+                    }
+                }
+            }
             if(rootNodeDetails){
                 var result:any = {};
                 if(definition){
@@ -137,6 +148,16 @@ export class TCKDumper{
         }
         return node;
 
+    }
+
+    private canBeFragment(node:core.BasicNodeImpl){
+
+        var definition = node.definition();
+        var arr = [definition].concat(definition.allSubTypes());
+        var arr1 = arr.filter(x=>x.getAdapter(def.RAMLService).possibleInterfaces()
+            .filter(y=>y.nameId()==def.universesInfo.Universe10.FragmentDeclaration.name).length>0);
+
+        return arr1.length>0;
     }
 
     private dumpErrors(errors:core.RamlParserError[]) {

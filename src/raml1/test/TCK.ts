@@ -10,6 +10,12 @@ import path = require("path")
 import fs = require("fs")
 
 describe('TCK tests',function() {
+
+    it("Fragments 001", function () {
+        this.timeout(15000);
+        testAPI('TCK/RAML10/Fragments 001/fragment.raml');
+    });
+
     it("Types 001", function () {
         this.timeout(15000);
         testAPI('TCK/RAML10/Types 001/api.raml');
@@ -117,8 +123,8 @@ function testAPI(apiPath:string, extensions?:string[],tckJsonPath?:string){
     if(extensions){
         extensions = extensions.map(x=>util.data(x));
     }
-    var api = index.loadApiSync(util.data(apiPath),extensions);
-    var expanded = api.expand();
+    var api = index.loadRAMLSync(util.data(apiPath),extensions);
+    var expanded = api["expand"] ? api["expand"]() : api;
     (<any>expanded).setAttributeDefaults(true);
     var json = expanded.toJSON({rootNodeDetails:true});
 
@@ -126,6 +132,10 @@ function testAPI(apiPath:string, extensions?:string[],tckJsonPath?:string){
         var dir = path.dirname(util.data(apiPath));
         var fileName = path.basename(apiPath).replace(".raml","-tck.json");
         tckJsonPath = path.resolve(dir,fileName);
+    }
+
+    if(!fs.existsSync(util.data(tckJsonPath))){
+        fs.writeFileSync(util.data(tckJsonPath),JSON.stringify(json,null,2));
     }
 
     var tckJson:any = JSON.parse(fs.readFileSync(util.data(tckJsonPath)).toString());
