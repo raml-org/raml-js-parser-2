@@ -251,6 +251,9 @@ describe('Parser regression tests', function () {
     it ("multi unions" ,function(){
         testErrors(util.data("parser/examples/ex36.raml"));
     })
+    it ("scalars in examples are parsed correctly" ,function(){
+        testErrors(util.data("parser/examples/ex42.raml"));
+    })
     it ("enums values restriction" ,function(){
         testErrors(util.data("parser/examples/ex37.raml"),["enum facet can only contain unique items"]);
     })
