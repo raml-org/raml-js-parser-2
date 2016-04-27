@@ -24,8 +24,8 @@ describe('Helper methods', function () {
     });
     it('Api boolean type()', function () {
         var found=false;
-        api = util.loadApiWrapper1("./testBoolType.raml");
-        api.types().forEach(z=>{
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        apiObj.types().forEach(z=>{
             var m=<any>z;
             m.properties().forEach(p=>{
                 if (p.kind()=="BooleanTypeDeclaration"){
@@ -36,7 +36,42 @@ describe('Helper methods', function () {
         })
         assert.equal(found,true);
     });
-
+    it('Api validate instance passing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance({})
+        assert.equal(m.length,3);
+    });
+    it('Api validate instance failing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance({ name:"A",isVegetarian:true,weight:20})
+        assert.equal(m.length,0);
+    });
+    it('Api validate instance failing 2', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance("Hello")
+        assert.equal(m.length,1);
+    });
+    it('Api validate instance of union type failing 2', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[2].validateInstance("Hello")
+        assert.equal(m.length,2);
+    });
+    it('Api validate instance of union type passing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[2].validateInstance({l:"Hello"});
+        assert.equal(m.length,0);
+    });
+    it('Api validate instance of union type failing 3', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[3].validateInstance("Hello")
+        assert.equal(m[0],"string should match to ([a-z]|[A-Z]|[0-9]){8}");
+    });
     it('Api.allProtocols()', function () {
         var protocols = api.allProtocols();
         assert.notEqual(protocols,null);

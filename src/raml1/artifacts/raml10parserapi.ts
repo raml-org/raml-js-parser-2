@@ -349,6 +349,12 @@ validateInstance( value:any ):string[]
 
 
         /**
+         * validate an instance against type
+         **/
+validateInstanceWithDetailedStatuses( value:any ):any
+
+
+        /**
          * Scalar properties annotations accessor
          **/
 scalarsAnnotations(  ):TypeDeclarationScalarsAnnotations

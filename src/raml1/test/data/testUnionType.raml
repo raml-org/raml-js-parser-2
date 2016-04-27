@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: RAML Parser Test Data
+version: 0.0.1
+mediaType: application/json
+
+types:
+
+  F:
+    type: object
+    properties:
+      l: string
+
+  Bar:
+    type: object
+    properties:
+      comment: string
+
+  Baz:
+    type: F | Bar
+
+  IdString:
+    type: string
+    pattern: ([a-z]|[A-Z]|[0-9]){8}
