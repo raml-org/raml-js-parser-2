@@ -257,12 +257,6 @@ schema(  ):string[]
 
 
         /**
-         * A base type which the current type extends, or more generally a type expression.
-         **/
-"type"(  ):string[]
-
-
-        /**
          * Location of the parameter (can not be edited by user)
          **/
 location(  ):ModelLocation
@@ -337,6 +331,12 @@ fixedFacets(  ):TypeInstance
 
 
         /**
+         * Inlined supertype definition.
+         **/
+structuredType(  ):TypeInstance
+
+
+        /**
          * Runtime representation of type represented by this AST node
          **/
 runtimeType(  ):hl.ITypeDefinition
@@ -346,6 +346,12 @@ runtimeType(  ):hl.ITypeDefinition
          * validate an instance against type
          **/
 validateInstance( value:any ):string[]
+
+
+        /**
+         * A base type which the current type extends, or more generally a type expression.
+         **/
+"type"(  ):string[]
 
 
         /**
@@ -2769,15 +2775,6 @@ export function isResource(node: core.AbstractWrapperNode) : node is Resource {
  */
 export function isUsesDeclaration(node: core.AbstractWrapperNode) : node is UsesDeclaration {
     return node.kind() == "UsesDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for FragmentDeclaration. Returns true if node is instance of FragmentDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of FragmentDeclaration.
- */
-export function isFragmentDeclaration(node: core.AbstractWrapperNode) : node is FragmentDeclaration {
-    return node.kind() == "FragmentDeclaration" && node.RAMLVersion() == "RAML10";
 }
 
 

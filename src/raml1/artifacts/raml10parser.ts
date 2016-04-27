@@ -724,8 +724,9 @@ setSchema( param:string ){
 
         /**
          * A base type which the current type extends, or more generally a type expression.
+         * @hidden
          **/
-"type"(  ):string[]{
+type_original(  ):string[]{
              return <string[]>super.attributes('type', this.toString);
          }
 
@@ -926,6 +927,22 @@ examples(  ):ExampleSpec[]{
 
 fixedFacets(  ):TypeInstance{
             return helper.typeFixedFacets(this);
+        }
+
+
+        /**
+         * A base type which the current type extends, or more generally a type expression.
+         **/
+"type"(  ):string[]{
+            return helper.typeValue(this);
+        }
+
+
+        /**
+         * Inlined supertype definition.
+         **/
+structuredType(  ):TypeInstance{
+            return helper.typeStructuredValue(this);
         }
 
 
@@ -4293,6 +4310,10 @@ kind(  ):string{return "UsesDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+node(  ):core.BasicNode{
+            return helper.referencedNode(this);
+        }
 
 
         /**

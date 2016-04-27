@@ -611,7 +611,7 @@ import core=require("../../raml1/wrapped-ast/parserCoreApi");
         var result = "";
         Object.keys(this.processed).forEach(processedName=>{
             if (processedName == "TypeInstance"
-                || processedName == "TypeInstanceProperty") return;
+                || processedName == "TypeInstanceProperty"|| processedName == "FragmentDeclaration") return;
 
             var instanceofMethod = `
 /**
@@ -866,9 +866,11 @@ ${mapContent}
 
 
 
-export function def2Parser(u:def.IType):ParserGenerator{
+export function def2Parser(...u:def.IType[]):ParserGenerator{
     var mod=new ParserGenerator();
-    mod.processType(u);
+    for(var v of u ){
+        mod.processType(v);
+    }
     return mod;
 }
 
