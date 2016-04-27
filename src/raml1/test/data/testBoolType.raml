@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: "A"
+resourceTypes:
+  - item:
+      description: Entity representing a <<resourcePathName|!singularize>>
+types:
+  Food:
+    type: object
+    properties:
+      name: string
+      isVegetarian: boolean
+      weight: number
+/documents/{id}:
+  type: item

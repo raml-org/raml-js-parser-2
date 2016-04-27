@@ -22,6 +22,20 @@ describe('Helper methods', function () {
         var traitsCount = tools.getLength(traits);
         assert.equal(traitsCount,2);
     });
+    it('Api boolean type()', function () {
+        var found=false;
+        api = util.loadApiWrapper1("./testBoolType.raml");
+        api.types().forEach(z=>{
+            var m=<any>z;
+            m.properties().forEach(p=>{
+                if (p.kind()=="BooleanTypeDeclaration"){
+                    found=true;
+                }
+
+            })
+        })
+        assert.equal(found,true);
+    });
 
     it('Api.allProtocols()', function () {
         var protocols = api.allProtocols();

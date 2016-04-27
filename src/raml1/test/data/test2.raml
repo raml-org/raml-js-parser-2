@@ -1,12 +1,7 @@
-#%RAML 1.0
-title: A
-types:
-  Z:
-    type:
-      type: object
-      properties:
-        x: number
-        y: number
-    example:
-      x: 2
-      y: 1
+title: "A"
+resourceTypes:
+  - item:
+      description: Entity representing a <<resourcePathName|!singularize>>
+
+/documents/{id}:
+  type: item

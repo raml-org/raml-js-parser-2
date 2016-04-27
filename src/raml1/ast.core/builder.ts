@@ -652,25 +652,43 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 }
 function getType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
     if (!expression) {
-        return node.definition().universe().type("StringTypeDeclaration");
+        return node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name);
     }
     var pt=node.parsedType();
     if (pt.isString()){
-        return (node.definition().universe().type("StringTypeDeclaration"));
+        return (node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name));
     }
-    if (pt.isNumber()){
-        return (node.definition().universe().type("NumberTypeDeclaration"));
+    else if (pt.isNumber()){
+        if (pt.isInteger()){
+            return (node.definition().universe().type(universes.Universe10.IntegerTypeDeclaration.name));
+        }
+        return (node.definition().universe().type(universes.Universe10.NumberTypeDeclaration.name));
     }
-    if (pt.isObject()){
-        return (node.definition().universe().type("ObjectTypeDeclaration"));
+    else if (pt.isBoolean()){
+        return (node.definition().universe().type(universes.Universe10.BooleanTypeDeclaration.name));
     }
-    if (pt.isArray()){
-        return (node.definition().universe().type("ArrayTypeDeclaration"));
+    else if (pt.isObject()){
+        return (node.definition().universe().type(universes.Universe10.ObjectTypeDeclaration.name));
     }
-    if (pt.isFile()){
-        return (node.definition().universe().type("FileTypeDeclaration"));
+    else if (pt.isArray()){
+        return (node.definition().universe().type(universes.Universe10.ArrayTypeDeclaration.name));
     }
-    return (node.definition().universe().type("TypeDeclaration"));
+    else if (pt.isFile()){
+        return (node.definition().universe().type(universes.Universe10.FileTypeDeclaration.name));
+    }
+    else if (pt.isDateTime()){
+        return (node.definition().universe().type(universes.Universe10.DateTimeTypeDeclaration.name));
+    }
+    else if (pt.isDateTimeOnly()){
+        return (node.definition().universe().type(universes.Universe10.DateTimeOnlyTypeDeclaration.name));
+    }
+    else if (pt.isDateOnly()){
+        return (node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
+    }
+    else if (pt.isTimeOnly()){
+        return (node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
+    }
+    return (node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
 }
 
 
