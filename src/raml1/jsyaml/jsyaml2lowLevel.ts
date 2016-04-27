@@ -2093,6 +2093,24 @@ function breaksTheLine(oc:string,textCommand:lowlevel.TextChangeCommand){
     }
 }
 
+function tryParseScalar(q:any):string|boolean|number{
+    if (q == "true") {
+        q = true;
+    }
+    else if (q == "false") {
+        q = false;
+    }
+    else {
+        var vl = parseFloat(q);
+        if (!isNaN(vl)) {
+            if (("" + q).match("^[-+]?[0-9]*\.?[0-9]+$")) {
+                q = vl;
+            }
+        }
+    }
+    return q;
+}
+
 export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     _errors:Error[]=[]
@@ -2391,20 +2409,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var s:yaml.YAMLScalar=<yaml.YAMLScalar>n
             var q:any= s.value;
             if (s.plainScalar){
-                if (q=="true"){
-                    q=true;
-                }
-                else if (q=="false"){
-                    q=false;
-                }
-                else {
-                    var vl=parseFloat(q);
-                    if (!isNaN(vl)){
-                        if ((""+q).match("^[-+]?[0-9]*\.?[0-9]+$")) {
-                            q = vl;
-                        }
-                    }
-                }
+                q=tryParseScalar(q);
             }
             return q;
         }
@@ -2506,7 +2511,14 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if(!toString&&(""+this._node['valueObject']===this._node['value'])){
                 return this._node['valueObject'];
             }
-            return this._node['value'];
+
+            var q= this._node['value'];
+            if (!toString) {
+                if ((<yaml.YAMLScalar>this._node).plainScalar) {
+                    q=tryParseScalar(q);
+                }
+            }
+            return q;
         }
         if (this._node.kind==yaml.Kind.ANCHOR_REF){
             var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node;

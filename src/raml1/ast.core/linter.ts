@@ -3094,7 +3094,7 @@ export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,
         while (!proxyNode.primaryNode()){
             if (!original){
                 original=localError(node,c,w,message,true,pr);
-                message +="(template expansion affected)"
+                //message +="(template expansion affected)"
             }
             node=node.parent();
             proxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
