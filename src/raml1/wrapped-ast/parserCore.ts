@@ -228,10 +228,10 @@ export class BasicNodeImpl implements hl.BasicNode{
     errors():RamlParserError[]{
 
         var issues = [];
-        if(this._node.errors()!=null) {
-            issues = issues.concat(this._node.errors());
+        var highLevelErrors=this._node.errors()
+        if(highLevelErrors!=null) {
+            issues = issues.concat(highLevelErrors);
         }
-        this._node.attrs().filter(x=>x.errors()!=null).forEach(x=>issues=issues.concat(x.errors()));
         var lineMapper = this._node.lowLevel().unit().lineMapper();
         var result = issues.map(x=>{
 

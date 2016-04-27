@@ -774,6 +774,17 @@ describe('Modularization', function(){
     });
 });
 
+describe("Individual errors",function(){
+    it('Individial nodes should pass validation',function() {
+        var api = util.loadApi(util.data('parser/modularization/m02_overlay.raml'));
+        api.children().forEach(x=>{
+            if (x.errors().length>0){
+                assert.equal(true,false);
+            }
+        })
+    })
+})
+
 function escapeRegexp(regexp: string) {
     return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }

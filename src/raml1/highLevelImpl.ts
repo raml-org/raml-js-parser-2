@@ -412,6 +412,25 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         return this;
     }
 
+    errors():hl.ValidationIssue[]{
+        var errors:hl.ValidationIssue[]=[];
+        var q:hl.ValidationAcceptor={
+            accept(c:hl.ValidationIssue){
+                if (c.node===this) {
+                    errors.push(c);
+                }
+            },
+            begin(){
+
+            },
+            end(){
+
+            }
+        }
+        this.parent().validate(q);
+        return errors;
+    }
+
     isString(){
         if (this._def) {
             if (this._def.key() === universes.Universe08.StringType || this._def.key() == universes.Universe10.StringType) {
