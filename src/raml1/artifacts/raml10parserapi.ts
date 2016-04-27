@@ -1836,10 +1836,6 @@ export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnot
 value(  ):AnnotationRef[]
 }
 
-export interface FragmentDeclaration extends Annotable{
-uses(  ):UsesDeclaration[]
-}
-
 export interface DocumentationItem extends Annotable{
 
         /**
@@ -1878,7 +1874,11 @@ title(  ):AnnotationRef[]
 content(  ):AnnotationRef[]
 }
 
-export interface LibraryBase extends Annotable{
+export interface FragmentDeclaration extends Annotable{
+uses(  ):UsesDeclaration[]
+}
+
+export interface LibraryBase extends FragmentDeclaration{
 
         /**
          * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.

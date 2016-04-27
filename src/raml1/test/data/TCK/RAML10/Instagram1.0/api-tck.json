@@ -9602,7 +9602,7 @@
         },
         "uses": [
             {
-                "name": "types",
+                "key": "types",
                 "value": "types.raml"
             }
         ]

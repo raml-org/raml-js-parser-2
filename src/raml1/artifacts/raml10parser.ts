@@ -43,6 +43,7 @@ import helper=require("../../raml1/wrapped-ast/wrapperHelper")
 import Api = pApi.Api;
 import ApiScalarsAnnotations = pApi.ApiScalarsAnnotations;
 import LibraryBase = pApi.LibraryBase;
+import FragmentDeclaration = pApi.FragmentDeclaration;
 import Annotable = pApi.Annotable;
 import AnnotableScalarsAnnotations = pApi.AnnotableScalarsAnnotations;
 import AnnotationRef = pApi.AnnotationRef;
@@ -126,7 +127,6 @@ import Resource = pApi.Resource;
 import ResourceScalarsAnnotations = pApi.ResourceScalarsAnnotations;
 import UsesDeclaration = pApi.UsesDeclaration;
 import UsesDeclarationScalarsAnnotations = pApi.UsesDeclarationScalarsAnnotations;
-import FragmentDeclaration = pApi.FragmentDeclaration;
 import DocumentationItem = pApi.DocumentationItem;
 import DocumentationItemScalarsAnnotations = pApi.DocumentationItemScalarsAnnotations;
 import Library = pApi.Library;
@@ -4350,33 +4350,6 @@ value(  ):AnnotationRef[]{
 }
 }
 
-export class FragmentDeclarationImpl extends AnnotableImpl implements FragmentDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFragmentDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-uses(  ):UsesDeclaration[]{
-             return <UsesDeclaration[]>super.elements('uses');
-         }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "FragmentDeclarationImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "FragmentDeclaration";}
-
-
-        /**
-         * @return RAML version of the node
-         **/
-RAMLVersion(  ):string{return "RAML10";}
-}
-
 export class DocumentationItemImpl extends AnnotableImpl implements DocumentationItem{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDocumentationItem(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
@@ -4466,7 +4439,34 @@ content(  ):AnnotationRef[]{
 }
 }
 
-export class LibraryBaseImpl extends AnnotableImpl implements LibraryBase{
+export class FragmentDeclarationImpl extends AnnotableImpl implements FragmentDeclaration{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFragmentDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+uses(  ):UsesDeclaration[]{
+             return <UsesDeclaration[]>super.elements('uses');
+         }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "FragmentDeclarationImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "FragmentDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class LibraryBaseImpl extends FragmentDeclarationImpl implements LibraryBase{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibraryBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
@@ -5252,6 +5252,16 @@ function createLibraryBase(key:string){
 /**
  * @hidden
  **/
+function createFragmentDeclaration(key:string){
+    var universe=def.getUniverse("RAML10");
+    var nc=<def.NodeClass>universe.type("FragmentDeclaration");
+    var node=stubs.createStubNode(nc,null,key);
+    return node;
+}
+
+/**
+ * @hidden
+ **/
 function createAnnotable(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("Annotable");
@@ -5635,16 +5645,6 @@ function createResource(key:string){
 function createUsesDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("UsesDeclaration");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createFragmentDeclaration(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("FragmentDeclaration");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }

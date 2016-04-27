@@ -69,10 +69,10 @@ export class TCKDumper{
         var highLevelNode = node.highLevel();
         var highLevelParent = highLevelNode && highLevelNode.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        return this.dumpInternal(node, rootNodeDetails, true);
+        return this.dumpInternal(node, rootNodeDetails);
     }
 
-    dumpInternal(node:any,rootNodeDetails:boolean=false,dumpUses:boolean=false):any{
+    dumpInternal(node:any,rootNodeDetails:boolean=false):any{
 
         if(node==null){
             return null;
@@ -93,22 +93,6 @@ export class TCKDumper{
             var obj = this.dumpProperties(props, node);
             this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
-            if(dumpUses){
-                var hl = node.highLevel();
-                var usesElements = hl.elementsOfKind("uses");
-                if(usesElements.length>0){
-                    var usesEntries = [];
-                    for(var ue of usesElements){
-                        var name = ue.attr("key").value();
-                        var value = ue.attr("value").value();
-                        usesEntries.push({
-                            name: name,
-                            value: value
-                        });
-                    }
-                    obj["uses"] = usesEntries;
-                }
-            }
             if(rootNodeDetails){
                 var result:any = {};
                 if(definition){

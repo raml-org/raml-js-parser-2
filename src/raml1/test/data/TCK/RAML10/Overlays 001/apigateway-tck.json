@@ -132,7 +132,7 @@
         },
         "uses": [
             {
-                "name": "AWS",
+                "key": "AWS",
                 "value": "aws-lib.raml"
             }
         ]

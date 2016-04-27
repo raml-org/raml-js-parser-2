@@ -73,7 +73,7 @@
         },
         "uses": [
             {
-                "name": "lib",
+                "key": "lib",
                 "value": "lib.raml"
             }
         ]

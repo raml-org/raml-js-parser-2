@@ -71,7 +71,7 @@
         },
         "uses": [
             {
-                "name": "decls",
+                "key": "decls",
                 "value": "lib/decls.raml"
             }
         ]
