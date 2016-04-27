@@ -677,6 +677,12 @@ describe('Parser regression tests', function () {
     it ("library in resource type fragment" ,function(){
         testErrors(util.data("parser/libraries/fragment/api.raml"));
     })
+    it ("library in resource type fragment" ,function(){
+        testErrors(util.data("parser/libraries/fragment/api.raml"));
+    })
+    it ("nested uses" ,function(){
+        testErrors(util.data("parser/libraries/nestedUses/index.raml"));
+    })
     it ("library require 1" ,function(){
         testErrors(util.data("parser/libraries/require/a.raml"));
     })

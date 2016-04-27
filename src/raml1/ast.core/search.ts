@@ -31,10 +31,17 @@ export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
 
 };
 export function globalDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
-    var decl = declRoot(h);
-    return findDeclarations(decl);
-
+    var result=[];
+    while (h.parent()!=null){
+        if (h.lowLevel().includePath()){
+            result=result.concat(findDeclarations(h))
+        }
+        h=h.parent();
+    }
+    result=result.concat(findDeclarations(h));
+    return result;
 }
+
 function mark(h:hl.IHighLevelNode,rs:hl.IHighLevelNode[]){
     var n:any=h.lowLevel();
     n=n._node?n._node:n;
@@ -52,12 +59,7 @@ function unmark(h:hl.IHighLevelNode){
 }
 export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     var rs:hl.IHighLevelNode[]=[];
-    var q=mark(h,rs);
-    if (q){
-        //throw new Error()
-        //return q;
-    }
-    try {
+
         h.elements().forEach(x=> {
             if (x.definition().key()== universes.Universe10.UsesDeclaration) {
                 var mm=x.attr("value");
@@ -77,9 +79,7 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
             }
         });
         return rs;
-    }finally{
-        unmark(h)
-    }
+
 }
 function getIndent2(offset:number,text:string):string{
     var spaces="";

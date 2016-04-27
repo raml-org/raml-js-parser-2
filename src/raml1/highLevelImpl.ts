@@ -31,31 +31,35 @@ type IAttribute=high.IAttribute
 import contentprovider = require('../util/contentprovider')
 type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
-    var dr=search.declRoot(context);
+    //var dr=search.declRoot(context);
     var nm=x.name();
-    var o=nm;
-    var ind=nm.indexOf("<");//TODO SCOPE IT
-    if (ind!=-1){
-        nm=nm.substring(0,ind);
-    }
-
     if (x.lowLevel().unit()!=context.lowLevel().unit()){
-        var root:BasicASTNode=<BasicASTNode><any>context.root();
-        if (!root.unitMap){
-            root.unitMap={};
-            root.asElement().elements().forEach(x=> {
-                if (x.definition().key()== universes.Universe10.UsesDeclaration) {
-                    var mm=x.attr("value");
-                    var unit=root.lowLevel().unit().resolve(mm.value());
-                    if (unit!=null) {
-                        root.unitMap[unit.absolutePath()]=x.attr("key").value();
-                    }
+        var root:BasicASTNode=<BasicASTNode><any>context;
+        while (true) {
+            if (root.lowLevel().includePath()||root.parent()==null) {
+                if (!root.unitMap) {
+                    root.unitMap = {};
+                    root.asElement().elements().forEach(x=> {
+                        if (x.definition().key() == universes.Universe10.UsesDeclaration) {
+                            var mm = x.attr("value");
+                            var unit = root.lowLevel().unit().resolve(mm.value());
+                            if (unit != null) {
+                                root.unitMap[unit.absolutePath()] = x.attr("key").value();
+                            }
+                        }
+                    });
                 }
-           });
-        }
-        var prefix=root.unitMap[x.lowLevel().unit().absolutePath()];
-        if (prefix) {
-            return prefix + "." + nm;
+                var prefix = root.unitMap[x.lowLevel().unit().absolutePath()];
+                if (prefix) {
+                    return prefix + "." + nm;
+                }
+            }
+            if (!root.parent()){
+                break;
+            }
+            else {
+                root = <BasicASTNode><any>root.parent();
+            }
         }
     }
     return nm;
