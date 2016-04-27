@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: Example API
+version: v1
+baseUri: http://google.com
+mediaType: application/json
+types:
+  test:
+    properties:
+      use1: string
+      use2?: number
+  testalternative:
+    properties:
+      teeeest: boolean
+resourceTypes:
+  collection:
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. Users
+    post:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName | !singularize>>  # e.g. User
+  member:
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. User
+traits:
+  secured:
+    description: Some requests require authentication
+    queryParameters:
+      <<methodName>>: # e.g. get:
+        description: A <<methodName>>-token pair is required  # e.g. A get-token pair...
+        example: <<methodName>>=h8duh3uhhu38   # e.g. get=h8duh3uhhu38
+
+/tests:
+  type: collection
+  is:  [secured]
+/testalternative:
+  type: member

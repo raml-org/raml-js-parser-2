@@ -11,6 +11,7 @@ import builder=require("./ast.core/builder")
 import search=require("./ast.core/search")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
+import expander=require("./ast.core/expander")
 import typeBuilder=require("./ast.core/typeBuilder")
 import universes=require("./tools/universe")
 import jsyaml=require("./jsyaml/jsyaml2lowLevel")
@@ -184,6 +185,7 @@ export class BasicASTNode implements hl.IParseResult {
     }
 
     validate(v:hl.ValidationAcceptor):void{
+
         linter.validate(this,v);
     }
     allowRecursive(){
@@ -338,6 +340,9 @@ export class StructuredValue implements hl.IStructuredValue{
     }
 
     private _hl:hl.IHighLevelNode;
+
+
+
     toHighLevel(parent?: hl.IHighLevelNode):hl.IHighLevelNode{
         if (!parent && this._parent) parent = this._parent;
         if (this._hl){
@@ -839,6 +844,22 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
 
+
+    validate(v:hl.ValidationAcceptor):void{
+        var k=this.definition().key();
+        if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
+            if (!this.isExpanded()){
+                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
+                var hlnode=nm.highLevel();
+                hlnode._expanded=true;
+                hlnode.validate(v);
+                return;
+            }
+        }
+        linter.validate(this,v);
+    }
+
+
     types():rTypes.IParsedTypeCollection{
         if (!this._types){
             if (this.parent()&&(this.definition().key()!==universes.Universe10.Library)){
@@ -910,6 +931,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         super(node,parent)
         if(node) {
             node.setHighLevelNode(this);
+        }
+        if (node instanceof proxy.LowLevelProxyNode){
+            this._expanded=true;
         }
     }
     

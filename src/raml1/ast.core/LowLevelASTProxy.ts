@@ -29,7 +29,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     keyKind(){
         return this._originalNode.keyKind();
     }
-
+    primaryNode():ll.ILowLevelASTNode{
+        return null;
+    }
     isAnnotatedScalar(){
         return this._originalNode.isAnnotatedScalar()
     }
