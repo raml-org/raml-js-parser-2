@@ -698,6 +698,68 @@ export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.Type
     var node = new json.AstNode(null,obj);
     return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(node);
 }
+/**
+ * __$helperMethod__ A base type which the current type extends, or more generally a type expression.
+ * __$meta__={"name":"type","override":true}
+ */
+export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
+
+    var attrs
+        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
+
+    var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
+    if(structuredAttrs.length==0){
+        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original();
+    }
+    var values:string[] = attrs.map(x=>{
+        var val = x.value();
+        if(typeof(val)=="string"){
+            return val;
+        }
+        else if(val instanceof hlimpl.StructuredValue){
+            var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue>val).lowLevel());
+            return JSON.stringify(typeInstance.toJSON(),null,2);
+        }
+        return val.toString();
+    });
+    return values;
+}
+
+/**
+ * __$helperMethod__ Inlined supertype definition.
+ * __$meta__={"name":"structuredType","primary":true}
+ */
+export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
+
+    var attrs
+        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
+
+    var values = attrs.map(x=>x.value());
+
+    for(var val of values){
+        if(val instanceof hlimpl.StructuredValue){
+            var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue><any>val).lowLevel());
+            return typeInstance;
+        }
+    }
+    return null;
+}
+
+/**
+ * __$helperMethod__
+ * __$meta__={"name":"node","primary":true}
+ */
+export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):core.BasicNode{
+
+    var ref = usesDecl.value();
+    var unit = usesDecl.highLevel().lowLevel().unit().resolve(ref);
+    var hlNode = unit.highLevel();
+    var hlElement = hlNode.asElement();
+    if(hlElement){
+        return hlElement.wrapperNode();
+    }
+    return null;
+}
 
 // /**
 //  * __$helperMethod__
