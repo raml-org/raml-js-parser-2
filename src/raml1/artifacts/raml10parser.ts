@@ -1451,7 +1451,7 @@ RAMLVersion(  ):string{return "RAML10";}
         /**
          * Returns the root node of the AST, uses statement refers.
          **/
-ast(  ):FragmentDeclaration{
+ast(  ):Library{
             return helper.referencedNode(this);
         }
 

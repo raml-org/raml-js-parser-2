@@ -783,14 +783,21 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
  * Returns the root node of the AST, uses statement refers.
  * __$meta__={"name":"ast"}
  */
-export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrapper.FragmentDeclaration {
+export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrapper.Library {
 
     var ref = usesDecl.value();
     var unit = usesDecl.highLevel().lowLevel().unit().resolve(ref);
     var hlNode = unit.highLevel();
     var hlElement = hlNode.asElement();
     if(hlElement){
-        return <RamlWrapper.FragmentDeclaration>hlElement.wrapperNode();
+
+        //we know, only libraries can be referenced from uses
+        var wrapperNode = hlElement.wrapperNode();
+        if (RamlWrapper.isLibrary(wrapperNode)) {
+            return wrapperNode;
+        } else {
+            return null;
+        }
     }
     return null;
 }

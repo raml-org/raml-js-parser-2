@@ -531,7 +531,7 @@ value(  ):string
         /**
          * Returns the root node of the AST, uses statement refers.
          **/
-ast(  ):FragmentDeclaration
+ast(  ):Library
 
 
         /**

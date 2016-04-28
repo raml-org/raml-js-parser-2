@@ -98,6 +98,20 @@ export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition
 }
 
 /**
+ * Check if the AST node represents fragment
+ */
+export function isFragment(node:api10.Api|api10.Library|api10.Overlay|api10.Extension|api10.Trait|api10.TypeDeclaration|api10.ResourceType|api10.DocumentationItem):boolean{
+    return api10.isFragment(<any>node);
+}
+
+/**
+ * Convert fragment representing node to FragmentDeclaration instance.
+ */
+export function asFragment(node:api10.Api|api10.Library|api10.Overlay|api10.Extension|api10.Trait|api10.TypeDeclaration|api10.ResourceType|api10.DocumentationItem):api10.FragmentDeclaration{
+    return api10.asFragment(<any>node);
+}
+
+/**
  * High-level AST interfaces.
  */
 export import hl=require("./raml1/highLevelAST")
