@@ -98,6 +98,11 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
         }
 
     }
+
+    if (!unit){
+            throw new Error("Can not resolve :"+apiPath);
+    }
+
     if(options.rejectOnErrors && api && api.errors().length){
         throw toError(api);
     }
