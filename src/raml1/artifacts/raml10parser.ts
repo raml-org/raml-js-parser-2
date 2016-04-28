@@ -1447,7 +1447,7 @@ kind(  ):string{return "UsesDeclaration";}
          **/
 RAMLVersion(  ):string{return "RAML10";}
 
-node(  ):core.BasicNode{
+ast(  ):core.BasicNode{
             return helper.referencedNode(this);
         }
 

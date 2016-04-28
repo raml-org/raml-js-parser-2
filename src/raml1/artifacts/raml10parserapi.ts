@@ -527,6 +527,8 @@ key(  ):string
          **/
 value(  ):string
 
+ast(  ):core.BasicNode
+
 
         /**
          * Scalar properties annotations accessor

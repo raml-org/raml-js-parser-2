@@ -780,7 +780,7 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
 
 /**
  * __$helperMethod__
- * __$meta__={"name":"node","primary":true}
+ * __$meta__={"name":"ast"}
  */
 export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):core.BasicNode{
 
