@@ -780,16 +780,17 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
 
 /**
  * __$helperMethod__
+ * Returns the root node of the AST, uses statement refers.
  * __$meta__={"name":"ast"}
  */
-export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):core.BasicNode{
+export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrapper.FragmentDeclaration {
 
     var ref = usesDecl.value();
     var unit = usesDecl.highLevel().lowLevel().unit().resolve(ref);
     var hlNode = unit.highLevel();
     var hlElement = hlNode.asElement();
     if(hlElement){
-        return hlElement.wrapperNode();
+        return <RamlWrapper.FragmentDeclaration>hlElement.wrapperNode();
     }
     return null;
 }

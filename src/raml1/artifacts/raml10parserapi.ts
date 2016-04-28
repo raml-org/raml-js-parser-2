@@ -527,7 +527,11 @@ key(  ):string
          **/
 value(  ):string
 
-ast(  ):core.BasicNode
+
+        /**
+         * Returns the root node of the AST, uses statement refers.
+         **/
+ast(  ):FragmentDeclaration
 
 
         /**

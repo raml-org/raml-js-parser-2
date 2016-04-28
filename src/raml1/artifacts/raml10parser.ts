@@ -1447,7 +1447,11 @@ kind(  ):string{return "UsesDeclaration";}
          **/
 RAMLVersion(  ):string{return "RAML10";}
 
-ast(  ):core.BasicNode{
+
+        /**
+         * Returns the root node of the AST, uses statement refers.
+         **/
+ast(  ):FragmentDeclaration{
             return helper.referencedNode(this);
         }
 
