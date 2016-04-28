@@ -2396,6 +2396,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             seq.items.forEach(x=>arr.push(this.dumpNode(x,full)));
             return arr;
         }
+        if (n.kind==yaml.Kind.ANCHOR_REF){
+            var aref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>n
+            return this.dumpNode(aref.value,full);
+        }
         if (n.kind==yaml.Kind.MAPPING){
             var c:yaml.YAMLMapping=<yaml.YAMLMapping>n
             var v={};

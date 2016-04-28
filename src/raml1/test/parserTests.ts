@@ -254,6 +254,9 @@ describe('Parser regression tests', function () {
     it ("scalars in examples are parsed correctly" ,function(){
         testErrors(util.data("parser/examples/ex42.raml"));
     })
+    it ("low level transform understands anchors" ,function(){
+        testErrors(util.data("parser/examples/ex43.raml"));
+    })
     it ("enums values restriction" ,function(){
         testErrors(util.data("parser/examples/ex37.raml"),["enum facet can only contain unique items"]);
     })

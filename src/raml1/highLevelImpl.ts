@@ -785,14 +785,15 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         return vl;
     }
     value(){
-        if (this._node.valueKind()==yaml.Kind.SEQ){
+        var vk=this._node.valueKind();
+        if (vk===yaml.Kind.SEQ){
             return this.children().map(x=>x.value());
         }
-        if (this._node.valueKind()==yaml.Kind.MAP){
+        else if (vk===yaml.Kind.MAP||vk===yaml.Kind.ANCHOR_REF){
             var vl= this._node.dumpToObject(true);
             return vl[this.key()];
         }
-        if (this._node.kind()==yaml.Kind.MAP){
+        else if (this._node.kind()==yaml.Kind.MAP){
             var vl= this._node.dumpToObject(true);
             return vl;
         }
