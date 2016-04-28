@@ -93,9 +93,15 @@ var classMap = {
 
     "CustomSecurityScheme": (x,y)=>{return new RamlWrapper.CustomSecuritySchemeImpl(x,y)},
 
+    "DateOnlyType": (x)=>{return new RamlWrapper.DateOnlyTypeImpl(x)},
+
     "DateOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.DateOnlyTypeDeclarationImpl(x,y)},
 
+    "DateTimeOnlyType": (x)=>{return new RamlWrapper.DateTimeOnlyTypeImpl(x)},
+
     "DateTimeOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTimeOnlyTypeDeclarationImpl(x,y)},
+
+    "DateTimeType": (x)=>{return new RamlWrapper.DateTimeTypeImpl(x)},
 
     "DateTimeTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTimeTypeDeclarationImpl(x,y)},
 
@@ -107,6 +113,8 @@ var classMap = {
 
     "Extension": (x,y)=>{return new RamlWrapper.ExtensionImpl(x,y)},
 
+    "FileType": (x)=>{return new RamlWrapper.FileTypeImpl(x)},
+
     "FileTypeDeclaration": (x,y)=>{return new RamlWrapper.FileTypeDeclarationImpl(x,y)},
 
     "FixedUriString": (x)=>{return new RamlWrapper.FixedUriStringImpl(x)},
@@ -114,6 +122,8 @@ var classMap = {
     "FragmentDeclaration": (x,y)=>{return new RamlWrapper.FragmentDeclarationImpl(x,y)},
 
     "FullUriTemplateString": (x)=>{return new RamlWrapper.FullUriTemplateStringImpl(x)},
+
+    "IntegerType": (x)=>{return new RamlWrapper.IntegerTypeImpl(x)},
 
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
 
@@ -132,6 +142,8 @@ var classMap = {
     "MimeType": (x)=>{return new RamlWrapper.MimeTypeImpl(x)},
 
     "ModelLocation": (x)=>{return new RamlWrapper.ModelLocationImpl(x)},
+
+    "NullType": (x)=>{return new RamlWrapper.NullTypeImpl(x)},
 
     "NumberType": (x)=>{return new RamlWrapper.NumberTypeImpl(x)},
 
@@ -180,6 +192,8 @@ var classMap = {
     "StringType": (x)=>{return new RamlWrapper.StringTypeImpl(x)},
 
     "StringTypeDeclaration": (x,y)=>{return new RamlWrapper.StringTypeDeclarationImpl(x,y)},
+
+    "TimeOnlyType": (x)=>{return new RamlWrapper.TimeOnlyTypeImpl(x)},
 
     "TimeOnlyTypeDeclaration": (x,y)=>{return new RamlWrapper.TimeOnlyTypeDeclarationImpl(x,y)},
 

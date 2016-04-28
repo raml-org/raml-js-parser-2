@@ -116,6 +116,20 @@ export interface NumberType extends ValueType{
 value(  ):number
 }
 
+export interface IntegerType extends ValueType{}
+
+export interface NullType extends ValueType{}
+
+export interface TimeOnlyType extends ValueType{}
+
+export interface DateOnlyType extends ValueType{}
+
+export interface DateTimeOnlyType extends ValueType{}
+
+export interface DateTimeType extends ValueType{}
+
+export interface FileType extends ValueType{}
+
 export interface BooleanType extends ValueType{
 
         /**
@@ -2394,6 +2408,69 @@ export function isAnyType(node: core.AbstractWrapperNode) : node is AnyType {
  */
 export function isNumberType(node: core.AbstractWrapperNode) : node is NumberType {
     return node.kind() == "NumberType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for IntegerType. Returns true if node is instance of IntegerType. Returns false otherwise.
+ * Also returns false for super interfaces of IntegerType.
+ */
+export function isIntegerType(node: core.AbstractWrapperNode) : node is IntegerType {
+    return node.kind() == "IntegerType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for NullType. Returns true if node is instance of NullType. Returns false otherwise.
+ * Also returns false for super interfaces of NullType.
+ */
+export function isNullType(node: core.AbstractWrapperNode) : node is NullType {
+    return node.kind() == "NullType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for TimeOnlyType. Returns true if node is instance of TimeOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of TimeOnlyType.
+ */
+export function isTimeOnlyType(node: core.AbstractWrapperNode) : node is TimeOnlyType {
+    return node.kind() == "TimeOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateOnlyType. Returns true if node is instance of DateOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of DateOnlyType.
+ */
+export function isDateOnlyType(node: core.AbstractWrapperNode) : node is DateOnlyType {
+    return node.kind() == "DateOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeOnlyType. Returns true if node is instance of DateTimeOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeOnlyType.
+ */
+export function isDateTimeOnlyType(node: core.AbstractWrapperNode) : node is DateTimeOnlyType {
+    return node.kind() == "DateTimeOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeType. Returns true if node is instance of DateTimeType. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeType.
+ */
+export function isDateTimeType(node: core.AbstractWrapperNode) : node is DateTimeType {
+    return node.kind() == "DateTimeType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FileType. Returns true if node is instance of FileType. Returns false otherwise.
+ * Also returns false for super interfaces of FileType.
+ */
+export function isFileType(node: core.AbstractWrapperNode) : node is FileType {
+    return node.kind() == "FileType" && node.RAMLVersion() == "RAML10";
 }
 
 

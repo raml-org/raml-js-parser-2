@@ -61,6 +61,13 @@ import SchemaString = pApi.SchemaString;
 import MimeType = pApi.MimeType;
 import AnyType = pApi.AnyType;
 import NumberType = pApi.NumberType;
+import IntegerType = pApi.IntegerType;
+import NullType = pApi.NullType;
+import TimeOnlyType = pApi.TimeOnlyType;
+import DateOnlyType = pApi.DateOnlyType;
+import DateTimeOnlyType = pApi.DateTimeOnlyType;
+import DateTimeType = pApi.DateTimeType;
+import FileType = pApi.FileType;
 import BooleanType = pApi.BooleanType;
 import AnnotationTarget = pApi.AnnotationTarget;
 import TypeInstance = pApi.TypeInstance;
@@ -487,6 +494,153 @@ RAMLVersion(  ):string{return "RAML10";}
          * @return Number representation of the node value
          **/
 value(  ):number{return this.attr.value();}
+}
+
+export class IntegerTypeImpl extends ValueTypeImpl implements IntegerType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "IntegerTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "IntegerType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class NullTypeImpl extends ValueTypeImpl implements NullType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "NullTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "NullType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class TimeOnlyTypeImpl extends ValueTypeImpl implements TimeOnlyType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "TimeOnlyTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "TimeOnlyType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class DateOnlyTypeImpl extends ValueTypeImpl implements DateOnlyType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateOnlyTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateOnlyType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class DateTimeOnlyTypeImpl extends ValueTypeImpl implements DateTimeOnlyType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateTimeOnlyTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateTimeOnlyType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class DateTimeTypeImpl extends ValueTypeImpl implements DateTimeType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "DateTimeTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "DateTimeType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+}
+
+export class FileTypeImpl extends ValueTypeImpl implements FileType{
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "FileTypeImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "FileType";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class BooleanTypeImpl extends ValueTypeImpl implements BooleanType{
