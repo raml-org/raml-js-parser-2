@@ -711,17 +711,50 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
     if(structuredAttrs.length==0){
         return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original();
     }
+    var nullify=false;
     var values:string[] = attrs.map(x=>{
         var val = x.value();
         if(typeof(val)=="string"){
             return val;
         }
         else if(val instanceof hlimpl.StructuredValue){
-            var typeInstance = new core.TypeInstanceImpl((<hlimpl.StructuredValue>val).lowLevel());
-            return JSON.stringify(typeInstance.toJSON(),null,2);
+            nullify=true;
         }
         return val.toString();
     });
+    if (nullify){
+        return null;
+    }
+    return values;
+}
+/**
+ * __$helperMethod__ A base type which the current type extends, or more generally a type expression.
+ * __$meta__={"name":"schema","override":true}
+ */
+export function schemaValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
+    var nullify=false;
+    var attrs
+        =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.schema.name);
+    if (nullify){
+        return null;
+    }
+    var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
+    if(structuredAttrs.length==0){
+        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).schema_original();
+    }
+    var values:string[] = attrs.map(x=>{
+        var val = x.value();
+        if(typeof(val)=="string"){
+            return val;
+        }
+        else if(val instanceof hlimpl.StructuredValue){
+            nullify=true;
+        }
+        return val.toString();
+    });
+    if (nullify){
+        return null;
+    }
     return values;
 }
 
@@ -733,7 +766,7 @@ export function typeStructuredValue(typeDeclaration:RamlWrapper.TypeDeclaration)
 
     var attrs
         =typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.type.name);
-
+    attrs=attrs.concat(typeDeclaration.highLevel().attributes(defs.universesInfo.Universe10.TypeDeclaration.properties.schema.name))
     var values = attrs.map(x=>x.value());
 
     for(var val of values){

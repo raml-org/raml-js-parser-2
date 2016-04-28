@@ -50,14 +50,78 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "type": [
-                  "{\n  \"prop1\": \"string\",\n  \"prop2\": \"number\"\n}"
-                ],
                 "repeat": false,
                 "required": true,
-                "structuredType": {
-                  "prop1": "string",
-                  "prop2": "number"
+                "type": {
+                  "name": "type",
+                  "displayName": "type",
+                  "type": [
+                    "object"
+                  ],
+                  "repeat": false,
+                  "required": true,
+                  "properties": {
+                    "prop1": {
+                      "name": "prop1",
+                      "displayName": "prop1",
+                      "type": [
+                        "string"
+                      ],
+                      "repeat": false,
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "prop2": {
+                      "name": "prop2",
+                      "displayName": "prop2",
+                      "type": [
+                        "number"
+                      ],
+                      "repeat": false,
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
                 },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -99,6 +163,279 @@
         "relativeUriPathSegments": [
           "teams"
         ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "string",
+                  "number"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams2",
+        "displayName": "/teams2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams2"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "schema": [
+                  "string",
+                  "number"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams3",
+        "displayName": "/teams3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams3"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "schema": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams4",
+        "displayName": "/teams4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams4"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams5",
+        "displayName": "/teams5",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams5"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "schema": [
+                  "number"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams6",
+        "displayName": "/teams6",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams6"
+        ]
       }
     ],
     "__METADATA__": {
@@ -109,5 +446,66 @@
       }
     }
   },
-  "errors": []
+  "errors": [
+    {
+      "code": 11,
+      "message": "Restrictions conflict should be of type number and should be of type string",
+      "path": "api.raml",
+      "line": 15,
+      "column": 6,
+      "position": 275,
+      "range": [
+        {
+          "line": 15,
+          "column": 6,
+          "position": 275
+        },
+        {
+          "line": 15,
+          "column": 21,
+          "position": 290
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Restrictions conflict should be of type number and should be of type string",
+      "path": "api.raml",
+      "line": 20,
+      "column": 6,
+      "position": 355,
+      "range": [
+        {
+          "line": 20,
+          "column": 6,
+          "position": 355
+        },
+        {
+          "line": 20,
+          "column": 21,
+          "position": 370
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "schema and type are mutually exclusive",
+      "path": "api.raml",
+      "line": 35,
+      "column": 6,
+      "position": 579,
+      "range": [
+        {
+          "line": 35,
+          "column": 6,
+          "position": 579
+        },
+        {
+          "line": 35,
+          "column": 21,
+          "position": 594
+        }
+      ]
+    }
+  ]
 }

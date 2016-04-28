@@ -145,7 +145,7 @@ function testAPI(apiPath:string, extensions?:string[],tckJsonPath?:string){
         assert(true);
     }
     else{
-        //fs.writeFileSync(util.data(tckJsonPath),JSON.stringify(json));
+        fs.writeFileSync(util.data(tckJsonPath),JSON.stringify(json));
         console.log(diff.map(x=>x.message("actual","expected")).join("\n\n"));
         assert(false);
     }

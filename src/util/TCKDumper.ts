@@ -3,6 +3,10 @@ var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
 import def = require("raml-definition-system")
+import hl = require("../raml1/highLevelAST");
+import hlImpl = require("../raml1/highLevelImpl");
+import builder = require("../raml1/ast.core/builder");
+
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
 import universeHelpers = require("../raml1/tools/universeHelpers")
@@ -192,19 +196,56 @@ export class TCKDumper{
             }
             var property = props[propName];
             var value = node[propName]();
-
+            if (value && propName=="structuredType"&&typeof value==="object"){
+                value=null;
+                var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
+                var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
+                var tdl=null;
+                a.children().forEach(x=>{
+                    if (x.key()=="type"||x.key()=="schema"){
+                        var td=highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+                        var hasType=highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+                        var tNode=new hlImpl.ASTNodeImpl(x,highLevelNode,td,hasType.property(universe.Universe10.LibraryBase.properties.types.name))
+                        tNode.patchType(builder.doDescrimination(tNode));
+                        value=dump(tNode.wrapperNode());
+                        propName=x.key();
+                    }
+                })
+            }
+            if (!value && propName=="type"){
+                return
+                //we should not use
+            }
+            if (!value && propName=="schema"){
+                return;
+                //we should not use
+            }
             if ((<coreApi.BasicNode>node).definition
                 && universeHelpers.isTypeDeclarationSibling((<coreApi.BasicNode>node).definition())
                 && universeHelpers.isTypeProperty(property)) {
 
                 //custom handling of not adding "type" property to the types having "schema" inside, even though the property actually exist,
                 // thus making "type" and "schema" arrays mutually exclusive in JSON.
-                if (props[universe.Universe10.TypeDeclaration.properties.schema.name]) {
+
+
                     var schemaValue =node[universe.Universe10.TypeDeclaration.properties.schema.name]();
                     if(schemaValue != null && (!Array.isArray(schemaValue) || schemaValue.length != 0)) {
                         return;
                     }
-                }
+                    var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
+                    var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
+                    var tdl=null;
+                    var hasSchema=false;
+                    a.children().forEach(x=>{
+                        if (x.key()=="schema"){
+                            hasSchema=true;
+                            return;
+                        }
+                    })
+                    if (hasSchema){
+                        return;
+                    }
+
             }
 
             if (Array.isArray(value)) {
