@@ -794,6 +794,7 @@ export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrappe
         //we know, only libraries can be referenced from uses
         var wrapperNode = hlElement.wrapperNode();
         if (RamlWrapper.isLibrary(wrapperNode)) {
+            (<any>wrapperNode).setAttributeDefaults((<any>usesDecl).attributeDefaults())
             return wrapperNode;
         } else {
             return null;
