@@ -618,7 +618,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         var result = (indent?indent:"") +
             (this.name() + " : " + className
             + "[" + definitionClassName + "]"
-            + "  =  " + this.value()) +
+            + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"");
             "\n";
 
         if (this.value() instanceof StructuredValue){
