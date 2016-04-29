@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "0.2.5-rc2",
+  "version": "0.2.6-rc2",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
