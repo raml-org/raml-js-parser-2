@@ -64,7 +64,8 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
 
 
     var project = getProject(apiPath,options);
-    var unitName = path.basename(apiPath);
+    var pr=apiPath.indexOf("://");
+    var unitName=(pr!=-1&&pr<6)?apiPath:path.basename(apiPath);
     var unit = project.unit(unitName);
 
     if (arg2 && !extensionsAndOverlays) {
@@ -146,7 +147,8 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
     options = options || {};
 
     var project = getProject(ramlPath,options);
-    var unitName = path.basename(ramlPath);
+    var pr=ramlPath.indexOf("://");
+    var unitName=(pr!=-1&&pr<6)?ramlPath:path.basename(ramlPath);
 
     if (arg2 && !extensionsAndOverlays) {
         throw new Error("Extensions and overlays list should be defined");
