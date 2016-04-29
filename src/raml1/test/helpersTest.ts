@@ -3,6 +3,8 @@
 import assert = require("assert")
 import util = require("./test-utils")
 import tools = require("./testTools")
+import index = require("../../index")
+
 import RamlWrapper = require("../artifacts/raml10parserapi")
 import RamlWrapperImpl = require("../artifacts/raml10parser")
 
@@ -844,5 +846,10 @@ describe('Helper methods', function () {
         assert.equal(mediaTypes[1].value(),"application/json");
     });
 
-
+    it('parse raml from content', function () {
+        var title=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n"))).title();
+        assert.equal(title,"My API with Types")
+    });
 });

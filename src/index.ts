@@ -50,6 +50,60 @@ export function loadRAMLSync(ramlPath:string, arg1?:string[]|parserCore.Options,
     return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
 }
 
+function optionsForContent(content:string,
+            arg2?:parserCore.Options):parserCore.Options{
+    return {
+        fsResolver:{
+            content(path:string):string{
+                if (path=="/#local.raml"){
+                    return content;
+                }
+                if (arg2){
+                    if (arg2.fsResolver){
+                        return arg2.fsResolver.content(path);
+                    }
+                }
+            },
+
+            contentAsync(path:string):Promise<string>{
+                if (path=="/#local.raml"){
+                    return Promise.resolve(content);
+                }
+                if (arg2){
+                    if (arg2.fsResolver){
+                        return arg2.fsResolver.contentAsync(path);
+                    }
+                }
+            }
+        },
+        httpResolver:arg2?arg2.httpResolver:null,
+        rejectOnErrors:arg2?arg2.rejectOnErrors:false,
+        attributeDefaults:arg2?arg2.attributeDefaults:true
+    }
+}
+/**
+ * Load RAML synchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param content content of the raml
+ * @param options Load options  (note you should path a resolvers if you want includes to be resolved)
+ * @return RAMLLanguageElement instance.
+ **/
+export function parseRAMLSync(content:string,
+                             arg2?:parserCore.Options):hl.BasicNode{
+
+    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
+}
+/**
+ * Load RAML asynchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param content content of the raml
+ * @param options Load options  (note you should path a resolvers if you want includes to be resolved)
+ * @return RAMLLanguageElement instance.
+ **/
+export function parseRAML(content:string,
+                              arg2?:parserCore.Options):hl.BasicNode{
+
+    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
+}
+
 /**
  * Load API asynchronously. The Promise is rejected with [[ApiLoadingError]] if the resulting Api contains errors and the 'rejectOnErrors' option is set to 'true'.
  * @param apiPath Path to API: local file system path or Web URL
