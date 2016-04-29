@@ -748,6 +748,12 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if (isExampleProp(node.property())){
+            if (node.definition().universe().version()=="RAML08"){
+                var llv=node.lowLevel().value();
+                if (node.lowLevel().children().length>0){
+                    v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"example should be a string",node,false));
+                }
+            }
             new ExampleValidator().validate(node, v);
         }
         if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){

@@ -7932,7 +7932,7 @@ describe('Parser', function() {
         raml.load(definition).should.become(expected).and.notify(done);
       });
 
-      it('should be applied to nested resources', function (done) {
+      it('should be applied to nested resources 2', function (done) {
         raml.load(
           [
             '#%RAML 0.8',
@@ -7943,7 +7943,7 @@ describe('Parser', function() {
             '  /2:',
             '    get:',
             '        body:',
-            '          example:'
+            '          example: 2'
           ].join('\n')
         ).should.eventually.have.deep.property('resources[0].resources[0].methods[0].body.application/json').and.notify(done);
       });
@@ -8270,7 +8270,7 @@ describe('Parser', function() {
         raml.load(definition).should.become(expected).and.notify(done);
       });
 
-      it('should be applied to nested resources', function (done) {
+      it('should be applied to nested resources 0', function (done) {
         raml.load(
           [
             '#%RAML 0.8',
