@@ -2846,7 +2846,7 @@ class UriParametersValidator implements NodeValidator {
                         }
                         var propNameReadable = pluralize.singular(changeCase.sentence(paramsPropName));
                         var message = changeCase.ucFirst(propNameReadable) + " unused";
-                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, x, true);
+                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, x, false);
                         v.accept(issue);
                     }
                 }
@@ -2902,7 +2902,7 @@ class TemplateCyclesDetector implements NodeValidator {
                 cycle = cycle.reverse();
                 var message = toReadableName(template.definition().nameId())
                     + " definition contains cycle: " + cycle.join(" -> ");
-                var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, template, true);
+                var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, template, false);
                 v.accept(issue);
             });
         });

@@ -79,7 +79,7 @@ function escapeUri(u:string){
                 if (ids.length > 1) {
                     //if we have more than a single id of conflicting resources
                     resources.forEach(resource=>{
-                        acceptor.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Resources share same URI", resource.highLevel(), true))
+                        acceptor.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Resources share same URI", resource.highLevel(), false))
                     })
                 }
             }

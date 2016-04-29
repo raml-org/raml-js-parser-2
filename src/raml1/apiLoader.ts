@@ -104,7 +104,7 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
             throw new Error("Can not resolve :"+apiPath);
     }
 
-    if(options.rejectOnErrors && api && api.errors().length){
+    if(options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length){
         throw toError(api);
     }
 
@@ -222,7 +222,7 @@ function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, option
     return llimpl.fetchIncludesAndMasterAsync(project,unitName).then(x=>{
         try {
             var api = toApi(x, options);
-            if (options.rejectOnErrors && api && api.errors().length) {
+            if (options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length) {
                 return Promise.reject(toError(api));
             }
             return api;
