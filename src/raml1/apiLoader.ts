@@ -69,7 +69,7 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
     var unit = project.unit(unitName);
 
     if (arg2 && !extensionsAndOverlays) {
-        throw new Error("Extensions and overlays list should be defined");
+        extensionsAndOverlays=null;
     }
 
     var api:hl.BasicNode;
@@ -151,7 +151,7 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
     var unitName=(pr!=-1&&pr<6)?ramlPath:path.basename(ramlPath);
 
     if (arg2 && !extensionsAndOverlays) {
-        throw new Error("Extensions and overlays list should be defined");
+        extensionsAndOverlays=null;
     }
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
