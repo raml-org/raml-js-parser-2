@@ -2559,7 +2559,14 @@ export class ExampleValidator implements PropertyValidator{
                                 }
                                 so.validateObject(pObje);
                             }catch(e){
-                                if (e.message=="Cannot assign to read only property '__$validated' of object"){
+                                var illegalRequiredMessageStart = "Cannot assign to read only property '__$validated' of ";
+                                if (e.message && e.message.indexOf(illegalRequiredMessageStart) == 0){
+                                    var propertyName = e.message.substr(illegalRequiredMessageStart.length,
+                                        e.message.length - illegalRequiredMessageStart.length);
+
+                                    var patchedErrorMessage = "Invalid JSON schema. Potentially, required array containing value "
+                                        + propertyName + " has invalid location";
+                                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,patchedErrorMessage,sa,!strict));
                                     return;
                                 }
                                 if (e.message=="Object.keys called on non-object"){
