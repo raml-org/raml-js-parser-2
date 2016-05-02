@@ -172,7 +172,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             if (node.parent()==null||node.lowLevel().includePath()){
                 var u=node.definition().universe();
                 if (u.version()=="RAML10"){
-                    u.type("FragmentDeclaration").allProperties().forEach(x=>km.add(x));
+                    if (!node.definition().property("uses")) {
+                        u.type("FragmentDeclaration").allProperties().forEach(x=>km.add(x));
+                    }
                 }
             }
             var aNode = <ASTNodeImpl>node;

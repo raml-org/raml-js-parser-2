@@ -3337,7 +3337,7 @@ authorizationUri(  ):FixedUriString{
 
 
         /**
-         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.
+         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or any absolute url.
          **/
 authorizationGrants(  ):string[]{
              return <string[]>super.attributes('authorizationGrants', this.toString);

@@ -1887,6 +1887,27 @@ class CompositeNodeValidator implements NodeValidator {
                 }
             }
         }
+        if (nc.key()==universes.Universe10.OAuth2SecuritySchemeSettings){
+            var requireUrl=false;
+            node.attributes("authorizationGrants").forEach(x=>{
+                var vl=x.value();
+                if (vl==="authorization_code"||vl==="implicit"){
+                    requireUrl=true;
+                }
+                else if (vl!=="password"&&vl!=='client_credentials'){
+                    if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1){
+                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI", x)
+                        acceptor.accept(i);
+                    }
+                }
+            })
+            if (requireUrl){
+                if (!node.attr("authorizationUri")){
+                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "authorizationUri is required when `authorization_code` or `implicit` grant type are used ", node)
+                    acceptor.accept(i);
+                }
+            }
+        }
         //validation of enum values;
             if (node.definition().isAssignableFrom(universes.Universe08.Parameter.name)
                 ||node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
