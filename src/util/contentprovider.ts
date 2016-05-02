@@ -100,6 +100,10 @@ export class ContentProvider {
 
         return path.isAbsolute(uri);
     }
+    
+    promiseResolve(arg: any): Promise<any> {
+        return Promise.resolve(arg);
+    }
 }
 
 function isWebPath(str):boolean {

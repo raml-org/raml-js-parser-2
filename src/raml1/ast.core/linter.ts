@@ -13,7 +13,7 @@ import def=require( "raml-definition-system");
 import high=require("../highLevelAST");
 type Error=yaml.Error
 import hlimpl=require("../highLevelImpl")
-import su=require("../../util/schemaUtil")
+
 import linterApi=require("./linterApi")
 import core=require("../wrapped-ast/parserCore")
 import path=require("path")
@@ -32,6 +32,8 @@ import rtypes=def.rt;
 import util=require("../../util/textutil")
 
 import contentprovider = require('../../util/contentprovider');
+
+var su = def.getSchemaUtils();
 
 var mediaTypeParser=require("media-typer")
 
@@ -2535,7 +2537,7 @@ export class ExampleValidator implements PropertyValidator{
                     return null;
                 }
                 var strVal=(""+val).trim();
-                var so:su.Schema=null
+                var so =null;
                 if (strVal.charAt(0)=="{"){
                     try {
                         so = su.getJSONSchema(strVal, new contentprovider.ContentProvider(sa.lowLevel().unit()));

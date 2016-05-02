@@ -1,4 +1,5 @@
-import su=require("./util/schemaUtil")
+import def = require('raml-definition-system');
+
 import ll=require("./raml1/lowLevelAST")
 import refResolvers=require("./raml1/jsyaml/includeRefResolvers")
 import schemaGenApi = require("./raml1/tools/schemaModelGenApi")
@@ -6,11 +7,14 @@ import schemaGenImpl = require("./raml1/tools/schemaModelGen")
 
 import contentprovider = require('./util/contentprovider');
 
+var su = def.getSchemaUtils();
+
 export interface Schema {
     getType(): string;
     validate(content: string): void;
     validateObject(object:any):void;
 }
+
 export function createSchema(c:string,u:ll.ICompilationUnit):Schema{
     return su.createSchema(c,new contentprovider.ContentProvider(u));
 }

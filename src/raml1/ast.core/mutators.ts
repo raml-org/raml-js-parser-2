@@ -9,7 +9,6 @@ import yaml=require("yaml-ast-parser")
 import def=require( "raml-definition-system");
 import high=require("../highLevelAST");
 import hlimpl=require("../highLevelImpl")
-import su=require("../../util/schemaUtil")
 import linterApi=require("./linterApi")
 import core=require("../wrapped-ast/parserCore")
 import path=require("path")

@@ -12,7 +12,7 @@ import rr=require("./resourceRegistry")
 import util = require("../../util/index")
 import URL = require("url")
 import refResolvers = require("./includeRefResolvers")
-import schemes = require('../../util/schemaUtil');
+import schemes = require('../../util/schemaAsync');
 import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
 
