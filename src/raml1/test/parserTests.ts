@@ -121,10 +121,13 @@ describe('Security Schemes tests', function () {
         testErrors(util.data("parser/securitySchemes/ss8/securityScheme.raml"), ["property already used: 'accessTokenUri'", "property already used: 'accessTokenUri'"]);
     })
     it ("should fail when settings contains duplicate required array properties(1.0)" ,function(){
-        testErrors(util.data("parser/securitySchemes/ss9/securityScheme.raml"), ["property already used: 'authorizationGrants'", "property already used: 'authorizationGrants'", "property already used: 'authorizationGrants'"]);
+        testErrors(util.data("parser/securitySchemes/ss9/securityScheme.raml"), ["property already used: 'authorizationGrants'",  "property already used: 'authorizationGrants'"]);
     })
     it ("null-value security schema should be allowed for Api(0.8)" ,function(){
         testErrors(util.data("parser/securitySchemes/ss10/securityScheme.raml"));
+    })
+    it ("grant type validation" ,function(){
+        testErrors(util.data("parser/custom/oath2.raml"),["authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI"]);
     })
 });
 describe('Parser regression tests', function () {
