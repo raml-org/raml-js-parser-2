@@ -319,4 +319,141 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         assert.equal(runtimeType.isGenuineUserDefinedType(), true);
     });
 
+    it ("Genuine User Defined Method Response In hierarchy 1",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[0];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType1")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 2",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[1];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType2")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 3",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[2];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType3")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 4",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[3];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType4")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 5",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[4];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType5")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 6",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[5];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "application/xml")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 7",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[6];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "TestType7")
+    });
+
+    it ("Genuine User Defined Method Response In hierarchy 8",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[7];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+
+        var userDefinedType = runtimeType.genuineUserDefinedTypeInHierarchy();
+        assert.notEqual(userDefinedType, null);
+
+        assert.equal(userDefinedType.nameId(), "application/json")
+    });
+
+
 });
