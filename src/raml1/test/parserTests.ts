@@ -994,6 +994,9 @@ describe('Property override tests',function(){
     it ("missed title value should report only one message",function(){
         testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
     });
+    it ("expander not halted by this sample any more",function(){
+        testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),13);
+    });
 });
 describe('Line mapper tests',function() {
     it("Test that columns and line numbers start from 1", function () {

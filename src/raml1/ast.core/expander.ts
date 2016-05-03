@@ -452,6 +452,9 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var i0 = i;
                 i += '<<'.length;
                 prev = str.indexOf('>>',i);
+                if (prev==-1){
+                    break;
+                }
                 var paramOccurence = str.substring(i,prev);
                 prev += '>>'.length;
 
