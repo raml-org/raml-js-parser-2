@@ -35,7 +35,7 @@ describe('API parsing', function() {
         testErrors(util.data('parser/api/api04.raml'));
     });
     it('Should not allow using sequences in global map declarations', function(){
-        testErrors(util.data('parser/api/api01-r.raml'),["resourceTypes should be map in RAML 1.0"]);
+        testErrors(util.data('parser/api/api01-r.raml'),["resourceTypes should be a map in RAML 1.0"]);
     });
     it('Should parse mediaType', function(){
         testErrors(util.data('parser/api/api05.raml'));

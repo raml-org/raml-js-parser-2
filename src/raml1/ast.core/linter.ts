@@ -1,11 +1,11 @@
 
 /// <reference path="../../../typings/main.d.ts" />
 
-import jsyaml=require("../jsyaml/jsyaml2lowLevel")
-import proxy=require("../ast.core/LowLevelASTProxy")
-import defs=require("raml-definition-system")
-import hl=require("../highLevelAST")
-import ll=require("../lowLevelAST")
+import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
+import proxy= require ("../ast.core/LowLevelASTProxy")
+import defs= require ("raml-definition-system")
+import hl= require ("../highLevelAST")
+import ll= require ("../lowLevelAST")
 
 import _=require("underscore")
 import yaml=require("yaml-ast-parser")
@@ -363,7 +363,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "node: " + node.name()+" should be wrapped in sequence", node));
         }
         if (node.needMap){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (node.knownProperty?node.knownProperty.nameId():"")+" should be map in RAML 1.0", node));
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (node.knownProperty?node.knownProperty.nameId():"")+" should be a map in RAML 1.0", node));
             return
         }
         if (node.unresolvedRef){
