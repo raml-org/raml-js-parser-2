@@ -348,10 +348,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
 
-    if (node.errorMessage){
-        v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, node.errorMessage, node));
-        return;
-    }
+    // if (node.errorMessage){
+    //     v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, node.errorMessage, node));
+    //     return;
+    // }
     if (node.isUnknown()){
         if (node.name().indexOf("<<")!=-1){
             if (typeOfContainingTemplate(parentNode)!=null){
@@ -400,7 +400,8 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             return !requiredOnly || (child.property && child.property() && child.property().isRequired());
         }).forEach(x => {
             if ((<any>x).errorMessage){
-                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, node));
+                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, x.name()?x:node));
+                return;
             }
             x.validate(v)
         });

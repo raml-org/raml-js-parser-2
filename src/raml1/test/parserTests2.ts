@@ -50,11 +50,11 @@ describe('API parsing', function() {
     });
 
     it('Should fail if title is array', function(){
-        testErrors(util.data('parser/api/api08.raml'),["title must be a string", "property 'title' must be a string"]);
+        testErrors(util.data('parser/api/api08.raml'),[ "property 'title' must be a string"]);
     });
 
     it('Should fail if title is map', function(){
-        testErrors(util.data('parser/api/api09.raml'),["property 'title' must be a string", "title must be a string"]);
+        testErrors(util.data('parser/api/api09.raml'),["property 'title' must be a string"]);
     });
 
     it('Should succeed if title is longer than 48 chars', function(){

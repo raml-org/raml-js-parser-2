@@ -1498,9 +1498,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var rs= <hl.IAttribute[]>this.children().filter(x=>x.isAttr());
         if (this._patchedName){
             var kp=_.find(this.definition().allProperties(),x=>x.getAdapter(services.RAMLPropertyService).isKey());
-            var mm=new ASTPropImpl(this.lowLevel(),this,kp.range(),kp,true);
-            mm._value=this._patchedName;
-            return (<hl.IAttribute[]>[mm]).concat(rs);
+            if (kp) {
+                var mm = new ASTPropImpl(this.lowLevel(), this, kp.range(), kp, true);
+                mm._value = this._patchedName;
+                return (<hl.IAttribute[]>[mm]).concat(rs);
+            }
         }
         return rs;
     }

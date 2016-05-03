@@ -199,7 +199,14 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                         }
                     }
                 }
+                if (node.lowLevel().valueKind() === yaml.Kind.SEQ){
+                    var error=new hlimpl.BasicASTNode(node.lowLevel(), aNode);
+                    error.errorMessage= ""+node.definition().nameId()+" definition should be a map"
+                    res.push(error);
+                    return res;
+                }
             }
+
 
             if (node.lowLevel().value()) {
                 if (km.parentValue) {
@@ -573,39 +580,50 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                     }
                                 }
-                                x.children().forEach(y=> {
-                                    if (filter[y.key()]) {
-                                        return;
-                                    }
-                                    if (y.valueKind()==yaml.Kind.SEQ){
-                                        y.children().forEach(z=>{
-                                            var node = new hlimpl.ASTNodeImpl(z, aNode, <any> range, p);
-                                            node._allowQuestion = allowsQuestion;
-                                            node.setNamePatch(y.key());
-                                            parsed.push(node);
-                                        })
-                                        if (y.children().length==0){
-                                            var error=new hlimpl.BasicASTNode(y, aNode);
-                                            if (p.range().key()==universes.Universe08.Parameter){
-                                                error.errorMessage="named parameter needs at least one type"
-                                            }
-                                            else {
-                                                error.errorMessage = "node should have at least one member value"
-                                            }
+                                if (p.nameId()==="documentation"&&x.valueKind()!==yaml.Kind.SEQ){
+                                        if (!aNode.definition().getAdapter(services.RAMLService).isUserDefined()) {
+                                            var error = new hlimpl.BasicASTNode(x, aNode);
+                                            error.errorMessage = "property: '" + p.nameId() + "' should be a sequence"
                                             res.push(error);
                                         }
-                                    }
-                                    else {
-                                        var node = new hlimpl.ASTNodeImpl(y, aNode, <any> range, p);
-                                        var dc = p.domain().key();
-                                        if (p.nameId() == "body" && ( dc == universes.Universe08.MethodBase || dc == universes.Universe10.MethodBase)) {
-                                            node.setComputed("form", "true")//FIXME
 
+                                }
+                                else {
+                                    x.children().forEach(y=> {
+                                        if (filter[y.key()]) {
+                                            return;
                                         }
-                                        node._allowQuestion = allowsQuestion;
-                                        parsed.push(node);
-                                    }
-                                })
+                                        if (y.valueKind() == yaml.Kind.SEQ) {
+                                            y.children().forEach(z=> {
+                                                var node = new hlimpl.ASTNodeImpl(z, aNode, <any> range, p);
+                                                node._allowQuestion = allowsQuestion;
+                                                node.setNamePatch(y.key());
+                                                parsed.push(node);
+                                            })
+                                            if (y.children().length == 0) {
+                                                var error = new hlimpl.BasicASTNode(y, aNode);
+                                                if (p.range().key() == universes.Universe08.Parameter) {
+                                                    error.errorMessage = "named parameter needs at least one type"
+                                                }
+                                                else {
+                                                    error.errorMessage = "node should have at least one member value"
+                                                }
+                                                res.push(error);
+                                            }
+                                        }
+                                        else {
+                                            var node = new hlimpl.ASTNodeImpl(y, aNode, <any> range, p);
+                                            var dc = p.domain().key();
+                                            if (p.nameId() == "body" && ( dc == universes.Universe08.MethodBase || dc == universes.Universe10.MethodBase)) {
+                                                node.setComputed("form", "true")//FIXME
+
+                                            }
+                                            node._allowQuestion = allowsQuestion;
+                                            parsed.push(node);
+                                        }
+                                    })
+                                }
+
 
                                 if (parsed.length > 0) {
                                     parsed.forEach(x=>rs.push(x));

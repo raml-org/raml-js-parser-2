@@ -985,6 +985,12 @@ describe('Property override tests',function(){
     it ("should not accept resouces  which are not valid only after expansion",function(){
         testErrorsByNumber(util.data("parser/templates/invalidAfterExpansion.raml"),1);
     });
+    it ("resource definition should be a map",function(){
+        testErrors(util.data("parser/custom/resShouldBeMap.raml"),["Resource definition should be a map"]);
+    });
+    it ("documentation should be a sequence",function(){
+        testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["property: 'documentation' should be a sequence"]);
+    });
 });
 describe('Line mapper tests',function() {
     it("Test that columns and line numbers start from 1", function () {
