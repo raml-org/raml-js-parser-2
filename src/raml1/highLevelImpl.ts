@@ -921,7 +921,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),false,annotation,tl);
             }
 
-            if (universeHelpers.isTypesProperty(this.property()) && this.parent() && universeHelpers.isApiType(this.parent().definition())) {
+            if (this.property() && universeHelpers.isTypesProperty(this.property())
+                && this.parent() && universeHelpers.isApiType(this.parent().definition())) {
                 //top level types declared via "types"
                 // this._ptype.setExtra()
                 if ((<any>this._ptype).putExtra) {

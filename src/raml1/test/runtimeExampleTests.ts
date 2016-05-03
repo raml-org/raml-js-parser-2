@@ -317,8 +317,8 @@ describe('Runtime example tests', function() {
         var body = tools.collectionItem(method.body(), 0);
 
         var runtimeType = body.runtimeType();
-        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
-        assert.equal(runtimeType.genuineUserDefinedType().nameId(), "application/json");
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+        assert.equal(runtimeType.genuineUserDefinedTypeInHierarchy().nameId(), "application/json");
     });
 
     it('User defined 2', function () {
@@ -329,8 +329,8 @@ describe('Runtime example tests', function() {
         var body = tools.collectionItem(method.body(), 0);
 
         var runtimeType = body.runtimeType();
-        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
-        assert.equal(runtimeType.genuineUserDefinedType().nameId(), "Dog");
+        assert.equal(runtimeType.hasGenuineUserDefinedTypeInHierarchy(), true);
+        assert.equal(runtimeType.genuineUserDefinedTypeInHierarchy().nameId(), "Dog");
     });
 
     it('Should return expand and return proper JSON 3', function () {
