@@ -158,3 +158,165 @@ describe('To Runtime Tests',function(){
         assert.equal(typeNode1.name(), (<any>nodeByType).name())
     });
 });
+
+describe('Nominal Hierarchy Genuine User Defined Tests',function(){
+    it ("Genuine User Defined 1",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType1");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 2",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType2");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 3",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType3");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 4",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType4");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 5",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType5");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 6",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType6");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined 7",function(){
+        var rsm=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml"));
+        var type=_.find((<RamlWrapper.Api>util.expandWrapperIfNeeded(rsm.getOrElse(null))).types(),x=>x.name()=="TestType7");
+
+        var runtimeType = type.runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined Method Response 1",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[0];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 2",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[1];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 3",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[2];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 4",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[3];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 5",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[4];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 6",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[5];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+    it ("Genuine User Defined Method Response 7",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[6];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), false);
+    });
+
+    it ("Genuine User Defined Method Response 7",function(){
+        var api=apiLoader.loadApi(path.resolve(dir,"data/typesystem/genuine.raml")).getOrElse(null);
+
+        var method = api.resources()[0].methods()[0];
+        var response = method.responses()[7];
+        var type = response.body()[0];
+
+        var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+
+        assert.equal(runtimeType.isGenuineUserDefinedType(), true);
+    });
+
+});
