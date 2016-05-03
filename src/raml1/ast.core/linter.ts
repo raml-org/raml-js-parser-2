@@ -1677,10 +1677,11 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     if(nm.lowLevel().kind()==yaml.Kind.SCALAR
                         ||nm.lowLevel().valueKind()==yaml.Kind.SCALAR
                         ||nm.lowLevel().kind()==yaml.Kind.INCLUDE_REF
-                        ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF){
-                        if(nm.value()!=null){
+                        ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
+                        ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){
+                        //if(nm.value()!=null){
                             gotValue = true;
-                        }
+                        //}
                     }
                     else if (nm.lowLevel().children().length!=0) {
                         gotValue = true;

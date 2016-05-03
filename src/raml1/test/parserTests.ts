@@ -991,6 +991,9 @@ describe('Property override tests',function(){
     it ("documentation should be a sequence",function(){
         testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["property: 'documentation' should be a sequence"]);
     });
+    it ("missed title value should report only one message",function(){
+        testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
+    });
 });
 describe('Line mapper tests',function() {
     it("Test that columns and line numbers start from 1", function () {
