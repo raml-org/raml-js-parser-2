@@ -1828,12 +1828,19 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
             return findElementAtPath(chld[i], p.child)
         }
     }
+    if (!n.lowLevel()){
+        return n;
+    }
     var lchld= n.lowLevel().children();
     for (var i=0;i<lchld.length;i++){
         if (lchld[i].key()=== p.name){
             var nn=new hlimpl.BasicASTNode(lchld[i],<hl.IHighLevelNode>n);
             return findElementAtPath(nn, p.child)
         }
+    }
+    if (lchld[p.name]){
+        var nn=new hlimpl.BasicASTNode(lchld[p.name],<hl.IHighLevelNode>n);
+        return findElementAtPath(nn, p.child)
     }
     return n;
 }
