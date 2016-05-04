@@ -778,6 +778,84 @@ describe('XSD schemes tests', function () {
     })
 });
 
+describe('XML parsing tests', function () {
+    it("XML parsing tests 1" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiValid.raml"), 0);
+    })
+    it("XML parsing tests 2" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid1.raml"), 1);
+
+
+    })
+    it("XML parsing tests 3" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid2.raml"), 1);
+    })
+    it("XML parsing tests 4" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid3.raml"), 1);
+    })
+    it("XML parsing tests 5" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test1/apiInvalid4.raml"), 1);
+    })
+
+
+    it("XML parsing tests 6" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiValid.raml"), 0);
+    })
+    it("XML parsing tests 7" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiInvalid1.raml"), 1);
+    })
+    it("XML parsing tests 8" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiInvalid2.raml"), 1);
+    })
+    it("XML parsing tests 9" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiInvalid3.raml"), 1);
+    })
+    it("XML parsing tests 10" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiInvalid4.raml"), 1);
+    })
+    it("XML parsing tests 11" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test2/apiInvalid5.raml"), 1);
+    })
+
+    it("XML parsing tests 12" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiValid.raml"), 0);
+    })
+    it("XML parsing tests 13" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid1.raml"), 1);
+    })
+    it("XML parsing tests 14" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid2.raml"), 1);
+    })
+    it("XML parsing tests 15" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid3.raml"), 2);
+    })
+    it("XML parsing tests 16" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid4.raml"), 1);
+    })
+    it("XML parsing tests 17" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid5.raml"), 1);
+    })
+    it("XML parsing tests 18" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid6.raml"), 1);
+    })
+    it("XML parsing tests 19" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test3/apiInvalid7.raml"), 1);
+    })
+
+    it("XML parsing tests 20" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test4/apiValid.raml"), 0);
+    })
+    it("XML parsing tests 21" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test4/apiInvalid1.raml"), 1);
+    })
+    it("XML parsing tests 22" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test4/apiInvalid2.raml"), 1);
+    })
+    it("XML parsing tests 23" ,function() {
+        testErrorsByNumber(util.data("parser/xmlfacets/test4/apiInvalid3.raml"), 1);
+    })
+});
+
 describe('JSON schemes tests', function () {
     it("JSON Scheme test 1" ,function() {
         this.timeout(15000);

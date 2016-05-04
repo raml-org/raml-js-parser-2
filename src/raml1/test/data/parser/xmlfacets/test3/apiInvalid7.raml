@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: Api
+
+types:
+  ArrayItem:
+    type: object
+    properties:
+      value: string
+
+  SomeType:
+    type: number[]
+    example:
+      <SomeType>
+        <number>1</number>
+        <number>2</number>
+        <number>3</number>
+      </SomeType>
+
+  AnotherType:
+    type: object
+    properties:
+      arrayProp2:
+        type: ArrayItem[]
+        xml:
+          wrapped: true
+      arrayProp1:
+        type: ArrayItem[]
+        xml:
+          wrapped: false
+
+    example: |
+            <AnotherType>
+              <arrayProp2><ArrayItem><value>assdssd</value></ArrayItem><ArrayItem><value>assdssd</value></ArrayItem></arrayProp2>
+              <arrayProp1><value>assdssd</value></arrayProp1>
+              <arrayProp1><value>assdd7sdddssd</value></arrayProp1>
+            </AnotherType>
+
+  OneMoreType:
+      type: ArrayItem[]
+      example: |
+        <OneMoreType>
+          <ArrayItem><value>asssd</value></ArrayItem>
+          <ArrayItem1><value>assd</value></ArrayItem1>
+        </OneMoreType>

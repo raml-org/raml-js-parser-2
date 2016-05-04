@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Api
+
+types:
+  SomeType:
+    type: object
+    properties:
+      prop1: string
+      prop2:
+        type: number
+        xml:
+          attribute: true
+    example: |
+      <SomeType prop2='s'>
+        <prop1>asd</prop1>
+      </SomeType>
