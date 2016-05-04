@@ -1840,9 +1840,13 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
             return findElementAtPath(nn, p.child)
         }
     }
-    if (lchld[p.name]){
-        var nn=new hlimpl.BasicASTNode(lchld[p.name],<hl.IHighLevelNode>n);
-        return findElementAtPath(nn, p.child)
+    if (!isNaN(<any>p.name)) {
+        if (lchld[p.name]) {
+            var node = lchld[p.name];
+
+            var nn = new hlimpl.BasicASTNode(node, <hl.IHighLevelNode>n);
+            return findElementAtPath(nn, p.child)
+        }
     }
     return n;
 }
