@@ -697,7 +697,7 @@ describe('Object type Inheritance', function(){
     });
 
     it('Should check that does not allowed to specify current type or type that extends current while declaring property of current type',function(){
-        testErrors(util.data('parser/objectTypeInheritance/oti07.raml'));
+        testErrorsByNumber(util.data('parser/objectTypeInheritance/oti07.raml'),2);
     });
 });
 
