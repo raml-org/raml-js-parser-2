@@ -1005,6 +1005,9 @@ describe('Line mapper tests',function() {
     it("Test that columns and line numbers start from 1 another incarnation", function () {
         testErrorsWithLineNumber(util.data("parser/lineNumbers/t2.raml"),2,0);
     });
+    it("Test that end is not to big", function () {
+        testErrorsEnd(util.data("parser/custom/positionFix.raml"));
+    });
 
 });
 
@@ -1076,6 +1079,13 @@ function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
         assert.equal(position.line,lineNumber);
     }
 
+
+}
+function testErrorsEnd(p:string) {
+    var api = util.loadApi(p);
+    var errors:any = util.validateNode(api);
+    var issue:hl.ValidationIssue =errors[0];
+    assert.equal(issue.end<api.lowLevel().unit().contents().length,true);
 
 }
 

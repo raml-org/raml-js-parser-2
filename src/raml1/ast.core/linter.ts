@@ -3043,7 +3043,7 @@ var localError = function (node:hl.IParseResult, c, w, message,p:boolean,prop:hl
 
     var st = node.lowLevel().start();
     var et = node.lowLevel().end();
-    if (contentLength && contentLength >= et) {
+    if (contentLength && contentLength < et) {
         et = contentLength - 1;
     }
 
