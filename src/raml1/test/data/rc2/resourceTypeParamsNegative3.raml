@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: "test"
+
+resourceTypes:
+  collection:
+    post:
+      description: <<Param2>>
+    get?:
+      description: <<Param1>>
+/resource:
+  type:  { collection: {Param2 : "test"} }
+  get:
