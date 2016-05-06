@@ -1,10 +1,10 @@
-#%RAML 1.0
+#%RAML 0.8
 title: MultipleTraitsToMethod_exp
 version: 1
 baseUri: https://example.com/{version}
 traits:
-   trait0: !include traits/trait0.raml
-   trait1: !include traits/trait1.raml
+   - trait0: !include traits/trait0.raml
+   - trait1: !include traits/trait1.raml
 /root-resource:
   get:
     is: [ trait0, trait1 ]
