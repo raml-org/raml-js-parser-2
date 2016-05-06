@@ -8,6 +8,7 @@ var stringify=require("json-stable-stringify")
 import impl=require("../jsyaml/jsyaml2lowLevel")
 import util=require("../../util/index")
 import universes=require("../tools/universe")
+import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
 var _ = require("underscore");
 
@@ -150,9 +151,12 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     }
 
     highLevelNode():hl.IHighLevelNode{
-        return this._highLevelNode;
+        if(this._highLevelNode) {
+            return this._highLevelNode;
+        }
+        return this._originalNode.highLevelNode();
     }
-    
+
     text(unitText:string):string{
         throw new Error("not implemented");
     }
@@ -320,13 +324,22 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 arr.push({ node:y, transformer: x.transformer(), isPrimary: isPrimary} );
             });
         });
+
+        var ramlVersion = this.unit().highLevel().root().definition().universe().version();
+        var isResource = this.key()&&this.key()[0]=="/";
+        var methodType = def.getUniverse("RAML10").type(universes.Universe10.Method.name);
+        var options = methodType.property(universes.Universe10.Method.properties.method.name).enumOptions()
         Object.keys(m).forEach(key=> {
 
             var arr = m[key];
             var allOptional = true;
             var hasPrimaryChildren = false;
+            var isMethod = options.indexOf(key)>=0;
             arr.forEach(x=>{
-                allOptional = allOptional && x.node.optional();
+                var isOpt = x.node.optional() &&
+                    (ramlVersion != "RAML10" ||
+                    (isResource && isMethod));
+                allOptional = allOptional && isOpt;
                 hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;
             });
             if (hasPrimaryChildren) {

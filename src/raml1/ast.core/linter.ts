@@ -2,6 +2,8 @@
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
+import json= require ("../jsyaml/json2lowLevel")
+var stringify=require("json-stable-stringify")
 import proxy= require ("../ast.core/LowLevelASTProxy")
 import defs= require ("raml-definition-system")
 import hl= require ("../highLevelAST")
@@ -1077,6 +1079,11 @@ class MediaTypeValidator implements PropertyValidator{
             if (v.indexOf("/*")==v.length-2){
                 v=v.substring(0,v.length-2)+"/xxx";
             }
+            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+                if(v.indexOf("<<")>=0){
+                    return;
+                }
+            }
             if (v=="body"){
                 if (node.parent().parent()) {
                     var ppc=node.parent().parent().definition().key();
@@ -1377,7 +1384,14 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
 }
 
 function isDuplicateSibling(attr: hl.IAttribute): boolean{
-    var siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
+    var ramlVersion = attr.property().domain().universe().version();
+    var siblingName:string;
+    if(ramlVersion=="RAML10"){
+        siblingName = stringify(json.serialize(attr.lowLevel()));
+    }
+    else{
+        siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
+    }
     
     if(!siblingName) {
         return false;
@@ -1408,7 +1422,13 @@ function isDuplicateSibling(attr: hl.IAttribute): boolean{
     var count = 0;
 
     siblings.forEach(sibling => {
-        var name = sibling.value && sibling.value() && sibling.value().valueName && sibling.value().valueName();
+        var name:string;
+        if(ramlVersion=="RAML10"){
+            siblingName = stringify(json.serialize(sibling.lowLevel()));
+        }
+        else {
+            name = sibling.value && sibling.value() && sibling.value().valueName && sibling.value().valueName();
+        }
 
         if(name === siblingName) {
             count++;

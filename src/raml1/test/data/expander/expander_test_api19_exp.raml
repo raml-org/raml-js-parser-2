@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: RAML spec
+traits:
+  trait1:
+    queryParameters:
+      <<param>>:
+    body:
+      application/<<mt>>:
+
+/resource:
+  get:
+    is: [ { trait1 : { param : p1, mt: xml }}, { trait1 : { param : p2, mt: json }} ]
+    queryParameters:
+      p1:
+      p2:
+    body:
+      application/xml:
+      application/json:
+
