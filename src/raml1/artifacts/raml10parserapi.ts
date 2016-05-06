@@ -1991,6 +1991,12 @@ title(  ):string
 
 
         /**
+         * A longer, human-friendly description of the API
+         **/
+description(  ):MarkdownString
+
+
+        /**
          * The version of the API, e.g. 'v1'
          **/
 version(  ):string
@@ -2143,6 +2149,12 @@ export interface ApiScalarsAnnotations extends AnnotableScalarsAnnotations{
          * Api.title annotations
          **/
 title(  ):AnnotationRef[]
+
+
+        /**
+         * Api.description annotations
+         **/
+description(  ):AnnotationRef[]
 
 
         /**

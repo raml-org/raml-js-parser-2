@@ -101,10 +101,6 @@ export function validateInstanceWithDetailedStatuses(res:RamlWrapper.TypeDeclara
     return res.runtimeType().validate(value);
 }
 
-export function qName(c:core.BasicNode):string{
-    return hlimpl.qName(c.highLevel(),c.highLevel().root());
-}
-
 /**
  * __$helperMethod__
  * Retrieve all traits including those defined in libraries

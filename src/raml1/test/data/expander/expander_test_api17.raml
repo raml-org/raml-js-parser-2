@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: RAML spec
+uses:
+  lib: lib/lib.raml
+
+/resource:
+  get:
+    is: [ lib.libTrait1 ]
+
+/{id}:
+  type: lib.libResourceType
+  get:
