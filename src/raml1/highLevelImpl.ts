@@ -808,10 +808,10 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
     childWithKey(k:string):ParseNode
     {
 
-        var mm=this._node.children();
+        var mm=this.children();
         for (var i=0;i<mm.length;i++){
             if (mm[i].key()==k){
-                return new LowLevelWrapperForTypeSystem(mm[i]);
+                return mm[i];
             }
         }
         return null;
@@ -896,7 +896,10 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 }
                 this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel()));
                 this._types.types().forEach(x=>{
-                    typeBuilder.convertType(this,x)
+                    var convertedType = typeBuilder.convertType(this,x)
+                    // if (defs.instanceOfHasExtra(convertedType)) {
+                        convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
+                    // }
                 });
                 c.types=this._types;
             }
@@ -926,10 +929,15 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 //top level types declared via "types"
                 // this._ptype.setExtra()
                 if ((<any>this._ptype).putExtra) {
-                    (<any>this._ptype).putExtra("definedInTypes", true);
+                    (<any>this._ptype).putExtra(defs.DEFINED_IN_TYPES_EXTRA, true);
                 }
             }
         }
+
+        var potentialHasExtra = this._ptype;
+        // if (defs.instanceOfHasExtra(potentialHasExtra)) {
+            potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
+        // }
         return this._ptype;
     }
     localType():hl.ITypeDefinition{
