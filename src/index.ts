@@ -1,5 +1,6 @@
 import parserCore = require("./raml1/wrapped-ast/parserCoreApi")
 import apiLoader = require("./raml1/apiLoader")
+import path = require("path")
 
 /**
  * RAML 1.0 top-level AST interfaces.
@@ -54,24 +55,24 @@ function optionsForContent(content:string,
             arg2?:parserCore.Options):parserCore.Options{
     return {
         fsResolver:{
-            content(path:string):string{
-                if (path=="/#local.raml"){
+            content(pathStr:string):string{
+                if (pathStr==path.resolve("/","#local.raml")){
                     return content;
                 }
                 if (arg2){
                     if (arg2.fsResolver){
-                        return arg2.fsResolver.content(path);
+                        return arg2.fsResolver.content(pathStr);
                     }
                 }
             },
 
-            contentAsync(path:string):Promise<string>{
-                if (path=="/#local.raml"){
+            contentAsync(pathStr:string):Promise<string>{
+                if (pathStr==path.resolve("/","#local.raml")){
                     return Promise.resolve(content);
                 }
                 if (arg2){
                     if (arg2.fsResolver){
-                        return arg2.fsResolver.contentAsync(path);
+                        return arg2.fsResolver.contentAsync(pathStr);
                     }
                 }
             }
