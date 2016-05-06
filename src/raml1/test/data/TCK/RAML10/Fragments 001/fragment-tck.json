@@ -1,0 +1,77 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "ObjectTypeDeclaration",
+  "specification": {
+    "type": [
+      "object"
+    ],
+    "repeat": false,
+    "required": true,
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "properties": {
+      "prop1": {
+        "name": "prop1",
+        "displayName": "prop1",
+        "type": [
+          "number"
+        ],
+        "repeat": false,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "prop2": {
+        "name": "prop2",
+        "displayName": "prop2",
+        "type": [
+          "lib.ObjectType"
+        ],
+        "repeat": false,
+        "required": true,
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "type": {
+          "insertedAsDefault": true
+        },
+        "repeat": {
+          "insertedAsDefault": true
+        },
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

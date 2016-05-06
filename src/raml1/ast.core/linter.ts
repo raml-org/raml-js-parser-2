@@ -1079,7 +1079,7 @@ class MediaTypeValidator implements PropertyValidator{
             if (v.indexOf("/*")==v.length-2){
                 v=v.substring(0,v.length-2)+"/xxx";
             }
-            if(node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
                 if(v.indexOf("<<")>=0){
                     return;
                 }

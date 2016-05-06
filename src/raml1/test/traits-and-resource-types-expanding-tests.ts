@@ -30,7 +30,7 @@ var expandingTest = function (ind) {
 };
 describe('Traits and resoure types expansion', function () {
     this.timeout(0);
-    for (var i = 0; i <= 18; i++) {
+    for (var i = 0; i <= 19; i++) {
 
         if(i==11||i==12){
             //tests for signatures
