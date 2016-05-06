@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: RAML spec
+traits:
+  trait1:
+    queryParameters:
+      param1?:
+    body:
+      application/xml:
+
+  trait2:
+    queryParameters:
+      param2?:
+    body:
+      text/plain:
+
+resourceTypes:
+  resourceType:
+    delete?:
+    post:
+      is: [ trait2 ]
+      responses:
+        200:
+          body:
+            application/json:
+
+/resource:
+  type: resourceType
+  get:
+    is: [ trait1 ]
+    queryParameters:
+      param1?:
+    body:
+      application/xml:
+  post:
+    is: [ trait2 ]
+    queryParameters:
+      param2?:
+    body:
+      text/plain:
+    responses:
+      200:
+        body:
+          application/json:
+

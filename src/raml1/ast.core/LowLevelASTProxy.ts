@@ -150,9 +150,12 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     }
 
     highLevelNode():hl.IHighLevelNode{
-        return this._highLevelNode;
+        if(this._highLevelNode) {
+            return this._highLevelNode;
+        }
+        return this._originalNode.highLevelNode();
     }
-    
+
     text(unitText:string):string{
         throw new Error("not implemented");
     }
@@ -320,13 +323,20 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 arr.push({ node:y, transformer: x.transformer(), isPrimary: isPrimary} );
             });
         });
+
+        var ramlVersion = this.unit().highLevel().root().definition().universe().version();
+        var isResource = this.key()&&this.key()[0]=="/";
         Object.keys(m).forEach(key=> {
 
             var arr = m[key];
             var allOptional = true;
             var hasPrimaryChildren = false;
+            var isMethod = (key=="delete"||key=="get"||key=="put"||key=="post");
             arr.forEach(x=>{
-                allOptional = allOptional && x.node.optional();
+                var isOpt = x.node.optional() &&
+                    (ramlVersion != "RAML10" ||
+                    (isResource && isMethod));
+                allOptional = allOptional && isOpt;
                 hasPrimaryChildren = hasPrimaryChildren || x.isPrimary;
             });
             if (hasPrimaryChildren) {
