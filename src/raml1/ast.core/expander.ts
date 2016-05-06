@@ -269,10 +269,10 @@ class TraitsAndResourceTypesExpander {
 
                 if (traitData) {
                     var name = traitData.name;
-                    if (!occuredTraits[name]) {
+                    //if (!occuredTraits[name]) {
                         occuredTraits[name] = true;
                         arr.push(traitData);
-                    }
+                    //}
                 }
             });
         }
