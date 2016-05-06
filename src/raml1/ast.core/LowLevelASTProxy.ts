@@ -8,6 +8,7 @@ var stringify=require("json-stable-stringify")
 import impl=require("../jsyaml/jsyaml2lowLevel")
 import util=require("../../util/index")
 import universes=require("../tools/universe")
+import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
 var _ = require("underscore");
 
@@ -326,12 +327,14 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
         var ramlVersion = this.unit().highLevel().root().definition().universe().version();
         var isResource = this.key()&&this.key()[0]=="/";
+        var methodType = def.getUniverse("RAML10").type(universes.Universe10.Method.name);
+        var options = methodType.property(universes.Universe10.Method.properties.method.name).enumOptions()
         Object.keys(m).forEach(key=> {
 
             var arr = m[key];
             var allOptional = true;
             var hasPrimaryChildren = false;
-            var isMethod = (key=="delete"||key=="get"||key=="put"||key=="post");
+            var isMethod = options.indexOf(key)>=0;
             arr.forEach(x=>{
                 var isOpt = x.node.optional() &&
                     (ramlVersion != "RAML10" ||
