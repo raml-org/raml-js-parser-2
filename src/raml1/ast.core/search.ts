@@ -99,7 +99,7 @@ function getIndent2(offset:number,text:string):string{
 
     }
 }
-function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true):hl.IParseResult{
+export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true, returnAttrs=true):hl.IParseResult{
     if (n==null){
         return null;
     }
@@ -117,6 +117,9 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
 
                     var node=deepFindNode(all[i],offset,end, goToOtherUnits);
                     if (node){
+                        if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                            node = node.parent();
+                        }
                         return node;
                     }
                 }
@@ -136,11 +139,17 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
                         }
                         var node = deepFindNode(hl, offset, end, goToOtherUnits);
                         if (node) {
+                            if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                                node = node.parent();
+                            }
                             return node;
                         }
 
                     }
-                    return attr;
+                    if (returnAttrs)
+                        return attr;
+                    else
+                        return attr.parent();
                 }
                 return null;
             }

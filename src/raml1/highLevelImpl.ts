@@ -765,10 +765,10 @@ export interface ParseNode {
 }
 
 
-export class LowLevelWrapperForTypeSystem implements ParseNode{
+export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements ParseNode{
 
-    constructor(protected _node:ll.ILowLevelASTNode){
-
+    constructor(protected _node:ll.ILowLevelASTNode, protected _highLevelRoot:hl.IHighLevelNode){
+        super()
     }
 
     contentProvider() {
@@ -801,9 +801,9 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
     }
     children(){
         if (this.key()=="uses"&&!this._node.parent().parent()){
-            return this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x))
+            return this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
         }
-        return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x));
+        return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x,this._highLevelRoot));
     }
     childWithKey(k:string):ParseNode
     {
@@ -837,12 +837,30 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         }
         return rTypes.NodeKind.SCALAR;
     }
+
+    getSource() : any {
+        if (!this._node) return null;
+        var highLevelNode = this._node.highLevelNode();
+        if (!highLevelNode) {
+            var position = this._node.start()
+            var result = search.deepFindNode(this._highLevelRoot, position, position, true, false);
+
+            if (result) {
+                this._node.setHighLevelParseResult(result);
+                if (result instanceof ASTNodeImpl) {
+                    this._node.setHighLevelNode(<ASTNodeImpl>result)
+                }
+            }
+
+            return result;
+        }
+    }
 }
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
     children(){
         var s=this._node.unit().resolve(this.value());
         if (s&&s.isRAMLUnit()){
-            return new LowLevelWrapperForTypeSystem(s.ast()).children();
+            return new LowLevelWrapperForTypeSystem(s.ast(), this._highLevelRoot).children();
         }
         return [];
     }
@@ -894,7 +912,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 if (c.types){
                     return c.types;
                 }
-                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel()));
+                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
                 this._types.types().forEach(x=>{
                     var convertedType = typeBuilder.convertType(this,x)
                     // if (defs.instanceOfHasExtra(convertedType)) {
@@ -916,12 +934,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
         if (!this._ptype){
             if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),true,false,false);
+                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),true,false,false);
             }
             else {
                 var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
                 var tl=(!this.property())||(this.property().nameId()==universes.Universe10.LibraryBase.properties.types.name||this.property().nameId()==universes.Universe10.LibraryBase.properties.schemas.name);
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),false,annotation,tl);
+                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),false,annotation,tl);
             }
 
             if (this.property() && universeHelpers.isTypesProperty(this.property())
@@ -932,12 +950,13 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                     (<any>this._ptype).putExtra(defs.DEFINED_IN_TYPES_EXTRA, true);
                 }
             }
+            var potentialHasExtra = this._ptype;
+
+            potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
         }
 
-        var potentialHasExtra = this._ptype;
-        // if (defs.instanceOfHasExtra(potentialHasExtra)) {
-            potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
-        // }
+        this._ptype.putExtra(defs.SOURCE_EXTRA, this);
+
         return this._ptype;
     }
     localType():hl.ITypeDefinition{
