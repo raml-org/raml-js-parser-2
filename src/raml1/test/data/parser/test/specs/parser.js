@@ -2542,7 +2542,6 @@ describe('Parser', function() {
                   methods: [
                       {
                         description: "Root resource",
-                        displayName: "Custom Trait",
                         responses: {
                             429: {
                                 description: 'API Limit Exceeded'
@@ -2559,7 +2558,6 @@ describe('Parser', function() {
                           methods: [
                               {
                                 description: "Another resource",
-                                displayName: "Custom Trait",
                                 responses: {
                                     429: {
                                         description: 'API Limit Exceeded'
@@ -3463,8 +3461,7 @@ describe('Parser', function() {
                                     description: 'Retrieve a list of leagues'
                                 }
                             },
-                            method: 'get',
-                            displayName: 'Rate Limited'
+                            method: 'get'
                         }
                     ]
                 }
@@ -3529,8 +3526,7 @@ describe('Parser', function() {
                                     description: 'Retrieve a list of leagues'
                                 }
                             },
-                            method: 'get',
-                            displayName: 'Rate Limited'
+                            method: 'get'
                         }
                     ]
                 }
@@ -3599,8 +3595,7 @@ describe('Parser', function() {
                                     description: 'Retrieve a list of leagues'
                                 }
                             },
-                            method: 'get',
-                            displayName: 'Rate Limited'
+                            method: 'get'
                         },
                         {
                             'headers': {
@@ -3615,8 +3610,7 @@ describe('Parser', function() {
                                     description: 'creates a new league'
                                 }
                             },
-                            method: 'post',
-                            displayName: 'Rate Limited'
+                            method: 'post'
                         }
                     ]
                 }
@@ -3669,8 +3663,7 @@ describe('Parser', function() {
                                 }
                             },
                             description: "Root resource",
-                            method: "get",
-                            displayName: 'Custom Trait'
+                            method: "get"
                         }
                     ],
                     resources: [
@@ -3687,8 +3680,7 @@ describe('Parser', function() {
                                         429: {
                                             description: 'API Limit Exceeded'
                                         }
-                                    },
-                                    displayName: 'Custom Trait'
+                                    }
                                 }
                             ]
                         }
@@ -3767,8 +3759,7 @@ describe('Parser', function() {
                                 '429': {
                                     description: 'API Limit Exceeded'
                                 }
-                            },
-                            displayName: 'Rate Limited'
+                            }
                         }
                     ]
                 }
@@ -3817,7 +3808,6 @@ describe('Parser', function() {
             methods: [
               {
                 is: [ 'rateLimited' ],
-                displayName: "Rate Limited",
                 method: 'get',
                 responses: {
                   '200': {
@@ -3953,7 +3943,6 @@ describe('Parser', function() {
                 is: [ 'rateLimited' ],
                 headers:  null  ,
                 method: 'get',
-                displayName: 'Rate Limited',
                 responses: {
                   '200': {
                     description: 'Retrieve a list of leagues'
@@ -4027,7 +4016,6 @@ describe('Parser', function() {
               {
                 is: [  "rateLimited" ],
                 method: 'get',
-                displayName: 'Rate Limited',
                 responses: {
                   '200': {
                     description: 'Retrieve a list of leagues'
@@ -4116,7 +4104,6 @@ describe('Parser', function() {
                   }
                 ],
                 method: 'get',
-                displayName: 'Rate Limited',
                 responses: {
                   '200': {
                     description: 'Retrieve a list of leagues'
@@ -4264,8 +4251,7 @@ describe('Parser', function() {
                                     description: 'Retrieve a list of leagues'
                                 }
                             },
-                            method: 'get',
-                            displayName: 'Rate Limited'
+                            method: 'get'
                         }
                     ]
                 }
@@ -4330,8 +4316,7 @@ describe('Parser', function() {
                                     description: 'Retrieve a list of leagues'
                                 }
                             },
-                            method: 'get',
-                            displayName: 'Rate Limited'
+                            method: 'get'
                         }
                     ]
                 }
@@ -5229,8 +5214,7 @@ describe('Parser', function() {
                   }
                 },
                 body: null,
-                method: "post",
-                "displayName": "OAuth 2.0 security"
+                method: "post"
               }
             ]
           }
@@ -5546,8 +5530,7 @@ describe('Parser', function() {
                     "methods": [
                         {
                             "description": "commuter resourceType should be used for any collection of items",
-                            "method": "get",
-                            "displayName": "Collection"
+                            "method": "get"
                         }
                     ]
                 }
@@ -5645,8 +5628,7 @@ describe('Parser', function() {
                     "methods": [
                         {
                             "description": "commuters resourceType should be used for any collection of items",
-                            "method": "get",
-                            "displayName": "Collection"
+                            "method": "get"
                         }
                     ],
                     relativeUriPathSegments: [ ],
@@ -6837,35 +6819,36 @@ describe('Parser', function() {
       raml.load(definition).should.be.rejectedWith(/property get can not have scalar value/).and.notify(done);
     });
 //
-    it('should show displayName in a method', function(done) {
-      var definition = [
-        '#%RAML 0.8',
-        '---',
-        'title: Test',
-        '/a:',
-        '  displayName: A',
-        '  get:',
-        '    displayName: SomeName'
-      ].join('\n');
-
-      var expected = {
-        title: "Test",
-        resources: [
-          {
-            displayName: "A",
-            relativeUri: "/a",
-            methods: [
-              {
-                displayName: "SomeName",
-                method: "get"
-              }
-            ],
-            relativeUriPathSegments: [ "a" ]
-          }
-        ]
-      }
-      raml.load(definition).should.become(expected).and.notify(done);
-    });
+//no more 'dislayName' for method
+//     it('should show displayName in a method', function(done) {
+//       var definition = [
+//         '#%RAML 0.8',
+//         '---',
+//         'title: Test',
+//         '/a:',
+//         '  displayName: A',
+//         '  get:',
+//         '    displayName: SomeName'
+//       ].join('\n');
+//
+//       var expected = {
+//         title: "Test",
+//         resources: [
+//           {
+//             displayName: "A",
+//             relativeUri: "/a",
+//             methods: [
+//               {
+//                 displayName: "SomeName",
+//                 method: "get"
+//               }
+//             ],
+//             relativeUriPathSegments: [ "a" ]
+//           }
+//         ]
+//       }
+//       raml.load(definition).should.become(expected).and.notify(done);
+//     });
 //
     it('should fail if methods description is map', function(done) {
       var definition = [

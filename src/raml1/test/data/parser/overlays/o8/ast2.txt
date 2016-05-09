@@ -1,6 +1,6 @@
 Overlay <-- 
   usage : StringType  =  Spanish localization
-  masterRef : StringType  =  api.raml
+  extends : StringType  =  api.raml
   DocumentationItem <-- documentation
     title : StringType  =  Introducción
     content : MarkdownString  =  El acceso automatizado a los libros

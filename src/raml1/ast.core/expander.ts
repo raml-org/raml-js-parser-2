@@ -19,6 +19,8 @@ import fs=require('fs')
 import pluralize = require("pluralize")
 import universeProvider=require ("../definition-system/universeProvider");
 import universeDef=require("../tools/universe");
+import _ = require("underscore");
+import core = require("../wrapped-ast/parserCore")
 
 var changeCase = require('change-case');
 
@@ -69,49 +71,78 @@ function mergeHighLevelNodes(masterApi, highLevelNodes, mergeMode):hlimpl.ASTNod
 
 class TraitsAndResourceTypesExpander {
 
-    private traitMap:{[key:string]:RamlWrapper.Trait|RamlWrapper08.Trait};
 
-    private resourceTypeMap:{[key:string]:RamlWrapper.ResourceType|RamlWrapper08.ResourceType};
+    private traitMap:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper08.Trait}};
+
+    private resourceTypeMap:{[key:string]:{[key:string]:RamlWrapper.ResourceType|RamlWrapper08.ResourceType}};
+
+    private globalTraits:(RamlWrapper.Trait|RamlWrapper08.Trait)[];
+
+    private globalResourceTypes:(RamlWrapper.ResourceType|RamlWrapper08.ResourceType)[];
 
     private ramlVersion:string;
 
-    expandTraitsAndResourceTypes(_api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
+    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
 
-        var isRAML1 = _api instanceof RamlWrapperImpl.ApiImpl;
-        var api:RamlWrapper.Api = <RamlWrapper.Api>_api;
-        var traits:RamlWrapper.Trait[] = wrapperHelper.allTraits(api);
-        var resourceTypes:RamlWrapper.ResourceType[] = wrapperHelper.allResourceTypes(api);
+        this.ramlVersion = api.highLevel().definition().universe().version();
+        var factory = this.ramlVersion=="RAML10" ? factory10 : factory08;
+
+        var isRAML1 = api instanceof RamlWrapperImpl.ApiImpl;
+
+        this.globalTraits = this.ramlVersion=="RAML10"
+            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
+            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
+
+        this.globalResourceTypes  = this.ramlVersion=="RAML10"
+            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
+            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
         //if ((!traits || traits.length == 0) && (!resourceTypes || resourceTypes.length == 0)) {
         //    return api;
         //}
-        if (traits.length==0&&resourceTypes.length==0){
-            return _api;
+        if (this.globalTraits.length==0&&this.globalResourceTypes.length==0){
+            return api;
         }
-        this.ramlVersion = _api.highLevel().definition().universe().version();
-
+        
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel());
-        var result:RamlWrapper.Api|RamlWrapper08.Api = isRAML1
-            ? factory10.buildWrapperNode(hlNode)
-            : factory08.buildWrapperNode(hlNode);
+        var result:RamlWrapper.Api|RamlWrapper08.Api = factory.buildWrapperNode(hlNode);
 
-        (<any>result).setAttributeDefaults((<any>_api).getDefaultsCalculator().isEnabled());
+        (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
 
         this.traitMap = {};
         this.resourceTypeMap = {};
 
         (<hlimpl.ASTNodeImpl>result.highLevel()).setMergeMode(
-            (<hlimpl.ASTNodeImpl>_api.highLevel()).getMergeMode());
-
-        if (traits) {
-            traits.forEach(x=>this.traitMap[wrapperHelper.qName(x)] = x);
-        }
-        if (resourceTypes) {
-            resourceTypes.forEach(x=>this.resourceTypeMap[wrapperHelper.qName(x)] = x);
-        }
+            (<hlimpl.ASTNodeImpl>api.highLevel()).getMergeMode());
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
         return result;
+    }
+
+    private getTemplate<T extends core.BasicNode>(
+        name:string,
+        context:hl.IHighLevelNode,
+        cache:{[key:string]:{[key:string]:T}},
+        globalList:T[]):T{
+
+        var unitPath = context.lowLevel().unit().path();
+        var unitCache = cache[unitPath];
+        if(!unitCache){
+            unitCache = {};
+            cache[unitPath] = unitCache;
+        }
+        var val = unitCache[name];
+
+        if(val!==undefined){
+            return val;
+        }
+        val = null;
+        val = _.find(globalList,x=>hlimpl.qName(x.highLevel(),context)==name);
+        if(!val){
+            val = null;
+        }
+        unitCache[name] = val;
+        return val;
     }
 
     private createHighLevelNode(api:hlimpl.ASTNodeImpl):hlimpl.ASTNodeImpl {
@@ -139,37 +170,7 @@ class TraitsAndResourceTypesExpander {
 
         var resourceData:ResourceGenericData[] = this.collectResourceData(resource);
 
-        if (resource instanceof RamlWrapperImpl.ResourceImpl){
-            var mb=<RamlWrapperImpl.ResourceImpl>resource;
-            //var signature=mb.signature();
-            //if (signature) {
-            //    var trait=sig.convertToTrait(sig.parse(mb.highLevel().attr("signature")))
-            //    var cm=trait.highLevel().lowLevel();
-            //    var vl=resource.relativeUri().value();
-            //    var indExof=vl.lastIndexOf(".");
-            //    if (indExof!=-1) {
-            //        var composite = new proxy.LowLevelCompositeNode(cm, null, null);
-            //        (<any>trait.highLevel())._node = composite;
-            //        (<proxy.LowLevelCompositeNode>resource.highLevel().lowLevel()).setKeyOverride(vl.substr(0,indExof))
-            //        var me=new RamlWrapper.MethodImpl(vl.substr(indExof+1));
-            //        var rt=new RamlWrapper.ResourceTypeImpl("$$$signature");
-            //        rt.add(me);
-            //        trait.highLevel().elements().forEach(x=>me.highLevel().add(x));
-            //        var composite = new proxy.LowLevelCompositeNode(rt.highLevel().lowLevel(), null, null);
-            //        (<any>rt.highLevel())._node = composite;
-            //        var val:GenericData = {
-            //            name: "$$$signature",
-            //            node: rt,
-            //            transformer: null
-            //        };
-            //        resourceData = (<ResourceGenericData[]>[ {
-            //            resourceType:val,
-            //            traits: [],
-            //            methodTraits: {}
-            //        } ]).concat(resourceData);
-            //    }
-            //}
-        }
+
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
@@ -230,7 +231,8 @@ class TraitsAndResourceTypesExpander {
         var rt:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
         if (rt&&!occuredResourceTypes[rt.name()]) {
             occuredResourceTypes[rt.name()] = true;
-            rtData = this.readGenerictData(rt, this.resourceTypeMap, 'resource type', transformer);
+            rtData = this.readGenerictData(
+                rt, obj.highLevel(), this.resourceTypeMap, this.globalResourceTypes, 'resource type', transformer);
         }
         arr.push({
             resourceType:rtData,
@@ -262,41 +264,25 @@ class TraitsAndResourceTypesExpander {
                 continue;
             }
             (<any>_obj).is().forEach(x=> {
-                var traitData = this.readGenerictData(x, this.traitMap, 'trait', transformer);
+                var traitData = this.readGenerictData(
+                    x, _obj.highLevel(), this.traitMap, this.globalTraits, 'trait', transformer);
+
                 if (traitData) {
                     var name = traitData.name;
-                    if (!occuredTraits[name]) {
+                    //if (!occuredTraits[name]) {
                         occuredTraits[name] = true;
                         arr.push(traitData);
-                    }
+                    //}
                 }
             });
-        }
-
-        if (obj instanceof RamlWrapperImpl.MethodImpl){
-            var mb=<RamlWrapper.Method>obj;
-            //var signature=mb.signature();
-            //if (signature) {
-            //    var trait=sig.convertToTrait(sig.parse(mb.highLevel().attr("signature")))
-            //    var cm=trait.highLevel().lowLevel();
-            //    var composite=new proxy.LowLevelCompositeNode(cm,null,null);
-            //    (<any>trait.highLevel())._node=composite;
-            //    var val:GenericData={
-            //        name:"$$$signature",
-            //        node:trait,
-            //        transformer:null
-            //    }
-            //    occuredTraits["$$$signature"]=true;
-            //    arr = [val].concat(arr);
-            //    //this.extractTraits(trait, occuredTraits);
-            //}
         }
         return arr;
     }
 
-
     readGenerictData(obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
-                     globalMap:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType},
+                     context:hl.IHighLevelNode,
+                     cache:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType}},
+                     globalList:(RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType)[],
                      template:string,
                      transformer?:proxy.ValueTransformer):GenericData {
 
@@ -305,7 +291,7 @@ class TraitsAndResourceTypesExpander {
             if (transformer) {
                 value = transformer.transform(value).value;
             }
-            var node = globalMap[value];
+            var node = this.getTemplate(value,context,cache,globalList);
             if (node) {
                 return {
                     name: value,
@@ -322,7 +308,7 @@ class TraitsAndResourceTypesExpander {
             }
             var params:{[key:string]:string} = {};
 
-            var node = globalMap[name];
+            var node = this.getTemplate(name,context,cache,globalList);;
             //var t = hlimpl.typeFromNode(node.highLevel());
             if (node) {
 
@@ -341,7 +327,6 @@ class TraitsAndResourceTypesExpander {
         }
         return null;
     }
-
 }
 
 class TransformMatches {
@@ -471,7 +456,7 @@ class TransformationBuffer{
     }
 }
 
-class ValueTransformer implements proxy.ValueTransformer{
+export class ValueTransformer implements proxy.ValueTransformer{
 
     constructor(
         templateKind:string,
@@ -503,6 +488,9 @@ class ValueTransformer implements proxy.ValueTransformer{
                 var i0 = i;
                 i += '<<'.length;
                 prev = str.indexOf('>>',i);
+                if (prev==-1){
+                    break;
+                }
                 var paramOccurence = str.substring(i,prev);
                 prev += '>>'.length;
 
@@ -556,7 +544,7 @@ class ValueTransformer implements proxy.ValueTransformer{
     }
 }
 
-class DefaultTransformer extends ValueTransformer{
+export class DefaultTransformer extends ValueTransformer{
 
     constructor(
         owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,

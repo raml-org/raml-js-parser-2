@@ -218,7 +218,7 @@ describe('Low level model: refactoring', function() {
 
       //console.log(api.lowLevel().unit().contents());
 
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
@@ -245,11 +245,11 @@ describe('Low level model: refactoring', function() {
       body.add(node);
 
       node = <any>createStubNode(type,util.apiType.property("schemas"),"schema1");
-      node.attrOrCreate("value").setValue('schema-1');
+      node.attrOrCreate("type").setValue('schema-1');
       api.add(node);
 
       node = <any>createStubNode(type,util.apiType.property("schemas"),"schema2");
-      node.attrOrCreate("value").setValue('schema-2');
+      node.attrOrCreate("type").setValue('schema-2');
       api.add(node);
 
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
@@ -261,7 +261,7 @@ describe('Low level model: refactoring', function() {
 
     it('fill body: api-body-subresource.raml #subres2', function () { // OK
       var api = util.loadApi(util.data('refactor/fillbody/api-body-subresource.raml'), true);
-      var type = <def.NodeClass>util.universe.type("GlobalSchema");
+      var type = <def.NodeClass>util.universe.type("TypeDeclaration");
 
       //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
@@ -280,12 +280,12 @@ describe('Low level model: refactoring', function() {
       var node;
 
       node = <any>createStubNode(type,util.apiType.property("schemas"),"schema1");
-      node.attrOrCreate("value").setValue('schema-1');
+      node.attrOrCreate("type").setValue('schema-1');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
 
       node = <any>createStubNode(type,util.apiType.property("schemas"),"schema2");
-      node.attrOrCreate("value").setValue('schema-2');
+      node.attrOrCreate("type").setValue('schema-2');
       api.add(node);
       //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA2):');
 
@@ -504,15 +504,15 @@ describe('Low level model: refactoring', function() {
     var api = util.loadApi(util.data('add/api-schemas-none.raml'), true);
     //(<yll.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
 
-    var schemaType = <def.NodeClass>util.universe.type("GlobalSchema");
+    var schemaType = <def.NodeClass>util.universe.type("TypeDeclaration");
     var node = createStubNode(schemaType,util.apiType.property("schemas"), 'schema1');
-    node.attrOrCreate("value").setValue('aaa');
+    node.attrOrCreate("type").setValue('aaa');
     api.add(node);
     //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
 
-    var schemaType = <def.NodeClass>util.universe.type("GlobalSchema");
+    var schemaType = <def.NodeClass>util.universe.type("TypeDeclaration");
     var node = createStubNode(schemaType,util.apiType.property("schemas"), 'schema2');
-    node.attrOrCreate("value").setValue('bbb');
+    node.attrOrCreate("type").setValue('bbb');
     api.add(node);
     //(<yll.ASTNode>api.lowLevel()).show('UPDATED NODE (SCHEMA):');
 
@@ -524,15 +524,15 @@ describe('Low level model: refactoring', function() {
     var api = util.loadApi(util.data('add/api-schemas-empty.raml'), true);
     //api.lowLevel().show('ORIGINAL NODE:');
 
-    var type = <def.NodeClass>util.universe.type("GlobalSchema");
+    var type = <def.NodeClass>util.universe.type("TypeDeclaration");
     var node = createStubNode(type,util.apiType.property("schemas"), 'schema1');
-    node.attrOrCreate("value").setValue('aaa');
+    node.attrOrCreate("type").setValue('aaa');
     api.add(node);
     //(<yll.ASTNode>api.lowLevel()).show('UPDATED API (SCHEMA):');
 
-    var type = <def.NodeClass>util.universe.type("GlobalSchema");
+    var type = <def.NodeClass>util.universe.type("TypeDeclaration");
     var node = createStubNode(type,util.apiType.property("schemas"), 'schema2');
-    node.attrOrCreate("value").setValue('bbb');
+    node.attrOrCreate("type").setValue('bbb');
     api.add(node);
     //api.lowLevel().show('UPDATED API (SCHEMA):');
 

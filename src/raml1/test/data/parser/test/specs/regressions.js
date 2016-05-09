@@ -970,6 +970,8 @@ describe('Regressions', function () {
       '#%RAML 0.8',
       '---',
       'title: Example',
+      'schemas:',
+      ' - wave: "{}"',
       'mediaType: application/json',
       'resourceTypes:',
       '  - collection:',
@@ -985,6 +987,7 @@ describe('Regressions', function () {
     var expected = {
       title: 'Example',
       mediaType: 'application/json',
+      schemas:[ {wave:"{}"}],
       resourceTypes: [
         {
           collection: {
@@ -1010,7 +1013,7 @@ describe('Regressions', function () {
                 200: {
                   body: {
                     'application/json': {
-                      schema: 'wave'
+                      schema: "{}"
                     }
                   }
                 }

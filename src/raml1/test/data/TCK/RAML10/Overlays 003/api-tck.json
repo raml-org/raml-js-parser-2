@@ -34,8 +34,8 @@
         "annotationTypes": [
             {
                 "Test3": {
-                    "displayName": "Test3",
                     "name": "Test3",
+                    "displayName": "Test3",
                     "type": [
                         "object"
                     ],
@@ -43,8 +43,8 @@
                     "required": true,
                     "properties": {
                         "name": {
-                            "displayName": "name",
                             "name": "name",
+                            "displayName": "name",
                             "type": [
                                 "string"
                             ],
@@ -85,7 +85,7 @@
             }
         ],
         "title": "blah",
-        "masterRef": "test30.raml"
+        "extends": "test30.raml"
     },
     "errors": []
 }

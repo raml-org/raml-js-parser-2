@@ -58,35 +58,6 @@
                 }
             }
         ],
-        "uses": {
-            "lib": {
-                "traits": [
-                    {
-                        "libTrait1": {
-                            "name": "libTrait1"
-                        }
-                    },
-                    {
-                        "libTrait2": {
-                            "name": "libTrait2"
-                        }
-                    }
-                ],
-                "resourceTypes": [
-                    {
-                        "libResourceType1": {
-                            "name": "libResourceType1"
-                        }
-                    },
-                    {
-                        "libResourceType2": {
-                            "name": "libResourceType2"
-                        }
-                    }
-                ],
-                "name": "lib"
-            }
-        },
         "title": "TCK Sample. RAML 1.0 Libraries 001.",
         "version": "v1",
         "baseUri": "https://example.com/raml",
@@ -99,7 +70,13 @@
                     "calculated": true
                 }
             }
-        }
+        },
+        "uses": [
+            {
+                "key": "lib",
+                "value": "lib.raml"
+            }
+        ]
     },
     "errors": []
 }

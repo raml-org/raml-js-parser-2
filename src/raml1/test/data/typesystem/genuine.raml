@@ -1,0 +1,62 @@
+#%RAML 1.0
+
+title: test
+
+types:
+  TestType1:
+  TestType2: string
+  TestType3:
+    type: string
+  TestType4:
+    type: object
+  TestType5:
+    properties:
+      name : string
+  TestType6:
+    type: object
+    facets:
+      testFacet : string
+  TestType7:
+    type: TestType6
+    testFacet: "test"
+
+/resource:
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            type: TestType1
+      201:
+        body:
+          application/xml:
+            type: TestType2
+      202:
+        body:
+          application/xml:
+            type: TestType3
+      203:
+        body:
+          application/xml:
+            type: TestType4
+      204:
+        body:
+          application/xml:
+            type: TestType5
+      205:
+        body:
+          application/xml:
+            type: TestType6
+            testFacet: "test"
+
+      206:
+        body:
+          application/xml:
+            type: TestType7
+
+      206:
+          body:
+            application/json:
+              type: TestType7
+              properties:
+                name2 : string

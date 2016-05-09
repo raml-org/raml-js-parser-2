@@ -34,7 +34,9 @@ describe('API parsing', function() {
     it('Should parse baseUriParameters', function(){
         testErrors(util.data('parser/api/api04.raml'));
     });
-
+    it('Should not allow using sequences in global map declarations', function(){
+        testErrors(util.data('parser/api/api01-r.raml'),["resourceTypes should be a map in RAML 1.0"]);
+    });
     it('Should parse mediaType', function(){
         testErrors(util.data('parser/api/api05.raml'));
     });
@@ -48,11 +50,11 @@ describe('API parsing', function() {
     });
 
     it('Should fail if title is array', function(){
-        testErrors(util.data('parser/api/api08.raml'),["title must be a string", "property 'title' must be a string"]);
+        testErrors(util.data('parser/api/api08.raml'),[ "property 'title' must be a string"]);
     });
 
     it('Should fail if title is map', function(){
-        testErrors(util.data('parser/api/api09.raml'),["property 'title' must be a string", "title must be a string"]);
+        testErrors(util.data('parser/api/api09.raml'),["property 'title' must be a string"]);
     });
 
     it('Should succeed if title is longer than 48 chars', function(){
@@ -81,11 +83,11 @@ describe('API parsing', function() {
 //        testErrors(util.data('parser/api/api15.raml'));
 //    });
 
-    it('Should parse api description', function(){
+    it('Should parse resource description', function(){
         testErrors(util.data('parser/api/api27.raml'));
     });
 
-    it('Should parse api description with markdown', function(){
+    it('Should parse resource description with markdown', function(){
         testErrors(util.data('parser/api/api28.raml'));
     });
 
@@ -177,17 +179,17 @@ describe('Resource parsing', function() {
         testErrors(util.data('parser/resource/res09.raml'));
     });
 
-    it('New methods test 1.0.', function(){
-        testErrors(util.data('parser/resource/res10.raml'));
-    });
+    // it('New methods test 1.0.', function(){
+    //     testErrors(util.data('parser/resource/res10.raml'));
+    // });
 
     it('Disabled body test 0.8.', function(){
-        testErrors(util.data('parser/resource/res11.raml'), ["Request body is disabled for \"trace\" method"]);
-    });
-
-    it('Disabled body test 1.0.', function(){
         testErrors(util.data('parser/resource/res12.raml'), ["Request body is disabled for \"trace\" method"]);
     });
+
+    // it('Disabled body test 1.0.', function(){
+    //     testErrors(util.data('parser/resource/res11.raml'), ["Request body is disabled for \"trace\" method"]);
+    // });
 });
 
 describe('Resource type', function(){
@@ -260,17 +262,17 @@ describe('Resource type', function(){
         testErrors(util.data('parser/resourceType/resType11.raml'));
     });
 
-    it('New methods test 1.0.', function(){
-        testErrors(util.data('parser/resourceType/resType12.raml'));
-    });
+    // it('New methods test 1.0.', function(){
+    //     testErrors(util.data('parser/resourceType/resType12.raml'));
+    // });
 
     it('Disabled body test 0.8.', function(){
         testErrors(util.data('parser/resourceType/resType13.raml'), ["Request body is disabled for \"trace\" method"]);
     });
 
-    it('Disabled body test 1.0.', function(){
-        testErrors(util.data('parser/resourceType/resType14.raml'), ["Request body is disabled for \"trace\" method"]);
-    });
+    // it('Disabled body test 1.0.', function(){
+    //     testErrors(util.data('parser/resourceType/resType14.raml'), ["Request body is disabled for \"trace\" method"]);
+    // });
 });
 
 describe('Method', function(){
@@ -695,7 +697,7 @@ describe('Object type Inheritance', function(){
     });
 
     it('Should check that does not allowed to specify current type or type that extends current while declaring property of current type',function(){
-        testErrors(util.data('parser/objectTypeInheritance/oti07.raml'));
+        testErrorsByNumber(util.data('parser/objectTypeInheritance/oti07.raml'),2);
     });
 });
 
@@ -771,6 +773,17 @@ describe('Modularization', function(){
         testErrors(util.data('parser/modularization/m02_overlay.raml'));
     });
 });
+
+describe("Individual errors",function(){
+    it('Individial nodes should pass validation',function() {
+        var api = util.loadApi(util.data('parser/modularization/m02_overlay.raml'));
+        api.children().forEach(x=>{
+            if (x.errors().length>0){
+                assert.equal(true,false);
+            }
+        })
+    })
+})
 
 function escapeRegexp(regexp: string) {
     return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');

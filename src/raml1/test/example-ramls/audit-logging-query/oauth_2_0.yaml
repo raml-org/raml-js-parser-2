@@ -19,4 +19,4 @@ describedBy:
 settings:
   authorizationUri: https://anypoint.mulesoft.com/accounts/oauth2/authorize
   accessTokenUri: https://anypoint.mulesoft.com/accounts/oauth2/token
-  authorizationGrants: [ token ]
+  authorizationGrants: [ password ]

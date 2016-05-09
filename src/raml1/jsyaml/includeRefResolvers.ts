@@ -1,6 +1,8 @@
 /// <reference path="../../../typings/main.d.ts" />
 
-import _=require("underscore")
+import _= require("underscore");
+
+var DOMParser = require('xmldom').DOMParser;
 
 var base64 = require('base64url');
 
@@ -12,7 +14,7 @@ export interface IncludeReference {
     getFragments(): string[];
     getIncludePath(): string;
     asString(): string;
-    encodedName(): string;
+    encodedName(withExtention?: boolean): string;
 }
 
 export interface ResolvedReference {
@@ -78,6 +80,9 @@ export function getIncludeReference(includeString : string) : IncludeReference {
     if(!includeString) {
         return null;
     }
+    if (typeof includeString!="string"){
+        includeString=""+includeString;
+    }
 
     var index = includeString.indexOf("#");
 
@@ -98,7 +103,7 @@ export function getIncludeReference(includeString : string) : IncludeReference {
  * Factory method returning all include reference resolvers, registered in the system.
  */
 export function getIncludeReferenceResolvers() : IncludeReferenceResolver[] {
-    return [new JSONResolver()];
+    return [new JSONResolver(), new XMLResolver()];
 }
 
 /**
@@ -181,14 +186,14 @@ class IncludeReferenceImpl implements IncludeReference{
         return this.originalString;
     }
 
-    encodedName(): string {
-        return base64(this.includePath + '/' + this.asString()) + '.json';
+    encodedName(withExtention: boolean = true): string {
+        return base64(this.includePath + '/' + this.asString()) + (withExtention ? this.includePath.substring(this.includePath.lastIndexOf('.')) : '');
     }
 }
 
 class JSONResolver implements IncludeReferenceResolver {
     isApplicable(includePath: string, content: string) : boolean {
-        return true;
+        return includePath && (endsWith(includePath.trim(), '.js') || endsWith(includePath.trim(), '.json'));
     }
 
     resolveReference(content: string, reference : IncludeReference) : ResolvedReference {
@@ -241,8 +246,7 @@ class JSONResolver implements IncludeReferenceResolver {
 
                 this.getChildren(currentJSON).forEach(child=>{
                     if(child.indexOf(lastPrefix)==0) {
-                        result.push(child)
-                        //result.push(child.substr(lastPrefix.length))
+                        result.push(child);
                     }
                 });
 
@@ -267,4 +271,115 @@ class JSONResolver implements IncludeReferenceResolver {
     private getChildren(jsonObject) : string[] {
         return Object.keys(jsonObject);
     }
+}
+
+class XMLResolver implements IncludeReferenceResolver {
+    isApplicable(includePath: string, content: string) : boolean {
+        return includePath && (endsWith(includePath.trim(), '.xml') || endsWith(includePath.trim(), '.xsd'));
+    }
+
+    resolveReference(content: string, reference : IncludeReference) : ResolvedReference {
+        try {
+            var doc = new DOMParser().parseFromString(content);
+
+            var requestedName = reference.asString();
+
+            var uniqueName:string = reference.encodedName(false);
+
+            var schema = elementChildrenByName(doc, 'xs:schema')[0];
+
+            var elements:any[] = elementChildrenByName(schema, 'xs:element');
+
+            var types:any[] = elementChildrenByName(schema, 'xs:complexType');
+
+            var canBeElement = _.find(elements, (element:any) => element.getAttribute('name') === requestedName);
+
+            var canBeType = canBeElement ? _.find(types, (type:any) => type.getAttribute('name') === canBeElement.getAttribute('type')) : _.find(types, (type:any) => type.getAttribute('name') === requestedName);
+
+            var element:any = doc.createElement('xs:element');
+
+            element.setAttribute('name', uniqueName);
+            
+            if(canBeType) {
+                element.setAttribute('type', canBeType.getAttribute('name'));
+            }
+
+            if(canBeElement) {
+                element.setAttribute('originalname', canBeElement.getAttribute('name'));
+            }
+
+            element.setAttribute('requestedname', requestedName);
+            
+            element.setAttribute('extraelement', 'true');
+
+            schema.appendChild(element);
+            
+            return {
+                content: doc.toString(),
+                validation: []
+            };
+        } catch(throwable) {
+            console.log(throwable);
+        }
+
+        return {
+            content: content,
+            validation: []
+        };
+    }
+
+    completeReference(content: string, reference : IncludeReference) : string[] {
+        try {
+            var doc = new DOMParser().parseFromString(content);
+
+            var result = [];
+
+            var schema = elementChildrenByName(doc, 'xs:schema')[0];
+
+            var elements:any[] = elementChildrenByName(schema, 'xs:element');
+
+            var types:any[] = elementChildrenByName(schema, 'xs:complexType');
+
+            elements.forEach(element => result.push(element.getAttribute('name')));
+            types.forEach(type => result.push(type.getAttribute('name')));
+
+            var emptyPrefixCompletion = reference.asString().trim().length === 0;
+
+            if (emptyPrefixCompletion) {
+                return result;
+            } else {
+                return result.filter(value => value.indexOf(reference.asString()) === 0);
+            }
+        } catch(exception) {
+            return [];
+        }
+    }
+}
+
+function endsWith(input: string, ends: string) {
+    if(!input) {
+        return false;
+    }
+
+    if(!ends) {
+        return false;
+    }
+
+    return input.lastIndexOf(ends) === (input.length - ends.length);
+}
+
+function elementChildrenByName(parent: any, tagName: string): any[] {
+    var elements = parent.getElementsByTagName(tagName);
+
+    var result: any[] = [];
+
+    for(var i: number = 0; i < elements.length; i++) {
+        var child = elements[i];
+
+        if(child.parentNode === parent) {
+            result.push(child);
+        }
+    }
+
+    return result;
 }

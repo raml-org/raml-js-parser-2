@@ -12,7 +12,7 @@ type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 import services=defs
 import linter=require("./linter")
-interface TemplateApplication{
+export interface TemplateApplication{
     tp:hl.ITypeDefinition
     attr:hl.IAttribute
 }
@@ -22,10 +22,11 @@ ramlTypes.setPropertyConstructor(x=>{
     v.unmerge();
     return v;
 });
-interface TemplateData{
+export interface TemplateData{
     [name:string]:TemplateApplication[]
 }
 function templateFields(node:hl.IParseResult,d:TemplateData){
+
     var u=<defs.Universe>node.root().definition().universe();
     node.children().forEach(x=>templateFields(x,d));
     if (node instanceof hlimpl.ASTPropImpl){
@@ -65,65 +66,113 @@ function templateFields(node:hl.IParseResult,d:TemplateData){
         }
     }
 }
-var handleValue = function (strV:string, d:TemplateData, prop:ASTPropImpl,allwaysString:boolean,u:defs.Universe) {
+var extractUsedParamNames = function (strV:string) {
+    var parameterUsages:string[] = [];
     var ps = 0;
     while (true) {
         var pos = strV.indexOf("<<", ps);
-        if (pos != -1) {
-            var end = strV.indexOf(">>", pos);
-            var isFull = pos == 0 && end == strV.length - 2;
-            var parameterUsage = strV.substring(pos + 2, end);
-            ps = pos + 2;
-            var directiveIndex = parameterUsage.indexOf("|");
-            if (directiveIndex != -1) {
-                parameterUsage = parameterUsage.substring(0, directiveIndex);
-            }
-            parameterUsage = parameterUsage.trim();
-            if (linter.RESERVED_TEMPLATE_PARAMETERS[parameterUsage]!=null){
-                //Handling reserved parameter names;
-                continue;
-            }
-
-            var q = d[parameterUsage];
-            var r = (prop)?prop.property().range():null;
-            if (prop){
-            if (prop.property().nameId()==universes.Universe10.TypeDeclaration.properties.type.name||
-                prop.property().nameId()==universes.Universe10.TypeDeclaration.properties.schema.name){
-                if (prop.property().domain().key()==universes.Universe10.TypeDeclaration){
-                    r = <any>u.type(universes.Universe10.SchemaString.name);
-                }
-            }
-            }
-            if (!isFull||allwaysString) {
-                r = <any>u.type(universes.Universe10.StringType.name);
-            }
-
-            //FIX ME NOT WHOLE TEMPLATES
-            if (q) {
-                q.push({
-                   tp:r,
-                   attr:prop
-                });
-            }
-            else {
-                d[parameterUsage] = [{
-                    tp:r,
-                    attr:prop
-                }]
+        if (pos == -1) {
+            break;
+        }
+        var end = strV.indexOf(">>", pos);
+        var isFull = pos == 0 && end == strV.length - 2;
+        var parameterUsage = strV.substring(pos + 2, end);
+        ps = pos + 2;
+        var directiveIndex = parameterUsage.indexOf("|");
+        if (directiveIndex != -1) {
+            parameterUsage = parameterUsage.substring(0, directiveIndex);
+        }
+        parameterUsage = parameterUsage.trim();
+        parameterUsages.push(parameterUsage);
+    }
+    return {parameterUsages: parameterUsages, isFull: isFull};
+};
+var handleValue = function (
+    strV:string,
+    d:TemplateData,
+    prop:ASTPropImpl,
+    allwaysString:boolean,
+    u:defs.Universe) {
+    var __ret = extractUsedParamNames(strV);
+    var parameterUsages = __ret.parameterUsages;
+    var isFull = __ret.isFull;
+    var r = (prop) ? prop.property().range() : null;
+    if (prop) {
+        if (prop.property().nameId() == universes.Universe10.TypeDeclaration.properties.type.name ||
+            prop.property().nameId() == universes.Universe10.TypeDeclaration.properties.schema.name) {
+            if (prop.property().domain().key() == universes.Universe10.TypeDeclaration) {
+                r = <any>u.type(universes.Universe10.SchemaString.name);
             }
         }
-        else break;
+    }
+    for(var parameterUsage of parameterUsages){
+        if (linter.RESERVED_TEMPLATE_PARAMETERS[parameterUsage] != null) {
+            //Handling reserved parameter names;
+            continue;
+        }
+
+        var q = d[parameterUsage];        
+        if (!isFull || allwaysString) {
+            r = <any>u.type(universes.Universe10.StringType.name);
+        }
+
+        //FIX ME NOT WHOLE TEMPLATES
+        if (q) {
+            q.push({
+                tp: r,
+                attr: prop
+            });
+        }
+        else {
+            d[parameterUsage] = [{
+                tp: r,
+                attr: prop
+            }]
+        }
     }
 };
+function fillParamPaths(node:ll.ILowLevelASTNode,paramPaths:{[key:string]:string[][]},path:string[]=[]){
+    if(node.optional()){
+        path = path.concat("/");
+    }
+    var v = node.value();
+    if (typeof v=='string'){
+        var strV=<string>v;
+        var __ret = extractUsedParamNames(strV);
+        var parameterUsages = __ret.parameterUsages;
+        for( var pu of parameterUsages){
+            var paths = paramPaths[pu];
+            if(paths==null){
+                paths = []
+                paramPaths[pu] = paths;
+            }
+            paths.push(path);
+        }
+    }
+    else{
+        for( var ch of node.children()){
+            fillParamPaths(ch,paramPaths,path.concat(ch.key()));
+        }
+    }
+
+}
 
 function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):hl.ITypeDefinition {
     var usages:TemplateData = {}
+    var paramPaths:{[key:string]:string[][]} = {};
     templateFields(node, usages);
+    fillParamPaths(node.lowLevel(),paramPaths);
+    for(var pu of Object.keys(paramPaths)){
+        paramPaths[pu] = _.unique(paramPaths[pu]);
+    }
     result.getAdapter(services.RAMLService).setInlinedTemplates(true);
     Object.keys(usages).forEach(x=> {
         var prop = new defs.UserDefinedProp(x);
         //prop._node=node;
         prop.withDomain(result);
+        var paths:string[][] = paramPaths[x];
+        prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
+
         var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != universes.Universe08.StringType.name);
         prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(universes.Universe08.StringType.name));
         prop.withRequired(true)
@@ -163,6 +212,29 @@ function fillReferenceType(result:defs.UserDefinedClass,def:hl.ITypeDefinition):
     }
     return result;
 }
+
+class AnnotationType extends defs.UserDefinedClass{
+    allProperties(ps:{[name:string]:defs.ITypeDefinition}={}):defs.Property[]{
+        var rs=this.superTypes()[0].allProperties();
+        if (rs.length==1&&rs[0].nameId()=="annotations"){
+            var up=new defs.UserDefinedProp("value");
+            up.withDomain(this);
+            up._node=this.getAdapter(defs.RAMLService).getDeclaringNode();
+            up.withCanBeValue();
+            up.withRequired(false);
+            var tp=this.superTypes()[0];
+            rs=[];
+            up.withRange(up._node.asElement().definition().universe().type("string"));
+            rs.push(up);
+
+        }
+        return <any>rs;
+    }
+
+    isAnnotationType(){
+        return true;
+    }
+}
 export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     if (!node){
         return null;
@@ -185,7 +257,7 @@ export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     if (node.property()&&node.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name){
         //var st=node.definition().getAdapter(services.RAMLService).toRuntime();
 
-        var result:defs.UserDefinedClass = new defs.AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node,upath, "");
+        var result:defs.UserDefinedClass = new AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node,upath, "");
         var st=getSimpleType(node);
         result._superTypes.push(st);
 

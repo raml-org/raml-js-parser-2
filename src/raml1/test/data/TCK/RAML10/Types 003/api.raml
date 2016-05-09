@@ -1,0 +1,38 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Types 003.
+version: v1
+baseUri: http://api.samplehost.com/{version}
+/teams:
+  get:
+    body:
+      application/xml:
+        type:
+          properties:
+            prop1: string
+            prop2: number
+/teams2:
+  get:
+    body:
+      application/xml:
+        type: [string, number]
+/teams3:
+  get:
+    body:
+      application/xml:
+        schema: [string, number]
+/teams4:
+  get:
+    body:
+      application/xml:
+        schema: string
+/teams5:
+  get:
+    body:
+      application/xml:
+        type: string
+/teams6:
+  get:
+    body:
+      application/xml:
+        schema: number
+        type: string

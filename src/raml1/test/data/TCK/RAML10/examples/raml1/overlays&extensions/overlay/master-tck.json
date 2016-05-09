@@ -1,328 +1,12 @@
 {
     "ramlVersion": "RAML10",
-    "type": "Api",
+    "type": "Overlay",
     "specification": {
-        "uses": {
-            "decls": {
-                "types": [
-                    {
-                        "Url": {
-                            "displayName": "Url",
-                            "name": "Url",
-                            "type": [
-                                "string"
-                            ],
-                            "repeat": false,
-                            "required": true,
-                            "pattern": "dd\n",
-                            "__METADATA__": {
-                                "primitiveValuesMeta": {
-                                    "displayName": {
-                                        "calculated": true
-                                    },
-                                    "repeat": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "required": {
-                                        "insertedAsDefault": true
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "Entity": {
-                            "displayName": "Entity",
-                            "name": "Entity",
-                            "type": [
-                                "object"
-                            ],
-                            "repeat": false,
-                            "required": true,
-                            "properties": {
-                                "type": {
-                                    "displayName": "type",
-                                    "name": "type",
-                                    "type": [
-                                        "object"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "name": {
-                                    "displayName": "name",
-                                    "name": "name",
-                                    "type": [
-                                        "string"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "id": {
-                                    "displayName": "id",
-                                    "name": "id",
-                                    "type": [
-                                        "number"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "kind": {
-                                    "displayName": "kind",
-                                    "name": "kind",
-                                    "type": [
-                                        "string"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "icon_url": {
-                                    "displayName": "icon_url",
-                                    "name": "icon_url",
-                                    "type": [
-                                        "Url[]"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "createdAt": {
-                                    "displayName": "createdAt",
-                                    "name": "createdAt",
-                                    "type": [
-                                        "date"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "modifiedAt": {
-                                    "displayName": "modifiedAt",
-                                    "name": "modifiedAt",
-                                    "type": [
-                                        "date"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                },
-                                "createdBy": {
-                                    "displayName": "createdBy",
-                                    "name": "createdBy",
-                                    "type": [
-                                        "User"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "__METADATA__": {
-                                "primitiveValuesMeta": {
-                                    "displayName": {
-                                        "calculated": true
-                                    },
-                                    "type": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "repeat": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "required": {
-                                        "insertedAsDefault": true
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "User": {
-                            "displayName": "User",
-                            "name": "User",
-                            "type": [
-                                "Entity"
-                            ],
-                            "repeat": false,
-                            "required": true,
-                            "properties": {
-                                "createdItems": {
-                                    "displayName": "createdItems",
-                                    "name": "createdItems",
-                                    "type": [
-                                        "Entity[]"
-                                    ],
-                                    "repeat": false,
-                                    "required": true,
-                                    "__METADATA__": {
-                                        "primitiveValuesMeta": {
-                                            "displayName": {
-                                                "calculated": true
-                                            },
-                                            "repeat": {
-                                                "insertedAsDefault": true
-                                            },
-                                            "required": {
-                                                "insertedAsDefault": true
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "__METADATA__": {
-                                "primitiveValuesMeta": {
-                                    "displayName": {
-                                        "calculated": true
-                                    },
-                                    "repeat": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "required": {
-                                        "insertedAsDefault": true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ],
-                "annotationTypes": [
-                    {
-                        "important": {
-                            "displayName": "important",
-                            "name": "important",
-                            "type": [
-                                "string"
-                            ],
-                            "repeat": false,
-                            "required": true,
-                            "__METADATA__": {
-                                "primitiveValuesMeta": {
-                                    "displayName": {
-                                        "calculated": true
-                                    },
-                                    "type": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "repeat": {
-                                        "insertedAsDefault": true
-                                    },
-                                    "required": {
-                                        "insertedAsDefault": true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ],
-                "name": "decls"
-            }
-        },
         "title": "Slave RAML",
         "resources": [
             {
-                "displayName": "/elements",
                 "methods": [
                     {
-                        "description": "describing your method here\n",
                         "annotations": {
                             "decls.important": {
                                 "structuredValue": null,
@@ -334,10 +18,12 @@
                                 "code": "200"
                             }
                         },
+                        "description": "describing your method here\n",
                         "method": "get"
                     }
                 ],
                 "relativeUri": "/elements",
+                "displayName": "/elements",
                 "__METADATA__": {
                     "primitiveValuesMeta": {
                         "displayName": {
@@ -349,48 +35,14 @@
                     "elements"
                 ]
             }
+        ],
+        "extends": "master.raml",
+        "uses": [
+            {
+                "key": "decls",
+                "value": "lib/decls.raml"
+            }
         ]
     },
-    "errors": [
-        {
-            "code": 9,
-            "message": "Unknown top level type:ApiOverlay",
-            "path": "slave.raml",
-            "line": 1,
-            "column": 0,
-            "position": 22,
-            "range": [
-                {
-                    "line": 1,
-                    "column": 0,
-                    "position": 22
-                },
-                {
-                    "line": 10,
-                    "column": 22,
-                    "position": 228
-                }
-            ]
-        },
-        {
-            "code": 2,
-            "message": "Unknown node: masterRef",
-            "path": "slave.raml",
-            "line": 2,
-            "column": 0,
-            "position": 40,
-            "range": [
-                {
-                    "line": 2,
-                    "column": 0,
-                    "position": 40
-                },
-                {
-                    "line": 2,
-                    "column": 9,
-                    "position": 49
-                }
-            ]
-        }
-    ]
+    "errors": []
 }

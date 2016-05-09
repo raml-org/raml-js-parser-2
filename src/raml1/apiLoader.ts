@@ -51,12 +51,12 @@ export function loadApi(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2
  * @param options Load options
  * @return Opt&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
  ***/
-export function loadRAML(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : Opt<RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement> {
+export function loadRAML(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : Opt<hl.BasicNode> {
     var result = loadRAMLInternal(ramlPath, arg1, arg2);
-    return new Opt<RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement>(result);
+    return new Opt<hl.BasicNode>(result);
 }
 
-function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement {
+function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options) : hl.BasicNode {
     var gotArray = Array.isArray(arg1);
     var extensionsAndOverlays = <string[]>(gotArray ? arg1: null);
     var options = <parserCoreApi.Options>(gotArray ? arg2 : arg1);
@@ -64,14 +64,15 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
 
 
     var project = getProject(apiPath,options);
-    var unitName = path.basename(apiPath);
+    var pr=apiPath.indexOf("://");
+    var unitName=(pr!=-1&&pr<6)?apiPath:path.basename(apiPath);
     var unit = project.unit(unitName);
 
     if (arg2 && !extensionsAndOverlays) {
-        throw new Error("Extensions and overlays list should be defined");
+        extensionsAndOverlays=null;
     }
 
-    var api:RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement;
+    var api:hl.BasicNode;
     if(unit){
 
         if (extensionsAndOverlays && extensionsAndOverlays.length > 0) {
@@ -98,7 +99,12 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
         }
 
     }
-    if(options.rejectOnErrors && api && api.errors().length){
+
+    if (!unit){
+            throw new Error("Can not resolve :"+apiPath);
+    }
+
+    if(options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length){
         throw toError(api);
     }
 
@@ -134,17 +140,18 @@ export function loadApiAsync(apiPath:string,arg1?:string[]|parserCoreApi.Options
  * @param options Load options
  * @return Promise&lt;RAMLLanguageElement&gt;, where RAMLLanguageElement belongs to RAML 1.0 or RAML 0.8 model.
  ***/
-export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options):Promise<RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement>{
+export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Options,arg2?:string[]|parserCoreApi.Options):Promise<hl.BasicNode>{
     var gotArray = Array.isArray(arg1);
     var extensionsAndOverlays = <string[]>(gotArray ? arg1: null);
     var options = <parserCoreApi.Options>(gotArray ? arg2 : arg1);
     options = options || {};
 
     var project = getProject(ramlPath,options);
-    var unitName = path.basename(ramlPath);
+    var pr=ramlPath.indexOf("://");
+    var unitName=(pr!=-1&&pr<6)?ramlPath:path.basename(ramlPath);
 
     if (arg2 && !extensionsAndOverlays) {
-        throw new Error("Extensions and overlays list should be defined");
+        extensionsAndOverlays=null;
     }
 
     if (!extensionsAndOverlays || extensionsAndOverlays.length == 0) {
@@ -215,7 +222,7 @@ function fetchAndLoadApiAsync(project: jsyaml.Project, unitName : string, option
     return llimpl.fetchIncludesAndMasterAsync(project,unitName).then(x=>{
         try {
             var api = toApi(x, options);
-            if (options.rejectOnErrors && api && api.errors().length) {
+            if (options.rejectOnErrors && api && api.errors().filter(x=>!x.isWarning).length) {
                 return Promise.reject(toError(api));
             }
             return api;
@@ -237,7 +244,7 @@ function getProject(apiPath:string,options?:parserCoreApi.Options):jsyaml.Projec
     return project;
 };
 
-function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement {
+function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:parserCoreApi.Options,checkApisOverlays=false):hl.BasicNode {
     if(!unitOrHighlevel){
         return null;
     }
@@ -252,7 +259,7 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
         unit = highLevel.lowLevel().unit();
     }
 
-    var api:RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement;
+    var api:hl.BasicNode;
 
     var contents = unit.contents();
 
@@ -307,12 +314,12 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
         //    new hlimpl.ASTNodeImpl(unit.ast(), null, <any>apiType, null)
     }
     //api = new apiImpl(highLevel);
-    api = <RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement>highLevel.wrapperNode();
+    api = <hl.BasicNode>highLevel.wrapperNode();
 
     return api;
 };
 
-export function toError(api:RamlWrapper1.RAMLLanguageElement|RamlWrapper08.RAMLLanguageElement):parserCore.ApiLoadingError{
+export function toError(api:hl.BasicNode):parserCore.ApiLoadingError{
     var error:any = new Error('Api contains errors.');
     error.parserErrors = api.errors();
     return error;

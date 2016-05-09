@@ -4,12 +4,10 @@ baseUri: https://auditlog.anypoint.mulesoft.com/
 version: v1
 securedBy: [oauth_2_0]
 securitySchemes:
-  - oauth_2_0: !include oauth_2_0.yaml
-
+   oauth_2_0: !include oauth_2_0.yaml
 schemas:
-  - logQueryResult: !include logQueryResult.schema.json
-  - logQuery: !include logQuery.schema.json
-
+   logQueryResult: !include logQueryResult.schema.json
+   logQuery: !include logQuery.schema.json
 /v1:
   /organizations:
     /{id}:

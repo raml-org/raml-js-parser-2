@@ -3,11 +3,17 @@ var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
 import def = require("raml-definition-system")
+import hl = require("../raml1/highLevelAST");
+import hlImpl = require("../raml1/highLevelImpl");
+import builder = require("../raml1/ast.core/builder");
+
 import typeSystem = def.rt;
 import nominals = typeSystem.nominalTypes;
 import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
+
+import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
     return new TCKDumper({
@@ -27,7 +33,7 @@ export class TCKDumper{
 
     private transformers:Transformation[] = [
         new ResourcesTransformer(),
-        //new TypeExampleTransformer(),
+        new TypeExampleTransformer(),
         new ParametersTransformer(),
         new TypesTransformer(),
         new UsesTransformer(),
@@ -43,10 +49,10 @@ export class TCKDumper{
         new ResourceTypesTransformer(),
         new FacetsTransformer(),
         new SchemasTransformer(),
-        //new OneElementArrayTransformer(),
         new ProtocolsToUpperCaseTransformer(),
         new ResourceTypeMethodsToMapTransformer(),
-        new ReferencesTransformer()
+        new ReferencesTransformer(),
+        new OneElementArrayTransformer()
     ];
 
     private ignore:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
@@ -91,7 +97,17 @@ export class TCKDumper{
                 props[x.nameId()] = x;
             });
             var obj = this.dumpProperties(props, node);
+            this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
+            if(this.canBeFragment(node)){
+                if(RamlWrapper10.isFragment(<any>node)){
+                    var fragment = RamlWrapper10.asFragment(<any>node);
+                    var uses = fragment.uses();
+                    if(uses.length>0){
+                        obj["uses"] = uses.map(x=>x.toJSON());
+                    }
+                }
+            }
             if(rootNodeDetails){
                 var result:any = {};
                 if(definition){
@@ -124,6 +140,7 @@ export class TCKDumper{
                 }
             }
             var obj = this.dumpProperties(props,node);
+            this.serializeScalarsAnnotations(obj,node,props);
             this.serializeMeta(obj,attrNode);
             return obj;
         }
@@ -135,6 +152,16 @@ export class TCKDumper{
         }
         return node;
 
+    }
+
+    private canBeFragment(node:core.BasicNodeImpl){
+
+        var definition = node.definition();
+        var arr = [definition].concat(definition.allSubTypes());
+        var arr1 = arr.filter(x=>x.getAdapter(def.RAMLService).possibleInterfaces()
+            .filter(y=>y.nameId()==def.universesInfo.Universe10.FragmentDeclaration.name).length>0);
+
+        return arr1.length>0;
     }
 
     private dumpErrors(errors:core.RamlParserError[]) {
@@ -169,33 +196,72 @@ export class TCKDumper{
             }
             var property = props[propName];
             var value = node[propName]();
-
+            if (value && propName=="structuredType"&&typeof value==="object"){
+                value=null;
+                var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
+                var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
+                var tdl=null;
+                a.children().forEach(x=>{
+                    if (x.key()=="type"||x.key()=="schema"){
+                        var td=highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+                        var hasType=highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+                        var tNode=new hlImpl.ASTNodeImpl(x,highLevelNode,td,hasType.property(universe.Universe10.LibraryBase.properties.types.name))
+                        tNode.patchType(builder.doDescrimination(tNode));
+                        value=dump(tNode.wrapperNode());
+                        propName=x.key();
+                    }
+                })
+            }
+            if (!value && propName=="type"){
+                return
+                //we should not use
+            }
+            if (!value && propName=="schema"){
+                return;
+                //we should not use
+            }
             if ((<coreApi.BasicNode>node).definition
                 && universeHelpers.isTypeDeclarationSibling((<coreApi.BasicNode>node).definition())
                 && universeHelpers.isTypeProperty(property)) {
 
                 //custom handling of not adding "type" property to the types having "schema" inside, even though the property actually exist,
                 // thus making "type" and "schema" arrays mutually exclusive in JSON.
-                if (props[universe.Universe10.TypeDeclaration.properties.schema.name]) {
+
+
                     var schemaValue =node[universe.Universe10.TypeDeclaration.properties.schema.name]();
                     if(schemaValue != null && (!Array.isArray(schemaValue) || schemaValue.length != 0)) {
                         return;
                     }
-                }
+                    var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
+                    var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
+                    var tdl=null;
+                    var hasSchema=false;
+                    a.children().forEach(x=>{
+                        if (x.key()=="schema"){
+                            hasSchema=true;
+                            return;
+                        }
+                    })
+                    if (hasSchema){
+                        return;
+                    }
+
             }
 
             if (Array.isArray(value)) {
-                var propertyValue:any = [];
-                value.forEach(x=>propertyValue.push(this.dumpInternal(x)));
+                var propertyValue:any[] = [];
+                for(var val of value){
+                    var dumped = this.dumpInternal(val);
+                    propertyValue.push(dumped);
+                }
                 if(propertyValue.length==0 && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
                     return;
                 }
-                this.transformers.forEach(x=>{
-
+                for(var x of this.transformers){
                     if(x.match(node, property)){
                         propertyValue = x.transform(propertyValue);
                     }
-                });
+                }
                 obj[propName] = propertyValue;
             }
             else {
@@ -214,6 +280,34 @@ export class TCKDumper{
             }
         });
         return obj;
+    }
+
+    serializeScalarsAnnotations(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode,props:{[key:string]:nominals.IProperty}){
+        if(node["scalarsAnnotations"]){
+            var val={};
+            var accessor = node["scalarsAnnotations"]();
+            for(var propName of Object.keys(props)){
+                if(accessor[propName]){
+                    var arr:any[] = accessor[propName]();
+                    if(arr.length>0){
+                        if(Array.isArray(arr[0])){
+
+                            var arr1 = [];
+                            arr.forEach((x,i)=>{arr1.push(x.map(y=>this.dumpInternal(y)))});
+                            if(arr1.filter(x=>x.length>0).length>0){
+                                val[propName] = arr1;
+                            }
+                        }
+                        else {
+                            val[propName] = arr.map(x=>this.dumpInternal(x));
+                        }
+                    }
+                }
+            }
+            if(Object.keys(val).length>0){
+                obj["scalarsAnnotations"] = val;
+            }
+        }
     }
 
     serializeMeta(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode){
@@ -370,8 +464,12 @@ class ParametersTransformer extends ArrayToMapTransformer{
             new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isBaseUriParametersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isUriParametersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling,universeHelpers.isQueryParametersProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isHasNormalParametersSibling,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isQueryParametersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isMethodType,universeHelpers.isHeadersProperty),
+            new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemePartType,universeHelpers.isHeadersProperty),
             new BasicObjectPropertyMatcher(universeHelpers.isBodyLikeType,universeHelpers.isFormParametersProperty)
         ]),"name");
     }
@@ -382,7 +480,10 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTypesProperty)
+            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTypesProperty),
+            new BasicObjectPropertyMatcher(
+                x=>universeHelpers.isLibraryBaseSibling(x)&&universeHelpers.isRAML10Type(x)
+                ,universeHelpers.isSchemasProperty)
         ]),"name");
     }
 
@@ -514,7 +615,7 @@ class ResourceTypeMethodsToMapTransformer extends ArrayToMappingsArrayTransforme
 }
 
 var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
-var exampleContentProp = universe.Universe10.ExampleSpec.properties.content.name;
+var exampleContentProp = universe.Universe10.ExampleSpec.properties.value.name;
 var exampleStructuredContentProp = "structuredContent";
 
 class ExamplesTransformer implements Transformation{
@@ -562,10 +663,10 @@ class TypeExampleTransformer implements Transformation{
         var isArray = Array.isArray(value);
         var arr = isArray ? value : [ value ];
         arr.forEach(x=>{
-            var structuredExample = x['structuredExample'];
+            var structuredExample = x['example'];
             if(structuredExample){
-                x['example'] = structuredExample;
-                delete x['structuredExample'];
+                x['example'] = structuredExample.value;
+                x['structuredExample'] = structuredExample;
             }
         });
         return isArray ? arr : arr[0];
@@ -574,7 +675,8 @@ class TypeExampleTransformer implements Transformation{
 
 class SchemasTransformer implements Transformation{
 
-    protected matcher = new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isSchemasProperty);
+    protected matcher = new BasicObjectPropertyMatcher(
+        x=>universeHelpers.isApiType(x)&&universeHelpers.isRAML08Type(x),universeHelpers.isSchemasProperty);
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
         return this.matcher.match(node.definition(),prop);
@@ -624,24 +726,13 @@ class ProtocolsToUpperCaseTransformer implements Transformation{
 
 class OneElementArrayTransformer implements Transformation{
 
-    exceptions:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
-        new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling,universeHelpers.isPropertiesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isResourcesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isResponsesProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isMethodsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResponseType,universeHelpers.isBodyProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isMethodBaseSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceBaseSibling,universeHelpers.isProtocolsProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isUsesProperty),
-        new BasicObjectPropertyMatcher(x=>true,x=>x.nameId()=='enum'),
-        new BasicObjectPropertyMatcher(x=>true,universeHelpers.isSecuredByProperty)
+    usecases:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
+        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isMediaTypeProperty)
     ]);
 
+
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return !this.exceptions.match(node.definition(),prop);
+        return this.usecases.match(node.definition(),prop);
     }
 
     transform(value:any){

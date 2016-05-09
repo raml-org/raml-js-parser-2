@@ -2,6 +2,7 @@ import hl=require("../highLevelAST");
 import ll=require("../lowLevelAST");
 import hlImpl=require("../highLevelImpl");
 import jsyaml=require("../jsyaml/jsyaml2lowLevel");
+import json=require("../jsyaml/json2lowLevel");
 import def=require("raml-definition-system");
 var ramlService=def;
 import json2lowlevel = require('../jsyaml/json2lowLevel');
@@ -71,20 +72,13 @@ export class BasicNodeImpl implements hl.BasicNode{
         var attrs:hl.IAttribute[] = this._node.attributes(name);
         if(!attrs || attrs.length == 0){
             var defaultValue = this.getDefaultsCalculator().
-                attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
+            attributeDefaultIfEnabled(this._node, this._node.definition().property(name));
             if (defaultValue == null) return [];
             return Array.isArray(defaultValue) ? defaultValue : [ defaultValue ];
         }
-
         //TODO not sure if we want to artificially create missing attributes having
         //default values
-
-        if(constr){
-            return attrs.map(x=>constr(x));
-        }
-        else{
-            return attrs.map(x=>x.value());
-        }
+        return attributesToValues(attrs,constr);
     }
 
     /**
@@ -234,10 +228,10 @@ export class BasicNodeImpl implements hl.BasicNode{
     errors():RamlParserError[]{
 
         var issues = [];
-        if(this._node.errors()!=null) {
-            issues = issues.concat(this._node.errors());
+        var highLevelErrors=this._node.errors()
+        if(highLevelErrors!=null) {
+            issues = issues.concat(highLevelErrors);
         }
-        this._node.attrs().filter(x=>x.errors()!=null).forEach(x=>issues=issues.concat(x.errors()));
         var lineMapper = this._node.lowLevel().unit().lineMapper();
         var result = issues.map(x=>{
 
@@ -667,4 +661,14 @@ export function fillElementMeta(node:BasicNodeImpl):NodeMetadataImpl{
         }
     });
     return meta;
+}
+
+export function attributesToValues(attrs:hl.IAttribute[], constr?:(attr:hl.IAttribute)=>any):any[]{
+
+    if(constr){
+        return attrs.map(x=>constr(x));
+    }
+    else{
+        return attrs.map(x=>x.value());
+    }
 }

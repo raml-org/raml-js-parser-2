@@ -1,0 +1,119 @@
+#%RAML 1.0
+title: Example API for Automation
+resourceTypes:
+  collection:
+      usage: This resourceType should be used for any collection of items
+      description: The collection of <<resourcePathName>>
+      get:
+        description: Get all <<resourcePathName>> (<<resourcePath>> is the resource path).
+        responses: &getResponseCode
+          200:
+            description: All <<resourcePathName>> retreived.
+      post?:
+        description: Create a new <<resourcePathName | !singularize>>.
+        body: &itemsBody
+          application/json:
+            schema: <<schema>>
+        responses:
+          201:
+            body:
+              application/json: ~
+  element:
+      usage: This resourceType should be used for any single element
+      description: A specific <<resourcePathName | !singularize>>.
+      get:
+        description: Get one <<resourcePathName | !singularize>> by id.
+        responses:
+          200:
+            description: The <<resourcePathName | !singularize> was successfully retrieved.
+            body:
+              application/json:
+                schema: <<schema>>
+      put?:
+        description: Update a <<resourcePathName | !singularize>>.
+        body: *itemsBody
+        responses:
+          201:
+            body:
+              application/json: ~
+      delete?:
+        description: Delete a <<resourcePathName | !singularize>>.
+        responses:
+          204:
+            body:
+              application/json: ~
+/items:
+  displayName: Items
+  type: { collection: { schema: items } }
+  get:
+    description: Get a list of all the available items.
+    is: [ getResponseCode, { errorCodes: { method: Get} } ]
+    securedBy: [oauth_2_0, basicAuth]
+    queryParameters: &queryParams
+      size:
+        displayName: Size
+        description: |
+          Size of the item.
+        enum: [ small, medium, large ]
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "items":
+                  [
+                    {
+                      "id":123,
+                      "code":"AD-12",
+                      "color":"blue",
+                      "size":"medium",
+                      "description":"Borders in light blue"
+                    },
+                    {
+                      "id":321,
+                      "code":"AD-13",
+                      "color":"pink",
+                      "size":"small",
+                      "description":"Borders in red"
+                    }
+                  ]
+                }
+  /{itemId}:
+    type: { element: { schema: item } }
+    uriParameters:
+      itemId:
+        type: integer
+        description: |
+          Id that identifies the item.
+        minimum: 0
+        example: 138
+        # - type: string
+        #   description: String id.
+        #   maxLength: 6
+        #   minLength: 1
+    get:
+      is: [ errorCodes: {method: Get} ]
+      protocols: [HTTP]
+      headers:
+        user:
+          type: string
+          required: false
+          example: test_user
+    delete:
+      description: Delete an item by Code.
+      is: [ errorCodes: {method: Delete} ]
+      queryParameters: !include http://ramltesting.s3.amazonaws.com/queryParams.raml
+      responses:
+        404:
+          description: Resource not found
+          headers:
+            X-waiting-period:
+              description: |
+                The number of seconds to wait before you can attempt to make a request again.
+              type: integer
+              required: true
+              minimum: 1
+              maximum: 3600
+              example: 34

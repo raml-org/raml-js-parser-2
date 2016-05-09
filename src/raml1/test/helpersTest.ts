@@ -3,6 +3,8 @@
 import assert = require("assert")
 import util = require("./test-utils")
 import tools = require("./testTools")
+import index = require("../../index")
+
 import RamlWrapper = require("../artifacts/raml10parserapi")
 import RamlWrapperImpl = require("../artifacts/raml10parser")
 
@@ -22,7 +24,62 @@ describe('Helper methods', function () {
         var traitsCount = tools.getLength(traits);
         assert.equal(traitsCount,2);
     });
+    it('Api boolean type()', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        apiObj.types().forEach(z=>{
+            var m=<any>z;
+            m.properties().forEach(p=>{
+                if (p.kind()=="BooleanTypeDeclaration"){
+                    found=true;
+                }
 
+            })
+        })
+        assert.equal(found,true);
+    });
+    it('Api validate instance passing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance({})
+        assert.equal(m.length,3);
+    });
+    it('Api validate instance failing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance({ name:"A",isVegetarian:true,weight:20})
+        assert.equal(m.length,0);
+    });
+    it('Api validate instance failing 2', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testBoolType.raml");
+        var m=apiObj.types()[0].validateInstance("Hello")
+        assert.equal(m.length,1);
+    });
+    it('Api validate instance of union type failing 2', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[2].validateInstance("Hello")
+        assert.equal(m.length,2);
+    });
+    it('Api validate instance of union type passing', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[2].validateInstance({l:"Hello"});
+        assert.equal(m.length,0);
+    });
+    it('Api validate instance of union type failing 3', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testUnionType.raml");
+        var m=apiObj.types()[3].validateInstance("Hello")
+        assert.equal(m[0],"string should match to ([a-z]|[A-Z]|[0-9]){8}");
+    });
+    it('Api testing component type', function () {
+        var found=false;
+        var apiObj = util.loadApiWrapper1("./testComponentType.raml");
+        var m=apiObj.types()[0].runtimeType().properties()[0].range().array().componentType();
+        assert.equal(m.nameId(),"IntegerType");
+    });
     it('Api.allProtocols()', function () {
         var protocols = api.allProtocols();
         assert.notEqual(protocols,null);
@@ -683,8 +740,7 @@ describe('Helper methods', function () {
         var type = header.type();
         assert.equal(type, "string");
     });
-
-    //No more schemaContent for 1.0
+    //This is not relevant any more
     // it('TypeDeclaration.schemaContent 1 #1.0', function () {
     //     var api = util.loadApiOptions1(util.data("helper/schema1_10.raml"),
     //         {attributeDefaults:true});
@@ -705,7 +761,19 @@ describe('Helper methods', function () {
     //     var body = tools.collectionItem(method.body(), 0);
     //     var schemaContents : string = body.schemaContent();
     //     assert.equal(schemaContents.indexOf("required"), 5);
+    // });
     //
+    // it('TypeDeclaration.schemaContent 3 #1.0', function () {
+    //     var api = util.loadApiOptions1(util.data("helper/schema3_10.raml"),
+    //         {attributeDefaults:true});
+    //
+    //     var resource = tools.collectionItem(api.resources(), 0);
+    //     var method = tools.collectionItem(resource.methods(), 0);
+    //     var body = tools.collectionItem(method.body(), 0);
+    //     var schemaContents : string = body.schemaContent();
+    //     assert.equal(schemaContents.indexOf("required"), 5);
+    // });
+
     it('TypeDeclaration.schemaContent 1 #0.8', function () {
         var api = util.loadApiOptions08(util.data("helper/schema1_08.raml"),
             {attributeDefaults:true});
@@ -739,5 +807,49 @@ describe('Helper methods', function () {
         assert.equal(schemaContents.indexOf("required"), 5);
     });
 
+    it('Scalar properties annotations 1', function () {
+        var api = util.loadApiOptions08(util.data("parser/annotations/a29.raml"),
+            {attributeDefaults:true});
 
+        var resource = tools.collectionItem(api.resources(), 0);
+        assert.equal(resource.scalarsAnnotations().description()[0].annotation().name(), "a1");
+        assert.equal(resource.scalarsAnnotations().displayName()[0].annotation().name(), "a2");
+        assert.equal(resource.scalarsAnnotations().description()[0].structuredValue().value(), 5);
+        assert.equal(resource.scalarsAnnotations().displayName()[0].structuredValue().value(), "value1");
+    });
+
+    it('Scalar properties annotations 2', function () {
+        var api:any = util.loadApiOptions08(util.data("parser/annotations/a30.raml"),
+            {attributeDefaults:true});
+
+        var ann00 = api.scalarsAnnotations().mediaType()[0][0];
+        var ann01 = api.scalarsAnnotations().mediaType()[0][1];
+        var ann10 = api.scalarsAnnotations().mediaType()[1][0];
+        var ann11 = api.scalarsAnnotations().mediaType()[1][1];
+        assert.equal(ann00.annotation().name(), "a1");
+        assert.equal(ann01.annotation().name(), "a2");
+        assert.equal(ann00.annotation().name(), "a1");
+        assert.equal(ann01.annotation().name(), "a2");
+        assert.equal(ann00.structuredValue().value(), 1);
+        assert.equal(ann01.structuredValue().value(), "value1");
+        assert.equal(ann10.structuredValue().value(), 2);
+        assert.equal(ann11.structuredValue().value(), "value2");
+    });
+
+    it('Multiple media types 1', function () {
+        var api = util.loadApiOptions08(util.data("parser/media/m5.raml"),
+            {attributeDefaults: true});
+
+        var mediaTypes = <any[]>api.mediaType();
+        assert.equal(mediaTypes.length,2);
+        assert.equal(mediaTypes[0].value(),"application/xml");
+        assert.equal(mediaTypes[1].value(),"application/json");
+    });
+
+    it('parse raml from content', function () {
+        var title=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n"))).title();
+        assert.equal(title,"My API with Types")
+    });
 });

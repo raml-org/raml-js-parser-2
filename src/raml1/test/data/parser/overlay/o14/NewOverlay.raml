@@ -1,6 +1,6 @@
 #%RAML 1.0 Overlay
 title: blah
-masterRef: api.raml
+extends: api.raml
 
 /resource:
   get:
@@ -10,5 +10,5 @@ masterRef: api.raml
           application/json:
             examples:
               test:
-                content:
+                value:
                   name: 7

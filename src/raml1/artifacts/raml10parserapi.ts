@@ -30,24 +30,18 @@
 import hl=require("../../raml1/highLevelAST");
 import core=require("../../raml1/wrapped-ast/parserCoreApi");
 
-export interface RAMLLanguageElement extends core.BasicNode{
-
-        /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string
-
-
-        /**
-         * The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown [MARKDOWN]
-         **/
-description(  ):MarkdownString
-
+export interface Annotable extends core.BasicNode{
 
         /**
          * Most of RAML model elements may have attached annotations decribing additional meta data about this element
          **/
 annotations(  ):AnnotationRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):AnnotableScalarsAnnotations
 }
 
 export interface ValueType extends core.AttributeNode{
@@ -57,6 +51,60 @@ export interface ValueType extends core.AttributeNode{
          **/
 value(  ):any
 }
+
+export interface StringType extends ValueType{
+
+        /**
+         * @return String representation of the node value
+         **/
+value(  ):string
+}
+
+
+/**
+ * This type currently serves both for absolute and relative urls
+ **/
+export interface UriTemplate extends StringType{}
+
+
+/**
+ * This  type describes relative uri templates
+ **/
+export interface RelativeUriString extends UriTemplate{}
+
+
+/**
+ * This  type describes absolute uri templates
+ **/
+export interface FullUriTemplateString extends UriTemplate{}
+
+export interface StatusCodeString extends StringType{}
+
+
+/**
+ * This  type describes fixed uris
+ **/
+export interface FixedUriString extends StringType{}
+
+export interface ContentType extends StringType{}
+
+
+/**
+ * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
+ **/
+export interface MarkdownString extends StringType{}
+
+
+/**
+ * Schema at this moment only two subtypes are supported (json schema and xsd)
+ **/
+export interface SchemaString extends StringType{}
+
+
+/**
+ * This sub type of the string represents mime types
+ **/
+export interface MimeType extends StringType{}
 
 export interface AnyType extends ValueType{}
 
@@ -68,6 +116,20 @@ export interface NumberType extends ValueType{
 value(  ):number
 }
 
+export interface IntegerType extends ValueType{}
+
+export interface NullType extends ValueType{}
+
+export interface TimeOnlyType extends ValueType{}
+
+export interface DateOnlyType extends ValueType{}
+
+export interface DateTimeOnlyType extends ValueType{}
+
+export interface DateTimeType extends ValueType{}
+
+export interface FileType extends ValueType{}
+
 export interface BooleanType extends ValueType{
 
         /**
@@ -75,6 +137,12 @@ export interface BooleanType extends ValueType{
          **/
 value(  ):boolean
 }
+
+
+/**
+ * Elements to which this Annotation can be applied (enum)
+ **/
+export interface AnnotationTarget extends ValueType{}
 
 export interface Reference extends core.AttributeNode{
 
@@ -142,19 +210,41 @@ values(  ):TypeInstance[]
 isArray(  ):boolean
 }
 
-
-/**
- * Annotations allow you to attach information to your API
- **/
-export interface AnnotationRef extends Reference{
+export interface TraitRef extends Reference{
 
         /**
-         * Returns referenced annotation
+         * Returns referenced trait
          **/
-annotation(  ):AnnotationTypeDeclaration
+trait(  ):Trait
 }
 
-export interface TypeDeclaration extends RAMLLanguageElement{
+export interface Operation extends Annotable{
+
+        /**
+         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         **/
+queryParameters(  ):TypeDeclaration[]
+
+
+        /**
+         * Headers that allowed at this position
+         **/
+headers(  ):TypeDeclaration[]
+
+
+        /**
+         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
+         **/
+queryString(  ):TypeDeclaration
+
+
+        /**
+         * Information about the expected responses to a request
+         **/
+responses(  ):Response[]
+}
+
+export interface TypeDeclaration extends Annotable{
 
         /**
          * name of the parameter
@@ -163,21 +253,15 @@ name(  ):string
 
 
         /**
+         * The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
+
+        /**
          * When extending from a type you can define new facets (which can then be set to concrete values by subtypes).
          **/
 facets(  ):TypeDeclaration[]
-
-
-        /**
-         * Alias for the equivalent "type" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "type" property, as the "schema" alias for that property name may be removed in a future RAML version. The "type" property allows for XML and JSON schemas.
-         **/
-schema(  ):string[]
-
-
-        /**
-         * A base type which the current type extends, or more generally a type expression.
-         **/
-"type"(  ):string[]
 
 
         /**
@@ -199,7 +283,13 @@ locationKind(  ):LocationKind
 
 
         /**
-         * An object containing named examples of instances of this type. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         * An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.
+         **/
+example(  ):ExampleSpec
+
+
+        /**
+         * An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.
          **/
 examples(  ):ExampleSpec[]
 
@@ -217,15 +307,23 @@ required(  ):boolean
 
 
         /**
-         * An alternate, human-friendly name for the type
-         **/
-displayName(  ):string
-
-
-        /**
          * A longer, human-friendly description of the type
          **/
 description(  ):MarkdownString
+
+xml(  ):XMLFacetInfo
+
+
+        /**
+         * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
+         **/
+allowedTargets(  ):AnnotationTarget[]
+
+
+        /**
+         * Whether the type represents annotation
+         **/
+isAnnotation(  ):boolean
 
 
         /**
@@ -241,9 +339,9 @@ fixedFacets(  ):TypeInstance
 
 
         /**
-         * Returns object representation of example, if possible
+         * Inlined supertype definition.
          **/
-structuredExample(  ):TypeInstance
+structuredType(  ):TypeInstance
 
 
         /**
@@ -257,14 +355,42 @@ runtimeType(  ):hl.ITypeDefinition
          **/
 validateInstance( value:any ):string[]
 
-example(  ):string
+
+        /**
+         * validate an instance against type
+         **/
+validateInstanceWithDetailedStatuses( value:any ):any
+
+
+        /**
+         * A base type which the current type extends, or more generally a type expression.
+         **/
+"type"(  ):string[]
+
+
+        /**
+         * A base type which the current type extends, or more generally a type expression.
+         **/
+schema(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):TypeDeclarationScalarsAnnotations
 }
 
 export interface ModelLocation extends core.AbstractWrapperNode{}
 
 export interface LocationKind extends core.AbstractWrapperNode{}
 
-export interface ExampleSpec extends RAMLLanguageElement{
+export interface ExampleSpec extends Annotable{
+
+        /**
+         * String representation of example
+         **/
+value(  ):any
+
 
         /**
          * By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate.
@@ -299,9 +425,131 @@ annotations(  ):AnnotationRef[]
         /**
          * Returns object representation of example, if possible
          **/
-structuredContent(  ):TypeInstance
+structuredValue(  ):TypeInstance
+}
 
-content(  ):string
+export interface XMLFacetInfo extends Annotable{
+
+        /**
+         * If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types.
+         **/
+attribute(  ):boolean
+
+
+        /**
+         * If wrapped is set to true, a type instance should be wrapped in its own XML element. It can not be true for scalar types and it can not be true at the same moment when attribute is true.
+         **/
+wrapped(  ):boolean
+
+
+        /**
+         * Allows to override the name of the XML element or XML attribute in it's XML representation.
+         **/
+name(  ):string
+
+
+        /**
+         * Allows to configure the name of the XML namespace.
+         **/
+namespace(  ):string
+
+
+        /**
+         * Allows to configure the prefix which will be used during serialization to XML.
+         **/
+prefix(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotations
+}
+
+
+/**
+ * Annotable scalar properties annotations accessor
+ **/
+export interface AnnotableScalarsAnnotations{
+
+        /**
+         * Annotable.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
+
+
+/**
+ * XMLFacetInfo scalar properties annotations accessor
+ **/
+export interface XMLFacetInfoScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * XMLFacetInfo.attribute annotations
+         **/
+attribute(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.wrapped annotations
+         **/
+wrapped(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.name annotations
+         **/
+name(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.namespace annotations
+         **/
+namespace(  ):AnnotationRef[]
+
+
+        /**
+         * XMLFacetInfo.prefix annotations
+         **/
+prefix(  ):AnnotationRef[]
+}
+
+export interface UsesDeclaration extends Annotable{
+
+        /**
+         * Name prefix (without dot) used to refer imported declarations
+         **/
+key(  ):string
+
+
+        /**
+         * Content of the schema
+         **/
+value(  ):string
+
+
+        /**
+         * Returns the root node of the AST, uses statement refers.
+         **/
+ast(  ):Library
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration{
@@ -328,39 +576,117 @@ minItems(  ):number
          * Maximum amount of items in array
          **/
 maxItems(  ):number
-}
-
-export interface AnnotationTypeDeclaration extends TypeDeclaration{
-
-        /**
-         * Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.
-         **/
-allowedTargets(  ):AnnotationTarget[]
 
 
         /**
-         * Instructions on how and when to use this annotation in a RAML spec.
+         * Scalar properties annotations accessor
          **/
-usage(  ):string
+scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotations
 }
-
-export interface ArrayAnnotationTypeDeclaration extends ArrayTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
- * Elements to which this Annotation can be applied (enum)
+ * TypeDeclaration scalar properties annotations accessor
  **/
-export interface AnnotationTarget extends ValueType{}
-
-export interface UnionTypeDeclaration extends TypeDeclaration{
+export interface TypeDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * Type property name to be used as a discriminator or boolean
+         * TypeDeclaration.displayName annotations
          **/
-discriminator(  ):string
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.schema annotations
+         **/
+schema(  ):AnnotationRef[][]
+
+
+        /**
+         * TypeDeclaration.type annotations
+         **/
+"type"(  ):AnnotationRef[][]
+
+
+        /**
+         * TypeDeclaration.location annotations
+         **/
+location(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.locationKind annotations
+         **/
+locationKind(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.default annotations
+         **/
+"default"(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.repeat annotations
+         **/
+repeat(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.required annotations
+         **/
+required(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.allowedTargets annotations
+         **/
+allowedTargets(  ):AnnotationRef[][]
+
+
+        /**
+         * TypeDeclaration.isAnnotation annotations
+         **/
+isAnnotation(  ):AnnotationRef[]
+
+
+        /**
+         * TypeDeclaration.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
 }
 
-export interface UnionAnnotationTypeDeclaration extends UnionTypeDeclaration,AnnotationTypeDeclaration{}
+
+/**
+ * ArrayTypeDeclaration scalar properties annotations accessor
+ **/
+export interface ArrayTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * ArrayTypeDeclaration.uniqueItems annotations
+         **/
+uniqueItems(  ):AnnotationRef[]
+
+
+        /**
+         * ArrayTypeDeclaration.minItems annotations
+         **/
+minItems(  ):AnnotationRef[]
+
+
+        /**
+         * ArrayTypeDeclaration.maxItems annotations
+         **/
+maxItems(  ):AnnotationRef[]
+}
+
+export interface UnionTypeDeclaration extends TypeDeclaration{}
 
 export interface ObjectTypeDeclaration extends TypeDeclaration{
 
@@ -404,9 +730,43 @@ discriminator(  ):string
          * The value of discriminator for the type.
          **/
 discriminatorValue(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ObjectTypeDeclarationScalarsAnnotations
 }
 
-export interface ObjectAnnotationTypeDeclaration extends ObjectTypeDeclaration,AnnotationTypeDeclaration{}
+
+/**
+ * ObjectTypeDeclaration scalar properties annotations accessor
+ **/
+export interface ObjectTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * ObjectTypeDeclaration.minProperties annotations
+         **/
+minProperties(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.maxProperties annotations
+         **/
+maxProperties(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.discriminator annotations
+         **/
+discriminator(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.discriminatorValue annotations
+         **/
+discriminatorValue(  ):AnnotationRef[]
+}
 
 
 /**
@@ -436,17 +796,49 @@ maxLength(  ):number
          * (Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.
          **/
 enum(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):StringTypeDeclarationScalarsAnnotations
 }
 
-export interface StringAnnotationTypeDeclaration extends StringTypeDeclaration,AnnotationTypeDeclaration{}
+
+/**
+ * StringTypeDeclaration scalar properties annotations accessor
+ **/
+export interface StringTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * StringTypeDeclaration.pattern annotations
+         **/
+pattern(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]
+
+
+        /**
+         * StringTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]
+}
 
 
 /**
  * Value must be a boolean
  **/
 export interface BooleanTypeDeclaration extends TypeDeclaration{}
-
-export interface BooleanAnnotationTypeDeclaration extends BooleanTypeDeclaration,AnnotationTypeDeclaration{}
 
 
 /**
@@ -482,6 +874,12 @@ format(  ):string
          * A numeric instance is valid against "multipleOf" if the result of the division of the instance by this keyword's value is an integer.
          **/
 multipleOf(  ):number
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):NumberTypeDeclarationScalarsAnnotations
 }
 
 
@@ -494,19 +892,115 @@ export interface IntegerTypeDeclaration extends NumberTypeDeclaration{
          * Value format
          **/
 format(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):IntegerTypeDeclarationScalarsAnnotations
 }
 
-export interface NumberAnnotationTypeDeclaration extends NumberTypeDeclaration,AnnotationTypeDeclaration{}
+
+/**
+ * NumberTypeDeclaration scalar properties annotations accessor
+ **/
+export interface NumberTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * NumberTypeDeclaration.minimum annotations
+         **/
+minimum(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.maximum annotations
+         **/
+maximum(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.enum annotations
+         **/
+enum(  ):AnnotationRef[][]
+
+
+        /**
+         * NumberTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
+
+
+        /**
+         * NumberTypeDeclaration.multipleOf annotations
+         **/
+multipleOf(  ):AnnotationRef[]
+}
+
+
+/**
+ * IntegerTypeDeclaration scalar properties annotations accessor
+ **/
+export interface IntegerTypeDeclarationScalarsAnnotations extends NumberTypeDeclarationScalarsAnnotations{
+
+        /**
+         * IntegerTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
+}
+
+
+/**
+ * the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)
+ **/
+export interface DateOnlyTypeDeclaration extends TypeDeclaration{}
+
+
+/**
+ * the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)
+ **/
+export interface TimeOnlyTypeDeclaration extends TypeDeclaration{}
+
+
+/**
+ * combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)
+ **/
+export interface DateTimeOnlyTypeDeclaration extends TypeDeclaration{}
+
+
+/**
+ * a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.
+ **/
+export interface DateTimeTypeDeclaration extends TypeDeclaration{
+
+        /**
+         * Format used for this date time rfc3339 or rfc2616
+         **/
+format(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):DateTimeTypeDeclarationScalarsAnnotations
+}
+
+
+/**
+ * DateTimeTypeDeclaration scalar properties annotations accessor
+ **/
+export interface DateTimeTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * DateTimeTypeDeclaration.format annotations
+         **/
+format(  ):AnnotationRef[]
+}
 
 
 /**
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
  **/
-export interface DateTypeDeclaration extends TypeDeclaration{
-format(  ):string
-}
-
-export interface DateTypeAnnotationDeclaration extends DateTypeDeclaration,AnnotationTypeDeclaration{}
+export interface DateTypeDeclaration extends TypeDeclaration{}
 
 
 /**
@@ -530,17 +1024,161 @@ minLength(  ):number
          * The maxLength attribute specifies the parameter value's maximum number of bytes.
          **/
 maxLength(  ):number
-}
 
-export interface StringType extends ValueType{
 
         /**
-         * @return String representation of the node value
+         * Scalar properties annotations accessor
          **/
-value(  ):string
+scalarsAnnotations(  ):FileTypeDeclarationScalarsAnnotations
 }
 
-export interface ContentType extends StringType{}
+
+/**
+ * FileTypeDeclaration scalar properties annotations accessor
+ **/
+export interface FileTypeDeclarationScalarsAnnotations extends TypeDeclarationScalarsAnnotations{
+
+        /**
+         * FileTypeDeclaration.fileTypes annotations
+         **/
+fileTypes(  ):AnnotationRef[][]
+
+
+        /**
+         * FileTypeDeclaration.minLength annotations
+         **/
+minLength(  ):AnnotationRef[]
+
+
+        /**
+         * FileTypeDeclaration.maxLength annotations
+         **/
+maxLength(  ):AnnotationRef[]
+}
+
+export interface Response extends Annotable{
+
+        /**
+         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
+         **/
+code(  ):StatusCodeString
+
+
+        /**
+         * Detailed information about any response headers returned by this method
+         **/
+headers(  ):TypeDeclaration[]
+
+
+        /**
+         * The body of the response: a body declaration
+         **/
+body(  ):TypeDeclaration[]
+
+
+        /**
+         * A longer, human-friendly description of the response
+         **/
+description(  ):MarkdownString
+
+
+        /**
+         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * true for codes < 400 and false otherwise
+         **/
+isOkRange(  ):boolean
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResponseScalarsAnnotations
+}
+
+
+/**
+ * Response scalar properties annotations accessor
+ **/
+export interface ResponseScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Response.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * Response.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
+
+export interface SecuritySchemePart extends Operation{
+
+        /**
+         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
+         **/
+annotations(  ):AnnotationRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):SecuritySchemePartScalarsAnnotations
+}
+
+
+/**
+ * SecuritySchemePart scalar properties annotations accessor
+ **/
+export interface SecuritySchemePartScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * SecuritySchemePart.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
+
+export interface MethodBase extends Operation{
+
+        /**
+         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
+         **/
+body(  ):TypeDeclaration[]
+
+
+        /**
+         * A method can override the protocols specified in the resource or at the API root, by employing this property.
+         **/
+protocols(  ):string[]
+
+
+        /**
+         * Instantiation of applyed traits
+         **/
+is(  ):TraitRef[]
+
+
+        /**
+         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         **/
+securedBy(  ):SecuritySchemeRef[]
+
+description(  ):MarkdownString
+
+displayName(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodBaseScalarsAnnotations
+}
 
 export interface SecuritySchemeRef extends Reference{
 
@@ -560,7 +1198,7 @@ securityScheme(  ):AbstractSecurityScheme
 /**
  * Declares globally referable security scheme definition
  **/
-export interface AbstractSecurityScheme extends RAMLLanguageElement{
+export interface AbstractSecurityScheme extends Annotable{
 
         /**
          * Name of the security scheme
@@ -587,213 +1225,213 @@ describedBy(  ):SecuritySchemePart
 
 
         /**
-         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
-         **/
-settings(  ):SecuritySchemeSettings
-}
-
-export interface HasNormalParameters extends RAMLLanguageElement{
-
-        /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Headers that allowed at this position
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration
-}
-
-export interface MethodBase extends HasNormalParameters{
-
-        /**
-         * Information about the expected responses to a request
-         **/
-responses(  ):Response[]
-
-
-        /**
-         * Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.
-         **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * A method can override the protocols specified in the resource or at the API root, by employing this property.
-         **/
-protocols(  ):string[]
-
-
-        /**
-         * Instantiation of applyed traits
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
-         **/
-securedBy(  ):SecuritySchemeRef[]
-}
-
-export interface Response extends RAMLLanguageElement{
-
-        /**
-         * Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code.
-         **/
-code(  ):StatusCodeString
-
-
-        /**
-         * Detailed information about any response headers returned by this method
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * The body of the response: a body declaration
-         **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * An alternate, human-friendly name for the response
+         * The displayName attribute specifies the security scheme display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
 
 
         /**
-         * A longer, human-friendly description of the response
+         * The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more.
          **/
-description(  ):MarkdownString
+settings(  ):SecuritySchemeSettings
 
 
         /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
+         * Scalar properties annotations accessor
          **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
-         * true for codes < 400 and false otherwise
-         **/
-isOkRange(  ):boolean
+scalarsAnnotations(  ):AbstractSecuritySchemeScalarsAnnotations
 }
 
-export interface StatusCodeString extends StringType{}
+export interface SecuritySchemeSettings extends Annotable{}
 
-export interface TraitRef extends Reference{
+export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings{
 
         /**
-         * Returns referenced trait
+         * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
          **/
-trait(  ):Trait
+requestTokenUri(  ):FixedUriString
+
+
+        /**
+         * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
+         **/
+authorizationUri(  ):FixedUriString
+
+
+        /**
+         * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
+         **/
+tokenCredentialsUri(  ):FixedUriString
+
+
+        /**
+         * List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT
+         **/
+signatures(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OAuth1SecuritySchemeSettingsScalarsAnnotations
 }
 
-export interface Trait extends MethodBase{
+
+/**
+ * OAuth1SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export interface OAuth1SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * Name of the trait
+         * OAuth1SecuritySchemeSettings.requestTokenUri annotations
          **/
-name(  ):string
-
-
-        /**
-         * Instructions on how and when the trait should be used.
-         **/
-usage(  ):string
+requestTokenUri(  ):AnnotationRef[]
 
 
         /**
-         * You may import library locally here it contents is accessible only inside of this trait
+         * OAuth1SecuritySchemeSettings.authorizationUri annotations
          **/
-uses(  ):Library[]
+authorizationUri(  ):AnnotationRef[]
 
 
         /**
-         * Returns object representation of parametrized properties of the trait
+         * OAuth1SecuritySchemeSettings.tokenCredentialsUri annotations
          **/
-parametrizedProperties(  ):TypeInstance
+tokenCredentialsUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth1SecuritySchemeSettings.signatures annotations
+         **/
+signatures(  ):AnnotationRef[][]
 }
 
-export interface LibraryBase extends RAMLLanguageElement{
+export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
 
         /**
-         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
+         * The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
          **/
-schemas(  ):GlobalSchema[]
-
-
-        /**
-         * Declarations of (data) types for use within this API
-         **/
-types(  ):TypeDeclaration[]
+accessTokenUri(  ):FixedUriString
 
 
         /**
-         * Declarations of annotation types for use by annotations
+         * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
          **/
-annotationTypes(  ):AnnotationTypeDeclaration[]
+authorizationUri(  ):FixedUriString
 
 
         /**
-         * Declarations of security schemes for use within this API.
+         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or any absolute url.
          **/
-securitySchemes(  ):AbstractSecurityScheme[]
+authorizationGrants(  ):string[]
 
 
         /**
-         * Importing libraries
+         * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
          **/
-uses(  ):Library[]
+scopes(  ):string[]
 
 
         /**
-         * Retrieve all traits including those defined in libraries
+         * Scalar properties annotations accessor
          **/
-traits(  ):Trait[]
-
-
-        /**
-         * Retrieve all traits including those defined in libraries
-         * @deprecated
-         **/
-allTraits(  ):Trait[]
-
-
-        /**
-         * Retrieve all resource types including those defined in libraries
-         **/
-resourceTypes(  ):ResourceType[]
-
-
-        /**
-         * Retrieve all resource types including those defined in libraries
-         * @deprecated
-         **/
-allResourceTypes(  ):ResourceType[]
+scalarsAnnotations(  ):OAuth2SecuritySchemeSettingsScalarsAnnotations
 }
 
-export interface Library extends LibraryBase{
+
+/**
+ * OAuth2SecuritySchemeSettings scalar properties annotations accessor
+ **/
+export interface OAuth2SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * contains description of why library exist
+         * OAuth2SecuritySchemeSettings.accessTokenUri annotations
          **/
-usage(  ):string
+accessTokenUri(  ):AnnotationRef[]
 
 
         /**
-         * Namespace which the library is imported under
+         * OAuth2SecuritySchemeSettings.authorizationUri annotations
          **/
-name(  ):string
+authorizationUri(  ):AnnotationRef[]
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.authorizationGrants annotations
+         **/
+authorizationGrants(  ):AnnotationRef[][]
+
+
+        /**
+         * OAuth2SecuritySchemeSettings.scopes annotations
+         **/
+scopes(  ):AnnotationRef[][]
+}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface OAuth2SecurityScheme extends AbstractSecurityScheme{
+settings(  ):OAuth2SecuritySchemeSettings
+}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface OAuth1SecurityScheme extends AbstractSecurityScheme{
+settings(  ):OAuth1SecuritySchemeSettings
+}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface PassThroughSecurityScheme extends AbstractSecurityScheme{
+settings(  ):SecuritySchemeSettings
+}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface BasicSecurityScheme extends AbstractSecurityScheme{}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface DigestSecurityScheme extends AbstractSecurityScheme{}
+
+
+/**
+ * Declares globally referable security scheme definition
+ **/
+export interface CustomSecurityScheme extends AbstractSecurityScheme{}
+
+
+/**
+ * AbstractSecurityScheme scalar properties annotations accessor
+ **/
+export interface AbstractSecuritySchemeScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * AbstractSecurityScheme.type annotations
+         **/
+"type"(  ):AnnotationRef[]
+
+
+        /**
+         * AbstractSecurityScheme.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * AbstractSecurityScheme.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
 }
 
 export interface Method extends MethodBase{
@@ -805,57 +1443,9 @@ method(  ):string
 
 
         /**
-         * An alternate, human-friendly name for the method (in the resource's context).
+         * The displayName attribute specifies the method display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
-
-
-        /**
-         * A longer, human-friendly description of the method (in the resource's context)
-         **/
-description(  ):MarkdownString
-
-
-        /**
-         * Specifies the query string needed by this method. Mutually exclusive with queryParameters.
-         **/
-queryString(  ):TypeDeclaration
-
-
-        /**
-         * Detailed information about any query parameters needed by this method. Mutually exclusive with queryString.
-         **/
-queryParameters(  ):TypeDeclaration[]
-
-
-        /**
-         * Detailed information about any request headers needed by this method.
-         **/
-headers(  ):TypeDeclaration[]
-
-
-        /**
-         * Some methods admit request bodies, which are described by this property.
-         **/
-body(  ):TypeDeclaration[]
-
-
-        /**
-         * A list of the traits to apply to this method.
-         **/
-is(  ):TraitRef[]
-
-
-        /**
-         * Most of RAML model elements may have attached annotations decribing additional meta data about this element
-         **/
-annotations(  ):AnnotationRef[]
-
-
-        /**
-         * The security schemes that apply to this method
-         **/
-securedBy(  ):SecuritySchemeRef[]
 
 
         /**
@@ -884,179 +1474,111 @@ methodId(  ):string
          * @deprecated
          **/
 allSecuredBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):MethodScalarsAnnotations
 }
 
-export interface SecuritySchemePart extends MethodBase{
+
+/**
+ * MethodBase scalar properties annotations accessor
+ **/
+export interface MethodBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * Headers that allowed at this position
+         * MethodBase.protocols annotations
          **/
-headers(  ):TypeDeclaration[]
+protocols(  ):AnnotationRef[][]
 
 
         /**
-         * An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property
+         * MethodBase.is annotations
          **/
-queryParameters(  ):TypeDeclaration[]
+is(  ):AnnotationRef[][]
 
 
         /**
-         * Specifies the query string, used by the scheme in order to authorize the request. Mutually exclusive with queryParameters.
+         * MethodBase.securedBy annotations
          **/
-queryString(  ):TypeDeclaration
+securedBy(  ):AnnotationRef[][]
 
 
         /**
-         * Optional array of responses, describing the possible responses that could be sent.
+         * MethodBase.description annotations
          **/
-responses(  ):Response[]
+description(  ):AnnotationRef[]
 
 
         /**
-         * Instantiation of applyed traits
+         * MethodBase.displayName annotations
          **/
-is(  ):TraitRef[]
+displayName(  ):AnnotationRef[]
+}
 
+
+/**
+ * Method scalar properties annotations accessor
+ **/
+export interface MethodScalarsAnnotations extends MethodBaseScalarsAnnotations{
 
         /**
-         * securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.
+         * Method.displayName annotations
          **/
-securedBy(  ):SecuritySchemeRef[]
+displayName(  ):AnnotationRef[]
+}
+
+export interface Trait extends MethodBase{
+
+        /**
+         * Name of the trait
+         **/
+name(  ):string
 
 
         /**
-         * An alternate, human-friendly name for the security scheme part
+         * Instructions on how and when the trait should be used.
+         **/
+usage(  ):string
+
+
+        /**
+         * The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
 
 
         /**
-         * A longer, human-friendly description of the security scheme part
+         * Returns object representation of parametrized properties of the trait
          **/
-description(  ):MarkdownString
+parametrizedProperties(  ):TypeInstance
 
 
         /**
-         * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
+         * Scalar properties annotations accessor
          **/
-annotations(  ):AnnotationRef[]
-}
-
-export interface SecuritySchemeSettings extends core.BasicNode{}
-
-export interface OAuth1SecuritySchemeSettings extends SecuritySchemeSettings{
-
-        /**
-         * The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1
-         **/
-requestTokenUri(  ):FixedUriString
-
-
-        /**
-         * The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2
-         **/
-authorizationUri(  ):FixedUriString
-
-
-        /**
-         * The URI of the Token Request endpoint as defined in RFC5849 Section 2.3
-         **/
-tokenCredentialsUri(  ):FixedUriString
-
-
-        /**
-         * List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT
-         **/
-signatures(  ):string[]
+scalarsAnnotations(  ):TraitScalarsAnnotations
 }
 
 
 /**
- * This  type describes fixed uris
+ * Trait scalar properties annotations accessor
  **/
-export interface FixedUriString extends StringType{}
-
-export interface OAuth2SecuritySchemeSettings extends SecuritySchemeSettings{
+export interface TraitScalarsAnnotations extends MethodBaseScalarsAnnotations{
 
         /**
-         * The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type.
+         * Trait.usage annotations
          **/
-accessTokenUri(  ):FixedUriString
+usage(  ):AnnotationRef[]
 
 
         /**
-         * The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types.
+         * Trait.displayName annotations
          **/
-authorizationUri(  ):FixedUriString
-
-
-        /**
-         * A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.
-         **/
-authorizationGrants(  ):string[]
-
-
-        /**
-         * A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3
-         **/
-scopes(  ):string[]
+displayName(  ):AnnotationRef[]
 }
-
-export interface PassThroughSecuritySchemeSettings extends SecuritySchemeSettings{
-
-        /**
-         * Name of query parameter used to pass key
-         **/
-queryParameterName(  ):string
-
-
-        /**
-         * Name of header used to pass key
-         **/
-headerName(  ):string
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface OAuth2SecurityScheme extends AbstractSecurityScheme{
-settings(  ):OAuth2SecuritySchemeSettings
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface OAuth1SecurityScheme extends AbstractSecurityScheme{
-settings(  ):OAuth1SecuritySchemeSettings
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface PassThroughSecurityScheme extends AbstractSecurityScheme{
-settings(  ):PassThroughSecuritySchemeSettings
-}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface BasicSecurityScheme extends AbstractSecurityScheme{}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface DigestSecurityScheme extends AbstractSecurityScheme{}
-
-
-/**
- * Declares globally referable security scheme definition
- **/
-export interface CustomSecurityScheme extends AbstractSecurityScheme{}
 
 export interface ResourceTypeRef extends Reference{
 
@@ -1066,7 +1588,7 @@ export interface ResourceTypeRef extends Reference{
 resourceType(  ):ResourceType
 }
 
-export interface ResourceBase extends RAMLLanguageElement{
+export interface ResourceBase extends Annotable{
 
         /**
          * Methods that are part of this resource type definition
@@ -1084,6 +1606,8 @@ is(  ):TraitRef[]
          * The resource type which this resource inherits.
          **/
 "type"(  ):ResourceTypeRef
+
+description(  ):MarkdownString
 
 
         /**
@@ -1127,6 +1651,12 @@ allUriParameters(  ):TypeDeclaration[]
          * @deprecated
          **/
 allSecuredBy(  ):SecuritySchemeRef[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceBaseScalarsAnnotations
 }
 
 export interface Resource extends ResourceBase{
@@ -1138,15 +1668,15 @@ relativeUri(  ):RelativeUriString
 
 
         /**
-         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
+         * The displayName attribute specifies the resource display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
-resources(  ):Resource[]
+displayName(  ):string
 
 
         /**
-         * An alternate, human-friendly name for the resource.
+         * A nested resource is identified as any property whose name begins with a slash ("/") and is therefore treated as a relative URI.
          **/
-displayName(  ):string
+resources(  ):Resource[]
 
 
         /**
@@ -1202,27 +1732,75 @@ ownerApi(  ):Api
          * for `Api` owning the `Resource` and `Resource.uriParameters()`.
          **/
 absoluteUriParameters(  ):TypeDeclaration[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceScalarsAnnotations
 }
 
 
 /**
- * This type currently serves both for absolute and relative urls
+ * ResourceBase scalar properties annotations accessor
  **/
-export interface UriTemplate extends StringType{}
+export interface ResourceBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * ResourceBase.is annotations
+         **/
+is(  ):AnnotationRef[][]
+
+
+        /**
+         * ResourceBase.type annotations
+         **/
+"type"(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceBase.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceBase.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[][]
+}
 
 
 /**
- * This  type describes absolute uri templates
+ * Resource scalar properties annotations accessor
  **/
-export interface FullUriTemplateString extends UriTemplate{}
+export interface ResourceScalarsAnnotations extends ResourceBaseScalarsAnnotations{
+
+        /**
+         * Resource.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
 
 
-/**
- * This  type describes relative uri templates
- **/
-export interface RelativeUriString extends UriTemplate{}
+        /**
+         * Resource.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * Resource.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
 
 export interface ResourceType extends ResourceBase{
+
+        /**
+         * The displayName attribute specifies the resource type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
+         **/
+displayName(  ):string
+
 
         /**
          * Name of the resource type
@@ -1237,54 +1815,48 @@ usage(  ):string
 
 
         /**
-         * You may import library locally here it contents is accessible only inside of this resource type
-         **/
-uses(  ):Library[]
-
-
-        /**
          * Returns object representation of parametrized properties of the resource type
          **/
 parametrizedProperties(  ):TypeInstance
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ResourceTypeScalarsAnnotations
 }
 
 
 /**
- * Schema at this moment only two subtypes are supported (json schema and xsd)
+ * ResourceType scalar properties annotations accessor
  **/
-export interface SchemaString extends StringType{}
+export interface ResourceTypeScalarsAnnotations extends ResourceBaseScalarsAnnotations{
+
+        /**
+         * ResourceType.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * ResourceType.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+}
 
 
 /**
- * JSON schema
+ * Annotations allow you to attach information to your API
  **/
-export interface JSonSchemaString extends SchemaString{}
+export interface AnnotationRef extends Reference{
 
+        /**
+         * Returns referenced annotation
+         **/
+annotation(  ):TypeDeclaration
+}
 
-/**
- * XSD schema
- **/
-export interface XMLSchemaString extends SchemaString{}
-
-
-/**
- * Examples at this moment only two subtypes are supported (json  and xml)
- **/
-export interface ExampleString extends StringType{}
-
-
-/**
- * This sub type of the string represents mime types
- **/
-export interface MimeType extends StringType{}
-
-
-/**
- * [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
- **/
-export interface MarkdownString extends StringType{}
-
-export interface DocumentationItem extends RAMLLanguageElement{
+export interface DocumentationItem extends Annotable{
 
         /**
          * Title of documentation section
@@ -1296,40 +1868,118 @@ title(  ):string
          * Content of documentation section
          **/
 content(  ):MarkdownString
-}
-
-export interface RAMLSimpleElement extends core.BasicNode{}
-
-export interface ImportDeclaration extends RAMLSimpleElement{
-
-        /**
-         * Name prefix (without dot) used to refer imported declarations
-         **/
-key(  ):string
 
 
         /**
-         * Content of the declared namespace
+         * Scalar properties annotations accessor
          **/
-value(  ):Library
+scalarsAnnotations(  ):DocumentationItemScalarsAnnotations
 }
 
 
 /**
- * Content of the schema
+ * DocumentationItem scalar properties annotations accessor
  **/
-export interface GlobalSchema extends RAMLSimpleElement{
+export interface DocumentationItemScalarsAnnotations extends AnnotableScalarsAnnotations{
 
         /**
-         * Name of the global schema, used to refer on schema content
+         * DocumentationItem.title annotations
          **/
-key(  ):string
+title(  ):AnnotationRef[]
 
 
         /**
-         * Content of the schema
+         * DocumentationItem.content annotations
          **/
-value(  ):SchemaString
+content(  ):AnnotationRef[]
+}
+
+export interface FragmentDeclaration extends Annotable{
+uses(  ):UsesDeclaration[]
+}
+
+export interface LibraryBase extends FragmentDeclaration{
+
+        /**
+         * Alias for the equivalent "types" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the "types" property, as the "schemas" alias for that property name may be removed in a future RAML version. The "types" property allows for XML and JSON schemas.
+         **/
+schemas(  ):TypeDeclaration[]
+
+
+        /**
+         * Declarations of (data) types for use within this API
+         **/
+types(  ):TypeDeclaration[]
+
+
+        /**
+         * Declarations of annotation types for use by annotations
+         **/
+annotationTypes(  ):TypeDeclaration[]
+
+
+        /**
+         * Declarations of security schemes for use within this API.
+         **/
+securitySchemes(  ):AbstractSecurityScheme[]
+
+
+        /**
+         * Retrieve all traits including those defined in libraries
+         **/
+traits(  ):Trait[]
+
+
+        /**
+         * Retrieve all traits including those defined in libraries
+         * @deprecated
+         **/
+allTraits(  ):Trait[]
+
+
+        /**
+         * Retrieve all resource types including those defined in libraries
+         **/
+resourceTypes(  ):ResourceType[]
+
+
+        /**
+         * Retrieve all resource types including those defined in libraries
+         * @deprecated
+         **/
+allResourceTypes(  ):ResourceType[]
+}
+
+export interface Library extends LibraryBase{
+
+        /**
+         * contains description of why library exist
+         **/
+usage(  ):string
+
+
+        /**
+         * Namespace which the library is imported under
+         **/
+name(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):LibraryScalarsAnnotations
+}
+
+
+/**
+ * Library scalar properties annotations accessor
+ **/
+export interface LibraryScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Library.usage annotations
+         **/
+usage(  ):AnnotationRef[]
 }
 
 export interface Api extends LibraryBase{
@@ -1338,6 +1988,12 @@ export interface Api extends LibraryBase{
          * Short plain-text label for the API
          **/
 title(  ):string
+
+
+        /**
+         * A longer, human-friendly description of the API
+         **/
+description(  ):MarkdownString
 
 
         /**
@@ -1361,7 +2017,7 @@ protocols(  ):string[]
         /**
          * The default media type to use for request and response bodies (payloads), e.g. "application/json"
          **/
-mediaType(  ):MimeType
+mediaType(  ):MimeType[]
 
 
         /**
@@ -1380,18 +2036,6 @@ resources(  ):Resource[]
          * Additional overall documentation for the API
          **/
 documentation(  ):DocumentationItem[]
-
-
-        /**
-         * The displayName attribute specifies the $self's display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
-         **/
-displayName(  ):string
-
-
-        /**
-         * A longer, human-friendly description of the API
-         **/
-description(  ):MarkdownString
 
 
         /**
@@ -1461,6 +2105,12 @@ allBaseUriParameters(  ):TypeDeclaration[]
          * @deprecated
          **/
 allProtocols(  ):string[]
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ApiScalarsAnnotations
 }
 
 export interface Overlay extends Api{
@@ -1474,13 +2124,97 @@ usage(  ):string
         /**
          * Location of a valid RAML API definition (or overlay or extension), the overlay is applied to.
          **/
-masterRef(  ):string
+extends(  ):string
 
 
         /**
          * Short plain-text label for the API
          **/
 title(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):OverlayScalarsAnnotations
+}
+
+
+/**
+ * Api scalar properties annotations accessor
+ **/
+export interface ApiScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * Api.title annotations
+         **/
+title(  ):AnnotationRef[]
+
+
+        /**
+         * Api.description annotations
+         **/
+description(  ):AnnotationRef[]
+
+
+        /**
+         * Api.version annotations
+         **/
+version(  ):AnnotationRef[]
+
+
+        /**
+         * Api.baseUri annotations
+         **/
+baseUri(  ):AnnotationRef[]
+
+
+        /**
+         * Api.protocols annotations
+         **/
+protocols(  ):AnnotationRef[][]
+
+
+        /**
+         * Api.mediaType annotations
+         **/
+mediaType(  ):AnnotationRef[][]
+
+
+        /**
+         * Api.securedBy annotations
+         **/
+securedBy(  ):AnnotationRef[][]
+
+
+        /**
+         * Api.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
+
+
+/**
+ * Overlay scalar properties annotations accessor
+ **/
+export interface OverlayScalarsAnnotations extends ApiScalarsAnnotations{
+
+        /**
+         * Overlay.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Overlay.extends annotations
+         **/
+extends(  ):AnnotationRef[]
+
+
+        /**
+         * Overlay.title annotations
+         **/
+title(  ):AnnotationRef[]
 }
 
 export interface Extension extends Api{
@@ -1494,13 +2228,43 @@ usage(  ):string
         /**
          * Location of a valid RAML API definition (or overlay or extension), the extension is applied to
          **/
-masterRef(  ):string
+extends(  ):string
 
 
         /**
          * Short plain-text label for the API
          **/
 title(  ):string
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ExtensionScalarsAnnotations
+}
+
+
+/**
+ * Extension scalar properties annotations accessor
+ **/
+export interface ExtensionScalarsAnnotations extends ApiScalarsAnnotations{
+
+        /**
+         * Extension.usage annotations
+         **/
+usage(  ):AnnotationRef[]
+
+
+        /**
+         * Extension.extends annotations
+         **/
+extends(  ):AnnotationRef[]
+
+
+        /**
+         * Extension.title annotations
+         **/
+title(  ):AnnotationRef[]
 }
 
 /**
@@ -1522,20 +2286,38 @@ export function isLibraryBase(node: core.AbstractWrapperNode) : node is LibraryB
 
 
 /**
- * Custom type guard for RAMLLanguageElement. Returns true if node is instance of RAMLLanguageElement. Returns false otherwise.
- * Also returns false for super interfaces of RAMLLanguageElement.
+ * Custom type guard for Annotable. Returns true if node is instance of Annotable. Returns false otherwise.
+ * Also returns false for super interfaces of Annotable.
  */
-export function isRAMLLanguageElement(node: core.AbstractWrapperNode) : node is RAMLLanguageElement {
-    return node.kind() == "RAMLLanguageElement" && node.RAMLVersion() == "RAML10";
+export function isAnnotable(node: core.AbstractWrapperNode) : node is Annotable {
+    return node.kind() == "Annotable" && node.RAMLVersion() == "RAML10";
 }
 
 
 /**
- * Custom type guard for MarkdownString. Returns true if node is instance of MarkdownString. Returns false otherwise.
- * Also returns false for super interfaces of MarkdownString.
+ * Custom type guard for AnnotationRef. Returns true if node is instance of AnnotationRef. Returns false otherwise.
+ * Also returns false for super interfaces of AnnotationRef.
  */
-export function isMarkdownString(node: core.AbstractWrapperNode) : node is MarkdownString {
-    return node.kind() == "MarkdownString" && node.RAMLVersion() == "RAML10";
+export function isAnnotationRef(node: core.AbstractWrapperNode) : node is AnnotationRef {
+    return node.kind() == "AnnotationRef" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Reference. Returns true if node is instance of Reference. Returns false otherwise.
+ * Also returns false for super interfaces of Reference.
+ */
+export function isReference(node: core.AbstractWrapperNode) : node is Reference {
+    return node.kind() == "Reference" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ValueType. Returns true if node is instance of ValueType. Returns false otherwise.
+ * Also returns false for super interfaces of ValueType.
+ */
+export function isValueType(node: core.AbstractWrapperNode) : node is ValueType {
+    return node.kind() == "ValueType" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1549,11 +2331,83 @@ export function isStringType(node: core.AbstractWrapperNode) : node is StringTyp
 
 
 /**
- * Custom type guard for ValueType. Returns true if node is instance of ValueType. Returns false otherwise.
- * Also returns false for super interfaces of ValueType.
+ * Custom type guard for UriTemplate. Returns true if node is instance of UriTemplate. Returns false otherwise.
+ * Also returns false for super interfaces of UriTemplate.
  */
-export function isValueType(node: core.AbstractWrapperNode) : node is ValueType {
-    return node.kind() == "ValueType" && node.RAMLVersion() == "RAML10";
+export function isUriTemplate(node: core.AbstractWrapperNode) : node is UriTemplate {
+    return node.kind() == "UriTemplate" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for RelativeUriString. Returns true if node is instance of RelativeUriString. Returns false otherwise.
+ * Also returns false for super interfaces of RelativeUriString.
+ */
+export function isRelativeUriString(node: core.AbstractWrapperNode) : node is RelativeUriString {
+    return node.kind() == "RelativeUriString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FullUriTemplateString. Returns true if node is instance of FullUriTemplateString. Returns false otherwise.
+ * Also returns false for super interfaces of FullUriTemplateString.
+ */
+export function isFullUriTemplateString(node: core.AbstractWrapperNode) : node is FullUriTemplateString {
+    return node.kind() == "FullUriTemplateString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for StatusCodeString. Returns true if node is instance of StatusCodeString. Returns false otherwise.
+ * Also returns false for super interfaces of StatusCodeString.
+ */
+export function isStatusCodeString(node: core.AbstractWrapperNode) : node is StatusCodeString {
+    return node.kind() == "StatusCodeString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FixedUriString. Returns true if node is instance of FixedUriString. Returns false otherwise.
+ * Also returns false for super interfaces of FixedUriString.
+ */
+export function isFixedUriString(node: core.AbstractWrapperNode) : node is FixedUriString {
+    return node.kind() == "FixedUriString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for ContentType. Returns true if node is instance of ContentType. Returns false otherwise.
+ * Also returns false for super interfaces of ContentType.
+ */
+export function isContentType(node: core.AbstractWrapperNode) : node is ContentType {
+    return node.kind() == "ContentType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MarkdownString. Returns true if node is instance of MarkdownString. Returns false otherwise.
+ * Also returns false for super interfaces of MarkdownString.
+ */
+export function isMarkdownString(node: core.AbstractWrapperNode) : node is MarkdownString {
+    return node.kind() == "MarkdownString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SchemaString. Returns true if node is instance of SchemaString. Returns false otherwise.
+ * Also returns false for super interfaces of SchemaString.
+ */
+export function isSchemaString(node: core.AbstractWrapperNode) : node is SchemaString {
+    return node.kind() == "SchemaString" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MimeType. Returns true if node is instance of MimeType. Returns false otherwise.
+ * Also returns false for super interfaces of MimeType.
+ */
+export function isMimeType(node: core.AbstractWrapperNode) : node is MimeType {
+    return node.kind() == "MimeType" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1576,6 +2430,69 @@ export function isNumberType(node: core.AbstractWrapperNode) : node is NumberTyp
 
 
 /**
+ * Custom type guard for IntegerType. Returns true if node is instance of IntegerType. Returns false otherwise.
+ * Also returns false for super interfaces of IntegerType.
+ */
+export function isIntegerType(node: core.AbstractWrapperNode) : node is IntegerType {
+    return node.kind() == "IntegerType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for NullType. Returns true if node is instance of NullType. Returns false otherwise.
+ * Also returns false for super interfaces of NullType.
+ */
+export function isNullType(node: core.AbstractWrapperNode) : node is NullType {
+    return node.kind() == "NullType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for TimeOnlyType. Returns true if node is instance of TimeOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of TimeOnlyType.
+ */
+export function isTimeOnlyType(node: core.AbstractWrapperNode) : node is TimeOnlyType {
+    return node.kind() == "TimeOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateOnlyType. Returns true if node is instance of DateOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of DateOnlyType.
+ */
+export function isDateOnlyType(node: core.AbstractWrapperNode) : node is DateOnlyType {
+    return node.kind() == "DateOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeOnlyType. Returns true if node is instance of DateTimeOnlyType. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeOnlyType.
+ */
+export function isDateTimeOnlyType(node: core.AbstractWrapperNode) : node is DateTimeOnlyType {
+    return node.kind() == "DateTimeOnlyType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeType. Returns true if node is instance of DateTimeType. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeType.
+ */
+export function isDateTimeType(node: core.AbstractWrapperNode) : node is DateTimeType {
+    return node.kind() == "DateTimeType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for FileType. Returns true if node is instance of FileType. Returns false otherwise.
+ * Also returns false for super interfaces of FileType.
+ */
+export function isFileType(node: core.AbstractWrapperNode) : node is FileType {
+    return node.kind() == "FileType" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
  * Custom type guard for BooleanType. Returns true if node is instance of BooleanType. Returns false otherwise.
  * Also returns false for super interfaces of BooleanType.
  */
@@ -1585,29 +2502,47 @@ export function isBooleanType(node: core.AbstractWrapperNode) : node is BooleanT
 
 
 /**
- * Custom type guard for Reference. Returns true if node is instance of Reference. Returns false otherwise.
- * Also returns false for super interfaces of Reference.
+ * Custom type guard for AnnotationTarget. Returns true if node is instance of AnnotationTarget. Returns false otherwise.
+ * Also returns false for super interfaces of AnnotationTarget.
  */
-export function isReference(node: core.AbstractWrapperNode) : node is Reference {
-    return node.kind() == "Reference" && node.RAMLVersion() == "RAML10";
+export function isAnnotationTarget(node: core.AbstractWrapperNode) : node is AnnotationTarget {
+    return node.kind() == "AnnotationTarget" && node.RAMLVersion() == "RAML10";
 }
 
 
 /**
- * Custom type guard for AnnotationRef. Returns true if node is instance of AnnotationRef. Returns false otherwise.
- * Also returns false for super interfaces of AnnotationRef.
+ * Custom type guard for TraitRef. Returns true if node is instance of TraitRef. Returns false otherwise.
+ * Also returns false for super interfaces of TraitRef.
  */
-export function isAnnotationRef(node: core.AbstractWrapperNode) : node is AnnotationRef {
-    return node.kind() == "AnnotationRef" && node.RAMLVersion() == "RAML10";
+export function isTraitRef(node: core.AbstractWrapperNode) : node is TraitRef {
+    return node.kind() == "TraitRef" && node.RAMLVersion() == "RAML10";
 }
 
 
 /**
- * Custom type guard for AnnotationTypeDeclaration. Returns true if node is instance of AnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of AnnotationTypeDeclaration.
+ * Custom type guard for Trait. Returns true if node is instance of Trait. Returns false otherwise.
+ * Also returns false for super interfaces of Trait.
  */
-export function isAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is AnnotationTypeDeclaration {
-    return node.kind() == "AnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+export function isTrait(node: core.AbstractWrapperNode) : node is Trait {
+    return node.kind() == "Trait" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for MethodBase. Returns true if node is instance of MethodBase. Returns false otherwise.
+ * Also returns false for super interfaces of MethodBase.
+ */
+export function isMethodBase(node: core.AbstractWrapperNode) : node is MethodBase {
+    return node.kind() == "MethodBase" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for Operation. Returns true if node is instance of Operation. Returns false otherwise.
+ * Also returns false for super interfaces of Operation.
+ */
+export function isOperation(node: core.AbstractWrapperNode) : node is Operation {
+    return node.kind() == "Operation" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1648,29 +2583,29 @@ export function isExampleSpec(node: core.AbstractWrapperNode) : node is ExampleS
 
 
 /**
+ * Custom type guard for XMLFacetInfo. Returns true if node is instance of XMLFacetInfo. Returns false otherwise.
+ * Also returns false for super interfaces of XMLFacetInfo.
+ */
+export function isXMLFacetInfo(node: core.AbstractWrapperNode) : node is XMLFacetInfo {
+    return node.kind() == "XMLFacetInfo" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for UsesDeclaration. Returns true if node is instance of UsesDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of UsesDeclaration.
+ */
+export function isUsesDeclaration(node: core.AbstractWrapperNode) : node is UsesDeclaration {
+    return node.kind() == "UsesDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
  * Custom type guard for ArrayTypeDeclaration. Returns true if node is instance of ArrayTypeDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of ArrayTypeDeclaration.
  */
 export function isArrayTypeDeclaration(node: core.AbstractWrapperNode) : node is ArrayTypeDeclaration {
     return node.kind() == "ArrayTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for ArrayAnnotationTypeDeclaration. Returns true if node is instance of ArrayAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of ArrayAnnotationTypeDeclaration.
- */
-export function isArrayAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is ArrayAnnotationTypeDeclaration {
-    return node.kind() == "ArrayAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for AnnotationTarget. Returns true if node is instance of AnnotationTarget. Returns false otherwise.
- * Also returns false for super interfaces of AnnotationTarget.
- */
-export function isAnnotationTarget(node: core.AbstractWrapperNode) : node is AnnotationTarget {
-    return node.kind() == "AnnotationTarget" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1684,29 +2619,11 @@ export function isUnionTypeDeclaration(node: core.AbstractWrapperNode) : node is
 
 
 /**
- * Custom type guard for UnionAnnotationTypeDeclaration. Returns true if node is instance of UnionAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of UnionAnnotationTypeDeclaration.
- */
-export function isUnionAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is UnionAnnotationTypeDeclaration {
-    return node.kind() == "UnionAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for ObjectTypeDeclaration. Returns true if node is instance of ObjectTypeDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of ObjectTypeDeclaration.
  */
 export function isObjectTypeDeclaration(node: core.AbstractWrapperNode) : node is ObjectTypeDeclaration {
     return node.kind() == "ObjectTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for ObjectAnnotationTypeDeclaration. Returns true if node is instance of ObjectAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of ObjectAnnotationTypeDeclaration.
- */
-export function isObjectAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is ObjectAnnotationTypeDeclaration {
-    return node.kind() == "ObjectAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1720,29 +2637,11 @@ export function isStringTypeDeclaration(node: core.AbstractWrapperNode) : node i
 
 
 /**
- * Custom type guard for StringAnnotationTypeDeclaration. Returns true if node is instance of StringAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of StringAnnotationTypeDeclaration.
- */
-export function isStringAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is StringAnnotationTypeDeclaration {
-    return node.kind() == "StringAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for BooleanTypeDeclaration. Returns true if node is instance of BooleanTypeDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of BooleanTypeDeclaration.
  */
 export function isBooleanTypeDeclaration(node: core.AbstractWrapperNode) : node is BooleanTypeDeclaration {
     return node.kind() == "BooleanTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for BooleanAnnotationTypeDeclaration. Returns true if node is instance of BooleanAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of BooleanAnnotationTypeDeclaration.
- */
-export function isBooleanAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is BooleanAnnotationTypeDeclaration {
-    return node.kind() == "BooleanAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1765,11 +2664,38 @@ export function isIntegerTypeDeclaration(node: core.AbstractWrapperNode) : node 
 
 
 /**
- * Custom type guard for NumberAnnotationTypeDeclaration. Returns true if node is instance of NumberAnnotationTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of NumberAnnotationTypeDeclaration.
+ * Custom type guard for DateOnlyTypeDeclaration. Returns true if node is instance of DateOnlyTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of DateOnlyTypeDeclaration.
  */
-export function isNumberAnnotationTypeDeclaration(node: core.AbstractWrapperNode) : node is NumberAnnotationTypeDeclaration {
-    return node.kind() == "NumberAnnotationTypeDeclaration" && node.RAMLVersion() == "RAML10";
+export function isDateOnlyTypeDeclaration(node: core.AbstractWrapperNode) : node is DateOnlyTypeDeclaration {
+    return node.kind() == "DateOnlyTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for TimeOnlyTypeDeclaration. Returns true if node is instance of TimeOnlyTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of TimeOnlyTypeDeclaration.
+ */
+export function isTimeOnlyTypeDeclaration(node: core.AbstractWrapperNode) : node is TimeOnlyTypeDeclaration {
+    return node.kind() == "TimeOnlyTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeOnlyTypeDeclaration. Returns true if node is instance of DateTimeOnlyTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeOnlyTypeDeclaration.
+ */
+export function isDateTimeOnlyTypeDeclaration(node: core.AbstractWrapperNode) : node is DateTimeOnlyTypeDeclaration {
+    return node.kind() == "DateTimeOnlyTypeDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for DateTimeTypeDeclaration. Returns true if node is instance of DateTimeTypeDeclaration. Returns false otherwise.
+ * Also returns false for super interfaces of DateTimeTypeDeclaration.
+ */
+export function isDateTimeTypeDeclaration(node: core.AbstractWrapperNode) : node is DateTimeTypeDeclaration {
+    return node.kind() == "DateTimeTypeDeclaration" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1783,15 +2709,6 @@ export function isDateTypeDeclaration(node: core.AbstractWrapperNode) : node is 
 
 
 /**
- * Custom type guard for DateTypeAnnotationDeclaration. Returns true if node is instance of DateTypeAnnotationDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of DateTypeAnnotationDeclaration.
- */
-export function isDateTypeAnnotationDeclaration(node: core.AbstractWrapperNode) : node is DateTypeAnnotationDeclaration {
-    return node.kind() == "DateTypeAnnotationDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for FileTypeDeclaration. Returns true if node is instance of FileTypeDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of FileTypeDeclaration.
  */
@@ -1801,11 +2718,20 @@ export function isFileTypeDeclaration(node: core.AbstractWrapperNode) : node is 
 
 
 /**
- * Custom type guard for ContentType. Returns true if node is instance of ContentType. Returns false otherwise.
- * Also returns false for super interfaces of ContentType.
+ * Custom type guard for Response. Returns true if node is instance of Response. Returns false otherwise.
+ * Also returns false for super interfaces of Response.
  */
-export function isContentType(node: core.AbstractWrapperNode) : node is ContentType {
-    return node.kind() == "ContentType" && node.RAMLVersion() == "RAML10";
+export function isResponse(node: core.AbstractWrapperNode) : node is Response {
+    return node.kind() == "Response" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for SecuritySchemePart. Returns true if node is instance of SecuritySchemePart. Returns false otherwise.
+ * Also returns false for super interfaces of SecuritySchemePart.
+ */
+export function isSecuritySchemePart(node: core.AbstractWrapperNode) : node is SecuritySchemePart {
+    return node.kind() == "SecuritySchemePart" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -1828,87 +2754,6 @@ export function isAbstractSecurityScheme(node: core.AbstractWrapperNode) : node 
 
 
 /**
- * Custom type guard for SecuritySchemePart. Returns true if node is instance of SecuritySchemePart. Returns false otherwise.
- * Also returns false for super interfaces of SecuritySchemePart.
- */
-export function isSecuritySchemePart(node: core.AbstractWrapperNode) : node is SecuritySchemePart {
-    return node.kind() == "SecuritySchemePart" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for MethodBase. Returns true if node is instance of MethodBase. Returns false otherwise.
- * Also returns false for super interfaces of MethodBase.
- */
-export function isMethodBase(node: core.AbstractWrapperNode) : node is MethodBase {
-    return node.kind() == "MethodBase" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for HasNormalParameters. Returns true if node is instance of HasNormalParameters. Returns false otherwise.
- * Also returns false for super interfaces of HasNormalParameters.
- */
-export function isHasNormalParameters(node: core.AbstractWrapperNode) : node is HasNormalParameters {
-    return node.kind() == "HasNormalParameters" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for Response. Returns true if node is instance of Response. Returns false otherwise.
- * Also returns false for super interfaces of Response.
- */
-export function isResponse(node: core.AbstractWrapperNode) : node is Response {
-    return node.kind() == "Response" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for StatusCodeString. Returns true if node is instance of StatusCodeString. Returns false otherwise.
- * Also returns false for super interfaces of StatusCodeString.
- */
-export function isStatusCodeString(node: core.AbstractWrapperNode) : node is StatusCodeString {
-    return node.kind() == "StatusCodeString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for TraitRef. Returns true if node is instance of TraitRef. Returns false otherwise.
- * Also returns false for super interfaces of TraitRef.
- */
-export function isTraitRef(node: core.AbstractWrapperNode) : node is TraitRef {
-    return node.kind() == "TraitRef" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for Trait. Returns true if node is instance of Trait. Returns false otherwise.
- * Also returns false for super interfaces of Trait.
- */
-export function isTrait(node: core.AbstractWrapperNode) : node is Trait {
-    return node.kind() == "Trait" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for Library. Returns true if node is instance of Library. Returns false otherwise.
- * Also returns false for super interfaces of Library.
- */
-export function isLibrary(node: core.AbstractWrapperNode) : node is Library {
-    return node.kind() == "Library" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for Method. Returns true if node is instance of Method. Returns false otherwise.
- * Also returns false for super interfaces of Method.
- */
-export function isMethod(node: core.AbstractWrapperNode) : node is Method {
-    return node.kind() == "Method" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for SecuritySchemeSettings. Returns true if node is instance of SecuritySchemeSettings. Returns false otherwise.
  * Also returns false for super interfaces of SecuritySchemeSettings.
  */
@@ -1927,29 +2772,11 @@ export function isOAuth1SecuritySchemeSettings(node: core.AbstractWrapperNode) :
 
 
 /**
- * Custom type guard for FixedUriString. Returns true if node is instance of FixedUriString. Returns false otherwise.
- * Also returns false for super interfaces of FixedUriString.
- */
-export function isFixedUriString(node: core.AbstractWrapperNode) : node is FixedUriString {
-    return node.kind() == "FixedUriString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for OAuth2SecuritySchemeSettings. Returns true if node is instance of OAuth2SecuritySchemeSettings. Returns false otherwise.
  * Also returns false for super interfaces of OAuth2SecuritySchemeSettings.
  */
 export function isOAuth2SecuritySchemeSettings(node: core.AbstractWrapperNode) : node is OAuth2SecuritySchemeSettings {
     return node.kind() == "OAuth2SecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for PassThroughSecuritySchemeSettings. Returns true if node is instance of PassThroughSecuritySchemeSettings. Returns false otherwise.
- * Also returns false for super interfaces of PassThroughSecuritySchemeSettings.
- */
-export function isPassThroughSecuritySchemeSettings(node: core.AbstractWrapperNode) : node is PassThroughSecuritySchemeSettings {
-    return node.kind() == "PassThroughSecuritySchemeSettings" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -2008,6 +2835,15 @@ export function isCustomSecurityScheme(node: core.AbstractWrapperNode) : node is
 
 
 /**
+ * Custom type guard for Method. Returns true if node is instance of Method. Returns false otherwise.
+ * Also returns false for super interfaces of Method.
+ */
+export function isMethod(node: core.AbstractWrapperNode) : node is Method {
+    return node.kind() == "Method" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
  * Custom type guard for ResourceTypeRef. Returns true if node is instance of ResourceTypeRef. Returns false otherwise.
  * Also returns false for super interfaces of ResourceTypeRef.
  */
@@ -2044,78 +2880,6 @@ export function isResource(node: core.AbstractWrapperNode) : node is Resource {
 
 
 /**
- * Custom type guard for RelativeUriString. Returns true if node is instance of RelativeUriString. Returns false otherwise.
- * Also returns false for super interfaces of RelativeUriString.
- */
-export function isRelativeUriString(node: core.AbstractWrapperNode) : node is RelativeUriString {
-    return node.kind() == "RelativeUriString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for UriTemplate. Returns true if node is instance of UriTemplate. Returns false otherwise.
- * Also returns false for super interfaces of UriTemplate.
- */
-export function isUriTemplate(node: core.AbstractWrapperNode) : node is UriTemplate {
-    return node.kind() == "UriTemplate" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for FullUriTemplateString. Returns true if node is instance of FullUriTemplateString. Returns false otherwise.
- * Also returns false for super interfaces of FullUriTemplateString.
- */
-export function isFullUriTemplateString(node: core.AbstractWrapperNode) : node is FullUriTemplateString {
-    return node.kind() == "FullUriTemplateString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for SchemaString. Returns true if node is instance of SchemaString. Returns false otherwise.
- * Also returns false for super interfaces of SchemaString.
- */
-export function isSchemaString(node: core.AbstractWrapperNode) : node is SchemaString {
-    return node.kind() == "SchemaString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for JSonSchemaString. Returns true if node is instance of JSonSchemaString. Returns false otherwise.
- * Also returns false for super interfaces of JSonSchemaString.
- */
-export function isJSonSchemaString(node: core.AbstractWrapperNode) : node is JSonSchemaString {
-    return node.kind() == "JSonSchemaString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for XMLSchemaString. Returns true if node is instance of XMLSchemaString. Returns false otherwise.
- * Also returns false for super interfaces of XMLSchemaString.
- */
-export function isXMLSchemaString(node: core.AbstractWrapperNode) : node is XMLSchemaString {
-    return node.kind() == "XMLSchemaString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for ExampleString. Returns true if node is instance of ExampleString. Returns false otherwise.
- * Also returns false for super interfaces of ExampleString.
- */
-export function isExampleString(node: core.AbstractWrapperNode) : node is ExampleString {
-    return node.kind() == "ExampleString" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for MimeType. Returns true if node is instance of MimeType. Returns false otherwise.
- * Also returns false for super interfaces of MimeType.
- */
-export function isMimeType(node: core.AbstractWrapperNode) : node is MimeType {
-    return node.kind() == "MimeType" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for DocumentationItem. Returns true if node is instance of DocumentationItem. Returns false otherwise.
  * Also returns false for super interfaces of DocumentationItem.
  */
@@ -2125,29 +2889,11 @@ export function isDocumentationItem(node: core.AbstractWrapperNode) : node is Do
 
 
 /**
- * Custom type guard for GlobalSchema. Returns true if node is instance of GlobalSchema. Returns false otherwise.
- * Also returns false for super interfaces of GlobalSchema.
+ * Custom type guard for Library. Returns true if node is instance of Library. Returns false otherwise.
+ * Also returns false for super interfaces of Library.
  */
-export function isGlobalSchema(node: core.AbstractWrapperNode) : node is GlobalSchema {
-    return node.kind() == "GlobalSchema" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for RAMLSimpleElement. Returns true if node is instance of RAMLSimpleElement. Returns false otherwise.
- * Also returns false for super interfaces of RAMLSimpleElement.
- */
-export function isRAMLSimpleElement(node: core.AbstractWrapperNode) : node is RAMLSimpleElement {
-    return node.kind() == "RAMLSimpleElement" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for ImportDeclaration. Returns true if node is instance of ImportDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of ImportDeclaration.
- */
-export function isImportDeclaration(node: core.AbstractWrapperNode) : node is ImportDeclaration {
-    return node.kind() == "ImportDeclaration" && node.RAMLVersion() == "RAML10";
+export function isLibrary(node: core.AbstractWrapperNode) : node is Library {
+    return node.kind() == "Library" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -2168,3 +2914,17 @@ export function isExtension(node: core.AbstractWrapperNode) : node is Extension 
     return node.kind() == "Extension" && node.RAMLVersion() == "RAML10";
 }
 
+
+/**
+ * Check if the AST node represents fragment
+ */
+export function isFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):boolean{
+    return node.highLevel().parent()==null;
+}
+
+/**
+ * Convert fragment representing node to FragmentDeclaration instance.
+ */
+export function asFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):FragmentDeclaration{
+    return isFragment(node)?<FragmentDeclaration><any>node:null;
+}

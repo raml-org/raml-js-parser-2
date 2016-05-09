@@ -1,0 +1,25 @@
+#%RAML 1.0
+title: Api
+
+types:
+  SimpleType:
+    type: object
+    properties:
+      value1: string
+      value2:
+        type: string
+        xml:
+          attribute: true
+          name: attribute
+  ComplexType:
+    type: object
+    properties:
+      prop1: string
+      prop2: SimpleType
+    example:
+      <ComplexType>
+        <prop1>aaa</prop1>
+        <prop2 attribute='asd'>
+          
+        </prop2>
+      </ComplexType>

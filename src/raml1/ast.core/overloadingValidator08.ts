@@ -46,7 +46,7 @@ class OverloadingValidator{
             var notPushed=ms
             if (notPushed.length>1){
                 notPushed.forEach(m=>{
-                    v.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT,"resources share same URI",m.highLevel(),true))
+                    v.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT,"resources share same URI",m.highLevel(),false))
                 })
             }
 

@@ -12,7 +12,7 @@ import rr=require("./resourceRegistry")
 import util = require("../../util/index")
 import URL = require("url")
 import refResolvers = require("./includeRefResolvers")
-import schemes = require('../../util/schemaUtil');
+import schemes = require('../../util/schemaAsync');
 import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
 
@@ -63,9 +63,13 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
     private stu:boolean;
     private _lineMapper:lowlevel.LineMapper;
-
+    private _hl:highlevel.IParseResult
     highLevel():highlevel.IParseResult{
-        return hli.fromUnit(this);
+        if (this._hl){
+            return this._hl;
+        }
+        this._hl= hli.fromUnit(this);
+        return this._hl;
     }
     isStubUnit(){
         return this.stu;
@@ -76,11 +80,21 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
 
-    getIncludeNodes(): lowlevel.ILowLevelASTNode[]
+    getIncludeNodes(): { includePath(): string}[]
     {
         var ast=<ASTNode>this.ast();
-        var arr:lowlevel.ILowLevelASTNode[] = [];
+        var arr:{ includePath(): string}[] = [];
         ast.gatherIncludes(arr);
+
+        ast.children().forEach(x=>{
+            if (x.key()=="uses"){
+                x.children().forEach(y=>{
+                    arr.push({
+                        includePath(){return y.value()}
+                    })
+                })
+            }
+        })
         return arr;
     }
     cloneToProject(p:Project){
@@ -119,6 +133,10 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     }
 
     resolve(p:string):lowlevel.ICompilationUnit {
+        if (typeof p!="string")
+        {
+            p=""+p;
+        }
         var unit=this._project.resolve(this._path,p);
         return unit;
     }
@@ -174,6 +192,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     updateContentSafe(n:string){
         this._content=n;
         this._lineMapper = null;
+        this._hl=null;
     }
 
 
@@ -232,7 +251,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     getMasterReferenceNode() : lowlevel.ILowLevelASTNode {
 
         return _.find(this.ast().children(),
-            x=>x.key()==universes.Universe10.Overlay.properties.masterRef.name);
+            x=>x.key()==universes.Universe10.Overlay.properties.extends.name);
 
     }
 }
@@ -545,6 +564,9 @@ export class FSResolverImpl implements ExtendedFSResolver{
 
 
     content(path:string):string{
+        if (typeof path!="string"){
+            path=""+path;
+        }
         if (!fs.existsSync(path)){
             return null;
         }
@@ -777,20 +799,24 @@ export class Project implements lowlevel.IProject{
 
             var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
 
-            if (this.pathToUnit[refPath]) {
-                result = this.pathToUnit[refPath];
-            } else {
-                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
-
-                result = this.pathToUnit[refPath];
-            }
+            // if (this.pathToUnit[refPath]) {
+            //     result = this.pathToUnit[refPath];
+            // } else {
+            //     this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
+            //
+            //     result = this.pathToUnit[refPath];
+            // }
 
             this.pathToUnit[absPath] ? Promise.resolve(result).then((unit: CompilationUnit) => {
-                return result;
+                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, this.pathToUnit[absPath].contents()), false, this, refPath);
+                
+                return this.pathToUnit[refPath];
             }) : this.unitAsync(absPath, true).then((unit: CompilationUnit) => {
                 this.pathToUnit[absPath] = unit;
 
-                return result;
+                this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, this.pathToUnit[absPath].contents()), false, this, refPath);
+
+                return this.pathToUnit[refPath];
             });
         }
 
@@ -817,13 +843,15 @@ export class Project implements lowlevel.IProject{
                 this.pathToUnit[absPath] = this.unit(absPath, true);
             }
 
+            var wrappedUnit: CompilationUnit  = this.pathToUnit[absPath];
+
             var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
 
             if (this.pathToUnit[refPath]){
                 return this.pathToUnit[refPath];
             }
 
-            this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath), false, this, refPath);
+            this.pathToUnit[refPath] = new CompilationUnit(includeReference.encodedName(), refResolvers.resolveContents(oldPath, wrappedUnit && wrappedUnit.contents()), false, this, refPath);
 
             return this.pathToUnit[refPath];
         }
@@ -2065,6 +2093,24 @@ function breaksTheLine(oc:string,textCommand:lowlevel.TextChangeCommand){
     }
 }
 
+function tryParseScalar(q:any):string|boolean|number{
+    if (q == "true") {
+        q = true;
+    }
+    else if (q == "false") {
+        q = false;
+    }
+    else {
+        var vl = parseFloat(q);
+        if (!isNaN(vl)) {
+            if (("" + q).match("^[-+]?[0-9]*\.?[0-9]+$")) {
+                q = vl;
+            }
+        }
+    }
+    return q;
+}
+
 export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     _errors:Error[]=[]
@@ -2099,7 +2145,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         this._includesContents = includesContents;
     }
 
-    gatherIncludes(s:lowlevel.ILowLevelASTNode[]=[],inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true){
+    gatherIncludes(s:{ includePath(): string}[]=[],inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true){
             if (this._node==null){
                 return;//TODO FIXME
             }
@@ -2350,6 +2396,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             seq.items.forEach(x=>arr.push(this.dumpNode(x,full)));
             return arr;
         }
+        if (n.kind==yaml.Kind.ANCHOR_REF){
+            var aref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>n
+            return this.dumpNode(aref.value,full);
+        }
         if (n.kind==yaml.Kind.MAPPING){
             var c:yaml.YAMLMapping=<yaml.YAMLMapping>n
             var v={};
@@ -2363,20 +2413,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var s:yaml.YAMLScalar=<yaml.YAMLScalar>n
             var q:any= s.value;
             if (s.plainScalar){
-                if (q=="true"){
-                    q=true;
-                }
-                else if (q=="false"){
-                    q=false;
-                }
-                else {
-                    var vl=parseFloat(q);
-                    if (!isNaN(vl)){
-                        if ((""+q).match("^[-+]?[0-9]*\.?[0-9]+$")) {
-                            q = vl;
-                        }
-                    }
-                }
+                q=tryParseScalar(q);
             }
             return q;
         }
@@ -2447,6 +2484,28 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         this._node=n;
     }
 
+    isAnnotatedScalar(){
+        if (this.kind()==yaml.Kind.MAPPING&&this.unit()) {
+
+            if (this.valueKind() == yaml.Kind.MAP&&this._node.value.mappings) {
+                var isScalar = (<yaml.YamlMap>this._node).value.mappings.length>0;
+                (<yaml.YamlMap>this._node).value.mappings.forEach(x=> {
+                    if (x.key.value === "value") {
+                        return;
+                    }
+                    if(x.key.value) {
+                        if (x.key.value.charAt(0) == '(' && x.key.value.charAt(x.key.value.length - 1) == ')') {
+                            return;
+                        }
+                    }
+                    isScalar = false;
+                });
+                return isScalar;
+            }
+        }
+        return false;
+    }
+
     value(toString?:boolean):any {
         if (!this._node){
             return "";
@@ -2456,7 +2515,14 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if(!toString&&(""+this._node['valueObject']===this._node['value'])){
                 return this._node['valueObject'];
             }
-            return this._node['value'];
+
+            var q= this._node['value'];
+            if (!toString) {
+                if ((<yaml.YAMLScalar>this._node).plainScalar) {
+                    q=tryParseScalar(q);
+                }
+            }
+            return q;
         }
         if (this._node.kind==yaml.Kind.ANCHOR_REF){
             var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node;
@@ -2467,7 +2533,17 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (map.value==null){
                 return null;
             }
+            if (this.isAnnotatedScalar()){
+                var child= new ASTNode(map.value,this._unit,this,null,null);
+                var ch=child.children();
+                for (var i=0;i<ch.length;i++){
+                    if (ch[i].key()==="value"){
+                        return ch[i].value();
+                    }
+                }
+            }
             return new ASTNode(map.value,this._unit,this,null,null).value(toString);
+
         }
         if (this._node.kind==yaml.Kind.INCLUDE_REF){
             //here we should resolve include
@@ -2503,7 +2579,6 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 //handle map with one member case differently
                 return new ASTNode(amap.mappings[0],this._unit,this,null,null);
             }
-
         }
         if (this._node.kind==yaml.Kind.SEQ){
             var aseq:yaml.YAMLSequence=<yaml.YAMLSequence>this._node;
@@ -3518,7 +3593,7 @@ export function getDefinitionForLowLevelNode(node:lowlevel.ILowLevelASTNode):hig
 }
 
 function fetchMasterReference(unit: lowlevel.ICompilationUnit, map:{[key:string]:boolean},
-    errors:{[key:string]:string}, lMap:{[key:string]:lowlevel.ILowLevelASTNode[]}) {
+    errors:{[key:string]:string}, lMap:{[key:string]:{ includePath():string}[]}) {
 
     if (!unit.isOverlayOrExtension()) return;
 
@@ -3559,7 +3634,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
     var processUnits = (ind:number):Promise<any>=>{
         var refs: Promise<any>[] = [];
 
-        var lMap:{[key:string]:lowlevel.ILowLevelASTNode[]} = {};
+        var lMap:{[key:string]:{ includePath(): string}[]} = {};
         while(ind<units.length) {
             var unit = units[ind];
             var unitPath = path.dirname(unit.absolutePath());
@@ -3586,8 +3661,10 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     return;
                 }
                 if(errors[absIncludePath]){
-                    x.errors().push(new Error(errors[ip]));
-                    return;
+                    if ((<any>x).errors) {
+                        (<any>x).errors().push(new Error(errors[ip]));
+                        return;
+                    }
                 }
                 var arr = lMap[absIncludePath];
                 if(!arr){
@@ -3611,7 +3688,11 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     units.push(x);
                 }
             },x=>{
-                lMap[unitPath].forEach(node=>node.errors().push(new Error(x)));
+                lMap[unitPath].forEach(node=>{
+                    if ((<any>node).errors) {
+                        (<any>node).errors().push(new Error(x))
+                    }
+                });
                 errors[unitPath] = x;
             }));
         });

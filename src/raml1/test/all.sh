@@ -2,6 +2,7 @@
 
 mocha model-editing-tests-add model-editing-tests-refactoring model-editing-tests-remove model-editing-tests-attrs model-editing-tests-sig schema-model-tests.js
 mocha parserTests
+mocha parserTestsRC2
 mocha parserTests2
 mocha parserASTTests
 mocha gotoDeclarationTests

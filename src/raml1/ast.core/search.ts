@@ -31,11 +31,17 @@ export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
 
 };
 export function globalDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
-
-    var decl = declRoot(h);
-    return findDeclarations(decl);
-
+    var result=[];
+    while (h.parent()!=null){
+        if (h.lowLevel().includePath()){
+            result=result.concat(findDeclarations(h))
+        }
+        h=h.parent();
+    }
+    result=result.concat(findDeclarations(h));
+    return result;
 }
+
 function mark(h:hl.IHighLevelNode,rs:hl.IHighLevelNode[]){
     var n:any=h.lowLevel();
     n=n._node?n._node:n;
@@ -53,22 +59,27 @@ function unmark(h:hl.IHighLevelNode){
 }
 export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     var rs:hl.IHighLevelNode[]=[];
-    var q=mark(h,rs);
-    if (q){
-        //throw new Error()
-        //return q;
-    }
-    try {
+
         h.elements().forEach(x=> {
-            if (x.definition().key() == universes.Universe10.Library) {
-                rs = rs.concat(findDeclarations(x));
+            if (x.definition().key()== universes.Universe10.UsesDeclaration) {
+                var mm=x.attr("value");
+                if (mm) {
+                    var unit = h.root().lowLevel().unit().resolve(mm.value());
+                    if (unit != null) {
+                        unit.highLevel().children().forEach(x=> {
+                            if (x.isElement()) {
+                                rs.push(x.asElement());
+                            }
+                        })
+                    }
+                }
             }
-            rs.push(x);
+            else {
+                rs.push(x);
+            }
         });
         return rs;
-    }finally{
-        unmark(h)
-    }
+
 }
 function getIndent2(offset:number,text:string):string{
     var spaces="";
@@ -88,7 +99,7 @@ function getIndent2(offset:number,text:string):string{
 
     }
 }
-function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true):hl.IParseResult{
+export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true, returnAttrs=true):hl.IParseResult{
     if (n==null){
         return null;
     }
@@ -106,6 +117,9 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
 
                     var node=deepFindNode(all[i],offset,end, goToOtherUnits);
                     if (node){
+                        if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                            node = node.parent();
+                        }
                         return node;
                     }
                 }
@@ -125,11 +139,17 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
                         }
                         var node = deepFindNode(hl, offset, end, goToOtherUnits);
                         if (node) {
+                            if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                                node = node.parent();
+                            }
                             return node;
                         }
 
                     }
-                    return attr;
+                    if (returnAttrs)
+                        return attr;
+                    else
+                        return attr.parent();
                 }
                 return null;
             }
@@ -230,8 +250,7 @@ export function referenceTargets(p0:hl.IProperty,c:hl.IHighLevelNode):hl.IHighLe
     if (p.getAdapter(ramlServices.RAMLPropertyService).isTypeExpr()){
         var definitionNodes = globalDeclarations(c).filter(node=>{
             var nc=node.definition().key();
-            if (nc===universes.Universe08.GlobalSchema
-                ||nc===universes.Universe10.GlobalSchema){
+            if (nc===universes.Universe08.GlobalSchema){
                 return true;
             }
             return node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name);
@@ -265,8 +284,7 @@ export function enumValues(p:def.Property,c:hl.IHighLevelNode):string[]{
         {
             var definitionNodes = globalDeclarations(c).filter(node=>{
                 var nc=node.definition().key();
-                if (nc===universes.Universe08.GlobalSchema
-                    ||nc===universes.Universe10.GlobalSchema){
+                if (nc===universes.Universe08.GlobalSchema){
                     return true;
                 }
                 return (node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name))
@@ -288,9 +306,7 @@ export function enumValues(p:def.Property,c:hl.IHighLevelNode):string[]{
                 if (p.range().universe().version()=="RAML10"){
                     if (p.range().hasValueTypeInHierarchy()){
                         var definitionNodes = globalDeclarations(c).filter(node=>{
-                            if (node.definition().key()==universes.Universe10.GlobalSchema){
-                                return true;
-                            }
+
                             return node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
                         })
                         rs= definitionNodes.map(x=>hlimpl.qName(x,c));
@@ -503,9 +519,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
 }
 export function findExampleContentType(node : hl.IAttribute) : hl.INodeDefinition {
     var p=node.parent();
-    if (node.property().nameId()==universes.Universe10.ExampleSpec.properties.content.name){
-        p=p.parent();
-    }
+
     return <hl.INodeDefinition>p.localType();
 }
 
@@ -518,8 +532,6 @@ export function parseDocumentationContent(attribute : hl.IAttribute, type : hl.I
 
 export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var typeExampleName10 = universes.Universe10.TypeDeclaration.properties.example.name;
-    var typeExamplesName10 = universes.Universe10.TypeDeclaration.properties.examples.name;
-    var contentName10 = universes.Universe10.ExampleSpec.properties.content.name;
     var objectName10 = universes.Universe10.ObjectTypeDeclaration.name;
 
     if (!(node instanceof hlimpl.ASTPropImpl)){
@@ -531,13 +543,7 @@ export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var parentProperty = parent && parent.property();
     var parentPropertyName = parentProperty && parentProperty.nameId();
 
-    if(contentName10 === property.name() && property.isString()) {
-        if(parent instanceof hlimpl.ASTNodeImpl && (typeExamplesName10 === parentPropertyName || typeExampleName10 === parentPropertyName)){
-            if(parent.parent() instanceof hlimpl.ASTNodeImpl && parent.parent().definition().isAssignableFrom(objectName10)) {
-                return true;
-            }
-        }
-    } else if(typeExampleName10 === property.name() && property.isString()) {
+    if(typeExampleName10 === property.name() && property.isString()) {
         if(parent instanceof hlimpl.ASTNodeImpl && parent.definition().isAssignableFrom(objectName10)) {
             return true;
         }

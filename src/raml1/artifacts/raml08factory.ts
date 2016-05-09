@@ -24,7 +24,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
                 //This is only case of nested hierarchy
                 continue;
             }
-            if (superTypeName=="RAMLLanguageElement"){
+            if (superTypeName=="hl.BasicNode"){
                 //depth first
                 continue;
             }
@@ -37,7 +37,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         }
     }
     if (!wrapperConstructor){
-        wrapperConstructor = classMap["RAMLLanguageElement"]
+        wrapperConstructor = classMap["hl.BasicNode"]
 
     }
     return wrapperConstructor(node,setAsTopLevel);
@@ -101,8 +101,6 @@ var classMap = {
 
     "GlobalSchema": (x,y)=>{return new RamlWrapper.GlobalSchemaImpl(x,y)},
 
-    "HasNormalParameters": (x,y)=>{return new RamlWrapper.HasNormalParametersImpl(x,y)},
-
     "IntegerTypeDeclaration": (x,y)=>{return new RamlWrapper.IntegerTypeDeclarationImpl(x,y)},
 
     "JSONBody": (x,y)=>{return new RamlWrapper.JSONBodyImpl(x,y)},
@@ -134,8 +132,6 @@ var classMap = {
     "Parameter": (x,y)=>{return new RamlWrapper.ParameterImpl(x,y)},
 
     "ParameterLocation": (x)=>{return new RamlWrapper.ParameterLocationImpl(x)},
-
-    "RAMLLanguageElement": (x,y)=>{return new RamlWrapper.RAMLLanguageElementImpl(x,y)},
 
     "RAMLSimpleElement": (x,y)=>{return new RamlWrapper.RAMLSimpleElementImpl(x,y)},
 

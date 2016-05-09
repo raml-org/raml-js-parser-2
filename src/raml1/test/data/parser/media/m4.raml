@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: New API
+mediaType: [ application/json , application/xml ]
+types:
+  Person:
+/list:
+  get:
+    responses:
+      200:
+        body:
+          type: Person[]
+/send:
+  post:
+    body:
+      type: Person
+

@@ -1,5 +1,6 @@
 import parserCore = require("./raml1/wrapped-ast/parserCoreApi")
 import apiLoader = require("./raml1/apiLoader")
+import path = require("path")
 
 /**
  * RAML 1.0 top-level AST interfaces.
@@ -42,12 +43,66 @@ export function loadApiSync(apiPath:string, arg1?:string[]|parserCore.Options,
  * @return RAMLLanguageElement instance.
  **/
 export function loadRAMLSync(ramlPath:string, extensionsAndOverlays:string[],
-                             options?:parserCore.Options):api10.RAMLLanguageElement|api08.RAMLLanguageElement
+                             options?:parserCore.Options):hl.BasicNode
 
 export function loadRAMLSync(ramlPath:string, arg1?:string[]|parserCore.Options,
-                             arg2?:parserCore.Options):api10.RAMLLanguageElement|api08.RAMLLanguageElement{
+                             arg2?:parserCore.Options):hl.BasicNode{
 
     return <any>apiLoader.loadApi(ramlPath,arg1,arg2).getOrElse(null);
+}
+
+function optionsForContent(content:string,
+            arg2?:parserCore.Options):parserCore.Options{
+    return {
+        fsResolver:{
+            content(pathStr:string):string{
+                if (pathStr==path.resolve("/","#local.raml")){
+                    return content;
+                }
+                if (arg2){
+                    if (arg2.fsResolver){
+                        return arg2.fsResolver.content(pathStr);
+                    }
+                }
+            },
+
+            contentAsync(pathStr:string):Promise<string>{
+                if (pathStr==path.resolve("/","#local.raml")){
+                    return Promise.resolve(content);
+                }
+                if (arg2){
+                    if (arg2.fsResolver){
+                        return arg2.fsResolver.contentAsync(pathStr);
+                    }
+                }
+            }
+        },
+        httpResolver:arg2?arg2.httpResolver:null,
+        rejectOnErrors:arg2?arg2.rejectOnErrors:false,
+        attributeDefaults:arg2?arg2.attributeDefaults:true
+    }
+}
+/**
+ * Load RAML synchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param content content of the raml
+ * @param options Load options  (note you should path a resolvers if you want includes to be resolved)
+ * @return RAMLLanguageElement instance.
+ **/
+export function parseRAMLSync(content:string,
+                             arg2?:parserCore.Options):hl.BasicNode{
+
+    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
+}
+/**
+ * Load RAML asynchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
+ * @param content content of the raml
+ * @param options Load options  (note you should path a resolvers if you want includes to be resolved)
+ * @return RAMLLanguageElement instance.
+ **/
+export function parseRAML(content:string,
+                              arg2?:parserCore.Options):hl.BasicNode{
+
+    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
 }
 
 /**
@@ -81,10 +136,10 @@ export function loadApi(apiPath:string, arg1?:string[]|parserCore.Options,
  * @return Promise&lt;RAMLLanguageElement&gt;.
  **/
 export function loadRAML(ramlPath:string,extensionsAndOverlays:string[],
-                         options?:parserCore.Options):Promise<api10.RAMLLanguageElement|api08.RAMLLanguageElement>;
+                         options?:parserCore.Options):Promise<hl.BasicNode>;
 
 export function loadRAML(ramlPath:string, arg1?:string[]|parserCore.Options,
-                         arg2?:parserCore.Options):Promise<api10.RAMLLanguageElement|api08.RAMLLanguageElement>{
+                         arg2?:parserCore.Options):Promise<hl.BasicNode>{
 
     return apiLoader.loadRAMLAsync(ramlPath,arg1,arg2);
 }
@@ -95,6 +150,20 @@ export function loadRAML(ramlPath:string, arg1?:string[]|parserCore.Options,
  */
 export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition) : parserCore.BasicNode {
     return apiLoader.getLanguageElementByRuntimeType(runtimeType);
+}
+
+/**
+ * Check if the AST node represents fragment
+ */
+export function isFragment(node:api10.Api|api10.Library|api10.Overlay|api10.Extension|api10.Trait|api10.TypeDeclaration|api10.ResourceType|api10.DocumentationItem):boolean{
+    return api10.isFragment(<any>node);
+}
+
+/**
+ * Convert fragment representing node to FragmentDeclaration instance.
+ */
+export function asFragment(node:api10.Api|api10.Library|api10.Overlay|api10.Extension|api10.Trait|api10.TypeDeclaration|api10.ResourceType|api10.DocumentationItem):api10.FragmentDeclaration{
+    return api10.asFragment(<any>node);
 }
 
 /**

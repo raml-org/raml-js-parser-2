@@ -3,7 +3,7 @@ title: Pluralize
 version: 1
 baseUri: https://example.com/{version}
 resourceTypes:
-  - rt_pluralize: !include resourceTypes/rt_pluralize.raml
+   rt_pluralize: !include resourceTypes/rt_pluralize.raml
 /root-resource:
   type: { rt_pluralize: { objSing: "User", objPlur: "Users" } }
   get:

@@ -3,14 +3,14 @@ title: A CRUD API for Users and Groups
 mediaType: application/json
 
 uses:
-  - Common:  !include libraries/types/common.raml
-  - Users:  !include libraries/types/user.raml
-  - Groups: !include libraries/types/group.raml
+  Common:  libraries/types/common.raml
+  Users:  libraries/types/user.raml
+  Groups: libraries/types/group.raml
 
 resourceTypes:
-  - collection: !include resourceTypes/collection.raml
-  - member: !include resourceTypes/member.raml
-  - deleteOnlyMember: !include resourceTypes/delete-only-member.raml
+   collection: !include resourceTypes/collection.raml
+   member: !include resourceTypes/member.raml
+   deleteOnlyMember: !include resourceTypes/delete-only-member.raml
 
 ###############
 # API:

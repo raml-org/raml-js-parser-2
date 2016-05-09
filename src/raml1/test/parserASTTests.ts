@@ -71,18 +71,18 @@ describe('Parser overlay AST comparison tests',function(){
         util.testAST("parser/overlays/o8/api.raml", "parser/overlays/o8/ast2.txt",
             ["parser/overlays/o8/NewOverlay2.raml", "parser/overlays/o8/NewOverlay.raml"]);
     });
-
-    it ("Two overlays, testing named examples",function(){
-
-        util.testAST("parser/overlays/o9/api.raml", "parser/overlays/o9/ast.txt",
-            ["parser/overlays/o9/NewOverlay.raml", "parser/overlays/o9/NewOverlay2.raml"]);
-    });
-
-    it ("Two overlays, testing named examples, reverse order",function(){
-
-        util.testAST("parser/overlays/o9/api.raml", "parser/overlays/o9/ast2.txt",
-            ["parser/overlays/o9/NewOverlay2.raml", "parser/overlays/o9/NewOverlay.raml"]);
-    });
+    //no examples node any more
+    // it ("Two overlays, testing named examples",function(){
+    //
+    //     util.testAST("parser/overlays/o9/api.raml", "parser/overlays/o9/ast.txt",
+    //         ["parser/overlays/o9/NewOverlay.raml", "parser/overlays/o9/NewOverlay2.raml"]);
+    // });
+    //
+    // it ("Two overlays, testing named examples, reverse order",function(){
+    //
+    //     util.testAST("parser/overlays/o9/api.raml", "parser/overlays/o9/ast2.txt",
+    //         ["parser/overlays/o9/NewOverlay2.raml", "parser/overlays/o9/NewOverlay.raml"]);
+    // });
 
     it ("Extension and overlay",function(){
 

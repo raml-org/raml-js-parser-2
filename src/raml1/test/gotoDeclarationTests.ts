@@ -31,9 +31,9 @@ describe('Goto declaration tests',function(){
     it ("Goto decl4",function(){
         testErrors("data/gotoDeclaration/test4.raml")
     });
-    it ("Goto decl5",function(){
-        testErrors("data/gotoDeclaration/test5.raml")
-    });
+    // it ("Goto decl5",function(){
+    //     testErrors("data/gotoDeclaration/test5.raml")
+    // });
     it ("Goto decl6",function(){
         testErrors("data/gotoDeclaration/test6.raml")
     });
@@ -46,9 +46,9 @@ describe('Goto declaration tests',function(){
     it ("Goto decl9",function(){
         testErrors("data/gotoDeclaration/test9.raml")
     });
-    it ("Goto decl10",function(){
-        testErrors("data/gotoDeclaration/test10.raml")
-    });
+    // it ("Goto decl10",function(){
+    //     testErrors("data/gotoDeclaration/test10.raml")
+    // });
     it ("Goto decl11",function(){
         testErrors("data/gotoDeclaration/test11.raml")
     });

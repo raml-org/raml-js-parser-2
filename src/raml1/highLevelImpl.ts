@@ -11,6 +11,7 @@ import builder=require("./ast.core/builder")
 import search=require("./ast.core/search")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
+import expander=require("./ast.core/expander")
 import typeBuilder=require("./ast.core/typeBuilder")
 import universes=require("./tools/universe")
 import jsyaml=require("./jsyaml/jsyaml2lowLevel")
@@ -28,27 +29,37 @@ type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
 import contentprovider = require('../util/contentprovider')
-
+type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
-    var dr=search.declRoot(context);
+    //var dr=search.declRoot(context);
     var nm=x.name();
-    var o=nm;
-    var ind=nm.indexOf("<");//TODO SCOPE IT
-    if (ind!=-1){
-        nm=nm.substring(0,ind);
-    }
-
-    while (true){
-
-        var np=x.parent();
-        if (!np||np==dr){
-            break;
-        }
-        else{
-            if (np.definition().key()==universes.Universe10.Library&&np.parent()){
-                nm=np.name()+"."+nm;
+    if (x.lowLevel().unit()!=context.lowLevel().unit()){
+        var root:BasicASTNode=<BasicASTNode><any>context;
+        while (true) {
+            if (root.lowLevel().includePath()||root.parent()==null) {
+                if (!root.unitMap) {
+                    root.unitMap = {};
+                    root.asElement().elements().forEach(x=> {
+                        if (x.definition().key() == universes.Universe10.UsesDeclaration) {
+                            var mm = x.attr("value");
+                            var unit = root.lowLevel().unit().resolve(mm.value());
+                            if (unit != null) {
+                                root.unitMap[unit.absolutePath()] = x.attr("key").value();
+                            }
+                        }
+                    });
+                }
+                var prefix = root.unitMap[x.lowLevel().unit().absolutePath()];
+                if (prefix) {
+                    return prefix + "." + nm;
+                }
             }
-            x=np;
+            if (!root.parent()){
+                break;
+            }
+            else {
+                root = <BasicASTNode><any>root.parent();
+            }
         }
     }
     return nm;
@@ -56,6 +67,9 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
 
 export class BasicASTNode implements hl.IParseResult {
     private _hashkey : string;
+
+
+    unitMap:{ [path:string]:string };
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -108,6 +122,7 @@ export class BasicASTNode implements hl.IParseResult {
     }
     knownProperty:hl.IProperty
     needSequence:boolean
+    needMap:boolean
     unresolvedRef:string
     errorMessage: string
 
@@ -174,6 +189,7 @@ export class BasicASTNode implements hl.IParseResult {
     }
 
     validate(v:hl.ValidationAcceptor):void{
+
         linter.validate(this,v);
     }
     allowRecursive(){
@@ -327,8 +343,15 @@ export class StructuredValue implements hl.IStructuredValue{
         return this.node;
     }
 
+    private _hl:hl.IHighLevelNode;
+
+
+
     toHighLevel(parent?: hl.IHighLevelNode):hl.IHighLevelNode{
         if (!parent && this._parent) parent = this._parent;
+        if (this._hl){
+            return this._hl;
+        }
         var vn=this.valueName();
         var cands=search.referenceTargets(this._pr, parent).filter(x=>qName(x,parent)==vn);
         if (cands&&cands[0]){
@@ -339,6 +362,7 @@ export class StructuredValue implements hl.IStructuredValue{
                     node.setComputed(y.name,y.value)
                 })
             }
+            this._hl=node;
             return node;
         }
         //if (this._pr.range()){
@@ -392,6 +416,25 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         return this;
     }
 
+    errors():hl.ValidationIssue[]{
+        var errors:hl.ValidationIssue[]=[];
+        var q:hl.ValidationAcceptor={
+            accept(c:hl.ValidationIssue){
+                if (c.node===this) {
+                    errors.push(c);
+                }
+            },
+            begin(){
+
+            },
+            end(){
+
+            }
+        }
+        this.parent().validate(q);
+        return errors;
+    }
+
     isString(){
         if (this._def) {
             if (this._def.key() === universes.Universe08.StringType || this._def.key() == universes.Universe10.StringType) {
@@ -399,6 +442,32 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             }
         }
         return false;
+    }
+    isAnnotatedScalar(){
+        if (!this.property().isAnnotation()&&!this.property().isKey()) {
+            return this.lowLevel().isAnnotatedScalar();
+        }
+        return false;
+    }
+
+
+    annotations():hl.IAttribute[]{
+        var ch=this.lowLevel().children();
+        var annotations:hl.IAttribute[]=[];
+        var u=this.definition().universe().type(universes.Universe10.Annotable.name);
+        if (!u){
+            return annotations;
+        }
+        var pr=u.property("annotations");
+        for (var i=0;i<ch.length;i++){
+            var child=ch[i];
+            var key = child.key();
+            if (key[0]==("(")&&key[key.length-1]==(")")){
+                var attr = new ASTPropImpl(child,this.parent(),pr.range(),pr);
+                annotations.push(attr);                
+            }
+        }
+        return annotations;
     }
 
     constructor(node:ll.ILowLevelASTNode, parent:hl.IHighLevelNode, private _def:hl.IValueTypeDefinition, private _prop:hl.IProperty, private fromKey:boolean = false) {
@@ -440,7 +509,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         if (c){
             var vl=c.attr("value");
             var ck=c.definition().key();
-            if (ck===universes.Universe08.GlobalSchema||ck===universes.Universe10.GlobalSchema) {
+            if (ck===universes.Universe08.GlobalSchema) {
                 if (vl) {
                     var actualValue = vl.value();
                     if (actualValue) {
@@ -484,7 +553,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         this._value = value;
     }
 
-
+    private _sval:StructuredValue;
     value():any {
         if (this._value){
             return this._value
@@ -500,6 +569,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         }
 
         var isString = this.property()!=null && universeHelpers.isStringTypeType(this.property().range());
+
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
             if (!actualValue||actualValue instanceof jsyaml.ASTNode){
@@ -510,7 +580,24 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             }
         }
         if (actualValue instanceof jsyaml.ASTNode||actualValue instanceof proxy.LowLevelProxyNode) {
-            return new StructuredValue(<ll.ILowLevelASTNode>actualValue,this.parent(),this._prop);
+            var isAnnotatedScalar=false;
+            if (!this.property().range().hasStructure()){
+                if (this._node.isAnnotatedScalar()){
+                    this._node.children().forEach(x=>{
+                        if (x.key()==="value"){
+                            actualValue=x.value(isString);
+                            isAnnotatedScalar=true;
+                        }
+                    })
+                }
+            }
+            if (!isAnnotatedScalar) {
+                if (this._sval){
+                    return this._sval;
+                }
+                this._sval= new StructuredValue(<ll.ILowLevelASTNode>actualValue, this.parent(), this._prop);
+                return this._sval;
+            }
         }
         if(typeof(actualValue)=='string'&&textutil.isMultiLineValue(actualValue)) {
             var res = this.convertMultivalueToString(actualValue);
@@ -531,7 +618,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         var result = (indent?indent:"") +
             (this.name() + " : " + className
             + "[" + definitionClassName + "]"
-            + "  =  " + this.value()) +
+            + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"");
             "\n";
 
         if (this.value() instanceof StructuredValue){
@@ -673,11 +760,15 @@ export interface ParseNode {
     childWithKey(k:string):ParseNode;
 
     kind(): number
+
+
 }
-export class LowLevelWrapperForTypeSystem implements ParseNode{
 
-    constructor(private _node:ll.ILowLevelASTNode){
 
+export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements ParseNode{
+
+    constructor(protected _node:ll.ILowLevelASTNode, protected _highLevelRoot:hl.IHighLevelNode){
+        super()
     }
 
     contentProvider() {
@@ -694,28 +785,33 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         return vl;
     }
     value(){
-        if (this._node.valueKind()==yaml.Kind.SEQ){
+        var vk=this._node.valueKind();
+        if (vk===yaml.Kind.SEQ){
             return this.children().map(x=>x.value());
         }
-        if (this._node.valueKind()==yaml.Kind.MAP){
+        else if (vk===yaml.Kind.MAP||vk===yaml.Kind.ANCHOR_REF){
             var vl= this._node.dumpToObject(true);
             return vl[this.key()];
         }
-        if (this._node.kind()==yaml.Kind.MAP){
+        else if (this._node.kind()==yaml.Kind.MAP){
             var vl= this._node.dumpToObject(true);
             return vl;
         }
         return this._node.value();
     }
     children(){
-        return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x));
+        if (this.key()=="uses"&&!this._node.parent().parent()){
+            return this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
+        }
+        return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x,this._highLevelRoot));
     }
     childWithKey(k:string):ParseNode
     {
-        var mm=this._node.children();
+
+        var mm=this.children();
         for (var i=0;i<mm.length;i++){
             if (mm[i].key()==k){
-                return new LowLevelWrapperForTypeSystem(mm[i]);
+                return mm[i];
             }
         }
         return null;
@@ -741,12 +837,70 @@ export class LowLevelWrapperForTypeSystem implements ParseNode{
         }
         return rTypes.NodeKind.SCALAR;
     }
+
+    getSource() : any {
+        if (!this._node) return null;
+        var highLevelNode = this._node.highLevelNode();
+        if (!highLevelNode) {
+            var position = this._node.start()
+            var result = search.deepFindNode(this._highLevelRoot, position, position, true, false);
+
+            if (result) {
+                this._node.setHighLevelParseResult(result);
+                if (result instanceof ASTNodeImpl) {
+                    this._node.setHighLevelNode(<ASTNodeImpl>result)
+                }
+            }
+
+            return result;
+        }
+    }
+}
+export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
+    children(){
+        var s=this._node.unit().resolve(this.value());
+        if (s&&s.isRAMLUnit()){
+            return new LowLevelWrapperForTypeSystem(s.ast(), this._highLevelRoot).children();
+        }
+        return [];
+    }
+
+    anchor(){
+        return this._node.actual();
+    }
+    childWithKey(k:string):ParseNode
+    {
+
+        var mm=this.children();
+        for (var i=0;i<mm.length;i++){
+            if (mm[i].key()==k){
+                return mm[i];
+            }
+        }
+        return null;
+    }
 }
 export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelNode{
 
 
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
+
+
+    validate(v:hl.ValidationAcceptor):void{
+        var k=this.definition().key();
+        if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
+            if (!this.isExpanded()){
+                var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
+                var hlnode=nm.highLevel();
+                hlnode._expanded=true;
+                hlnode.validate(v);
+                return;
+            }
+        }
+        linter.validate(this,v);
+    }
+
 
     types():rTypes.IParsedTypeCollection{
         if (!this._types){
@@ -758,9 +912,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
                 if (c.types){
                     return c.types;
                 }
-                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel()));
+                this._types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(this.lowLevel(), this));
                 this._types.types().forEach(x=>{
-                    typeBuilder.convertType(this,x)
+                    var convertedType = typeBuilder.convertType(this,x)
+                    // if (defs.instanceOfHasExtra(convertedType)) {
+                        convertedType.putExtra(defs.USER_DEFINED_EXTRA, true);
+                    // }
                 });
                 c.types=this._types;
             }
@@ -776,14 +933,30 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     parsedType():rTypes.IParsedType{
 
         if (!this._ptype){
-            if (this.property()&&this.property().nameId()==universes.Universe10.Method.properties.body.name){
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),true);
+            if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
+                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),true,false,false);
             }
             else {
-                var annotation=this.definition().isAssignableFrom(universes.Universe10.AnnotationTypeDeclaration.name);
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel()), this.types(),false,annotation);
+                var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
+                var tl=(!this.property())||(this.property().nameId()==universes.Universe10.LibraryBase.properties.types.name||this.property().nameId()==universes.Universe10.LibraryBase.properties.schemas.name);
+                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),false,annotation,tl);
             }
+
+            if (this.property() && universeHelpers.isTypesProperty(this.property())
+                && this.parent() && universeHelpers.isApiType(this.parent().definition())) {
+                //top level types declared via "types"
+                // this._ptype.setExtra()
+                if ((<any>this._ptype).putExtra) {
+                    (<any>this._ptype).putExtra(defs.DEFINED_IN_TYPES_EXTRA, true);
+                }
+            }
+            var potentialHasExtra = this._ptype;
+
+            potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
         }
+
+        this._ptype.putExtra(defs.SOURCE_EXTRA, this);
+
         return this._ptype;
     }
     localType():hl.ITypeDefinition{
@@ -819,7 +992,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if(node) {
             node.setHighLevelNode(this);
         }
+        if (node instanceof proxy.LowLevelProxyNode){
+            this._expanded=true;
+        }
     }
+    
+    _computedKey:string;
 
 
     patchProp(pr:hl.IProperty){
@@ -1347,9 +1525,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var rs= <hl.IAttribute[]>this.children().filter(x=>x.isAttr());
         if (this._patchedName){
             var kp=_.find(this.definition().allProperties(),x=>x.getAdapter(services.RAMLPropertyService).isKey());
-            var mm=new ASTPropImpl(this.lowLevel(),this,kp.range(),kp,true);
-            mm._value=this._patchedName;
-            return (<hl.IAttribute[]>[mm]).concat(rs);
+            if (kp) {
+                var mm = new ASTPropImpl(this.lowLevel(), this, kp.range(), kp, true);
+                mm._value = this._patchedName;
+                return (<hl.IAttribute[]>[mm]).concat(rs);
+            }
         }
         return rs;
     }
