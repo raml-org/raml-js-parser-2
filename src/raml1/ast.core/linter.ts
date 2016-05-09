@@ -1676,7 +1676,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     var hasSufficientChild = false;
                     for(var path of paths){
                         path = path.map(x=>t.transform(x).value);
-                        if(this.checkPathSufficiency(parent.lowLevel(),path,node.property())){
+                        if(this.checkPathSufficiency(parent.lowLevel(),path,parent)){
                             hasSufficientChild = true;
                             break;
                         }
@@ -1728,8 +1728,17 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
     }
     checkPathSufficiency(node:ll.ILowLevelASTNode,
                          path:string[],
-                         prop:hl.IProperty):boolean{
+                         hlParent:hl.IHighLevelNode):boolean{
 
+        if(hlParent==null||hlParent.definition()==null){
+            return false;
+        }
+
+        var definition = hlParent.definition();
+        if(universeHelpers.isResourceTypeType(definition)||universeHelpers.isTraitType(definition)){
+            return true;
+        }
+        
         if(path.length==0){
             return false;
         }
@@ -1741,7 +1750,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             return false;
         }
         if(segment=="/"){
-            return this.checkPathSufficiency(node,path.slice(1),prop);
+            return this.checkPathSufficiency(node,path.slice(1),hlParent);
         }
         if(segment.length==0){
             return true;
@@ -1769,7 +1778,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
         }
         else{
             var path1 = path.slice(1);
-            return this.checkPathSufficiency(lowLevel,path1,prop);
+            return this.checkPathSufficiency(lowLevel,path1,hlParent);
         }
 
     }

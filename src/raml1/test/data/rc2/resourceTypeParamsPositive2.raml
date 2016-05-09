@@ -6,6 +6,6 @@ resourceTypes:
     get?:
       description: <<TextAbout>>
   collection2:
-    type: collection
+    type: { collection : { TextAbout: <<TextAbout>> } }
 /resource:
-  type: collection2
+  type: { collection2 : { TextAbout: "get value" } }
