@@ -132,6 +132,11 @@ export class TCKDumper{
                     }
                 }
             }
+            this.nodeTransformers.forEach(x=> {
+                if (x.match(node, node.highLevel().property())) {
+                    obj = x.transform(obj);
+                }
+            });
             var result:any = {};
             if(rootNodeDetails){
                 if(definition){
@@ -145,13 +150,7 @@ export class TCKDumper{
             else {
                 result = obj;
             }
-            if(node.parent()!=null) {
-                this.nodeTransformers.forEach(x=> {
-                    if (x.match(node.parent(), node.highLevel().property())) {
-                        result = x.transform(result);
-                    }
-                });
-            }
+            
             return result;
         }
         else if(node instanceof core.AttributeNodeImpl){
@@ -171,13 +170,13 @@ export class TCKDumper{
                 }
             }
             var obj = this.dumpProperties(props,node);
-            if(node.parent()!=null) {
+
                 this.nodeTransformers.forEach(x=> {
-                    if (x.match(node.parent(), node.highLevel().property())) {
+                    if (x.match(node, node.highLevel().property())) {
                         obj = x.transform(obj);
                     }
                 });
-            }
+
             this.serializeScalarsAnnotations(obj,node,props);
             this.serializeMeta(obj,attrNode);
             return obj;
@@ -420,7 +419,7 @@ class BasicObjectPropertyMatcher implements ObjectPropertyMatcher{
     ){}
 
     match(td:nominals.ITypeDefinition,prop:nominals.IProperty):boolean{
-        return this.typeMatcher(td)&&this.propMatcher(prop);
+        return (td==null||this.typeMatcher(td))&&((prop==null) || this.propMatcher(prop));
     }
 }
 
@@ -477,7 +476,7 @@ class ArrayToMappingsArrayTransformer implements Transformation{
     constructor(protected matcher:ObjectPropertyMatcher, protected propName:string){}
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.matcher.match(node.definition(),prop);
+        return this.matcher.match(node.definition ? node.definition():null,prop);
     }
 
     transform(value:any){
@@ -521,6 +520,10 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
                 x=>universeHelpers.isLibraryBaseSibling(x)&&universeHelpers.isRAML10Type(x)
                 ,universeHelpers.isSchemasProperty)
         ]),"name");
+    }
+
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        return node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
     }
 
 }
@@ -578,8 +581,7 @@ class TraitsTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isTraitsProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isTraitsProperty)
+            new BasicObjectPropertyMatcher(universeHelpers.isTraitType,universeHelpers.isTraitsProperty)
         ]),"name");
     }
 }
@@ -588,8 +590,7 @@ class ResourceTypesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
         super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isResourceTypesProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isResourceTypesProperty)
+            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType,universeHelpers.isResourceTypesProperty)
         ]),"name");
     }
 
@@ -627,10 +628,11 @@ class FacetsTransformer extends ArrayToMapTransformer{
 class SecuritySchemesTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isSecuritySchemesProperty),
-            new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isSecuritySchemesProperty)
-        ]),"name");
+        super(null,"name");
+    }
+
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        return prop != null && universeHelpers.isSecuritySchemesProperty(prop);
     }
 }
 
@@ -642,14 +644,22 @@ class AnnotationTypesTransformer extends ArrayToMappingsArrayTransformer{
         ]),"displayName");
     }
 
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        return node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+    }
+
 }
 
 class ResourceTypeMethodsToMapTransformer extends ArrayToMappingsArrayTransformer{
 
     constructor(){
-        super(new CompositeObjectPropertyMatcher([
-            new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeType,universeHelpers.isMethodsProperty)
-        ]),"method");
+        super(null,"method");
+    }
+
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        return node.parent()!=null
+            && universeHelpers.isResourceTypeType(node.parent().definition())
+            && universeHelpers.isMethodsProperty(prop);
     }
 }
 
@@ -659,10 +669,8 @@ var exampleStructuredContentProp = "structuredContent";
 
 class ExamplesTransformer implements Transformation{
 
-    protected matcher = new BasicObjectPropertyMatcher(universeHelpers.isTypeDeclarationSibling,universeHelpers.isExamplesProperty);
-
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.matcher.match(node.definition(),prop);
+        return universeHelpers.isExampleSpecType(node.definition());
     }
 
     transform(value:any){
@@ -695,7 +703,7 @@ class ExamplesTransformer implements Transformation{
 class TypeExampleTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isTypeDeclarationSibling(prop.range());
+        return node.definition && universeHelpers.isTypeDeclarationSibling(node.definition());
     }
 
     transform(value:any){
@@ -717,8 +725,8 @@ class SchemasTransformer implements Transformation{
     protected matcher = new BasicObjectPropertyMatcher(
         x=>universeHelpers.isApiType(x)&&universeHelpers.isRAML08Type(x),universeHelpers.isSchemasProperty);
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return this.matcher.match(node.definition(),prop);
+    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
+        return node.parent()!=null&&this.matcher.match(node.parent().definition(),prop);
     }
 
     transform(value:any){
@@ -744,7 +752,7 @@ class SchemasTransformer implements Transformation{
 class ProtocolsToUpperCaseTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isProtocolsProperty(prop);
+        return prop!=null && universeHelpers.isProtocolsProperty(prop);
     }
 
     transform(value:any){
@@ -782,7 +790,7 @@ class OneElementArrayTransformer implements Transformation{
 class ResourcesTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isResourcesProperty(prop);
+        return prop!=null && universeHelpers.isResourcesProperty(prop);
     }
 
     transform(value:any){
@@ -805,7 +813,9 @@ class ResourcesTransformer implements Transformation{
 class TemplateParametrizedPropertiesTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isResourceTypesProperty(prop)||universeHelpers.isTraitsProperty(prop);
+        return prop!=null && (
+            universeHelpers.isResourceTypesProperty(prop)
+            ||universeHelpers.isTraitsProperty(prop));
     }
 
     transform(value:any){
@@ -829,11 +839,13 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
 class ReferencesTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return universeHelpers.isSecuredByProperty(prop)
-            ||universeHelpers.isIsProperty(prop)
-            ||((universeHelpers.isResourceType(node.highLevel().definition())
-                ||universeHelpers.isResourceTypeType(node.highLevel().definition()))
-            &&universeHelpers.isTypeProperty(prop));
+        return prop!=null && (
+            universeHelpers.isSecuredByProperty(prop)
+                ||universeHelpers.isIsProperty(prop)
+                ||(node.parent()!=null&&(universeHelpers.isResourceType(node.parent().highLevel().definition())
+                    ||universeHelpers.isResourceTypeType(node.parent().highLevel().definition()))
+                &&universeHelpers.isTypeProperty(prop))
+        );
     }
 
     transform(value:any){
