@@ -398,6 +398,15 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
     RAMLVersion():string{
         return this.highLevel().definition().universe().version();
     }
+
+    parent():BasicNode{
+        var parent = this.attr.parent();
+        return parent ? parent.wrapperNode() : null;
+    }
+
+    toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
+        return new tckDumper.TCKDumper(serializeOptions).dump(this);
+    }
 }
 
 
