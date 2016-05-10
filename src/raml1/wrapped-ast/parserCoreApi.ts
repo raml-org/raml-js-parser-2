@@ -18,6 +18,13 @@ export interface AttributeNode extends AbstractWrapperNode{
     optional():boolean
 
     meta():ValueMetadata
+    
+    parent():BasicNode
+
+    /**
+     * JSON representation of the attribute value
+     **/
+    toJSON():any
 
 }
 

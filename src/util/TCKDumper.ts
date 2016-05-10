@@ -31,27 +31,51 @@ export class TCKDumper{
         }
     }
 
-    private transformers:Transformation[] = [
+    private nodeTransformers:Transformation[] = [
         new ResourcesTransformer(),
         new TypeExampleTransformer(),
-        new ParametersTransformer(),
+        //new ParametersTransformer(),
         new TypesTransformer(),
-        new UsesTransformer(),
-        new PropertiesTransformer(),
+        //new UsesTransformer(),
+        //new PropertiesTransformer(),
         //new ExamplesTransformer(),
-        new ResponsesTransformer(),
-        new BodiesTransformer(),
-        new AnnotationsTransformer(),
+        //new ResponsesTransformer(),
+        //new BodiesTransformer(),
+        //new AnnotationsTransformer(),
         new SecuritySchemesTransformer(),
         new AnnotationTypesTransformer(),
         new TemplateParametrizedPropertiesTransformer(),
         new TraitsTransformer(),
         new ResourceTypesTransformer(),
-        new FacetsTransformer(),
+        //new FacetsTransformer(),
         new SchemasTransformer(),
         new ProtocolsToUpperCaseTransformer(),
         new ResourceTypeMethodsToMapTransformer(),
         new ReferencesTransformer(),
+        //new OneElementArrayTransformer()
+    ];
+
+    private nodePropertyTransformers:Transformation[] = [
+        //new ResourcesTransformer(),
+        //new TypeExampleTransformer(),
+        new ParametersTransformer(),
+        //new TypesTransformer(),
+        //new UsesTransformer(),
+        new PropertiesTransformer(),
+        // //new ExamplesTransformer(),
+        new ResponsesTransformer(),
+        new BodiesTransformer(),
+        new AnnotationsTransformer(),
+        //new SecuritySchemesTransformer(),
+        //new AnnotationTypesTransformer(),
+        //new TemplateParametrizedPropertiesTransformer(),
+        //new TraitsTransformer(),
+        //new ResourceTypesTransformer(),
+        new FacetsTransformer(),
+        //new SchemasTransformer(),
+        //new ProtocolsToUpperCaseTransformer(),
+        //new ResourceTypeMethodsToMapTransformer(),
+        //new ReferencesTransformer(),
         new OneElementArrayTransformer()
     ];
 
@@ -108,8 +132,8 @@ export class TCKDumper{
                     }
                 }
             }
+            var result:any = {};
             if(rootNodeDetails){
-                var result:any = {};
                 if(definition){
                     var ramlVersion = definition.universe().version();
                     result.ramlVersion = ramlVersion;
@@ -117,11 +141,18 @@ export class TCKDumper{
                 }
                 result.specification = obj;
                 result.errors = this.dumpErrors(basicNode.errors());
-                return result;
             }
             else {
-                return obj;
+                result = obj;
             }
+            if(node.parent()!=null) {
+                this.nodeTransformers.forEach(x=> {
+                    if (x.match(node.parent(), node.highLevel().property())) {
+                        result = x.transform(result);
+                    }
+                });
+            }
+            return result;
         }
         else if(node instanceof core.AttributeNodeImpl){
 
@@ -140,6 +171,13 @@ export class TCKDumper{
                 }
             }
             var obj = this.dumpProperties(props,node);
+            if(node.parent()!=null) {
+                this.nodeTransformers.forEach(x=> {
+                    if (x.match(node.parent(), node.highLevel().property())) {
+                        obj = x.transform(obj);
+                    }
+                });
+            }
             this.serializeScalarsAnnotations(obj,node,props);
             this.serializeMeta(obj,attrNode);
             return obj;
@@ -257,7 +295,7 @@ export class TCKDumper{
                 if(propertyValue.length==0 && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
                     return;
                 }
-                for(var x of this.transformers){
+                for(var x of this.nodePropertyTransformers){
                     if(x.match(node, property)){
                         propertyValue = x.transform(propertyValue);
                     }
@@ -270,7 +308,7 @@ export class TCKDumper{
                     return;
                 }
                 if(node instanceof core.BasicNodeImpl) {
-                    this.transformers.forEach(x=> {
+                    this.nodePropertyTransformers.forEach(x=> {
                         if (x.match(node, property)) {
                             val = x.transform(val);
                         }
@@ -443,16 +481,14 @@ class ArrayToMappingsArrayTransformer implements Transformation{
     }
 
     transform(value:any){
-        if(Array.isArray(value)&&value.length>0 && value[0][this.propName]){
-            var array = [];
-            value.forEach(x=> {
-                var obj = {};
-                obj[x[this.propName]] = x;
-                array.push(obj);
-            });
-            return array;
+        if(Array.isArray(value)){
+            return value;
         }
-        return value;
+        else {
+            var obj = {};
+            obj[value[this.propName]] = value;
+            return obj;
+        }
     }
 
 }
@@ -558,21 +594,24 @@ class ResourceTypesTransformer extends ArrayToMappingsArrayTransformer{
     }
 
     transform(value:any){
-        value.forEach(x=>{
-            var methodsPropertyName = universes.Universe10.ResourceBase.properties.methods.name;
-            var methods = x[methodsPropertyName];
-            if(methods){
-                methods.forEach(m=>{
+        var methodsPropertyName = universes.Universe10.ResourceBase.properties.methods.name;
+        if(Array.isArray(value)) {
+            return value;
+        }
+        else{
+            var methods = value[methodsPropertyName];
+            if (methods) {
+                methods.forEach(m=> {
                     var keys = Object.keys(m);
-                    if(keys.length>0) {
+                    if (keys.length > 0) {
                         var methodName = keys[0];
-                        x[methodName] = m[methodName];
+                        value[methodName] = m[methodName];
                     }
                 })
             }
-            delete x[methodsPropertyName];
-        });
-        return super.transform(value);
+            delete value[methodsPropertyName];
+            return super.transform(value);
+        }
     }
 }
 
@@ -683,17 +722,13 @@ class SchemasTransformer implements Transformation{
     }
 
     transform(value:any){
-        if(Array.isArray(value)&&value.length>0){
-
-            var array = value.map(x=>{
-                var obj = {};
-                obj[x.key] = x.value;
-                return obj;
-            });
-            return array;
+        if(Array.isArray(value)){
+            return value;
         }
         else {
-            return value;
+            var obj = {};
+            obj[value.key] = value.value;
+            return obj;
         }
     }
 
@@ -751,19 +786,17 @@ class ResourcesTransformer implements Transformation{
     }
 
     transform(value:any){
-        if(!Array.isArray(value)){
+        if(Array.isArray(value)){
             return value;
         }
-        value.forEach(x=>{
-            var relUri = x[universes.Universe10.Resource.properties.relativeUri.name];
-            if(relUri){
-                var segments = relUri.trim().split("/");
-                while(segments.length > 0 && segments[0].length == 0){
-                    segments.shift();
-                }
-                x["relativeUriPathSegments"] = segments;
+        var relUri = value[universes.Universe10.Resource.properties.relativeUri.name];
+        if(relUri){
+            var segments = relUri.trim().split("/");
+            while(segments.length > 0 && segments[0].length == 0){
+                segments.shift();
             }
-        });
+            value["relativeUriPathSegments"] = segments;
+        }
         return value;
     }
 
@@ -777,16 +810,15 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
 
     transform(value:any){
         if(Array.isArray(value)){
-            value.forEach(x=>{
-                var propName = universe.Universe10.Trait.properties.parametrizedProperties.name;
-                var parametrizedProps = x[propName];
-                if(parametrizedProps){
-                    Object.keys(parametrizedProps).forEach(y=>{
-                        x[y] = parametrizedProps[y];
-                    });
-                    delete x[propName];
-                }
+            return value;
+        }
+        var propName = universe.Universe10.Trait.properties.parametrizedProperties.name;
+        var parametrizedProps = value[propName];
+        if(parametrizedProps){
+            Object.keys(parametrizedProps).forEach(y=>{
+                value[y] = parametrizedProps[y];
             });
+            delete value[propName];
         }
         return value;
     }
@@ -808,14 +840,10 @@ class ReferencesTransformer implements Transformation{
         if(!value){
             return null;
         }
-        if(Array.isArray(value))
-        {
-            var array = value.map(x=>this.toSimpleValue(x));
-            return array;
+        if(Array.isArray(value)){
+            return value;
         }
-        else{
-            return this.toSimpleValue(value);
-        }
+        return this.toSimpleValue(value);
     }
 
     private toSimpleValue(x):any {
