@@ -289,6 +289,11 @@ export class TCKDumper{
                 var propertyValue:any[] = [];
                 for(var val of value){
                     var dumped = this.dumpInternal(val);
+
+                    if(propName === 'examples' && this.options && this.options.dumpXMLRepresentationOfExamples && val.expandable && val.expandable._owner) {
+                        (<any>dumped).asXMLString = val.expandable.asXMLString();
+                    }
+
                     propertyValue.push(dumped);
                 }
                 if(propertyValue.length==0 && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
@@ -314,6 +319,10 @@ export class TCKDumper{
                     });
                 }
                 obj[propName] = val;
+
+                if(propName === 'example' && this.options && this.options.dumpXMLRepresentationOfExamples && value.expandable && value.expandable._owner) {
+                    (<any>val).asXMLString = value.expandable.asXMLString();
+                }
             }
         });
         return obj;
@@ -946,4 +955,6 @@ export interface SerializeOptions{
      * @default true
      */
     serializeMetadata?:boolean
+
+    dumpXMLRepresentationOfExamples?:boolean
 }
