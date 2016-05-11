@@ -730,7 +730,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             var anode = <jsyaml.ASTNode>attrs[0].lowLevel();
             //console.log('attribute : ' + anode.kindName());
             //anode.show("ATTR:");
-            if(anode.isMapping()) {
+            if(anode.isMapping() && anode.value() == null) {
                 // that's crazy but it means zero length array indeed )
                 return true;
             } else {

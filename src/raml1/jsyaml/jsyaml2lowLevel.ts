@@ -1756,13 +1756,18 @@ export class Project implements lowlevel.IProject{
                     }
                     var newval = x.value;
 
-                    //console.log('set value: ' + (typeof curval) + ' ==> ' + (typeof newval));
-                    if(typeof curval == 'string' && typeof newval == 'string') {
+                    console.log('set value: ' + (typeof curval) + ' ==> ' + (typeof newval));
+                    if((typeof(curval) == 'string' ||
+                        typeof(curval) == 'number' ||
+                        typeof(curval) == 'boolean') && typeof newval == 'string') {
                         //console.log('set value: str => str');
                         if(curval != newval) {
                             this.changeValue(attr.unit(), attr, <string>newval);
                         }
-                    } else if(typeof curval == 'string' && typeof newval != 'string') {
+                    } else if((typeof(curval) == 'string' ||
+                        typeof(curval) == 'number' ||
+                        typeof(curval) == 'boolean')
+                        && typeof(newval) != 'string') {
                         //console.log('set value: str => obj');
                         // change structure
                         //this.changeValue(attr.unit(), attr, null);
