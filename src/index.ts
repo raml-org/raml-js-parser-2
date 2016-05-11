@@ -2,6 +2,8 @@ import parserCore = require("./raml1/wrapped-ast/parserCoreApi")
 import apiLoader = require("./raml1/apiLoader")
 import path = require("path")
 
+var PromiseConstructor = require('promise-polyfill');
+
 /**
  * RAML 1.0 top-level AST interfaces.
  */
@@ -230,6 +232,7 @@ export import expander=require("./expanderStub")
  * Not to be used by parser clients.
  */
 export import wrapperHelper=require("./wrapperHelperStub")
+import {uninstallDependency} from "typings/dist/uninstall";
 
 /**
  * Abstract high-level node potentially having children.
@@ -248,4 +251,8 @@ export type IProperty=hl.IProperty;
  * @hidden
  **/
 export type IParseResult=hl.IParseResult;
+
+if(typeof Promise === 'undefined' && typeof window !== 'undefined') {
+    (<any>window).Promise = PromiseConstructor;
+}
 

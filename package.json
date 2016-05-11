@@ -24,6 +24,7 @@
     "json-stable-stringify": "^1.0.1",
     "loophole": "^1.1.0",
     "lrucache": "^0.2.0",
+    "promise-polyfill": "^5.1.0",
     "marked": "^0.3.3",
     "media-typer": "^0.3.0",
     "mkdirp": "^0.5.0",
