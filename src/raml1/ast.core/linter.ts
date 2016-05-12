@@ -313,6 +313,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
 };
 export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, requiredOnly: boolean = false){
     var parentNode = node.parent();
+    var llValue = node.lowLevel().value();
     if (node.lowLevel()) {
         if (node.lowLevel().keyKind()==yaml.Kind.MAP){
 
@@ -320,7 +321,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
 
         }
         if (node.lowLevel().keyKind()==yaml.Kind.SEQ){
-            if (node.lowLevel().value()==null){
+            if (llValue==null){
                 var isPattern=false;
                 if (node.isElement()){
                     if (node.asElement().definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
@@ -369,13 +370,17 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             return
         }
         if (node.unresolvedRef){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + node.lowLevel().value()+" can not be resolved", node));
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + llValue+" can not be resolved", node));
 
         }
-        if (node.knownProperty&&node.lowLevel().value()!=null){
+        if (node.knownProperty){
             //if (!node.lowLevel().)
             if (node.lowLevel().includeErrors().length==0) {
-
+                if(typeOfContainingTemplate(parentNode)
+                    &&util.startsWith(llValue,"<<")
+                    &&util.endsWith(llValue,">>")){
+                    return;
+                }
                 if (node.name()=="body"&&node.computedValue("mediaType")){
                     return;
                 }

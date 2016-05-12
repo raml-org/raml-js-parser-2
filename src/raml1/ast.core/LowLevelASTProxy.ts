@@ -245,9 +245,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         var canBeMap:boolean = false;
         var canBeSeq = false;
         this._adoptedNodes.forEach(x=>{
-            if(x.children() && x.children().length > 0){
+            var adoptedNodeChildren = x.children();
+            if(adoptedNodeChildren && adoptedNodeChildren.length > 0){
                 canBeSeq = true;
-                if( x.children()[0].key()){
+                if( adoptedNodeChildren[0].key()){
                     canBeMap = true;
                 }
             }
@@ -305,8 +306,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
         this._adoptedNodes.forEach(x=> {
             var isPrimary = x == this.primaryNode();
-            x.originalNode().children().forEach(y=> {
-                var key = y.key();
+            x.children().forEach(y=> {
+                var key = y.originalNode().key();
                 if(key && x.transformer()){
                     key = x.transformer().transform(key).value;
                 }
@@ -321,7 +322,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     arr = [];
                     m[key] = arr;
                 }
-                arr.push({ node:y, transformer: x.transformer(), isPrimary: isPrimary} );
+                arr.push({ node:y.originalNode(), transformer: x.transformer(), isPrimary: isPrimary} );
             });
         });
 
@@ -454,14 +455,33 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
         var val = this.originalNode().value(toString);
         var t = this.transformer();
         if(t){
-            var transformationResult = t.transform(val);
+            var transformationResult = t.transform(val,toString);
             val = transformationResult.value;
         }
         return val;
     }
 
-    children():ll.ILowLevelASTNode[] {
-        return this.originalNode().children().map(x=>new LowLevelValueTransformingNode(x,this,this._transformer,this.ramlVersion));
+    children():LowLevelValueTransformingNode[] {
+        var childNodes:ll.ILowLevelASTNode[]=null;
+        var originalNode = this.originalNode();
+        if(this._transformer!=null) {
+            var substitution = this._transformer.children(originalNode);
+            if(substitution!=null){
+                childNodes = substitution;
+            }
+        }
+        if(childNodes==null){
+            childNodes = originalNode.children();
+        }
+        return childNodes.map(x=>new LowLevelValueTransformingNode(x,this,this._transformer,this.ramlVersion));
+    }
+
+    valueKind():yaml.Kind{
+        var kind = this._transformer && this._transformer.valueKind(this.originalNode());
+        if(kind!=null){
+            return kind;
+        }
+        return super.valueKind();
     }
 
     parent():LowLevelValueTransformingNode { return <LowLevelValueTransformingNode>this._parent;}
@@ -479,8 +499,12 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
 
 export interface ValueTransformer{
 
-    transform(value:any):{
+    transform(value:any,toString?:boolean):{
         value:any
         errors:hl.ValidationIssue[]
     }
+
+    children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]
+
+    valueKind(node:ll.ILowLevelASTNode):yaml.Kind
 }

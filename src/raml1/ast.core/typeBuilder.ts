@@ -111,9 +111,14 @@ var handleValue = function (
             continue;
         }
 
-        var q = d[parameterUsage];        
+        var q = d[parameterUsage];
         if (!isFull || allwaysString) {
-            r = <any>u.type(universes.Universe10.StringType.name);
+            if(u.version()=="RAML10") {
+                r = <any>u.type(universes.Universe10.AnyType.name);
+            }
+            else{
+                r = <any>u.type(universes.Universe08.StringType.name);
+            }
         }
 
         //FIX ME NOT WHOLE TEMPLATES
@@ -173,8 +178,16 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         var paths:string[][] = paramPaths[x];
         prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
 
-        var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != universes.Universe08.StringType.name);
-        prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(universes.Universe08.StringType.name));
+        var defaultType:string;
+        if(node.definition().universe().version()=="RAML10") {
+            defaultType = universes.Universe10.AnyType.name;
+        }
+        else{
+            defaultType = universes.Universe08.StringType.name;
+        }
+        
+        var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != defaultType);
+        prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(defaultType));
         prop.withRequired(true)
         if (usages[x].length > 0) {
             prop._node = usages[x][0].attr;
