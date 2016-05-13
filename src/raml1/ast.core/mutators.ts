@@ -247,9 +247,13 @@ export function setValues(attr:hlimpl.ASTPropImpl,values: string[]) {
         var attrs = node.attributes(attr.name());
         attrs.forEach(attr => attr.remove());
     }
-    values.forEach(val =>
+    if (values.length == 1 && attr.property().isDescriminator()) {
+        node.attrOrCreate(attr.name()).setValue(values[0])
+    } else {
+        values.forEach(val =>
             node.attrOrCreate(attr.name()).addValue(val)
-    );
+        );
+    }
 }
 export function setKey(node:hlimpl.ASTPropImpl,value: string) {
     if (value == node.name()) return;

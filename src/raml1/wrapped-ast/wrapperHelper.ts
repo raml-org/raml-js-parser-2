@@ -62,7 +62,7 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
  * __$helperMethod__
  * Equivalent API with traits and resource types expanded
  * __$meta__={"name":"expand"}
- **/
+ */
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
     var lowLevelNode = api.highLevel().lowLevel();
     if(lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode){
@@ -101,15 +101,11 @@ export function validateInstanceWithDetailedStatuses(res:RamlWrapper.TypeDeclara
     return res.runtimeType().validate(value);
 }
 
-export function qName(c:core.BasicNode):string{
-    return hlimpl.qName(c.highLevel(),c.highLevel().root());
-}
-
 /**
  * __$helperMethod__
  * Retrieve all traits including those defined in libraries
  * __$meta__{"name":"traits","override":true}
- **/
+ */
 export function traitsPrimary(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
     return allTraits(a);
 }
@@ -126,7 +122,7 @@ export function allTraits(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
  * __$helperMethod__
  * Retrieve all resource types including those defined in libraries
  * __$meta__{"name":"resourceTypes","override":true}
- **/
+ */
 export function resourceTypesPrimary(a:RamlWrapper.LibraryBase):RamlWrapper.ResourceType[]{
     return allResourceTypes(a);
 }
@@ -185,7 +181,7 @@ export function parentResource(method:RamlWrapper.Method):RamlWrapper.Resource{
  * __$helperMethod__
  * Parent resource for non top level resources
  * __$meta__={"name":"parentResource"}
- **/
+ */
 export function parent(resource:RamlWrapper.Resource):RamlWrapper.Resource{
     var parent = resource.parent();
     if(parent.definition().key().name==universes.Universe10.Resource.name){
@@ -263,7 +259,7 @@ export function ownerApi(method:RamlWrapper.Method|RamlWrapper.Resource):RamlWra
  * For methods of Resources: `{parent Resource relative path} {methodName}`.
  * For methods of ResourceTypes: `{parent ResourceType name} {methodName}`.
  * For other methods throws Exception.
- **/
+ */
 export function methodId(method:RamlWrapper.Method):string{
 
     var parent = method.parent();
@@ -360,7 +356,7 @@ var schemaContentChars:string[] = [ '{', '<' ];
  * Here `propertyId` uri parameter is not described in the `uriParameters` node,
  * but it is among Resource.uriParameters().
  * __$meta__={"name":"uriParameters","override": true}
- **/
+ */
 export function uriParametersPrimary(resource:RamlWrapper.ResourceBase):RamlWrapper.TypeDeclaration[]{
     return uriParameters(resource);
 }
@@ -377,7 +373,7 @@ export function uriParametersPrimary(resource:RamlWrapper.ResourceBase):RamlWrap
  * Here `propertyId` uri parameter is not described in the `uriParameters` node,
  * but it is among Resource.allUriParameters().
  * __$meta__={"name":"allUriParameters","deprecated":true}
- **/
+ */
 export function uriParameters(resource:RamlWrapper.ResourceBase):RamlWrapper.TypeDeclaration[]{
 
     var params = (<RamlWrapperImpl.ResourceBaseImpl>resource).uriParameters_original();
@@ -402,7 +398,7 @@ export function uriParameters(resource:RamlWrapper.ResourceBase):RamlWrapper.Typ
  * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
  * but they are among `Api.baseUriParameters()`.
  * __$meta__={"name":"baseUriParameters","override":true}
- **/
+ */
 export function baseUriParametersPrimary(api:RamlWrapper.Api):RamlWrapper.TypeDeclaration[]{
     return baseUriParameters(api);
 }
@@ -420,7 +416,7 @@ export function baseUriParametersPrimary(api:RamlWrapper.Api):RamlWrapper.TypeDe
  * Here `version` and `organization` are base uri parameters which are not described in the `baseUriParameters` node,
  * but they are among `Api.allBaseUriParameters()`.
  * __$meta__={"name":"allBaseUriParameters","deprecated":true}
- **/
+ */
 export function baseUriParameters(api:RamlWrapper.Api):RamlWrapper.TypeDeclaration[]{
 
     var uri = api.baseUri() ? api.baseUri().value() : '';
@@ -434,7 +430,7 @@ export function baseUriParameters(api:RamlWrapper.Api):RamlWrapper.TypeDeclarati
  * __$helperMethod__
  * Retrieve an ordered list of all absolute uri parameters. Returns a union of `Api.baseUriParameters()`
  * for `Api` owning the `Resource` and `Resource.uriParameters()`.
- **/
+ */
 export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.TypeDeclaration[]{
 
     var params:RamlWrapper.TypeDeclaration[] = [];
@@ -459,7 +455,7 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Type
  * Protocols used by the API. Returns the `protocols` property value if it is specified.
  * Otherwise, returns protocol, specified in the base URI.
  * __$meta__={"name":"protocols","override":true}
- **/
+ */
 export function protocolsPrimary(api:RamlWrapper.Api):string[]{
     return allProtocols(api);
 }
@@ -469,7 +465,7 @@ export function protocolsPrimary(api:RamlWrapper.Api):string[]{
  * Protocols used by the API. Returns the `protocols` property value if it is specified.
  * Otherwise, returns protocol, specified in the base URI.
  * __$meta__{"deprecated":true}
- **/
+ */
 export function allProtocols(api:RamlWrapper.Api):string[]{
     return api.protocols().map(x=>x.toUpperCase());
     //var attributeDefaults = (<RamlWrapper.ApiImpl>api).attributeDefaults();
@@ -498,7 +494,7 @@ export function allProtocols(api:RamlWrapper.Api):string[]{
  * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
  * returns schemes defined with `securedBy` at API level.
  * __$meta__={"name":"securedBy","override":true}
- **/
+ */
 export function securedByPrimary(resourceOrMethod : RamlWrapper.ResourceBase | RamlWrapper.Method):RamlWrapper.SecuritySchemeRef[] {
     return allSecuredBy(resourceOrMethod);
 }
@@ -508,7 +504,7 @@ export function securedByPrimary(resourceOrMethod : RamlWrapper.ResourceBase | R
  * Returns security schemes, resource or method is secured with. If no security schemes are set at resource or method level,
  * returns schemes defined with `securedBy` at API level.
  * __$meta__{"deprecated":true}
- **/
+ */
 export function allSecuredBy(resourceOrMethod : RamlWrapper.ResourceBase | RamlWrapper.Method):RamlWrapper.SecuritySchemeRef[] {
     //var currentSecuredBy = (<RamlWrapper.ResourceBaseImpl|RamlWrapper.MethodImpl>resourceOrMethod).securedBy_original();
     //if (currentSecuredBy && currentSecuredBy.length > 0) {
@@ -534,7 +530,7 @@ export function allSecuredBy(resourceOrMethod : RamlWrapper.ResourceBase | RamlW
 /**
  * __$helperMethod__
  * __$meta__={"primary":true}
- **/
+ */
 export function securitySchemeName(schemeReference : RamlWrapper.SecuritySchemeRef) : string {
     var highLevel = schemeReference.highLevel();
     if (!highLevel) return "";
@@ -548,7 +544,7 @@ export function securitySchemeName(schemeReference : RamlWrapper.SecuritySchemeR
 /**
  * __$helperMethod__
  * __$meta__={"primary":true}
- **/
+ */
 export function securityScheme(schemeReference : RamlWrapper.SecuritySchemeRef) : RamlWrapper.AbstractSecurityScheme {
     var highLevel = schemeReference.highLevel();
     if (!highLevel) return null;
@@ -572,7 +568,7 @@ export function securityScheme(schemeReference : RamlWrapper.SecuritySchemeRef) 
 /**
  * __$helperMethod__
  * __$meta__={"primary":true}
- **/
+ */
 export function RAMLVersion(api:RamlWrapper.Api):string{
     return api.highLevel().definition().universe().version();
 }
@@ -580,7 +576,7 @@ export function RAMLVersion(api:RamlWrapper.Api):string{
 /**
  * __$helperMethod__
  * __$meta__={"primary":true}
- **/
+ */
 export function structuredValue(reference:RamlWrapper.Reference):RamlWrapper.TypeInstance{
     var hl = reference.value().lowLevel();
     return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(hl);
@@ -589,7 +585,7 @@ export function structuredValue(reference:RamlWrapper.Reference):RamlWrapper.Typ
 /**
  * __$helperMethod__
  * __$meta__={"name":"name","primary":true}
- **/
+ */
 export function referenceName(reference:RamlWrapper.Reference):string{
     var val = reference.highLevel().value();
     return (typeof val == 'string') || val==null ? val : val.valueName();
@@ -598,7 +594,7 @@ export function referenceName(reference:RamlWrapper.Reference):string{
 /**
  * __$helperMethod__
  * __$meta__={"name":"trait","primary":true}
- **/
+ */
 export function referencedTrait(ref:RamlWrapper.TraitRef):RamlWrapper.Trait{
     return <RamlWrapper.Trait>referencedObject(ref);
 }
@@ -606,7 +602,7 @@ export function referencedTrait(ref:RamlWrapper.TraitRef):RamlWrapper.Trait{
 /**
  * __$helperMethod__
  * __$meta__={"name":"annotation","primary":true}
- **/
+ */
 export function referencedAnnotation(ref:RamlWrapper.AnnotationRef):RamlWrapper.TypeDeclaration{
     return <RamlWrapper.TypeDeclaration>referencedObject(ref);
 }
@@ -614,7 +610,7 @@ export function referencedAnnotation(ref:RamlWrapper.AnnotationRef):RamlWrapper.
 /**
  * __$helperMethod__
  * __$meta__={"name":"resourceType","primary":true}
- **/
+ */
 export function referencedResourceType(ref:RamlWrapper.ResourceTypeRef):RamlWrapper.ResourceType{
     return <RamlWrapper.ResourceType>referencedObject(ref);
 }
@@ -669,7 +665,7 @@ function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):Examp
 /**
  * __$helperMethod__
  * __$meta__={"name":"example","primary":true}
- **/
+ */
 export function getTypeExample(td:RamlWrapper.TypeDeclaration):RamlWrapper.ExampleSpec{
     var examples = getExpandableExamples(td,true);
     if(examples.length>0){
@@ -681,7 +677,7 @@ export function getTypeExample(td:RamlWrapper.TypeDeclaration):RamlWrapper.Examp
 /**
  * __$helperMethod__
  * __$meta__={"name":"examples","primary":true}
- **/
+ */
 export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.ExampleSpec[]{
     return <RamlWrapper.ExampleSpec[]>getExpandableExamples(td);
 }
@@ -689,7 +685,7 @@ export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.Exam
 /**
  * __$helperMethod__
  * __$meta__={"name":"fixedFacets","primary":true}
- **/
+ */
 export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
     var obj = td.runtimeDefinition().getFixedFacets();
     if(Object.keys(obj).length==0){
@@ -803,43 +799,7 @@ export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrappe
     return null;
 }
 
-// /**
-//  * __$helperMethod__
-//  * __$meta__={"primary":true}
-//  **/
-// export function schemaContent(typeDeclaration : RamlWrapper.TypeDeclaration) : string {
-//     var schemaString = typeDeclaration.schema();
-//     if(!schemaString){
-//         return null;
-//     }
-//
-//     var schemaAttribute =
-//         typeDeclaration.highLevel().attr(universes.Universe10.TypeDeclaration.properties.schema.name);
-//     if (!schemaAttribute) {
-//         return schemaString;
-//     }
-//
-//     var declaration = search.findDeclarationByNode(schemaAttribute, search.LocationKind.VALUE_COMPLETION);
-//     if (!declaration) return schemaString;
-//
-//     if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {
-//         return schemaString;
-//     }
-//
-//     //we found the schema declaration and should get its contents
-//
-//     if ((<hl.IHighLevelNode>declaration).definition().key() != universes.Universe10.GlobalSchema) {
-//         return schemaString;
-//     }
-//
-//     var valueAttribute =
-//         (<hl.IHighLevelNode>declaration).attr(universes.Universe10.GlobalSchema.properties.value.name);
-//     if (valueAttribute == null) {
-//         return null;
-//     }
-//
-//     return valueAttribute.value();
-// }
+
 
 function extractParams(
     params:RamlWrapper.TypeDeclaration[],
@@ -898,7 +858,7 @@ function extractParams(
 /**
  * __$helperMethod__
  * __$meta__={"name":"parametrizedProperties","primary":true}
- **/
+ */
 export function getTemplateParametrizedProperties(
     node:RamlWrapper.Trait|RamlWrapper.ResourceType):RamlWrapper.TypeInstance{
 
@@ -977,23 +937,6 @@ class ParamWrapper implements Raml08Parser.BasicNamedParameter{
     'default': any
 
 }
-
-/**
- * _//_$helperMethod__
- * __$meta__={"name":"meta"}
- **/
-//export function apiMetadata(api:RamlWrapper.Api):core.NodeMetadata{
-//    var apiImpl = <RamlWrapper.ApiImpl>api;
-//    var meta = core.fillElementMeta(apiImpl);
-//    var protocolsOriginal = apiImpl.protocols_original();
-//    if(protocolsOriginal.length==0) {
-//        var protocols = apiImpl.protocols();
-//        if(protocols.length!=0){
-//            meta.registerCalculatedValue(universes.Universe10.Api.properties.protocols.name);
-//        }
-//    }
-//    return meta;
-//}
 
 
 export class ExampleSpecImpl extends core.BasicNodeImpl{

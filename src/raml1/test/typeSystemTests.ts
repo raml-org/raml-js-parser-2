@@ -231,6 +231,7 @@ describe('Nominal Hierarchy Genuine User Defined Tests',function(){
         var type = response.body()[0];
 
         var runtimeType = (<RamlWrapper.TypeDeclaration>type).runtimeType();
+        console.log("----DEBUG: " + runtimeType.nameId()+"/"+runtimeType.isGenuineUserDefinedType())
 
         assert.equal(runtimeType.isGenuineUserDefinedType(), false);
     });

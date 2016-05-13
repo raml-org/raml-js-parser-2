@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "0.2.7-rc2",
+  "version": "0.2.10",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
@@ -24,12 +24,13 @@
     "json-stable-stringify": "^1.0.1",
     "loophole": "^1.1.0",
     "lrucache": "^0.2.0",
+    "promise-polyfill": "^5.1.0",
     "marked": "^0.3.3",
     "media-typer": "^0.3.0",
     "mkdirp": "^0.5.0",
     "pluralize": "^1.2.0",
     "q": "^1.0.0",
-    "raml-definition-system": "beta",
+    "raml-definition-system": "^0.0.24",
     "raml-parser": "^0.8.11",
     "then-request": "^2.2.0",
     "ts-structure-parser": "^0.0.9",

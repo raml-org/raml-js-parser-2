@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: "test"
+
+annotationTypes:
+  TestAnnotation: !include ./schema.xsd
+
+types:
+  SchemaType:
+    type: !include ./schema.xsd
+    displayName: test
+    (TestAnnotation):
+      country:
+        name: "sdfdsf"

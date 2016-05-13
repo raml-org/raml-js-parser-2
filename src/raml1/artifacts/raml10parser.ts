@@ -4864,6 +4864,14 @@ setTitle( param:string ){
 
 
         /**
+         * A longer, human-friendly description of the API
+         **/
+description(  ):MarkdownString{
+             return <MarkdownString>super.attribute('description', (attr:hl.IAttribute)=>new MarkdownStringImpl(attr));
+         }
+
+
+        /**
          * The version of the API, e.g. 'v1'
          **/
 version(  ):string{
@@ -5144,6 +5152,20 @@ export class ApiScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl i
          **/
 title(  ):AnnotationRef[]{
         var attr = this.node.attr("title");
+        if(attr==null){
+          return [];
+        }
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * Api.description annotations
+         **/
+description(  ):AnnotationRef[]{
+        var attr = this.node.attr("description");
         if(attr==null){
           return [];
         }

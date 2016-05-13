@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: RAML spec
+
+uses:
+  lib: lib/lib.raml
+
+/resource:
+  get:
+    is: [ lib.libTrait1 ]
+    queryParameters:
+      param1:
+    body:
+      application/xml:
+
+/{id}:
+  type: lib.libResourceType
+  is: [ libTrait2 ]
+  uriParameters:
+    id:
+      type: number
+
+  post:
+    is: [ libTrait1 ]
+    queryParameters:
+      param1:
+      param2:
+    body:
+      text/plain:
+      application/xml:
+    responses:
+      200:
+        body:
+          application/json:
+
+  get:
+    queryParameters:
+      param2:
+    body:
+      text/plain:

@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test
+version: v1
+baseUri: http://api.samplehost.com
+resourceTypes:
+  rt1:
+    post:
+      <<param>>:
+
+/resource/{get}:
+  type:
+    rt1:
+      param:
+        p1:
+        p2:

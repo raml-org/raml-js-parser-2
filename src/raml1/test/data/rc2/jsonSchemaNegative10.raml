@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: "test"
+
+annotationTypes:
+  TestAnnotation: !include ./scheme.json
+
+types:
+  SchemaType:
+    type: !include ./scheme.json
+    displayName: test
+    (TestAnnotation):
+      name: "sdfdsf"
+  TestType:
+    type: object
+  TestType2:
+    type:
+      type: object
+      properties:
+        testProp:
+          type:
+            type: SchemaType

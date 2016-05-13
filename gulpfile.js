@@ -60,7 +60,8 @@ var testFiles = [
    'src/raml1/test/data/parser/test/specs/traits.js',
    'src/raml1/test/data/parser/test/specs/transformations.js',
    'src/raml1/test/data/parser/test/specs/validator.js',
-   'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js'
+   'src/raml1/test/data/parser/test/specs/duplicateKeysValidations.js',
+    'dist/raml1/test/parserTestsRC2.js',
 ]
 
 gulp.task('testExpand:ts', function () {

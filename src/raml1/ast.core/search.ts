@@ -99,7 +99,7 @@ function getIndent2(offset:number,text:string):string{
 
     }
 }
-function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true):hl.IParseResult{
+export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits=true, returnAttrs=true):hl.IParseResult{
     if (n==null){
         return null;
     }
@@ -117,6 +117,9 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
 
                     var node=deepFindNode(all[i],offset,end, goToOtherUnits);
                     if (node){
+                        if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                            node = node.parent();
+                        }
                         return node;
                     }
                 }
@@ -136,11 +139,17 @@ function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOtherUnits
                         }
                         var node = deepFindNode(hl, offset, end, goToOtherUnits);
                         if (node) {
+                            if (!returnAttrs && node instanceof hlimpl.ASTPropImpl) {
+                                node = node.parent();
+                            }
                             return node;
                         }
 
                     }
-                    return attr;
+                    if (returnAttrs)
+                        return attr;
+                    else
+                        return attr.parent();
                 }
                 return null;
             }
@@ -508,10 +517,35 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
         }
     }
 }
-export function findExampleContentType(node : hl.IAttribute) : hl.INodeDefinition {
-    var p=node.parent();
+export function findExampleContentType(node : hl.IParseResult) : hl.INodeDefinition {
 
-    return <hl.INodeDefinition>p.localType();
+    var potentialTypeNode : hl.IHighLevelNode = null;
+    if (node.isElement()) {
+        potentialTypeNode = <hl.IHighLevelNode> node;
+    }
+    else if (node.isAttr()) {
+        potentialTypeNode = node.parent();
+    }
+
+    if (!potentialTypeNode.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+        var parent = potentialTypeNode.parent();
+        if (!parent) return null;
+
+        if (parent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+            potentialTypeNode = parent;
+        } else {
+            parent = parent.parent();
+            if (parent == null) return null;
+
+            if (parent.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+                potentialTypeNode = parent;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    return <hl.INodeDefinition>potentialTypeNode.localType();
 }
 
 export function parseDocumentationContent(attribute : hl.IAttribute, type : hl.INodeDefinition) : hl.IHighLevelNode {
@@ -519,6 +553,14 @@ export function parseDocumentationContent(attribute : hl.IAttribute, type : hl.I
         return null
     }
     return new hlimpl.ASTNodeImpl((<hlimpl.StructuredValue>attribute.value()).lowLevel(), attribute.parent(), type, attribute.property())
+}
+
+export function parseStructuredExample(exampleNode: hl.IHighLevelNode, type : hl.INodeDefinition) : hl.IHighLevelNode {
+    return new hlimpl.ASTNodeImpl(exampleNode.lowLevel(), exampleNode, type, exampleNode.property());
+}
+
+export function isExampleNode(node : hl.IHighLevelNode) {
+    return node.definition().key() == universes.Universe10.ExampleSpec;
 }
 
 export function isExampleNodeContent(node : hl.IAttribute) : boolean {

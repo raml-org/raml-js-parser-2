@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: "test"
+
+resourceTypes:
+  collection:
+    get?:
+      description: <<TextAbout>>
+  collection2:
+    type: { collection : { TextAbout: <<TextAbout>> } }
+/resource:
+  type: { collection2 : { TextAbout: "get value" } }

@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: "test"
+
+types:
+  TestbaseType:
+    properties:
+      name: string
+  TestType:
+    type:
+      type: TestbaseType
+      properties:
+        name2: string
+    example:
+      name: test
+      name2: test2

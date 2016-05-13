@@ -12,6 +12,7 @@ type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 import services=defs
 import linter=require("./linter")
+import universeHelpers = require("../tools/universeHelpers");
 export interface TemplateApplication{
     tp:hl.ITypeDefinition
     attr:hl.IAttribute
@@ -28,6 +29,10 @@ export interface TemplateData{
 function templateFields(node:hl.IParseResult,d:TemplateData){
 
     var u=<defs.Universe>node.root().definition().universe();
+    var key = node.lowLevel().key();
+    if(key){
+        handleValue(key, d, null,true,u);
+    }
     node.children().forEach(x=>templateFields(x,d));
     if (node instanceof hlimpl.ASTPropImpl){
         var prop=<ASTPropImpl>node;
@@ -105,17 +110,20 @@ var handleValue = function (
             }
         }
     }
+    if (!isFull || allwaysString) {
+        r = <any>u.type(universes.Universe10.StringType.name);
+    }
+    else if(r==null&&u.version()=="RAML10"){
+        r = <any>u.type(universes.Universe10.AnyType.name);
+    }
+    
     for(var parameterUsage of parameterUsages){
         if (linter.RESERVED_TEMPLATE_PARAMETERS[parameterUsage] != null) {
             //Handling reserved parameter names;
             continue;
         }
 
-        var q = d[parameterUsage];        
-        if (!isFull || allwaysString) {
-            r = <any>u.type(universes.Universe10.StringType.name);
-        }
-
+        var q = d[parameterUsage];
         //FIX ME NOT WHOLE TEMPLATES
         if (q) {
             q.push({
@@ -173,8 +181,17 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         var paths:string[][] = paramPaths[x];
         prop.getAdapter(services.RAMLPropertyService).putMeta("templatePaths",paths);
 
-        var tp = _.unique(usages[x]).map(x=>x.tp).filter(x=>x && x.nameId() != universes.Universe08.StringType.name);
-        prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(universes.Universe08.StringType.name));
+        var defaultType:string;
+        if(node.definition().universe().version()=="RAML10") {
+            var hasString = usages[x].filter(y=>universeHelpers.isStringTypeType(y.tp)).length>0;
+            defaultType = hasString ? universes.Universe10.StringType.name : universes.Universe10.AnyType.name;
+        }
+        else{
+            defaultType = universes.Universe08.StringType.name;
+        }
+        
+        var tp = _.unique(usages[x].map(x=>x.tp)).filter(x=>x && x.nameId() != defaultType);
+        prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(defaultType));
         prop.withRequired(true)
         if (usages[x].length > 0) {
             prop._node = usages[x][0].attr;

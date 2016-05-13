@@ -37,6 +37,11 @@ describe('TCK tests',function() {
         testAPI('TCK/RAML10/Traits/Trait 001/api.raml');
     });
 
+    it("Trait 002", function () {
+        this.timeout(15000);
+        testAPI('TCK/RAML10/Traits/Trait 002/api.raml');
+    });
+
     it("Annotations 001", function () {
         this.timeout(15000);
         testAPI('TCK/RAML10/Annotations 001/api.raml');
@@ -145,7 +150,7 @@ function testAPI(apiPath:string, extensions?:string[],tckJsonPath?:string){
         assert(true);
     }
     else{
-        fs.writeFileSync(util.data(tckJsonPath),JSON.stringify(json));
+        //fs.writeFileSync(util.data(tckJsonPath),JSON.stringify(json,null,2));
         console.log(diff.map(x=>x.message("actual","expected")).join("\n\n"));
         assert(false);
     }

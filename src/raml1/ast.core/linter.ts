@@ -2,6 +2,8 @@
 /// <reference path="../../../typings/main.d.ts" />
 
 import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
+import json= require ("../jsyaml/json2lowLevel")
+var stringify=require("json-stable-stringify")
 import proxy= require ("../ast.core/LowLevelASTProxy")
 import defs= require ("raml-definition-system")
 import hl= require ("../highLevelAST")
@@ -311,6 +313,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
 };
 export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, requiredOnly: boolean = false){
     var parentNode = node.parent();
+    var llValue = node.lowLevel().value();
     if (node.lowLevel()) {
         if (node.lowLevel().keyKind()==yaml.Kind.MAP){
 
@@ -318,7 +321,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
 
         }
         if (node.lowLevel().keyKind()==yaml.Kind.SEQ){
-            if (node.lowLevel().value()==null){
+            if (llValue==null){
                 var isPattern=false;
                 if (node.isElement()){
                     if (node.asElement().definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
@@ -367,13 +370,17 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             return
         }
         if (node.unresolvedRef){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + node.lowLevel().value()+" can not be resolved", node));
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "reference: " + llValue+" can not be resolved", node));
 
         }
-        if (node.knownProperty&&node.lowLevel().value()!=null){
+        if (node.knownProperty){
             //if (!node.lowLevel().)
             if (node.lowLevel().includeErrors().length==0) {
-
+                if(typeOfContainingTemplate(parentNode)
+                    &&util.startsWith(llValue,"<<")
+                    &&util.endsWith(llValue,">>")){
+                    return;
+                }
                 if (node.name()=="body"&&node.computedValue("mediaType")){
                     return;
                 }
@@ -697,6 +704,10 @@ class CompositePropertyValidator implements PropertyValidator{
                         newNode.validate(v);
                         return;
                     }
+                }
+                if(node.parent().definition().universe().version()=="RAML10"
+                    &&typeOfContainingTemplate(node.parent())!=null){
+                        return;
                 }
                 v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Scalar is expected here",node))
             }
@@ -1077,6 +1088,11 @@ class MediaTypeValidator implements PropertyValidator{
             if (v.indexOf("/*")==v.length-2){
                 v=v.substring(0,v.length-2)+"/xxx";
             }
+            if(node.parent() && node.parent().parent() && node.parent().parent().definition().isAssignableFrom(universes.Universe10.Trait.name)){
+                if(v.indexOf("<<")>=0){
+                    return;
+                }
+            }
             if (v=="body"){
                 if (node.parent().parent()) {
                     var ppc=node.parent().parent().definition().key();
@@ -1377,7 +1393,14 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
 }
 
 function isDuplicateSibling(attr: hl.IAttribute): boolean{
-    var siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
+    var ramlVersion = attr.property().domain().universe().version();
+    var siblingName:string;
+    if(ramlVersion=="RAML10"){
+        siblingName = stringify(json.serialize(attr.lowLevel()));
+    }
+    else{
+        siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
+    }
     
     if(!siblingName) {
         return false;
@@ -1408,7 +1431,13 @@ function isDuplicateSibling(attr: hl.IAttribute): boolean{
     var count = 0;
 
     siblings.forEach(sibling => {
-        var name = sibling.value && sibling.value() && sibling.value().valueName && sibling.value().valueName();
+        var name:string;
+        if(ramlVersion=="RAML10"){
+            siblingName = stringify(json.serialize(sibling.lowLevel()));
+        }
+        else {
+            name = sibling.value && sibling.value() && sibling.value().valueName && sibling.value().valueName();
+        }
 
         if(name === siblingName) {
             count++;
@@ -1656,7 +1685,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     var hasSufficientChild = false;
                     for(var path of paths){
                         path = path.map(x=>t.transform(x).value);
-                        if(this.checkPathSufficiency(parent.lowLevel(),path,node.property())){
+                        if(this.checkPathSufficiency(parent.lowLevel(),path,parent)){
                             hasSufficientChild = true;
                             break;
                         }
@@ -1708,8 +1737,17 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
     }
     checkPathSufficiency(node:ll.ILowLevelASTNode,
                          path:string[],
-                         prop:hl.IProperty):boolean{
+                         hlParent:hl.IHighLevelNode):boolean{
 
+        if(hlParent==null||hlParent.definition()==null){
+            return false;
+        }
+
+        var definition = hlParent.definition();
+        if(universeHelpers.isResourceTypeType(definition)||universeHelpers.isTraitType(definition)){
+            return true;
+        }
+        
         if(path.length==0){
             return false;
         }
@@ -1721,7 +1759,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             return false;
         }
         if(segment=="/"){
-            return this.checkPathSufficiency(node,path.slice(1),prop);
+            return this.checkPathSufficiency(node,path.slice(1),hlParent);
         }
         if(segment.length==0){
             return true;
@@ -1749,7 +1787,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
         }
         else{
             var path1 = path.slice(1);
-            return this.checkPathSufficiency(lowLevel,path1,prop);
+            return this.checkPathSufficiency(lowLevel,path1,hlParent);
         }
 
     }

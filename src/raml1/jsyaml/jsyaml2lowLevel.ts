@@ -749,6 +749,8 @@ export class Project implements lowlevel.IProject{
 
     private pathToUnit:{[path:string]:CompilationUnit}={}
 
+    failedUnits:{[path:string]:any}={}
+
     /**
      *
      * @param rootPath - path to folder where your root api is located
@@ -922,6 +924,17 @@ export class Project implements lowlevel.IProject{
     }
 
     unit(p:string,absolute:boolean=false):CompilationUnit{
+        if(absolute||isWebPath(p)){
+            if(this.failedUnits[p]!=null){
+                throw(this.failedUnits[p]);
+            }
+        }
+        else{
+            var ap = toAbsolutePath(this.rootPath,p);
+            if(this.failedUnits[ap]){
+                throw(this.failedUnits[ap]);
+            }
+        }
         var cnt:string=null;
         var apath:string=p;
 
@@ -1743,13 +1756,18 @@ export class Project implements lowlevel.IProject{
                     }
                     var newval = x.value;
 
-                    //console.log('set value: ' + (typeof curval) + ' ==> ' + (typeof newval));
-                    if(typeof curval == 'string' && typeof newval == 'string') {
+                    console.log('set value: ' + (typeof curval) + ' ==> ' + (typeof newval));
+                    if((typeof(curval) == 'string' ||
+                        typeof(curval) == 'number' ||
+                        typeof(curval) == 'boolean') && typeof newval == 'string') {
                         //console.log('set value: str => str');
                         if(curval != newval) {
                             this.changeValue(attr.unit(), attr, <string>newval);
                         }
-                    } else if(typeof curval == 'string' && typeof newval != 'string') {
+                    } else if((typeof(curval) == 'string' ||
+                        typeof(curval) == 'number' ||
+                        typeof(curval) == 'boolean')
+                        && typeof(newval) != 'string') {
                         //console.log('set value: str => obj');
                         // change structure
                         //this.changeValue(attr.unit(), attr, null);
@@ -3694,6 +3712,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     }
                 });
                 errors[unitPath] = x;
+                (<Project>project).failedUnits[unitPath] = x;
             }));
         });
         return Promise.all(promises).then(x=>{
