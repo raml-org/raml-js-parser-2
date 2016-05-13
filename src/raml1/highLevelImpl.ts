@@ -293,8 +293,12 @@ export class BasicASTNode implements hl.IParseResult {
     localId():string{
         return this.name();
     }
+    cachedId: string
 
     fullLocalId() : string {
+        if (this.cachedId){
+            return this.cachedId;
+        }
         if (this._parent){
             var result="."+this.name();
 
@@ -303,9 +307,11 @@ export class BasicASTNode implements hl.IParseResult {
                 var ind=sameName.indexOf(this);
                 result+="["+ind+"]"
             }
+            this.cachedId=result;
             return result;
         }
-        return this.localId();
+        this.cachedId= this.localId();
+        return this.cachedId;
     }
 
     property():hl.IProperty{
@@ -1348,9 +1354,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var ass=this._associatedDef;
         this._associatedDef=null;
         this._children=null;
+        this._mergedChildren=null;
     }
+    _mergedChildren:hl.IParseResult[];
 
     children():hl.IParseResult[] {
+
         var lowLevel = this.lowLevel();
 
         if(lowLevel && (<any>lowLevel).isValueInclude && (<any>lowLevel).isValueInclude() && resourceRegistry.isWaitingFor((<any>lowLevel).includePath())) {
@@ -1360,8 +1369,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
 
         if (this._children){
-
-            return this.mergeChildren(this._children, this.getExtractedChildren());
+            if (this._mergedChildren){
+                return this._mergedChildren;
+            }
+            this._mergedChildren= this.mergeChildren(this._children, this.getExtractedChildren());
+            return this._mergedChildren;
         }
 
         if (this._node) {
@@ -1469,6 +1481,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     resetChildren(){
         this._children = null;
+        this._mergedChildren=null;
     }
 
     isEmptyRamlFile(): boolean {
@@ -1569,6 +1582,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     clearChildrenCache() {
         this._children = null;
+        this._mergedChildren=null;
     }
 
     optionalProperties():string[]{
