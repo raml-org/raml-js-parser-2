@@ -37,6 +37,11 @@ describe('TCK tests',function() {
         testAPI('TCK/RAML10/Traits/Trait 001/api.raml');
     });
 
+    it("Trait 002", function () {
+        this.timeout(15000);
+        testAPI('TCK/RAML10/Traits/Trait 002/api.raml');
+    });
+
     it("Annotations 001", function () {
         this.timeout(15000);
         testAPI('TCK/RAML10/Annotations 001/api.raml');

@@ -785,6 +785,19 @@ describe("Individual errors",function(){
     })
 })
 
+
+describe('Object values for template parameters tests', function () {
+    it("Parameter used in key must have scalar value", function () {
+        this.timeout(15000);
+        testErrors(util.data("parser/resourceType/resType21.raml"), ["property 'param' must be a string"]);
+    })
+
+    it("Parameter used inside string value must have scalar value", function () {
+        this.timeout(15000);
+        testErrors(util.data("parser/resourceType/resType22.raml"), ["property 'param' must be a string"]);
+    })
+});
+
 function escapeRegexp(regexp: string) {
     return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }

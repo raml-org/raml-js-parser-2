@@ -705,6 +705,10 @@ class CompositePropertyValidator implements PropertyValidator{
                         return;
                     }
                 }
+                if(node.parent().definition().universe().version()=="RAML10"
+                    &&typeOfContainingTemplate(node.parent())!=null){
+                        return;
+                }
                 v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Scalar is expected here",node))
             }
             else {
