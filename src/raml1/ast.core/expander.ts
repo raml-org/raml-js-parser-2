@@ -306,21 +306,35 @@ class TraitsAndResourceTypesExpander {
             if (transformer) {
                 name = transformer.transform(name).value;
             }
-            var params:{[key:string]:string} = {};
+            var scalarParams:{[key:string]:string} = {};
+            var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
             var node = this.getTemplate(name,context,cache,globalList);;
             //var t = hlimpl.typeFromNode(node.highLevel());
             if (node) {
 
-                if (this.ramlVersion == 'RAML08' && transformer) {
-                    sv.children().forEach(x=>params[x.valueName()] = transformer.transform(x.lowLevel().value()).value);
+                if (this.ramlVersion == 'RAML08') {
+                    if(transformer) {
+                        sv.children().forEach(x=>scalarParams[x.valueName()] = transformer.transform(x.lowLevel().value()).value);
+                    }
+                    else{
+                        sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
+                    }
                 }
                 else {
-                    sv.children().forEach(x=>params[x.valueName()] = x.lowLevel().value());
+                    sv.children().forEach(x=>{
+                        var llNode = x.lowLevel();
+                        if(llNode.valueKind()==yaml.Kind.SCALAR) {
+                            scalarParams[x.valueName()] = llNode.value()
+                        }
+                        else{
+                            structuredParams[x .valueName()] = llNode;
+                        }
+                    });
                 }
                 return {
                     name: name,
-                    transformer: new ValueTransformer(template, name, params),
+                    transformer: new ValueTransformer(template, name, scalarParams, structuredParams),
                     node: node
                 };
             }
@@ -459,27 +473,25 @@ class TransformationBuffer{
 export class ValueTransformer implements proxy.ValueTransformer{
 
     constructor(
-        templateKind:string,
-        templateName:string,
-        params:{[key:string]:string}){
-
-        this.templateKind = templateKind;
-        this.templateName = templateName;
-        this.params = params;
+        public templateKind:string,
+        public templateName:string,
+        public params?:{[key:string]:string},
+        public structuredParams?:{[key:string]:ll.ILowLevelASTNode}){
     }
 
-    templateKind:string;
-
-    templateName:string;
-
-    params:{[key:string]:string};
-
-    transform(obj:any){
+    transform(obj:any,toString?:boolean){
 
         var undefParams:{[key:string]:boolean} = {};
 
         var errors:hl.ValidationIssue[] = [];
         if(typeof(obj)==='string'){
+            if(this.structuredParams&&util.stringStartsWith(obj,"<<")&&util.stringEndsWith(obj,">>")){
+                var paramName = obj.substring(2,obj.length-2);
+                var structuredValue = this.structuredParams[paramName];
+                if(structuredValue!=null){
+                   return { value:structuredValue.value(toString), errors: errors };
+                }
+            }
             var str:string = <string>obj;
             var buf = new TransformationBuffer();
             var prev = 0;
@@ -542,6 +554,38 @@ export class ValueTransformer implements proxy.ValueTransformer{
             return { value:obj, errors: errors };
         }
     }
+
+    children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]{
+        var substitution = this.substitutionNode(node);
+        if(substitution){
+            return substitution.children();
+        }
+        return null;
+    }
+
+    valueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        var substitution = this.substitutionNode(node);
+        if(substitution){
+            return substitution.valueKind();
+        }
+        return null;
+    }
+
+    private substitutionNode(node:ll.ILowLevelASTNode) {
+        var paramName = this.paramName(node);
+        return paramName && this.structuredParams[paramName];
+    }
+    
+    private paramName(node:ll.ILowLevelASTNode):string {
+        var paramName:string = null;
+        if (node.valueKind() == yaml.Kind.SCALAR) {
+            var val = ("" + node.value()).trim();
+            if (util.stringStartsWith(val, "<<") && util.stringEndsWith(val, ">>")) {
+                paramName = val.substring(2, val.length - 2);
+            }
+        }
+        return paramName;
+    }
 }
 
 export class DefaultTransformer extends ValueTransformer{
@@ -550,7 +594,7 @@ export class DefaultTransformer extends ValueTransformer{
         owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,
         delegate: ValueTransformer
     ){
-        super(delegate.templateKind,delegate.templateName,null);
+        super(delegate.templateKind,delegate.templateName);
         this.owner = owner;
         this.delegate = delegate;
     }
@@ -559,7 +603,7 @@ export class DefaultTransformer extends ValueTransformer{
 
     delegate:ValueTransformer;
 
-    transform(obj:any){
+    transform(obj:any,toString?:boolean){
 
         if(obj==null){
             return {
@@ -578,7 +622,7 @@ export class DefaultTransformer extends ValueTransformer{
             this.initParams();
             ownResult = super.transform(obj);
         }
-        var result = this.delegate.transform(ownResult.value);
+        var result = this.delegate != null ? this.delegate.transform(ownResult.value,toString) : ownResult.value;
         return result;
     }
 
@@ -612,6 +656,14 @@ export class DefaultTransformer extends ValueTransformer{
         if(methodName){
             this.params['methodName'] = methodName;
         }
+    }
+
+    children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]{
+        return this.delegate != null ? this.delegate.children(node) : null;
+    }
+
+    valueKind(node:ll.ILowLevelASTNode):yaml.Kind{
+        return this.delegate != null ? this.delegate.valueKind(node) : null;
     }
 
 }

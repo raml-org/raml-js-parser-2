@@ -309,26 +309,6 @@
                     "position": 166
                 }
             ]
-        },
-        {
-            "code": 2,
-            "message": "Unused parameter: annotation",
-            "path": "api.raml",
-            "line": 30,
-            "column": 17,
-            "position": 629,
-            "range": [
-                {
-                    "line": 30,
-                    "column": 17,
-                    "position": 629
-                },
-                {
-                    "line": 30,
-                    "column": 27,
-                    "position": 639
-                }
-            ]
         }
     ]
 }
