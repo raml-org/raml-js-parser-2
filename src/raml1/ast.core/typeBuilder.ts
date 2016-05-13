@@ -29,6 +29,10 @@ export interface TemplateData{
 function templateFields(node:hl.IParseResult,d:TemplateData){
 
     var u=<defs.Universe>node.root().definition().universe();
+    var key = node.lowLevel().key();
+    if(key){
+        handleValue(key, d, null,true,u);
+    }
     node.children().forEach(x=>templateFields(x,d));
     if (node instanceof hlimpl.ASTPropImpl){
         var prop=<ASTPropImpl>node;
