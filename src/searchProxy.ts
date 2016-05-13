@@ -47,6 +47,14 @@ export function parseDocumentationContent(n:hl.IAttribute,t:hl.ITypeDefinition):
     return search.parseDocumentationContent(n,t);
 }
 
+export function parseStructuredExample(exampleNode: hl.IHighLevelNode, type : hl.INodeDefinition) : hl.IHighLevelNode {
+    return search.parseStructuredExample(exampleNode, type);
+}
+
+export function isExampleNode(node : hl.IHighLevelNode) {
+    return search.isExampleNode(node);
+}
+
 export function referenceTargets(p0:hl.IProperty,c:hl.IHighLevelNode):hl.IHighLevelNode[]{
     return search.referenceTargets(p0,c);
 }
