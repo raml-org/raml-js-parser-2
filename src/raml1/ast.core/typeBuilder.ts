@@ -253,40 +253,44 @@ export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
         v.unmerge();
         return v;
     });
-    var def=<defs.NodeClass>node.definition();
-    if (node.property()&&node.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name){
-        //var st=node.definition().getAdapter(services.RAMLService).toRuntime();
+    try {
+        var def = <defs.NodeClass>node.definition();
+        if (node.property() && node.property().nameId() == universes.Universe10.LibraryBase.properties.annotationTypes.name) {
+            //var st=node.definition().getAdapter(services.RAMLService).toRuntime();
 
-        var result:defs.UserDefinedClass = new AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node,upath, "");
-        var st=getSimpleType(node);
-        result._superTypes.push(st);
+            var result:defs.UserDefinedClass = new AnnotationType(node.name(), <defs.Universe>node.definition().universe(), node, upath, "");
+            var st = getSimpleType(node);
+            result._superTypes.push(st);
 
-        if(node.elementsOfKind(universes.Universe10.ObjectTypeDeclaration.properties.properties.name).length==0) {
-            result.getAdapter(services.RAMLService).withAllowAny();
+            if (node.elementsOfKind(universes.Universe10.ObjectTypeDeclaration.properties.properties.name).length == 0) {
+                result.getAdapter(services.RAMLService).withAllowAny();
+            }
+
+            var extType = def.getAdapter(services.RAMLService).getExtendedType();
+            if (extType) {
+                result._superTypes.push(extType);
+            }
+            return result;
+        }
+        else {
+            var result = new defs.UserDefinedClass(node.name(), <defs.Universe>node.definition().universe(), node, upath, "");
+        }
+        (<ASTNodeImpl>node).setAssociatedType(result);
+        //result.setDeclaringNode(node);
+        if (def.getAdapter(services.RAMLService).isInlinedTemplates()) {
+            return fillTemplateType(result, node);
+        }
+        else if (def.getAdapter(services.RAMLService).getReferenceIs()) {
+            return fillReferenceType(result, def);
         }
 
-        var extType=def.getAdapter(services.RAMLService).getExtendedType();
-        if (extType) {
-            result._superTypes.push(extType);
-        }
-        return result;
-    }
-    else {
-        var result = new defs.UserDefinedClass(node.name(), <defs.Universe>node.definition().universe(), node, upath, "");
-    }
-    (<ASTNodeImpl>node).setAssociatedType(result);
-    //result.setDeclaringNode(node);
-    if (def.getAdapter(services.RAMLService).isInlinedTemplates()){
-        return fillTemplateType(result,node);
-    }
-    else if (def.getAdapter(services.RAMLService).getReferenceIs()){
-        return fillReferenceType(result,def);
-    }
+        var rs = getSimpleType(node);
+        rs.getAdapter(services.RAMLService).setDeclaringNode(node);
 
-    var rs=getSimpleType(node);
-    rs.getAdapter(services.RAMLService).setDeclaringNode(node);
-
-    (<ASTNodeImpl>node).setAssociatedType(rs);
+        (<ASTNodeImpl>node).setAssociatedType(rs);
+    } finally{
+        ramlTypes.setPropertyConstructor(null);
+    }
     return rs;
 }
 
@@ -299,6 +303,16 @@ function getSimpleType(node:hl.IHighLevelNode):hl.ITypeDefinition{
         return m;
     });
 }
+function transform(u:hl.IUniverse){
+    return function (x){
+        var m=u.type(x);
+        if (!m){
+            var ut=new defs.UserDefinedClass("",<defs.Universe>u,null,"","");
+        }
+        return m;
+    }
+}
+
 
 export function convertType(root:hl.IHighLevelNode,t:ramlTypes.IParsedType):hl.ITypeDefinition{
     var node= _.find(root.elementsOfKind("types"),x=>x.name()== t.name());
@@ -319,11 +333,6 @@ export function convertType(root:hl.IHighLevelNode,t:ramlTypes.IParsedType):hl.I
             return v;
         });
     }
-    return ramlTypes.toNominal(t,x=>{
-        var m=root.definition().universe().type(x);
-        if (!m){
-            var ut=new defs.UserDefinedClass("",<defs.Universe>root.definition().universe(),root,"","");
-        }
-        return m;
-    });
+    var u=transform(root.definition().universe());
+    return ramlTypes.toNominal(t,u);
 }

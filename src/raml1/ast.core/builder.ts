@@ -91,6 +91,8 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
     process(node:hl.IHighLevelNode, childrenToAdopt:ll.ILowLevelASTNode[]):hl.IParseResult[] {
         var nn:any=node.lowLevel();
+        var cv=<any>node;
+        cv._mergedChildren=null;
         var cha=nn._node?nn._node:nn;
         try {
             if (cha['currentChildren']){
