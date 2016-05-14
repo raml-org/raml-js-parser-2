@@ -13,7 +13,7 @@
                 "<<type1>>"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -51,7 +51,7 @@
                   "number"
                 ],
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {

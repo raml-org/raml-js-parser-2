@@ -706,7 +706,7 @@ describe('Helper methods', function () {
         var resource = tools.collectionItem(api.resources(), 0);
         var method = tools.collectionItem(resource.methods(), 0);
         var header = tools.collectionItem(method.headers(), 0);
-        assert.equal(header.required(), false);
+        assert.equal(header.required(), true);
     });
 
     it('Defaults for Header#required 08', function () {

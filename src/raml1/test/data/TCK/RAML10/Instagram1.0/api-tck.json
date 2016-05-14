@@ -20,7 +20,7 @@
               ],
               "example": "callbackFunction",
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Callback function name. All output will be wrapper under this function name.\n",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -70,7 +70,7 @@
                 "number"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Latitude of the center search coordinate. If used, lng is required.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -93,7 +93,7 @@
                 "number"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Longitude of the center search coordinate. If used, lat is required.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -117,7 +117,7 @@
               ],
               "default": 1000,
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Default is 1000m (distance=1000), max distance is 5000.",
               "maximum": 5000,
               "__METADATA__": {
@@ -160,7 +160,7 @@
               ],
               "example": 1,
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Number of items you would like to receive.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -207,7 +207,7 @@
                 "integer"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Return media before this UNIX timestamp.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -230,7 +230,7 @@
                 "integer"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Return media after this UNIX timestamp.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -271,7 +271,7 @@
                 "integer"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Return media later than this min_id.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -294,7 +294,7 @@
                 "integer"
               ],
               "repeat": false,
-              "required": false,
+              "required": true,
               "description": "Return media earlier than this max_id.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -1518,7 +1518,7 @@
                   "string"
                 ],
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Used to send a valid OAuth 2 access token. Do not use together with\nthe \"Authorization\" header\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -1569,7 +1569,7 @@
                 ],
                 "example": "9e0dbc0a3b8d436ca65ae2df9825c893",
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Client_id is is identifier of  your server, script, or program with a specific application\nthis parameter is required if you are accessing APIs without authenticating\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -1665,7 +1665,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1695,7 +1695,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -1827,7 +1827,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -1857,7 +1857,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -2254,7 +2254,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -2284,7 +2284,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -2590,7 +2590,7 @@
                       "integer"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Return media before this UNIX timestamp.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -2613,7 +2613,7 @@
                       "integer"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Return media after this UNIX timestamp.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -2636,7 +2636,7 @@
                       "number"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Latitude of the center search coordinate. If used, lng is required.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -2659,7 +2659,7 @@
                       "number"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Longitude of the center search coordinate. If used, lat is required.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -2683,7 +2683,7 @@
                     ],
                     "default": 1000,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Default is 1000m (distance=1000), max distance is 5000.",
                     "maximum": 5000,
                     "__METADATA__": {
@@ -2708,7 +2708,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -2738,7 +2738,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3098,7 +3098,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3128,7 +3128,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3509,7 +3509,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3539,7 +3539,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3670,7 +3670,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media later than this min_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -3693,7 +3693,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media earlier than this max_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -3717,7 +3717,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -3747,7 +3747,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -3911,7 +3911,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -3941,7 +3941,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -4081,7 +4081,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -4111,7 +4111,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -4243,7 +4243,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4273,7 +4273,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4476,7 +4476,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4506,7 +4506,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4708,7 +4708,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media later than this min_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4731,7 +4731,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media earlier than this max_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4754,7 +4754,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media before this UNIX timestamp.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4777,7 +4777,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media after this UNIX timestamp.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4801,7 +4801,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -4831,7 +4831,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -5390,7 +5390,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -5420,7 +5420,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -5734,7 +5734,7 @@
                     ],
                     "example": 10,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of users to return.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -5764,7 +5764,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -5967,7 +5967,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -5997,7 +5997,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -6114,7 +6114,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media later than this min_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6137,7 +6137,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media earlier than this max_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6161,7 +6161,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6191,7 +6191,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6748,7 +6748,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6778,7 +6778,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -6981,7 +6981,7 @@
                         ],
                         "example": 100,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media liked before this id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7011,7 +7011,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7041,7 +7041,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7633,7 +7633,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -7663,7 +7663,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -7790,7 +7790,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media later than this min_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7813,7 +7813,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media earlier than this max_id.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7836,7 +7836,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media before this UNIX timestamp.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7859,7 +7859,7 @@
                           "integer"
                         ],
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Return media after this UNIX timestamp.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7883,7 +7883,7 @@
                         ],
                         "example": 1,
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Number of items you would like to receive.",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -7913,7 +7913,7 @@
                         ],
                         "example": "callbackFunction",
                         "repeat": false,
-                        "required": false,
+                        "required": true,
                         "description": "Callback function name. All output will be wrapper under this function name.\n",
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -8486,7 +8486,7 @@
                       "string"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Returns a location mapped off of a foursquare v2 api location id. If\nused, you are not required to use lat and lng.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8512,7 +8512,7 @@
                       "string"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Returns a location mapped off of a foursquare v1 api location id. If used,\nyou are not required to use lat and lng. Note that this method is deprecated;\nyou should use the new foursquare IDs with V2 of their API.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8538,7 +8538,7 @@
                       "number"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Latitude of the center search coordinate. If used, lng is required.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8561,7 +8561,7 @@
                       "number"
                     ],
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Longitude of the center search coordinate. If used, lat is required.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8585,7 +8585,7 @@
                     ],
                     "default": 1000,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Default is 1000m (distance=1000), max distance is 5000.",
                     "maximum": 5000,
                     "__METADATA__": {
@@ -8610,7 +8610,7 @@
                     ],
                     "example": 1,
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Number of items you would like to receive.",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8640,7 +8640,7 @@
                     ],
                     "example": "callbackFunction",
                     "repeat": false,
-                    "required": false,
+                    "required": true,
                     "description": "Callback function name. All output will be wrapper under this function name.\n",
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -8773,7 +8773,7 @@
                 ],
                 "example": null,
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Return media before this min_id.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -8797,7 +8797,7 @@
                 ],
                 "example": 1,
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Number of items you would like to receive.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -8827,7 +8827,7 @@
                 ],
                 "example": "callbackFunction",
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Callback function name. All output will be wrapper under this function name.\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -8997,7 +8997,7 @@
                 ],
                 "example": 1,
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Number of items you would like to receive.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -9027,7 +9027,7 @@
                 ],
                 "example": "callbackFunction",
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Callback function name. All output will be wrapper under this function name.\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -9463,7 +9463,7 @@
                   "string"
                 ],
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "Id of subscription to be removed.",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -9489,7 +9489,7 @@
                   "string"
                 ],
                 "repeat": false,
-                "required": false,
+                "required": true,
                 "description": "If you'd like to remove all subscriptions of a certain object type, you may include the object type. Also you can clear all your current subscriptions by setting 'object' to 'all'.",
                 "enum": [
                   "geography",
