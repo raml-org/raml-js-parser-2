@@ -25,7 +25,10 @@ describe('Parser integration tests',function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/Instagram/api.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null, Expected type \\w+ but found type null \\w+,null"]);
     });
-
+    it ("Instagram 1.0",function(){
+        this.timeout(15000);
+        testErrors(util.data("../example-ramls/omni/api.raml"));
+    });
     it ("Instagram 1.0",function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/Instagram1.0/api.raml"));
