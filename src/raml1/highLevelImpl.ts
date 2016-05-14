@@ -978,6 +978,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private _isAux:boolean
     private _auxChecked:boolean=false;
     private _knownIds:{[name:string]:hl.IParseResult};
+    private _knownLowLevelIds:{[name:string]:ll.ILowLevelASTNode};
+
     isInEdit:boolean;
 
     /**
@@ -1241,6 +1243,19 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
         return [];
     }
+    private getExtractedLowLevelChildren(n:ll.ILowLevelASTNode){
+        var r=<ASTNodeImpl>this.root();
+        if (r.isAuxilary()){
+            if (r._knownLowLevelIds){
+                var i=<ll.ILowLevelASTNode>r._knownLowLevelIds[this.id()];
+                if (i){
+                    return i.children();
+                }
+            }
+            return [];
+        }
+        return [];
+    }
 
     allowsQuestion():boolean{
         return this._allowQuestion||this.definition().getAdapter(services.RAMLService).getAllowQuestion();
@@ -1430,6 +1445,63 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
 
         return null;
+    }
+    private mergeLowLevelChildren(originalChildren : ll.ILowLevelASTNode[],
+                          masterChildren : ll.ILowLevelASTNode[]) : ll.ILowLevelASTNode[] {
+
+        var root = <ASTNodeImpl>this.root();
+
+        if (root.overlayMergeMode == OverlayMergeMode.AGGREGATE) {
+
+            //simply joining the sets
+            return originalChildren.concat(masterChildren);
+        }
+        else if (root.overlayMergeMode  == OverlayMergeMode.MERGE) {
+
+            var result : ll.ILowLevelASTNode[] = []
+
+            originalChildren.forEach(originalChild => {
+
+                var masterCounterpart = _.find(masterChildren,
+                    masterChild => masterChild.key() == originalChild.key());
+
+                if (!masterCounterpart) {
+                    //we dont have a counterpart, so simply adding to result
+                    result.push(originalChild);
+                } else {
+
+                    //there is a counterpart, so deciding what to do:
+                    this.mergeLowLevelChild(result, originalChild, masterCounterpart);
+                }
+            })
+
+            masterChildren.forEach(masterChild => {
+
+                var originalCounterpart = _.find(originalChildren,
+                    originalChild => masterChild.key() == originalChild.key());
+
+                if (!originalCounterpart) {
+                    //we dont have a counterpart, so simply adding to result
+                    result.push(masterChild);
+                }
+            })
+
+            return result;
+        }
+
+        return null;
+    }
+    private mergeLowLevelChild(result : ll.ILowLevelASTNode[], originalChild : ll.ILowLevelASTNode,
+                       masterChild : ll.ILowLevelASTNode) {
+
+        if (originalChild.kind() != masterChild.kind()) {
+
+            //should not happen theoretically
+            result.push(originalChild);
+            result.push(masterChild);
+            return;
+        }
+        result.push(originalChild);
     }
 
     private mergeChild(result : hl.IParseResult[], originalChild : hl.IParseResult,

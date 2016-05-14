@@ -1903,8 +1903,17 @@ class CompositeNodeValidator implements NodeValidator {
 
         }
         if (node.definition().key()==universes.Universe08.GlobalSchema){
-            if (node.lowLevel().valueKind()!=yaml.Kind.SCALAR&&node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF){
-                acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"schema "+node.name()+" must be a string",node))
+            if (node.lowLevel().valueKind()!=yaml.Kind.SCALAR){
+                var isString=false;
+                if (node.lowLevel().valueKind()==yaml.Kind.ANCHOR_REF||node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF){
+                    var vl=node.lowLevel().value();
+                    if (typeof vl==="string"){
+                        isString=true;
+                    }
+                }
+                if (!isString) {
+                    acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "schema " + node.name() + " must be a string", node))
+                }
             }
 
         }

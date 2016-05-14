@@ -1,0 +1,400 @@
+  - item: &item-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "links" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "href" : { "type" : "string" },
+                "label" : { "type" : "string" },
+                "rel" : { "type" : "string" }
+              }
+            }
+          },
+          "id" : { "type" : "string" },
+          "type" : { "type" : "string" },
+          "name" : { "type" : "string" },
+          "brand" : { "type" : "string" },
+          "skus" : {
+            "type" : "object",
+            "properties" : {
+              "collection" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "links" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "href" : { "type" : "string" },
+                          "label" : { "type" : "string" },
+                          "rel" : { "type" : "string" }
+                        }
+                      }
+                    },
+                    "id" : { "type" : "long" },
+                    "name" : { "type" : "string" },
+                    "summary" : { "type" : "string" },
+                    "price" : { "type" : "number" },  
+                    "sku" : { "type" : "string" },
+                    "stockQuantity" : { "type" : "integer" },
+                    "characteristics" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "name" : { "type" : "string" },
+                          "value" : { "type" : "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }    
+      }
+  - items: &items-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "object",
+            "properties" : {
+              "links" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "href" : { "type" : "string" },
+                    "label" : { "type" : "string" },
+                    "rel" : { "type" : "string" }
+                  }
+                }
+              },
+              "collection" : {
+                "type" : "object",
+                "properties" : {
+                  "size" : { "type" : "integer" },
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                          "id" : { "type" : "long" },
+                          "type" : { "type" : "string" },
+                          "name" : { "type" : "string" },
+                          "summary" : { "type" : "string" },
+                          "brand" : { "type" : "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }    
+      }
+  - brands: *items-schema
+  - categories: *items-schema
+  - pending-order: *item-schema
+  - pending-orders: *items-schema
+  - reviews: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "reviews" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "author" : { "type" : "string" },
+                  "review" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - review-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "review" : { "type" : "string" }
+
+        }    
+      }
+  - top-items: *items-schema
+  - top-brands: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "count" : { "type" : "integer" },
+          "brands" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                  "id" : { "type" : "string" },
+                  "name" : { "type" : "string" }
+              }
+            }
+          }
+        }    
+      }
+  - recommendations: *items-schema
+  - promotions: *items-schema
+  - promotion: *item-schema  
+  - wish-list: *items-schema
+  - wish-list-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" }
+        }
+      }
+  - basket: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "object",
+            "properties" : {
+              "collection" : {
+                "type" : "object",
+                "properties" : {
+                  "links" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "href" : { "type" : "string" },
+                        "label" : { "type" : "string" },
+                        "rel" : { "type" : "string" }
+                      }
+                    }
+                  },
+                  "items" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "links" : {
+                          "type" : "array",
+                          "items" : {
+                            "type" : "object",
+                            "properties" : {
+                              "href" : { "type" : "string" },
+                              "label" : { "type" : "string" },
+                              "rel" : { "type" : "string" }
+                            }
+                          }
+                        },
+                        "id" : { "type" : "string" },
+                        "type" : { "type" : "string" },
+                        "name" : { "type" : "string" },
+                        "summary" : { "type" : "string" },
+                        "price" : { "type" : "number" },  
+                        "sku" : { "type" : "string" },
+                        "stockQuantity" : { "type" : "integer" },
+                        "quantity" : { "type" : "integer" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }    
+      }
+  - basket-item: &basket-item-schema | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "sku" : { "type" : "string" },
+          "price" : { "type" : "number" },
+          "quantity" : { "type" : "integer" }
+        }
+      }
+  - skus: *basket-item-schema
+  - orders: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" }
+        }
+      }
+  - order: | 
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "pickupLocation" : { "type" : "string" },
+          "collection" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "links" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "object",
+                    "properties" : {
+                      "href" : { "type" : "string" },
+                      "label" : { "type" : "string" },
+                      "rel" : { "type" : "string" }
+                    }
+                  }
+                },
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" },
+                "status" : { "type" : "string" }
+              }
+             }
+          }
+        }
+      }
+  - order-request: &order-request-schema |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "pickupLocation" : { "type" : "string" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - return-request: *order-request-schema
+  - sale: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" },
+          "discount" : { "type" : "number" },
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "name" : { "type" : "string" },
+                "price" : { "type" : "number" },
+                "quantity" : { "type" : "integer" }
+              }
+            }
+          }
+        }
+      }
+  - sales: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "date" : { "type" : "date" },
+          "total" : { "type" : "number" }
+        }
+      }
+  - sale-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : { 
+              "type" : "object",
+              "properties" : {
+                "sku" : { "type" : "string" },
+                "quantity" : { "type" : "integer" }
+              }
+             }
+          }
+        }
+      }
+  - registration-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "mobileNumber" : { "type" : "string" },
+          "password" : { "type" : "string" },
+          "mobileToken" : { 
+            "type" : "object",
+            "properties" : {
+              "token" : { "type" : "string" },
+              "type" : { "type" : "string" }
+            }
+          },
+          "notificationPreferences": {
+            "type" : "array",
+            "items" : { "type" : "string" }
+          }
+        }
+      }
+  - mobile-token-request: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "token" : { "type" : "string" }
+        }
+      }
+  - mobile-tokens: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "tokens" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
+  - my-profile: |
+      {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type" : "object",
+        "properties" : {
+          "x-user-id" : { "type" : "string" },
+          "firstName" : { "type" : "string" },
+          "lastName" : { "type" : "string" },
+          "notificationPreferences" : { 
+            "type" : "array",
+            "items" : { "type" : "string" } 
+          }
+        }
+      }
