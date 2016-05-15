@@ -15,7 +15,7 @@ import refResolvers = require("./includeRefResolvers")
 import schemes = require('../../util/schemaAsync');
 import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
-
+import expander=require("../ast.core/expander")
 var Error=yaml.YAMLException
 export var Kind={
     SCALAR:yaml.Kind.SCALAR
@@ -78,6 +78,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
         var unit=this._project.resolveAsync(this._path,p);
         return unit;
     }
+    
 
 
     getIncludeNodes(): { includePath(): string}[]
@@ -115,7 +116,18 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     isDirty(){
         return false;
     }
-
+    expanded:highlevel.IHighLevelNode;
+    expandedHighLevel():highlevel.IParseResult    {
+        if (this.expanded){
+            return this.expanded;
+        }
+        var result=this.highLevel().asElement();
+        var nm=expander.expandTraitsAndResourceTypes(<any>result.wrapperNode());
+        var hlnode=nm.highLevel();
+        hlnode._expanded=true;
+        this.expanded=hlnode;
+        return hlnode;
+    }
 
 
 

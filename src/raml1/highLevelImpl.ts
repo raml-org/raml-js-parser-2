@@ -68,8 +68,9 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
 export class BasicASTNode implements hl.IParseResult {
     private _hashkey : string;
 
-
     unitMap:{ [path:string]:string };
+
+    
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -277,6 +278,9 @@ export class BasicASTNode implements hl.IParseResult {
         return true;
     }
     id():string{
+        if (this.cachedId){
+            return this.cachedId;
+        }
         if (this._parent){
             var parentId=this.parent().id();
             parentId+="."+this.name();
@@ -285,19 +289,22 @@ export class BasicASTNode implements hl.IParseResult {
                 var ind=sameName.indexOf(this);
                 parentId+="["+ind+"]"
             }
+            this.cachedId=parentId;
             return parentId;
         }
-        return "";
+        this.cachedId= "";
+        return this.cachedId;
     }
 
     localId():string{
         return this.name();
     }
     cachedId: string
+    cachedFullId: string
 
     fullLocalId() : string {
-        if (this.cachedId){
-            return this.cachedId;
+        if (this.cachedFullId){
+            return this.cachedFullId;
         }
         if (this._parent){
             var result="."+this.name();
@@ -307,11 +314,11 @@ export class BasicASTNode implements hl.IParseResult {
                 var ind=sameName.indexOf(this);
                 result+="["+ind+"]"
             }
-            this.cachedId=result;
+            this.cachedFullId=result;
             return result;
         }
-        this.cachedId= this.localId();
-        return this.cachedId;
+        this.cachedFullId= this.localId();
+        return this.cachedFullId;
     }
 
     property():hl.IProperty{
@@ -773,8 +780,19 @@ export interface ParseNode {
 
 export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements ParseNode{
 
+    private _toMerge:LowLevelWrapperForTypeSystem;
+
     constructor(protected _node:ll.ILowLevelASTNode, protected _highLevelRoot:hl.IHighLevelNode){
         super()
+
+        var v=<ASTNodeImpl>_highLevelRoot.root();
+        var mst=v.getMaster();
+        if (mst&&this._node===_highLevelRoot.lowLevel()){
+            var master=(<ASTNodeImpl>_highLevelRoot).getMasterCounterPart();
+            if (master){
+                this._toMerge=new LowLevelWrapperForTypeSystem(master.lowLevel(),master);
+            }
+        }
     }
 
     contentProvider() {
@@ -805,37 +823,67 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         }
         return this._node.value();
     }
+    _children:LowLevelWrapperForTypeSystem[];
+
+
+    childByKey:{
+        [key:string]:LowLevelWrapperForTypeSystem;
+    };
     children(){
-        if (this.key()=="uses"&&!this._node.parent().parent()){
-            return this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
+        if (this._children){
+            return this._children;
         }
-        return this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x,this._highLevelRoot));
+        if (this.key()=="uses"&&!this._node.parent().parent()){
+            this._children= this._node.children().map(x=>new UsesNodeWrapperFoTypeSystem(x,this._highLevelRoot))
+        }
+        else{
+            this._children=this._node.children().map(x=>new LowLevelWrapperForTypeSystem(x,this._highLevelRoot));
+        }
+        this.childByKey={};
+        for (var i=0;i<this._children.length;i++){
+            var c=this._children[i];
+            this.childByKey[c.key()]=c;
+        }
+        if (this._toMerge){
+            var mrg=this._toMerge.children();
+            for (var i=0;i<mrg.length;i++){
+                var c=mrg[i];
+                var existing=this.childByKey[c.key()];
+                if (existing){
+                    existing._toMerge=c;
+                }
+                else{
+                    this._children.push(c);
+                    this.childByKey[c.key()]=c;
+                }
+
+            }
+        }
+        return this._children;
     }
     childWithKey(k:string):ParseNode
     {
-
-        var mm=this.children();
-        for (var i=0;i<mm.length;i++){
-            if (mm[i].key()==k){
-                return mm[i];
-            }
+        if (!this._children){
+            this.children();
         }
-        return null;
+        return this.childByKey[k];
     }
     kind(){
-        if (this._node.valueKind()==yaml.Kind.MAPPING){
+        var vk=this._node.valueKind();
+        if (vk==yaml.Kind.MAPPING||vk===null){
             return rTypes.NodeKind.MAP;
         }
-        if (this._node.valueKind()==yaml.Kind.MAP){
+        if (vk==yaml.Kind.MAP){
             return rTypes.NodeKind.MAP;
         }
-        if (this._node.kind()==yaml.Kind.MAP){
+        var knd=this._node.kind();
+        if (knd==yaml.Kind.MAP){
             return rTypes.NodeKind.MAP;
         }
-        if (this._node.valueKind()==yaml.Kind.SEQ){
+        if (vk==yaml.Kind.SEQ){
             return rTypes.NodeKind.ARRAY;
         }
-        if (this._node.valueKind()==yaml.Kind.INCLUDE_REF){
+        if (vk==yaml.Kind.INCLUDE_REF){
             if (this._node.children().length>0){
                 //we can safely assume that it is map in the type system in this case
                 return rTypes.NodeKind.MAP;
@@ -895,18 +943,26 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     validate(v:hl.ValidationAcceptor):void{
         var k=this.definition().key();
-        if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
+        if (k==universes.Universe10.Api||k==universes.Universe08.Api||k==universes.Universe10.Extension){
             if (!this.isExpanded()){
                 var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
                 var hlnode=nm.highLevel();
                 hlnode._expanded=true;
+                (<ASTNodeImpl>hlnode).clearTypesCache();
                 hlnode.validate(v);
                 return;
             }
         }
+        if (k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
+            this.clearTypesCache();
+        }
         linter.validate(this,v);
     }
-
+    clearTypesCache(){
+        this._types=null;
+        var c=this.lowLevel().actual();
+        c.types=null;
+    }
 
     types():rTypes.IParsedTypeCollection{
         if (!this._types){
@@ -1169,7 +1225,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         return this.overlayMergeMode;
     }
 
+
+
+
     private calculateMasterByRef() : hl.IParseResult {
+
         var unit = this.lowLevel().unit();
         if (!unit) return null;
 
@@ -1178,18 +1238,22 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if (!masterReferenceNode || !masterReferenceNode.value()) {
             return null;
         }
-
+        var lc:any=this.lowLevel();
+        if (lc.master){
+            return lc.master;
+        }
         var masterPath = masterReferenceNode.value();
 
         var masterUnit = (<jsyaml.Project>this.lowLevel().unit().project()).resolve(this.lowLevel().unit().path(),masterPath);
         if (!masterUnit) {
             return null;
         }
-
-        var result = fromUnit(masterUnit);
+        var result = masterUnit.expandedHighLevel();
         (<ASTNodeImpl>result).setMergeMode(this.overlayMergeMode);
+        lc.master=result;
         return result;
     }
+
 
     private resetAuxilaryState() {
         this._isAux = false;
@@ -1236,13 +1300,26 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             if (r._knownIds){
                 var i=<hl.IHighLevelNode>r._knownIds[this.id()];
                 if (i){
-                    return i.children();
+                    var v=i.children();
+                    return v;
                 }
             }
             return [];
         }
         return [];
     }
+    getMasterCounterPart():hl.IHighLevelNode{
+        var r=<ASTNodeImpl>this.root();
+        if (r.isAuxilary()){
+            if (r._knownIds){
+                var i=<hl.IHighLevelNode>r._knownIds[this.id()];
+                return i;
+            }
+            return null;
+        }
+        return null;
+    }
+
     private getExtractedLowLevelChildren(n:ll.ILowLevelASTNode){
         var r=<ASTNodeImpl>this.root();
         if (r.isAuxilary()){
@@ -1400,6 +1477,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
         return [];
     }
+
 
     private mergeChildren(originalChildren : hl.IParseResult[],
                           masterChildren : hl.IParseResult[]) : hl.IParseResult[] {

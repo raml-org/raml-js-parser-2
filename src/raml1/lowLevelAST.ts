@@ -42,6 +42,7 @@ export interface ICompilationUnit{
     lineMapper():LineMapper;
 
     highLevel():IParseResult;
+    expandedHighLevel():highlevel.IParseResult
 
     /**
      * Returns true if this unit is overlay or extension, false otherwise.
@@ -161,6 +162,7 @@ export interface ILowLevelASTNode{
     markup(json?: boolean): string;
 
     highLevelParseResult():highlevel.IParseResult
+
 
     setHighLevelParseResult(highLevel:highlevel.IParseResult)
 

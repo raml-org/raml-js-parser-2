@@ -55,6 +55,11 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
         return this._node;
     }
 
+    expandedHighLevel():highlevel.IParseResult
+    {
+        return this.highLevel();
+    }
+
     isDirty(){
         return true;
     }

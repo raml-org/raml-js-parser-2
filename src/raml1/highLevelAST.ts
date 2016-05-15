@@ -214,7 +214,6 @@ export interface IParseResult {
     
     parent():IHighLevelNode;
     setParent(node: IParseResult);
-    
     children():IParseResult[];
     directChildren():IParseResult[];
     isAttached():boolean
