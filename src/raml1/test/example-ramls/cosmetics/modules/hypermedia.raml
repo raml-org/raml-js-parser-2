@@ -1,0 +1,9 @@
+#%RAML 1.0 Overlay
+extends: api.raml
+
+uses: 
+  ano: annotations.raml
+
+(ano.hypermedia-plan):
+  controls: 
+    property: links

@@ -2305,9 +2305,10 @@ class OverlayNodesValidator implements NodeValidator{
 
 class RecurrentOverlayValidator implements  NodeValidator{
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor){
+        
         var z=new OverlayNodesValidator();
         z.validate(node,v);
-        node.elements().forEach(x=>this.validate(x,v));
+        node.directChildren().forEach(x=>{ if (x.isElement()) {this.validate(x.asElement(),v)}});
     }
 }
 class RecurrentValidateChildrenKeys implements NodeValidator{

@@ -83,7 +83,9 @@ class TraitsAndResourceTypesExpander {
     private ramlVersion:string;
 
     expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
-
+        if (api.definition().key()==universeDef.Universe10.Overlay){
+            return api;
+        }
         this.ramlVersion = api.highLevel().definition().universe().version();
         var factory = this.ramlVersion=="RAML10" ? factory10 : factory08;
 
