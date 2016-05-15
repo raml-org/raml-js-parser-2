@@ -132,6 +132,9 @@ describe('Security Schemes tests', function () {
     it ("grant type validation" ,function(){
         testErrors(util.data("parser/custom/oath2.raml"),["authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI"]);
     })
+    it ("security scheme should be a seq in 0.8" ,function(){
+        testErrorsByNumber(util.data("parser/custom/shemeShouldBeASeq.raml"),1);
+    })
 });
 describe('Parser regression tests', function () {
     it ("basic type expression cases should pass validation" ,function(){

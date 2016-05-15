@@ -217,7 +217,16 @@ function isExampleProp(d:hl.IProperty){
     if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
         return false;
     }
-    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name)&&( d.domain().key()!=universes.Universe10.DocumentationItem&& d.domain().key()!=universes.Universe08.DocumentationItem);
+    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name);
+}
+function isSecuredBy(d:hl.IProperty){
+    if (!d.domain()){
+        return;
+    }
+    if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
+        return false;
+    }
+    return (d.nameId()==universes.Universe08.MethodBase.properties.securedBy.name);
 }
 /**
  * For descendants of templates returns template type. Returns null for all other nodes.
@@ -770,6 +779,25 @@ class CompositePropertyValidator implements PropertyValidator{
             }
             new ExampleValidator().validate(node, v);
         }
+        if (isSecuredBy(node.property())){
+            if (node.definition().universe().version()=="RAML08"){
+                var np=node.lowLevel().parent();
+                var ysc=yaml.Kind.SEQ;
+                var msg="`securedBy` should be a list in RAML08";
+                if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
+                    if (np.valueKind()!=ysc){
+                        v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,msg,node,false));
+                    }
+                }
+                else{
+                    if (np.kind()!=ysc){
+                        v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,msg,node,false));
+                    }
+                }
+
+            }
+            new ExampleValidator().validate(node, v);
+        }
         if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
             //TODO MOVE TO DEF SYSTEM
             var nameId = node.parent().property()&&node.parent().property().nameId();
@@ -785,6 +813,7 @@ class CompositePropertyValidator implements PropertyValidator{
             new UriValidator().validate(node,v);
             return;
         }
+
         if (range==universes.Universe08.FullUriTemplateString||range==universes.Universe10.FullUriTemplateString){
             new UriValidator().validate(node,v);
             return;
