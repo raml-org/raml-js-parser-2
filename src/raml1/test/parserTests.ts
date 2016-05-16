@@ -643,7 +643,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overlay/o1/NewOverlay.raml"));
     })
     it ("overlay2" ,function(){
-        testErrors(util.data("parser/overlay/o2/NewOverlay.raml"),["This node does not override any node from master api:\\.env-org-pair2"]);
+        testErrors(util.data("parser/overlay/o2/NewOverlay.raml"),["The '.env-org-pair2' node does not match any node of the master api."]);
     })
     it ("Overlay: title" ,function(){
         testErrors(util.data("parser/overlay/o3/NewOverlay.raml"));
@@ -697,13 +697,13 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overlay/o19/NewOverlay.raml"), ["Property default is not allowed to be overriden or added in overlays"]);
     })
     it ("Overlay: top-level illegal node" ,function(){
-        testErrors(util.data("parser/overlay/o20/NewOverlay.raml"),["This node does not override any node from master api:\\./resource2"]);
+        testErrors(util.data("parser/overlay/o20/NewOverlay.raml"),["The './resource2' node does not match any node of the master api."]);
     })
     it ("Overlay: sub-level illegal node 1" ,function(){
-        testErrors(util.data("parser/overlay/o21/NewOverlay.raml"),["This node does not override any node from master api:\\./resource\\./resource2"]);
+        testErrors(util.data("parser/overlay/o21/NewOverlay.raml"),["The './resource./resource2' node does not match any node of the master api."]);
     })
     it ("Overlay: sub-level illegal node 2" ,function(){
-        testErrors(util.data("parser/overlay/o22/NewOverlay.raml"),["This node does not override any node from master api:\\./resource\\.post"]);
+        testErrors(util.data("parser/overlay/o22/NewOverlay.raml"),["The './resource.post' node does not match any node of the master api."]);
     })
 
     it ("Security Scheme Fragment: new security scheme" ,function(){
