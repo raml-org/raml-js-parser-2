@@ -16,7 +16,29 @@
           "describedBy": {
             "headers": {
               "x-api-key": {
-                "name": "x-api-key"
+                "name": "x-api-key",
+                "displayName": "x-api-key",
+                "type": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
               }
             }
           }
@@ -84,26 +106,50 @@
             "queryParameters": {
               "latitude": {
                 "name": "latitude",
+                "displayName": "latitude",
                 "type": [
                   "number"
                 ],
+                "repeat": false,
                 "required": true,
                 "description": "Latitude component of location",
                 "format": "double",
                 "fixedFacets": {
                   "format": "double"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
                 }
               },
               "longitude": {
                 "name": "longitude",
+                "displayName": "longitude",
                 "type": [
                   "number"
                 ],
+                "repeat": false,
                 "required": true,
                 "description": "Longitude component of location",
                 "format": "double",
                 "fixedFacets": {
                   "format": "double"
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
                 }
               }
             },

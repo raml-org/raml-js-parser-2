@@ -39,7 +39,8 @@ export class AttributeDefaultsCalculator {
      * If attribute value is null or undefined, returns attribute default.
      */
     attributeDefaultIfEnabled(node : hl.IHighLevelNode, attributeProperty : hl.IProperty) : any {
-        if (!this.enabled) return null;
+        if (!this.enabled)
+            return null;
 
         return this.getAttributeDefault(node, attributeProperty);
     }
