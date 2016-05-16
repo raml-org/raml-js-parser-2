@@ -1,10 +1,10 @@
 {
     "$schema":"http://json-schema.org/draft-04/schema",
     "type":"object",
+    "required":["name"],
     "properties":{
         "name":{
-            "type":"string",
-            "required":true
+            "type":"string"
         },
         "child": {
           "$ref": "#/definitions/InnerType"
@@ -13,10 +13,10 @@
     "definitions":{
         "InnerType":{
             "type":"object",
+            "required":["innerTypeName"],
             "properties":{
                 "innerTypeName":{
-                    "type":"string",
-                    "required":true
+                    "type":"string"
                 }
             }
         }
