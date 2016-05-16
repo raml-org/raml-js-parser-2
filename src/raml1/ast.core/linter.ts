@@ -1146,7 +1146,8 @@ class MediaTypeValidator implements PropertyValidator{
                 model: 1,
                 multipart: 1,
                 text: 1,
-                video: 1
+                video: 1,
+                binary: 1
             }
             if (!types[res.type]) {
                 cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Unknown media type 'type'", node))
