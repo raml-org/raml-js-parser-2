@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "$schema": "http:\/\/json-schema.org\/draft-03\/schema",
+  "required": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 150,
+      "required": true
+    },
+    "version": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 150,
+          "required": true
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

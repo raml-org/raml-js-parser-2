@@ -1,0 +1,27 @@
+description: An instance of a single <<resourcePathName|!singularize>>
+put:
+  body:
+    application/json:
+      schema: new<<resourcePathName|!singularize>>
+  description: Updates a single <<resourcePathName|!singularize>>
+  responses:
+    200:
+      body:
+        application/json:
+          schema: <<resourcePathName|!singularize>>
+patch:
+  body:
+    application/json:
+      schema: new<<resourcePathName|!singularize>>
+  description: Patches a single <<resourcePathName|!singularize>>
+  responses:
+    200:
+      body:
+        application/json:
+          schema: <<resourcePathName|!singularize>>
+
+delete:
+  description: Deletes the instance of the <<resourcePathName|!singularize>> specified
+  responses:
+    204:
+      description: The <<resourcePathName|!singularize>> has been deleted successfully

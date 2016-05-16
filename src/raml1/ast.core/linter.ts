@@ -589,7 +589,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         var vl=node.name();
         if (typeof vl=="string") {
             if (vl != null && vl.indexOf(" ") != -1) {
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Keys should not have spaces '" + vl + "'", node))
+                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Keys should not have spaces '" + vl + "'", node,true))
             }
         }
     }
@@ -721,11 +721,14 @@ class CompositePropertyValidator implements PropertyValidator{
                 v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Scalar is expected here",node))
             }
             else {
-                if (node.lowLevel().valueKind()!=yaml.Kind.SCALAR&&node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!node.property().getAdapter(services.RAMLPropertyService).isKey()){
+                var vk=node.lowLevel().valueKind();
+                if (node.lowLevel().valueKind()!=yaml.Kind.INCLUDE_REF&&!node.property().getAdapter(services.RAMLPropertyService).isKey()){
                     if ((!node.property().isMultiValue())) {
                         var k=node.property().range().key();
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
-                            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                            if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
+                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                            }
                         }
                     }
                 }
@@ -1051,7 +1054,7 @@ class NormalValidator implements PropertyValidator{
                 if (validation instanceof Error){
                     message=validation.message;
                 }
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, message, node));
+                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, message, node,pr.range().key()==universes.Universe08.SchemaString));
             }
         }
         var values=pr.enumOptions();
@@ -1403,7 +1406,7 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
         var message = referencedToName ? ("Unrecognized " + referencedToName + " '" + vl + "'.") : ("Unresolved reference: " + vl);
 
         var spesializedMessage = specializeReferenceError(message, pr, astNode)
-        cb.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, spesializedMessage, astNode));
+        cb.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, spesializedMessage, astNode,pr.range().key()===universes.Universe08.SchemaString));
 
         return true;
     }
@@ -3215,9 +3218,12 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
         unit:node?node.unit():null
     }
 };
-
+export var ignoreWarnings=false;
 export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,w:boolean=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
+    if (w&&ignoreWarnings){
+        return;
+    }
     var original=null;
     var pr:hl.IProperty=null;
     if (node.lowLevel() instanceof proxy.LowLevelProxyNode){

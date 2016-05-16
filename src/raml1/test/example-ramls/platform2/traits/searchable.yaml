@@ -1,0 +1,32 @@
+queryParameters:
+  offset:
+    description: Skip over a number of elements by specifying an offset value for the query
+    type: integer
+    required: false
+    example: 0
+    minimum: 0
+    maximum: 10000
+    default: 0
+  limit:
+    description: Limit the number of elements on the response
+    type: integer
+    required: false
+    example: 80
+    default: 100
+    minimum: 10
+    maximum: 250
+  sort:
+    description: Property to sort by
+    type: string
+    required: false
+    example: name
+  ascending:
+    description: Order for sorting
+    type: boolean
+    required: false
+    example: true
+  query:
+    description: Search criteria
+    type: string
+    required: false
+    example:

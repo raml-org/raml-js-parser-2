@@ -501,7 +501,8 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             for (var pos=0;pos<actualValue.length;pos++) {
                                                 var vl=actualValue[pos];
                                                 if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
-                                                    if (!_.find(x.children(), x=>x.key() == vl)) {
+                                                    var exists=_.find(x.children(), x=>x.key() == vl);
+                                                    if (true) {
                                                         //we can create inherited node;
                                                         var pc = aNode.parent().definition().key();
                                                         var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
@@ -522,7 +523,9 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                         //this are false unknowns actual unknowns will be reported by parent node
                                                         node._children = ch.filter(x=>!x.isUnknown())
                                                         node._allowQuestion = allowsQuestion;
-                                                        inherited.push(node);
+                                                        if (!exists) {
+                                                            inherited.push(node);
+                                                        }
                                                         node.children().forEach(x=> {
                                                             if (x.property().getAdapter(services.RAMLPropertyService).isKey()) {
                                                                 var atr = <ASTPropImpl>x;
