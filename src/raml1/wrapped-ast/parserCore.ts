@@ -362,7 +362,7 @@ export class BasicNodeImpl implements hl.BasicNode{
     }
 }
 
-var defaultAttributeDefaultsValue=false;
+var defaultAttributeDefaultsValue=true;
 
 export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
