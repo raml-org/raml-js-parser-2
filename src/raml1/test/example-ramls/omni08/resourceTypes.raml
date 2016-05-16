@@ -1,0 +1,47 @@
+  - document:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schema>>
+  - read-only-collection:
+      type: { document : { schema : <<resourcePathName>> } }
+      get:
+        is: [pageable]
+  - collection:
+      type: read-only-collection
+      post:
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>-request  # e.g. order
+        responses: &postResponse
+          201:
+            description: Created!
+            headers:
+              Location:
+                description: uri of new resource
+                type: string
+                required: true  
+  - controller:
+      post:
+        responses:
+          204:
+            description: Done!
+  - member:
+      type: { document : { schema : <<resourcePathName | !singularize >> } }
+      put?:
+        body:
+          application/json:
+            schema: <<resourcePathName>>
+        responses:
+          204:
+            description: Modified
+      patch?:
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>
+      delete?:
+        responses:
+          204:
+            description: Deleted

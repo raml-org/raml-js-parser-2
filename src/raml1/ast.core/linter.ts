@@ -2663,11 +2663,16 @@ export class ExampleValidator implements PropertyValidator{
                         return null;
                     }
                 }
+
                 if(so){
                     return {
                         validate(pObje:any,cb:hl.ValidationAcceptor,strict:boolean){
                             try {
                                 if (pObje.__$validated){
+                                    return;
+                                }
+                                if (so instanceof Error){
+                                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,so.message,node,!strict));
                                     return;
                                 }
                                 so.validateObject(pObje);
