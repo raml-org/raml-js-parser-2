@@ -1,0 +1,7 @@
+- baseCollection:       !include empty.yaml
+- collection:           !include collection.yaml
+- writeOnlyCollection:  !include write-only-collection.yaml
+- collectionItem:       !include collection-item.yaml
+- apiSearch:            !include api-search.yaml
+- apiExtendedSearch:    !include api-extended-search.yaml
+- policyCollectionItem: !include policy-collection-item.yaml

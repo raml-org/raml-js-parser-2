@@ -1,0 +1,12 @@
+get:
+  is: [searchable, apiList]
+  queryParameters:
+    requireRaml:
+      type: boolean
+      required: false
+      default: true
+    query:
+      type: string
+      required: false
+      description: |
+        A list of keywords for matching API name, version or tags in a search.

@@ -1,0 +1,37 @@
+responses:
+  400?:
+    description: |
+      [Bad request](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.1)
+      
+      The request could not be understood by the server due to malformed syntax. The client SHOULD NOT 
+      repeat the request without modifications.
+  401:
+    description: |
+      [Unauthorized](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.2) 
+
+      The request requires user authentication. If the request already included Authorization 
+      credentials, then the 401 response indicates that authorization has been refused for those 
+      credentials.
+  404?:
+    description: |
+      [Not found](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5)
+
+      The server has not found anything matching the Request-URI. No indication is given of whether 
+      the condition is temporary or permanent. 
+  406?:
+    description: |
+      [Not acceptable](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.7)
+
+      The resource identified by the request is only capable of generating response entities 
+      which have content characteristics not acceptable according to the accept headers sent in the request.
+  409?:
+    description: |
+      [Conflict](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10)
+
+      The request could not be completed due to a conflict with the current state of the resource. 
+  415?:
+    description: |
+      [Unsupported media type](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.16)
+      
+      The server is refusing to service the request because the entity of the request is in a format 
+      not supported by the requested resource for the requested method.

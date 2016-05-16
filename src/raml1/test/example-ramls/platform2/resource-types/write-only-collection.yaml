@@ -1,0 +1,13 @@
+post:
+  description: Creates a new <<resourcePathName|!singularize>>
+  body:
+    application/json:
+      schema: new<<resourcePathName | !singularize>>
+  responses:
+    201:
+      description: The new <<resourcePathName|!singularize>> has been successfully created
+      headers:
+        Location:
+          description: uri of new resource
+          type: string
+          required: true

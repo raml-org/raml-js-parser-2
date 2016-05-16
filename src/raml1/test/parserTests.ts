@@ -8,6 +8,8 @@ import assert = require("assert")
 //import def = require("raml-definition-system")
 //
 import ll=require("../lowLevelAST")
+import linter=require("../ast.core/linter")
+
 import yll=require("../jsyaml/jsyaml2lowLevel")
 
 ////import high = require("../highLevelImpl")
@@ -80,6 +82,11 @@ describe('Parser integration tests',function(){
     it ("lib3",function(){
         this.timeout(15000);
         testErrorsByNumber(util.data("../example-ramls/blog-users2/blog-users.raml"),2,1);
+    });
+    it ("platform2",function(){
+        this.timeout(15000);
+        testErrors(util.data("../example-ramls/platform2/api.raml"),[],true);
+
     });
 });
 
@@ -1190,11 +1197,14 @@ function testErrorsEnd(p:string) {
 
 }
 
-export function testErrors(p:string, expectedErrors=[]){
+export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
     var api=util.loadApi(p);
     api = util.expandHighIfNeeded(api);
 
     var errors:any=util.validateNode(api);
+    if (ignoreWarnings){
+        errors=errors.filter(x=>!x.isWarning);
+    }
     var testErrors;
     var hasUnexpectedErr = false;
     if(expectedErrors.length>0){

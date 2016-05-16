@@ -1,0 +1,6 @@
+responses:
+  200:
+    description: Successful
+    body:
+      application/json:
+        example: !include ../examples/api-search-response.json

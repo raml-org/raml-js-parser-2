@@ -42,9 +42,14 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
                     root.asElement().elements().forEach(x=> {
                         if (x.definition().key() == universes.Universe10.UsesDeclaration) {
                             var mm = x.attr("value");
-                            var unit = root.lowLevel().unit().resolve(mm.value());
-                            if (unit != null) {
-                                root.unitMap[unit.absolutePath()] = x.attr("key").value();
+                            if (mm) {
+                                var unit = root.lowLevel().unit().resolve(mm.value());
+                                if (unit != null) {
+                                    var key = x.attr("key");
+                                    if (key) {
+                                        root.unitMap[unit.absolutePath()] = key.value();
+                                    }
+                                }
                             }
                         }
                     });
