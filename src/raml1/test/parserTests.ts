@@ -29,6 +29,11 @@ describe('Parser integration tests',function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/omni/api.raml"));
     });
+    it ("Omni 0.8",function(){
+        this.timeout(15000);
+        testErrors(util.data("../example-ramls/omni08/api.raml"));
+    });
+
     it ("Cosmetics Overlay",function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/cosmetics/hypermedia.raml"));

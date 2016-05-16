@@ -170,7 +170,7 @@ class TraitsAndResourceTypesExpander {
 
     processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource) {
 
-        var resourceData:ResourceGenericData[] = this.collectResourceData(resource);
+        var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource);
 
 
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
@@ -212,7 +212,9 @@ class TraitsAndResourceTypesExpander {
     }
 
     collectResourceData(
+        original:RamlWrapper.Resource|RamlWrapper08.Resource,
         obj:RamlWrapper.Resource|RamlWrapper.ResourceType|RamlWrapper08.Resource|RamlWrapper08.ResourceType,
+
         arr:ResourceGenericData[] = [],
         transformer?:proxy.ValueTransformer,
         occuredResourceTypes:{[key:string]:boolean}={}):ResourceGenericData[]
@@ -233,7 +235,7 @@ class TraitsAndResourceTypesExpander {
         var rt:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
         if (rt&&!occuredResourceTypes[rt.name()]) {
             occuredResourceTypes[rt.name()] = true;
-            rtData = this.readGenerictData(
+            rtData = this.readGenerictData(original,
                 rt, obj.highLevel(), this.resourceTypeMap, this.globalResourceTypes, 'resource type', transformer);
         }
         arr.push({
@@ -243,7 +245,7 @@ class TraitsAndResourceTypesExpander {
         });
 
         if(rtData) {
-            this.collectResourceData(
+            this.collectResourceData(original,
                 <RamlWrapper.ResourceType|RamlWrapper08.ResourceType>rtData.node,
                 arr,rtData.transformer,occuredResourceTypes);
         }
@@ -266,7 +268,7 @@ class TraitsAndResourceTypesExpander {
                 continue;
             }
             (<any>_obj).is().forEach(x=> {
-                var traitData = this.readGenerictData(
+                var traitData = this.readGenerictData(obj,
                     x, _obj.highLevel(), this.traitMap, this.globalTraits, 'trait', transformer);
 
                 if (traitData) {
@@ -281,7 +283,7 @@ class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    readGenerictData(obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
+    readGenerictData(r:core.BasicNode,obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
                      context:hl.IHighLevelNode,
                      cache:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType}},
                      globalList:(RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType)[],
@@ -334,6 +336,17 @@ class TraitsAndResourceTypesExpander {
                         }
                     });
                 }
+                var ds=new DefaultTransformer(<any>r,null);
+                Object.keys(scalarParams).forEach(x=>{
+                    var q=ds.transform(scalarParams[x]);
+                    //if (q.value){
+                        if (q) {
+                            if (typeof q!=="object") {
+                                scalarParams[x] = q;
+                            }
+                        }
+                    //}
+                });
                 return {
                     name: name,
                     transformer: new ValueTransformer(template, name, scalarParams, structuredParams),
@@ -596,7 +609,7 @@ export class DefaultTransformer extends ValueTransformer{
         owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,
         delegate: ValueTransformer
     ){
-        super(delegate.templateKind,delegate.templateName);
+        super(delegate!=null?delegate.templateKind:"",delegate!=null?delegate.templateName:"");
         this.owner = owner;
         this.delegate = delegate;
     }
@@ -633,8 +646,8 @@ export class DefaultTransformer extends ValueTransformer{
         var methodName:string;
         var resourcePath:string = "";
         var resourcePathName:string;
-        var node = (<proxy.LowLevelValueTransformingNode>(<proxy.LowLevelCompositeNode>this.owner.highLevel().lowLevel())
-            .originalNode()).originalNode();
+        var ll=this.owner.highLevel().lowLevel();
+        var node = ll instanceof proxy.LowLevelProxyNode?(<proxy.LowLevelValueTransformingNode>(<proxy.LowLevelCompositeNode>ll).originalNode()).originalNode():ll;
         while(node){
             var key = node.key();
             if(key!=null) {

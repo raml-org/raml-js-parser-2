@@ -1,0 +1,975 @@
+#%RAML 0.8
+---
+title: Álainn Cosmetics API
+version: v1.0
+baseUri: https://alainn-omni-channel-api.cloudhub.io/{version}
+securitySchemes: !include security.schema.raml
+schemas: !include schemas.raml
+documentation:
+  - title: Introduction
+    content: |
+      # Omni-channel
+      API to act as main point of entry to multi-channel software so that the customer gets a consistent experience across all channels.
+
+      # Innovation Layer / Bi-Modal
+      Web API facade on to Alainn's SOA Architecture. Designed to be the central point of access to all business process level SOAP services.
+
+      # Resource Hierarchy
+
+      The resources are in part independent of the user browsing them
+
+      * /items
+      * /brands
+
+      Others are personal to the authenticated User:
+
+      * /basket
+      * /wish-list
+
+      All return application/json as Response media-type and all accept only application/json as request media-type.
+
+      # Hypermedia
+
+      The usual form of each response is to include a links array with a number of objects of the form:
+
+      **href**: the url
+
+      **rel**:  the meaning of the url (Image, prev, next, self, etc.)
+
+      **label**: UI label
+
+      ```json
+          "links": [
+              {
+                  "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=28&pageSize=7",
+                  "rel": "next"
+              },
+              {
+                  "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=14&pageSize=7",
+                  "rel": "prev"
+              },
+              {
+                  "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items",
+                  "rel": "self"
+              }
+          ]
+      ```
+
+      If the response is a collection object, it will have a links array at the root and for each item in the items array.
+
+      ```json
+        "collection": {
+          "size": 7,
+          "items": [
+            {
+                "id": "B003Y60XCC",
+                "type": "Chemical Hair Dyes",
+                "name": "L'Oreal Oreor 30 Volume Creme Developer",
+                "summary": "Fully stabilized formula - Freshness assured",
+                "brand": "L'Oreal Paris",
+                "links": [
+                    {
+                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003Y60XCC",
+                        "rel": "self"
+                    },
+                    {
+                        "href": "http://ecx.images-amazon.com/images/I/41MWX6KNAuL._SL75_.jpg",
+                        "rel": "SmallImage"
+                    }
+                ]
+            },
+            { ...
+      ```
+
+      # API Manager
+
+      Registered both as a Service with the OAuth 2.0 Access Token Enforcement policy applied, and also as a Consumer of
+
+      * Item Service
+      * Customer Service
+      * Basket Service
+      * WishList Service
+      * Order-fulfillment Service
+      * Registration Service
+      * Point-of-Sale Service
+  - title: Security
+    content: |
+      # Policy
+
+      Though the API does not implement any authentication / authorisation logic itself, it is dependent on the user details which the Ping Federate Token enforcement policy leaves in context so as to correlate the personal calls mentioned in the section on Resource Hierarchy above.
+traits: !include traits.raml
+resourceTypes:
+  - document:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schema>>
+  - read-only-collection:
+      type: { document : { schema : <<resourcePathName>> } }
+      get:
+        is: [pageable]
+  - collection:
+      type: read-only-collection
+      post:
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>-request  # e.g. order
+        responses: &postResponse
+          201:
+            description: Created!
+            headers:
+              Location:
+                description: uri of new resource
+                type: string
+                required: true
+  - controller:
+      post:
+        responses:
+          204:
+            description: Done!
+  - member:
+      type: { document : { schema : <<resourcePathName | !singularize >> } }
+      put?:
+        body:
+          application/json:
+            schema: <<resourcePathName>>
+        responses:
+          204:
+            description: Modified
+      patch?:
+        body:
+          application/json:
+            schema: <<resourcePathName | !singularize>>
+      delete?:
+        responses:
+          204:
+            description: Deleted
+/items:
+  type: read-only-collection
+  description: List of all items on sale
+  get:
+    is: [searchable, imageable]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                  "links": [
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=28&pageSize=7",
+                          "rel": "next"
+                      },
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=14&pageSize=7",
+                          "rel": "prev"
+                      },
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items",
+                          "rel": "self"
+                      }
+                  ],
+                  "collection": {
+                      "size": 7,
+                      "items": [
+                          {
+                              "id": "B003Y60XCC",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L'Oreal Oreor 30 Volume Creme Developer",
+                              "summary": "Fully stabilized formula - Freshness assured",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003Y60XCC",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/41MWX6KNAuL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0044D30Z6",
+                              "type": "Chemical Hair Dyes",
+                              "name": "Garnier HerbaShine Color Creme with Bamboo Extract",
+                              "summary": "",
+                              "brand": "Garnier",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0044D30Z6",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/31I7w6YQ5eL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0042YK9F6",
+                              "type": "Bath Pearls & Flakes",
+                              "name": "Pearlcium Pearl Powder",
+                              "summary": "",
+                              "brand": "TheraPure Health Essentials",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0042YK9F6",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/316RsE4g09L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B004CDNSBO",
+                              "type": "Oils",
+                              "name": "100% Pure Evening Primrose Oil",
+                              "summary": "",
+                              "brand": "Now Foods",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B004CDNSBO",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/11B-tmUqh5L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0043C8SPK",
+                              "type": "Chemical Hair Dyes",
+                              "name": "TouchBack Temporary Color Marker",
+                              "summary": "Won't flake or rub off when brushed",
+                              "brand": "ColorMark",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0043C8SPK",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/31dGyu4hQJL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B003Y6182G",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L' Oreal Oreor 40-Volume Creme Developer",
+                              "summary": "Beautiful, uniform color",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003Y6182G",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/41GDOvgw1KL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B004ECF7LC",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L'Oreal Paris Excellence Crème with Pro-Keratine Complex",
+                              "summary": "",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B004ECF7LC",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/21g%2B2DBWK1L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+  /{item}:
+    get:
+      is: [imageable]
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                    "links": [
+                        {
+                            "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0044D30Z6",
+                            "rel": "self"
+                        }
+                    ],
+                    "id": "B0044D30Z6",
+                    "type": "Chemical Hair Dyes",
+                    "name": "Garnier HerbaShine Color Creme with Bamboo Extract",
+                    "brand": "Garnier",
+                    "skus": {
+                        "size": 15,
+                        "items": [
+                            {
+                                "id": "B003JTE8JS",
+                                "name": "Garnier Herbashine Haircolor, 630 Light Golden Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTE8JS",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTE8JS",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/517QdA0lU9L._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTGCRE",
+                                "name": "Garnier HerbaShine Color Creme, with Bamboo Extract, Dark Natural, Brown 400",
+                                "summary": "Used For: Hair Color",
+                                "price": 12.98,
+                                "sku": "B003JTGCRE",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTGCRE",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/610m3duxPEL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B0044B4KTI",
+                                "name": "Garnier Herbashine Haircolor, 426 Dark Burgundy",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B0044B4KTI",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0044B4KTI",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51bmY9mcQ4L._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTA1IU",
+                                "name": "Garnier Herbashine Haircolor, 645 Copper Mahogany Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTA1IU",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTA1IU",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51ZLparVUKL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTE9DS",
+                                "name": "Garnier Herbashine Haircolor, 200 Soft Black",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTE9DS",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTE9DS",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51eScnw7yvL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTGDRI",
+                                "name": "Garnier Herbashine Haircolor, 800 Medium Natural Blonde",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTGDRI",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTGDRI",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51FoXQ8NmsL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTKXI8",
+                                "name": "Garnier Herbashine Haircolor, 565 Medium Auburn Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTKXI8",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTKXI8",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51xaz3QTpuL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTA108",
+                                "name": "HERBASHINE #535 MED GOLD MAHOG Size: KIT",
+                                "summary": "",
+                                "price": 15.98,
+                                "sku": "B003JTA108",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTA108",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51aDQYhAcLL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B0046HDOAQ",
+                                "name": "Garnier Herbashine Haircolor, 415 Soft Mahogany Dark Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B0046HDOAQ",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0046HDOAQ",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51Mm0-S5hkL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTGCUQ",
+                                "name": "Garnier Herbashine Haircolor, 600 Light Natural Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTGCUQ",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTGCUQ",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51z9fid7g9L._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTC5F2",
+                                "name": "Garnier Herbashine Haircolor, 700 Dark Natural Blonde",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTC5F2",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTC5F2",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51w-bVxOS9L._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTC5DO",
+                                "name": "Garnier Herbashine Haircolor, 900 Light Natural Blonde",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTC5DO",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTC5DO",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/41eHG4l9lPL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTE8IE",
+                                "name": "Garnier Herbashine Haircolor 500 Medium Natural Brown",
+                                "summary": "",
+                                "price": 15.98,
+                                "sku": "B003JTE8IE",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTE8IE",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51gwe6aDeHL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTE8MA",
+                                "name": "Garnier Herbashine Haircolor, 530 Medium Golden Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTE8MA",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTE8MA",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51knnh-UAeL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "B003JTC5AM",
+                                "name": "Garnier Herbashine Haircolor, 510 Medium Ash Brown",
+                                "summary": "Only 10 minutes",
+                                "price": 15.98,
+                                "sku": "B003JTC5AM",
+                                "stockQuantity": 3,
+                                "links": [
+                                    {
+                                        "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003JTC5AM",
+                                        "rel": "self"
+                                    },
+                                    {
+                                        "href": "http://ecx.images-amazon.com/images/I/51NbVktFgOL._SL75_.jpg",
+                                        "rel": "SmallImage"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+    /reviews:
+      type: read-only-collection
+      description: Third party reviews for this item
+    /skus:
+      type: read-only-collection
+      get:
+        is: [searchable]
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  {
+                    "collection" : {
+                      "links" : [
+                        { "rel" : "next", "href" : "" },
+                        { "rel" : "prev", "href" : "" },
+                        { "rel" : "self", "href" : "" }
+                      ],
+                      "items" : [
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" },
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 1.00,
+                          "stockQuantity" : 1
+                        },
+                        {
+                          "links" : [
+                            { "rel" : "image", "href" : "" },
+                            { "rel" : "self", "href" : "" },
+                            { "rel" : "parent", "label" :"General Info", "href" : "" }
+                          ],
+                          "id" : "12343214",
+                          "sku" : "12344",
+                          "price" : 2.00,
+                          "stockQuantity" : 10
+                        }
+                      ]
+                    }
+                  }
+      /{sku}:
+        get:
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "" },
+                        { "rel" : "parent", "href" : "" }
+                      ],
+                      "id" : "12343214",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "characteristics" : [
+                        { "name" : "size", "value" : "large" },
+                        { "name" : "color", "value" : "blue" }
+                      ]
+                    }
+/wish-list:
+  securedBy: [oauth_2_0]
+  type: collection
+  post:
+    description: Add an Item to my Wish List.
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          destinationFirst:
+            description: Destination Contact Name
+            type: string
+            required: false
+            example: Nial
+          destinationLast:
+            type: string
+            required: true
+            example: Darbey
+      application/json:
+        example: |
+          {
+            "sku" : "B004GW14E4"
+          }
+  get:
+    is: [imageable]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                  "links": [
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=28&pageSize=7",
+                          "rel": "next"
+                      },
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0?pageIndex=14&pageSize=7",
+                          "rel": "prev"
+                      },
+                      {
+                          "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items",
+                          "rel": "self"
+                      }
+                  ],
+                  "collection": {
+                      "size": 7,
+                      "items": [
+                          {
+                              "id": "B003Y60XCC",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L'Oreal Oreor 30 Volume Creme Developer",
+                              "summary": "Fully stabilized formula - Freshness assured",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003Y60XCC",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/41MWX6KNAuL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0044D30Z6",
+                              "type": "Chemical Hair Dyes",
+                              "name": "Garnier HerbaShine Color Creme with Bamboo Extract",
+                              "summary": "",
+                              "brand": "Garnier",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0044D30Z6",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/31I7w6YQ5eL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0042YK9F6",
+                              "type": "Bath Pearls & Flakes",
+                              "name": "Pearlcium Pearl Powder",
+                              "summary": "",
+                              "brand": "TheraPure Health Essentials",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0042YK9F6",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/316RsE4g09L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B004CDNSBO",
+                              "type": "Oils",
+                              "name": "100% Pure Evening Primrose Oil",
+                              "summary": "",
+                              "brand": "Now Foods",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B004CDNSBO",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/11B-tmUqh5L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B0043C8SPK",
+                              "type": "Chemical Hair Dyes",
+                              "name": "TouchBack Temporary Color Marker",
+                              "summary": "Won't flake or rub off when brushed",
+                              "brand": "ColorMark",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B0043C8SPK",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/31dGyu4hQJL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B003Y6182G",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L' Oreal Oreor 40-Volume Creme Developer",
+                              "summary": "Beautiful, uniform color",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B003Y6182G",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/41GDOvgw1KL._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "B004ECF7LC",
+                              "type": "Chemical Hair Dyes",
+                              "name": "L'Oreal Paris Excellence Crème with Pro-Keratine Complex",
+                              "summary": "",
+                              "brand": "L'Oreal Paris",
+                              "links": [
+                                  {
+                                      "href": "https://alainn-omni-channel-api.cloudhub.io/v1.0/items/B004ECF7LC",
+                                      "rel": "self"
+                                  },
+                                  {
+                                      "href": "http://ecx.images-amazon.com/images/I/21g%2B2DBWK1L._SL75_.jpg",
+                                      "rel": "SmallImage"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+  /{wish}:
+    delete:
+      description: Remove from wish list
+/basket:
+  securedBy: [oauth_2_0]
+  description: All items ready for purchase
+  get:
+    is: [imageable]
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "collection" : {
+                  "links" : [
+                    { "rel" : "next", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=20" },
+                    { "rel" : "prev", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket?pageIndex=10" },
+                    { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                  ],
+                  "items" : [
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/12341324" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                      ],
+                      "id" : "12341324",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 2
+                    },
+                    {
+                      "links" : [
+                        { "rel" : "image", "href" : "" },
+                        { "rel" : "self", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket/09878623" },
+                        { "rel" : "parent", "href" : "http://alainn-cosmetics.cloudhub.io/api/v1.0/basket" }
+                      ],
+                      "id" : "09878623",
+                      "type" : "Creams",
+                      "name" : "Dove",
+                      "summary" : "Soap! Just plain old soap!",
+                      "sku" : "12344",
+                      "price" : 1.00,
+                      "stockQuantity" : 1,
+                      "quantity" : 1
+                    }
+                  ]
+                }
+              }
+  post:
+    description: Add an Item to my Basket. Of course I may add more than 1 of the same Item.
+    body:
+      application/json:
+        schema: basket-item
+        example: |
+          {
+            "sku" : "B0000530ED",
+            "quantity" : 2,
+            "price" : 7.55
+          }
+  /checkout:
+    type: controller
+    description: Orders both pending and fulfilled
+    post:
+      body:
+        application/json:
+          example: &order-request-example |
+           {
+              "pickupLocation" : "Buenos Aires",
+              "items" : [
+                {
+                  "sku" : "B003JTE8JS",
+                  "price" : 7.50,
+                  "quantity" : 3
+                },
+                {
+                  "sku" : "B0000530ED",
+                  "price" : 7.99,
+                  "quantity" : 1
+                }
+              ]
+            }
+      responses: *postResponse
+  /{item}:
+    type: member
+    put:
+      description: Modify quantity
+      body:
+        application/json:
+          schema: basket-item
+          example: |
+            {
+              "sku" : "abc",
+              "name" : "",
+              "quantity" : 2
+            }
+    delete:
+      description: Remove from basket
+/mobile-tokens/{mobileType}:
+  uriParameters:
+    mobileType:
+      type: string
+      enum: [ios, android]
+  securedBy: [oauth_2_0]
+  post:
+    body:
+      application/json:
+        example: |
+          {
+            "token" : "1234214"
+          }
+/my-profile:
+  securedBy: [oauth_2_0]
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: my-profile
+            example: |
+              {
+                "firstName" : "Nial",
+                "lastName" : "Darbey",
+                "notificationPreferences" : [ "email", "mobile-push" ]
+              }
+/brands:
+  type: read-only-collection
+  get:
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Deep Steep Honey Bubble Bath
+/categories:
+  type: read-only-collection
+  get:
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Oils
