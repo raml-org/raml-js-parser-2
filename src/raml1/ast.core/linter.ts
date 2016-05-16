@@ -2253,7 +2253,7 @@ class OverlayNodesValidator implements NodeValidator{
 
         //otherwise reporting an illegal node:
         v.accept(createIssue(hl.IssueCode.ONLY_OVERRIDE_ALLOWED,
-            "This node does not override any node from master api:" + node.id(), node));
+            "The '"+node.id()+"' node does not match any node of the master api.", node));
     }
 
     private validateProperties(node:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) : void {

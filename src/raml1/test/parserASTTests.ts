@@ -57,7 +57,7 @@ describe('Parser overlay AST comparison tests',function(){
 
         util.testAST("parser/overlays/o7/api.raml", "parser/overlays/o7/ast.txt",
             ["parser/overlays/o7/NewOverlay.raml", "parser/overlays/o7/NewOverlay2.raml"],
-            ["This node does not override any node from master api:./anotherResource"]);
+            ["The './anotherResource' node does not match any node of the master api."]);
     });
 
     it ("Two overlays, testing documentation",function(){
