@@ -941,7 +941,7 @@ describe('Regressions', function () {
          ],
          "resources": [
            {
-             "description": "Retrieve widgetName where widgetName equals **{widgetName}**",
+             "description": "Retrieve  where widgetName equals **{widgetName}**",
              "type": {
                "readOnlyCollectionItem": {
                  "key": "widgetName"

@@ -540,7 +540,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                     val = this.params[paramName];
                 }
 
-                if(!val){
+                if(val===null||val===undefined){
                     undefParams[paramName] = true;
                     val = originalString;
                 }
@@ -648,13 +648,24 @@ export class DefaultTransformer extends ValueTransformer{
         var resourcePathName:string;
         var ll=this.owner.highLevel().lowLevel();
         var node = ll instanceof proxy.LowLevelProxyNode?(<proxy.LowLevelValueTransformingNode>(<proxy.LowLevelCompositeNode>ll).originalNode()).originalNode():ll;
+        var last=null;
         while(node){
             var key = node.key();
             if(key!=null) {
                 if (util.stringStartsWith(key, '/')) {
                     if (!resourcePathName) {
                         var arr = key.split('/');
-                        resourcePathName = arr[arr.length-1].replace(/[\/\{\}]/g,'');
+                        for (var i=arr.length-1;i>=0;i--){
+                            var seg=arr[i];
+                            if (seg.indexOf('{')==-1){
+                                resourcePathName = arr[i];
+                                break;
+                            }
+                            if (seg.length>0) {
+                                last = seg;
+                            }
+                        }
+
                     }
                     resourcePath = key + resourcePath;
                 }
@@ -663,6 +674,11 @@ export class DefaultTransformer extends ValueTransformer{
                 }
             }
             node = node.parent();
+        }
+        if (!resourcePathName){
+            if (last){
+            resourcePathName="";
+            }
         }
         this.params = {
             resourcePath: resourcePath,
