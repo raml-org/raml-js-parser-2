@@ -1,80 +1,88 @@
 {
-    "ramlVersion": "RAML10",
-    "type": "Extension",
-    "specification": {
-        "title": "ApiExtension",
-        "baseUri": "http://myItems.com",
-        "protocols": [
-            "HTTP"
-        ],
-        "resources": [
-            {
-                "methods": [
-                    {
-                        "annotations": {
-                            "decls.important": {
-                                "structuredValue": null,
-                                "name": "decls.important"
-                            }
-                        },
-                        "protocols": [
-                            "HTTP"
-                        ],
-                        "description": "describing your method here\n",
-                        "method": "get",
-                        "__METADATA__": {
-                            "primitiveValuesMeta": {
-                                "protocols": {
-                                    "calculated": true
-                                }
-                            }
-                        }
-                    }
-                ],
-                "relativeUri": "/items",
-                "displayName": "/items",
-                "__METADATA__": {
-                    "primitiveValuesMeta": {
-                        "displayName": {
-                            "calculated": true
-                        }
-                    }
-                },
-                "relativeUriPathSegments": [
-                    "items"
-                ]
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "specification": {
+    "uses": [
+      {
+        "key": "decls",
+        "value": "lib/decls.raml"
+      }
+    ],
+    "title": "ApiExtension",
+    "baseUri": "http://myItems.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "decls.important": {
+                "structuredValue": null,
+                "name": "decls.important"
+              }
             },
-            {
-                "methods": [
-                    {
-                        "responses": {
-                            "200": {
-                                "code": "200"
-                            }
-                        },
-                        "method": "get"
-                    }
-                ],
-                "relativeUri": "/elements",
-                "relativeUriPathSegments": [
-                    "elements"
-                ]
-            }
-        ],
-        "extends": "master.raml",
-        "__METADATA__": {
-            "primitiveValuesMeta": {
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "describing your method here\n",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
                 "protocols": {
-                    "calculated": true
+                  "calculated": true
                 }
+              }
             }
+          }
+        ],
+        "relativeUri": "/items",
+        "displayName": "/items",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
         },
-        "uses": [
-            {
-                "key": "decls",
-                "value": "lib/decls.raml"
-            }
+        "relativeUriPathSegments": [
+          "items"
         ]
-    },
-    "errors": []
+      },
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/elements",
+        "displayName": "/elements",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "elements"
+        ]
+      }
+    ],
+    "extends": "master.raml",
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
 }

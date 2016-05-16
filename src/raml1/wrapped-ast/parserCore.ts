@@ -295,7 +295,14 @@ export class BasicNodeImpl implements hl.BasicNode{
     }
 
     toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
-        return new tckDumper.TCKDumper(serializeOptions).dump(this);
+        var oldDefaults=defaultAttributeDefaultsValue;
+        defaultAttributeDefaultsValue=this.attributeDefaults();
+        try {
+            return new tckDumper.TCKDumper(serializeOptions).dump(this);
+        }
+        finally {
+            defaultAttributeDefaultsValue=oldDefaults;
+        }
     }
 
     /**
@@ -329,7 +336,7 @@ export class BasicNodeImpl implements hl.BasicNode{
         }
 
         if (!this.defaultsCalculator) {
-            this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(false);
+            this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(defaultAttributeDefaultsValue);
         }
 
         return this.defaultsCalculator;
@@ -355,7 +362,7 @@ export class BasicNodeImpl implements hl.BasicNode{
     }
 }
 
-
+var defaultAttributeDefaultsValue=true;
 
 export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 
