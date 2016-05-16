@@ -870,7 +870,7 @@ describe('Regressions', function () {
          ],
          "resources": [
            {
-             "description": "Retrieve  where widgetName equals **{widgetName}**",
+             "description": "Retrieve where equals **{widgetName}**",
              "type": {
                "readOnlyCollectionItem": {
                  "key": "widgetName"

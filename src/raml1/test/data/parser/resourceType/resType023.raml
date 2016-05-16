@@ -1,0 +1,21 @@
+#%RAML 0.8
+title: djkgdg
+schemas:
+  - q: ""
+resourceTypes:
+  - document:
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: <<schema>>
+  - qa:
+      type:
+         document:
+             schema: <<resourcePathName>>
+  - bq:
+      is:
+        - <<traitName>>
+/q/{i}:
+  type: qa

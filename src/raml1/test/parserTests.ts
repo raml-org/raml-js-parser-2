@@ -548,6 +548,10 @@ describe('Parser regression tests', function () {
     it ("resource types test with types" ,function(){
         testErrors(util.data("parser/custom/rtypes.raml"));//Ok for now lets improve later
     })
+
+    it ("resource path name uses rightmost segment" ,function(){
+        testErrors(util.data("parser/resourceType/resType023.raml"));//Ok for now lets improve later
+    })
     it ("form parameters are properties" ,function(){
         testErrors(util.data("parser/custom/noForm.raml"));//Ok for now lets improve later
     })
