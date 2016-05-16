@@ -458,6 +458,9 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
             var transformationResult = t.transform(val,toString);
             val = transformationResult.value;
         }
+        if (val &&typeof val==="object"){
+            return new LowLevelValueTransformingNode(<ll.ILowLevelASTNode>val,this._parent,this._transformer,this.ramlVersion);
+        }
         return val;
     }
 

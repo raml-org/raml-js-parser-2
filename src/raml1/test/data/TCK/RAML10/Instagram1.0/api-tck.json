@@ -1927,7 +1927,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "comments"
                           ]
                         }
                       }
@@ -2060,7 +2060,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "comments"
                           ]
                         }
                       }
@@ -2085,7 +2085,7 @@
                   {
                     "oauth_2_0": {
                       "scopes": [
-                        "<<scope>>"
+                        "comments"
                       ]
                     }
                   }
@@ -2162,7 +2162,7 @@
                           {
                             "oauth_2_0": {
                               "scopes": [
-                                "<<scope>>"
+                                "comments"
                               ]
                             }
                           }
@@ -2187,7 +2187,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "comments"
                           ]
                         }
                       }
@@ -2354,7 +2354,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "likes"
                           ]
                         }
                       }
@@ -2436,7 +2436,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "likes"
                           ]
                         }
                       }
@@ -2521,7 +2521,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "likes"
                           ]
                         }
                       }
@@ -2546,7 +2546,7 @@
                   {
                     "oauth_2_0": {
                       "scopes": [
-                        "<<scope>>"
+                        "likes"
                       ]
                     }
                   }
@@ -5490,7 +5490,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "comments"
                           ]
                         }
                       }
@@ -5634,7 +5634,7 @@
                       {
                         "oauth_2_0": {
                           "scopes": [
-                            "<<scope>>"
+                            "comments"
                           ]
                         }
                       }
@@ -5659,7 +5659,7 @@
                   {
                     "oauth_2_0": {
                       "scopes": [
-                        "<<scope>>"
+                        "comments"
                       ]
                     }
                   }
@@ -6067,7 +6067,7 @@
                   {
                     "oauth_2_0": {
                       "scopes": [
-                        "<<scope>>"
+                        "basic"
                       ]
                     }
                   }
@@ -6095,7 +6095,7 @@
               {
                 "oauth_2_0": {
                   "scopes": [
-                    "<<scope>>"
+                    "basic"
                   ]
                 }
               }
