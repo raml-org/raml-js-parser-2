@@ -112,6 +112,7 @@ export interface ILowLevelASTNode{
 
     value(toString?:boolean):any
 
+    hasInnerIncludeError():boolean
     includeErrors():string[]
 
     includePath():string

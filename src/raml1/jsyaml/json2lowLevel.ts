@@ -143,6 +143,9 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
     isAnnotatedScalar(){
         return false;
     }
+    hasInnerIncludeError(){
+        return false;
+    }
 
     constructor(
         private _unit:lowlevel.ICompilationUnit,

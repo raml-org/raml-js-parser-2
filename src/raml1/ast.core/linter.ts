@@ -594,8 +594,13 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
     }
     val._inc=true;
     if (node.lowLevel()) {
+
         node.lowLevel().includeErrors().forEach(x=> {
-            var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node);
+            var isWarn=false;
+            if (node.lowLevel().hasInnerIncludeError()){
+                isWarn=true;
+            }
+            var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node,isWarn);
             v.accept(em)
         });
     }
@@ -3220,12 +3225,8 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
         unit:node?node.unit():null
     }
 };
-export var ignoreWarnings=false;
 export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,w:boolean=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
-    if (w&&ignoreWarnings){
-        return;
-    }
     var original=null;
     var pr:hl.IProperty=null;
     if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
