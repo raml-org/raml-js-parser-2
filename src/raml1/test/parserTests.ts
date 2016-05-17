@@ -746,6 +746,9 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/external/e2.raml"));
     })
 
+    it ("strange names in parameters" ,function(){
+        testErrors(util.data("parser/custom/strangeParamNames.raml"));
+    })
     // it ("external 3" ,function(){
     //     testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
     // })
