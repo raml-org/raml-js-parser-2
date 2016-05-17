@@ -576,6 +576,10 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         if (this._value){
             return this._value
         }
+        this._value=this.calcValue();
+        return this._value;
+    }
+    private calcValue():any{
         if (this._computed){
             return this.computedValue(this.property().nameId());
         }
@@ -692,9 +696,11 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     setValue(value: string|StructuredValue) {
         mutators.setValue(this,value);
+        this._value=null;
     }
     setKey(value: string) {
         mutators.setKey(this,value);
+        this._value=null;
     }
 
     children():hl.IParseResult[] {
@@ -703,11 +709,13 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 
     addStringValue(value: string) {
-       mutators.addStringValue(this,value);
+        mutators.addStringValue(this,value);
+        this._value=null;
     }
     
     addStructuredValue(sv: StructuredValue) {
         mutators.addStructuredValue(this,sv)
+        this._value=null;
     }
 
     addValue(value: string|StructuredValue) {
@@ -717,6 +725,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         } else {
             this.addStructuredValue(<StructuredValue>value);
         }
+        this._value=null;
+
     }
 
     isEmbedded(): boolean {
@@ -732,6 +742,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     setValues(values: string[]) {
         mutators.setValues(this,values);
+        this._value=null;
+
     }
 
     isEmpty(): boolean {

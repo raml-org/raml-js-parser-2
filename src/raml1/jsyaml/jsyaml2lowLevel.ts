@@ -759,7 +759,7 @@ export class Project implements lowlevel.IProject{
     private listeners:lowlevel.IASTListener[]=[]
     private tlisteners:lowlevel.ITextChangeCommandListener[]=[]
 
-    private pathToUnit:{[path:string]:CompilationUnit}={}
+    pathToUnit:{[path:string]:CompilationUnit}={}
 
     failedUnits:{[path:string]:any}={}
 
@@ -2822,6 +2822,11 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     }
 
+    innerIncludeErrors:boolean;
+    hasInnerIncludeError():boolean{
+        return this.innerIncludeErrors;
+    }
+
     includeErrors():string[]{
         if (this._node.kind==yaml.Kind.MAPPING){
 
@@ -2829,7 +2834,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (mapping.value==null){
                         return [];
             }
-            return new ASTNode(mapping.value,this._unit,this,this._anchor,this._include).includeErrors();
+            var node=new ASTNode(mapping.value,this._unit,this,this._anchor,this._include);
+            var res=node.includeErrors();
+            this.innerIncludeErrors=node.hasInnerIncludeError();
+            return res;
 
         }
         var rs:string[]=[]
@@ -2844,8 +2852,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             try {
                  resolved = this._unit.resolve(includePath)
             } catch (Error) {
+                this.innerIncludeErrors=Error.inner;
+                var s="Can not resolve "+includePath + " due to: " + Error.message;
                 //known cause of failure
-                rs.push("Can not resolve "+includePath + " due to: " + Error.message);
+                rs.push(s);
                 return rs;
             }
 
@@ -2870,6 +2880,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
         return rs;
     }
+
     children(inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true):lowlevel.ILowLevelASTNode[] {
         if (this._node==null){
             return [];//TODO FIXME
@@ -3725,6 +3736,9 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                 });
                 errors[unitPath] = x;
                 (<Project>project).failedUnits[unitPath] = x;
+                if ((<Project>project).pathToUnit[unitPath]){
+                    x.inner=true;
+                }
             }));
         });
         return Promise.all(promises).then(x=>{
