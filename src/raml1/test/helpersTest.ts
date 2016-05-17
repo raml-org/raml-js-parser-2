@@ -852,4 +852,14 @@ describe('Helper methods', function () {
         ].join("\n"))).title();
         assert.equal(title,"My API with Types")
     });
+    it('parse raml from content', function () {
+        var type=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n"))).types()[0];
+        assert.equal(type.kind(),"UnionTypeDeclaration")
+    });
+
+
 });
