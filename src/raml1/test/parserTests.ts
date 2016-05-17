@@ -530,6 +530,12 @@ describe('Parser regression tests', function () {
     it ("runtime types value2" ,function(){
         testErrors(util.data("parser/typexpressions/tr12.raml"));//Ok for now lets improve later
     })
+    it ("union can be object at same moment sometimes" ,function(){
+        testErrors(util.data("parser/typexpressions/tr14.raml"));//Ok for now lets improve later
+    })
+    it ("no unknown facets in union type" ,function(){
+        testErrorsByNumber(util.data("parser/typexpressions/tr15.raml"),1);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })

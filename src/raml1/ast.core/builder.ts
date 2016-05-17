@@ -680,6 +680,7 @@ function getType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
         return node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name);
     }
     var pt=node.parsedType();
+
     if (pt.isString()){
         return (node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name));
     }
@@ -711,7 +712,10 @@ function getType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
         return (node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
     }
     else if (pt.isTimeOnly()){
-        return (node.definition().universe().type(universes.Universe10.DateOnlyTypeDeclaration.name));
+        return (node.definition().universe().type(universes.Universe10.TimeOnlyTypeDeclaration.name));
+    }
+    if (pt.isUnion()){
+        return (node.definition().universe().type(universes.Universe10.UnionTypeDeclaration.name));
     }
     return (node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
 }

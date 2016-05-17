@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+types:
+  Q:
+    properties:
+      a: number
+  B:
+    properties:
+      b: number
+  C: Q | B
+  D:
+    type: C
+    properties:
+      sc: number
