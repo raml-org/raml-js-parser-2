@@ -26,7 +26,6 @@ import universeProvider=require("../definition-system/universeProvider")
 import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
-import OverloadingValidator08=require("./overloadingValidator08")
 import expander=require("./expander")
 import builder = require('./builder')
 import search = require("./search")

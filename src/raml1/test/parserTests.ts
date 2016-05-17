@@ -611,22 +611,20 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overloading/o1.raml"),["Method 'get' already exists","Method 'get' already exists"]);
     })
     it ("overloading2" ,function(){
-        testErrors(util.data("parser/overloading/o2.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o2.raml"),[]);
     })
     it ("overloading3" ,function(){
-        testErrors(util.data("parser/overloading/o3.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o3.raml"),["Resource '/{id}' already exists","Resource '/{id}' already exists"]);
     })
     it ("overloading4" ,function(){
-        testErrors(util.data("parser/overloading/o4.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o4.raml"),[]);
     })
-    it ("overloading5" ,function(){
-        testErrors(util.data("parser/overloading/o5.raml"),["Resources share same URI","Resources share same URI"]);
-    })
-    it ("overloading6" ,function(){
-        testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
-    })
+
+    // it ("overloading6" ,function(){
+    //     testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
+    // })
     it ("overloading7" ,function(){
-        testErrors(util.data("parser/overloading/o7.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o7.raml"),[]);
     })
 
     //TODO fix test after bug fix.
