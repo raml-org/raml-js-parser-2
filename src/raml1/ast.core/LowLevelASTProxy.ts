@@ -27,6 +27,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     private _keyOverride:string;
 
+    hasInnerIncludeError(){
+        return this._originalNode.hasInnerIncludeError();
+    }
+
     keyKind(){
         return this._originalNode.keyKind();
     }
