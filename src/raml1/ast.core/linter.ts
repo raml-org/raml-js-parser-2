@@ -983,18 +983,20 @@ class NormalValidator implements PropertyValidator{
 
         var range=pr.range();
 
-            var dnode=range.getAdapter(services.RAMLService).getDeclaringNode();
-            if (dnode) {
-                var rof = dnode.parsedType();
-                var dp=node.parent().lowLevel().dumpToObject();
-                var vl=dp[node.parent().name()];
-                var isVal=pr.canBeValue();
-                var val=isVal?vl:vl[pr.nameId()];
-                var validateObject=rof.validate(val,true);
+        var dnode=range.getAdapter(services.RAMLService).getDeclaringNode();
+        if (dnode) {
+            var rof = dnode.parsedType();
+            var dp=node.parent().lowLevel().dumpToObject();
+            var vl=dp[node.parent().name()];
+            if (vl) {
+                var isVal = pr.canBeValue();
+                var val = isVal ? vl : vl[pr.nameId()];
+                var validateObject = rof.validate(val, true);
                 if (!validateObject.isOk()) {
                     validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, false)));
                 }
             }
+        }
 
         var v=cb;
         if (node.lowLevel().keyKind()!=yaml.Kind.SEQ) {
