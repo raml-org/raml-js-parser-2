@@ -530,6 +530,12 @@ describe('Parser regression tests', function () {
     it ("runtime types value2" ,function(){
         testErrors(util.data("parser/typexpressions/tr12.raml"));//Ok for now lets improve later
     })
+    it ("union can be object at same moment sometimes" ,function(){
+        testErrors(util.data("parser/typexpressions/tr14.raml"));//Ok for now lets improve later
+    })
+    it ("no unknown facets in union type" ,function(){
+        testErrorsByNumber(util.data("parser/typexpressions/tr15.raml"),1);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })
@@ -611,22 +617,20 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overloading/o1.raml"),["Method 'get' already exists","Method 'get' already exists"]);
     })
     it ("overloading2" ,function(){
-        testErrors(util.data("parser/overloading/o2.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o2.raml"),[]);
     })
     it ("overloading3" ,function(){
-        testErrors(util.data("parser/overloading/o3.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o3.raml"),["Resource '/{id}' already exists","Resource '/{id}' already exists"]);
     })
     it ("overloading4" ,function(){
-        testErrors(util.data("parser/overloading/o4.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o4.raml"),[]);
     })
-    it ("overloading5" ,function(){
-        testErrors(util.data("parser/overloading/o5.raml"),["Resources share same URI","Resources share same URI"]);
-    })
-    it ("overloading6" ,function(){
-        testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
-    })
+
+    // it ("overloading6" ,function(){
+    //     testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
+    // })
     it ("overloading7" ,function(){
-        testErrors(util.data("parser/overloading/o7.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o7.raml"),[]);
     })
 
     //TODO fix test after bug fix.
@@ -746,6 +750,9 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/external/e2.raml"));
     })
 
+    it ("strange names in parameters" ,function(){
+        testErrors(util.data("parser/custom/strangeParamNames.raml"));
+    })
     // it ("external 3" ,function(){
     //     testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
     // })
