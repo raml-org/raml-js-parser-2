@@ -536,6 +536,12 @@ describe('Parser regression tests', function () {
     it ("no unknown facets in union type are allowed" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr15.raml"),1);//Ok for now lets improve later
     })
+    it ("sequence composition works in 0.8" ,function(){
+        testErrors(util.data("parser/custom/seq.raml"));//Ok for now lets improve later
+    })
+    it ("sequence composition does not works in 1.0" ,function(){
+        testErrorsByNumber(util.data("parser/custom/seq1.raml"),2);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })
