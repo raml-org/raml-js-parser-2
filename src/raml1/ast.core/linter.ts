@@ -2746,6 +2746,9 @@ export class ExampleValidator implements PropertyValidator{
                     if (typeof pObje === "boolean" && pt.isString()) {
                         pObje = "" + pObje;
                     }
+                    if (pt.getExtra("repeat")){
+                        pObje=[pObje];
+                    }
                     var validateObject = pt.validate(pObje, true);
                     if (!validateObject.isOk()) {
                         validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, !strict)));
