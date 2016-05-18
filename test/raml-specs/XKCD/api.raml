@@ -1,7 +1,7 @@
 #%RAML 1.0
 title: XKCD
 baseUri: http://xkcd.com
-schemas:
+types:
   - comic: !include schemas/comic-schema.json
 /{comicId}/info.0.json:
   uriParameters:
