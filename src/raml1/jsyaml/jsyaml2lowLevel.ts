@@ -632,6 +632,7 @@ function copyNode(n:yaml.YAMLNode):yaml.YAMLNode{
                 kind:yaml.Kind.SCALAR,
                 parent:n.parent
             }
+
         case yaml.Kind.MAPPING:
             var map=(<yaml.YAMLMapping>n)
             return {
@@ -2679,6 +2680,12 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 return mn+"]";
             }
             return map.key.value;
+        }
+        if (this._node.kind==yaml.Kind.INCLUDE_REF){
+            var m=this.children();
+            if (m.length==1){
+                return m[0].key();
+            }
         }
         //other kinds do not have keys
         return null;
