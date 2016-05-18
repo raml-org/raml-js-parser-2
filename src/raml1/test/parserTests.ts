@@ -295,6 +295,15 @@ describe('Parser regression tests', function () {
     it ("anonymous type examples validation test 1" ,function(){
         testErrors(util.data("parser/examples/ex38.raml"));
     })
+    it ("when using repeat to declare arrays example should not be array" ,function(){
+        testErrors(util.data("parser/examples/ex45.raml"));
+    })
+    it ("when using repeat to declare arrays example should not be array 1.0" ,function(){
+        testErrors(util.data("parser/examples/ex46.raml"));
+    })
+    it ("when using repeat to declare arrays example should not be array 1.0 (negative)" ,function(){
+        testErrorsByNumber(util.data("parser/examples/ex47.raml"),1);
+    })
     it ("anonymous type examples validation test 2" ,function(){
         testErrors(util.data("parser/examples/ex39.raml"));
     })
