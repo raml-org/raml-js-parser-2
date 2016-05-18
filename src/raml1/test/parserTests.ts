@@ -551,6 +551,9 @@ describe('Parser regression tests', function () {
     it ("sequence composition does not works in 1.0" ,function(){
         testErrorsByNumber(util.data("parser/custom/seq1.raml"),2);//Ok for now lets improve later
     })
+    it ("authorization grant is any absolute uri" ,function(){
+        testErrorsByNumber(util.data("parser/custom/grantIsAnyAbsoluteUri.raml"),0);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })

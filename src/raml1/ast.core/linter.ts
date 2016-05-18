@@ -1994,7 +1994,7 @@ class CompositeNodeValidator implements NodeValidator {
                     requireUrl=true;
                 }
                 else if (vl!=="password"&&vl!=='client_credentials'){
-                    if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1){
+                    if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1&&vl.indexOf(":")==-1){
                         var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI", x)
                         acceptor.accept(i);
                     }
