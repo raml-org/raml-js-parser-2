@@ -1048,7 +1048,15 @@ class NormalValidator implements PropertyValidator{
                             validation=null;
                             return;
                         }
-                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Empty value is not allowed here", node));
+                        if (node.property().isRequired()&&node.value()==null) {
+                            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                        }
+                        else{
+                            var ck=node.lowLevel().valueKind();
+                            if (ck==yaml.Kind.MAP||ck==yaml.Kind.SEQ||ck==yaml.Kind.MAPPING){
+                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                            }
+                        }
                     }
                 }
             }

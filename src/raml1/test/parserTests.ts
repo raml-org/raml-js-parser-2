@@ -554,6 +554,9 @@ describe('Parser regression tests', function () {
     it ("authorization grant is any absolute uri" ,function(){
         testErrorsByNumber(util.data("parser/custom/grantIsAnyAbsoluteUri.raml"),0);//Ok for now lets improve later
     })
+    it ("empty schema is ok in 0.8" ,function(){
+        testErrorsByNumber(util.data("parser/custom/emptySchema.raml"),0);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })
