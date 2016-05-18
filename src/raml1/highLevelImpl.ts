@@ -1032,9 +1032,10 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             var potentialHasExtra = this._ptype;
 
             potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
+            this._ptype.putExtra(defs.SOURCE_EXTRA, this);
         }
 
-        this._ptype.putExtra(defs.SOURCE_EXTRA, this);
+
 
         return this._ptype;
     }
