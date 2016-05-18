@@ -557,6 +557,12 @@ describe('Parser regression tests', function () {
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })
+    it ("date time format is checked in super types" ,function(){
+        testErrorsByNumber(util.data("parser/annotations/a31.raml"),0);//Ok for now lets improve later
+    })
+    it ("date time format is checked in super types (negative)" ,function(){
+        testErrorsByNumber(util.data("parser/annotations/a32.raml"),1);//Ok for now lets improve later
+    })
     //No more signatures
     //it ("signatures with inherited classes" ,function(){
     //    testErrors(util.data("parser/typexpressions/ct1.raml"));//Ok for now lets improve later
