@@ -731,7 +731,9 @@ class CompositePropertyValidator implements PropertyValidator{
                         var k=node.property().range().key();
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
                             if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
-                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                                if (!node.property().domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
+                                    v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                                }
                             }
                         }
                     }

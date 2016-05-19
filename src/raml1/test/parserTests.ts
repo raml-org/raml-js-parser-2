@@ -560,6 +560,9 @@ describe('Parser regression tests', function () {
     it ("properties are map in 1.0" ,function(){
         testErrorsByNumber(util.data("parser/custom/propMap.raml"),1);//Ok for now lets improve later
     })
+    it ("schema is yml" ,function(){
+        testErrorsByNumber(util.data("parser/custom/schemaIsyml.raml"),0);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })

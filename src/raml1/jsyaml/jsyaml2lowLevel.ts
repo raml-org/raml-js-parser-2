@@ -2593,9 +2593,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 return "can not resolve "+includePath
             }
             if (resolved.isRAMLUnit()){
-
-                //TODO DIFFERENT DATA TYPES, inner references
-                return null;
+                return resolved.ast().value();
+                
             }
             var text = resolved.contents();
             if(textutil.isMultiLineValue(text)) {
