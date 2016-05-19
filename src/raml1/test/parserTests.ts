@@ -563,6 +563,10 @@ describe('Parser regression tests', function () {
     it ("schema is yml" ,function(){
         testErrorsByNumber(util.data("parser/custom/schemaIsyml.raml"),0);//Ok for now lets improve later
     })
+
+    it ("null tag support" ,function(){
+        testErrorsByNumber(util.data("parser/custom/nullTag.raml"),0);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
     })
