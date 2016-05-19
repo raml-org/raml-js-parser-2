@@ -40,35 +40,39 @@ function xmlToJson(xml) {
     return obj;
 };
 function cleanupText(j:any){
-    for (var p in j) {
-        if (typeof(j[p]) == "object") {
-            for (var k in j[p]){
-                if (k == '#text') {
-                    var txt=j[p]['#text'];
-                    if (typeof(txt)!='string'){
-                        txt=txt.join("");
-                    }
-                    txt=txt.trim();
-                    if(txt.length==0){
-                        delete j[p]['#text']
+    if (typeof j==="object") {
+        for (var p in j) {
+            if (typeof(j[p]) == "object") {
+                for (var k in j[p]) {
+                    if (k == '#text') {
+                        var txt = j[p]['#text'];
+                        if (typeof(txt) != 'string') {
+                            txt = txt.join("");
+                        }
+                        txt = txt.trim();
+                        if (txt.length == 0) {
+                            delete j[p]['#text']
+                        }
                     }
                 }
+                cleanupText(j[p]);
             }
-            cleanupText(j[p]);
         }
     }
     return j;
 }
 function cleanupJson(j:any){
-    for (var p in j) {
-        if (typeof(j[p]) == "object") {
-            var keys = Object.keys(j[p]);
-            if (keys.length == 1) {
-                if (keys[0] == '#text') {
-                    j[p] = j[p]['#text'];
+    if (typeof j==="object") {
+        for (var p in j) {
+            if (typeof(j[p]) == "object") {
+                var keys = Object.keys(j[p]);
+                if (keys.length == 1) {
+                    if (keys[0] == '#text') {
+                        j[p] = j[p]['#text'];
+                    }
                 }
+                cleanupJson(j[p]);
             }
-            cleanupJson(j[p]);
         }
     }
     return j;
