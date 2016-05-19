@@ -813,7 +813,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
     }
 
     contentProvider() {
-        var root = this._node && this._node.unit() && ((this._node.includePath && this._node.includePath()) ? this._node.unit().resolve(this._node.includePath()) : this._node.unit());
+        var root = this._node && this._node.includeBaseUnit() && ((this._node.includePath && this._node.includePath()) ? this._node.includeBaseUnit().resolve(this._node.includePath()) : this._node.includeBaseUnit());
 
         return new contentprovider.ContentProvider(root);
     }

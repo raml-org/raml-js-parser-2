@@ -92,6 +92,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     unit():ll.ICompilationUnit { return this._originalNode.unit(); }
 
+    includeBaseUnit():ll.ICompilationUnit { return this._originalNode.unit(); }
+
     anchorId():string { return this._originalNode.anchorId(); }
 
     errors():Error[] { return this._originalNode.errors(); }
@@ -419,6 +421,18 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
         }
         return null;
+    }
+
+    includeBaseUnit():ll.ICompilationUnit {
+
+        for(var i = 0 ; i < this._adoptedNodes.length; i++){
+            var node = this._adoptedNodes[i];
+            var includePath = node.includePath();
+            if(includePath!=null){
+                return node.unit();
+            }
+        }
+        return super.includeBaseUnit();
     }
 
     includeReference():refResolvers.IncludeReference {

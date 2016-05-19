@@ -3055,6 +3055,11 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         //return this.parent().unit();
     }
 
+    includeBaseUnit():lowlevel.ICompilationUnit {
+        return this._unit;
+    }
+
+
     setUnit(unit: lowlevel.ICompilationUnit) {
         this._unit = unit;
     }
