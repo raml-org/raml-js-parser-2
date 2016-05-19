@@ -939,13 +939,17 @@ export class Project implements lowlevel.IProject{
     unit(p:string,absolute:boolean=false):CompilationUnit{
         if(absolute||isWebPath(p)){
             if(this.failedUnits[p]!=null){
-                throw(this.failedUnits[p]);
+                if (!this.failedUnits[p].inner) {
+                    throw(this.failedUnits[p]);
+                }
             }
         }
         else{
             var ap = toAbsolutePath(this.rootPath,p);
             if(this.failedUnits[ap]){
-                throw(this.failedUnits[ap]);
+                if (!this.failedUnits[p].inner) {
+                    throw(this.failedUnits[p]);
+                }
             }
         }
         var cnt:string=null;
