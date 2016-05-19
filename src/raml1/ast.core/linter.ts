@@ -392,7 +392,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 if (node.name()=="body"&&node.computedValue("mediaType")){
                     return;
                 }
-                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
+                if (node.lowLevel().value()!='~') {
+                    v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
+                }
             }
         }
         else {
@@ -1172,7 +1174,7 @@ class MediaTypeValidator implements PropertyValidator{
         if (node.value()&&node.value()==("multipart/form-data")||node.value()==("application/x-www-form-urlencoded")){
             if (node.parent()&&node.parent().parent()&&node.parent().parent().property()) {
                 if (node.parent().parent().property().nameId() == universes.Universe10.MethodBase.properties.responses.name) {
-                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Form related media types can not be used in responses", node))
+                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Form related media types can not be used in responses", node,true))
                 }
             }
         }
@@ -2056,8 +2058,10 @@ class CompositeNodeValidator implements NodeValidator {
             || typeof nodeValue == 'boolean')
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
-                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "node " + node.name() + " can not be a scalar", node)
-                acceptor.accept(i);
+                if (nodeValue!='~') {
+                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "node " + node.name() + " can not be a scalar", node)
+                    acceptor.accept(i);
+                }
             }
         }
         new RequiredPropertiesAndContextRequirementsValidator().validate(node, acceptor);
