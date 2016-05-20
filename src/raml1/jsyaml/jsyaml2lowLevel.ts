@@ -3726,7 +3726,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     if (e!=".json"&&e!=".xsd") {
                         //SUPPORTING 0.8 style resolving due to compatiblity reasons
                         ip = ip.substr(1);
-                        ip = project.getRootPath() + "/" + path.basename(ip);
+                        ip = project.getRootPath() + "/" + ip;
                     }
                 }
                 var absIncludePath = toAbsolutePath(unitPath,ip);
