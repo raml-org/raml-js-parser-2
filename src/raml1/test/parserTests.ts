@@ -289,6 +289,9 @@ describe('Parser regression tests', function () {
     it ("low level transform understands anchors" ,function(){
         testErrors(util.data("parser/examples/ex43.raml"));
     })
+    it ("0.8 style of absolute path resolving" ,function(){
+        testErrors(util.data("parser/custom/res08.raml"));
+    })
     it ("example is string 0.8" ,function(){
         testErrors(util.data("parser/examples/ex44.raml"),["example should be a string"]);
     })

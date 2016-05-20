@@ -25,7 +25,7 @@ import hlimpl=require("../highLevelImpl")
 import apiLoader = require("../../raml1/apiLoader")
 
 
-var pdir = path.resolve(__dirname, ".");
+var pdir = path.resolve(__dirname, "../../../src/raml1/test");
 
 export var universe = require("../definition-system/universeProvider")("RAML10");
 export var apiType = <def.NodeClass>universe.type("Api");

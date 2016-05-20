@@ -875,6 +875,14 @@ export class Project implements lowlevel.IProject{
     }
 
     buildPath(pathInUnit, unitPath) {
+        if (path.isAbsolute(pathInUnit)){
+            var e=path.extname(unitPath);
+            if (e==".raml"||e==".yaml"||e==".yml") {
+                //SUPPORTING 0.8 style resolving due to compatiblity reasons
+                pathInUnit = pathInUnit.substr(1);
+                unitPath = this.rootPath + "/" + path.basename(unitPath);
+            }
+        }
         if(isWebPath(pathInUnit)||path.isAbsolute(pathInUnit)){
             return pathInUnit;
         }
