@@ -280,6 +280,9 @@ describe('Parser regression tests', function () {
     it ("multi unions" ,function(){
         testErrors(util.data("parser/examples/ex36.raml"));
     })
+    it ("seq and normal mix" ,function(){
+        testErrors(util.data("parser/custom/seqMix.raml"));
+    })
     it ("scalars in examples are parsed correctly" ,function(){
         testErrors(util.data("parser/examples/ex42.raml"));
     })

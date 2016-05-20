@@ -255,7 +255,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             if(adoptedNodeChildren && adoptedNodeChildren.length > 0){
                 canBeSeq = true;
                 if( adoptedNodeChildren[0].key()){
-                    canBeMap = true;
+                    if (this.originalNode().valueKind()!=yaml.Kind.SEQ) {
+                        canBeMap = true;
+                    }
                 }
             }
         });

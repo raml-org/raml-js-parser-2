@@ -964,6 +964,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             if (!this.isExpanded()){
                 var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
                 var hlnode=nm.highLevel();
+                hlnode.resetChildren();
+                hlnode.children();
                 hlnode._expanded=true;
                 (<ASTNodeImpl>hlnode).clearTypesCache();
                 hlnode.validate(v);
