@@ -71,6 +71,7 @@ export interface IProject{
 
     cloneWithResolver(newResolver:resolversApi.FSResolver,httpResolver?:resolversApi.HTTPResolver):IProject;
 
+    getRootPath(): string
 
     execute(cmd:CompositeCommand)
 

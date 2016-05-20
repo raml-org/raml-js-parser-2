@@ -764,6 +764,9 @@ export class Project implements lowlevel.IProject{
 
     failedUnits:{[path:string]:any}={}
 
+    getRootPath(){
+        return this.rootPath;
+    }
     /**
      *
      * @param rootPath - path to folder where your root api is located
@@ -3718,6 +3721,14 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                 }
 
                 if (!ip) return;
+                if (path.isAbsolute(ip)){
+                    var e=path.extname(ip);
+                    if (e!=".json"&&e!=".xsd") {
+                        //SUPPORTING 0.8 style resolving due to compatiblity reasons
+                        ip = ip.substr(1);
+                        ip = project.getRootPath() + "/" + path.basename(ip);
+                    }
+                }
                 var absIncludePath = toAbsolutePath(unitPath,ip);
 
 
@@ -3779,6 +3790,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
 }
 
 function toAbsolutePath(rootPath:string,relPath:string) {
+
     if (isWebPath(relPath)){
         return relPath;
     }
