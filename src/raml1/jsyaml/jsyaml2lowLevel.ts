@@ -877,7 +877,7 @@ export class Project implements lowlevel.IProject{
     buildPath(pathInUnit, unitPath) {
         if (path.isAbsolute(pathInUnit)){
             var e=path.extname(unitPath);
-            if (e==".raml"||e==".yaml"||e==".yml") {
+            if (e!=".json"&&e!=".xsd") {
                 //SUPPORTING 0.8 style resolving due to compatiblity reasons
                 pathInUnit = pathInUnit.substr(1);
                 unitPath = this.rootPath + "/" + path.basename(unitPath);
