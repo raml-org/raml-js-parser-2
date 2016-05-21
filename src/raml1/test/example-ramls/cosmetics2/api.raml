@@ -1,0 +1,119 @@
+#%RAML 1.0
+title: Álainn Cosmetics Mobile Orders API
+#baseUri: https://alainn-customer-mobile-v1.cloudhub.io/api
+baseUri: https://ec2-52-201-242-128.compute-1.amazonaws.com/mocks/1201bcdf-f1a0-4eb3-a002-4f6f817d44cc/api
+version: 1
+mediaType: application/json
+documentation:
+  - !include docs/intro.raml
+  - !include docs/security.raml
+uses:
+  res: modules/resource-types.raml
+  tra: modules/traits.raml
+  sec: modules/security.raml
+  ano: modules/annotations.raml
+
+securedBy: [sec.oauth_2_0]
+
+resourceTypes:
+  base:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: Get<<resourcePathName | !uppercamelcase>>Response
+  read-only-collection:
+    type: base
+    get:
+      is: [tra.pageable]
+  collection:
+    type: read-only-collection
+    post:
+      body:
+        type: Post<<resourcePathName | !uppercamelcase>>Request
+      responses:
+        201:
+          description: Created!
+          headers:
+            Location:
+              description: uri of new resource
+              type: string
+              required: true
+  controller:
+    post:
+      responses:
+        204:
+          description: Done!
+  member:
+    type: base
+    put?:
+      body:
+        type: typ.Put<<resourcePathName | !uppercamelcase>>Request
+      responses:
+        204:
+          description: Modified
+    patch?:
+      body:
+        type: typ.Patch<<resourcePathName | !uppercamelcase>>Request
+    delete?:
+      responses:
+        204:
+          description: Delete
+
+/items:
+  type: read-only-collection
+  description: List of all items on sale
+  get:
+    is: [tra.searchable, tra.imageable]
+  /{item}:
+    type: member
+    get:
+      is: [tra.imageable]
+/my-wish-list:
+  type: collection
+  post:
+    description: Add an Item to my Wish List.
+  /{wish}:
+    delete:
+      description: Remove from wish list
+/my-basket:
+  type: collection
+  description: All items ready for purchase
+  post:
+    description: Add an Item to my Basket. Of course I may add more than 1 of the same Item.
+  /checkout:
+    type: controller
+    description: Orders both pending and fulfilled
+    delete:
+      description: Remove from basket
+/mobile-tokens/{mobileType}:
+  uriParameters:
+    mobileType:
+      type: string
+      enum: [ios, android]
+  post:
+    body:
+      type:
+        properties:
+          token: string
+        example:
+          token: afdasfas23lkesf
+/my-profile:
+  type: base
+/brands:
+  type: read-only-collection
+  get:
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Deep Steep Honey Bubble Bath
+/categories:
+  type: read-only-collection
+  get:
+    queryParameters:
+      name:
+        type: string
+        required: false
+        example: Oils

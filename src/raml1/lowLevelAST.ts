@@ -363,3 +363,8 @@ Unit path: ${this.absPath}`);
         this.mapping.push(l-ind);
     }
 }
+
+export function ramlFirstLine(content:string):string[]{
+    var str = content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+    return str;
+}

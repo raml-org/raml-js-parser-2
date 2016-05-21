@@ -6,9 +6,11 @@ import core=require("./parserCore");
 
 import ramlPathMatch = require("../../util/raml-path-match")
 import hl = require('../highLevelAST');
+import ll = require("../LowLevelAST")
 import hlimpl = require('../highLevelImpl');
 import linter = require('../ast.core/linter');
 import stubs = require('../stubs');
+import proxy = require("../ast.core/LowLevelASTProxy");
 
 import defs = require('raml-definition-system');
 import universeDef = require("../tools/universe");
@@ -18,7 +20,7 @@ import util = require('../../util/index');
 import expander=require("../ast.core/expander")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import search=require("../ast.core/search")
-import ll=require("../jsyaml/jsyaml2lowLevel");
+import jsyaml=require("../jsyaml/jsyaml2lowLevel");
 import json=require("../jsyaml/json2lowLevel");
 import path=require("path");
 import ramlservices=defs
@@ -35,7 +37,7 @@ export function runtimeType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
 }
 
 export function load(pth: string):core.BasicNode{
-    var m=new ll.Project(path.dirname(pth));
+    var m=new jsyaml.Project(path.dirname(pth));
     var unit=m.unit(path.basename(pth));
     if (unit){
         if (unit.isRAMLUnit()){
@@ -687,9 +689,19 @@ export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.Exam
  * __$meta__={"name":"fixedFacets","primary":true}
  */
 export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
-    var obj = td.runtimeDefinition().getFixedFacets();
-    if(Object.keys(obj).length==0){
+    var fixedFacets = td.runtimeDefinition().getFixedFacets();
+    if(Object.keys(fixedFacets).length==0){
         return null;
+    }
+    var obj = {};
+    for(var key of Object.keys(fixedFacets)){
+        var value = fixedFacets[key];
+        if(value instanceof jsyaml.ASTNode || value instanceof proxy.LowLevelProxyNode){
+            obj[key] = json.serialize(<ll.ILowLevelASTNode>value);
+        }
+        else{
+            obj[key] = value;
+        }
     }
     var node = new json.AstNode(null,obj);
     return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(node);

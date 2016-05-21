@@ -3755,7 +3755,7 @@ function toAbsolutePath(rootPath:string,relPath:string) {
     return apath;
 }
 
-function isWebPath(str):boolean {
+export function isWebPath(str):boolean {
     if (str == null) return false;
 
     return util.stringStartsWith(str,"http://") || util.stringStartsWith(str,"https://");
