@@ -1,0 +1,9 @@
+#%RAML 0.8
+version: v1
+title: A
+traits:
+  - !include traits.raml
+  - client:
+
+/ping:
+  is: [client]

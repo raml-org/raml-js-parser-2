@@ -29,6 +29,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     protected _valueOverride:any;
 
+    hasInnerIncludeError(){
+        return this._originalNode.hasInnerIncludeError();
+    }
+
     keyKind(){
         return this._originalNode.keyKind();
     }
@@ -103,6 +107,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     parent():ll.ILowLevelASTNode { return this._parent;}
 
     unit():ll.ICompilationUnit { return this._originalNode.unit(); }
+
+    includeBaseUnit():ll.ICompilationUnit { return this._originalNode.unit(); }
 
     anchorId():string { return this._originalNode.anchorId(); }
 
@@ -269,7 +275,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             if(adoptedNodeChildren && adoptedNodeChildren.length > 0){
                 canBeSeq = true;
                 if( adoptedNodeChildren[0].key()){
-                    canBeMap = true;
+                    if (this.originalNode().valueKind()!=yaml.Kind.SEQ) {
+                        canBeMap = true;
+                    }
                 }
             }
         });
@@ -435,6 +443,18 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
         }
         return null;
+    }
+
+    includeBaseUnit():ll.ICompilationUnit {
+
+        for(var i = 0 ; i < this._adoptedNodes.length; i++){
+            var node = this._adoptedNodes[i];
+            var includePath = node.includePath();
+            if(includePath!=null){
+                return node.unit();
+            }
+        }
+        return super.includeBaseUnit();
     }
 
     includeReference():refResolvers.IncludeReference {

@@ -143,6 +143,9 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
     isAnnotatedScalar(){
         return false;
     }
+    hasInnerIncludeError(){
+        return false;
+    }
 
     constructor(
         private _unit:lowlevel.ICompilationUnit,
@@ -219,6 +222,8 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
     parent(){ return this._parent; }
 
     unit(){ return this._unit; }
+
+    includeBaseUnit(){ return this._unit; }
 
     anchorId(){ return null; }
 

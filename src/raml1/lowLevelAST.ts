@@ -71,6 +71,7 @@ export interface IProject{
 
     cloneWithResolver(newResolver:resolversApi.FSResolver,httpResolver?:resolversApi.HTTPResolver):IProject;
 
+    getRootPath(): string
 
     execute(cmd:CompositeCommand)
 
@@ -112,6 +113,7 @@ export interface ILowLevelASTNode{
 
     value(toString?:boolean):any
 
+    hasInnerIncludeError():boolean
     includeErrors():string[]
 
     includePath():string
@@ -128,6 +130,17 @@ export interface ILowLevelASTNode{
     parent():ILowLevelASTNode;
 
     unit():ICompilationUnit
+
+    /**
+     * Returns a unit, which is a base for include reference.
+     * This method should be called when a node may potentially hbe defined in several units
+     * at once (in case of expansion) and caller needs a unit, which is a base for this node's
+     * include statement.
+     *
+     * If this node has no include statement, return value of the method should be equal to the result of
+     * unit() method call.
+     */
+    includeBaseUnit():ICompilationUnit
 
     anchorId():string
 

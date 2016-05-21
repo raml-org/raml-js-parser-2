@@ -60,25 +60,29 @@ function unmark(h:hl.IHighLevelNode){
 export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     var rs:hl.IHighLevelNode[]=[];
 
-        h.elements().forEach(x=> {
-            if (x.definition().key()== universes.Universe10.UsesDeclaration) {
-                var mm=x.attr("value");
-                if (mm) {
-                    var unit = h.root().lowLevel().unit().resolve(mm.value());
-                    if (unit != null) {
-                        unit.highLevel().children().forEach(x=> {
-                            if (x.isElement()) {
-                                rs.push(x.asElement());
-                            }
-                        })
-                    }
+    if (!(h instanceof hlimpl.ASTNodeImpl)){
+        return rs;
+    }
+
+    h.elements().forEach(x=> {
+        if (x.definition().key()== universes.Universe10.UsesDeclaration) {
+            var mm=x.attr("value");
+            if (mm) {
+                var unit = h.root().lowLevel().unit().resolve(mm.value());
+                if (unit != null) {
+                    unit.highLevel().children().forEach(x=> {
+                        if (x.isElement()) {
+                            rs.push(x.asElement());
+                        }
+                    })
                 }
             }
-            else {
-                rs.push(x);
-            }
-        });
-        return rs;
+        }
+        else {
+            rs.push(x);
+        }
+    });
+    return rs;
 
 }
 function getIndent2(offset:number,text:string):string{
@@ -431,7 +435,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
     if (result){
         return result;
     }
-    var kind = nodePart ? nodePart : determineCompletionKind(unit.contents(), offset);
+    var kind = nodePart != null ? nodePart : determineCompletionKind(unit.contents(), offset);
     if (kind == LocationKind.VALUE_COMPLETION) {
 
         var hlnode = <hl.IHighLevelNode>node;

@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Test
+
+types:
+  dateTime:
+    type: datetime
+
+    #example: Mon, 31 Oct 2016 00:00:00 GMT
+
+annotationTypes:
+  planned: dateTime
+
+/products:
+  (planned): Mon, 31 Oct 2016 00:00:00 GMT

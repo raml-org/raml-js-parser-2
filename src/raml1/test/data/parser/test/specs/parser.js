@@ -2216,7 +2216,7 @@ describe('Parser', function() {
           'title: Test',
           '/a:',
           '  displayName: A',
-          '  get: ~'
+          '  get: D'
       ].join('\n');
 
       raml.load(definition).should.be.rejectedWith(/property get can not have scalar value/).and.notify(done);

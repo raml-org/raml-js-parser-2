@@ -576,6 +576,10 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         if (this._value){
             return this._value
         }
+        this._value=this.calcValue();
+        return this._value;
+    }
+    private calcValue():any{
         if (this._computed){
             return this.computedValue(this.property().nameId());
         }
@@ -636,8 +640,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         var result = (indent?indent:"") +
             (this.name() + " : " + className
             + "[" + definitionClassName + "]"
-            + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"");
-            "\n";
+            + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"")
+            + "\n";
 
         if (this.value() instanceof StructuredValue){
             var structuredHighLevel : any = (<StructuredValue>this.value()).toHighLevel();
@@ -692,9 +696,11 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     setValue(value: string|StructuredValue) {
         mutators.setValue(this,value);
+        this._value=null;
     }
     setKey(value: string) {
         mutators.setKey(this,value);
+        this._value=null;
     }
 
     children():hl.IParseResult[] {
@@ -703,11 +709,13 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 
     addStringValue(value: string) {
-       mutators.addStringValue(this,value);
+        mutators.addStringValue(this,value);
+        this._value=null;
     }
     
     addStructuredValue(sv: StructuredValue) {
         mutators.addStructuredValue(this,sv)
+        this._value=null;
     }
 
     addValue(value: string|StructuredValue) {
@@ -717,6 +725,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         } else {
             this.addStructuredValue(<StructuredValue>value);
         }
+        this._value=null;
+
     }
 
     isEmbedded(): boolean {
@@ -732,6 +742,8 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     setValues(values: string[]) {
         mutators.setValues(this,values);
+        this._value=null;
+
     }
 
     isEmpty(): boolean {
@@ -801,7 +813,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
     }
 
     contentProvider() {
-        var root = this._node && this._node.unit() && ((this._node.includePath && this._node.includePath()) ? this._node.unit().resolve(this._node.includePath()) : this._node.unit());
+        var root = this._node && this._node.includeBaseUnit() && ((this._node.includePath && this._node.includePath()) ? this._node.includeBaseUnit().resolve(this._node.includePath()) : this._node.includeBaseUnit());
 
         return new contentprovider.ContentProvider(root);
     }
@@ -952,6 +964,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             if (!this.isExpanded()){
                 var nm=expander.expandTraitsAndResourceTypes(<any>this.wrapperNode());
                 var hlnode=nm.highLevel();
+                hlnode.resetChildren();
+                hlnode.children();
                 hlnode._expanded=true;
                 (<ASTNodeImpl>hlnode).clearTypesCache();
                 hlnode.validate(v);
@@ -1020,9 +1034,10 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             var potentialHasExtra = this._ptype;
 
             potentialHasExtra.putExtra(defs.USER_DEFINED_EXTRA, true);
+            this._ptype.putExtra(defs.SOURCE_EXTRA, this);
         }
 
-        this._ptype.putExtra(defs.SOURCE_EXTRA, this);
+
 
         return this._ptype;
     }
@@ -1375,12 +1390,6 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var ka=_.find(this.directChildren(),x=>x.property()&&x.property().getAdapter(services.RAMLPropertyService).isKey());
         if (ka&&ka instanceof ASTPropImpl){
             var c= (<ASTPropImpl>ka).value();
-            if (c) {
-                var io = c.indexOf(':');
-                if (io != -1) {//TODO REVIEW
-                    return c.substring(0, io);
-                }
-            }
             return c;
         }
         return super.name();

@@ -280,11 +280,17 @@ describe('Parser regression tests', function () {
     it ("multi unions" ,function(){
         testErrors(util.data("parser/examples/ex36.raml"));
     })
+    it ("seq and normal mix" ,function(){
+        testErrors(util.data("parser/custom/seqMix.raml"));
+    })
     it ("scalars in examples are parsed correctly" ,function(){
         testErrors(util.data("parser/examples/ex42.raml"));
     })
     it ("low level transform understands anchors" ,function(){
         testErrors(util.data("parser/examples/ex43.raml"));
+    })
+    it ("0.8 style of absolute path resolving" ,function(){
+        testErrors(util.data("parser/custom/res08.raml"));
     })
     it ("example is string 0.8" ,function(){
         testErrors(util.data("parser/examples/ex44.raml"),["example should be a string"]);
@@ -294,6 +300,15 @@ describe('Parser regression tests', function () {
     })
     it ("anonymous type examples validation test 1" ,function(){
         testErrors(util.data("parser/examples/ex38.raml"));
+    })
+    it ("when using repeat to declare arrays example should not be array" ,function(){
+        testErrors(util.data("parser/examples/ex45.raml"));
+    })
+    it ("when using repeat to declare arrays example should not be array 1.0" ,function(){
+        testErrors(util.data("parser/examples/ex46.raml"));
+    })
+    it ("when using repeat to declare arrays example should not be array 1.0 (negative)" ,function(){
+        testErrorsByNumber(util.data("parser/examples/ex47.raml"),1);
     })
     it ("anonymous type examples validation test 2" ,function(){
         testErrors(util.data("parser/examples/ex39.raml"));
@@ -530,8 +545,42 @@ describe('Parser regression tests', function () {
     it ("runtime types value2" ,function(){
         testErrors(util.data("parser/typexpressions/tr12.raml"));//Ok for now lets improve later
     })
+    it ("union can be object at same moment sometimes" ,function(){
+        testErrors(util.data("parser/typexpressions/tr14.raml"));//Ok for now lets improve later
+    })
+    it ("no unknown facets in union type are allowed" ,function(){
+        testErrorsByNumber(util.data("parser/typexpressions/tr15.raml"),1);//Ok for now lets improve later
+    })
+    it ("sequence composition works in 0.8" ,function(){
+        testErrors(util.data("parser/custom/seq.raml"));//Ok for now lets improve later
+    })
+    it ("sequence composition does not works in 1.0" ,function(){
+        testErrorsByNumber(util.data("parser/custom/seq1.raml"),2);//Ok for now lets improve later
+    })
+    it ("authorization grant is any absolute uri" ,function(){
+        testErrorsByNumber(util.data("parser/custom/grantIsAnyAbsoluteUri.raml"),0);//Ok for now lets improve later
+    })
+    it ("empty schema is ok in 0.8" ,function(){
+        testErrorsByNumber(util.data("parser/custom/emptySchema.raml"),0);//Ok for now lets improve later
+    })
+    it ("properties are map in 1.0" ,function(){
+        testErrorsByNumber(util.data("parser/custom/propMap.raml"),1);//Ok for now lets improve later
+    })
+    it ("schema is yml" ,function(){
+        testErrorsByNumber(util.data("parser/custom/schemaIsyml.raml"),0);//Ok for now lets improve later
+    })
+
+    it ("null tag support" ,function(){
+        testErrorsByNumber(util.data("parser/custom/nullTag.raml"),0);//Ok for now lets improve later
+    })
     it ("r2untime types value2" ,function(){
         testErrorsByNumber(util.data("parser/typexpressions/tr13.raml"),1,1);//Ok for now lets improve later
+    })
+    it ("date time format is checked in super types" ,function(){
+        testErrorsByNumber(util.data("parser/annotations/a31.raml"),0);//Ok for now lets improve later
+    })
+    it ("date time format is checked in super types (negative)" ,function(){
+        testErrorsByNumber(util.data("parser/annotations/a32.raml"),1);//Ok for now lets improve later
     })
     //No more signatures
     //it ("signatures with inherited classes" ,function(){
@@ -611,22 +660,20 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overloading/o1.raml"),["Method 'get' already exists","Method 'get' already exists"]);
     })
     it ("overloading2" ,function(){
-        testErrors(util.data("parser/overloading/o2.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o2.raml"),[]);
     })
     it ("overloading3" ,function(){
-        testErrors(util.data("parser/overloading/o3.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o3.raml"),["Resource '/{id}' already exists","Resource '/{id}' already exists"]);
     })
     it ("overloading4" ,function(){
-        testErrors(util.data("parser/overloading/o4.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o4.raml"),[]);
     })
-    it ("overloading5" ,function(){
-        testErrors(util.data("parser/overloading/o5.raml"),["Resources share same URI","Resources share same URI"]);
-    })
-    it ("overloading6" ,function(){
-        testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
-    })
+
+    // it ("overloading6" ,function(){
+    //     testErrors(util.data("parser/overloading/o6.raml"), ["Resources share same URI","Resources share same URI"]);
+    // })
     it ("overloading7" ,function(){
-        testErrors(util.data("parser/overloading/o7.raml"),["Resources share same URI","Resources share same URI"]);
+        testErrors(util.data("parser/overloading/o7.raml"),[]);
     })
 
     //TODO fix test after bug fix.
@@ -743,6 +790,9 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/external/e2.raml"));
     })
 
+    it ("strange names in parameters" ,function(){
+        testErrors(util.data("parser/custom/strangeParamNames.raml"));
+    })
     // it ("external 3" ,function(){
     //     testErrors(util.data("parser/external/e3.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type \\w+ \\w+,\\w+"]);
     // })

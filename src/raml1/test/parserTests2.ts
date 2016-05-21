@@ -17,12 +17,11 @@ import hl=require("../highLevelAST")
 //
 import util = require("./test-utils")
 import tools = require("./testTools")
-
 describe('API parsing', function() {
     it('Should parse title', function(){
         testErrors(util.data('parser/api/api01.raml'));
     });
-
+    
     it('Should parse baseUri', function(){
         testErrors(util.data('parser/api/api02.raml'));
     });
@@ -300,7 +299,7 @@ describe('Method', function(){
         testErrors(util.data('parser/method/meth06.raml'));
     });
 
-    it('Should allows to set array protocol value and validate it', function(){
+    it('Should allows to set array protocol value and validate it 2', function(){
         testErrors(util.data('parser/method/meth07.raml'));
     });
 

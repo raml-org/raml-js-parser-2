@@ -74,12 +74,13 @@ function escapeUri(u:string){
 
                     resourcesWithId.push(resource);
                 })
-
+                //var isTemplateOverlap=uri.indexOf('{')!=-1;
                 var ids = Object.keys(idToSimilarResources);
                 if (ids.length > 1) {
                     //if we have more than a single id of conflicting resources
                     resources.forEach(resource=>{
-                        acceptor.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Resources share same URI", resource.highLevel(), false))
+
+                        acceptor.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Resources share same URI", resource.highLevel(), false));
                     })
                 }
             }
@@ -164,7 +165,7 @@ function escapeUri(u:string){
         }
     }
     acceptResource(resource:wrapper10.Resource|wrapper08.Resource){
-        var uri=escapeUri(resource.absoluteUri());
+        var uri=resource.absoluteUri();
         var resources=this.uriToResources[uri];
         if (!resources){
             resources=[];

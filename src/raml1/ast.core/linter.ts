@@ -26,7 +26,6 @@ import universeProvider=require("../definition-system/universeProvider")
 import services=def
 import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
-import OverloadingValidator08=require("./overloadingValidator08")
 import expander=require("./expander")
 import builder = require('./builder')
 import search = require("./search")
@@ -393,7 +392,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 if (node.name()=="body"&&node.computedValue("mediaType")){
                     return;
                 }
-                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
+                if (node.lowLevel().value()!='~') {
+                    v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "property " + node.name() + " can not have scalar value", node));
+                }
             }
         }
         else {
@@ -595,8 +596,13 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
     }
     val._inc=true;
     if (node.lowLevel()) {
+
         node.lowLevel().includeErrors().forEach(x=> {
-            var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node);
+            var isWarn=false;
+            if (node.lowLevel().hasInnerIncludeError()){
+                isWarn=true;
+            }
+            var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node,isWarn);
             v.accept(em)
         });
     }
@@ -727,7 +733,9 @@ class CompositePropertyValidator implements PropertyValidator{
                         var k=node.property().range().key();
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
                             if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
-                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                                if (!node.property().domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
+                                    v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "property '" + node.name() + "' must be a string", node))
+                                }
                             }
                         }
                     }
@@ -984,12 +992,12 @@ class NormalValidator implements PropertyValidator{
         var range=pr.range();
 
             var dnode=range.getAdapter(services.RAMLService).getDeclaringNode();
-            if (dnode) {
+            if (dnode&&range.isUserDefined()) {
                 var rof = dnode.parsedType();
                 var dp=node.parent().lowLevel().dumpToObject();
-                var vl=dp[node.parent().name()];
+                var tempVal=dp[node.parent().name()];
                 var isVal=pr.canBeValue();
-                var val=isVal?vl:vl[pr.nameId()];
+                var val=(isVal||(tempVal===null||tempVal===undefined))?tempVal:tempVal[pr.nameId()];
                 var validateObject=rof.validate(val,true);
                 if (!validateObject.isOk()) {
                     validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, false)));
@@ -1044,7 +1052,15 @@ class NormalValidator implements PropertyValidator{
                             validation=null;
                             return;
                         }
-                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Empty value is not allowed here", node));
+                        if (node.property().isRequired()&&node.value()==null) {
+                            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                        }
+                        else{
+                            var ck=node.lowLevel().valueKind();
+                            if (ck==yaml.Kind.MAP||ck==yaml.Kind.SEQ||ck==yaml.Kind.MAPPING){
+                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                            }
+                        }
                     }
                 }
             }
@@ -1158,7 +1174,7 @@ class MediaTypeValidator implements PropertyValidator{
         if (node.value()&&node.value()==("multipart/form-data")||node.value()==("application/x-www-form-urlencoded")){
             if (node.parent()&&node.parent().parent()&&node.parent().parent().property()) {
                 if (node.parent().parent().property().nameId() == universes.Universe10.MethodBase.properties.responses.name) {
-                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Form related media types can not be used in responses", node))
+                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Form related media types can not be used in responses", node,true))
                 }
             }
         }
@@ -1990,7 +2006,7 @@ class CompositeNodeValidator implements NodeValidator {
                     requireUrl=true;
                 }
                 else if (vl!=="password"&&vl!=='client_credentials'){
-                    if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1){
+                    if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1&&vl.indexOf(":")==-1){
                         var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI", x)
                         acceptor.accept(i);
                     }
@@ -2042,8 +2058,10 @@ class CompositeNodeValidator implements NodeValidator {
             || typeof nodeValue == 'boolean')
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
-                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "node " + node.name() + " can not be a scalar", node)
-                acceptor.accept(i);
+                if (nodeValue!='~') {
+                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "node " + node.name() + " can not be a scalar", node)
+                    acceptor.accept(i);
+                }
             }
         }
         new RequiredPropertiesAndContextRequirementsValidator().validate(node, acceptor);
@@ -2742,6 +2760,9 @@ export class ExampleValidator implements PropertyValidator{
                     if (typeof pObje === "boolean" && pt.isString()) {
                         pObje = "" + pObje;
                     }
+                    if (pt.getExtra("repeat")){
+                        pObje=[pObje];
+                    }
                     var validateObject = pt.validate(pObje, true);
                     if (!validateObject.isOk()) {
                         validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, !strict)));
@@ -3219,12 +3240,8 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
         unit:node?node.unit():null
     }
 };
-export var ignoreWarnings=false;
 export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,w:boolean=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
-    if (w&&ignoreWarnings){
-        return;
-    }
     var original=null;
     var pr:hl.IProperty=null;
     if (node.lowLevel() instanceof proxy.LowLevelProxyNode){

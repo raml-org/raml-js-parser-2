@@ -632,6 +632,7 @@ function copyNode(n:yaml.YAMLNode):yaml.YAMLNode{
                 kind:yaml.Kind.SCALAR,
                 parent:n.parent
             }
+
         case yaml.Kind.MAPPING:
             var map=(<yaml.YAMLMapping>n)
             return {
@@ -759,10 +760,13 @@ export class Project implements lowlevel.IProject{
     private listeners:lowlevel.IASTListener[]=[]
     private tlisteners:lowlevel.ITextChangeCommandListener[]=[]
 
-    private pathToUnit:{[path:string]:CompilationUnit}={}
+    pathToUnit:{[path:string]:CompilationUnit}={}
 
     failedUnits:{[path:string]:any}={}
 
+    getRootPath(){
+        return this.rootPath;
+    }
     /**
      *
      * @param rootPath - path to folder where your root api is located
@@ -874,6 +878,14 @@ export class Project implements lowlevel.IProject{
     }
 
     buildPath(pathInUnit, unitPath) {
+        if (path.isAbsolute(pathInUnit)){
+            var e=path.extname(unitPath);
+            if (e!=".json"&&e!=".xsd") {
+                //SUPPORTING 0.8 style resolving due to compatiblity reasons
+                pathInUnit = pathInUnit.substr(1);
+                unitPath = this.rootPath + "/" + path.basename(unitPath);
+            }
+        }
         if(isWebPath(pathInUnit)||path.isAbsolute(pathInUnit)){
             return pathInUnit;
         }
@@ -938,13 +950,17 @@ export class Project implements lowlevel.IProject{
     unit(p:string,absolute:boolean=false):CompilationUnit{
         if(absolute||isWebPath(p)){
             if(this.failedUnits[p]!=null){
-                throw(this.failedUnits[p]);
+                if (!this.failedUnits[p].inner) {
+                    throw(this.failedUnits[p]);
+                }
             }
         }
         else{
             var ap = toAbsolutePath(this.rootPath,p);
             if(this.failedUnits[ap]){
-                throw(this.failedUnits[ap]);
+                if (!this.failedUnits[p].inner) {
+                    throw(this.failedUnits[p]);
+                }
             }
         }
         var cnt:string=null;
@@ -2592,9 +2608,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 return "can not resolve "+includePath
             }
             if (resolved.isRAMLUnit()){
-
-                //TODO DIFFERENT DATA TYPES, inner references
-                return null;
+                return resolved.ast().value();
+                
             }
             var text = resolved.contents();
             if(textutil.isMultiLineValue(text)) {
@@ -2679,6 +2694,12 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 return mn+"]";
             }
             return map.key.value;
+        }
+        if (this._node.kind==yaml.Kind.INCLUDE_REF){
+            var m=this.children();
+            if (m.length==1){
+                return m[0].key();
+            }
         }
         //other kinds do not have keys
         return null;
@@ -2822,6 +2843,11 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     }
 
+    innerIncludeErrors:boolean;
+    hasInnerIncludeError():boolean{
+        return this.innerIncludeErrors;
+    }
+
     includeErrors():string[]{
         if (this._node.kind==yaml.Kind.MAPPING){
 
@@ -2829,7 +2855,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (mapping.value==null){
                         return [];
             }
-            return new ASTNode(mapping.value,this._unit,this,this._anchor,this._include).includeErrors();
+            var node=new ASTNode(mapping.value,this._unit,this,this._anchor,this._include);
+            var res=node.includeErrors();
+            this.innerIncludeErrors=node.hasInnerIncludeError();
+            return res;
 
         }
         var rs:string[]=[]
@@ -2844,8 +2873,10 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             try {
                  resolved = this._unit.resolve(includePath)
             } catch (Error) {
+                this.innerIncludeErrors=Error.inner;
+                var s="Can not resolve "+includePath + " due to: " + Error.message;
                 //known cause of failure
-                rs.push("Can not resolve "+includePath + " due to: " + Error.message);
+                rs.push(s);
                 return rs;
             }
 
@@ -2870,6 +2901,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
         return rs;
     }
+
     children(inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true):lowlevel.ILowLevelASTNode[] {
         if (this._node==null){
             return [];//TODO FIXME
@@ -3037,6 +3069,11 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         //if(!this.parent()) return null;
         //return this.parent().unit();
     }
+
+    includeBaseUnit():lowlevel.ICompilationUnit {
+        return this._unit;
+    }
+
 
     setUnit(unit: lowlevel.ICompilationUnit) {
         this._unit = unit;
@@ -3684,6 +3721,14 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                 }
 
                 if (!ip) return;
+                if (path.isAbsolute(ip)){
+                    var e=path.extname(ip);
+                    if (e!=".json"&&e!=".xsd") {
+                        //SUPPORTING 0.8 style resolving due to compatiblity reasons
+                        ip = ip.substr(1);
+                        ip = project.getRootPath() + "/" + ip;
+                    }
+                }
                 var absIncludePath = toAbsolutePath(unitPath,ip);
 
 
@@ -3725,6 +3770,9 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                 });
                 errors[unitPath] = x;
                 (<Project>project).failedUnits[unitPath] = x;
+                if ((<Project>project).pathToUnit[unitPath]){
+                    x.inner=true;
+                }
             }));
         });
         return Promise.all(promises).then(x=>{
@@ -3742,6 +3790,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
 }
 
 function toAbsolutePath(rootPath:string,relPath:string) {
+
     if (isWebPath(relPath)){
         return relPath;
     }
