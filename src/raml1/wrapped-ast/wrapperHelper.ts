@@ -6,7 +6,7 @@ import core=require("./parserCore");
 
 import ramlPathMatch = require("../../util/raml-path-match")
 import hl = require('../highLevelAST');
-import ll = require("../LowLevelAST")
+import ll = require("../lowLevelAST")
 import hlimpl = require('../highLevelImpl');
 import linter = require('../ast.core/linter');
 import stubs = require('../stubs');
