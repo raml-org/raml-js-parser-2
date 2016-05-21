@@ -1,0 +1,26 @@
+#%RAML 1.0  Library
+
+traits:
+  tr1:
+  tr2:
+  tr3:
+    queryParameters:
+      <<p1>>: string
+  tr4:
+    queryParameters:
+      <<p2>>: string
+resourceTypes:
+  rt1:
+    is: [ tr1 ]
+
+  rt2:
+    is: [ tr1, tr2 ]
+
+  rt3:
+    is: [ { tr3 : { p1: param1 } } ]
+
+  rt4:
+    is: [ { tr3 : { p1: param1 } }, { tr4 : { p2: param2 } } ]
+
+  rt5:
+    is: [ tr1, { tr3 : { p1: param1 } } ]

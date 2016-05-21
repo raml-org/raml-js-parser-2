@@ -12,6 +12,7 @@ uses:
   tra: modules/traits.raml
   sec: modules/security.raml
   ano: modules/annotations.raml
+  typ: modules/types.raml
 
 securedBy: [sec.oauth_2_0]
 
@@ -22,16 +23,16 @@ resourceTypes:
         200:
           body:
             application/json:
-              type: Get<<resourcePathName | !uppercamelcase>>Response
+              type: typ.Get<<resourcePathName | !uppercamelcase>>Response
   read-only-collection:
-    type: base
+    type: res.base
     get:
       is: [tra.pageable]
   collection:
     type: read-only-collection
     post:
       body:
-        type: Post<<resourcePathName | !uppercamelcase>>Request
+        type: typ.Post<<resourcePathName | !uppercamelcase>>Request
       responses:
         201:
           description: Created!
@@ -46,7 +47,7 @@ resourceTypes:
         204:
           description: Done!
   member:
-    type: base
+    type: res.base
     put?:
       body:
         type: typ.Put<<resourcePathName | !uppercamelcase>>Request
@@ -62,7 +63,7 @@ resourceTypes:
           description: Delete
 
 /items:
-  type: read-only-collection
+  type: res.read-only-collection
   description: List of all items on sale
   get:
     is: [tra.searchable, tra.imageable]
@@ -71,19 +72,19 @@ resourceTypes:
     get:
       is: [tra.imageable]
 /my-wish-list:
-  type: collection
+  type: res.collection
   post:
     description: Add an Item to my Wish List.
   /{wish}:
     delete:
       description: Remove from wish list
 /my-basket:
-  type: collection
+  type: res.collection
   description: All items ready for purchase
   post:
     description: Add an Item to my Basket. Of course I may add more than 1 of the same Item.
   /checkout:
-    type: controller
+    type: res.controller
     description: Orders both pending and fulfilled
     delete:
       description: Remove from basket
@@ -100,9 +101,9 @@ resourceTypes:
         example:
           token: afdasfas23lkesf
 /my-profile:
-  type: base
+  type: res.base
 /brands:
-  type: read-only-collection
+  type: res.read-only-collection
   get:
     queryParameters:
       name:
@@ -110,7 +111,7 @@ resourceTypes:
         required: false
         example: Deep Steep Honey Bubble Bath
 /categories:
-  type: read-only-collection
+  type: res.read-only-collection
   get:
     queryParameters:
       name:

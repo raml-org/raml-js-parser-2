@@ -924,7 +924,8 @@ class TransitionEngine {
     protected processMatch(node:ll.ILowLevelASTNode,position:any,state:TransitionState){
         if(typeof(position)=="string"){
             if(position=="_##patch_"){
-                this.applyPatch(node,state);
+                var newState = this.newState(node, position, state);
+                this.applyPatch(node,newState);
             }
             else if(util.stringStartsWith(position,"_##map_")){
                 var newPosition = position;
@@ -950,7 +951,21 @@ class TransitionEngine {
         return new TransitionState(pos, state);
     }
 
-    protected applyPatch(node:ll.ILowLevelASTNode,state:TransitionState){}
+    protected applyPatch(node:ll.ILowLevelASTNode,state:TransitionState){
+        if(node.kind() == yaml.Kind.SEQ || node.valueKind() == yaml.Kind.SEQ){
+            for(var ch of node.children()){
+                var newState = this.newState(ch, state.position(), state);
+                this.applyPatch(ch,newState);
+            }
+            if(node instanceof proxy.LowLevelCompositeNode){
+                (<proxy.LowLevelCompositeNode>node).filterChildren();
+            }
+        }
+        else {
+            this.doApplyPatch(node, state);
+        }
+    }
+    protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState){}
 
     protected getRegexp(str:string){
         if(!this.regExps){
@@ -1038,7 +1053,7 @@ class NamespacePatcher extends TransitionEngine{
         return newState;
     }
 
-    protected applyPatch(node:ll.ILowLevelASTNode,_state:TransitionState){
+    protected doApplyPatch(node:ll.ILowLevelASTNode,_state:TransitionState){
 
         if(!(node instanceof proxy.LowLevelProxyNode)){
             return;

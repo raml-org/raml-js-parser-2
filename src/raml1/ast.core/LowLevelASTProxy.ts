@@ -212,8 +212,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        this._originalNode = new LowLevelValueTransformingNode(
-            node, originalParent,transformer,this.ramlVersion);
+        if(node instanceof LowLevelValueTransformingNode){
+            this._originalNode = node;
+        }
+        else {
+            this._originalNode = new LowLevelValueTransformingNode(
+                node, originalParent, transformer, this.ramlVersion);
+        }
         this._adoptedNodes.push(<LowLevelValueTransformingNode>this._originalNode);
     }
 
@@ -254,11 +259,20 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         if(this._valueOverride){
             return this._valueOverride;
         }
+        var val;
+        var isPrimary = false;
         var valuableNodes:ll.ILowLevelASTNode[] = this._adoptedNodes.filter(x=>x.value()!=null);
         if(valuableNodes.length>0){
-            return valuableNodes[0].value(toString);
+            val = valuableNodes[0].value(toString);
+            isPrimary = valuableNodes[0] == this._adoptedNodes[0];
         }
-        return this._originalNode.value(toString);
+        else {
+            val = this._originalNode.value(toString);
+        }
+        if(val instanceof LowLevelValueTransformingNode){
+            this._valueOverride = val;
+        }
+        return val;
     }
 
     children():ll.ILowLevelASTNode[] {
@@ -310,20 +324,26 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         this._children = result;
         return result;
     }
+    
+    filterChildren(){
+        var map = {};
+        var result:LowLevelCompositeNode[] = [];
+        this._children.forEach(x=> {
+
+            var key = this.buildKey(x);
+            if (map[key]) {
+                return;
+            }
+            map[key] = true;
+            result.push(x);
+        });
+        this._children = result;            
+    }
 
     private buildKey(y:ll.ILowLevelASTNode):string {
 
         var obj = json.serialize(y);
         var def = this.nodeDefinition();
-        if (def &&(def.key()==universes.Universe08.TraitRef||def.key()==universes.Universe08.ResourceTypeRef
-            ||def.key()==universes.Universe10.TraitRef||def.key()==universes.Universe10.ResourceTypeRef)) {
-            if(typeof obj == 'object'){
-                var keys = Object.keys(obj);
-                if(keys.length>0){
-                    obj = keys[0];
-                }
-            }
-        }
         return stringify(obj);
     }
 

@@ -1,0 +1,207 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib_a1",
+        "value": "libs/lib_a1.raml"
+      },
+      {
+        "key": "lib_a2",
+        "value": "libs/lib_a2.raml"
+      },
+      {
+        "key": "lib_a2.lib_b1",
+        "value": "libs/lib_b1.raml"
+      },
+      {
+        "key": "lib_a2.lib_b2",
+        "value": "libs/lib_b2.raml"
+      }
+    ],
+    "traits": [
+      {
+        "tr1": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "lib_a2_1.MyType"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "tr1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "tr2": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "lib_b2.MyType"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "tr2",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "t1": {
+          "name": "t1"
+        }
+      }
+    ],
+    "title": "TCK Sample. RAML 1.0 Libraries 002.",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib_a2.MyType"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "is": [
+              "lib_a1.tr1"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib_a2.lib_b2.MyType"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "is": [
+              "lib_a2.tr2"
+            ],
+            "method": "put",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

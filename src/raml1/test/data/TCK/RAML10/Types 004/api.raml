@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Types 004.
+version: v1
+baseUri: http://api.samplehost.com/{version}
+/teams:
+  get:
+    body:
+      application/xml:
+        type: !include type.raml
+
