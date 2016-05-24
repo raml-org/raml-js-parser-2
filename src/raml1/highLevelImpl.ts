@@ -470,19 +470,19 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 
     annotations():hl.IAttribute[]{
-        var ch=this.lowLevel().children();
-        var annotations:hl.IAttribute[]=[];
-        var u=this.definition().universe().type(universes.Universe10.Annotable.name);
-        if (!u){
+        var ch = this.lowLevel().children();
+        var annotations:hl.IAttribute[] = [];
+        var u = this.definition().universe().type(universes.Universe10.Annotable.name);
+        if (!u) {
             return annotations;
         }
-        var pr=u.property("annotations");
-        for (var i=0;i<ch.length;i++){
-            var child=ch[i];
+        var pr = u.property("annotations");
+        for (var i = 0; i < ch.length; i++) {
+            var child = ch[i];
             var key = child.key();
-            if (key[0]==("(")&&key[key.length-1]==(")")){
-                var attr = new ASTPropImpl(child,this.parent(),pr.range(),pr);
-                annotations.push(attr);                
+            if (key != null && key[0] == ("(") && key[key.length - 1] == (")")) {
+                var attr = new ASTPropImpl(child, this.parent(), pr.range(), pr);
+                annotations.push(attr);
             }
         }
         return annotations;
