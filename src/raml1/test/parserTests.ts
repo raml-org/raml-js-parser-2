@@ -272,7 +272,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex33.raml"));
     })
     it ("example inside of inplace type" ,function(){
-        testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed"]);
+        testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed","Unknown property:x2"]);
     })
     it ("aws example" ,function(){
         testErrors(util.data("parser/examples/ex35.raml"), ["enum facet can only contain unique items"]);
