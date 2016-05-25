@@ -74,7 +74,7 @@ describe('API parsing', function() {
 
 //  #2156.
    it('Should fail if include not found', function(){
-       testErrors(util.data('parser/api/api14.raml'),["Missing required property"]);
+       testErrors(util.data('parser/api/api14.raml'),["Can not resolve relative.md"]);
    });
 
 //  #2030
