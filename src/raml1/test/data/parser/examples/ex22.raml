@@ -1,14 +1,14 @@
 #%RAML 1.0
-title: T
+title: Test API
 types:
-  xxx:
+  MyType1:
     properties:
       []: string
     maxProperties: 1
     example:
       d: "a"
       dd: "2"
-  yyy:
-    type: xxx
+  MyType2:
+    type: MyType1
     example:
       x: "3"

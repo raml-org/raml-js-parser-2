@@ -1,14 +1,14 @@
 #%RAML 1.0
-title: d
+title: Test API
 types:
   SmallArray:
     type: number[]
     minItems: 5
 annotationTypes:
-  x:
+  MyAnnotationType1:
     properties:
       cc: SmallArray
-  y:
-(x):
+  MyAnnotationType2:
+(MyAnnotationType1):
      cc: [1,2,3,4]
-(y): "a"
+(MyAnnotationType2): "a"

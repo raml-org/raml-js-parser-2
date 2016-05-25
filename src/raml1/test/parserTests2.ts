@@ -73,14 +73,14 @@ describe('API parsing', function() {
     });
 
 //  #2156.
-//    it('Should fail if include not found', function(){
-//        testErrors(util.data('parser/api/api14.raml'), 1);
-//    });
+   it('Should fail if include not found', function(){
+       testErrors(util.data('parser/api/api14.raml'),["Missing required property"]);
+   });
 
 //  #2030
-//    it('Should succeed when dealing with URI parameters with two types', function(){
-//        testErrors(util.data('parser/api/api15.raml'));
-//    });
+   it('Should succeed when dealing with URI parameters with two types', function(){
+       testErrors(util.data('parser/api/api15.raml'));
+   });
 
     it('Should parse resource description', function(){
         testErrors(util.data('parser/api/api27.raml'));

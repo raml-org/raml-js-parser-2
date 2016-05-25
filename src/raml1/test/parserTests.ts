@@ -198,9 +198,9 @@ describe('Parser regression tests', function () {
     })
 
     //TODO uncomment it
-    // it ("checking that node is actually primitive" ,function(){
-    //     testErrors(util.data("parser/examples/ex9.raml"), ["should be string"]);
-    // })
+    it ("checking that node is actually primitive" ,function(){
+        testErrors(util.data("parser/examples/ex9.raml"), ["array is expected"]);
+    })
     it ("map" ,function(){
         testErrors(util.data("parser/examples/ex10.raml"));
     })
@@ -214,7 +214,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex14.raml"), ["Unknown property:z"]);
     })
     it ("enums restriction" ,function(){
-        testErrors(util.data("parser/examples/ex15.raml"),["value should be one of:aaa,bbb,3"]);
+        testErrors(util.data("parser/examples/ex15.raml"),["value should be one of:val1,val2,3"]);
     })
     it ("array facets" ,function(){
         testErrors(util.data("parser/examples/ex16.raml"), ["array should have not less then 5 items", "array should have not more then 3 items", "items should be unique"]);
