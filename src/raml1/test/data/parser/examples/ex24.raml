@@ -1,15 +1,15 @@
 #%RAML 1.0
-title: T
+title: Test API
 types:
-  xxx:
+  MyType1:
     properties:
       []: string
     minProperties: 3
 annotationTypes:
-  CCC:
+  MyAnnotationType1:
     properties:
-      pp: xxx
-(CCC):
+      pp: MyType1
+(MyAnnotationType1):
       pp:
         x1x: "2"
         xx2: "3"
