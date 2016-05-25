@@ -197,7 +197,6 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex8.raml"), ["boolean is expected"]);
     })
 
-    //TODO uncomment it
     it ("checking that node is actually primitive" ,function(){
         testErrors(util.data("parser/examples/ex9.raml"), ["array is expected"]);
     })
