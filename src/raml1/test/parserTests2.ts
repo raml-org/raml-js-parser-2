@@ -677,14 +677,14 @@ describe('Object type Inheritance', function(){
     });
 
 // #2061
-//    it('Should parse type inherited from several user defined types shortcut declaration',function(){
-//        testErrors(util.data('parser/objectTypeInheritance/oti03.raml'));
-//    });
+   it('Should parse type inherited from several user defined types shortcut declaration',function(){
+       testErrors(util.data('parser/objectTypeInheritance/oti03.raml'));
+   });
 
 // #2157
-//    it('Should parse inheritance which should works in the types and in the mimeTypes',function(){
-//        testErrors(util.data('parser/objectTypeInheritance/oti04.raml'));
-//    });
+   it('Should parse inheritance which should works in the types and in the mimeTypes',function(){
+       testErrors(util.data('parser/objectTypeInheritance/oti04.raml'),["Required property: baseField is missed"]);
+   });
 
 // #2061
 //    it('Should check that no additional properties allowed after shortcut inheritance',function(){
