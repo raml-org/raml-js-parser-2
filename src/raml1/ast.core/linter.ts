@@ -1241,10 +1241,10 @@ export class UrlParameterNameValidator implements PropertyValidator{
             }
         }
         if (count>0){
-            throw new Error("Unmatched '{'")
+            throw new Error("Invalid resource name: unmatched '{'")
         }
         if (count<0){
-            throw new Error("Unmatched '}'")
+            throw new Error("Invalid resource name: unmatched '}'")
         }
         return result;
     }
