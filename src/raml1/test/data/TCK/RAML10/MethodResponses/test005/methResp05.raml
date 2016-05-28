@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: test
+schemas:
+   account: |
+      {
+        "$schema": "http://json-schema.org/draft-03/schema",
+        "type": "object" ,
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+   TypeBase:
+      type: object
+      properties:
+        id: string
+      example:
+        id: userId
+   TestType:
+      type: TypeBase
+      properties:
+        username: string
+      example:
+        id: userId
+        username: name
+/test:
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            type: TestType
+            properties:
+              additionalField?: string
+            example:
+              username: base
+              id: any text

@@ -1,0 +1,196 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "TypeBase": {
+          "name": "TypeBase",
+          "displayName": "TypeBase",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "baseField": {
+              "name": "baseField",
+              "displayName": "baseField",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "TestType": {
+          "name": "TestType",
+          "displayName": "TestType",
+          "type": [
+            "TypeBase"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "field": {
+              "name": "field",
+              "displayName": "field",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "201": {
+                "code": "201",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "TestType"
+                    ],
+                    "examples": [
+                      {
+                        "value": {
+                          "additionalField": "asd",
+                          "baseField": "asdasd",
+                          "field": "asdds"
+                        },
+                        "strict": true,
+                        "name": "aaa",
+                        "structuredValue": {
+                          "additionalField": "asd",
+                          "baseField": "asdasd",
+                          "field": "asdds"
+                        }
+                      }
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "properties": {
+                      "additionalField": {
+                        "name": "additionalField",
+                        "displayName": "additionalField",
+                        "type": [
+                          "string"
+                        ],
+                        "repeat": false,
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

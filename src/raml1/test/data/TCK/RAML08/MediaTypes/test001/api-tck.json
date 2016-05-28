@@ -1,0 +1,60 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Test APi",
+    "resources": [
+      {
+        "relativeUri": "/g",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "applicationjson": {
+                    "name": "applicationjson"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/g",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "g"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 7,
+      "message": "invalid media type",
+      "path": "api.raml",
+      "line": 7,
+      "column": 10,
+      "position": 88,
+      "range": [
+        {
+          "line": 7,
+          "column": 10,
+          "position": 88
+        },
+        {
+          "line": 7,
+          "column": 25,
+          "position": 103
+        }
+      ]
+    }
+  ]
+}

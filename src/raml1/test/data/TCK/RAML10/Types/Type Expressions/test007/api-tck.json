@@ -1,0 +1,220 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Phone": {
+          "name": "Phone",
+          "displayName": "Phone",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "manufacturer": {
+              "name": "manufacturer",
+              "displayName": "manufacturer",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "numberOfSIMCards": {
+              "name": "numberOfSIMCards",
+              "displayName": "numberOfSIMCards",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Notebook": {
+          "name": "Notebook",
+          "displayName": "Notebook",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "manufacturer": {
+              "name": "manufacturer",
+              "displayName": "manufacturer",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "numberOfUSBPorts": {
+              "name": "numberOfUSBPorts",
+              "displayName": "numberOfUSBPorts",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "devices": {
+              "name": "devices",
+              "displayName": "devices",
+              "type": [
+                "( Phone | Notebook )[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "reports": {
+              "name": "reports",
+              "displayName": "reports",
+              "type": [
+                "Person[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "My API With Types"
+  },
+  "errors": []
+}

@@ -1,0 +1,51 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "a": {
+          "name": "a",
+          "delete": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "method": "delete",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "post": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "method": "post",
+            "__METADATA__": {
+              "optional": true
+            }
+          },
+          "get": {
+            "responses": {
+              "503": {
+                "code": "503",
+                "description": "Server Unavailable. Check Your Rate Limits.\n"
+              }
+            },
+            "method": "get",
+            "__METADATA__": {
+              "optional": true
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": []
+}

@@ -1,0 +1,200 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Point": {
+          "name": "Point",
+          "displayName": "Point",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "x": {
+              "name": "x",
+              "displayName": "x",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "y": {
+              "name": "y",
+              "displayName": "y",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "Label": {
+          "name": "Label",
+          "displayName": "Label",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "point": {
+              "name": "point",
+              "displayName": "point",
+              "type": [
+                "Point[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "New API",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "annotations": {
+          "Label": {
+            "structuredValue": {
+              "point": [
+                {
+                  "x": 4,
+                  "y": 3
+                },
+                {
+                  "x": 3,
+                  "y": 1,
+                  "z": 3
+                }
+              ]
+            },
+            "name": "Label"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Unknown property:z",
+      "path": "apiInvalid.raml",
+      "line": 23,
+      "column": 10,
+      "position": 342,
+      "range": [
+        {
+          "line": 23,
+          "column": 10,
+          "position": 342
+        },
+        {
+          "line": 23,
+          "column": 11,
+          "position": 343
+        }
+      ]
+    }
+  ]
+}

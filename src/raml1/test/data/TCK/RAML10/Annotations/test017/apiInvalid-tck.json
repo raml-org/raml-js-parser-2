@@ -1,0 +1,204 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotations": {
+      "MyAnnotation": {
+        "structuredValue": {
+          "numberProp": 11
+        },
+        "name": "MyAnnotation"
+      }
+    },
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "numberProp": {
+              "name": "numberProp",
+              "displayName": "numberProp",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "TargetType": {
+          "name": "TargetType",
+          "displayName": "TargetType",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "stringParam": {
+              "name": "stringParam",
+              "displayName": "stringParam",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "trait1": {
+          "headers": {
+            "header1": {
+              "name": "header1",
+              "displayName": "header1",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "trait1"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "MyAnnotation": {
+          "name": "MyAnnotation",
+          "displayName": "MyAnnotation",
+          "type": [
+            "MyType"
+          ],
+          "repeat": false,
+          "required": true,
+          "allowedTargets": [
+            "TypeDeclaration"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "MyApi"
+  },
+  "errors": [
+    {
+      "code": 7,
+      "message": "annotation MyAnnotation can not be placed at this location, allowed targets are:TypeDeclaration",
+      "path": "apiInvalid.raml",
+      "line": 19,
+      "column": 0,
+      "position": 280,
+      "range": [
+        {
+          "line": 19,
+          "column": 0,
+          "position": 280
+        },
+        {
+          "line": 19,
+          "column": 14,
+          "position": 294
+        }
+      ]
+    }
+  ]
+}

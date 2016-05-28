@@ -1,0 +1,266 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "myDate": {
+          "annotations": {
+            "reader": {
+              "structuredValue": "myReaader.ts",
+              "name": "reader"
+            },
+            "writer": {
+              "structuredValue": "myWiter.ts",
+              "name": "writer"
+            }
+          },
+          "name": "myDate",
+          "displayName": "myDate",
+          "facets": {
+            "format": {
+              "name": "format",
+              "displayName": "format",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "reader": {
+          "name": "reader",
+          "displayName": "reader",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "writer": {
+          "name": "writer",
+          "displayName": "writer",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "A",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "type": {
+                "name": "type",
+                "displayName": "type",
+                "type": [
+                  "myDate"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "format": {
+                "name": "format",
+                "displayName": "format",
+                "type": [
+                  "YYYY"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/q",
+        "displayName": "/q",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "q"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 7,
+      "message": "invalid media type",
+      "path": "api.raml",
+      "line": 15,
+      "column": 6,
+      "position": 223,
+      "range": [
+        {
+          "line": 15,
+          "column": 6,
+          "position": 223
+        },
+        {
+          "line": 15,
+          "column": 10,
+          "position": 227
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "missing required facets:format",
+      "path": "api.raml",
+      "line": 15,
+      "column": 6,
+      "position": 223,
+      "range": [
+        {
+          "line": 15,
+          "column": 6,
+          "position": 223
+        },
+        {
+          "line": 15,
+          "column": 10,
+          "position": 227
+        }
+      ]
+    },
+    {
+      "code": 7,
+      "message": "invalid media type",
+      "path": "api.raml",
+      "line": 16,
+      "column": 6,
+      "position": 242,
+      "range": [
+        {
+          "line": 16,
+          "column": 6,
+          "position": 242
+        },
+        {
+          "line": 16,
+          "column": 12,
+          "position": 248
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "inheriting from unknown type",
+      "path": "api.raml",
+      "line": 16,
+      "column": 6,
+      "position": 242,
+      "range": [
+        {
+          "line": 16,
+          "column": 6,
+          "position": 242
+        },
+        {
+          "line": 16,
+          "column": 12,
+          "position": 248
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+#%RAML 1.0 Overlay
+title: blah
+extends: api.raml
+annotationTypes:
+  Test3:
+    properties:
+      name: string
+traits:
+  FilterableByPrice:
+    (Test3):
+      name: Blah

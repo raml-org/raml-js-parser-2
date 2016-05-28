@@ -1,0 +1,46 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "API",
+    "resources": [
+      {
+        "relativeUri": "/root/{id",
+        "displayName": "/root/{id",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "root",
+          "{id"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 7,
+      "message": "Invalid resource name: unmatched '{'",
+      "path": "apiInValid.raml",
+      "line": 3,
+      "column": 0,
+      "position": 23,
+      "range": [
+        {
+          "line": 3,
+          "column": 0,
+          "position": 23
+        },
+        {
+          "line": 3,
+          "column": 9,
+          "position": 32
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+#%RAML 1.0
+title: "Annotations 14"
+types:
+  MyType:
+    properties:
+      p1: string
+annotationTypes:
+
+  meta:
+    displayName: Resource metadata
+    usage: Used to add any general metadata to a resource without strong typing
+    description: Metadata for this resource
+    allowedTargets: Resource
+    type: string
+/users:
+  (meta): users.gif
+  (meta): stringValue

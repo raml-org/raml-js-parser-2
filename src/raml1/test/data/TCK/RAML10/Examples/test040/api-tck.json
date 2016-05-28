@@ -1,0 +1,84 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "type": [
+                  "number"
+                ],
+                "example": [
+                  2
+                ],
+                "repeat": true,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": [
+                    2
+                  ],
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "undefined": 2
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "api.raml",
+      "line": 9,
+      "column": 19,
+      "position": 142,
+      "range": [
+        {
+          "line": 9,
+          "column": 19,
+          "position": 142
+        },
+        {
+          "line": 9,
+          "column": 20,
+          "position": 143
+        }
+      ]
+    }
+  ]
+}

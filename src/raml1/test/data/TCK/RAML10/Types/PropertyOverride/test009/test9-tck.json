@@ -1,0 +1,150 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SuperType": {
+          "name": "SuperType",
+          "displayName": "SuperType",
+          "facets": {
+            "test": {
+              "name": "test",
+              "displayName": "test",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SubType": {
+          "name": "SubType",
+          "displayName": "SubType",
+          "facets": {
+            "test": {
+              "name": "test",
+              "displayName": "test",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "type": [
+            "SuperType"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "facet :test can not be overriden",
+      "path": "test9.raml",
+      "line": 6,
+      "column": 2,
+      "position": 76,
+      "range": [
+        {
+          "line": 6,
+          "column": 2,
+          "position": 76
+        },
+        {
+          "line": 6,
+          "column": 9,
+          "position": 83
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "missing required facets:test",
+      "path": "test9.raml",
+      "line": 6,
+      "column": 2,
+      "position": 76,
+      "range": [
+        {
+          "line": 6,
+          "column": 2,
+          "position": 76
+        },
+        {
+          "line": 6,
+          "column": 9,
+          "position": 83
+        }
+      ]
+    }
+  ]
+}

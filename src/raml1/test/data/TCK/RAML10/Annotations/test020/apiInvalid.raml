@@ -1,0 +1,32 @@
+#%RAML 1.0
+title: test
+
+traits:
+  helloNightmare:
+    queryParameters:
+      nightMare:
+        <<isRequired>>: <<value>>
+
+annotationTypes:
+   searchable:
+   sortable:
+      properties:
+        default:
+          enum: [ low, medium, high ]
+          required: true
+   list:
+       allowedTargets: Method
+
+/animals:
+  (list):
+  get:
+    (list):
+    queryParameters:
+      kind:
+        (sortable):
+          default: low
+        (searchable):
+    responses:
+      200:
+        body:
+          application/json:

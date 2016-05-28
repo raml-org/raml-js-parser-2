@@ -1,0 +1,77 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ObjectType1": {
+          "name": "ObjectType1",
+          "displayName": "ObjectType1",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "prop1": "value1"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "prop1": {
+              "name": "prop1",
+              "displayName": "prop1",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "prop1": "value1"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": "value1"
+            }
+          }
+        }
+      }
+    ],
+    "title": "Example API test 03"
+  },
+  "errors": []
+}

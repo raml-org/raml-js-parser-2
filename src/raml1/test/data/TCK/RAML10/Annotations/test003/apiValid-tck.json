@@ -1,0 +1,95 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotations": {
+      "test": {
+        "structuredValue": {
+          "q": true
+        },
+        "name": "test"
+      }
+    },
+    "annotationTypes": [
+      {
+        "test": {
+          "name": "test",
+          "displayName": "test",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "q": {
+              "name": "q",
+              "displayName": "q",
+              "type": [
+                "boolean"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "items": {
+              "name": "items",
+              "displayName": "items",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "enum": [
+                "W",
+                "A"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "H"
+  },
+  "errors": []
+}

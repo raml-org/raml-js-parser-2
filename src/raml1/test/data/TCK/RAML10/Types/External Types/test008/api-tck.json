@@ -1,0 +1,145 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "mySchema": {
+          "name": "mySchema",
+          "displayName": "mySchema",
+          "type": [
+            "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\": \"Product\",\n  \"description\": \"A product from Acme's catalog\",\n  \"type\": \"object\",\n  \"properties\": {\n      \"id\": {\n          \"description\": \"The unique identifier for a product\",\n          \"type\": \"string\"\n      }\n  },\n  \"required\": [\"id\"]\n}\n"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "z2": {
+          "name": "z2",
+          "displayName": "z2",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "c": {
+              "i": 2
+            }
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "c": {
+              "name": "c",
+              "displayName": "c",
+              "type": [
+                "mySchema"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "c": {
+                "i": 2
+              }
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "c": {
+                "i": 2
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "A"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "It is not allowed to use external types in property definitions",
+      "path": "api.raml",
+      "line": 20,
+      "column": 6,
+      "position": 431,
+      "range": [
+        {
+          "line": 20,
+          "column": 6,
+          "position": 431
+        },
+        {
+          "line": 20,
+          "column": 7,
+          "position": 432
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Example does not conform to schema:Content is not valid according to schema:Missing required property: id id",
+      "path": "api.raml",
+      "line": 22,
+      "column": 6,
+      "position": 462,
+      "range": [
+        {
+          "line": 22,
+          "column": 6,
+          "position": 462
+        },
+        {
+          "line": 22,
+          "column": 7,
+          "position": 463
+        }
+      ]
+    }
+  ]
+}

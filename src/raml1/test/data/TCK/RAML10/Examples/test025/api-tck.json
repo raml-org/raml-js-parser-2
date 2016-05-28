@@ -1,0 +1,534 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "Header": {
+          "name": "Header",
+          "displayName": "Header",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "value": {
+              "name": "value",
+              "displayName": "value",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Message": {
+          "name": "Message",
+          "displayName": "Message",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "payload": {
+              "name": "payload",
+              "displayName": "payload",
+              "type": [
+                "object"
+              ],
+              "repeat": false,
+              "required": false,
+              "properties": {
+                "mimeType": {
+                  "name": "mimeType",
+                  "displayName": "mimeType",
+                  "type": [
+                    "string"
+                  ],
+                  "repeat": false,
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "filename": {
+                  "name": "filename",
+                  "displayName": "filename",
+                  "type": [
+                    "string"
+                  ],
+                  "repeat": false,
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "headers": {
+                  "name": "headers",
+                  "displayName": "headers",
+                  "type": [
+                    "Header[]"
+                  ],
+                  "repeat": false,
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "body": {
+                  "name": "body",
+                  "displayName": "body",
+                  "type": [
+                    "object"
+                  ],
+                  "repeat": false,
+                  "required": false,
+                  "properties": {
+                    "size": {
+                      "name": "size",
+                      "displayName": "size",
+                      "type": [
+                        "number"
+                      ],
+                      "repeat": false,
+                      "required": false,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "data": {
+                      "name": "data",
+                      "displayName": "data",
+                      "type": [
+                        "string"
+                      ],
+                      "repeat": false,
+                      "required": false,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "parts": {
+                  "name": "parts",
+                  "displayName": "parts",
+                  "type": [
+                    "Message[]"
+                  ],
+                  "repeat": false,
+                  "required": false,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "sizeEstimate": {
+              "name": "sizeEstimate",
+              "displayName": "sizeEstimate",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Thread": {
+          "name": "Thread",
+          "displayName": "Thread",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "id": "146df5d64e5cb7dc",
+            "historyId": "535370",
+            "messages": [
+              {
+                "id": "146df5d64e5cb7dc",
+                "payload": {
+                  "mimeType": "text/plain",
+                  "filename": "",
+                  "headers": [
+                    {
+                      "name": "Received",
+                      "value": "from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700"
+                    },
+                    {
+                      "name": "Date",
+                      "value": "Fri, 27 Jun 2014 15:06:18 -0700"
+                    },
+                    {
+                      "name": "Message-Id",
+                      "value": "<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>"
+                    },
+                    {
+                      "name": "From",
+                      "value": "someaccount@gmail.com"
+                    }
+                  ],
+                  "body": {
+                    "size": 1,
+                    "data": ""
+                  }
+                },
+                "sizeEstimate": 331
+              }
+            ]
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "id": {
+              "name": "id",
+              "displayName": "id",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "historyId": {
+              "name": "historyId",
+              "displayName": "historyId",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "messages": {
+              "name": "messages",
+              "displayName": "messages",
+              "type": [
+                "Message[]"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "id": "146df5d64e5cb7dc",
+              "historyId": "535370",
+              "messages": [
+                {
+                  "id": "146df5d64e5cb7dc",
+                  "payload": {
+                    "mimeType": "text/plain",
+                    "filename": "",
+                    "headers": [
+                      {
+                        "name": "Received",
+                        "value": "from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700"
+                      },
+                      {
+                        "name": "Date",
+                        "value": "Fri, 27 Jun 2014 15:06:18 -0700"
+                      },
+                      {
+                        "name": "Message-Id",
+                        "value": "<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>"
+                      },
+                      {
+                        "name": "From",
+                        "value": "someaccount@gmail.com"
+                      }
+                    ],
+                    "body": {
+                      "size": 1,
+                      "data": ""
+                    }
+                  },
+                  "sizeEstimate": 331
+                }
+              ]
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "id": "146df5d64e5cb7dc",
+              "historyId": "535370",
+              "messages": [
+                {
+                  "id": "146df5d64e5cb7dc",
+                  "payload": {
+                    "mimeType": "text/plain",
+                    "filename": "",
+                    "headers": [
+                      {
+                        "name": "Received",
+                        "value": "from 833522106252-kj93b6c68h8dq0438mjuasrvm6bsfjvm.apps.googleusercontent.com named unknown by gmailapi.google.com with HTTPREST; Fri, 27 Jun 2014 15:06:18 -0700"
+                      },
+                      {
+                        "name": "Date",
+                        "value": "Fri, 27 Jun 2014 15:06:18 -0700"
+                      },
+                      {
+                        "name": "Message-Id",
+                        "value": "<CAEzS4YC_gro+vJ8aoiccD8emmF=KkBjG12mXOh53+wWsR9YQVQ@mail.gmail.com>"
+                      },
+                      {
+                        "name": "From",
+                        "value": "someaccount@gmail.com"
+                      }
+                    ],
+                    "body": {
+                      "size": 1,
+                      "data": ""
+                    }
+                  },
+                  "sizeEstimate": 331
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "usage": "Gmail types"
+  },
+  "errors": []
+}

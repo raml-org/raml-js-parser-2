@@ -1,0 +1,167 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "selfReference": [
+              {
+                "selfReference": [
+                  {
+                    "selfReference": [],
+                    "someProperty1": "val1"
+                  }
+                ],
+                "someProperty": "val2"
+              }
+            ],
+            "someProperty": "val3"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "selfReference": {
+              "name": "selfReference",
+              "displayName": "selfReference",
+              "type": [
+                "SomeType[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "someProperty": {
+              "name": "someProperty",
+              "displayName": "someProperty",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "selfReference": [
+                {
+                  "selfReference": [
+                    {
+                      "selfReference": [],
+                      "someProperty1": "val1"
+                    }
+                  ],
+                  "someProperty": "val2"
+                }
+              ],
+              "someProperty": "val3"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "selfReference": [
+                {
+                  "selfReference": [
+                    {
+                      "selfReference": [],
+                      "someProperty1": "val1"
+                    }
+                  ],
+                  "someProperty": "val2"
+                }
+              ],
+              "someProperty": "val3"
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Required property: someProperty is missed",
+      "path": "apiInvalid.raml",
+      "line": 12,
+      "column": 10,
+      "position": 188,
+      "range": [
+        {
+          "line": 12,
+          "column": 10,
+          "position": 188
+        },
+        {
+          "line": 12,
+          "column": 23,
+          "position": 201
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Unknown property:someProperty1",
+      "path": "apiInvalid.raml",
+      "line": 12,
+      "column": 10,
+      "position": 188,
+      "range": [
+        {
+          "line": 12,
+          "column": 10,
+          "position": 188
+        },
+        {
+          "line": 12,
+          "column": 23,
+          "position": 201
+        }
+      ]
+    }
+  ]
+}

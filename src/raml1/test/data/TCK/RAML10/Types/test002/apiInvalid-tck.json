@@ -1,0 +1,196 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "name": "somestring"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "name": "somestring"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "somestring"
+            }
+          }
+        }
+      },
+      {
+        "AnotherType": {
+          "name": "AnotherType",
+          "displayName": "AnotherType",
+          "type": [
+            "SomeType"
+          ],
+          "example": {
+            "name1": "somestring",
+            "age": "stringValue"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "age": {
+              "name": "age",
+              "displayName": "age",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "name1": "somestring",
+              "age": "stringValue"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name1": "somestring",
+              "age": "stringValue"
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Required property: name is missed",
+      "path": "apiInvalid.raml",
+      "line": 15,
+      "column": 4,
+      "position": 203,
+      "range": [
+        {
+          "line": 15,
+          "column": 4,
+          "position": 203
+        },
+        {
+          "line": 15,
+          "column": 11,
+          "position": 210
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Unknown property:name1",
+      "path": "apiInvalid.raml",
+      "line": 16,
+      "column": 6,
+      "position": 218,
+      "range": [
+        {
+          "line": 16,
+          "column": 6,
+          "position": 218
+        },
+        {
+          "line": 16,
+          "column": 11,
+          "position": 223
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "line": 17,
+      "column": 6,
+      "position": 242,
+      "range": [
+        {
+          "line": 17,
+          "column": 6,
+          "position": 242
+        },
+        {
+          "line": 17,
+          "column": 9,
+          "position": 245
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Details test.
+baseUri: http://api
+
+types:
+  a: object
+  b:
+    type: object
+    properties:
+      a :
+        type: string
+        enum: [a,  bb, a]

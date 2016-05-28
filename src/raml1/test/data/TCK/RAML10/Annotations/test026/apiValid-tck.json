@@ -1,0 +1,82 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "type": [
+            "number"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "a2": {
+          "name": "a2",
+          "displayName": "a2",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "API",
+    "resources": [
+      {
+        "description": "descriptionValue",
+        "relativeUri": "/resource",
+        "displayName": "myResource",
+        "scalarsAnnotations": {
+          "description": [
+            {
+              "structuredValue": 5,
+              "name": "a1"
+            }
+          ],
+          "displayName": [
+            {
+              "structuredValue": "value1",
+              "name": "a2"
+            }
+          ]
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Playing with annotations
+annotationTypes:
+  logo:
+
+  test-harness:
+    properties:
+      level:
+        enum: [ low, medium, high ]
+      name: string
+/users:
+  (test-harness):
+
+    name: user-harness
+    level: medium
+  (logo): google.com

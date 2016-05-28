@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Test API
+types:
+  SomeType:
+      properties:
+          hello:
+              enum : &some [ FOO, BAR, BAZ ]
+
+/s:
+    get:
+        queryParameters:
+            aParam:
+                enum: *some
+                default:  FOO
+                example: FOO

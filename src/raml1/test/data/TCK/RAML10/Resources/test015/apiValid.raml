@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: API
+
+types:
+  Type1:
+    properties:
+      propertyFromType1: string
+  Type2:
+    properties:
+      propertyFromType2: string
+
+resourceTypes:
+  ResourceTypeWithParams:
+    type: <<resourceTypeParam>>
+    get:
+      body:
+        application/json:
+          type: <<bodyTypeParam>>
+          properties:
+            extraProperty: string
+          example:
+            propertyFromResourceType1: stringValue1
+            propertyFromType1: stringValue2
+            extraProperty: stringValue3
+
+  ResourceType1:
+    get:
+      body:
+        application/json:
+          properties:
+            propertyFromResourceType1: string
+
+  ResourceType2:
+    get:
+      body:
+        application/json:
+          properties:
+            propertyFromResourceType2: string
+
+/resource:
+    type:  { ResourceTypeWithParams: {resourceTypeParam : ResourceType1, bodyTypeParam : Type1} }

@@ -1,0 +1,332 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "2xx": {
+                "code": "2xx",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "application/vnd.xara": {
+                    "name": "application/vnd.xara",
+                    "displayName": "application/vnd.xara",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "audio/EVRCB": {
+                    "name": "audio/EVRCB",
+                    "displayName": "audio/EVRCB",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "audio/vnd.dts": {
+                    "name": "audio/vnd.dts",
+                    "displayName": "audio/vnd.dts",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "image/tiff": {
+                    "name": "image/tiff",
+                    "displayName": "image/tiff",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "message/global": {
+                    "name": "message/global",
+                    "displayName": "message/global",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "model/vnd.moml+xml": {
+                    "name": "model/vnd.moml+xml",
+                    "displayName": "model/vnd.moml+xml",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "multipart/voice-message": {
+                    "name": "multipart/voice-message",
+                    "displayName": "multipart/voice-message",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "text/turtle": {
+                    "name": "text/turtle",
+                    "displayName": "text/turtle",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "video/JPEG": {
+                    "name": "video/JPEG",
+                    "displayName": "video/JPEG",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "mime/type": {
+                    "name": "mime/type",
+                    "displayName": "mime/type",
+                    "type": [
+                      "object"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 7,
+      "message": "Unknown media type 'type'",
+      "path": "api.raml",
+      "line": 17,
+      "column": 10,
+      "position": 354,
+      "range": [
+        {
+          "line": 17,
+          "column": 10,
+          "position": 354
+        },
+        {
+          "line": 17,
+          "column": 19,
+          "position": 363
+        }
+      ]
+    }
+  ]
+}

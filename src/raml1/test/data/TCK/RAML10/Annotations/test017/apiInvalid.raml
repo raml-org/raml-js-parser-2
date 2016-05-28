@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: MyApi
+types:
+  MyType:
+    properties:
+      numberProp: number
+  TargetType:
+
+    properties:
+
+      stringParam: string
+annotationTypes:
+   MyAnnotation:
+     type: MyType
+     allowedTargets: TypeDeclaration
+traits:
+   trait1:
+      headers:
+        header1:
+(MyAnnotation):
+  numberProp: 11
