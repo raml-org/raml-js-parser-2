@@ -1,0 +1,130 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "hello": {
+              "name": "hello",
+              "displayName": "hello",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "enum": [
+                "FOO",
+                "BAR",
+                "BAZ"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "aParam": {
+                "name": "aParam",
+                "displayName": "aParam",
+                "type": [
+                  "string"
+                ],
+                "default": "FOO",
+                "example": "FOO",
+                "repeat": false,
+                "required": true,
+                "enum": [
+                  "FOO",
+                  "BAR",
+                  "BAZ"
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "FOO",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "FOO"
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/s",
+        "displayName": "/s",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "s"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

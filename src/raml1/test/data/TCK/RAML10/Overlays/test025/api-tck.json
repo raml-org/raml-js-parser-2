@@ -1,0 +1,44 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "title": "Overlay 2",
+    "resources": [
+      {
+        "annotations": {
+          "lib.TestAnnotationType": {
+            "structuredValue": "TestAnnotationType2",
+            "name": "lib.TestAnnotationType"
+          },
+          "lib.AnotherAnnotationType": {
+            "structuredValue": {
+              "firstProp": "firstProp2",
+              "secondProp": 101
+            },
+            "name": "lib.AnotherAnnotationType"
+          }
+        },
+        "relativeUri": "/servers",
+        "displayName": "/servers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "servers"
+        ]
+      }
+    ],
+    "extends": "api.raml"
+  },
+  "errors": []
+}

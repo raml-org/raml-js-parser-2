@@ -1,0 +1,38 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "New API",
+    "version": "v1",
+    "securitySchemes": [
+      {
+        "auth": {
+          "name": "auth",
+          "type": "n-sls"
+        }
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 0,
+      "message": "Unrecognized security scheme type 'n-sls'. Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}",
+      "path": "apiInvalid.raml",
+      "line": 6,
+      "column": 6,
+      "position": 72,
+      "range": [
+        {
+          "line": 6,
+          "column": 6,
+          "position": 72
+        },
+        {
+          "line": 6,
+          "column": 10,
+          "position": 76
+        }
+      ]
+    }
+  ]
+}

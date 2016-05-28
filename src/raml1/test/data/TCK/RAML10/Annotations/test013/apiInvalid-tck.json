@@ -1,0 +1,168 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "logo": {
+          "name": "logo",
+          "displayName": "logo",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "test-harness": {
+          "name": "test-harness",
+          "displayName": "test-harness",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "level": {
+              "name": "level",
+              "displayName": "level",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Playing with annotations",
+    "resources": [
+      {
+        "annotations": {
+          "test-harness": {
+            "structuredValue": {
+              "name": "user-harness",
+              "level": "medium1"
+            },
+            "name": "test-harness"
+          },
+          "logo": {
+            "structuredValue": "google.com",
+            "name": "logo"
+          }
+        },
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "value should be one of:low,medium,high",
+      "path": "apiInvalid.raml",
+      "line": 14,
+      "column": 4,
+      "position": 223,
+      "range": [
+        {
+          "line": 14,
+          "column": 4,
+          "position": 223
+        },
+        {
+          "line": 14,
+          "column": 9,
+          "position": 228
+        }
+      ]
+    }
+  ]
+}

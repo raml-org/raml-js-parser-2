@@ -1,0 +1,70 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "number[]"
+          ],
+          "example": [
+            100500,
+            "not number"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": [
+              100500,
+              "not number"
+            ],
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "undefined": "not number"
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "line": 8,
+      "column": 8,
+      "position": 97,
+      "range": [
+        {
+          "line": 8,
+          "column": 8,
+          "position": 97
+        },
+        {
+          "line": 8,
+          "column": 18,
+          "position": 107
+        }
+      ]
+    }
+  ]
+}

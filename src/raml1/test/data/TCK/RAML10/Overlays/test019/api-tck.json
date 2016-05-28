@@ -1,0 +1,114 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "title": "Pet shop",
+    "resources": [
+      {
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "repeat": false,
+                "required": true,
+                "properties": {
+                  "name": {
+                    "name": "name",
+                    "displayName": "name",
+                    "type": [
+                      "string"
+                    ],
+                    "default": "Blah",
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "extends": "api.raml"
+  },
+  "errors": [
+    {
+      "code": 10,
+      "message": "The './resource2' node does not match any node of the master api.",
+      "path": "NewOverlay.raml",
+      "line": 3,
+      "column": 0,
+      "position": 38,
+      "range": [
+        {
+          "line": 3,
+          "column": 0,
+          "position": 38
+        },
+        {
+          "line": 3,
+          "column": 10,
+          "position": 48
+        }
+      ]
+    }
+  ]
+}

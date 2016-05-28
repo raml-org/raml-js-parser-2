@@ -1,0 +1,31 @@
+#%RAML 0.8
+title: A
+
+traits:
+  - SomeTrait:
+      queryParameters:
+        <<queryParamName>>:
+            type: number
+
+      headers:
+        <<headerName>>:
+            type: boolean
+  - Trait1:
+      responses:
+        200:
+
+
+/resource:
+  get:
+    is:   [SomeTrait: {queryParamName : a, headerName : c}]
+    queryParameters:
+      a:
+        example: 11
+
+    headers:
+      c:
+        example: true
+    responses:
+      200:
+        body:
+          application/json:

@@ -1,0 +1,115 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "securitySchemes": [
+      {
+        "oauth2": {
+          "name": "oauth2",
+          "type": "OAuth 2.0"
+        }
+      },
+      {
+        "null": {
+          "name": "null",
+          "type": "OAuth 2.0"
+        }
+      }
+    ],
+    "title": "Demo",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "type": [
+                      "object"
+                    ],
+                    "examples": [
+                      {
+                        "value": "<doc><property1>value1</property1></doc>\n",
+                        "strict": true,
+                        "name": "one",
+                        "structuredValue": "<doc><property1>value1</property1></doc>\n"
+                      },
+                      {
+                        "value": "<doc><property2>value2</property2></doc>\n",
+                        "strict": true,
+                        "name": "two",
+                        "structuredValue": "<doc><property2>value2</property2></doc>\n"
+                      }
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "securedBy": [
+              null,
+              "oauth2"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

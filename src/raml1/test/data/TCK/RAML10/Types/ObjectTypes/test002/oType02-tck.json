@@ -1,0 +1,115 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Initial_comments": {
+          "name": "Initial_comments",
+          "displayName": "Initial_comments",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "initial_comments": "oo"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "comment_id": {
+              "name": "comment_id",
+              "displayName": "comment_id",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "initial_comments": {
+              "name": "initial_comments",
+              "displayName": "initial_comments",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "minProperties": 2,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "initial_comments": "oo"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "initial_comments": "oo"
+            }
+          }
+        }
+      }
+    ],
+    "title": "My API With Types"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "object should have not less then 2 properties",
+      "path": "oType02.raml",
+      "line": 9,
+      "column": 4,
+      "position": 179,
+      "range": [
+        {
+          "line": 9,
+          "column": 4,
+          "position": 179
+        },
+        {
+          "line": 9,
+          "column": 11,
+          "position": 186
+        }
+      ]
+    }
+  ]
+}

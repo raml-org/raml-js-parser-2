@@ -1,0 +1,88 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Test",
+    "baseUri": "http://{a}.myapi.org",
+    "baseUriParameters": {
+      "a": {
+        "name": "a",
+        "displayName": "a",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      },
+      "b": {
+        "name": "b",
+        "displayName": "second",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "description": "This is A",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Base uri parameter unused",
+      "path": "api.raml",
+      "line": 4,
+      "column": 2,
+      "position": 74,
+      "range": [
+        {
+          "line": 4,
+          "column": 2,
+          "position": 74
+        },
+        {
+          "line": 4,
+          "column": 3,
+          "position": 75
+        }
+      ]
+    }
+  ]
+}

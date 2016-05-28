@@ -1,0 +1,117 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType1": {
+          "name": "MyType1",
+          "displayName": "MyType1",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "c": "A",
+            "y": 3
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "c": {
+              "name": "c",
+              "displayName": "c",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "y": {
+              "name": "y",
+              "displayName": "y",
+              "type": [
+                "boolean"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "c": "A",
+              "y": 3
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "c": "A",
+              "y": 3
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "boolean is expected",
+      "path": "api.raml",
+      "line": 10,
+      "column": 6,
+      "position": 143,
+      "range": [
+        {
+          "line": 10,
+          "column": 6,
+          "position": 143
+        },
+        {
+          "line": 10,
+          "column": 7,
+          "position": 144
+        }
+      ]
+    }
+  ]
+}

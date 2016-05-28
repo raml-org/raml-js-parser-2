@@ -1,0 +1,87 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "annotations": {
+      "amazon-apigateway-integration": {
+        "structuredValue": "1s",
+        "name": "amazon-apigateway-integration"
+      }
+    },
+    "types": [
+      {
+        "amazon-apigateway-integration": {
+          "name": "amazon-apigateway-integration",
+          "displayName": "amazon-apigateway-integration",
+          "type": [
+            "number"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "amazon-apigateway-integration": {
+          "name": "amazon-apigateway-integration",
+          "displayName": "amazon-apigateway-integration",
+          "type": [
+            "amazon-apigateway-integration"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "usage": "Data types and annotation types for AWS API Gateway"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "line": 9,
+      "column": 0,
+      "position": 227,
+      "range": [
+        {
+          "line": 9,
+          "column": 0,
+          "position": 227
+        },
+        {
+          "line": 9,
+          "column": 31,
+          "position": 258
+        }
+      ]
+    }
+  ]
+}

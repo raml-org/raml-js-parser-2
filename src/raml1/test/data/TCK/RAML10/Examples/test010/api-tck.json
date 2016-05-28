@@ -1,0 +1,132 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SmallArray": {
+          "name": "SmallArray",
+          "displayName": "SmallArray",
+          "type": [
+            "string[]"
+          ],
+          "repeat": false,
+          "required": true,
+          "minItems": 5,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "items": [
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "items": {
+              "name": "items",
+              "displayName": "items",
+              "type": [
+                "SmallArray"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "items": [
+                "1",
+                "2",
+                "3"
+              ]
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "items": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "array should have not less then 5 items",
+      "path": "api.raml",
+      "line": 11,
+      "column": 6,
+      "position": 153,
+      "range": [
+        {
+          "line": 11,
+          "column": 6,
+          "position": 153
+        },
+        {
+          "line": 11,
+          "column": 11,
+          "position": 158
+        }
+      ]
+    }
+  ]
+}

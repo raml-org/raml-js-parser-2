@@ -1,0 +1,126 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "selfReference": [
+              {
+                "selfReference": [
+                  {
+                    "selfReference": [],
+                    "someProperty": "stringValue"
+                  }
+                ],
+                "someProperty": "stringValue"
+              }
+            ],
+            "someProperty": "stringValue"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "selfReference": {
+              "name": "selfReference",
+              "displayName": "selfReference",
+              "type": [
+                "SomeType[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "someProperty": {
+              "name": "someProperty",
+              "displayName": "someProperty",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "selfReference": [
+                {
+                  "selfReference": [
+                    {
+                      "selfReference": [],
+                      "someProperty": "stringValue"
+                    }
+                  ],
+                  "someProperty": "stringValue"
+                }
+              ],
+              "someProperty": "stringValue"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "selfReference": [
+                {
+                  "selfReference": [
+                    {
+                      "selfReference": [],
+                      "someProperty": "stringValue"
+                    }
+                  ],
+                  "someProperty": "stringValue"
+                }
+              ],
+              "someProperty": "stringValue"
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": []
+}

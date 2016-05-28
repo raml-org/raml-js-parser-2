@@ -1,0 +1,127 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "someProperty": {
+              "someProperty": {
+                "someProperty": "null"
+              }
+            }
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "someProperty": {
+              "name": "someProperty",
+              "displayName": "someProperty",
+              "type": [
+                "SomeType"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "someProperty": {
+                "someProperty": {
+                  "someProperty": "null"
+                }
+              }
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "someProperty": {
+                "someProperty": {
+                  "someProperty": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "somePropertyhas cyclic dependency",
+      "path": "apiInvalid.raml",
+      "line": 6,
+      "column": 6,
+      "position": 64,
+      "range": [
+        {
+          "line": 6,
+          "column": 6,
+          "position": 64
+        },
+        {
+          "line": 6,
+          "column": 18,
+          "position": 76
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "object is expected",
+      "path": "apiInvalid.raml",
+      "line": 10,
+      "column": 12,
+      "position": 158,
+      "range": [
+        {
+          "line": 10,
+          "column": 12,
+          "position": 158
+        },
+        {
+          "line": 10,
+          "column": 24,
+          "position": 170
+        }
+      ]
+    }
+  ]
+}

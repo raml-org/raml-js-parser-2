@@ -1,0 +1,227 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "items": [
+              1,
+              2,
+              3
+            ],
+            "items2": [
+              3,
+              1,
+              4,
+              5
+            ],
+            "items3": [
+              1,
+              2,
+              1
+            ]
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "items": {
+              "name": "items",
+              "displayName": "items",
+              "type": [
+                "number[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "minItems": 5,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "items2": {
+              "name": "items2",
+              "displayName": "items2",
+              "type": [
+                "number[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "maxItems": 3,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "items3": {
+              "name": "items3",
+              "displayName": "items3",
+              "type": [
+                "number[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "uniqueItems": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "items": [
+                1,
+                2,
+                3
+              ],
+              "items2": [
+                3,
+                1,
+                4,
+                5
+              ],
+              "items3": [
+                1,
+                2,
+                1
+              ]
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "items": [
+                1,
+                2,
+                3
+              ],
+              "items2": [
+                3,
+                1,
+                4,
+                5
+              ],
+              "items3": [
+                1,
+                2,
+                1
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "array should have not less then 5 items",
+      "path": "api.raml",
+      "line": 15,
+      "column": 6,
+      "position": 255,
+      "range": [
+        {
+          "line": 15,
+          "column": 6,
+          "position": 255
+        },
+        {
+          "line": 15,
+          "column": 11,
+          "position": 260
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "array should have not more then 3 items",
+      "path": "api.raml",
+      "line": 16,
+      "column": 6,
+      "position": 277,
+      "range": [
+        {
+          "line": 16,
+          "column": 6,
+          "position": 277
+        },
+        {
+          "line": 16,
+          "column": 12,
+          "position": 283
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "items should be unique",
+      "path": "api.raml",
+      "line": 21,
+      "column": 6,
+      "position": 339,
+      "range": [
+        {
+          "line": 21,
+          "column": 6,
+          "position": 339
+        },
+        {
+          "line": 21,
+          "column": 12,
+          "position": 345
+        }
+      ]
+    }
+  ]
+}

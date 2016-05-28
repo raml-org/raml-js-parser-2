@@ -1,0 +1,110 @@
+#%RAML 1.0
+title: Planet RAML Experiments
+version: v1
+baseUri: http://api.planet.com
+mediaType: application/json
+protocols: HTTPS
+types:
+  ##################
+  # GeoJSON ########
+  ##################
+  Feature:
+    type: object
+    properties:
+        type:
+          type: string
+          enum: Feature
+        geometry:
+          type: object
+        properties:
+          type: object
+  ##################
+  # Meta ###########
+  ##################
+  # See http://www.narwhl.com/zoomembed-pattern/
+  ZoomEmbed:
+    properties:
+      _embeds?:
+        description: Optional embedded, related resources if requested.
+        type: object[]
+      _links:
+        description: Optional links to related resources.
+        required: false
+        type: object
+  ##################
+  # Planet #########
+  ##################
+  Scene:
+    type: [ZoomEmbed, Feature]
+    properties:
+      id: string
+  # A planet specific scene.
+  PlanetScene:
+    type: Scene
+    properties:
+      # XXX Reported as an error, the override is deliberate. GeoJSON
+      # requires a properties key/value pair. In the case of a PlanetScene
+      # we further specialize properties to ensure they have a vendor-specific
+      # vnd_camera_gain property.
+      properties: PlanetProperties
+      # XXX Also reported as an error. ZoomEmbed is simply intended as a
+      # way of documenting that a type supports the zoom-embed pattern.
+      # A PlanetScene further specializes the type to state that it *must*
+      # have a license link.
+      _links:
+        description: Links to related resources and actions.
+        type: object
+        properties:
+          licenses: ResourceURL
+  # Properties common to all imagery providers.
+  BaseProperties:
+    properties:
+      acquired: datetime
+  # Properties specific to one imagery provider.
+  PlanetProperties:
+    type: BaseProperties
+    properties:
+      vnd_camera_gain:
+        type: number
+        minimum: 0
+  ##################
+  # Properties #####
+  ##################
+  ResourceURL:
+    description:
+      A URL to a related resource.
+    type: string
+/v1:
+  get:
+    description:
+      Lists available endpoints.
+  /scenes:
+    get:
+      description:
+        Lists all available providers.
+    /planetscope:
+      get:
+        description:
+          Basic search via url parameters.
+          Restricted to the planetscope provider.
+        responses:
+          200:
+            body:
+              application/json:
+                type: PlanetScene[]
+                # This is going to be wrapped in geojson.
+                example: [
+                  {
+                    "id": "foo",
+                    "type": "Feature",
+                    "geometry": {},
+                    "properties": {
+                        "acquired": "2016-02-28T16:41:41.090Z",
+                        "vnd_camera_gain": 5
+                    },
+                    "_embeds": [],
+                    "_links": {
+                      "licenses": "https://api.planet.com/v1/scenes/foo/licenses",
+                    }
+                  }
+                ]

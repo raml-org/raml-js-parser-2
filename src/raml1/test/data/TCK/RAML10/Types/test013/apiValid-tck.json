@@ -1,0 +1,86 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "someProperty": {
+              "someProperty": {
+                "someProperty": "null"
+              }
+            }
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "someProperty": {
+              "name": "someProperty",
+              "displayName": "someProperty",
+              "type": [
+                "SomeType?"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "someProperty": {
+                "someProperty": {
+                  "someProperty": "null"
+                }
+              }
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "someProperty": {
+                "someProperty": {
+                  "someProperty": "null"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": []
+}

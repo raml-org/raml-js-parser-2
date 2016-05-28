@@ -1,0 +1,136 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType1": {
+          "name": "MyType1",
+          "displayName": "MyType1",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "d": "a",
+            "dd": "2"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "[]": {
+              "name": "[]",
+              "displayName": "[]",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "minProperties": 2,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "d": "a",
+              "dd": "2"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "d": "a",
+              "dd": "2"
+            }
+          }
+        }
+      },
+      {
+        "MyType2": {
+          "name": "MyType2",
+          "displayName": "MyType2",
+          "type": [
+            "MyType1"
+          ],
+          "example": {
+            "x": "3"
+          },
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "x": "3"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "x": "3"
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "object should have not less then 2 properties",
+      "path": "api.raml",
+      "line": 12,
+      "column": 4,
+      "position": 172,
+      "range": [
+        {
+          "line": 12,
+          "column": 4,
+          "position": 172
+        },
+        {
+          "line": 12,
+          "column": 11,
+          "position": 179
+        }
+      ]
+    }
+  ]
+}

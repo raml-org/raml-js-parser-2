@@ -1,0 +1,59 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "Test",
+    "resources": [
+      {
+        "relativeUri": "/",
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "example": 10
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "displayName": "/",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": []
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "example should be a string",
+      "path": "api.raml",
+      "line": 8,
+      "column": 12,
+      "position": 113,
+      "range": [
+        {
+          "line": 8,
+          "column": 12,
+          "position": 113
+        },
+        {
+          "line": 8,
+          "column": 19,
+          "position": 120
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "API",
+    "baseUri": "/some/base/uri",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/xml": {
+                    "name": "application/xml",
+                    "displayName": "application/xml",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "name": "john",
+                      "age": "34s"
+                    },
+                    "repeat": false,
+                    "required": true,
+                    "properties": {
+                      "name": {
+                        "name": "name",
+                        "displayName": "name",
+                        "type": [
+                          "string"
+                        ],
+                        "repeat": false,
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      },
+                      "age": {
+                        "name": "age",
+                        "displayName": "age",
+                        "type": [
+                          "number"
+                        ],
+                        "repeat": false,
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "repeat": {
+                              "insertedAsDefault": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": {
+                        "name": "john",
+                        "age": "34s"
+                      },
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "name": "john",
+                        "age": "34s"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "uriParameters": {
+          "blah": {
+            "name": "blah",
+            "displayName": "blah",
+            "type": [
+              "string"
+            ],
+            "repeat": false,
+            "required": true,
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/someChildUri/{blah}",
+        "displayName": "/someChildUri/{blah}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "someChildUri",
+          "{blah}"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "apiInvalid.raml",
+      "line": 20,
+      "column": 14,
+      "position": 352,
+      "range": [
+        {
+          "line": 20,
+          "column": 14,
+          "position": 352
+        },
+        {
+          "line": 20,
+          "column": 17,
+          "position": 355
+        }
+      ]
+    }
+  ]
+}

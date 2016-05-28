@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Test API
+types:
+  SmallArray:
+    type: number[]
+    minItems: 5
+annotationTypes:
+  MyAnnotationType1:
+    properties:
+      cc: SmallArray
+  MyAnnotationType2:
+(MyAnnotationType1):
+     cc: [1,2,3,4]
+(MyAnnotationType2): "a"

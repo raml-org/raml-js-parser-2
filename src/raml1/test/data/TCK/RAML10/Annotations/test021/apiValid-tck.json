@@ -1,0 +1,71 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "TestAnnotation": {
+          "name": "TestAnnotation",
+          "displayName": "TestAnnotation",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "securitySchemes": [
+      {
+        "TestScheme": {
+          "annotations": {
+            "TestAnnotation": {
+              "structuredValue": "stringValue1",
+              "name": "TestAnnotation"
+            }
+          },
+          "name": "TestScheme",
+          "type": "OAuth 1.0",
+          "settings": {
+            "annotations": {
+              "TestAnnotation": {
+                "structuredValue": "stringValue2",
+                "name": "TestAnnotation"
+              }
+            },
+            "requestTokenUri": "https://example.com/requesttoken",
+            "authorizationUri": "https://example.com/authorize",
+            "tokenCredentialsUri": "https://example.com/credentials"
+          }
+        }
+      }
+    ],
+    "title": "Test",
+    "baseUri": "http://myapi.org",
+    "protocols": [
+      "HTTP"
+    ],
+    "mediaType": "multipart/form-data",
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,298 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "URL": {
+          "name": "URL",
+          "displayName": "URL",
+          "type": [
+            "string"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "User": {
+          "name": "User",
+          "displayName": "User",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "firstName": {
+              "name": "firstName",
+              "displayName": "firstName",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "lastName": {
+              "name": "lastName",
+              "displayName": "lastName",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Brand": {
+          "name": "Brand",
+          "displayName": "Brand",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "name": "Brandicted",
+            "logo": "http://www.domain.com/logo.gif",
+            "followers": [
+              {
+                "firstName": "Fred",
+                "lastName": "Armand"
+              },
+              {
+                "firstName": "Joan",
+                "lastName": "Rivers"
+              }
+            ],
+            "X": "x"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "logo": {
+              "name": "logo",
+              "displayName": "logo",
+              "type": [
+                "URL"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "followers": {
+              "name": "followers",
+              "displayName": "followers",
+              "type": [
+                "User[]"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "[]": {
+              "name": "[]",
+              "displayName": "[]",
+              "type": [
+                "number"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "name": "Brandicted",
+              "logo": "http://www.domain.com/logo.gif",
+              "followers": [
+                {
+                  "firstName": "Fred",
+                  "lastName": "Armand"
+                },
+                {
+                  "firstName": "Joan",
+                  "lastName": "Rivers"
+                }
+              ],
+              "X": "x"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Brandicted",
+              "logo": "http://www.domain.com/logo.gif",
+              "followers": [
+                {
+                  "firstName": "Fred",
+                  "lastName": "Armand"
+                },
+                {
+                  "firstName": "Joan",
+                  "lastName": "Rivers"
+                }
+              ],
+              "X": "x"
+            }
+          }
+        }
+      }
+    ],
+    "title": "Testing with Jonathan",
+    "mediaType": "application/json"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "number is expected",
+      "path": "api.raml",
+      "line": 16,
+      "column": 4,
+      "position": 272,
+      "range": [
+        {
+          "line": 16,
+          "column": 4,
+          "position": 272
+        },
+        {
+          "line": 16,
+          "column": 11,
+          "position": 279
+        }
+      ]
+    }
+  ]
+}

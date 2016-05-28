@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test API
+types:
+  SmallArray:
+    type: string[]
+    minItems: 5
+  Person:
+    properties:
+      items: SmallArray
+
+    example:
+      items:  ["1","2","3"]

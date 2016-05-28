@@ -1,0 +1,9 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "title": "Pet Shop Overlay",
+    "extends": "api.raml"
+  },
+  "errors": []
+}
