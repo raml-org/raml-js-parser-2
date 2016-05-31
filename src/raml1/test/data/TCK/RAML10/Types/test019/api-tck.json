@@ -1,0 +1,57 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SomeType": {
+          "name": "SomeType",
+          "displayName": "SomeType",
+          "type": [
+            "number"
+          ],
+          "repeat": false,
+          "required": true,
+          "minimum": 10,
+          "maximum": 1,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Some API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Restrictions conflict value should be not less then 10 and value should be not more then 1",
+      "path": "api.raml",
+      "line": 4,
+      "column": 4,
+      "position": 39,
+      "range": [
+        {
+          "line": 4,
+          "column": 4,
+          "position": 39
+        },
+        {
+          "line": 4,
+          "column": 12,
+          "position": 47
+        }
+      ]
+    }
+  ]
+}

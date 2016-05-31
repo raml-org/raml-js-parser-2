@@ -1,0 +1,13 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test",
+    "baseUri": "api.example.com",
+    "protocols": [
+      "HTTP",
+      "HTTPS"
+    ]
+  },
+  "errors": []
+}

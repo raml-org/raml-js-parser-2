@@ -1,0 +1,24 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "myResource": {
+          "is": [
+            "security.auth"
+          ],
+          "name": "myResource",
+          "uses": [
+            {
+              "key": "security",
+              "value": "myLibrary.raml"
+            }
+          ]
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": []
+}

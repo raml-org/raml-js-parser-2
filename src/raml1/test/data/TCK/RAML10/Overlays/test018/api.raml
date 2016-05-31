@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Pet shop
+
+/resource:
+  get:
+    body:
+      application/json:
+        type: object
+        properties:
+          name:
+            type: string
+            default: Blah

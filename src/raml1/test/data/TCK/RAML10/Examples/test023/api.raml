@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: WebOfMe
+mediaType: application/json
+types:
+  MM:
+    properties:
+      a: number
+    example:
+      a: 5
+/hello:
+  get:
+    responses:
+      200:
+        body:
+            schema: |
+              {
+                "required": ["message"],
+                "$schema": "http://json-schema.org/draft-04/schema",
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            example:
+              message: 4
+              vlue: 3

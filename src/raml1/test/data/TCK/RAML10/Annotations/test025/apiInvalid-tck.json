@@ -1,0 +1,64 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "z": {
+          "name": "z",
+          "displayName": "z",
+          "type": [
+            "number"
+          ],
+          "repeat": false,
+          "required": true,
+          "maximum": 10,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Hello",
+    "scalarsAnnotations": {
+      "title": [
+        {
+          "structuredValue": 11,
+          "name": "z"
+        }
+      ]
+    }
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "value should be not more then 10",
+      "path": "apiInvalid.raml",
+      "line": 7,
+      "column": 2,
+      "position": 90,
+      "range": [
+        {
+          "line": 7,
+          "column": 2,
+          "position": 90
+        },
+        {
+          "line": 7,
+          "column": 5,
+          "position": 93
+        }
+      ]
+    }
+  ]
+}

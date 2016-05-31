@@ -1,0 +1,107 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "201": {
+                "code": "201"
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP",
+              "FTP",
+              "SMTP"
+            ],
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/test",
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 0,
+      "message": "Invalid value:FTP allowed values are:HTTP,HTTPS",
+      "path": "meth08.raml",
+      "line": 4,
+      "column": 22,
+      "position": 60,
+      "range": [
+        {
+          "line": 4,
+          "column": 22,
+          "position": 60
+        },
+        {
+          "line": 4,
+          "column": 25,
+          "position": 63
+        }
+      ]
+    },
+    {
+      "code": 0,
+      "message": "Invalid value:SMTP allowed values are:HTTP,HTTPS",
+      "path": "meth08.raml",
+      "line": 4,
+      "column": 27,
+      "position": 65,
+      "range": [
+        {
+          "line": 4,
+          "column": 27,
+          "position": 65
+        },
+        {
+          "line": 4,
+          "column": 31,
+          "position": 69
+        }
+      ]
+    }
+  ]
+}

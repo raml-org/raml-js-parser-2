@@ -39,6 +39,9 @@ export interface SerializeOptions{
      * @default true
      */
     serializeMetadata?:boolean
+
+
+    dumpSchemaContents?: boolean
 }
 export interface BasicNode extends AbstractWrapperNode{
 

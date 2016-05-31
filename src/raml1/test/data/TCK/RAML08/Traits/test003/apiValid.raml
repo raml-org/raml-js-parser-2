@@ -1,0 +1,27 @@
+#%RAML 0.8
+title: A
+
+traits:
+  - SomeTrait:
+      queryParameters:
+        <<propertyName1>>:
+          type: number
+        <<propertyName2>>:
+          type: boolean
+        <<propertyName3>>:
+          type: string
+
+/resource:
+  get:
+    is:  [SomeTrait: {propertyName1 : a, propertyName2 : c, propertyName3 : b}]
+    queryParameters:
+      a:
+        example: 11
+      b:
+        example: stringValue
+      c:
+        example: true
+    responses:
+      200:
+        body:
+          application/json:

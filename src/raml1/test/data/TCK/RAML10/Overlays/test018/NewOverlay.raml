@@ -1,0 +1,10 @@
+#%RAML 1.0 Overlay
+extends: api.raml
+
+/resource:
+  get:
+    body:
+      application/json:
+        properties:
+          name:
+            default: Blah

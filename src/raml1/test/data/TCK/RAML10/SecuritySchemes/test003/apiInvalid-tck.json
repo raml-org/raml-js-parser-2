@@ -1,0 +1,125 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "securitySchemes": [
+      {
+        "oauth_1_0": {
+          "name": "oauth_1_0",
+          "type": "OAuth 1.0",
+          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+          "settings": {}
+        }
+      }
+    ],
+    "title": "Dropbox API",
+    "version": "1",
+    "baseUri": "https://api.dropbox.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "enum": [
+          "1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 3,
+      "message": "Missing required property requestTokenUri",
+      "path": "apiInvalid.raml",
+      "line": 9,
+      "column": 4,
+      "position": 227,
+      "range": [
+        {
+          "line": 9,
+          "column": 4,
+          "position": 227
+        },
+        {
+          "line": 9,
+          "column": 12,
+          "position": 235
+        }
+      ]
+    },
+    {
+      "code": 3,
+      "message": "Missing required property authorizationUri",
+      "path": "apiInvalid.raml",
+      "line": 9,
+      "column": 4,
+      "position": 227,
+      "range": [
+        {
+          "line": 9,
+          "column": 4,
+          "position": 227
+        },
+        {
+          "line": 9,
+          "column": 12,
+          "position": 235
+        }
+      ]
+    },
+    {
+      "code": 3,
+      "message": "Missing required property tokenCredentialsUri",
+      "path": "apiInvalid.raml",
+      "line": 9,
+      "column": 4,
+      "position": 227,
+      "range": [
+        {
+          "line": 9,
+          "column": 4,
+          "position": 227
+        },
+        {
+          "line": 9,
+          "column": 12,
+          "position": 235
+        }
+      ]
+    }
+  ]
+}

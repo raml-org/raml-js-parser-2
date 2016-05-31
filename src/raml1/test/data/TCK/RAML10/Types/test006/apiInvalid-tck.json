@@ -1,0 +1,325 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SimpleType1": {
+          "name": "SimpleType1",
+          "displayName": "SimpleType1",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "property1": {
+              "name": "property1",
+              "displayName": "property1",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "property2": {
+              "name": "property2",
+              "displayName": "property2",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SimpleType2": {
+          "name": "SimpleType2",
+          "displayName": "SimpleType2",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "property3": {
+              "name": "property3",
+              "displayName": "property3",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "property4": {
+              "name": "property4",
+              "displayName": "property4",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "SimpleUnion": {
+          "name": "SimpleUnion",
+          "displayName": "SimpleUnion",
+          "type": [
+            "SimpleType1 | SimpleType2"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "TypeWithUnionProps": {
+          "name": "TypeWithUnionProps",
+          "displayName": "TypeWithUnionProps",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "union1": {
+              "property3": "blahblah",
+              "property2": "blahblah"
+            },
+            "union2": {
+              "property3": "blahblah",
+              "property4": "blahblah"
+            }
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "union1": {
+              "name": "union1",
+              "displayName": "union1",
+              "type": [
+                "SimpleUnion"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "union2": {
+              "name": "union2",
+              "displayName": "union2",
+              "type": [
+                "SimpleUnion"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "union1": {
+                "property3": "blahblah",
+                "property2": "blahblah"
+              },
+              "union2": {
+                "property3": "blahblah",
+                "property4": "blahblah"
+              }
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "union1": {
+                "property3": "blahblah",
+                "property2": "blahblah"
+              },
+              "union2": {
+                "property3": "blahblah",
+                "property4": "blahblah"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Required property: property1 is missed",
+      "path": "apiInvalid.raml",
+      "line": 23,
+      "column": 6,
+      "position": 368,
+      "range": [
+        {
+          "line": 23,
+          "column": 6,
+          "position": 368
+        },
+        {
+          "line": 23,
+          "column": 12,
+          "position": 374
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "union type options does not pass validation",
+      "path": "apiInvalid.raml",
+      "line": 23,
+      "column": 6,
+      "position": 368,
+      "range": [
+        {
+          "line": 23,
+          "column": 6,
+          "position": 368
+        },
+        {
+          "line": 23,
+          "column": 12,
+          "position": 374
+        }
+      ]
+    }
+  ]
+}

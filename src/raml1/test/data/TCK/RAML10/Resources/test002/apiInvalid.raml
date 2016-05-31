@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: API
+
+baseUri: /some/base/uri
+
+/someChildUri/{blah1}:
+  uriParameters:
+    blah:
+      type: string
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            description: some very useful resource

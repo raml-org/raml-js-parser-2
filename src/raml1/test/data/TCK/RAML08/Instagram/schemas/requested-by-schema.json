@@ -1,0 +1,30 @@
+{
+    "": "http://json-schema.org/draft-03/schema",
+    "type": "object",
+    "properties": {
+        "meta": {
+            "properties": {
+                "code": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "data": 
+            {
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "profile_picture": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        
+    }
+}

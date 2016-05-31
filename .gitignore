@@ -13,6 +13,8 @@ npm-debug.log
 /src/**/*.js.map
 /src/**/*.d.ts
 
+/src/raml1/test/TCK2.ts
+
 !/src/devUtil/documentation/theme.js
 
 /typings/

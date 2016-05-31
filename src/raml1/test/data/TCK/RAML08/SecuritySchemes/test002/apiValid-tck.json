@@ -1,0 +1,75 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "New API",
+    "version": "v1",
+    "securitySchemes": [
+      {
+        "oauth_2_0": {
+          "name": "oauth_2_0",
+          "type": "OAuth 2.0",
+          "description": "Dropbox supports OAuth 2.0 for authenticating all API requests.\n",
+          "describedBy": {
+            "responses": {
+              "401": {
+                "code": "401",
+                "description": "Bad or expired token. This can happen if the user or Dropbox\nrevoked or expired an access token. To fix, re-authenticate\nthe user.\n"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "queryParameters": {
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Authorization": {
+                "name": "Authorization",
+                "displayName": "Authorization",
+                "type": "string",
+                "required": false,
+                "repeat": false,
+                "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

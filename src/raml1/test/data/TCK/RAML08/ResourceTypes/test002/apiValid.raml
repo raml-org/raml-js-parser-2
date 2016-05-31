@@ -1,0 +1,28 @@
+#%RAML 0.8
+title: A
+
+resourceTypes:
+  - Resource:
+      get:
+        queryParameters:
+          b:
+            type: number
+          a:
+            type: boolean
+          c:
+            type: string
+
+/resource:
+  type: Resource
+  get:
+    queryParameters:
+      a:
+        example: false
+      b:
+        example: 111
+      c:
+        example: stringValue
+    responses:
+      200:
+        body:
+          application/json:

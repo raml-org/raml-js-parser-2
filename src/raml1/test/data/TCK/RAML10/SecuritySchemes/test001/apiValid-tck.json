@@ -1,0 +1,17 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "securitySchemes": [
+      {
+        "auth": {
+          "name": "auth",
+          "type": "x-sls"
+        }
+      }
+    ],
+    "title": "New API",
+    "version": "v1"
+  },
+  "errors": []
+}

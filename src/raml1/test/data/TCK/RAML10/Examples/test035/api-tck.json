@@ -1,0 +1,104 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ItsComplicated": {
+          "name": "ItsComplicated",
+          "displayName": "ItsComplicated",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "prop1": "stringValue1",
+            "prop2": {
+              "someProperty": "stringValue2"
+            }
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "[]": {
+              "name": "[]",
+              "displayName": "[]",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "prop1": "stringValue1",
+              "prop2": {
+                "someProperty": "stringValue2"
+              }
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": "stringValue1",
+              "prop2": {
+                "someProperty": "stringValue2"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "api.raml",
+      "line": 7,
+      "column": 4,
+      "position": 85,
+      "range": [
+        {
+          "line": 7,
+          "column": 4,
+          "position": 85
+        },
+        {
+          "line": 7,
+          "column": 11,
+          "position": 92
+        }
+      ]
+    }
+  ]
+}

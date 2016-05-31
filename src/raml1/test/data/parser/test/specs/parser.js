@@ -834,7 +834,7 @@ describe('Parser', function() {
         'baseUri: http://{myapi.com'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Unmatched /).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Invalid resource name: unmatched '{'/).and.notify(done);
     });
 //
     it('should fail if baseUri uses version but there is no version defined', function(done) {

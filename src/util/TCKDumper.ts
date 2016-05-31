@@ -121,6 +121,22 @@ export class TCKDumper{
                 props[x.nameId()] = x;
             });
             var obj = this.dumpProperties(props, node);
+            if (props["schema"]){
+                if (this.options.dumpSchemaContents) {
+                    if (props["schema"].range().key() == universes.Universe08.SchemaString) {
+                        var schemas = basicNode.highLevel().root().elementsOfKind("schemas");
+                        schemas.forEach(x=> {
+                            if (x.name() == obj["schema"]) {
+                                var vl = x.attr("value");
+                                if (vl) {
+                                    obj["schema"] = vl.value();
+                                    obj["schemaContent"]=vl.value();
+                                }
+                            }
+                        })
+                    }
+                }
+            }
             this.serializeScalarsAnnotations(obj,basicNode,props);
             this.serializeMeta(obj,basicNode);
             if(this.canBeFragment(node)){
@@ -957,4 +973,6 @@ export interface SerializeOptions{
     serializeMetadata?:boolean
 
     dumpXMLRepresentationOfExamples?:boolean
+
+    dumpSchemaContents?:boolean
 }

@@ -1,0 +1,110 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "GeoPoint": {
+          "name": "GeoPoint",
+          "displayName": "GeoPoint",
+          "type": [
+            "number"
+          ],
+          "example": 100,
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": 100,
+            "strict": true,
+            "name": null,
+            "structuredValue": 100
+          }
+        }
+      },
+      {
+        "GeoPoints": {
+          "name": "GeoPoints",
+          "displayName": "GeoPoints",
+          "type": [
+            "number[]"
+          ],
+          "example": [
+            100,
+            10
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": [
+              100,
+              10
+            ],
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "undefined": 10
+            }
+          }
+        }
+      },
+      {
+        "Bool": {
+          "name": "Bool",
+          "displayName": "Bool",
+          "type": [
+            "boolean"
+          ],
+          "example": true,
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": true,
+            "strict": true,
+            "name": null,
+            "structuredValue": true
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

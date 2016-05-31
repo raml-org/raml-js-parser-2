@@ -842,6 +842,9 @@ function extractParams(
     var mentionedParams = {};
     for (var i = uri.indexOf('{'); i >= 0; i = uri.indexOf('{', prev)) {
         prev = uri.indexOf('}', ++i);
+        if(prev<0){
+            break;
+        }
         var paramName = uri.substring(i, prev);
         mentionedParams[paramName] = true;
         if (describedParams[paramName]) {

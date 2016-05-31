@@ -1,0 +1,72 @@
+#%RAML 1.0
+title: API
+
+types:
+  RTType1:
+    properties:
+      rtTypeProperty1: string
+
+  RTType2:
+    properties:
+      rtTypeProperty2: string
+
+  Type1:
+    properties:
+      typeProperty1: string
+
+  Type2:
+    properties:
+      typeProperty2: string
+
+traits:
+  RTTrait:
+    body:
+      application/json:
+        type: <<RTType>>
+
+
+  Trait1:
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              traitProperty1: boolean
+              traitProperty2: number
+              traitProperty1_3: string
+  Trait2:
+    responses:
+      200:
+        body:
+          application/json:
+            properties:
+              traitProperty1: number
+              traitProperty2: boolean
+              traitProperty2_3: string
+
+resourceTypes:
+  ResourceType1:
+    put:
+      is: [RTTrait: {RTType : RTType1}]
+  ResourceType2:
+    put:
+      is: [RTTrait: {RTType : RTType2}]
+
+/resource:
+  type: ResourceType2
+  is: [Trait2, Trait1]
+  put:
+    body:
+      application/json:
+        example:
+          rtTypeProperty2: stringValue
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              traitProperty1: 1
+              traitProperty2: true
+              traitProperty1_3: stringValue1
+              traitProperty2_3: stringValue2

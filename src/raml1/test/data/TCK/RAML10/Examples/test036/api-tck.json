@@ -1,0 +1,74 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ItsComplicated": {
+          "name": "ItsComplicated",
+          "displayName": "ItsComplicated",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "prop1": "stringValue"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "[]": {
+              "name": "[]",
+              "displayName": "[]",
+              "type": [
+                "string[] | string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "prop1": "stringValue"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": "stringValue"
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api"
+  },
+  "errors": []
+}

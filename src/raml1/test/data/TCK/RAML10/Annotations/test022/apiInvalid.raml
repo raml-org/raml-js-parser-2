@@ -1,0 +1,11 @@
+#%RAML 1.0
+title: MyApi
+types:
+  MyType:
+    properties:
+      numberProp: number
+annotationTypes:
+   MyAnnotation: MyType
+
+(MyAnnotation):
+  numberProp: 10s

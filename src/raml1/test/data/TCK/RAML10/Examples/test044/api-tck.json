@@ -1,0 +1,110 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "param1": {
+                "name": "param1",
+                "displayName": "param1",
+                "type": [
+                  "boolean"
+                ],
+                "example": true,
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": true,
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": true
+                }
+              },
+              "param2": {
+                "name": "param2",
+                "displayName": "param2",
+                "type": [
+                  "boolean"
+                ],
+                "example": "stringValue",
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "stringValue",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "stringValue"
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "boolean is expected",
+      "path": "api.raml",
+      "line": 10,
+      "column": 8,
+      "position": 168,
+      "range": [
+        {
+          "line": 10,
+          "column": 8,
+          "position": 168
+        },
+        {
+          "line": 10,
+          "column": 15,
+          "position": 175
+        }
+      ]
+    }
+  ]
+}

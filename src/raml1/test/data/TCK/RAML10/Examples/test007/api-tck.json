@@ -1,0 +1,100 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType1": {
+          "name": "MyType1",
+          "displayName": "MyType1",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "y": "aaa2"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "y": {
+              "name": "y",
+              "displayName": "y",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "enum": [
+                "val1",
+                "val2",
+                "3"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "y": "aaa2"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "y": "aaa2"
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "value should be one of:val1,val2,3",
+      "path": "api.raml",
+      "line": 9,
+      "column": 6,
+      "position": 140,
+      "range": [
+        {
+          "line": 9,
+          "column": 6,
+          "position": 140
+        },
+        {
+          "line": 9,
+          "column": 7,
+          "position": 141
+        }
+      ]
+    }
+  ]
+}

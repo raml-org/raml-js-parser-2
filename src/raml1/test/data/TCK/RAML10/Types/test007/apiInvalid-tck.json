@@ -1,0 +1,205 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "SimpleUnion": {
+          "name": "SimpleUnion",
+          "displayName": "SimpleUnion",
+          "type": [
+            "string[] | number[]"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "TypeWithUnionProps": {
+          "name": "TypeWithUnionProps",
+          "displayName": "TypeWithUnionProps",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "unionArray1": [
+              "blah",
+              2,
+              3
+            ],
+            "unionArray2": [
+              "blah",
+              "blah",
+              "blah"
+            ]
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "unionArray1": {
+              "name": "unionArray1",
+              "displayName": "unionArray1",
+              "type": [
+                "SimpleUnion"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "unionArray2": {
+              "name": "unionArray2",
+              "displayName": "unionArray2",
+              "type": [
+                "SimpleUnion"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "unionArray1": [
+                "blah",
+                2,
+                3
+              ],
+              "unionArray2": [
+                "blah",
+                "blah",
+                "blah"
+              ]
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "unionArray1": [
+                "blah",
+                2,
+                3
+              ],
+              "unionArray2": [
+                "blah",
+                "blah",
+                "blah"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "union type options does not pass validation",
+      "path": "apiInvalid.raml",
+      "line": 13,
+      "column": 6,
+      "position": 212,
+      "range": [
+        {
+          "line": 13,
+          "column": 6,
+          "position": 212
+        },
+        {
+          "line": 13,
+          "column": 17,
+          "position": 223
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "apiInvalid.raml",
+      "line": 13,
+      "column": 26,
+      "position": 232,
+      "range": [
+        {
+          "line": 13,
+          "column": 26,
+          "position": 232
+        },
+        {
+          "line": 13,
+          "column": 27,
+          "position": 233
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "apiInvalid.raml",
+      "line": 13,
+      "column": 29,
+      "position": 235,
+      "range": [
+        {
+          "line": 13,
+          "column": 29,
+          "position": 235
+        },
+        {
+          "line": 13,
+          "column": 30,
+          "position": 236
+        }
+      ]
+    }
+  ]
+}

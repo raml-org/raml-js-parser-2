@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: API
+
+types:
+  SomeType:
+    type: object
+    properties:
+      name: string
+
+  ArrayType:
+    type: SomeType[]
+
+  AnotherType:
+    type: object
+    properties:
+      prop: ArrayType
+
+    example:
+      prop:
+        -
+          name: stringValue1
+        -
+          name: stringValue2
