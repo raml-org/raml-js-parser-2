@@ -22,13 +22,18 @@
     ],
     "traits": [
       {
+        "t1": {
+          "name": "t1"
+        }
+      },
+      {
         "tr1": {
           "body": {
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
               "type": [
-                "lib_a2_1.MyType"
+                "lib_a2.MyType"
               ],
               "repeat": false,
               "required": true,
@@ -60,7 +65,7 @@
               "name": "application/json",
               "displayName": "application/json",
               "type": [
-                "lib_b2.MyType"
+                "lib_a2.lib_b2.MyType"
               ],
               "repeat": false,
               "required": true,
@@ -83,11 +88,6 @@
           "__METADATA__": {
             "calculated": true
           }
-        }
-      },
-      {
-        "t1": {
-          "name": "t1"
         }
       }
     ],

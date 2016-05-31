@@ -492,11 +492,14 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         return _.all(this._adoptedNodes,x=>x.optional());
     }
 
-    replaceChild(oldNode:ll.ILowLevelASTNode,newNode:ll.ILowLevelASTNode){
+    replaceChild(oldNode:ll.ILowLevelASTNode,newNode:ll.ILowLevelASTNode):LowLevelCompositeNode{
+        if(!this._children){
+            this._children = [];
+        }
         var newCNode = new LowLevelCompositeNode(newNode,this,null,"RAML10");
         if(oldNode==null){
             this._children.push(newCNode);
-            return;
+            return newCNode;
         }
         var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
         if(ind>=0){
@@ -505,6 +508,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         else{
             this._children.push(newCNode);
         }
+        return newCNode;
     }
 }
 

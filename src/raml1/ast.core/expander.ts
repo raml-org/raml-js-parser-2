@@ -93,8 +93,6 @@ class TraitsAndResourceTypesExpander {
         this.ramlVersion = api.highLevel().definition().universe().version();
         var factory = this.ramlVersion=="RAML10" ? factory10 : factory08;
 
-        var isRAML1 = api instanceof RamlWrapperImpl.ApiImpl;
-
         this.globalTraits = this.ramlVersion=="RAML10"
             ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
             : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
@@ -123,6 +121,8 @@ class TraitsAndResourceTypesExpander {
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
         if(this.ramlVersion=="RAML10") {
+            this.appendGlobalTemplatesAsChildren(result);
+            result.highLevel().resetChildren();
             patchNamespaces(<RamlWrapper.Api>result);
         }
         result.highLevel().resetChildren();
@@ -217,6 +217,54 @@ class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
         resources.forEach(x=>this.processResource(x));
+    }
+
+    appendGlobalTemplatesAsChildren(apiNode:core.BasicNode){
+        var traitsPropName = universeDef.Universe10.LibraryBase.properties.traits.name;
+        var resourceTypesPropName = universeDef.Universe10.LibraryBase.properties.resourceTypes.name;
+
+        var rootLl = <proxy.LowLevelCompositeNode>apiNode.highLevel().lowLevel();
+        var rootPath = rootLl.unit().absolutePath();
+        var traitsNode:proxy.LowLevelCompositeNode;
+        var resourceTypesNode:proxy.LowLevelCompositeNode;
+        for(var ch of rootLl.children()){
+            if(ch.key()== traitsPropName){
+                traitsNode = <proxy.LowLevelCompositeNode>ch;
+            }
+            else if(ch.key()== resourceTypesPropName){
+                resourceTypesNode = <proxy.LowLevelCompositeNode>ch;
+            }
+        }
+        if(this.globalTraits.length>0) {
+            if(!traitsNode){
+                var yamlNode = jsyaml.createMapNode(traitsPropName);
+                traitsNode = rootLl.replaceChild(null,yamlNode);
+                yamlNode.setUnit(rootLl.unit());
+            }
+            for (let wn of this.globalTraits) {
+                var ll = wn.highLevel().lowLevel();
+                var nodePath = ll.unit().absolutePath();
+                if (nodePath != rootPath) {
+                    traitsNode.replaceChild(null, ll);
+                }
+            }
+        }
+        if(this.globalResourceTypes.length>0) {
+            if(!resourceTypesNode){
+                var yamlNode = jsyaml.createMapNode(resourceTypesPropName);
+                resourceTypesNode = rootLl.replaceChild(null,yamlNode);
+                yamlNode.setUnit(rootLl.unit());
+            }
+            for (let wn of this.globalResourceTypes) {
+                var ll = wn.highLevel().lowLevel();
+                var nodePath = ll.unit().absolutePath();
+                if (nodePath != rootPath) {
+                    resourceTypesNode.replaceChild(null, ll);
+                }
+            }
+        }
+        
+        
     }
 
     collectResourceData(
@@ -733,12 +781,12 @@ var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
 var transitionTemplates = {
 
     "_##map_Api" : {
-        // "traits" : {
-        //     "_##all_" : "_##map_Trait"
-        // },
-        // "resourceTypes" : {
-        //     "_##all_" : "_##map_ResourceType"
-        // },
+        "traits" : {
+            "_##all_" : "_##map_Trait"
+        },
+        "resourceTypes" : {
+            "_##all_" : "_##map_ResourceType"
+        },
         "securitySchemes" : {
             "_##all_" : {
                 "describedBy" : "_##map_Method"
@@ -997,9 +1045,6 @@ class NamespacePatcher extends TransitionEngine{
 
     processApi(api:RamlWrapper.Api){
 
-        var traitMap = transitionTemplates["_##map_Trait"];
-        var resourceTypeMap = transitionTemplates["_##map_ResourceType"];
-        var securitySchemeTypeMap = transitionTemplates["_##map_SecurityScheme"];
         var apiMap = transitionTemplates["_##map_Api"];
 
         var state = new NamespacePatcherState(apiMap,null);
@@ -1018,12 +1063,6 @@ class NamespacePatcher extends TransitionEngine{
         }
         state.setGlobalConditions(globalConditions);
 
-        for(var tr of api.traits()){
-            this.processMatch(tr.highLevel().lowLevel(),traitMap,state);
-        }
-        for(var rt of api.resourceTypes()){
-            this.processMatch(rt.highLevel().lowLevel(),resourceTypeMap,state);
-        }
         this.transit(llNode,state);
         this.patchUses(llNode);
     }

@@ -94,7 +94,7 @@
       {
         "rt1": {
           "is": [
-            "tr1"
+            "lib.tr1"
           ],
           "name": "rt1",
           "__METADATA__": {
@@ -105,8 +105,8 @@
       {
         "rt2": {
           "is": [
-            "tr1",
-            "tr2"
+            "lib.tr1",
+            "lib.tr2"
           ],
           "name": "rt2",
           "__METADATA__": {
@@ -118,7 +118,7 @@
         "rt3": {
           "is": [
             {
-              "tr3": {
+              "lib.tr3": {
                 "p1": "param1"
               }
             }
@@ -133,12 +133,12 @@
         "rt4": {
           "is": [
             {
-              "tr3": {
+              "lib.tr3": {
                 "p1": "param1"
               }
             },
             {
-              "tr4": {
+              "lib.tr4": {
                 "p2": "param2"
               }
             }
@@ -152,9 +152,9 @@
       {
         "rt5": {
           "is": [
-            "tr1",
+            "lib.tr1",
             {
-              "tr3": {
+              "lib.tr3": {
                 "p1": "param1"
               }
             }

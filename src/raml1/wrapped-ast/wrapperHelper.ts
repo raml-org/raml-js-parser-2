@@ -137,13 +137,28 @@ export function allResourceTypes(a:RamlWrapper.LibraryBase):RamlWrapper.Resource
     return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d));
 }
 
-function findTemplates(a:core.BasicNode,filter) {
-    var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
+function findTemplates(a:core.BasicNode,filter) {    
     var ll = a.highLevel().lowLevel();
     var nodePath = ll.includePath();
     if(!nodePath){
         nodePath = ll.unit().path();
     }
+    
+    if(ll instanceof proxy.LowLevelProxyNode){
+        var result = a.highLevel().children()
+            .filter(x=>x.isElement()&&filter(x.asElement().definition()))
+            .map(x=>x.asElement().wrapperNode());
+        
+        result.forEach(x=>{
+            var p = x.highLevel().lowLevel().unit().path();
+            if(p!=nodePath){
+                (<core.NodeMetadataImpl>x.meta()).setCalculated();
+            }
+        });
+        return result;
+    }
+    var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
+    
     var topLevelArr = arr.map(x=>{
         var topLevelNode:core.BasicNode;
         var p = x.lowLevel().unit().path();

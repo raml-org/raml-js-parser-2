@@ -10,6 +10,16 @@
     ],
     "traits": [
       {
+        "ownTrait1": {
+          "name": "ownTrait1"
+        }
+      },
+      {
+        "ownTrait2": {
+          "name": "ownTrait2"
+        }
+      },
+      {
         "libTrait1": {
           "name": "libTrait1",
           "__METADATA__": {
@@ -24,19 +34,19 @@
             "calculated": true
           }
         }
-      },
-      {
-        "ownTrait1": {
-          "name": "ownTrait1"
-        }
-      },
-      {
-        "ownTrait2": {
-          "name": "ownTrait2"
-        }
       }
     ],
     "resourceTypes": [
+      {
+        "ownResourceType1": {
+          "name": "ownResourceType1"
+        }
+      },
+      {
+        "ownResourceType2": {
+          "name": "ownResourceType2"
+        }
+      },
       {
         "libResourceType1": {
           "name": "libResourceType1",
@@ -51,16 +61,6 @@
           "__METADATA__": {
             "calculated": true
           }
-        }
-      },
-      {
-        "ownResourceType1": {
-          "name": "ownResourceType1"
-        }
-      },
-      {
-        "ownResourceType2": {
-          "name": "ownResourceType2"
         }
       }
     ],

@@ -82,6 +82,19 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
             rs.push(x);
         }
     });
+    h.lowLevel().visit(x=>{
+        var iPath = x.includePath();
+        if(iPath!=null){
+            var resolved = x.unit().resolve(iPath);
+            if(resolved) {
+                var unitHl = resolved.highLevel();
+                if(unitHl&&unitHl.isElement()) {
+                    rs = rs.concat(findDeclarations(unitHl.asElement()));
+                }
+            }
+        }
+        return true;
+    })
     return rs;
 
 }
