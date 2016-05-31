@@ -69,6 +69,26 @@ describe('TCK tests',function() {
         tckUtil.testAPI('TCK/RAML10/Libraries/test004/api.raml');
     });
 
+    it("Libraries 002", function () {
+        this.timeout(15000);
+        tckUtil.testAPI('TCK/RAML10/Libraries/test005/api.raml');
+    });
+
+    it("Libraries 003", function () {
+        this.timeout(15000);
+        tckUtil.testAPI('TCK/RAML10/Libraries/test006/api.raml');
+    });
+
+    it("Libraries 004", function () {
+        this.timeout(15000);
+        tckUtil.testAPI('TCK/RAML10/Libraries/test007/api.raml');
+    });
+
+    it("Libraries 005", function () {
+        this.timeout(15000);
+        tckUtil.testAPI('TCK/RAML10/Libraries/test008/api.raml');
+    });
+
     it("Form Parameters", function () {
         this.timeout(15000);
         tckUtil.testAPI('TCK/RAML08/Form Parameters/test001/api.raml');
