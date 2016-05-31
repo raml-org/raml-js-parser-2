@@ -1,0 +1,121 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "name": "rt1",
+          "post": {
+            "description": "Create a <<param>> object",
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "TCK test. Trait 002",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "Create a <<param>> object",
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "type": {
+          "rt1": {
+            "param": {
+              "p1": null,
+              "p2": null
+            }
+          }
+        },
+        "uriParameters": {
+          "get": {
+            "name": "get",
+            "displayName": "get",
+            "type": [
+              "string"
+            ],
+            "repeat": false,
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/resource/{get}",
+        "displayName": "/resource/{get}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource",
+          "{get}"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 2,
+      "message": "property 'param' must be a string",
+      "path": "api.raml",
+      "line": 9,
+      "column": 0,
+      "position": 163,
+      "range": [
+        {
+          "line": 9,
+          "column": 0,
+          "position": 163
+        },
+        {
+          "line": 9,
+          "column": 15,
+          "position": 178
+        }
+      ]
+    }
+  ]
+}
