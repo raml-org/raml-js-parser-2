@@ -4,8 +4,9 @@
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
-    "build": "npm run compile && npm run generateTopLevel",
+    "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite",
     "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
+    "generateTckSuite": "node dist/raml1/test/scripts/generateTCKMocha.js && tsc src/raml1/test/TCK2.ts --outDir dist -m commonjs --sourceMap",
     "generateDocumentation": "node dist/raml1/tools/packageTSParser.js -skipSources",
     "generateBrowserVersion": "node dist/browserVersionGenerator/browserVersionGenerator.js",
     "generateBrowserVersionDev": "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
