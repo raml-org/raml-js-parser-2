@@ -220,11 +220,45 @@ class TraitsAndResourceTypesExpander {
     }
 
     appendGlobalTemplatesAsChildren(apiNode:core.BasicNode){
+        
+        var masterPaths = {};
+        var masterNode = apiNode;
+        while(masterNode){
+            let llNode = masterNode.highLevel().lowLevel();
+            var unit = llNode.unit();
+            var absPath = unit.absolutePath();
+            if(masterPaths[absPath]){
+                break;
+            }
+            masterPaths[absPath]=true;
+            if(masterNode.kind()==universeDef.Universe10.Extension.name
+                ||masterNode.kind()==universeDef.Universe10.Overlay.name) {
+                var extendsValue = (<RamlWrapper.Extension>apiNode).extends();
+                var extendedUnit = unit.resolve(extendsValue);
+                if (extendedUnit) {
+                    var hlNode = extendedUnit.highLevel();
+                    if (!hlNode.isElement()) {
+                        break;
+                    }
+                    var masterNode = hlNode.asElement().wrapperNode();
+                }
+                else {
+                    break;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        
         var traitsPropName = universeDef.Universe10.LibraryBase.properties.traits.name;
         var resourceTypesPropName = universeDef.Universe10.LibraryBase.properties.resourceTypes.name;
 
         var rootLl = <proxy.LowLevelCompositeNode>apiNode.highLevel().lowLevel();
-        var rootPath = rootLl.unit().absolutePath();
+        if((<proxy.LowLevelProxyNode>rootLl.originalNode()).originalNode()
+                instanceof proxy.LowLevelProxyNode){
+            return;
+        }        
         var traitsNode:proxy.LowLevelCompositeNode;
         var resourceTypesNode:proxy.LowLevelCompositeNode;
         for(var ch of rootLl.children()){
@@ -244,7 +278,7 @@ class TraitsAndResourceTypesExpander {
             for (let wn of this.globalTraits) {
                 var ll = wn.highLevel().lowLevel();
                 var nodePath = ll.unit().absolutePath();
-                if (nodePath != rootPath) {
+                if (!masterPaths[nodePath]) {
                     traitsNode.replaceChild(null, ll);
                 }
             }
@@ -258,7 +292,7 @@ class TraitsAndResourceTypesExpander {
             for (let wn of this.globalResourceTypes) {
                 var ll = wn.highLevel().lowLevel();
                 var nodePath = ll.unit().absolutePath();
-                if (nodePath != rootPath) {
+                if (!masterPaths[nodePath]) {
                     resourceTypesNode.replaceChild(null, ll);
                 }
             }
@@ -835,7 +869,7 @@ var transitionTemplates = {
                 "body" : "_##map_body"
             }
         },
-    },    
+    },
     
     "_##map_TypeDeclaration" : {
         
@@ -862,9 +896,15 @@ var transitionTemplates = {
         }
     },
     
-    "_##map_Trait" : "_##map_Method",
+    "_##map_Trait" : [
+        "_##map_Method",
+        "_##patchKey_"
+    ],
     
-    "_##map_ResourceType" : "_##map_Resource"
+    "_##map_ResourceType" : [
+        "_##map_Resource",
+        "_##patchKey_"
+    ]
 
 }
 
@@ -970,26 +1010,37 @@ class TransitionEngine {
     }
 
     protected processMatch(node:ll.ILowLevelASTNode,position:any,state:TransitionState){
-        if(typeof(position)=="string"){
-            if(position=="_##patch_"){
-                var newState = this.newState(node, position, state);
+
+        var newPosition:any=position;
+        if(typeof(newPosition)=="string"){
+            if(newPosition=="_##patch_"){
+                var newState = this.newState(node, newPosition, state);
                 this.applyPatch(node,newState);
+                return;
             }
-            else if(util.stringStartsWith(position,"_##map_")){
-                var newPosition = position;
+            else if(newPosition=="_##patchKey_"){
+                var newState = this.newState(node, newPosition, state);
+                this.applyPatch(node,newState,true);
+                return;
+            }
+            else if(util.stringStartsWith(newPosition,"_##map_")){
                 while(typeof(newPosition)=="string") {
                     newPosition = transitionTemplates[newPosition];
                 }
-                var newState = this.newState(node, newPosition, state);
-                this.transit(node,newState);
             }
         }
-        else if(typeof(position)=="object"){
-            if(position["_##patchScalar_"] && node.kind()==yaml.Kind.SCALAR){
+        if(Array.isArray(newPosition)){
+            for(var pos of newPosition){
+                this.processMatch(node,pos,state);
+            }
+            return;
+        }
+        if(typeof(newPosition)=="object"){
+            if(newPosition["_##patchScalar_"] && node.kind()==yaml.Kind.SCALAR){
                 this.applyPatch(node,state);
             }
             else {
-                var newState = this.newState(node, position, state);
+                var newState = this.newState(node, newPosition, state);
                 this.transit(node, newState);
             }
         }
@@ -999,21 +1050,21 @@ class TransitionEngine {
         return new TransitionState(pos, state);
     }
 
-    protected applyPatch(node:ll.ILowLevelASTNode,state:TransitionState){
+    protected applyPatch(node:ll.ILowLevelASTNode,state:TransitionState,key:boolean=false){
         if(node.kind() == yaml.Kind.SEQ || node.valueKind() == yaml.Kind.SEQ){
             for(var ch of node.children()){
                 var newState = this.newState(ch, state.position(), state);
-                this.applyPatch(ch,newState);
+                this.applyPatch(ch,newState,key);
             }
             if(node instanceof proxy.LowLevelCompositeNode){
                 (<proxy.LowLevelCompositeNode>node).filterChildren();
             }
         }
         else {
-            this.doApplyPatch(node, state);
+            this.doApplyPatch(node, state, key);
         }
     }
-    protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState){}
+    protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState, key:boolean){}
 
     protected getRegexp(str:string){
         if(!this.regExps){
@@ -1092,14 +1143,27 @@ class NamespacePatcher extends TransitionEngine{
         return newState;
     }
 
-    protected doApplyPatch(node:ll.ILowLevelASTNode,_state:TransitionState){
+    protected doApplyPatch(node:ll.ILowLevelASTNode,_state:TransitionState, toKey:boolean){
 
         if(!(node instanceof proxy.LowLevelProxyNode)){
+            return;
+        }
+        if((<proxy.LowLevelProxyNode>(<proxy.LowLevelProxyNode>node).originalNode()).originalNode()
+            instanceof proxy.LowLevelProxyNode){
             return;
         }
 
         var state = <NamespacePatcherState>_state;
         if(state.rootUnit.absolutePath()==state.unit.absolutePath()){
+            return;
+        }
+        
+        if(toKey){
+            var key = node.key();
+            var patched = this.patchNamespace(key,state);
+            if(patched!=null){
+                (<proxy.LowLevelCompositeNode>node).setKeyOverride(patched);
+            }
             return;
         }
 

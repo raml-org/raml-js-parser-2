@@ -10,23 +10,23 @@
     ],
     "traits": [
       {
-        "tr1": {
-          "name": "tr1",
+        "lib.tr1": {
+          "name": "lib.tr1",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "tr2": {
-          "name": "tr2",
+        "lib.tr2": {
+          "name": "lib.tr2",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "tr3": {
+        "lib.tr3": {
           "queryParameters": {
             "<<p1>>": {
               "name": "<<p1>>",
@@ -51,14 +51,14 @@
               }
             }
           },
-          "name": "tr3",
+          "name": "lib.tr3",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "tr4": {
+        "lib.tr4": {
           "queryParameters": {
             "<<p2>>": {
               "name": "<<p2>>",
@@ -83,7 +83,7 @@
               }
             }
           },
-          "name": "tr4",
+          "name": "lib.tr4",
           "__METADATA__": {
             "calculated": true
           }
@@ -92,30 +92,30 @@
     ],
     "resourceTypes": [
       {
-        "rt1": {
+        "lib.rt1": {
           "is": [
             "lib.tr1"
           ],
-          "name": "rt1",
+          "name": "lib.rt1",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "rt2": {
+        "lib.rt2": {
           "is": [
             "lib.tr1",
             "lib.tr2"
           ],
-          "name": "rt2",
+          "name": "lib.rt2",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "rt3": {
+        "lib.rt3": {
           "is": [
             {
               "lib.tr3": {
@@ -123,14 +123,14 @@
               }
             }
           ],
-          "name": "rt3",
+          "name": "lib.rt3",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "rt4": {
+        "lib.rt4": {
           "is": [
             {
               "lib.tr3": {
@@ -143,14 +143,14 @@
               }
             }
           ],
-          "name": "rt4",
+          "name": "lib.rt4",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "rt5": {
+        "lib.rt5": {
           "is": [
             "lib.tr1",
             {
@@ -159,7 +159,7 @@
               }
             }
           ],
-          "name": "rt5",
+          "name": "lib.rt5",
           "__METADATA__": {
             "calculated": true
           }

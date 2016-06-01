@@ -10,8 +10,8 @@
     ],
     "traits": [
       {
-        "tr1": {
-          "name": "tr1",
+        "lib.tr1": {
+          "name": "lib.tr1",
           "__METADATA__": {
             "calculated": true
           }

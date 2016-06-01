@@ -4,6 +4,7 @@ import ll=require("../lowLevelAST")
 import path = require("path")
 import universes = require("../tools/universe");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
+import universeHelpers = require("../tools/universeHelpers");
 
 export class NamespaceResolver{
 
@@ -15,6 +16,9 @@ export class NamespaceResolver{
 
     resolveNamespace(from:ll.ICompilationUnit, to:ll.ICompilationUnit):string{
 
+        if(to==null){
+            return null;
+        }
         var toPath = to.absolutePath();
         var unitMap = this.expandedPathMap(from);
         if(!unitMap){
@@ -41,7 +45,22 @@ export class NamespaceResolver{
 
         var rootPath = path.dirname(_unit.absolutePath());
         var result:{[key:string]:UsesInfo} = {};
-        var usesInfoArray:UsesInfo[] = [ new UsesInfo([], _unit, "")];
+        var usesInfoArray:UsesInfo[] = [];
+        while (_unit) {
+            usesInfoArray.push(new UsesInfo([], _unit, ""));
+            var u = _unit;
+            _unit = null;
+            var hlNode = u.highLevel();
+            if (hlNode.isElement()) {
+                var hlElem = hlNode.asElement();
+                var definition = hlElem.definition();
+                if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
+                    var eValue = hlElem.attr(universes.Universe10.Extension.properties.extends.name).value();
+                    _unit = u.resolve(eValue);
+                }
+            }
+        }
+        
         for(var i = 0 ; i < usesInfoArray.length ; i++){
 
             var info = usesInfoArray[i];

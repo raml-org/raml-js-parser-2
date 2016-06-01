@@ -16,59 +16,13 @@ uses:
 
 securedBy: [sec.oauth_2_0]
 
-resourceTypes:
-  base:
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              type: typ.Get<<resourcePathName | !uppercamelcase>>Response
-  read-only-collection:
-    type: res.base
-    get:
-      is: [tra.pageable]
-  collection:
-    type: read-only-collection
-    post:
-      body:
-        type: typ.Post<<resourcePathName | !uppercamelcase>>Request
-      responses:
-        201:
-          description: Created!
-          headers:
-            Location:
-              description: uri of new resource
-              type: string
-              required: true
-  controller:
-    post:
-      responses:
-        204:
-          description: Done!
-  member:
-    type: res.base
-    put?:
-      body:
-        type: typ.Put<<resourcePathName | !uppercamelcase>>Request
-      responses:
-        204:
-          description: Modified
-    patch?:
-      body:
-        type: typ.Patch<<resourcePathName | !uppercamelcase>>Request
-    delete?:
-      responses:
-        204:
-          description: Delete
-
 /items:
   type: res.read-only-collection
   description: List of all items on sale
   get:
     is: [tra.searchable, tra.imageable]
   /{item}:
-    type: member
+    type: res.member
     get:
       is: [tra.imageable]
 /my-wish-list:

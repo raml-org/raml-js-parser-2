@@ -27,7 +27,7 @@
         }
       },
       {
-        "tr1": {
+        "lib_a1.tr1": {
           "body": {
             "application/json": {
               "name": "application/json",
@@ -52,14 +52,14 @@
               }
             }
           },
-          "name": "tr1",
+          "name": "lib_a1.tr1",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "tr2": {
+        "lib_a2.tr2": {
           "body": {
             "application/json": {
               "name": "application/json",
@@ -84,7 +84,7 @@
               }
             }
           },
-          "name": "tr2",
+          "name": "lib_a2.tr2",
           "__METADATA__": {
             "calculated": true
           }

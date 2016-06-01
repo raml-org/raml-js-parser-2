@@ -444,8 +444,11 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return null;
         }
         for(var i = 0 ; i < this._adoptedNodes.length; i++){
-            var node = this._adoptedNodes[i];
-            var yamlNode = (<any>node.originalNode())._node;
+            var node:any = this._adoptedNodes[i];
+            while(node instanceof LowLevelProxyNode){
+                node = (<LowLevelProxyNode>node).originalNode();
+            }
+            var yamlNode = (<any>node)._node;
             if(yamlNode && yamlNode.value!=null){
                 return node.valueKind();
             }

@@ -10,8 +10,8 @@
     ],
     "traits": [
       {
-        "hello": {
-          "name": "hello",
+        "files.hello": {
+          "name": "files.hello",
           "__METADATA__": {
             "calculated": true
           }

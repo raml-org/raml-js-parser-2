@@ -10,7 +10,7 @@
     ],
     "traits": [
       {
-        "auth": {
+        "security.auth": {
           "headers": {
             "Authorization": {
               "name": "Authorization",
@@ -39,7 +39,7 @@
               }
             }
           },
-          "name": "auth",
+          "name": "security.auth",
           "__METADATA__": {
             "calculated": true
           }
