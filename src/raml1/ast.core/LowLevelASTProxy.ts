@@ -260,11 +260,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return this._valueOverride;
         }
         var val;
-        var isPrimary = false;
         var valuableNodes:ll.ILowLevelASTNode[] = this._adoptedNodes.filter(x=>x.value()!=null);
         if(valuableNodes.length>0){
             val = valuableNodes[0].value(toString);
-            isPrimary = valuableNodes[0] == this._adoptedNodes[0];
         }
         else {
             val = this._originalNode.value(toString);
