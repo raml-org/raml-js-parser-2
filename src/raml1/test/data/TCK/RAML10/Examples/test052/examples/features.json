@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "feature1",
+    "description": "description of feature 1",
+    "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+  },
+  {
+    "id": 2,
+    "title": "feature2",
+    "description": "description of feature 2",
+    "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
+  }
+]

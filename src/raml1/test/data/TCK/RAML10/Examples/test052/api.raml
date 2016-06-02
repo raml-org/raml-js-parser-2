@@ -1,0 +1,16 @@
+#%RAML 1.0
+baseUri: https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf
+title: Mulesoft Info
+version: 1
+uses:
+  Types: types.raml
+mediaType: application/json
+
+/features:
+  get:
+    responses:
+      200:
+        body:
+          type: Types.Feature[]
+          #example: !include examples/features.json
+          example: !include examples/features.yaml
