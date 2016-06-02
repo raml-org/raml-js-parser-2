@@ -1,0 +1,250 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      }
+    ],
+    "traits": [
+      {
+        "lib1.tr1": {
+          "queryParameters": {
+            "qp2": {
+              "name": "qp2",
+              "displayName": "qp2",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "description": "query parameter 2",
+              "scalarsAnnotations": {
+                "description": [
+                  {
+                    "structuredValue": "val2",
+                    "name": "lib2.MyStringAnnotation"
+                  },
+                  {
+                    "structuredValue": {
+                      "p1": "pVal3",
+                      "p2": "pVal4"
+                    },
+                    "name": "lib2.MyObjectAnnotation"
+                  }
+                ]
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "lib1.tr1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "title": "TCK Sample. RAML 1.0 Annotations 031.",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "qp1": {
+                "name": "qp1",
+                "displayName": "qp1",
+                "type": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "description": "query parameter 1",
+                "scalarsAnnotations": {
+                  "description": [
+                    {
+                      "structuredValue": "val1",
+                      "name": "lib2.MyStringAnnotation"
+                    },
+                    {
+                      "structuredValue": {
+                        "p1": "pVal1",
+                        "p2": "pVal2"
+                      },
+                      "name": "lib2.MyObjectAnnotation"
+                    }
+                  ]
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "queryParameters": {
+              "qp2": {
+                "name": "qp2",
+                "displayName": "qp2",
+                "type": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": true,
+                "description": "query parameter 2",
+                "scalarsAnnotations": {
+                  "description": [
+                    {
+                      "structuredValue": "val2",
+                      "name": "lib2.MyStringAnnotation"
+                    },
+                    {
+                      "structuredValue": {
+                        "p1": "pVal3",
+                        "p2": "pVal4"
+                      },
+                      "name": "lib2.MyObjectAnnotation"
+                    }
+                  ]
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "is": [
+              "lib1.tr1"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

@@ -852,9 +852,7 @@ var transitionTemplates = {
 
         "securedBy" : "_##patch_",
         "is" : "_##patch_",
-        "type" : "_##patch_",
-
-        "_##patchAnnotations_" : true
+        "type" : "_##patch_"
     },
     
     "_##map_Method" : {
@@ -868,11 +866,9 @@ var transitionTemplates = {
         "responses": {
             "_##all_": {
                 "headers" : "_##map_parameters",
-                "body" : "_##map_body",
-                "_##patchAnnotations_" : true
+                "body" : "_##map_body"
             }
-        },
-        "_##patchAnnotations_" : true
+        }
     },
     
     "_##map_TypeDeclaration" : {
@@ -883,8 +879,6 @@ var transitionTemplates = {
         "facets": "_##map_parameters",
         "properties": "_##map_parameters",
         "patternProperties": "_##map_parameters",
-
-        "_##patchAnnotations_" : true
     },
     
     "_##map_parameters" : {
@@ -975,10 +969,6 @@ class TransitionEngine {
                     this.processMatch(node,conditions[cKey],state);
                 }
             }
-        }
-
-        if(position["_##patchAnnotations_"]){
-            this.patchAnnotations(node,state);
         }
 
         var all = position["_##all_"];
@@ -1075,20 +1065,6 @@ class TransitionEngine {
         }
     }
 
-    protected patchAnnotations(node:ll.ILowLevelASTNode,state:TransitionState){
-        var annotationNodes = node.children().filter(x=>{
-            var key = x.key();
-            if(key==null){
-                return false;
-            }
-            return util.stringStartsWith(key,"(") && util.stringEndsWith(key,")");
-        });
-        for(var ch of annotationNodes){
-            var newState = this.newState(ch, null, state);
-            this.doApplyPatch(ch,newState,true);
-        }
-    }
-
     protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState, key:boolean){}
 
     protected getRegexp(str:string){
@@ -1142,6 +1118,7 @@ class NamespacePatcher extends TransitionEngine{
         state.setGlobalConditions(globalConditions);
 
         this.transit(llNode,state);
+        this.patchAnnotations(llNode,state);
         this.patchUses(llNode);
     }
 
@@ -1244,15 +1221,8 @@ class NamespacePatcher extends TransitionEngine{
         //this.printInfo(node,_state);
     }
     
-    protected patchNamespace(_value:string,state:NamespacePatcherState):string{
-
-        var isAnnotation = false;
-        var value = _value;
-        if(util.stringStartsWith(_value,"(")&&util.stringEndsWith(_value,")")){
-            value = _value.substring(1,_value.length-1);
-            isAnnotation = true;
-        }
-
+    protected patchNamespace(value:string,state:NamespacePatcherState):string{
+        
         var ind = value.lastIndexOf(".");
         var unit:ll.ICompilationUnit;
         var name:string;
@@ -1284,10 +1254,38 @@ class NamespacePatcher extends TransitionEngine{
         }
         this.usedNamespaces[newNS] = true;
         var result = newNS + "." + name;
-        if(isAnnotation){
-            result = "(" + result + ")";
-        }
         return result;
+    }
+
+
+    protected patchAnnotations(node:ll.ILowLevelASTNode,state:NamespacePatcherState){
+
+        var self = this;
+        var visit = function(x:ll.ILowLevelASTNode,state:NamespacePatcherState){
+
+            for(var ch of x.children()){
+                var newState = self.newState(ch,null,state);
+                visit(ch,newState);
+            }
+
+            if(state.unit.absolutePath()==state.rootUnit.absolutePath()){
+                return;
+            }
+            var key = x.key();
+            if(key==null){
+                return;
+            }
+            if(!util.stringStartsWith(key,"(")||!util.stringEndsWith(key,")")){
+                return;
+            }
+            var annotation = key.substring(1,key.length-1);
+            var patched = self.patchNamespace(annotation, state);
+            if(patched != null){
+                var patchedKey = "("+patched+")";
+                (<proxy.LowLevelProxyNode>x).setKeyOverride(patchedKey);
+            }
+        }
+        visit(node,state);
     }
 
     protected printInfo(node:ll.ILowLevelASTNode, state:TransitionState) {
