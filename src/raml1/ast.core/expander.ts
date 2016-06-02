@@ -854,7 +854,7 @@ var transitionTemplates = {
         "is" : "_##patch_",
         "type" : "_##patch_",
 
-        "_#patchAnnotations_" : true
+        "_##patchAnnotations_" : true
     },
     
     "_##map_Method" : {
@@ -869,10 +869,10 @@ var transitionTemplates = {
             "_##all_": {
                 "headers" : "_##map_parameters",
                 "body" : "_##map_body",
-                "_#patchAnnotations_" : true
+                "_##patchAnnotations_" : true
             }
         },
-        "_#patchAnnotations_" : true
+        "_##patchAnnotations_" : true
     },
     
     "_##map_TypeDeclaration" : {
@@ -884,7 +884,7 @@ var transitionTemplates = {
         "properties": "_##map_parameters",
         "patternProperties": "_##map_parameters",
 
-        "_#patchAnnotations_" : true
+        "_##patchAnnotations_" : true
     },
     
     "_##map_parameters" : {
@@ -1085,7 +1085,7 @@ class TransitionEngine {
         });
         for(var ch of annotationNodes){
             var newState = this.newState(ch, null, state);
-            this.doApplyPatch(node,newState,true);
+            this.doApplyPatch(ch,newState,true);
         }
     }
 
