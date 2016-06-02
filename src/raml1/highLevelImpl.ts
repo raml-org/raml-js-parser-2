@@ -838,6 +838,20 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
             var vl= this._node.dumpToObject(true);
             return vl;
         }
+
+        if (vk===yaml.Kind.INCLUDE_REF){
+            var resolved:ll.ICompilationUnit=null;
+            var includePath = this._node.includePath();
+            try {
+                resolved = this._node.unit().resolve(includePath)
+            } catch (e) {}
+            if (resolved!=null&&resolved.isRAMLUnit()){
+                var includedAST = resolved.ast();
+                if(includedAST.kind()==yaml.Kind.SEQ){
+                     return new LowLevelWrapperForTypeSystem(includedAST,resolved.highLevel().asElement()).children().map(x=>x.value());
+                }
+            }
+        }
         return this._node.value();
     }
     _children:LowLevelWrapperForTypeSystem[];
