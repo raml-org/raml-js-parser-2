@@ -203,6 +203,28 @@ export class NamespaceResolver{
             var ui = new UsesInfo(segments, libUnit, includePath);
             result[absPath] = ui;
         }
+
+        var hlNode = unit.highLevel();
+        if (hlNode.isElement()) {
+            var hlElem = hlNode.asElement();
+            var definition = hlElem.definition();
+            if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
+                var eValue = hlElem.attr(universes.Universe10.Extension.properties.extends.name).value();
+                var extendedUnit:ll.ICompilationUnit;
+                try {
+                    extendedUnit = unit.resolve(eValue);
+                }
+                catch(e){}
+                if(extendedUnit){
+                    var m = this.pathMap(extendedUnit);
+                    if(m){
+                        for(var k of Object.keys(m)){
+                            result[k] = m[k];
+                        }
+                    }
+                }
+            }
+        }
         return result;
     }
 

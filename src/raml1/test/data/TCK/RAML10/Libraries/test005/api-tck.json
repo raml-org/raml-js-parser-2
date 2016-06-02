@@ -12,10 +12,6 @@
         "value": "libs/lib_a2.raml"
       },
       {
-        "key": "lib_a2.lib_b1",
-        "value": "libs/lib_b1.raml"
-      },
-      {
         "key": "lib_a2.lib_b2",
         "value": "libs/lib_b2.raml"
       }

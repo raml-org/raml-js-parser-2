@@ -6,12 +6,43 @@
       {
         "key": "lib",
         "value": "lib/lib.raml"
+      },
+      {
+        "key": "lib.lib2",
+        "value": "lib/lib2.raml"
       }
     ],
     "traits": [
       {
-        "tr1": {
-          "name": "tr1"
+        "lib.tr1": {
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "lib.lib2.Type1"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "lib.tr1",
+          "__METADATA__": {
+            "calculated": true
+          }
         }
       }
     ],
@@ -30,7 +61,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "lib.Type1"
+                  "lib.lib2.Type1"
                 ],
                 "repeat": false,
                 "required": true,
@@ -51,6 +82,9 @@
             },
             "protocols": [
               "HTTPS"
+            ],
+            "is": [
+              "lib.tr1"
             ],
             "method": "get",
             "__METADATA__": {

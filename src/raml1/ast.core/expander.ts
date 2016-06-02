@@ -852,7 +852,9 @@ var transitionTemplates = {
 
         "securedBy" : "_##patch_",
         "is" : "_##patch_",
-        "type" : "_##patch_"
+        "type" : "_##patch_",
+
+        "_#patchAnnotations_" : true
     },
     
     "_##map_Method" : {
@@ -866,9 +868,11 @@ var transitionTemplates = {
         "responses": {
             "_##all_": {
                 "headers" : "_##map_parameters",
-                "body" : "_##map_body"
+                "body" : "_##map_body",
+                "_#patchAnnotations_" : true
             }
         },
+        "_#patchAnnotations_" : true
     },
     
     "_##map_TypeDeclaration" : {
@@ -878,7 +882,9 @@ var transitionTemplates = {
         "items": "_##patch_",
         "facets": "_##map_parameters",
         "properties": "_##map_parameters",
-        "patternProperties": "_##map_parameters"
+        "patternProperties": "_##map_parameters",
+
+        "_#patchAnnotations_" : true
     },
     
     "_##map_parameters" : {
@@ -969,6 +975,10 @@ class TransitionEngine {
                     this.processMatch(node,conditions[cKey],state);
                 }
             }
+        }
+
+        if(position["_##patchAnnotations_"]){
+            this.patchAnnotations(node,state);
         }
 
         var all = position["_##all_"];
@@ -1064,6 +1074,21 @@ class TransitionEngine {
             this.doApplyPatch(node, state, key);
         }
     }
+
+    protected patchAnnotations(node:ll.ILowLevelASTNode,state:TransitionState){
+        var annotationNodes = node.children().filter(x=>{
+            var key = x.key();
+            if(key==null){
+                return false;
+            }
+            return util.stringStartsWith(key,"(") && util.stringEndsWith(key,")");
+        });
+        for(var ch of annotationNodes){
+            var newState = this.newState(ch, null, state);
+            this.doApplyPatch(node,newState,true);
+        }
+    }
+
     protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState, key:boolean){}
 
     protected getRegexp(str:string){
@@ -1090,6 +1115,8 @@ class NamespacePatcherState extends TransitionState{
 }
 
 class NamespacePatcher extends TransitionEngine{
+
+    usedNamespaces:{[key:string]:boolean} = {};
 
     private resolver:namespaceResolver.NamespaceResolver
         = new namespaceResolver.NamespaceResolver();
@@ -1217,7 +1244,14 @@ class NamespacePatcher extends TransitionEngine{
         //this.printInfo(node,_state);
     }
     
-    protected patchNamespace(value:string,state:NamespacePatcherState):string{
+    protected patchNamespace(_value:string,state:NamespacePatcherState):string{
+
+        var isAnnotation = false;
+        var value = _value;
+        if(util.stringStartsWith(_value,"(")&&util.stringEndsWith(_value,")")){
+            value = _value.substring(1,_value.length-1);
+            isAnnotation = true;
+        }
 
         var ind = value.lastIndexOf(".");
         var unit:ll.ICompilationUnit;
@@ -1248,7 +1282,11 @@ class NamespacePatcher extends TransitionEngine{
         else if(newNS == ""){
             return name;
         }
+        this.usedNamespaces[newNS] = true;
         var result = newNS + "." + name;
+        if(isAnnotation){
+            result = "(" + result + ")";
+        }
         return result;
     }
 
@@ -1285,10 +1323,15 @@ class NamespacePatcher extends TransitionEngine{
             return;
         }
         var unit = node.unit();
-        var unitMap = this.resolver.expandedPathMap(unit);
-        if(unitMap==null){
+        var extendedUnitMap = this.resolver.expandedPathMap(unit);
+        if(extendedUnitMap==null){
             return;
         }
+        var unitMap = this.resolver.pathMap(unit);
+        if(!unitMap){
+            unitMap = {};
+        }
+        
         var cNode = <proxy.LowLevelCompositeNode>node;
         var originalChildren = node.children();
         var usesNodes = originalChildren.filter(x=>
@@ -1300,8 +1343,9 @@ class NamespacePatcher extends TransitionEngine{
             yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
         }
 
-
-        var usesInfos = Object.keys(unitMap).map(x=>unitMap[x]);
+        var usesInfos = Object.keys(unitMap).map(x=>extendedUnitMap[x]);
+        var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
+            .filter(x=>!unitMap[x.absolutePath()]&&this.usedNamespaces[x.namespace()]);
 
         var u = node.unit();
         var unitPath = u.absolutePath();
@@ -1309,7 +1353,7 @@ class NamespacePatcher extends TransitionEngine{
         var newUses = jsyaml.createMapNode("uses");
         newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
         newUses.setUnit(yamlNode.unit());
-        for (var ui of usesInfos) {
+        for (var ui of usesInfos.concat(extendedUsesInfos)) {
             var up = ui.absolutePath();
             var ip = ui.includePath;
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
