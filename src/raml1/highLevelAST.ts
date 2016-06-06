@@ -239,7 +239,6 @@ export interface IParseResult {
     getLowLevelStart()
     getLowLevelEnd()
     version();
-
 }
 
 export interface Status{

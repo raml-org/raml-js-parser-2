@@ -27,7 +27,7 @@ export function createMethodStub(parent: hl.IHighLevelNode, key?: string) : hl.I
 }
 
 export function createResponseStub(parent: hl.IHighLevelNode, key?: string) : hl.IHighLevelNode {
-    return stubs.createResourceStub(parent,key)
+    return stubs.createResponseStub(parent,key)
 }
 export function createBodyStub(parent: hl.IHighLevelNode, key?: string) : hl.IHighLevelNode {
     return stubs.createBodyStub(parent,key)

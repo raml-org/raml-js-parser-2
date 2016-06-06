@@ -451,9 +451,6 @@ export function isMethodBaseSibling(type: hl.INodeDefinition | hl.ITypeDefinitio
         type.isAssignableFrom(universe.Universe08.MethodBase.name);
 }
 
-
-
-
 export function isSecuritySchemePartType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.SecuritySchemePart ||
         type.key() == universe.Universe08.SecuritySchemePart;
@@ -471,4 +468,20 @@ export function isRAML08Type(type: hl.INodeDefinition | hl.ITypeDefinition) : bo
 
 export function isRAML10Type(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.universe().version()=="RAML10";
+}
+
+export function isRAML08Node(node : hl.IHighLevelNode ) : boolean {
+    return isRAML08Type(node.definition());
+}
+
+export function isRAML08Attribute(node : hl.IAttribute ) : boolean {
+    return isRAML08Type(node.definition());
+}
+
+export function isRAML10Node(node : hl.IHighLevelNode ) : boolean {
+    return isRAML10Type(node.definition());
+}
+
+export function isRAML10Attribute(node : hl.IAttribute ) : boolean {
+    return isRAML10Type(node.definition());
 }
