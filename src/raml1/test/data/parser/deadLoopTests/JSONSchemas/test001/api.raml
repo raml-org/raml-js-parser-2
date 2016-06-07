@@ -1,0 +1,24 @@
+#%RAML 1.0
+
+title: Api
+
+types:
+  MyType: |
+    {
+        "$schema":"http://json-schema.org/draft-04/schema",
+        "type":"object",
+        "properties":{
+          "child":{"$ref": "./scheme1.json#"}
+        }
+      }
+
+
+/resource:
+  get:
+    body:
+      application/json:
+        type: MyType
+        example:
+          child:
+            p1:
+              p1:
