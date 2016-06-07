@@ -1220,6 +1220,92 @@ describe('Optional template parameters tests', function () {
     });
 });
 
+describe('RAML10/Dead Loop Tests/Includes',function(){
+
+    it("test001", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Includes/test001/api.raml"),["Recursive definition"]);
+    });
+
+    it("test002", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Includes/test002/api.raml"));
+    });
+
+});
+
+describe('RAML10/Dead Loop Tests/JSONSchemas',function(){
+
+    it("test001", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test001/api.raml"),["JSON schema contains circular references"]);
+    });
+
+    it("test002", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test002/api.raml"),["JSON schema contains circular references"]);
+    });
+
+    it("test003", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/JSONSchemas/test003/api.raml"),["Remote reference didn't compile successfully"]);
+    });
+
+});
+
+describe('RAML10/Dead Loop Tests/Libraries',function(){
+
+    it("test001", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test001/lib.raml"));
+    });
+
+    it("test002", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test002/lib.raml"));
+    });
+
+    it("test003", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test003/lib1.raml"));
+    });
+
+    it("test003", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test003/lib2.raml"));
+    });
+
+    it("test004", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test004/lib1.raml"));
+    });
+
+    it("test004", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Libraries/test004/lib2.raml"));
+    });
+
+});
+
+describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
+
+    it("test001", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test001/api.raml"),["Resource type definition contains cycle"]);
+    });
+
+    it("test002", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib1.raml"));
+    });
+
+    it("test002", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/ResourceTypes/test002/lib2.raml"));
+    });
+
+});
+
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
     var api = util.loadApi(p);
     var errors:any = util.validateNode(api);
@@ -1293,13 +1379,13 @@ export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=fa
     }
 
     if (hasUnexpectedErr || errors.length != expectedErrors.length) {
-        console.log("Expected errors:");
-        expectedErrors.forEach(expectedError=>console.log(expectedError));
+        console.warn("Expected errors:");
+        expectedErrors.forEach(expectedError=>console.warn(expectedError));
 
         var unitContents = api.lowLevel().unit().contents();
-        console.log("Actual errors:");
+        console.warn("Actual errors:");
 
-        errors.forEach(error=>console.log(error.message + " : " + unitContents.substr(error.start, error.end-error.start)));
+        errors.forEach(error=>console.warn(error.message + " : " + unitContents.substr(error.start, error.end-error.start)));
     }
     assert.equal(hasUnexpectedErr, false, "Unexpected errors found\n"+errorMsg);
     assert.equal(errors.length, expectedErrors.length, "Wrong number of errors\n"+errorMsg);
@@ -1391,11 +1477,11 @@ function testErrorsByNumber(p:string,count:number=0,deviations:number=0){
         if (errors.length > 0) {
             errors.forEach(error=>{
                 if (typeof error.message == 'string') {
-                    console.error(error.message);
+                    console.warn(error.message);
                 } else {
-                    console.error(error);
+                    console.warn(error);
                 }
-                console.error("\n");
+                console.warn("\n");
             })
 
         } else {
