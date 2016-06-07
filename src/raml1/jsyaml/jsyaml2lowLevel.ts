@@ -815,7 +815,7 @@ export class Project implements lowlevel.IProject{
         if(includeReference) {
             var result;
 
-            var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
+            var refPath = path.resolve(path.dirname(toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
 
             // if (this.pathToUnit[refPath]) {
             //     result = this.pathToUnit[refPath];
@@ -863,7 +863,7 @@ export class Project implements lowlevel.IProject{
 
             var wrappedUnit: CompilationUnit  = this.pathToUnit[absPath];
 
-            var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
+            var refPath = path.resolve(path.dirname(toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
 
             if (this.pathToUnit[refPath]){
                 return this.pathToUnit[refPath];
@@ -883,7 +883,7 @@ export class Project implements lowlevel.IProject{
             if (e!=".json"&&e!=".xsd") {
                 //SUPPORTING 0.8 style resolving due to compatiblity reasons
                 pathInUnit = pathInUnit.substr(1);
-                unitPath = this.rootPath + "/" + path.basename(unitPath);
+                unitPath = path.resolve(this.rootPath,path.basename(unitPath));
             }
         }
         if(isWebPath(pathInUnit)||path.isAbsolute(pathInUnit)){
@@ -3726,7 +3726,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     if (e!=".json"&&e!=".xsd") {
                         //SUPPORTING 0.8 style resolving due to compatiblity reasons
                         ip = ip.substr(1);
-                        ip = project.getRootPath() + "/" + ip;
+                        ip = path.resolve(project.getRootPath(),ip);
                     }
                 }
                 var absIncludePath = toAbsolutePath(unitPath,ip);

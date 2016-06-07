@@ -1,0 +1,16 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema",
+    "id":"asd",
+    "type":"object",
+    "properties":{
+        "p1": "string"
+    },
+    "definitions": {
+        "type1": {
+            "type" : "object",
+            "properties": {
+                "p2" : { "$ref" : "./scheme1.json" }
+            }
+        }
+    }
+}

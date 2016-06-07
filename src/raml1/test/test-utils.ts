@@ -72,7 +72,7 @@ export function show(node: hl.IHighLevelNode, lev: number = 0) {
 }
 
 export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
-  var unit = loadUnit(name);
+  var unit = loadUnit(name,path.dirname(name));
 
   var api = <high.ASTNodeImpl>high.fromUnit(unit);
   if (!neverExpand) {
@@ -83,16 +83,17 @@ export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
   return api;
 }
 
-function loadUnit(unitPath: string) {
+function loadUnit(unitPath: string, rootPath: string) {
   if(!fs.existsSync(unitPath)) throw new Error("file not found: " + unitPath);
-  var p = new jsyaml.Project(pdir);
+  var p = new jsyaml.Project(rootPath);
   return p.unit(unitPath, true);
 }
 
 export function loadAndMergeApis(masterPath: string, extensions : string[]) : hl.IHighLevelNode {
-  var masterApi = loadUnit(masterPath);
+  var rootPath = path.dirname(masterPath)
+  var masterApi = loadUnit(masterPath,rootPath);
 
-  var extesionApis = _.map(extensions, extension=>loadUnit(extension));
+  var extesionApis = _.map(extensions, extension=>loadUnit(extension,rootPath));
 
   return expander.mergeAPIs(masterApi, extesionApis, high.OverlayMergeMode.MERGE);
 }
