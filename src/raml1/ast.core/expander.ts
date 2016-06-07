@@ -3,7 +3,7 @@ import ll=require("../lowLevelAST")
 import hl=require("../highLevelAST")
 import hlimpl=require("../highLevelImpl")
 import yaml=require("yaml-ast-parser")
-import impl=require("../jsyaml/jsyaml2lowLevel")
+import jsyaml=require("../jsyaml/jsyaml2lowLevel")
 import util=require("../../util/index")
 import proxy=require("./LowLevelASTProxy")
 import RamlWrapper=require("../artifacts/raml10parserapi")
@@ -21,6 +21,10 @@ import universeProvider=require ("../definition-system/universeProvider");
 import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore")
+import namespaceResolver = require("./namespaceResolver")
+import defSys = require("raml-definition-system")
+import typeExpressions = defSys.rt.typeExpressions
+
 
 var changeCase = require('change-case');
 
@@ -89,8 +93,6 @@ class TraitsAndResourceTypesExpander {
         this.ramlVersion = api.highLevel().definition().universe().version();
         var factory = this.ramlVersion=="RAML10" ? factory10 : factory08;
 
-        var isRAML1 = api instanceof RamlWrapperImpl.ApiImpl;
-
         this.globalTraits = this.ramlVersion=="RAML10"
             ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
             : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
@@ -118,6 +120,12 @@ class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
+        if(this.ramlVersion=="RAML10") {
+            this.appendGlobalTemplatesAsChildren(result);
+            result.highLevel().resetChildren();
+            patchNamespaces(<RamlWrapper.Api>result);
+        }
+        result.highLevel().resetChildren();
         return result;
     }
 
@@ -209,6 +217,88 @@ class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
         resources.forEach(x=>this.processResource(x));
+    }
+
+    appendGlobalTemplatesAsChildren(apiNode:core.BasicNode){
+        
+        var masterPaths = {};
+        var masterNode = apiNode;
+        while(masterNode){
+            let llNode = masterNode.highLevel().lowLevel();
+            var unit = llNode.unit();
+            var absPath = unit.absolutePath();
+            if(masterPaths[absPath]){
+                break;
+            }
+            masterPaths[absPath]=true;
+            if(masterNode.kind()==universeDef.Universe10.Extension.name
+                ||masterNode.kind()==universeDef.Universe10.Overlay.name) {
+                var extendsValue = (<RamlWrapper.Extension>apiNode).extends();
+                var extendedUnit = unit.resolve(extendsValue);
+                if (extendedUnit) {
+                    var hlNode = extendedUnit.highLevel();
+                    if (!hlNode.isElement()) {
+                        break;
+                    }
+                    var masterNode = hlNode.asElement().wrapperNode();
+                }
+                else {
+                    break;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        
+        var traitsPropName = universeDef.Universe10.LibraryBase.properties.traits.name;
+        var resourceTypesPropName = universeDef.Universe10.LibraryBase.properties.resourceTypes.name;
+
+        var rootLl = <proxy.LowLevelCompositeNode>apiNode.highLevel().lowLevel();
+        if((<proxy.LowLevelProxyNode>rootLl.originalNode()).originalNode()
+                instanceof proxy.LowLevelProxyNode){
+            return;
+        }        
+        var traitsNode:proxy.LowLevelCompositeNode;
+        var resourceTypesNode:proxy.LowLevelCompositeNode;
+        for(var ch of rootLl.children()){
+            if(ch.key()== traitsPropName){
+                traitsNode = <proxy.LowLevelCompositeNode>ch;
+            }
+            else if(ch.key()== resourceTypesPropName){
+                resourceTypesNode = <proxy.LowLevelCompositeNode>ch;
+            }
+        }
+        if(this.globalTraits.length>0) {
+            if(!traitsNode){
+                var yamlNode = jsyaml.createMapNode(traitsPropName);
+                traitsNode = rootLl.replaceChild(null,yamlNode);
+                yamlNode.setUnit(rootLl.unit());
+            }
+            for (let wn of this.globalTraits) {
+                var ll = wn.highLevel().lowLevel();
+                var nodePath = ll.unit().absolutePath();
+                if (!masterPaths[nodePath]) {
+                    traitsNode.replaceChild(null, ll);
+                }
+            }
+        }
+        if(this.globalResourceTypes.length>0) {
+            if(!resourceTypesNode){
+                var yamlNode = jsyaml.createMapNode(resourceTypesPropName);
+                resourceTypesNode = rootLl.replaceChild(null,yamlNode);
+                yamlNode.setUnit(rootLl.unit());
+            }
+            for (let wn of this.globalResourceTypes) {
+                var ll = wn.highLevel().lowLevel();
+                var nodePath = ll.unit().absolutePath();
+                if (!masterPaths[nodePath]) {
+                    resourceTypesNode.replaceChild(null, ll);
+                }
+            }
+        }
+        
+        
     }
 
     collectResourceData(
@@ -720,3 +810,575 @@ interface ResourceGenericData{
 }
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
+
+
+var transitionTemplates = {
+
+    "_##map_Api" : {
+        "traits" : {
+            "_##all_" : "_##map_Trait"
+        },
+        "resourceTypes" : {
+            "_##all_" : "_##map_ResourceType"
+        },
+        "securitySchemes" : {
+            "_##all_" : {
+                "describedBy" : "_##map_Method"
+            }
+        },
+
+        "_##startswith_" : {
+            "/" : "_##map_Resource"
+        }
+    },
+
+    "_##map_Resource" : {
+
+        "_##startswith_" : {
+            "/" : "_##map_Resource"
+        },
+
+        "queryParameters" : "_##map_parameters",
+        "uriParameters" : "_##map_parameters",
+        "headers" : "_##map_parameters",
+
+        "get"     : "_##map_Method",
+        "post"    : "_##map_Method",
+        "put"     : "_##map_Method",
+        "delete"  : "_##map_Method",
+        "patch"   : "_##map_Method",
+        "options" : "_##map_Method",
+        "head"    : "_##map_Method",
+
+        "securedBy" : "_##patch_",
+        "is" : "_##patch_",
+        "type" : "_##patch_"
+    },
+    
+    "_##map_Method" : {
+        "queryParameters" : "_##map_parameters",
+        "uriParameters" : "_##map_parameters",
+        "headers" : "_##map_parameters",
+
+        "securedBy" : "_##patch_",
+        "is" : "_##patch_",
+        "body": "_##map_body",
+        "responses": {
+            "_##all_": {
+                "headers" : "_##map_parameters",
+                "body" : "_##map_body"
+            }
+        }
+    },
+    
+    "_##map_TypeDeclaration" : {
+        
+        "type": "_##patch_",
+        "schema": "_##patch_",
+        "items": "_##patch_",
+        "facets": "_##map_parameters",
+        "properties": "_##map_parameters",
+        "patternProperties": "_##map_parameters",
+    },
+    
+    "_##map_parameters" : {
+        "_##patchScalar_" : true,
+        "_##all_" : "_##map_TypeDeclaration"
+    },
+
+    "_##map_body" : {
+
+        "_##condition_" : {
+            "defaultMediaType" : "_##map_TypeDeclaration"
+        },
+        "_##regexp_" : {
+            ".+/.+" : "_##map_TypeDeclaration"
+        }
+    },
+    
+    "_##map_Trait" : [
+        "_##map_Method",
+        "_##patchKey_"
+    ],
+    
+    "_##map_ResourceType" : [
+        "_##map_Resource",
+        "_##patchKey_"
+    ]
+
+}
+
+class TransitionState{
+    
+    constructor(private _position:any,parent:TransitionState){
+        if(parent){
+            this._globalConditions = parent._globalConditions;
+        }
+    }
+
+    private _globalConditions:{[key:string]:any};
+
+    public position(): any{
+        return this._position;
+    }
+
+    condition(key:string):any{
+        return this._globalConditions && this._globalConditions[key];
+    }
+    
+    globalConditions():{[key:string]:any}{
+        return this._globalConditions;
+    }
+
+    setGlobalConditions(gc:{[key:string]:any}){
+        this._globalConditions = gc;
+    }
+}
+
+class TransitionEngine {
+
+    private regExps: {[key:string]:RegExp};
+
+    start(node:ll.ILowLevelASTNode){
+        var position = transitionTemplates["_##map_Api"];
+        var defaultMediaType
+            = node.children().filter(ch=>
+                ch.key()==universeDef.Universe10.Api.properties.mediaType.name).length > 0;
+
+        var globalConditions = {
+            defaultMediaType: defaultMediaType
+        }
+        var state = this.newState(node,position,null);
+        state.setGlobalConditions(globalConditions);
+        this.transit(node,state);
+    }
+
+    protected transit(node:ll.ILowLevelASTNode,state:TransitionState){
+
+        if(node.kind() == yaml.Kind.SEQ){
+            for(var ch of node.children()){
+                this.transit(ch,state);
+            }
+        }
+
+        var position = state.position();
+        var conditions = position["_##condition_"];
+        if(conditions){
+            for(var cKey of Object.keys(conditions)){
+                if(state.condition(cKey)){
+                    this.processMatch(node,conditions[cKey],state);
+                }
+            }
+        }
+
+        var all = position["_##all_"];
+        if(all){
+            for( var ch of node.children()){
+                this.processMatch(ch,all,state);
+            }
+        }
+        
+        var starsWithRules = position["_##startswith_"];
+        var startsWithKeys = starsWithRules ? Object.keys(starsWithRules) : null;
+        var regExpRules = position["_##regexp_"];
+        var regexpKeys = regExpRules ? Object.keys(regExpRules) : null;
+
+        for( var ch of node.children()){
+            var chKey = ch.key();
+            if(startsWithKeys){
+                for(var sKey of startsWithKeys){
+                    if(util.stringStartsWith(chKey,sKey)){
+                        this.processMatch(ch,starsWithRules[sKey],state);
+                        continue;
+                    }
+                }
+            }
+            if(regexpKeys){
+                for(var rxKey of regexpKeys){
+                    var regexp = this.getRegexp(rxKey);
+                    if(regexp && chKey.match(regexp)){
+                        this.processMatch(ch,regExpRules[rxKey],state);
+                        continue;
+                    }
+                }
+            }
+            var rule = position[chKey];
+            if(rule){
+                this.processMatch(ch,rule,state);
+            }
+        }
+    }
+
+    protected processMatch(node:ll.ILowLevelASTNode,position:any,state:TransitionState){
+
+        var newPosition:any=position;
+        if(typeof(newPosition)=="string"){
+            if(newPosition=="_##patch_"){
+                var newState = this.newState(node, newPosition, state);
+                this.applyPatch(node,newState);
+                return;
+            }
+            else if(newPosition=="_##patchKey_"){
+                var newState = this.newState(node, newPosition, state);
+                this.applyPatch(node,newState,true);
+                return;
+            }
+            else if(util.stringStartsWith(newPosition,"_##map_")){
+                while(typeof(newPosition)=="string") {
+                    newPosition = transitionTemplates[newPosition];
+                }
+            }
+        }
+        if(Array.isArray(newPosition)){
+            for(var pos of newPosition){
+                this.processMatch(node,pos,state);
+            }
+            return;
+        }
+        if(typeof(newPosition)=="object"){
+            if(newPosition["_##patchScalar_"] && node.kind()==yaml.Kind.SCALAR){
+                this.applyPatch(node,state);
+            }
+            else {
+                var newState = this.newState(node, newPosition, state);
+                this.transit(node, newState);
+            }
+        }
+    }
+
+    protected newState(node:ll.ILowLevelASTNode,pos:any,state:TransitionState):TransitionState {
+        return new TransitionState(pos, state);
+    }
+
+    protected applyPatch(node:ll.ILowLevelASTNode,state:TransitionState,key:boolean=false){
+        if(node.kind() == yaml.Kind.SEQ || node.valueKind() == yaml.Kind.SEQ){
+            for(var ch of node.children()){
+                var newState = this.newState(ch, state.position(), state);
+                this.applyPatch(ch,newState,key);
+            }
+            if(node instanceof proxy.LowLevelCompositeNode){
+                (<proxy.LowLevelCompositeNode>node).filterChildren();
+            }
+        }
+        else {
+            this.doApplyPatch(node, state, key);
+        }
+    }
+
+    protected doApplyPatch(node:ll.ILowLevelASTNode,state:TransitionState, key:boolean){}
+
+    protected getRegexp(str:string){
+        if(!this.regExps){
+            this.regExps = {};
+        }
+        var rx = this.regExps[str];
+        if(!rx){
+            rx = new RegExp(str);
+            this.regExps[str] = rx;
+        }
+        return rx;
+    }
+}
+
+
+class NamespacePatcherState extends TransitionState{
+
+    rootUnit:ll.ICompilationUnit;
+
+    unit:ll.ICompilationUnit;
+
+    namespaceSources:ll.ICompilationUnit[];
+}
+
+class NamespacePatcher extends TransitionEngine{
+
+    usedNamespaces:{[key:string]:boolean} = {};
+
+    private resolver:namespaceResolver.NamespaceResolver
+        = new namespaceResolver.NamespaceResolver();
+
+    processApi(api:RamlWrapper.Api){
+
+        var apiMap = transitionTemplates["_##map_Api"];
+
+        var state = new NamespacePatcherState(apiMap,null);
+        var llNode = api.highLevel().lowLevel();
+        var unit = llNode.unit();
+        state.rootUnit = unit;
+        state.namespaceSources = [ unit ];
+        state.unit = unit;
+
+        var defaultMediaType
+            = llNode.children().filter(ch=>
+            ch.key()==universeDef.Universe10.Api.properties.mediaType.name).length > 0;
+
+        var globalConditions = {
+            defaultMediaType: defaultMediaType
+        }
+        state.setGlobalConditions(globalConditions);
+
+        this.transit(llNode,state);
+        this.patchAnnotations(llNode,state);
+        this.patchUses(llNode);
+    }
+
+    protected newState(node:ll.ILowLevelASTNode,pos:any,_parentState:TransitionState):NamespacePatcherState {
+        
+        var parentState = <NamespacePatcherState>_parentState;
+        var newState = new NamespacePatcherState(pos, _parentState);
+        newState.rootUnit = parentState.rootUnit;
+
+        var oNode = this.toOriginal(node);
+        var oUnit = oNode.unit();
+        newState.unit = oUnit;
+        
+        if(parentState.unit.absolutePath() == oUnit.absolutePath()){
+            newState.namespaceSources = parentState.namespaceSources;
+        }
+        else {
+            var ramlFirstLine = ll.ramlFirstLine(oUnit.contents());
+            if (ramlFirstLine) {
+                newState.namespaceSources = parentState.namespaceSources.concat(oUnit);
+            }
+            else{
+                newState.namespaceSources = parentState.namespaceSources;
+            }
+        }
+        return newState;
+    }
+
+    protected doApplyPatch(node:ll.ILowLevelASTNode,_state:TransitionState, toKey:boolean){
+
+        if(!(node instanceof proxy.LowLevelProxyNode)){
+            return;
+        }
+        if((<proxy.LowLevelProxyNode>(<proxy.LowLevelProxyNode>node).originalNode()).originalNode()
+            instanceof proxy.LowLevelProxyNode){
+            return;
+        }
+
+        var state = <NamespacePatcherState>_state;
+        if(state.rootUnit.absolutePath()==state.unit.absolutePath()){
+            return;
+        }
+        
+        if(toKey){
+            var key = node.key();
+            var patched = this.patchNamespace(key,state);
+            if(patched!=null){
+                (<proxy.LowLevelCompositeNode>node).setKeyOverride(patched);
+            }
+            return;
+        }
+
+        var value = node.value();
+        if(typeof(value)=="string"){
+            if(value.indexOf("<<")>=0) {
+                return;
+            }
+            var gotExpression = false;
+            for(var i = 0 ; i < value.length ; i++ ) {
+                var ch = value.charAt(i);
+                if (ch == "|" || ch == "(" || ch == "[") {
+                    gotExpression = true;
+                    break;
+                }
+            }
+            if (gotExpression) {
+                var expr = typeExpressions.parse(value);
+                var gotPatch = false;
+                typeExpressions.visit(expr, x=> {
+                    if (x.type == "name") {
+                        var lit = <typeExpressions.Literal>x;
+                        var patched = this.patchNamespace(lit.value, state);
+                        if (patched != null) {
+                            lit.value = patched;
+                            gotPatch = true;
+                        }
+                    }
+                });
+                if (gotPatch) {
+                    var newValue = typeExpressions.serializeToString(expr);
+                    (<proxy.LowLevelCompositeNode>node).setValueOverride(newValue);
+                }
+            }
+            else {
+                var patched = this.patchNamespace(value, state);
+                if (patched != null) {
+                    (<proxy.LowLevelCompositeNode>node).setValueOverride(patched);
+                }
+            }
+
+        }
+        else if(value != null){
+            var pNode = <proxy.LowLevelCompositeNode>value;
+            var key = pNode.key();
+            var patched = this.patchNamespace(key,state);
+            if(patched!=null){
+                (<proxy.LowLevelCompositeNode>pNode).setKeyOverride(patched);
+            }
+        }
+        //this.printInfo(node,_state);
+    }
+    
+    protected patchNamespace(value:string,state:NamespacePatcherState):string{
+        
+        var ind = value.lastIndexOf(".");
+        var unit:ll.ICompilationUnit;
+        var name:string;
+        if(ind<0){
+            unit = state.unit;
+            name = value;
+            if(defSys.rt.builtInTypes().get(name)!=null){
+                return null;
+            }
+        }
+        else{
+            var oldNS = value.substring(0,ind);
+            name = value.substring(ind+1);
+            for(var i = state.namespaceSources.length ; i > 0 ; i--) {
+                var map = this.resolver.nsMap(state.namespaceSources[i-1]);
+                var info = map && map[oldNS];
+                if (info) {
+                    unit = info.unit;
+                    break;
+                }
+            }
+        }
+        var newNS = this.resolver.resolveNamespace(state.rootUnit,unit);
+        if(newNS==null){
+            return null;
+        }
+        else if(newNS == ""){
+            return name;
+        }
+        this.usedNamespaces[newNS] = true;
+        var result = newNS + "." + name;
+        return result;
+    }
+
+
+    protected patchAnnotations(node:ll.ILowLevelASTNode,state:NamespacePatcherState){
+
+        var self = this;
+        var visit = function(x:ll.ILowLevelASTNode,state:NamespacePatcherState){
+
+            for(var ch of x.children()){
+                var newState = self.newState(ch,null,state);
+                visit(ch,newState);
+            }
+
+            if(state.unit.absolutePath()==state.rootUnit.absolutePath()){
+                return;
+            }
+            var key = x.key();
+            if(key==null){
+                return;
+            }
+            if(!util.stringStartsWith(key,"(")||!util.stringEndsWith(key,")")){
+                return;
+            }
+            var annotation = key.substring(1,key.length-1);
+            var patched = self.patchNamespace(annotation, state);
+            if(patched != null){
+                var patchedKey = "("+patched+")";
+                (<proxy.LowLevelProxyNode>x).setKeyOverride(patchedKey);
+            }
+        }
+        visit(node,state);
+    }
+
+    protected printInfo(node:ll.ILowLevelASTNode, state:TransitionState) {
+        var n = node;
+        var arr = [];
+        while (n) {
+            var key = n.key();
+            if (key) {
+                arr.push(key);
+            }
+            n = n.parent();
+        }
+        var str = arr.reverse().join(".");
+        var namespaceSources = (<NamespacePatcherState>state).namespaceSources;
+        if(namespaceSources) {
+            for (var s of namespaceSources) {
+                str += ("\n  " + s.absolutePath());
+            }
+        }
+        str += "\n";
+        console.log(str);
+    }
+    
+    protected toOriginal(node:ll.ILowLevelASTNode){
+        for(var i = 0; i<2 && node instanceof proxy.LowLevelProxyNode; i++){
+            node = (<proxy.LowLevelProxyNode>node).originalNode();
+        }
+        return node;
+    }
+
+    protected patchUses(node:ll.ILowLevelASTNode){
+        if(!(node instanceof proxy.LowLevelCompositeNode)){
+            return;
+        }
+        var unit = node.unit();
+        var extendedUnitMap = this.resolver.expandedPathMap(unit);
+        if(extendedUnitMap==null){
+            return;
+        }
+        var unitMap = this.resolver.pathMap(unit);
+        if(!unitMap){
+            unitMap = {};
+        }
+        
+        var cNode = <proxy.LowLevelCompositeNode>node;
+        var originalChildren = node.children();
+        var usesNodes = originalChildren.filter(x=>
+            x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
+
+        var oNode = this.toOriginal(node);
+        var yamlNode = oNode;
+        while(yamlNode instanceof proxy.LowLevelProxyNode){
+            yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
+        }
+
+        var usesInfos = Object.keys(unitMap).map(x=>extendedUnitMap[x]);
+        var extendedUsesInfos = Object.keys(extendedUnitMap).map(x=>extendedUnitMap[x])
+            .filter(x=>!unitMap[x.absolutePath()]&&this.usedNamespaces[x.namespace()]);
+
+        var u = node.unit();
+        var unitPath = u.absolutePath();
+
+        var newUses = jsyaml.createMapNode("uses");
+        newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
+        newUses.setUnit(yamlNode.unit());
+        for (var ui of usesInfos.concat(extendedUsesInfos)) {
+            var up = ui.absolutePath();
+            var ip = ui.includePath;
+            var mapping = jsyaml.createMapping(ui.namespace(), ip);
+            mapping.setUnit(yamlNode.unit());
+            newUses.addChild(mapping);
+        }
+
+        if(usesNodes.length>0){
+            cNode.replaceChild(usesNodes[0],newUses);
+        }
+        else{
+            cNode.replaceChild(null,newUses);
+        }      
+
+        while(node instanceof proxy.LowLevelProxyNode){
+            node = (<proxy.LowLevelProxyNode>node).originalNode();
+        }
+        node.actual()["usesNode"] = newUses;
+    }
+}
+
+function patchNamespaces(api:RamlWrapper.Api){
+    new NamespacePatcher().processApi(api);
+    var hpr = api.highLevel();
+    if(hpr){
+        hpr.resetChildren();
+    }
+    hpr["clearTypesCache"]();
+}
+

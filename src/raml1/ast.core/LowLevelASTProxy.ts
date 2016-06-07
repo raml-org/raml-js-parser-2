@@ -25,7 +25,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     private _highLevelParseResult:hl.IParseResult;
 
-    private _keyOverride:string;
+    protected _keyOverride:string;
+
+    protected _valueOverride:any;
 
     hasInnerIncludeError(){
         return this._originalNode.hasInnerIncludeError();
@@ -42,10 +44,20 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     }
 
     actual(){
-        if (this._originalNode){
-            return this._originalNode.actual();
+        //if (this._originalNode){
+        var on = this.originalNode();
+        while(on instanceof LowLevelProxyNode){
+            on = (<LowLevelProxyNode>on).originalNode();
         }
-        return this;
+        if(on){
+            var original = on.actual();
+            var proxyData = original.proxyData;
+            if(!proxyData){
+                proxyData = {};
+                original.proxyData = proxyData;
+            }
+            return proxyData;
+        }
     }
 
     transformer():ValueTransformer{ return this._transformer; }
@@ -70,6 +82,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     setKeyOverride(_key:string){
         this._keyOverride=_key;
+    }
+
+    setValueOverride(value:any){
+        this._valueOverride=value;
     }
 
     key():string {
@@ -196,8 +212,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        this._originalNode = new LowLevelValueTransformingNode(
-            node, originalParent,transformer,this.ramlVersion);
+        if(node instanceof LowLevelValueTransformingNode){
+            this._originalNode = node;
+        }
+        else {
+            this._originalNode = new LowLevelValueTransformingNode(
+                node, originalParent, transformer, this.ramlVersion);
+        }
         this._adoptedNodes.push(<LowLevelValueTransformingNode>this._originalNode);
     }
 
@@ -234,11 +255,22 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     }
 
     value(toString?:boolean):any {
+
+        if(this._valueOverride){
+            return this._valueOverride;
+        }
+        var val;
         var valuableNodes:ll.ILowLevelASTNode[] = this._adoptedNodes.filter(x=>x.value()!=null);
         if(valuableNodes.length>0){
-            return valuableNodes[0].value(toString);
+            val = valuableNodes[0].value(toString);
         }
-        return this._originalNode.value(toString);
+        else {
+            val = this._originalNode.value(toString);
+        }
+        if(val instanceof LowLevelValueTransformingNode){
+            this._valueOverride = val;
+        }
+        return val;
     }
 
     children():ll.ILowLevelASTNode[] {
@@ -290,20 +322,26 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         this._children = result;
         return result;
     }
+    
+    filterChildren(){
+        var map = {};
+        var result:LowLevelCompositeNode[] = [];
+        this._children.forEach(x=> {
+
+            var key = this.buildKey(x);
+            if (map[key]) {
+                return;
+            }
+            map[key] = true;
+            result.push(x);
+        });
+        this._children = result;            
+    }
 
     private buildKey(y:ll.ILowLevelASTNode):string {
 
         var obj = json.serialize(y);
         var def = this.nodeDefinition();
-        if (def &&(def.key()==universes.Universe08.TraitRef||def.key()==universes.Universe08.ResourceTypeRef
-            ||def.key()==universes.Universe10.TraitRef||def.key()==universes.Universe10.ResourceTypeRef)) {
-            if(typeof obj == 'object'){
-                var keys = Object.keys(obj);
-                if(keys.length>0){
-                    obj = keys[0];
-                }
-            }
-        }
         return stringify(obj);
     }
 
@@ -404,8 +442,11 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return null;
         }
         for(var i = 0 ; i < this._adoptedNodes.length; i++){
-            var node = this._adoptedNodes[i];
-            var yamlNode = (<any>node.originalNode())._node;
+            var node:any = this._adoptedNodes[i];
+            while(node instanceof LowLevelProxyNode){
+                node = (<LowLevelProxyNode>node).originalNode();
+            }
+            var yamlNode = (<any>node)._node;
             if(yamlNode && yamlNode.value!=null){
                 return node.valueKind();
             }
@@ -450,6 +491,25 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     optional():boolean{
         return _.all(this._adoptedNodes,x=>x.optional());
+    }
+
+    replaceChild(oldNode:ll.ILowLevelASTNode,newNode:ll.ILowLevelASTNode):LowLevelCompositeNode{
+        if(!this._children){
+            this._children = [];
+        }
+        var newCNode = new LowLevelCompositeNode(newNode,this,null,"RAML10");
+        if(oldNode==null){
+            this._children.push(newCNode);
+            return newCNode;
+        }
+        var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
+        if(ind>=0){
+            this._children[ind] = newCNode;
+        }
+        else{
+            this._children.push(newCNode);
+        }
+        return newCNode;
     }
 }
 
@@ -510,6 +570,9 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
     parent():LowLevelValueTransformingNode { return <LowLevelValueTransformingNode>this._parent;}
 
     key():string{
+        if(this._keyOverride){
+            return this._keyOverride;
+        }
         var key = super.key();
         if(this.transformer()!=null) {
             return this.transformer().transform(key).value;

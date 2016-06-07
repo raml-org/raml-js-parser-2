@@ -19,7 +19,7 @@ function load(definition, location, theOptions) {
 
   options.fsResolver = {
     contentAsync: function (filePath) {
-      if (!filePath || path.extname(filePath) !== '.raml') {
+      if (!filePath || path.extname(filePath) !== '.raml' || filePath.indexOf("api.raml")<0) {
         return Promise.reject('file name/URL cannot be null');
       }
       return Promise.resolve(definition);

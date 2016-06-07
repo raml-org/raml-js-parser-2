@@ -1,0 +1,150 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "TCK Sample. RAML 1.0 Types 004.",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "can not resolve type.raml"
+                ],
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/teams",
+        "displayName": "/teams",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "teams"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": [
+    {
+      "code": 6,
+      "message": "Can not resolve type.raml",
+      "path": "api.raml",
+      "line": 8,
+      "column": 8,
+      "position": 163,
+      "range": [
+        {
+          "line": 8,
+          "column": 8,
+          "position": 163
+        },
+        {
+          "line": 8,
+          "column": 12,
+          "position": 167
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "inheriting from unknown type",
+      "path": "api.raml",
+      "line": 8,
+      "column": 8,
+      "position": 163,
+      "range": [
+        {
+          "line": 8,
+          "column": 8,
+          "position": 163
+        },
+        {
+          "line": 8,
+          "column": 12,
+          "position": 167
+        }
+      ]
+    }
+  ]
+}

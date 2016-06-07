@@ -1,0 +1,147 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      }
+    ],
+    "traits": [
+      {
+        "lib1.tr1": {
+          "annotations": {
+            "lib2.MyStringAnnotation": {
+              "structuredValue": "val2",
+              "name": "lib2.MyStringAnnotation"
+            },
+            "lib2.MyObjectAnnotation": {
+              "structuredValue": {
+                "p1": "pVal3",
+                "p2": "pVal4"
+              },
+              "name": "lib2.MyObjectAnnotation"
+            }
+          },
+          "name": "lib1.tr1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "title": "TCK Sample. RAML 1.0 Annotations 030.",
+    "version": "v1",
+    "baseUri": "http://api.samplehost.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "repeat": false,
+        "required": true,
+        "enum": [
+          "v1"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "repeat": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "annotations": {
+          "lib2.MyStringAnnotation": {
+            "structuredValue": "val1",
+            "name": "lib2.MyStringAnnotation"
+          },
+          "lib2.MyObjectAnnotation": {
+            "structuredValue": {
+              "p1": "pVal1",
+              "p2": "pVal2"
+            },
+            "name": "lib2.MyObjectAnnotation"
+          }
+        },
+        "methods": [
+          {
+            "annotations": {
+              "lib2.MyStringAnnotation": {
+                "structuredValue": "val2",
+                "name": "lib2.MyStringAnnotation"
+              },
+              "lib2.MyObjectAnnotation": {
+                "structuredValue": {
+                  "p1": "pVal3",
+                  "p2": "pVal4"
+                },
+                "name": "lib2.MyObjectAnnotation"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "is": [
+              "lib1.tr1"
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

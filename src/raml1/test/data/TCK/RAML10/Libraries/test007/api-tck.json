@@ -1,0 +1,295 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "traits": [
+      {
+        "lib.tr1": {
+          "name": "lib.tr1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.tr2": {
+          "name": "lib.tr2",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.tr3": {
+          "queryParameters": {
+            "<<p1>>": {
+              "name": "<<p1>>",
+              "displayName": "<<p1>>",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "lib.tr3",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.tr4": {
+          "queryParameters": {
+            "<<p2>>": {
+              "name": "<<p2>>",
+              "displayName": "<<p2>>",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "lib.tr4",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.rt1": {
+          "is": [
+            "lib.tr1"
+          ],
+          "name": "lib.rt1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.rt2": {
+          "is": [
+            "lib.tr1",
+            "lib.tr2"
+          ],
+          "name": "lib.rt2",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.rt3": {
+          "is": [
+            {
+              "lib.tr3": {
+                "p1": "param1"
+              }
+            }
+          ],
+          "name": "lib.rt3",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.rt4": {
+          "is": [
+            {
+              "lib.tr3": {
+                "p1": "param1"
+              }
+            },
+            {
+              "lib.tr4": {
+                "p2": "param2"
+              }
+            }
+          ],
+          "name": "lib.rt4",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.rt5": {
+          "is": [
+            "lib.tr1",
+            {
+              "lib.tr3": {
+                "p1": "param1"
+              }
+            }
+          ],
+          "name": "lib.rt5",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "title": "TCK Sample. RAML 1.0 Libraries 004.",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "is": [
+          "lib.tr1"
+        ],
+        "type": "lib.rt1",
+        "relativeUri": "/resource1",
+        "displayName": "/resource1",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource1"
+        ]
+      },
+      {
+        "is": [
+          "lib.tr1",
+          "lib.tr2"
+        ],
+        "type": "lib.rt2",
+        "relativeUri": "/resource2",
+        "displayName": "/resource2",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource2"
+        ]
+      },
+      {
+        "is": [
+          {
+            "lib.tr3": {
+              "p1": "param1"
+            }
+          }
+        ],
+        "type": "lib.rt3",
+        "relativeUri": "/resource3",
+        "displayName": "/resource3",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource3"
+        ]
+      },
+      {
+        "is": [
+          {
+            "lib.tr3": {
+              "p1": "param1"
+            }
+          },
+          {
+            "lib.tr4": {
+              "p2": "param2"
+            }
+          }
+        ],
+        "type": "lib.rt4",
+        "relativeUri": "/resource4",
+        "displayName": "/resource4",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource4"
+        ]
+      },
+      {
+        "is": [
+          "lib.tr1",
+          {
+            "lib.tr3": {
+              "p1": "param1"
+            }
+          }
+        ],
+        "type": "lib.rt5",
+        "relativeUri": "/resource5",
+        "displayName": "/resource5",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource5"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

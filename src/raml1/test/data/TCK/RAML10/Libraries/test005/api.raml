@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Libraries 002.
+version: v1
+baseUri: https://example.com/raml
+traits:
+  t1:
+uses:
+  lib_a1: libs/lib_a1.raml
+  lib_a2: libs/lib_a2.raml
+
+/resource:
+  post:
+    is: [ lib_a1.tr1 ]
+
+  put:
+    is: [ lib_a2.tr2 ]

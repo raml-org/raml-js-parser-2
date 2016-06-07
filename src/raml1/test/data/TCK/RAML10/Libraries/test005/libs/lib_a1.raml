@@ -1,0 +1,9 @@
+#%RAML 1.0  Library
+uses:
+  lib_a2_1: lib_a2.raml
+
+traits:
+  tr1:
+    body:
+      application/json:
+        type: lib_a2_1.MyType

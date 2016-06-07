@@ -33,6 +33,9 @@ type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     //var dr=search.declRoot(context);
     var nm=x.name();
+    if(x.lowLevel() instanceof proxy.LowLevelProxyNode){
+        return nm;
+    }
     if (x.lowLevel().unit()!=context.lowLevel().unit()){
         var root:BasicASTNode=<BasicASTNode><any>context;
         while (true) {

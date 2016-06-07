@@ -44,6 +44,14 @@ describe('Parser integration tests',function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/cosmetics/hypermedia1.raml"));
     });
+    it ("Cosmetics Overlay 2",function(){
+        this.timeout(15000);
+        testErrors(util.data("../example-ramls/cosmetics/hypermedia.raml"));
+    });
+    it ("Cosmetics Extension 2",function(){
+        this.timeout(15000);
+        testErrors(util.data("../example-ramls/cosmetics/hypermedia1.raml"));
+    });
     it ("Instagram 1.0",function(){
         this.timeout(15000);
         testErrors(util.data("../example-ramls/Instagram1.0/api.raml"));
@@ -761,9 +769,6 @@ describe('Parser regression tests', function () {
     })
     it ("library from christian" ,function(){
         testErrors(util.data("parser/libraries/christian/api.raml"));
-    })
-    it ("library in resource type fragment" ,function(){
-        testErrors(util.data("parser/libraries/fragment/api.raml"));
     })
     it ("library in resource type fragment" ,function(){
         testErrors(util.data("parser/libraries/fragment/api.raml"));

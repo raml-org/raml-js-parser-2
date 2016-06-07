@@ -1,0 +1,11 @@
+#%RAML 1.0 Library
+
+uses:
+  lib: ./lib2.raml
+
+traits:
+  tr1:
+    (lib.MyStringAnnotation): val2
+    (lib.MyObjectAnnotation):
+      p1: pVal3
+      p2: pVal4

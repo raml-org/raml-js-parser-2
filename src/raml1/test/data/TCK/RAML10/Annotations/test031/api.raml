@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: TCK Sample. RAML 1.0 Annotations 031.
+version: v1
+baseUri: http://api.samplehost.com/{version}
+
+uses:
+  lib1: ./lib1.raml
+  lib2: ./lib2.raml
+
+/resource:
+  get:
+    queryParameters:
+      qp1:
+        description:
+          value: query parameter 1
+          (lib2.MyStringAnnotation): val1
+          (lib2.MyObjectAnnotation):
+            p1: pVal1
+            p2: pVal2
+
+  post:
+    is: [ lib1.tr1 ]

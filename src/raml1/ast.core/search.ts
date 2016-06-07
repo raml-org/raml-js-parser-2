@@ -12,6 +12,8 @@ import universes=require("../tools/universe")
 import ramlServices=def
 import path=require("path")
 import nominalTypes=defs.rt.nominalTypes;
+import proxy = require("./LowLevelASTProxy");
+import universeHelpers = require("../tools/universeHelpers");
 export type ITypeDefinition=hl.ITypeDefinition
 
 
@@ -64,13 +66,26 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
         return rs;
     }
 
-    h.elements().forEach(x=> {
+    var isRaml1 = h.definition().universe().version()=="RAML10";
+    h.elements().forEach(x=> {        
+        var isProxy = x.lowLevel() instanceof proxy.LowLevelProxyNode;
         if (x.definition().key()== universes.Universe10.UsesDeclaration) {
             var mm=x.attr("value");
             if (mm) {
                 var unit = h.root().lowLevel().unit().resolve(mm.value());
                 if (unit != null) {
-                    unit.highLevel().children().forEach(x=> {
+                    var unitChildren = unit.highLevel().children();
+                    if(isRaml1&&isProxy){
+                        unitChildren = unitChildren.filter(x=>{
+                            if(x.isElement()) {
+                                var definition = x.asElement().definition();
+                                return !universeHelpers.isTraitType(definition)
+                                    && !universeHelpers.isResourceTypeType(definition);
+                            }
+                            return true;
+                        });
+                    }
+                    unitChildren.forEach(x=> {
                         if (x.isElement()) {
                             rs.push(x.asElement());
                         }
@@ -82,6 +97,27 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
             rs.push(x);
         }
     });
+    if(isRaml1) {
+        h.lowLevel().visit(x=> {
+            var iPath = x.includePath();
+            if (iPath != null) {
+                var resolved:ll.ICompilationUnit = null;
+                try {
+                    resolved = x.unit().resolve(iPath);
+                }
+                catch (e) {
+                    return false;
+                }
+                if (resolved) {
+                    var unitHl = resolved.highLevel();
+                    if (unitHl && unitHl.isElement()) {
+                        rs = rs.concat(findDeclarations(unitHl.asElement()));
+                    }
+                }
+            }
+            return true;
+        });
+    }
     return rs;
 
 }
