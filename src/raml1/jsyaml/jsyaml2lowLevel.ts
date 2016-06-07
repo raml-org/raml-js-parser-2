@@ -863,7 +863,7 @@ export class Project implements lowlevel.IProject{
 
             var wrappedUnit: CompilationUnit  = this.pathToUnit[absPath];
 
-            var refPath = path.dirname(toAbsolutePath(this.rootPath, unitPath)) + '/' + includeReference.encodedName();
+            var refPath = path.resolve(path.dirname(toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
 
             if (this.pathToUnit[refPath]){
                 return this.pathToUnit[refPath];

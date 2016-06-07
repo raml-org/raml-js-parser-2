@@ -1,0 +1,8 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema",
+    "id":"asd",
+    "type":"object",
+    "properties":{
+        "p1":{"$ref": "./scheme2.json#type1"}
+    }
+}

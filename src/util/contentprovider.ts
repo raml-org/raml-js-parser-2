@@ -42,9 +42,11 @@ export class ContentProvider {
     }
     
     content(reference) {
-        var absolutePath = this.normalizePath(reference);
-
-        var unit = this.unit.resolve(absolutePath);
+        var normalized = this.normalizePath(reference);
+        if(path.isAbsolute(normalized)&&!isWebPath(normalized)){
+            normalized = path.relative(path.dirname(this.unit.absolutePath()),normalized);
+        }
+        var unit = this.unit.resolve(normalized);
         
         if(!unit) {
             return "";
