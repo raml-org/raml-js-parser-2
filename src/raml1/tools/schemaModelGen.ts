@@ -306,7 +306,14 @@ export class ModelToSchemaGenerator {
     var elements = node.elements();
     var empty = true;
     elements.forEach(p=> {
-      var name = p.attrValue('name').trim();
+      var name = p.attrValue('name');
+
+      if(typeof name !== 'string') {
+        return;
+      }
+
+      name = name.trim();
+
       var optional = p.optional();
       props[name] = this.generateProperty(p, optional);
       empty = false;
