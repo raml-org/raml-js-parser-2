@@ -47,6 +47,7 @@
               }
             }
           },
+          "minProperties": 3,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {

@@ -182,6 +182,18 @@ isScalar(  ):boolean
          * For instances of scalar types returns scalar value
          **/
 value(  ):any
+
+
+        /**
+         * Indicates whether the instance is array
+         **/
+isArray(  ):boolean
+
+
+        /**
+         * Returns components of array instances
+         **/
+items(  ):TypeInstance[]
 }
 
 export interface TypeInstanceProperty{
