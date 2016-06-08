@@ -1,0 +1,104 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "types": [
+      {
+        "cards": {
+          "name": "cards",
+          "displayName": "cards",
+          "type": [
+            "array"
+          ],
+          "repeat": false,
+          "required": true,
+          "items": {
+            "name": "items",
+            "displayName": "items",
+            "type": [
+              "object"
+            ],
+            "repeat": false,
+            "required": true,
+            "properties": {
+              "cardId": {
+                "annotations": {
+                  "lib.bindingDefinition": {
+                    "structuredValue": [
+                      {
+                        "method": "GET",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      },
+                      {
+                        "method": "POST",
+                        "input": "NONE",
+                        "output": "REQUIRED"
+                      }
+                    ],
+                    "name": "lib.bindingDefinition"
+                  }
+                },
+                "name": "cardId",
+                "displayName": "cardId",
+                "type": [
+                  "string"
+                ],
+                "repeat": false,
+                "required": false,
+                "description": "Card identifier.\n",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": []
+}

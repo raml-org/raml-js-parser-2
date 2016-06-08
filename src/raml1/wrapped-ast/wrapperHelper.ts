@@ -24,6 +24,7 @@ import path=require("path");
 import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
+import rTypes = defs.rt;
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
@@ -578,8 +579,32 @@ export function RAMLVersion(api:RamlWrapper.Api):string{
  * __$meta__={"primary":true}
  */
 export function structuredValue(reference:RamlWrapper.Reference):RamlWrapper.TypeInstance{
-    var hl = reference.value().lowLevel();
-    return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(hl);
+    var llNode = reference.value().lowLevel();
+    var type:rTypes.IParsedType = null;
+    var hlNode = llNode.highLevelParseResult();
+    if(hlNode) {
+        var types:rTypes.IParsedTypeCollection = null;
+        var isAnnotations = false;
+        if(hlNode.isAttr()){
+            isAnnotations = universeHelpers.isAnnotationsProperty(hlNode.property());
+            types = hlNode.parent().types();
+        } 
+        else if(hlNode.isElement()){
+            types = hlNode.asElement().types();
+        }
+        if(types){
+            var refName = reference.name();
+            var fromLib = refName.indexOf(".")>=0;
+            if(fromLib){
+                var reg = isAnnotations ? types.getAnnotationTypeRegistry() : types.getTypeRegistry();
+                type = reg.get(refName);
+            }
+            else{
+                type = isAnnotations ? types.getAnnotationType(refName) : types.getType(refName);                
+            }
+        }
+    }
+    return <RamlWrapper.TypeInstance><any>new core.TypeInstanceImpl(llNode,type);
 }
 
 /**

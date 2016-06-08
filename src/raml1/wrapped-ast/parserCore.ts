@@ -4,6 +4,7 @@ import hlImpl=require("../highLevelImpl");
 import jsyaml=require("../jsyaml/jsyaml2lowLevel");
 import json=require("../jsyaml/json2lowLevel");
 import def=require("raml-definition-system");
+import rt = def.rt;
 var ramlService=def;
 import json2lowlevel = require('../jsyaml/json2lowLevel');
 import defaultCalculator = require("./defaultCalculator");
@@ -443,7 +444,7 @@ export interface ApiLoadingError extends Error{
 
 export class TypeInstanceImpl{
 
-    constructor(nodes:ll.ILowLevelASTNode|ll.ILowLevelASTNode[]){
+    constructor(nodes:ll.ILowLevelASTNode|ll.ILowLevelASTNode[],protected type?:rt.IParsedType){
         if(!Array.isArray(nodes)){
             this.node = <ll.ILowLevelASTNode>nodes;
         }
@@ -457,7 +458,7 @@ export class TypeInstanceImpl{
     protected children:ll.ILowLevelASTNode[];
 
     properties() {
-        return this.getChildren().map(x=>new TypeInstancePropertyImpl(x));
+        return this.isArray() ? [] : this.getChildren().map(x=>new TypeInstancePropertyImpl(x));
     }
 
     private getChildren() {
@@ -475,19 +476,28 @@ export class TypeInstanceImpl{
         if(this.node.children().length != 0){
             return false;
         }
-        var hl = this.node.highLevelNode();
-        if(hl){
-            var prop = hl.property();
-            var range = prop.range();
-            if(range) {
-                return range.isValueType();
-            }
+        if(this.type) {
+            return this.type.isScalar();
         }
         return true;
     }
 
     toJSON():any{
         return new tckDumper.TCKDumper().serializeTypeInstance(this);
+    }
+
+    isArray():boolean{
+        if(!this.node){
+            return false;
+        }
+        if(this.type) {
+            return this.type.isArray();
+        }
+        return this.node && this.node.valueKind()==yaml.Kind.SEQ;
+    }
+
+    items(){
+        return this.isArray() ? this.node.children().map(x=>new TypeInstanceImpl(x)) : null;
     }
 }
 

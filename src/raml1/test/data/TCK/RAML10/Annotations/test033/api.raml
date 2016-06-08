@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Test API
+
+uses:
+  lib: lib.raml
+
+baseUri:
+  value: https://example.com
+  (lib.bindingDefinition):
+    - method: "GET"
+      input: "NONE"
+      output: "REQUIRED"
+    - method: "POST"
+      input: "NONE"
+      output: "REQUIRED"

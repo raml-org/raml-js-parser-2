@@ -386,6 +386,9 @@ export class TCKDumper{
         if (inst.isScalar()) {
             return inst.value();
         }
+        else if(inst.isArray()){
+            return inst.items().map(x=>this.serializeTypeInstance(x));
+        }
         else {
             var props = inst.properties();
             if (props.length == 0) {
