@@ -85,6 +85,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     {
         var ast=<ASTNode>this.ast();
         var arr:{ includePath(): string}[] = [];
+        if (ast == null) return []
         ast.gatherIncludes(arr);
 
         ast.children().forEach(x=>{
@@ -1103,13 +1104,19 @@ export class Project implements lowlevel.IProject{
         }
         var relPath = (isWebPath(this.rootPath)==isWebPath(apath))?path.relative(this.rootPath,apath):apath;
         return cnt.then(x=>{
-            if(!x){
+            if(x == null){
                 return Promise.reject(new Error("Can note resolve " + apath));
             }
             var tl=util.stringStartsWith(x,"#%RAML");
             var unit=new CompilationUnit(relPath,x,tl,this,apath);
             this.pathToUnit[apath]=unit;
             return unit;
+        }, err=>{
+            if (typeof (err) == "object" && err instanceof Error) {
+                return Promise.reject(err);
+            } else {
+                return Promise.reject(new Error(err.toString()))
+            }
         }).then((unit: lowlevel.ICompilationUnit) => {
             if(unit.isRAMLUnit()) {
                 return unit;
@@ -2278,6 +2285,15 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return this._errors;
     }
 
+    addIncludeError(error: Error) {
+        this._errors.push(error);
+        if (!(<any>this._node).includeErrors) {
+            (<any>this._node).includeErrors = []
+        }
+
+        (<any>this._node).includeErrors.push(error);
+    }
+
     parent():ASTNode{
         return this._parent;
     }
@@ -2858,6 +2874,12 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var node=new ASTNode(mapping.value,this._unit,this,this._anchor,this._include);
             var res=node.includeErrors();
             this.innerIncludeErrors=node.hasInnerIncludeError();
+
+
+            // if (res == null || res.length == 0) {
+            //     <any>this._node
+            // }
+
             return res;
 
         }
@@ -2877,6 +2899,21 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 var s="Can not resolve "+includePath + " due to: " + Error.message;
                 //known cause of failure
                 rs.push(s);
+                return rs;
+            }
+
+            var innerIncludeErrors : any[] = (<any>this._node).includeErrors;
+            if (innerIncludeErrors && innerIncludeErrors.length > 0) {
+                this.innerIncludeErrors = true;
+
+                rs = innerIncludeErrors.map(innerError=>{
+                    if (typeof(innerError) == "object" && innerError instanceof Error) {
+                        return (<Error> innerError).message;
+                    } else {
+                        return innerError.toString();
+                    }
+                })
+
                 return rs;
             }
 
@@ -3763,14 +3800,31 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                     units.push(x);
                 }
             },x=>{
+                var innerError = (<Project>project).pathToUnit[unitPath];
+
                 lMap[unitPath].forEach(node=>{
-                    if ((<any>node).errors) {
-                        (<any>node).errors().push(new Error(x))
+
+                    if (!innerError) {
+                        if ((<any>node).errors) {
+                            (<any>node).errors().push(new Error(x))
+                        }
+                    } else {
+                        //TODO : for now I disabled inner errors missing reference reporting
+                        //to make sync & async versions of parsing behave the same.
+                        //Sync version of parsing does not traverse schema references unless
+                        //there is a sample pointing to the schema.
+                        //If we choose to report such errors for all schemas in sync mode too
+                        //following should be uncommented
+                        // if ((<any>node).addIncludeError) {
+                        //     (<any>node).addIncludeError(new Error(x))
+                        // }
                     }
                 });
+
                 errors[unitPath] = x;
                 (<Project>project).failedUnits[unitPath] = x;
-                if ((<Project>project).pathToUnit[unitPath]){
+
+                if (innerError){
                     x.inner=true;
                 }
             }));
