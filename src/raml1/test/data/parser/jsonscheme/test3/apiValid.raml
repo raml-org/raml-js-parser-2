@@ -9,12 +9,10 @@ types:
         "type":"object",
         "properties":{
           "child":{
-              "type": "object"
-
+              "type": {"$ref": "scheme.json#"},
           }
-        }
-        ,
-        "required":["child"]
+        },
+        "required": [ "child" ]
       }
 
 
