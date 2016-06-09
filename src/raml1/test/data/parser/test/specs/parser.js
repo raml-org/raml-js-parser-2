@@ -8490,7 +8490,7 @@ describe('Parser', function() {
         raml.load(definition).then(noop, function (error) {
             setTimeout(function () {
                 expect(error.problem_mark).to.exist;
-                error.problem_mark.column.should.be.equal(2);
+                error.problem_mark.column.should.be.equal(3);
                 error.problem_mark.line.should.be.equal(1);
                 done();
             }, 0);

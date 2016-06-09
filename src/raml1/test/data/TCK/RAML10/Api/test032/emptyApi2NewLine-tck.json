@@ -1,0 +1,27 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {},
+  "errors": [
+    {
+      "code": 3,
+      "message": "Missing required property title",
+      "path": "emptyApiNewLineWin.raml",
+      "line": 2,
+      "column": 0,
+      "position": 12,
+      "range": [
+        {
+          "line": 2,
+          "column": 0,
+          "position": 12
+        },
+        {
+          "line": 2,
+          "column": 0,
+          "position": 12
+        }
+      ]
+    }
+  ]
+}
