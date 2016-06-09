@@ -7,17 +7,17 @@
       "code": 3,
       "message": "Missing required property title",
       "path": "emptyApiNewLineWin.raml",
-      "line": 1,
+      "line": 2,
       "column": 0,
       "position": 12,
       "range": [
         {
-          "line": 1,
+          "line": 2,
           "column": 0,
           "position": 12
         },
         {
-          "line": 1,
+          "line": 2,
           "column": 0,
           "position": 12
         }
