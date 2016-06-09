@@ -2,7 +2,8 @@
     "$schema":"http://json-schema.org/draft-04/schema",
     "type": "object",
     "properties":{
-        "rootName": {"type": "string", "required": true},
+        "rootName": {"type": "string"},
         "parent": {"$ref": "subdir/remoteScheme.json#"}
-    }
+    },
+    "required": [ "rootName" ]
 }
