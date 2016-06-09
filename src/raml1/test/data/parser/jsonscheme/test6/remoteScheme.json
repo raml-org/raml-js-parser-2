@@ -4,6 +4,9 @@
     "properties":{
         "name":{
             "type":"string"
+        },
+        "child": {
+          "$ref": "#/definitions/InnerType"
         }
     },
     "definitions":{

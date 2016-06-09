@@ -1,10 +1,11 @@
 {
     "$schema":"http://json-schema.org/draft-04/schema",
+    "id":"asd",
     "type":"object",
     "properties":{
-        "childName":{
+        "name":{
             "type":"string"
         }
     },
-    "required" : [ "childName" ]
+    "required": [ "name" ]
 }

@@ -3,8 +3,7 @@
     "type":"object",
     "properties":{
         "name":{
-            "type":"string",
-            "required":true
+            "type":"string"
         }
     },
     "definitions":{
@@ -12,10 +11,11 @@
             "type":"object",
             "properties":{
                 "innerTypeName":{
-                    "type":"string",
-                    "required":true
+                    "type":"string"
                 }
-            }
+            },
+            "required" : [ "innerTypeName" ]
         }
-    }
+    },
+    "required" : [ "name" ]
 }
