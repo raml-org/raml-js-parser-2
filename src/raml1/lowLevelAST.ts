@@ -325,6 +325,13 @@ export class LineMapperImpl implements LineMapper{
             }
             pos -= lineLength;
         }
+        if(pos==0){
+            return {
+                line: this.mapping.length-1,
+                column: this.mapping[this.mapping.length-1],
+                position: this.content.length
+            }
+        }
 
         if (pos == 1) {
             //sometimes YAML library reports an error at a position of document length + 1, no idea what they want

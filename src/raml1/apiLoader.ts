@@ -265,8 +265,7 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
 
     var ramlFirstLine = contents.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
     if(!ramlFirstLine){
-        //TODO throw sensible error
-        return null;
+        throw new Error("Invalid first line. A RAML document is expected to start with '#%RAML <version> <?fragment type>'.");
     }
 
     var verStr = ramlFirstLine[1];
