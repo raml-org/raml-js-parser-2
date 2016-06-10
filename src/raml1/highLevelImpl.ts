@@ -1793,6 +1793,7 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
 
     var spec = "";
     var ptype = "Api";
+    var originalPType = null;
     var num = 0;
     var pt = 0;
 
@@ -1801,6 +1802,7 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
         if (c == '\r' || c == '\n') {
             if (spec) {
                 ptype = contents.substring(pt, n).trim();
+                originalPType = ptype;
             }
             else {
                 spec = contents.substring(0, n).trim();
@@ -1820,17 +1822,24 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     if (ptype=='API'){
         ptype="Api"
     }
-    if (ptype=='NamedExample'){
+    else if (ptype=='NamedExample'){
         ptype="ExampleSpec"
     }
-    if (ptype=='DataType'){
+    else if (ptype=='DataType'){
         ptype="TypeDeclaration"
     }
-    if (ptype=='SecurityScheme'){
+    else if (ptype=='SecurityScheme'){
         ptype="AbstractSecurityScheme"
     }
+    else if (ptype=='AnnotationTypeDeclaration'){
+        ptype="TypeDeclaration"
+    }
+
+
+    localUniverse.setOriginalTopLevelText(originalPType);
     localUniverse.setTopLevel(ptype);
     localUniverse.setTypedVersion(spec);
+
     // localUniverse.setDescription(spec);
     return { ptype: ptype, localUniverse: localUniverse };
 };
