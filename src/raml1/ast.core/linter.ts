@@ -1737,6 +1737,9 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
                             var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown top level type:" + tl, node)
                             v.accept(i);
                         }
+                    } else if ("Api" == u.getOriginalTopLevelText()) {
+                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Redundant fragment name:" + tl, node)
+                        v.accept(i);
                     }
                 }
             }

@@ -938,98 +938,98 @@ describe('XML parsing tests', function () {
 describe('JSON schemes tests', function () {
     it("JSON Scheme test 1" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test1/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test1/apiValid.raml"));
     })
     it("JSON Scheme test 2" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test1/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test1/apiInvalid.raml"), ["Missing required property: name"]);
     })
-    // it("JSON Scheme test 3" ,function() {
-    //     this.timeout(15000);
-    //     testErrorsByNumber(util.data("parser/jsonscheme/test2/apiValid.raml"), 0);
-    // })
+    it("JSON Scheme test 3" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test2/apiValid.raml"));
+    })
     it("JSON Scheme test 4" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test2/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test2/apiInvalid.raml"), ["Missing required property: name"]);
     })
     it("JSON Scheme test 5" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test3/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test3/apiValid.raml"));
     })
     it("JSON Scheme test 6" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test3/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test3/apiInvalid.raml"), ["Missing required property: name"]);
     })
-    // it("JSON Scheme test 7" ,function() {
-    //     this.timeout(15000);
-    //     testErrorsByNumber(util.data("parser/jsonscheme/test4/apiValid.raml"), 0);
-    // })
+    it("JSON Scheme test 7" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test4/apiValid.raml"));
+    })
     it("JSON Scheme test 8" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test4/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test4/apiInvalid.raml"), ["Missing required property: name"]);
     })
     it("JSON Scheme test 9" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test5/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test5/apiValid.raml"));
     })
     it("JSON Scheme test 10" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test5/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test5/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
     })
     it("JSON Scheme test 11" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test6/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test6/apiValid.raml"));
     })
     it("JSON Scheme test 12" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test6/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test6/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
     })
     it("JSON Scheme test 13" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test7/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test7/apiValid.raml"));
     })
     it("JSON Scheme test 14" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test7/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test7/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
     })
     it("JSON Scheme test 15" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test8/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test8/apiValid.raml"));
     })
     it("JSON Scheme test 16" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test8/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test8/apiInvalid.raml"), ["Missing required property: childName"]);
     })
-    // it("JSON Scheme test 17" ,function() {
-    //     this.timeout(15000);
-    //     testErrorsByNumber(util.data("parser/jsonscheme/test9/apiValid.raml"), 0);
-    // })
+    it("JSON Scheme test 17" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test9/apiValid.raml"));
+    })
     it("JSON Scheme test 18" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test9/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test9/apiInvalid.raml"), ["Missing required property: childName"]);
     })
     it("JSON Scheme test 19" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test10/apiValid.raml"), 0);
+        testErrors(util.data("parser/jsonscheme/test10/apiValid.raml"));
     })
     it("JSON Scheme test 20" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test10/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test10/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
     })
-    // it("JSON Scheme test 21" ,function() {
-    //     this.timeout(15000);
-    //     testErrorsByNumber(util.data("parser/jsonscheme/test11/apiValid.raml"), 0);
-    // })
+    it("JSON Scheme test 21" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test11/apiValid.raml"));
+    })
     it("JSON Scheme test 22" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/jsonscheme/test11/apiInvalid.raml"), 1);
+        testErrors(util.data("parser/jsonscheme/test11/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
     })
 });
 
 describe("Include tests + typesystem",function (){
     it("Include test" ,function() {
         this.timeout(15000);
-        testErrorsByNumber(util.data("parser/include/includeTypes.raml"), 0);
+        testErrorsByNumber(util.data("parser/include/includeTypes.raml"));
     })
 })
 

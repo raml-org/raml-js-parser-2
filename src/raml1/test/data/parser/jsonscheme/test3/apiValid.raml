@@ -8,13 +8,9 @@ types:
         "$schema":"http://json-schema.org/draft-04/schema",
         "type":"object",
         "properties":{
-          "child":{
-              "type": "object"
-
-          }
-        }
-        ,
-        "required":["child"]
+          "child": {"$ref": "scheme.json#"}
+        },
+        "required": [ "child" ]
       }
 
 
