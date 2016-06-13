@@ -581,7 +581,8 @@ function cleanupIncludesFlag(node:hl.IParseResult,v:hl.ValidationAcceptor) {
 
 }
 function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
-    var val=<any>node.lowLevel().actual();
+    var llNode = node.lowLevel();
+    var val=<any>llNode.actual();
 
     if (val._inc){
         return;
@@ -595,9 +596,9 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         }
     }
     val._inc=true;
-    if (node.lowLevel()) {
+    if (llNode) {
 
-        node.lowLevel().includeErrors().forEach(x=> {
+        llNode.includeErrors().forEach(x=> {
             var isWarn=false;
             if (node.lowLevel().hasInnerIncludeError()){
                 isWarn=true;
@@ -605,9 +606,54 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node,isWarn);
             v.accept(em)
         });
+        var includePath = llNode.includePath();
+        if(includePath!=null && !path.isAbsolute(includePath) && !jsyaml.isWebPath(includePath)){
+            var unitPath = llNode.unit().absolutePath();
+            var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
+            if(exceeding>0){
+                var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", node,true);
+                v.accept(em)
+            }
+        }
     }
     node.children().forEach(x=>validateIncludes(x,v));
 
+}
+
+var actualSegments = function (rootPath:string) {
+    rootPath = rootPath.replace(/\\/g, "/").trim();
+    if(rootPath.length>1 && rootPath.charAt(1)==":" && /^win/.test(process.platform)){
+        rootPath = rootPath.substring(2);
+    }
+    var segments = rootPath.split("/");
+    if (segments[0].length == 0) {
+        segments = segments.slice(1);
+    }
+    if (segments.length > 0 && segments[segments.length - 1].length == 0) {
+        segments = segments.slice(0, segments.length - 1);
+    }
+    return segments;
+};
+function calculateExceeding(rootPath:string,relativePath:string){
+
+    var rootSegments = actualSegments(rootPath);
+    var relativeSegments = actualSegments(relativePath);
+
+    var count = rootSegments.length;
+
+    var result = 0;
+    for(var segment of relativeSegments){
+        if(segment==".."){
+            count--;
+            if(count<0){
+                result = Math.min(count,result);
+            }
+        }
+        else{
+            count++;
+        }
+    }
+    return -1 * result;
 }
 var validateRegexp = function (cleanedValue:string, v:hl.ValidationAcceptor, node:hl.IParseResult) {
     try {
