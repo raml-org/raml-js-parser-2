@@ -611,7 +611,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             var unitPath = llNode.unit().absolutePath();
             var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
             if(exceeding>0){
-                var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolving the include path exceeds file system root", node,true);
+                var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", node,true);
                 v.accept(em)
             }
         }

@@ -30,7 +30,7 @@ describe('Parser', function() {
     it('Include path exceeding file system root must cause warning 1', function (done) {
 
         testAPI("./vfsTests/test002/api.raml").should.be.rejectedWith(
-            /Resolving the include path exceeds file system root/).and.notify(done);
+            /Resolved include path exceeds file system root/).and.notify(done);
     });
 
     it('Basic test for includes in subfolders', function (done) {
@@ -39,7 +39,7 @@ describe('Parser', function() {
 
     it('Include path exceeding file system root must cause warning 2', function (done) {
         testAPI("./vfsTests/test004/api.raml").should.be.rejectedWith(
-            /Resolving the include path exceeds file system root/).and.notify(done);
+            /Resolved include path exceeds file system root/).and.notify(done);
     });
 });
 
@@ -49,7 +49,10 @@ function testAPI(_apiPath:string):any{
     var apiDir = path.dirname(apiPath);
     var apiRelPath = "/"+path.basename(apiPath);
     var contents = getContent(apiDir,apiDir);
-    var paths = Object.keys(contents).sort();    
+    var paths = Object.keys(contents).sort();
+    if(paths[0]=="/"){
+        paths = paths.slice(1);
+    }
     
     var vfsInstance = vfs.getInstance();
 
@@ -89,7 +92,7 @@ function testAPI(_apiPath:string):any{
     };
     
     return vfsInstance.directory("/").then(x=>{
-            return putEntry(1);
+            return putEntry(0);
         }).then(x=> {
             return index.loadApi(apiRelPath, {
                 fsResolver: fsResolver
