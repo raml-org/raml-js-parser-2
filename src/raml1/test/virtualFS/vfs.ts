@@ -3,14 +3,11 @@ var FOLDER = "folder";
 import $q = require("q")
 import decl = require("./vfsDecl")
 
-
-var localStorage:decl.LocalStorage;
-if(localStorage==null){
-    localStorage = new decl.LocalStorage();
-}
-var localStorageHelper:decl.LocalStorageHelper;
-if(localStorageHelper==null){
-   localStorageHelper = (function (LOCAL_PERSISTENCE_KEY) {
+export function getInstance():decl.LocalStorageFileSystem{
+    
+    var localStorage:decl.LocalStorage = new decl.LocalStorage();
+    
+    var localStorageHelper:decl.LocalStorageHelper = (function (LOCAL_PERSISTENCE_KEY) {
       return {
         forEach: function(fn) {
           for (var key in localStorage) {
@@ -47,10 +44,10 @@ if(localStorageHelper==null){
         }
     };
   })(LOCAL_PERSISTENCE_KEY);
-}
-var localStorageFileSystem:decl.LocalStorageFileSystem;
-if(localStorageFileSystem == null){
-   localStorageFileSystem = (function (/*$window,*/ $q, /*$prompt,*/ $timeout, localStorageHelper, FOLDER) {
+
+    var localStorageFileSystem:decl.LocalStorageFileSystem 
+        = (function (/*$window,*/ $q, /*$prompt,*/ $timeout, localStorageHelper, FOLDER) {
+
       function fileNotFoundMessage(path) {
         return 'file with path="' + path + '" does not exist';
       }
@@ -392,5 +389,6 @@ if(localStorageFileSystem == null){
 
         return service;
     })(/*$window,*/ $q, /*$prompt,*/ setTimeout, localStorageHelper, FOLDER);
+    
+    return localStorageFileSystem;    
 }
-export = localStorageFileSystem;
