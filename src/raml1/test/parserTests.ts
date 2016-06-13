@@ -66,7 +66,7 @@ describe('Parser integration tests',function(){
     });
     it ("application monitoring",function(){
         this.timeout(15000)
-        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),["Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference could not be resolved: http://appmonitor-action http://appmonitor-action", "Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference could not be resolved: http://appmonitor-action http://appmonitor-action", "Example does not conform to schema:Content is not valid according to schema:Reference could not be resolved: http://appmonitor-rule http://appmonitor-rule", "Unrecognized schema 'appmonitor'"]);
+        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),["Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-rule appmonitor-rule", "Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Unrecognized schema 'appmonitor'"]);
     });
     //it ("api platform",function(){
     //    testErrors(util.data("../../../../example-ramls/api-platform/api.raml"));
@@ -1023,6 +1023,14 @@ describe('JSON schemes tests', function () {
     it("JSON Scheme test 22" ,function() {
         this.timeout(15000);
         testErrors(util.data("parser/jsonscheme/test11/apiInvalid.raml"), ["Missing required property: innerTypeName"]);
+    })
+    it("JSON Scheme test 23" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test8/apiValid0.raml"));
+    })
+    it("JSON Scheme test 24" ,function() {
+        this.timeout(15000);
+        testErrors(util.data("parser/jsonscheme/test8/apiInvalid0.raml"), ["Missing required property: childName"]);
     })
 });
 
