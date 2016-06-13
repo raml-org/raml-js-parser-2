@@ -28,7 +28,6 @@ describe('Parser', function() {
     });
 
     it('Include path exceeding file system root must cause warning 1', function (done) {
-
         testAPI("./vfsTests/test002/api.raml").should.be.rejectedWith(
             /Resolved include path exceeds file system root/).and.notify(done);
     });

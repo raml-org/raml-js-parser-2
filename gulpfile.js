@@ -49,7 +49,7 @@ var testFiles = [
    'dist/raml1/test/typeSystemTests.js',
    'dist/raml1/test/runtimeExampleTests.js',
    'dist/raml1/test/examplesApiTests.js',
-    'dist/raml1/test/virtualFSTests.js',
+   'dist/raml1/test/virtualFSTests.js',
    'dist/raml1/test/TCK.js',
    'dist/raml1/test/TCK2.js',
   // // //
