@@ -232,7 +232,6 @@ export import expander=require("./expanderStub")
  * Not to be used by parser clients.
  */
 export import wrapperHelper=require("./wrapperHelperStub")
-import {uninstallDependency} from "typings/dist/uninstall";
 
 /**
  * Abstract high-level node potentially having children.
