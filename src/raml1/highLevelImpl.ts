@@ -1068,6 +1068,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private _isAux:boolean
     private _auxChecked:boolean=false;
     private _knownIds:{[name:string]:hl.IParseResult};
+    private _slaveIds:{[name:string]:hl.IParseResult};
     private _knownLowLevelIds:{[name:string]:ll.ILowLevelASTNode};
 
     isInEdit:boolean;
@@ -1190,12 +1191,31 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     findById(id:string){
 
-        var v=this._knownIds;
-        if (!v){
+        //we dont need re-indexing each time someone asks
+        //node byu ID from a sub-nodes. Root most probably
+        //already has everything indexed
+        var currentRoot = this.root();
+        if (currentRoot != this) {
+            return currentRoot.findById(id);
+        }
+
+        if (!this._knownIds){
             this._knownIds={};
             var all=search.allChildren(<hl.IHighLevelNode>this);
             all.forEach(x=>this._knownIds[x.id()]=x);
         }
+
+        if (this.isAuxilary()) {
+            if (!this._slaveIds) {
+                this._slaveIds={};
+                var all=search.allChildren(<hl.IHighLevelNode>this);
+                all.forEach(x=>this._slaveIds[x.id()]=x);
+            }
+
+            var nodeIndexedInSlave = this._slaveIds[id];
+            if (nodeIndexedInSlave) return nodeIndexedInSlave;
+        }
+
         return this._knownIds[id];
     }
 
