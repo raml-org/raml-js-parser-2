@@ -530,7 +530,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr7.raml"),["Required property: element is missed"]);
     })
     it ("inplace types 00" ,function(){
-        testErrors(util.data("parser/typexpressions/tr8.raml"),["object is expected"]);//Ok for now lets improve later
+        testErrors(util.data("parser/typexpressions/tr8.raml"),["Required property: ddd is missed"]);//Ok for now lets improve later
     })
     it ("unique keys" ,function(){
         testErrors(util.data("parser/typexpressions/tr9.raml"),["Keys should be unique"]);//Ok for now lets improve later

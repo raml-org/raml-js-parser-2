@@ -831,11 +831,11 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
             return this.children().map(x=>x.value());
         }
         else if (vk===yaml.Kind.MAP||vk===yaml.Kind.ANCHOR_REF){
-            var vl= this._node.dumpToObject(true);
+            var vl= this._node.dumpToObject(false);
             return vl[this.key()];
         }
         else if (this._node.kind()==yaml.Kind.MAP){
-            var vl= this._node.dumpToObject(true);
+            var vl= this._node.dumpToObject(false);
             return vl;
         }
 
