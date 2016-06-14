@@ -277,7 +277,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
             if (isRAML08 && parentDef.isAssignableFrom(parameterTypeName)) {
                 var possibleDefs:def.IType[]
                     = universe08.type(parameterTypeName).allSubTypes().filter(x=>
-                        universes.Universe08[x.nameId()]['properties'][propName] != null);
+                universes.Universe08[x.nameId()]['properties'][propName] != null);
 
                 var possibleDefsMap = {};
                 for(var i = 0 ; i < possibleDefs.length ; i++){
@@ -469,24 +469,24 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                 }
                 else{
 
-                   var issues:hl.ValidationIssue[]=[];
-                   rs.highLevel().validate({
-                       begin(){
+                    var issues:hl.ValidationIssue[]=[];
+                    rs.highLevel().validate({
+                        begin(){
 
-                       },
-                       accept(x:hl.ValidationIssue){
+                        },
+                        accept(x:hl.ValidationIssue){
                             issues.push(x);
-                       },
-                       end(){
+                        },
+                        end(){
 
-                       }
-                   });
-                   if (issues.length>0){
-                       var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
-                       issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
-                       brand.extras=issues;
-                       v.accept(brand);
-                   }
+                        }
+                    });
+                    if (issues.length>0){
+                        var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
+                        issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
+                        brand.extras=issues;
+                        v.accept(brand);
+                    }
                 }
             }
         }
@@ -581,7 +581,8 @@ function cleanupIncludesFlag(node:hl.IParseResult,v:hl.ValidationAcceptor) {
 
 }
 function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
-    var val=<any>node.lowLevel().actual();
+    var llNode = node.lowLevel();
+    var val=<any>llNode.actual();
 
     if (val._inc){
         return;
@@ -595,9 +596,9 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         }
     }
     val._inc=true;
-    if (node.lowLevel()) {
+    if (llNode) {
 
-        node.lowLevel().includeErrors().forEach(x=> {
+        llNode.includeErrors().forEach(x=> {
             var isWarn=false;
             if (node.lowLevel().hasInnerIncludeError()){
                 isWarn=true;
@@ -605,9 +606,54 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node,isWarn);
             v.accept(em)
         });
+        var includePath = llNode.includePath();
+        if(includePath!=null && !path.isAbsolute(includePath) && !jsyaml.isWebPath(includePath)){
+            var unitPath = llNode.unit().absolutePath();
+            var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
+            if(exceeding>0){
+                var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", node,true);
+                v.accept(em)
+            }
+        }
     }
     node.children().forEach(x=>validateIncludes(x,v));
 
+}
+
+var actualSegments = function (rootPath:string) {
+    rootPath = rootPath.replace(/\\/g, "/").trim();
+    if(rootPath.length>1 && rootPath.charAt(1)==":" && /^win/.test(process.platform)){
+        rootPath = rootPath.substring(2);
+    }
+    var segments = rootPath.split("/");
+    if (segments[0].length == 0) {
+        segments = segments.slice(1);
+    }
+    if (segments.length > 0 && segments[segments.length - 1].length == 0) {
+        segments = segments.slice(0, segments.length - 1);
+    }
+    return segments;
+};
+function calculateExceeding(rootPath:string,relativePath:string){
+
+    var rootSegments = actualSegments(rootPath);
+    var relativeSegments = actualSegments(relativePath);
+
+    var count = rootSegments.length;
+
+    var result = 0;
+    for(var segment of relativeSegments){
+        if(segment==".."){
+            count--;
+            if(count<0){
+                result = Math.min(count,result);
+            }
+        }
+        else{
+            count++;
+        }
+    }
+    return -1 * result;
 }
 var validateRegexp = function (cleanedValue:string, v:hl.ValidationAcceptor, node:hl.IParseResult) {
     try {
@@ -722,7 +768,7 @@ class CompositePropertyValidator implements PropertyValidator{
                 }
                 if(node.parent().definition().universe().version()=="RAML10"
                     &&typeOfContainingTemplate(node.parent())!=null){
-                        return;
+                    return;
                 }
                 v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Scalar is expected here",node))
             }
@@ -813,9 +859,9 @@ class CompositePropertyValidator implements PropertyValidator{
             //TODO MOVE TO DEF SYSTEM
             var nameId = node.parent().property()&&node.parent().property().nameId();
             if (nameId == universes.Universe08.Resource.properties.uriParameters.name
-                    || nameId == universes.Universe08.Resource.properties.baseUriParameters.name) {
+                || nameId == universes.Universe08.Resource.properties.baseUriParameters.name) {
 //                    new UrlParameterNameValidator().validate(node, v);
-                    return;
+                return;
             }
         }
 
@@ -861,10 +907,10 @@ class CompositePropertyValidator implements PropertyValidator{
 
 export function isValid(t:hl.ITypeDefinition,h:hl.IHighLevelNode,value: any, p: hl.IProperty, attr?:hl.IAttribute){
     if (t.hasArrayInHierarchy()){
-                return isValidArray(t,h,value,p,attr);
+        return isValidArray(t,h,value,p,attr);
     }
     else if (t.hasValueTypeInHierarchy()){
-            return isValidValueType(t,h,value,p,attr)
+        return isValidValueType(t,h,value,p,attr)
     }
     return true;
 }
@@ -930,7 +976,7 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
             return tm;
         }
         if (t.key() == universes.Universe08.SchemaString||t.key() == universes.Universe10.SchemaString) {
-            var tm = su.createSchema(v, new contentprovider.ContentProvider(h.lowLevel().unit()));
+            var tm = su.createSchema(v, contentProvider(h.lowLevel()));
             if (tm instanceof Error){
                 (<any>tm).canBeRef=true;
             }
@@ -991,18 +1037,18 @@ class NormalValidator implements PropertyValidator{
 
         var range=pr.range();
 
-            var dnode=range.getAdapter(services.RAMLService).getDeclaringNode();
-            if (dnode&&range.isUserDefined()) {
-                var rof = dnode.parsedType();
-                var dp=node.parent().lowLevel().dumpToObject();
-                var tempVal=dp[node.parent().name()];
-                var isVal=pr.canBeValue();
-                var val=(isVal||(tempVal===null||tempVal===undefined))?tempVal:tempVal[pr.nameId()];
-                var validateObject=rof.validate(val,true);
-                if (!validateObject.isOk()) {
-                    validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, false)));
-                }
+        var dnode=range.getAdapter(services.RAMLService).getDeclaringNode();
+        if (dnode&&range.isUserDefined()) {
+            var rof = dnode.parsedType();
+            var dp=node.parent().lowLevel().dumpToObject();
+            var tempVal=dp[node.parent().name()];
+            var isVal=pr.canBeValue();
+            var val=(isVal||(tempVal===null||tempVal===undefined))?tempVal:tempVal[pr.nameId()];
+            var validateObject=rof.validate(val,true);
+            if (!validateObject.isOk()) {
+                validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, false)));
             }
+        }
 
         var v=cb;
         if (node.lowLevel().keyKind()!=yaml.Kind.SEQ) {
@@ -1107,11 +1153,11 @@ class UriValidator{
         try{
             var values:string[]=new UrlParameterNameValidator().parseUrl(node.value());
             if (values.some(x=>x=="version")&&node.property().nameId()=="baseUri"){
-               var version= node.root().attr("version")
+                var version= node.root().attr("version")
 
-               if (!version){
-                   cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "missing version", node,false))
-               }
+                if (!version){
+                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "missing version", node,false))
+                }
             }
 
             if (values.some(x=>x.length == 0)) {
@@ -1365,27 +1411,27 @@ export function getHumanReadableNodeName(astNode:hl.IParseResult) {
 }
 
 function isValidPropertyValue(pr:def.Property,vl:string,c:hl.IHighLevelNode):boolean{
-        var node=<any>search.declRoot(c);
-        if (!node._cach){
-            node._cach={};
+    var node=<any>search.declRoot(c);
+    if (!node._cach){
+        node._cach={};
+    }
+    var id=pr.id();
+    if (pr.domain()){
+        id+=pr.domain().nameId();
+    }
+    if (id) {
+        var cached=node._cach[id];
+        if (cached) {
+            return cached[vl] != null;
         }
-        var id=pr.id();
-        if (pr.domain()){
-            id+=pr.domain().nameId();
-        }
-        if (id) {
-            var cached=node._cach[id];
-            if (cached) {
-                return cached[vl] != null;
-            }
-        }
-        var vls=search.enumValues(pr,c);
-        var mm={}
-        vls.forEach(x=>mm[x]=1);
-        if (pr.id()){
-            node._cach[id]=mm;
-        }
-        return mm[vl]!=null;
+    }
+    var vls=search.enumValues(pr,c);
+    var mm={}
+    vls.forEach(x=>mm[x]=1);
+    if (pr.id()){
+        node._cach[id]=mm;
+    }
+    return mm[vl]!=null;
 }
 function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl.ValidationAcceptor):boolean {
 
@@ -1450,13 +1496,13 @@ function isDuplicateSibling(attr: hl.IAttribute): boolean{
     else{
         siblingName = attr.value() && attr.value().valueName && attr.value().valueName();
     }
-    
+
     if(!siblingName) {
         return false;
     }
-    
+
     var parent = attr.parent &&  attr.parent();
-        
+
     if(!parent) {
         return false;
     }
@@ -1476,7 +1522,7 @@ function isDuplicateSibling(attr: hl.IAttribute): boolean{
     if(siblings.length === 0) {
         return false;
     }
-    
+
     var count = 0;
 
     siblings.forEach(sibling => {
@@ -1761,7 +1807,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                         ||nm.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF
                         ||(nm.lowLevel().valueKind()===null&&!isInlinedTemplate)){
                         //if(nm.value()!=null){
-                            gotValue = true;
+                        gotValue = true;
                         //}
                     }
                     else if (nm.lowLevel().children().length!=0) {
@@ -1799,7 +1845,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
         if(universeHelpers.isResourceTypeType(definition)||universeHelpers.isTraitType(definition)){
             return true;
         }
-        
+
         if(path.length==0){
             return false;
         }
@@ -1828,7 +1874,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             return path.indexOf("/")<0;
         }
         if(lowLevel.key()=="type"){
-                return true;
+            return true;
         }
 
         if(path.length==1){
@@ -1948,10 +1994,10 @@ class CompositeNodeValidator implements NodeValidator {
         }
         if (node.lowLevel().keyKind()==yaml.Kind.SEQ){
 
-                var isPattern=node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
-                if (!isPattern) {
-                    acceptor.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Node key can not be sequence", node));
-                }
+            var isPattern=node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
+            if (!isPattern) {
+                acceptor.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Node key can not be sequence", node));
+            }
 
         }
         if (node.definition().key()==universes.Universe08.GlobalSchema){
@@ -2023,31 +2069,31 @@ class CompositeNodeValidator implements NodeValidator {
             }
         }
         //validation of enum values;
-            if (node.definition().isAssignableFrom(universes.Universe08.Parameter.name)
-                ||node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
+        if (node.definition().isAssignableFrom(universes.Universe08.Parameter.name)
+            ||node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)){
 
-                var vls=node.attributes("enum").map(x=>x.value());
-                if (vls.length!=_.uniq(vls).length){
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "enum contains duplicated values", node)
-                    acceptor.accept(i);
-                }
-
-                if(node.definition().isAssignableFrom(universes.Universe08.NumberTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.NumberTypeDeclaration.name)) {
-                    var isInteger = node.definition().isAssignableFrom(universes.Universe08.IntegerTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.IntegerTypeDeclaration.name);
-
-                    node.attributes("enum").forEach(attribute => {
-                        var value = isInteger ? parseInt(attribute.value()) : parseFloat(attribute.value());
-
-                        var isValid = isInteger ? !isNaN(value) && attribute.value().indexOf('.') === -1 : !isNaN(value);
-
-                        if(!isValid) {
-                            var issue = createIssue(hl.IssueCode.NODE_HAS_VALUE, (isInteger ? "Integer" : "Number") + " is expected", attribute);
-
-                            acceptor.accept(issue);
-                        }
-                    });
-                }
+            var vls=node.attributes("enum").map(x=>x.value());
+            if (vls.length!=_.uniq(vls).length){
+                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "enum contains duplicated values", node)
+                acceptor.accept(i);
             }
+
+            if(node.definition().isAssignableFrom(universes.Universe08.NumberTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.NumberTypeDeclaration.name)) {
+                var isInteger = node.definition().isAssignableFrom(universes.Universe08.IntegerTypeDeclaration.name) || node.definition().isAssignableFrom(universes.Universe10.IntegerTypeDeclaration.name);
+
+                node.attributes("enum").forEach(attribute => {
+                    var value = isInteger ? parseInt(attribute.value()) : parseFloat(attribute.value());
+
+                    var isValid = isInteger ? !isNaN(value) && attribute.value().indexOf('.') === -1 : !isNaN(value);
+
+                    if(!isValid) {
+                        var issue = createIssue(hl.IssueCode.NODE_HAS_VALUE, (isInteger ? "Integer" : "Number") + " is expected", attribute);
+
+                        acceptor.accept(issue);
+                    }
+                });
+            }
+        }
 
         if (universeHelpers.isResourceTypeType(node.definition())){
             if(node.value()==null&&node.lowLevel().value(true)==="null") {
@@ -2159,8 +2205,8 @@ class NodeSpecificValidator implements NodeValidator {
     }
 
     private static registerValidator(listToAddTo : NodeSpecificValidatorRegistryEntry[],
-        definitions : any[], propertyName : string,
-        validator: NodeValidator, assignableFrom = false) {
+                                     definitions : any[], propertyName : string,
+                                     validator: NodeValidator, assignableFrom = false) {
 
         var entry = new NodeSpecificValidatorRegistryEntry(
             definitions,propertyName,validator,assignableFrom);
@@ -2206,8 +2252,8 @@ class OverlayNodesValidator implements NodeValidator{
 
         //accepting annotations
         if (universeHelpers.isAnnotationsProperty(property)
-            /*&& (universeHelpers.isAnnotationRefTypeOrDescendant(definition) ||
-                definition.isAnnotationType())*/) return true;
+        /*&& (universeHelpers.isAnnotationRefTypeOrDescendant(definition) ||
+         definition.isAnnotationType())*/) return true;
 
         //uses allowed
         if (universeHelpers.isUsesProperty(property)) return true;
@@ -2330,7 +2376,7 @@ class OverlayNodesValidator implements NodeValidator{
 
 class RecurrentOverlayValidator implements  NodeValidator{
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor){
-        
+
         var z=new OverlayNodesValidator();
         z.validate(node,v);
         node.directChildren().forEach(x=>{ if (x.isElement()) {this.validate(x.asElement(),v)}});
@@ -2561,6 +2607,12 @@ class ValidateChildrenKeys implements NodeValidator {
     }
 }
 
+function contentProvider(lowLevel: any) {
+    var root = lowLevel && lowLevel.includeBaseUnit() && ((lowLevel.includePath && lowLevel.includePath()) ? lowLevel.includeBaseUnit().resolve(lowLevel.includePath()) : lowLevel.includeBaseUnit());
+
+    return new contentprovider.ContentProvider(root);
+}
+
 /**
  * validates examples
  */
@@ -2676,14 +2728,14 @@ export class ExampleValidator implements PropertyValidator{
                 var so =null;
                 if (strVal.charAt(0)=="{"){
                     try {
-                        so = su.getJSONSchema(strVal, new contentprovider.ContentProvider(sa.lowLevel().unit()));
+                        so = su.getJSONSchema(strVal, contentProvider(sa.lowLevel()));
                     } catch (e){
                         return null;
                     }
                 }
                 if (strVal.charAt(0)=="<"){
                     try {
-                         so = su.getXMLSchema(strVal);
+                        so = su.getXMLSchema(strVal);
                     } catch (e){
                         return null;
                     }
@@ -2733,7 +2785,7 @@ export class ExampleValidator implements PropertyValidator{
                         owner =  owner || (grandParent && grandParent.definition() && grandParent.definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name) && grandParent);
                         if (owner) {
 
-                                return this.typeValidator(owner, node);
+                            return this.typeValidator(owner, node);
 
                         }
                     }
@@ -2939,9 +2991,9 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                     ||universeHelpers.isHeadersProperty(prop);
 
                 if(!universeHelpers.isMethodType(def)&&!(universeHelpers.isTypeDeclarationType(def)&&isParam)){
-                   var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, "Only method nodes can be optional", node, false);
-                   v.accept(issue);
-               }
+                    var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, "Only method nodes can be optional", node, false);
+                    v.accept(issue);
+                }
             }
         }
 
@@ -3288,7 +3340,7 @@ export function createIssue(c:hl.IssueCode, message:string,node:hl.IParseResult,
 }
 
 export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILowLevelASTNode,
-    rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false):hl.ValidationIssue{
+                              rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false):hl.ValidationIssue{
     var original=null;
 
     if (node) {

@@ -9,7 +9,7 @@
         "type1": {
             "type" : "object",
             "properties": {
-                "p2" : { "$ref" : "./scheme1.json" }
+                "p2" : { "$ref" : "./scheme1.json#" }
             }
         }
     }

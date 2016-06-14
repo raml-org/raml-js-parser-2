@@ -2488,9 +2488,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 map.mappings.forEach(x=> {
                     var ms=this.dumpNode(x.value,full);
                     if (ms==null){
-                        ms="!$$$novalue"
+                        ms= full ? "!$$$novalue" : ms;
                     }
-                    if ((ms+"").length>0||full) {
+                    if (ms!=null||full) {
                         res[this.dumpNode(x.key,full) + ""] = ms;
                     }
                 })
@@ -3858,7 +3858,7 @@ function toAbsolutePath(rootPath:string,relPath:string) {
     return apath;
 }
 
-function isWebPath(str):boolean {
+export function isWebPath(str):boolean {
     if (str == null) return false;
 
     return util.stringStartsWith(str,"http://") || util.stringStartsWith(str,"https://");

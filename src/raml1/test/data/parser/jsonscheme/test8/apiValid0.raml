@@ -1,0 +1,10 @@
+#%RAML 0.8
+
+title: Api
+
+/resource:
+  get:
+    body:
+      application/json:
+        schema: !include subdir/scheme.json
+        example: !include valid.json
