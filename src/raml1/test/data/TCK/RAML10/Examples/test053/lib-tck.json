@@ -1,0 +1,119 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "NullValue": {
+          "name": "NullValue",
+          "displayName": "NullValue",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "name": "Fred"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "comment": {
+              "name": "comment",
+              "displayName": "comment",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "name": "Fred"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Fred"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Required property: comment is missed",
+      "path": "lib.raml",
+      "line": 8,
+      "column": 4,
+      "position": 112,
+      "range": [
+        {
+          "line": 8,
+          "column": 4,
+          "position": 112
+        },
+        {
+          "line": 8,
+          "column": 11,
+          "position": 119
+        }
+      ]
+    }
+  ]
+}

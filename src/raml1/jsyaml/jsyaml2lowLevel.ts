@@ -2488,9 +2488,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 map.mappings.forEach(x=> {
                     var ms=this.dumpNode(x.value,full);
                     if (ms==null){
-                        ms="!$$$novalue"
+                        ms= full ? "!$$$novalue" : ms;
                     }
-                    if ((ms+"").length>0||full) {
+                    if (ms!=null||full) {
                         res[this.dumpNode(x.key,full) + ""] = ms;
                     }
                 })
