@@ -101,17 +101,17 @@
       "path": "lib.raml",
       "line": 8,
       "column": 4,
-      "position": 112,
+      "position": 104,
       "range": [
         {
           "line": 8,
           "column": 4,
-          "position": 112
+          "position": 104
         },
         {
           "line": 8,
           "column": 11,
-          "position": 119
+          "position": 111
         }
       ]
     }
