@@ -21,7 +21,7 @@ if (typeof window === 'undefined') {
     chai.should();
 }
 
-describe('Parser', function() {
+describe('Virtual File System Tests', function() {
     this.timeout(15000);
     it('Basic test for virtual file system integration', function (done) {
         testAPI("./vfsTests/test001/api.raml").should.be.fulfilled.and.notify(done);

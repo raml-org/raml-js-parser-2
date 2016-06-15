@@ -6,12 +6,14 @@ types:
         id?: string
         name?: string
         latitude?: number
-        longtitude?: number
+        longitude?: number
+        street_address?: string
       example:
         id: "1"
         name: "John"
         latitude: 34.016242
-        longtitude: -95.800781
+        longitude: -95.800781
+        street_address: ""
     Meta:
       type: object
       properties:
@@ -19,9 +21,8 @@ types:
       example:
         code: 200
     Locations:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?: Location[]
       example:
         meta:
@@ -30,7 +31,7 @@ types:
           - id: "1"
             name: "John"
             latitude: 34.016242
-            longtitude: -95.800781
+            longitude: -95.800781
     Counts:
       type: object
       properties:
@@ -86,9 +87,8 @@ types:
           follows: 3
           followed_by: 5
     SubscriptionPost:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?:
           type: object
           properties:
@@ -125,9 +125,8 @@ types:
         callback_url: "url"
         id: "22"
     SubscriptionsGet:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?:
           type: SubscriptionData[]
       example:
@@ -138,9 +137,8 @@ types:
             callback_url: "url"
             id: "22"
     SubscriptionsDelete:
-       type: object
+       type: OkStatus
        properties:
-         meta?: Meta
          data?:
            type: SubscriptionData
        example:
@@ -171,9 +169,8 @@ types:
         media_count: 2
         name: forest
     TagsSearch:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?: SerachTagItem[]
       example:
         meta:
@@ -209,12 +206,9 @@ types:
         created_time?: string
         text?: string
         from?:
-          type: object
+          type: User
           properties:
-            username?: string
-            profile_picture?: string
-            id?: string
-            full_name?: string
+            type?: string
         id?: string
       example:
         created_time: "1382576494"
@@ -225,9 +219,8 @@ types:
             full_name: "John Smith"
         id: "200"
     MediaComment:
-      type: object
+      type: OkStatus
       properties:
-        meta: Meta
         data: Comment[]
       example:
         meta:
@@ -269,9 +262,8 @@ types:
         version: "2.11"
         width: 600
     RelationshipsPost:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?:
           type: object
           properties:
@@ -282,9 +274,8 @@ types:
         data:
           outgoing_status: "none"
     Relationships:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data?:
           type: object
           properties:
@@ -297,9 +288,8 @@ types:
           outgoing_status: "none"
           incoming_status: "requested_by"
     RequestedBy:
-      type: object
+      type: OkStatus
       properties:
-        meta: Meta
         data:
           type: object
           properties:
@@ -341,38 +331,11 @@ types:
     OkStatus:
       type: object
       properties:
-        geo:
-          type: object
-          properties:
-            address:
-              type: object
-              properties:
-                city: string
-                streetAddress: string
-            age: number
+        meta?: Meta
+        data?: any | null
       example:
-        geo:
-          address:
-            city: "SEATTLE"
-            streetAddress: "300 BOYLSTON AVE E"
-          age: 20
-    Caption:
-      type: object
-      properties:
-        created_time?: string
-        text?: string
-        from?:
-          type: object
-          properties:
-            username?: string
-            id?: string
-        id?: string
-      example:
-        created_time: "1382576494"
-        text: "text"
-        from:
-          username: "John"
-          id: "2000"
+        meta:
+          code: 200
     Likes:
       type: object
       properties:
@@ -439,12 +402,7 @@ types:
                     full_name: "John Smith"
                   id: "200"
               count: 1
-            caption:
-              created_time: "1382576494"
-              text: "text"
-              from:
-                username: "John"
-                id: "2000"
+            caption: null
             likes:
               count: 42
               data:
@@ -460,12 +418,12 @@ types:
             link: "link"
             created_time: "1386312776"
             id: "id"
-            location: "location"
+            location: null
     TagsRecentMediaItem:
       type: object
       properties:
         type?: string
-        users_in_photo?: string[]
+        users_in_photo?: UsersInPhoto[]
         filter?: string
         tags?: string[]
         comments?:
@@ -473,14 +431,13 @@ types:
           properties:
             data?: Comment[]
             count?: number
-        caption?:
-          type: Caption
+        caption?: null | Comment
         likes?: Likes
         link?: string
         created_time?: string
         images?: Image
         id?: string
-        location?: string
+        location?: null | Location
       example:
         type: "photo"
         tags:
@@ -518,7 +475,12 @@ types:
         created_time: "1386312776"
 
         id: "id"
-        location: "location"
+        location:
+          latitude: 37.778720183610183
+          longitude: -122.3962783813477
+          id: "520640"
+          street_address: ""
+          name: Le Truc
     UsersInPhoto:
       type: object
       properties:
@@ -556,13 +518,13 @@ types:
               properties:
                 data?: Comment[]
                 count?: number
-            caption: string
+            caption: null | Comment
             likes: Likes
             link: string
             user: User
             created_time: string
             id: string
-            location: string
+            location: Location | null
       example:
         data:
           users_in_photo:
@@ -592,7 +554,15 @@ types:
                   id: "2000"
                   full_name: "John Smith"
                 id: "200"
-          caption: string
+          caption:
+            created_time: "1296710352"
+            text: Inside le truc #foodtruck
+            from:
+              username: kevin
+              full_name: Kevin Systrom
+              type: user
+              id: "3"
+            id: "26621408"
           likes:
             count: 42
             data:
@@ -608,7 +578,7 @@ types:
           link: "link"
           created_time: "1386312776"
           id: "id"
-          location: "location"
+          location: null
           user:
             id: "1"
             username: "John"
@@ -624,7 +594,7 @@ types:
       properties:
         distance: number
         type?: string
-        users_in_photo: object[]
+        users_in_photo: UsersInPhoto[]
         filter: string
         tags: string[]
         comments:
@@ -632,20 +602,14 @@ types:
           properties:
             data?: Comment[]
             count?: number
-        caption: string
+        caption: null | Comment
         likes: Likes
         link: string
         user: User
         created_time: string
         id: string
         images?: Image
-        location:
-          type: object
-          properties:
-            id: string
-            latitude: number
-            longitude: number
-            name: string
+        location: null | Location
       example:
         distance: 50
         users_in_photo:
@@ -675,7 +639,7 @@ types:
                 id: "2000"
                 full_name: "John Smith"
               id: "200"
-        caption: string
+        caption: null
         likes:
           count: 42
           data:
@@ -734,14 +698,14 @@ types:
               properties:
                 data?: Comment[]
                 count?: number
-            caption: string
+            caption: null | Comment
             likes: Likes
             link: string
             user: User
             created_time: string
             id: string
             images?: Image
-            location: string
+            location: null | Location
       example:
         distance: 50
         videos:
@@ -780,7 +744,15 @@ types:
                   id: "2000"
                   full_name: "John Smith"
                 id: "200"
-          caption: string
+          caption:
+            created_time: "1296710352"
+            text: Inside le truc #foodtruck
+            from:
+              username: kevin
+              full_name: Kevin Systrom
+              type: user
+              id: "3"
+            id: "26621408"
           likes:
             count: 42
             data:
@@ -796,7 +768,12 @@ types:
           link: "link"
           created_time: "1386312776"
           id: "id"
-          location: "location"
+          location:
+            latitude: 37.778720183610183
+            longitude: -122.3962783813477
+            id: "520640"
+            street_address: ""
+            name: "Le Truc"
           user:
             id: "1"
             username: "John"
@@ -808,12 +785,10 @@ types:
               follows: 3
               followed_by: 5
     MediaSearch:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data: MediaSearchFirstType | MediaSearchSecondType
     MediaSearchArray:
-      type: object
+      type: OkStatus
       properties:
-        meta?: Meta
         data: (MediaSearchFirstType | MediaSearchSecondType)[]
