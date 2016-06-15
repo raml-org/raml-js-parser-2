@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: Zero as array element 1
+
+resourceTypes:
+  rt1:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: MyType
+
+types:
+  MyArrayType:
+    type: number[]
+    example: |
+      [ 0.0, 1.0, 2.0 ]
+
+  MyType:
+    properties:
+      p: MyArrayType
+    example: |
+        {
+          "p": [ 1.0, 0.0, 0.0 ]
+        }
+
+/resource:
+  type: rt1
