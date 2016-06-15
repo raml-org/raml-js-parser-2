@@ -210,12 +210,15 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
             }
 
 
-            if (node.lowLevel().value()) {
+            if (node.lowLevel().value(true)!=null) {
                 if (km.parentValue) {
                     res.push(new hlimpl.ASTPropImpl(node.lowLevel(), node, km.parentValue.range(), km.parentValue));
                 }
                 else if (km.canBeValue) {
                     var s = node.lowLevel().value();
+                    if(s==null){
+                        s = node.lowLevel().value(true);
+                    }
                     if (typeof s == 'string' && (<string>s).trim().length > 0) {
                         //if (km.canBeValue.nameId()==universes.Universe10.Resource.properties.signature.name){
                         //      if (s.trim().charAt(0)=='('){

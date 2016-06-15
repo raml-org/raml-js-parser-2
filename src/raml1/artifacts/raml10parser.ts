@@ -1863,11 +1863,21 @@ setMaxProperties( param:number ){
 
 
         /**
-         * JSON schema style syntax for declaring maps
+         * A Boolean that indicates if an object instance has additional properties.
          **/
-additionalProperties(  ):TypeDeclaration{
-             return <TypeDeclaration>super.element('additionalProperties');
+additionalProperties(  ):boolean{
+             return <boolean>super.attribute('additionalProperties', this.toBoolean);
          }
+
+
+        /**
+         * @hidden
+         * Set additionalProperties value
+         **/
+setAdditionalProperties( param:boolean ){
+            this.highLevel().attrOrCreate("additionalProperties").setValue(""+param);
+            return this;
+        }
 
 
         /**
@@ -1964,6 +1974,20 @@ minProperties(  ):AnnotationRef[]{
          **/
 maxProperties(  ):AnnotationRef[]{
         var attr = this.node.attr("maxProperties");
+        if(attr==null){
+          return [];
+        }
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+        return <AnnotationRef[]>result;
+}
+
+
+        /**
+         * ObjectTypeDeclaration.additionalProperties annotations
+         **/
+additionalProperties(  ):AnnotationRef[]{
+        var attr = this.node.attr("additionalProperties");
         if(attr==null){
           return [];
         }

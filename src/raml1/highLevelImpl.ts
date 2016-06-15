@@ -852,7 +852,11 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
                 }
             }
         }
-        return this._node.value();
+        var val = this._node.value();
+        if(val==null){
+            val = this._node.value(true);
+        }
+        return val;
     }
     _children:LowLevelWrapperForTypeSystem[];
 
