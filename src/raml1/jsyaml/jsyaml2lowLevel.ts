@@ -2631,8 +2631,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 if(!ast) {
                     return "can not resolve "+includePath + " due to: file is empty";
                 }
-                
-                return ast;
+
+                return ast.value();
             }
 
             var text = resolved.contents();
