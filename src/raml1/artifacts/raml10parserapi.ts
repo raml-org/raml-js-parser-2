@@ -721,9 +721,9 @@ maxProperties(  ):number
 
 
         /**
-         * JSON schema style syntax for declaring maps
+         * A Boolean that indicates if an object instance has additional properties.
          **/
-additionalProperties(  ):TypeDeclaration
+additionalProperties(  ):boolean
 
 
         /**
@@ -766,6 +766,12 @@ minProperties(  ):AnnotationRef[]
          * ObjectTypeDeclaration.maxProperties annotations
          **/
 maxProperties(  ):AnnotationRef[]
+
+
+        /**
+         * ObjectTypeDeclaration.additionalProperties annotations
+         **/
+additionalProperties(  ):AnnotationRef[]
 
 
         /**
