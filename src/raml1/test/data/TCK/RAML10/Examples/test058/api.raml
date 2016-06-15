@@ -1,0 +1,30 @@
+#%RAML 1.0
+title: Animals test
+
+mediaType: application/json
+
+types:
+  CatOrDog:
+    type: Cat | Dog # elements: Cat or Dog
+  Cat:
+    type: object
+    properties:
+      name: string
+      color: string
+  Dog:
+    type: object
+    properties:
+      name: string
+      fangs: string
+
+/animals/{animalId}:
+  get:
+    responses:
+      200:
+        body:
+          type: CatOrDog
+          example: |
+            {
+              "name": "Rex",
+              "fangs": "big ones"
+            }
