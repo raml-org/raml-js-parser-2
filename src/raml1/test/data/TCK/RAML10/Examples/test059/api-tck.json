@@ -1,0 +1,311 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "CatOrDog": {
+          "name": "CatOrDog",
+          "displayName": "CatOrDog",
+          "type": [
+            "Cat | Dog"
+          ],
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Cat": {
+          "name": "Cat",
+          "displayName": "Cat",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "color": {
+              "name": "color",
+              "displayName": "color",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Dog": {
+          "name": "Dog",
+          "displayName": "Dog",
+          "type": [
+            "object"
+          ],
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "fangs": {
+              "name": "fangs",
+              "displayName": "fangs",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Animals test",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "CatOrDog"
+                    ],
+                    "example": {
+                      "name": "Rex",
+                      "fangs-INCORRECT": "big ones"
+                    },
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": {
+                        "name": "Rex",
+                        "fangs-INCORRECT": "big ones"
+                      },
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "name": "Rex",
+                        "fangs-INCORRECT": "big ones"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "uriParameters": {
+          "animalId": {
+            "name": "animalId",
+            "displayName": "animalId",
+            "type": [
+              "string"
+            ],
+            "repeat": false,
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "repeat": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/animals/{animalId}",
+        "displayName": "/animals/{animalId}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "animals",
+          "{animalId}"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Required property: color is missed",
+      "path": "api.raml",
+      "line": 25,
+      "column": 10,
+      "position": 410,
+      "range": [
+        {
+          "line": 25,
+          "column": 10,
+          "position": 410
+        },
+        {
+          "line": 25,
+          "column": 17,
+          "position": 417
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Union type options do not pass validation",
+      "path": "api.raml",
+      "line": 25,
+      "column": 10,
+      "position": 410,
+      "range": [
+        {
+          "line": 25,
+          "column": 10,
+          "position": 410
+        },
+        {
+          "line": 25,
+          "column": 17,
+          "position": 417
+        }
+      ]
+    }
+  ]
+}

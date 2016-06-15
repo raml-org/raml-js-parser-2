@@ -287,7 +287,7 @@
     },
     {
       "code": 11,
-      "message": "union type options does not pass validation",
+      "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "line": 24,
       "column": 10,
