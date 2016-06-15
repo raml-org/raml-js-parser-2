@@ -273,17 +273,17 @@
       "path": "api.raml",
       "line": 25,
       "column": 10,
-      "position": 410,
+      "position": 385,
       "range": [
         {
           "line": 25,
           "column": 10,
-          "position": 410
+          "position": 385
         },
         {
           "line": 25,
           "column": 17,
-          "position": 417
+          "position": 392
         }
       ]
     },
@@ -293,17 +293,17 @@
       "path": "api.raml",
       "line": 25,
       "column": 10,
-      "position": 410,
+      "position": 385,
       "range": [
         {
           "line": 25,
           "column": 10,
-          "position": 410
+          "position": 385
         },
         {
           "line": 25,
           "column": 17,
-          "position": 417
+          "position": 392
         }
       ]
     }
