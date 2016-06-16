@@ -506,7 +506,7 @@ export class TypeInstancePropertyImpl{
     constructor(protected node:ll.ILowLevelASTNode){}
 
     name(){
-        return this.node.key();
+        return this.node.optional() ? this.node.key() + "?" : this.node.key();
     }
 
     value(){

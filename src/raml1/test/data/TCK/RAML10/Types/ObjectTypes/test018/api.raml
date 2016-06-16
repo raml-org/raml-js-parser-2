@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+# Objective: This RAML validates a property defined with two trailing question marks in the name and required key in true
+# Expected result: Missing required field "title??"
+# Validated with a invalid example
+
+# tags: object, property, trailing-question-mark, required, example
+
+title: properties with trailing question marks
+types:
+  Person:
+    type: object
+    properties:
+      name: string
+      title??:
+        type: string
+        required: true
+    example:
+      name: eleo

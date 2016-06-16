@@ -584,6 +584,19 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             return this.computedValue(this.property().nameId());
         }
         if (this.fromKey) {
+            var parent = this.parent()
+            var definition = parent.definition();
+            if(definition.universe().version()=="RAML08"){
+                return this._node.key();
+            }
+            if(universeHelpers.isNameProperty(this.property())) {
+                if (definition.isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+                    var requiredAttr = parent.attr("required");
+                    if(requiredAttr&&requiredAttr.value()!=null){
+                        return this._node.optional() ? this._node.key()+"?" : this._node.key();
+                    }
+                }
+            }
             return this._node.key();
         }
         if (this.property().isAnnotation()&&this._node.key()&&this._node.key()!='annotations'){
@@ -769,6 +782,10 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         } else {
             return false;
         }
+    }
+    
+    isFromKey():boolean{
+        return this.fromKey;
     }
 
 }
@@ -1427,7 +1444,14 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
         var ka=_.find(this.directChildren(),x=>x.property()&&x.property().getAdapter(services.RAMLPropertyService).isKey());
         if (ka&&ka instanceof ASTPropImpl){
-            var c= (<ASTPropImpl>ka).value();
+            var c = null;
+            if((<ASTPropImpl>ka).isFromKey()){
+                var key = this._node.key();
+                c = this._node.optional() ? key + "?" : key;  
+            }
+            else {
+                c = (<ASTPropImpl>ka).value();
+            }
             return c;
         }
         return super.name();
