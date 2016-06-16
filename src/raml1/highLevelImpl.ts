@@ -1445,11 +1445,13 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         var ka=_.find(this.directChildren(),x=>x.property()&&x.property().getAdapter(services.RAMLPropertyService).isKey());
         if (ka&&ka instanceof ASTPropImpl){
             var c = null;
-            if((<ASTPropImpl>ka).isFromKey()){
+            var defClass = this.definition();
+            var ramlVersion = defClass.universe().version();
+            if(defClass&&ramlVersion=="RAML10"&&(<ASTPropImpl>ka).isFromKey()) {
                 var key = this._node.key();
-                c = this._node.optional() ? key + "?" : key;  
+                c = this._node.optional() ? key + "?" : key;
             }
-            else {
+            else{
                 c = (<ASTPropImpl>ka).value();
             }
             return c;
