@@ -1,0 +1,18 @@
+#%RAML 1.0
+
+# Objective: This RAML validates a property marked as not required using a trailing question mark in the name and no explicit required key
+# Expected result: Display name "title", no missing required field
+# Validated with a valid example
+
+# tags: object, property, trailing-question-mark, example
+
+title: properties with trailing question marks
+types:
+  Person:
+    type: object
+    properties:
+      name: string
+      title?:
+        type: string
+    example:
+      name: eleo

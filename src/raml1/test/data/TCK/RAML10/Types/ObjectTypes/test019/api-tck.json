@@ -1,0 +1,93 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "name": "eleo"
+          },
+          "repeat": false,
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "type": [
+                "string"
+              ],
+              "repeat": false,
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": {
+              "name": "eleo"
+            },
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "eleo"
+            }
+          }
+        }
+      }
+    ],
+    "title": "properties with trailing question marks"
+  },
+  "errors": []
+}
