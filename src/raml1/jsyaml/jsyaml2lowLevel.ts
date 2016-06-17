@@ -2620,13 +2620,21 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 //so doing the same @Denis
                 return "can not resolve "+includePath + " due to: " + Error.message;
             }
+
             if (resolved==null){
-                return "can not resolve "+includePath
+                return "can not resolve "+includePath;
             }
-            if (resolved.isRAMLUnit()){
-                return resolved.ast().value();
-                
+
+            if(resolved.isRAMLUnit()){
+                var ast: any = resolved.ast();
+
+                if(!ast) {
+                    return "can not resolve "+includePath + " due to: file is empty";
+                }
+
+                return ast.value();
             }
+
             var text = resolved.contents();
             if(textutil.isMultiLineValue(text)) {
                 text = textutil.fromMutiLine(text);
