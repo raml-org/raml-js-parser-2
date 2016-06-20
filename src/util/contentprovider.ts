@@ -5,6 +5,7 @@ import URL = require('url');
 import fs = require('fs');
 import lowLevel = require("../raml1/lowLevelAST");
 import util = require("./index");
+import ll = require("../raml1/lowLevelAST");
 
 import resourceRegistry = require("../raml1/jsyaml/resourceRegistry");
 
@@ -31,11 +32,11 @@ export class ContentProvider {
         var result;
 
         if (!isWebPath(url)) {
-            result = path.normalize(url);
+            result = path.normalize(url).replace(/\\/g,"/");
         } else {
             var prefix = url.toLowerCase().indexOf('https') === 0 ? 'https://' : 'http://';
 
-            result = prefix + path.normalize(url.substring(prefix.length));
+            result = prefix + path.normalize(url.substring(prefix.length)).replace(/\\/g,"/");
         }
 
         return result;
@@ -43,10 +44,12 @@ export class ContentProvider {
     
     content(reference) {
         var normalized = this.normalizePath(reference);
-        if(path.isAbsolute(normalized)&&!isWebPath(normalized)){
-            normalized = path.relative(path.dirname(this.unit.absolutePath()),normalized);
-        }
-        var unit = this.unit.resolve(normalized);
+
+        //Absolute local paths are understand as relative to rootRAML
+        //by 'unit.resolve()'. In order to make it understand the input properly,
+        //all absolute local paths must be switched to relative form
+        var unitPath = this.toRelativeIfNeeded(normalized);
+        var unit = this.unit.resolve(unitPath);
         
         if(!unit) {
             return "";
@@ -56,9 +59,13 @@ export class ContentProvider {
     }
 
     contentAsync(reference): Promise<string> {
-        var absolutePath = this.normalizePath(reference);
-
-        var unitPromise = this.unit.resolveAsync(absolutePath);
+        var normaized = this.normalizePath(reference);
+        
+        //Absolute local paths are understand as relative to rootRAML
+        //by 'unit.resolveAsync()'. In order to make it understand the input properly,
+        //all absolute local paths must be switched to relative form
+        var unitPath = this.toRelativeIfNeeded(normaized);
+        var unitPromise = this.unit.resolveAsync(unitPath);
 
         if (!unitPromise) {
             return Promise.resolve("");
@@ -71,24 +78,21 @@ export class ContentProvider {
         return result;
     }
 
+    private toRelativeIfNeeded(normaized:any|any) {
+        var unitPath = normaized;
+        if (path.isAbsolute(normaized) && !isWebPath(normaized)) {
+            unitPath = path.relative(path.dirname(this.unit.absolutePath()), normaized);
+        }
+        return unitPath;
+    }
+
     hasAsyncRequests() {
         return resourceRegistry.hasAsyncRequests();
     }
 
     resolvePath(context, relativePath) {
-        if(!relativePath || !context) {
-            return relativePath;
-        }
-
-        var result;
-
-        if(!isWebPath(context)) {
-            result =  path.resolve(path.dirname(context), relativePath);
-        } else {
-            result = URL.resolve(context,relativePath);
-        }
-
-        return result;
+        //Using standard way of resolving references occured in RAML specs
+        return ll.buildPath(relativePath,context,this.unit.project().getRootPath());
     }
 
     isAbsolutePath(uri) {
@@ -109,7 +113,5 @@ export class ContentProvider {
 }
 
 function isWebPath(str):boolean {
-    if (str == null) return false;
-
-    return util.stringStartsWith(str, "http://") || util.stringStartsWith(str, "https://");
+    return ll.isWebPath(str);
 }

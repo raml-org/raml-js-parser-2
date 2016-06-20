@@ -58,7 +58,7 @@ function optionsForContent(content:string,
     return {
         fsResolver:{
             content(pathStr:string):string{
-                if (pathStr==path.resolve("/","#local.raml")){
+                if (pathStr==path.resolve("/","#local.raml").replace(/\\/,"/")){
                     return content;
                 }
                 if (arg2){
@@ -69,7 +69,7 @@ function optionsForContent(content:string,
             },
 
             contentAsync(pathStr:string):Promise<string>{
-                if (pathStr==path.resolve("/","#local.raml")){
+                if (pathStr==path.resolve("/","#local.raml").replace(/\\/,"/")){
                     return Promise.resolve(content);
                 }
                 if (arg2){

@@ -10,7 +10,6 @@ import hli=require("../highLevelImpl");
 import services=require("../definition-system/ramlServices");
 import rr=require("./resourceRegistry")
 import util = require("../../util/index")
-import URL = require("url")
 import refResolvers = require("./includeRefResolvers")
 import schemes = require('../../util/schemaAsync');
 import resolversApi = require("./resolversApi")
@@ -59,7 +58,7 @@ export class MarkupIndentingBuffer {
 export class CompilationUnit implements lowlevel.ICompilationUnit{
 
     constructor(private _path,private _content,private _tl,private _project:Project, private _apath:string){
-
+        this._path = this._path != null ? this._path.replace(/\\/g,"/") : null;
     }
     private stu:boolean;
     private _lineMapper:lowlevel.LineMapper;
@@ -793,7 +792,7 @@ export class Project implements lowlevel.IProject{
 
     setCachedUnitContent(pth:string,cnt:string,tl:boolean=true):CompilationUnit{
         var relPath = pth;
-        var apath=toAbsolutePath(this.rootPath,pth);
+        var apath=lowlevel.toAbsolutePath(this.rootPath,pth);
         var unit=new CompilationUnit(relPath,cnt,tl,this,apath);
         this.pathToUnit[apath]=unit;
         return unit;
@@ -811,12 +810,12 @@ export class Project implements lowlevel.IProject{
             pathInUnit = includeReference.getIncludePath();
         }
 
-        var absPath = this.buildPath(pathInUnit, unitPath);
+        var absPath = lowlevel.buildPath(pathInUnit, unitPath, this.rootPath);
 
         if(includeReference) {
             var result;
 
-            var refPath = path.resolve(path.dirname(toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
+            var refPath = lowlevel.toAbsolutePath(path.dirname(lowlevel.toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
 
             // if (this.pathToUnit[refPath]) {
             //     result = this.pathToUnit[refPath];
@@ -846,7 +845,7 @@ export class Project implements lowlevel.IProject{
         if(!pathInUnit){
             return null;
         }
-
+        pathInUnit = pathInUnit.replace(/\\/g,"/");
         var includeReference = refResolvers.getIncludeReference(pathInUnit);
 
         var oldPath = pathInUnit;
@@ -855,7 +854,7 @@ export class Project implements lowlevel.IProject{
             pathInUnit = includeReference.getIncludePath();
         }
 
-        var absPath = this.buildPath(pathInUnit, unitPath);
+        var absPath = lowlevel.buildPath(pathInUnit, unitPath, this.rootPath);
 
         if(includeReference) {
             if(!this.pathToUnit[absPath]) {
@@ -864,7 +863,7 @@ export class Project implements lowlevel.IProject{
 
             var wrappedUnit: CompilationUnit  = this.pathToUnit[absPath];
 
-            var refPath = path.resolve(path.dirname(toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
+            var refPath = lowlevel.toAbsolutePath(path.dirname(lowlevel.toAbsolutePath(this.rootPath, unitPath)),includeReference.encodedName());
 
             if (this.pathToUnit[refPath]){
                 return this.pathToUnit[refPath];
@@ -877,27 +876,6 @@ export class Project implements lowlevel.IProject{
 
         return this.unit(absPath,true);
     }
-
-    buildPath(pathInUnit, unitPath) {
-        if (path.isAbsolute(pathInUnit)){
-            var e=path.extname(unitPath);
-            if (e!=".json"&&e!=".xsd") {
-                //SUPPORTING 0.8 style resolving due to compatiblity reasons
-                pathInUnit = pathInUnit.substr(1);
-                unitPath = path.resolve(this.rootPath,path.basename(unitPath));
-            }
-        }
-        if(isWebPath(pathInUnit)||path.isAbsolute(pathInUnit)){
-            return pathInUnit;
-        }
-
-        if(isWebPath(unitPath)||path.isAbsolute(unitPath)){
-            return toAbsolutePath(path.dirname(unitPath),pathInUnit);
-        }
-
-        return toAbsolutePath(path.dirname(toAbsolutePath(this.rootPath, unitPath)), pathInUnit);
-    }
-
 
     units():lowlevel.ICompilationUnit[] {
 
@@ -939,17 +917,17 @@ export class Project implements lowlevel.IProject{
 
     deleteUnit(p:string,absolute:boolean=false){
         var apath:string=null;
-        if (isWebPath(p)){
+        if (lowlevel.isWebPath(p)){
             apath=p;
         }
         else{
-            apath = absolute ? p : toAbsolutePath(this.rootPath, p);
+            apath = absolute ? p : lowlevel.toAbsolutePath(this.rootPath, p);
         }
         delete this.pathToUnit[apath];
     }
 
     unit(p:string,absolute:boolean=false):CompilationUnit{
-        if(absolute||isWebPath(p)){
+        if(absolute||lowlevel.isWebPath(p)){
             if(this.failedUnits[p]!=null){
                 if (!this.failedUnits[p].inner) {
                     throw(this.failedUnits[p]);
@@ -957,7 +935,7 @@ export class Project implements lowlevel.IProject{
             }
         }
         else{
-            var ap = toAbsolutePath(this.rootPath,p);
+            var ap = lowlevel.toAbsolutePath(this.rootPath,p);
             if(this.failedUnits[ap]){
                 if (!this.failedUnits[p].inner) {
                     throw(this.failedUnits[p]);
@@ -969,7 +947,7 @@ export class Project implements lowlevel.IProject{
 
         var response;
 
-        if (isWebPath(p)){
+        if (lowlevel.isWebPath(p)){
             if (this.pathToUnit[apath]){
                 return this.pathToUnit[apath];
             }
@@ -998,11 +976,11 @@ export class Project implements lowlevel.IProject{
             if (p.charAt(0) == '/' && !absolute) {
                 p = p.substr(1);//TODO REVIEW IT
             }
-            var apath = toAbsolutePath(this.rootPath,p);
+            var apath = lowlevel.toAbsolutePath(this.rootPath,p);
             if (this.pathToUnit[apath]){
                 return this.pathToUnit[apath];
             }
-            if(isWebPath(apath)){
+            if(lowlevel.isWebPath(apath)){
                 if (this._httpResolver){
                     var resp = this._httpResolver.getResource(apath);
                     if(resp && resp.errorMessage){
@@ -1028,13 +1006,12 @@ export class Project implements lowlevel.IProject{
             else {
                 cnt = this.resolver.content(apath);
             }
-            //cnt = this.resolver.content(toAbsolutePath(this.rootPath, p));
         }
         if (cnt==null){
             return null;
         }
         var tl=util.stringStartsWith(cnt,"#%RAML");
-        var relPath = (isWebPath(this.rootPath)==isWebPath(apath))?path.relative(this.rootPath,apath):apath;
+        var relPath = (lowlevel.isWebPath(this.rootPath)==lowlevel.isWebPath(apath))?path.relative(this.rootPath,apath):apath;
         var unit=new CompilationUnit(relPath,cnt,tl,this,apath);
         this.pathToUnit[apath]=unit;
 
@@ -1051,14 +1028,14 @@ export class Project implements lowlevel.IProject{
 
         var cnt:Promise<string>=null;
         var apath:string=p;
-        if (isWebPath(p)){
+        if (lowlevel.isWebPath(p)){
             if (this.pathToUnit[apath]){
                 return Promise.resolve(this.pathToUnit[apath]);
             }
             if (this._httpResolver){
                 var resp = this._httpResolver.getResourceAsync(apath);
-                cnt = resp.then(x=>{
-                    if(x.errorMessage){
+                cnt = resp.then(x=> {
+                    if (x.errorMessage) {
                         return <Promise<string>>Promise.reject(new Error(x.errorMessage));
                     }
                     return x.content;
@@ -1076,12 +1053,12 @@ export class Project implements lowlevel.IProject{
                 apath = p;
             }
             else {
-                apath = toAbsolutePath(this.rootPath,p);
+                apath = lowlevel.toAbsolutePath(this.rootPath,p);
             }
             if (this.pathToUnit[apath]){
                 return Promise.resolve(this.pathToUnit[apath]);
             }
-            if (isWebPath(apath)){
+            if (lowlevel.isWebPath(apath)){
                 if (this._httpResolver){
                     var resp = this._httpResolver.getResourceAsync(apath);
                     cnt = resp.then(x=>{
@@ -1102,7 +1079,7 @@ export class Project implements lowlevel.IProject{
         if (cnt==null){
             return Promise.resolve(null);
         }
-        var relPath = (isWebPath(this.rootPath)==isWebPath(apath))?path.relative(this.rootPath,apath):apath;
+        var relPath = (lowlevel.isWebPath(this.rootPath)==lowlevel.isWebPath(apath))?path.relative(this.rootPath,apath):apath;
         return cnt.then(x=>{
             if(x == null){
                 return Promise.reject(new Error("Can note resolve " + apath));
@@ -3716,7 +3693,7 @@ function fetchMasterReference(unit: lowlevel.ICompilationUnit, map:{[key:string]
     if (!masterReferenceText) return;
 
     var unitPath = path.dirname(unit.absolutePath());
-    var absIncludePath = toAbsolutePath(unitPath, masterReferenceText);
+    var absIncludePath = lowlevel.toAbsolutePath(unitPath, masterReferenceText);
 
     if(map[absIncludePath]){
         return;
@@ -3749,7 +3726,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
         var lMap:{[key:string]:{ includePath(): string}[]} = {};
         while(ind<units.length) {
             var unit = units[ind];
-            var unitPath = path.dirname(unit.absolutePath());
+            var unitPath = unit.absolutePath();
 
             fetchMasterReference(unit, map, errors, lMap);
 
@@ -3766,15 +3743,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
                 }
 
                 if (!ip) return;
-                if (path.isAbsolute(ip)){
-                    var e=path.extname(ip);
-                    if (e!=".json"&&e!=".xsd") {
-                        //SUPPORTING 0.8 style resolving due to compatiblity reasons
-                        ip = ip.substr(1);
-                        ip = path.resolve(project.getRootPath(),ip);
-                    }
-                }
-                var absIncludePath = toAbsolutePath(unitPath,ip);
+                var absIncludePath = lowlevel.buildPath(ip,unitPath,project.getRootPath());
 
 
                 if(map[absIncludePath]){
@@ -3851,23 +3820,3 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
     })
 }
 
-function toAbsolutePath(rootPath:string,relPath:string) {
-
-    if (isWebPath(relPath)){
-        return relPath;
-    }
-    var apath:string;
-    if (isWebPath(rootPath)) {
-        var rp = util.stringEndsWith(rootPath,"/") ? rootPath : rootPath + "/";
-        apath = URL.resolve(rp,relPath);
-    } else {
-        apath = path.resolve(rootPath, relPath);
-    }
-    return apath;
-}
-
-export function isWebPath(str):boolean {
-    if (str == null) return false;
-
-    return util.stringStartsWith(str,"http://") || util.stringStartsWith(str,"https://");
-}

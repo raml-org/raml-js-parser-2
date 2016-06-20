@@ -607,7 +607,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             v.accept(em)
         });
         var includePath = llNode.includePath();
-        if(includePath!=null && !path.isAbsolute(includePath) && !jsyaml.isWebPath(includePath)){
+        if(includePath!=null && !path.isAbsolute(includePath) && !ll.isWebPath(includePath)){
             var unitPath = llNode.unit().absolutePath();
             var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
             if(exceeding>0){

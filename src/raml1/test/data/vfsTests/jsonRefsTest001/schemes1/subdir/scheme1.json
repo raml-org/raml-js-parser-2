@@ -1,0 +1,22 @@
+{
+  "$schema":"http://json-schema.org/draft-04/schema",
+  "type":"object",
+  "properties":{
+    "name":{
+      "type":"string"
+    }
+  },
+  "definitions":{
+    "Type1":{
+      "type":"object",
+      "properties":{
+        "p1":{
+          "type":"string"
+        },
+        "p2": {"$ref": "/schemes2/subdir/scheme2.json#/definitions/Type2"}
+      },
+      "required" : [ "p1", "p2" ]
+    }
+  },
+  "required" : [ "name" ]
+}

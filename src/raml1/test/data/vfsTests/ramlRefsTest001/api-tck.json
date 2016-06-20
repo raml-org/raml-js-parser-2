@@ -1,0 +1,148 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "type": "rt2",
+          "name": "rt1"
+        }
+      },
+      {
+        "rt2": {
+          "name": "rt2",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "p1": 1,
+                      "p2": true,
+                      "p3": "stringValue"
+                    },
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": {
+                        "p1": 1,
+                        "p2": true,
+                        "p3": "stringValue"
+                      },
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": 1,
+                        "p2": true,
+                        "p3": "stringValue"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "example": {
+                      "p1": 1,
+                      "p2": true,
+                      "p3": "stringValue"
+                    },
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": {
+                        "p1": 1,
+                        "p2": true,
+                        "p3": "stringValue"
+                      },
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": 1,
+                        "p2": true,
+                        "p3": "stringValue"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "type": "rt1",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}
