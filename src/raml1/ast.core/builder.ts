@@ -14,6 +14,8 @@ import search=require("./search")
 import universes=require("../tools/universe")
 import universeHelpers=require("../tools/universeHelpers")
 import services=defs
+import ramlTypes=defs.rt;
+
 type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 class KeyMatcher{
@@ -701,7 +703,7 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
         return res;
     }
 }
-function getType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
+function getBaseType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
     if (!expression) {
         return node.definition().universe().type(universes.Universe10.StringTypeDeclaration.name);
     }
@@ -746,26 +748,125 @@ function getType(node:hl.IHighLevelNode,expression:string):hl.ITypeDefinition{
     return (node.definition().universe().type(universes.Universe10.TypeDeclaration.name));
 }
 
+function transform(u:hl.IUniverse){
+    return function (x){
+        var m=u.type(x);
+        if (!m){
+            var ut=new defs.UserDefinedClass("",<defs.Universe>u,null,"","");
+        }
+        return m;
+    }
+}
 
+function findFacetInTypeNode(typeNode : hl.IParseResult, facetName: string) {
+    var typeNodeElement = typeNode.asElement();
+    if (typeNodeElement == null) return null;
+
+    var facets : hl.IHighLevelNode[] =
+        typeNodeElement.elementsOfKind(
+            universes.Universe10.TypeDeclaration.properties.facets.name);
+
+    if (facets == null || facets.length == 0) return null;
+
+    return _.find(facets, facet => {
+        return facetName == facet.attrValue(universes.Universe10.TypeDeclaration.properties.name.name);
+    })
+}
+
+function findFacetDeclaration(facet : ramlTypes.ITypeFacet) : def.SourceProvider {
+    var owner = facet.owner();
+    if (owner == null) return null;
+
+    var facetName = facet.facetName();
+    if (!facetName) return null;
+
+    var ownerSource : any = owner.getExtra(ramlTypes.SOURCE_EXTRA);
+
+    if (ownerSource == null) return null;
+
+    if (!def.isSourceProvider(ownerSource) && !hl.isParseResult(ownerSource)) {
+        return null;
+    }
+
+    return {
+        getSource() {
+            if (def.isSourceProvider(ownerSource)) {
+
+                var resolvedSource = ownerSource.getSource();
+                if (resolvedSource && hl.isParseResult(resolvedSource)) {
+                    return findFacetInTypeNode(resolvedSource, facetName);
+                }
+            } else if (hl.isParseResult(ownerSource)) {
+
+                return findFacetInTypeNode(ownerSource, facetName);
+            }
+
+            return null;
+        }
+    }
+}
+
+function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingType:hl.IHighLevelNode,
+    parentOfReferencingNode:hl.IHighLevelNode) {
+    if (originalType == null) return null;
+
+    var patchedType=new defs.NodeClass(nodeReferencingType.name(),
+        <def.Universe>nodeReferencingType.definition().universe(),"","");
+
+    var parsedRType=nodeReferencingType.parsedType();
+
+    parsedRType.allFacets().forEach(facet=>{
+        if (facet.kind() == defs.tsInterfaces.MetaInformationKind.FacetDeclaration) {
+
+            var propertySource = findFacetDeclaration(facet);
+
+            var facetBasedProperty = null;
+            if (propertySource != null) {
+                facetBasedProperty = new defs.UserDefinedProp(facet.facetName(), null);
+                facetBasedProperty.setSourceProvider(propertySource);
+            } else {
+                facetBasedProperty = new defs.Property(facet.facetName(), "");
+            }
+
+            facetBasedProperty.withRange(parentOfReferencingNode.definition().universe().type("StringType"));
+            facetBasedProperty.withDomain(patchedType);
+            facetBasedProperty.withGroupName(facet.facetName());
+            facetBasedProperty.withRequired(false);
+            facet.value();
+
+            ramlTypes.setPropertyConstructor(x=> {
+                var v = new defs.Property(x, "");
+                v.unmerge();
+                return v;
+            });
+            facetBasedProperty.withRange(ramlTypes.toNominal(facet.value(),transform(nodeReferencingType.definition().universe())))
+            
+
+        }
+    })
+
+    patchedType._superTypes.push(originalType);
+    return patchedType;
+
+    // return originalType;
+}
 
 function desc1(p:hl.IProperty, parent:hl.IHighLevelNode, x:hl.IHighLevelNode):hl.ITypeDefinition{
     var tp=x.attr("type");
     var value="";
     if (tp){
-        var mn:{ [name:string]:hl.ITypeDefinition}={};
-        var c=new def.NodeClass(x.name(),<def.Universe>x.definition().universe(),"")
-        c.getAdapter(services.RAMLService).setDeclaringNode(x);
-        c._superTypes.push(x.definition().universe().type(universes.Universe10.TypeDeclaration.name));
-        mn[tp.value()]=c;
-        var newType= getType(x,tp.value());
-        if (newType) {
-            if (newType.superTypes().length == 0) {
-                (<def.NodeClass>newType)._superTypes.push(x.definition().universe().type(universes.Universe10.TypeDeclaration.name));
 
+        var baseType= getBaseType(x,tp.value());
+
+        var patchedType = patchTypeWithFacets(baseType, x, parent);
+
+        if (patchedType) {
+            if (patchedType.superTypes().length == 0) {
+                (<def.NodeClass>patchedType)._superTypes.push(x.definition().universe().type(universes.Universe10.TypeDeclaration.name));
             }
         }
 
-        return newType;
+        return patchedType;
     }
     else{
         var propertiesName = universes.Universe10.ObjectTypeDeclaration.properties.properties.name;

@@ -175,7 +175,12 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
     }
     result.getAdapter(services.RAMLService).setInlinedTemplates(true);
     Object.keys(usages).forEach(x=> {
-        var prop = new defs.UserDefinedProp(x);
+        var propSource = null;
+        if (usages[x].length > 0) {
+            propSource = usages[x][0].attr;
+        }
+
+        var prop = new defs.UserDefinedProp(x, propSource);
         //prop._node=node;
         prop.withDomain(result);
         var paths:string[][] = paramPaths[x];
@@ -193,9 +198,7 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         var tp = _.unique(usages[x].map(x=>x.tp)).filter(x=>x && x.nameId() != defaultType);
         prop.withRange(tp.length == 1 ? tp[0] : <any>node.definition().universe().type(defaultType));
         prop.withRequired(true)
-        if (usages[x].length > 0) {
-            prop._node = usages[x][0].attr;
-        }
+
         if (tp.length==1&&node.definition().universe().version()=='RAML10'){
             if (tp[0].key()==universes.Universe10.SchemaString){
                 prop.getAdapter(services.RAMLPropertyService).setTypeExpression(true);
@@ -203,11 +206,10 @@ function fillTemplateType(result:defs.UserDefinedClass,node:hl.IHighLevelNode):h
         }
         prop.unmerge();
     })
-    var keyProp = new defs.UserDefinedProp("____key");
+    var keyProp = new defs.UserDefinedProp("____key", node);
     //prop._node=node;
     keyProp.withDomain(result);
     keyProp.withKey(true);
-    keyProp._node = node;
     keyProp.withFromParentKey(true)
     keyProp.withRange(<any>node.definition().universe().type(universes.Universe08.StringType.name));
     return result;
@@ -234,15 +236,16 @@ class AnnotationType extends defs.UserDefinedClass{
     allProperties(ps:{[name:string]:defs.ITypeDefinition}={}):defs.Property[]{
         var rs=this.superTypes()[0].allProperties();
         if (rs.length==1&&rs[0].nameId()=="annotations"){
-            var up=new defs.UserDefinedProp("value");
-            up.withDomain(this);
-            up._node=this.getAdapter(defs.RAMLService).getDeclaringNode();
-            up.withCanBeValue();
-            up.withRequired(false);
+            var propertyNode = this.getAdapter(defs.RAMLService).getDeclaringNode();
+
+            var property=new defs.UserDefinedProp("value", propertyNode);
+            property.withDomain(this);
+            property.withCanBeValue();
+            property.withRequired(false);
             var tp=this.superTypes()[0];
             rs=[];
-            up.withRange(up._node.asElement().definition().universe().type("string"));
-            rs.push(up);
+            property.withRange(property.node().asElement().definition().universe().type("string"));
+            rs.push(property);
 
         }
         return <any>rs;
@@ -262,11 +265,16 @@ export  function typeFromNode(node:hl.IHighLevelNode):hl.ITypeDefinition{
     var u=node.lowLevel().unit();
     var upath=u?u.path():"";
     ramlTypes.setPropertyConstructor(x=>{
-        var v=new defs.UserDefinedProp(x);
+        var propertySource = null;
+
         var rs=node.elementsOfKind("properties").filter(y=>y.name()==x);
         if (rs){
-            v._node=rs[0];
+            propertySource=rs[0];
         }
+
+        var v=new defs.UserDefinedProp(x, propertySource);
+
+
         v.unmerge();
         return v;
     });
@@ -335,17 +343,22 @@ export function convertType(root:hl.IHighLevelNode,t:ramlTypes.IParsedType):hl.I
     var node= _.find(root.elementsOfKind("types"),x=>x.name()== t.name());
     if (node) {
         ramlTypes.setPropertyConstructor(x=> {
-            var v = new defs.UserDefinedProp(x);
+
             var rs = node.elementsOfKind("properties").filter(y=>y.name() == x);
+
+            var propertySource = null;
+
             if (rs&&rs.length>0) {
-                v._node = rs[0];
+                propertySource = rs[0];
             }
             else {
                 var rs = node.elementsOfKind("facets").filter(y=>y.name() == x);
                 if (rs&&rs.length>0) {
-                    v._node = rs[0];
+                    propertySource = rs[0];
                 }
             }
+
+            var v = new defs.UserDefinedProp(x, propertySource);
             v.unmerge();
             return v;
         });

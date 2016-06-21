@@ -819,6 +819,12 @@ export function asFragment(node:${typeNamesString}):FragmentDeclaration{
         return`import RamlWrapper = require("${parserLocation}");
 import hl = require("${highLevelASTLocation}")
 
+function getWrapperConstructor(definition : hl.INodeDefinition) {
+    if (!definition.isBuiltIn()) return null;
+
+    return classMap[definition.nameId()];
+}
+
 /**
  * @hidden
  * Build Wrapper node corresponding to the High Level node
@@ -828,7 +834,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
     var definition = node.definition();
     var nodeClassName = definition.nameId();
 
-    var wrapperConstructor = classMap[nodeClassName];
+    var wrapperConstructor = getWrapperConstructor(definition);
 
     if(!wrapperConstructor){
         var priorities = determineSuperclassesPriorities(definition);
@@ -836,7 +842,7 @@ export function buildWrapperNode(node:hl.IHighLevelNode,setAsTopLevel:boolean=tr
         var wr=null;
         for (var i=0;i<superTypes.length;i++){
             var superTypeName=superTypes[i].nameId();
-            wrapperConstructor = classMap[superTypeName];
+            wrapperConstructor = getWrapperConstructor(superTypes[i]);
             if (superTypeName=="DataElement"){
                 wr=superTypeName;
                 //This is only case of nested hierarchy

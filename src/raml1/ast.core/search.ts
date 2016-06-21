@@ -215,7 +215,7 @@ var searchInTheValue = function (offset:number,content: string,attr:hl.IAttribut
     }
     if (p instanceof defs.UserDefinedProp){
         var up=p;
-        return (<defs.UserDefinedProp>up)._node;
+        return (<defs.UserDefinedProp>up).node();
     }
     return null;
 };
@@ -400,7 +400,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         tp.allFacets().forEach(f=>{
                             if (f.nameId()== x.lowLevel().key()){
                                 if (f instanceof def.UserDefinedProp){
-                                    var up= (<def.UserDefinedProp>f)._node;
+                                    var up= (<def.UserDefinedProp>f).node();
                                     result=up;
                                 }
                             }
@@ -423,7 +423,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         tp.allProperties().forEach(f=> {
                             if (f.nameId() == x.key()) {
                                 if (f instanceof def.UserDefinedProp) {
-                                    var up = (<def.UserDefinedProp>f)._node;
+                                    var up = (<def.UserDefinedProp>f).node();
                                     result = up;
                                 }
                             }

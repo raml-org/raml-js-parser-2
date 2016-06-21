@@ -960,6 +960,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
             return result;
         }
+        return highLevelNode;
     }
 }
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{

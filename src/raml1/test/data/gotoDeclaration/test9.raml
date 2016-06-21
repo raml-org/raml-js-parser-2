@@ -8,9 +8,10 @@ types:
     properties:
       xxx: l.ff
     example:
-      xxx: 3
+      xxx:
+        x: test
   llaa:
-    type: value
+    type: object
     facets:
       mmmm: number
 
@@ -24,7 +25,8 @@ annotationTypes:
 
 (myAnnotation):
       param :
-        xxx: 3
+        xxx:
+          x: test
 /q:
   get:
     queryParameters:

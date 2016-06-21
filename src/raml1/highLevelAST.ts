@@ -241,6 +241,10 @@ export interface IParseResult {
     version();
 }
 
+export function isParseResult(object : any) : object is IParseResult {
+    return object.asElement && object.getKind && object.asAttr && object.lowLevel;
+}
+
 export interface Status{
     message:string
 }
