@@ -357,6 +357,12 @@ structuredType(  ):TypeInstance
 
 
         /**
+         * For types defined in traits or resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
+
+
+        /**
          * Runtime representation of type represented by this AST node
          **/
 runtimeType(  ):hl.ITypeDefinition
@@ -1464,6 +1470,12 @@ method(  ):string
          * The displayName attribute specifies the method display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself).
          **/
 displayName(  ):string
+
+
+        /**
+         * For types defined in resource types returns object representation of parametrized properties
+         **/
+parametrizedProperties(  ):TypeInstance
 
 
         /**

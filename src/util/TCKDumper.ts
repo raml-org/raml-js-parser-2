@@ -841,9 +841,19 @@ class ResourcesTransformer implements Transformation{
 class TemplateParametrizedPropertiesTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return prop!=null && (
-            universeHelpers.isResourceTypesProperty(prop)
-            ||universeHelpers.isTraitsProperty(prop));
+        var hlNode = node.highLevel();
+        if(!hlNode){
+            return false;
+        }
+        var d = hlNode.definition();
+        if(!d){
+            return false;
+        }
+        return universeHelpers.isResourceTypeType(d)
+            || universeHelpers.isTraitType(d)
+            || universeHelpers.isMethodType(d)
+            || universeHelpers.isTypeDeclarationSibling(d);
+        
     }
 
     transform(value:any){

@@ -712,7 +712,16 @@ export function getTypeExamples(td:RamlWrapper.TypeDeclaration):RamlWrapper.Exam
  * __$meta__={"name":"fixedFacets","primary":true}
  */
 export function typeFixedFacets(td:RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
-    var obj = td.runtimeDefinition().getFixedFacets();
+    var rDef = td.runtimeDefinition();
+    var obj = rDef.getFixedFacets();
+    var keys = Object.keys(obj);
+    if(td.kind()!=universeDef.Universe10.UnionTypeDeclaration.name) {
+        for (var key of keys) {
+            if (rDef.facet(key) == null) {
+                delete obj[key];
+            }
+        }
+    }
     if(Object.keys(obj).length==0){
         return null;
     }
@@ -888,7 +897,23 @@ function extractParams(
  * __$meta__={"name":"parametrizedProperties","primary":true}
  */
 export function getTemplateParametrizedProperties(
-    node:RamlWrapper.Trait|RamlWrapper.ResourceType):RamlWrapper.TypeInstance{
+    node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Method|RamlWrapper.TypeDeclaration):RamlWrapper.TypeInstance{
+    
+    if(node.kind()==universeDef.Universe10.Method.name||universeHelpers.isTypeDeclarationSibling(node.definition())){
+        var isInsideTemplate = false;
+        var parent = node.highLevel().parent();
+        while(parent!=null){
+            var pDef = parent.definition();
+            if(universeHelpers.isResourceTypeType(pDef)||universeHelpers.isTraitType(pDef)){
+                isInsideTemplate = true;
+                break;
+            }
+            parent = parent.parent();
+        }
+        if(!isInsideTemplate){
+            return null;
+        }        
+    }
 
     var highLevelNode = node.highLevel();
     if(highLevelNode==null){
@@ -898,7 +923,16 @@ export function getTemplateParametrizedProperties(
     if(lowLevelNode==null){
         return null;
     }
-    var children = lowLevelNode.children().filter(x=>x.key().indexOf("<<")>=0);
+    var children = lowLevelNode.children().filter(x=>{
+        var key = x.key();
+        if(!key){
+            return false;
+        }
+        if(key.charAt(0)=="("&&key.charAt(key.length-1)==")"){
+            return false;
+        }
+        return key.indexOf("<<")>=0
+    });
     if(children.length==0){
         return null;
     }

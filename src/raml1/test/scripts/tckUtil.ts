@@ -419,7 +419,7 @@ function dumpTest(test:Test,dataRoot:string):string{
         args.push(`"${jsonPath}"`);
     }
 
-    return`    it("${path.basename(path.dirname(test.masterPath()))}", function () {
+    return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
         this.timeout(15000);
         tckUtil.testAPI(${args.join(", ")});
     });`

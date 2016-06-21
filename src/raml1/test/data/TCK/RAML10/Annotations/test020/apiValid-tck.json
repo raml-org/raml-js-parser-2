@@ -14,9 +14,7 @@
               ],
               "repeat": false,
               "required": true,
-              "fixedFacets": {
-                "<<isRequired>>": "<<value>>"
-              },
+              "<<isRequired>>": "<<value>>",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
