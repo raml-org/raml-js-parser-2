@@ -14,9 +14,6 @@
         "repeat": false,
         "required": true,
         "description": "This is A",
-        "fixedFacets": {
-          "wrongPropertyName": "X"
-        },
         "__METADATA__": {
           "primitiveValuesMeta": {
             "type": {

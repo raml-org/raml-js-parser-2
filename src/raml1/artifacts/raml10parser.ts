@@ -1120,6 +1120,10 @@ structuredType(  ):TypeInstance{
             return helper.typeStructuredValue(this);
         }
 
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
+        }
+
 
         /**
          * Scalar properties annotations accessor
@@ -3795,6 +3799,10 @@ methodId(  ):string{
          **/
 allSecuredBy(  ):SecuritySchemeRef[]{
             return helper.allSecuredBy(this);
+        }
+
+parametrizedProperties(  ):TypeInstance{
+            return helper.getTemplateParametrizedProperties(this);
         }
 
 

@@ -1051,7 +1051,8 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
         if (!this._ptype){
             if (this.property()&&this.property().nameId()==universes.Universe10.MethodBase.properties.body.name){
-                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),true,false,false);
+                var isParametrizedType:boolean = this.isParametrizedType();
+                this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),true,false,false,isParametrizedType);
             }
             else {
                 var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
@@ -1076,6 +1077,28 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
 
         return this._ptype;
+    }
+
+    private isParametrizedType():boolean {
+        var isParametrizedType:boolean = false;
+        var typeAttr = this.attr(universes.Universe10.TypeDeclaration.properties.type.name);
+        if (typeAttr) {
+            var typeAttrValue = typeAttr.value();
+            if (typeof typeAttrValue == "string") {
+                if (typeAttrValue.indexOf("<<") >= 0) {
+                    var parent = this.parent();
+                    while(parent!=null){
+                        if(universeHelpers.isResourceTypeType(parent.definition())
+                            ||universeHelpers.isTraitType(parent.definition())){
+                            isParametrizedType = true;
+                            break;
+                        }
+                        parent = parent.parent();
+                    }
+                }
+            }
+        }
+        return isParametrizedType;
     }
     localType():hl.ITypeDefinition{
         return typeBuilder.typeFromNode(this);
