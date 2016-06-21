@@ -1,0 +1,135 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "rt1": {
+          "type": "rt2",
+          "name": "rt1"
+        }
+      },
+      {
+        "rt2": {
+          "name": "rt2",
+          "get": {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "schema": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "schema": [
+                      "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
+                    ],
+                    "example": {
+                      "p1": "p1Value",
+                      "p2": {
+                        "q1": "q1Value",
+                        "q2": 12
+                      }
+                    },
+                    "repeat": false,
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "repeat": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    },
+                    "structuredExample": {
+                      "value": {
+                        "p1": "p1Value",
+                        "p2": {
+                          "q1": "q1Value",
+                          "q2": 12
+                        }
+                      },
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": {
+                        "p1": "p1Value",
+                        "p2": {
+                          "q1": "q1Value",
+                          "q2": 12
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "type": "rt1",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

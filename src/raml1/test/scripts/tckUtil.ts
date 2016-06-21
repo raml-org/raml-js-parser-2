@@ -7,6 +7,50 @@ import util = require("../../../util/index")
 import _ = require("underscore")
 import assert = require("assert")
 
+class MessageMapping{
+
+    constructor(patterns:string[]){
+        this.regExps = patterns.map(x=>new RegExp(x));
+    }
+
+    private regExps: RegExp[];
+
+    match(a:string,b:string):boolean{
+        var aMatch = this.getValues(a);
+        if(aMatch==null){
+            return null;
+        }
+        var bMatch = this.getValues(b);
+        if(bMatch==null){
+            return null;
+        }
+        if(aMatch.length!=bMatch.length){
+            return false;
+        }
+        for(var i = 1 ; i < aMatch.length; i++){
+            if(aMatch[i]!=bMatch[i]){
+                return false;
+            }
+        }
+        return true;        
+    }
+
+    private getValues(str:string){
+        for(var re of this.regExps){
+            var match = str.match(re);
+            if(match!=null){
+                return match;
+            }
+        }
+        return null;
+    }
+
+
+}
+
+import mappings = require("./messageMappings")
+var messageMappings:MessageMapping[] = mappings.map(x=>new MessageMapping(x));
+
 export function launchTests(folderAbsPath:string,regenerteJSON?:boolean){
     
     var dirs = iterateFolder(folderAbsPath);
@@ -272,12 +316,26 @@ export function testAPI(
         fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
     }
     if(!fs.existsSync(tckJsonPath)){
+        fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
         console.warn("FAILED TO FIND JSON: " + tckJsonPath);
     }
 
     var tckJson:any = JSON.parse(fs.readFileSync(tckJsonPath).toString());
-    var regExp = new RegExp('/errors\\[\\d+\\]/path');
-    var diff = testUtil.compare(json,tckJson).filter(x=>!x.path.match(regExp));
+    var pathRegExp = new RegExp('/errors\\[\\d+\\]/path');
+    var messageRegExp = new RegExp('/errors\\[\\d+\\]/message');
+    var diff = testUtil.compare(json,tckJson).filter(x=>{
+        if(x.path.match(pathRegExp)){
+            return false;
+        }
+        if(x.path.match(messageRegExp)){
+            for(var mm of messageMappings){
+                if(mm.match(x.value0,x.value1)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    });
 
     if(diff.length==0){
     }

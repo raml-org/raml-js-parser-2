@@ -26,7 +26,7 @@ export class LocalStorage implements Storage{
 
     clear(): void{
         for(var key of Object.keys(this)){
-            this[key] = undefined;
+            delete this[key];
         }
         this.length = 0;
     }
@@ -80,4 +80,9 @@ export interface LocalStorageFileSystem {
      * Renames a file or directory
      */
     rename(source, destination):Promise<void>
+
+    /**
+     * clean the instance
+     */
+    clear()
 }

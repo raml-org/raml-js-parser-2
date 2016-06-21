@@ -6,6 +6,9 @@ import yaml=require("yaml-ast-parser")
 import highlevel=require("./highLevelAST")
 import {IParseResult} from "../index";
 import resolversApi=require("./jsyaml/resolversApi")
+import path=require("path")
+import URL=require("url")
+import util=require("../util/index")
 
 export interface ICompilationUnit{
 
@@ -382,4 +385,69 @@ Unit path: ${this.absPath}`);
         }
         this.mapping.push(l-ind);
     }
+}
+
+/**
+ * Canonic way of resolving references in RAML specs:
+ * * relative reference is regarded as relative to containing unit
+ * * absolute local path (starting with slash) is regarderd as relative to root RAML
+ * * absolute web paths are regarded as such
+ *
+ * @param reference reference to be resolved
+ * @param unitPath path of unit containing the reference, absolute or relative to root
+ * @param rootPath path to root RAML
+ * @returns resolved path
+ */
+export function buildPath(reference, unitPath, rootPath) {
+    if (path.isAbsolute(reference)){
+        var e=path.extname(unitPath);
+        if (/*e!=".json"&&*/e!=".xsd") {
+            //SUPPORTING 0.8 style resolving due to compatiblity reasons
+            reference = reference.substr(1);
+            unitPath = toAbsolutePath(rootPath, path.basename(unitPath));
+        }
+    }
+    if(isWebPath(reference)||path.isAbsolute(reference)){
+        return reference;
+    }
+
+    if(isWebPath(unitPath)||path.isAbsolute(unitPath)){
+        return toAbsolutePath(path.dirname(unitPath),reference);
+    }
+
+    return toAbsolutePath(path.dirname(toAbsolutePath(rootPath, unitPath)), reference);
+}
+
+/**
+ * Resolving reference against context
+ * * absolute local and web references are regarded as such
+ * * relative references are regarded as relative to the context
+ * @param context absolute local or web path
+ * @param reference
+ * @returns resolved reference
+ */
+export function toAbsolutePath(context:string,reference:string) {
+
+    if (isWebPath(reference)){
+        return reference;
+    }
+    var apath:string;
+    if (isWebPath(context)) {
+        var rp = util.stringEndsWith(context,"/") ? context : context + "/";
+        apath = URL.resolve(rp,reference).replace(/\\/g,"/");
+    } else {
+        apath = path.resolve(context, reference).replace(/\\/g,"/");
+    }
+    return apath;
+}
+
+/**
+ * Check if reference points to web resource
+ * @param reference
+ * @returns {boolean}
+ */
+export function isWebPath(reference):boolean {
+    if (reference == null) return false;
+
+    return util.stringStartsWith(reference,"http://") || util.stringStartsWith(reference,"https://");
 }

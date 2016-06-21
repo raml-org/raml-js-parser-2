@@ -41,6 +41,9 @@ export function getInstance():decl.LocalStorageFileSystem{
         },
         remove: function(path) {
             localStorage.removeItem(LOCAL_PERSISTENCE_KEY + '.' + path);
+        },
+        clear:function(){
+            localStorage.clear();     
         }
     };
   })(LOCAL_PERSISTENCE_KEY);
@@ -365,6 +368,10 @@ export function getInstance():decl.LocalStorageFileSystem{
 
         return deferred.promise;
       };
+      
+      service.clear = function(){
+        localStorageHelper.clear();
+      }
 
         // service.exportFiles = function exportFiles() {
         //     var jszip = new $window.JSZip();

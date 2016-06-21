@@ -1,0 +1,8 @@
+#%RAML 1.0
+title: test API
+resourceTypes:
+  rt1: !include /resourceTypes/rt1.raml
+  rt2: !include /resourceTypes/subdir/rt2.raml
+
+/resource:
+  type: rt1
