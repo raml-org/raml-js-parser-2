@@ -12,6 +12,9 @@ import universes=require("../tools/universe")
 import ramlServices=def
 import path=require("path")
 import nominalTypes=defs.rt.nominalTypes;
+
+import sourceFinder = require("./sourceFinder")
+
 export type ITypeDefinition=hl.ITypeDefinition
 
 
@@ -40,6 +43,19 @@ export function globalDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     }
     result=result.concat(findDeclarations(h));
     return result;
+}
+
+function getUserDefinedPropertySource(property : defs.UserDefinedProp) : hl.IParseResult {
+    var result = property.node();
+
+    if (result && hl.isParseResult(result)) {
+        return result;
+    }
+
+    var sourceProvider = sourceFinder.getNominalPropertySource2(property);
+    if (!sourceProvider) return null;
+
+    return sourceProvider.getSource();
 }
 
 function mark(h:hl.IHighLevelNode,rs:hl.IHighLevelNode[]){
@@ -215,7 +231,7 @@ var searchInTheValue = function (offset:number,content: string,attr:hl.IAttribut
     }
     if (p instanceof defs.UserDefinedProp){
         var up=p;
-        return (<defs.UserDefinedProp>up).node();
+        return getUserDefinedPropertySource(<defs.UserDefinedProp>up);
     }
     return null;
 };
@@ -400,7 +416,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         tp.allFacets().forEach(f=>{
                             if (f.nameId()== x.lowLevel().key()){
                                 if (f instanceof def.UserDefinedProp){
-                                    var up= (<def.UserDefinedProp>f).node();
+                                    var up= getUserDefinedPropertySource(<def.UserDefinedProp>f);
                                     result=up;
                                 }
                             }
@@ -423,7 +439,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         tp.allProperties().forEach(f=> {
                             if (f.nameId() == x.key()) {
                                 if (f instanceof def.UserDefinedProp) {
-                                    var up = (<def.UserDefinedProp>f).node();
+                                    var up = getUserDefinedPropertySource(<def.UserDefinedProp>f);
                                     result = up;
                                 }
                             }
@@ -474,7 +490,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
         var pp=node.property();
         if (pp instanceof defs.UserDefinedProp){
             var up=<defs.UserDefinedProp>pp;
-            return up.node();
+            return getUserDefinedPropertySource(up);
         }
         if (node instanceof hlimpl.ASTNodeImpl) {
             if (hlnode.definition() instanceof defs.UserDefinedClass) {
@@ -499,7 +515,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         pp=node.property();
                         if (pp instanceof defs.UserDefinedProp){
                             var up=<defs.UserDefinedProp>pp;
-                            return up.node();
+                            return getUserDefinedPropertySource(up);
                         }
                         if (node instanceof hlimpl.ASTNodeImpl) {
                             if (hlnode.definition() instanceof defs.UserDefinedClass) {

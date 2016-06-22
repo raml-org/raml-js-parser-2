@@ -451,3 +451,8 @@ export function isWebPath(reference):boolean {
 
     return util.stringStartsWith(reference,"http://") || util.stringStartsWith(reference,"https://");
 }
+
+export function isLowLevelNode(object : any) : object is ILowLevelASTNode {
+    return object.start && object.end && object.unit && object.key
+        && object.value && object.children && object.includePath;
+}
