@@ -33,6 +33,7 @@ import rtypes=def.rt;
 import util=require("../../util/textutil")
 
 import contentprovider = require('../../util/contentprovider');
+import resourceRegistry = require('../jsyaml/resourceRegistry');
 
 var su = def.getSchemaUtils();
 
@@ -466,9 +467,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                 var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
                 if (!rs){
                     v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Can not resolve library from path:"+vn.value(),highLevelNode,false));
-                }
-                else{
-
+                } else if(!resourceRegistry.isWaitingFor(vn.value())){
                     var issues:hl.ValidationIssue[]=[];
                     rs.highLevel().validate({
                         begin(){
