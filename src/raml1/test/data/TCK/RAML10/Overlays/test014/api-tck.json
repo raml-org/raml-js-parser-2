@@ -19,9 +19,7 @@
                     ],
                     "examples": [
                       {
-                        "value": {
-                          "name": 7
-                        },
+                        "value": "{\n  \"name\": 7\n}",
                         "strict": true,
                         "name": "test",
                         "structuredValue": {
@@ -29,9 +27,7 @@
                         }
                       },
                       {
-                        "value": {
-                          "name": 8
-                        },
+                        "value": "{\n  \"name\": 8\n}",
                         "strict": true,
                         "name": "test2",
                         "structuredValue": {

@@ -98,10 +98,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "firstname": "eleo",
-              "lastname": "ortega"
-            },
+            "value": "{\n  \"firstname\": \"eleo\",\n  \"lastname\": \"ortega\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

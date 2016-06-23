@@ -147,13 +147,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "comment_id": 2,
-              "initial_comments": "oo",
-              "user": "Raml",
-              "time_stamp": 1422378528,
-              "created": 1422378528
-            },
+            "value": "{\n  \"comment_id\": 2,\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528,\n  \"created\": 1422378528\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -39,9 +39,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "content": 9
-                      },
+                      "value": "{\n  \"content\": 9\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

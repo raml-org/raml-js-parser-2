@@ -77,9 +77,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "id": "userId"
-            },
+            "value": "{\n  \"id\": \"userId\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -139,10 +137,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "id": "userId",
-              "username": "name"
-            },
+            "value": "{\n  \"id\": \"userId\",\n  \"username\": \"name\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -212,10 +207,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "username": "base",
-                        "id": "any text"
-                      },
+                      "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

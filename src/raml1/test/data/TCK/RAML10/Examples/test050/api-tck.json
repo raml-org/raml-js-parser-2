@@ -24,9 +24,7 @@
                   "name": "ObjectAnnotation"
                 }
               },
-              "value": {
-                "prop1": "value1"
-              },
+              "value": "{\n  \"prop1\": \"value1\"\n}",
               "strict": false,
               "displayName": "myExample1",
               "description": "example 1 of ObjectType3",
@@ -47,9 +45,7 @@
                   "name": "ObjectAnnotation"
                 }
               },
-              "value": {
-                "prop1": "value2"
-              },
+              "value": "{\n  \"prop1\": \"value2\"\n}",
               "strict": false,
               "displayName": "myExample2",
               "description": "example 2 of ObjectType3",

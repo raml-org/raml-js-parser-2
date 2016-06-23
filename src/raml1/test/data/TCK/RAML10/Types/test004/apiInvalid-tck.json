@@ -30,15 +30,13 @@
             }
           },
           "structuredExample": {
-            "value": [
-              100500,
-              "not number"
-            ],
+            "value": "[\n  100500,\n  \"not number\"\n]",
             "strict": true,
             "name": null,
-            "structuredValue": {
-              "undefined": "not number"
-            }
+            "structuredValue": [
+              100500,
+              "not number"
+            ]
           }
         }
       }

@@ -60,13 +60,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "someProperty": {
-                "someProperty": {
-                  "someProperty": "null"
-                }
-              }
-            },
+            "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": \"null\"\n    }\n  }\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

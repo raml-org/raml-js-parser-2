@@ -73,10 +73,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "eleo",
-              "title??": "Yes, I have a title"
-            },
+            "value": "{\n  \"name\": \"eleo\",\n  \"title??\": \"Yes, I have a title\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

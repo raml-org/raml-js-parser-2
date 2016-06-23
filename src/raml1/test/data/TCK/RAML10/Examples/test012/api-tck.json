@@ -94,10 +94,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "message": "s",
-                        "r": 2
-                      },
+                      "value": "{ \"message\":\"s\" ,\"r\":2 }\n",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

@@ -634,9 +634,7 @@
                   }
                 },
                 "structuredExample": {
-                  "value": {
-                    "rtTypeProperty2": "stringValue"
-                  },
+                  "value": "{\n  \"rtTypeProperty2\": \"stringValue\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
@@ -780,12 +778,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "traitProperty1": true,
-                        "traitProperty2": 1,
-                        "traitProperty1_3": "stringValue1",
-                        "traitProperty2_3": "stringValue2"
-                      },
+                      "value": "{\n  \"traitProperty1\": true,\n  \"traitProperty2\": 1,\n  \"traitProperty1_3\": \"stringValue1\",\n  \"traitProperty2_3\": \"stringValue2\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

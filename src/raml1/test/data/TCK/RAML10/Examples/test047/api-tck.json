@@ -59,9 +59,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "prop1": "value1"
-            },
+            "value": "{\n  \"prop1\": \"value1\"\n}\n",
             "strict": true,
             "name": null,
             "structuredValue": {

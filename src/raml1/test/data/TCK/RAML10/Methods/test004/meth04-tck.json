@@ -58,7 +58,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": 10,
+                      "value": "10",
                       "strict": true,
                       "name": null,
                       "structuredValue": 10

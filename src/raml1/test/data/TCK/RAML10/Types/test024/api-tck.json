@@ -27,7 +27,7 @@
             }
           },
           "structuredExample": {
-            "value": 630128,
+            "value": "630128",
             "strict": true,
             "name": null,
             "structuredValue": 630128
@@ -197,13 +197,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "country": "US",
-              "city": "SF",
-              "street": "Geary Street",
-              "house": "77, Suite 400",
-              "zip": 94108
-            },
+            "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -296,17 +290,7 @@
           ],
           "examples": [
             {
-              "value": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
-                }
-              },
+              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
               "strict": true,
               "structuredValue": {
                 "id": 11,
@@ -321,17 +305,7 @@
               }
             },
             {
-              "value": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
-                }
-              },
+              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
               "strict": true,
               "structuredValue": {
                 "id": 12,
@@ -496,18 +470,7 @@
           ],
           "examples": [
             {
-              "value": {
-                "id": 11,
-                "name": "John Johnson",
-                "email": "press@mulesoft.com",
-                "phone": "+7-913-111-1111",
-                "address": {
-                  "country": "RUS",
-                  "city": "Novosibirsk",
-                  "zip": 630090
-                },
-                "managerId": 77
-              },
+              "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  },\n  \"managerId\": 77\n}",
               "strict": true,
               "name": "manager1",
               "structuredValue": {
@@ -524,18 +487,7 @@
               }
             },
             {
-              "value": {
-                "id": 12,
-                "name": "John Johnson",
-                "email": "press1@mulesoft.com",
-                "phone": "+1-222-222-2222",
-                "address": {
-                  "country": "US",
-                  "city": "SF",
-                  "zip": 123456
-                },
-                "managerId": 88
-              },
+              "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  },\n  \"managerId\": 88\n}",
               "strict": true,
               "name": "manager2",
               "structuredValue": {

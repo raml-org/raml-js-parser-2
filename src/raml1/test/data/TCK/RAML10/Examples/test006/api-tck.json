@@ -80,11 +80,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "x": 1,
-              "y": 3,
-              "z": 5
-            },
+            "value": "{\n  \"x\": 1,\n  \"y\": 3,\n  \"z\": 5\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

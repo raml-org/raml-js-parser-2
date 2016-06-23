@@ -44,14 +44,7 @@
               ],
               "examples": [
                 {
-                  "value": {
-                    "strict": true,
-                    "content": [
-                      {
-                        "X-Dept": "230-OCTO"
-                      }
-                    ]
-                  },
+                  "value": "{\n  \"strict\": true,\n  \"content\": [\n    {\n      \"X-Dept\": \"230-OCTO\"\n    }\n  ]\n}",
                   "strict": true,
                   "name": "one_dept",
                   "structuredValue": {

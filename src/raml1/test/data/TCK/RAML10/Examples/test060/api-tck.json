@@ -31,16 +31,14 @@
             }
           },
           "structuredExample": {
-            "value": [
+            "value": "[ 0.0, 1.0, 2.0 ]\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
               0,
               1,
               2
-            ],
-            "strict": true,
-            "name": null,
-            "structuredValue": {
-              "undefined": 2
-            }
+            ]
           }
         }
       },
@@ -101,13 +99,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "p": [
-                1,
-                0,
-                0
-              ]
-            },
+            "value": "{\n  \"p\": [ 1.0, 0.0, 0.0 ]\n}\n",
             "strict": true,
             "name": null,
             "structuredValue": {

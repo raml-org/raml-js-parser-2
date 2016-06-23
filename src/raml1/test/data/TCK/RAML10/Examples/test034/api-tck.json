@@ -187,9 +187,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "a": 3
-                      },
+                      "value": "{\n  \"a\": 3\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

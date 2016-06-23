@@ -322,10 +322,7 @@
                   }
                 },
                 "structuredExample": {
-                  "value": {
-                    "propertyFromResourceType1": "stringValue1",
-                    "extraProperty": "stringValue2"
-                  },
+                  "value": "{\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"extraProperty\": \"stringValue2\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
@@ -419,11 +416,7 @@
                   }
                 },
                 "structuredExample": {
-                  "value": {
-                    "propertyFromType1": "stringValue3",
-                    "propertyFromResourceType1": "stringValue1",
-                    "extraProperty": "stringValue2"
-                  },
+                  "value": "{\n  \"propertyFromType1\": \"stringValue3\",\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"extraProperty\": \"stringValue2\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {

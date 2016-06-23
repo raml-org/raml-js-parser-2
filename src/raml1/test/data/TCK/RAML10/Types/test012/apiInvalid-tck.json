@@ -86,20 +86,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "selfReference": [
-                {
-                  "selfReference": [
-                    {
-                      "selfReference": [],
-                      "someProperty1": "val1"
-                    }
-                  ],
-                  "someProperty": "val2"
-                }
-              ],
-              "someProperty": "val3"
-            },
+            "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

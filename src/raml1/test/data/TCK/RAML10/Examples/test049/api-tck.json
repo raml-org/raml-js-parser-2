@@ -71,9 +71,7 @@
                 "name": "ObjectAnnotation"
               }
             },
-            "value": {
-              "prop1": "value1"
-            },
+            "value": "{\n  \"prop1\": \"value1\"\n}",
             "strict": false,
             "name": null,
             "displayName": "myExample",

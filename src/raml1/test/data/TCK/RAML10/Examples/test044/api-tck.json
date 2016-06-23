@@ -31,7 +31,7 @@
                   }
                 },
                 "structuredExample": {
-                  "value": true,
+                  "value": "true",
                   "strict": true,
                   "name": null,
                   "structuredValue": true

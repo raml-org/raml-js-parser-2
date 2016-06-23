@@ -117,23 +117,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "items": [
-                1,
-                2,
-                3
-              ],
-              "items2": [
-                3,
-                1,
-                4
-              ],
-              "items3": [
-                1,
-                2,
-                3
-              ]
-            },
+            "value": "{\n  \"items\": [\n    1,\n    2,\n    3\n  ],\n  \"items2\": [\n    3,\n    1,\n    4\n  ],\n  \"items3\": [\n    1,\n    2,\n    3\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

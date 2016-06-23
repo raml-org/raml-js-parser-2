@@ -75,9 +75,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "eleo"
-            },
+            "value": "{\n  \"name\": \"eleo\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

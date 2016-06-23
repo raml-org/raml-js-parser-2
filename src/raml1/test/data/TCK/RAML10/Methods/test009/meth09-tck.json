@@ -53,9 +53,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "field": "value"
-            },
+            "value": "{\n  \"field\": \"value\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

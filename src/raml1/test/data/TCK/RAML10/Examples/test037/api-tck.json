@@ -27,7 +27,7 @@
             }
           },
           "structuredExample": {
-            "value": 100,
+            "value": "100",
             "strict": true,
             "name": null,
             "structuredValue": 100
@@ -61,15 +61,13 @@
             }
           },
           "structuredExample": {
-            "value": [
-              100,
-              10
-            ],
+            "value": "[\n  100,\n  10\n]",
             "strict": true,
             "name": null,
-            "structuredValue": {
-              "undefined": 10
-            }
+            "structuredValue": [
+              100,
+              10
+            ]
           }
         }
       },
@@ -97,7 +95,7 @@
             }
           },
           "structuredExample": {
-            "value": true,
+            "value": "true",
             "strict": true,
             "name": null,
             "structuredValue": true

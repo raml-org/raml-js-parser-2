@@ -77,9 +77,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "baseField": "name"
-            },
+            "value": "{\n  \"baseField\": \"name\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -139,10 +137,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "baseField": "name",
-              "field": "value"
-            },
+            "value": "{\n  \"baseField\": \"name\",\n  \"field\": \"value\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -212,10 +207,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "baseField": "base",
-                        "field": "any text"
-                      },
+                      "value": "{\n  \"baseField\": \"base\",\n  \"field\": \"any text\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

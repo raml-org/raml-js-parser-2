@@ -53,9 +53,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "message": 2
-            },
+            "value": "{\n  \"message\": 2\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -90,9 +88,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "id": "4"
-            },
+            "value": "{\n  \"id\": \"4\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

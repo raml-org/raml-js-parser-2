@@ -252,16 +252,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "union1": {
-                "property3": "blahblah",
-                "property2": "blahblah"
-              },
-              "union2": {
-                "property3": "blahblah",
-                "property4": "blahblah"
-              }
-            },
+            "value": "{\n  \"union1\": {\n    \"property3\": \"blahblah\",\n    \"property2\": \"blahblah\"\n  },\n  \"union2\": {\n    \"property3\": \"blahblah\",\n    \"property4\": \"blahblah\"\n  }\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

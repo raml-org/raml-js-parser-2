@@ -79,10 +79,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "Fred",
-              "size": 0
-            },
+            "value": "{\n  \"name\": \"Fred\",\n  \"size\": 0\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

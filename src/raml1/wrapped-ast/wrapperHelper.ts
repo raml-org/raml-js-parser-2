@@ -1008,14 +1008,17 @@ export class ExampleSpecImpl extends core.BasicNodeImpl{
     }
 
     value():any{
-        if(this.expandable.isJSONString()||this.expandable.isYAML()) {
-            return this.expandable.asJSON();
-        }
-        return this.expandable.original();
+        return this.expandable.asString();
     }
 
     structuredValue():core.TypeInstanceImpl{
-        var obj = this.value();
+        var obj;
+        if(this.expandable.isJSONString()||this.expandable.isYAML()) {
+            obj = this.expandable.asJSON();
+        }
+        else {
+            obj = this.expandable.original();
+        }
         var llParent = this._node.lowLevel();
         var key = this.expandable.isSingle() ? "example" : null;
         var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
