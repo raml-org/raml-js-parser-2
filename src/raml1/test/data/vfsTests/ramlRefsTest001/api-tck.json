@@ -47,11 +47,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "p1": 1,
-                        "p2": true,
-                        "p3": "stringValue"
-                      },
+                      "value": "{\n  \"p1\": 1,\n  \"p2\": true,\n  \"p3\": \"stringValue\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
@@ -108,11 +104,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "p1": 1,
-                        "p2": true,
-                        "p3": "stringValue"
-                      },
+                      "value": "{\n  \"p1\": 1,\n  \"p2\": true,\n  \"p3\": \"stringValue\"\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {
