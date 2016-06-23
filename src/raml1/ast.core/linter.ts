@@ -210,20 +210,29 @@ class StackNode{
 function isTypeOrSchema(d:hl.IProperty){
     return d.nameId()==universes.Universe10.TypeDeclaration.properties.type.name||d.nameId()==universes.Universe10.TypeDeclaration.properties.schema.name;
 }
-function isExampleProp(d:hl.IProperty){
-    if (!d.domain()){
-        return;
+function isDefaultValueProp(d:hl.IProperty){
+    if (!checkIfDomainIsUserDefined(d)){
+        return false;
     }
-    if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
+    return (d.nameId()==universes.Universe10.TypeDeclaration.properties.default.name);
+}
+function isExampleProp(d:hl.IProperty){
+    if (!checkIfDomainIsUserDefined(d)){
         return false;
     }
     return (d.nameId()==universes.Universe10.TypeDeclaration.properties.example.name);
 }
-function isSecuredBy(d:hl.IProperty){
+function checkIfDomainIsUserDefined(d:hl.IProperty){
     if (!d.domain()){
-        return;
+        return false;
     }
     if (d.domain().getAdapter(services.RAMLService).isUserDefined()){
+        return false;
+    }
+    return true;
+}
+function isSecuredBy(d:hl.IProperty){
+    if (!checkIfDomainIsUserDefined(d)){
         return false;
     }
     return (d.nameId()==universes.Universe08.MethodBase.properties.securedBy.name);
@@ -826,14 +835,15 @@ class CompositePropertyValidator implements PropertyValidator{
             return;
         }
 
-        if (isExampleProp(node.property())){
+        if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
             if (node.definition().universe().version()=="RAML08"){
                 var llv=node.lowLevel().value();
                 if (node.lowLevel().children().length>0){
-                    v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"example should be a string",node,false));
+                    var valName = isExampleProp(node.property()) ? "example" : "default value";
+                    v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,valName+" should be a string",node,false));
                 }
             }
-            new ExampleValidator().validate(node, v);
+            new ExampleAndDefaultValueValidator().validate(node, v);
         }
         if (isSecuredBy(node.property())){
             if (node.definition().universe().version()=="RAML08"){
@@ -852,7 +862,7 @@ class CompositePropertyValidator implements PropertyValidator{
                 }
 
             }
-            new ExampleValidator().validate(node, v);
+            new ExampleAndDefaultValueValidator().validate(node, v);
         }
         if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
             //TODO MOVE TO DEF SYSTEM
@@ -2615,7 +2625,7 @@ function contentProvider(lowLevel: any) {
 /**
  * validates examples
  */
-export class ExampleValidator implements PropertyValidator{
+export class ExampleAndDefaultValueValidator implements PropertyValidator{
 
     validate(node:hl.IAttribute,cb:hl.ValidationAcceptor){
         //check if we expect to do strict validation

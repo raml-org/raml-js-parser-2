@@ -1,0 +1,52 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "test",
+    "resources": [
+      {
+        "relativeUri": "/test",
+        "methods": [
+          {
+            "queryParameters": {
+              "limit": {
+                "name": "limit",
+                "displayName": "limit",
+                "type": "integer",
+                "required": false,
+                "default": "someValue",
+                "repeat": false,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/test",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "test"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}
