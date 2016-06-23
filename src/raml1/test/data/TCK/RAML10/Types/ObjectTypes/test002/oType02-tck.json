@@ -76,9 +76,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "initial_comments": "oo"
-            },
+            "value": "{\n  \"initial_comments\": \"oo\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

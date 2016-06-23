@@ -76,10 +76,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "c": "A",
-              "y": 3
-            },
+            "value": "{\n  \"c\": \"A\",\n  \"y\": 3\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

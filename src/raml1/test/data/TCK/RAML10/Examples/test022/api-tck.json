@@ -28,7 +28,7 @@
             }
           },
           "structuredExample": {
-            "value": 4,
+            "value": "4",
             "strict": true,
             "name": null,
             "structuredValue": 4
@@ -88,9 +88,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "z": 3
-            },
+            "value": "{\n  \"z\": 3\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

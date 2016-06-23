@@ -56,9 +56,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "a": 5
-            },
+            "value": "{\n  \"a\": 5\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -107,10 +105,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "message": 4,
-                        "vlue": 3
-                      },
+                      "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

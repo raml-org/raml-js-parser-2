@@ -272,18 +272,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "a": 3,
-                        "items": [
-                          {
-                            "c": 3
-                          },
-                          {
-                            "b": "4",
-                            "c1": "3"
-                          }
-                        ]
-                      },
+                      "value": "{\n  \"a\": 3,\n  \"items\": [\n    {\n      \"c\": 3\n    },\n    {\n      \"b\": \"4\",\n      \"c1\": \"3\"\n    }\n  ]\n}",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

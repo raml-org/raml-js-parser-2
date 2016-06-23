@@ -740,7 +740,7 @@ class TypeExampleTransformer implements Transformation{
         arr.forEach(x=>{
             var structuredExample = x['example'];
             if(structuredExample){
-                x['example'] = structuredExample.value;
+                x['example'] = structuredExample.structuredValue;
                 x['structuredExample'] = structuredExample;
             }
         });

@@ -233,20 +233,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "Brandicted",
-              "logo": "http://www.domain.com/logo.gif",
-              "followers": [
-                {
-                  "firstName": "Fred",
-                  "lastName": "Armand"
-                },
-                {
-                  "firstName": "Joan",
-                  "lastName": "Rivers"
-                }
-              ]
-            },
+            "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -117,11 +117,7 @@
                     ],
                     "examples": [
                       {
-                        "value": {
-                          "additionalField": "asd",
-                          "baseField": "asdasd",
-                          "field": "asdds"
-                        },
+                        "value": "{\n  \"additionalField\": \"asd\",\n  \"baseField\": \"asdasd\",\n  \"field\": \"asdds\"\n}",
                         "strict": true,
                         "name": "aaa",
                         "structuredValue": {

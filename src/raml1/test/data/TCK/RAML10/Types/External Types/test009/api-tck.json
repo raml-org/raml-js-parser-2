@@ -82,11 +82,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "c": {
-                "id": "2"
-              }
-            },
+            "value": "{\n  \"c\": {\n    \"id\": \"2\"\n  }\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

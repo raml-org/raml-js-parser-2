@@ -59,12 +59,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "prop1": "stringValue1",
-              "prop2": {
-                "someProperty": "stringValue2"
-              }
-            },
+            "value": "{\n  \"prop1\": \"stringValue1\",\n  \"prop2\": {\n    \"someProperty\": \"stringValue2\"\n  }\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

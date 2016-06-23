@@ -79,10 +79,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "stringValue",
-              "age": 0
-            },
+            "value": "{\n  \"name\": \"stringValue\",\n  \"age\": 0\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

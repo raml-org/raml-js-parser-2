@@ -108,18 +108,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "unionArray1": [
-                "blah",
-                2,
-                3
-              ],
-              "unionArray2": [
-                "blah",
-                "blah",
-                "blah"
-              ]
-            },
+            "value": "{\n  \"unionArray1\": [\n    \"blah\",\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -12,18 +12,7 @@
           ],
           "examples": [
             {
-              "value": {
-                "a": 3,
-                "items": [
-                  {
-                    "c": 4,
-                    "r1": 3
-                  },
-                  {
-                    "r2": 3
-                  }
-                ]
-              },
+              "value": "{\n  \"a\": 3,\n  \"items\": [\n    {\n      \"c\": 4,\n      \"r1\": 3\n    },\n    {\n      \"r2\": 3\n    }\n  ]\n}",
               "strict": true,
               "name": "f1",
               "structuredValue": {

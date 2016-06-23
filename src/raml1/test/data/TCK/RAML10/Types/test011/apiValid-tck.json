@@ -128,12 +128,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "prop": [
-                "val1",
-                "val2"
-              ]
-            },
+            "value": "{\n  \"prop\": [\n    \"val1\",\n    \"val2\"\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

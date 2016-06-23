@@ -77,7 +77,10 @@
                       }
                     },
                     "structuredExample": {
-                      "value": [
+                      "value": "[\n  {\n    \"id\": 1,\n    \"title\": \"feature1\",\n    \"description\": \"description of feature 1\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"feature2\",\n    \"description\": \"description of feature 2\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"feature3\",\n    \"description\": \"description of feature 3\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 4,\n    \"title\": \"feature4\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  },\n  {\n    \"id\": 5,\n    \"title\": \"feature5\",\n    \"description\": \"description of feature 4\",\n    \"pic\": \"http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png\"\n  }\n]",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": [
                         {
                           "id": 1,
                           "title": "feature1",
@@ -108,17 +111,7 @@
                           "description": "description of feature 4",
                           "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
                         }
-                      ],
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "undefined": {
-                          "id": 5,
-                          "title": "feature5",
-                          "description": "description of feature 4",
-                          "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
-                        }
-                      }
+                      ]
                     }
                   }
                 }

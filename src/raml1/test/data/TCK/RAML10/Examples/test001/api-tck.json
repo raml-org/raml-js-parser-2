@@ -56,9 +56,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "a": 5
-            },
+            "value": "{\n  \"a\": 5\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -127,6 +125,7 @@
                       }
                     },
                     "structuredExample": {
+                      "value": "{ d\":5 ,\"r\":2 }\n",
                       "strict": true,
                       "name": null
                     }

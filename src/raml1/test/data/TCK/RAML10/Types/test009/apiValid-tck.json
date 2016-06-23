@@ -232,18 +232,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "unionArray": [
-                {
-                  "property1": "val1",
-                  "property2": "val2"
-                },
-                {
-                  "property1": 1,
-                  "property2": 2
-                }
-              ]
-            },
+            "value": "{\n  \"unionArray\": [\n    {\n      \"property1\": \"val1\",\n      \"property2\": \"val2\"\n    },\n    {\n      \"property1\": 1,\n      \"property2\": 2\n    }\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

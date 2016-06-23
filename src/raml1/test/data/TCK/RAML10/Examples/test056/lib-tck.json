@@ -82,10 +82,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": null,
-              "data": null
-            },
+            "value": "{\n  \"name\": null,\n  \"data\": null\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -91,13 +91,7 @@
                       }
                     },
                     "structuredExample": {
-                      "value": {
-                        "p1": "p1Value",
-                        "p2": {
-                          "q1": "q1Value",
-                          "q2": 12
-                        }
-                      },
+                      "value": "{\n  \"p1\": \"p1Value\",\n  \"p2\": {\n    \"q1\": \"q1Value\",\n    \"q2\": 12\n  }\n}\n",
                       "strict": true,
                       "name": null,
                       "structuredValue": {

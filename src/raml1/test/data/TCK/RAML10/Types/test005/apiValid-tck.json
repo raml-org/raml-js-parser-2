@@ -161,18 +161,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "users": [
-                {
-                  "name": "John",
-                  "age": 23
-                },
-                {
-                  "name": "Jane",
-                  "age": 28
-                }
-              ]
-            },
+            "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": 23\n    },\n    {\n      \"name\": \"Jane\",\n      \"age\": 28\n    }\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

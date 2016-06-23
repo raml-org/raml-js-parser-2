@@ -154,9 +154,7 @@
                           }
                         },
                         "structuredExample": {
-                          "value": {
-                            "x2": 123
-                          },
+                          "value": "{\n  \"x2\": 123\n}",
                           "strict": true,
                           "name": null,
                           "structuredValue": {

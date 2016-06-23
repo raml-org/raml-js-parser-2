@@ -53,9 +53,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "somestring"
-            },
+            "value": "{\n  \"name\": \"somestring\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -91,9 +91,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "z": ".3"
-            },
+            "value": "{\n  \"z\": \".3\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

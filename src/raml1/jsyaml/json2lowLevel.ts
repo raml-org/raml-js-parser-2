@@ -270,7 +270,23 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         }
     }
 
-    valueKind(){ return null;}
+    valueKind(){
+        if(!this._object){
+            return null;
+        }
+
+        var valType = typeof this._object;
+        if(Array.isArray(this._object)){
+            return yaml.Kind.SEQ;
+        }
+        else if(valType == "object"){
+            return yaml.Kind.MAP;
+        }
+        else if(valType == "string"||valType=="number"||valType=="boolean"){
+            return yaml.Kind.SCALAR;
+        }
+        return null;
+    }
 
     show(msg: string){}
 

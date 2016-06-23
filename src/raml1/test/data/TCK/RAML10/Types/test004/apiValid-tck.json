@@ -30,15 +30,13 @@
             }
           },
           "structuredExample": {
-            "value": [
-              "some string",
-              "another string"
-            ],
+            "value": "[\n  \"some string\",\n  \"another string\"\n]",
             "strict": true,
             "name": null,
-            "structuredValue": {
-              "undefined": "another string"
-            }
+            "structuredValue": [
+              "some string",
+              "another string"
+            ]
           }
         }
       }

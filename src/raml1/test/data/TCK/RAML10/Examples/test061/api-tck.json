@@ -84,13 +84,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "p": [
-                1,
-                0,
-                0
-              ]
-            },
+            "value": "{\n  \"p\": [\n    1,\n    0,\n    0\n  ]\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

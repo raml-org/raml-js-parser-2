@@ -58,10 +58,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "d": "a",
-              "dd": "2"
-            },
+            "value": "{\n  \"d\": \"a\",\n  \"dd\": \"2\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
@@ -97,9 +94,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "x": "3"
-            },
+            "value": "{\n  \"x\": \"3\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

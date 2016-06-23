@@ -61,9 +61,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "y": "aaa2"
-            },
+            "value": "{\n  \"y\": \"aaa2\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

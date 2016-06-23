@@ -82,10 +82,7 @@
             }
           },
           "structuredExample": {
-            "value": {
-              "name": "Fred",
-              "comment": ""
-            },
+            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": \"\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {

@@ -30,14 +30,12 @@
                   }
                 },
                 "structuredExample": {
-                  "value": [
-                    2
-                  ],
+                  "value": "[\n  2\n]",
                   "strict": true,
                   "name": null,
-                  "structuredValue": {
-                    "undefined": 2
-                  }
+                  "structuredValue": [
+                    2
+                  ]
                 }
               }
             },
