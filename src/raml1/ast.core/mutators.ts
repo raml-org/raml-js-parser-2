@@ -239,7 +239,19 @@ export function removeAttr(attr:hlimpl.ASTPropImpl) {
 
 export function setValues(attr:hlimpl.ASTPropImpl,values: string[]) {
     if(!attr.property().isMultiValue()) throw new Error("setValue(string[]) only apply to multi-values properties");
-    var node = attr.parent();
+    var node: hlimpl.ASTNodeImpl = <hlimpl.ASTNodeImpl>attr.parent();
+
+    if(node && isTypeShortcut(<hlimpl.ASTNodeImpl>node)) {
+        var command = new ll.CompositeCommand();
+    
+        command.commands.push(ll.setAttr(node.lowLevel(), values[0]));
+    
+        node.lowLevel().execute(command);
+    
+        return;
+    }
+
+
     if(attr.isEmpty()) {
         // nothing to remove so...
     } else {
@@ -261,6 +273,17 @@ export function setKey(node:hlimpl.ASTPropImpl,value: string) {
     c.commands.push(ll.setKey(node.lowLevel(), value));
     node.lowLevel().execute(c);
 }
+
+function isTypeShortcut(node:hlimpl.ASTNodeImpl) {
+    if(node.definition() && node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
+        if(node.lowLevel() && node.lowLevel().valueKind() === yaml.Kind.SCALAR) {
+           return true; 
+        }
+    }
+    
+    return false;
+}
+
 export function createAttr(node:hlimpl.ASTNodeImpl,n:string,v:string){
     var mapping = jsyaml.createMapping(n,v);
 
