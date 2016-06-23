@@ -8152,7 +8152,7 @@
                 "type": [
                   "integer"
                 ],
-                "example": null,
+                "example": 0,
                 "repeat": false,
                 "required": true,
                 "description": "Return media before this min_id.",
@@ -8168,6 +8168,12 @@
                       "insertedAsDefault": true
                     }
                   }
+                },
+                "structuredExample": {
+                  "value": "0",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": 0
                 }
               },
               "count": {
