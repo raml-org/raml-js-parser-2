@@ -55,17 +55,17 @@
       "path": "api.raml",
       "line": 7,
       "column": 8,
-      "position": 109,
+      "position": 102,
       "range": [
         {
           "line": 7,
           "column": 8,
-          "position": 109
+          "position": 102
         },
         {
           "line": 7,
           "column": 15,
-          "position": 116
+          "position": 109
         }
       ]
     }
