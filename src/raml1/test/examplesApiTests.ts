@@ -16,6 +16,7 @@ import search=require("../ast.core/search")
 import wrapper=require("../artifacts/raml10parser");
 import wrapperApi=require("../artifacts/raml10parserapi");
 import wrapperHelper=require("../wrapped-ast/wrapperHelper");
+import core=require("../wrapped-ast/parserCore");
 import services=require("../definition-system/ramlServices")
 //
 //import t3 = require("../artifacts/raml10parser")
@@ -27,7 +28,7 @@ describe('Example API tests.',function(){
     it ("Direct YAML example",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api01.raml"))
         var example = api.types()[0].example();
-        assert.deepEqual(example.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example.structuredValue()).toJSON(),{prop1: "value1"});
         assert(example.strict());
         assert.equal(example.name(),null);
         assert.equal(example.displayName(),null);
@@ -38,7 +39,7 @@ describe('Example API tests.',function(){
     it ("Direct JSON example",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api02.raml"))
         var example = api.types()[0].example();
-        assert.deepEqual(example.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example.structuredValue()).toJSON(),{prop1: "value1"});
         assert(example.strict());
         assert.equal(example.name(),null);
         assert.equal(example.displayName(),null);
@@ -49,7 +50,7 @@ describe('Example API tests.',function(){
     it ("Wrapped simple YAML example",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api03.raml"))
         var example = api.types()[0].example();
-        assert.deepEqual(example.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example.structuredValue()).toJSON(),{prop1: "value1"});
         assert(example.strict());
         assert.equal(example.name(),null);
         assert.equal(example.displayName(),null);
@@ -60,7 +61,7 @@ describe('Example API tests.',function(){
     it ("Wrapped extended YAML example",function() {
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api04.raml"))
         var example = api.types()[0].example();
-        assert.deepEqual(example.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example.structuredValue()).toJSON(),{prop1: "value1"});
         assert(!example.strict());
         assert.equal(example.name(),null);
         assert.equal(example.displayName(),"myExample");
@@ -80,7 +81,7 @@ describe('Example API tests.',function(){
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api05.raml"))
 
         var example1 = api.types()[0].examples()[0];
-        assert.deepEqual(example1.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example1.structuredValue()).toJSON(),{prop1: "value1"});
         assert(!example1.strict());
         assert.equal(example1.name(),null);
         assert.equal(example1.displayName(),"myExample1");
@@ -96,7 +97,7 @@ describe('Example API tests.',function(){
         assert.equal(aRef11.structuredValue().properties()[0].value().value(),"value1");
 
         var example2 = api.types()[0].examples()[1];
-        assert.deepEqual(example2.value(),{prop1: "value2"});
+        assert.deepEqual((<core.TypeInstanceImpl>example2.structuredValue()).toJSON(),{prop1: "value2"});
         assert(!example2.strict());
         assert.equal(example2.name(),null);
         assert.equal(example2.displayName(),"myExample2");
@@ -116,7 +117,7 @@ describe('Example API tests.',function(){
         var api=<wrapper.ApiImpl>wrapperHelper.load(path.resolve(dir,"data/parser/examples/example_api06.raml"))
 
         var example1 = api.types()[0].examples()[0];
-        assert.deepEqual(example1.value(),{prop1: "value1"});
+        assert.deepEqual((<core.TypeInstanceImpl>example1.structuredValue()).toJSON(),{prop1: "value1"});
         assert(!example1.strict());
         assert.equal(example1.name(),"example1");
         assert.equal(example1.displayName(),"myExample1");
@@ -132,7 +133,7 @@ describe('Example API tests.',function(){
         assert.equal(aRef11.structuredValue().properties()[0].value().value(),"value1");
 
         var example2 = api.types()[0].examples()[1];
-        assert.deepEqual(example2.value(),{prop1: "value2"});
+        assert.deepEqual((<core.TypeInstanceImpl>example2.structuredValue()).toJSON(),{prop1: "value2"});
         assert(!example2.strict());
         assert.equal(example2.name(),"example2");
         assert.equal(example2.displayName(),"myExample2");
