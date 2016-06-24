@@ -290,7 +290,7 @@ export function createAttr(node:hlimpl.ASTNodeImpl,n:string,v:string){
     var map;
 
     if(node.definition() && node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
-        if(node.lowLevel() && (node.lowLevel().valueKind() === yaml.Kind.SCALAR || !node.lowLevel().value())) {
+        if(node.lowLevel() && (node.lowLevel().valueKind() === yaml.Kind.SCALAR || !(<any>node).lowLevel()._node.value)) {
             var typePropertyName = n;
 
             var typeMapping = jsyaml.createMapping(typePropertyName, node.lowLevel().value());
