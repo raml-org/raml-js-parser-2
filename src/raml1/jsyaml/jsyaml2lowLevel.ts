@@ -1666,7 +1666,7 @@ export class Project implements lowlevel.IProject{
                 } else if (mapping.value.kind == yaml.Kind.SCALAR) {
                     //console.log('scalar value');
                     var sc = <yaml.YAMLScalar>mapping.value;
-                    var oldtext = sc.value;
+                    var oldtext = sc.value || "";
                     //console.log('oldval: ' + sc.value);
                     //console.log('newstr: ' + newstr + ' ' + newstr.length);
                     sc.value = newstr;
