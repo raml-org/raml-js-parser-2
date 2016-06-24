@@ -291,7 +291,7 @@ export function createAttr(node:hlimpl.ASTNodeImpl,n:string,v:string){
 
     if(node.definition() && node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)) {
         if(node.lowLevel() && (node.lowLevel().valueKind() === yaml.Kind.SCALAR || !node.lowLevel().value())) {
-            var typePropertyName = universes.Universe10.TypeDeclaration.properties.type.name;
+            var typePropertyName = n;
 
             var typeMapping = jsyaml.createMapping(typePropertyName, node.lowLevel().value());
 
@@ -311,17 +311,19 @@ export function createAttr(node:hlimpl.ASTNodeImpl,n:string,v:string){
             
             node.resetChildren();
             
-            var attribute = node.attr(typePropertyName).lowLevel();
+            var attribute = node.attr(typePropertyName) && node.attr(typePropertyName).lowLevel();
+            
+            if(attribute) {
+                command = new ll.CompositeCommand();
 
-            command = new ll.CompositeCommand();
-            
-            command.commands.push(ll.setAttr(attribute, v));
+                command.commands.push(ll.setAttr(attribute, v));
 
-            attribute.execute(command);
-            
-            node.clearChildrenCache();
-            
-            return;
+                attribute.execute(command);
+
+                node.clearChildrenCache();
+
+                return;
+            }
         }
     }
 
