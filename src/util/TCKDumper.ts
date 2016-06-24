@@ -669,7 +669,7 @@ class AnnotationTypesTransformer extends ArrayToMappingsArrayTransformer{
     constructor(){
         super(new CompositeObjectPropertyMatcher([
             new BasicObjectPropertyMatcher(universeHelpers.isLibraryBaseSibling,universeHelpers.isAnnotationTypesProperty)
-        ]),"displayName");
+        ]),"name");
     }
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{

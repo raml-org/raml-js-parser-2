@@ -1864,34 +1864,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 export var universeProvider = require("./definition-system/universeProvider");
 var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode) {
 
-
-    var spec = "";
-    var ptype = "Api";
-    var originalPType = null;
-    var num = 0;
-    var pt = 0;
-
-    for (var n = 0; n < contents.length; n++) {
-        var c = contents.charAt(n);
-        if (c == '\r' || c == '\n') {
-            if (spec) {
-                ptype = contents.substring(pt, n).trim();
-                originalPType = ptype;
-            }
-            else {
-                spec = contents.substring(0, n).trim();
-            }
-            break;
-        }
-        if (c == ' ') {
-            num++;
-            if (!spec && num == 2) {
-                spec = contents.substring(0, n);
-                pt = n;
-            }
-        }
-    }
-    var localUniverse = spec == "#%RAML 1.0" ? new def.Universe(null,"RAML10", universeProvider("RAML10"),"RAML10") : new def.Universe(null,"RAML08", universeProvider("RAML08"));
+    var rfl = ramlFirstLine(contents);
+    var spec = (rfl && rfl[1])||"";
+    var ptype = (rfl && rfl.length > 2 && rfl[2]) || "Api";
+    var originalPType = ptype;
+    var localUniverse = spec == "1.0" ? new def.Universe(null,"RAML10", universeProvider("RAML10"),"RAML10") : new def.Universe(null,"RAML08", universeProvider("RAML08"));
 
     if (ptype=='API'){
         ptype="Api"
@@ -1917,6 +1894,10 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     // localUniverse.setDescription(spec);
     return { ptype: ptype, localUniverse: localUniverse };
 };
+
+export function ramlFirstLine(content:string):RegExpMatchArray{
+    return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+}
 
 export function getFragmentDefenitionName(highLevelNode: hl.IHighLevelNode): string {
     var contents = highLevelNode.lowLevel() && highLevelNode.lowLevel().unit() && highLevelNode.lowLevel().unit().contents();

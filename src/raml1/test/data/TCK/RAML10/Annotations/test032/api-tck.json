@@ -4,7 +4,7 @@
   "specification": {
     "annotationTypes": [
       {
-        "BindingDefinition": {
+        "bindingDefinition": {
           "name": "bindingDefinition",
           "displayName": "BindingDefinition",
           "type": [

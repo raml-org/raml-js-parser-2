@@ -1,8 +1,16 @@
 var mappings = [
-    [
-        "Required property: (.+) is missed",
-        "Missing required field \"(.+)\""
-    ]
+    {
+        messagePatterns: [
+            {
+                "parser": "JS",
+                "pattern": "Required property: (.+) is missed"
+            },
+            {
+                "parser": "Java",
+                "pattern": "Missing required field \"(.+)\""
+            }
+        ]
+    }
 ];
 
 export = mappings;

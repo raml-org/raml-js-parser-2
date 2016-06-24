@@ -263,7 +263,7 @@ function toApi(unitOrHighlevel:ll.ICompilationUnit|hl.IHighLevelNode, options:pa
 
     var contents = unit.contents();
 
-    var ramlFirstLine = contents.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+    var ramlFirstLine = hlimpl.ramlFirstLine(contents);
     if(!ramlFirstLine){
         throw new Error("Invalid first line. A RAML document is expected to start with '#%RAML <version> <?fragment type>'.");
     }

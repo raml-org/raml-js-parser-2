@@ -6,7 +6,7 @@
     {
       "code": 3,
       "message": "Missing required property title",
-      "path": "emptyApiNewLineWin.raml",
+      "path": "emptyApi2NewLine.raml",
       "line": 2,
       "column": 0,
       "position": 12,
