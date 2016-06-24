@@ -7,7 +7,7 @@
         "MyType": {
           "annotations": {
             "simpleAnnotation": {
-              "structuredValue": "simpleAnnotationValueOnType",
+              "structuredValue": "simpleAnnotation_value_on_type",
               "name": "simpleAnnotation"
             },
             "objectAnnotation": {
@@ -253,7 +253,7 @@
           {
             "annotations": {
               "simpleAnnotation": {
-                "structuredValue": "simpleAnnotationValueOnMethod",
+                "structuredValue": "simpleAnnotation_value_on_method",
                 "name": "simpleAnnotation"
               },
               "objectAnnotation": {
@@ -300,5 +300,46 @@
       }
     }
   },
-  "errors": []
+  "errors": [
+    {
+      "code": 11,
+      "message": "string should match to [a-zA-Z0-9]{8,32}",
+      "path": "api.raml",
+      "line": 21,
+      "column": 2,
+      "position": 384,
+      "range": [
+        {
+          "line": 21,
+          "column": 2,
+          "position": 384
+        },
+        {
+          "line": 21,
+          "column": 8,
+          "position": 390
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "string should match to [a-zA-Z0-9]{8,32}",
+      "path": "api.raml",
+      "line": 31,
+      "column": 4,
+      "position": 598,
+      "range": [
+        {
+          "line": 31,
+          "column": 4,
+          "position": 598
+        },
+        {
+          "line": 31,
+          "column": 22,
+          "position": 616
+        }
+      ]
+    }
+  ]
 }
