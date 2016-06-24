@@ -1,0 +1,40 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "MyBooleanType": {
+          "name": "MyBooleanType",
+          "displayName": "MyBooleanType",
+          "type": [
+            "boolean"
+          ],
+          "example": false,
+          "repeat": false,
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "repeat": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "false",
+            "strict": true,
+            "name": null,
+            "structuredValue": false
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}

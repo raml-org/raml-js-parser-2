@@ -57,7 +57,7 @@
     ],
     "annotationTypes": [
       {
-        "Resource metadata": {
+        "meta": {
           "name": "meta",
           "displayName": "Resource metadata",
           "type": [

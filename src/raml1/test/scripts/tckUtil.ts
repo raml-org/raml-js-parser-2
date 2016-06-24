@@ -3,7 +3,8 @@ import fs = require("fs")
 import path = require("path")
 import index = require("../../../index")
 import testUtil = require("../test-utils")
-import util = require("../../../util/index")
+import hlImpl = require("../../highLevelImpl");
+import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
 
@@ -44,22 +45,58 @@ class MessageMapping{
         }
         return null;
     }
-
-
 }
 
-import mappings = require("./messageMappings")
-var messageMappings:MessageMapping[] = mappings.map(x=>new MessageMapping(x));
+export class TestResult{
+    constructor(
+        public apiPath:string,
+        public json:any,
+        public success:boolean,
+        public tckJsonPath:string){}
+}
 
-export function launchTests(folderAbsPath:string,regenerteJSON?:boolean){
+var messageMappings:MessageMapping[] = mappings.map(x=>
+    new MessageMapping(x.messagePatterns.map(x=>x.pattern)));
+
+export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSON:boolean){
+
+    var count = 0;
+    var passed = 0;
+    var report:any=[];
     
     var dirs = iterateFolder(folderAbsPath);
     for(var dir of dirs){
         var tests = getTests(dir);
         for(var test of tests){
-            testAPI(test.masterPath(), test.extensionsAndOverlays(), test.jsonPath(), regenerteJSON);
+            count++;
+            var result = testAPI(test.masterPath(), test.extensionsAndOverlays(), test.jsonPath(), regenerateJSON, false);
+            if(result.success){
+                passed++;
+                console.log('js parser passed: ' + result.apiPath);
+            }
+            else{
+                console.warn('js parser failed: ' + result.apiPath);
+            }
+            var reportItem = {
+                apiPath: result.apiPath,
+                errors:[],
+                tckJsonPath: result.tckJsonPath,
+                passed: result.success
+            };
+            if(result.json.errors){
+                for(var err of result.json.errors){
+                    reportItem.errors.push(err.message + " in '" + err.path + "'.");
+                }
+            }
+            report.push(reportItem);
         }
-    }    
+    }
+    console.log("total tests count: " + count);
+    console.log("tests passed: " + passed);
+    console.log("report file: " + reportPath);
+    if(report) {
+        fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+    }
 }
 
 export function iterateFolder(folderAbsPath:string,result:DirectoryContent[]=[]):DirectoryContent[]{
@@ -97,7 +134,7 @@ export function extractContent(folderAbsPath:string):DirectoryContent{
     var ramlFiles:RamlFile[] = [];
     for(var f of ramlFilesAbsPaths){
         var content = fs.readFileSync(f).toString();
-        var ramlFirstLine = content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
+        var ramlFirstLine = hlImpl.ramlFirstLine(content);
         if(!ramlFirstLine||ramlFirstLine.length<2){
             continue;
         }
@@ -289,7 +326,8 @@ function orderExtensionsAndOverlays(ramlFiles:RamlFile[]):RamlFile[]{
 export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
-    regenerteJSON:boolean=false){
+    regenerteJSON:boolean=false,
+    doAssert:boolean = true):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -337,13 +375,18 @@ export function testAPI(
         return true;
     });
 
+    var success = false;
     if(diff.length==0){
+        success = true;
     }
     else{
         console.warn("DIFFERENCE DETECTED FOR " + tckJsonPath);
         console.warn(diff.map(x=>x.message("actual","expected")).join("\n\n"));
-        assert(false);
+        if(doAssert) {
+            assert(false);
+        }
     }
+    return new TestResult(apiPath,tckJson,success,tckJsonPath);
 }
 
 export function generateMochaSuite(folderAbsPath:string,dstPath:string,dataRoot:string){
@@ -427,7 +470,7 @@ function dumpTest(test:Test,dataRoot:string):string{
 
 var toIncludePath = function (workingFolder:any, absPath:any) {
     var relPath = path.relative(workingFolder, absPath).replace(/\\/g, "/");
-    if (!util.stringStartsWith(relPath, ".")) {
+    if (!relPath || relPath.charAt(0)!=".") {
         relPath = "./" + relPath;
     }
     return relPath;
