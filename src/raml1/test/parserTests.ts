@@ -198,7 +198,7 @@ describe('Parser regression tests', function () {
     })
 
     it ("checking that node is actually primitive" ,function(){
-        testErrors(util.data("parser/examples/ex9.raml"), ["array is expected"]);
+        testErrors(util.data("parser/examples/ex9.raml"), ["string is expected"]);
     })
     it ("map" ,function(){
         testErrors(util.data("parser/examples/ex10.raml"));

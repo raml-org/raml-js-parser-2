@@ -44,17 +44,14 @@
               ],
               "examples": [
                 {
-                  "value": "{\n  \"strict\": true,\n  \"content\": [\n    {\n      \"X-Dept\": \"230-OCTO\"\n    }\n  ]\n}",
+                  "value": "[\n  {\n    \"X-Dept\": \"230-OCTO\"\n  }\n]",
                   "strict": true,
                   "name": "one_dept",
-                  "structuredValue": {
-                    "strict": true,
-                    "content": [
-                      {
-                        "X-Dept": "230-OCTO"
-                      }
-                    ]
-                  }
+                  "structuredValue": [
+                    {
+                      "X-Dept": "230-OCTO"
+                    }
+                  ]
                 }
               ],
               "repeat": false,
@@ -83,21 +80,21 @@
   "errors": [
     {
       "code": 11,
-      "message": "array is expected",
+      "message": "string is expected",
       "path": "api.raml",
-      "line": 12,
-      "column": 10,
-      "position": 188,
+      "line": 15,
+      "column": 16,
+      "position": 258,
       "range": [
         {
-          "line": 12,
-          "column": 10,
-          "position": 188
+          "line": 15,
+          "column": 16,
+          "position": 258
         },
         {
-          "line": 12,
-          "column": 18,
-          "position": 196
+          "line": 15,
+          "column": 32,
+          "position": 274
         }
       ]
     }
