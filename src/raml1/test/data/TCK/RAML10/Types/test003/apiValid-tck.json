@@ -95,6 +95,7 @@
               }
             }
           },
+          "additionalProperties": false,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
