@@ -289,26 +289,5 @@
       }
     }
   },
-  "errors": [
-    {
-      "code": 0,
-      "message": "Unresolved reference: <<annotation>>",
-      "path": "api.raml",
-      "line": 7,
-      "column": 6,
-      "position": 150,
-      "range": [
-        {
-          "line": 7,
-          "column": 6,
-          "position": 150
-        },
-        {
-          "line": 7,
-          "column": 22,
-          "position": 166
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

@@ -812,9 +812,15 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
 
-
-        if (typeof vl=='string'&&vl.indexOf("<<")!=-1){
-            if (vl.indexOf(">>")>vl.indexOf("<<")){
+        var refName:string;
+        if (typeof vl=='string'){
+            refName = vl;
+        }
+        else if(vl instanceof hlimpl.StructuredValue){
+            refName = (<hlimpl.StructuredValue>vl).valueName();
+        }
+        if (refName && refName.indexOf("<<")!=-1){
+            if (refName.indexOf(">>")>refName.indexOf("<<")){
                 new TraitVariablesValidator().validateValue(node,v);
                 if (typeOfContainingTemplate(node.parent())!=null){
                     return;
