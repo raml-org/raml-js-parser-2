@@ -129,6 +129,7 @@ export class BasicASTNode implements hl.IParseResult {
     knownProperty:hl.IProperty
     needSequence:boolean
     needMap:boolean
+    invalidSequence:boolean
     unresolvedRef:string
     errorMessage: string
 
@@ -164,17 +165,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     errors():hl.ValidationIssue[]{
         var errors:hl.ValidationIssue[]=[];
-        var q:hl.ValidationAcceptor={
-            accept(c:hl.ValidationIssue){
-                errors.push(c);
-            },
-            begin(){
-
-            },
-            end(){
-
-            }
-        }
+        var q = createBasicValidationAcceptor(errors);
         this.validate(q);
         return errors;
     }
@@ -436,19 +427,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     errors():hl.ValidationIssue[]{
         var errors:hl.ValidationIssue[]=[];
-        var q:hl.ValidationAcceptor={
-            accept(c:hl.ValidationIssue){
-                if (c.node===this) {
-                    errors.push(c);
-                }
-            },
-            begin(){
-
-            },
-            end(){
-
-            }
-        }
+        var q:hl.ValidationAcceptor= createBasicValidationAcceptor(errors);
         this.parent().validate(q);
         return errors;
     }
@@ -1927,4 +1906,27 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     //forcing discrimination
     api.children();
     return api;
+}
+
+export function createBasicValidationAcceptor(errors:hl.ValidationIssue[]):hl.ValidationAcceptor{
+    var q:hl.ValidationAcceptor={
+        accept(c:hl.ValidationIssue){
+            errors.push(c);
+        },
+        begin(){
+
+        },
+        end(){
+
+        },
+        acceptUnique(issue: hl.ValidationIssue){
+            for(var e of errors){
+                if(e.start==issue.start && e.message==issue.message){
+                    return;
+                }
+            }
+            this.accept(issue);
+        }
+    }
+    return q;
 }
