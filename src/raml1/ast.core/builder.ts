@@ -627,10 +627,14 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             return;
                                         }
                                         if (y.valueKind() == yaml.Kind.SEQ) {
+                                            var isRaml1 = aNode.definition().universe().version()=="RAML10"
                                             y.children().forEach(z=> {
                                                 var node = new hlimpl.ASTNodeImpl(z, aNode, <any> range, p);
                                                 node._allowQuestion = allowsQuestion;
                                                 node.setNamePatch(y.key());
+                                                if(isRaml1){
+                                                    (<hlimpl.ASTNodeImpl>node).invalidSequence = true;
+                                                }
                                                 parsed.push(node);
                                             })
                                             if (y.children().length == 0) {

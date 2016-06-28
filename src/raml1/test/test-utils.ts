@@ -337,17 +337,7 @@ ${label1}: ${strValue1}`
 
 export function validateNode(api:hl.IHighLevelNode):hl.ValidationIssue[] {
   var errors:hl.ValidationIssue[] = [];
-  var q:hl.ValidationAcceptor = {
-    accept(c:any) {
-      errors.push(c);
-    },
-    begin() {
-
-    },
-    end() {
-
-    }
-  }
+  var q:hl.ValidationAcceptor = hlimpl.createBasicValidationAcceptor(errors);
   api.validate(q);
   return errors;
 };
@@ -438,18 +428,8 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
   }
 
   //Validating first. It is supposed that there should be no errors in AST we are testing
-  var errors:ParserError[]=[];
-  var q:hl.ValidationAcceptor={
-    accept(c:ParserError){
-      errors.push(c);
-    },
-    begin(){
-
-    },
-    end(){
-
-    }
-  }
+  var errors:hl.ValidationIssue[]=[];
+  var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors);
 
   api.validate(q);
 

@@ -20,6 +20,7 @@ import tools = require("./testTools")
 
 import smg = require("../tools/schemaModelGen");
 import expander = require("../ast.core/expander")
+import hlimpl = require("../highLevelImpl")
 import RamlWrapper = require("../artifacts/raml10parser")
 import json = require("../jsyaml/json2lowLevel")
 import wrapper10=require("../artifacts/raml10parser")
@@ -30,17 +31,7 @@ function testErrorsByNumber(p:string,count:number=0){
     var api=util.loadApi(p);
     api = util.expandHighIfNeeded(api);
     var errors:any=[];
-    var q:hl.ValidationAcceptor={
-        accept(c:any){
-            errors.push(c);
-        },
-        begin(){
-
-        },
-        end(){
-
-        }
-    }
+    var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors);
     api.validate(q);
     if(errors.length!=count) {
         errors.forEach(error=>console.log(error.message))
