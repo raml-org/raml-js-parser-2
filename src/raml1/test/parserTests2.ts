@@ -78,8 +78,8 @@ describe('API parsing', function() {
    });
 
 //  #2030
-   it('Should succeed when dealing with URI parameters with two types', function(){
-       testErrors(util.data('parser/api/api15.raml'));
+   it('RAML 1.0 parser should reject URI parameters declared by sequences', function(){
+       testErrors(util.data('parser/api/api15.raml'),["In RAML 1.0 base uri parameter is not allowed to have sequence as definition"]);
    });
 
     it('Should parse resource description', function(){

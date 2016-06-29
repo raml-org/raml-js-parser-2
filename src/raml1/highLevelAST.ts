@@ -281,6 +281,7 @@ export interface ValidationAcceptor{
     begin()
     accept(issue: ValidationIssue);
     end();
+    acceptUnique(issue: ValidationIssue);
 }
 
 export interface ValidationAction {
