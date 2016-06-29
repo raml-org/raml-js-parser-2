@@ -3308,6 +3308,12 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
         unit:node?node.unit():null
     }
 };
+
+
+export function toIssue(error: any, node: hl.IHighLevelNode): hl.ValidationIssue {
+    return createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, error.getMessage(), mapPath(node, error), error.isWarning());
+}
+
 export function createIssue(
     c:hl.IssueCode,
     message:string,
