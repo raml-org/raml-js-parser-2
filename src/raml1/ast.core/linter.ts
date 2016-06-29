@@ -5,7 +5,6 @@ import jsyaml= require ("../jsyaml/jsyaml2lowLevel")
 import json= require ("../jsyaml/json2lowLevel")
 var stringify=require("json-stable-stringify")
 import proxy= require ("../ast.core/LowLevelASTProxy")
-import defs= require ("raml-definition-system")
 import hl= require ("../highLevelAST")
 import ll= require ("../lowLevelAST")
 
@@ -90,7 +89,7 @@ var lintWithFile = function (customLinter:string, acceptor:hl.ValidationAcceptor
 function checkPropertyQuard  (n:hl.IAttribute|hl.IHighLevelNode, v:hl.ValidationAcceptor) {
     var pr = n.property();
     if (pr) {
-        (<defs.Property>pr).getContextRequirements().forEach(x=> {
+        (<def.Property>pr).getContextRequirements().forEach(x=> {
             if (!(<hlimpl.BasicASTNode><any>n).checkContextValue(x.name, x.value,x.value)) {
                 v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, x.name + " should be " + x.value + " to use property " + pr.nameId(), n))
             }
@@ -467,7 +466,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             var pName = node.property().nameId();
             var msg = changeCase.sentenceCase(pluralize.singular(pName));
             msg = "In RAML 1.0 " + msg + " is not allowed to have sequence as definition";
-            v.acceptUnique(createIssue(hl.IssueCode.UNKNOWN_NODE, msg,node,false,node.lowLevel().parent().parent()));
+            v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
         }
 
         var highLevelNode = <hl.IHighLevelNode>node;
@@ -908,7 +907,7 @@ class CompositePropertyValidator implements PropertyValidator{
             }
         }
 
-        if ((<defs.Property>pr).isReference()||pr.isDescriminator()){
+        if ((<def.Property>pr).isReference()||pr.isDescriminator()){
             new DescriminatorOrReferenceValidator().validate(node,v);
         }
         else{
@@ -1677,8 +1676,8 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
         var pr=<def.Property>node.property();
         if (typeof vl=='string'){
             checkReference(pr, node, vl,cb);
-            if (pr.range() instanceof defs.ReferenceType){
-                var t=<defs.ReferenceType>pr.range();
+            if (pr.range() instanceof def.ReferenceType){
+                var t=<def.ReferenceType>pr.range();
                 if (true){
                     var mockNode=jsyaml.createNode(""+vl,<any>node.lowLevel().parent());
                     mockNode._actualNode().startPosition=node.lowLevel().valueStart();
@@ -1958,14 +1957,31 @@ class TypeDeclarationValidator implements NodeValidator{
         var rof = node.parsedType();
         var validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
         if (!validateObject.isOk()) {
-            validateObject.getErrors().forEach(e=>{v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(),mapPath( node,e), e.isWarning()))});
+            for( var e of validateObject.getErrors()){
+                var n = extractLowLevelNode(e);
+                var issue;
+                if(n){
+                    issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(),n,mapPath( node,e), e.isWarning());
+                }
+                else {
+                    issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath(node, e), e.isWarning());
+                }
+                v.accept(issue);
+            };
         }
     }
 }
-function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{
+function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{    
     var src= e.getValidationPath();
-
     return findElementAtPath(node,src);
+}
+
+function extractLowLevelNode(e:rtypes.IStatus):ll.ILowLevelASTNode{
+    var pn = e.getExtra(rtypes.SOURCE_EXTRA);
+    if(pn instanceof hlimpl.LowLevelWrapperForTypeSystem){
+        return (<hlimpl.LowLevelWrapperForTypeSystem>pn).node();
+    }
+    return null;
 }
 
 function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParseResult{
@@ -3312,8 +3328,7 @@ export function createIssue(
     c:hl.IssueCode,
     message:string,
     node:hl.IParseResult,
-    w:boolean=false,
-    positionsSource?:ll.ILowLevelASTNode):hl.ValidationIssue{
+    w:boolean=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -3321,7 +3336,7 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,c,w,message,true,pr,positionsSource);
+                original=localError(node,c,w,message,true,pr);
                 //message +="(template expansion affected)"
             }
             node=node.parent();
@@ -3332,7 +3347,7 @@ export function createIssue(
         pr=node.property();
 
         if (node.lowLevel().unit() != node.root().lowLevel().unit()) {
-            original=localError(node,c,w,message,true,pr,positionsSource);
+            original=localError(node,c,w,message,true,pr);
             var v=node.lowLevel().unit();
             if (v) {
                 //message = message + " " + v.path();
@@ -3349,7 +3364,7 @@ export function createIssue(
             node=node.parent();
         }
     }
-    var error=localError(node, c, w, message,false,pr,positionsSource);
+    var error=localError(node, c, w, message,false,pr);
     if (original) {
         error.extras.push(original);
     }

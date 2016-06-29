@@ -52,18 +52,18 @@
       "message": "enum facet can only contain unique items",
       "path": "api.raml",
       "line": 8,
-      "column": 12,
-      "position": 154,
+      "column": 4,
+      "position": 146,
       "range": [
         {
           "line": 8,
-          "column": 12,
-          "position": 154
+          "column": 4,
+          "position": 146
         },
         {
           "line": 8,
-          "column": 19,
-          "position": 161
+          "column": 8,
+          "position": 150
         }
       ]
     }
