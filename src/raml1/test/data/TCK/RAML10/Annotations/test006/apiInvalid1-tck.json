@@ -7,7 +7,6 @@
         "Point": {
           "name": "Point",
           "displayName": "Point",
-          "additionalProperties": false,
           "type": [
             "object"
           ],
@@ -180,20 +179,20 @@
     {
       "code": 11,
       "message": "Unknown property:z",
-      "path": "apiInvalid.raml",
-      "line": 24,
+      "path": "apiInvalid1.raml",
+      "line": 23,
       "column": 10,
-      "position": 374,
+      "position": 342,
       "range": [
         {
-          "line": 24,
+          "line": 23,
           "column": 10,
-          "position": 374
+          "position": 342
         },
         {
-          "line": 24,
+          "line": 23,
           "column": 11,
-          "position": 375
+          "position": 343
         }
       ]
     }

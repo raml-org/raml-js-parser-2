@@ -1944,7 +1944,7 @@ class FixedFacetsValidator implements NodeValidator {
                     }
                 }
             }
-            var validateObject=rof.validate(dp,true,false);
+            var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
                 validateObject.getErrors().forEach(e=>v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath( node,e), false)));
             }
@@ -2830,7 +2830,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     if (pt.getExtra("repeat")){
                         pObje=[pObje];
                     }
-                    var validateObject = pt.validate(pObje, true);
+                    var validateObject = pt.validate(pObje, false);
                     if (!validateObject.isOk()) {
                         validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, !strict)));
                     }

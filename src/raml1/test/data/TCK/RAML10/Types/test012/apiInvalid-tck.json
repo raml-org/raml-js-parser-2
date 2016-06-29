@@ -72,6 +72,7 @@
               }
             }
           },
+          "additionalProperties": false,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
@@ -114,19 +115,19 @@
       "code": 11,
       "message": "Required property: someProperty is missed",
       "path": "apiInvalid.raml",
-      "line": 12,
+      "line": 13,
       "column": 10,
-      "position": 188,
+      "position": 220,
       "range": [
         {
-          "line": 12,
+          "line": 13,
           "column": 10,
-          "position": 188
+          "position": 220
         },
         {
-          "line": 12,
+          "line": 13,
           "column": 23,
-          "position": 201
+          "position": 233
         }
       ]
     },
@@ -134,19 +135,19 @@
       "code": 11,
       "message": "Unknown property:someProperty1",
       "path": "apiInvalid.raml",
-      "line": 12,
+      "line": 13,
       "column": 10,
-      "position": 188,
+      "position": 220,
       "range": [
         {
-          "line": 12,
+          "line": 13,
           "column": 10,
-          "position": 188
+          "position": 220
         },
         {
-          "line": 12,
+          "line": 13,
           "column": 23,
-          "position": 201
+          "position": 233
         }
       ]
     }

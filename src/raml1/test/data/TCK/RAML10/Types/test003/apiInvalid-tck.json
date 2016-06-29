@@ -95,6 +95,7 @@
               }
             }
           },
+          "additionalProperties": false,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
@@ -186,19 +187,19 @@
       "code": 11,
       "message": "Unknown property:name",
       "path": "apiInvalid.raml",
-      "line": 22,
+      "line": 23,
       "column": 8,
-      "position": 303,
+      "position": 335,
       "range": [
         {
-          "line": 22,
+          "line": 23,
           "column": 8,
-          "position": 303
+          "position": 335
         },
         {
-          "line": 22,
+          "line": 23,
           "column": 12,
-          "position": 307
+          "position": 339
         }
       ]
     },
@@ -206,19 +207,19 @@
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 23,
+      "line": 24,
       "column": 8,
-      "position": 329,
+      "position": 361,
       "range": [
         {
-          "line": 23,
+          "line": 24,
           "column": 8,
-          "position": 329
+          "position": 361
         },
         {
-          "line": 23,
+          "line": 24,
           "column": 11,
-          "position": 332
+          "position": 364
         }
       ]
     }
