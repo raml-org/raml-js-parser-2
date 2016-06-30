@@ -302,26 +302,5 @@
       }
     ]
   },
-  "errors": [
-    {
-      "code": 7,
-      "message": "Unknown media type 'type'",
-      "path": "meth10.raml",
-      "line": 15,
-      "column": 6,
-      "position": 280,
-      "range": [
-        {
-          "line": 15,
-          "column": 6,
-          "position": 280
-        },
-        {
-          "line": 15,
-          "column": 15,
-          "position": 289
-        }
-      ]
-    }
-  ]
+  "errors": []
 }
