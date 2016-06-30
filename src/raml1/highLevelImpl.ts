@@ -75,7 +75,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     unitMap:{ [path:string]:string };
 
-    
+
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -976,6 +976,9 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
 
+    createIssue(error: any): hl.ValidationIssue {
+        return linter.toIssue(error, this);
+    }
 
     validate(v:hl.ValidationAcceptor):void{
         var k=this.definition().key();

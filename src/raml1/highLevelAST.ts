@@ -403,6 +403,8 @@ export interface IHighLevelNode extends IParseResult {
     setWrapperNode(node:BasicNode);
 
     optionalProperties():string[];
+
+    createIssue(error: any): ValidationIssue;
 }
 
 export interface IEditableHighLevelNode extends IHighLevelNode {
