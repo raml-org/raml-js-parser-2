@@ -1097,7 +1097,7 @@ describe('Parse strings', function () {
 
 describe('Property override tests',function(){
     it ("Planets",function(){
-        testErrors(util.data("parser/propertyOverride/test1.raml"));
+        testErrors(util.data("parser/propertyOverride/test1.raml"),["enum facet value must be defined by array"]);
     });
 
     it ("User type properties: correct",function(){
