@@ -56,7 +56,7 @@ describe('External type facets tests',function(){
 
     it ("JSON External type facets test 3",function(){
         parserTests.testErrors(util.data("../data/rc2/jsonSchemaNegative2.raml"),
-            ["specifying unknown facet:minLength"]);
+            ["minLength facet can only be used with string and file types"]);
     });
 
     // it ("JSON External type facets test 4",function(){
@@ -142,7 +142,7 @@ describe('External type facets tests',function(){
 
     it ("XSD External type facets test 3",function(){
         parserTests.testErrors(util.data("../data/rc2/xsdSchemaNegative2.raml"),
-            ["specifying unknown facet:minLength"]);
+            ["minLength facet can only be used with string and file types"]);
     });
 
     // it ("XSD External type facets test 4",function(){
