@@ -843,8 +843,12 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
             } catch (e) {}
             if (resolved!=null&&resolved.isRAMLUnit()){
                 var includedAST = resolved.ast();
+                var includedWrapper = new LowLevelWrapperForTypeSystem(includedAST,resolved.highLevel().asElement());
                 if(includedAST.kind()==yaml.Kind.SEQ){
-                     return new LowLevelWrapperForTypeSystem(includedAST,resolved.highLevel().asElement()).children().map(x=>x.value());
+                    return includedWrapper.children().map(x=>x.value());
+                }
+                else{
+                    return includedWrapper.value();
                 }
             }
         }
