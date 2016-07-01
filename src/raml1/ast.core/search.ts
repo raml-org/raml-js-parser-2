@@ -820,8 +820,8 @@ export function schemasWithName  (tname: string, parentNode:hl.IHighLevelNode,ba
 
 export function nodesDeclaringType  (range:hl.ITypeDefinition, n:hl.IHighLevelNode):hl.IHighLevelNode[] {
     var result:hl.IHighLevelNode[] = [];
-    var extenders=range.getAdapter(ramlServices.RAMLService).getRuntimeExtenders();
-    if (extenders.length > 0&&n) {
+    var extenders=[range].concat(range.getAdapter(ramlServices.RAMLService).getRuntimeExtenders());
+    if (n) {
         var root = n;
         extenders.forEach(x=> {
             var definitionNodes = globalDeclarations(root).filter(z=>z.definition().isAssignableFrom(x.nameId()));
