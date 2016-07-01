@@ -941,6 +941,10 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         }
         return highLevelNode;
     }
+    
+    node():ll.ILowLevelASTNode{
+        return this._node;
+    }
 }
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
     children(){
