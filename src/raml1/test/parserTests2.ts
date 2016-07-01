@@ -311,8 +311,8 @@ describe('Method', function(){
         testErrors(util.data('parser/method/meth09.raml'));
     });
 
-    it('Check that only reserved mimeTypes are applicable', function(){
-        testErrors(util.data('parser/method/meth10.raml'), ["Unknown media type '\\w+'"]);
+    it('Check that custom mime types are applicable', function(){
+        testErrors(util.data('parser/method/meth10.raml'));
     });
 
     it('Should parse pair \'mimeType:type\'.', function(){
@@ -351,8 +351,8 @@ describe('Method response', function(){
         testErrors(util.data('parser/methodResponse/methResp02.raml'));
     });
 
-    it('Only reserved reserved mimeTypes are applicable', function(){
-        testErrors(util.data('parser/methodResponse/methResp03.raml'), ["Unknown media type '\\w+'"]);
+    it('Custom mime types are applicable', function(){
+        testErrors(util.data('parser/methodResponse/methResp03.raml'));
     });
 
     it('Should allows to set response body with pair \'mimeType:type\'', function(){

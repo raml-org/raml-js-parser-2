@@ -1210,20 +1210,9 @@ class MediaTypeValidator implements PropertyValidator{
 
 
             var res = mediaTypeParser.parse(v);
-            var types = {
-                application: 1,
-                audio: 1,
-                example: 1,
-                image: 1,
-                message: 1,
-                model: 1,
-                multipart: 1,
-                text: 1,
-                video: 1,
-                binary: 1
-            }
-            if (!types[res.type]) {
-                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Unknown media type 'type'", node))
+            //check if type name satisfies RFC6338
+            if (!res.type.match(/[\w\d][\w\d!#\$&\-\^_+\.]*/)) {
+                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Invalid media type '${res.type}'`, node))
             }
         }catch (e){
             cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, ""+e.message, node))

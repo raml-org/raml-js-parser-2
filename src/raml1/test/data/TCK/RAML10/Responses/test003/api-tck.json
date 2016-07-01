@@ -307,26 +307,5 @@
       }
     ]
   },
-  "errors": [
-    {
-      "code": 7,
-      "message": "Unknown media type 'type'",
-      "path": "api.raml",
-      "line": 17,
-      "column": 10,
-      "position": 354,
-      "range": [
-        {
-          "line": 17,
-          "column": 10,
-          "position": 354
-        },
-        {
-          "line": 17,
-          "column": 19,
-          "position": 363
-        }
-      ]
-    }
-  ]
+  "errors": []
 }
