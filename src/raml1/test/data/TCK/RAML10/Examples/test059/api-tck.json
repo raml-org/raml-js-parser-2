@@ -266,7 +266,27 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: color is missed",
+      "message": "Union type option does not pass validation (Cat: Required property: color is missed)",
+      "path": "api.raml",
+      "line": 25,
+      "column": 10,
+      "position": 385,
+      "range": [
+        {
+          "line": 25,
+          "column": 10,
+          "position": 385
+        },
+        {
+          "line": 25,
+          "column": 17,
+          "position": 392
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Union type option does not pass validation (Dog: Required property: fangs is missed)",
       "path": "api.raml",
       "line": 25,
       "column": 10,
