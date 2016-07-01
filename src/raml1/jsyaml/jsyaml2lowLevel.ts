@@ -2994,7 +2994,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                         var ast = resolved.ast();
                         if (ast) {
                             if(this.cacheChildren){
-                                ast = <ASTNode>toChildCahcingNode(ast);
+                                ast = <ASTNode>toChildCachingNode(ast);
                             } //else {
                             //    ast = <ASTNode>toIncludingNode(ast);
                             //}
@@ -3634,7 +3634,7 @@ export function createMapping(key:string,v:string){
     return new ASTNode(node,null,null,null,null);
 }
 
-export function toChildCahcingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
+export function toChildCachingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
     if(!(node instanceof ASTNode)){
         return null;
     }
