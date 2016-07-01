@@ -60,7 +60,7 @@ describe('Helper methods', function () {
         var found=false;
         var apiObj = util.loadApiWrapper1("./testUnionType.raml");
         var m=apiObj.types()[2].validateInstance("Hello")
-        assert.equal(m.length,2);
+        assert.equal(m.length,3);
     });
     it('Api validate instance of union type passing', function () {
         var found=false;

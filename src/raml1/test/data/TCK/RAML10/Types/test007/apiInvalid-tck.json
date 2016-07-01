@@ -152,7 +152,27 @@
     },
     {
       "code": 11,
-      "message": "string is expected",
+      "message": "Union type option does not pass validation (number[]: number is expected)",
+      "path": "apiInvalid.raml",
+      "line": 13,
+      "column": 20,
+      "position": 226,
+      "range": [
+        {
+          "line": 13,
+          "column": 20,
+          "position": 226
+        },
+        {
+          "line": 13,
+          "column": 24,
+          "position": 230
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
       "line": 13,
       "column": 26,
@@ -172,7 +192,7 @@
     },
     {
       "code": 11,
-      "message": "string is expected",
+      "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
       "line": 13,
       "column": 29,
