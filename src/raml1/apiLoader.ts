@@ -335,7 +335,7 @@ export function loadApis1(projectRoot:string,cacheChildren:boolean = false,expan
     p.units().forEach( x=> {
         var lowLevel = x.ast();
         if(cacheChildren){
-            lowLevel = llimpl.toChildCahcingNode(lowLevel);
+            lowLevel = llimpl.toChildCachingNode (lowLevel);
         }
         var api:RamlWrapper1.Api = new RamlWrapper1Impl.ApiImpl(new hlimpl.ASTNodeImpl(lowLevel, null, <any>apiType, null));
 
