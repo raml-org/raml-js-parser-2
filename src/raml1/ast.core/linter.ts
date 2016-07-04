@@ -50,8 +50,11 @@ type ASTPropImpl=hlimpl.ASTPropImpl;
 
 class LinterSettings{
     validateNotStrictExamples=true;
+    fsEnabled=true;
 }
 var settings=new LinterSettings();
+
+jsyaml.setLinterSettings(settings);
 
 export interface PropertyValidator{
     validate(node:hl.IAttribute,cb:hl.ValidationAcceptor);
@@ -99,6 +102,10 @@ function checkPropertyQuard  (n:hl.IAttribute|hl.IHighLevelNode, v:hl.Validation
 };
 
 function lintNode(astNode:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) {
+    if(!settings.fsEnabled) {
+        return;
+    }
+
     if(typeof fs === "undefined") {
         return;
     }

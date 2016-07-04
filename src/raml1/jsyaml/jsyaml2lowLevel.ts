@@ -16,9 +16,17 @@ import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
 var Error=yaml.YAMLException
+
+var linterSettings: any;
+
 export var Kind={
     SCALAR:yaml.Kind.SCALAR
 }
+
+export function setLinterSettings(settings: any) {
+    linterSettings = settings;
+}
+
 export class MarkupIndentingBuffer {
 
     text: string = '';
@@ -776,6 +784,8 @@ export class Project implements lowlevel.IProject{
     constructor(private rootPath:string,private resolver?:resolversApi.FSResolver,private _httpResolver?:resolversApi.HTTPResolver){
         if(this.resolver == null){
             this.resolver = new FSResolverImpl();
+        } else if(linterSettings && linterSettings.fsEnabled) {
+            linterSettings.fsEnabled = false;
         }
         if(this._httpResolver == null){
             this._httpResolver = new HTTPResolverImpl();
