@@ -88,6 +88,8 @@ export interface IProject{
     removeTextChangeListener(listener:ITextChangeCommandListener);
 
     setCachedUnitContent(path:string,content?:string)
+
+    fsEnabled(): boolean;
 }
 export interface IASTListener{
     (delta:ASTDelta)

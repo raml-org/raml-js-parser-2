@@ -99,6 +99,18 @@ function checkPropertyQuard  (n:hl.IAttribute|hl.IHighLevelNode, v:hl.Validation
 };
 
 function lintNode(astNode:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) {
+    var fsEnabled;
+    
+    try {
+        fsEnabled = astNode.lowLevel().unit().project().fsEnabled();
+    } catch(exception) {
+        fsEnabled = true;
+    }
+    
+    if(!fsEnabled) {
+        return;
+    }
+
     if(typeof fs === "undefined") {
         return;
     }
