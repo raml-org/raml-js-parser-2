@@ -17,14 +17,8 @@ import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
 var Error=yaml.YAMLException
 
-var linterSettings: any;
-
 export var Kind={
     SCALAR:yaml.Kind.SCALAR
-}
-
-export function setLinterSettings(settings: any) {
-    linterSettings = settings;
 }
 
 export class MarkupIndentingBuffer {
@@ -771,6 +765,8 @@ export class Project implements lowlevel.IProject{
     pathToUnit:{[path:string]:CompilationUnit}={}
 
     failedUnits:{[path:string]:any}={}
+    
+    _fsEnabled: boolean = true;
 
     getRootPath(){
         return this.rootPath;
@@ -784,12 +780,16 @@ export class Project implements lowlevel.IProject{
     constructor(private rootPath:string,private resolver?:resolversApi.FSResolver,private _httpResolver?:resolversApi.HTTPResolver){
         if(this.resolver == null){
             this.resolver = new FSResolverImpl();
-        } else if(linterSettings && linterSettings.fsEnabled) {
-            linterSettings.fsEnabled = false;
+        } else {
+            this._fsEnabled = false;
         }
         if(this._httpResolver == null){
             this._httpResolver = new HTTPResolverImpl();
         }
+    }
+
+    fsEnabled(): boolean {
+        return this._fsEnabled;
     }
 
     cloneWithResolver(newResolver:resolversApi.FSResolver,httpResolver:resolversApi.HTTPResolver=null):Project{
