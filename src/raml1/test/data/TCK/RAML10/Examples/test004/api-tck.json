@@ -194,9 +194,9 @@
                 }
               }
             },
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "number"
               ],
@@ -266,17 +266,17 @@
       "path": "api.raml",
       "line": 16,
       "column": 4,
-      "position": 272,
+      "position": 274,
       "range": [
         {
           "line": 16,
           "column": 4,
-          "position": 272
+          "position": 274
         },
         {
           "line": 16,
           "column": 11,
-          "position": 279
+          "position": 281
         }
       ]
     }
