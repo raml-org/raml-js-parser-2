@@ -35,9 +35,9 @@
                 }
               }
             },
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "object"
               ],

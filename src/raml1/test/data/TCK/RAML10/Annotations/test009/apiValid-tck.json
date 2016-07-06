@@ -35,9 +35,9 @@
                 }
               }
             },
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "object"
               ],
@@ -112,17 +112,17 @@
       "path": "apiValid.raml",
       "line": 9,
       "column": 2,
-      "position": 163,
+      "position": 165,
       "range": [
         {
           "line": 9,
           "column": 2,
-          "position": 163
+          "position": 165
         },
         {
           "line": 9,
           "column": 10,
-          "position": 171
+          "position": 173
         }
       ]
     }
