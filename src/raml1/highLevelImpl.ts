@@ -20,6 +20,7 @@ import ParserCore = require("./wrapped-ast/parserCore")
 import services=def
 import yaml=require("yaml-ast-parser")
 import core=require("./wrapped-ast/parserCore");
+import wrapperHelper=require("./wrapped-ast/wrapperHelper");
 import factory10 = require("./artifacts/raml10factory")
 import factory08 = require("./artifacts/raml08factory")
 import universeHelpers = require("./tools/universeHelpers")
@@ -1145,10 +1146,23 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     wrapperNode():ParserCore.BasicNode{
         if(!this._wrapperNode){
-            //forcing discrimination
-            this.children();
+            if(universeHelpers.isExampleSpecType(this.definition())){
+                var typeYamlNode = yaml.newMap([yaml.newMapping(yaml.newScalar("example"),this.lowLevel().actual())]);
+                var typesNode = yaml.newMapping(yaml.newScalar("types")
+                    ,yaml.newMap([yaml.newMapping(yaml.newScalar("__AUX_TYPE__"),typeYamlNode)]));
+                var yamlNode = yaml.newMap([typesNode]);
+                var llNode = new jsyaml.ASTNode(yamlNode,this.lowLevel().unit(),null,null,null);
+                var types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(llNode,this));
+                var nominal = rTypes.toNominal(types.types()[0],x=>null);
+                var spec = wrapperHelper.examplesFromNominal(nominal,this,true,false);
+                return spec[0];
+            }
+            else {
+                //forcing discrimination
+                this.children();
 
-            this._wrapperNode = this.buildWrapperNode();
+                this._wrapperNode = this.buildWrapperNode();
+            }
         }
         return this._wrapperNode;
     }

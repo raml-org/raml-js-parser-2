@@ -652,6 +652,39 @@ function referencedObject(ref:RamlWrapper.Reference):core.BasicNode{
     return cands[0].wrapperNode();
 }
 
+export function examplesFromNominal(
+    runtimeDefinition:hl.ITypeDefinition,
+    hlParent:hl.IHighLevelNode,
+    isSingle:boolean,
+    patchHL:boolean = true) {
+    var llParent = hlParent.lowLevel();
+    var property = hlParent.definition().property(isSingle ? "example" : "examples");
+    var universe = defs.getUniverse("RAML10");
+    var definition = universe.type(universeDef.Universe10.ExampleSpec.name);
+
+    var expandables = runtimeDefinition.examples().filter(x=>!x.isEmpty() && x.isSingle() == isSingle);
+    return expandables.map(x=> {
+        var obj = x.asJSON();
+
+        var key = x.isSingle() ? "example" : null;
+        var jsonNode = new json.AstNode(llParent.unit(), obj, llParent, null, key);
+        var hlNode = patchHL ? new hlimpl.ASTNodeImpl(jsonNode, hlParent, definition, property) : hlParent;
+
+        var wrapperAnnotations:RamlWrapperImpl.AnnotationRefImpl[] = [];
+        var annotations = x.annotations();
+        if (annotations) {
+            var aProp = universe.type("Annotable").property("annotations");
+            for (var aName of Object.keys(annotations)) {
+                var aObj = annotations[aName];
+                var aJson = new json.AstNode(llParent.unit(), aObj, jsonNode, null, "(" + aName + ")");
+                var aHlNode = new hlimpl.ASTPropImpl(aJson, hlNode, aProp.range(), aProp)
+                var wAnnotation = new RamlWrapperImpl.AnnotationRefImpl(aHlNode);
+                wrapperAnnotations.push(wAnnotation);
+            }
+        }
+        return new ExampleSpecImpl(hlNode, x, wrapperAnnotations);
+    });
+};
 function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):ExampleSpecImpl[] {
 
     var runtimeDefinition = node.runtimeDefinition();
@@ -659,32 +692,7 @@ function getExpandableExamples(node:core.BasicNode,isSingle:boolean=false):Examp
         return [];
     }
     var hlParent = node.highLevel();
-    var property = hlParent.definition().property(isSingle?"example":"examples");
-    var universe = defs.getUniverse("RAML10");
-    var definition = universe.type(universeDef.Universe10.ExampleSpec.name);
-
-    var expandables = runtimeDefinition.examples().filter(x=>!x.isEmpty() && x.isSingle()==isSingle);
-    return expandables.map(x=>{
-        var obj = x.asJSON();
-        var llParent = hlParent.lowLevel();
-        var key = x.isSingle() ? "example" : null;
-        var jsonNode = new json.AstNode(llParent.unit(),obj,llParent,null,key);
-        var hlNode = new hlimpl.ASTNodeImpl(jsonNode,hlParent,definition,property);
-
-        var wrapperAnnotations:RamlWrapperImpl.AnnotationRefImpl[] = [];
-        var annotations = x.annotations();
-        if(annotations) {
-            var aProp = universe.type("Annotable").property("annotations");
-            for (var aName of Object.keys(annotations)) {
-                var aObj = annotations[aName];
-                var aJson = new json.AstNode(llParent.unit(),aObj,jsonNode,null,"("+aName+")");
-                var aHlNode = new hlimpl.ASTPropImpl(aJson,hlNode,aProp.range(),aProp)
-                var wAnnotation = new RamlWrapperImpl.AnnotationRefImpl(aHlNode);
-                wrapperAnnotations.push(wAnnotation);
-            }
-        }
-        return new ExampleSpecImpl(hlNode,x,wrapperAnnotations);
-    });
+    return examplesFromNominal(runtimeDefinition, hlParent, isSingle);
 };
 
 /**
@@ -1056,5 +1064,9 @@ export class ExampleSpecImpl extends core.BasicNodeImpl{
     }
 
     scalarsAnnotations():any{ return <any>{}; }
+
+    uses():RamlWrapper.UsesDeclaration[]{
+        return <RamlWrapper.UsesDeclaration[]>super.elements('uses');
+    }
 
 }

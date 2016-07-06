@@ -481,7 +481,28 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
         }
 
-        var highLevelNode = <hl.IHighLevelNode>node;
+        var highLevelNode = node.asElement();
+        if(universeHelpers.isExampleSpecType(highLevelNode.definition())){
+            var hlChildren = highLevelNode.children();
+            if(hlChildren.length==0){
+                validateBasic(<hlimpl.BasicASTNode>node,v, true);
+                return;
+            }
+            var content = hlChildren.filter(x=>{
+                var propName = x.lowLevel().key();
+                if(!propName){
+                    return true;
+                }
+                if(propName.charAt(0)=="("&&propName.charAt(propName.length-1)==")"){
+                    return false;
+                }
+                return highLevelNode.definition().property(propName)==null;
+            });
+            if(content.length>0){
+                validateBasic(<hlimpl.BasicASTNode>node,v, true);
+                return;
+            }
+        }
 
         if (highLevelNode.definition().isAnnotationType()||highLevelNode.property()&&highLevelNode.property().nameId()=="annotations"){
             new FixedFacetsValidator().validate(highLevelNode,v);
