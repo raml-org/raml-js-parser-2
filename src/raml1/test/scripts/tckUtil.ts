@@ -58,7 +58,7 @@ export class TestResult{
 var messageMappings:MessageMapping[] = mappings.map(x=>
     new MessageMapping(x.messagePatterns.map(x=>x.pattern)));
 
-export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSON:boolean){
+export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSON:boolean,callTests:boolean){
 
     var count = 0;
     var passed = 0;
@@ -69,7 +69,10 @@ export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSO
         var tests = getTests(dir);
         for(var test of tests){
             count++;
-            var result = testAPI(test.masterPath(), test.extensionsAndOverlays(), test.jsonPath(), regenerateJSON, false);
+            var result = testAPI(test.masterPath(), test.extensionsAndOverlays(), test.jsonPath(), regenerateJSON, callTests, false);
+            if(!result){
+                continue;
+            }
             if(result.success){
                 passed++;
                 console.log('js parser passed: ' + result.apiPath);
@@ -91,11 +94,13 @@ export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSO
             report.push(reportItem);
         }
     }
-    console.log("total tests count: " + count);
-    console.log("tests passed: " + passed);
-    console.log("report file: " + reportPath);
-    if(report) {
-        fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+    if(callTests) {
+        console.log("total tests count: " + count);
+        console.log("tests passed: " + passed);
+        console.log("report file: " + reportPath);
+        if (report) {
+            fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
+        }
     }
 }
 
@@ -327,6 +332,7 @@ export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
     regenerteJSON:boolean=false,
+    callTests:boolean=true,
     doAssert:boolean = true):TestResult{
 
     if(apiPath){
@@ -355,7 +361,14 @@ export function testAPI(
     }
     if(!fs.existsSync(tckJsonPath)){
         fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
-        console.warn("FAILED TO FIND JSON: " + tckJsonPath);
+        if(!callTests){
+            console.log("TCK JSON GENERATED: " + tckJsonPath);
+            return;
+        }
+        console.warn("FAILED TO FIND TCK JSON: " + tckJsonPath);
+    }
+    if(!callTests){
+        return;
     }
 
     var tckJson:any = JSON.parse(fs.readFileSync(tckJsonPath).toString());
