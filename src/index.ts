@@ -104,7 +104,7 @@ export function parseRAMLSync(content:string,
 export function parseRAML(content:string,
                               arg2?:parserCore.Options):hl.BasicNode{
 
-    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
+    return <any>apiLoader.loadApiAsync("/#local.raml",[],optionsForContent(content,arg2));
 }
 
 /**
