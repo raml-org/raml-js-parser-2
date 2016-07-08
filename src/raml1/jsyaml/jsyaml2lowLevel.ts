@@ -940,7 +940,7 @@ export class Project implements lowlevel.IProject{
         if(absolute||lowlevel.isWebPath(p)){
             if(this.failedUnits[p]!=null){
                 if (!this.failedUnits[p].inner) {
-                    throw(this.failedUnits[p]);
+                    return null;//throw(this.failedUnits[p]);
                 }
             }
         }
@@ -948,7 +948,7 @@ export class Project implements lowlevel.IProject{
             var ap = lowlevel.toAbsolutePath(this.rootPath,p);
             if(this.failedUnits[ap]){
                 if (!this.failedUnits[p].inner) {
-                    throw(this.failedUnits[p]);
+                    return null;//throw(this.failedUnits[p]);
                 }
             }
         }
