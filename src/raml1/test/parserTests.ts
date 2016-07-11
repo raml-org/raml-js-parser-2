@@ -1160,7 +1160,7 @@ describe('Property override tests',function(){
         testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
     });
     it ("expander not halted by this sample any more",function(){
-        testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),14);
+        testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),10);
     });
 });
 describe('Line mapper tests',function() {
