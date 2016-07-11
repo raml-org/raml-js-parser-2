@@ -79,7 +79,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "string length should be not less then 5",
+      "message": "string length should be not less than 5",
       "path": "api.raml",
       "line": 5,
       "column": 4,
@@ -99,7 +99,7 @@
     },
     {
       "code": 11,
-      "message": "string length should be not more then 3",
+      "message": "string length should be not more than 3",
       "path": "api.raml",
       "line": 8,
       "column": 4,

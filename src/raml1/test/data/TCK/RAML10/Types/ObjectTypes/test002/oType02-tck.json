@@ -91,7 +91,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "object should have not less then 2 properties",
+      "message": "object should have not less than 2 properties",
       "path": "oType02.raml",
       "line": 9,
       "column": 4,

@@ -109,7 +109,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "object should have not less then 2 properties",
+      "message": "object should have not less than 2 properties",
       "path": "api.raml",
       "line": 12,
       "column": 4,

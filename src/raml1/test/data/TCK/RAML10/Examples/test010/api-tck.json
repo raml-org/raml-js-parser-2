@@ -104,7 +104,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "array should have not less then 5 items",
+      "message": "array should have not less than 5 items",
       "path": "api.raml",
       "line": 11,
       "column": 6,
