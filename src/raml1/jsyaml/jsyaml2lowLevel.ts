@@ -2560,6 +2560,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             return "";
         }
         if (this._node.kind==yaml.Kind.SCALAR){
+            if(this._node['value']==="~" && this._node['valueObject']===null){
+                return toString ? "null" : null;
+            }
             //TODO WHAT IS IT IS INCLUDE ACTUALLY
             if(!toString&&(""+this._node['valueObject']===this._node['value'])){
                 return this._node['valueObject'];
