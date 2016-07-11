@@ -577,11 +577,11 @@ describe('Object types', function(){
     });
 
     it('Should parse minimum number of properties',function(){
-        testErrors(util.data('parser/objectTypes/oType02.raml'),["object should have not less then 2 properties"]);
+        testErrors(util.data('parser/objectTypes/oType02.raml'),["object should have not less than 2 properties"]);
     });
 
     it('Should parse maximum number of properties',function(){
-        testErrors(util.data('parser/objectTypes/oType03.raml'), ["object should have not more then 4 properties"]);
+        testErrors(util.data('parser/objectTypes/oType03.raml'), ["object should have not more than 4 properties"]);
     });
 
     it('Should parse property required option',function(){

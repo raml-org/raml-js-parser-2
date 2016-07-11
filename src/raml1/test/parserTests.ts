@@ -216,46 +216,46 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex15.raml"),["value should be one of:val1,val2,3"]);
     })
     it ("array facets" ,function(){
-        testErrors(util.data("parser/examples/ex16.raml"), ["array should have not less then 5 items", "array should have not more then 3 items", "items should be unique"]);
+        testErrors(util.data("parser/examples/ex16.raml"), ["array should have not less than 5 items", "array should have not more than 3 items", "items should be unique"]);
     })
     it ("array facets2" ,function(){
         testErrors(util.data("parser/examples/ex17.raml"));
     })
     it ("array facets3" ,function(){
-        testErrors(util.data("parser/examples/ex18.raml"), ["array should have not less then 5 items"]);
+        testErrors(util.data("parser/examples/ex18.raml"), ["array should have not less than 5 items"]);
     })
     it ("array facets4" ,function(){
-        testErrors(util.data("parser/examples/ex19.raml"),["array should have not less then 5 items"]);
+        testErrors(util.data("parser/examples/ex19.raml"),["array should have not less than 5 items"]);
     })
     it ("object facets1" ,function(){
-        testErrors(util.data("parser/examples/ex20.raml"), ["object should have not less then 2 properties"]);
+        testErrors(util.data("parser/examples/ex20.raml"), ["object should have not less than 2 properties"]);
     })
     it ("object facets2" ,function(){
-        testErrors(util.data("parser/examples/ex21.raml"), ["object should have not less then 2 properties"]);
+        testErrors(util.data("parser/examples/ex21.raml"), ["object should have not less than 2 properties"]);
     })
     it ("object facets3" ,function(){
-        testErrors(util.data("parser/examples/ex22.raml"), ["object should have not more then 1 properties"]);
+        testErrors(util.data("parser/examples/ex22.raml"), ["object should have not more than 1 properties"]);
     })
     it ("object facets4" ,function(){
         testErrors(util.data("parser/examples/ex23.raml"));
     })
     it ("object facets5" ,function(){
-        testErrors(util.data("parser/examples/ex24.raml"), ["object should have not less then 3 properties"]);
+        testErrors(util.data("parser/examples/ex24.raml"), ["object should have not less than 3 properties"]);
     })
     it ("string facets1" ,function(){
-        testErrors(util.data("parser/examples/ex25.raml"), ["string length should be not less then 5", "string length should be not more then 3"]);
+        testErrors(util.data("parser/examples/ex25.raml"), ["string length should be not less than 5", "string length should be not more than 3"]);
     })
     it ("string facets2" ,function(){
         testErrors(util.data("parser/examples/ex26.raml"));
     })
     it ("string facets3" ,function(){
-        testErrors(util.data("parser/examples/ex27.raml"), ["string length should be not less then 5"]);
+        testErrors(util.data("parser/examples/ex27.raml"), ["string length should be not less than 5"]);
     })
     it ("string facets4" ,function(){
         testErrors(util.data("parser/examples/ex28.raml"), ["string should match to \\.5"]);
     })
     it ("number facets1" ,function(){
-        testErrors(util.data("parser/examples/ex29.raml"),["value should be not less then \\w+", "value should be not less then \\w+"]);
+        testErrors(util.data("parser/examples/ex29.raml"),["value should be not less than \\w+", "value should be not less than \\w+"]);
     })
 
     it ("number facets2" ,function(){

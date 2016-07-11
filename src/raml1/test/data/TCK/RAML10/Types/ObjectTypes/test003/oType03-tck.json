@@ -166,7 +166,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "object should have not more then 4 properties",
+      "message": "object should have not more than 4 properties",
       "path": "oType03.raml",
       "line": 13,
       "column": 4,
