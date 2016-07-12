@@ -1,0 +1,11 @@
+#%RAML 1.0 Extension
+
+extends: https://WWW.__TESTDATA__.com/vfsTests/remoteExtend/web/api.raml
+
+annotationTypes:
+  stringA: string
+
+/resource:
+  get:
+    (stringA): string annotation value
+    body:

@@ -44,7 +44,7 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
                         if (x.definition().key() == universes.Universe10.UsesDeclaration) {
                             var mm = x.attr("value");
                             if (mm) {
-                                var unit = root.lowLevel().unit().resolve(mm.value());
+                                var unit = x.root().lowLevel().unit().resolve(mm.value());
                                 if (unit != null) {
                                     var key = x.attr("key");
                                     if (key) {

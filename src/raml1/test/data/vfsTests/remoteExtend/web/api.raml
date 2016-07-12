@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: New API
+version: v1
+baseUri: http://api.samplehost.com
+
+uses:
+  lib: libs/lib.raml
+
+/resource:
+  post:
+    body:
+      application/json:
+        type: lib.MyType
