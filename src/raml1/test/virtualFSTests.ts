@@ -52,6 +52,10 @@ describe('Virtual File System Tests', function() {
     it("JSON references test", function (done) {
         testAPI("./vfsTests/jsonRefsTest001/api.raml").should.be.fulfilled.and.notify(done);
     });
+
+    it("Uses test for extensions", function (done) {
+        testAPI("./vfsTests/remoteExtend/local/extension.raml").should.be.fulfilled.and.notify(done);
+    });
 });
 
 
@@ -72,10 +76,10 @@ export function testAPIHttpAsync(apiRelPath:string):any{
     var apiLocalPath = testUtil.data(apiRelPath);
     var apiDir = path.dirname(apiLocalPath);
 
-    var resolver = http2fs.getHttpResolver();
+    var httpResolver = http2fs.getHttpResolver();
     return index.loadApi(apiWebPath, {
         fsResolver: null,
-        httpResolver: resolver
+        httpResolver: httpResolver
     }).then(x=>{
         return inspect(x,apiDir);
     },y=>{
@@ -133,12 +137,14 @@ function testAPI(_apiPath:string):any{
             }            
         }
     };
-    
+
+    var httpResolver = http2fs.getHttpResolver();
     return vfsInstance.directory("/").then(x=>{
             return putEntry(0);
         }).then(x=> {
             return index.loadApi(apiRelPath, {
-                fsResolver: fsResolver
+                fsResolver: fsResolver,
+                httpResolver: httpResolver
             });
         }).then(x=>{
             return inspect(x,apiDir);
