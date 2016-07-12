@@ -219,7 +219,7 @@ export class TCKDumper{
 
     private dumpErrors(errors:core.RamlParserError[]) {
         return errors.map(x=> {
-            return {
+            var eObj:any = {
                 "code": x.code, //TCK error code
                 "message": x.message,
                 "path": x.path,
@@ -227,7 +227,11 @@ export class TCKDumper{
                 "column": x.column,
                 "position": x.start,
                 "range": x.range
+            };
+            if(x.isWarning===true){
+                eObj.isWarning = true;
             }
+            return eObj;
         }).sort((x, y)=> {
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);

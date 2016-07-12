@@ -113,7 +113,8 @@
           "column": 7,
           "position": 135
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }

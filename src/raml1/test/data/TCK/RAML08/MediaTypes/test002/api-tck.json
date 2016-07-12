@@ -59,7 +59,8 @@
           "column": 43,
           "position": 176
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }

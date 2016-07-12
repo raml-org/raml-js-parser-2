@@ -68,9 +68,16 @@ function load(definition, location, theOptions) {
 
   return raml1Parser.loadApi('api.raml', options)
     .then(function (result) {
+      if(options.rejectOnErrors===true) {
+        var errors = result.errors();
+        if (errors.length > 0) {
+          return handleErrors(errors);
+        }
+      }
       //console.log('Api parsed.');
       result = result.expand();
       //console.log('Api expanded.');
+
         var ramlJSON = transformRAML(result, theOptions?theOptions['transform']:true, result.toJSON());
       return ramlJSON;
     })
@@ -83,32 +90,35 @@ function handleError(error) {
   //console.log(error.stack)
   //console.log('Error:' + error);
   if (error && error.parserErrors) {
-    var errors = error.parserErrors;
-    if (errors.length == 1) {
-      var err = errors[0];
-      err.problem_mark = {
-        column: err.column,
-        line: err.line
-      };
-      return Promise.reject(err);
-    } else if (errors.length > 1) {
-      var resultError = new Error();
-      resultError.message = "";
-      errors.forEach(function(currentError){
-        resultError.message += currentError.message;
-      })
-      resultError.problem_mark = {
-        column: errors[0].column,
-        line: errors[0].line
-      };
-      return Promise.reject(resultError);
-    }
+    return handleErrors(error.parserErrors);
   } else if (error) {
     //console.log(error.stack)
     //console.log('Error:' + error);
     return Promise.reject(error);
   }
   throw new Error('Invalid Error returned by parser');
+}
+
+function handleErrors(errors){
+  if (errors.length == 1) {
+    var err = errors[0];
+    err.problem_mark = {
+      column: err.column,
+      line: err.line
+    };
+    return Promise.reject(err);
+  } else if (errors.length > 1) {
+    var resultError = new Error();
+    resultError.message = "";
+    errors.forEach(function(currentError){
+      resultError.message += currentError.message;
+    })
+    resultError.problem_mark = {
+      column: errors[0].column,
+      line: errors[0].line
+    };
+    return Promise.reject(resultError);
+  }
 }
 
 ///Users/vasil/Documents/tests/raml-parsers-functional-tests/parsers/raml-parser-2.js

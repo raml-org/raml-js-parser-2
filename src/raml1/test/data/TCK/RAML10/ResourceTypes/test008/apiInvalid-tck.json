@@ -485,7 +485,8 @@
           "column": 27,
           "position": 1004
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }
