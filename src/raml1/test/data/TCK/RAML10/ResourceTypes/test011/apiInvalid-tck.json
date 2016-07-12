@@ -442,7 +442,8 @@
           "column": 35,
           "position": 854
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }
