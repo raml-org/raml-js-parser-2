@@ -51,7 +51,7 @@ describe('External type facets tests',function(){
 
     it ("JSON External type facets test 2",function(){
         parserTests.testErrors(util.data("../data/rc2/jsonSchemaNegative1.raml"),
-        ["specifying unknown facet:properties"]);
+        ["'properties' facet is prohibited for external types"]);
     });
 
     it ("JSON External type facets test 3",function(){
@@ -137,7 +137,7 @@ describe('External type facets tests',function(){
 
     it ("XSD External type facets test 2",function(){
         parserTests.testErrors(util.data("../data/rc2/xsdSchemaNegative1.raml"),
-            ["specifying unknown facet:properties"]);
+            ["'properties' facet is prohibited for external types"]);
     });
 
     it ("XSD External type facets test 3",function(){
