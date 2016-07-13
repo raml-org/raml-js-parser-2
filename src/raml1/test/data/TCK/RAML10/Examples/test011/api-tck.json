@@ -131,7 +131,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "array should have not less than 5 items",
+      "message": "'SmallArray.minItems=5' i.e. array items count should not be less than 5",
       "path": "api.raml",
       "line": 12,
       "column": 10,

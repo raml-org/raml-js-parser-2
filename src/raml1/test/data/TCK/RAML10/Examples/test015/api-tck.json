@@ -109,7 +109,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "object should have not more than 1 properties",
+      "message": "'MyType1.maxProperties=1' i.e. object properties count should not be more than 1",
       "path": "api.raml",
       "line": 7,
       "column": 4,
