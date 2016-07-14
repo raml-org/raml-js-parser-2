@@ -446,6 +446,56 @@ annotations(  ):AnnotationRef[]
 structuredValue(  ):TypeInstance
 }
 
+export interface UsesDeclaration extends Annotable{
+
+        /**
+         * Name prefix (without dot) used to refer imported declarations
+         **/
+key(  ):string
+
+
+        /**
+         * Content of the schema
+         **/
+value(  ):string
+
+
+        /**
+         * Returns the root node of the AST, uses statement refers.
+         **/
+ast(  ):Library
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
+}
+
+
+/**
+ * Annotable scalar properties annotations accessor
+ **/
+export interface AnnotableScalarsAnnotations{
+
+        /**
+         * Annotable.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]
+}
+
 export interface XMLFacetInfo extends Annotable{
 
         /**
@@ -486,18 +536,6 @@ scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotations
 
 
 /**
- * Annotable scalar properties annotations accessor
- **/
-export interface AnnotableScalarsAnnotations{
-
-        /**
-         * Annotable.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
-}
-
-
-/**
  * XMLFacetInfo scalar properties annotations accessor
  **/
 export interface XMLFacetInfoScalarsAnnotations extends AnnotableScalarsAnnotations{
@@ -530,44 +568,6 @@ namespace(  ):AnnotationRef[]
          * XMLFacetInfo.prefix annotations
          **/
 prefix(  ):AnnotationRef[]
-}
-
-export interface UsesDeclaration extends Annotable{
-
-        /**
-         * Name prefix (without dot) used to refer imported declarations
-         **/
-key(  ):string
-
-
-        /**
-         * Content of the schema
-         **/
-value(  ):string
-
-
-        /**
-         * Returns the root node of the AST, uses statement refers.
-         **/
-ast(  ):Library
-
-
-        /**
-         * Scalar properties annotations accessor
-         **/
-scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
-}
-
-
-/**
- * UsesDeclaration scalar properties annotations accessor
- **/
-export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
-
-        /**
-         * UsesDeclaration.value annotations
-         **/
-value(  ):AnnotationRef[]
 }
 
 export interface ArrayTypeDeclaration extends TypeDeclaration{
@@ -2613,20 +2613,20 @@ export function isExampleSpec(node: core.AbstractWrapperNode) : node is ExampleS
 
 
 /**
- * Custom type guard for XMLFacetInfo. Returns true if node is instance of XMLFacetInfo. Returns false otherwise.
- * Also returns false for super interfaces of XMLFacetInfo.
- */
-export function isXMLFacetInfo(node: core.AbstractWrapperNode) : node is XMLFacetInfo {
-    return node.kind() == "XMLFacetInfo" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
  * Custom type guard for UsesDeclaration. Returns true if node is instance of UsesDeclaration. Returns false otherwise.
  * Also returns false for super interfaces of UsesDeclaration.
  */
 export function isUsesDeclaration(node: core.AbstractWrapperNode) : node is UsesDeclaration {
     return node.kind() == "UsesDeclaration" && node.RAMLVersion() == "RAML10";
+}
+
+
+/**
+ * Custom type guard for XMLFacetInfo. Returns true if node is instance of XMLFacetInfo. Returns false otherwise.
+ * Also returns false for super interfaces of XMLFacetInfo.
+ */
+export function isXMLFacetInfo(node: core.AbstractWrapperNode) : node is XMLFacetInfo {
+    return node.kind() == "XMLFacetInfo" && node.RAMLVersion() == "RAML10";
 }
 
 
@@ -2948,13 +2948,13 @@ export function isExtension(node: core.AbstractWrapperNode) : node is Extension 
 /**
  * Check if the AST node represents fragment
  */
-export function isFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):boolean{
+export function isFragment(node:Trait|TypeDeclaration|ExampleSpec|ResourceType|DocumentationItem):boolean{
     return node.highLevel().parent()==null;
 }
 
 /**
  * Convert fragment representing node to FragmentDeclaration instance.
  */
-export function asFragment(node:Trait|TypeDeclaration|ResourceType|DocumentationItem):FragmentDeclaration{
+export function asFragment(node:Trait|TypeDeclaration|ExampleSpec|ResourceType|DocumentationItem):FragmentDeclaration{
     return isFragment(node)?<FragmentDeclaration><any>node:null;
 }

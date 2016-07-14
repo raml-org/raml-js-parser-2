@@ -83,10 +83,10 @@ import TypeDeclarationScalarsAnnotations = pApi.TypeDeclarationScalarsAnnotation
 import ModelLocation = pApi.ModelLocation;
 import LocationKind = pApi.LocationKind;
 import ExampleSpec = pApi.ExampleSpec;
-import XMLFacetInfo = pApi.XMLFacetInfo;
-import XMLFacetInfoScalarsAnnotations = pApi.XMLFacetInfoScalarsAnnotations;
 import UsesDeclaration = pApi.UsesDeclaration;
 import UsesDeclarationScalarsAnnotations = pApi.UsesDeclarationScalarsAnnotations;
+import XMLFacetInfo = pApi.XMLFacetInfo;
+import XMLFacetInfoScalarsAnnotations = pApi.XMLFacetInfoScalarsAnnotations;
 import ArrayTypeDeclaration = pApi.ArrayTypeDeclaration;
 import ArrayTypeDeclarationScalarsAnnotations = pApi.ArrayTypeDeclarationScalarsAnnotations;
 import UnionTypeDeclaration = pApi.UnionTypeDeclaration;
@@ -1177,6 +1177,120 @@ kind(  ):string{return "LocationKind";}
 RAMLVersion(  ):string{return "RAML10";}
 }
 
+export class UsesDeclarationImpl extends AnnotableImpl implements UsesDeclaration{
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUsesDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+
+
+        /**
+         * Name prefix (without dot) used to refer imported declarations
+         **/
+key(  ):string{
+             return <string>super.attribute('key', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set key value
+         **/
+setKey( param:string ){
+            this.highLevel().attrOrCreate("key").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * Content of the schema
+         **/
+value(  ):string{
+             return <string>super.attribute('value', this.toString);
+         }
+
+
+        /**
+         * @hidden
+         * Set value value
+         **/
+setValue( param:string ){
+            this.highLevel().attrOrCreate("value").setValue(""+param);
+            return this;
+        }
+
+
+        /**
+         * @hidden
+         * @return Actual name of instance class
+         **/
+wrapperClassName(  ):string{return "UsesDeclarationImpl";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+kind(  ):string{return "UsesDeclaration";}
+
+
+        /**
+         * @return RAML version of the node
+         **/
+RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Returns the root node of the AST, uses statement refers.
+         **/
+ast(  ):Library{
+            return helper.referencedNode(this);
+        }
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):UsesDeclarationScalarsAnnotationsImpl{return new UsesDeclarationScalarsAnnotationsImpl(this.highLevel());}
+}
+
+
+/**
+ * Annotable scalar properties annotations accessor
+ **/
+export class AnnotableScalarsAnnotationsImpl implements AnnotableScalarsAnnotations{
+constructor( protected node:hl.IHighLevelNode ){}
+
+
+        /**
+         * Annotable.annotations annotations
+         **/
+annotations(  ):AnnotationRef[][]{
+        var attrs = this.node.attributes("annotations");
+        return <AnnotationRef[][]>attrs.map(x=>{
+            var annotationAttrs = x.annotations();
+            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+            return result;
+        });
+}
+}
+
+
+/**
+ * UsesDeclaration scalar properties annotations accessor
+ **/
+export class UsesDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements UsesDeclarationScalarsAnnotations{
+
+        /**
+         * UsesDeclaration.value annotations
+         **/
+value(  ):AnnotationRef[]{
+        var attr = this.node.attr("value");
+        if(attr==null){
+          return [];
+        }
+        var annotationAttrs = attr.annotations();
+        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
+        return <AnnotationRef[]>result;
+}
+}
+
 export class XMLFacetInfoImpl extends AnnotableImpl implements XMLFacetInfo{
 constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createXMLFacetInfo(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
@@ -1298,27 +1412,6 @@ scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotationsImpl{return new XMLFacetInf
 
 
 /**
- * Annotable scalar properties annotations accessor
- **/
-export class AnnotableScalarsAnnotationsImpl implements AnnotableScalarsAnnotations{
-constructor( protected node:hl.IHighLevelNode ){}
-
-
-        /**
-         * Annotable.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]{
-        var attrs = this.node.attributes("annotations");
-        return <AnnotationRef[][]>attrs.map(x=>{
-            var annotationAttrs = x.annotations();
-            var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
-            return result;
-        });
-}
-}
-
-
-/**
  * XMLFacetInfo scalar properties annotations accessor
  **/
 export class XMLFacetInfoScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements XMLFacetInfoScalarsAnnotations{
@@ -1384,99 +1477,6 @@ namespace(  ):AnnotationRef[]{
          **/
 prefix(  ):AnnotationRef[]{
         var attr = this.node.attr("prefix");
-        if(attr==null){
-          return [];
-        }
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
-        return <AnnotationRef[]>result;
-}
-}
-
-export class UsesDeclarationImpl extends AnnotableImpl implements UsesDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUsesDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * Name prefix (without dot) used to refer imported declarations
-         **/
-key(  ):string{
-             return <string>super.attribute('key', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set key value
-         **/
-setKey( param:string ){
-            this.highLevel().attrOrCreate("key").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * Content of the schema
-         **/
-value(  ):string{
-             return <string>super.attribute('value', this.toString);
-         }
-
-
-        /**
-         * @hidden
-         * Set value value
-         **/
-setValue( param:string ){
-            this.highLevel().attrOrCreate("value").setValue(""+param);
-            return this;
-        }
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "UsesDeclarationImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "UsesDeclaration";}
-
-
-        /**
-         * @return RAML version of the node
-         **/
-RAMLVersion(  ):string{return "RAML10";}
-
-
-        /**
-         * Returns the root node of the AST, uses statement refers.
-         **/
-ast(  ):Library{
-            return helper.referencedNode(this);
-        }
-
-
-        /**
-         * Scalar properties annotations accessor
-         **/
-scalarsAnnotations(  ):UsesDeclarationScalarsAnnotationsImpl{return new UsesDeclarationScalarsAnnotationsImpl(this.highLevel());}
-}
-
-
-/**
- * UsesDeclaration scalar properties annotations accessor
- **/
-export class UsesDeclarationScalarsAnnotationsImpl extends AnnotableScalarsAnnotationsImpl implements UsesDeclarationScalarsAnnotations{
-
-        /**
-         * UsesDeclaration.value annotations
-         **/
-value(  ):AnnotationRef[]{
-        var attr = this.node.attr("value");
         if(attr==null){
           return [];
         }
@@ -5579,9 +5579,9 @@ function createExampleSpec(key:string){
 /**
  * @hidden
  **/
-function createXMLFacetInfo(key:string){
+function createUsesDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("XMLFacetInfo");
+    var nc=<def.NodeClass>universe.type("UsesDeclaration");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
@@ -5589,9 +5589,9 @@ function createXMLFacetInfo(key:string){
 /**
  * @hidden
  **/
-function createUsesDeclaration(key:string){
+function createXMLFacetInfo(key:string){
     var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("UsesDeclaration");
+    var nc=<def.NodeClass>universe.type("XMLFacetInfo");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }
