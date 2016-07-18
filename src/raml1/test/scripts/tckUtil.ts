@@ -52,7 +52,8 @@ export class TestResult{
         public apiPath:string,
         public json:any,
         public success:boolean,
-        public tckJsonPath:string){}
+        public tckJsonPath:string,
+        public diff:any[]){}
 }
 
 var messageMappings:MessageMapping[] = mappings.map(x=>
@@ -82,23 +83,18 @@ export function launchTests(folderAbsPath:string,reportPath:string,regenerateJSO
             }
             var reportItem = {
                 apiPath: result.apiPath,
-                errors:[],
+                errors: result.diff,
                 tckJsonPath: result.tckJsonPath,
                 passed: result.success
             };
-            if(result.json.errors){
-                for(var err of result.json.errors){
-                    reportItem.errors.push(err.message + " in '" + err.path + "'.");
-                }
-            }
             report.push(reportItem);
         }
     }
     if(callTests) {
         console.log("total tests count: " + count);
         console.log("tests passed: " + passed);
-        console.log("report file: " + reportPath);
-        if (report) {
+        if (reportPath) {
+            console.log("report file: " + reportPath);
             fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
         }
     }
@@ -389,6 +385,7 @@ export function testAPI(
     });
 
     var success = false;
+    var diffArr = [];
     if(diff.length==0){
         success = true;
     }
@@ -398,8 +395,16 @@ export function testAPI(
         if(doAssert) {
             assert(false);
         }
+        diffArr = diff.map(x=>{
+            return {
+                "path": x.path,
+                "comment": x.comment,
+                "actual" : x.value0,
+                "expected" : x.value1
+            }
+        });
     }
-    return new TestResult(apiPath,tckJson,success,tckJsonPath);
+    return new TestResult(apiPath,tckJson,success,tckJsonPath,diffArr);
 }
 
 export function generateMochaSuite(folderAbsPath:string,dstPath:string,dataRoot:string){
