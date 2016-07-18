@@ -290,20 +290,12 @@ export function compare(arg0:any,arg1:any,path:string=''):Diff[] {
 }
 
 export class Diff{
-  constructor(path:string, value0:any, value1:any, comment:string) {
+  constructor(public path:string, public value0:any, public value1:any, public comment:string) {
     this.path = path;
     this.value0 = value0;
     this.value1 = value1;
     this.comment=comment;
   }
-
-  path:string;
-
-  value0:any;
-
-  value1:any;
-
-  comment:string;
 
   message(label0?:string,label1?:string):string{
     label0 = label0||"value0";
