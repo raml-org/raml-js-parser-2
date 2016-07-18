@@ -82,7 +82,8 @@
           "column": 3,
           "position": 75
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }

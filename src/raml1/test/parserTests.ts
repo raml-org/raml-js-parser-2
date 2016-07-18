@@ -216,46 +216,46 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex15.raml"),["value should be one of:val1,val2,3"]);
     })
     it ("array facets" ,function(){
-        testErrors(util.data("parser/examples/ex16.raml"), ["array should have not less then 5 items", "array should have not more then 3 items", "items should be unique"]);
+        testErrors(util.data("parser/examples/ex16.raml"), ["'Person.items.minItems=5' i.e. array items count should not be less than 5", "'Person.items2.maxItems=3' i.e. array items count should not be more than 3", "items should be unique"]);
     })
     it ("array facets2" ,function(){
         testErrors(util.data("parser/examples/ex17.raml"));
     })
     it ("array facets3" ,function(){
-        testErrors(util.data("parser/examples/ex18.raml"), ["array should have not less then 5 items"]);
+        testErrors(util.data("parser/examples/ex18.raml"), ["'SmallArray.minItems=5' i.e. array items count should not be less than 5"]);
     })
     it ("array facets4" ,function(){
-        testErrors(util.data("parser/examples/ex19.raml"),["array should have not less then 5 items"]);
+        testErrors(util.data("parser/examples/ex19.raml"),["'SmallArray.minItems=5' i.e. array items count should not be less than 5"]);
     })
     it ("object facets1" ,function(){
-        testErrors(util.data("parser/examples/ex20.raml"), ["object should have not less then 2 properties"]);
+        testErrors(util.data("parser/examples/ex20.raml"), ["'MyType.minProperties=2' i.e. object properties count should not be less than 2"]);
     })
     it ("object facets2" ,function(){
-        testErrors(util.data("parser/examples/ex21.raml"), ["object should have not less then 2 properties"]);
+        testErrors(util.data("parser/examples/ex21.raml"), ["'MyType1.minProperties=2' i.e. object properties count should not be less than 2"]);
     })
     it ("object facets3" ,function(){
-        testErrors(util.data("parser/examples/ex22.raml"), ["object should have not more then 1 properties"]);
+        testErrors(util.data("parser/examples/ex22.raml"), ["'MyType1.maxProperties=1' i.e. object properties count should not be more than 1"]);
     })
     it ("object facets4" ,function(){
         testErrors(util.data("parser/examples/ex23.raml"));
     })
     it ("object facets5" ,function(){
-        testErrors(util.data("parser/examples/ex24.raml"), ["object should have not less then 3 properties"]);
+        testErrors(util.data("parser/examples/ex24.raml"), ["'MyType1.minProperties=3' i.e. object properties count should not be less than 3"]);
     })
     it ("string facets1" ,function(){
-        testErrors(util.data("parser/examples/ex25.raml"), ["string length should be not less then 5", "string length should be not more then 3"]);
+        testErrors(util.data("parser/examples/ex25.raml"), ["'MyType1.minLength=5' i.e. string length should not be less than 5", "'MyType2.maxLength=3' i.e. string length should not be more than 3"]);
     })
     it ("string facets2" ,function(){
         testErrors(util.data("parser/examples/ex26.raml"));
     })
     it ("string facets3" ,function(){
-        testErrors(util.data("parser/examples/ex27.raml"), ["string length should be not less then 5"]);
+        testErrors(util.data("parser/examples/ex27.raml"), ["'MyType1.minLength=5' i.e. string length should not be less than 5"]);
     })
     it ("string facets4" ,function(){
         testErrors(util.data("parser/examples/ex28.raml"), ["string should match to \\.5"]);
     })
     it ("number facets1" ,function(){
-        testErrors(util.data("parser/examples/ex29.raml"),["value should be not less then \\w+", "value should be not less then \\w+"]);
+        testErrors(util.data("parser/examples/ex29.raml"),["'MyType1.minimum=5' i.e. value should not be less than 5", "'MyType1.minimum=5' i.e. value should not be less than 5"]);
     })
 
     it ("number facets2" ,function(){
@@ -1160,7 +1160,7 @@ describe('Property override tests',function(){
         testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);
     });
     it ("expander not halted by this sample any more",function(){
-        testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),14);
+        testErrorsByNumber(util.data("parser/custom/expanderHalt.raml"),10);
     });
 });
 describe('Line mapper tests',function() {

@@ -185,6 +185,11 @@ export function isBodyProperty(p:hl.IProperty) : boolean {
     p.nameId() === universe.Universe08.Response.properties.body.name
 }
 
+export function isDefaultValue(p:hl.IProperty) : boolean {
+    return p.nameId() === universe.Universe10.TypeDeclaration.properties.default.name ||
+        p.nameId() === universe.Universe08.Parameter.properties.default.name;
+}
+
 export function isSchemaProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe08.BodyLike.properties.schema.name ||
     p.nameId() === universe.Universe08.XMLBody.properties.schema.name ||

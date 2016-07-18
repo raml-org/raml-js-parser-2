@@ -940,7 +940,7 @@ export class Project implements lowlevel.IProject{
         if(absolute||lowlevel.isWebPath(p)){
             if(this.failedUnits[p]!=null){
                 if (!this.failedUnits[p].inner) {
-                    throw(this.failedUnits[p]);
+                    return null;//throw(this.failedUnits[p]);
                 }
             }
         }
@@ -948,7 +948,7 @@ export class Project implements lowlevel.IProject{
             var ap = lowlevel.toAbsolutePath(this.rootPath,p);
             if(this.failedUnits[ap]){
                 if (!this.failedUnits[p].inner) {
-                    throw(this.failedUnits[p]);
+                    return null;//throw(this.failedUnits[p]);
                 }
             }
         }
@@ -2560,6 +2560,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             return "";
         }
         if (this._node.kind==yaml.Kind.SCALAR){
+            if(this._node['value']==="~" && this._node['valueObject']===null){
+                return toString ? "null" : null;
+            }
             //TODO WHAT IS IT IS INCLUDE ACTUALLY
             if(!toString&&(""+this._node['valueObject']===this._node['value'])){
                 return this._node['valueObject'];

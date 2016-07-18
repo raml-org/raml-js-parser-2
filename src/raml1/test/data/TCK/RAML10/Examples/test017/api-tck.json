@@ -125,7 +125,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "object should have not less then 3 properties",
+      "message": "'MyType1.minProperties=3' i.e. object properties count should not be less than 3",
       "path": "api.raml",
       "line": 12,
       "column": 6,

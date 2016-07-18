@@ -449,15 +449,11 @@ export function addToNode(target:hlimpl.ASTNodeImpl,node:hl.IParseResult){
             command.commands.push(ll.insertNode(target2, nn, insertionPoint));
             insertionTarget = target2;
         } else {
-            //console.log('node found');
-            //found.show('INSERT2: ');
-            if (node.property().getAdapter(services.RAMLPropertyService).isEmbedMap()){
-                //newLowLevel=node.lowLevel();
-                command.commands.push(ll.insertNode(found, node.lowLevel(),insertionPoint,true));
-            } else {
-                //newLowLevel=node.lowLevel();
-                command.commands.push(ll.insertNode(found, node.lowLevel(),insertionPoint,false));
-            }
+            var isEmptyTypes = found.value() === null && found.key && found.key() === universes.Universe10.Api.properties.types.name;
+            
+            var needSeq = !isEmptyTypes && node.property().getAdapter(services.RAMLPropertyService).isEmbedMap();
+            
+            command.commands.push(ll.insertNode(found, node.lowLevel(), insertionPoint, needSeq));
         }
 
     }

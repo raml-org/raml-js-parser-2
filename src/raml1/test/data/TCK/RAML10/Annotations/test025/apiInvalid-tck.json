@@ -42,7 +42,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "value should be not more then 10",
+      "message": "'z.maximum=10' i.e. value should not be more than 10",
       "path": "apiInvalid.raml",
       "line": 7,
       "column": 2,

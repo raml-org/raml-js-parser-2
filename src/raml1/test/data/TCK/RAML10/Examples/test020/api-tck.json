@@ -106,7 +106,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "string length should be not less then 5",
+      "message": "'MyType1.minLength=5' i.e. string length should not be less than 5",
       "path": "api.raml",
       "line": 10,
       "column": 6,

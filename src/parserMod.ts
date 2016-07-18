@@ -29,12 +29,16 @@ export function setTypeDeclarationExample(type: parser10api.TypeDeclaration, exa
     var llParent = hlParent.lowLevel();
     var exampleNodes = hlParent.children().filter(x=>x.lowLevel().key()==examplePropName);
     var llNode = jsyaml.createNode(examplePropName);
+    
     ll.setAttr(llNode,example);
-    if(exampleNodes.length>0){
+    
+    if(exampleNodes.length>0) {
         ll.removeNode(llParent, exampleNodes[0].lowLevel());
         (<any>exampleNodes[0])._node = llNode;
+        ll.insertNode(llParent, llNode);
     }
-    ll.insertNode(llParent,llNode);
+    
+    (<any>hlParent).createAttr && (<any>hlParent).createAttr(examplePropName, example); 
 }
 
 export function addChild(parent : highLevel.BasicNode, child : highLevel.BasicNode) : void {

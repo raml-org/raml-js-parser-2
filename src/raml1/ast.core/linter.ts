@@ -2969,7 +2969,14 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         return pObj;
     }
 
-    private isStrict(node) {
+    private isStrict(node:hl.IAttribute) {
+        if(universeHelpers.isDefaultValue(node.property())){
+            return true;
+        }
+        if(universeHelpers.isExampleProperty(node.property())
+            &&node.parent().definition().universe().version()=="RAML08"){
+            return true;
+        }
         var strictValidation:boolean = false;
         var strict = node.parent().attr("strict")
         if (strict) {
@@ -3101,7 +3108,7 @@ class UriParametersValidator implements NodeValidator {
                         }
                         var propNameReadable = pluralize.singular(changeCase.sentence(paramsPropName));
                         var message = changeCase.ucFirst(propNameReadable) + " unused";
-                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, x, false);
+                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, x, true);
                         v.accept(issue);
                     }
                 }

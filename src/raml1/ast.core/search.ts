@@ -84,7 +84,7 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
         if (x.definition().key()== universes.Universe10.UsesDeclaration) {
             var mm=x.attr("value");
             if (mm) {
-                var unit = h.root().lowLevel().unit().resolve(mm.value());
+                var unit = x.root().lowLevel().unit().resolve(mm.value());
                 if (unit != null) {
                     unit.highLevel().children().forEach(x=> {
                         if (x.isElement()) {

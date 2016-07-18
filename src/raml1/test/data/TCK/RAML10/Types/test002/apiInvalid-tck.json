@@ -165,7 +165,8 @@
           "column": 11,
           "position": 223
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
