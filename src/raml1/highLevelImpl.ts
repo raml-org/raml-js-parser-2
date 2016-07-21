@@ -34,6 +34,18 @@ type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     //var dr=search.declRoot(context);
     var nm=x.name();
+    if(context.lowLevel() instanceof proxy.LowLevelProxyNode){
+        if(x.lowLevel() instanceof proxy.LowLevelProxyNode){
+            return nm;
+        }
+        var rootUnit = context.lowLevel().unit();
+        var resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
+        var unit = x.lowLevel().unit();
+        var ns = resolver.resolveNamespace(rootUnit,unit);
+        if(ns != null){
+            return ns + "." + nm;
+        }
+    }
     if (x.lowLevel().unit()!=context.lowLevel().unit()){
         var root:BasicASTNode=<BasicASTNode><any>context;
         while (true) {

@@ -1800,13 +1800,14 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 paramsMap[ch.key()] = ch.value(true);
             }
             var templateKind = node.definition().isAssignableFrom(universes.Universe10.Trait.name) ? "trait" : "resource type";
-            var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(), paramsMap);
+            var unitsChain = expander.toUnits(node);
+            var vt = new expander.ValueTransformer(templateKind, node.definition().nameId(),unitsChain,paramsMap);
             var parent = node.parent();
             var def = parent?parent.definition():node.definition();
             while(parent!=null && !universeHelpers.isResourceType(def)&&!universeHelpers.isMethodType(def)){
                 parent = parent.parent();
             }
-            t = new expander.DefaultTransformer(<any>parent, vt);
+            t = new expander.DefaultTransformer(<any>parent, vt, unitsChain);
         }
         node.definition().requiredProperties().forEach(x=>{
             if (isInlinedTemplate){

@@ -15,6 +15,7 @@ import schemes = require('../../util/schemaAsync');
 import resolversApi = require("./resolversApi")
 import universes=require("../tools/universe")
 import expander=require("../ast.core/expander")
+import namespaceResolver=require("../ast.core/namespaceResolver");
 var Error=yaml.YAMLException
 
 export var Kind={
@@ -767,6 +768,8 @@ export class Project implements lowlevel.IProject{
     failedUnits:{[path:string]:any}={}
     
     _fsEnabled: boolean = true;
+
+    private _namespaceResolver = new namespaceResolver.NamespaceResolver();
 
     getRootPath(){
         return this.rootPath;
@@ -2120,6 +2123,10 @@ export class Project implements lowlevel.IProject{
 
     removeListener(listener:lowlevel.IASTListener) {
         this.listeners=this.listeners.filter(x=>x!=listener)
+    }
+
+    namespaceResolver():namespaceResolver.NamespaceResolver{
+        return this._namespaceResolver;
     }
 
 }

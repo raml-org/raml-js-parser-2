@@ -752,6 +752,9 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
     var nullify=false;
     var values:string[] = attrs.map(x=>{
         var val = x.value();
+        if(val==null){
+            return null;
+        }
         if(typeof(val)=="string"){
             return val;
         }

@@ -25,7 +25,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     private _highLevelParseResult:hl.IParseResult;
 
-    private _keyOverride:string;
+    protected _keyOverride:string;
+
+    protected _valueOverride:string;
 
     hasInnerIncludeError(){
         return this._originalNode.hasInnerIncludeError();
@@ -70,6 +72,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     setKeyOverride(_key:string){
         this._keyOverride=_key;
+    }
+
+    setValueOverride(value:any){
+        this._valueOverride=value;
     }
 
     key():string {
@@ -196,8 +202,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        this._originalNode = new LowLevelValueTransformingNode(
-            node, originalParent,transformer,this.ramlVersion);
+        if(node instanceof LowLevelValueTransformingNode){
+            this._originalNode = node;
+        }
+        else {
+            this._originalNode = new LowLevelValueTransformingNode(
+                node, originalParent, transformer, this.ramlVersion);
+        }
         this._adoptedNodes.push(<LowLevelValueTransformingNode>this._originalNode);
     }
 
@@ -234,11 +245,21 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     }
 
     value(toString?:boolean):any {
+        if(this._valueOverride){
+            return this._valueOverride;
+        }
+        var val;
         var valuableNodes:ll.ILowLevelASTNode[] = this._adoptedNodes.filter(x=>x.value()!=null);
         if(valuableNodes.length>0){
-            return valuableNodes[0].value(toString);
+            val = valuableNodes[0].value(toString);
         }
-        return this._originalNode.value(toString);
+        else {
+            val = this._originalNode.value(toString);
+        }
+        if(val instanceof LowLevelValueTransformingNode){
+            this._valueOverride = val;
+        }
+        return val;
     }
 
     children():ll.ILowLevelASTNode[] {
@@ -450,6 +471,26 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     optional():boolean{
         return _.all(this._adoptedNodes,x=>x.optional());
+    }
+
+
+    replaceChild(oldNode:ll.ILowLevelASTNode,newNode:ll.ILowLevelASTNode):LowLevelCompositeNode{
+        if(!this._children){
+            this._children = [];
+        }
+        var newCNode = new LowLevelCompositeNode(newNode,this,null,"RAML10");
+        if(oldNode==null){
+            this._children.push(newCNode);
+            return newCNode;
+        }
+        var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
+        if(ind>=0){
+            this._children[ind] = newCNode;
+        }
+        else{
+            this._children.push(newCNode);
+        }
+        return newCNode;
     }
 }
 

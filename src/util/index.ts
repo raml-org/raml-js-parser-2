@@ -87,8 +87,8 @@ export function stringEndsWith( str: string, search: string ): boolean {
     return dif>=0 && str.lastIndexOf(search) === dif;
 }
 
-export function stringStartsWith( str: string, search: string ): boolean {
-    return  str.length-search.length >=0 && str.substring(0,search.length) === search;
+export function stringStartsWith( str: string, search: string ,ind:number=0): boolean {
+    return  str.length-search.length >=ind && str.substring(ind,ind+search.length) === search;
 }
 
 export function lazypropkeyfilter( k: string ): boolean {

@@ -35,13 +35,14 @@ export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
 };
 export function globalDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
     var result=[];
+    var visitedUnits:{[key:string]:boolean}={};
     while (h.parent()!=null){
         if (h.lowLevel().includePath()){
-            result=result.concat(findDeclarations(h))
+            result=result.concat(findDeclarations(h,visitedUnits))
         }
         h=h.parent();
     }
-    result=result.concat(findDeclarations(h));
+    result=result.concat(findDeclarations(h,visitedUnits));
     return result;
 }
 
@@ -73,8 +74,12 @@ function unmark(h:hl.IHighLevelNode){
     n=n._node?n._node:n;
     delete n['mark'];
 }
-export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
-    var rs:hl.IHighLevelNode[]=[];
+export function findDeclarations(
+    h:hl.IHighLevelNode,
+    visitedUnits:{[key:string]:boolean}={},
+    rs:hl.IHighLevelNode[]=[]):hl.IHighLevelNode[]{
+    var aPath = h.lowLevel().unit().absolutePath();
+    visitedUnits[aPath] = true;
 
     if (!(h instanceof hlimpl.ASTNodeImpl)){
         return rs;
@@ -85,12 +90,10 @@ export function findDeclarations(h:hl.IHighLevelNode):hl.IHighLevelNode[]{
             var mm=x.attr("value");
             if (mm) {
                 var unit = x.root().lowLevel().unit().resolve(mm.value());
-                if (unit != null) {
-                    unit.highLevel().children().forEach(x=> {
-                        if (x.isElement()) {
-                            rs.push(x.asElement());
-                        }
-                    })
+                if (unit != null&&unit.isRAMLUnit()&&!visitedUnits[unit.absolutePath()]) {
+                    if(unit.highLevel().isElement()) {
+                        findDeclarations(unit.highLevel().asElement(), visitedUnits, rs);
+                    }
                 }
             }
         }

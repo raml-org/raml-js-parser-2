@@ -3,7 +3,6 @@ import ll=require("../lowLevelAST")
 import hl=require("../highLevelAST")
 import hlimpl=require("../highLevelImpl")
 import yaml=require("yaml-ast-parser")
-import impl=require("../jsyaml/jsyaml2lowLevel")
 import util=require("../../util/index")
 import proxy=require("./LowLevelASTProxy")
 import RamlWrapper=require("../artifacts/raml10parserapi")
@@ -21,6 +20,8 @@ import universeProvider=require ("../definition-system/universeProvider");
 import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore")
+import coreApi = require("../wrapped-ast/parserCoreApi")
+import referencePatcher = require("./referencePatcher");
 
 var changeCase = require('change-case');
 
@@ -118,6 +119,7 @@ class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
+        new referencePatcher.ReferencePatcher().process(hlNode);
         return result;
     }
 
@@ -176,7 +178,8 @@ class TraitsAndResourceTypesExpander {
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
         resourceData.filter(x=>x.resourceType!=null).forEach(x=> {
             var resourceTypeLowLevel = <proxy.LowLevelCompositeNode>x.resourceType.node.highLevel().lowLevel();
-            var resourceTypeTransformer = new DefaultTransformer(resource,x.resourceType.transformer);
+            var resourceTypeTransformer = x.resourceType.transformer;
+            resourceTypeTransformer.owner = resource;
             resourceLowLevel.adopt(resourceTypeLowLevel, resourceTypeTransformer)
         });
 
@@ -191,7 +194,8 @@ class TraitsAndResourceTypesExpander {
                 if(methodTraits){
                     methodTraits.forEach(x=>{
                         var traitLowLevel = x.node.highLevel().lowLevel();
-                        var traitTransformer = new DefaultTransformer(m,x.transformer);
+                        var traitTransformer = x.transformer;
+                        traitTransformer.owner = m;
                         methodLowLevel.adopt(traitLowLevel,traitTransformer);
                     });
                 }
@@ -200,7 +204,8 @@ class TraitsAndResourceTypesExpander {
                 if(resourceTraits){
                     resourceTraits.forEach(x=> {
                         var traitLowLevel = x.node.highLevel().lowLevel();
-                        var traitTransformer = new DefaultTransformer(m,x.transformer);
+                        var traitTransformer = x.transformer;
+                        traitTransformer.owner = m;
                         methodLowLevel.adopt(traitLowLevel, traitTransformer);
                     });
                 }
@@ -214,62 +219,76 @@ class TraitsAndResourceTypesExpander {
     collectResourceData(
         original:RamlWrapper.Resource|RamlWrapper08.Resource,
         obj:RamlWrapper.Resource|RamlWrapper.ResourceType|RamlWrapper08.Resource|RamlWrapper08.ResourceType,
-
         arr:ResourceGenericData[] = [],
-        transformer?:proxy.ValueTransformer,
+        transformer?:ValueTransformer,
+        nodesChain:hl.IParseResult[]=[],
         occuredResourceTypes:{[key:string]:boolean}={}):ResourceGenericData[]
+        
     {
-
-        var ownTraits = this.extractTraits(obj,transformer);
+        nodesChain = nodesChain.concat([obj.highLevel()]);
+        var ownTraits = this.extractTraits(obj,transformer,nodesChain);
 
         var methodTraitsMap:{[key:string]:GenericData[]} = {};
         var methods:(RamlWrapper.Method|RamlWrapper08.Method)[] = obj.methods();
         methods.forEach(x=>{
-            var methodTraits = this.extractTraits(x,transformer);
+            var methodTraits = this.extractTraits(x,transformer,nodesChain);
             if(methodTraits&&methodTraits.length>0){
                 methodTraitsMap[x.method()] = methodTraits;
             }
         });
 
         var rtData:GenericData;
-        var rt:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
-        if (rt&&!occuredResourceTypes[rt.name()]) {
-            occuredResourceTypes[rt.name()] = true;
-            rtData = this.readGenerictData(original,
-                rt, obj.highLevel(), this.resourceTypeMap, this.globalResourceTypes, 'resource type', transformer);
+        var rtRef:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
+        if(rtRef!=null) {
+            var units = toUnits1(nodesChain);
+            rtData = this.readGenerictData(original, rtRef, obj.highLevel(),
+                this.resourceTypeMap, this.globalResourceTypes, 'resource type', transformer, units);
         }
-        arr.push({
+
+        var result = {
             resourceType:rtData,
             traits:ownTraits,
             methodTraits:methodTraitsMap
-        });
+        };
+        arr.push(result);
 
         if(rtData) {
-            this.collectResourceData(original,
-                <RamlWrapper.ResourceType|RamlWrapper08.ResourceType>rtData.node,
-                arr,rtData.transformer,occuredResourceTypes);
+            var rt = <RamlWrapper.ResourceType|RamlWrapper08.ResourceType>rtData.node;
+            var qName = hlimpl.qName(rt.highLevel(),original.highLevel());
+            if(!occuredResourceTypes[qName]) {
+                occuredResourceTypes[qName] = true;
+                this.collectResourceData(
+                    original, rt, arr, rtData.transformer, nodesChain, occuredResourceTypes);
+            }
+            else{
+                result.resourceType = null;
+            }
         }
         return arr;
     }
 
     extractTraits(obj:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
         |RamlWrapper08.ResourceType|RamlWrapper08.Resource|RamlWrapper08.Method,
-                  _transformer?:proxy.ValueTransformer,
+                  _transformer:ValueTransformer,
+                  nodesChain:hl.IParseResult[],
                   occuredTraits:{[key:string]:boolean} = {}):GenericData[]
     {
+        nodesChain = nodesChain.concat([obj.highLevel()]);
         var arr:GenericData[] = [];
         for (var i = -1; i < arr.length ; i++){
 
             var gd:GenericData = i < 0 ? null : arr[i];
             var _obj = gd ? gd.node : obj;
-            var transformer:proxy.ValueTransformer = gd ? gd.transformer : _transformer;
+            var units = gd ? gd.unitsChain : toUnits1(nodesChain);
+            var transformer:ValueTransformer = gd ? gd.transformer : _transformer;
 
             if(!_obj['is']){
                 continue;
             }
             (<any>_obj).is().forEach(x=> {
+                var unitsChain = toUnits2(units,x.highLevel());
                 var traitData = this.readGenerictData(obj,
-                    x, _obj.highLevel(), this.traitMap, this.globalTraits, 'trait', transformer);
+                    x, _obj.highLevel(), this.traitMap, this.globalTraits, 'trait', transformer,unitsChain);
 
                 if (traitData) {
                     var name = traitData.name;
@@ -288,7 +307,8 @@ class TraitsAndResourceTypesExpander {
                      cache:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType}},
                      globalList:(RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType)[],
                      template:string,
-                     transformer?:proxy.ValueTransformer):GenericData {
+                     transformer:ValueTransformer,
+                     unitsChain:ll.ICompilationUnit[]=[]):GenericData {
 
         var value = <any>obj.value();
         if (typeof(value) == 'string') {
@@ -300,7 +320,8 @@ class TraitsAndResourceTypesExpander {
                 return {
                     name: value,
                     transformer: null,
-                    node: node
+                    node: node,
+                    unitsChain: unitsChain
                 };
             }
         }
@@ -318,25 +339,20 @@ class TraitsAndResourceTypesExpander {
             if (node) {
 
                 if (this.ramlVersion == 'RAML08') {
-                    if(transformer) {
-                        sv.children().forEach(x=>scalarParams[x.valueName()] = transformer.transform(x.lowLevel().value()).value);
-                    }
-                    else{
-                        sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
-                    }
+                    sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
                 }
                 else {
                     sv.children().forEach(x=>{
                         var llNode = x.lowLevel();
                         if(llNode.valueKind()==yaml.Kind.SCALAR) {
-                            scalarParams[x.valueName()] = llNode.value()
+                            scalarParams[x.valueName()] = llNode.value();
                         }
                         else{
-                            structuredParams[x .valueName()] = llNode;
+                            structuredParams[x.valueName()] = llNode;
                         }
                     });
-                }
-                var ds=new DefaultTransformer(<any>r,null);
+                } 
+                var ds=new DefaultTransformer(<any>r,null,unitsChain);
                 Object.keys(scalarParams).forEach(x=>{
                     var q=ds.transform(scalarParams[x]);
                     //if (q.value){
@@ -347,15 +363,54 @@ class TraitsAndResourceTypesExpander {
                         }
                     //}
                 });
+                var valTransformer = new ValueTransformer(template, name, unitsChain, scalarParams, structuredParams,transformer);
+                var resourceTypeTransformer = new DefaultTransformer(null,valTransformer,unitsChain);
                 return {
                     name: name,
-                    transformer: new ValueTransformer(template, name, scalarParams, structuredParams),
-                    node: node
+                    transformer: resourceTypeTransformer,
+                    node: node,
+                    unitsChain: unitsChain
                 };
             }
         }
         return null;
     }
+}
+
+
+function toUnits1(nodes:hl.IParseResult[]):ll.ICompilationUnit[]{
+    var result:ll.ICompilationUnit[] = [];
+    for(var n of nodes){
+        toUnits2(result,n,true);
+    }
+    return result;
+}
+function toUnits2(chainStart:ll.ICompilationUnit[], node:hl.IParseResult, append:boolean=false):ll.ICompilationUnit[]{
+
+    var result = append ? chainStart : chainStart.concat([]);
+    var unit = node.lowLevel().unit();
+    if(unit==null){
+        return result;
+    }
+    if(result.length==0){
+        result.push(unit);
+    }
+    else{
+        var prevPath = result[result.length-1].absolutePath();
+        if(unit.absolutePath()!=prevPath){
+            result.push(unit);
+        }
+    }
+    return result;
+}
+
+export function toUnits(node:hl.IParseResult):ll.ICompilationUnit[]{
+    var nodes:hl.IParseResult[] = [];
+    while(node){
+        nodes.push(node);
+        node = node.parent();
+    }
+    return toUnits1(nodes);
 }
 
 class TransformMatches {
@@ -490,11 +545,17 @@ export class ValueTransformer implements proxy.ValueTransformer{
     constructor(
         public templateKind:string,
         public templateName:string,
+        public unitsChain: ll.ICompilationUnit[],
         public params?:{[key:string]:string},
-        public structuredParams?:{[key:string]:ll.ILowLevelASTNode}){
+        public structuredParams?:{[key:string]:ll.ILowLevelASTNode},
+        public vDelegate?:ValueTransformer){
     }
 
-    transform(obj:any,toString?:boolean){
+    transform(
+        obj:any,
+        toString?:boolean,
+        doBreak?:()=>boolean,
+        callback?:(obj:any,transformer:DefaultTransformer)=>any){
 
         var undefParams:{[key:string]:boolean} = {};
 
@@ -514,7 +575,7 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 buf.append(str.substring(prev,i));
                 var i0 = i;
                 i += '<<'.length;
-                prev = str.indexOf('>>',i);
+                prev = this.paramUpperBound(str, i);
                 if (prev==-1){
                     break;
                 }
@@ -532,12 +593,18 @@ export class ValueTransformer implements proxy.ValueTransformer{
                     var ind = paramOccurence.lastIndexOf('|');
                     paramName = paramOccurence.substring(0,ind).trim();
                     val = this.params[paramName];
+                    if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
+                        val = this.vDelegate.transform(val,toString,doBreak,callback).value;
+                    }
                     if(val) {
                         val = transformer(val);
                     }
                 } else {
                     paramName = paramOccurence.trim();
                     val = this.params[paramName];
+                    if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
+                        val = this.vDelegate.transform(val,toString,doBreak,callback).value;
+                    }
                 }
 
                 if(val===null||val===undefined){
@@ -568,6 +635,24 @@ export class ValueTransformer implements proxy.ValueTransformer{
         else{
             return { value:obj, errors: errors };
         }
+    }
+
+    private paramUpperBound(str:string, pos:number) {
+        var count = 0;
+        for(var i = pos; i < str.length ;i ++){
+            if(util.stringStartsWith(str,"<<",i)){
+                count++;
+                i++;
+            }
+            else if(util.stringStartsWith(str,">>",i)){
+                if(count==0){
+                    return i;
+                }
+                count--;
+                i++;
+            }
+        }
+        return str.length;
     }
 
     children(node:ll.ILowLevelASTNode):ll.ILowLevelASTNode[]{
@@ -607,9 +692,10 @@ export class DefaultTransformer extends ValueTransformer{
 
     constructor(
         owner:RamlWrapper.ResourceBase|RamlWrapper.MethodBase|RamlWrapper08.Resource|RamlWrapper08.MethodBase,
-        delegate: ValueTransformer
+        delegate: ValueTransformer,
+        unitsChain:ll.ICompilationUnit[]
     ){
-        super(delegate!=null?delegate.templateKind:"",delegate!=null?delegate.templateName:"");
+        super(delegate!=null?delegate.templateKind:"",delegate!=null?delegate.templateName:"",unitsChain);
         this.owner = owner;
         this.delegate = delegate;
     }
@@ -618,9 +704,13 @@ export class DefaultTransformer extends ValueTransformer{
 
     delegate:ValueTransformer;
 
-    transform(obj:any,toString?:boolean){
+    transform(
+        obj:any,
+        toString?:boolean,
+        doContinue?:()=>boolean,
+        callback?:(obj:any,transformer:DefaultTransformer)=>any){
 
-        if(obj==null){
+        if(obj==null||(doContinue!=null&&!doContinue())){
             return {
                 value:obj,
                 errors: []
@@ -635,9 +725,14 @@ export class DefaultTransformer extends ValueTransformer{
         defaultParameters.forEach(x=>gotDefaultParam = gotDefaultParam || obj.toString().indexOf('<<'+x)>=0);
         if(gotDefaultParam) {
             this.initParams();
-            ownResult = super.transform(obj);
+            ownResult = super.transform(obj,toString,doContinue,callback);
         }
-        var result = this.delegate != null ? this.delegate.transform(ownResult.value,toString) : ownResult.value;
+        var result = this.delegate != null
+            ? this.delegate.transform(ownResult.value,toString,doContinue,callback)
+            : ownResult.value;
+        if(doContinue!=null&&doContinue()&&callback!=null){
+            result.value = callback(result.value,this);
+        }
         return result;
     }
 
@@ -706,8 +801,9 @@ interface GenericData{
 
     name:string
 
-    transformer:ValueTransformer
+    transformer:DefaultTransformer
 
+    unitsChain:ll.ICompilationUnit[]
 }
 
 interface ResourceGenericData{
