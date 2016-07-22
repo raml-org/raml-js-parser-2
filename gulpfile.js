@@ -3,6 +3,7 @@ var childProcess = require('child_process');
 //var rimraf = require('rimraf');
 var mocha = require('gulp-mocha');
 var RawMocha = require('mocha');
+var istanbul = require('gulp-istanbul');
 var join = require('path').join;
 var webpack = require('webpack');
 //var ts = require('gulp-typescript');
@@ -76,14 +77,27 @@ gulp.task('testExpand:ts', function () {
       }));
 });
 
-gulp.task('test:ts', [], function () {
+gulp.task('pre-test', function () {
+    return gulp.src([
+            'dist/*.js',
+            'dist/raml1/**/*.js',
+            'dist/util/**/*.js'
+    ])
+        // Covering files
+        .pipe(istanbul())
+        // Force `require` to return covered files
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test:ts', ['pre-test'], function () {
   global.isExpanded = null;
 
   return gulp.src(testFiles, { read: false })
       .pipe(mocha({
         bail: true,
         reporter: 'spec'
-      }));
+      }))
+      .pipe(istanbul.writeReports());
 });
 
 gulp.task('testCompat', function () {
