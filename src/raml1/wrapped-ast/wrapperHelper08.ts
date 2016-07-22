@@ -426,7 +426,6 @@ export function absoluteUriParameters(res:RamlWrapper.Resource):RamlWrapper.Para
     while (parent.definition().key().name==universes.Universe10.Resource.name);
 
     var api = <RamlWrapper.Api>parent;
-    var baseUri = api.baseUri().value();
     var baseUriParams = api.baseUriParameters();
     params = baseUriParameters(api).concat(params);
     return params;
