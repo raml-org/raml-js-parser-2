@@ -322,6 +322,14 @@ describe('Method', function(){
     it('Should parse a body with \'mimeType\' and keywords \'type\', \'schema\', \'properties\', \'example\'', function(){
         testErrors(util.data('parser/method/meth12.raml'));
     });
+
+    it('Test 13', function(){
+        testErrors(util.data('parser/method/meth13.raml'), ["queryParameters already specified.", "queryString already specified."]);
+    });
+
+    it('Test 14', function(){
+        testErrors(util.data('parser/method/meth14.raml'), ["queryParameters already specified.", "queryString already specified."]);
+    });
 });
 
 describe('Trait', function(){
