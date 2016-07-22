@@ -426,12 +426,23 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             v.accept(issue);
         }
     }
-    if (node.markCh()&&!node.allowRecursive()){
+
+    if(node.markCh()&&!node.allowRecursive()){
         if (!node.property()){
             return;
         }
         v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Recursive definition: " + node.name(), node));
         return;
+    }
+
+    if((<any>node).definition && (<any>node).definition().isAssignableFrom(universes.Universe10.Operation.name)) {
+        var queryStringNode = (<any>node).element(universes.Universe10.Operation.properties.queryString.name);
+        var queryParamsNode: ll.ILowLevelASTNode = (<any>node).lowLevel && <ll.ILowLevelASTNode>_.find((<any>node).lowLevel().children(), child => (<any>child).key && (<any>child).key() === universes.Universe10.Operation.properties.queryParameters.name);
+        
+        if(queryStringNode && queryParamsNode) {
+            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, universes.Universe10.Operation.properties.queryParameters.name + " already specified.", queryStringNode));
+            v.accept(createLLIssue(hl.IssueCode.UNKNOWN_NODE, universes.Universe10.Operation.properties.queryString.name + " already specified.", queryParamsNode, node));
+        }
     }
     try {
         node.directChildren().filter(child => {
