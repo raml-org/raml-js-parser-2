@@ -38,7 +38,7 @@ export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
         if(x.lowLevel() instanceof proxy.LowLevelProxyNode){
             return nm;
         }
-        var rootUnit = context.lowLevel().unit();
+        var rootUnit = context.root().lowLevel().unit();
         var resolver = (<jsyaml.Project>rootUnit.project()).namespaceResolver();
         var unit = x.lowLevel().unit();
         var ns = resolver.resolveNamespace(rootUnit,unit);

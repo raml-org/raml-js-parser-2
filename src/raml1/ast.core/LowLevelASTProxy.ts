@@ -10,6 +10,7 @@ import util=require("../../util/index")
 import universes=require("../tools/universe")
 import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
+import universeHelpers = require("../tools/universeHelpers");
 var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
@@ -217,6 +218,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     protected _children:LowLevelCompositeNode[];
 
+    protected _preserveAnnotations:boolean = false;
+    
+    protected isInsideResource:boolean;
+
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
     }
@@ -338,7 +343,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             x.children().forEach(y=> {
                 var key = y.originalNode().key();
                 if(key && x.transformer()){
-                    key = x.transformer().transform(key).value;
+                    var isAnnotation = key!=null
+                        && (this._preserveAnnotations||this.isResource())
+                        && util.stringStartsWith(key,"(")
+                        && util.stringEndsWith(key,")");
+                    if(!isAnnotation) {
+                        key = x.transformer().transform(key).value;
+                    }
                 }
                 if(this.skipKey(key,isPrimary)){
                     return;
@@ -397,6 +408,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             }
         });
         return result;
+    }
+
+    private isResource() {
+        return this.highLevelNode() && universeHelpers.isResourceType(this.highLevelNode().definition());
     }
 
     private skipKey(key:string,isPrimary:boolean){
@@ -491,6 +506,41 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             this._children.push(newCNode);
         }
         return newCNode;
+    }
+
+    removeChild(oldNode:ll.ILowLevelASTNode):LowLevelCompositeNode{
+        if(!this._children||oldNode==null){
+            return;
+        }
+        var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
+        if(ind>=0){
+            for(var i = ind ; i < this._children.length-1 ; i++){
+                this._children[i] = this._children[i+1];                
+            }
+            this._children.pop();            
+        }
+    }
+
+    preserveAnnotations(){
+        if(!this._preserveAnnotations) {
+            if(this.isInsideResource===undefined){
+                this.isInsideResource = false;
+                if(!this.isResource()){
+                    var parent = this._parent;
+                    while (parent) {
+                        if ((<LowLevelCompositeNode>parent).isResource()) {
+                            this.isInsideResource = true;
+                            break;
+                        }
+                        parent = parent.parent();
+                    }
+                }
+            }
+            if(this.isInsideResource) {
+                this._preserveAnnotations = true;
+                this._children = null;
+            }
+        }
     }
 }
 

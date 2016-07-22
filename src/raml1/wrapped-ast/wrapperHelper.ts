@@ -16,6 +16,8 @@ import universes=require("../tools/universe")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
 import expander=require("../ast.core/expander")
+import proxy = require("../ast.core/LowLevelASTProxy")
+import referencePatcher = require("../ast.core/referencePatcher")
 import lowLevelProxy=require("../ast.core/LowLevelASTProxy")
 import search=require("../ast.core/search")
 import ll=require("../jsyaml/jsyaml2lowLevel");
@@ -143,9 +145,17 @@ function findTemplates(a:core.BasicNode,filter) {
     if(!nodePath){
         nodePath = ll.unit().path();
     }
+    var isProxy = a.highLevel().lowLevel() instanceof proxy.LowLevelProxyNode;
+    var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var topLevelArr = arr.map(x=>{
         var topLevelNode:core.BasicNode;
         var p = x.lowLevel().unit().path();
+        if(isProxy){
+            if(!(x.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+                x = exp.createHighLevelNode(x, false);
+            }
+            new referencePatcher.ReferencePatcher().process(x,a.highLevel(),true,true);
+        }
         if(p!=nodePath){
             topLevelNode = factory.buildWrapperNode(x,false);
             (<core.NodeMetadataImpl>topLevelNode.meta()).setCalculated();

@@ -1,26 +1,20 @@
 /// <reference path="../../../typings/main.d.ts" />
-import ll=require("../lowLevelAST")
-import hl=require("../highLevelAST")
-import hlimpl=require("../highLevelImpl")
-import yaml=require("yaml-ast-parser")
-import util=require("../../util/index")
-import proxy=require("./LowLevelASTProxy")
-import RamlWrapper=require("../artifacts/raml10parserapi")
-import RamlWrapperImpl=require("../artifacts/raml10parser")
-import RamlWrapper08=require("../artifacts/raml08parserapi")
-import RamlWrapper08Impl=require("../artifacts/raml08parser")
-import factory10 = require("../artifacts/raml10factory")
-import factory08=require("../artifacts/raml08factory")
-import wrapperHelper=require("../wrapped-ast/wrapperHelper")
-import wrapperHelper08=require("../wrapped-ast/wrapperHelper08")
-import path=require('path')
-import fs=require('fs')
+import ll=require("../lowLevelAST");
+import hl=require("../highLevelAST");
+import hlimpl=require("../highLevelImpl");
+import yaml=require("yaml-ast-parser");
+import util=require("../../util/index");
+import proxy=require("./LowLevelASTProxy");
+import RamlWrapper=require("../artifacts/raml10parserapi");
+import RamlWrapperImpl=require("../artifacts/raml10parser");
+import RamlWrapper08=require("../artifacts/raml08parserapi");
+import RamlWrapper08Impl=require("../artifacts/raml08parser");
+import wrapperHelper=require("../wrapped-ast/wrapperHelper");
+import wrapperHelper08=require("../wrapped-ast/wrapperHelper08");
 import pluralize = require("pluralize")
-import universeProvider=require ("../definition-system/universeProvider");
 import universeDef=require("../tools/universe");
 import _ = require("underscore");
-import core = require("../wrapped-ast/parserCore")
-import coreApi = require("../wrapped-ast/parserCoreApi")
+import core = require("../wrapped-ast/parserCore");
 import referencePatcher = require("./referencePatcher");
 
 var changeCase = require('change-case');
@@ -70,7 +64,7 @@ function mergeHighLevelNodes(masterApi, highLevelNodes, mergeMode):hlimpl.ASTNod
     return currentMaster;
 };
 
-class TraitsAndResourceTypesExpander {
+export class TraitsAndResourceTypesExpander {
 
 
     private traitMap:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper08.Trait}};
@@ -88,7 +82,6 @@ class TraitsAndResourceTypesExpander {
             return api;
         }
         this.ramlVersion = api.highLevel().definition().universe().version();
-        var factory = this.ramlVersion=="RAML10" ? factory10 : factory08;
 
         var isRAML1 = api instanceof RamlWrapperImpl.ApiImpl;
 
@@ -107,7 +100,7 @@ class TraitsAndResourceTypesExpander {
         }
         
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel());
-        var result:RamlWrapper.Api|RamlWrapper08.Api = factory.buildWrapperNode(hlNode);
+        var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
 
         (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
 
@@ -149,9 +142,11 @@ class TraitsAndResourceTypesExpander {
         return val;
     }
 
-    private createHighLevelNode(api:hlimpl.ASTNodeImpl):hlimpl.ASTNodeImpl {
+    public createHighLevelNode(_api:hl.IHighLevelNode,merge:boolean=true):hlimpl.ASTNodeImpl {
 
+        var api = <hlimpl.ASTNodeImpl>_api;
         var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
+
         var node = api;
         while(node) {
 
@@ -161,7 +156,9 @@ class TraitsAndResourceTypesExpander {
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
             highLevelNodes.push(newNode);
-
+            if(!merge){
+                break;
+            }
             node = <hlimpl.ASTNodeImpl>node.getMaster();
         }
         var masterApi = highLevelNodes.pop();
