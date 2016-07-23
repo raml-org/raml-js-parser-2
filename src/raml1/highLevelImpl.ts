@@ -1,5 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
-
 import defs=require("raml-definition-system")
 import hl=require("./highLevelAST")
 import ll=require("./lowLevelAST")
@@ -88,10 +86,10 @@ export class BasicASTNode implements hl.IParseResult {
         return null;
     }
     hashkey() {
-        if (!this._hashkey) this._hashkey = this.parent() ? this.parent().hashkey() + "/" + this.name() : this.name(); 
+        if (!this._hashkey) this._hashkey = this.parent() ? this.parent().hashkey() + "/" + this.name() : this.name();
         return this._hashkey;
     }
-    
+
     root():hl.IHighLevelNode{
         if (this.parent()){
             return this.parent().root();
@@ -244,11 +242,11 @@ export class BasicASTNode implements hl.IParseResult {
     parent():hl.IHighLevelNode {
         return this._parent;
     }
-    
+
     setParent(parent: hl.IHighLevelNode) {
         this._parent = parent;
     }
-    
+
     isElement(){
         return false;
     }
@@ -705,7 +703,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         mutators.addStringValue(this,value);
         this._value=null;
     }
-    
+
     addStructuredValue(sv: StructuredValue) {
         mutators.addStructuredValue(this,sv)
         this._value=null;
@@ -763,7 +761,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             return false;
         }
     }
-    
+
     isFromKey():boolean{
         return this.fromKey;
     }
@@ -814,7 +812,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
         return new contentprovider.ContentProvider(root);
     }
-    
+
     key(){
         var vl=this._node.key();
         if (this._node.optional()){
@@ -946,7 +944,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
         }
         return highLevelNode;
     }
-    
+
     node():ll.ILowLevelASTNode{
         return this._node;
     }
@@ -1131,7 +1129,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             this._expanded=true;
         }
     }
-    
+
     _computedKey:string;
 
 
