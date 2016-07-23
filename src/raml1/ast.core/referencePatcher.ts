@@ -56,13 +56,21 @@ export class ReferencePatcher{
 
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
-            var traitNodes = node.attributes(universeDef.Universe10.MethodBase.properties.is.name);
+            var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
+            var traitNodes = node.attributes(isPropertyName);
             cNode.preserveAnnotations();
             node.resetChildren();
-            var isNode = <proxy.LowLevelCompositeNode>_.find(cNode.children(),x=>x.key()
-                                    ==universeDef.Universe10.MethodBase.properties.is.name);
-            if(isNode!=null){
-                isNode.setChildren(traitNodes.map(x=>(<proxy.LowLevelCompositeNode>x.lowLevel()).originalNode()));
+            if(traitNodes.length!=0) {
+                var isNode = <proxy.LowLevelCompositeNode>_.find(cNode.children(), x=>x.key() == isPropertyName);
+                var oNode = this.toOriginal(cNode);
+                if (isNode == null) {
+                    var newLLIsNode = new jsyaml.ASTNode(
+                        yaml.newMapping(yaml.newScalar(isPropertyName), yaml.newItems())
+                        , oNode.unit(), <jsyaml.ASTNode>oNode, null, null);
+
+                    isNode = (<proxy.LowLevelCompositeNode>cNode).replaceChild(null, newLLIsNode);
+                }
+                isNode.setChildren(traitNodes.map(x=>(<proxy.LowLevelCompositeNode>x.lowLevel())));
             }
         }
 

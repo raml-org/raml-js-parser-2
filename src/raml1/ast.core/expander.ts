@@ -93,9 +93,7 @@ export class TraitsAndResourceTypesExpander {
         this.globalResourceTypes  = this.ramlVersion=="RAML10"
             ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
             : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
-        //if ((!traits || traits.length == 0) && (!resourceTypes || resourceTypes.length == 0)) {
-        //    return api;
-        //}
+
         if (this.globalTraits.length==0&&this.globalResourceTypes.length==0){
             return api;
         }
@@ -113,7 +111,9 @@ export class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
-        new referencePatcher.ReferencePatcher().process(hlNode);
+        if(isRAML1) {
+            new referencePatcher.ReferencePatcher().process(hlNode);
+        }
         return result;
     }
 
@@ -323,6 +323,7 @@ export class TraitsAndResourceTypesExpander {
                 return {
                     name: value,
                     transformer: null,
+                    parentTransformer: transformer,
                     node: node,
                     ref:obj,
                     unitsChain: unitsChain
@@ -372,6 +373,7 @@ export class TraitsAndResourceTypesExpander {
                 return {
                     name: name,
                     transformer: resourceTypeTransformer,
+                    parentTransformer: transformer,
                     node: node,
                     ref:obj,
                     unitsChain: unitsChain
@@ -384,19 +386,34 @@ export class TraitsAndResourceTypesExpander {
     appendTraitReferences(
         m:RamlWrapper.Method|RamlWrapper08.Method,
         traits:GenericData[]){
+        
+        if(traits.length==0){
+            return;
+        }
 
         var llMethod = m.highLevel().lowLevel();
         var originalLlMethod = toOriginal(llMethod);
+        var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
         var isNode = <proxy.LowLevelCompositeNode>_.find(llMethod.children(), x=>x.key()
-                        ==universeDef.Universe10.MethodBase.properties.is.name);
-        if(isNode!=null){
-            var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()
-                        ==universeDef.Universe10.MethodBase.properties.is.name);
+                        == isPropertyName);
+        
+        if(isNode==null){
+            var newLLIsNode = new jsyaml.ASTNode(
+                yaml.newMapping(yaml.newScalar(isPropertyName), yaml.newItems())
+                ,originalLlMethod.unit(),<jsyaml.ASTNode>originalLlMethod,null,null);
             
-            var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
-            var newTraits = childrenToPreserve.concat(traits.map(x=>prepareTraitRefNode(x.ref.highLevel(),isNode)));
-            isNode.setChildren(newTraits);
+            isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
         }
+        var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
+        var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
+
+        var ramlVersion = m.definition().universe().version();
+        var newTraits = childrenToPreserve.concat(traits.map(x=>{
+            var llChNode = prepareTraitRefNode(x.ref.highLevel(),isNode);
+            var cNode = new proxy.LowLevelCompositeNode(llChNode,isNode,x.parentTransformer,ramlVersion);
+            return cNode;
+        }));
+        isNode.setChildren(newTraits);
     }
 
 }
@@ -840,11 +857,13 @@ interface GenericData{
     
     ref:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef;
 
-    name:string
+    name:string;
 
-    transformer:DefaultTransformer
+    transformer:DefaultTransformer;
 
-    unitsChain:ll.ICompilationUnit[]
+    parentTransformer:ValueTransformer;
+
+    unitsChain:ll.ICompilationUnit[];
 }
 
 interface ResourceGenericData{
