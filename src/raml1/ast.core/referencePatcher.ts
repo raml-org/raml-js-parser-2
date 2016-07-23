@@ -33,18 +33,6 @@ export class ReferencePatcher{
             this.patchUses(hlNode.lowLevel(), resolver);
         }
         this.resetTypes(hlNode);
-        var filterLLChildren = (x:proxy.LowLevelCompositeNode)=>{
-            x.children().forEach(y=>filterLLChildren(<proxy.LowLevelCompositeNode>y));
-            if(x.parent()
-                &&x.parent().highLevelNode()
-                &&x.parent().highLevelNode().definition()
-                &&x.parent().highLevelNode().definition().property(
-                    universeDef.Universe10.MethodBase.properties.is.name)!=null) {
-                
-                x.filterChildren();
-            }
-        };
-        filterLLChildren(<proxy.LowLevelCompositeNode>hlNode.lowLevel());
         hlNode.resetChildren();
     }
 
@@ -60,17 +48,13 @@ export class ReferencePatcher{
             var traitNodes = node.attributes(isPropertyName);
             cNode.preserveAnnotations();
             node.resetChildren();
-            if(traitNodes.length!=0) {
-                var isNode = <proxy.LowLevelCompositeNode>_.find(cNode.children(), x=>x.key() == isPropertyName);
-                var oNode = this.toOriginal(cNode);
-                if (isNode == null) {
-                    var newLLIsNode = new jsyaml.ASTNode(
-                        yaml.newMapping(yaml.newScalar(isPropertyName), yaml.newItems())
-                        , oNode.unit(), <jsyaml.ASTNode>oNode, null, null);
-
-                    isNode = (<proxy.LowLevelCompositeNode>cNode).replaceChild(null, newLLIsNode);
-                }
-                isNode.setChildren(traitNodes.map(x=>(<proxy.LowLevelCompositeNode>x.lowLevel())));
+            if(traitNodes.length!=0) {                                
+                patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
+                    return{
+                        node: x,
+                        transformer: (<proxy.LowLevelProxyNode>x).transformer()
+                    };
+                }));
             }
         }
 
@@ -117,7 +101,7 @@ export class ReferencePatcher{
         if(typeof value == "string"){
             let stringToPatch = value;
             if(transformer!=null){
-                var actualNode = this.toOriginal(llNode);
+                var actualNode = toOriginal(llNode);
                 stringToPatch = actualNode.value();
             }
             if(isAnnotation){
@@ -136,7 +120,7 @@ export class ReferencePatcher{
             var key = sValue.lowLevel().key();
             let stringToPatch = key;
             if(transformer!=null){
-                var actualNode = this.toOriginal(sValue.lowLevel());
+                var actualNode = toOriginal(sValue.lowLevel());
                 stringToPatch = actualNode.key();
             }
             if(key!=null){
@@ -180,7 +164,7 @@ export class ReferencePatcher{
                         var stringToPatch = value;
                         var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
                         if(transformer!=null||value.indexOf("<<")>=0){
-                            var actualNode = this.toOriginal(llNode);
+                            var actualNode = toOriginal(llNode);
                             var actualValue = actualNode.value();
                             escapeData = escapeTemplateParameters(actualValue);
                             if (escapeData.status == ParametersEscapingStatus.OK) {
@@ -379,7 +363,7 @@ export class ReferencePatcher{
         var usesNodes = originalChildren.filter(x=>
         x.key()==universeDef.Universe10.FragmentDeclaration.properties.uses.name);
 
-        var oNode = this.toOriginal(node);
+        var oNode = toOriginal(node);
         var yamlNode = oNode;
         while(yamlNode instanceof proxy.LowLevelProxyNode){
             yamlNode = (<proxy.LowLevelProxyNode>yamlNode).originalNode();
@@ -429,14 +413,6 @@ export class ReferencePatcher{
         }
     }
 
-    toOriginal(node:ll.ILowLevelASTNode){
-        for(var i = 0; i<2 && node instanceof proxy.LowLevelProxyNode; i++){
-            node = (<proxy.LowLevelProxyNode>node).originalNode();
-        }
-        return node;
-    }
-
-
     resetTypes(hlNode:hl.IHighLevelNode) {
         for(var ch of hlNode.elements()){
             this.resetTypes(ch);
@@ -448,7 +424,7 @@ export class ReferencePatcher{
     };
 
     appendUnitIfNeeded(node:hl.IParseResult,units:ll.ICompilationUnit[]):boolean{
-        var originalNode = this.toOriginal(node.lowLevel());
+        var originalNode = toOriginal(node.lowLevel());
         var originalUnit = originalNode.unit();
         if(originalNode.valueKind()==yaml.Kind.INCLUDE_REF){
             var ref = originalNode.includePath();
@@ -555,3 +531,57 @@ function checkExpression(value:string) {
     }
     return gotExpression;
 };
+
+
+export function patchMethodIs(node:hl.IHighLevelNode,traits:{
+    node:ll.ILowLevelASTNode,
+    transformer:proxy.ValueTransformer
+}[]){
+    
+    var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
+    var ramlVersion = node.definition().universe().version();
+    var originalLlMethod = toOriginal(llMethod);
+    var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
+    var isNode = <proxy.LowLevelCompositeNode>_.find(
+        llMethod.children(), x=>x.key() == isPropertyName);
+
+    if(isNode==null){
+        var newLLIsNode = new jsyaml.ASTNode(
+            yaml.newMapping(yaml.newScalar(isPropertyName), yaml.newItems())
+            ,originalLlMethod.unit(),<jsyaml.ASTNode>originalLlMethod,null,null);
+
+        isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
+    }
+    var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
+    var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
+
+    var newTraits = childrenToPreserve.concat(traits.map(x=>{
+        var llChNode = prepareTraitRefNode(x.node,isNode);
+        var cNode = new proxy.LowLevelCompositeNode(llChNode,isNode,x.transformer,ramlVersion);
+        return cNode;
+    }));
+    isNode.setChildren(newTraits);
+    isNode.filterChildren();
+}
+
+export function prepareTraitRefNode(llNode:ll.ILowLevelASTNode,llParent:ll.ILowLevelASTNode){
+
+    llParent = toOriginal(llParent);
+    llNode = toOriginal(llNode);
+    var yNode = <yaml.YAMLNode>llNode.actual();
+    if(llNode.key()==universeDef.Universe10.MethodBase.properties.is.name){
+        yNode = (<jsyaml.ASTNode>llNode).yamlNode().value;
+    }
+    if(yNode.kind == yaml.Kind.SEQ){
+        yNode = (<yaml.YAMLSequence>yNode).items[0];
+    }
+    var result = new jsyaml.ASTNode(yNode,llNode.unit(),<jsyaml.ASTNode>llParent,null,null);
+    return result;
+}
+
+function toOriginal(node:ll.ILowLevelASTNode){
+    for(var i = 0; i<2 && node instanceof proxy.LowLevelProxyNode; i++){
+        node = (<proxy.LowLevelProxyNode>node).originalNode();
+    }
+    return node;
+}

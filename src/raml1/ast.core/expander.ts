@@ -168,7 +168,7 @@ export class TraitsAndResourceTypesExpander {
         return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode);
     }
 
-    processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource) {
+    private processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource) {
 
         var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource);
 
@@ -212,14 +212,16 @@ export class TraitsAndResourceTypesExpander {
                     });
                 }                
             });
-            this.appendTraitReferences(m,allTraits);
+            if(resource.definition().universe().version()=="RAML10") {
+                this.appendTraitReferences(m, allTraits);
+            }
         });
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
         resources.forEach(x=>this.processResource(x));
     }
 
-    collectResourceData(
+    private collectResourceData(
         original:RamlWrapper.Resource|RamlWrapper08.Resource,
         obj:RamlWrapper.Resource|RamlWrapper.ResourceType|RamlWrapper08.Resource|RamlWrapper08.ResourceType,
         arr:ResourceGenericData[] = [],
@@ -270,7 +272,7 @@ export class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    extractTraits(obj:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
+    private extractTraits(obj:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
         |RamlWrapper08.ResourceType|RamlWrapper08.Resource|RamlWrapper08.Method,
                   _transformer:ValueTransformer,
                   nodesChain:hl.IParseResult[],
@@ -305,7 +307,7 @@ export class TraitsAndResourceTypesExpander {
         return arr;
     }
 
-    readGenerictData(r:core.BasicNode,obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
+    private readGenerictData(r:core.BasicNode,obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
                      context:hl.IHighLevelNode,
                      cache:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType}},
                      globalList:(RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType)[],
@@ -383,7 +385,7 @@ export class TraitsAndResourceTypesExpander {
         return null;
     }
 
-    appendTraitReferences(
+    private appendTraitReferences(
         m:RamlWrapper.Method|RamlWrapper08.Method,
         traits:GenericData[]){
         
@@ -391,48 +393,16 @@ export class TraitsAndResourceTypesExpander {
             return;
         }
 
-        var llMethod = m.highLevel().lowLevel();
-        var originalLlMethod = toOriginal(llMethod);
-        var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
-        var isNode = <proxy.LowLevelCompositeNode>_.find(llMethod.children(), x=>x.key()
-                        == isPropertyName);
-        
-        if(isNode==null){
-            var newLLIsNode = new jsyaml.ASTNode(
-                yaml.newMapping(yaml.newScalar(isPropertyName), yaml.newItems())
-                ,originalLlMethod.unit(),<jsyaml.ASTNode>originalLlMethod,null,null);
-            
-            isNode = (<proxy.LowLevelCompositeNode>llMethod).replaceChild(null,newLLIsNode);
-        }
-        var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()==isPropertyName);
-        var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
-
-        var ramlVersion = m.definition().universe().version();
-        var newTraits = childrenToPreserve.concat(traits.map(x=>{
-            var llChNode = prepareTraitRefNode(x.ref.highLevel(),isNode);
-            var cNode = new proxy.LowLevelCompositeNode(llChNode,isNode,x.parentTransformer,ramlVersion);
-            return cNode;
-        }));
-        isNode.setChildren(newTraits);
+        var traitsData = traits.map(x=>{
+            return {
+                node: x.ref.highLevel().lowLevel(),
+                transformer: x.parentTransformer
+            };
+        });
+        referencePatcher.patchMethodIs(m.highLevel(),traitsData);
     }
-
 }
 
-function prepareTraitRefNode(hlNode:hl.IParseResult,llParent:ll.ILowLevelASTNode){
-    var llNode = hlNode.lowLevel();
-
-    llParent = toOriginal(llParent);
-    llNode = toOriginal(llNode);
-    if(llNode.key()==universeDef.Universe10.MethodBase.properties.is.name){
-        llNode = llNode.children()[0];
-    }
-    var yNode = <yaml.YAMLNode>llNode.actual();
-    if(yNode.kind == yaml.Kind.SEQ){
-        yNode = (<yaml.YAMLSequence>yNode).items[0];
-    }
-    var result = new jsyaml.ASTNode(yNode,llNode.unit(),<jsyaml.ASTNode>llParent,null,null);
-    return result;
-}
 
 function toUnits1(nodes:hl.IParseResult[]):ll.ICompilationUnit[]{
     var result:ll.ICompilationUnit[] = [];
@@ -876,10 +846,3 @@ interface ResourceGenericData{
 }
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
-
-function toOriginal(llNode:ll.ILowLevelASTNode):ll.ILowLevelASTNode{
-    while(llNode instanceof proxy.LowLevelProxyNode){
-        llNode = (<proxy.LowLevelProxyNode>llNode).originalNode();
-    }
-    return llNode;
-}

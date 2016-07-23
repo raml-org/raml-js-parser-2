@@ -564,19 +564,21 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     filterChildren(){
         this.children();
-        if(this._children&&this._children.length>0&&this._children[0].key()==null) {
-            var map = {};
-            var filtered:LowLevelCompositeNode[] = [];
-            this._children.forEach(x=>{
-                var key = JSON.stringify(json.serialize(x));
-                if(map[key]){
-                    return;
-                }
-                map[key] = true;
+        var map = {};
+        var filtered:LowLevelCompositeNode[] = [];
+        this._children.forEach(x=>{
+            if(x.key()!=null){
                 filtered.push(x);
-            });
-            this._children = filtered;
-        }
+                return;
+            }
+            var key = JSON.stringify(json.serialize(x));
+            if(map[key]){
+                return;
+            }
+            map[key] = true;
+            filtered.push(x);
+        });
+        this._children = filtered;
     }
 }
 
