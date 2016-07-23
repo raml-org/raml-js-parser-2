@@ -42,6 +42,7 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver=new namespaceResolver.NamespaceResolver(),
         units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
 
+        var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
@@ -49,7 +50,7 @@ export class ReferencePatcher{
             cNode.preserveAnnotations();
             node.resetChildren();
             if(traitNodes.length!=0) {                                
-                patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
+                isNode = patchMethodIs(node,traitNodes.map(x=>x.lowLevel()).map(x=>{
                     return{
                         node: x,
                         transformer: (<proxy.LowLevelProxyNode>x).transformer()
@@ -76,6 +77,9 @@ export class ReferencePatcher{
             var appended = this.appendUnitIfNeeded(ch,units);
             this.patchReferences(ch,rootNode,resolver,units);
             this.popUnitIfNeeded(units,appended);
+        }
+        if(isNode){
+            isNode.filterChildren();
         }
     }
 
@@ -536,7 +540,7 @@ function checkExpression(value:string) {
 export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     node:ll.ILowLevelASTNode,
     transformer:proxy.ValueTransformer
-}[]){
+}[]):proxy.LowLevelCompositeNode{
     
     var llMethod = <proxy.LowLevelCompositeNode>node.lowLevel();
     var ramlVersion = node.definition().universe().version();
@@ -562,6 +566,7 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
     }));
     isNode.setChildren(newTraits);
     isNode.filterChildren();
+    return isNode;
 }
 
 export function prepareTraitRefNode(llNode:ll.ILowLevelASTNode,llParent:ll.ILowLevelASTNode){

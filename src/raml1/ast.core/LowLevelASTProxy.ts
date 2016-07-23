@@ -11,7 +11,6 @@ import universes=require("../tools/universe")
 import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
 import universeHelpers = require("../tools/universeHelpers");
-import {filter} from "ts-model/dist/underscore";
 var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
