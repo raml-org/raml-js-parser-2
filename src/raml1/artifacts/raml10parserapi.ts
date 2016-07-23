@@ -733,12 +733,6 @@ additionalProperties(  ):boolean
 
 
         /**
-         * JSON schema style syntax for declaring key restricted maps
-         **/
-patternProperties(  ):TypeDeclaration[]
-
-
-        /**
          * Type property name to be used as discriminator, or boolean
          **/
 discriminator(  ):string

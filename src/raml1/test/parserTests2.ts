@@ -628,10 +628,6 @@ describe('Object types', function(){
         testErrors(util.data('parser/objectTypes/oType12.raml'));
     });
 
-    it('Should parse alternatively use patternProperties',function(){
-        testErrors(util.data('parser/objectTypes/oType13.raml'));
-    });
-
     it('Should parse inline type expression gets expanded to a proper type declaration',function(){
         testErrors(util.data('parser/objectTypes/oType14.raml'));
     });
