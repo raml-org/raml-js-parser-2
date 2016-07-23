@@ -33,6 +33,18 @@ export class ReferencePatcher{
             this.patchUses(hlNode.lowLevel(), resolver);
         }
         this.resetTypes(hlNode);
+        var filterLLChildren = (x:proxy.LowLevelCompositeNode)=>{
+            x.children().forEach(y=>filterLLChildren(<proxy.LowLevelCompositeNode>y));
+            if(x.parent()
+                &&x.parent().highLevelNode()
+                &&x.parent().highLevelNode().definition()
+                &&x.parent().highLevelNode().definition().property(
+                    universeDef.Universe10.MethodBase.properties.is.name)!=null) {
+                
+                x.filterChildren();
+            }
+        };
+        filterLLChildren(<proxy.LowLevelCompositeNode>hlNode.lowLevel());
         hlNode.resetChildren();
     }
 
@@ -43,8 +55,15 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[] = [ rootNode.lowLevel().unit() ]){
 
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
-            (<proxy.LowLevelCompositeNode>node.lowLevel()).preserveAnnotations();
+            var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
+            var traitNodes = node.attributes(universeDef.Universe10.MethodBase.properties.is.name);
+            cNode.preserveAnnotations();
             node.resetChildren();
+            var isNode = <proxy.LowLevelCompositeNode>_.find(cNode.children(),x=>x.key()
+                                    ==universeDef.Universe10.MethodBase.properties.is.name);
+            if(isNode!=null){
+                isNode.setChildren(traitNodes.map(x=>(<proxy.LowLevelCompositeNode>x.lowLevel()).originalNode()));
+            }
         }
 
         var attrs = node.attrs();

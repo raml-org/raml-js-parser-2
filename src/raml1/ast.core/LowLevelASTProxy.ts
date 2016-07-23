@@ -11,6 +11,7 @@ import universes=require("../tools/universe")
 import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
 import universeHelpers = require("../tools/universeHelpers");
+import {filter} from "ts-model/dist/underscore";
 var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
@@ -441,7 +442,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         }
         for(var i = 0 ; i < this._adoptedNodes.length; i++){
             var node = this._adoptedNodes[i];
-            var yamlNode = (<any>node.originalNode())._node;
+            var yamlNode = (<any>node.originalNode()).actual();
             if(yamlNode && yamlNode.value!=null){
                 return node.valueKind();
             }
@@ -521,6 +522,19 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         }
     }
 
+    setChildren(nodes:ll.ILowLevelASTNode[]):LowLevelCompositeNode{
+        if(nodes==null){
+            this._children = null;
+            return;
+        }
+        this._children = nodes.map(x=>{
+            if(x instanceof LowLevelCompositeNode){
+                return x;
+            }
+            return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
+        });
+    }
+
     preserveAnnotations(){
         if(!this._preserveAnnotations) {
             if(this.isInsideResource===undefined){
@@ -540,6 +554,23 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 this._preserveAnnotations = true;
                 this._children = null;
             }
+        }
+    }
+
+    filterChildren(){
+        this.children();
+        if(this._children&&this._children.length>0&&this._children[0].key()==null) {
+            var map = {};
+            var filtered:LowLevelCompositeNode[] = [];
+            this._children.forEach(x=>{
+                var key = JSON.stringify(json.serialize(x));
+                if(map[key]){
+                    return;
+                }
+                map[key] = true;
+                filtered.push(x);
+            });
+            this._children = filtered;
         }
     }
 }

@@ -10,16 +10,16 @@
     ],
     "traits": [
       {
-        "libTrait1": {
-          "name": "libTrait1",
+        "lib.libTrait1": {
+          "name": "lib.libTrait1",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "libTrait2": {
-          "name": "libTrait2",
+        "lib.libTrait2": {
+          "name": "lib.libTrait2",
           "__METADATA__": {
             "calculated": true
           }
@@ -38,16 +38,16 @@
     ],
     "resourceTypes": [
       {
-        "libResourceType1": {
-          "name": "libResourceType1",
+        "lib.libResourceType1": {
+          "name": "lib.libResourceType1",
           "__METADATA__": {
             "calculated": true
           }
         }
       },
       {
-        "libResourceType2": {
-          "name": "libResourceType2",
+        "lib.libResourceType2": {
+          "name": "lib.libResourceType2",
           "__METADATA__": {
             "calculated": true
           }

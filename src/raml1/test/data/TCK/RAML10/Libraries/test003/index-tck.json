@@ -2,16 +2,26 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
+    "uses": [
+      {
+        "key": "files",
+        "value": "libraries/files.raml"
+      }
+    ],
+    "traits": [
+      {
+        "files.hello": {
+          "name": "files.hello",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
     "resourceTypes": [
       {
         "file": {
           "name": "file",
-          "uses": [
-            {
-              "key": "files",
-              "value": "libraries/files.raml"
-            }
-          ],
           "get": {
             "is": [
               "files.hello"

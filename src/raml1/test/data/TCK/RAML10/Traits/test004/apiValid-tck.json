@@ -644,6 +644,8 @@
               }
             },
             "is": [
+              "Trait2",
+              "Trait1",
               {
                 "RTTrait": {
                   "RTType": "RTType2"

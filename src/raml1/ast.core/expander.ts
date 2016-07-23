@@ -1,5 +1,6 @@
 /// <reference path="../../../typings/main.d.ts" />
 import ll=require("../lowLevelAST");
+import jsyaml = require("../jsyaml/jsyaml2lowLevel");
 import hl=require("../highLevelAST");
 import hlimpl=require("../highLevelImpl");
 import yaml=require("yaml-ast-parser");
@@ -181,14 +182,17 @@ export class TraitsAndResourceTypesExpander {
         });
 
         var methods:(RamlWrapper.Method|RamlWrapper08.Method)[] = resource.methods();
+        
         methods.forEach(m=> {
 
             var methodLowLevel = <proxy.LowLevelCompositeNode>m.highLevel().lowLevel();
             var name = m.method();
+            var allTraits:GenericData[]=[]
             resourceData.forEach(x=>{
 
                 var methodTraits = x.methodTraits[name];
                 if(methodTraits){
+                    allTraits = allTraits.concat(methodTraits);
                     methodTraits.forEach(x=>{
                         var traitLowLevel = x.node.highLevel().lowLevel();
                         var traitTransformer = x.transformer;
@@ -199,14 +203,16 @@ export class TraitsAndResourceTypesExpander {
 
                 var resourceTraits = x.traits;
                 if(resourceTraits){
+                    allTraits = allTraits.concat(resourceTraits);
                     resourceTraits.forEach(x=> {
                         var traitLowLevel = x.node.highLevel().lowLevel();
                         var traitTransformer = x.transformer;
                         traitTransformer.owner = m;
                         methodLowLevel.adopt(traitLowLevel, traitTransformer);
                     });
-                }
+                }                
             });
+            this.appendTraitReferences(m,allTraits);
         });
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
@@ -318,6 +324,7 @@ export class TraitsAndResourceTypesExpander {
                     name: value,
                     transformer: null,
                     node: node,
+                    ref:obj,
                     unitsChain: unitsChain
                 };
             }
@@ -366,14 +373,49 @@ export class TraitsAndResourceTypesExpander {
                     name: name,
                     transformer: resourceTypeTransformer,
                     node: node,
+                    ref:obj,
                     unitsChain: unitsChain
                 };
             }
         }
         return null;
     }
+
+    appendTraitReferences(
+        m:RamlWrapper.Method|RamlWrapper08.Method,
+        traits:GenericData[]){
+
+        var llMethod = m.highLevel().lowLevel();
+        var originalLlMethod = toOriginal(llMethod);
+        var isNode = <proxy.LowLevelCompositeNode>_.find(llMethod.children(), x=>x.key()
+                        ==universeDef.Universe10.MethodBase.properties.is.name);
+        if(isNode!=null){
+            var originalIsNode = _.find(originalLlMethod.children(), x=>x.key()
+                        ==universeDef.Universe10.MethodBase.properties.is.name);
+            
+            var childrenToPreserve = originalIsNode != null ? originalIsNode.children() : [];
+            var newTraits = childrenToPreserve.concat(traits.map(x=>prepareTraitRefNode(x.ref.highLevel(),isNode)));
+            isNode.setChildren(newTraits);
+        }
+    }
+
 }
 
+function prepareTraitRefNode(hlNode:hl.IParseResult,llParent:ll.ILowLevelASTNode){
+    var llNode = hlNode.lowLevel();
+
+    llParent = toOriginal(llParent);
+    llNode = toOriginal(llNode);
+    if(llNode.key()==universeDef.Universe10.MethodBase.properties.is.name){
+        llNode = llNode.children()[0];
+    }
+    var yNode = <yaml.YAMLNode>llNode.actual();
+    if(yNode.kind == yaml.Kind.SEQ){
+        yNode = (<yaml.YAMLSequence>yNode).items[0];
+    }
+    var result = new jsyaml.ASTNode(yNode,llNode.unit(),<jsyaml.ASTNode>llParent,null,null);
+    return result;
+}
 
 function toUnits1(nodes:hl.IParseResult[]):ll.ICompilationUnit[]{
     var result:ll.ICompilationUnit[] = [];
@@ -795,6 +837,8 @@ interface GenericData{
 
     node:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper.Resource|RamlWrapper.Method
         |RamlWrapper08.Trait|RamlWrapper08.ResourceType|RamlWrapper08.Resource|RamlWrapper08.Method;
+    
+    ref:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef;
 
     name:string
 
@@ -813,3 +857,10 @@ interface ResourceGenericData{
 }
 
 var defaultParameters = [ 'resourcePath', 'resourcePathName', 'methodName' ];
+
+function toOriginal(llNode:ll.ILowLevelASTNode):ll.ILowLevelASTNode{
+    while(llNode instanceof proxy.LowLevelProxyNode){
+        llNode = (<proxy.LowLevelProxyNode>llNode).originalNode();
+    }
+    return llNode;
+}
