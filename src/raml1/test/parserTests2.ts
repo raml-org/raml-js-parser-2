@@ -322,6 +322,14 @@ describe('Method', function(){
     it('Should parse a body with \'mimeType\' and keywords \'type\', \'schema\', \'properties\', \'example\'', function(){
         testErrors(util.data('parser/method/meth12.raml'));
     });
+
+    it('Test 13', function(){
+        testErrors(util.data('parser/method/meth13.raml'), ["queryParameters already specified.", "queryString already specified."]);
+    });
+
+    it('Test 14', function(){
+        testErrors(util.data('parser/method/meth14.raml'), ["queryParameters already specified.", "queryString already specified."]);
+    });
 });
 
 describe('Trait', function(){
@@ -618,10 +626,6 @@ describe('Object types', function(){
 
     it('Should parse alternatively use additionalProperties',function(){
         testErrors(util.data('parser/objectTypes/oType12.raml'));
-    });
-
-    it('Should parse alternatively use patternProperties',function(){
-        testErrors(util.data('parser/objectTypes/oType13.raml'));
     });
 
     it('Should parse inline type expression gets expanded to a proper type declaration',function(){

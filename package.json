@@ -73,7 +73,8 @@
     "chai-as-promised": "^5.2.0",
     "json-loader": "^0.5.1",
     "dev-env-installer": "0.0.5",
-    "rimraf": "*"
+    "rimraf": "*",
+    "gulp-istanbul" : "*"
   },
   "browser": {
     "fs": false,
