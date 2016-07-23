@@ -47,7 +47,7 @@ resourceTypes:
         body:
           application/xml:
   post:
-    is: payload
+    is: [ trait0, trait1, payload, response800, response900 ]
     description: Create object
     queryParameters:
       name:

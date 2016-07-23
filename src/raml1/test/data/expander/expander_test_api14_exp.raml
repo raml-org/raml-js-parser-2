@@ -11,7 +11,7 @@ traits:
   type: rt_with_trait
   is: [ trait2, { trait2_param: { param0: "object1", param1: "value1" } } ]
   get:
-    is: [ trait2, { trait2_param: { param0: "object", param1: "value" } } ]
+    is: [ trait2, { trait2_param: { param0: "object", param1: "value" } }, { trait2_param: { param0: "object1", param1: "value1" } } ]
     description: some description
     queryParameters:
       name:
