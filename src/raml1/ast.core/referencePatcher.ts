@@ -122,7 +122,6 @@ export class ReferencePatcher{
                         newValue = `(${newValue})`;
                     }
                     (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue);
-
                 }
             }
         }
@@ -148,32 +147,60 @@ export class ReferencePatcher{
                     var value = typeAttr.value();
                     if(typeof value == "string") {
 
+                        var gotExpression = checkExpression(value);
                         var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
                         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
                         var stringToPatch = value;
-                        if(transformer!=null){
+                        var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
+                        if(transformer!=null||value.indexOf("<<")>=0){
                             var actualNode = this.toOriginal(llNode);
-                            stringToPatch = actualNode.value();
-                        }
-                        var gotExpression = false;
-                        for(var i = 0 ; i < value.length ; i++ ) {
-                            var ch = value.charAt(i);
-                            if (ch == "|" || ch == "(" || ch == "[") {
-                                gotExpression = true;
-                                break;
+                            var actualValue = actualNode.value();
+                            escapeData = escapeTemplateParameters(actualValue);
+                            if (escapeData.status == ParametersEscapingStatus.OK) {
+                                if (gotExpression) {
+                                    stringToPatch = escapeData.resultingString;
+                                }
+                                else {
+                                    stringToPatch = actualValue;
+                                }
+                            }
+                            else {
+                                transformer = null;
                             }
                         }
+                        
                         var newValue:string;
                         if(gotExpression){
-                            if(stringToPatch.indexOf("<<")>=0){
-                                stringToPatch = escapeTemplateParameters(stringToPatch);
-                            }
+                            var expressionPatchFailed = false;
                             var expr = typeExpressions.parse(stringToPatch);
                             var gotPatch = false;
                             typeExpressions.visit(expr, x=> {
                                 if (x.type == "name") {
                                     var lit = <typeExpressions.Literal>x;
-                                    var typeName = unescapeTemplateParameters(lit.value);
+                                    var typeName = lit.value;
+                                    var unescapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
+                                    var unescaped:string;
+                                    if(escapeData.status == ParametersEscapingStatus.OK){
+                                        unescaped = escapeData.substitutions[typeName];
+                                        if(unescaped==null){
+                                            unescapeData = unescapeTemplateParameters(
+                                                typeName,escapeData.substitutions);
+                                            if(unescapeData.status==ParametersEscapingStatus.OK){
+                                                typeName = unescapeData.resultingString;
+                                            }
+                                            else if(unescapeData.status==ParametersEscapingStatus.ERROR){
+                                                expressionPatchFailed = true;
+                                                return;
+                                            }
+                                        }
+                                        else{
+                                            typeName = unescaped;
+                                        }
+                                    }
+                                    if(transformer==null && (unescaped!=null||unescapeData.status==ParametersEscapingStatus.OK)){
+                                        lit.value = typeName;
+                                        return;
+                                    }
                                     var patched = this.patchTypeName(typeName, rootUnit, units, resolver, transformer);
                                     if (patched != null) {
                                         lit.value = patched;
@@ -181,14 +208,14 @@ export class ReferencePatcher{
                                     }
                                 }
                             });
-                            if(gotPatch) {
+                            if(gotPatch&&!expressionPatchFailed) {
                                 newValue = typeExpressions.serializeToString(expr);
                             }
                             else{
                                 newValue = value;                                
                             }
                         }
-                        else{
+                        else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
                             newValue = this.patchTypeName(stringToPatch, rootUnit, units, resolver, transformer);
                         }
                         if (newValue != null) {
@@ -417,62 +444,87 @@ export class ReferencePatcher{
     }
 }
 
-var LEFT_PARAM_BOUND = "__LB__";
-var LEFT_PARAM_BOUND_REGEXP = new RegExp(LEFT_PARAM_BOUND,"g");
-var RIGHT_PARAM_BOUND = "__RB__";
-var RIGHT_PARAM_BOUND_REGEXP = new RegExp(RIGHT_PARAM_BOUND,"g");
-var MODIFICATOR_DELIMITER = "__MD__";
-var MODIFICATOR_DELIMITER_REGEXP = new RegExp(MODIFICATOR_DELIMITER,"g");
-var EXCLAMATION = "__EX__";
-var EXCLAMATION_REGEXP = new RegExp(EXCLAMATION,"g");
-var SPACE = "__SP__";
-var SPACE_REGEXP = new RegExp(SPACE,"g");
-
-function escapeTemplateParameters(str:string):string{
-    var resultingString = "";
-    var insideParam = 0;
-    for(var i = 0 ; i < str.length; i++){
-        if(util.stringStartsWith(str,"<<",i)){
-            resultingString += LEFT_PARAM_BOUND;
-            insideParam++;
-            i++;
-        }
-        else if(util.stringStartsWith(str,">>",i)){
-            resultingString += RIGHT_PARAM_BOUND;
-            insideParam--;
-            i++;
-        }
-        else if(insideParam>0){
-            var ch = str.charAt(i);
-            if(ch=="|"){
-                resultingString += MODIFICATOR_DELIMITER;
-            }
-            else if(ch==" "){
-                resultingString += SPACE;
-            }
-            else if(ch=="!"){
-                resultingString += EXCLAMATION;
-            }
-            else {
-                resultingString += ch;
-            }
-        }
-        else{
-            resultingString += str.charAt(i);
-        }
-    }
-    return resultingString;
+enum ParametersEscapingStatus{
+    OK, NOT_REQUIRED, ERROR
 }
 
-function unescapeTemplateParameters(str:string):string{
+interface EscapeData{
+    resultingString?: string,
+    substitutions?: {[key:string]:string},
+    status: ParametersEscapingStatus
+}
+
+var PARAM_OCCURENCE_STR = "__P_A_R_A_M_E_T_E_R__";
+
+function escapeTemplateParameters(str:string):EscapeData{
     if(str==null){
-        return str;
+        return { status: ParametersEscapingStatus.NOT_REQUIRED }
     }
-    var result = str.replace(LEFT_PARAM_BOUND_REGEXP, "<<")
-                    .replace(RIGHT_PARAM_BOUND_REGEXP, ">>")
-                    .replace(MODIFICATOR_DELIMITER_REGEXP, "|")
-                    .replace(EXCLAMATION_REGEXP, "|")
-                    .replace(SPACE_REGEXP, " ");
-
-    return result;
+    var resultingString = "";
+    var map:{[key:string]:string} = {};
+    var prev = 0;
+    for(var i = str.indexOf("<<") ; i>=0 ; i = str.indexOf("<<",prev)){
+        resultingString += str.substring(prev,i);
+        prev = str.indexOf(">>",i);
+        if(prev<0){
+            return { status: ParametersEscapingStatus.ERROR };
+        }
+        prev += ">>".length;
+        var paramStr = str.substring(i,prev);
+        var substitution = PARAM_OCCURENCE_STR + i + PARAM_OCCURENCE_STR;
+        map[substitution] = paramStr;
+        resultingString+=substitution;
+    }
+    if(resultingString.length==0){
+        return { status: ParametersEscapingStatus.NOT_REQUIRED }
+    }
+    resultingString += str.substring(prev,str.length);
+    return {
+        resultingString: resultingString,
+        substitutions: map,
+        status: ParametersEscapingStatus.OK
+    };
 }
+
+function unescapeTemplateParameters(str:string,substitutions:{[key:string]:string}):EscapeData{
+    if(str==null){
+        return { status: ParametersEscapingStatus.NOT_REQUIRED };
+    }
+    var resultingString = "";
+    var prev = 0;
+    for(var i = str.indexOf(PARAM_OCCURENCE_STR); i>=0 ; i = str.indexOf(PARAM_OCCURENCE_STR,prev)){
+        prev = str.indexOf(PARAM_OCCURENCE_STR,i+1);
+        prev += PARAM_OCCURENCE_STR.length;
+        if(prev<0){
+            return { status: ParametersEscapingStatus.ERROR };
+        }
+        var substitution = str.substring(i,prev);
+        var originalParamOccurence = substitutions[substitution];
+        if(originalParamOccurence==null){
+            return { status: ParametersEscapingStatus.ERROR };
+        }
+        resultingString += originalParamOccurence;
+    }
+    if(resultingString.length==0){
+        return { status: ParametersEscapingStatus.NOT_REQUIRED };
+    }
+    resultingString += str.substring(prev,str.length);
+    return {
+        resultingString: resultingString,
+        substitutions: substitutions,
+        status: ParametersEscapingStatus.OK
+    };
+}
+
+
+function checkExpression(value:string) {
+    var gotExpression = false;
+    for (let i = 0; i < value.length; i++) {
+        let ch = value.charAt(i);
+        if (ch == "|" || ch == "(" || ch == "[") {
+            gotExpression = true;
+            break;
+        }
+    }
+    return gotExpression;
+};

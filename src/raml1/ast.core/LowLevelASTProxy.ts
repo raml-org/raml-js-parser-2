@@ -276,7 +276,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
         var canBeMap:boolean = false;
         var canBeSeq = false;
-        this._adoptedNodes.forEach(x=>{
+        for(var x of this._adoptedNodes){
             var adoptedNodeChildren = x.children();
             if(adoptedNodeChildren && adoptedNodeChildren.length > 0){
                 canBeSeq = true;
@@ -286,7 +286,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     }
                 }
             }
-        });
+        }
         if (canBeMap) {
             result = this.collectChildrenWithKeys();
         }
@@ -338,9 +338,9 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         var result = [];
         var m:{[key:string]:ChildEntry[]} = {};
 
-        this._adoptedNodes.forEach(x=> {
+        for(var x of this._adoptedNodes){
             var isPrimary = x == this.primaryNode();
-            x.children().forEach(y=> {
+            for(var y of x.children()){
                 var key = y.originalNode().key();
                 if(key && x.transformer()){
                     var isAnnotation = key!=null
@@ -352,10 +352,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     }
                 }
                 if(this.skipKey(key,isPrimary)){
-                    return;
+                    continue;
                 }
                 if(!key){
-                    return;
+                    continue;
                 }
                 var arr:ChildEntry[] = m[key];
                 if (!arr) {
@@ -363,8 +363,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     m[key] = arr;
                 }
                 arr.push({ node:y.originalNode(), transformer: x.transformer(), isPrimary: isPrimary} );
-            });
-        });
+            }
+        }
 
         var ramlVersion = this.unit().highLevel().root().definition().universe().version();
         var isResource = this.key()&&this.key()[0]=="/";
