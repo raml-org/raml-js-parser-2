@@ -794,6 +794,10 @@
                 }
               }
             },
+            "is": [
+              "Trait1",
+              "Trait2"
+            ],
             "method": "get"
           }
         ],
