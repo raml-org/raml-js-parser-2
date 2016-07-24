@@ -2,31 +2,20 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "annotations": {
-      "MyAnnotationType1": {
-        "structuredValue": {
-          "pp": {
-            "x1x": "2",
-            "xx2": "3"
-          }
-        },
-        "name": "MyAnnotationType1"
-      }
-    },
     "types": [
       {
-        "MyType1": {
-          "name": "MyType1",
-          "displayName": "MyType1",
+        "Method": {
+          "name": "Method",
+          "displayName": "Method",
           "type": [
             "object"
           ],
           "repeat": false,
           "required": true,
           "properties": {
-            "/.*/": {
-              "name": "/.*/",
-              "displayName": "/.*/",
+            "name": {
+              "name": "name",
+              "displayName": "name",
               "type": [
                 "string"
               ],
@@ -47,14 +36,10 @@
               }
             }
           },
-          "minProperties": 3,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               },
               "repeat": {
                 "insertedAsDefault": true
@@ -65,24 +50,30 @@
             }
           }
         }
-      }
-    ],
-    "annotationTypes": [
+      },
       {
-        "MyAnnotationType1": {
-          "name": "MyAnnotationType1",
-          "displayName": "MyAnnotationType1",
+        "Resource": {
+          "name": "Resource",
+          "displayName": "Resource",
           "type": [
             "object"
           ],
+          "example": {
+            "put": {
+              "name": "update method"
+            },
+            "post": {
+              "name": "create method"
+            }
+          },
           "repeat": false,
           "required": true,
           "properties": {
-            "pp": {
-              "name": "pp",
-              "displayName": "pp",
+            "/post|get|put/": {
+              "name": "/post|get|put/",
+              "displayName": "/post|get|put/",
               "type": [
-                "MyType1"
+                "Method"
               ],
               "repeat": false,
               "required": true,
@@ -106,9 +97,6 @@
               "displayName": {
                 "calculated": true
               },
-              "type": {
-                "insertedAsDefault": true
-              },
               "repeat": {
                 "insertedAsDefault": true
               },
@@ -116,32 +104,24 @@
                 "insertedAsDefault": true
               }
             }
+          },
+          "structuredExample": {
+            "value": "{\n  \"put\": {\n    \"name\": \"update method\"\n  },\n  \"post\": {\n    \"name\": \"create method\"\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "put": {
+                "name": "update method"
+              },
+              "post": {
+                "name": "create method"
+              }
+            }
           }
         }
       }
     ],
-    "title": "Test API"
+    "title": "My API With Types"
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "'MyType1.minProperties=3' i.e. object properties count should not be less than 3",
-      "path": "api.raml",
-      "line": 12,
-      "column": 6,
-      "position": 200,
-      "range": [
-        {
-          "line": 12,
-          "column": 6,
-          "position": 200
-        },
-        {
-          "line": 12,
-          "column": 8,
-          "position": 202
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

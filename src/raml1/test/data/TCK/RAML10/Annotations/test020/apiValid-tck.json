@@ -14,7 +14,6 @@
               ],
               "repeat": false,
               "required": true,
-              "<<isRequired>>": "<<value>>",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -30,7 +29,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "<<isRequired>>": "<<value>>"
             }
           },
           "name": "helloNightmare"
@@ -43,7 +43,7 @@
           "name": "searchable",
           "displayName": "searchable",
           "type": [
-            "string"
+            "null"
           ],
           "repeat": false,
           "required": true,
@@ -51,9 +51,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               },
               "repeat": {
                 "insertedAsDefault": true
@@ -120,36 +117,6 @@
             }
           }
         }
-      },
-      {
-        "list": {
-          "name": "list",
-          "displayName": "list",
-          "type": [
-            "string"
-          ],
-          "repeat": false,
-          "required": true,
-          "allowedTargets": [
-            "Method"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
       }
     ],
     "title": "test",
@@ -157,12 +124,6 @@
       {
         "methods": [
           {
-            "annotations": {
-              "list": {
-                "structuredValue": null,
-                "name": "list"
-              }
-            },
             "queryParameters": {
               "kind": {
                 "annotations": {
