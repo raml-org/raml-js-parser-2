@@ -194,9 +194,9 @@
                 }
               }
             },
-            "[^X]": {
-              "name": "[^X]",
-              "displayName": "[^X]",
+            "/^X/": {
+              "name": "/^X/",
+              "displayName": "/^X/",
               "type": [
                 "number"
               ],

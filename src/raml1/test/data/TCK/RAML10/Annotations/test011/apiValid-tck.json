@@ -79,9 +79,9 @@
           "repeat": false,
           "required": true,
           "properties": {
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "Pet"
               ],
@@ -130,9 +130,9 @@
           "repeat": false,
           "required": true,
           "properties": {
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "Person"
               ],

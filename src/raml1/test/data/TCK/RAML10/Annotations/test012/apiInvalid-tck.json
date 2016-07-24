@@ -32,9 +32,9 @@
               "repeat": false,
               "required": true,
               "properties": {
-                "[]": {
-                  "name": "[]",
-                  "displayName": "[]",
+                "/.*/": {
+                  "name": "/.*/",
+                  "displayName": "/.*/",
                   "type": [
                     "number"
                   ],
@@ -101,17 +101,17 @@
       "path": "apiInvalid.raml",
       "line": 9,
       "column": 2,
-      "position": 127,
+      "position": 129,
       "range": [
         {
           "line": 9,
           "column": 2,
-          "position": 127
+          "position": 129
         },
         {
           "line": 9,
           "column": 7,
-          "position": 132
+          "position": 134
         }
       ]
     }

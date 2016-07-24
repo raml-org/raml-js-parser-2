@@ -14,7 +14,6 @@
               ],
               "repeat": false,
               "required": true,
-              "<<isRequired>>": "<<value>>",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -30,7 +29,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "<<isRequired>>": "<<value>>"
             }
           },
           "name": "helloNightmare"
@@ -43,7 +43,7 @@
           "name": "searchable",
           "displayName": "searchable",
           "type": [
-            "string"
+            "null"
           ],
           "repeat": false,
           "required": true,
@@ -51,9 +51,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               },
               "repeat": {
                 "insertedAsDefault": true
@@ -120,53 +117,17 @@
             }
           }
         }
-      },
-      {
-        "list": {
-          "name": "list",
-          "displayName": "list",
-          "type": [
-            "string"
-          ],
-          "repeat": false,
-          "required": true,
-          "allowedTargets": [
-            "Method"
-          ],
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
       }
     ],
     "title": "test",
     "resources": [
       {
-        "annotations": {
-          "list": {
-            "structuredValue": null,
-            "name": "list"
-          }
-        },
         "methods": [
           {
             "annotations": {
-              "list": {
+              "searchable": {
                 "structuredValue": null,
-                "name": "list"
+                "name": "searchable"
               }
             },
             "queryParameters": {
@@ -260,22 +221,22 @@
   },
   "errors": [
     {
-      "code": 7,
-      "message": "annotation list can not be placed at this location, allowed targets are:Method",
+      "code": 11,
+      "message": "null is expected",
       "path": "apiInvalid.raml",
-      "line": 20,
-      "column": 2,
-      "position": 318,
+      "line": 19,
+      "column": 4,
+      "position": 290,
       "range": [
         {
-          "line": 20,
-          "column": 2,
-          "position": 318
+          "line": 19,
+          "column": 4,
+          "position": 290
         },
         {
-          "line": 20,
-          "column": 8,
-          "position": 324
+          "line": 19,
+          "column": 16,
+          "position": 302
         }
       ]
     }

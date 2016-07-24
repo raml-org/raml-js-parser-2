@@ -8,19 +8,16 @@ traits:
         <<isRequired>>: <<value>>
 
 annotationTypes:
-   searchable:
+   searchable: ~
    sortable:
       properties:
         default:
           enum: [ low, medium, high ]
           required: true
-   list:
-       allowedTargets: Method
 
 /animals:
-  (list):
   get:
-    (list):
+    (searchable): someValue
     queryParameters:
       kind:
         (sortable):
