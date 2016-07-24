@@ -26,12 +26,12 @@ types:
   Resource:
     type: RamlElement
     properties:
-      [method#get|post|put]: Method
-      [resource#/.*]: Resource
+      /method#get|post|put/: Method
+      /resource#\/.*/: Resource
   RamlApi:
     type: RamlLibrary
     properties:
-      [resource#/.*]: Resource
+      /resource#\/.*/: Resource
   ResourceType:
   Trait:
   SecurityScheme:
