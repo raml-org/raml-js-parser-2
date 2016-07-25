@@ -185,6 +185,9 @@ export class BasicASTNode implements hl.IParseResult {
 
     markCh() {
         var n:any = this.lowLevel();
+        while(n instanceof proxy.LowLevelProxyNode){
+            n = (<proxy.LowLevelProxyNode>n).originalNode();
+        }
         n = n._node ? n._node : n;
         if (n['markCh']) {
             return true;
@@ -194,6 +197,9 @@ export class BasicASTNode implements hl.IParseResult {
 
     unmarkCh(){
         var n:any=this.lowLevel();
+        while(n instanceof proxy.LowLevelProxyNode){
+            n = (<proxy.LowLevelProxyNode>n).originalNode();
+        }
         n=n._node?n._node:n;
         delete n['markCh'];
     }

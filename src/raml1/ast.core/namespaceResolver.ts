@@ -64,6 +64,8 @@ export class NamespaceResolver{
         }
 
         for(var i = 0 ; i < usesInfoArray.length ; i++){
+            
+            var visited = {};
 
             var info = usesInfoArray[i];
             var unit = info.unit;
@@ -79,7 +81,12 @@ export class NamespaceResolver{
                 if(x.parent()==null) {
 
                     var nodeUnit = x.unit();
-                    if(nodeUnit.absolutePath()!=unit.absolutePath()){
+                    var localPath = nodeUnit.absolutePath();
+                    if(visited[localPath]){
+                        return;
+                    }
+                    visited[localPath] = true;
+                    if(localPath!=unit.absolutePath()){
                         this._hasFragments[unit.absolutePath()] = true;
                     }
                     var map = this.pathMap(nodeUnit);
@@ -114,7 +121,7 @@ export class NamespaceResolver{
                             result[absPath] = ui;
                             usesInfoArray.push(ui);
                         }
-                    }
+                    }                 
                 }
                 children.forEach(y=>{
                     if(y.includedFrom()){
@@ -122,6 +129,9 @@ export class NamespaceResolver{
                     }
                     visit(y);
                 });
+                if(x.parent()==null){
+                    visited[x.unit().absolutePath()] = false;
+                }
 
             };
             visit(unit.ast());
