@@ -51,8 +51,8 @@ var testFiles = [
    'dist/raml1/test/runtimeExampleTests.js',
    'dist/raml1/test/examplesApiTests.js',
    'dist/raml1/test/virtualFSTests.js',
-   'dist/raml1/test/TCK.js',
-   'dist/raml1/test/TCK2.js',
+   //'dist/raml1/test/TCK.js',
+  //'dist/raml1/test/TCK2.js',
   // // //
    'src/raml1/test/data/parser/test/specs/optionals.js',
    'src/raml1/test/data/parser/test/specs/parser.js',
