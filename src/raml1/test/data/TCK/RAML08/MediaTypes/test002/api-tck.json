@@ -9,8 +9,8 @@
         "methods": [
           {
             "responses": {
-              "2xx": {
-                "code": "2xx",
+              "200": {
+                "code": "200",
                 "body": {
                   "application/x-www-form-urlencoded": {
                     "name": "application/x-www-form-urlencoded"

@@ -3450,12 +3450,12 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
 }
 export function validateResponseString(v:string):any{
     if (v.length!=3){
-        return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+        return new Error("Status code should be 3 digits number.");
     }
     for (var i=0;i<v.length;i++){
         var c=v[i];
-        if (!_.find(['0','1','2','3','4','5','6','7','8','9','x','X'],x=>x==c)){
-            return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+        if (!_.find(['0','1','2','3','4','5','6','7','8','9'],x=>x==c)){
+            return new Error("Status code should be 3 digits number.");
         }
     }
     return null;
