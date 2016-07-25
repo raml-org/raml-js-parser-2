@@ -210,17 +210,17 @@
       "path": "api.raml",
       "line": 9,
       "column": 0,
-      "position": 96,
+      "position": 87,
       "range": [
         {
           "line": 9,
           "column": 0,
-          "position": 96
+          "position": 87
         },
         {
           "line": 9,
           "column": 9,
-          "position": 105
+          "position": 96
         }
       ]
     }

@@ -10,39 +10,15 @@
     ],
     "traits": [
       {
-        "lib.libTrait1": {
-          "body": {
-            "application/json": {
-              "name": "application/json",
-              "displayName": "application/json",
-              "type": [
-                "lib.MyLibType"
-              ],
-              "repeat": false,
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "name": "lib.libTrait1",
+        "lib.MyTrait": {
+          "name": "lib.MyTrait",
           "__METADATA__": {
             "calculated": true
           }
         }
       }
     ],
-    "title": "TCK Sample. RAML 1.0 Libraries 001.",
+    "title": "test API",
     "version": "v1",
     "baseUri": "https://example.com/raml",
     "protocols": [
@@ -52,30 +28,6 @@
       {
         "methods": [
           {
-            "body": {
-              "application/json": {
-                "name": "application/json",
-                "displayName": "application/json",
-                "type": [
-                  "lib.MyLibType"
-                ],
-                "repeat": false,
-                "required": true,
-                "__METADATA__": {
-                  "primitiveValuesMeta": {
-                    "displayName": {
-                      "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
-                    },
-                    "required": {
-                      "insertedAsDefault": true
-                    }
-                  }
-                }
-              }
-            },
             "protocols": [
               "HTTPS"
             ],
@@ -114,5 +66,46 @@
       }
     }
   },
-  "errors": []
+  "errors": [
+    {
+      "code": 0,
+      "message": "Issues in the used library:lib.raml",
+      "path": "api.raml",
+      "line": 0,
+      "column": -1,
+      "position": -1,
+      "range": [
+        {
+          "line": 0,
+          "column": -1,
+          "position": -1
+        },
+        {
+          "line": 0,
+          "column": -1,
+          "position": -1
+        }
+      ]
+    },
+    {
+      "code": 0,
+      "message": "Unrecognized trait 'lib.libTrait1'.",
+      "path": "api.raml",
+      "line": 9,
+      "column": 10,
+      "position": 124,
+      "range": [
+        {
+          "line": 9,
+          "column": 10,
+          "position": 124
+        },
+        {
+          "line": 9,
+          "column": 23,
+          "position": 137
+        }
+      ]
+    }
+  ]
 }

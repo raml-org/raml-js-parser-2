@@ -1,14 +1,12 @@
-#%RAML 1.0
-title: Test API
+#%RAML 1.0 Library
+
 types:
   MyType1:
     properties:
-      []: string
-    minProperties: 2
-    example:
-      d: "a"
-      dd: "2"
-  MyType2:
-    type: MyType1
-    example:
-      x: "3"
+      prop: string
+
+traits:
+  MyTrait:
+    libTrait1:
+      body:
+        application/json: MyType1
