@@ -298,15 +298,7 @@ export function isAnnotationTypesProperty(p:hl.IProperty) : boolean {
     return p.nameId() === universe.Universe10.LibraryBase.properties.annotationTypes.name;
 }
 
-export function isRepeatProperty(p:hl.IProperty) : boolean {
-    return p.nameId() === universe.Universe08.Parameter.properties.repeat.name ||
-        p.nameId() === universe.Universe10.TypeDeclaration.properties.repeat.name;
-}
-
 /////////////////////// types
-
-
-
 
 export function isMethodType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.Method ||

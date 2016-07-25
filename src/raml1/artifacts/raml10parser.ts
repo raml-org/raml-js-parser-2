@@ -949,24 +949,6 @@ examples_original(  ):ExampleSpec[]{
 
 
         /**
-         * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-         **/
-repeat(  ):boolean{
-             return <boolean>super.attribute('repeat', this.toBoolean);
-         }
-
-
-        /**
-         * @hidden
-         * Set repeat value
-         **/
-setRepeat( param:boolean ){
-            this.highLevel().attrOrCreate("repeat").setValue(""+param);
-            return this;
-        }
-
-
-        /**
          * Sets if property is optional or not
          **/
 required(  ):boolean{
@@ -1656,20 +1638,6 @@ locationKind(  ):AnnotationRef[]{
          **/
 "default"(  ):AnnotationRef[]{
         var attr = this.node.attr("default");
-        if(attr==null){
-          return [];
-        }
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
-         * TypeDeclaration.repeat annotations
-         **/
-repeat(  ):AnnotationRef[]{
-        var attr = this.node.attr("repeat");
         if(attr==null){
           return [];
         }
