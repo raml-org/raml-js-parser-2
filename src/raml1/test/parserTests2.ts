@@ -351,7 +351,7 @@ describe('Trait', function(){
 });
 
 describe('Method response', function(){
-    it('Should parse  response code', function(){
+    it('Should parse response code', function(){
         testErrors(util.data('parser/methodResponse/methResp01.raml'));
     });
 

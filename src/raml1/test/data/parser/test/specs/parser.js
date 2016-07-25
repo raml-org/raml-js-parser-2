@@ -2443,7 +2443,7 @@ describe('Parser', function() {
         '      fail-here:'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits number with optional \'x\' as wildcards/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits./).and.notify(done);
     });
 
     it('should overwrite existing node with arrays as keys', function(done) {
@@ -7366,7 +7366,7 @@ describe('Parser', function() {
         '    responses:',
         '     responses:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits number with optional \'x\' as wildcards/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits./).and.notify(done);
     });
 //
     it('should fail if response code is null', function(done) {
@@ -7378,7 +7378,7 @@ describe('Parser', function() {
         '    responses:',
         '     ~:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits number with optional \'x\' as wildcards/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Status code should be 3 digits./).and.notify(done);
     });
 //
     it('should fail if response code in list is null', function(done) {

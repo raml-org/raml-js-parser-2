@@ -455,7 +455,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/p.raml"));
     })
     it ("status" ,function(){
-        testErrors(util.data("parser/status/s1.raml"),["Status code should be \\w+ digits number with optional '\\w+' as wildcards"]);
+        testErrors(util.data("parser/status/s1.raml"),["Status code should be 3 digits number."]);
     })
     it ("node names" ,function(){
         testErrors(util.data("parser/nodenames/n1.raml"), ["Resource type 'x' already exists","Resource property already used: 'description'","Resource type 'x' already exists","Resource property already used: 'description'"]);

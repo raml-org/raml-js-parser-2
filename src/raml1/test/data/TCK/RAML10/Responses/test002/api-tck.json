@@ -8,8 +8,8 @@
         "methods": [
           {
             "responses": {
-              "20x": {
-                "code": "20x",
+              "200": {
+                "code": "200",
                 "body": {
                   "application/json": {
                     "name": "application/json",
