@@ -982,8 +982,6 @@ class ParamWrapper implements Raml08Parser.BasicNamedParameter{
 
         this.example = _param.example();
 
-        this.repeat = _param.repeat();
-
         this.required = _param.required();
 
         this.default = _param.default();

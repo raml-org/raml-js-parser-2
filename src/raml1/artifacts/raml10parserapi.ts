@@ -307,12 +307,6 @@ examples(  ):ExampleSpec[]
 
 
         /**
-         * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-         **/
-repeat(  ):boolean
-
-
-        /**
          * Sets if property is optional or not
          **/
 required(  ):boolean
@@ -642,12 +636,6 @@ locationKind(  ):AnnotationRef[]
          * TypeDeclaration.default annotations
          **/
 "default"(  ):AnnotationRef[]
-
-
-        /**
-         * TypeDeclaration.repeat annotations
-         **/
-repeat(  ):AnnotationRef[]
 
 
         /**

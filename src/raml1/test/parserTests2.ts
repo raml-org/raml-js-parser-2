@@ -596,10 +596,6 @@ describe('Object types', function(){
         testErrors(util.data('parser/objectTypes/oType04.raml'),["Required property: comment_id is missed"]);
     });
 
-    it('Should parse property repeat option',function(){
-        testErrors(util.data('parser/objectTypes/oType05.raml'));
-    });
-
     it('Should parse property default option',function(){
         testErrors(util.data('parser/objectTypes/oType06.raml'));
     });
