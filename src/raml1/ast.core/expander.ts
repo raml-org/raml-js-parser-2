@@ -94,7 +94,10 @@ export class TraitsAndResourceTypesExpander {
             ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
             : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
 
-        if (this.globalTraits.length==0&&this.globalResourceTypes.length==0){
+        var unit = api.highLevel().lowLevel().unit();
+        var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
+        var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
+        if (!(hasTemplates||hasFragments)){
             return api;
         }
         
@@ -212,9 +215,9 @@ export class TraitsAndResourceTypesExpander {
                     });
                 }                
             });
-            if(resource.definition().universe().version()=="RAML10") {
-                this.appendTraitReferences(m, allTraits);
-            }
+            // if(resource.definition().universe().version()=="RAML10") {
+            //     this.appendTraitReferences(m, allTraits);
+            // }
         });
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();

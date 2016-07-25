@@ -644,8 +644,6 @@
               }
             },
             "is": [
-              "Trait2",
-              "Trait1",
               {
                 "RTTrait": {
                   "RTType": "RTType2"
@@ -794,10 +792,6 @@
                 }
               }
             },
-            "is": [
-              "Trait2",
-              "Trait1"
-            ],
             "method": "get"
           }
         ],

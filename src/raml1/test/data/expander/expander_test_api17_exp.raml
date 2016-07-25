@@ -20,7 +20,7 @@ uses:
       type: number
 
   post:
-    is: [ lib.libTrait1, lib.libTrait2 ]
+    is: [ lib.libTrait1 ]
     queryParameters:
       param1:
       param2:
@@ -33,7 +33,6 @@ uses:
           application/json:
 
   get:
-    is: [ lib.libTrait2 ]
     queryParameters:
       param2:
     body:

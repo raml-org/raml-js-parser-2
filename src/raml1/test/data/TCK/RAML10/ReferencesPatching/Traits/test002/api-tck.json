@@ -1,0 +1,144 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib1",
+        "value": "libraries/types.raml"
+      },
+      {
+        "key": "lib2",
+        "value": "libraries/annotations.raml"
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "annotations": {
+            "lib2.MyAnnotation": {
+              "structuredValue": "stringValue",
+              "name": "lib2.MyAnnotation"
+            }
+          },
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "lib1.LibType"
+              ],
+              "repeat": false,
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "repeat": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "lib2.MyAnnotation": {
+                "structuredValue": "stringValue",
+                "name": "lib2.MyAnnotation"
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "lib1.LibType"
+                ],
+                "example": {
+                  "p1": "stringValue",
+                  "p2": 10
+                },
+                "repeat": false,
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "p1": "stringValue",
+                    "p2": 10
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "is": [
+          "tr"
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

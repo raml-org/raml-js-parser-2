@@ -14,6 +14,8 @@ export class NamespaceResolver{
 
     private byNsMap:{[key:string]:{[key:string]:UsesInfo}} = {};
 
+    private _hasFragments: {[key:string]:boolean} = {};
+
     resolveNamespace(from:ll.ICompilationUnit, to:ll.ICompilationUnit):string{
 
         if(to==null){
@@ -60,7 +62,7 @@ export class NamespaceResolver{
                 }
             }
         }
-        
+
         for(var i = 0 ; i < usesInfoArray.length ; i++){
 
             var info = usesInfoArray[i];
@@ -77,6 +79,9 @@ export class NamespaceResolver{
                 if(x.parent()==null) {
 
                     var nodeUnit = x.unit();
+                    if(nodeUnit.absolutePath()!=unit.absolutePath()){
+                        this._hasFragments[unit.absolutePath()] = true;
+                    }
                     var map = this.pathMap(nodeUnit);
                     if(map) {
                         for (var absPath of Object.keys(map)) {
@@ -260,6 +265,11 @@ export class NamespaceResolver{
             }
         }
         return true;
+    }
+    
+    hasFragments(unit:ll.ICompilationUnit):boolean{
+        this.calculateExpandedNamespaces(unit);
+        return this._hasFragments[unit.absolutePath()] ? true : false;
     }
 }
 

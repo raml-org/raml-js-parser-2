@@ -1,0 +1,172 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libs/lib.raml"
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "example": {
+                  "objectProperty": {
+                    "prop": "string"
+                  },
+                  "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
+                },
+                "repeat": false,
+                "required": true,
+                "type": {
+                  "name": "type",
+                  "displayName": "type",
+                  "type": [
+                    "object"
+                  ],
+                  "repeat": false,
+                  "required": true,
+                  "properties": {
+                    "objectProperty": {
+                      "name": "objectProperty",
+                      "displayName": "objectProperty",
+                      "type": [
+                        "lib.MyType"
+                      ],
+                      "repeat": false,
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "stringProperty": {
+                      "name": "stringProperty",
+                      "displayName": "stringProperty",
+                      "type": [
+                        "lib.MyStringType"
+                      ],
+                      "repeat": false,
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "repeat": {
+                            "insertedAsDefault": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "additionalProperties": false,
+                  "uses": [
+                    {
+                      "key": "lib",
+                      "value": "../libs/lib.raml"
+                    }
+                  ],
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "repeat": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "repeat": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "objectProperty": {
+                      "prop": "string"
+                    },
+                    "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
+                  }
+                }
+              }
+            },
+            "method": "put"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "'MyStringType.maxLength=32' i.e. string length should not be more than 32",
+      "path": "api.raml",
+      "line": 11,
+      "column": 10,
+      "position": 212,
+      "range": [
+        {
+          "line": 11,
+          "column": 10,
+          "position": 212
+        },
+        {
+          "line": 11,
+          "column": 24,
+          "position": 226
+        }
+      ]
+    }
+  ]
+}

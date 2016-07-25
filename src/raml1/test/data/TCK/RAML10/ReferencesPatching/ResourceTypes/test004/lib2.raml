@@ -1,0 +1,12 @@
+#%RAML 1.0  Library
+
+types:
+  MyLibType: object
+
+traits:
+  myTrait:
+    queryParameters:
+      q:
+        displayName: <<paramName>>
+    body:
+      application/json: MyLibType

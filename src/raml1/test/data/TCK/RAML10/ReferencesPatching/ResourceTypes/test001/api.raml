@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: Test API
+
+uses:
+  lib: libA.raml
+
+types:
+  Monkey: object
+
+/resource:
+  type:
+    lib.rt:
+      param1: Monkey
