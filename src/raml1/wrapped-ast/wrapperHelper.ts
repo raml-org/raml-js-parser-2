@@ -25,6 +25,7 @@ import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
+import sourceFinder = require("../ast.core/sourceFinder")
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
@@ -840,7 +841,49 @@ export function referencedNode (usesDecl:RamlWrapper.UsesDeclaration):RamlWrappe
     return null;
 }
 
+/**
+ * __$helperMethod__
+ * Anonymous type declaration defined by "items" keyword.
+ * If no "items" is defined explicitly, this one is null.
+ * __$meta__={"name":"items"}
+ */
+export function getItems(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
+    return (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
+}
 
+/**
+ * __$helperMethod__
+ * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
+ * Does not resolve type expressions. Only returns component type declaration if it is actually defined
+ * somewhere in AST.
+ */
+export function findComponentTypeDeclaration(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
+    var original = (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
+    if (original) {
+        return original;
+    }
+
+    var runtimeType = arrayTypeDecl.runtimeType();
+    if (!runtimeType) return null;
+
+    if(!runtimeType.isArray() || !(<any>runtimeType).componentType) return null;
+    var runtimeArrayType = <hl.IArrayType> runtimeType;
+
+    var componentType : hl.ITypeDefinition = runtimeArrayType.componentType();
+    if (!componentType) return null;
+
+    var componentTypeHLSourceProvider = sourceFinder.getNominalTypeSource(componentType);
+    if (!componentTypeHLSourceProvider) return null;
+
+    var componentTypeSource = componentTypeHLSourceProvider.getSource();
+    if (!componentTypeSource) return null;
+    if (!componentTypeSource.isElement()) return null;
+
+    var basicNodeSource = (<hl.IHighLevelNode>componentTypeSource).wrapperNode();
+    // if(!isTypeDeclarationSibling(basicNodeSource)) return null;
+
+    return <RamlWrapper.TypeDeclaration> basicNodeSource;
+}
 
 function extractParams(
     params:RamlWrapper.TypeDeclaration[],

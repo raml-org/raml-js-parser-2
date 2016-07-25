@@ -1492,8 +1492,9 @@ setUniqueItems( param:boolean ){
 
         /**
          * Array component type.
+         * @hidden
          **/
-items(  ):TypeDeclaration{
+items_original(  ):TypeDeclaration{
              return <TypeDeclaration>super.element('items');
          }
 
@@ -1551,6 +1552,24 @@ kind(  ):string{return "ArrayTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Array component type.
+         **/
+items(  ):TypeDeclaration{
+            return helper.getItems(this);
+        }
+
+
+        /**
+         * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
+         * Does not resolve type expressions. Only returns component type declaration if it is actually defined
+         * somewhere in AST.
+         **/
+findComponentTypeDeclaration(  ):TypeDeclaration{
+            return helper.findComponentTypeDeclaration(this);
+        }
 
 
         /**
