@@ -24,9 +24,9 @@
           "repeat": false,
           "required": true,
           "properties": {
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "string"
               ],

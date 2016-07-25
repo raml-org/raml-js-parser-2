@@ -80,9 +80,9 @@
           "repeat": false,
           "required": true,
           "properties": {
-            "[\\w+/\\w+]": {
-              "name": "[\\w+/\\w+]",
-              "displayName": "[\\w+/\\w+]",
+            "/\\w+/\\w+/": {
+              "name": "/\\w+/\\w+/",
+              "displayName": "/\\w+/\\w+/",
               "type": [
                 "string"
               ],
@@ -573,9 +573,9 @@
               "repeat": false,
               "required": true,
               "properties": {
-                "[]": {
-                  "name": "[]",
-                  "displayName": "[]",
+                "/.*/": {
+                  "name": "/.*/",
+                  "displayName": "/.*/",
                   "type": [
                     "object"
                   ],

@@ -12,7 +12,7 @@ types:  # Move to overlay file
     pattern: "^[12345]\\d\\d$"
   amazon-apigateway-templates:
     properties:
-      [\w+/\w+]:
+      /\w+/\w+/:
   amazon-apigateway-auth-type:
     enum: [ aws_iam ]
   amazon-apigateway-integration-lambda:
@@ -42,7 +42,7 @@ types:  # Move to overlay file
       cacheKeyParameters: string[]
       responses:
         properties:
-          []:
+          /.*/:
             properties:
               statusCode: amazon-apigateway-status
               responseParameters:

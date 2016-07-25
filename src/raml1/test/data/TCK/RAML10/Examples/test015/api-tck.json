@@ -17,9 +17,9 @@
           "repeat": false,
           "required": true,
           "properties": {
-            "[]": {
-              "name": "[]",
-              "displayName": "[]",
+            "/.*/": {
+              "name": "/.*/",
+              "displayName": "/.*/",
               "type": [
                 "string"
               ],
@@ -113,17 +113,17 @@
       "path": "api.raml",
       "line": 7,
       "column": 4,
-      "position": 103,
+      "position": 105,
       "range": [
         {
           "line": 7,
           "column": 4,
-          "position": 103
+          "position": 105
         },
         {
           "line": 7,
           "column": 11,
-          "position": 110
+          "position": 112
         }
       ]
     }
