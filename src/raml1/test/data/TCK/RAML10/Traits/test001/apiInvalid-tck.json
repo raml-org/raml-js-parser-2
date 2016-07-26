@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "rtTypeProperty1": {
@@ -19,15 +18,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -42,9 +37,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -61,7 +53,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "rtTypeProperty2": {
@@ -70,15 +61,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -93,9 +80,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -112,7 +96,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "typeProperty1": {
@@ -121,15 +104,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -144,9 +123,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -163,7 +139,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "typeProperty2": {
@@ -172,15 +147,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -195,9 +166,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -218,15 +186,11 @@
               "type": [
                 "<<RTType>>"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -250,7 +214,6 @@
                   "type": [
                     "object"
                   ],
-                  "repeat": false,
                   "required": true,
                   "properties": {
                     "traitProperty1": {
@@ -259,15 +222,11 @@
                       "type": [
                         "boolean"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -281,15 +240,11 @@
                       "type": [
                         "number"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -303,15 +258,11 @@
                       "type": [
                         "string"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -326,9 +277,6 @@
                         "calculated": true
                       },
                       "type": {
-                        "insertedAsDefault": true
-                      },
-                      "repeat": {
                         "insertedAsDefault": true
                       },
                       "required": {
@@ -355,7 +303,6 @@
                   "type": [
                     "object"
                   ],
-                  "repeat": false,
                   "required": true,
                   "properties": {
                     "traitProperty1": {
@@ -364,15 +311,11 @@
                       "type": [
                         "number"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -386,15 +329,11 @@
                       "type": [
                         "boolean"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -408,15 +347,11 @@
                       "type": [
                         "string"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -431,9 +366,6 @@
                         "calculated": true
                       },
                       "type": {
-                        "insertedAsDefault": true
-                      },
-                      "repeat": {
                         "insertedAsDefault": true
                       },
                       "required": {
@@ -496,7 +428,6 @@
                     "type": [
                       "object"
                     ],
-                    "repeat": false,
                     "required": true,
                     "properties": {
                       "traitProperty1": {
@@ -505,15 +436,11 @@
                         "type": [
                           "boolean"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -527,15 +454,11 @@
                         "type": [
                           "number"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -549,15 +472,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -571,15 +490,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -594,9 +509,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {
@@ -618,15 +530,11 @@
                 "example": {
                   "rtTypeProperty2": "stringValue"
                 },
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
@@ -669,7 +577,6 @@
                       "traitProperty1_3": "stringValue1",
                       "traitProperty2_3": "stringValue2"
                     },
-                    "repeat": false,
                     "required": true,
                     "properties": {
                       "traitProperty1": {
@@ -678,15 +585,11 @@
                         "type": [
                           "boolean"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -700,15 +603,11 @@
                         "type": [
                           "number"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -722,15 +621,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -744,15 +639,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -767,9 +658,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {

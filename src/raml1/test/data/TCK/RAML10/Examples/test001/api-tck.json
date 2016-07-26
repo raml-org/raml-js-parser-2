@@ -13,7 +13,6 @@
           "example": {
             "a": 5
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "a": {
@@ -22,15 +21,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -45,9 +40,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -82,7 +74,6 @@
                     "type": [
                       "object"
                     ],
-                    "repeat": false,
                     "required": true,
                     "properties": {
                       "x": {
@@ -91,15 +82,11 @@
                         "type": [
                           "number"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -114,9 +101,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {

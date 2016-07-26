@@ -11,16 +11,12 @@
             "number"
           ],
           "example": 4,
-          "repeat": false,
           "required": true,
           "minimum": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -45,7 +41,6 @@
           "example": {
             "z": 3
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "z": {
@@ -54,15 +49,11 @@
               "type": [
                 "MyType1"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -77,9 +68,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {

@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "type": {
@@ -19,7 +18,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "Feature"
@@ -28,9 +26,6 @@
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -44,15 +39,11 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -66,15 +57,11 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -87,9 +74,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -105,7 +89,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "_embeds": {
@@ -114,16 +97,12 @@
               "type": [
                 "object[]"
               ],
-              "repeat": false,
               "required": false,
               "description": "Optional embedded, related resources if requested.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -137,16 +116,12 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": false,
               "description": "Optional links to related resources.",
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   }
                 }
               }
@@ -158,9 +133,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -178,7 +150,6 @@
             "ZoomEmbed",
             "Feature"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "id": {
@@ -187,15 +158,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -208,9 +175,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -226,7 +190,6 @@
           "type": [
             "Scene"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "properties": {
@@ -235,15 +198,11 @@
               "type": [
                 "PlanetProperties"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -257,7 +216,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "description": "Links to related resources and actions.",
               "properties": {
@@ -267,15 +225,11 @@
                   "type": [
                     "ResourceURL"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -289,9 +243,6 @@
                   "displayName": {
                     "calculated": true
                   },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
                   "required": {
                     "insertedAsDefault": true
                   }
@@ -303,9 +254,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -321,7 +269,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "acquired": {
@@ -330,15 +277,11 @@
               "type": [
                 "datetime"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -355,9 +298,6 @@
               "type": {
                 "insertedAsDefault": true
               },
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
@@ -372,7 +312,6 @@
           "type": [
             "BaseProperties"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "vnd_camera_gain": {
@@ -381,16 +320,12 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "minimum": 0,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -403,9 +338,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -421,16 +353,12 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "description": "A URL to a related resource.",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -516,15 +444,11 @@
                                 }
                               }
                             ],
-                            "repeat": false,
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
                                 "displayName": {
                                   "calculated": true
-                                },
-                                "repeat": {
-                                  "insertedAsDefault": true
                                 },
                                 "required": {
                                   "insertedAsDefault": true
