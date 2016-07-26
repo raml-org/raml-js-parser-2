@@ -1,0 +1,224 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "libA.raml"
+      },
+      {
+        "key": "lib.lib",
+        "value": "libB.raml"
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.lib.rt": {
+          "annotations": {
+            "lib.lib.<<param1>>": {
+              "structuredValue": 17,
+              "name": "lib.lib.<<param1>>"
+            },
+            "lib.lib.<<param2>>": {
+              "structuredValue": 5,
+              "name": "lib.lib.<<param2>>"
+            },
+            "lib.lib.Monkey": {
+              "structuredValue": true,
+              "name": "lib.lib.Monkey"
+            }
+          },
+          "name": "lib.lib.rt",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "get": {
+            "annotations": {
+              "lib.lib.<<param1>>": {
+                "structuredValue": "stringValue2",
+                "name": "lib.lib.<<param1>>"
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "annotations": {
+              "lib.lib.<<param2>>": {
+                "structuredValue": 8,
+                "name": "lib.lib.<<param2>>"
+              }
+            },
+            "method": "post"
+          },
+          "put": {
+            "annotations": {
+              "lib.lib.Monkey": {
+                "structuredValue": false,
+                "name": "lib.lib.Monkey"
+              }
+            },
+            "method": "put"
+          },
+          "delete": {
+            "annotations": {
+              "lib.lib.<<param1>>": {
+                "structuredValue": "stringValue3",
+                "name": "lib.lib.<<param1>>"
+              },
+              "lib.lib.<<param2>>": {
+                "structuredValue": 16,
+                "name": "lib.lib.<<param2>>"
+              },
+              "lib.lib.Monkey": {
+                "structuredValue": true,
+                "name": "lib.lib.Monkey"
+              }
+            },
+            "method": "delete"
+          }
+        }
+      },
+      {
+        "lib.rt": {
+          "type": {
+            "lib.lib.rt": {
+              "param1": "<<param1>>",
+              "param2": "Monkey"
+            }
+          },
+          "name": "lib.rt",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "annotations": {
+          "Monkey": {
+            "structuredValue": 17,
+            "name": "Monkey"
+          },
+          "lib.Monkey": {
+            "structuredValue": 5,
+            "name": "lib.Monkey"
+          },
+          "lib.lib.Monkey": {
+            "structuredValue": true,
+            "name": "lib.lib.Monkey"
+          }
+        },
+        "methods": [
+          {
+            "annotations": {
+              "Monkey": {
+                "structuredValue": "stringValue2",
+                "name": "Monkey"
+              }
+            },
+            "method": "get"
+          },
+          {
+            "annotations": {
+              "lib.Monkey": {
+                "structuredValue": 8,
+                "name": "lib.Monkey"
+              }
+            },
+            "method": "post"
+          },
+          {
+            "annotations": {
+              "lib.lib.Monkey": {
+                "structuredValue": false,
+                "name": "lib.lib.Monkey"
+              }
+            },
+            "method": "put"
+          },
+          {
+            "annotations": {
+              "Monkey": {
+                "structuredValue": "stringValue3",
+                "name": "Monkey"
+              },
+              "lib.Monkey": {
+                "structuredValue": 16,
+                "name": "lib.Monkey"
+              },
+              "lib.lib.Monkey": {
+                "structuredValue": true,
+                "name": "lib.lib.Monkey"
+              }
+            },
+            "method": "delete"
+          }
+        ],
+        "type": {
+          "lib.rt": {
+            "param1": "Monkey"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "api.raml",
+      "line": 9,
+      "column": 0,
+      "position": 87,
+      "range": [
+        {
+          "line": 9,
+          "column": 0,
+          "position": 87
+        },
+        {
+          "line": 9,
+          "column": 9,
+          "position": 96
+        }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import util=require("../../util/index")
 import universes=require("../tools/universe")
 import def = require("raml-definition-system")
 import refResolvers=require("../jsyaml/includeRefResolvers")
+import universeHelpers = require("../tools/universeHelpers");
 var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
@@ -25,7 +26,9 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     private _highLevelParseResult:hl.IParseResult;
 
-    private _keyOverride:string;
+    protected _keyOverride:string;
+
+    protected _valueOverride:string;
 
     hasInnerIncludeError(){
         return this._originalNode.hasInnerIncludeError();
@@ -70,6 +73,10 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
     setKeyOverride(_key:string){
         this._keyOverride=_key;
+    }
+
+    setValueOverride(value:any){
+        this._valueOverride=value;
     }
 
     key():string {
@@ -196,8 +203,13 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        this._originalNode = new LowLevelValueTransformingNode(
-            node, originalParent,transformer,this.ramlVersion);
+        if(node instanceof LowLevelValueTransformingNode){
+            this._originalNode = node;
+        }
+        else {
+            this._originalNode = new LowLevelValueTransformingNode(
+                node, originalParent, transformer, this.ramlVersion);
+        }
         this._adoptedNodes.push(<LowLevelValueTransformingNode>this._originalNode);
     }
 
@@ -205,6 +217,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     protected _adoptedNodes:LowLevelValueTransformingNode[] = [];
 
     protected _children:LowLevelCompositeNode[];
+
+    protected _preserveAnnotations:boolean = false;
+    
+    protected isInsideResource:boolean;
 
     adoptedNodes():ll.ILowLevelASTNode[]{
         return this._adoptedNodes;
@@ -234,11 +250,21 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
     }
 
     value(toString?:boolean):any {
+        if(this._valueOverride){
+            return this._valueOverride;
+        }
+        var val;
         var valuableNodes:ll.ILowLevelASTNode[] = this._adoptedNodes.filter(x=>x.value()!=null);
         if(valuableNodes.length>0){
-            return valuableNodes[0].value(toString);
+            val = valuableNodes[0].value(toString);
         }
-        return this._originalNode.value(toString);
+        else {
+            val = this._originalNode.value(toString);
+        }
+        if(val instanceof LowLevelValueTransformingNode){
+            this._valueOverride = val;
+        }
+        return val;
     }
 
     children():ll.ILowLevelASTNode[] {
@@ -250,7 +276,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
         var canBeMap:boolean = false;
         var canBeSeq = false;
-        this._adoptedNodes.forEach(x=>{
+        for(var x of this._adoptedNodes){
             var adoptedNodeChildren = x.children();
             if(adoptedNodeChildren && adoptedNodeChildren.length > 0){
                 canBeSeq = true;
@@ -260,7 +286,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     }
                 }
             }
-        });
+        }
         if (canBeMap) {
             result = this.collectChildrenWithKeys();
         }
@@ -312,18 +338,24 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         var result = [];
         var m:{[key:string]:ChildEntry[]} = {};
 
-        this._adoptedNodes.forEach(x=> {
+        for(var x of this._adoptedNodes){
             var isPrimary = x == this.primaryNode();
-            x.children().forEach(y=> {
+            for(var y of x.children()){
                 var key = y.originalNode().key();
                 if(key && x.transformer()){
-                    key = x.transformer().transform(key).value;
+                    var isAnnotation = key!=null
+                        && (this._preserveAnnotations||this.isResource())
+                        && util.stringStartsWith(key,"(")
+                        && util.stringEndsWith(key,")");
+                    if(!isAnnotation) {
+                        key = x.transformer().transform(key).value;
+                    }
                 }
                 if(this.skipKey(key,isPrimary)){
-                    return;
+                    continue;
                 }
                 if(!key){
-                    return;
+                    continue;
                 }
                 var arr:ChildEntry[] = m[key];
                 if (!arr) {
@@ -331,8 +363,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                     m[key] = arr;
                 }
                 arr.push({ node:y.originalNode(), transformer: x.transformer(), isPrimary: isPrimary} );
-            });
-        });
+            }
+        }
 
         var ramlVersion = this.unit().highLevel().root().definition().universe().version();
         var isResource = this.key()&&this.key()[0]=="/";
@@ -378,6 +410,10 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         return result;
     }
 
+    private isResource() {
+        return this.highLevelNode() && universeHelpers.isResourceType(this.highLevelNode().definition());
+    }
+
     private skipKey(key:string,isPrimary:boolean){
         if(isPrimary){
             return false;
@@ -405,7 +441,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         }
         for(var i = 0 ; i < this._adoptedNodes.length; i++){
             var node = this._adoptedNodes[i];
-            var yamlNode = (<any>node.originalNode())._node;
+            var yamlNode = (<any>node.originalNode()).actual();
             if(yamlNode && yamlNode.value!=null){
                 return node.valueKind();
             }
@@ -450,6 +486,98 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
 
     optional():boolean{
         return _.all(this._adoptedNodes,x=>x.optional());
+    }
+
+
+    replaceChild(
+        oldNode:ll.ILowLevelASTNode,
+        newNode:ll.ILowLevelASTNode,
+        isPrimary=false,
+        transformer:ValueTransformer=null):LowLevelCompositeNode{
+        
+        if(!this._children){
+            this._children = [];
+        }
+        var newCNode = new LowLevelCompositeNode(newNode,this,null,this.ramlVersion);
+        if(oldNode==null){
+            this._children.push(newCNode);
+            return newCNode;
+        }
+        var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
+        if(ind>=0){
+            this._children[ind] = newCNode;
+        }
+        else{
+            this._children.push(newCNode);
+        }
+        return newCNode;
+    }
+
+    removeChild(oldNode:ll.ILowLevelASTNode):LowLevelCompositeNode{
+        if(!this._children||oldNode==null){
+            return;
+        }
+        var ind = this._children.indexOf(<LowLevelCompositeNode>oldNode);
+        if(ind>=0){
+            for(var i = ind ; i < this._children.length-1 ; i++){
+                this._children[i] = this._children[i+1];                
+            }
+            this._children.pop();            
+        }
+    }
+
+    setChildren(nodes:ll.ILowLevelASTNode[]):LowLevelCompositeNode{
+        if(nodes==null){
+            this._children = null;
+            return;
+        }
+        this._children = nodes.map(x=>{
+            if(x instanceof LowLevelCompositeNode){
+                return x;
+            }
+            return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
+        });
+    }
+
+    preserveAnnotations(){
+        if(!this._preserveAnnotations) {
+            if(this.isInsideResource===undefined){
+                this.isInsideResource = false;
+                if(!this.isResource()){
+                    var parent = this._parent;
+                    while (parent) {
+                        if ((<LowLevelCompositeNode>parent).isResource()) {
+                            this.isInsideResource = true;
+                            break;
+                        }
+                        parent = parent.parent();
+                    }
+                }
+            }
+            if(this.isInsideResource) {
+                this._preserveAnnotations = true;
+                this._children = null;
+            }
+        }
+    }
+
+    filterChildren(){
+        this.children();
+        var map = {};
+        var filtered:LowLevelCompositeNode[] = [];
+        this._children.forEach(x=>{
+            if(x.key()!=null){
+                filtered.push(x);
+                return;
+            }
+            var key = JSON.stringify(json.serialize(x));
+            if(map[key]){
+                return;
+            }
+            map[key] = true;
+            filtered.push(x);
+        });
+        this._children = filtered;
     }
 }
 

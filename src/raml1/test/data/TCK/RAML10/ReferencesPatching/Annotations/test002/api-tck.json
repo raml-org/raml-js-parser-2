@@ -1,0 +1,133 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "traits": [
+      {
+        "lib.libTrait1": {
+          "annotations": {
+            "lib.MyAnnotation": {
+              "structuredValue": "stringValueFromLibTrait1",
+              "name": "lib.MyAnnotation"
+            }
+          },
+          "name": "lib.libTrait1",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      },
+      {
+        "lib.libTrait2": {
+          "annotations": {
+            "lib.MyAnnotation": {
+              "structuredValue": "stringValueFromLibTrait2",
+              "name": "lib.MyAnnotation"
+            }
+          },
+          "name": "lib.libTrait2",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "lib.libResourceType": {
+          "is": [
+            "lib.libTrait2"
+          ],
+          "name": "lib.libResourceType",
+          "__METADATA__": {
+            "calculated": true
+          },
+          "post": {
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "RAML spec",
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "lib.MyAnnotation": {
+                "structuredValue": "stringValueFromLibTrait1",
+                "name": "lib.MyAnnotation"
+              }
+            },
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "get"
+          },
+          {
+            "annotations": {
+              "lib.MyAnnotation": {
+                "structuredValue": "stringValueFromLibTrait2",
+                "name": "lib.MyAnnotation"
+              }
+            },
+            "is": [
+              "lib.libTrait1"
+            ],
+            "method": "post"
+          }
+        ],
+        "is": [
+          "lib.libTrait2"
+        ],
+        "type": "lib.libResourceType",
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/{id}",
+        "displayName": "/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "{id}"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

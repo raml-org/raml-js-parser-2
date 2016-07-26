@@ -23,7 +23,7 @@ var expandingTest = function (ind) {
         if (diffs.length > 0) {
             console.log(diffs.length);
             msg = `Traits and resource types expansion fail for ${apiPath} and ${apiExpPath}}`
-                + diffs.map(x=>'\n' + x.message()).join('');
+                + diffs.map(x=>'\n' + x.message("actual","expected")).join('');
         }
         assert(diffs.length == 0, msg);
     });

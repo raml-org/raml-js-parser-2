@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: test API
+
+traits:
+  myTrait: !include myTrait.raml
+  simpleTrait:
+    queryParameters:
+      stringParam:
+        type: string
+
+resourceTypes:
+  rt1: !include rt1.raml
+  rt2: !include rt2.raml
+
+/resource:
+  type:
+    rt1:
+      param: qParam
+  get:
