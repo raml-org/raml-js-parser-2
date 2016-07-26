@@ -2002,6 +2002,15 @@ class TypeDeclarationValidator implements NodeValidator{
                 v.accept(issue);
             };
         }
+
+        var examplesLowLevel = node.lowLevel() && (<any>node).lowLevel().find && (<any>node).lowLevel().find('examples');
+
+        if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
+            issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "map is expected here.", examplesLowLevel, node, false);
+
+            v.accept(issue);
+        }
+
     }
 }
 function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{    
