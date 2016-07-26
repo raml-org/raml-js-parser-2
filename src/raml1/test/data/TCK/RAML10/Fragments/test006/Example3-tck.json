@@ -18,16 +18,16 @@
     "value": "{\n  \"property1\": \"string value\",\n  \"property2\": 1\n}",
     "strict": true,
     "displayName": "MyExample",
-    "structuredValue": {
-      "property1": "string value",
-      "property2": 1
-    },
     "uses": [
       {
         "key": "lib",
         "value": "libs/lib.raml"
       }
-    ]
+    ],
+    "structuredValue": {
+      "property1": "string value",
+      "property2": 1
+    }
   },
   "errors": []
 }

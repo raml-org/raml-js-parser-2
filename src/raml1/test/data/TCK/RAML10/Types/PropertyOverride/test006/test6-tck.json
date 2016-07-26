@@ -10,16 +10,12 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "minLength": 0,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -35,16 +31,12 @@
           "type": [
             "PropertyType1"
           ],
-          "repeat": false,
           "required": true,
           "maxLength": 5,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -60,7 +52,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "testProperty": {
@@ -69,15 +60,11 @@
               "type": [
                 "PropertyType1"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -94,9 +81,6 @@
               "type": {
                 "insertedAsDefault": true
               },
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
@@ -111,7 +95,6 @@
           "type": [
             "Type1"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "testProperty": {
@@ -120,15 +103,11 @@
               "type": [
                 "PropertyType2"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -141,9 +120,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

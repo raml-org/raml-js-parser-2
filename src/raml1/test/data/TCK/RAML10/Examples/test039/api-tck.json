@@ -15,7 +15,6 @@
                   "number"
                 ],
                 "example": 2,
-                "repeat": true,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {

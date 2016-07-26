@@ -13,7 +13,6 @@
           "example": {
             "y": "aaa2"
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "y": {
@@ -22,7 +21,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "val1",
@@ -33,9 +31,6 @@
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -50,9 +45,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {

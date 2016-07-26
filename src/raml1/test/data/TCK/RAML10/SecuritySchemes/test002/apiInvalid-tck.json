@@ -16,16 +16,12 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "Used to send a valid OAuth 2 access token. Do not use with\nthe \"Authorization\" header.\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
@@ -41,16 +37,12 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "Used to send a valid OAuth 2 access token. Do not use\nwith the \"access_token\" query string parameter.\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true

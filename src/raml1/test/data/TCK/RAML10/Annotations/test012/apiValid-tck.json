@@ -20,7 +20,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "prop1": {
@@ -29,7 +28,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "properties": {
                 "/.*/": {
@@ -38,15 +36,11 @@
                   "type": [
                     "number"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -63,9 +57,6 @@
                   "type": {
                     "insertedAsDefault": true
                   },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
                   "required": {
                     "insertedAsDefault": true
                   }
@@ -79,9 +70,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {

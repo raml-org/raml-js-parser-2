@@ -11,14 +11,10 @@
         "type": [
           "boolean"
         ],
-        "repeat": false,
         "required": true,
         "description": "This is A",
         "__METADATA__": {
           "primitiveValuesMeta": {
-            "repeat": {
-              "insertedAsDefault": true
-            },
             "required": {
               "insertedAsDefault": true
             }

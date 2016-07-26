@@ -949,24 +949,6 @@ examples_original(  ):ExampleSpec[]{
 
 
         /**
-         * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-         **/
-repeat(  ):boolean{
-             return <boolean>super.attribute('repeat', this.toBoolean);
-         }
-
-
-        /**
-         * @hidden
-         * Set repeat value
-         **/
-setRepeat( param:boolean ){
-            this.highLevel().attrOrCreate("repeat").setValue(""+param);
-            return this;
-        }
-
-
-        /**
          * Sets if property is optional or not
          **/
 required(  ):boolean{
@@ -1510,8 +1492,9 @@ setUniqueItems( param:boolean ){
 
         /**
          * Array component type.
+         * @hidden
          **/
-items(  ):TypeDeclaration{
+items_original(  ):TypeDeclaration{
              return <TypeDeclaration>super.element('items');
          }
 
@@ -1569,6 +1552,24 @@ kind(  ):string{return "ArrayTypeDeclaration";}
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
+
+
+        /**
+         * Array component type.
+         **/
+items(  ):TypeDeclaration{
+            return helper.getItems(this);
+        }
+
+
+        /**
+         * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
+         * Does not resolve type expressions. Only returns component type declaration if it is actually defined
+         * somewhere in AST.
+         **/
+findComponentTypeDeclaration(  ):TypeDeclaration{
+            return helper.findComponentTypeDeclaration(this);
+        }
 
 
         /**
@@ -1656,20 +1657,6 @@ locationKind(  ):AnnotationRef[]{
          **/
 "default"(  ):AnnotationRef[]{
         var attr = this.node.attr("default");
-        if(attr==null){
-          return [];
-        }
-        var annotationAttrs = attr.annotations();
-        var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
-        return <AnnotationRef[]>result;
-}
-
-
-        /**
-         * TypeDeclaration.repeat annotations
-         **/
-repeat(  ):AnnotationRef[]{
-        var attr = this.node.attr("repeat");
         if(attr==null){
           return [];
         }

@@ -11,7 +11,6 @@
         "type": [
           "string"
         ],
-        "repeat": false,
         "required": true,
         "__METADATA__": {
           "calculated": true,
@@ -20,9 +19,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "repeat": {
               "insertedAsDefault": true
             },
             "required": {

@@ -10,7 +10,6 @@
           "type": [
             "number"
           ],
-          "repeat": false,
           "required": true,
           "minimum": 10,
           "maximum": 1,
@@ -18,9 +17,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
