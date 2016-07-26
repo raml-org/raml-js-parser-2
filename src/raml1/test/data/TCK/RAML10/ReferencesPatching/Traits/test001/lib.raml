@@ -1,12 +1,11 @@
 #%RAML 1.0 Library
 
 types:
-  MyType1:
-    properties:
-      prop: string
+  LibType: object
 
 traits:
-  MyTrait:
-    libTrait1:
-      body:
-        application/json: MyType1
+  libTrait1:
+    responses:
+      200:
+        body:
+          application/json: LibType

@@ -152,13 +152,17 @@ export class ReferencePatcher{
         if(!node.localType().isExternal()) {
 
             var rootUnit = rootNode.lowLevel().unit();
-            var localUnit = node.lowLevel().unit();
             var rootPath = rootUnit.absolutePath();
-            var localPath = localUnit.absolutePath();
+            
 
-            if(rootPath != localPath) {
+            //if(rootPath != localPath) {
                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
                 for( var typeAttr of typeAttributes) {
+                    var localUnit = typeAttr.lowLevel().unit();
+                    var localPath = localUnit.absolutePath();
+                    if(localPath==rootPath){
+                        continue;
+                    }
                     var value = typeAttr.value();
                     if(typeof value == "string") {
 
@@ -167,7 +171,8 @@ export class ReferencePatcher{
                         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
                         var stringToPatch = value;
                         var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
-                        if(transformer!=null||value.indexOf("<<")>=0){
+                        var additionalUnits = transformer ? transformer.unitsChain : null;
+                        if(transformer!=null||value.indexOf("<<")>=0){                            
                             var actualNode = toOriginal(llNode);
                             var actualValue = actualNode.value();
                             escapeData = escapeTemplateParameters(actualValue);
@@ -183,6 +188,14 @@ export class ReferencePatcher{
                                 transformer = null;
                             }
                         }
+                        var appendedAdditional:boolean[];
+                        if(additionalUnits){
+                            appendedAdditional = [];
+                            for(var u of additionalUnits){
+                                appendedAdditional.push(this.appendUnitIfNeeded(u,units));
+                            }
+                        }
+                        var appendedAttrUnit = this.appendUnitIfNeeded(typeAttr,units);
                         
                         var newValue:string;
                         if(gotExpression){
@@ -237,6 +250,12 @@ export class ReferencePatcher{
                             (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).setValueOverride(newValue);
                             (<hlimpl.ASTPropImpl>typeAttr).overrideValue(null);
                         }
+                        this.popUnitIfNeeded(units,appendedAttrUnit);
+                        if(appendedAdditional){
+                            for(var ap of appendedAdditional.reverse()){
+                                this.popUnitIfNeeded(units,ap);
+                            }
+                        }
                     }
                     else{
                         var llTypeNode = _.find(node.lowLevel().children(),x=>x.key()=="type");
@@ -249,7 +268,7 @@ export class ReferencePatcher{
                         }
                     }
                 }
-            }
+            // }
         }
     }
 
@@ -427,8 +446,16 @@ export class ReferencePatcher{
         (<hlimpl.ASTNodeImpl>hlNode).setAssociatedType(null);
     };
 
-    appendUnitIfNeeded(node:hl.IParseResult,units:ll.ICompilationUnit[]):boolean{
-        var originalNode = toOriginal(node.lowLevel());
+    appendUnitIfNeeded(node:hl.IParseResult|ll.ICompilationUnit,units:ll.ICompilationUnit[]):boolean{
+        if(node instanceof jsyaml.CompilationUnit){
+            var unit = <ll.ICompilationUnit>node;
+            if (unit.absolutePath() != units[units.length - 1].absolutePath()) {
+                units.push(unit);
+                return true;
+            }
+            return false;
+        }
+        var originalNode = toOriginal((<hl.IParseResult>node).lowLevel());
         var originalUnit = originalNode.unit();
         if(originalNode.valueKind()==yaml.Kind.INCLUDE_REF){
             var ref = originalNode.includePath();
