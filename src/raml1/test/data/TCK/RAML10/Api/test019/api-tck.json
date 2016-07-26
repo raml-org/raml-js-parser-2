@@ -14,7 +14,6 @@
         "repeat": false,
         "required": true,
         "description": "This is A",
-        "minLength": 123,
         "enum": [
           "value",
           "value2",
@@ -46,26 +45,5 @@
       }
     }
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "enum facet can only contain unique items",
-      "path": "api.raml",
-      "line": 8,
-      "column": 4,
-      "position": 146,
-      "range": [
-        {
-          "line": 8,
-          "column": 4,
-          "position": 146
-        },
-        {
-          "line": 8,
-          "column": 8,
-          "position": 150
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

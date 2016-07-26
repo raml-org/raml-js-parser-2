@@ -762,26 +762,5 @@
       }
     }
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "enum facet can only contain unique items",
-      "path": "api.raml",
-      "line": 8,
-      "column": 4,
-      "position": 192,
-      "range": [
-        {
-          "line": 8,
-          "column": 4,
-          "position": 192
-        },
-        {
-          "line": 8,
-          "column": 8,
-          "position": 196
-        }
-      ]
-    }
-  ]
+  "errors": []
 }
