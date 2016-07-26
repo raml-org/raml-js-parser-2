@@ -99,8 +99,8 @@ describe('API parsing', function() {
             testErrors(util.data('parser/api/api17.raml'), ["specifying unknown facet:wrongPropertyName"]);
         });
 
-        it('Should fail when declaring an enum with duplicated values', function(){
-            testErrors(util.data('parser/api/api18.raml'), ["enum facet can only contain unique items"]);
+        it('Should not fail when declaring an enum with duplicated values', function(){
+            testErrors(util.data('parser/api/api18.raml'));
         });
 
         it('Should fail when declaring a URI parameter with an invalid type', function(){

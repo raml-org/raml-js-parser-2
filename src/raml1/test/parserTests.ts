@@ -274,7 +274,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed","Unknown property:x2"]);
     })
     it ("aws example" ,function(){
-        testErrors(util.data("parser/examples/ex35.raml"), ["enum facet can only contain unique items"]);
+        testErrors(util.data("parser/examples/ex35.raml"));
     })
     it ("multi unions" ,function(){
         testErrors(util.data("parser/examples/ex36.raml"));
@@ -295,7 +295,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex44.raml"),["example should be a string"]);
     })
     it ("enums values restriction" ,function(){
-        testErrors(util.data("parser/examples/ex37.raml"),["enum facet can only contain unique items"]);
+        testErrors(util.data("parser/examples/ex37.raml"));
     })
     it ("anonymous type examples validation test 1" ,function(){
         testErrors(util.data("parser/examples/ex38.raml"));
