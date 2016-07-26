@@ -59,7 +59,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "specifying unknown facet:repeat",
+      "message": "number is expected",
       "path": "api.raml",
       "line": 8,
       "column": 8,
@@ -72,28 +72,8 @@
         },
         {
           "line": 8,
-          "column": 14,
-          "position": 116
-        }
-      ]
-    },
-    {
-      "code": 11,
-      "message": "number is expected",
-      "path": "api.raml",
-      "line": 9,
-      "column": 8,
-      "position": 131,
-      "range": [
-        {
-          "line": 9,
-          "column": 8,
-          "position": 131
-        },
-        {
-          "line": 9,
           "column": 15,
-          "position": 138
+          "position": 117
         }
       ]
     }
