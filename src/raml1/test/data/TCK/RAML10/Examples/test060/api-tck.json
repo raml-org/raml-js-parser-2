@@ -15,15 +15,11 @@
             1,
             2
           ],
-          "repeat": false,
           "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -56,7 +52,6 @@
               0
             ]
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "p": {
@@ -65,15 +60,11 @@
               "type": [
                 "MyArrayType"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -88,9 +79,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -128,15 +116,11 @@
                     "type": [
                       "MyType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -167,15 +151,11 @@
                     "type": [
                       "MyType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true

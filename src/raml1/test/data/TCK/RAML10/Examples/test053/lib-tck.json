@@ -13,7 +13,6 @@
           "example": {
             "name": "Fred"
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "name": {
@@ -22,7 +21,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -30,9 +28,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -47,7 +42,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -55,9 +49,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -71,9 +62,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

@@ -15,7 +15,6 @@
                   "number"
                 ],
                 "example": 2,
-                "repeat": true,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -53,5 +52,26 @@
       }
     ]
   },
-  "errors": []
+  "errors": [
+    {
+      "code": 11,
+      "message": "specifying unknown facet:repeat",
+      "path": "api.raml",
+      "line": 8,
+      "column": 8,
+      "position": 110,
+      "range": [
+        {
+          "line": 8,
+          "column": 8,
+          "position": 110
+        },
+        {
+          "line": 8,
+          "column": 14,
+          "position": 116
+        }
+      ]
+    }
+  ]
 }

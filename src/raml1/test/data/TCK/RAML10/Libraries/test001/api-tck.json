@@ -16,7 +16,6 @@
           "type": [
             "ll.Person"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "name2": {
@@ -25,15 +24,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -46,9 +41,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

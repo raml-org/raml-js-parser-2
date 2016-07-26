@@ -10,15 +10,11 @@
           "type": [
             "<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n    <xs:element name=\"TwilioResponse\">\n        <xs:complexType>\n            <xs:sequence>\n                <xs:element name=\"Account\">\n                    <xs:complexType>\n                        <xs:sequence>\n                            <xs:element type=\"xs:string\" name=\"Sid\"/>\n                            <xs:element type=\"xs:string\" name=\"FriendlyName\"/>\n                            <xs:element type=\"xs:string\" name=\"Type\"/>\n                            <xs:element type=\"xs:string\" name=\"Status\"/>\n                            <xs:element type=\"xs:string\" name=\"DateCreated\"/>\n                            <xs:element type=\"xs:string\" name=\"DateUpdated\"/>\n                            <xs:element type=\"xs:string\" name=\"AuthToken\"/>\n                            <xs:element type=\"xs:string\" name=\"Uri\"/>\n                            <xs:element name=\"SubresourceUris\">\n                                <xs:complexType>\n                                    <xs:sequence>\n                                        <xs:element type=\"xs:string\" name=\"AvailablePhoneNumbers\"/>\n                                        <xs:element type=\"xs:string\" name=\"Calls\"/>\n                                        <xs:element type=\"xs:string\" name=\"Conferences\"/>\n                                        <xs:element type=\"xs:string\" name=\"IncomingPhoneNumbers\"/>\n                                        <xs:element type=\"xs:string\" name=\"Notifications\"/>\n                                        <xs:element type=\"xs:string\" name=\"OutgoingCallerIds\"/>\n                                        <xs:element type=\"xs:string\" name=\"Recordings\"/>\n                                        <xs:element type=\"xs:string\" name=\"Sandbox\"/>\n                                        <xs:element type=\"xs:string\" name=\"SMSMessages\"/>\n                                        <xs:element type=\"xs:string\" name=\"Transcriptions\"/>\n                                    </xs:sequence>\n                                </xs:complexType>\n                            </xs:element>\n                        </xs:sequence>\n                    </xs:complexType>\n                </xs:element>\n            </xs:sequence>\n        </xs:complexType>\n    </xs:element>\n</xs:schema>"
           ],
-          "repeat": false,
           "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

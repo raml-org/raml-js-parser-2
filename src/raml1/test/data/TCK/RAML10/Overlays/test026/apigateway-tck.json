@@ -21,7 +21,6 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -29,9 +28,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {
@@ -110,7 +106,6 @@
                 "type": [
                   "number"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "Latitude component of location",
                 "format": "double",
@@ -121,9 +116,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -134,7 +126,6 @@
                 "type": [
                   "number"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "Longitude component of location",
                 "format": "double",
@@ -145,9 +136,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }

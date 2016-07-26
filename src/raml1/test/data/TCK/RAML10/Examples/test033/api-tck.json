@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "baseField": {
@@ -19,15 +18,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -40,9 +35,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -58,7 +50,6 @@
           "type": [
             "TypeBase"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "field": {
@@ -67,15 +58,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -88,9 +75,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -120,7 +104,6 @@
                       "baseField": "asdasd",
                       "field": "asdds"
                     },
-                    "repeat": false,
                     "required": true,
                     "properties": {
                       "additionalField": {
@@ -129,15 +112,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -150,9 +129,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true

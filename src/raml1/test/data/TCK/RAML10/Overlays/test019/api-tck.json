@@ -28,7 +28,6 @@
                 "type": [
                   "object"
                 ],
-                "repeat": false,
                 "required": true,
                 "properties": {
                   "name": {
@@ -38,15 +37,11 @@
                       "string"
                     ],
                     "default": "Blah",
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -59,9 +54,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true

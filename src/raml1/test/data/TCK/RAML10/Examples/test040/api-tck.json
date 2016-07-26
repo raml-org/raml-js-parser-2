@@ -17,7 +17,6 @@
                 "example": [
                   2
                 ],
-                "repeat": true,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -60,21 +59,41 @@
   "errors": [
     {
       "code": 11,
+      "message": "specifying unknown facet:repeat",
+      "path": "api.raml",
+      "line": 8,
+      "column": 8,
+      "position": 110,
+      "range": [
+        {
+          "line": 8,
+          "column": 8,
+          "position": 110
+        },
+        {
+          "line": 8,
+          "column": 14,
+          "position": 116
+        }
+      ]
+    },
+    {
+      "code": 11,
       "message": "number is expected",
       "path": "api.raml",
       "line": 9,
-      "column": 19,
-      "position": 142,
+      "column": 8,
+      "position": 131,
       "range": [
         {
           "line": 9,
-          "column": 19,
-          "position": 142
+          "column": 8,
+          "position": 131
         },
         {
           "line": 9,
-          "column": 20,
-          "position": 143
+          "column": 15,
+          "position": 138
         }
       ]
     }

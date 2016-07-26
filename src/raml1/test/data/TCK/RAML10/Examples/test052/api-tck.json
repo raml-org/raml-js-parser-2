@@ -61,15 +61,11 @@
                         "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
                       }
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true

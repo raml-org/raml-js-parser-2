@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "name": {
@@ -19,15 +18,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -41,15 +36,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -63,15 +54,11 @@
               "type": [
                 "TestType4"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -88,9 +75,6 @@
               "type": {
                 "insertedAsDefault": true
               },
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
@@ -105,7 +89,6 @@
           "type": [
             "TestType"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "name4": {
@@ -114,15 +97,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -135,9 +114,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -153,7 +129,6 @@
           "type": [
             "TestType2"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "name5": {
@@ -162,15 +137,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -183,9 +154,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -201,7 +169,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "proppp": {
@@ -210,15 +177,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -231,9 +194,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -253,7 +213,6 @@
         "type": [
           "string"
         ],
-        "repeat": false,
         "required": true,
         "enum": [
           "v1"
@@ -265,9 +224,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "repeat": {
               "insertedAsDefault": true
             },
             "required": {
@@ -298,15 +254,11 @@
                     "type": [
                       "number"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -322,15 +274,11 @@
                     "type": [
                       "string"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -349,7 +297,6 @@
                         "schema": [
                           "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -357,9 +304,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "repeat": {
                               "insertedAsDefault": true
                             },
                             "required": {
@@ -379,7 +323,6 @@
                         "schema": [
                           "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -387,9 +330,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "repeat": {
                               "insertedAsDefault": true
                             },
                             "required": {
@@ -409,15 +349,11 @@
                         "type": [
                           "TestType"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
