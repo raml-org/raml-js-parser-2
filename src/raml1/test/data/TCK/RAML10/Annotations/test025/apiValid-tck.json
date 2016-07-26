@@ -10,16 +10,12 @@
           "type": [
             "number"
           ],
-          "repeat": false,
           "required": true,
           "maximum": 10,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

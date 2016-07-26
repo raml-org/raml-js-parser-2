@@ -11,7 +11,6 @@
             "string"
           ],
           "example": "d",
-          "repeat": false,
           "required": true,
           "minLength": 5,
           "__METADATA__": {
@@ -20,9 +19,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -46,7 +42,6 @@
             "string"
           ],
           "example": "d1111",
-          "repeat": false,
           "required": true,
           "maxLength": 3,
           "__METADATA__": {
@@ -55,9 +50,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {

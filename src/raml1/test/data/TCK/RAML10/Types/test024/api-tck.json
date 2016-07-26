@@ -11,15 +11,11 @@
             "number"
           ],
           "example": 630128,
-          "repeat": false,
           "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -48,7 +44,6 @@
             "house": "77, Suite 400",
             "zip": 94108
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "country": {
@@ -57,7 +52,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "US",
@@ -73,9 +67,6 @@
                   "type": {
                     "insertedAsDefault": true
                   },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
                   "required": {
                     "insertedAsDefault": true
                   }
@@ -88,7 +79,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -96,9 +86,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -113,7 +100,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -121,9 +107,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -138,7 +121,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -146,9 +128,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -163,15 +142,11 @@
               "type": [
                 "Zip"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -186,9 +161,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -218,7 +190,6 @@
             "string"
           ],
           "example": "press@mulesoft.com",
-          "repeat": false,
           "required": true,
           "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
           "minLength": 15,
@@ -229,9 +200,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -259,7 +227,6 @@
                 "string"
               ],
               "default": "user",
-              "repeat": false,
               "required": true,
               "enum": [
                 "user",
@@ -273,9 +240,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -292,6 +256,7 @@
             {
               "value": "{\n  \"id\": 11,\n  \"name\": \"John Johnson\",\n  \"email\": \"press@mulesoft.com\",\n  \"phone\": \"+7-913-111-1111\",\n  \"address\": {\n    \"country\": \"RUS\",\n    \"city\": \"Novosibirsk\",\n    \"zip\": 630090\n  }\n}",
               "strict": true,
+              "name": "value1",
               "structuredValue": {
                 "id": 11,
                 "name": "John Johnson",
@@ -307,6 +272,7 @@
             {
               "value": "{\n  \"id\": 12,\n  \"name\": \"John Johnson\",\n  \"email\": \"press1@mulesoft.com\",\n  \"phone\": \"+1-222-222-2222\",\n  \"address\": {\n    \"country\": \"US\",\n    \"city\": \"SF\",\n    \"zip\": 123456\n  }\n}",
               "strict": true,
+              "name": "value2",
               "structuredValue": {
                 "id": 12,
                 "name": "John Johnson",
@@ -320,7 +286,6 @@
               }
             }
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "id": {
@@ -329,15 +294,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -351,7 +312,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -359,9 +319,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -376,15 +333,11 @@
               "type": [
                 "Email"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -398,7 +351,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "pattern": "\\+\\d{1}\\-\\d{3}\\-\\d{3}\\-\\d{4}",
               "minLength": 15,
@@ -409,9 +361,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -426,15 +375,11 @@
               "type": [
                 "Address"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -449,9 +394,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -504,7 +446,6 @@
               }
             }
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "managerId": {
@@ -513,15 +454,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -538,9 +475,6 @@
               "displayName": {
                 "calculated": true
               },
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
@@ -555,7 +489,6 @@
           "type": [
             "User"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "adminId": {
@@ -564,15 +497,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -589,9 +518,6 @@
               "displayName": {
                 "calculated": true
               },
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }
@@ -606,15 +532,11 @@
           "type": [
             "Admin"
           ],
-          "repeat": false,
           "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -630,7 +552,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "id": {
@@ -639,15 +560,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -661,7 +578,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "pattern": "/[A-Z][a-z]*/",
               "__METADATA__": {
@@ -670,9 +586,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -687,15 +600,11 @@
               "type": [
                 "Manager"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -709,15 +618,11 @@
               "type": [
                 "Admin|SuperAdmin"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -731,15 +636,11 @@
               "type": [
                 "(User|Team)[]"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -753,7 +654,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "properties": {
                 "address": {
@@ -762,15 +662,11 @@
                   "type": [
                     "Address"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -784,15 +680,11 @@
                   "type": [
                     "Email"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -806,15 +698,11 @@
                   "type": [
                     "number"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -829,9 +717,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -847,9 +732,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -870,7 +752,6 @@
         "type": [
           "string"
         ],
-        "repeat": false,
         "required": true,
         "enum": [
           "v1"
@@ -882,9 +763,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "repeat": {
               "insertedAsDefault": true
             },
             "required": {
@@ -914,15 +792,11 @@
                     "type": [
                       "Team[]"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -956,7 +830,6 @@
                     "type": [
                       "User"
                     ],
-                    "repeat": false,
                     "required": true,
                     "fixedFacets": {
                       "role": "admin"
@@ -965,9 +838,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -985,7 +855,6 @@
                 "type": [
                   "object"
                 ],
-                "repeat": false,
                 "required": true,
                 "properties": {
                   "title": {
@@ -994,7 +863,6 @@
                     "type": [
                       "string"
                     ],
-                    "repeat": false,
                     "required": true,
                     "pattern": "[A-Z][a-z]*",
                     "__METADATA__": {
@@ -1003,9 +871,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {
@@ -1021,9 +886,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {
@@ -1063,15 +925,11 @@
                         "type": [
                           "Team"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -1090,7 +948,6 @@
                         "type": [
                           "object"
                         ],
-                        "repeat": false,
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -1098,9 +955,6 @@
                               "calculated": true
                             },
                             "type": {
-                              "insertedAsDefault": true
-                            },
-                            "repeat": {
                               "insertedAsDefault": true
                             },
                             "required": {
@@ -1132,7 +986,6 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "calculated": true,
@@ -1141,9 +994,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {
@@ -1191,15 +1041,11 @@
                     "type": [
                       "User[]"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -1249,7 +1095,6 @@
                     "type": [
                       "User"
                     ],
-                    "repeat": false,
                     "required": true,
                     "fixedFacets": {
                       "role": "admin"
@@ -1258,9 +1103,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -1291,7 +1133,6 @@
             "type": [
               "string"
             ],
-            "repeat": false,
             "required": true,
             "__METADATA__": {
               "calculated": true,
@@ -1300,9 +1141,6 @@
                   "calculated": true
                 },
                 "type": {
-                  "insertedAsDefault": true
-                },
-                "repeat": {
                   "insertedAsDefault": true
                 },
                 "required": {

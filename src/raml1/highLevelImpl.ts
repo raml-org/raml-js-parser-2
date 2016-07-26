@@ -1066,6 +1066,15 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             else {
                 var annotation=this.property()&&this.property().nameId()==universes.Universe10.LibraryBase.properties.annotationTypes.name;
                 var tl=(!this.property())||(this.property().nameId()==universes.Universe10.LibraryBase.properties.types.name||this.property().nameId()==universes.Universe10.LibraryBase.properties.schemas.name);
+
+                if (!annotation && this.parent() == null) {
+                    var localUniverse = this.universe();
+                    if (localUniverse && localUniverse.getOriginalTopLevelText()
+                        && localUniverse.getOriginalTopLevelText() == "AnnotationTypeDeclaration"){
+                        annotation = true;
+                    }
+                }
+
                 this._ptype = rTypes.parseTypeFromAST(this.name(), new LowLevelWrapperForTypeSystem(this.lowLevel(), this), this.types(),false,annotation,tl);
             }
 

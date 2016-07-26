@@ -50,7 +50,6 @@
                         "structuredValue": "<doc><property2>value2</property2></doc>\n"
                       }
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -58,9 +57,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {

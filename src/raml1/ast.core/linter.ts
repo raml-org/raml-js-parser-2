@@ -2003,6 +2003,15 @@ class TypeDeclarationValidator implements NodeValidator{
                 v.accept(issue);
             };
         }
+
+        var examplesLowLevel = node.lowLevel() && (<any>node).lowLevel().find && (<any>node).lowLevel().find('examples');
+
+        if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
+            issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "map is expected here.", examplesLowLevel, node, false);
+
+            v.accept(issue);
+        }
+
     }
 }
 function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{    
@@ -3451,12 +3460,12 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
 }
 export function validateResponseString(v:string):any{
     if (v.length!=3){
-        return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+        return new Error("Status code should be 3 digits number.");
     }
     for (var i=0;i<v.length;i++){
         var c=v[i];
-        if (!_.find(['0','1','2','3','4','5','6','7','8','9','x','X'],x=>x==c)){
-            return new Error("Status code should be 3 digits number with optional 'x' as wildcards");
+        if (!_.find(['0','1','2','3','4','5','6','7','8','9'],x=>x==c)){
+            return new Error("Status code should be 3 digits number.");
         }
     }
     return null;

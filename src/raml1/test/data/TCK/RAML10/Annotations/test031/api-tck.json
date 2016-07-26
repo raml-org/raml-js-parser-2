@@ -16,7 +16,6 @@
           "type": [
             "array"
           ],
-          "repeat": false,
           "required": true,
           "items": {
             "name": "items",
@@ -24,7 +23,6 @@
             "type": [
               "object"
             ],
-            "repeat": false,
             "required": true,
             "properties": {
               "cardId": {
@@ -50,16 +48,12 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": false,
                 "description": "Card identifier.\n",
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -73,9 +67,6 @@
                 "type": {
                   "insertedAsDefault": true
                 },
-                "repeat": {
-                  "insertedAsDefault": true
-                },
                 "required": {
                   "insertedAsDefault": true
                 }
@@ -86,9 +77,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

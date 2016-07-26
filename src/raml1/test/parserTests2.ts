@@ -99,8 +99,8 @@ describe('API parsing', function() {
             testErrors(util.data('parser/api/api17.raml'), ["specifying unknown facet:wrongPropertyName"]);
         });
 
-        it('Should fail when declaring an enum with duplicated values', function(){
-            testErrors(util.data('parser/api/api18.raml'), ["enum facet can only contain unique items"]);
+        it('Should not fail when declaring an enum with duplicated values', function(){
+            testErrors(util.data('parser/api/api18.raml'));
         });
 
         it('Should fail when declaring a URI parameter with an invalid type', function(){
@@ -351,7 +351,7 @@ describe('Trait', function(){
 });
 
 describe('Method response', function(){
-    it('Should parse  response code', function(){
+    it('Should parse response code', function(){
         testErrors(util.data('parser/methodResponse/methResp01.raml'));
     });
 
@@ -594,10 +594,6 @@ describe('Object types', function(){
 
     it('Should parse property required option',function(){
         testErrors(util.data('parser/objectTypes/oType04.raml'),["Required property: comment_id is missed"]);
-    });
-
-    it('Should parse property repeat option',function(){
-        testErrors(util.data('parser/objectTypes/oType05.raml'));
     });
 
     it('Should parse property default option',function(){

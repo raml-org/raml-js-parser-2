@@ -10,7 +10,6 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "allowedTargets": [
             "SecuritySchemeSettings"
@@ -19,9 +18,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

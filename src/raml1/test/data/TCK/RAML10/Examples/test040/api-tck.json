@@ -17,7 +17,6 @@
                 "example": [
                   2
                 ],
-                "repeat": true,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -62,19 +61,19 @@
       "code": 11,
       "message": "number is expected",
       "path": "api.raml",
-      "line": 9,
-      "column": 19,
-      "position": 142,
+      "line": 8,
+      "column": 8,
+      "position": 110,
       "range": [
         {
-          "line": 9,
-          "column": 19,
-          "position": 142
+          "line": 8,
+          "column": 8,
+          "position": 110
         },
         {
-          "line": 9,
-          "column": 20,
-          "position": 143
+          "line": 8,
+          "column": 15,
+          "position": 117
         }
       ]
     }

@@ -274,7 +274,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed","Unknown property:x2"]);
     })
     it ("aws example" ,function(){
-        testErrors(util.data("parser/examples/ex35.raml"), ["enum facet can only contain unique items"]);
+        testErrors(util.data("parser/examples/ex35.raml"));
     })
     it ("multi unions" ,function(){
         testErrors(util.data("parser/examples/ex36.raml"));
@@ -295,20 +295,12 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex44.raml"),["example should be a string"]);
     })
     it ("enums values restriction" ,function(){
-        testErrors(util.data("parser/examples/ex37.raml"),["enum facet can only contain unique items"]);
+        testErrors(util.data("parser/examples/ex37.raml"));
     })
     it ("anonymous type examples validation test 1" ,function(){
         testErrors(util.data("parser/examples/ex38.raml"));
     })
-    it ("when using repeat to declare arrays example should not be array" ,function(){
-        testErrors(util.data("parser/examples/ex45.raml"));
-    })
-    it ("when using repeat to declare arrays example should not be array 1.0" ,function(){
-        testErrors(util.data("parser/examples/ex46.raml"));
-    })
-    it ("when using repeat to declare arrays example should not be array 1.0 (negative)" ,function(){
-        testErrorsByNumber(util.data("parser/examples/ex47.raml"),1);
-    })
+    
     it ("anonymous type examples validation test 2" ,function(){
         testErrors(util.data("parser/examples/ex39.raml"));
     })
@@ -455,7 +447,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/p.raml"));
     })
     it ("status" ,function(){
-        testErrors(util.data("parser/status/s1.raml"),["Status code should be \\w+ digits number with optional '\\w+' as wildcards"]);
+        testErrors(util.data("parser/status/s1.raml"),["Status code should be 3 digits number."]);
     })
     it ("node names" ,function(){
         testErrors(util.data("parser/nodenames/n1.raml"), ["Resource type 'x' already exists","Resource property already used: 'description'","Resource type 'x' already exists","Resource property already used: 'description'"]);

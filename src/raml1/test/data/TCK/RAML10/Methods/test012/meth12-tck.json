@@ -10,15 +10,11 @@
           "type": [
             "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\" ,\n  \"properties\": {\n    \"username\": {\n      \"type\": \"string\"\n    },\n    \"id\": {\n      \"type\": \"string\"\n    }\n  }\n}\n"
           ],
-          "repeat": false,
           "required": true,
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -37,7 +33,6 @@
           "example": {
             "baseField": "name"
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "baseField": {
@@ -46,15 +41,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -67,9 +58,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -97,7 +85,6 @@
             "baseField": "name",
             "field": "value"
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "field": {
@@ -106,15 +93,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -127,9 +110,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -167,7 +147,6 @@
                       "baseField": "base",
                       "field": "any text"
                     },
-                    "repeat": false,
                     "required": true,
                     "properties": {
                       "additionalField": {
@@ -176,15 +155,11 @@
                         "type": [
                           "string"
                         ],
-                        "repeat": false,
                         "required": false,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
                             "displayName": {
                               "calculated": true
-                            },
-                            "repeat": {
-                              "insertedAsDefault": true
                             },
                             "required": {
                               "insertedAsDefault": true
@@ -197,9 +172,6 @@
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -226,7 +198,6 @@
                 "schema": [
                   "account"
                 ],
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -234,9 +205,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {

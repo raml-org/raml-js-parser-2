@@ -10,7 +10,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "name": {
@@ -19,15 +18,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -41,15 +36,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -62,9 +53,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -80,7 +68,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "id": {
@@ -89,15 +76,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -111,7 +94,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": false,
               "properties": {
                 "mimeType": {
@@ -120,15 +102,11 @@
                   "type": [
                     "string"
                   ],
-                  "repeat": false,
                   "required": false,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -142,15 +120,11 @@
                   "type": [
                     "string"
                   ],
-                  "repeat": false,
                   "required": false,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -164,15 +138,11 @@
                   "type": [
                     "Header[]"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -186,7 +156,6 @@
                   "type": [
                     "object"
                   ],
-                  "repeat": false,
                   "required": false,
                   "properties": {
                     "size": {
@@ -195,15 +164,11 @@
                       "type": [
                         "number"
                       ],
-                      "repeat": false,
                       "required": false,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -217,15 +182,11 @@
                       "type": [
                         "string"
                       ],
-                      "repeat": false,
                       "required": false,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -239,9 +200,6 @@
                       "displayName": {
                         "calculated": true
                       },
-                      "repeat": {
-                        "insertedAsDefault": true
-                      },
                       "required": {
                         "insertedAsDefault": true
                       }
@@ -254,15 +212,11 @@
                   "type": [
                     "Message[]"
                   ],
-                  "repeat": false,
                   "required": false,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -275,9 +229,6 @@
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -291,15 +242,11 @@
               "type": [
                 "number"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -312,9 +259,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -366,7 +310,6 @@
               }
             ]
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "id": {
@@ -375,15 +318,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -397,15 +336,11 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -419,15 +354,11 @@
               "type": [
                 "Message[]"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -440,9 +371,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true

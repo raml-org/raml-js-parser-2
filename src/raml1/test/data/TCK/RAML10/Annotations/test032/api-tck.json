@@ -10,7 +10,6 @@
           "type": [
             "array"
           ],
-          "repeat": false,
           "required": true,
           "items": {
             "name": "items",
@@ -18,7 +17,6 @@
             "type": [
               "object"
             ],
-            "repeat": false,
             "required": true,
             "properties": {
               "method": {
@@ -27,7 +25,6 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "This field defines to which method the binding applies",
                 "enum": [
@@ -41,9 +38,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -54,7 +48,6 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "The binding related to the field when used as an input",
                 "enum": [
@@ -66,9 +59,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -79,7 +69,6 @@
                 "type": [
                   "string"
                 ],
-                "repeat": false,
                 "required": true,
                 "description": "The binding related to the field when used as an output",
                 "enum": [
@@ -91,9 +80,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     }
                   }
                 }
@@ -107,9 +93,6 @@
                 "type": {
                   "insertedAsDefault": true
                 },
-                "repeat": {
-                  "insertedAsDefault": true
-                },
                 "required": {
                   "insertedAsDefault": true
                 }
@@ -118,9 +101,6 @@
           },
           "__METADATA__": {
             "primitiveValuesMeta": {
-              "repeat": {
-                "insertedAsDefault": true
-              },
               "required": {
                 "insertedAsDefault": true
               }

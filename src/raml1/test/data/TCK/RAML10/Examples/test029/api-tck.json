@@ -11,7 +11,6 @@
             "string"
           ],
           "example": "POST",
-          "repeat": false,
           "required": true,
           "enum": [
             "GET",
@@ -25,9 +24,6 @@
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "repeat": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -49,7 +45,6 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "pattern": "^[12345]\\d\\d$",
           "__METADATA__": {
@@ -58,9 +53,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -77,7 +69,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "/\\w+/\\w+/": {
@@ -86,7 +77,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -94,9 +84,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -112,9 +99,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -131,7 +115,6 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "enum": [
             "aws_iam"
@@ -142,9 +125,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -161,7 +141,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "type": {
@@ -170,7 +149,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "lambda"
@@ -181,9 +159,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -199,9 +174,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -218,7 +190,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "type": {
@@ -227,7 +198,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "HTTP"
@@ -238,9 +208,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -256,9 +223,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -275,7 +239,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "type": {
@@ -284,7 +247,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "mock"
@@ -295,9 +257,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -313,9 +272,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -370,7 +326,6 @@
               }
             }
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "type": {
@@ -379,7 +334,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "enum": [
                 "aws"
@@ -390,9 +344,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -407,7 +358,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -415,9 +365,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -432,15 +379,11 @@
               "type": [
                 "amazon-apigateway-method"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -454,7 +397,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -462,9 +404,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -479,15 +418,11 @@
               "type": [
                 "amazon-apigateway-templates"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -501,15 +436,11 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -523,7 +454,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -531,9 +461,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -548,15 +475,11 @@
               "type": [
                 "string[]"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -570,7 +493,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "properties": {
                 "/.*/": {
@@ -579,7 +501,6 @@
                   "type": [
                     "object"
                   ],
-                  "repeat": false,
                   "required": true,
                   "properties": {
                     "statusCode": {
@@ -588,15 +509,11 @@
                       "type": [
                         "amazon-apigateway-status"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -610,15 +527,11 @@
                       "type": [
                         "object"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -632,15 +545,11 @@
                       "type": [
                         "amazon-apigateway-templates"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -655,9 +564,6 @@
                         "calculated": true
                       },
                       "type": {
-                        "insertedAsDefault": true
-                      },
-                      "repeat": {
                         "insertedAsDefault": true
                       },
                       "required": {
@@ -675,9 +581,6 @@
                   "type": {
                     "insertedAsDefault": true
                   },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
                   "required": {
                     "insertedAsDefault": true
                   }
@@ -691,9 +594,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -762,26 +662,5 @@
       }
     }
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "enum facet can only contain unique items",
-      "path": "api.raml",
-      "line": 8,
-      "column": 4,
-      "position": 192,
-      "range": [
-        {
-          "line": 8,
-          "column": 4,
-          "position": 192
-        },
-        {
-          "line": 8,
-          "column": 8,
-          "position": 196
-        }
-      ]
-    }
-  ]
+  "errors": []
 }

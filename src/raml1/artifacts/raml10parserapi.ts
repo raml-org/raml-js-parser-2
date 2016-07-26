@@ -307,12 +307,6 @@ examples(  ):ExampleSpec[]
 
 
         /**
-         * The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated.
-         **/
-repeat(  ):boolean
-
-
-        /**
          * Sets if property is optional or not
          **/
 required(  ):boolean
@@ -579,12 +573,6 @@ uniqueItems(  ):boolean
 
 
         /**
-         * Array component type.
-         **/
-items(  ):TypeDeclaration
-
-
-        /**
          * Minimum amount of items in array
          **/
 minItems(  ):number
@@ -594,6 +582,21 @@ minItems(  ):number
          * Maximum amount of items in array
          **/
 maxItems(  ):number
+
+
+        /**
+         * Anonymous type declaration defined by "items" keyword.
+         * If no "items" is defined explicitly, this one is null.
+         **/
+items(  ):TypeDeclaration
+
+
+        /**
+         * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
+         * Does not resolve type expressions. Only returns component type declaration if it is actually defined
+         * somewhere in AST.
+         **/
+findComponentTypeDeclaration(  ):TypeDeclaration
 
 
         /**
@@ -642,12 +645,6 @@ locationKind(  ):AnnotationRef[]
          * TypeDeclaration.default annotations
          **/
 "default"(  ):AnnotationRef[]
-
-
-        /**
-         * TypeDeclaration.repeat annotations
-         **/
-repeat(  ):AnnotationRef[]
 
 
         /**

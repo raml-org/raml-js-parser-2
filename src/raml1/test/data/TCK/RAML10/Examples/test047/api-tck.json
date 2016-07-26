@@ -13,7 +13,6 @@
           "example": {
             "prop1": "value1"
           },
-          "repeat": false,
           "required": true,
           "properties": {
             "prop1": {
@@ -22,7 +21,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -30,9 +28,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -48,9 +43,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {

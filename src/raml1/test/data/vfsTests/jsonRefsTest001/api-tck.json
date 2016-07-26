@@ -23,7 +23,6 @@
                     "schema": [
                       "{\n  \"$ref\": \"/schemes1/subdir/scheme1.json#/definitions/Type1\"\n}"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -31,9 +30,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {
@@ -72,7 +68,6 @@
                         "q2": 12
                       }
                     },
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -80,9 +75,6 @@
                           "calculated": true
                         },
                         "type": {
-                          "insertedAsDefault": true
-                        },
-                        "repeat": {
                           "insertedAsDefault": true
                         },
                         "required": {

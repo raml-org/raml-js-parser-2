@@ -10,7 +10,6 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "pattern": "^\\d+\\-\\w+$",
           "__METADATA__": {
@@ -19,9 +18,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -54,15 +50,11 @@
                   ]
                 }
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true

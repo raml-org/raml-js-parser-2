@@ -36,7 +36,6 @@
           "type": [
             "string"
           ],
-          "repeat": false,
           "required": true,
           "pattern": "[a-zA-Z0-9]{8,32}",
           "minLength": 8,
@@ -47,9 +46,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -66,7 +62,6 @@
           "type": [
             "object"
           ],
-          "repeat": false,
           "required": true,
           "properties": {
             "property1": {
@@ -75,7 +70,6 @@
               "type": [
                 "object"
               ],
-              "repeat": false,
               "required": true,
               "properties": {
                 "field1": {
@@ -84,7 +78,6 @@
                   "type": [
                     "string"
                   ],
-                  "repeat": false,
                   "required": false,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
@@ -92,9 +85,6 @@
                         "calculated": true
                       },
                       "type": {
-                        "insertedAsDefault": true
-                      },
-                      "repeat": {
                         "insertedAsDefault": true
                       },
                       "required": {
@@ -109,15 +99,11 @@
                   "type": [
                     "number"
                   ],
-                  "repeat": false,
                   "required": true,
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
                         "calculated": true
-                      },
-                      "repeat": {
-                        "insertedAsDefault": true
                       },
                       "required": {
                         "insertedAsDefault": true
@@ -134,9 +120,6 @@
                   "type": {
                     "insertedAsDefault": true
                   },
-                  "repeat": {
-                    "insertedAsDefault": true
-                  },
                   "required": {
                     "insertedAsDefault": true
                   }
@@ -149,7 +132,6 @@
               "type": [
                 "string"
               ],
-              "repeat": false,
               "required": false,
               "__METADATA__": {
                 "primitiveValuesMeta": {
@@ -157,9 +139,6 @@
                     "calculated": true
                   },
                   "type": {
-                    "insertedAsDefault": true
-                  },
-                  "repeat": {
                     "insertedAsDefault": true
                   },
                   "required": {
@@ -175,9 +154,6 @@
                 "calculated": true
               },
               "type": {
-                "insertedAsDefault": true
-              },
-              "repeat": {
                 "insertedAsDefault": true
               },
               "required": {
@@ -198,7 +174,6 @@
         "type": [
           "string"
         ],
-        "repeat": false,
         "required": true,
         "enum": [
           "v1"
@@ -210,9 +185,6 @@
               "calculated": true
             },
             "type": {
-              "insertedAsDefault": true
-            },
-            "repeat": {
               "insertedAsDefault": true
             },
             "required": {

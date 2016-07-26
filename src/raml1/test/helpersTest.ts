@@ -486,24 +486,6 @@ describe('Helper methods', function () {
         assert.equal(api.RAMLVersion(), "RAML08");
     });
 
-    it('Defaults for UriParameter#repeat', function () {
-        var api = util.loadApiOptions1(util.data("parser/defaults/uriParameters.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var uriParameter = tools.collectionItem(resource.uriParameters(), 0);
-        assert.equal(uriParameter.repeat(), false);
-    });
-
-    it('Defaults for UriParameter#repeat 08', function () {
-        var api = util.loadApiOptions08(util.data("parser/defaults/uriParameters_08.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var uriParameter = tools.collectionItem(resource.uriParameters(), 0);
-        assert.equal(uriParameter.repeat(), false);
-    });
-
     it('Defaults for UriParameter#displayName', function () {
         var api = util.loadApiOptions1(util.data("parser/defaults/uriParameters.raml"),
             {attributeDefaults:true});
@@ -559,25 +541,7 @@ describe('Helper methods', function () {
         var type = uriParameter.type();
         assert.equal(type, "string");
     });
-
-    it('Defaults for UriParameter#repeat , allUriParameters', function () {
-        var api = util.loadApiOptions1(util.data("parser/defaults/uriParameters2.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var uriParameter = tools.collectionItem(resource.allUriParameters(), 0);
-        assert.equal(uriParameter.repeat(), false);
-    });
-
-    it('Defaults for UriParameter#repeat 08 , allUriParameters', function () {
-        var api = util.loadApiOptions08(util.data("parser/defaults/uriParameters2_08.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var uriParameter = tools.collectionItem(resource.allUriParameters(), 0);
-        assert.equal(uriParameter.repeat(), false);
-    });
-
+    
     it('Defaults for UriParameter#displayName , allUriParameters', function () {
         var api = util.loadApiOptions1(util.data("parser/defaults/uriParameters2.raml"),
             {attributeDefaults:true});
@@ -652,31 +616,6 @@ describe('Helper methods', function () {
         var method = tools.collectionItem(resource.methods(), 0);
         var queryParameter = tools.collectionItem(method.queryParameters(), 0);
         assert.equal(queryParameter.displayName(), "page");
-    });
-
-
-
-
-
-
-    it('Defaults for Header#repeat', function () {
-        var api = util.loadApiOptions1(util.data("parser/defaults/headers.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var method = tools.collectionItem(resource.methods(), 0);
-        var header = tools.collectionItem(method.headers(), 0);
-        assert.equal(header.repeat(), false);
-    });
-
-    it('Defaults for Header#repeat 08', function () {
-        var api = util.loadApiOptions08(util.data("parser/defaults/headers_08.raml"),
-            {attributeDefaults:true});
-
-        var resource = tools.collectionItem(api.resources(), 0);
-        var method = tools.collectionItem(resource.methods(), 0);
-        var header = tools.collectionItem(method.headers(), 0);
-        assert.equal(header.repeat(), false);
     });
 
     it('Defaults for Header#displayName', function () {

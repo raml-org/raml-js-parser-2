@@ -11,15 +11,11 @@
         "type": [
           "string"
         ],
-        "repeat": false,
         "required": true,
         "description": "This is A",
         "__METADATA__": {
           "primitiveValuesMeta": {
             "type": {
-              "insertedAsDefault": true
-            },
-            "repeat": {
               "insertedAsDefault": true
             },
             "required": {
