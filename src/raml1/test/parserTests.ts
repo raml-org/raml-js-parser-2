@@ -411,7 +411,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a16.raml"));
     })
     it ("annotations17" ,function(){
-        testErrors(util.data("parser/annotations/a17.raml"), ["object is expected","Header 'header1' already exists","Header 'header1' already exists"]);
+        testErrors(util.data("parser/annotations/a17.raml"), ["Null or undefined value is not allowed","Header 'header1' already exists","Header 'header1' already exists"]);
     })
     it ("annotations18" ,function(){
         testErrors(util.data("parser/annotations/a18.raml"));
