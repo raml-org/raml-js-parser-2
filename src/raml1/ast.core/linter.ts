@@ -1969,13 +1969,7 @@ class FixedFacetsValidator implements NodeValidator {
             var dp=node.lowLevel().dumpToObject(true);
             if (dp){
                 dp=dp[Object.keys(dp)[0]];}
-            if (!dp){
-                if (nc.isAnnotationType()){
-                    if (nc.isAssignableFrom(universes.Universe10.StringType.name)){
-                        dp="";
-                    }
-                }
-            }
+            
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
                 validateObject.getErrors().forEach(e=>v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath( node,e), false)));

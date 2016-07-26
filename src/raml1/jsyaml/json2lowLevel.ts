@@ -335,12 +335,8 @@ export interface SerializeOptions{
 }
 
 export function serialize(node:lowlevel.ILowLevelASTNode,options:SerializeOptions={}):any{
-
-    if(node.children().length==0){
-        if(node.value()!=null){
-            return node.value();
-        }
-        return '';
+    if(node.children().length==0) {
+        return node.value();
     }
 
     if(!node.children()[0].key()){
