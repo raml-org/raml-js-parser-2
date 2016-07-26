@@ -28,15 +28,11 @@
               "type": [
                 "lib1.LibType"
               ],
-              "repeat": false,
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
                     "calculated": true
-                  },
-                  "repeat": {
-                    "insertedAsDefault": true
                   },
                   "required": {
                     "insertedAsDefault": true
@@ -76,15 +72,11 @@
                   "p1": "stringValue",
                   "p2": "invalidValue"
                 },
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true

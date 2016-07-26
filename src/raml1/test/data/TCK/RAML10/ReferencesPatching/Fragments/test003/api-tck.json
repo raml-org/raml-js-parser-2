@@ -36,7 +36,6 @@
                     "integerProperty": 5
                   }
                 },
-                "repeat": false,
                 "required": true,
                 "properties": {
                   "ownLibProperty": {
@@ -45,15 +44,11 @@
                     "type": [
                       "lib0.MyType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -67,15 +62,11 @@
                     "type": [
                       "types2.MyObjectType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -90,9 +81,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {
@@ -133,15 +121,11 @@
                   "lib.MyType"
                 ],
                 "example": "stringValue",
-                "repeat": false,
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
@@ -174,7 +158,6 @@
                     "integerProperty": 5
                   }
                 },
-                "repeat": false,
                 "required": true,
                 "properties": {
                   "ownLibProperty": {
@@ -183,15 +166,11 @@
                     "type": [
                       "lib0.MyType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -205,15 +184,11 @@
                     "type": [
                       "types2.MyObjectType"
                     ],
-                    "repeat": false,
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
                         "displayName": {
                           "calculated": true
-                        },
-                        "repeat": {
-                          "insertedAsDefault": true
                         },
                         "required": {
                           "insertedAsDefault": true
@@ -228,9 +203,6 @@
                       "calculated": true
                     },
                     "type": {
-                      "insertedAsDefault": true
-                    },
-                    "repeat": {
                       "insertedAsDefault": true
                     },
                     "required": {

@@ -23,7 +23,6 @@
                   },
                   "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
                 },
-                "repeat": false,
                 "required": true,
                 "type": {
                   "name": "type",
@@ -31,7 +30,6 @@
                   "type": [
                     "object"
                   ],
-                  "repeat": false,
                   "required": true,
                   "properties": {
                     "objectProperty": {
@@ -40,15 +38,11 @@
                       "type": [
                         "lib.MyType"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -62,15 +56,11 @@
                       "type": [
                         "lib.MyStringType"
                       ],
-                      "repeat": false,
                       "required": true,
                       "__METADATA__": {
                         "primitiveValuesMeta": {
                           "displayName": {
                             "calculated": true
-                          },
-                          "repeat": {
-                            "insertedAsDefault": true
                           },
                           "required": {
                             "insertedAsDefault": true
@@ -94,9 +84,6 @@
                       "type": {
                         "insertedAsDefault": true
                       },
-                      "repeat": {
-                        "insertedAsDefault": true
-                      },
                       "required": {
                         "insertedAsDefault": true
                       }
@@ -107,9 +94,6 @@
                   "primitiveValuesMeta": {
                     "displayName": {
                       "calculated": true
-                    },
-                    "repeat": {
-                      "insertedAsDefault": true
                     },
                     "required": {
                       "insertedAsDefault": true
