@@ -637,6 +637,11 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             //console.log('converted: [' + textutil.replaceNewlines(res) + ']');
             return res;
         }
+        if (actualValue==null&&this._node.children().length>0
+            &&this.property()&&universeHelpers.isTypeProperty(this.property())
+            &&this.parent()&&universeHelpers.isTypeDeclarationSibling(this.parent().definition())){
+            return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
+        }
         return actualValue;
     }
 
