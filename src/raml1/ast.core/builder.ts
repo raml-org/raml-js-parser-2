@@ -357,14 +357,22 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                     var ch = x.children();
                     var seq = (x.valueKind() == yaml.Kind.SEQ);
                     if ((seq && ch.length > 0 || ch.length > 1) && multyValue) {
-                        var values:any[]=[]
-                        ch.forEach(y=> {
-                            var pi = new hlimpl.ASTPropImpl(y, aNode, range, p)
-                            res.push(pi)
-                            values.push(y.value());
-                        });
-                        if (p.isInherited()) {
-                            aNode.setComputed(p.nameId(), values);
+                        if(ch.length > 1 && universeHelpers.isTypeDeclarationSibling(aNode.definition())
+                            &&universeHelpers.isTypeProperty(p) && x.valueKind() != yaml.Kind.SEQ){
+                            var pi = new hlimpl.ASTPropImpl(x, aNode, range, p)
+                            res.push(pi);
+                            aNode.setComputed(p.nameId(), pi);
+                        }
+                        else {
+                            var values:any[] = []
+                            ch.forEach(y=> {
+                                var pi = new hlimpl.ASTPropImpl(y, aNode, range, p)
+                                res.push(pi)
+                                values.push(y.value());
+                            });
+                            if (p.isInherited()) {
+                                aNode.setComputed(p.nameId(), values);
+                            }
                         }
                     }
                     else {
