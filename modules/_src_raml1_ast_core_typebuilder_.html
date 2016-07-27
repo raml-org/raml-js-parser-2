@@ -71,11 +71,11 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
+						<section class="tsd-index-section tsd-is-external">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_src_raml1_ast_core_typebuilder_.templateapplication.html" class="tsd-kind-icon">Template<wbr>Application</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="../interfaces/_src_raml1_ast_core_typebuilder_.templatedata.html" class="tsd-kind-icon">Template<wbr>Data</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_src_raml1_ast_core_typebuilder_.templateapplication.html" class="tsd-kind-icon">Template<wbr>Application</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-external"><a href="../interfaces/_src_raml1_ast_core_typebuilder_.templatedata.html" class="tsd-kind-icon">Template<wbr>Data</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external tsd-is-not-exported">
@@ -89,11 +89,14 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_typebuilder_.html#converttype" class="tsd-kind-icon">convert<wbr>Type</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#extractusedparamnames" class="tsd-kind-icon">extract<wbr>Used<wbr>Param<wbr>Names</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#fillparampaths" class="tsd-kind-icon">fill<wbr>Param<wbr>Paths</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#fillreferencetype" class="tsd-kind-icon">fill<wbr>Reference<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#filltemplatetype" class="tsd-kind-icon">fill<wbr>Template<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#getsimpletype" class="tsd-kind-icon">get<wbr>Simple<wbr>Type</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#handlevalue" class="tsd-kind-icon">handle<wbr>Value</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#templatefields" class="tsd-kind-icon">template<wbr>Fields</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_typebuilder_.html#transform" class="tsd-kind-icon">transform</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-external"><a href="_src_raml1_ast_core_typebuilder_.html#typefromnode" class="tsd-kind-icon">type<wbr>From<wbr>Node</a></li>
 							</ul>
 						</section>
@@ -108,7 +111,7 @@
 					<div class="tsd-signature tsd-kind-icon">ASTNode<wbr>Impl<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_highlevelimpl_.astnodeimpl.html" class="tsd-signature-type">ASTNodeImpl</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L11">src/raml1/ast.core/typeBuilder.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L11">src/raml1/ast.core/typeBuilder.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -118,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">ASTProp<wbr>Impl<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_highlevelimpl_.astpropimpl.html" class="tsd-signature-type">ASTPropImpl</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L12">src/raml1/ast.core/typeBuilder.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L12">src/raml1/ast.core/typeBuilder.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -129,13 +132,13 @@
 					<a name="converttype" class="tsd-anchor"></a>
 					<h3>convert<wbr>Type</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">convert<wbr>Type<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.iparsedtype.html" class="tsd-signature-type">IParsedType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
+						<li class="tsd-signature tsd-kind-icon">convert<wbr>Type<span class="tsd-signature-symbol">(</span>root<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a>, t<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_typesystem_interfaces_d_.iparsedtype.html" class="tsd-signature-type">IParsedType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L231">src/raml1/ast.core/typeBuilder.ts:231</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L342">src/raml1/ast.core/typeBuilder.ts:342</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -144,10 +147,75 @@
 									<h5>root: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
 								</li>
 								<li>
-									<h5>t: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.iparsedtype.html" class="tsd-signature-type">IParsedType</a></h5>
+									<h5>t: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_typesystem_interfaces_d_.iparsedtype.html" class="tsd-signature-type">IParsedType</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.itypedefinition.html" class="tsd-signature-type">ITypeDefinition</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="extractusedparamnames" class="tsd-anchor"></a>
+					<h3>extract<wbr>Used<wbr>Param<wbr>Names</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">extract<wbr>Used<wbr>Param<wbr>Names<span class="tsd-signature-symbol">(</span>strV<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L74">src/raml1/ast.core/typeBuilder.ts:74</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>strV: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter">
+									<h5>is<wbr>Full<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>parameter<wbr>Usages<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="fillparampaths" class="tsd-anchor"></a>
+					<h3>fill<wbr>Param<wbr>Paths</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">fill<wbr>Param<wbr>Paths<span class="tsd-signature-symbol">(</span>node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, paramPaths<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L142">src/raml1/ast.core/typeBuilder.ts:142</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>node: <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h5>
+								</li>
+								<li>
+									<h5>paramPaths: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> path: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -161,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L150">src/raml1/ast.core/typeBuilder.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L218">src/raml1/ast.core/typeBuilder.ts:218</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -187,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L119">src/raml1/ast.core/typeBuilder.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L168">src/raml1/ast.core/typeBuilder.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -213,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L221">src/raml1/ast.core/typeBuilder.ts:221</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L322">src/raml1/ast.core/typeBuilder.ts:322</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -236,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L68">src/raml1/ast.core/typeBuilder.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L95">src/raml1/ast.core/typeBuilder.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -271,7 +339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L28">src/raml1/ast.core/typeBuilder.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L29">src/raml1/ast.core/typeBuilder.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -287,6 +355,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<a name="transform" class="tsd-anchor"></a>
+					<h3>transform</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">transform<span class="tsd-signature-symbol">(</span>u<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iuniverse.html" class="tsd-signature-type">IUniverse</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L331">src/raml1/ast.core/typeBuilder.ts:331</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>u: <a href="../interfaces/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_nominal_interfaces_d_.iuniverse.html" class="tsd-signature-type">IUniverse</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 					<a name="typefromnode" class="tsd-anchor"></a>
 					<h3>type<wbr>From<wbr>Node</h3>
@@ -297,7 +388,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/typeBuilder.ts#L166">src/raml1/ast.core/typeBuilder.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/ast.core/typeBuilder.ts#L258">src/raml1/ast.core/typeBuilder.ts:258</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -325,10 +416,10 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_src_raml1_ast_core_typebuilder_.templateapplication.html" class="tsd-kind-icon">Template<wbr>Application</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="../interfaces/_src_raml1_ast_core_typebuilder_.templatedata.html" class="tsd-kind-icon">Template<wbr>Data</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -339,6 +430,12 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_ast_core_typebuilder_.html#converttype" class="tsd-kind-icon">convert<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_typebuilder_.html#extractusedparamnames" class="tsd-kind-icon">extract<wbr>Used<wbr>Param<wbr>Names</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_typebuilder_.html#fillparampaths" class="tsd-kind-icon">fill<wbr>Param<wbr>Paths</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_src_raml1_ast_core_typebuilder_.html#fillreferencetype" class="tsd-kind-icon">fill<wbr>Reference<wbr>Type</a>
@@ -354,6 +451,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="_src_raml1_ast_core_typebuilder_.html#templatefields" class="tsd-kind-icon">template<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="_src_raml1_ast_core_typebuilder_.html#transform" class="tsd-kind-icon">transform</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_ast_core_typebuilder_.html#typefromnode" class="tsd-kind-icon">type<wbr>From<wbr>Node</a>

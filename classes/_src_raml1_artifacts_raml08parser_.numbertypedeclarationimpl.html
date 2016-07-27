@@ -99,7 +99,6 @@
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
 					<li><a href="../interfaces/_src_raml1_highlevelast_.basicnode.html" class="tsd-signature-type">BasicNode</a></li>
-					<li><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.ramllanguageelement.html" class="tsd-signature-type">RAMLLanguageElement</a></li>
 					<li><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.parameter.html" class="tsd-signature-type">Parameter</a></li>
 					<li><a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html" class="tsd-signature-type">NumberTypeDeclaration</a></li>
 				</ul>
@@ -119,13 +118,14 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#_meta" class="tsd-kind-icon">_meta</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#_node" class="tsd-kind-icon">_node</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#nodeorkey" class="tsd-kind-icon">node<wbr>OrKey</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#setastoplevel" class="tsd-kind-icon">set<wbr>AsTop<wbr>Level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#nodeorkey" class="tsd-kind-icon">node<wbr>OrKey</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#setastoplevel" class="tsd-kind-icon">set<wbr>AsTop<wbr>Level</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#ramlversion" class="tsd-kind-icon">RAMLVersion</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#addtoprop" class="tsd-kind-icon">add<wbr>ToProp</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="_src_raml1_artifacts_raml08parser_.numbertypedeclarationimpl.html#attributedefaults" class="tsd-kind-icon">attribute<wbr>Defaults</a></li>
@@ -171,9 +171,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#constructor">constructor</a></p>
+								<p>Overwrites BasicNodeImpl.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L558">src/raml1/artifacts/raml08parser.ts:558</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1181">src/raml1/artifacts/raml08parser.ts:1181</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -199,7 +199,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#_meta">_meta</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L27">src/raml1/wrapped-ast/parserCore.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L29">src/raml1/wrapped-ast/parserCore.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,35 +210,55 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#_node">_node</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L34">src/raml1/wrapped-ast/parserCore.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L36">src/raml1/wrapped-ast/parserCore.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
 					<a name="nodeorkey" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> node<wbr>OrKey</h3>
 					<div class="tsd-signature tsd-kind-icon">node<wbr>OrKey<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#nodeorkey">nodeOrKey</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L559">src/raml1/artifacts/raml08parser.ts:559</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1182">src/raml1/artifacts/raml08parser.ts:1182</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
 					<a name="setastoplevel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> set<wbr>AsTop<wbr>Level</h3>
 					<div class="tsd-signature tsd-kind-icon">set<wbr>AsTop<wbr>Level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
-						<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#setastoplevel">setAsTopLevel</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L559">src/raml1/artifacts/raml08parser.ts:559</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1182">src/raml1/artifacts/raml08parser.ts:1182</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+					<a name="ramlversion" class="tsd-anchor"></a>
+					<h3>RAMLVersion</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">RAMLVersion<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#ramlversion">RAMLVersion</a></p>
+								<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#ramlversion">RAMLVersion</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1237">src/raml1/artifacts/raml08parser.ts:1237</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>RAML version of the node</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="add" class="tsd-anchor"></a>
 					<h3>add</h3>
@@ -250,7 +270,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#add">add</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L150">src/raml1/wrapped-ast/parserCore.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L145">src/raml1/wrapped-ast/parserCore.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -282,7 +302,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#addtoprop">addToProp</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L159">src/raml1/wrapped-ast/parserCore.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L154">src/raml1/wrapped-ast/parserCore.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,7 +340,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#attributedefaults">attributeDefaults</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L351">src/raml1/wrapped-ast/parserCore.ts:351</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L353">src/raml1/wrapped-ast/parserCore.ts:353</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -339,7 +359,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#default">default</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#default">default</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L359">src/raml1/artifacts/raml08parser.ts:359</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L925">src/raml1/artifacts/raml08parser.ts:925</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -363,7 +383,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#definition">definition</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#definition">definition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L289">src/raml1/wrapped-ast/parserCore.ts:289</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L284">src/raml1/wrapped-ast/parserCore.ts:284</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,9 +403,9 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#description">description</a></p>
-								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html">RAMLLanguageElementImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.ramllanguageelementimpl.html#description">description</a></p>
+								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#description">description</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L77">src/raml1/artifacts/raml08parser.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L979">src/raml1/artifacts/raml08parser.ts:979</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -409,7 +429,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#displayname">displayName</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#displayname">displayName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L297">src/raml1/artifacts/raml08parser.ts:297</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L863">src/raml1/artifacts/raml08parser.ts:863</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +452,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#dump">dump</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L177">src/raml1/wrapped-ast/parserCore.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L172">src/raml1/wrapped-ast/parserCore.ts:172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -454,7 +474,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#errors">errors</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#errors">errors</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L234">src/raml1/wrapped-ast/parserCore.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L229">src/raml1/wrapped-ast/parserCore.ts:229</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +496,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#example">example</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#example">example</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L377">src/raml1/artifacts/raml08parser.ts:377</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L943">src/raml1/artifacts/raml08parser.ts:943</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -500,7 +520,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#kind">kind</a></p>
 								<p>Overwrites <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#kind">kind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L608">src/raml1/artifacts/raml08parser.ts:608</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1231">src/raml1/artifacts/raml08parser.ts:1231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -522,7 +542,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#location">location</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#location">location</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L333">src/raml1/artifacts/raml08parser.ts:333</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L899">src/raml1/artifacts/raml08parser.ts:899</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -545,7 +565,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#maximum">maximum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L583">src/raml1/artifacts/raml08parser.ts:583</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1206">src/raml1/artifacts/raml08parser.ts:1206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -569,7 +589,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#meta">meta</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#meta">meta</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L355">src/raml1/wrapped-ast/parserCore.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L357">src/raml1/wrapped-ast/parserCore.ts:357</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.nodemetadata.html" class="tsd-signature-type">NodeMetadata</a></h4>
@@ -587,7 +607,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#minimum">minimum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L565">src/raml1/artifacts/raml08parser.ts:565</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L1188">src/raml1/artifacts/raml08parser.ts:1188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -611,7 +631,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#name">name</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#name">name</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L279">src/raml1/artifacts/raml08parser.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L845">src/raml1/artifacts/raml08parser.ts:845</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -635,7 +655,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#optional">optional</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#optional">optional</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L310">src/raml1/wrapped-ast/parserCore.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L312">src/raml1/wrapped-ast/parserCore.ts:312</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -657,7 +677,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#optionalproperties">optionalProperties</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#optionalproperties">optionalProperties</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L318">src/raml1/wrapped-ast/parserCore.ts:318</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L320">src/raml1/wrapped-ast/parserCore.ts:320</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -679,7 +699,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#parent">parent</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#parent">parent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L54">src/raml1/wrapped-ast/parserCore.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L56">src/raml1/wrapped-ast/parserCore.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -700,7 +720,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#remove">remove</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L170">src/raml1/wrapped-ast/parserCore.ts:170</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L165">src/raml1/wrapped-ast/parserCore.ts:165</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -733,7 +753,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#repeat">repeat</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#repeat">repeat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L395">src/raml1/artifacts/raml08parser.ts:395</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L961">src/raml1/artifacts/raml08parser.ts:961</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -757,7 +777,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#required">required</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#required">required</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L341">src/raml1/artifacts/raml08parser.ts:341</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L907">src/raml1/artifacts/raml08parser.ts:907</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -781,7 +801,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#runtimedefinition">runtimeDefinition</a></p>
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#runtimedefinition">runtimeDefinition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L296">src/raml1/wrapped-ast/parserCore.ts:296</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L291">src/raml1/wrapped-ast/parserCore.ts:291</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -802,7 +822,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#toany">toAny</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L193">src/raml1/wrapped-ast/parserCore.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L188">src/raml1/wrapped-ast/parserCore.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -826,7 +846,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#toboolean">toBoolean</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L197">src/raml1/wrapped-ast/parserCore.ts:197</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L192">src/raml1/wrapped-ast/parserCore.ts:192</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -850,7 +870,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L303">src/raml1/wrapped-ast/parserCore.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L298">src/raml1/wrapped-ast/parserCore.ts:298</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -874,7 +894,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tonumber">toNumber</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L210">src/raml1/wrapped-ast/parserCore.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L205">src/raml1/wrapped-ast/parserCore.ts:205</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -898,7 +918,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html">BasicNodeImpl</a>.<a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/wrapped-ast/parserCore.ts#L181">src/raml1/wrapped-ast/parserCore.ts:181</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/wrapped-ast/parserCore.ts#L176">src/raml1/wrapped-ast/parserCore.ts:176</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -923,7 +943,7 @@
 								<p>Implementation of <a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html">NumberTypeDeclaration</a>.<a href="../interfaces/_src_raml1_artifacts_raml08parserapi_.numbertypedeclaration.html#type">type</a></p>
 								<p>Inherited from <a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html">ParameterImpl</a>.<a href="_src_raml1_artifacts_raml08parser_.parameterimpl.html#type">type</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/artifacts/raml08parser.ts#L315">src/raml1/artifacts/raml08parser.ts:315</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/artifacts/raml08parser.ts#L881">src/raml1/artifacts/raml08parser.ts:881</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

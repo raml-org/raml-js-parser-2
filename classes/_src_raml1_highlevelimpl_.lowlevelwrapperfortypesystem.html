@@ -74,7 +74,17 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">LowLevelWrapperForTypeSystem</span>
+						<a href="_node_modules_raml_definition_system_dist_definitionsystem_d_.sourceprovider.html" class="tsd-signature-type">SourceProvider</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">LowLevelWrapperForTypeSystem</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_src_raml1_highlevelimpl_.usesnodewrapperfotypesystem.html" class="tsd-signature-type">UsesNodeWrapperFoTypeSystem</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -94,10 +104,14 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
+						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#_node" class="tsd-kind-icon">_node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#_children" class="tsd-kind-icon">_children</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#_highlevelroot" class="tsd-kind-icon">_high<wbr>Level<wbr>Root</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#_node" class="tsd-kind-icon">_node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#_tomerge" class="tsd-kind-icon">_to<wbr>Merge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#childbykey" class="tsd-kind-icon">child<wbr>ByKey</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-external">
@@ -106,8 +120,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#childwithkey" class="tsd-kind-icon">child<wbr>With<wbr>Key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#children" class="tsd-kind-icon">children</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#contentprovider" class="tsd-kind-icon">content<wbr>Provider</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#getsource" class="tsd-kind-icon">get<wbr>Source</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#key" class="tsd-kind-icon">key</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#kind" class="tsd-kind-icon">kind</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#node" class="tsd-kind-icon">node</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
@@ -120,13 +136,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Low<wbr>Level<wbr>Wrapper<wbr>For<wbr>Type<wbr>System<span class="tsd-signature-symbol">(</span>_node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Low<wbr>Level<wbr>Wrapper<wbr>For<wbr>Type<wbr>System<span class="tsd-signature-symbol">(</span>_node<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a>, _highLevelRoot<span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L677">src/raml1/highLevelImpl.ts:677</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L815">src/raml1/highLevelImpl.ts:815</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -134,23 +150,74 @@
 								<li>
 									<h5>_node: <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h5>
 								</li>
+								<li>
+									<h5>_highLevelRoot: <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="_children" class="tsd-anchor"></a>
+					<h3>_children</h3>
+					<div class="tsd-signature tsd-kind-icon">_children<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L880">src/raml1/highLevelImpl.ts:880</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="_highlevelroot" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _high<wbr>Level<wbr>Root</h3>
+					<div class="tsd-signature tsd-kind-icon">_high<wbr>Level<wbr>Root<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_raml1_highlevelast_.ihighlevelnode.html" class="tsd-signature-type">IHighLevelNode</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L817">src/raml1/highLevelImpl.ts:817</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
 					<a name="_node" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _node</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _node</h3>
 					<div class="tsd-signature tsd-kind-icon">_node<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L679">src/raml1/highLevelImpl.ts:679</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L817">src/raml1/highLevelImpl.ts:817</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="_tomerge" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _to<wbr>Merge</h3>
+					<div class="tsd-signature tsd-kind-icon">_to<wbr>Merge<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L815">src/raml1/highLevelImpl.ts:815</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="childbykey" class="tsd-anchor"></a>
+					<h3>child<wbr>ByKey</h3>
+					<div class="tsd-signature tsd-kind-icon">child<wbr>ByKey<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L883">src/raml1/highLevelImpl.ts:883</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
@@ -166,7 +233,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html">ParseNode</a>.<a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html#childwithkey">childWithKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L713">src/raml1/highLevelImpl.ts:713</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L918">src/raml1/highLevelImpl.ts:918</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -190,7 +257,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html">ParseNode</a>.<a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html#children">children</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L710">src/raml1/highLevelImpl.ts:710</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L886">src/raml1/highLevelImpl.ts:886</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_raml1_highlevelimpl_.lowlevelwrapperfortypesystem.html" class="tsd-signature-type">LowLevelWrapperForTypeSystem</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -207,10 +274,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L683">src/raml1/highLevelImpl.ts:683</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L830">src/raml1/highLevelImpl.ts:830</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_src_util_contentprovider_.contentprovider.html" class="tsd-signature-type">ContentProvider</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+					<a name="getsource" class="tsd-anchor"></a>
+					<h3>get<wbr>Source</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Source<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overwrites <a href="_node_modules_raml_definition_system_dist_definitionsystem_d_.sourceprovider.html">SourceProvider</a>.<a href="_node_modules_raml_definition_system_dist_definitionsystem_d_.sourceprovider.html#getsource">getSource</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L949">src/raml1/highLevelImpl.ts:949</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -225,7 +310,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html">ParseNode</a>.<a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html#key">key</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L689">src/raml1/highLevelImpl.ts:689</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L836">src/raml1/highLevelImpl.ts:836</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -243,10 +328,27 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html">ParseNode</a>.<a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html#kind">kind</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L723">src/raml1/highLevelImpl.ts:723</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L925">src/raml1/highLevelImpl.ts:925</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/_node_modules_raml_definition_system_node_modules_raml_typesystem_dist_src_index_d_.nodekind.html" class="tsd-signature-type">NodeKind</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="node" class="tsd-anchor"></a>
+					<h3>node</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L968">src/raml1/highLevelImpl.ts:968</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_lowlevelast_.ilowlevelastnode.html" class="tsd-signature-type">ILowLevelASTNode</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -261,7 +363,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html">ParseNode</a>.<a href="../interfaces/_src_raml1_highlevelimpl_.parsenode.html#value">value</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/highLevelImpl.ts#L696">src/raml1/highLevelImpl.ts:696</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/master/src/raml1/highLevelImpl.ts#L843">src/raml1/highLevelImpl.ts:843</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -293,6 +395,9 @@
 						<a href="../modules/_src_raml1_highlevelimpl_.html#iattribute" class="tsd-kind-icon">IAttribute</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_src_raml1_highlevelimpl_.html#ihighlevelnode" class="tsd-kind-icon">IHigh<wbr>Level<wbr>Node</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_src_raml1_highlevelimpl_.html#nodeclass" class="tsd-kind-icon">Node<wbr>Class</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
@@ -300,6 +405,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external">
 						<a href="../modules/_src_raml1_highlevelimpl_.html#universeprovider" class="tsd-kind-icon">universe<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_highlevelimpl_.html#createbasicvalidationacceptor" class="tsd-kind-icon">create<wbr>Basic<wbr>Validation<wbr>Acceptor</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="../modules/_src_raml1_highlevelimpl_.html#fromunit" class="tsd-kind-icon">from<wbr>Unit</a>
@@ -312,6 +420,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
 						<a href="../modules/_src_raml1_highlevelimpl_.html#qname" class="tsd-kind-icon">q<wbr>Name</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_highlevelimpl_.html#ramlfirstline" class="tsd-kind-icon">raml<wbr>First<wbr>Line</a>
 					</li>
 				</ul>
 			</nav>
