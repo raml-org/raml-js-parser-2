@@ -301,17 +301,17 @@
       "path": "api.raml",
       "line": 20,
       "column": 12,
-      "position": 332,
+      "position": 312,
       "range": [
         {
           "line": 20,
           "column": 12,
-          "position": 332
+          "position": 312
         },
         {
           "line": 20,
           "column": 27,
-          "position": 347
+          "position": 327
         }
       ]
     }
