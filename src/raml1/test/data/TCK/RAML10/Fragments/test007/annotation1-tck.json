@@ -1,0 +1,22 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "StringTypeDeclaration",
+  "specification": {
+    "displayName": "MyAnnotation",
+    "type": [
+      "string"
+    ],
+    "required": true,
+    "allowedTargets": [
+      "Method"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "required": {
+          "insertedAsDefault": true
+        }
+      }
+    }
+  },
+  "errors": []
+}
