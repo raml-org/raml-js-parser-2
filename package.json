@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
-    "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite",
+    "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks",
     "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
     "generateTckSuite": "node dist/raml1/test/scripts/generateTCKMocha.js && tsc src/raml1/test/TCK2.ts --outDir dist -m commonjs --sourceMap",
     "generateDocumentation": "node dist/raml1/tools/packageTSParser.js -skipSources",
@@ -13,7 +13,8 @@
     "pullall": "dev-env-installer pullall",
     "buildall": "dev-env-installer buildall",
     "testall": "dev-env-installer testall",
-    "devInstall": "dev-env-installer install"
+    "devInstall": "dev-env-installer install",
+    "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",
