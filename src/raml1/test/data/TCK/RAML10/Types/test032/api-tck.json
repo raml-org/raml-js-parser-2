@@ -1,0 +1,89 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "examples": [
+                  {
+                    "value": "{\n  \"p1\": 5\n}",
+                    "strict": true,
+                    "structuredValue": {
+                      "p1": 5
+                    }
+                  },
+                  {
+                    "value": "{\n  \"p1\": 8\n}",
+                    "strict": true,
+                    "structuredValue": {
+                      "p1": 8
+                    }
+                  }
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "map is expected here.",
+      "path": "api.raml",
+      "line": 10,
+      "column": 8,
+      "position": 140,
+      "range": [
+        {
+          "line": 10,
+          "column": 8,
+          "position": 140
+        },
+        {
+          "line": 10,
+          "column": 16,
+          "position": 148
+        }
+      ]
+    }
+  ]
+}

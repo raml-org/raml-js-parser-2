@@ -812,5 +812,18 @@ describe('Helper methods', function () {
         assert(exception==null);
     });
 
+    it('Items() for array expression', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string[]",
+            "  Y: ",
+            "    properties: ",
+            "      prop: X[]"
+        ].join("\n")));
+        assert.equal(api.types()[0].items().name(),"string");
+        assert.equal(api.types()[1].properties()[0].items().name(),"X");
+    });
+
 
 });
