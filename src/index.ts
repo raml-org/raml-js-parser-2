@@ -102,7 +102,7 @@ export function parseRAMLSync(content:string,
  * @return RAMLLanguageElement instance.
  **/
 export function parseRAML(content:string,
-                              arg2?:parserCore.Options):hl.BasicNode{
+                              arg2?:parserCore.Options):Promise<hl.BasicNode>{
 
     return <any>apiLoader.loadApiAsync("/#local.raml",[],optionsForContent(content,arg2));
 }
