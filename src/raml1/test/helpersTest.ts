@@ -811,5 +811,21 @@ describe('Helper methods', function () {
         }
         assert(exception==null);
     });
+    it('async parse raml from content 1', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n")).then(x=>{
+            assert.equal((<any>x).title(),"My API with Types");
+        });
+    });
+    it('async parse raml from content 2', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n")).then(x=>{
+            assert.equal(x.kind(),"UnionTypeDeclaration")
+        });
+    });
 
 });

@@ -56,6 +56,16 @@ describe('Virtual File System Tests', function() {
     it("Uses test for extensions", function (done) {
         testAPI("./vfsTests/remoteExtend/local/extension.raml").should.be.fulfilled.and.notify(done);
     });
+
+    it("Invalid includes 1", function (done) {
+        testAPI("./vfsTests/invalidIncludeTest001/api.raml").should.be.rejectedWith(
+            /Can not resolve library from path:lib.raml/).and.notify(done);
+    });
+
+    it("Invalid includes 2", function (done) {
+        testAPI("./vfsTests/invalidIncludeTest002/api.raml").should.be.rejectedWith(
+            /Can not resolve example.json/).and.notify(done);
+    });
 });
 
 
