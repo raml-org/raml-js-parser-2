@@ -15,6 +15,7 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
+    "gitBranch" : "hotfix-for-0.2.29",
     "installTypings" : true
   },
   "ts-structure-parser" : {
