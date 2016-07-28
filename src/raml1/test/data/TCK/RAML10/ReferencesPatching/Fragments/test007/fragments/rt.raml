@@ -1,0 +1,11 @@
+#%RAML 1.0 ResourceType
+
+post:
+  body:
+    application/json:
+      type: !include type.raml
+      example:
+        ownLibProperty:
+          prop: stringValue
+        rootLibProperty:
+          integerProperty: 5
