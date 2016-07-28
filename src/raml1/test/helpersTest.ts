@@ -800,5 +800,16 @@ describe('Helper methods', function () {
         assert.equal(type.kind(),"UnionTypeDeclaration")
     });
 
+    it('TypeError. reading uriParameters.', function () {
+        var api = util.loadApiWrapper1("./helper/APIs/api001.raml");
+        var exception;
+        try {
+            api.resources()[0].absoluteUriParameters().map(x => x.toJSON());
+        }
+        catch(e){
+            exception = e;
+        }
+        assert(exception==null);
+    });
 
 });
