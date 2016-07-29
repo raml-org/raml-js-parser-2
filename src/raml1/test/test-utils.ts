@@ -134,6 +134,13 @@ function makeDiff(lines1: string[], lines2: string[], index: number, context: nu
   return diff;
 }
 
+export function compareToFileObject(obj: any, filename: string) {
+  var txt = fs.readFileSync(filename).toString();
+  var  obj1 = JSON.parse(txt);
+  var diff = compare(obj,obj1);
+  assert(diff.length==0);
+}
+
 export function compareToFile(text: string, filename: string) {
   var txt = fs.readFileSync(filename).toString();
   var lines1 = text.trim().split("\n");

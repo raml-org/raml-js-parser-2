@@ -847,6 +847,14 @@ describe('XSD schemes tests', function () {
     it("XSD Scheme test 16" ,function() {
         testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
     })
+    it("Empty schemas must not be reported as unresolved" ,function() {
+        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"));
+    })
+    it("Inlining schemas in JSON for RAML 0.8" ,function() {
+        var api=util.loadApi(util.data("parser/schemas/RAML08SchemasInlining/api.raml"));
+        var json = api.wrapperNode().toJSON({ rootNodeDetails: true, dumpSchemaContents: true });
+        util.compareToFileObject(json,util.data("parser/schemas/RAML08SchemasInlining/api-tck.json"));
+    })
 });
 
 describe('XML parsing tests', function () {

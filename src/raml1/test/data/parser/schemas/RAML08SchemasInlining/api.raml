@@ -1,0 +1,12 @@
+#%RAML 0.8
+title: test API
+
+schemas:
+  - sch: !include schema.xsd
+
+/resource:
+  post:
+    body:
+      application/json:
+        schema: sch
+
