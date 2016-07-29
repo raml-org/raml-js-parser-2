@@ -511,6 +511,9 @@ describe('Type', function(){
         testErrors(util.data('parser/type/t20.raml'));
     });
 
+    it('Repeat facet no longer exists', function(){
+        testErrors(util.data('parser/type/t28.raml'), ['specifying unknown facet:repeat']);
+    });
 // #2061
 //    it('Should parse type inherited from several user defined types shortcut declaration', function(){
 //        testErrors(util.data('parser/type/t21.raml'));

@@ -800,5 +800,32 @@ describe('Helper methods', function () {
         assert.equal(type.kind(),"UnionTypeDeclaration")
     });
 
+    it('TypeError. reading uriParameters.', function () {
+        var api = util.loadApiWrapper1("./helper/APIs/api001.raml");
+        var exception;
+        try {
+            api.resources()[0].absoluteUriParameters().map(x => x.toJSON());
+        }
+        catch(e){
+            exception = e;
+        }
+        assert(exception==null);
+    });
+    it('async parse raml from content 1', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n")).then(x=>{
+            assert.equal((<any>x).title(),"My API with Types");
+        });
+    });
+    it('async parse raml from content 2', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n")).then(x=>{
+            assert.equal(x.kind(),"UnionTypeDeclaration")
+        });
+    });
 
 });

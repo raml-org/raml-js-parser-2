@@ -16,7 +16,7 @@
               "password",
               "client_credentials",
               "implicit",
-              "htts://example.com"
+              "https://example.com"
             ]
           }
         }
