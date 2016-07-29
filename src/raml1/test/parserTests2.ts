@@ -511,6 +511,9 @@ describe('Type', function(){
         testErrors(util.data('parser/type/t20.raml'));
     });
 
+    it('Repeat facet no longer exists', function(){
+        testErrors(util.data('parser/type/t28.raml'), ['specifying unknown facet:repeat']);
+    });
 // #2061
 //    it('Should parse type inherited from several user defined types shortcut declaration', function(){
 //        testErrors(util.data('parser/type/t21.raml'));
@@ -550,6 +553,10 @@ describe('Type', function(){
 describe('Annotations', function() {
     it('Should validate annotation parameters and scope', function () {
         testErrors(util.data('parser/annotations/a20.raml'));
+    });
+
+    it('Should parse datetime annotation instances', function () {
+        testErrors(util.data('parser/annotations/a33.raml'));
     });
 });
 
@@ -665,6 +672,16 @@ describe('Union types', function(){
     it('Should parse union type shortcut declaration',function(){
         testErrors(util.data('parser/unionTypes/uType02.raml'));
     })
+
+    it('Invalid union type discriminator 1',function(){
+        var api=util.loadApi(util.data('parser/unionTypes/discriminatorNegative1.raml'));
+        api = util.expandHighIfNeeded(api);
+
+        var errors:any=util.validateNode(api);
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].message, "Using unknown property 'hasTail' as discriminator")
+        assert.equal(errors[0].start, 125)
+    })
 });
 
 describe('Object type Inheritance', function(){
@@ -722,6 +739,14 @@ describe('External Types', function(){
         testErrors(util.data('parser/externalTypes/eType05.raml'),["It is not JSON schema(can not parse JSON:Unexpected token p)"]);
     });
 
+    it('Should parse json schemas referencing json schemas',function(){
+        testErrors(util.data('schema/schemas.raml'));
+    });
+
+    it('Should parse json schemas referencing json schemas',function(){
+        testErrors(util.data('schema/illegalReferenceSchema.raml'));
+    });
+
 //  #400
 //    it('Should validate xsd schemas',function(){
 //        testErrors(util.data('parser/externalTypes/eType60.raml'), 2);
@@ -771,6 +796,22 @@ describe('Modularization', function(){
     it('Should parse overlay',function(){
         testErrors(util.data('parser/modularization/m02_overlay.raml'));
     });
+
+    it('Should display defaults in types when using overlay or extension',function(){
+        var api=util.loadApi(util.data('parser/overlays/defaultAttributesOnExtend/extension.raml'));
+        api = util.expandHighIfNeeded(api);
+
+        var topLevelApi : any = api.wrapperNode();
+        assert.equal(topLevelApi.uses().length, 1);
+        var libraryAST = topLevelApi.uses()[0].ast();
+
+        libraryAST = libraryAST.expand ? libraryAST.expand() : libraryAST;
+
+        var libraryJSON = libraryAST.toJSON();
+        var serializedJSON = JSON.stringify(libraryJSON);
+
+        assert.equal(serializedJSON.indexOf("required") > 0, true)
+    })
 });
 
 describe("Individual errors",function(){

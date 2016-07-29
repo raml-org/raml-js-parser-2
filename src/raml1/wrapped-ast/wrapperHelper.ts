@@ -757,7 +757,12 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
 
     var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
     if(structuredAttrs.length==0){
-        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original();
+        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original().map(x=>{
+            if(x===null||x==="NULL"||x==="Null"){
+                return "string";
+            }
+            return x;
+        });
     }
     var nullify=false;
     var values:string[] = attrs.map(x=>{
@@ -864,18 +869,41 @@ export function getItems(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : Raml
     return (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
 }
 
-/**
- * __$helperMethod__
- * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
- * Does not resolve type expressions. Only returns component type declaration if it is actually defined
- * somewhere in AST.
- */
-export function findComponentTypeDeclaration(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
-    var original = (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
-    if (original) {
-        return original;
+function findComponentTypeDeclBySearch(
+    arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
+
+    var typeHighLevel = arrayTypeDecl.highLevel();
+    if (!typeHighLevel) return null;
+
+    var attrType = typeHighLevel.attr(universes.Universe10.TypeDeclaration.properties.type.name);
+    if (attrType == null) return null;
+
+    var attrTypeLowLevel = attrType.lowLevel();
+    if (attrTypeLowLevel == null) return null;
+
+    var attrTypeValue = attrType.value();
+    if (!attrTypeValue || typeof(attrTypeValue) != "string") return null;
+
+    var offset = attrTypeLowLevel.end() - attrTypeValue.length+1;
+    var unit = attrType.lowLevel().unit();
+    if (!unit) return null;
+
+    var declaration = search.findDeclaration(
+        unit, offset);
+    if (!declaration) return null;
+
+    if (!(<any>declaration).getKind || (<any>declaration).getKind() != hl.NodeKind.NODE) {
+        return null;
     }
 
+    if(!universeHelpers.isTypeDeclarationSibling(
+            (<hl.IHighLevelNode> declaration).definition())) return null;
+
+    return <RamlWrapper.TypeDeclaration>(<hl.IHighLevelNode> declaration).wrapperNode();
+}
+
+function findComponentTypeDeclByRuntimeType(
+    arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
     var runtimeType = arrayTypeDecl.runtimeType();
     if (!runtimeType) return null;
 
@@ -892,10 +920,30 @@ export function findComponentTypeDeclaration(arrayTypeDecl: RamlWrapper.ArrayTyp
     if (!componentTypeSource) return null;
     if (!componentTypeSource.isElement()) return null;
 
+    if(!universeHelpers.isTypeDeclarationSibling(
+            (<hl.IHighLevelNode> componentTypeSource).definition())) return null;
+
     var basicNodeSource = (<hl.IHighLevelNode>componentTypeSource).wrapperNode();
-    // if(!isTypeDeclarationSibling(basicNodeSource)) return null;
 
     return <RamlWrapper.TypeDeclaration> basicNodeSource;
+}
+
+/**
+ * __$helperMethod__
+ * Returns anonymous type defined by "items" keyword, or a component type if declaration can be found.
+ * Does not resolve type expressions. Only returns component type declaration if it is actually defined
+ * somewhere in AST.
+ */
+export function findComponentTypeDeclaration(arrayTypeDecl: RamlWrapper.ArrayTypeDeclaration) : RamlWrapper.TypeDeclaration {
+    var original = (<RamlWrapperImpl.ArrayTypeDeclarationImpl>arrayTypeDecl).items_original();
+    if (original) {
+        return original;
+    }
+
+    var foundByRuntimeType = findComponentTypeDeclByRuntimeType(arrayTypeDecl);
+    if (foundByRuntimeType) return foundByRuntimeType;
+
+    return findComponentTypeDeclBySearch(arrayTypeDecl);
 }
 
 function extractParams(

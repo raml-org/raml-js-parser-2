@@ -491,7 +491,7 @@ interface EscapeData{
 var PARAM_OCCURENCE_STR = "__P_A_R_A_M_E_T_E_R__";
 
 function escapeTemplateParameters(str:string):EscapeData{
-    if(str==null){
+    if(str==null||typeof str != "string"){
         return { status: ParametersEscapingStatus.NOT_REQUIRED }
     }
     var resultingString = "";

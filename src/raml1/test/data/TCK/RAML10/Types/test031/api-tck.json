@@ -1,0 +1,89 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "type": [
+            "object"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"p1\": 5\n}",
+              "strict": true,
+              "structuredValue": {
+                "p1": 5
+              }
+            },
+            {
+              "value": "{\n  \"p1\": 8\n}",
+              "strict": true,
+              "structuredValue": {
+                "p1": 8
+              }
+            }
+          ],
+          "required": true,
+          "properties": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "map is expected here.",
+      "path": "api.raml",
+      "line": 8,
+      "column": 4,
+      "position": 114,
+      "range": [
+        {
+          "line": 8,
+          "column": 4,
+          "position": 114
+        },
+        {
+          "line": 8,
+          "column": 12,
+          "position": 122
+        }
+      ]
+    }
+  ]
+}

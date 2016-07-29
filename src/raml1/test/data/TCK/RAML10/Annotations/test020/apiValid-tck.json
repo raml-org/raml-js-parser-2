@@ -39,7 +39,7 @@
           "name": "searchable",
           "displayName": "searchable",
           "type": [
-            "null"
+            "nil"
           ],
           "required": true,
           "__METADATA__": {

@@ -1,0 +1,302 @@
+{
+	"types": [
+		{
+			"Person": {
+				"name": "Person",
+				"displayName": "Person",
+				"type": [
+					"object"
+				],
+				"required": true,
+				"properties": {
+					"firstname": {
+						"name": "firstname",
+						"displayName": "firstname",
+						"type": [
+							"string"
+						],
+						"required": true,
+						"description": "example description",
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					},
+					"lastname": {
+						"name": "lastname",
+						"displayName": "lastname",
+						"type": [
+							"string"
+						],
+						"required": false,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								}
+							}
+						}
+					},
+					"addresses": {
+						"name": "addresses",
+						"displayName": "addresses",
+						"type": [
+							"string[]"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					},
+					"age": {
+						"name": "age",
+						"displayName": "age",
+						"type": [
+							"number"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		}
+	],
+	"title": "API with Types",
+	"baseUri": "/media",
+	"protocols": [
+		"HTTP"
+	],
+	"resources": [
+		{
+			"methods": [
+				{
+					"responses": {
+						"200": {
+							"code": "200",
+							"body": {
+								"application/xml": {
+									"name": "application/xml",
+									"displayName": "application/xml",
+									"type": [
+										"Person"
+									],
+									"example": {
+										"lastname": "arkhipenko",
+										"firstname": "nicolas",
+										"juan": "juan",
+										"addresses": [
+											"myadress"
+										],
+										"age": 123
+									},
+									"required": true,
+									"properties": {
+										"juan": {
+											"name": "juan",
+											"displayName": "juan",
+											"type": [
+												"string"
+											],
+											"required": true,
+											"__METADATA__": {
+												"primitiveValuesMeta": {
+													"displayName": {
+														"calculated": true
+													},
+													"required": {
+														"insertedAsDefault": true
+													}
+												}
+											}
+										}
+									},
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									},
+									"structuredExample": {
+										"value": "{\n  \"lastname\": \"arkhipenko\",\n  \"firstname\": \"nicolas\",\n  \"juan\": \"juan\",\n  \"addresses\": [\n    \"myadress\"\n  ],\n  \"age\": 123\n}",
+										"strict": true,
+										"name": null,
+										"structuredValue": {
+											"lastname": "arkhipenko",
+											"firstname": "nicolas",
+											"juan": "juan",
+											"addresses": [
+												"myadress"
+											],
+											"age": 123
+										},
+										"asXMLString": "<Person>\n    <firstname>nicolas</firstname>\n    <lastname>arkhipenko</lastname>\n    <addresses>myadress</addresses>\n    <age>123</age>\n\n</Person>\n"
+									}
+								}
+							}
+						}
+					},
+					"body": {
+						"application/json": {
+							"name": "application/json",
+							"displayName": "application/json",
+							"type": [
+								"object"
+							],
+							"required": true,
+							"properties": {
+								"developer": {
+									"name": "developer",
+									"displayName": "developer",
+									"type": [
+										"string"
+									],
+									"required": true,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								},
+								"test": {
+									"name": "test",
+									"displayName": "test",
+									"type": [
+										"string"
+									],
+									"required": true,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								},
+								"animal": {
+									"name": "animal",
+									"displayName": "animal",
+									"type": [
+										"string"
+									],
+									"required": true,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								},
+								"car": {
+									"name": "car",
+									"displayName": "car",
+									"type": [
+										"string"
+									],
+									"required": true,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								}
+							},
+							"__METADATA__": {
+								"primitiveValuesMeta": {
+									"displayName": {
+										"calculated": true
+									},
+									"required": {
+										"insertedAsDefault": true
+									}
+								}
+							}
+						}
+					},
+					"protocols": [
+						"HTTP"
+					],
+					"method": "get",
+					"__METADATA__": {
+						"primitiveValuesMeta": {
+							"protocols": {
+								"calculated": true
+							}
+						}
+					}
+				}
+			],
+			"relativeUri": "/users",
+			"displayName": "/users",
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					}
+				}
+			},
+			"relativeUriPathSegments": [
+				"users"
+			]
+		}
+	],
+	"__METADATA__": {
+		"primitiveValuesMeta": {
+			"protocols": {
+				"calculated": true
+			}
+		}
+	}
+}

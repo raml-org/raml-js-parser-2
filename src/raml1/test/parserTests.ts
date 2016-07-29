@@ -522,7 +522,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr7.raml"),["Required property: element is missed"]);
     })
     it ("inplace types 00" ,function(){
-        testErrors(util.data("parser/typexpressions/tr8.raml"),["Required property: ddd is missed"]);//Ok for now lets improve later
+        testErrors(util.data("parser/typexpressions/tr8.raml"),["Null or undefined value is not allowed"]);//Ok for now lets improve later
     })
     it ("unique keys" ,function(){
         testErrors(util.data("parser/typexpressions/tr9.raml"),["Keys should be unique"]);//Ok for now lets improve later
@@ -796,6 +796,9 @@ describe('Parser regression tests', function () {
     // it ("external 5" ,function(){
     //     testErrors(util.data("parser/external/e5.raml"));
     // })
+    it ("should pass without exceptions 1" ,function(){
+        testErrorsByNumber(util.data("parser/api/api29.raml"), 1);
+    })
 });
 
 describe('XSD schemes tests', function () {
@@ -846,6 +849,15 @@ describe('XSD schemes tests', function () {
     })
     it("XSD Scheme test 16" ,function() {
         testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
+    })
+    it("Empty schemas must not be reported as unresolved" ,function() {
+        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"),
+            ["inheriting from unknown type", "inheriting from unknown type"]);
+    })
+    it("Inlining schemas in JSON for RAML 0.8" ,function() {
+        var api=util.loadApi(util.data("parser/schemas/RAML08SchemasInlining/api.raml"));
+        var json = api.wrapperNode().toJSON({ rootNodeDetails: true, dumpSchemaContents: true });
+        util.compareToFileObject(json,util.data("parser/schemas/RAML08SchemasInlining/api-tck.json"));
     })
 });
 
@@ -1305,6 +1317,19 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
     });
 
 });
+
+describe('Dumps',function(){
+    it("dump1", function () {
+        testDump(util.data("dump/dump1/api.raml"), {dumpXMLRepresentationOfExamples: true});
+    });
+});
+
+function testDump(apiPath: string, options: any) {
+    var api = util.loadApi(apiPath);
+    var dumpPath = util.dumpPath(apiPath);
+    
+    util.compareDump(api.wrapperNode().toJSON(options), dumpPath, apiPath);
+}
 
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
     var api = util.loadApi(p);

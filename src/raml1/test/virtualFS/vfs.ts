@@ -96,7 +96,7 @@ export function getInstance():decl.LocalStorageFileSystem{
        * * isFolder: A flag that indicates whether is a folder or file.
        */
       var service:any = {};
-      var delay   = 500;
+      var delay   = 25;
 
       service.supportsFolders = true;
 

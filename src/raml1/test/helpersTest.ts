@@ -800,5 +800,80 @@ describe('Helper methods', function () {
         assert.equal(type.kind(),"UnionTypeDeclaration")
     });
 
+    it('TypeError. reading uriParameters.', function () {
+        var api = util.loadApiWrapper1("./helper/APIs/api001.raml");
+        var exception;
+        try {
+            api.resources()[0].absoluteUriParameters().map(x => x.toJSON());
+        }
+        catch(e){
+            exception = e;
+        }
+        assert(exception==null);
+    });
+    it('async parse raml from content 1', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types"
+        ].join("\n")).then(x=>{
+            assert.equal((<any>x).title(),"My API with Types");
+        });
+    });
+    it('async parse raml from content 2', function () {
+        index.parseRAML(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  X: string |number"
+        ].join("\n")).then(x=>{
+            assert.equal(x.kind(),"UnionTypeDeclaration")
+        });
+    });
 
+    it('Items() for array expression 1', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]"
+        ].join("\n")));
+        assert.equal(api.types()[1].items(),null);
+    });
+
+    it('Items() for array expression 2', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]",
+            "  TestType2:",
+            "    properties:",
+            "      prop: TestType[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[2].properties()[0].items(),null);
+    });
+
+    it('Items() for array expression 3', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[1].findComponentTypeDeclaration().name(),"Component");
+    });
+
+    it('Items() for array expression 4', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]",
+            "  TestType2:",
+            "    properties:",
+            "      prop: TestType[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[2].properties()[0].findComponentTypeDeclaration().name(),"TestType");
+    });
 });

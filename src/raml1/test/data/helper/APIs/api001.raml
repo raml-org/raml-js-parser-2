@@ -1,0 +1,17 @@
+#%RAML 0.8
+title: raml-service
+version: 0.1
+mediaType: application/json
+
+baseUri: http://123
+
+/echo:
+  get:
+    description: |
+      Get status of RAML service
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              { "status": "up" }

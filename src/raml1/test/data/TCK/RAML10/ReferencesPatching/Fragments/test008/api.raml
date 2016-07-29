@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: Test API
+
+uses:
+  lib: libs/types.raml
+  types2: libs/types2.raml
+
+resourceTypes:
+  rt: !include fragments/rt.raml
+
+/resource:
+  type: rt
+
+  post:
+    body:
+      application/json:
+        example:
+          ownLibProperty:
+            prop: stringValue2
+          rootLibProperty:
+            integerProperty: false
+
+  put:
+    body:
+      application/json:
+        type: lib.MyType
+        example: stringValue
