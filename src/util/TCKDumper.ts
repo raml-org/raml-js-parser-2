@@ -1,3 +1,4 @@
+/// <reference path="../../typings/main.d.ts" />
 var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
@@ -165,7 +166,7 @@ export class TCKDumper{
             else {
                 result = obj;
             }
-
+            
             return result;
         }
         else if(node instanceof core.AttributeNodeImpl){
@@ -856,7 +857,7 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
             || universeHelpers.isTraitType(d)
             || universeHelpers.isMethodType(d)
             || universeHelpers.isTypeDeclarationSibling(d);
-
+        
     }
 
     transform(value:any){

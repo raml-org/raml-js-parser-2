@@ -13,9 +13,7 @@
     "pullall": "dev-env-installer pullall",
     "buildall": "dev-env-installer buildall",
     "testall": "dev-env-installer testall",
-    "devInstall": "dev-env-installer install",
-    "typingsInstall": "typings install",
-    "test": "npm run build && gulp test"
+    "devInstall": "dev-env-installer install"
   },
   "dependencies": {
     "base64url": "^1.0.6",
