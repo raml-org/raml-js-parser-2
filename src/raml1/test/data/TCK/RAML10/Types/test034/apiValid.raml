@@ -1,0 +1,120 @@
+#%RAML 1.0
+title: API
+
+types:
+  StringType_10:
+
+  StringType_11:
+    example: stringValue
+
+  StringType_12:
+    type:
+    example: stringValue
+
+  StringType_20: "string"
+
+  StringType_21:
+      type: "string"
+      example: stringValue
+
+  StringType_30: null
+
+  StringType_31:
+    type: null
+    example: stringValue
+
+  StringType_40: Null
+
+  StringType_41:
+    type: Null
+    example: stringValue
+
+  StringType_50: NULL
+
+  StringType_51:
+    type: NULL
+    example: stringValue
+
+  StringType_60: ~
+
+  StringType_61:
+    type: ~
+    example: stringValue
+
+  StringType_70: !!null
+
+  StringType_71:
+    type: !!null
+    example: stringValue
+
+  TypeWithStringProperties:
+    properties:
+      strProp_10: StringType_10
+      strProp_11: StringType_11
+      strProp_12: StringType_12
+
+      strProp_20: StringType_20
+      strProp_21: StringType_21
+
+      strProp_30: StringType_30
+      strProp_31: StringType_31
+
+      strProp_40: StringType_40
+      strProp_41: StringType_41
+
+      strProp_50: StringType_50
+      strProp_51: StringType_51
+
+      strProp_60: StringType_60
+      strProp_61: StringType_61
+
+      strProp_70: StringType_70
+      strProp_71: StringType_71
+
+    examples:
+      exampleWithNonEmptyStrings:
+        strProp_10: stringValue_StringType_10
+        strProp_11: stringValue_StringType_11
+        strProp_12: stringValue_StringType_12
+
+        strProp_20: stringValue_StringType_20
+        strProp_21: stringValue_StringType_21
+
+        strProp_30: stringValue_StringType_30
+        strProp_31: stringValue_StringType_31
+
+        strProp_40: stringValue_StringType_40
+        strProp_41: stringValue_StringType_41
+
+        strProp_50: stringValue_StringType_50
+        strProp_51: stringValue_StringType_51
+
+        strProp_60: stringValue_StringType_60
+        strProp_61: stringValue_StringType_61
+
+        strProp_70: stringValue_StringType_70
+        strProp_71: stringValue_StringType_71
+
+
+      exampleWithEmptyStrings:
+        strProp_10: ""
+        strProp_11: ""
+        strProp_12: ""
+
+        strProp_20: ""
+        strProp_21: ""
+
+        strProp_30: ""
+        strProp_31: ""
+
+        strProp_40: ""
+        strProp_41: ""
+
+        strProp_50: ""
+        strProp_51: ""
+
+        strProp_60: ""
+        strProp_61: ""
+
+        strProp_70: ""
+        strProp_71: ""
