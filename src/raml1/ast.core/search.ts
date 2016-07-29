@@ -99,7 +99,7 @@ export function findDeclarations(
             if (mm) {
                 var unit = x.root().lowLevel().unit().resolve(mm.value());
                 
-                if(resourceRegistry.isWaitingFor(unit.absolutePath())) {
+                if(unit && resourceRegistry.isWaitingFor(unit.absolutePath())) {
                     skipAll = true;
                     
                     return;
