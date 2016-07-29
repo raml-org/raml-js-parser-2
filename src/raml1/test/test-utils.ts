@@ -114,8 +114,6 @@ export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
 
   var api = <high.ASTNodeImpl>high.fromUnit(unit);
   
-  api.wrapperNode().toJSON({})
-  
   if (!neverExpand) {
     api = expandHighIfNeeded(api);
   }
@@ -540,13 +538,4 @@ export function expandWrapperIfNeeded(original : RamlWrapper.Api | RamlWrapper08
   if(!global.isExpanded) return original;
 
   return original.expand();
-}
-
-export class TestResult{
-  constructor(
-      public apiPath:string,
-      public json:any,
-      public success:boolean,
-      public dumpJsonPath:string,
-      public diff:any[]){}
 }
