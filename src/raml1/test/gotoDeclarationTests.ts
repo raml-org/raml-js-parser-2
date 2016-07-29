@@ -58,7 +58,17 @@ describe('Goto declaration tests',function(){
     it ("Goto decl13",function(){
         testErrors("data/gotoDeclaration/test12.raml");
     })
+    it ("Goto decl14",function(){
+        testErrors("data/gotoDeclaration/test13.raml");
+    })
 
+    it ("Goto decl15",function(){
+        testErrors("data/gotoDeclaration/test14.raml");
+    })
+
+    it ("Goto decl16",function(){
+        testErrors("data/gotoDeclaration/test15.raml");
+    })
 });
 
 function testErrors(p:string){

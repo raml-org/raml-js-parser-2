@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+title: test
+
+annotationTypes:
+  TestAnnotation:
+    properties:
+      testProp: string
+types:
+  TestType:
+    (TestAnnotation):
+      test^Prop: blah

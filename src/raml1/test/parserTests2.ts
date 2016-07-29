@@ -566,6 +566,10 @@ describe('Annotations', function() {
     it('Should parse datetime annotation instances', function () {
         testErrors(util.data('parser/annotations/a33.raml'));
     });
+
+    it('Should allow annotation fragments', function () {
+        testErrors(util.data('parser/annotations/a34.raml'));
+    });
 });
 
 describe('Scalar types', function(){
