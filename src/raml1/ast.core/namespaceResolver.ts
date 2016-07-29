@@ -6,8 +6,6 @@ import universes = require("../tools/universe");
 import jsyaml = require("../jsyaml/jsyaml2lowLevel")
 import universeHelpers = require("../tools/universeHelpers");
 
-import resourceRegistry = require('../jsyaml/resourceRegistry');
-
 export class NamespaceResolver{
 
     private expandedAbsToNsMap:{[key:string]:{[key:string]:UsesInfo}} = {};
@@ -61,10 +59,6 @@ export class NamespaceResolver{
                 if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
                     var eValue = hlElem.attr(universes.Universe10.Extension.properties.extends.name).value();
                     _unit = u.resolve(eValue);
-
-                    if(_unit && resourceRegistry.isWaitingFor(_unit.absolutePath())) {
-                        _unit = null;
-                    }
                 }
             }
         }
