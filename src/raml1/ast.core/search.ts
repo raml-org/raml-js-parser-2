@@ -17,6 +17,9 @@ import sourceFinder = require("./sourceFinder")
 
 export type ITypeDefinition=hl.ITypeDefinition
 
+import resourceRegistry = require('../jsyaml/resourceRegistry');
+
+
 export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
     var declRoot = h;
     while (true) {
@@ -83,13 +86,24 @@ export function findDeclarations(
     if (!(h instanceof hlimpl.ASTNodeImpl)){
         return rs;
     }
+    
+    var skipAll = false;
 
     h.elements().forEach(x=> {
         if (x.definition().key()== universes.Universe10.UsesDeclaration) {
-                        
+            if(skipAll) {
+                return;
+            }
+            
             var mm=x.attr("value");
             if (mm) {
                 var unit = x.root().lowLevel().unit().resolve(mm.value());
+                
+                if(resourceRegistry.isWaitingFor(unit.absolutePath())) {
+                    skipAll = true;
+                    
+                    return;
+                }
                 
                 if (unit != null&&unit.isRAMLUnit()&&!visitedUnits[unit.absolutePath()]) {
                     if(unit.highLevel().isElement()) {
