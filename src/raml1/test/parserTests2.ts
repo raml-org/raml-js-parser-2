@@ -554,6 +554,10 @@ describe('Annotations', function() {
     it('Should validate annotation parameters and scope', function () {
         testErrors(util.data('parser/annotations/a20.raml'));
     });
+
+    it('Should parse datetime annotation instances', function () {
+        testErrors(util.data('parser/annotations/a33.raml'));
+    });
 });
 
 describe('Scalar types', function(){
@@ -668,6 +672,16 @@ describe('Union types', function(){
     it('Should parse union type shortcut declaration',function(){
         testErrors(util.data('parser/unionTypes/uType02.raml'));
     })
+
+    it('Invalid union type discriminator 1',function(){
+        var api=util.loadApi(util.data('parser/unionTypes/discriminatorNegative1.raml'));
+        api = util.expandHighIfNeeded(api);
+
+        var errors:any=util.validateNode(api);
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].message, "Using unknown property 'hasTail' as discriminator")
+        assert.equal(errors[0].start, 125)
+    })
 });
 
 describe('Object type Inheritance', function(){
@@ -723,6 +737,10 @@ describe('External Types', function(){
 
     it('Should validate json schemas',function(){
         testErrors(util.data('parser/externalTypes/eType05.raml'),["It is not JSON schema(can not parse JSON:Unexpected token p)"]);
+    });
+
+    it('Should parse json schemas referencing json schemas',function(){
+        testErrors(util.data('schema/schemas.raml'));
     });
 
 //  #400

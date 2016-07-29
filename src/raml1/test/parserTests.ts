@@ -796,6 +796,9 @@ describe('Parser regression tests', function () {
     // it ("external 5" ,function(){
     //     testErrors(util.data("parser/external/e5.raml"));
     // })
+    it ("should pass without exceptions 1" ,function(){
+        testErrorsByNumber(util.data("parser/api/api29.raml"), 1);
+    })
 });
 
 describe('XSD schemes tests', function () {
@@ -1314,6 +1317,19 @@ describe('RAML10/Dead Loop Tests/ResourceTypes',function(){
     });
 
 });
+
+describe('Dumps',function(){
+    it("dump1", function () {
+        testDump(util.data("dump/dump1/api.raml"), {dumpXMLRepresentationOfExamples: true});
+    });
+});
+
+function testDump(apiPath: string, options: any) {
+    var api = util.loadApi(apiPath);
+    var dumpPath = util.dumpPath(apiPath);
+    
+    util.compareDump(api.wrapperNode().toJSON(options), dumpPath, apiPath);
+}
 
 function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
     var api = util.loadApi(p);

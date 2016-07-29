@@ -1,0 +1,16 @@
+#%RAML 1.0
+
+title: test
+
+types:
+    deprecated:
+        type: boolean
+        default: true
+    endOfLifeTimestamp:
+        type: datetime
+
+annotationTypes:
+    plannedEndOfLife:
+        type: endOfLifeTimestamp
+
+(plannedEndOfLife): 2016-10-31T00:00:00.000Z
