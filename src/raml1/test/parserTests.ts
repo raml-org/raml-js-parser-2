@@ -522,7 +522,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr7.raml"),["Required property: element is missed"]);
     })
     it ("inplace types 00" ,function(){
-        testErrors(util.data("parser/typexpressions/tr8.raml"),["Required property: ddd is missed"]);//Ok for now lets improve later
+        testErrors(util.data("parser/typexpressions/tr8.raml"),["Null or undefined value is not allowed"]);//Ok for now lets improve later
     })
     it ("unique keys" ,function(){
         testErrors(util.data("parser/typexpressions/tr9.raml"),["Keys should be unique"]);//Ok for now lets improve later
@@ -854,7 +854,8 @@ describe('XSD schemes tests', function () {
         testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
     })
     it("Empty schemas must not be reported as unresolved" ,function() {
-        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"));
+        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"),
+            ["inheriting from unknown type", "inheriting from unknown type"]);
     })
     it("Inlining schemas in JSON for RAML 0.8" ,function() {
         var api=util.loadApi(util.data("parser/schemas/RAML08SchemasInlining/api.raml"));

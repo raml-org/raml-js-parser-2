@@ -39,7 +39,7 @@
           "name": "searchable",
           "displayName": "searchable",
           "type": [
-            "null"
+            "nil"
           ],
           "required": true,
           "__METADATA__": {
@@ -202,17 +202,17 @@
       "path": "apiInvalid.raml",
       "line": 19,
       "column": 4,
-      "position": 290,
+      "position": 292,
       "range": [
         {
           "line": 19,
           "column": 4,
-          "position": 290
+          "position": 292
         },
         {
           "line": 19,
           "column": 16,
-          "position": 302
+          "position": 304
         }
       ]
     }

@@ -13,7 +13,7 @@
           "example": {
             "someProperty": {
               "someProperty": {
-                "someProperty": "null"
+                "someProperty": null
               }
             }
           },
@@ -52,13 +52,13 @@
             }
           },
           "structuredExample": {
-            "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": \"null\"\n    }\n  }\n}",
+            "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": null\n    }\n  }\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "someProperty": {
                 "someProperty": {
-                  "someProperty": "null"
+                  "someProperty": null
                 }
               }
             }
@@ -91,7 +91,7 @@
     },
     {
       "code": 11,
-      "message": "object is expected",
+      "message": "Null or undefined value is not allowed",
       "path": "apiInvalid.raml",
       "line": 10,
       "column": 12,

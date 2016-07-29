@@ -20,7 +20,7 @@
               "name": "name",
               "displayName": "name",
               "type": [
-                "null | string"
+                "nil | string"
               ],
               "required": true,
               "__METADATA__": {
@@ -38,7 +38,7 @@
               "name": "data",
               "displayName": "data",
               "type": [
-                "null | Data"
+                "nil | Data"
               ],
               "required": true,
               "__METADATA__": {
