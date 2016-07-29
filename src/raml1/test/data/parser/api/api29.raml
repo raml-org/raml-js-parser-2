@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: Some Api
+version: v1
+baseUri: https://example.com/
+types:
+    aaa:
+      type: object
+      properties:
+        aoeu: string
+    bbb:
+      type: object
+    str: string
+    TestType:
+        properties:
+          [aaa, bbb]
