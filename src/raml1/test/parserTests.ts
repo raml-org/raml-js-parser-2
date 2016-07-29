@@ -799,6 +799,9 @@ describe('Parser regression tests', function () {
     it ("should pass without exceptions 1" ,function(){
         testErrorsByNumber(util.data("parser/api/api29.raml"), 1);
     })
+    it ("should pass without exceptions 2" ,function(){
+        testErrorsByNumber(util.data("parser/api/api30/api.raml"), 2);
+    })
 });
 
 describe('XSD schemes tests', function () {
