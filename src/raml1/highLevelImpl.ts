@@ -1907,7 +1907,7 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     var rfl = ramlFirstLine(contents);
     var spec = (rfl && rfl[1])||"";
     var ptype = (rfl && rfl.length > 2 && rfl[2]) || "Api";
-    var originalPType = ptype;
+    var originalPType = rfl && rfl.length > 2 && rfl[2];
     var localUniverse = spec == "1.0" ? new def.Universe(null,"RAML10", universeProvider("RAML10"),"RAML10") : new def.Universe(null,"RAML08", universeProvider("RAML08"));
 
     if (ptype=='API'){
