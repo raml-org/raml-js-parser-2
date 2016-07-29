@@ -1387,6 +1387,16 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         assert.equal(unitContents.indexOf("example") > 0, true)
         assert.equal(unitContents.indexOf("blah") > 0, true)
       });
+
+      it('type facet value change', function () {
+        var api = util.loadApi(util.data('attr/facetAttr.raml'), true);
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+        var facetAttr = typeNode.attr('minLength');
+
+        facetAttr.setValue("57")
+      });
     });
   });
 
