@@ -134,6 +134,7 @@ export class NamespaceResolver{
                 }
 
             };
+            visit(unit.ast());
         }
         var namespaces:any={};
         for(var key of Object.keys(result)){
