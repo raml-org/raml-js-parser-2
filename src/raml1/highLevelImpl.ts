@@ -601,7 +601,11 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             return new StructuredValue(<ll.ILowLevelASTNode>this._node,this.parent(),this._prop);
         }
 
-        var isString = this.property()!=null && universeHelpers.isStringTypeType(this.property().range());
+        var isString = this.property()!=null
+            && !(this.parent()==null||this.parent().definition()==null||
+                    (universeHelpers.isTypeProperty(this.property())
+                        && universeHelpers.isTypeDeclarationSibling(this.parent().definition())))
+            && universeHelpers.isStringTypeType(this.property().range());
 
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
@@ -877,9 +881,9 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
             }
         }
         var val = this._node.value();
-        if(val==null){
-            val = this._node.value(true);
-        }
+        // if(val==null){
+        //     val = this._node.value(true);
+        // }
         return val;
     }
     _children:LowLevelWrapperForTypeSystem[];

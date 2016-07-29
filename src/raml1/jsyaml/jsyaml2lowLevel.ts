@@ -2141,7 +2141,13 @@ function breaksTheLine(oc:string,textCommand:lowlevel.TextChangeCommand){
 }
 
 function tryParseScalar(q:any):string|boolean|number{
-    if (q == "true") {
+    if (q == "null") {
+        q = null;
+    }
+    else if (q == "~") {
+        q = null;
+    }
+    else if (q == "true") {
         q = true;
     }
     else if (q == "false") {
@@ -2484,9 +2490,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     if (ms==null){
                         ms= full ? "!$$$novalue" : ms;
                     }
-                    if (ms!=null||full) {
+                    //if (ms!=null||full) {
                         res[this.dumpNode(x.key,full) + ""] = ms;
-                    }
+                    //}
                 })
             }
             return res;

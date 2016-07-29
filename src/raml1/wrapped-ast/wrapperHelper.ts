@@ -757,7 +757,12 @@ export function typeValue(typeDeclaration:RamlWrapper.TypeDeclaration):string[]{
 
     var structuredAttrs = attrs.filter(x=>x.value() instanceof hlimpl.StructuredValue);
     if(structuredAttrs.length==0){
-        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original();
+        return (<RamlWrapperImpl.TypeDeclarationImpl>typeDeclaration).type_original().map(x=>{
+            if(x===null||x==="NULL"||x==="Null"){
+                return "string";
+            }
+            return x;
+        });
     }
     var nullify=false;
     var values:string[] = attrs.map(x=>{
