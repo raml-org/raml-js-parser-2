@@ -20,3 +20,8 @@ npm-debug.log
 /typings/
 
 /dist/
+
+/coverage
+coverage.zip
+/raml-1-parser
+raml-1-parser.zip
