@@ -1,4 +1,3 @@
-/// <reference path="../../typings/main.d.ts" />
 import _ = require("underscore")
 import path = require('path');
 import URL = require('url');
@@ -11,9 +10,9 @@ import resourceRegistry = require("../raml1/jsyaml/resourceRegistry");
 
 export class ContentProvider {
     constructor(private unit: lowLevel.ICompilationUnit) {
-        
+
     }
-    
+
     contextPath() {
         if(!this.unit) {
             return "";
@@ -41,7 +40,7 @@ export class ContentProvider {
 
         return result;
     }
-    
+
     content(reference) {
         var normalized = this.normalizePath(reference);
 
@@ -50,17 +49,17 @@ export class ContentProvider {
         //all absolute local paths must be switched to relative form
         var unitPath = this.toRelativeIfNeeded(normalized);
         var unit = this.unit.resolve(unitPath);
-        
+
         if(!unit) {
             return "";
         }
-        
+
         return unit.contents() || "";
     }
 
     contentAsync(reference): Promise<string> {
         var normaized = this.normalizePath(reference);
-        
+
         //Absolute local paths are understand as relative to rootRAML
         //by 'unit.resolveAsync()'. In order to make it understand the input properly,
         //all absolute local paths must be switched to relative form
@@ -106,7 +105,7 @@ export class ContentProvider {
 
         return path.isAbsolute(uri);
     }
-    
+
     promiseResolve(arg: any): Promise<any> {
         return Promise.resolve(arg);
     }
