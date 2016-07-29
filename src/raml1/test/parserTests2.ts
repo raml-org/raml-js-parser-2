@@ -514,6 +514,14 @@ describe('Type', function(){
     it('Repeat facet no longer exists', function(){
         testErrors(util.data('parser/type/t28.raml'), ['specifying unknown facet:repeat']);
     });
+
+    it('Custom facets are recognized', function(){
+        testErrors(util.data('parser/facets/f4.raml'));
+    });
+
+    it('Default values for parameter', function(){
+        testErrors(util.data('parser/type/t29.raml'), ["integer is expected"]);
+    });
 // #2061
 //    it('Should parse type inherited from several user defined types shortcut declaration', function(){
 //        testErrors(util.data('parser/type/t21.raml'));
