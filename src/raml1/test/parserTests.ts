@@ -802,6 +802,10 @@ describe('Parser regression tests', function () {
     it ("should pass without exceptions 2" ,function(){
         testErrorsByNumber(util.data("parser/api/api30/api.raml"), 2);
     })
+
+    it ("empty type include should produce no error" ,function(){
+        testErrors(util.data("parser/type/t30.raml"));
+    })
 });
 
 describe('XSD schemes tests', function () {
@@ -854,8 +858,7 @@ describe('XSD schemes tests', function () {
         testErrorsByNumber(util.data("parser/xsdscheme/test8/apiInvalid.raml"), 1);
     })
     it("Empty schemas must not be reported as unresolved" ,function() {
-        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"),
-            ["inheriting from unknown type", "inheriting from unknown type"]);
+        testErrors(util.data("parser/schemas/emptySchemaTest/api.raml"));
     })
     it("Inlining schemas in JSON for RAML 0.8" ,function() {
         var api=util.loadApi(util.data("parser/schemas/RAML08SchemasInlining/api.raml"));
