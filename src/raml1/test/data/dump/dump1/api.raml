@@ -1,0 +1,42 @@
+#%RAML 1.0
+title: API with Types
+baseUri: /media
+
+types:
+  Person:
+    type: object
+    properties:
+      firstname:
+        type: string
+        description: example description
+      lastname:
+        type: string
+        required: false
+      addresses: string[]
+      age: number
+
+/users:
+  get:
+    body:
+      application/json:
+        type: object
+        properties:
+          developer: string
+          test: string
+          animal: string
+          car: string
+
+    responses:
+      200:
+        body:
+          application/xml:
+            type: Person
+            properties:
+              juan: string
+            example:
+              lastname: arkhipenko
+              firstname: nicolas
+              juan: juan
+              addresses:
+                - myadress
+              age: 123

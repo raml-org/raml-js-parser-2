@@ -8,7 +8,7 @@
           "name": "deprecated",
           "displayName": "deprecated",
           "type": [
-            "null"
+            "nil"
           ],
           "required": true,
           "__METADATA__": {

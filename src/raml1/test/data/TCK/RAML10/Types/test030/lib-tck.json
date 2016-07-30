@@ -8,7 +8,7 @@
           "name": "Foo",
           "displayName": "Foo",
           "type": [
-            "null"
+            "nil"
           ],
           "required": true,
           "__METADATA__": {

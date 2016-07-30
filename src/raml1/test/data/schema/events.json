@@ -1,0 +1,15 @@
+{  
+   "$schema":"http://json-schema.org/schema#",
+   "type":"object",
+   "title":"Events",
+   "description":"Represents list of events",
+   "properties":{  
+      "events":{  
+         "type":"array",
+         "required":true,
+         "items":{  
+            "$ref":"event"
+         }
+      }
+   }
+}
