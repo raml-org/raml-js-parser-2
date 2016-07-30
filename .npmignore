@@ -16,7 +16,14 @@ gulpfile.js
 tsconfig.json
 
 typings.json
+/typings
+/custom_typings
 
 RAML Parser.png
 
 .travis.yml
+
+/coverage
+coverage.zip
+/raml-1-parser
+raml-1-parser.zip

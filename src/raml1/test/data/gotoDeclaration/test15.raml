@@ -1,0 +1,20 @@
+#%RAML 1.0
+
+title: AA
+types:
+  FacetSuperType:
+    type: object
+    facets:
+      testFacet2: string
+  FacetType:
+    properties:
+      testFacetProp: string
+  FirstType:
+    properties:
+      testprop: string
+    facets:
+      testFacet: FacetType
+  SecondType:
+    type: FirstType
+    testFacet:
+      test^FacetProp: df

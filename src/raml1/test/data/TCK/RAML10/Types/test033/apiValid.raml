@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: API
+
+types:
+  NilType_1: nil
+
+  NilType_2:
+    type: nil
+
+  TypeWithNilProperties:
+    properties:
+      nilProp_1: NilType_1
+      nilProp_2: NilType_2
+    examples:
+      exampleWithEmptyValues:
+        nilProp_1:
+        nilProp_2:
+
+      exampleWithImplicitNull:
+        nilProp_1: null
+        nilProp_2: null
+
+      exampleWithTilde:
+        nilProp_1: ~
+        nilProp_2: ~
+
+      exampleWithNullTag:
+        nilProp_1: !!null
+        nilProp_2: !!null

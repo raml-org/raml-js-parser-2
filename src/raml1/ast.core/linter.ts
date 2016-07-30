@@ -1768,13 +1768,12 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
         var u=(<hlimpl.ASTNodeImpl>node).universe();
         var tv=u.getTypedVersion();
         if (tv){
-            if (util.startsWith(tv,"#%")) {
-                if (tv !== "#%RAML 0.8" && tv !== "#%RAML 1.0") {
+                if (tv !== "0.8" && tv !== "1.0") {
                     var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'", node)
                     v.accept(i);
 
                 }
-                var tl=u.getTopLevel();
+                var tl=u.getOriginalTopLevelText();
                 if (tl){
                     if (tl!=node.definition().nameId()){
                         if (node.definition().nameId()=="Api") {
@@ -1786,7 +1785,6 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
                         v.accept(i);
                     }
                 }
-            }
         }
     }
 

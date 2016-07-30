@@ -332,7 +332,7 @@ types:
       type: object
       properties:
         meta?: Meta
-        data?: any | null
+        data?: any | nil
       example:
         meta:
           code: 200
@@ -431,13 +431,13 @@ types:
           properties:
             data?: Comment[]
             count?: number
-        caption?: null | Comment
+        caption?: nil | Comment
         likes?: Likes
         link?: string
         created_time?: string
         images?: Image
         id?: string
-        location?: null | Location
+        location?: nil | Location
       example:
         type: "photo"
         tags:
@@ -518,13 +518,13 @@ types:
               properties:
                 data?: Comment[]
                 count?: number
-            caption: null | Comment
+            caption: nil | Comment
             likes: Likes
             link: string
             user: User
             created_time: string
             id: string
-            location: Location | null
+            location: Location | nil
       example:
         data:
           users_in_photo:
@@ -602,14 +602,14 @@ types:
           properties:
             data?: Comment[]
             count?: number
-        caption: null | Comment
+        caption: nil | Comment
         likes: Likes
         link: string
         user: User
         created_time: string
         id: string
         images?: Image
-        location: null | Location
+        location: nil | Location
       example:
         distance: 50
         users_in_photo:
@@ -698,14 +698,14 @@ types:
               properties:
                 data?: Comment[]
                 count?: number
-            caption: null | Comment
+            caption: nil | Comment
             likes: Likes
             link: string
             user: User
             created_time: string
             id: string
             images?: Image
-            location: null | Location
+            location: nil | Location
       example:
         distance: 50
         videos:

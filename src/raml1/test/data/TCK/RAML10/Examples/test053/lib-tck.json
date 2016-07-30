@@ -11,7 +11,8 @@
             "object"
           ],
           "example": {
-            "name": "Fred"
+            "name": "Fred",
+            "comment": null
           },
           "required": true,
           "properties": {
@@ -69,11 +70,12 @@
             }
           },
           "structuredExample": {
-            "value": "{\n  \"name\": \"Fred\"\n}",
+            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
-              "name": "Fred"
+              "name": "Fred",
+              "comment": null
             }
           }
         }
@@ -83,21 +85,21 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: comment is missed",
+      "message": "Null or undefined value is not allowed",
       "path": "lib.raml",
-      "line": 8,
-      "column": 4,
-      "position": 104,
+      "line": 10,
+      "column": 6,
+      "position": 136,
       "range": [
         {
-          "line": 8,
-          "column": 4,
-          "position": 104
+          "line": 10,
+          "column": 6,
+          "position": 136
         },
         {
-          "line": 8,
-          "column": 11,
-          "position": 111
+          "line": 10,
+          "column": 13,
+          "position": 143
         }
       ]
     }

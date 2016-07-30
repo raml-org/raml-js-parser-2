@@ -828,4 +828,52 @@ describe('Helper methods', function () {
         });
     });
 
+    it('Items() for array expression 1', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]"
+        ].join("\n")));
+        assert.equal(api.types()[1].items(),null);
+    });
+
+    it('Items() for array expression 2', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]",
+            "  TestType2:",
+            "    properties:",
+            "      prop: TestType[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[2].properties()[0].items(),null);
+    });
+
+    it('Items() for array expression 3', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[1].findComponentTypeDeclaration().name(),"Component");
+    });
+
+    it('Items() for array expression 4', function () {
+        var api=(<any>index.parseRAMLSync(["#%RAML 1.0",
+            "title: My API with Types",
+            "types: ",
+            "  Component:",
+            "  TestType: Component[]",
+            "  TestType2:",
+            "    properties:",
+            "      prop: TestType[]"
+        ].join("\n")));
+
+        assert.equal(api.types()[2].properties()[0].findComponentTypeDeclaration().name(),"TestType");
+    });
 });

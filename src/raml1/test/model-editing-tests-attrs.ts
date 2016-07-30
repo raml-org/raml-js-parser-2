@@ -22,7 +22,7 @@ import services=require("../../raml1/definition-system/ramlServices")
 import util = require("./test-utils")
 import def = require("raml-definition-system")
 import stubs = require("../stubs")
-
+import mod = require("../../parserMod")
 
 function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IProperty) : string | high.StructuredValue {
   if (pr.range() instanceof def.ReferenceType){
@@ -1366,6 +1366,38 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
 
     });
 
+    describe('Attr change', function () {
+
+      it('type attribute change', function () {
+        var api = util.loadApi(util.data('attr/typeAttr.raml'), true);
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+        var typeAttr = typeNode.attr('type');
+
+        typeAttr.setValue("NewTypeName")
+
+      });
+
+      it('type example change', function () {
+        var api = util.loadApi(util.data('add/addExampleToType.raml'), true);
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+
+
+        mod.setTypeDeclarationExample(<any>typeNode.wrapperNode(), '{"prop" : "blah"}')
+        var unitContents = api.lowLevel().unit().contents();
+        assert.equal(unitContents.indexOf("example") > 0, true)
+        assert.equal(unitContents.indexOf("blah") > 0, true)
+      });
+
+      it('type facet value change', function () {
+        var api = util.loadApi(util.data('attr/facetAttr.raml'), true);
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+
+        var typeNode = <hl.IHighLevelNode>api.children()[0];
+        var facetAttr = typeNode.attr('minLength');
+
+        facetAttr.setValue("57")
+      });
+    });
   });
 
 

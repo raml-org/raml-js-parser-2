@@ -1,0 +1,13 @@
+#%RAML 1.0
+
+title: test
+
+types:
+  Parent:
+    facets:
+      testFacet: string
+    properties:
+      testProp1: string
+  Child:
+    type: Parent
+    test^Facet: test

@@ -71,10 +71,49 @@ export function show(node: hl.IHighLevelNode, lev: number = 0) {
   }
 }
 
+export function dumpPath(apiPath:string) {
+  var dir = path.dirname(apiPath);
+  var fileName = path.basename(apiPath).replace(".raml", "-dump.json");
+  var str = path.resolve(dir, fileName);
+  return str;
+}
+
+export function compareDump(actual: any, expectedPath, apiPath) {
+  if(!fs.existsSync(expectedPath)) {
+    fs.writeFileSync(expectedPath, JSON.stringify(actual, null, '\t'));
+  }
+
+  var expected = JSON.parse(fs.readFileSync(expectedPath).toString());
+
+  var diff = compare(actual, expected);
+
+  var diffArr = [];
+
+  var success = true;
+
+  if(diff.length !== 0) {
+    success = false;
+
+    diffArr = diff.map(x=>{
+      return {
+        "path": x.path,
+        "comment": x.comment,
+        "actual" : x.value0,
+        "expected" : x.value1
+      }
+    });
+  }
+
+  diffArr.forEach(difference => {
+    assert.equal(difference.actual, difference.expected);
+  });
+}
+
 export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
   var unit = loadUnit(name,path.dirname(name));
 
   var api = <high.ASTNodeImpl>high.fromUnit(unit);
+  
   if (!neverExpand) {
     api = expandHighIfNeeded(api);
   }

@@ -1,0 +1,12 @@
+#%RAML 1.0
+
+title: test
+
+types:
+  Person:
+    type: object
+  Dog:
+    type: object
+  PersonOrDog:
+    type: Person | Dog
+    discriminator: hasTail
