@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Expanded Array Type with Example
+
+types:
+  Email:
+    type: object
+    properties:
+      name:
+        type: string
+  Emails:
+    type: array
+    items: Email
+    minItems: 1
+    uniqueItems: true

@@ -1,0 +1,166 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "relativeUri": "/user",
+        "displayName": "/user",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "user"
+        ]
+      },
+      {
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "uriParameters": {
+              "userId": {
+                "name": "userId",
+                "displayName": "userId",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "relativeUri": "/{userId}",
+            "displayName": "/{userId}",
+            "resources": [
+              {
+                "relativeUri": "/followers",
+                "displayName": "/followers",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "followers"
+                ]
+              },
+              {
+                "relativeUri": "/following",
+                "displayName": "/following",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "following"
+                ]
+              },
+              {
+                "relativeUri": "/keys",
+                "displayName": "/keys",
+                "resources": [
+                  {
+                    "uriParameters": {
+                      "keyId": {
+                        "name": "keyId",
+                        "displayName": "keyId",
+                        "type": [
+                          "integer"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "relativeUri": "/{keyId}",
+                    "displayName": "/{keyId}",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        }
+                      }
+                    },
+                    "relativeUriPathSegments": [
+                      "{keyId}"
+                    ]
+                  }
+                ],
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "relativeUriPathSegments": [
+                  "keys"
+                ]
+              }
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{userId}"
+            ]
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

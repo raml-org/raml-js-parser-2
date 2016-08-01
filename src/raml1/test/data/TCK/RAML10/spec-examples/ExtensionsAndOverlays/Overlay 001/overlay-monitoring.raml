@@ -1,0 +1,25 @@
+#%RAML 1.0 Overlay
+
+# Objective: The following example illustrates an overlay file that provide metadata for an API monitoring service.
+# Expected result: resulting AST contains additional metadata
+
+# tags: overlay
+
+usage: Hints for monitoring the library books API
+extends: librarybooks.raml
+annotationTypes:
+  monitor:
+    properties:
+      frequency:
+        properties:
+          interval: integer
+          unitOfMeasure:
+            enum: [ seconds, minutes, hours ]
+      script:
+/books:
+  get:
+    (monitor):
+      frequency:
+        interval: 5
+        unitOfMeasure: minutes
+      script: randomBooksFetch

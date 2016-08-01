@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: External Types Invalid
+
+# Objective: This RAML illustrates an invalid example on adding facets to a JSON schema defined type
+# Expected result: error message that the facet properties is not allowed
+
+# tags: schemas, invalid usage, facets, types
+
+types:
+  Person:
+    type: !include schemas/person.json
+    properties: # invalid
+      single: boolean

@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+# Objective: The following example shows a Digest Authentication security scheme.
+# Expected result: no error message
+
+# tags: security schemes, Digest Authentication
+
+title: Dropbox API
+version: 1
+baseUri: https://api.dropbox.com/{version}
+securitySchemes:
+  digest:
+    description: |
+      This API supports DigestSecurityScheme Authentication.
+    type: Digest Authentication

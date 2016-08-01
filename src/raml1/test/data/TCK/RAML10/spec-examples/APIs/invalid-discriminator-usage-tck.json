@@ -1,0 +1,188 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Dog": {
+          "name": "Dog",
+          "displayName": "Dog",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "PersonOrDog": {
+          "name": "PersonOrDog",
+          "displayName": "PersonOrDog",
+          "type": [
+            "Person | Dog"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Invalid Discriminator Usage",
+    "description": "This RAML illustrates two examples that discriminator is not allowed in any inline\ntype declaration and for union types.\n",
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200",
+                "body": {
+                  "application/json": {
+                    "name": "application/json",
+                    "displayName": "application/json",
+                    "type": [
+                      "object"
+                    ],
+                    "required": true,
+                    "properties": {
+                      "kind": {
+                        "name": "kind",
+                        "displayName": "kind",
+                        "type": [
+                          "string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "discriminator": "kind",
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/inline",
+        "displayName": "/inline",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "inline"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "you only can use `discriminator` with object types",
+      "path": "invalid-discriminator-usage.raml",
+      "line": 10,
+      "column": 2,
+      "position": 214,
+      "range": [
+        {
+          "line": 10,
+          "column": 2,
+          "position": 214
+        },
+        {
+          "line": 10,
+          "column": 13,
+          "position": 225
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "you only can use `discriminator` with top level type definitions",
+      "path": "invalid-discriminator-usage.raml",
+      "line": 19,
+      "column": 10,
+      "position": 358,
+      "range": [
+        {
+          "line": 19,
+          "column": 10,
+          "position": 358
+        },
+        {
+          "line": 19,
+          "column": 26,
+          "position": 374
+        }
+      ]
+    }
+  ]
+}

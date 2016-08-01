@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: My API With Types
+
+description: |
+  This RAML illustrates pattern properties restricting the property names of
+  any additional properties inside a type instance.
+
+types:
+  Person:
+    properties:
+      name:
+        required: true
+        type: string
+      age:
+        required: false
+        type: number
+      /^note\d+$/: # restrict any properties whose keys start with "note"
+                   # followed by a string of one or more digits
+        type: string

@@ -1,0 +1,10 @@
+#%RAML 1.0
+title: Trailing Slashes
+
+description: This RAML illustrates an example with multiple trailing slashes that should be removed by the parser.
+
+baseUri: //api.test.com//common//
+
+/:
+  /users/:
+    /groups//:

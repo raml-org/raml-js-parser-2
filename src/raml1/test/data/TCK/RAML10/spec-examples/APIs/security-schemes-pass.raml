@@ -1,0 +1,22 @@
+#%RAML 1.0
+
+# Objective: The following example shows a Pass Through security scheme.
+# Expected result: no error message
+
+# tags: security schemes, Pass Through
+
+title: Dropbox API
+version: 1
+baseUri: https://api.dropbox.com/{version}
+securitySchemes:
+  passthrough:
+    description: |
+      This API supports Pass Through Authentication.
+    type: Pass Through
+    describedBy:
+      queryParameters:
+        query:
+          type: string
+      headers:
+        api_key:
+          type: string

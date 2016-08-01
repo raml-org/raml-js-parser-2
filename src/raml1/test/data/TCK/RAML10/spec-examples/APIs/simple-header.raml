@@ -1,0 +1,16 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example of how to define headers
+# Expected result: no error message
+
+# tags: headers
+
+title: ZEncoder API
+version: v2
+baseUri: https://app.zencoder.com/api/{version}
+/jobs:
+  post:
+    description: Create a job
+    headers:
+      Zencoder-Api-Key:
+        description: The API key needed to create a new job

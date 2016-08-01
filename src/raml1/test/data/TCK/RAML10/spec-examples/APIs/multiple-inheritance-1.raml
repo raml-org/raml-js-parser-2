@@ -1,0 +1,19 @@
+#%RAML 1.0
+title: Simple Mulitple Inheritance
+
+# Objective: This RAML illustrates a simple example of using multiple inheritance
+# Expected result: no error
+
+# tags: multiple inheritance, types
+
+types:
+  Person:
+    type: object
+    properties:
+      name: string
+  Employee:
+    type: object
+    properties:
+      employeeNr: integer
+  Teacher:
+    type: [ Person, Employee ]

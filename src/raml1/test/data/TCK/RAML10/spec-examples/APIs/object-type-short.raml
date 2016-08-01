@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: My API With Types
+
+description: This RAML illustrates a type declaration that uses shortcuts to restrict its object properties.
+
+types:
+  Person:
+    properties:
+      name: string # equivalent to ->
+                   # name:
+                   #  type: string
+      age?: number # optional property; equivalent to ->
+                   # age:
+                   #  type: number
+                   #  required: false

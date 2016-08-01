@@ -1,0 +1,13 @@
+{
+	"title": "Example Schema",
+	"type": "object",
+	"properties": {
+		"accountID": {
+			"type": "string"
+		},
+		"amount": {
+			"type": "string"
+		}
+	},
+	"required": ["accountID", "amount"]
+}

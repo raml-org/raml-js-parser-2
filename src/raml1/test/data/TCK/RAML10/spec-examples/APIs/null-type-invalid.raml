@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: Invalid Null Type
+
+description: This RAML illustrates that an instance cannot have an empty / no valued node.
+
+types:
+  NullValue:
+    type: object
+    properties:
+      name:
+      comment:
+    example:
+      name: Fred
+      comment: # Providing no value here is not allowed.

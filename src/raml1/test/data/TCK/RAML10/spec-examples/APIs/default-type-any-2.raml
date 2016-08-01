@@ -1,0 +1,16 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates another example on whats the default type is for a body declaration with a default media type defined
+# Expected result: no error message
+
+# tags: default type, any, default media type, body
+
+title: Default type any with media type
+mediaType: application/json
+
+/customers:
+  get:
+    responses:
+      200:
+        body:
+          # default type is `any`

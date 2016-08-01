@@ -1,0 +1,25 @@
+#%RAML 1.0 Library
+
+# Objective: The following example shows a simple library as a standalone, reusable RAML fragment document.
+# Expected result: no error message
+
+# tags: library
+
+usage: |
+  Use to define some basic file-related constructs.
+types:
+  File:
+    properties:
+      name:
+      length:
+        type: integer
+traits:
+  drm:
+    headers:
+      drm-key:
+resourceTypes:
+  file:
+    get:
+      is: [ drm ]
+    put:
+      is: [ drm ]

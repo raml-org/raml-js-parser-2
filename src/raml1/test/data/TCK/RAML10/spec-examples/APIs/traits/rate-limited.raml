@@ -1,0 +1,10 @@
+#%RAML 1.0 Trait
+
+usage: Apply this to any method that needs to be rate limited
+description: Some requests require rate limiting.
+headers:
+  limit:
+    description: The limit.
+    example: 5000
+    type: integer
+    required: true

@@ -1,0 +1,19 @@
+#%RAML 1.0
+
+# Objective: The following example shows how to set OAuth 1.0 properties.
+# Expected result: no error message
+
+# tags: security schemes, OAuth 1.0
+
+title: My Sample API
+
+securitySchemes:
+  oauth_1_0:
+    description: |
+      OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.
+    type: OAuth 1.0
+    settings:
+      requestTokenUri: https://api.mysampleapi.com/1/oauth/request_token
+      authorizationUri: https://api.mysampleapi.com/1/oauth/authorize
+      tokenCredentialsUri: https://api.mysampleapi.com/1/oauth/access_token
+      signatures: [ 'HMAC-SHA1', 'PLAINTEXT' ]

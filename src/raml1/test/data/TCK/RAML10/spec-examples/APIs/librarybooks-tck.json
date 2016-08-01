@@ -1,0 +1,40 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Book Library API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "method": "get"
+          }
+        ],
+        "description": "The collection of library books",
+        "relativeUri": "/books",
+        "displayName": "/books",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "books"
+        ]
+      }
+    ],
+    "documentation": [
+      {
+        "title": "Introduction",
+        "content": "Automated access to books"
+      },
+      {
+        "title": "Licensing",
+        "content": "Please respect copyrights on our books."
+      }
+    ]
+  },
+  "errors": []
+}

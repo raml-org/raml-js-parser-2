@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: XML facet
+
+# Objective: This RAML illustrates an example on how to use the xml facet
+# Expected result: error message
+
+# tags: xml facet, types
+
+types:
+  Person:
+    properties:
+      name:
+        type: string
+        xml:
+          attribute: true # serialize it as an XML attribute
+          name: "fullname" # attribute should be called fullname
+      addresses:
+        type: Address[]
+        xml:
+          wrapped: true # serialize it into its own <addresses>...</addresses> XML element
+  Address:
+    properties:
+      street: string
+      city: string

@@ -1,0 +1,136 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com/{version}",
+    "baseUriParameters": {
+      "version": {
+        "name": "version",
+        "displayName": "version",
+        "type": [
+          "string"
+        ],
+        "required": true,
+        "enum": [
+          "v3"
+        ],
+        "__METADATA__": {
+          "calculated": true,
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            },
+            "type": {
+              "insertedAsDefault": true
+            },
+            "required": {
+              "insertedAsDefault": true
+            },
+            "enum": {
+              "calculated": true
+            }
+          }
+        }
+      }
+    },
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "page": {
+                "name": "page",
+                "displayName": "page",
+                "type": [
+                  "integer"
+                ],
+                "example": 1,
+                "required": true,
+                "description": "Specify the page that you want to retrieve",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "1",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": 1
+                }
+              },
+              "per_page": {
+                "name": "per_page",
+                "displayName": "per_page",
+                "type": [
+                  "integer"
+                ],
+                "default": 30,
+                "example": 50,
+                "required": true,
+                "description": "Specify the amount of items that will be retrieved per page",
+                "minimum": 10,
+                "maximum": 200,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "50",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": 50
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "description": "Get a list of users",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

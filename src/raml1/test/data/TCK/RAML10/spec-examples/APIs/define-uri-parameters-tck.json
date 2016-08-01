@@ -1,0 +1,90 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "GitHub API",
+    "version": "v3",
+    "baseUri": "https://api.github.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "description": "The currently authenticated User",
+        "relativeUri": "/user",
+        "displayName": "/user",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "user"
+        ]
+      },
+      {
+        "description": "All users",
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "description": "A specific user",
+            "uriParameters": {
+              "userId": {
+                "name": "userId",
+                "displayName": "userId",
+                "type": [
+                  "integer"
+                ],
+                "required": true,
+                "description": "The id of the user",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "relativeUri": "/{userId}",
+            "displayName": "/{userId}",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "{userId}"
+            ]
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

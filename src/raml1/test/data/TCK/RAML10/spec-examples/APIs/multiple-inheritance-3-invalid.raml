@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: Mulitple Inheritance using facets
+
+# Objective: This RAML illustrates an invalid  example of using multiple inheritance and facets
+# Expected result: error that highlights that the resulting type is invalid indicating that maximum cannot be less than minimum
+
+# tags: multiple inheritance, types, facets, invalid
+
+types:
+  Number1:
+    type: number
+    minimum: 4
+  Number2:
+    type: number
+    maximum: 2
+  Number3: [ Number1, Number2] # invalid, maximum value cannot be less than minimum value
