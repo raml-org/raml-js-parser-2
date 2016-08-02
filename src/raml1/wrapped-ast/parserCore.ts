@@ -234,14 +234,20 @@ export class BasicNodeImpl implements hl.BasicNode{
             issues = issues.concat(highLevelErrors);
         }
         var lineMapper = this._node.lowLevel().unit().lineMapper();
+
         var result = issues.map(x=>{
 
             var startPoint = null;
             try {
-                startPoint = lineMapper.position(x.start);
-            }
-            catch(e){
+                startPoint = x.node.lowLevel().unit().lineMapper().position(x.start);
+            } catch(e){
                 console.warn(e);
+                
+                try {
+                    startPoint = lineMapper.position(x.start);
+                } catch(e1) {
+                    console.warn(e1);
+                }
             }
 
             var endPoint = null;
@@ -269,8 +275,8 @@ export class BasicNodeImpl implements hl.BasicNode{
                 path: path,
                 start: x.start,
                 end: x.end,
-                line: startPoint.errorMessage ? null : startPoint.line,
-                column: startPoint.errorMessage ? null : startPoint.column,
+                line: startPoint ? (startPoint.errorMessage ? null : startPoint.line) : null,
+                column: startPoint ? (startPoint.errorMessage ? null : startPoint.column) : null,
                 range: [startPoint, endPoint],
                 isWarning: x.isWarning
             };

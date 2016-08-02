@@ -96,6 +96,22 @@
   },
   "errors": [
     {
+      "code": 3,
+      "message": "Missing required property type",
+      "path": "api.raml",
+      "line": 7,
+      "column": 2,
+      "position": 132,
+      "range": [
+        {
+          "line": 7,
+          "column": 2,
+          "position": 132
+        },
+        null
+      ]
+    },
+    {
       "code": 10,
       "message": "The '.env-org-pair2' node does not match any node of the master api.",
       "path": "NewOverlay.raml",

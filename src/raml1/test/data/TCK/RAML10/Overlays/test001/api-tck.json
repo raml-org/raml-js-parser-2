@@ -79,5 +79,22 @@
     ],
     "extends": "api.raml"
   },
-  "errors": []
+  "errors": [
+    {
+      "code": 0,
+      "message": "Unrecognized security scheme type 'DigestSecurityScheme Authentication'. Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}",
+      "path": "api.raml",
+      "line": 8,
+      "column": 6,
+      "position": 146,
+      "range": [
+        {
+          "line": 8,
+          "column": 6,
+          "position": 146
+        },
+        null
+      ]
+    }
+  ]
 }

@@ -445,13 +445,20 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
     try {
-        node.directChildren().filter(child => {
+        var isOverlay = (<any>node).definition && (<any>node).definition() && (<any>node).definition().key() === universes.Universe10.Overlay
+        
+        var children = isOverlay ? node.children() : node.directChildren();
+
+        children.filter(child => {
             return !requiredOnly || (child.property && child.property() && child.property().isRequired());
         }).forEach(x => {
-            if ((<any>x).errorMessage){
+            if (x && (<any>x).errorMessage){
                 v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, x.name()?x:node));
                 return;
             }
+            
+            
+            
             x.validate(v)
         });
     }finally{
