@@ -83,7 +83,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "map property mapPropertyIs conflicts with property:name",
+      "message": "regular expression '//' mathches with existing property: name",
       "path": "additional-properties.raml",
       "line": 7,
       "column": 2,
@@ -99,11 +99,12 @@
           "column": 8,
           "position": 155
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
-      "message": "map property mapPropertyIs conflicts with property:age",
+      "message": "regular expression '//' mathches with existing property: age",
       "path": "additional-properties.raml",
       "line": 7,
       "column": 2,
@@ -119,7 +120,8 @@
           "column": 8,
           "position": 155
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }
