@@ -1,0 +1,96 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "Duplicated URIs",
+    "resources": [
+      {
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "resources": [
+          {
+            "relativeUri": "/foo",
+            "displayName": "/foo",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "foo"
+            ]
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      },
+      {
+        "relativeUri": "/users/foo",
+        "displayName": "/users/foo",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users",
+          "foo"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 5,
+      "message": "Resources share same URI",
+      "path": "duplicated-uris-invalid.raml",
+      "line": 10,
+      "column": 2,
+      "position": 246,
+      "range": [
+        {
+          "line": 10,
+          "column": 2,
+          "position": 246
+        },
+        {
+          "line": 10,
+          "column": 6,
+          "position": 250
+        }
+      ]
+    },
+    {
+      "code": 5,
+      "message": "Resources share same URI",
+      "path": "duplicated-uris-invalid.raml",
+      "line": 11,
+      "column": 0,
+      "position": 252,
+      "range": [
+        {
+          "line": 11,
+          "column": 0,
+          "position": 252
+        },
+        {
+          "line": 11,
+          "column": 10,
+          "position": 262
+        }
+      ]
+    }
+  ]
+}

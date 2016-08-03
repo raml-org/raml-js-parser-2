@@ -1,0 +1,13 @@
+#%RAML 1.0
+
+# Objective: The following example relies on the implicit, default declaration of the value type when there is no explicit type declaration.
+# Expected result: no error message and the type of testHarness is string
+
+# tags: annotations
+
+title: Testing annotations
+mediaType: application/json
+annotationTypes:
+  testHarness:
+/users:
+  (testHarness): usersTest

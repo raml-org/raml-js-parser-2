@@ -1,0 +1,9 @@
+#%RAML 1.0
+
+# Objective: In the following example, the set of types to be used in the API specification is retrieved from a file called myTypes.raml and used as the value of the types node.
+# Expected result: no error message and content is retrieved from a file called myTypes.raml, and used as the value of the types node.
+
+# tags: include
+
+title: My API with Types
+types: !include myTypes.raml

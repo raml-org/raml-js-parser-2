@@ -1,0 +1,310 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "lat-long": {
+          "name": "lat-long",
+          "displayName": "lat-long",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "lat": {
+              "name": "lat",
+              "displayName": "lat",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "long": {
+              "name": "long",
+              "displayName": "long",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "loc": {
+          "name": "loc",
+          "displayName": "loc",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "location": {
+              "name": "location",
+              "displayName": "location",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "paging": {
+          "name": "paging",
+          "displayName": "paging",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "start": {
+              "name": "start",
+              "displayName": "start",
+              "type": [
+                "number"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "page-size": {
+              "name": "page-size",
+              "displayName": "page-size",
+              "type": [
+                "number"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Illustrate query parameter variations",
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryString": {
+              "name": "queryString",
+              "displayName": "queryString",
+              "type": [
+                "paging",
+                "lat-long | loc"
+              ],
+              "examples": [
+                {
+                  "value": "{\n  \"start\": 2,\n  \"lat\": 12,\n  \"long\": 13\n}",
+                  "strict": true,
+                  "name": "first",
+                  "structuredValue": {
+                    "start": 2,
+                    "lat": 12,
+                    "long": 13
+                  }
+                },
+                {
+                  "value": "{\n  \"start\": 2,\n  \"page-size\": 20,\n  \"location\": 1\n}",
+                  "strict": true,
+                  "name": "second",
+                  "structuredValue": {
+                    "start": 2,
+                    "page-size": 20,
+                    "location": 1
+                  }
+                },
+                {
+                  "value": "{\n  \"lat\": 12,\n  \"location\": 2\n}",
+                  "strict": false,
+                  "name": "third",
+                  "structuredValue": {
+                    "lat": 12,
+                    "location": 2
+                  }
+                }
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/locations",
+        "displayName": "/locations",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "locations"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Union type option does not pass validation (lat-long: Required property: lat is missed)",
+      "path": "query-string.raml",
+      "line": 29,
+      "column": 8,
+      "position": 808,
+      "range": [
+        {
+          "line": 29,
+          "column": 8,
+          "position": 808
+        },
+        {
+          "line": 29,
+          "column": 14,
+          "position": 814
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Union type options do not pass validation",
+      "path": "query-string.raml",
+      "line": 29,
+      "column": 8,
+      "position": 808,
+      "range": [
+        {
+          "line": 29,
+          "column": 8,
+          "position": 808
+        },
+        {
+          "line": 29,
+          "column": 14,
+          "position": 814
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Union type option does not pass validation (loc: string is expected)",
+      "path": "query-string.raml",
+      "line": 32,
+      "column": 10,
+      "position": 869,
+      "range": [
+        {
+          "line": 32,
+          "column": 10,
+          "position": 869
+        },
+        {
+          "line": 32,
+          "column": 18,
+          "position": 877
+        }
+      ]
+    }
+  ]
+}

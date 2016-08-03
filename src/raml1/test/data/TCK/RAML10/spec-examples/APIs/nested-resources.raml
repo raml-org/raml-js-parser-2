@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates a resources and nested resources
+# Expected result: no error
+
+# tags: resources, nested resources, sub resources
+
+title: GitHub API
+
+version: v3
+baseUri: https://api.github.com
+/gists:
+  displayName: Gists
+  /public:
+    displayName: Public Gists

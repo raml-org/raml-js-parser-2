@@ -1,0 +1,26 @@
+#%RAML 1.0
+
+# Objective: The following example shows a get method that uses HTTP query parameters.
+# Expected result: no error message
+
+# tags: query parameter
+
+title: GitHub API
+version: v3
+baseUri: https://api.github.com/{version}
+/users:
+  get:
+    description: Get a list of users
+    queryParameters:
+      page:
+        description: Specify the page that you want to retrieve
+        type:        integer
+        required:    true
+        example:     1
+      per_page:
+        description: Specify the amount of items that will be retrieved per page
+        type:        integer
+        minimum:     10
+        maximum:     200
+        default:     30
+        example:     50

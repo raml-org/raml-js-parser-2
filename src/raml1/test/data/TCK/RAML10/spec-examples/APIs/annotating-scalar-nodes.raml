@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+# Objective: The following example shows a scalar-valued node which is expressed using the map syntax with 'value' as the key where additional annotations can be applied.
+# Expected result: no error message
+
+# tags: annotations, scalar nodes
+
+title: Annotating scalar nodes
+
+annotationTypes:
+  redirectable: boolean
+
+baseUri:
+  value: http://www.example.com/api
+  (redirectable): true

@@ -1,0 +1,38 @@
+#%RAML 1.0
+
+# Objective: The following is an example that uses functions and reserved parameters.
+# Expected result: no error message
+
+# tags: traits, resource types, parameters, functions
+
+title: Example API
+version: v1
+mediaType: application/json
+types:
+  Users: !include types/users.raml
+  User:  !include types/user.raml
+resourceTypes:
+  collection:
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. Users
+    post:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName | !singularize>>  # e.g. User
+  member:
+    get:
+      responses:
+        200:
+          body:
+            type: <<resourcePathName>> # e.g. User
+traits:
+  secured:
+    description: Some requests require authentication
+    queryParameters:
+      <<methodName>>: # e.g. get:
+        description: A <<methodName>>-token pair is required  # e.g. A get-token pair...
+        example: <<methodName>>=h8duh3uhhu38   # e.g. get=h8duh3uhhu38

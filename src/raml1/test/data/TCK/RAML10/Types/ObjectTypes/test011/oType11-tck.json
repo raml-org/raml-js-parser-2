@@ -12,9 +12,9 @@
           ],
           "required": true,
           "properties": {
-            "[a-zA-Z]": {
-              "name": "[a-zA-Z]",
-              "displayName": "[a-zA-Z]",
+            "/a-zA-Z/": {
+              "name": "/a-zA-Z/",
+              "displayName": "/a-zA-Z/",
               "type": [
                 "number"
               ],

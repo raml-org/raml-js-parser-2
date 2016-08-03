@@ -1,0 +1,51 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "{\n\t\"title\": \"Example Schema\",\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"firstName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"lastName\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"age\": {\n\t\t\t\"description\": \"Age in years\",\n\t\t\t\"type\": \"integer\",\n\t\t\t\"minimum\": 0\n\t\t}\n\t},\n\t\"required\": [\"firstName\", \"lastName\"]\n}\n"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "External Types Invalid"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "'properties' facet is prohibited for external types",
+      "path": "external-types-invalid.raml",
+      "line": 11,
+      "column": 4,
+      "position": 325,
+      "range": [
+        {
+          "line": 11,
+          "column": 4,
+          "position": 325
+        },
+        {
+          "line": 11,
+          "column": 14,
+          "position": 335
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+#%RAML 1.0
+title: My API With Types
+
+types:
+  Phone:
+    type: object
+    properties:
+      manufacturer:
+        type: string
+      numberOfSIMCards:
+        type: number
+  Notebook:
+    type: object
+    properties:
+      manufacturer:
+        type: string
+      numberOfUSBPorts:
+        type: number
+  Person:
+    type: object
+    properties:
+      devices: ( Phone | Notebook )[]
+      reports: Person[]

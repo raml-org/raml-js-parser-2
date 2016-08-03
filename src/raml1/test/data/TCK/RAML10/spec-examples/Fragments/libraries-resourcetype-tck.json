@@ -1,0 +1,21 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "ResourceType",
+  "specification": {
+    "undefined": {
+      "uses": [
+        {
+          "key": "files",
+          "value": "libraries/files.raml"
+        }
+      ],
+      "get": {
+        "is": [
+          "files.drm"
+        ],
+        "method": "get"
+      }
+    }
+  },
+  "errors": []
+}

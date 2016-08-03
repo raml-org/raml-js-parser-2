@@ -1,0 +1,53 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "title": "API Using media type in the URL",
+    "version": "v1",
+    "resources": [
+      {
+        "uriParameters": {
+          "ext": {
+            "name": "ext",
+            "displayName": "ext",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "description": "Use .json to specify application/json or .xml to specify text/xml",
+            "enum": [
+              ".json",
+              ".xml"
+            ],
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/users{ext}",
+        "displayName": "/users{ext}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users{ext}"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

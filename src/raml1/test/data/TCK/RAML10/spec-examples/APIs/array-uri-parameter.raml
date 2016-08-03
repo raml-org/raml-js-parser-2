@@ -1,0 +1,21 @@
+#%RAML 1.0
+
+# Objective: This RAML illustrates an example on how to define a uri parameter as an array
+# Expected result: no error message
+
+# tags: uri parameter, array
+
+title: Serialization API
+
+/users:
+  description: All users
+  /{userIds}:
+   description: A specific user
+   uriParameters:
+     userIds:
+       description: A list of userIds
+       type: array
+       items:
+         type: string
+         minLength: 1
+       uniqueItems: true

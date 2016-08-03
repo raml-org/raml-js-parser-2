@@ -1,0 +1,33 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Email": {
+          "name": "Email",
+          "displayName": "Email",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "pattern": "^note\\d+$",
+          "minLength": 2,
+          "maxLength": 6,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "String Type"
+  },
+  "errors": []
+}

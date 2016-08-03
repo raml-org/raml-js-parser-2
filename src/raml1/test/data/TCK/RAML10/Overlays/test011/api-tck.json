@@ -40,7 +40,7 @@
         ]
       }
     ],
-    "extends": "NewOverlay2.raml"
+    "extends": "NewExtension2.raml"
   },
   "errors": []
 }

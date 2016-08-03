@@ -1,0 +1,10 @@
+#%RAML 1.0 Trait
+
+usage: Apply this to any method that needs to be paged
+description: Some responses require paging.
+headers:
+  page:
+    description: Current page number.
+    example: 2
+    type: integer
+    required: true

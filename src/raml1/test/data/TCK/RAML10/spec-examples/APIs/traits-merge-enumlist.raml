@@ -1,0 +1,24 @@
+#%RAML 1.0
+
+# Objective: This example defines the enum values of a query parameter in both the trait and resource.
+# Expected result: The enum value resulting from the merge that occurs is [ mac, unix, win ].
+
+# tags: traits, enum list, merge
+
+title: Example API
+version: v1
+traits:
+  withQueryParameters:
+    queryParameters:
+      platform:
+        enum:
+          - win
+          - mac
+/installer:
+  get:
+    is: [ withQueryParameters ]
+    queryParameters:
+      platform: #the actual enum is [ mac, unix, win ]
+        enum:
+          - mac
+          - unix

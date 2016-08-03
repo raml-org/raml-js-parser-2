@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: Using null type and union
+
+types:
+  NullValue:
+    type: object
+    properties:
+      name:
+      comment: nil | string # equivalent to ->
+                             # comment: string?
+    example:
+      name: Fred
+      comment: # Providing a value or not providing a value here is allowed.

@@ -1,0 +1,14 @@
+#%RAML 1.0
+title: My API With Types
+
+description: This RAML illustrates a type declaration that uses facets to restrict its object properties.
+
+types:
+  Person:
+    properties:
+      name:
+        required: true
+        type: string
+      age:
+        required: false
+        type: number
