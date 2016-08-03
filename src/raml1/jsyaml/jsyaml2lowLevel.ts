@@ -2156,7 +2156,7 @@ function tryParseScalar(q:any):string|boolean|number{
     else {
         var vl = parseFloat(q);
         if (!isNaN(vl)) {
-            if (("" + q).match("^[-+]?[0-9]*\.?[0-9]+$")) {
+            if (("" + q).match("^[-+]?[0-9]*\\.?[0-9]+$")) {
                 q = vl;
             }
         }
