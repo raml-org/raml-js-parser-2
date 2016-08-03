@@ -196,13 +196,13 @@
                   }
                 },
                 {
-                  "value": "{\n  \"start\": 2,\n  \"page-size\": 20,\n  \"location\": 1\n}",
+                  "value": "{\n  \"start\": 2,\n  \"page-size\": 20,\n  \"location\": \"1,2\"\n}",
                   "strict": true,
                   "name": "second",
                   "structuredValue": {
                     "start": 2,
                     "page-size": 20,
-                    "location": 1
+                    "location": "1,2"
                   }
                 },
                 {
@@ -245,66 +245,5 @@
       }
     ]
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "Union type option does not pass validation (lat-long: Required property: lat is missed)",
-      "path": "query-string.raml",
-      "line": 29,
-      "column": 8,
-      "position": 808,
-      "range": [
-        {
-          "line": 29,
-          "column": 8,
-          "position": 808
-        },
-        {
-          "line": 29,
-          "column": 14,
-          "position": 814
-        }
-      ]
-    },
-    {
-      "code": 11,
-      "message": "Union type options do not pass validation",
-      "path": "query-string.raml",
-      "line": 29,
-      "column": 8,
-      "position": 808,
-      "range": [
-        {
-          "line": 29,
-          "column": 8,
-          "position": 808
-        },
-        {
-          "line": 29,
-          "column": 14,
-          "position": 814
-        }
-      ]
-    },
-    {
-      "code": 11,
-      "message": "Union type option does not pass validation (loc: string is expected)",
-      "path": "query-string.raml",
-      "line": 32,
-      "column": 10,
-      "position": 869,
-      "range": [
-        {
-          "line": 32,
-          "column": 10,
-          "position": 869
-        },
-        {
-          "line": 32,
-          "column": 18,
-          "position": 877
-        }
-      ]
-    }
-  ]
+  "errors": []
 }
