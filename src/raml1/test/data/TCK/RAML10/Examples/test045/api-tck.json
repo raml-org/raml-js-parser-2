@@ -40,13 +40,12 @@
               ],
               "examples": [
                 {
-                  "value": "[\n  {\n    \"X-Dept\": \"230-OCTO\"\n  }\n]",
+                  "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
                   "strict": true,
                   "name": "one_dept",
                   "structuredValue": [
-                    {
-                      "X-Dept": "230-OCTO"
-                    }
+                    "230-OCTO",
+                    "InvalidHere"
                   ]
                 }
               ],
@@ -72,21 +71,21 @@
   "errors": [
     {
       "code": 11,
-      "message": "string is expected",
+      "message": "string should match to ^\\d+\\-\\w+$",
       "path": "api.raml",
-      "line": 15,
-      "column": 16,
-      "position": 258,
+      "line": 14,
+      "column": 14,
+      "position": 235,
       "range": [
         {
-          "line": 15,
-          "column": 16,
-          "position": 258
+          "line": 14,
+          "column": 14,
+          "position": 235
         },
         {
-          "line": 15,
-          "column": 32,
-          "position": 274
+          "line": 14,
+          "column": 25,
+          "position": 246
         }
       ]
     }

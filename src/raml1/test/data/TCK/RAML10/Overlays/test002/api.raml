@@ -6,11 +6,12 @@ securedBy: x-ttt
 protocols: HTTP
 securitySchemes:
   x-ttt:
+    type: Basic Authentication
 baseUri: https://anypoint.mulesoft.com/hybrid/api/v1
 traits:
   env-org-pair:
 resourceTypes:
   servers-collection:
 /servers:
-  is: env-org-pair
+  is: [env-org-pair]
   securedBy: x-ttt

@@ -3,9 +3,9 @@
   "type": "ExampleSpec",
   "specification": {
     "annotations": {
-      "lib.StringAnnotations": {
+      "lib.StringAnnotation": {
         "structuredValue": "stringAnnotationValue",
-        "name": "lib.StringAnnotations"
+        "name": "lib.StringAnnotation"
       },
       "lib.ObjectAnnotation": {
         "structuredValue": {

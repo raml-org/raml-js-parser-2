@@ -83,7 +83,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "regular expression '//' mathches with existing property: name",
+      "message": "pattern property '//' conflicts with property: name",
       "path": "additional-properties.raml",
       "line": 7,
       "column": 2,
@@ -104,7 +104,7 @@
     },
     {
       "code": 11,
-      "message": "regular expression '//' mathches with existing property: age",
+      "message": "pattern property '//' conflicts with property: age",
       "path": "additional-properties.raml",
       "line": 7,
       "column": 2,

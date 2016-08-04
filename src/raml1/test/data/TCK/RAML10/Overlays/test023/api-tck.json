@@ -80,22 +80,5 @@
     ],
     "extends": "NewOverlay.raml"
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "property 'is' must be an array",
-      "path": "api.raml",
-      "line": 17,
-      "column": 2,
-      "position": 340,
-      "range": [
-        {
-          "line": 17,
-          "column": 2,
-          "position": 340
-        },
-        null
-      ]
-    }
-  ]
+  "errors": []
 }
