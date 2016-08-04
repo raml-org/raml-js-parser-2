@@ -737,7 +737,24 @@ class TraitVariablesValidator{
         }
     }
 
+    hasTraitOrResourceTypeParent(node: hl.IParseResult) : boolean {
+        var parent = node.parent();
+        while(parent != null) {
+            if (!parent.definition()) return false;
+            if (universeHelpers.isTraitType(parent.definition())
+                || universeHelpers.isResourceTypeType(parent.definition())) {
+                return true;
+            }
+
+            parent = parent.parent();
+        }
+
+        return false;
+    }
+
     check(str:string,start:number,node:hl.IParseResult,acceptor:hl.ValidationAcceptor):hl.ValidationIssue[]{
+
+        if (!this.hasTraitOrResourceTypeParent(node)) return [];
 
         var errors:hl.ValidationIssue[] = [];
         var prev = 0;
