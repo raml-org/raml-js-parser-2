@@ -1,0 +1,30 @@
+#%RAML 1.0
+
+# Objective: To pass parameter values to resource types and traits, use a map when declaring the resource type or trait, as illustrated in the following example.
+# Expected result: no error message
+
+# tags: traits, resource types, parameters
+
+title: Example API
+version: v1
+resourceTypes:
+  searchableCollection:
+   get:
+      queryParameters:
+        <<queryParamName>>:
+          description: Return <<resourcePathName>> that have their <<queryParamName>> matching the given value
+        <<fallbackParamName>>:
+          description: If no values match the value given for <<queryParamName>>, use <<fallbackParamName>> instead
+traits:
+  secured:
+    queryParameters:
+      <<tokenName>>:
+        description: A valid <<tokenName>> is required
+  paged:
+    queryParameters:
+      numPages:
+        description: The number of pages to return, not to exceed <<maxPages>>
+/books:
+  type: { searchableCollection: { queryParamName: title, fallbackParamName: digest_all_fields } }
+  get:
+    is: [ secured: { tokenName: access_token }, paged: { maxPages: 10 } ]

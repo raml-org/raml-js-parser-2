@@ -1,0 +1,127 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Message": {
+          "name": "Message",
+          "displayName": "Message",
+          "type": [
+            "object"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
+              "strict": true,
+              "name": "message",
+              "structuredValue": {
+                "title": "Attention needed",
+                "body": "You have been added to group 274"
+              }
+            },
+            {
+              "value": "{\n  \"name\": \"log item\",\n  \"comment\": \"permission check\"\n}",
+              "strict": true,
+              "name": "record",
+              "structuredValue": {
+                "name": "log item",
+                "comment": "permission check"
+              }
+            }
+          ],
+          "required": true,
+          "properties": {
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "body": {
+              "name": "body",
+              "displayName": "body",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "comment": {
+              "name": "comment",
+              "displayName": "comment",
+              "type": [
+                "string"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Multiple examples"
+  },
+  "errors": []
+}

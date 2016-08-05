@@ -1,0 +1,24 @@
+#%RAML 1.0
+title: Multiple examples
+
+# Objective: This RAML illustrates an example on how to use multiple examples
+# Expected result: no error message
+
+# tags: mulitple examples
+
+types:
+  Message:
+    properties:
+      title?: string
+      body?: string
+      name?: string
+      comment?: string
+    examples:
+      message: # {key} - unique id
+        # example declaration
+        title: Attention needed
+        body: You have been added to group 274
+      record: # {key} - unique id
+        # example declaration
+        name: log item
+        comment: permission check

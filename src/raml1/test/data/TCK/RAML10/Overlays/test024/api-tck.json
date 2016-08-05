@@ -78,7 +78,7 @@
         ]
       }
     ],
-    "extends": "api.raml"
+    "extends": "NewOverlay.raml"
   },
   "errors": []
 }

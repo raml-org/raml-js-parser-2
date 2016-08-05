@@ -1,0 +1,26 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "securitySchemes": [
+      {
+        "oauth_1_0": {
+          "name": "oauth_1_0",
+          "type": "OAuth 1.0",
+          "description": "OAuth 1.0 continues to be supported for all API requests, but OAuth 2.0 is now preferred.\n",
+          "settings": {
+            "requestTokenUri": "https://api.mysampleapi.com/1/oauth/request_token",
+            "authorizationUri": "https://api.mysampleapi.com/1/oauth/authorize",
+            "tokenCredentialsUri": "https://api.mysampleapi.com/1/oauth/access_token",
+            "signatures": [
+              "HMAC-SHA1",
+              "PLAINTEXT"
+            ]
+          }
+        }
+      }
+    ],
+    "title": "My Sample API"
+  },
+  "errors": []
+}

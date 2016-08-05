@@ -1,0 +1,331 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "secured": {
+          "headers": {
+            "access_token": {
+              "name": "access_token",
+              "displayName": "access_token",
+              "type": [
+                "string"
+              ],
+              "example": "5757gh76",
+              "required": true,
+              "description": "Access Token",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "5757gh76",
+                "strict": true,
+                "name": null,
+                "structuredValue": "5757gh76"
+              }
+            }
+          },
+          "description": "Some requests require authentication.",
+          "name": "secured",
+          "usage": "Apply this to any method that needs to be secured"
+        }
+      },
+      {
+        "paged": {
+          "headers": {
+            "page": {
+              "name": "page",
+              "displayName": "page",
+              "type": [
+                "integer"
+              ],
+              "example": 2,
+              "required": true,
+              "description": "Current page number.",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "2",
+                "strict": true,
+                "name": null,
+                "structuredValue": 2
+              }
+            }
+          },
+          "description": "Some responses require paging.",
+          "name": "paged",
+          "usage": "Apply this to any method that needs to be paged"
+        }
+      },
+      {
+        "rateLimited": {
+          "headers": {
+            "limit": {
+              "name": "limit",
+              "displayName": "limit",
+              "type": [
+                "integer"
+              ],
+              "example": 5000,
+              "required": true,
+              "description": "The limit.",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  }
+                }
+              },
+              "structuredExample": {
+                "value": "5000",
+                "strict": true,
+                "name": null,
+                "structuredValue": 5000
+              }
+            }
+          },
+          "description": "Some requests require rate limiting.",
+          "name": "rateLimited",
+          "usage": "Apply this to any method that needs to be rate limited"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "description": "A collection resource",
+          "name": "collection",
+          "usage": "Use this to describe a resource that lists items",
+          "get": {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        }
+      },
+      {
+        "member": {
+          "description": "A single <<resourcePathName | !singularize>>",
+          "name": "member",
+          "usage": "This resourceType should be used for any specific member of a collection",
+          "get": {
+            "description": "Get a <<resourcePathName | !singularize>>",
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "Example API",
+    "version": "v1",
+    "resources": [
+      {
+        "methods": [
+          {
+            "headers": {
+              "page": {
+                "name": "page",
+                "displayName": "page",
+                "type": [
+                  "integer"
+                ],
+                "example": 2,
+                "required": true,
+                "description": "Current page number.",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "2",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": 2
+                }
+              },
+              "limit": {
+                "name": "limit",
+                "displayName": "limit",
+                "type": [
+                  "integer"
+                ],
+                "example": 5000,
+                "required": true,
+                "description": "The limit.",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "5000",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": 5000
+                }
+              },
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "example": "5757gh76",
+                "required": true,
+                "description": "Access Token",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "5757gh76",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "5757gh76"
+                }
+              }
+            },
+            "is": [
+              "paged",
+              "rateLimited"
+            ],
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          {
+            "headers": {
+              "access_token": {
+                "name": "access_token",
+                "displayName": "access_token",
+                "type": [
+                  "string"
+                ],
+                "example": "5757gh76",
+                "required": true,
+                "description": "Access Token",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "5757gh76",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "5757gh76"
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        ],
+        "is": [
+          "secured"
+        ],
+        "type": "collection",
+        "description": "A collection resource",
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

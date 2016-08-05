@@ -11,6 +11,9 @@ traits:
         type: dept_code[]
         examples:
           one_dept:
-            strict: true
-            value:
-              - X-Dept: 230-OCTO
+            - 230-OCTO
+            - InvalidHere
+
+/resource:
+  get:
+    is: [chargeable]

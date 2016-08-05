@@ -1,0 +1,12 @@
+#%RAML 1.0 Extension
+
+# Objective: The following example illustrates an extension file that adds an additional post method with description to the '/books' resource.
+# Expected result: resulting AST contains an additional post with what is inside the librarybooks.raml
+
+# tags: extension
+
+usage: Add administrative functionality
+extends: librarybooks.raml
+/books:
+  post:
+    description: Add a new book to the collection

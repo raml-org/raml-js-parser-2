@@ -5,8 +5,10 @@ baseUri: http://api.samplehost.com
 securitySchemes:
   oauth2:
     type: OAuth 2.0
-  null:
-    type: OAuth 2.0
+    settings:
+      accessTokenUri: https://api.dropbox.com/1/oauth2/token
+      authorizationGrants: [client_credentials]
+      authorizationUri: https://www.dropbox.com/1/oauth2/authorize
 
 /resource:
   get:

@@ -1,0 +1,262 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "deprecated": {
+          "name": "deprecated",
+          "displayName": "deprecated",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "experimental": {
+          "name": "experimental",
+          "displayName": "experimental",
+          "type": [
+            "nil | string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "feedbackRequested": {
+          "name": "feedbackRequested",
+          "displayName": "feedbackRequested",
+          "type": [
+            "string?"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "testHarness": {
+          "name": "testHarness",
+          "displayName": "testHarness",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "badge": {
+          "name": "badge",
+          "displayName": "badge",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "clearanceLevel": {
+          "name": "clearanceLevel",
+          "displayName": "clearanceLevel",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "level": {
+              "name": "level",
+              "displayName": "level",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "signature": {
+              "name": "signature",
+              "displayName": "signature",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "pattern": "\\d{3}-\\w{12}",
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Illustrating annotations",
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "annotations": {
+          "experimental": {
+            "structuredValue": null,
+            "name": "experimental"
+          },
+          "feedbackRequested": {
+            "structuredValue": null,
+            "name": "feedbackRequested"
+          }
+        },
+        "relativeUri": "/groups",
+        "displayName": "/groups",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "groups"
+        ]
+      },
+      {
+        "annotations": {
+          "testHarness": {
+            "structuredValue": "usersTest",
+            "name": "testHarness"
+          },
+          "badge": {
+            "structuredValue": "tested.gif",
+            "name": "badge"
+          },
+          "clearanceLevel": {
+            "structuredValue": {
+              "level": "high",
+              "signature": "230-ghtwvfrs1itr"
+            },
+            "name": "clearanceLevel"
+          }
+        },
+        "methods": [
+          {
+            "annotations": {
+              "deprecated": {
+                "structuredValue": null,
+                "name": "deprecated"
+              },
+              "experimental": {
+                "structuredValue": null,
+                "name": "experimental"
+              },
+              "feedbackRequested": {
+                "structuredValue": null,
+                "name": "feedbackRequested"
+              }
+            },
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

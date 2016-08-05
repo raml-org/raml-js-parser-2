@@ -1,0 +1,109 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "collection": {
+          "description": "A collection resource",
+          "name": "collection",
+          "usage": "Use this to describe a resource that lists items",
+          "get": {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          "post": {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "Products API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "description": "Retrieve all items",
+            "method": "get"
+          },
+          {
+            "responses": {
+              "201": {
+                "code": "201",
+                "headers": [
+                  {
+                    "name": "Location",
+                    "displayName": "Location",
+                    "type": [
+                      "string"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "type": {
+                          "insertedAsDefault": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "description": "Add an item",
+            "method": "post"
+          }
+        ],
+        "type": "collection",
+        "description": "All products",
+        "relativeUri": "/products",
+        "displayName": "/products",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "products"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

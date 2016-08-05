@@ -40,13 +40,12 @@
               ],
               "examples": [
                 {
-                  "value": "[\n  {\n    \"X-Dept\": \"230-OCTO\"\n  }\n]",
+                  "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
                   "strict": true,
                   "name": "one_dept",
                   "structuredValue": [
-                    {
-                      "X-Dept": "230-OCTO"
-                    }
+                    "230-OCTO",
+                    "InvalidHere"
                   ]
                 }
               ],
@@ -67,26 +66,101 @@
         }
       }
     ],
-    "title": "Test named parameters"
+    "title": "Test named parameters",
+    "resources": [
+      {
+        "methods": [
+          {
+            "headers": {
+              "X-Dept": {
+                "name": "X-Dept",
+                "displayName": "X-Dept",
+                "type": [
+                  "dept_code[]"
+                ],
+                "examples": [
+                  {
+                    "value": "[\n  \"230-OCTO\",\n  \"InvalidHere\"\n]",
+                    "strict": true,
+                    "name": "one_dept",
+                    "structuredValue": [
+                      "230-OCTO",
+                      "InvalidHere"
+                    ]
+                  }
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "is": [
+              "chargeable"
+            ],
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
   },
   "errors": [
     {
       "code": 11,
-      "message": "string is expected",
+      "message": "string should match to ^\\d+\\-\\w+$",
       "path": "api.raml",
-      "line": 15,
-      "column": 16,
-      "position": 258,
+      "line": 14,
+      "column": 14,
+      "position": 235,
       "range": [
         {
-          "line": 15,
-          "column": 16,
-          "position": 258
+          "line": 14,
+          "column": 14,
+          "position": 235
         },
         {
-          "line": 15,
-          "column": 32,
-          "position": 274
+          "line": 14,
+          "column": 25,
+          "position": 246
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "string should match to ^\\d+\\-\\w+$",
+      "path": "api.raml",
+      "line": 17,
+      "column": 2,
+      "position": 261,
+      "range": [
+        {
+          "line": 17,
+          "column": 2,
+          "position": 261
+        },
+        {
+          "line": 17,
+          "column": 5,
+          "position": 264
         }
       ]
     }

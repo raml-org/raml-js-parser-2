@@ -1,0 +1,84 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "NullValue": {
+          "name": "NullValue",
+          "displayName": "NullValue",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "name": "Fred",
+            "comment": null
+          },
+          "required": true,
+          "properties": {
+            "name": {
+              "name": "name",
+              "displayName": "name",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "comment": {
+              "name": "comment",
+              "displayName": "comment",
+              "type": [
+                "nil"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Fred",
+              "comment": null
+            }
+          }
+        }
+      }
+    ],
+    "title": "Null Type"
+  },
+  "errors": []
+}

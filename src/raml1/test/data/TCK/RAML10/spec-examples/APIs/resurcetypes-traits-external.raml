@@ -1,0 +1,15 @@
+#%RAML 1.0
+
+# Objective: The following example builds on the previous one, but the resource types and traits are defined in external files that are included by using an !include tag.
+# Expected result: no error message
+
+# tags: traits, resource types, external
+
+title: Example API
+version: v1
+resourceTypes:
+  collection: !include resourceTypes/collection.raml
+  member: !include resourceTypes/member.raml
+traits:
+  secured: !include traits/secured.raml
+  rateLimited: !include traits/rate-limited.raml

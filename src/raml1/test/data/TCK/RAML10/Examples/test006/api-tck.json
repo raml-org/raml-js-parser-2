@@ -13,7 +13,7 @@
           "example": {
             "x": 1,
             "y": 3,
-            "z": 5
+            "z": "5 2"
           },
           "required": true,
           "properties": {
@@ -68,13 +68,13 @@
             }
           },
           "structuredExample": {
-            "value": "{\n  \"x\": 1,\n  \"y\": 3,\n  \"z\": 5\n}",
+            "value": "{\n  \"x\": 1,\n  \"y\": 3,\n  \"z\": \"5 2\"\n}",
             "strict": true,
             "name": null,
             "structuredValue": {
               "x": 1,
               "y": 3,
-              "z": 5
+              "z": "5 2"
             }
           }
         }

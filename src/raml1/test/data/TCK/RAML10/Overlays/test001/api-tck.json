@@ -41,7 +41,7 @@
       {
         "x-ttt": {
           "name": "x-ttt",
-          "type": "DigestSecurityScheme Authentication"
+          "type": "Digest Authentication"
         }
       }
     ],

@@ -1,0 +1,153 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "birthday": {
+          "name": "birthday",
+          "displayName": "birthday",
+          "type": [
+            "date-only"
+          ],
+          "example": "2015-05-23",
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "2015-05-23",
+            "strict": true,
+            "name": null,
+            "structuredValue": "2015-05-23"
+          }
+        }
+      },
+      {
+        "lunchtime": {
+          "name": "lunchtime",
+          "displayName": "lunchtime",
+          "type": [
+            "time-only"
+          ],
+          "example": "12:30:00",
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "12:30:00",
+            "strict": true,
+            "name": null,
+            "structuredValue": "12:30:00"
+          }
+        }
+      },
+      {
+        "fireworks": {
+          "name": "fireworks",
+          "displayName": "fireworks",
+          "type": [
+            "datetime-only"
+          ],
+          "example": "2015-07-04T21:00:00",
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "2015-07-04T21:00:00",
+            "strict": true,
+            "name": null,
+            "structuredValue": "2015-07-04T21:00:00"
+          }
+        }
+      },
+      {
+        "created": {
+          "name": "created",
+          "displayName": "created",
+          "type": [
+            "datetime"
+          ],
+          "example": "2016-02-28T16:41:41.090Z",
+          "required": true,
+          "format": "rfc3339",
+          "fixedFacets": {
+            "format": "rfc3339"
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "2016-02-28T16:41:41.090Z",
+            "strict": true,
+            "name": null,
+            "structuredValue": "2016-02-28T16:41:41.090Z"
+          }
+        }
+      },
+      {
+        "If-Modified-Since": {
+          "name": "If-Modified-Since",
+          "displayName": "If-Modified-Since",
+          "type": [
+            "datetime"
+          ],
+          "example": "Sun, 28 Feb 2016 16:41:41 GMT",
+          "required": true,
+          "format": "rfc2616",
+          "fixedFacets": {
+            "format": "rfc2616"
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "Sun, 28 Feb 2016 16:41:41 GMT",
+            "strict": true,
+            "name": null,
+            "structuredValue": "Sun, 28 Feb 2016 16:41:41 GMT"
+          }
+        }
+      }
+    ],
+    "title": "Date Types"
+  },
+  "errors": []
+}

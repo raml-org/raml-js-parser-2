@@ -56,7 +56,8 @@
     "securitySchemes": [
       {
         "x-ttt": {
-          "name": "x-ttt"
+          "name": "x-ttt",
+          "type": "Basic Authentication"
         }
       }
     ],

@@ -27,3 +27,6 @@ traits:
         description:  <<param | !upperhyphencase>> cannot be found
       411:
         description:  <<param | !unknown>> cannot be found
+/users:
+  get:
+    is: [ { notAlwaysPresent : {param : user } }]
