@@ -67,7 +67,7 @@ export function createAttr(_property:hl.IProperty,val:any):hl.IAttribute{
     return nm;
 }
 export function createStubNode(t:hl.ITypeDefinition,p: hl.IProperty, key: string=null, unit?: ll.ICompilationUnit): hl.IHighLevelNode {
-    var lowLevel:ll.ILowLevelASTNode = jsyaml.createNode(key?key:"key");
+    var lowLevel:ll.ILowLevelASTNode = jsyaml.createNode(key?key:"key",null,unit);
 
     var nm = new hlimpl.ASTNodeImpl(lowLevel,null,t,p);
 

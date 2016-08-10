@@ -148,19 +148,41 @@
       "code": 11,
       "message": "string should match to ^\\d+\\-\\w+$",
       "path": "api.raml",
-      "line": 17,
-      "column": 2,
-      "position": 261,
+      "line": 14,
+      "column": 14,
+      "position": 235,
       "range": [
         {
-          "line": 17,
-          "column": 2,
-          "position": 261
+          "line": 14,
+          "column": 14,
+          "position": 235
         },
         {
+          "line": 14,
+          "column": 25,
+          "position": 246
+        }
+      ],
+      "trace": [
+        {
+          "code": 11,
+          "message": "string should match to ^\\d+\\-\\w+$",
+          "path": "api.raml",
           "line": 17,
-          "column": 5,
-          "position": 264
+          "column": 2,
+          "position": 261,
+          "range": [
+            {
+              "line": 17,
+              "column": 2,
+              "position": 261
+            },
+            {
+              "line": 17,
+              "column": 5,
+              "position": 264
+            }
+          ]
         }
       ]
     }

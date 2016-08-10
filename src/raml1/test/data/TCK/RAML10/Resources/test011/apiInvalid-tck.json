@@ -359,6 +359,50 @@
   "errors": [
     {
       "code": 11,
+      "message": "Unknown property:extraProperty1",
+      "path": "apiInvalid.raml",
+      "line": 21,
+      "column": 12,
+      "position": 386,
+      "range": [
+        {
+          "line": 21,
+          "column": 12,
+          "position": 386
+        },
+        {
+          "line": 21,
+          "column": 26,
+          "position": 400
+        }
+      ],
+      "isWarning": true,
+      "trace": [
+        {
+          "code": 11,
+          "message": "Unknown property:extraProperty1",
+          "path": "apiInvalid.raml",
+          "line": 42,
+          "column": 10,
+          "position": 848,
+          "range": [
+            {
+              "line": 42,
+              "column": 10,
+              "position": 848
+            },
+            {
+              "line": 42,
+              "column": 17,
+              "position": 855
+            }
+          ],
+          "isWarning": true
+        }
+      ]
+    },
+    {
+      "code": 11,
       "message": "Required property: extraProperty is missed",
       "path": "apiInvalid.raml",
       "line": 42,
@@ -376,27 +420,6 @@
           "position": 855
         }
       ]
-    },
-    {
-      "code": 11,
-      "message": "Unknown property:extraProperty1",
-      "path": "apiInvalid.raml",
-      "line": 42,
-      "column": 10,
-      "position": 848,
-      "range": [
-        {
-          "line": 42,
-          "column": 10,
-          "position": 848
-        },
-        {
-          "line": 42,
-          "column": 17,
-          "position": 855
-        }
-      ],
-      "isWarning": true
     }
   ]
 }
