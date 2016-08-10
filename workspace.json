@@ -9,12 +9,14 @@
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
+    "gitBranch": "hotfix-for-0.2.30",
     "installTypings" : true
   },
   "raml-typesystem" : {
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
+    "gitBranch": "hotfix-for-0.2.30",
     "installTypings" : true
   },
   "ts-structure-parser" : {
