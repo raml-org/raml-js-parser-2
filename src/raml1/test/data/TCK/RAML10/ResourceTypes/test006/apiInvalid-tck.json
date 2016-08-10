@@ -397,19 +397,41 @@
       "code": 11,
       "message": "Required property: propertyFromResourceType2 is missed",
       "path": "apiInvalid.raml",
-      "line": 45,
-      "column": 0,
-      "position": 935,
+      "line": 40,
+      "column": 10,
+      "position": 789,
       "range": [
         {
-          "line": 45,
-          "column": 0,
-          "position": 935
+          "line": 40,
+          "column": 10,
+          "position": 789
         },
         {
+          "line": 40,
+          "column": 17,
+          "position": 796
+        }
+      ],
+      "trace": [
+        {
+          "code": 11,
+          "message": "Required property: propertyFromResourceType2 is missed",
+          "path": "apiInvalid.raml",
           "line": 45,
-          "column": 9,
-          "position": 944
+          "column": 0,
+          "position": 935,
+          "range": [
+            {
+              "line": 45,
+              "column": 0,
+              "position": 935
+            },
+            {
+              "line": 45,
+              "column": 9,
+              "position": 944
+            }
+          ]
         }
       ]
     },
@@ -417,22 +439,45 @@
       "code": 11,
       "message": "Unknown property:propertyFromResourceType1",
       "path": "apiInvalid.raml",
-      "line": 45,
-      "column": 0,
-      "position": 935,
+      "line": 42,
+      "column": 12,
+      "position": 854,
       "range": [
         {
-          "line": 45,
-          "column": 0,
-          "position": 935
+          "line": 42,
+          "column": 12,
+          "position": 854
         },
         {
-          "line": 45,
-          "column": 9,
-          "position": 944
+          "line": 42,
+          "column": 37,
+          "position": 879
         }
       ],
-      "isWarning": true
+      "isWarning": true,
+      "trace": [
+        {
+          "code": 11,
+          "message": "Unknown property:propertyFromResourceType1",
+          "path": "apiInvalid.raml",
+          "line": 45,
+          "column": 0,
+          "position": 935,
+          "range": [
+            {
+              "line": 45,
+              "column": 0,
+              "position": 935
+            },
+            {
+              "line": 45,
+              "column": 9,
+              "position": 944
+            }
+          ],
+          "isWarning": true
+        }
+      ]
     }
   ]
 }
