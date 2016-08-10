@@ -254,9 +254,7 @@ export function projectRoot(): string {
 }
 
 export function data(filepath: string): string {
-  var datadir =  '/Users/dreamflyer/Downloads/project/modules/raml-js-parser-2/src/raml1/test/data';
-
-  //var datadir =  path.resolve(projectRoot(), 'src/raml1/test/data');
+  var datadir =  path.resolve(projectRoot(), 'src/raml1/test/data');
   return path.resolve(datadir, filepath);
 }
 
