@@ -3609,10 +3609,10 @@ export class InsertionPoint {
     }
 }
 
-export function createNode(key:string,parent?:ASTNode){
+export function createNode(key:string,parent?:ASTNode,unit?:lowlevel.ICompilationUnit){
     //console.log('create node: ' + key);
     var node:yaml.YAMLNode=yaml.newMapping(yaml.newScalar(key),yaml.newMap());
-    return new ASTNode(node,null,parent,null,null);
+    return new ASTNode(node,unit,parent,null,null);
 }
 
 export function createMap(mappings: yaml.YAMLMapping[]){

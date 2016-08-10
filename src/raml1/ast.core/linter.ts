@@ -1736,7 +1736,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
             if (pr.range() instanceof def.ReferenceType){
                 var t=<def.ReferenceType>pr.range();
                 if (true){
-                    var mockNode=jsyaml.createNode(""+vl,<any>node.lowLevel().parent());
+                    var mockNode=jsyaml.createNode(""+vl,<any>node.lowLevel().parent(),node.lowLevel().unit());
                     mockNode._actualNode().startPosition=node.lowLevel().valueStart();
                     mockNode._actualNode().endPosition=node.lowLevel().valueEnd();
                     var stv=new hlimpl.StructuredValue(mockNode,node.parent(),node.property())
@@ -3438,7 +3438,8 @@ export function createIssue(
     }
     var error=localError(node, c, w, message,false,pr);
     if (original) {
-        error.extras.push(original);
+        original.extras.push(error);
+        error = original;
     }
     //console.log(error.start+":"+error.end)
     return error;
@@ -3469,7 +3470,8 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
     }
     var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,false);
     if (original) {
-        error.extras.push(original);
+        original.extras.push(error);
+        error = original;
     }
     //console.log(error.start+":"+error.end)
     return error;

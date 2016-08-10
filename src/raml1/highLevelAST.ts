@@ -170,6 +170,8 @@ export interface RamlParserError {
      * Whether the message is warning or not
      */
     isWarning: boolean;
+    
+    trace?:RamlParserError[];
 }
 
 export interface NodeMetadata extends ValueMetadata{

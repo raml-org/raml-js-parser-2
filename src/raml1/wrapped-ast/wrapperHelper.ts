@@ -986,7 +986,7 @@ function extractParams(
         else {
             var universe = definition.universe();
             var nc=<defs.NodeClass>universe.type(universeDef.Universe10.StringTypeDeclaration.name);
-            var node=stubs.createStubNode(nc,null,paramName);
+            var node=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
             var uriParameter = factory.buildWrapperNode(node);
             var hlNode = uriParameter.highLevel();
             hlNode.setParent(ownerHl);

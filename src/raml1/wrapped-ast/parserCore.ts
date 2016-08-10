@@ -233,55 +233,56 @@ export class BasicNodeImpl implements hl.BasicNode{
         if(highLevelErrors!=null) {
             issues = issues.concat(highLevelErrors);
         }
-        var lineMapper = this._node.lowLevel().unit().lineMapper();
-
-        var result = issues.map(x=>{
-
-            var startPoint = null;
-            try {
-                startPoint = x.node.lowLevel().unit().lineMapper().position(x.start);
-            } catch(e){
-                console.warn(e);
-                
-                try {
-                    startPoint = lineMapper.position(x.start);
-                } catch(e1) {
-                    console.warn(e1);
-                }
-            }
-
-            var endPoint = null;
-            try {
-                endPoint = lineMapper.position(x.end);
-            }
-            catch(e){
-                console.warn(e);
-            }
-
-            var path:string;
-            if(x.path) {
-                path = x.path;
-            }
-            else if(x.node) {
-                path = x.node.lowLevel().unit().path();
-            }
-            else{
-                path = search.declRoot(this.highLevel()).lowLevel().unit().path();
-            }
-
-            return {
-                code: x.code,
-                message: x.message,
-                path: path,
-                start: x.start,
-                end: x.end,
-                line: startPoint ? (startPoint.errorMessage ? null : startPoint.line) : null,
-                column: startPoint ? (startPoint.errorMessage ? null : startPoint.column) : null,
-                range: [startPoint, endPoint],
-                isWarning: x.isWarning
-            };
-        });
+        
+        var result = issues.map(x=>this.basicError(x));
         return result;
+    }
+
+    private basicError(x:hl.ValidationIssue):RamlParserError {
+        var lineMapper = (x.node && x.node.lowLevel() && x.node.lowLevel().unit().lineMapper())
+            || this._node.lowLevel().unit().lineMapper();
+
+        var startPoint = null;
+        try {
+            startPoint = lineMapper.position(x.start);
+        }
+        catch (e) {
+            console.warn(e);
+        }
+
+        var endPoint = null;
+        try {
+            endPoint = lineMapper.position(x.end);
+        }
+        catch (e) {
+            console.warn(e);
+        }
+
+        var path:string;
+        if (x.path) {
+            path = x.path;
+        }
+        else if (x.node) {
+            path = x.node.lowLevel().unit().path();
+        }
+        else {
+            path = search.declRoot(this.highLevel()).lowLevel().unit().path();
+        }
+        var eObj:any = {
+            code: x.code,
+            message: x.message,
+            path: path,
+            start: x.start,
+            end: x.end,
+            line: startPoint.errorMessage ? null : startPoint.line,
+            column: startPoint.errorMessage ? null : startPoint.column,
+            range: [startPoint, endPoint],
+            isWarning: x.isWarning
+        };
+        if(x.extras && x.extras.length>0){
+            eObj.trace = x.extras.map(y=>this.basicError(y));
+        }
+        return eObj;
     }
 
     /**
@@ -430,7 +431,7 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
 export function toStructuredValue(node:hl.IAttribute):hlImpl.StructuredValue{
     var value = node.value();
     if(typeof value ==='string'||value==null){
-        var mockNode=jsyaml.createNode(value);
+        var mockNode=jsyaml.createNode(value,null,node.lowLevel().unit());
         mockNode._actualNode().startPosition=node.lowLevel().valueStart();
         mockNode._actualNode().endPosition=node.lowLevel().valueEnd();
         var stv=new hlImpl.StructuredValue(mockNode,node.parent(),node.property());
