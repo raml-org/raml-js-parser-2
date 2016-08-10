@@ -9,7 +9,6 @@
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
-    "gitBranch": "hotfix-for-0.2.30",
     "installTypings" : true
   },
   "raml-typesystem" : {
