@@ -540,7 +540,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
                         issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
                         for(var issue of issues) {
-                            issue.extras = brand;
+                            issue.extras.push(brand);
                             v.accept(issue);
                         }
                     }
