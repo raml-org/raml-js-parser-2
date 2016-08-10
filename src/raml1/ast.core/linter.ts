@@ -539,8 +539,10 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     if (issues.length>0){
                         var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
                         issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
-                        brand.extras=issues;
-                        v.accept(brand);
+                        for(var issue of issues) {
+                            issue.extras = brand;
+                            v.accept(issue);
+                        }
                     }
                 }
             }

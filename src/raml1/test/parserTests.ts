@@ -639,10 +639,10 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/recursive/r1.raml"));
     //})
     it ("custom facets validator" ,function(){
-        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","Issues in the used library:./common.raml"]);
+        testErrors(util.data("commonLibrary/api.raml"), ["string is expected","string is expected","object is expected"]);
     })
     it ("custom facets validator2" ,function(){
-        testErrors(util.data("commonLibrary/api2.raml"),["issues in the used library:./common.raml"]);
+        testErrors(util.data("commonLibrary/api2.raml"),["object is expected"]);
     })
     //it ("custom facets validator3" ,function(){
     //    testErrors(util.data("commonLibrary/api3.raml"), ["object is expected ../../../src/raml1/test/data/commonLibrary/common.raml"]);
@@ -749,7 +749,7 @@ describe('Parser regression tests', function () {
     })
 
     it ("library is not user class" ,function(){
-        testErrors(util.data("parser/raml/raml.raml"),["Issues in the used library:../sds/sds.raml"]);
+        testErrors(util.data("parser/raml/raml.raml"),["It is only allowed to use scalar properties as discriminators"]);
     })
     it ("library from christian" ,function(){
         testErrors(util.data("parser/libraries/christian/api.raml"));
