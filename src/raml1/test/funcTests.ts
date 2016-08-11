@@ -127,6 +127,212 @@ describe('Parser searchProxy functions tests',function() {
             }
         });
     });
+    
+    it("qName1", function () {
+        var api = util.loadApi(util.data('./functions/simple.raml'));
+        
+        assert.equal(search.qName((<any>api).wrapperNode().types()[0].highLevel(), api), 'SomeType');
+    });
+
+    it("qName2", function () {
+        var api = util.loadApi(util.data('./functions/api.raml'));
+
+        var lib = util.loadApi(util.data('./functions/lib.raml'));
+
+        assert.equal(search.qName((<any>lib).wrapperNode().types()[0].highLevel(), api), 'lib.TypeFromLibrary');
+    });
+
+    it("qName3", function () {
+        var api = util.loadApi(util.data('./functions/simple08.raml'));
+        
+        assert.equal(search.qName((<any>api).wrapperNode().traits()[0].highLevel(), api), 'secured');
+    });
+
+    it("subTypesWithLocals", function () {
+        var api = util.loadApi(util.data('./functions/api.raml'));
+        
+        var highLevelNode = (<any>api).wrapperNode().types()[0].highLevel();
+
+        var res = (<any>search).subTypesWithLocals(highLevelNode.definition(), api);
+        
+        assert.equal(JSON.stringify(res), JSON.stringify([]));
+    });
+
+    it("nodesDeclaringType", function () {
+        var api = util.loadApi(util.data('./functions/api.raml'));
+
+        var highLevelNode = (<any>api).wrapperNode().types()[0].highLevel();
+
+        var res = (<any>search).nodesDeclaringType(highLevelNode.definition(), api);
+
+        testNodeDump(res[0], util.data('./functions/dumps/nodesDeclaringType.dump'));
+    });
+
+    it("findExampleContentType", function () {
+        this.timeout(15000);
+        
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+
+        var method = (<any>api).wrapperNode().resources()[0].methods()[0];
+        
+        var example0 = method.body()[0].example();
+        var example1 = method.responses()[0].body()[0].example();
+        var example2 = method.responses()[1].body()[0].example();
+        var example3 = (<any>api).wrapperNode().types()[1].example();
+
+        var res0 = (<any>search).findExampleContentType(example0.highLevel());
+        var res1 = (<any>search).findExampleContentType(example1.highLevel());
+        var res2 = (<any>search).findExampleContentType(example2.highLevel());
+        var res3 = (<any>search).findExampleContentType(example3.highLevel());
+
+        assert.notEqual(!res0, true);
+        assert.notEqual(!res1, true);
+        assert.notEqual(!res2, true);
+        assert.notEqual(!res3, true);
+    });
+
+    it("parseStructuredExample", function () {
+        this.timeout(15000);
+        
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+
+        var method = (<any>api).wrapperNode().resources()[0].methods()[0];
+
+        var type0 = method.body()[0]
+        var type1 = method.responses()[0].body()[0]
+        var type2 = method.responses()[1].body()[0]
+        var type3 = (<any>api).wrapperNode().types()[0]
+
+        var example0 = type0.example().highLevel();
+        var example1 = type1.example().highLevel();
+        var example2 = type2.example().highLevel();
+        var example3 = type3.example().highLevel();
+
+        var res0 = search.parseStructuredExample(example0, type0.definition());
+        var res1 = search.parseStructuredExample(example1, type1.definition());
+        var res2 = search.parseStructuredExample(example2, type2.definition());
+        var res3 = search.parseStructuredExample(example3, type3.definition());
+        
+        testNodeDump(res0, util.data('./functions/dumps/parseStructuredExample0.dump'));
+        testNodeDump(res1, util.data('./functions/dumps/parseStructuredExample1.dump'));
+        testNodeDump(res2, util.data('./functions/dumps/parseStructuredExample2.dump'));
+        testNodeDump(res3, util.data('./functions/dumps/parseStructuredExample3.dump'));
+    });
+
+    it("isExampleNode", function () {
+        this.timeout(15000);
+
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+
+        var method = (<any>api).wrapperNode().resources()[0].methods()[0];
+
+        var type0 = method.body()[0]
+        var type1 = method.responses()[0].body()[0]
+        var type2 = method.responses()[1].body()[0]
+        var type3 = (<any>api).wrapperNode().types()[0]
+
+        var example0 = type0.example().highLevel();
+        var example1 = type1.example().highLevel();
+        var example2 = type2.example().highLevel();
+        var example3 = type3.example().highLevel();
+
+        var res0 = search.isExampleNode(example0);
+        var res1 = search.isExampleNode(example1);
+        var res2 = search.isExampleNode(example2);
+        var res3 = search.isExampleNode(example3);
+
+        assert.equal(res0, true);
+        assert.equal(res1, true);
+        assert.equal(res2, true);
+        assert.equal(res3, true);
+    });
+
+    it("referenceTargets", function () {
+        this.timeout(15000);
+
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+
+        var method = (<any>api).wrapperNode().resources()[0].methods()[0];
+
+        var type0 = method.body()[0].highLevel();
+        var type1 = method.responses()[0].body()[0].highLevel();
+        var type2 = method.responses()[1].body()[0].highLevel();
+        var type3 = (<any>api).wrapperNode().types()[0].highLevel();
+
+        var res0 = search.referenceTargets(type0.attr('type').property(), type0);
+        var res1 = search.referenceTargets(type1.attr('type').property(), type1);
+        var res2 = search.referenceTargets(type2.attr('type').property(), type2);
+        var res3 = search.referenceTargets(type3.attr('type').property(), type3);
+
+        assert.equal(res0.length > 0, true);
+        assert.equal(res1.length > 0, true);
+        assert.equal(res2.length > 0, true);
+        assert.equal(res3.length > 0, true);
+    });
+
+    it("findUsages", function () {
+        this.timeout(15000);
+
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+        
+        var unit = api.lowLevel().unit();
+        
+        var content = unit.contents();
+
+        var words = ['lib', 'SomeType', 'AnotherType', 'application/json', 'Trait1', 'Scheme1', 'someProp', 'ex1', 'ex2'];
+        
+        var res = [];
+
+        words.forEach(word => {
+            var index = content.indexOf(word) + 1;
+
+            var usages = search.findUsages(unit, index);
+
+            usages && usages.results && usages.results.length > 0 && res.push({usages: usages, index: index});
+        });
+        
+        assert.equal(res.length, 4);
+    });
+
+    it("findDeclaration", function () {
+        this.timeout(15000);
+
+        var api = util.loadApi(util.data('./functions/api1.raml'));
+
+        var unit = api.lowLevel().unit();
+
+        var content = unit.contents();
+
+        var words = ['lib', 'SomeType', 'AnotherType', 'application/json', 'Trait1', 'Scheme1', 'someProp', 'ex1', 'ex2'];
+
+        var res = [];
+
+        words.forEach(word => {
+            var index = content.indexOf(word) + 1;
+
+            var usages = search.findUsages(unit, index);
+
+            if(usages && usages.results && usages.results.length > 0) {
+                res= res.concat(usages.results);
+            }
+        });
+        
+        var found = [];
+        
+        res.forEach(node => {
+            var valueStart =  node.lowLevel().valueStart() > 0 ? node.lowLevel().valueStart() : (<any>node).lowLevel()._node.startPosition;
+
+            var offset = valueStart + 2;
+
+            var declaration = search.findDeclaration(unit, offset);
+
+            declaration && found.push(declaration);
+        });
+
+        found.push(search.findDeclaration(unit, content.lastIndexOf(('lib.TypeFromLibrary')) + 6));
+        
+        assert.equal(found[5].name(), 'TypeFromLibrary');
+    });
 });
 
 describe('Parser schema functions tests',function() {
@@ -205,13 +411,6 @@ function getContent(relativePath) {
     return fs.readFileSync(util.data(relativePath)).toString();
 }
 
-function testDump(apiPath: string, options: any) {
-    var api = util.loadApi(apiPath);
-    var dumpPath = util.dumpPath(apiPath);
-    
-    util.compareDump(api.wrapperNode().toJSON(options), dumpPath, apiPath);
-}
-
 function testNodeDump(api: any, dumpPath: string) {
     util.compareDump(api.wrapperNode().toJSON({}), dumpPath, null);
 }
@@ -219,197 +418,3 @@ function testNodeDump(api: any, dumpPath: string) {
 function testWrapperDump(api: any, dumpPath: string) {
     util.compareDump(api.toJSON({}), dumpPath, null);
 }
-
-function testErrorsWithLineNumber(p:string,lineNumber: number, column:number) {
-    var api = util.loadApi(p);
-    var errors:any = util.validateNode(api);
-    var issue:hl.ValidationIssue =errors[0];
-    var position:ll.TextPosition=null;
-    if (typeof issue.node =="function"){
-        var javaposition=(<any>issue).start();
-        assert.equal(javaposition.column(),column);
-        assert.equal(javaposition.line(),lineNumber);
-    }
-    else{
-        position=issue.node.lowLevel().unit().lineMapper().position(issue.start);
-        assert.equal(position.column,column);
-        assert.equal(position.line,lineNumber);
-    }
-
-
-}
-function testErrorsEnd(p:string) {
-    var api = util.loadApi(p);
-    var errors:any = util.validateNode(api);
-    var issue:hl.ValidationIssue =errors[0];
-    assert.equal(issue.end<api.lowLevel().unit().contents().length,true);
-
-}
-
-export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
-    var api=util.loadApi(p);
-    api = util.expandHighIfNeeded(api);
-
-    var errors:any=util.validateNode(api);
-    if (ignoreWarnings){
-        errors=errors.filter(x=>!x.isWarning);
-    }
-    var testErrors;
-    var hasUnexpectedErr = false;
-    if(expectedErrors.length>0){
-        testErrors = validateErrors(errors, expectedErrors);
-        hasUnexpectedErr = testErrors.unexpected.length > 0 || testErrors.lostExpected.length > 0;
-    }
-
-    var condition:boolean = false;
-    condition = errors.length == expectedErrors.length;
-    if(!condition) {
-        if (errors.length > 0) {
-            errors.forEach(error=>{
-                if (typeof error.message == 'string') {
-                    console.error(error.message);
-                } else {
-                    console.error(error);
-                }
-                console.error("\n");
-            })
-        }
-    }
-
-    var errorMsg = '';
-    if (hasUnexpectedErr){
-        if (testErrors.unexpected.length > 0) {
-            errorMsg += "\nUnexpected errors: \n\n";
-            testErrors.unexpected.forEach(unexpectedError=> {
-                errorMsg += unexpectedError + "\n\n";
-            });
-        }
-        if (testErrors.lostExpected.length > 0){
-            errorMsg += "\nDisappeared expected errors: \n\n"
-            testErrors.lostExpected.forEach(lostExpected=>{
-                errorMsg += lostExpected + "\n\n";
-            });
-        }
-    }
-
-    if (hasUnexpectedErr || errors.length != expectedErrors.length) {
-        console.warn("Expected errors:");
-        expectedErrors.forEach(expectedError=>console.warn(expectedError));
-
-        var unitContents = api.lowLevel().unit().contents();
-        console.warn("Actual errors:");
-
-        errors.forEach(error=>console.warn(error.message + " : " + unitContents.substr(error.start, error.end-error.start)));
-    }
-    assert.equal(hasUnexpectedErr, false, "Unexpected errors found\n"+errorMsg);
-    assert.equal(errors.length, expectedErrors.length, "Wrong number of errors\n"+errorMsg);
-}
-function testIds(p:string){
-    var api=util.loadApi(p);
-    testId(api);
-}
-function testId(n:hl.IParseResult){
-    //console.log(n.id());
-    if (n!=n.root()) {
-        var nnn = n.root().findById(n.id());
-        assert.equal(nnn != null, true)
-    }
-    var children = n.children();
-    var l = tools.getLength(children);
-    for(var i = 0 ; i < l ; i++){
-        var item = tools.collectionItem(children,i);
-        testId(item);
-    }
-}
-
-function escapeRegexp(regexp: string) {
-    return regexp.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-}
-
-function validateErrors(realErrors:any, expectedErrors:string[]){
-    var errors = {'unexpected': [], 'lostExpected': []};
-    if (realErrors.length > 0){
-        realErrors.forEach(error=>{
-            var realError: string;
-            if (typeof error.message == 'string'){
-                realError = error.message;
-            }else{
-                realError = error;
-            }
-            var isExpectedError:boolean = false;
-            expectedErrors.forEach(expectedError=>{
-                var index = realError.search(new RegExp(expectedError, "mi"));
-                if (index>-1) {
-                    isExpectedError = true;
-                } else {
-                    index = realError.search(new RegExp(escapeRegexp(expectedError), "mi"));
-                    if (index>-1) isExpectedError = true;
-                }
-            });
-            if (!isExpectedError)
-                errors.unexpected.push(realError);
-        });
-
-        expectedErrors.forEach(expectedError=>{
-            var isLostError = true;
-            realErrors.forEach(error=>{
-                var realError: string;
-                if (typeof error.message == 'string'){
-                    realError = error.message;
-                }else{
-                    realError = error;
-                }
-                var index = realError.search(new RegExp(expectedError, "i"))
-                if (index > -1) {
-                    isLostError = false;
-                } else {
-                    index = realError.search(new RegExp(escapeRegexp(expectedError), "i"));
-                    if (index > -1) isLostError = false;
-                }
-            });
-            if (isLostError)
-                errors.lostExpected.push(expectedError);
-        });
-    }
-    return errors;
-}
-function testErrorsByNumber(p:string,count:number=0,deviations:number=0){
-    var api=util.loadApi(p);
-    var errors:any=util.validateNode(api);
-
-    var condition:boolean = false;
-    if(deviations==0){
-        condition = errors.length == count;
-    }
-    else if(deviations>0){
-        condition = errors.length >= count;
-    }
-    else{
-        condition = errors.length <= count;
-    }
-    if(!condition) {
-        if (errors.length > 0) {
-            errors.forEach(error=>{
-                if (typeof error.message == 'string') {
-                    console.warn(error.message);
-                } else {
-                    console.warn(error);
-                }
-                console.warn("\n");
-            })
-
-        } else {
-            //console.log(errors)
-        }
-    }
-    if(deviations==0) {
-        assert.equal(errors.length, count);
-    }
-    else if(deviations>0){
-        assert.equal(errors.length>=count, true);
-    }
-    else{
-        assert.equal(errors.length<=count, true);
-    }
-}
-

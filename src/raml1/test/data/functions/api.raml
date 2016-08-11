@@ -1,0 +1,16 @@
+#%RAML 1.0
+
+title: Api
+uses:
+  lib: lib.raml
+types:
+  SomeType:
+    type: lib.TypeFromLibrary
+    properties:
+      prop: string
+
+  AnotherType:
+    type: SomeType
+    example:
+      prop: blah
+      someProp: blahblah
