@@ -20,9 +20,13 @@ describe('Parser index functions tests',function() {
         this.timeout(15000);
 
         index.loadRAML(util.data("../example-ramls/Instagram/api.raml"), []).then((api: any) => {
-            testWrapperDump(api, util.data('./functions/dumps/apiAsync.dump'));
+            try {
+                testWrapperDump(api, util.data('./functions/dumps/apiAsync.dump'));
 
-            done();
+                done();
+            } catch(exception) {
+                done(exception);
+            }
         });
     });
 
@@ -105,15 +109,23 @@ describe('Parser searchProxy functions tests',function() {
         assert.equal(search.enumValues(prop, hl).length > 0, true);
     });
 
-    it("globalDeclarations", function () {
-        var api = util.loadApi(util.data('./functions/simple.raml'));
+    it("globalDeclarations", function (done) {
+        this.timeout(15000);
 
-        var wrapper: any = (<any>api).wrapperNode().expand();
+        index.loadRAML(util.data('./functions/simple.raml'), []).then((wrapper: any) => {
+            var expanded = wrapper.expand();
+            
+            var globals = search.globalDeclarations(expanded.highLevel());
 
-        var globals = search.globalDeclarations(api);
-        
-        testNodeDump(globals[0], util.data('./functions/dumps/globalDeclarations0.dump'));
-        testNodeDump(globals[1], util.data('./functions/dumps/globalDeclarations1.dump'));
+            try {
+                testNodeDump(globals[0], util.data('./functions/dumps/globalDeclarations0.dump'));
+                testNodeDump(globals[1], util.data('./functions/dumps/globalDeclarations1.dump'));
+                
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
     });
 });
 
