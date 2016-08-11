@@ -312,44 +312,54 @@ describe('Parser searchProxy functions tests',function() {
         assert.equal(res.length, 4);
     });
 
-    it("findDeclaration", function () {
+    it("findDeclaration", function (done) {
         this.timeout(15000);
 
-        var api = util.loadApi(util.data('./functions/api1.raml'));
+        index.loadRAML(util.data('./functions/api1.raml'), []).then((wrapper: any) => {
 
-        var unit = api.lowLevel().unit();
+            var api = wrapper.highLevel();
 
-        var content = unit.contents();
+            var unit = api.lowLevel().unit();
 
-        var words = ['lib', 'SomeType', 'AnotherType', 'application/json', 'Trait1', 'Scheme1', 'someProp', 'ex1', 'ex2'];
+            var content = unit.contents();
 
-        var res = [];
+            var words = ['lib', 'SomeType', 'AnotherType', 'application/json', 'Trait1', 'Scheme1', 'someProp', 'ex1', 'ex2'];
 
-        words.forEach(word => {
-            var index = content.indexOf(word) + 1;
+            var res = [];
 
-            var usages = search.findUsages(unit, index);
+            words.forEach(word => {
+                var index = content.indexOf(word) + 1;
 
-            if(usages && usages.results && usages.results.length > 0) {
-                res= res.concat(usages.results);
+                var usages = search.findUsages(unit, index);
+
+                if(usages && usages.results && usages.results.length > 0) {
+                    res = res.concat(usages.results);
+                }
+            });
+
+            var found = [];
+
+            res.forEach(node => {
+                var valueStart = node.lowLevel().valueStart() > 0 ? node.lowLevel().valueStart() : (<any>node).lowLevel()._node.startPosition;
+
+                var offset = valueStart + 2;
+
+                var declaration = search.findDeclaration(unit, offset);
+
+                declaration && found.push(declaration);
+            });
+
+            found.push(search.findDeclaration(unit, content.lastIndexOf(('lib.TypeFromLibrary')) + 6));
+            
+            try {
+                assert.equal(found[5].name(), 'TypeFromLibrary');
+                
+                done();
+            } catch(exception) {
+                done(exception);
             }
+
         });
-        
-        var found = [];
-        
-        res.forEach(node => {
-            var valueStart =  node.lowLevel().valueStart() > 0 ? node.lowLevel().valueStart() : (<any>node).lowLevel()._node.startPosition;
-
-            var offset = valueStart + 2;
-
-            var declaration = search.findDeclaration(unit, offset);
-
-            declaration && found.push(declaration);
-        });
-
-        found.push(search.findDeclaration(unit, content.lastIndexOf(('lib.TypeFromLibrary')) + 6));
-        
-        assert.equal(found[5].name(), 'TypeFromLibrary');
     });
 });
 
