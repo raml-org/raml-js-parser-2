@@ -255,27 +255,37 @@ describe('Parser searchProxy functions tests',function() {
         assert.equal(res3, true);
     });
 
-    it("referenceTargets", function () {
+    it("referenceTargets", function (done) {
         this.timeout(15000);
 
-        var api = util.loadApi(util.data('./functions/api1.raml'));
+        index.loadRAML(util.data('./functions/api1.raml'), []).then((wrapper: any) => {
+            var highLevelNode = wrapper.types()[0].highLevel();
 
-        var method = (<any>api).wrapperNode().resources()[0].methods()[0];
+            var res = (<any>search).nodesDeclaringType(highLevelNode.definition(), wrapper.highLevel());
 
-        var type0 = method.body()[0].highLevel();
-        var type1 = method.responses()[0].body()[0].highLevel();
-        var type2 = method.responses()[1].body()[0].highLevel();
-        var type3 = (<any>api).wrapperNode().types()[0].highLevel();
-
-        var res0 = search.referenceTargets(type0.attr('type').property(), type0);
-        var res1 = search.referenceTargets(type1.attr('type').property(), type1);
-        var res2 = search.referenceTargets(type2.attr('type').property(), type2);
-        var res3 = search.referenceTargets(type3.attr('type').property(), type3);
-
-        assert.equal(res0.length > 0, true, "assert0 failed");
-        assert.equal(res1.length > 0, true, "assert1 failed");
-        assert.equal(res2.length > 0, true, "assert2 failed");
-        assert.equal(res3.length > 0, true, "assert3 failed");
+            try {
+                var method = wrapper.resources()[0].methods()[0];
+                
+                var type0 = method.body()[0].highLevel();
+                var type1 = method.responses()[0].body()[0].highLevel();
+                var type2 = method.responses()[1].body()[0].highLevel();
+                var type3 = wrapper.types()[0].highLevel();
+                
+                var res0 = search.referenceTargets(type0.attr('type').property(), type0);
+                var res1 = search.referenceTargets(type1.attr('type').property(), type1);
+                var res2 = search.referenceTargets(type2.attr('type').property(), type2);
+                var res3 = search.referenceTargets(type3.attr('type').property(), type3);
+                
+                assert.equal(res0.length > 0, true, "assert0 failed");
+                assert.equal(res1.length > 0, true, "assert1 failed");
+                assert.equal(res2.length > 0, true, "assert2 failed");
+                assert.equal(res3.length > 0, true, "assert3 failed");
+                
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
     });
 
     it("findUsages", function () {
