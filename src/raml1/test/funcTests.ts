@@ -158,14 +158,22 @@ describe('Parser searchProxy functions tests',function() {
         assert.equal(JSON.stringify(res), JSON.stringify([]));
     });
 
-    it("nodesDeclaringType", function () {
-        var api = util.loadApi(util.data('./functions/api.raml'));
+    it("nodesDeclaringType", function (done) {
+        this.timeout(15000);
 
-        var highLevelNode = (<any>api).wrapperNode().types()[0].highLevel();
+        index.loadRAML(util.data('./functions/api.raml'), []).then((wrapper: any) => {
+            var highLevelNode = wrapper.types()[0].highLevel();
 
-        var res = (<any>search).nodesDeclaringType(highLevelNode.definition(), api);
+            var res = (<any>search).nodesDeclaringType(highLevelNode.definition(), wrapper.highLevel());
 
-        testNodeDump(res[0], util.data('./functions/dumps/nodesDeclaringType.dump'));
+            try {
+                testNodeDump(res[0], util.data('./functions/dumps/nodesDeclaringType.dump'));
+
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
     });
 
     it("findExampleContentType", function () {
