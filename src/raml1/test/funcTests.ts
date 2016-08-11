@@ -272,10 +272,10 @@ describe('Parser searchProxy functions tests',function() {
         var res2 = search.referenceTargets(type2.attr('type').property(), type2);
         var res3 = search.referenceTargets(type3.attr('type').property(), type3);
 
-        assert.equal(res0.length > 0, true);
-        assert.equal(res1.length > 0, true);
-        assert.equal(res2.length > 0, true);
-        assert.equal(res3.length > 0, true);
+        assert.equal(res0.length > 0, true, "assert0 failed");
+        assert.equal(res1.length > 0, true, "assert1 failed");
+        assert.equal(res2.length > 0, true, "assert2 failed");
+        assert.equal(res3.length > 0, true, "assert3 failed");
     });
 
     it("findUsages", function () {
