@@ -14,6 +14,7 @@ import search = require("../../searchProxy");
 import schema = require("../../schema");
 
 import fs = require("fs");
+import path = require("path");
 
 describe('Parser index functions tests',function() {
     it("loadRaml", function(done){
@@ -434,6 +435,88 @@ describe('Parser schema functions tests',function() {
         util.compareToFileObject(sch, util.data("./functions/dumps/createModelToSchemaGenerator.dump"), true);
     });
 });
+
+describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
+    this.timeout(60000);
+
+    it("wrappers test 0", function (done) {
+        index.loadRAML(util.data('./functions/simple08_1.raml'), []).then((wrapper: any) => {
+            var w = wrapper;
+            
+            var h = w.highLevel();
+            try {
+                createWrappers(h);
+
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
+    });
+
+    it("wrappers test 1", function (done) {
+        index.loadRAML(util.data('./functions/RAML08/Instagram/api.raml'), []).then((wrapper: any) => {
+            try {
+                testWrapperDump(wrapper, util.data('./functions/dumps/Instagramm08.dump'));
+                
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
+    });
+
+    it("wrappers test 2", function (done) {
+        index.loadRAML(util.data('./functions/RAML10/Instagram1.0/api.raml'), []).then((wrapper: any) => {
+            try {
+                testWrapperDump(wrapper, util.data('./functions/dumps/Instagramm10.dump'));
+
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
+    });
+});
+
+// function allRamls(dirPath): any[] {
+//     var files = fs.readdirSync(dirPath);
+//    
+//     var result = [];
+//    
+//     files.forEach(file => {
+//         var filePath = path.join(dirPath, file);
+//        
+//         if(fs.existsSync(filePath)) {
+//             var stat = fs.statSync(filePath);
+//            
+//             if(stat.isDirectory()) {
+//                 result = result.concat(allRamls(filePath));
+//             } else if(path.extname(filePath) === '.raml') {
+//                 result.push(filePath);
+//             } else if(path.basename(filePath).indexOf('tck.json') > 0) {
+//                 fs.unlinkSync(filePath);
+//             }
+//         }
+//     });
+//    
+//     return result;
+// }
+//
+function createWrappers(highLevel) {
+    if(!highLevel) {
+        return;
+    }
+
+    var wrapper = highLevel.wrapperNode && highLevel.wrapperNode();
+   
+    var children1 = (highLevel.children && highLevel.children()) || [];
+    var children2 = (highLevel.directChildren && highLevel.directChildren()) || [];
+   
+    var children = children1.concat(children2);
+
+    children.forEach(child => createWrappers(child));
+}
 
 function getContent(relativePath) {
     return fs.readFileSync(util.data(relativePath)).toString();

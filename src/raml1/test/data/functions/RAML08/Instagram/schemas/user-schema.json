@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-03/schema",
+    "type": "object",
+    "properties": {
+        "data": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "profile_picture": {
+                    "type": "string"
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "counts": {
+                    "properties": {
+                        "media": {
+                            "type": "integer"
+                        },
+                        "follows": {
+                            "type": "integer"
+                        },
+                        "followed_by": {
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

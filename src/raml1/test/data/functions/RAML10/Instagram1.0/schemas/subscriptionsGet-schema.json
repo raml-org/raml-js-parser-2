@@ -1,0 +1,80 @@
+{
+  "required" : true ,
+  "$schema" : "http://json-schema.org/draft-03/schema" ,
+  "type" : "object" ,
+  "properties" : {
+    "meta" : {
+      "type" : "object" ,
+      "required" : false ,
+      "properties" : {
+        "code" : {
+          "type" : "number" ,
+          "required" : false
+        }
+      }
+    } ,
+    "data" : {
+      "type" : "array" ,
+      "required" : false ,
+      "items" : [
+        {
+          "type" : "object" ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "type" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "object" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "aspect" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "callback_url" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "object_id" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        } , {
+          "type" : "object" ,
+          "properties" : {
+            "id" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "type" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "object" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "object_id" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "aspect" : {
+              "type" : "string" ,
+              "required" : false
+            } ,
+            "callback_url" : {
+              "type" : "string" ,
+              "required" : false
+            }
+          }
+        }
+      ]
+    }
+  }
+}
