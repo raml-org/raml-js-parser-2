@@ -21,3 +21,4 @@ mocha data/parser/test/specs/validator
 mocha data/parser/test/specs/duplicateKeysValidations
 mocha parserTestsExpanded
 mocha TCK
+mocha funcTests

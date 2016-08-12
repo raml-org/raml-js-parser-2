@@ -41,6 +41,7 @@ var testFiles = [
   // ////
     'dist/raml1/test/parserTests.js',
    'dist/raml1/test/parserTests2.js',
+    'dist/raml1/test/funcTests.js',
    'dist/raml1/test/parserASTTests.js',
    'dist/raml1/test/traits-and-resource-types-expanding-tests.js',
    'dist/raml1/test/helpersTest.js',

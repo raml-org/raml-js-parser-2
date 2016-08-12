@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "properties": {
+        "users_in_photo": {
+          "type": "array",
+          "required": false,
+          "items": [{
+            "properties": {
+              "user": {
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "full_name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "profile_picture": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "position": {
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  },
+                  "y": {
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }]
+        },
+        "filter": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "required": false,
+          "items": [{
+            "type": "string"
+          }]
+        },
+        "comments": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "properties": {
+                  "created_time": {
+                    "type": "string"
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "from": {
+                    "properties": {
+                      "username": {
+                        "type": "string"
+                      },
+                      "full_name": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "profile_picture": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "count": {
+              "type": "integer"
+            }
+          }
+        },
+        "caption": {
+          "type": "string"
+        },
+        "likes": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "required": false,
+              "items": [{
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "full_name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "profile_picture": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }]
+            }
+          }
+        },
+        "link": {
+          "type": "string"
+        },
+        "user": {
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "full_name": {
+              "type": "string"
+            },
+            "profile_picture": {
+              "type": "string"
+            },
+            "bio": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "created_time": {
+          "type": "string"
+        },
+        "images": {
+          "properties": {
+            "low_resolution": {
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "thumbnail": {
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "standard_resolution": {
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "width": {
+                  "type": "integer"
+                },
+                "height": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

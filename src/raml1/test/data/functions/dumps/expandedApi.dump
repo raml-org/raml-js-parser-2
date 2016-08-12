@@ -1,0 +1,152 @@
+{
+	"types": [
+		{
+			"SomeType": {
+				"name": "SomeType",
+				"displayName": "SomeType",
+				"type": [
+					"object"
+				],
+				"required": true,
+				"properties": {
+					"prop": {
+						"name": "prop",
+						"displayName": "prop",
+						"type": [
+							"string"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		}
+	],
+	"traits": [
+		{
+			"SomeTrait": {
+				"body": {
+					"application/json": {
+						"name": "application/json",
+						"displayName": "application/json",
+						"type": [
+							"SomeType"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"name": "SomeTrait"
+			}
+		}
+	],
+	"title": "Test",
+	"resources": [
+		{
+			"methods": [
+				{
+					"responses": {
+						"200": {
+							"code": "200",
+							"body": {
+								"application/xml": {
+									"name": "application/xml",
+									"displayName": "application/xml",
+									"type": [
+										"SomeType"
+									],
+									"example": {
+										"prop": "aaa"
+									},
+									"required": true,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									},
+									"structuredExample": {
+										"value": "{\n  \"prop\": \"aaa\"\n}",
+										"strict": true,
+										"name": null,
+										"structuredValue": {
+											"prop": "aaa"
+										}
+									}
+								}
+							}
+						}
+					},
+					"body": {
+						"application/json": {
+							"name": "application/json",
+							"displayName": "application/json",
+							"type": [
+								"SomeType"
+							],
+							"required": true,
+							"__METADATA__": {
+								"primitiveValuesMeta": {
+									"displayName": {
+										"calculated": true
+									},
+									"required": {
+										"insertedAsDefault": true
+									}
+								}
+							}
+						}
+					},
+					"method": "get"
+				}
+			],
+			"is": [
+				"SomeTrait"
+			],
+			"relativeUri": "/res",
+			"displayName": "/res",
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"displayName": {
+						"calculated": true
+					}
+				}
+			},
+			"relativeUriPathSegments": [
+				"res"
+			]
+		}
+	]
+}

@@ -173,14 +173,22 @@ function makeDiff(lines1: string[], lines2: string[], index: number, context: nu
   return diff;
 }
 
-export function compareToFileObject(obj: any, filename: string) {
+export function compareToFileObject(obj: any, filename: string, create: boolean = false) {
+  if(create && !fs.existsSync(filename)) {
+    fs.writeFileSync(filename, JSON.stringify(obj, null, '\t'));
+  }
+  
   var txt = fs.readFileSync(filename).toString();
   var  obj1 = JSON.parse(txt);
   var diff = compare(obj,obj1);
   assert(diff.length==0);
 }
 
-export function compareToFile(text: string, filename: string) {
+export function compareToFile(text: string, filename: string, create: boolean = false) {
+  if(create && !fs.existsSync(filename)) {
+    fs.writeFileSync(filename, text);
+  }
+
   var txt = fs.readFileSync(filename).toString();
   var lines1 = text.trim().split("\n");
   var lines2 = txt.trim().split("\n");

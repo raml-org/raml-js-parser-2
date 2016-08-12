@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: Test
+
+types:
+  SomeType:
+    type: object
+    properties:
+      prop: string
+
+/res:
+  get:
+    responses:
+      200:
+        body:
+          application/xml:
+            type: SomeType
+            example:
+              prop: aaa
