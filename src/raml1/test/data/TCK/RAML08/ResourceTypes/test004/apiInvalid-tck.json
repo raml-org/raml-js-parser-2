@@ -316,7 +316,8 @@
           "column": 15,
           "position": 781
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
@@ -336,7 +337,8 @@
           "column": 15,
           "position": 842
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
@@ -356,7 +358,8 @@
           "column": 19,
           "position": 947
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }

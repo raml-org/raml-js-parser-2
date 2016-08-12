@@ -1,0 +1,79 @@
+{
+  "ramlVersion": "RAML08",
+  "type": "Api",
+  "specification": {
+    "title": "My API",
+    "resources": [
+      {
+        "relativeUri": "/single-query-record/{code}",
+        "uriParameters": {
+          "code": {
+            "name": "code",
+            "displayName": "code",
+            "type": "string",
+            "required": false,
+            "repeat": false
+          }
+        },
+        "methods": [
+          {
+            "queryParameters": {
+              "query...": {
+                "name": "query...",
+                "displayName": "query...",
+                "type": "string",
+                "required": true,
+                "example": "{\n  \"bankNo\": \"666666666666666666\"\n}\n",
+                "repeat": false,
+                "description": "Hello",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "repeat": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "displayName": "/single-query-record/{code}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "single-query-record",
+          "{code}"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "api.raml",
+      "line": 17,
+      "column": 8,
+      "position": 321,
+      "range": [
+        {
+          "line": 17,
+          "column": 8,
+          "position": 321
+        },
+        {
+          "line": 17,
+          "column": 15,
+          "position": 328
+        }
+      ],
+      "isWarning": true
+    }
+  ]
+}

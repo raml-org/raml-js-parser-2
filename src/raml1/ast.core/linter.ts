@@ -3014,7 +3014,8 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         }
         if(universeHelpers.isExampleProperty(node.property())
             &&node.parent().definition().universe().version()=="RAML08"){
-            return true;
+            //for RAML 0.8 we do not validate examples strictly
+            return false;
         }
         var strictValidation:boolean = false;
         var strict = node.parent().attr("strict")

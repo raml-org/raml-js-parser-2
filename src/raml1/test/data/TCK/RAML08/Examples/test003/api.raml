@@ -1,0 +1,21 @@
+#%RAML 0.8
+title: My API
+
+/single-query-record/{code}:
+  uriParameters:
+    code:
+      displayName: code
+      type: string
+      required: false
+      repeat: false
+  post:
+    queryParameters:
+      query...:
+        displayName: query...
+        description: Hello
+        type: string
+        required: true
+        example: |
+          {
+            "bankNo": "666666666666666666"
+          }
