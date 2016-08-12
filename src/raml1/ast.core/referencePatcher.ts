@@ -631,7 +631,7 @@ function toOriginal(node:ll.ILowLevelASTNode){
     return node;
 }
 
-class PatchedReference{
+export class PatchedReference{
 
     constructor(private _namespace:string, private _name:string){}
 
