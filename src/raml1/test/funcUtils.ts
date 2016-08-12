@@ -94,3 +94,4 @@ function firstType(type, previous = null) {
     
     return null;
 }
+

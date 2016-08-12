@@ -19,6 +19,7 @@ import path = require("path");
 
 import universes = require("../tools/universe");
 import factory10 = require("../artifacts/raml10factory");
+import factory08 = require("../artifacts/raml08factory");
 
 import highLevelImpl = require("../highLevelImpl");
 
@@ -465,6 +466,15 @@ describe('Parser raml1/artifacts factories functions tests',function() {
                         }
                     }
                 });
+
+                results.forEach(newWrapper => {
+                    newWrapper.kind && newWrapper.kind();
+                    newWrapper.RAMLVersion && newWrapper.RAMLVersion();
+                    newWrapper.wrapperClassName && newWrapper.wrapperClassName();
+                    newWrapper.annotations && newWrapper.annotations();
+                    newWrapper.scalarsAnnotations && newWrapper.scalarsAnnotations();
+                    newWrapper.value && newWrapper.value();
+                });
                 
                 assert.equal(results.length, 67);
 
@@ -490,7 +500,7 @@ describe('Parser raml1/artifacts factories functions tests',function() {
 
                         if(nodeWithType) {
                             try {
-                                results.push(factory10.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
+                                results.push(factory08.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
                             } catch(exception) {
 
                             }
@@ -498,7 +508,16 @@ describe('Parser raml1/artifacts factories functions tests',function() {
                     }
                 });
 
-                assert.equal(results.length, 44);
+                results.forEach(newWrapper => {
+                    newWrapper.kind && newWrapper.kind();
+                    newWrapper.RAMLVersion && newWrapper.RAMLVersion();
+                    newWrapper.wrapperClassName && newWrapper.wrapperClassName();
+                    newWrapper.annotations && newWrapper.annotations();
+                    newWrapper.scalarsAnnotations && newWrapper.scalarsAnnotations();
+                    newWrapper.value && newWrapper.value();
+                });
+                
+                assert.equal(results.length, 50);
 
                 done();
             } catch(exception) {
