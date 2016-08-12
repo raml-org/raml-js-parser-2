@@ -79,7 +79,6 @@ export class TraitsAndResourceTypesExpander {
     private ramlVersion:string;
 
     expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
-
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return api;
         }
@@ -116,9 +115,9 @@ export class TraitsAndResourceTypesExpander {
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
         if(isRAML1) {
-            var referencePatcher = new referencePatcher.ReferencePatcher()
-            referencePatcher.process(hlNode);
-            hlNode.lowLevel().actual().referencePatcher = referencePatcher;
+            var rp = new referencePatcher.ReferencePatcher();
+            rp.process(hlNode);
+            hlNode.lowLevel().actual().referencePatcher = rp;
         }
         return result;
     }
@@ -416,9 +415,9 @@ export class LibraryExpander{
             return null;
         }
         if(!api.highLevel().isExpanded()){
-            api = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api,true);
+            api = <RamlWrapper.Api>new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
         }
-        return new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api,true);
+        return null;
     }
 }
 
