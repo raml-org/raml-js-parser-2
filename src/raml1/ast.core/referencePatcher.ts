@@ -16,6 +16,8 @@ import expander=require("./expander");
 
 export class ReferencePatcher{
 
+    _outerDependencies:{[key:string]:{[key:string]:{[key:string]:boolean}}} = {};
+
     process(
         hlNode:hl.IHighLevelNode,
         rootNode:hl.IHighLevelNode=hlNode,
@@ -486,8 +488,39 @@ export class ReferencePatcher{
         }
     }
 
-    registerPatchedReference(newValue:PatchedReference,range:def.ITypeDefinition){
-        
+    registerPatchedReference(ref:PatchedReference,range:def.ITypeDefinition){
+
+        var collectionName:string;
+        if(universeHelpers.isResourceTypeRefType(range)){
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
+        }
+        else if(universeHelpers.isTraitRefType(range)){
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
+        }
+        else if(universeHelpers.isSecuritySchemeRefType(range)){
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name;
+        }
+        else if(universeHelpers.isAnnotationRefTypeOrDescendant(range)){
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name;
+        }
+        else if(universeHelpers.isTypeDeclarationSibling(range)){
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.types.name;
+        }
+        if(!collectionName){
+            return;
+        }
+
+        var libMap = this._outerDependencies[ref.namespace()];
+        if(libMap==null){
+            libMap = {};
+            this._outerDependencies[ref.namespace()] = libMap;
+        }
+        var collectionMap = libMap[collectionName];
+        if(collectionMap == null){
+            collectionMap = {};
+            libMap[collectionName] = collectionMap;
+        }
+        collectionMap[ref.name()] = true;
     }
 }
 
