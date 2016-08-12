@@ -441,11 +441,8 @@ describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
 
     it("wrappers test 0", function (done) {
         index.loadRAML(util.data('./functions/simple08_1.raml'), []).then((wrapper: any) => {
-            var w = wrapper;
-            
-            var h = w.highLevel();
             try {
-                createWrappers(h);
+                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/simple08_1.dump'));
 
                 done();
             } catch(exception) {
@@ -470,6 +467,30 @@ describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
         index.loadRAML(util.data('./functions/RAML10/Instagram1.0/api.raml'), []).then((wrapper: any) => {
             try {
                 testWrapperDump(wrapper, util.data('./functions/dumps/Instagramm10.dump'));
+
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
+    });
+
+    it("wrappers test 3", function (done) {
+        index.loadRAML(util.data('./functions/simple10_1.raml'), []).then((wrapper: any) => {
+            try {
+                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/simple10_1.dump'));
+
+                done();
+            } catch(exception) {
+                done(exception);
+            }
+        });
+    });
+
+    it("wrappers test 4", function (done) {
+        index.loadRAML(util.data('./functions/RAML08/Box/api.raml'), []).then((wrapper: any) => {
+            try {
+                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/Box08.dump'));
 
                 done();
             } catch(exception) {

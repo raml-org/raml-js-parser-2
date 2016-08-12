@@ -1,0 +1,80 @@
+{
+	"title": "Api",
+	"schemas": [
+		{
+			"a": "{\"some\": \"value\"}"
+		}
+	],
+	"securitySchemes": [
+		{
+			"bbb": {
+				"name": "bbb",
+				"type": "Digest Authentication"
+			}
+		},
+		{
+			"aaa": {
+				"name": "aaa",
+				"type": "OAuth 2.0",
+				"description": "asdasdas",
+				"describedBy": {
+					"responses": {
+						"200": {
+							"code": "200",
+							"body": {
+								"application/json": {
+									"name": "application/json",
+									"schema": ""
+								}
+							}
+						}
+					},
+					"body": {
+						"application/json": {
+							"name": "application/json",
+							"formParameters": {
+								"aa": {
+									"name": "aa",
+									"displayName": "asd",
+									"type": "string",
+									"required": false,
+									"repeat": false,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"required": {
+												"insertedAsDefault": true
+											},
+											"repeat": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								},
+								"bb": {
+									"name": "bb",
+									"displayName": "bb",
+									"type": "boolean",
+									"required": false,
+									"repeat": false,
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											},
+											"repeat": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	]
+}

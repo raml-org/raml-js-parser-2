@@ -1,0 +1,126 @@
+#%RAML 1.0
+
+title: Api
+
+types:
+  SomeType3:
+    type: object
+    properties:
+      prop1: array
+      prop2: array | object
+      prop3: datetime
+
+  SomeType1:
+    type: object
+    facets:
+      someFacet1:
+        displayName: cfaset
+        type: object
+        properties:
+          aaa: string
+        isAnnotation: false
+      someFacet2:
+        type: string
+        default: blah
+        isAnnotation: true
+        description: some facet
+    properties:
+      prop1: string
+
+  SomeType2:
+    type: object
+    properties:
+      aaa: number
+
+
+
+annotationTypes:
+  A1:
+    type: SomeType2
+
+
+
+traits:
+  (A1):
+
+
+  SomeTrait1:
+    queryParameters:
+      aaa: string
+    headers:
+      aaa: integer
+    responses:
+      200:
+        body:
+          application/json:
+            type:
+
+  SomeTrait2:
+    queryParameters:
+      aaa: string
+
+securitySchemes:
+  SScheme4:
+    type: x-{other}
+    description: lorem ipsum
+    settings:
+    displayName: name
+    describedBy:
+      responses:
+        200:
+
+
+  SScheme5:
+    type: Basic Authentication
+    description: aaa
+    settings:
+    displayName:
+  SScheme3:
+    type: Pass Through
+    description: some
+    settings:
+      someSetting: 1
+
+  SScheme2:
+    type: OAuth 2.0
+    settings:
+      accessTokenUri: "some://example/api"
+      authorizationGrants: authorization_code
+      authorizationUri: "some://example/api"
+      scopes:
+  SScheme1:
+    type: OAuth 1.0
+    description: aaa
+    displayName: aaa
+    describedBy:
+      queryParameters:
+      headers:
+        aaa: string
+      responses:
+        200:
+          body:
+            application/json:
+              type: SomeType1
+              someFacet1:
+                aaa: blah
+              someFacet2: blah
+
+resourceTypes:
+  resourceType1:
+    is: [SomeTrait1]
+  resourceType2:
+    is: [SomeTrait2]
+    type: resourceType1
+    get:
+      securedBy: SScheme1
+    post:
+      securedBy: SScheme2
+
+    put:
+      securedBy: SScheme3
+    head:
+      securedBy: null
+
+
+
+

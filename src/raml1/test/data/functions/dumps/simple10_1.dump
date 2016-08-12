@@ -1,0 +1,502 @@
+{
+	"types": [
+		{
+			"SomeType3": {
+				"name": "SomeType3",
+				"displayName": "SomeType3",
+				"type": [
+					"object"
+				],
+				"required": true,
+				"properties": {
+					"prop1": {
+						"name": "prop1",
+						"displayName": "prop1",
+						"type": [
+							"array"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					},
+					"prop2": {
+						"name": "prop2",
+						"displayName": "prop2",
+						"type": [
+							"array | object"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					},
+					"prop3": {
+						"name": "prop3",
+						"displayName": "prop3",
+						"type": [
+							"datetime"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"SomeType1": {
+				"name": "SomeType1",
+				"displayName": "SomeType1",
+				"facets": {
+					"someFacet1": {
+						"name": "someFacet1",
+						"displayName": "cfaset",
+						"type": [
+							"object"
+						],
+						"required": true,
+						"isAnnotation": false,
+						"properties": {
+							"aaa": {
+								"name": "aaa",
+								"displayName": "aaa",
+								"type": [
+									"string"
+								],
+								"required": true,
+								"__METADATA__": {
+									"primitiveValuesMeta": {
+										"displayName": {
+											"calculated": true
+										},
+										"required": {
+											"insertedAsDefault": true
+										}
+									}
+								}
+							}
+						},
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					},
+					"someFacet2": {
+						"name": "someFacet2",
+						"displayName": "someFacet2",
+						"type": [
+							"string"
+						],
+						"default": "blah",
+						"required": true,
+						"description": "some facet",
+						"isAnnotation": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"type": [
+					"object"
+				],
+				"required": true,
+				"properties": {
+					"prop1": {
+						"name": "prop1",
+						"displayName": "prop1",
+						"type": [
+							"string"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"SomeType2": {
+				"name": "SomeType2",
+				"displayName": "SomeType2",
+				"type": [
+					"object"
+				],
+				"required": true,
+				"properties": {
+					"aaa": {
+						"name": "aaa",
+						"displayName": "aaa",
+						"type": [
+							"number"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		}
+	],
+	"traits": [
+		{
+			"(A1)": {
+				"name": "(A1)"
+			}
+		},
+		{
+			"SomeTrait1": {
+				"queryParameters": {
+					"aaa": {
+						"name": "aaa",
+						"displayName": "aaa",
+						"type": [
+							"string"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"headers": {
+					"aaa": {
+						"name": "aaa",
+						"displayName": "aaa",
+						"type": [
+							"integer"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"code": "200",
+						"body": {
+							"application/json": {
+								"name": "application/json",
+								"displayName": "application/json",
+								"type": [
+									"string"
+								],
+								"required": true,
+								"__METADATA__": {
+									"primitiveValuesMeta": {
+										"displayName": {
+											"calculated": true
+										},
+										"type": {
+											"insertedAsDefault": true
+										},
+										"required": {
+											"insertedAsDefault": true
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"name": "SomeTrait1"
+			}
+		},
+		{
+			"SomeTrait2": {
+				"queryParameters": {
+					"aaa": {
+						"name": "aaa",
+						"displayName": "aaa",
+						"type": [
+							"string"
+						],
+						"required": true,
+						"__METADATA__": {
+							"primitiveValuesMeta": {
+								"displayName": {
+									"calculated": true
+								},
+								"required": {
+									"insertedAsDefault": true
+								}
+							}
+						}
+					}
+				},
+				"name": "SomeTrait2"
+			}
+		}
+	],
+	"resourceTypes": [
+		{
+			"resourceType1": {
+				"is": [
+					"SomeTrait1"
+				],
+				"name": "resourceType1"
+			}
+		},
+		{
+			"resourceType2": {
+				"is": [
+					"SomeTrait2"
+				],
+				"type": "resourceType1",
+				"name": "resourceType2",
+				"get": {
+					"securedBy": [
+						"SScheme1"
+					],
+					"method": "get"
+				},
+				"post": {
+					"securedBy": [
+						"SScheme2"
+					],
+					"method": "post"
+				},
+				"put": {
+					"securedBy": [
+						"SScheme3"
+					],
+					"method": "put"
+				},
+				"head": {
+					"securedBy": [
+						null
+					],
+					"method": "head"
+				}
+			}
+		}
+	],
+	"annotationTypes": [
+		{
+			"A1": {
+				"name": "A1",
+				"displayName": "A1",
+				"type": [
+					"SomeType2"
+				],
+				"required": true,
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		}
+	],
+	"securitySchemes": [
+		{
+			"SScheme4": {
+				"name": "SScheme4",
+				"type": "x-{other}",
+				"description": "lorem ipsum",
+				"describedBy": {
+					"responses": [
+						{
+							"code": "200"
+						}
+					]
+				},
+				"displayName": "name",
+				"settings": {}
+			}
+		},
+		{
+			"SScheme5": {
+				"name": "SScheme5",
+				"type": "Basic Authentication",
+				"description": "aaa",
+				"displayName": null,
+				"settings": {}
+			}
+		},
+		{
+			"SScheme3": {
+				"name": "SScheme3",
+				"type": "Pass Through",
+				"description": "some",
+				"settings": {}
+			}
+		},
+		{
+			"SScheme2": {
+				"name": "SScheme2",
+				"type": "OAuth 2.0",
+				"settings": {
+					"accessTokenUri": "some://example/api",
+					"authorizationUri": "some://example/api",
+					"authorizationGrants": [
+						"authorization_code"
+					],
+					"scopes": [
+						null
+					]
+				}
+			}
+		},
+		{
+			"SScheme1": {
+				"name": "SScheme1",
+				"type": "OAuth 1.0",
+				"description": "aaa",
+				"describedBy": {
+					"headers": {
+						"aaa": {
+							"name": "aaa",
+							"displayName": "aaa",
+							"type": [
+								"string"
+							],
+							"required": true,
+							"__METADATA__": {
+								"primitiveValuesMeta": {
+									"displayName": {
+										"calculated": true
+									},
+									"required": {
+										"insertedAsDefault": true
+									}
+								}
+							}
+						}
+					},
+					"responses": [
+						{
+							"code": "200",
+							"body": {
+								"application/json": {
+									"name": "application/json",
+									"displayName": "application/json",
+									"type": [
+										"SomeType1"
+									],
+									"required": true,
+									"fixedFacets": {
+										"someFacet1": {
+											"aaa": "blah"
+										},
+										"someFacet2": "blah"
+									},
+									"__METADATA__": {
+										"primitiveValuesMeta": {
+											"displayName": {
+												"calculated": true
+											},
+											"required": {
+												"insertedAsDefault": true
+											}
+										}
+									}
+								}
+							}
+						}
+					]
+				},
+				"displayName": "aaa"
+			}
+		}
+	],
+	"title": "Api"
+}
