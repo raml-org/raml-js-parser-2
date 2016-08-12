@@ -3,9 +3,59 @@ title: Instagram
 version: v1
 baseUri: https://api.instagram.com/{version}/
 mediaType: application/json
+protocols:
+
+
 securitySchemes:
   - oauth_2_0: !include securitySchemes/oauth_2_0.raml
   - clientId: !include securitySchemes/clientId.raml
+  - sch5:
+      type: x-{other}
+      description: asdasd
+      describedBy:
+        body:
+
+      settings:
+        asdasd: asdasd
+
+  - sch4:
+      type: x-{other}
+      description:
+      describedBy:
+      settings:
+        aasdfas: asd
+  - sch3:
+      type: Basic Authentication
+      description: asdasd
+      describedBy:
+        body:
+      settings:
+        blah: asdsd
+  - sch1:
+      type: OAuth 1.0
+      settings:
+        requestTokenUri: http://aaa
+        authorizationUri: http://aaa
+        tokenCredentialsUri: http://aaa
+  - sch2:
+       type: OAuth 1.0
+       description: aaaa
+       describedBy:
+         responses:
+         protocols:
+         securedBy:
+           - sch1
+         displayName: schema
+         baseUriParameters:
+           some1:
+             type: boolean
+             required: true
+             default: false
+             displayName: asdasd
+             repeat: false
+             example: true
+             description: asdasdasd
+
 schemas:
   - location: !include schemas/location-schema.json
   - locations: !include schemas/locations-schema.json
@@ -54,7 +104,6 @@ securedBy: [ oauth_2_0 , clientId ]
           body:
             application/json:
               schema: media
-              example: !include examples/media-example.json
     /comments:
       type: { secured: { scope: comments } }
       get:
@@ -149,7 +198,6 @@ securedBy: [ oauth_2_0 , clientId ]
             body:
               application/json:
                 schema: tagsRecentMedia
-                example: !include examples/tags-recent-media-example.json
   /search:
     type: base
     get:
@@ -425,7 +473,6 @@ securedBy: [ oauth_2_0 , clientId ]
         body:
           application/json:
             schema: subscriptionsDelete
-            example: !include examples/subscriptionsDelete-example.json
     securedBy: [ oauth_2_0 ]
 documentation:
   - title: Authentication

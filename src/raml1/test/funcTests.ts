@@ -5,6 +5,7 @@ import linter=require("../ast.core/linter")
 import yll=require("../jsyaml/jsyaml2lowLevel")
 import hl=require("../highLevelAST")
 import util = require("./test-utils")
+import funcUtil = require("./funcUtils");
 import tools = require("./testTools")
 
 import index = require("../../index");
@@ -15,6 +16,11 @@ import schema = require("../../schema");
 
 import fs = require("fs");
 import path = require("path");
+
+import universes = require("../tools/universe");
+import factory10 = require("../artifacts/raml10factory");
+
+import highLevelImpl = require("../highLevelImpl");
 
 describe('Parser index functions tests',function() {
     it("loadRaml", function(done){
@@ -436,49 +442,31 @@ describe('Parser schema functions tests',function() {
     });
 });
 
-describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
-    this.timeout(60000);
-
-    it("wrappers test 0", function (done) {
-        index.loadRAML(util.data('./functions/simple08_1.raml'), []).then((wrapper: any) => {
-            try {
-                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/simple08_1.dump'));
-
-                done();
-            } catch(exception) {
-                done(exception);
-            }
-        });
-    });
-
-    it("wrappers test 1", function (done) {
-        index.loadRAML(util.data('./functions/RAML08/Instagram/api.raml'), []).then((wrapper: any) => {
-            try {
-                testWrapperDump(wrapper, util.data('./functions/dumps/Instagramm08.dump'));
-                
-                done();
-            } catch(exception) {
-                done(exception);
-            }
-        });
-    });
-
-    it("wrappers test 2", function (done) {
-        index.loadRAML(util.data('./functions/RAML10/Instagram1.0/api.raml'), []).then((wrapper: any) => {
-            try {
-                testWrapperDump(wrapper, util.data('./functions/dumps/Instagramm10.dump'));
-
-                done();
-            } catch(exception) {
-                done(exception);
-            }
-        });
-    });
-
-    it("wrappers test 3", function (done) {
+describe('Parser raml1/artifacts factories functions tests',function() {
+    it("wrappers test 5", function (done) {
+        this.timeout(60000);
+        
         index.loadRAML(util.data('./functions/simple10_1.raml'), []).then((wrapper: any) => {
             try {
-                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/simple10_1.dump'));
+                var results = [];
+                
+                Object.keys(universes.Universe10).forEach(key => {
+                    if(universes.Universe10[key] && universes.Universe10[key].name) {
+                        var name = universes.Universe10[key].name;
+
+                        var nodeWithType = funcUtil.find(wrapper.highLevel(), name);
+                        
+                        if(nodeWithType) {
+                            try {
+                                results.push(factory10.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
+                            } catch(exception) {
+                                
+                            }
+                        }
+                    }
+                });
+                
+                assert.equal(results.length, 67);
 
                 done();
             } catch(exception) {
@@ -487,10 +475,30 @@ describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
         });
     });
 
-    it("wrappers test 4", function (done) {
-        index.loadRAML(util.data('./functions/RAML08/Box/api.raml'), []).then((wrapper: any) => {
+    it("wrappers test 6", function (done) {
+        this.timeout(60000);
+        
+        index.loadRAML(util.data('./functions/RAML08/Instagram/api.raml'), []).then((wrapper: any) => {
             try {
-                testWrapperDump(wrapper.expand(), util.data('./functions/dumps/Box08.dump'));
+                var results = [];
+
+                Object.keys(universes.Universe08).forEach(key => {
+                    if(universes.Universe08[key] && universes.Universe08[key].name) {
+                        var name = universes.Universe08[key].name;
+
+                        var nodeWithType = funcUtil.find(wrapper.highLevel(), name);
+
+                        if(nodeWithType) {
+                            try {
+                                results.push(factory10.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
+                            } catch(exception) {
+
+                            }
+                        }
+                    }
+                });
+
+                assert.equal(results.length, 44);
 
                 done();
             } catch(exception) {
@@ -500,30 +508,6 @@ describe('Parser raml1/artifacts/raml08factory.js functions tests',function() {
     });
 });
 
-// function allRamls(dirPath): any[] {
-//     var files = fs.readdirSync(dirPath);
-//    
-//     var result = [];
-//    
-//     files.forEach(file => {
-//         var filePath = path.join(dirPath, file);
-//        
-//         if(fs.existsSync(filePath)) {
-//             var stat = fs.statSync(filePath);
-//            
-//             if(stat.isDirectory()) {
-//                 result = result.concat(allRamls(filePath));
-//             } else if(path.extname(filePath) === '.raml') {
-//                 result.push(filePath);
-//             } else if(path.basename(filePath).indexOf('tck.json') > 0) {
-//                 fs.unlinkSync(filePath);
-//             }
-//         }
-//     });
-//    
-//     return result;
-// }
-//
 function createWrappers(highLevel) {
     if(!highLevel) {
         return;
