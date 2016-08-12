@@ -90,7 +90,8 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[]){
 
         var property = attr.property();
-        if(!property.range().isAssignableFrom(universeDef.Universe10.Reference.name)){
+        var range = property.range();
+        if(!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
             return;
         }
         var value = attr.value();
@@ -111,12 +112,12 @@ export class ReferencePatcher{
             if(isAnnotation){
                 stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
             }
-            var newValue = this.patchTypeName(stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation);
+            var newValue = this.resolveReferenceValue(
+                stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation,isAnnotation);
             if(newValue!=null){
-                if(isAnnotation){
-                    newValue = `(${newValue})`;
-                }
-                (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue);
+                var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
+                this.registerPatchedReference(newValue,range);
             }
         }
         else{
@@ -131,12 +132,12 @@ export class ReferencePatcher{
                 if(isAnnotation){
                     stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
                 }
-                var newValue = this.patchTypeName(stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation);
+                var newValue = this.resolveReferenceValue(
+                    stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation,isAnnotation);
                 if(newValue!=null) {
-                    if(isAnnotation){
-                        newValue = `(${newValue})`;
-                    }
-                    (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue);
+                    var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                    (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
+                    this.registerPatchedReference(newValue,range);
                 }
             }
         }
@@ -148,6 +149,8 @@ export class ReferencePatcher{
         rootNode:hl.IHighLevelNode,
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[]){
+
+        var nodeType = node.definition()
 
         if(!node.localType().isExternal()) {
 
@@ -229,10 +232,12 @@ export class ReferencePatcher{
                                         lit.value = typeName;
                                         return;
                                     }
-                                    var patched = this.patchTypeName(typeName, rootUnit, units, resolver, transformer);
+                                    var patched = this.resolveReferenceValue(
+                                        typeName, rootUnit, units, resolver, transformer, true);
                                     if (patched != null) {
-                                        lit.value = patched;
+                                        lit.value = patched.value();
                                         gotPatch = true;
+                                        this.registerPatchedReference(patched,nodeType);
                                     }
                                 }
                             });
@@ -244,7 +249,11 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            newValue = this.patchTypeName(stringToPatch, rootUnit, units, resolver, transformer);
+                            var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, true);
+                            if(patched!=null) {
+                                this.registerPatchedReference(patched, nodeType);
+                                newValue = patched.value();
+                            }
                         }
                         if (newValue != null) {
                             (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).setValueOverride(newValue);
@@ -272,30 +281,31 @@ export class ReferencePatcher{
         }
     }
 
-    private patchTypeName(
+    private resolveReferenceValue(
         stringToPatch:string,
         rootUnit:ll.ICompilationUnit,
         units:ll.ICompilationUnit[],
         resolver:namespaceResolver.NamespaceResolver,
         transformer:expander.DefaultTransformer,
-        isAnnotation=false)
+        isType:boolean=false,
+        isAnnotation:boolean=false):PatchedReference
     {
-        var newValue:string;
+        var newValue:PatchedReference;
         if (transformer) {
             if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
                 var doContinue = true;
                 var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
                 newValue = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
-                    var newVal = this.patchValue(val, rootUnit, resolver, tr.unitsChain);
+                    var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, isType);
                     if (newVal == null) {
-                        newVal = val;
+                        newVal = new PatchedReference(null,val);
                     }
                     if(isAnnotation){
-                        if (types.getAnnotationType(newVal) != null) {
+                        if (types.getAnnotationType(newVal.value()) != null) {
                             doContinue = false;
                         }
                     }
-                    else if (types.getType(newVal) != null) {
+                    else if (types.getType(newVal.value()) != null) {
                         doContinue = false;
                     }
                     return newVal;
@@ -303,7 +313,7 @@ export class ReferencePatcher{
             }
         }
         if (newValue === undefined) {
-            newValue = this.patchValue(stringToPatch, rootUnit, resolver, units);
+            newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, isType);
         }
         return newValue;
     }
@@ -315,17 +325,18 @@ export class ReferencePatcher{
         
         var llNode = <proxy.LowLevelProxyNode>hlNode.lowLevel();
         var key = llNode.key();
-        var patched = this.patchValue(key,rootUnit,resolver,[llNode.unit()]);
+        var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],true);
         if(patched != null){
-            llNode.setKeyOverride(patched);
+            llNode.setKeyOverride(patched.value());
         }
     }
 
-    patchValue(
+    resolveReferenceValueBasic(
         value:string,
         rootUnit:ll.ICompilationUnit,
         resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[]):string{
+        units:ll.ICompilationUnit[],
+        isType:boolean=false):PatchedReference{
 
         var ind = value.lastIndexOf(".");
 
@@ -352,7 +363,7 @@ export class ReferencePatcher{
             }
         }
         else {
-            if(def.rt.builtInTypes().get(value)!=null){
+            if(isType&&def.rt.builtInTypes().get(value)!=null){
                 return null;
             }
             plainName = value;
@@ -362,9 +373,7 @@ export class ReferencePatcher{
         if(newNS==null){
             return null;
         }
-        var newValue = newNS + "." + plainName;
-
-        return newValue;
+        return new PatchedReference(newNS,plainName);
     }
 
     patchUses(node:ll.ILowLevelASTNode,resolver:namespaceResolver.NamespaceResolver){
@@ -475,6 +484,10 @@ export class ReferencePatcher{
         if (appended) {
             units.pop();
         }
+    }
+
+    registerPatchedReference(newValue:PatchedReference,range:def.ITypeDefinition){
+        
     }
 }
 
@@ -616,4 +629,20 @@ function toOriginal(node:ll.ILowLevelASTNode){
         node = (<proxy.LowLevelProxyNode>node).originalNode();
     }
     return node;
+}
+
+class PatchedReference{
+
+    constructor(private _namespace:string, private _name:string){}
+
+    namespace():string{ return this._namespace; }
+
+    name():string{ return this._name; }
+
+    value():string{
+        if(this._namespace==null){
+            return this._name;
+        }
+        return this._namespace + "." + this._name;
+    }
 }
