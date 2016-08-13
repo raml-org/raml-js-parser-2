@@ -444,39 +444,24 @@ describe('Parser schema functions tests',function() {
 });
 
 describe('Parser raml1/artifacts factories functions tests',function() {
+    funcUtil.loadWrappersData();
+    
     it("wrappers test 5", function (done) {
         this.timeout(60000);
         
         index.loadRAML(util.data('./functions/simple10_1.raml'), []).then((wrapper: any) => {
             try {
-                var results = [];
-                
-                Object.keys(universes.Universe10).forEach(key => {
+                Object.keys(funcUtil.found10).forEach(key => {
                     if(universes.Universe10[key] && universes.Universe10[key].name) {
                         var name = universes.Universe10[key].name;
 
                         var nodeWithType = funcUtil.find(wrapper.highLevel(), name);
-                        
-                        if(nodeWithType) {
-                            try {
-                                results.push(factory10.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
-                            } catch(exception) {
-                                
-                            }
-                        }
+
+                        var newWrapper = factory10.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false);
+
+                        funcUtil.callMethods(newWrapper, nodeWithType, name);
                     }
                 });
-
-                results.forEach(newWrapper => {
-                    newWrapper.kind && newWrapper.kind();
-                    newWrapper.RAMLVersion && newWrapper.RAMLVersion();
-                    newWrapper.wrapperClassName && newWrapper.wrapperClassName();
-                    newWrapper.annotations && newWrapper.annotations();
-                    newWrapper.scalarsAnnotations && newWrapper.scalarsAnnotations();
-                    newWrapper.value && newWrapper.value();
-                });
-                
-                assert.equal(results.length, 67);
 
                 done();
             } catch(exception) {
@@ -490,34 +475,17 @@ describe('Parser raml1/artifacts factories functions tests',function() {
         
         index.loadRAML(util.data('./functions/RAML08/Instagram/api.raml'), []).then((wrapper: any) => {
             try {
-                var results = [];
-
-                Object.keys(universes.Universe08).forEach(key => {
+                Object.keys(funcUtil.found08).forEach(key => {
                     if(universes.Universe08[key] && universes.Universe08[key].name) {
                         var name = universes.Universe08[key].name;
 
                         var nodeWithType = funcUtil.find(wrapper.highLevel(), name);
 
-                        if(nodeWithType) {
-                            try {
-                                results.push(factory08.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false));
-                            } catch(exception) {
+                        var newWrapper = factory08.buildWrapperNode(new highLevelImpl.ASTNodeImpl(nodeWithType.highLevel.lowLevel(), nodeWithType.highLevel.parent(), nodeWithType.super, nodeWithType.highLevel.property()), false);
 
-                            }
-                        }
+                        funcUtil.callMethods(newWrapper, nodeWithType, name);
                     }
                 });
-
-                results.forEach(newWrapper => {
-                    newWrapper.kind && newWrapper.kind();
-                    newWrapper.RAMLVersion && newWrapper.RAMLVersion();
-                    newWrapper.wrapperClassName && newWrapper.wrapperClassName();
-                    newWrapper.annotations && newWrapper.annotations();
-                    newWrapper.scalarsAnnotations && newWrapper.scalarsAnnotations();
-                    newWrapper.value && newWrapper.value();
-                });
-                
-                assert.equal(results.length, 50);
 
                 done();
             } catch(exception) {
