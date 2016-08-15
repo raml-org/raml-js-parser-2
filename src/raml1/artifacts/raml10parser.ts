@@ -5004,6 +5004,14 @@ expand(  ):Api{
 
 
         /**
+         * Equivalent API with traits, resource types and libraries expanded
+         **/
+expandLibraries(  ):Api{
+            return helper.expandLibraries(this);
+        }
+
+
+        /**
          * Get child resource by its relative path
          **/
 childResource( relPath:string ):Resource{

@@ -29,6 +29,10 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
 .expandTraitsAndResourceTypes(<RamlWrapper.Api|RamlWrapper08.Api><any>api);
 }
 
+export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
+    return new LibraryExpander().expandLibraries(api);
+}
+
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
     mergeMode: hlimpl.OverlayMergeMode) : hl.IHighLevelNode {
     var masterApi = hlimpl.fromUnit(masterUnit);
@@ -78,7 +82,7 @@ export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
 
-    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
+    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api,forceProxy:boolean=true):RamlWrapper.Api|RamlWrapper08.Api {
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return api;
         }
@@ -97,7 +101,7 @@ export class TraitsAndResourceTypesExpander {
         var unit = api.highLevel().lowLevel().unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
         var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
-        if (!(hasTemplates||hasFragments)){
+        if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
         
@@ -410,14 +414,28 @@ export class TraitsAndResourceTypesExpander {
 
 export class LibraryExpander{
 
-    expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api {
+    expandLibraries(api:RamlWrapper.Api){
         if(api==null){
             return null;
         }
         if(!api.highLevel().isExpanded()){
-            api = <RamlWrapper.Api>new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api);
+            if(api.definition().key()==universeDef.Universe10.Overlay){
+                var pn = new proxy.LowLevelCompositeNode(api.highLevel().lowLevel(),null,null,"RAML10");
+                var hlNode = new hlimpl.ASTNodeImpl(pn,null,api.definition(),null);
+                var rp = new referencePatcher.ReferencePatcher();
+                rp.process(hlNode);
+                hlNode.lowLevel().actual().referencePatcher = rp;
+                api = <RamlWrapper.Overlay>hlNode.wrapperNode();
+            }
+            else {
+                api = <RamlWrapper.Api>new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api, true);
+            }
         }
-        return null;
+        var rp:referencePatcher.ReferencePatcher
+            = <referencePatcher.ReferencePatcher>api.highLevel().lowLevel().actual().referencePatcher;
+
+        rp.expandLibraries(api.highLevel());
+        return api;
     }
 }
 

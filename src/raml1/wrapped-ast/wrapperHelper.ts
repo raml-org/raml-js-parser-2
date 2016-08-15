@@ -75,6 +75,15 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
     return expander.expandTraitsAndResourceTypes(api);
 }
 
+/**
+ * __$helperMethod__
+ * Equivalent API with traits, resource types and libraries expanded
+ * __$meta__={"name":"expandLibraries"}
+ */
+export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
+    return expander.expandLibraries(api);
+}
+
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 export function absoluteUri(res:RamlWrapper.Resource):string{
     var uri = '';
@@ -119,6 +128,9 @@ export function traitsPrimary(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
  * __$meta__{"deprecated":true}
  */
 export function allTraits(a:RamlWrapper.LibraryBase):RamlWrapper.Trait[]{
+    if(a.highLevel().lowLevel().actual().libExpanded){
+        return (<RamlWrapperImpl.LibraryBaseImpl>a).traits_original();
+    }
     return <any>findTemplates(a,d=>universeHelpers.isTraitType(d));
 }
 
@@ -136,6 +148,9 @@ export function resourceTypesPrimary(a:RamlWrapper.LibraryBase):RamlWrapper.Reso
  * __$meta__{"deprecated":true}
  */
 export function allResourceTypes(a:RamlWrapper.LibraryBase):RamlWrapper.ResourceType[]{
+    if(a.highLevel().lowLevel().actual().libExpanded){
+        return (<RamlWrapperImpl.LibraryBaseImpl>a).resourceTypes_original();
+    }
     return <any>findTemplates(a,d=>universeHelpers.isResourceTypeType(d));
 }
 

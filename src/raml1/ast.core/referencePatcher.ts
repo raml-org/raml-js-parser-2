@@ -16,7 +16,7 @@ import expander=require("./expander");
 
 export class ReferencePatcher{
 
-    _outerDependencies:{[key:string]:{[key:string]:{[key:string]:boolean}}} = {};
+    private _outerDependencies:{[key:string]:DependencyMap} = {};
 
     process(
         hlNode:hl.IHighLevelNode,
@@ -522,6 +522,98 @@ export class ReferencePatcher{
         }
         collectionMap[ref.name()] = true;
     }
+
+    expandLibraries(api:hl.IHighLevelNode){
+
+        if(api.lowLevel().actual().libExpanded){
+            return;
+        }
+
+        var llNode = api.lowLevel();
+        var unit = llNode.unit();
+        var nResolver = (<jsyaml.Project>unit.project()).namespaceResolver();
+        var map = nResolver.nsMap(unit);
+        if(map==null){
+            return;
+        }
+        var usedNamespaces = Object.keys(this._outerDependencies).filter(x=>x.length>0);
+        var libModels:LibModel[] = [];
+        for(var ns of usedNamespaces){
+            var libUnit = map[ns];
+            if(libUnit){
+                var dependencies = this._outerDependencies[ns];
+                var libModel = this.extractLibModel(libUnit.unit,dependencies);
+                libModels.push(libModel);
+            }
+        }
+        for(var libModel of libModels){
+            for(var cName of Object.keys(libModel)){
+                var collection = libModel[cName];
+                if(collection instanceof ElementsCollection) {
+                    this.contributeCollection(
+                        <proxy.LowLevelCompositeNode>api.lowLevel(), <ElementsCollection>collection);
+                }
+            }
+        }
+        this.resetTypes(api);
+        api.resetChildren();
+        var apiPath = api.lowLevel().unit().absolutePath();
+        for(var ch of api.children()){
+            if(!ch.isElement()){
+                continue;
+            }
+            var chPath = ch.lowLevel().unit().absolutePath();
+            if(chPath==apiPath){
+                continue;
+            }
+            var definition = ch.asElement().definition();
+            if(universeHelpers.isResourceTypeType(definition)||
+                universeHelpers.isTraitType(definition)||
+                universeHelpers.isSecuritySchemaType(definition)||
+                universeHelpers.isTypeDeclarationSibling(definition)){
+                
+                this.process(ch.asElement(),api,true,true);
+            }
+        }
+        api.lowLevel().actual().libExpanded = true;
+        this.resetTypes(api);
+        api.resetChildren();
+    }
+
+    private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection) {
+
+        var name = collection.name;
+        var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
+            llApi.children(),
+            x=>x.key()==name);
+        if(llNode==null){
+            var n = jsyaml.createMapNode(name);
+            llNode = llApi.replaceChild(null,n);
+        }
+        for(var e of collection.array){
+            llNode.replaceChild(null,e.lowLevel());
+        }
+    }
+
+
+
+    private extractLibModel(unit:ll.ICompilationUnit,dependencies:DependencyMap):LibModel{
+        var result:LibModel = new LibModel();
+        var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
+        if(hlNode && hlNode.isElement()){
+            for(var cName of Object.keys(dependencies)){
+                var dep = dependencies[cName];
+                var collection = new ElementsCollection(cName);
+                for(var el of hlNode.asElement().elementsOfKind(cName)){
+                    if(dep[el.name()]){
+                        collection.array.push(el);
+                    }
+                }
+                result[cName] = collection;
+            }
+        }
+        return result;
+    }
 }
 
 enum ParametersEscapingStatus{
@@ -679,3 +771,25 @@ export class PatchedReference{
         return this._namespace + "." + this._name;
     }
 }
+
+class ElementsCollection{
+    constructor(public name:string){}
+
+    array:hl.IHighLevelNode[] = [];
+}
+
+class LibModel{
+
+    resourceTypes:ElementsCollection;
+
+    traits:ElementsCollection;
+
+    securitySchemes:ElementsCollection;
+
+    annotationTypes:ElementsCollection;
+
+    types:ElementsCollection;
+
+}
+
+type DependencyMap = {[key:string]:{[key:string]:boolean}};
