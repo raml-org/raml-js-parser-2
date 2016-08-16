@@ -82,7 +82,7 @@ export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
 
-    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api,forceProxy:boolean=true):RamlWrapper.Api|RamlWrapper08.Api {
+    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api,forceProxy:boolean=false):RamlWrapper.Api|RamlWrapper08.Api {
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return api;
         }
@@ -418,7 +418,7 @@ export class LibraryExpander{
         if(api==null){
             return null;
         }
-        if(!api.highLevel().isExpanded()){
+        if(!(api.highLevel().lowLevel() instanceof proxy.LowLevelCompositeNode)){
             if(api.definition().key()==universeDef.Universe10.Overlay){
                 var pn = new proxy.LowLevelCompositeNode(api.highLevel().lowLevel(),null,null,"RAML10");
                 var hlNode = new hlimpl.ASTNodeImpl(pn,null,api.definition(),null);
@@ -428,6 +428,7 @@ export class LibraryExpander{
                 api = <RamlWrapper.Overlay>hlNode.wrapperNode();
             }
             else {
+                api = <RamlWrapper.Api>api.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();
                 api = <RamlWrapper.Api>new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(api, true);
             }
         }

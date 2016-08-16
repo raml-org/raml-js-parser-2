@@ -79,11 +79,11 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
         this._valueOverride=value;
     }
 
-    key():string {
+    key(raw:boolean=false):string {
         if (this._keyOverride){
             return this._keyOverride;
         }
-        return this._originalNode.key();
+        return (<any>this._originalNode).key(raw);
     }
 
     optional():boolean{
@@ -125,10 +125,11 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     dump():string{ return null; }
 
     dumpToObject():any{
-        var serialized = json.serialize(this);
+        var serialized = json.serialize2(this,false);
+        //var serialized = json.serialize(this);
         if(this.kind() == yaml.Kind.MAPPING){
             var obj:any = {};
-            obj[this.key()] = serialized;
+            obj[this.key(true)] = serialized;
             return obj;
         }
         return serialized;
@@ -148,6 +149,8 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     kind(): yaml.Kind { return this._originalNode.kind(); }
 
     valueKind(): yaml.Kind { return this._originalNode.valueKind(); }
+
+    anchorValueKind(){ return this._originalNode.anchorValueKind(); }
 
     show(msg: string) { this._originalNode.show(msg); }
 
@@ -637,8 +640,8 @@ export class LowLevelValueTransformingNode extends LowLevelProxyNode{
 
     parent():LowLevelValueTransformingNode { return <LowLevelValueTransformingNode>this._parent;}
 
-    key():string{
-        var key = super.key();
+    key(raw:boolean=false):string{
+        var key = super.key(raw);
         if(this.transformer()!=null) {
             return this.transformer().transform(key).value;
         }

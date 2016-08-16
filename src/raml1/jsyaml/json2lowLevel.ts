@@ -287,6 +287,10 @@ export class AstNode implements lowlevel.ILowLevelASTNode{
         }
         return null;
     }
+    
+    anchorValueKind(){
+        return null;
+    }
 
     show(msg: string){}
 
@@ -332,9 +336,95 @@ export interface SerializeOptions{
     escapeNumericKeys?:boolean
 
     writeErrors?:boolean
+    
+    rawKey?:boolean
+}
+
+export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
+    if(!n){
+        return  null;
+    }
+    var kind = n.kind();
+    if(kind==yaml.Kind.ANCHOR_REF){
+        kind = n.anchorValueKind();
+    }
+    if (kind==yaml.Kind.INCLUDE_REF){
+        if (n.unit()!=null) {
+            var includePath = n.includePath();
+            var resolved = null;
+            try {
+                resolved = n.unit().resolve(includePath)
+            } catch (Error) {
+                //this will be reported during invalidation
+            }
+            if (resolved == null) {
+                return null;
+            }
+            else if (resolved.isRAMLUnit() && this.canInclude(resolved)) {
+                var ast = resolved.ast();
+                if (ast) {
+                    return serialize2(ast,full);
+                }
+            }
+        }
+        return null;
+    }
+    if (kind==yaml.Kind.SEQ){
+        var arr=[];
+        for(var ch of n.children()){
+            arr.push(serialize2(ch,full));
+        }
+        return arr;
+    }
+    if (kind==yaml.Kind.ANCHOR_REF){
+        return serialize2(n.anchoredFrom(),full);
+    }
+    if (kind==yaml.Kind.MAPPING){
+        var v={};
+        var key = "" + (<any>n).key(true);
+        var valueKind = n.valueKind();
+        if(valueKind==yaml.Kind.ANCHOR_REF){
+            valueKind = n.anchorValueKind();
+        }
+        if(valueKind==yaml.Kind.SCALAR){
+            v[key] = n.value();
+        }
+        else if(valueKind==yaml.Kind.SEQ){
+            var arr = [];
+            v[key] = arr;
+            for(var  ch of n.children()){
+                arr.push(serialize2(ch,true));
+            }
+        }
+        else if(valueKind==yaml.Kind.MAP){
+            var obj = {};
+            v[key] = obj;
+            for(var  ch of n.children()){
+                var chKey = ""+(<any>ch).key(true);
+                var serialized = serialize2(ch,true);
+                obj[chKey] = serialized === undefined ? null : serialized;
+            }
+        }
+        return v[key];
+    }
+    if (kind==yaml.Kind.SCALAR){
+        var q:any= n.value(false);
+        return q;
+    }
+    if (kind==yaml.Kind.MAP){
+        var obj = {};
+        for(var  ch of n.children()){
+            var chKey = ""+(<any>ch).key(true);
+            var serialized = serialize2(ch,true);
+            obj[chKey] = serialized === undefined ? null : serialized;
+        }
+        return obj;
+    }
+
 }
 
 export function serialize(node:lowlevel.ILowLevelASTNode,options:SerializeOptions={}):any{
+    options = options || {};
     if(node.children().length==0) {
         return node.value();
     }
@@ -349,7 +439,7 @@ export function serialize(node:lowlevel.ILowLevelASTNode,options:SerializeOption
     else {
         var obj = {};
         node.children().forEach(x=> {
-            obj[escapeKey(x.key(),options)] = serialize(x,options);
+            obj[escapeKey((<any>x).key(options.rawKey),options)] = serialize(x,options);
         });
         if(options&&options.writeErrors){
             var errors = collectErrors(node);

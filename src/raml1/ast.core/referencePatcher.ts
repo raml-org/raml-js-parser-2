@@ -563,7 +563,7 @@ export class ReferencePatcher{
                 continue;
             }
             var chPath = ch.lowLevel().unit().absolutePath();
-            if(chPath==apiPath){
+            if(chPath==apiPath&&ch.lowLevel().includePath()==null){
                 continue;
             }
             var definition = ch.asElement().definition();

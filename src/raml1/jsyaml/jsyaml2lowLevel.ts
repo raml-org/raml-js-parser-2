@@ -2732,8 +2732,11 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return null;
     }
 
-    key():string{
+    key(raw:boolean=false):string{
         var key = this.rawKey();
+        if(raw){
+            return key;
+        }
         if(key!=null&&util.stringEndsWith(key,'?')){
             key = key.substring(0,key.length-1);
         }
@@ -3182,6 +3185,14 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             return null;
         }
         return map.value.kind;
+    }
+
+    anchorValueKind(){
+        if(this.valueKind()==yaml.Kind.ANCHOR_REF){
+            var ref:yaml.YAMLAnchorReference=<yaml.YAMLAnchorReference>this._node.value;
+            return ref.value.kind;
+        }        
+        return null;
     }
 
     valueKindName(): string {
