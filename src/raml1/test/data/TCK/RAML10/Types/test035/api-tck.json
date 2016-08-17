@@ -1,0 +1,85 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Person": {
+          "name": "Person",
+          "displayName": "Person",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "Data": {
+          "name": "Data",
+          "displayName": "Data",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "reports": [
+              null
+            ]
+          },
+          "required": true,
+          "properties": {
+            "reports": {
+              "name": "reports",
+              "displayName": "reports",
+              "type": [
+                "Person[]"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"reports\": [\n    null\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "reports": [
+                null
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API"
+  },
+  "errors": []
+}
