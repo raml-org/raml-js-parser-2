@@ -322,7 +322,13 @@ export class BasicASTNode implements hl.IParseResult {
             return this.cachedFullId;
         }
         if (this._parent){
-            var result="."+this.name();
+            var result=".";
+            if(this.property()!=null&&universeHelpers.isAnnotationsProperty(this.property())){
+                result += this.lowLevel().key();
+            }
+            else {
+                result += this.name();
+            }
 
             var sameName=(<BasicASTNode><any>this.parent()).directChildren().filter(x=>x.name()==this.name());
             if (sameName.length>1){
