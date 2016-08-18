@@ -47,6 +47,9 @@ export class ReferencePatcher{
         var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
+            if(!(cNode instanceof proxy.LowLevelCompositeNode)){
+                return;
+            }
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
             var traitNodes = node.attributes(isPropertyName);
             cNode.preserveAnnotations();
@@ -102,6 +105,9 @@ export class ReferencePatcher{
         }
 
         var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
+        if(!(llNode instanceof proxy.LowLevelProxyNode)){
+            return;
+        }
         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
         
         var isAnnotation = universeHelpers.isAnnotationsProperty(property);
@@ -163,6 +169,10 @@ export class ReferencePatcher{
             //if(rootPath != localPath) {
                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
                 for( var typeAttr of typeAttributes) {
+                    var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
+                    if(!(llNode instanceof proxy.LowLevelProxyNode)){
+                        continue;
+                    }
                     var localUnit = typeAttr.lowLevel().unit();
                     var localPath = localUnit.absolutePath();
                     if(localPath==rootPath){
@@ -171,8 +181,7 @@ export class ReferencePatcher{
                     var value = typeAttr.value();
                     if(typeof value == "string") {
 
-                        var gotExpression = checkExpression(value);
-                        var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
+                        var gotExpression = checkExpression(value);                        
                         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
                         var stringToPatch = value;
                         var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
