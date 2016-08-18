@@ -169,7 +169,8 @@
           "column": 15,
           "position": 353
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
@@ -189,7 +190,8 @@
           "column": 15,
           "position": 397
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }

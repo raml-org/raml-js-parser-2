@@ -61,7 +61,8 @@ function mergeHighLevelNodes(masterApi, highLevelNodes, mergeMode):hlimpl.ASTNod
     var currentMaster = masterApi;
     highLevelNodes.forEach(currentApi=> {
 
-        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster);
+        currentMaster = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(currentMaster.wrapperNode());
+        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster.highLevel());
         (<hlimpl.ASTNodeImpl>currentApi).setMergeMode(mergeMode);
 
         currentMaster = currentApi;
@@ -105,7 +106,7 @@ export class TraitsAndResourceTypesExpander {
             return api;
         }
         
-        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel());
+        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false);
         var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
 
         (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());

@@ -1,0 +1,37 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "annotations": {
+      "lib2.a2": {
+        "structuredValue": null,
+        "name": "lib2.a2"
+      },
+      "lib1.a1": {
+        "structuredValue": null,
+        "name": "lib1.a1"
+      },
+      "lib0.a0": {
+        "structuredValue": null,
+        "name": "lib0.a0"
+      }
+    },
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml"
+      }
+    ],
+    "title": "test API",
+    "extends": "o1.raml"
+  },
+  "errors": []
+}

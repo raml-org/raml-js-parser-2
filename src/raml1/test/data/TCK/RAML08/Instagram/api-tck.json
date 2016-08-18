@@ -5123,7 +5123,8 @@
           "column": 21,
           "position": 2461
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
@@ -5143,7 +5144,8 @@
           "column": 23,
           "position": 5648
         }
-      ]
+      ],
+      "isWarning": true
     },
     {
       "code": 11,
@@ -5163,7 +5165,8 @@
           "column": 19,
           "position": 15295
         }
-      ]
+      ],
+      "isWarning": true
     }
   ]
 }
