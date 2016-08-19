@@ -2078,9 +2078,9 @@ expand(  ):Api
 
 
         /**
-         * Equivalent API with traits, resource types and libraries expanded
+         * Expand traits, resource types and libraries for the API
          **/
-expandLibraries(  ):Api
+expandLibraries(  ):void
 
 
         /**

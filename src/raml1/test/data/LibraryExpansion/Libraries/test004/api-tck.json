@@ -1,0 +1,50 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "traits": [
+      {
+        "ownTrait1": {
+          "name": "ownTrait1"
+        }
+      },
+      {
+        "ownTrait2": {
+          "name": "ownTrait2"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "ownResourceType1": {
+          "name": "ownResourceType1"
+        }
+      },
+      {
+        "ownResourceType2": {
+          "name": "ownResourceType2"
+        }
+      }
+    ],
+    "title": "TCK Sample. RAML 1.0 Libraries 001.",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

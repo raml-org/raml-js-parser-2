@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+securitySchemes:
+  oauth:
+    type: OAuth 2.0
+  number:
+    type: Basic Authentication
+
+resourceTypes:
+  number:
+    securedBy: [ oauth, number ]
+    is: [ boolean ]
+
+traits:
+  boolean:

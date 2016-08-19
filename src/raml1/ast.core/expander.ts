@@ -29,8 +29,8 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
 .expandTraitsAndResourceTypes(<RamlWrapper.Api|RamlWrapper08.Api><any>api);
 }
 
-export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    return new LibraryExpander().expandLibraries(api);
+export function expandLibraries(api:RamlWrapper.Api){
+    new LibraryExpander().expandLibraries(api);
 }
 
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
@@ -415,7 +415,8 @@ export class TraitsAndResourceTypesExpander {
 
 export class LibraryExpander{
 
-    expandLibraries(api:RamlWrapper.Api){
+    expandLibraries(_api:RamlWrapper.Api){
+        var api = _api;
         if(api==null){
             return null;
         }
@@ -437,7 +438,7 @@ export class LibraryExpander{
             = <referencePatcher.ReferencePatcher>api.highLevel().lowLevel().actual().referencePatcher;
 
         rp.expandLibraries(api.highLevel());
-        return api;
+        (<RamlWrapperImpl.ApiImpl>_api).patchNode(api.highLevel());
     }
 }
 

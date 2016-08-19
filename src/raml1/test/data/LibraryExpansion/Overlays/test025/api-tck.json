@@ -1,0 +1,124 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "lib.TestAnnotationType": {
+          "name": "lib.TestAnnotationType",
+          "displayName": "lib.TestAnnotationType",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "lib.AnotherAnnotationType": {
+          "name": "lib.AnotherAnnotationType",
+          "displayName": "lib.AnotherAnnotationType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "firstProp": {
+              "name": "firstProp",
+              "displayName": "firstProp",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "secondProp": {
+              "name": "secondProp",
+              "displayName": "secondProp",
+              "type": [
+                "number"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Overlay 2",
+    "resources": [
+      {
+        "annotations": {
+          "lib.TestAnnotationType": {
+            "structuredValue": "TestAnnotationType2",
+            "name": "lib.TestAnnotationType"
+          },
+          "lib.AnotherAnnotationType": {
+            "structuredValue": {
+              "firstProp": "firstProp2",
+              "secondProp": 101
+            },
+            "name": "lib.AnotherAnnotationType"
+          }
+        },
+        "relativeUri": "/servers",
+        "displayName": "/servers",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "servers"
+        ]
+      }
+    ],
+    "extends": "NewOverlay.raml"
+  },
+  "errors": []
+}

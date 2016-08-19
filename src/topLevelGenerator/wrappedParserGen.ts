@@ -416,11 +416,20 @@ export class ParserGenerator{
             });
 
             if(isImpl){
+                var returnKeyWord = this.isVoid(returnType) ? "" : "return ";
                 method._body = `
-            return helper.${m.originalName}(${m.callArgs().map(x=>x.name).join(', ')});
+            ${returnKeyWord}helper.${m.originalName}(${m.callArgs().map(x=>x.name).join(', ')});
         `;
             }
         });
+    }
+
+    private isVoid(tRef:td.TSTypeReference<any>):boolean{
+
+        if(!(tRef instanceof td.TSSimpleTypeReference)){
+            return false;
+        }
+        return (<td.TSSimpleTypeReference>tRef).name == "void";
     }
 
     private createTypeForModel(typeModel, method):td.TSTypeReference<any> {

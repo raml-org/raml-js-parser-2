@@ -1,0 +1,59 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "annotations": {
+      "lib2.a2": {
+        "structuredValue": null,
+        "name": "lib2.a2"
+      },
+      "lib1.a1": {
+        "structuredValue": null,
+        "name": "lib1.a1"
+      },
+      "lib0.a0": {
+        "structuredValue": null,
+        "name": "lib0.a0"
+      }
+    },
+    "uses": [
+      {
+        "key": "lib2",
+        "value": "lib2.raml"
+      },
+      {
+        "key": "lib1",
+        "value": "lib1.raml"
+      },
+      {
+        "key": "lib0",
+        "value": "lib0.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "lib2.a2": {
+          "name": "lib2.a2",
+          "displayName": "lib2.a2",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "extends": "o1.raml"
+  },
+  "errors": []
+}

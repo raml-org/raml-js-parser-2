@@ -77,11 +77,11 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
 
 /**
  * __$helperMethod__
- * Equivalent API with traits, resource types and libraries expanded
+ * Expand traits, resource types and libraries for the API
  * __$meta__={"name":"expandLibraries"}
  */
-export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
-    return expander.expandLibraries(api);
+export function expandLibraries(api:RamlWrapper.Api):void{
+    expander.expandLibraries(api);
 }
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri

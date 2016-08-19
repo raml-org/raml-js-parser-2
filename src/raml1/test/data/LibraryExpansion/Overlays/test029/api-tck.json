@@ -1,0 +1,218 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Overlay",
+  "specification": {
+    "annotations": {
+      "library.highLevelApiDescription": {
+        "structuredValue": null,
+        "name": "library.highLevelApiDescription"
+      },
+      "library.apiLogo": {
+        "structuredValue": null,
+        "name": "library.apiLogo"
+      },
+      "library.specAuthor": {
+        "structuredValue": "mulesoft.com",
+        "name": "library.specAuthor"
+      },
+      "library.devPortal": {
+        "structuredValue": null,
+        "name": "library.devPortal"
+      },
+      "library.extraResources": {
+        "structuredValue": [
+          {
+            "title": "API Notebook",
+            "type": "notebook",
+            "uri": "blah"
+          }
+        ],
+        "name": "library.extraResources"
+      }
+    },
+    "uses": [
+      {
+        "key": "library",
+        "value": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml"
+      }
+    ],
+    "annotationTypes": [
+      {
+        "library.highLevelApiDescription": {
+          "name": "library.highLevelApiDescription",
+          "displayName": "Api Description",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "Description of the RAML API spec.",
+          "allowedTargets": [
+            "API",
+            "Overlay"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "library.apiLogo": {
+          "name": "library.apiLogo",
+          "displayName": "Logo",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "Service logo.",
+          "allowedTargets": [
+            "API",
+            "Overlay"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "library.specAuthor": {
+          "name": "library.specAuthor",
+          "displayName": "Spec Author",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "Author of the RAML spec.",
+          "allowedTargets": [
+            "API",
+            "Overlay"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "library.devPortal": {
+          "name": "library.devPortal",
+          "displayName": "Developer Portal",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "description": "URL to the developer portal",
+          "allowedTargets": [
+            "API",
+            "Overlay"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "library.extraResources": {
+          "name": "library.extraResources",
+          "displayName": "library.extraResources",
+          "type": [
+            "library.apiResource[]"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "API",
+            "Overlay"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api",
+    "extends": "api.raml"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "line": 4,
+      "column": 0,
+      "position": 154,
+      "range": [
+        {
+          "line": 4,
+          "column": 0,
+          "position": 154
+        },
+        {
+          "line": 4,
+          "column": 33,
+          "position": 187
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "line": 5,
+      "column": 0,
+      "position": 189,
+      "range": [
+        {
+          "line": 5,
+          "column": 0,
+          "position": 189
+        },
+        {
+          "line": 5,
+          "column": 17,
+          "position": 206
+        }
+      ]
+    },
+    {
+      "code": 11,
+      "message": "Null or undefined value is not allowed",
+      "path": "overlay.raml",
+      "line": 7,
+      "column": 0,
+      "position": 243,
+      "range": [
+        {
+          "line": 7,
+          "column": 0,
+          "position": 243
+        },
+        {
+          "line": 7,
+          "column": 19,
+          "position": 262
+        }
+      ]
+    }
+  ]
+}
