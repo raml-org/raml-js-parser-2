@@ -16,6 +16,8 @@ import universeHelpers=require("../tools/universeHelpers")
 import services=defs
 import ramlTypes=defs.rt;
 
+var mediaTypeParser = require("media-typer");
+
 type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 class KeyMatcher{
@@ -538,7 +540,24 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                                 var vl=actualValue[pos];
                                                 if (vl && p.nameId() == universes.Universe10.Response.properties.body.name) {
                                                     var exists=_.find(x.children(), x=>x.key() == vl);
-                                                    if (true) {
+                                                    
+                                                    var originalParent: any = x;
+                                                    
+                                                    while(originalParent.originalNode) {
+                                                        originalParent = originalParent.originalNode();
+                                                    }
+
+                                                    var mediaTypeSibling = _.find(originalParent.children(), (sibling: any) => {
+                                                        try {
+                                                            mediaTypeParser.parse(sibling.key());
+
+                                                            return true;
+                                                        } catch (exception) {
+                                                            return false;
+                                                        }
+                                                    });
+
+                                                    if(!mediaTypeSibling) {
                                                         //we can create inherited node;
                                                         var pc = aNode.parent().definition().key();
                                                         var node = new hlimpl.ASTNodeImpl(x, aNode, <any> range, p);
