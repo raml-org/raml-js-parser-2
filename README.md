@@ -1,10 +1,10 @@
-# RAML 1.0 JS Parser <sup>(beta)</sup>
+# RAML 1.0 JS Parser
 
 [![Build Status](https://travis-ci.org/raml-org/raml-js-parser-2.svg?branch=master)](https://travis-ci.org/raml-org/raml-js-parser-2)
 
 See http://raml.org for more information about RAML.
 
-This parser is at a beta state of development and supports both RAML 0.8 and 1.0.
+This parser supports both RAML 0.8 and 1.0.
 
 ## Installation
 ```
