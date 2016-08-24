@@ -3129,7 +3129,7 @@ class UriParametersValidator implements NodeValidator {
         var uriAttr = rootNode.attr(uriPropName);
         if (uriAttr) {
             uriValue = uriAttr.value();
-            if (!uriValue) {
+            if (!uriValue||typeof(uriValue)!="string") {
                 uriValue = '';
             }
         }
