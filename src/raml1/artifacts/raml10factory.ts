@@ -111,8 +111,6 @@ var classMap = {
 
     "DateTimeTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTimeTypeDeclarationImpl(x,y)},
 
-    "DateTypeDeclaration": (x,y)=>{return new RamlWrapper.DateTypeDeclarationImpl(x,y)},
-
     "DigestSecurityScheme": (x,y)=>{return new RamlWrapper.DigestSecuritySchemeImpl(x,y)},
 
     "DocumentationItem": (x,y)=>{return new RamlWrapper.DocumentationItemImpl(x,y)},
