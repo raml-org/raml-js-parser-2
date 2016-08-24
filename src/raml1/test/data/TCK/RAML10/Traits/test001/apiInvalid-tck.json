@@ -723,6 +723,27 @@
           "position": 1027
         }
       ]
+    },
+    {
+      "code": 11,
+      "message": "Unknown property:rtTypeProperty2",
+      "path": "apiInvalid.raml",
+      "line": 61,
+      "column": 10,
+      "position": 1039,
+      "range": [
+        {
+          "line": 61,
+          "column": 10,
+          "position": 1039
+        },
+        {
+          "line": 61,
+          "column": 25,
+          "position": 1054
+        }
+      ],
+      "isWarning": true
     }
   ]
 }
