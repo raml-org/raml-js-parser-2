@@ -1,0 +1,469 @@
+{
+	"GlobalSchema": {
+		"id": ".location",
+		"super": "GlobalSchema",
+		"called": {
+			"kind": "GlobalSchema",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "GlobalSchemaImpl"
+		}
+	},
+	"Api": {
+		"id": "",
+		"super": "Api",
+		"called": {
+			"kind": "Api",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ApiImpl"
+		}
+	},
+	"DocumentationItem": {
+		"id": ".[0]",
+		"super": "DocumentationItem",
+		"called": {
+			"kind": "DocumentationItem",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "DocumentationItemImpl"
+		}
+	},
+	"ValueType": {
+		"id": ".title",
+		"super": "ValueType",
+		"called": {
+			"kind": "ValueType",
+			"RAMLVersion": "undefined",
+			"wrapperClassName": "ValueTypeImpl",
+			"value": "Instagram"
+		}
+	},
+	"StringType": {
+		"id": ".title",
+		"super": "StringType",
+		"called": {
+			"kind": "StringType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "StringTypeImpl",
+			"value": "Instagram"
+		}
+	},
+	"AnyType": {
+		"id": ".sch2.describedBy.some1.default",
+		"super": "AnyType",
+		"called": {
+			"kind": "AnyType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "AnyTypeImpl",
+			"value": false
+		}
+	},
+	"NumberType": {
+		"id": ".limitableByGeoPoint.distance.maximum",
+		"super": "NumberType",
+		"called": {
+			"kind": "NumberType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "NumberTypeImpl",
+			"value": 5000
+		}
+	},
+	"BooleanType": {
+		"id": ".sch2.describedBy.some1.required",
+		"super": "BooleanType",
+		"called": {
+			"kind": "BooleanType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "BooleanTypeImpl",
+			"value": true
+		}
+	},
+	"Reference": {
+		"id": ".sch2.describedBy.securedBy",
+		"super": "Reference",
+		"called": {
+			"kind": "Reference",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ReferenceImpl"
+		}
+	},
+	"UriTemplate": {
+		"id": ".baseUri",
+		"super": "UriTemplate",
+		"called": {
+			"kind": "UriTemplate",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "UriTemplateImpl",
+			"value": "https://api.instagram.com/{version}/"
+		}
+	},
+	"RelativeUriString": {
+		"id": "./media.relativeUri",
+		"super": "RelativeUriString",
+		"called": {
+			"kind": "RelativeUriString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "RelativeUriStringImpl"
+		}
+	},
+	"FullUriTemplateString": {
+		"id": ".baseUri",
+		"super": "FullUriTemplateString",
+		"called": {
+			"kind": "FullUriTemplateString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "FullUriTemplateStringImpl",
+			"value": "https://api.instagram.com/{version}/"
+		}
+	},
+	"FixedUri": {
+		"id": ".oauth_2_0.settings.authorizationUri",
+		"super": "FixedUri",
+		"called": {
+			"kind": "FixedUri",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "FixedUriImpl",
+			"value": "https://api.instagram.com/oauth/authorize"
+		}
+	},
+	"MarkdownString": {
+		"id": ".oauth_2_0.description",
+		"super": "MarkdownString",
+		"called": {
+			"kind": "MarkdownString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "MarkdownStringImpl",
+			"value": "Instagram's API uses the OAuth 2.0 protocol for simple, but effective\nauthentication and authorization. The one thing to keep in mind is tha\nall requests to the API must be made over SSL (https:// not http://)\n"
+		}
+	},
+	"SchemaString": {
+		"id": ".location.value",
+		"super": "SchemaString",
+		"called": {
+			"kind": "SchemaString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "SchemaStringImpl",
+			"value": "{\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"data\": {\n      \"type\": \"object\",\n      \"properties\": {\n        \"id\": {\n          \"type\": \"string\"\n        },\n        \"name\": {\n          \"type\": \"string\"\n        },\n        \"latitude\": {\n          \"type\": \"number\"\n        },\n        \"longtitude\": {\n          \"type\": \"number\"\n        }\n      }\n    }\n  }\n}"
+		}
+	},
+	"JSonSchemaString": {
+		"id": ".title",
+		"super": "JSonSchemaString",
+		"called": {
+			"kind": "JSonSchemaString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "JSonSchemaStringImpl",
+			"value": "Instagram"
+		}
+	},
+	"XMLSchemaString": {
+		"id": ".title",
+		"super": "XMLSchemaString",
+		"called": {
+			"kind": "XMLSchemaString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "XMLSchemaStringImpl",
+			"value": "Instagram"
+		}
+	},
+	"ExampleString": {
+		"id": ".usersListing.get.200.application/json.example",
+		"super": "ExampleString",
+		"called": {
+			"kind": "ExampleString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ExampleStringImpl",
+			"value": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}"
+		}
+	},
+	"StatusCodeString": {
+		"id": ".usersListing.get.200.code",
+		"super": "StatusCodeString",
+		"called": {
+			"kind": "StatusCodeString",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "StatusCodeStringImpl",
+			"value": "body"
+		}
+	},
+	"JSONExample": {
+		"id": ".title",
+		"super": "JSONExample",
+		"called": {
+			"kind": "JSONExample",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "JSONExampleImpl",
+			"value": "Instagram"
+		}
+	},
+	"XMLExample": {
+		"id": ".title",
+		"super": "XMLExample",
+		"called": {
+			"kind": "XMLExample",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "XMLExampleImpl",
+			"value": "Instagram"
+		}
+	},
+	"RAMLSimpleElement": {
+		"id": ".location",
+		"super": "RAMLSimpleElement",
+		"called": {
+			"kind": "RAMLSimpleElement",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "RAMLSimpleElementImpl"
+		}
+	},
+	"Parameter": {
+		"id": ".oauth_2_0.describedBy.access_token",
+		"super": "Parameter",
+		"called": {
+			"kind": "Parameter",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ParameterImpl"
+		}
+	},
+	"StringTypeDeclaration": {
+		"id": ".oauth_2_0.describedBy.access_token",
+		"super": "StringTypeDeclaration",
+		"called": {
+			"kind": "StringTypeDeclaration",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "StringTypeDeclarationImpl"
+		}
+	},
+	"BooleanTypeDeclaration": {
+		"id": ".sch2.describedBy.some1",
+		"super": "BooleanTypeDeclaration",
+		"called": {
+			"kind": "BooleanTypeDeclaration",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "BooleanTypeDeclarationImpl"
+		}
+	},
+	"NumberTypeDeclaration": {
+		"id": ".limitableByGeoPoint.lat",
+		"super": "NumberTypeDeclaration",
+		"called": {
+			"kind": "NumberTypeDeclaration",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "NumberTypeDeclarationImpl"
+		}
+	},
+	"IntegerTypeDeclaration": {
+		"id": ".limitableByGeoPoint.distance",
+		"super": "IntegerTypeDeclaration",
+		"called": {
+			"kind": "IntegerTypeDeclaration",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "IntegerTypeDeclarationImpl"
+		}
+	},
+	"MimeType": {
+		"id": ".mediaType",
+		"super": "MimeType",
+		"called": {
+			"kind": "MimeType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "MimeTypeImpl",
+			"value": "application/json"
+		}
+	},
+	"BodyLike": {
+		"id": ".sch5.describedBy.application/json",
+		"super": "BodyLike",
+		"called": {
+			"kind": "BodyLike",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "BodyLikeImpl"
+		}
+	},
+	"XMLBody": {
+		"id": ".sch5.describedBy.application/json",
+		"super": "XMLBody",
+		"called": {
+			"kind": "XMLBody",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "XMLBodyImpl"
+		}
+	},
+	"JSONBody": {
+		"id": ".sch5.describedBy.application/json",
+		"super": "JSONBody",
+		"called": {
+			"kind": "JSONBody",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "JSONBodyImpl"
+		}
+	},
+	"Response": {
+		"id": ".usersListing.get.200",
+		"super": "Response",
+		"called": {
+			"kind": "Response",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ResponseImpl"
+		}
+	},
+	"Resource": {
+		"id": "./media",
+		"super": "Resource",
+		"called": {
+			"kind": "Resource",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ResourceImpl"
+		}
+	},
+	"ResourceTypeRef": {
+		"id": ".usersListing.type",
+		"super": "ResourceTypeRef",
+		"called": {
+			"kind": "ResourceTypeRef",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ResourceTypeRefImpl"
+		}
+	},
+	"ResourceType": {
+		"id": ".usersListing",
+		"super": "ResourceType",
+		"called": {
+			"kind": "ResourceType",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "ResourceTypeImpl"
+		}
+	},
+	"MethodBase": {
+		"id": ".oauth_2_0.describedBy",
+		"super": "MethodBase",
+		"called": {
+			"kind": "MethodBase",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "MethodBaseImpl"
+		}
+	},
+	"Method": {
+		"id": ".usersListing.get",
+		"super": "Method",
+		"called": {
+			"kind": "Method",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "MethodImpl"
+		}
+	},
+	"Trait": {
+		"id": ".acceptCallback",
+		"super": "Trait",
+		"called": {
+			"kind": "Trait",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "TraitImpl"
+		}
+	},
+	"TraitRef": {
+		"id": ".base.get.is[0]",
+		"super": "TraitRef",
+		"called": {
+			"kind": "TraitRef",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "TraitRefImpl"
+		}
+	},
+	"SecuritySchemePart": {
+		"id": ".oauth_2_0.describedBy",
+		"super": "SecuritySchemePart",
+		"called": {
+			"kind": "SecuritySchemePart",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "SecuritySchemePartImpl"
+		}
+	},
+	"SecuritySchemeSettings": {
+		"id": ".oauth_2_0.settings",
+		"super": "SecuritySchemeSettings",
+		"called": {
+			"kind": "SecuritySchemeSettings",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "SecuritySchemeSettingsImpl"
+		}
+	},
+	"AbstractSecurityScheme": {
+		"id": ".oauth_2_0",
+		"super": "AbstractSecurityScheme",
+		"called": {
+			"kind": "AbstractSecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "AbstractSecuritySchemeImpl"
+		}
+	},
+	"SecuritySchemeRef": {
+		"id": ".sch2.describedBy.securedBy",
+		"super": "SecuritySchemeRef",
+		"called": {
+			"kind": "SecuritySchemeRef",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "SecuritySchemeRefImpl"
+		}
+	},
+	"OAuth1SecuritySchemeSettings": {
+		"id": ".sch1.settings",
+		"super": "OAuth1SecuritySchemeSettings",
+		"called": {
+			"kind": "OAuth1SecuritySchemeSettings",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "OAuth1SecuritySchemeSettingsImpl"
+		}
+	},
+	"OAuth2SecuritySchemeSettings": {
+		"id": ".oauth_2_0.settings",
+		"super": "OAuth2SecuritySchemeSettings",
+		"called": {
+			"kind": "OAuth2SecuritySchemeSettings",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "OAuth2SecuritySchemeSettingsImpl"
+		}
+	},
+	"OAuth2SecurityScheme": {
+		"id": ".oauth_2_0",
+		"super": "OAuth2SecurityScheme",
+		"called": {
+			"kind": "OAuth2SecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "OAuth2SecuritySchemeImpl"
+		}
+	},
+	"OAuth1SecurityScheme": {
+		"id": ".sch1",
+		"super": "OAuth1SecurityScheme",
+		"called": {
+			"kind": "OAuth1SecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "OAuth1SecuritySchemeImpl"
+		}
+	},
+	"BasicSecurityScheme": {
+		"id": ".sch3",
+		"super": "BasicSecurityScheme",
+		"called": {
+			"kind": "BasicSecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "BasicSecuritySchemeImpl"
+		}
+	},
+	"DigestSecurityScheme": {
+		"id": ".clientId",
+		"super": "DigestSecurityScheme",
+		"called": {
+			"kind": "DigestSecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "DigestSecuritySchemeImpl"
+		}
+	},
+	"CustomSecurityScheme": {
+		"id": ".sch5",
+		"super": "CustomSecurityScheme",
+		"called": {
+			"kind": "CustomSecurityScheme",
+			"RAMLVersion": "RAML08",
+			"wrapperClassName": "CustomSecuritySchemeImpl"
+		}
+	}
+}

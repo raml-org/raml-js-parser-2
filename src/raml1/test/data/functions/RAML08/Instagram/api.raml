@@ -1,0 +1,481 @@
+#%RAML 0.8
+title: Instagram
+version: v1
+baseUri: https://api.instagram.com/{version}/
+mediaType: application/json
+protocols:
+
+
+securitySchemes:
+  - oauth_2_0: !include securitySchemes/oauth_2_0.raml
+  - clientId: !include securitySchemes/clientId.raml
+  - sch5:
+      type: x-{other}
+      description: asdasd
+      describedBy:
+        body:
+
+      settings:
+        asdasd: asdasd
+
+  - sch4:
+      type: x-{other}
+      description:
+      describedBy:
+      settings:
+        aasdfas: asd
+  - sch3:
+      type: Basic Authentication
+      description: asdasd
+      describedBy:
+        body:
+      settings:
+        blah: asdsd
+  - sch1:
+      type: OAuth 1.0
+      settings:
+        requestTokenUri: http://aaa
+        authorizationUri: http://aaa
+        tokenCredentialsUri: http://aaa
+  - sch2:
+       type: OAuth 1.0
+       description: aaaa
+       describedBy:
+         responses:
+         protocols:
+         securedBy:
+           - sch1
+         displayName: schema
+         baseUriParameters:
+           some1:
+             type: boolean
+             required: true
+             default: false
+             displayName: asdasd
+             repeat: false
+             example: true
+             description: asdasdasd
+
+schemas:
+  - location: !include schemas/location-schema.json
+  - locations: !include schemas/locations-schema.json
+  - media: !include schemas/media-schema.json
+  - mediaComment: !include schemas/media-comment-schema.json
+  - mediaLikes: !include schemas/media-likes-schema.json
+  - mediaSearch: !include schemas/media-search-schema.json
+  - oembed: !include schemas/oembed-schema.json
+  - relationships: !include schemas/relationships-schema.json
+  - relationshipsPost: !include schemas/relationships-post-schema.json
+  - requestedBy: !include schemas/requested-by-schema.json
+  - tag: !include schemas/tag-schema.json
+  - tagsRecentMedia: !include schemas/tags-recent-media-schema.json
+  - tagsSearch: !include schemas/tags-search-schema.json
+  - user: !include schemas/user-schema.json
+  - users: !include schemas/users-schema.json
+  - okStatus: !include schemas/ok-status-schema.json
+  - subscriptionPost: !include schemas/subscriptionPost-schema.json
+  - subscriptionsGet: !include schemas/subscriptionsGet-schema.json
+  - subscriptionsDelete: !include schemas/subscriptionsDelete-schema.json
+resourceTypes:
+  - usersListing: !include resourceTypes/usersListing.raml
+  - mediaSearch: !include resourceTypes/mediaSearch.raml
+  - secured: !include resourceTypes/secured.raml
+  - base: !include resourceTypes/base.raml
+  - feedsListing: !include resourceTypes/feedsListing.raml
+traits:
+  - acceptCallback: !include traits/acceptCallback.raml
+  - limitableByGeoPoint: !include traits/limitableByGeoPoint.raml
+  - limitable: !include traits/limitable.raml
+  - limitableByTime: !include traits/limitableByTime.raml
+  - limitableById: !include traits/limitableById.raml
+securedBy: [ oauth_2_0 , clientId ]
+/media:
+  /{mediaId}:
+    type: base
+    get:
+      description: |
+        Get information about a media object. The returned type key will allow you
+        to differentiate between image and video media.
+        Note: if you authenticate with an OAuth Token, you will receive the
+        user_has_liked key which quickly tells you whether the current user has liked
+        this media item.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: media
+    /comments:
+      type: { secured: { scope: comments } }
+      get:
+        description: Get a full list of comments on a media.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: mediaComment
+                example: !include examples/media-comment-example.json
+      post:
+        description: Create a comment on a media. Please email apidevelopers[at]instagram.com for access.
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              text:
+                description: Text to post as a comment on the media as specified in {mediaId}.
+                required: true
+      /{commentId}:
+        type: { secured: { scope: comments } }
+        uriParameters:
+          commentId:
+            description: Identifier of the comment
+            type: integer
+        delete:
+          description: |
+            Remove a comment either on the authenticated user's media or authored by the authenticated user.
+          responses:
+            200:
+              description: Comment removed.
+    /likes:
+      type: { secured: { scope: likes } }
+      get:
+        description: |
+          Get a list of users who have liked this media.
+          Required scope: likes.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: mediaLikes
+                example: !include examples/media-likes-example.json
+      post:
+        description: Set a like on this media by the currently authenticated user.
+        responses:
+          200:
+            description: |
+              Successfully liked a media object
+      delete:
+        description: Remove a like on this media by the currently authenticated user.
+        responses:
+          204:
+            description: |
+              Like removed succesfully
+  /search:
+    type: mediaSearch
+    get:
+      is: [ limitableByTime , limitableByGeoPoint ]
+      description: |
+        Search for media in a given area. The default time span is set to 5 days.
+        The time span must not exceed 7 days. Defaults time stamps cover the
+        last 5 days.
+  /popular:
+    type: mediaSearch
+    get:
+      description: |
+        Get a list of what media is most popular at the moment.
+/tags:
+  /{tagName}:
+    type: base
+    uriParameters:
+      tagName:
+        description: Name of tag.
+    get:
+      description: Get information about a tag object.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: tag
+              example: !include examples/tag-example.json
+    /media/recent:
+      type: base
+      get:
+        is: [ limitableById ]
+        description: |
+          Get a list of recently tagged media. Note that this media is ordered by when the media was tagged
+          with this tag, rather than the order it was posted. Use the max_tag_id and min_tag_id parameters
+          in the pagination response to paginate through these objects.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: tagsRecentMedia
+  /search:
+    type: base
+    get:
+      description: |
+        Search for tags by name. Results are ordered first as an exact match, then by popularity.
+        Short tags will be treated as exact matches.
+      queryParameters:
+        q:
+          description: |
+            A valid tag name without a leading #.
+          required: true
+          example: nofilter
+      responses:
+        200:
+          body:
+            application/json:
+              schema: tagsSearch
+              example: !include examples/tags-search-example.json
+/users:
+  /{userId}:
+    type: base
+    get:
+      description: Get basic information about a user.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: user
+              example: !include examples/user-example.json
+    /follows:
+      type: usersListing
+      get:
+        description: Get the list of users this user follows.
+    /followed-by:
+      type: usersListing
+      get:
+        description: Get the list of users this user is followed by.
+    /media/recent:
+      type: feedsListing
+      get:
+        is: [ limitableById , limitableByTime , limitable ]
+        description: |
+          See the authenticated user's feed. May return a mix of both image and
+          video types.
+    /relationship:
+      type: { secured: { scope: comments } }
+      get:
+        description: Get information about a relationship to another user.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: relationships
+                example: !include examples/relationship-example.json
+      post:
+        description: Modify the relationship between the current user and the target user.
+        body:
+          application/x-www-form-urlencoded:
+            formParameters:
+              action:
+                description: One of follow/unfollow/block/unblock/approve/deny.
+                enum:
+                  - follow
+                  - unfollow
+                  - block
+                  - unblock
+                  - approve
+                  - deny
+        responses:
+          200:
+            body:
+              application/json:
+                schema: relationships
+                example: !include examples/relationship-post-example.json
+  /search:
+    type: usersListing
+    get:
+      description: Search for a user by name.
+      queryParameters:
+        q:
+          description: A query string.
+          required: true
+          example: some query
+        count:
+          description: Number of users to return.
+          type: integer
+          example: 10
+  /self:
+    type: { secured: { scope: basic } }
+    get:
+      description: Retrieve the authenticated user
+      responses:
+        200:
+          body:
+            application/json:
+              schema: user
+              example: !include examples/user-example.json
+    /feed:
+      type: feedsListing
+      get:
+        is: [ limitableById , limitable ]
+        description: |
+          See the authenticated user's feed. May return a mix of both image and
+          video types.
+    /requested-by:
+      securedBy:
+        - oauth_2_0:
+            scopes: [relationships]
+      type: usersListing
+      get:
+        description: "List the users who have requested this user's permission to follow."
+    /media/liked:
+      type: feedsListing
+      get:
+        is: [ limitable ]
+        description: |
+          See the authenticated user's list of media they've liked. May return a mix
+          of both image and video types.
+          Note: This list is ordered by the order in which the user liked the media.
+          Private media is returned as long as the authenticated user has permission
+          to view that media. Liked media lists are only available for the currently
+          authenticated user.
+        queryParameters:
+          max_like_id:
+            description: Return media liked before this id.
+            type: integer
+            example: 100
+/locations:
+  /{locId}:
+    type: base
+    uriParameters:
+      locId:
+        type: integer
+    get:
+      description: Get information about a location.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: location
+              example: !include examples/location-example.json
+    /media/recent:
+      type: feedsListing
+      get:
+        is: [ limitableById , limitableByTime ]
+        description: |
+          Get a list of recent media objects from a given location. May return a
+          mix of both image and video types.
+  /search:
+    type: base
+    get:
+      is: [ limitableByGeoPoint ]
+      description: Search for a location by geographic coordinate.
+      queryParameters:
+        foursquare_v2_id:
+          description: |
+            Returns a location mapped off of a foursquare v2 api location id. If
+            used, you are not required to use lat and lng.
+        foursquare_id:
+          description: |
+            Returns a location mapped off of a foursquare v1 api location id. If used,
+            you are not required to use lat and lng. Note that this method is deprecated;
+            you should use the new foursquare IDs with V2 of their API.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: locations
+              example: !include examples/locations-example.json
+/geographies/{geoId}/media/recent:
+  type: base
+  get:
+    is: [ limitable ]
+    description: |
+      Get recent media from a geography subscription that you created.
+      Note: You can only access Geographies that were explicitly created by your
+      OAuth client. Check the Geography Subscriptions section of the real-time
+      updates page. When you create a subscription to some geography that you
+      define, you will be returned a unique geo-id that can be used in this
+      query. To backfill photos from the location covered by this geography,
+      use the media search endpoint.
+    queryParameters:
+      min_id:
+        description: Return media before this min_id.
+        type: integer
+        example: 0
+    responses:
+      200:
+/subscriptions:
+  type: base
+  get:
+    description: List subscriptions
+    queryParameters:
+      client_id:
+        description: "Application's client id"
+        required: true
+      client_secret:
+        description: "Application's client secret"
+        required: true
+    responses:
+      200:
+        body:
+          application/json:
+            schema: subscriptionsGet
+            example: !include examples/subscriptionsGet-example.json
+    securedBy: [ oauth_2_0 ]
+  post:
+    description: Create a subscription
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          client_id:
+            description: "Application's client id"
+            required: true
+          client_secret:
+            description: "Application's client secret"
+            required: true
+          object:
+            description: "The object you'd like to subscribe to."
+            enum:
+              - location
+              - user
+              - geography
+              - tag
+          object_id:
+            description: "Used for user, location and tag subscriptions only. Required. In case of user and location represents 'id' of the desired object. In case of tag represents 'name' of the desired tag."
+          aspect:
+            description: |
+              The aspect of the object you'd like to subscribe to. Note that we only support "media" at this time, but we might support other types of subscriptions in the future.
+          callback_url:
+            description: |
+              When we have new updates to send your server, we do a simple POST with a payload containing updates to a URL on your server. This callback URL must support GET and POST methods.
+
+              When you add a subscription, we will send a GET request to your callback URL to verify the existence of the URL and that want to create the subscription. When we have new data, we'll POST this data to your callback URL. We'll explain more about what this URL needs to do later on this page.
+            required: true
+          lat:
+            displayName: ""
+            description: "Geography area's center latitude. Used for geography subscription only. Required."
+            type: number
+          lng:
+            description: "Geography area's center longitude. Used for geography subscription only. Required."
+            type: number
+          radius:
+            description: "Geography area's radius.Used for geography subscription only. Required."
+            type: number
+    responses:
+      200:
+        body:
+          application/json:
+            schema: subscriptionPost
+            example: !include examples/subscriptionPost-example.json
+  delete:
+    description: Delete a subscriptionsss
+    queryParameters:
+      client_id:
+        description: "Application's client id"
+        required: true
+      client_secret:
+        description: "Application's client secret"
+        required: true
+      id:
+        description: Id of subscription to be removed.
+      object:
+        description: "If you'd like to remove all subscriptions of a certain object type, you may include the object type. Also you can clear all your current subscriptions by setting 'object' to 'all'."
+        enum:
+          - geography
+          - location
+          - tag
+          - user
+          - all
+    responses:
+      200:
+        body:
+          application/json:
+            schema: subscriptionsDelete
+    securedBy: [ oauth_2_0 ]
+documentation:
+  - title: Authentication
+    content: !include docs/authentication.md
+  - title: Headline
+    content: !include docs/headline.md

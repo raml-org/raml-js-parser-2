@@ -1,0 +1,29 @@
+#%RAML 0.8
+
+title: Api
+
+schemas:
+  - a:  '{"some": "value"}'
+
+
+securitySchemes:
+  - bbb:
+      type: Digest Authentication
+  - aaa:
+     type: OAuth 2.0
+     description: asdasdas
+     describedBy:
+       body:
+         application/json:
+           formParameters:
+             aa:
+               displayName: asd
+               type: string
+             bb:
+               type: boolean
+
+       responses:
+         200:
+           body:
+             application/json:
+               schema: !include schemas/json/schema1.json

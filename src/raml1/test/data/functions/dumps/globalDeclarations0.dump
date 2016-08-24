@@ -1,0 +1,40 @@
+{
+	"SomeType": {
+		"name": "SomeType",
+		"displayName": "SomeType",
+		"type": [
+			"object"
+		],
+		"required": true,
+		"properties": {
+			"prop": {
+				"name": "prop",
+				"displayName": "prop",
+				"type": [
+					"string"
+				],
+				"required": true,
+				"__METADATA__": {
+					"primitiveValuesMeta": {
+						"displayName": {
+							"calculated": true
+						},
+						"required": {
+							"insertedAsDefault": true
+						}
+					}
+				}
+			}
+		},
+		"__METADATA__": {
+			"primitiveValuesMeta": {
+				"displayName": {
+					"calculated": true
+				},
+				"required": {
+					"insertedAsDefault": true
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,610 @@
+{
+	"Library": {
+		"id": "",
+		"super": "Library",
+		"called": {
+			"kind": "Library",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "LibraryImpl"
+		}
+	},
+	"LibraryBase": {
+		"id": "",
+		"super": "LibraryBase",
+		"called": {
+			"kind": "LibraryBase",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "LibraryBaseImpl"
+		}
+	},
+	"Api": {
+		"id": "",
+		"super": "Api",
+		"called": {
+			"kind": "Api",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ApiImpl"
+		}
+	},
+	"Overlay": {
+		"id": "",
+		"super": "Overlay",
+		"called": {
+			"kind": "Overlay",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OverlayImpl"
+		}
+	},
+	"Extension": {
+		"id": "",
+		"super": "Extension",
+		"called": {
+			"kind": "Extension",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ExtensionImpl"
+		}
+	},
+	"FragmentDeclaration": {
+		"id": "",
+		"super": "FragmentDeclaration",
+		"called": {
+			"kind": "FragmentDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "FragmentDeclarationImpl"
+		}
+	},
+	"ValueType": {
+		"id": ".SomeType3.name",
+		"super": "ValueType",
+		"called": {
+			"kind": "ValueType",
+			"RAMLVersion": "undefined",
+			"wrapperClassName": "ValueTypeImpl"
+		}
+	},
+	"StringType": {
+		"id": ".SomeType3.name",
+		"super": "StringType",
+		"called": {
+			"kind": "StringType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "StringTypeImpl"
+		}
+	},
+	"AnyType": {
+		"id": ".SomeType1.someFacet2.default",
+		"super": "AnyType",
+		"called": {
+			"kind": "AnyType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "AnyTypeImpl",
+			"value": "blah"
+		}
+	},
+	"NumberType": {
+		"id": ".SomeType3.name",
+		"super": "NumberType",
+		"called": {
+			"kind": "NumberType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "NumberTypeImpl"
+		}
+	},
+	"IntegerType": {
+		"id": ".SomeType3.name",
+		"super": "IntegerType",
+		"called": {
+			"kind": "IntegerType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "IntegerTypeImpl"
+		}
+	},
+	"NullType": {
+		"id": ".SomeType3.name",
+		"super": "NullType",
+		"called": {
+			"kind": "NullType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "NullTypeImpl"
+		}
+	},
+	"TimeOnlyType": {
+		"id": ".SomeType3.name",
+		"super": "TimeOnlyType",
+		"called": {
+			"kind": "TimeOnlyType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "TimeOnlyTypeImpl"
+		}
+	},
+	"DateOnlyType": {
+		"id": ".SomeType3.name",
+		"super": "DateOnlyType",
+		"called": {
+			"kind": "DateOnlyType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateOnlyTypeImpl"
+		}
+	},
+	"DateTimeOnlyType": {
+		"id": ".SomeType3.name",
+		"super": "DateTimeOnlyType",
+		"called": {
+			"kind": "DateTimeOnlyType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateTimeOnlyTypeImpl"
+		}
+	},
+	"DateTimeType": {
+		"id": ".SomeType3.name",
+		"super": "DateTimeType",
+		"called": {
+			"kind": "DateTimeType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateTimeTypeImpl"
+		}
+	},
+	"FileType": {
+		"id": ".SomeType3.name",
+		"super": "FileType",
+		"called": {
+			"kind": "FileType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "FileTypeImpl"
+		}
+	},
+	"BooleanType": {
+		"id": ".SomeType1.someFacet1.isAnnotation",
+		"super": "BooleanType",
+		"called": {
+			"kind": "BooleanType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "BooleanTypeImpl",
+			"value": false
+		}
+	},
+	"Reference": {
+		"id": ".resourceType1.is",
+		"super": "Reference",
+		"called": {
+			"kind": "Reference",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ReferenceImpl"
+		}
+	},
+	"UriTemplate": {
+		"id": ".SomeType3.name",
+		"super": "UriTemplate",
+		"called": {
+			"kind": "UriTemplate",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "UriTemplateImpl"
+		}
+	},
+	"StatusCodeString": {
+		"id": ".SomeTrait1.200.code",
+		"super": "StatusCodeString",
+		"called": {
+			"kind": "StatusCodeString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "StatusCodeStringImpl",
+			"value": "body"
+		}
+	},
+	"RelativeUriString": {
+		"id": ".SomeType3.name",
+		"super": "RelativeUriString",
+		"called": {
+			"kind": "RelativeUriString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "RelativeUriStringImpl"
+		}
+	},
+	"FullUriTemplateString": {
+		"id": ".SomeType3.name",
+		"super": "FullUriTemplateString",
+		"called": {
+			"kind": "FullUriTemplateString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "FullUriTemplateStringImpl"
+		}
+	},
+	"FixedUriString": {
+		"id": ".SScheme2.settings.accessTokenUri",
+		"super": "FixedUriString",
+		"called": {
+			"kind": "FixedUriString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "FixedUriStringImpl",
+			"value": "some://example/api"
+		}
+	},
+	"ContentType": {
+		"id": ".SomeType3.name",
+		"super": "ContentType",
+		"called": {
+			"kind": "ContentType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ContentTypeImpl"
+		}
+	},
+	"MarkdownString": {
+		"id": ".SomeType1.someFacet2.description",
+		"super": "MarkdownString",
+		"called": {
+			"kind": "MarkdownString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "MarkdownStringImpl",
+			"value": "some facet"
+		}
+	},
+	"SchemaString": {
+		"id": ".SomeType3.name",
+		"super": "SchemaString",
+		"called": {
+			"kind": "SchemaString",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "SchemaStringImpl"
+		}
+	},
+	"TypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "TypeDeclaration",
+		"called": {
+			"kind": "TypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "TypeDeclarationImpl"
+		}
+	},
+	"ArrayTypeDeclaration": {
+		"id": ".SomeType3.prop1",
+		"super": "ArrayTypeDeclaration",
+		"called": {
+			"kind": "ArrayTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ArrayTypeDeclarationImpl"
+		}
+	},
+	"UnionTypeDeclaration": {
+		"id": ".SomeType3.prop2",
+		"super": "UnionTypeDeclaration",
+		"called": {
+			"kind": "UnionTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "UnionTypeDeclarationImpl"
+		}
+	},
+	"ObjectTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "ObjectTypeDeclaration",
+		"called": {
+			"kind": "ObjectTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ObjectTypeDeclarationImpl"
+		}
+	},
+	"StringTypeDeclaration": {
+		"id": ".SomeType1.someFacet1.aaa",
+		"super": "StringTypeDeclaration",
+		"called": {
+			"kind": "StringTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "StringTypeDeclarationImpl"
+		}
+	},
+	"BooleanTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "BooleanTypeDeclaration",
+		"called": {
+			"kind": "BooleanTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "BooleanTypeDeclarationImpl"
+		}
+	},
+	"NumberTypeDeclaration": {
+		"id": ".SomeType2.aaa",
+		"super": "NumberTypeDeclaration",
+		"called": {
+			"kind": "NumberTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "NumberTypeDeclarationImpl"
+		}
+	},
+	"IntegerTypeDeclaration": {
+		"id": ".SomeTrait1.aaa[1]",
+		"super": "IntegerTypeDeclaration",
+		"called": {
+			"kind": "IntegerTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "IntegerTypeDeclarationImpl"
+		}
+	},
+	"DateOnlyTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "DateOnlyTypeDeclaration",
+		"called": {
+			"kind": "DateOnlyTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateOnlyTypeDeclarationImpl"
+		}
+	},
+	"TimeOnlyTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "TimeOnlyTypeDeclaration",
+		"called": {
+			"kind": "TimeOnlyTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "TimeOnlyTypeDeclarationImpl"
+		}
+	},
+	"DateTimeOnlyTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "DateTimeOnlyTypeDeclaration",
+		"called": {
+			"kind": "DateTimeOnlyTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateTimeOnlyTypeDeclarationImpl"
+		}
+	},
+	"DateTimeTypeDeclaration": {
+		"id": ".SomeType3.prop3",
+		"super": "DateTimeTypeDeclaration",
+		"called": {
+			"kind": "DateTimeTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateTimeTypeDeclarationImpl"
+		}
+	},
+	"DateTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "DateTypeDeclaration",
+		"called": {
+			"kind": "DateTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DateTypeDeclarationImpl"
+		}
+	},
+	"MimeType": {
+		"id": ".SomeType3.name",
+		"super": "MimeType",
+		"called": {
+			"kind": "MimeType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "MimeTypeImpl"
+		}
+	},
+	"Response": {
+		"id": ".SomeTrait1.200",
+		"super": "Response",
+		"called": {
+			"kind": "Response",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ResponseImpl"
+		}
+	},
+	"Annotable": {
+		"id": "",
+		"super": "Annotable",
+		"called": {
+			"kind": "Annotable",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "AnnotableImpl"
+		}
+	},
+	"AnnotationRef": {
+		"id": ".SomeType3.name",
+		"super": "AnnotationRef",
+		"called": {
+			"kind": "AnnotationRef",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "AnnotationRefImpl"
+		}
+	},
+	"AnnotationTarget": {
+		"id": ".SomeType3.name",
+		"super": "AnnotationTarget",
+		"called": {
+			"kind": "AnnotationTarget",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "AnnotationTargetImpl"
+		}
+	},
+	"TraitRef": {
+		"id": ".resourceType1.is",
+		"super": "TraitRef",
+		"called": {
+			"kind": "TraitRef",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "TraitRefImpl"
+		}
+	},
+	"Trait": {
+		"id": ".(A1)",
+		"super": "Trait",
+		"called": {
+			"kind": "Trait",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "TraitImpl"
+		}
+	},
+	"MethodBase": {
+		"id": ".(A1)",
+		"super": "MethodBase",
+		"called": {
+			"kind": "MethodBase",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "MethodBaseImpl"
+		}
+	},
+	"Method": {
+		"id": ".resourceType2.get",
+		"super": "Method",
+		"called": {
+			"kind": "Method",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "MethodImpl"
+		}
+	},
+	"Operation": {
+		"id": ".(A1)",
+		"super": "Operation",
+		"called": {
+			"kind": "Operation",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OperationImpl"
+		}
+	},
+	"SecuritySchemePart": {
+		"id": ".SScheme4.describedBy",
+		"super": "SecuritySchemePart",
+		"called": {
+			"kind": "SecuritySchemePart",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "SecuritySchemePartImpl"
+		}
+	},
+	"SecuritySchemeSettings": {
+		"id": ".SScheme4.settings",
+		"super": "SecuritySchemeSettings",
+		"called": {
+			"kind": "SecuritySchemeSettings",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "SecuritySchemeSettingsImpl"
+		}
+	},
+	"OAuth1SecuritySchemeSettings": {
+		"id": ".SScheme4.settings",
+		"super": "OAuth1SecuritySchemeSettings",
+		"called": {
+			"kind": "OAuth1SecuritySchemeSettings",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OAuth1SecuritySchemeSettingsImpl"
+		}
+	},
+	"OAuth2SecuritySchemeSettings": {
+		"id": ".SScheme2.settings",
+		"super": "OAuth2SecuritySchemeSettings",
+		"called": {
+			"kind": "OAuth2SecuritySchemeSettings",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OAuth2SecuritySchemeSettingsImpl"
+		}
+	},
+	"SecuritySchemeRef": {
+		"id": ".resourceType2.get.securedBy",
+		"super": "SecuritySchemeRef",
+		"called": {
+			"kind": "SecuritySchemeRef",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "SecuritySchemeRefImpl"
+		}
+	},
+	"AbstractSecurityScheme": {
+		"id": ".SScheme4",
+		"super": "AbstractSecurityScheme",
+		"called": {
+			"kind": "AbstractSecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "AbstractSecuritySchemeImpl"
+		}
+	},
+	"OAuth2SecurityScheme": {
+		"id": ".SScheme2",
+		"super": "OAuth2SecurityScheme",
+		"called": {
+			"kind": "OAuth2SecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OAuth2SecuritySchemeImpl"
+		}
+	},
+	"OAuth1SecurityScheme": {
+		"id": ".SScheme1",
+		"super": "OAuth1SecurityScheme",
+		"called": {
+			"kind": "OAuth1SecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "OAuth1SecuritySchemeImpl"
+		}
+	},
+	"PassThroughSecurityScheme": {
+		"id": ".SScheme3",
+		"super": "PassThroughSecurityScheme",
+		"called": {
+			"kind": "PassThroughSecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "PassThroughSecuritySchemeImpl"
+		}
+	},
+	"BasicSecurityScheme": {
+		"id": ".SScheme5",
+		"super": "BasicSecurityScheme",
+		"called": {
+			"kind": "BasicSecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "BasicSecuritySchemeImpl"
+		}
+	},
+	"DigestSecurityScheme": {
+		"id": ".SScheme4",
+		"super": "DigestSecurityScheme",
+		"called": {
+			"kind": "DigestSecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "DigestSecuritySchemeImpl"
+		}
+	},
+	"CustomSecurityScheme": {
+		"id": ".SScheme4",
+		"super": "CustomSecurityScheme",
+		"called": {
+			"kind": "CustomSecurityScheme",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "CustomSecuritySchemeImpl"
+		}
+	},
+	"ResourceTypeRef": {
+		"id": ".resourceType2.type",
+		"super": "ResourceTypeRef",
+		"called": {
+			"kind": "ResourceTypeRef",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ResourceTypeRefImpl"
+		}
+	},
+	"ResourceType": {
+		"id": ".resourceType1",
+		"super": "ResourceType",
+		"called": {
+			"kind": "ResourceType",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ResourceTypeImpl"
+		}
+	},
+	"ResourceBase": {
+		"id": ".resourceType1",
+		"super": "ResourceBase",
+		"called": {
+			"kind": "ResourceBase",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ResourceBaseImpl"
+		}
+	},
+	"Resource": {
+		"id": ".resourceType1",
+		"super": "Resource",
+		"called": {
+			"kind": "Resource",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "ResourceImpl"
+		}
+	},
+	"FileTypeDeclaration": {
+		"id": ".SomeType3",
+		"super": "FileTypeDeclaration",
+		"called": {
+			"kind": "FileTypeDeclaration",
+			"RAMLVersion": "RAML10",
+			"wrapperClassName": "FileTypeDeclarationImpl"
+		}
+	}
+}

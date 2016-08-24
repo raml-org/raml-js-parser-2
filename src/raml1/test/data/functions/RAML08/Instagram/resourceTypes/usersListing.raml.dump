@@ -1,0 +1,48 @@
+{
+	"undefined": {
+		"type": "base",
+		"securedBy": [
+			{
+				"oauth_2_0": {
+					"scopes": [
+						"relationships"
+					],
+					"clientId": []
+				}
+			}
+		],
+		"get": {
+			"responses": {
+				"200": {
+					"code": "200",
+					"body": {
+						"application/json": {
+							"name": "application/json",
+							"schema": "users",
+							"example": "{\n    \"data\": [{\n        \"username\": \"jack\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_66_75sq.jpg\",\n        \"id\": \"66\",\n        \"last_name\": \"Dorsey\"\n    },\n    {\n        \"username\": \"sammyjack\",\n        \"first_name\": \"Sammy\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_29648_75sq_1294520029.jpg\",\n        \"id\": \"29648\",\n        \"last_name\": \"Jack\"\n    },\n    {\n        \"username\": \"jacktiddy\",\n        \"first_name\": \"Jack\",\n        \"profile_picture\": \"http://distillery.s3.amazonaws.com/profiles/profile_13096_75sq_1286441317.jpg\",\n        \"id\": \"13096\",\n        \"last_name\": \"Tiddy\"\n    }]\n}",
+							"schemaContent": "users"
+						}
+					}
+				}
+			},
+			"securedBy": [
+				{
+					"oauth_2_0": {
+						"scopes": [
+							"relationships"
+						],
+						"clientId": []
+					}
+				}
+			],
+			"method": "get",
+			"__METADATA__": {
+				"primitiveValuesMeta": {
+					"securedBy": {
+						"calculated": true
+					}
+				}
+			}
+		}
+	}
+}

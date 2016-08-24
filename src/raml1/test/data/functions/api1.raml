@@ -1,0 +1,63 @@
+#%RAML 1.0
+
+title: Api
+uses:
+  lib: lib.raml
+types:
+  SomeType:
+    type: lib.TypeFromLibrary
+    properties:
+      prop: string
+    example:
+      prop: aaaa
+      someProp: bbbb
+
+  AnotherType:
+    type: SomeType
+    example: |
+      <AnotherType>
+        <prop>blah</prop>
+        <someProp>lorem ipsum</someProp>
+      </AnotherType>
+
+
+traits:
+  Trait1:
+    body:
+      application/json:
+
+
+securitySchemes:
+  Scheme1:
+    type: OAuth 2.0
+
+/service:
+  securedBy: Scheme1
+  get:
+    body:
+      application/json:
+        type: lib.TypeFromLibrary
+        example: |
+          <TypeFromLibrary>
+            <someProp>lorem ipsum</someProp>
+          </TypeFromLibrary>
+    responses:
+      200:
+        body:
+          application/json:
+            type: SomeType
+            example: |
+              {
+                "prop": "ex1",
+                "someProp": "ex2"
+              }
+      400:
+        body:
+          application/json:
+            type: AnotherType
+            example:
+              prop: aaaa
+              someProp: bbbb
+
+  post:
+    is: [Trait1]
