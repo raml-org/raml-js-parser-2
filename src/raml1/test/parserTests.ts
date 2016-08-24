@@ -574,7 +574,7 @@ describe('Parser regression tests', function () {
         testErrorsByNumber(util.data("parser/annotations/a32.raml"),1);//Ok for now lets improve later
     })
     it ("unknown annotation in example" ,function(){
-        testErrors(util.data("parser/annotations/a35.raml"),["using unknown annotation type"]);//Ok for now lets improve later
+        testErrors(util.data("parser/annotations/a35.raml"),["using unknown annotation type"]);
     })
     //No more signatures
     //it ("signatures with inherited classes" ,function(){

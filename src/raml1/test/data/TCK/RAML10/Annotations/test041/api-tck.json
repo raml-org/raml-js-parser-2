@@ -1,0 +1,57 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "API, Library"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "'allowedTargets' property value must be an array of type names or a single type name",
+      "path": "api.raml",
+      "line": 5,
+      "column": 4,
+      "position": 55,
+      "range": [
+        {
+          "line": 5,
+          "column": 4,
+          "position": 55
+        },
+        {
+          "line": 5,
+          "column": 18,
+          "position": 69
+        }
+      ]
+    }
+  ]
+}
