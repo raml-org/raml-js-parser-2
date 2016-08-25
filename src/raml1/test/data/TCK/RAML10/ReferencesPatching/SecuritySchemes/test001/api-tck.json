@@ -10,8 +10,8 @@
     ],
     "traits": [
       {
-        "boolean": {
-          "name": "boolean",
+        "lib.boolean": {
+          "name": "lib.boolean",
           "__METADATA__": {
             "calculated": true
           }
@@ -20,7 +20,7 @@
     ],
     "resourceTypes": [
       {
-        "number": {
+        "lib.number": {
           "is": [
             "lib.boolean"
           ],
@@ -28,7 +28,7 @@
             "lib.oauth",
             "lib.number"
           ],
-          "name": "number",
+          "name": "lib.number",
           "__METADATA__": {
             "calculated": true
           }

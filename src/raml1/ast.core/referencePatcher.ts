@@ -121,7 +121,7 @@ export class ReferencePatcher{
                 stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
             }
             var newValue = this.resolveReferenceValue(
-                stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation,isAnnotation);
+                stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
             if(newValue!=null){
                 var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
                 (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
@@ -141,7 +141,7 @@ export class ReferencePatcher{
                     stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
                 }
                 var newValue = this.resolveReferenceValue(
-                    stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation,isAnnotation);
+                    stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
                 if(newValue!=null) {
                     var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
                     (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
@@ -244,7 +244,7 @@ export class ReferencePatcher{
                                         return;
                                     }
                                     var patched = this.resolveReferenceValue(
-                                        typeName, rootUnit, units, resolver, transformer, true);
+                                        typeName, rootUnit, units, resolver, transformer, nodeType);
                                     if (patched != null) {
                                         lit.value = patched.value();
                                         gotPatch = true;
@@ -260,7 +260,7 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, true);
+                            var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, nodeType);
                             if(patched!=null) {
                                 this.registerPatchedReference(patched, nodeType);
                                 newValue = patched.value();
@@ -298,16 +298,16 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[],
         resolver:namespaceResolver.NamespaceResolver,
         transformer:expander.DefaultTransformer,
-        isType:boolean=false,
-        isAnnotation:boolean=false):PatchedReference
+        range:def.ITypeDefinition):PatchedReference
     {
+        var isAnnotation = universeHelpers.isAnnotationRefTypeOrDescendant(range);
         var newValue:PatchedReference;
         if (transformer) {
             if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
                 var doContinue = true;
                 var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
                 newValue = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
-                    var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, isType);
+                    var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, range);
                     if (newVal == null) {
                         newVal = new PatchedReference(null,val);
                     }
@@ -324,7 +324,7 @@ export class ReferencePatcher{
             }
         }
         if (newValue === undefined) {
-            newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, isType);
+            newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, range);
         }
         return newValue;
     }
@@ -336,7 +336,7 @@ export class ReferencePatcher{
         
         var llNode = <proxy.LowLevelProxyNode>hlNode.lowLevel();
         var key = llNode.key();
-        var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],true);
+        var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],hlNode.definition());
         if(patched != null){
             llNode.setKeyOverride(patched.value());
         }
@@ -347,7 +347,9 @@ export class ReferencePatcher{
         rootUnit:ll.ICompilationUnit,
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[],
-        isType:boolean=false):PatchedReference{
+        range:def.ITypeDefinition):PatchedReference{
+        
+        var isType = universeHelpers.isTypeDeclarationSibling(range);
 
         var ind = value.lastIndexOf(".");
 

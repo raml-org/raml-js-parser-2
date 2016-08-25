@@ -10,11 +10,11 @@
     ],
     "traits": [
       {
-        "boolean": {
+        "lib.boolean": {
           "securedBy": [
             "lib.number"
           ],
-          "name": "boolean",
+          "name": "lib.boolean",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -27,7 +27,7 @@
     ],
     "resourceTypes": [
       {
-        "number": {
+        "lib.number": {
           "is": [
             "lib.boolean"
           ],
@@ -35,7 +35,7 @@
             "lib.oauth",
             "lib.number"
           ],
-          "name": "number"
+          "name": "lib.number"
         }
       }
     ],
