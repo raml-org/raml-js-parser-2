@@ -573,6 +573,9 @@ describe('Parser regression tests', function () {
     it ("date time format is checked in super types (negative)" ,function(){
         testErrorsByNumber(util.data("parser/annotations/a32.raml"),1);//Ok for now lets improve later
     })
+    it ("unknown annotation in example" ,function(){
+        testErrors(util.data("parser/annotations/a35.raml"),["using unknown annotation type"]);
+    })
     //No more signatures
     //it ("signatures with inherited classes" ,function(){
     //    testErrors(util.data("parser/typexpressions/ct1.raml"));//Ok for now lets improve later

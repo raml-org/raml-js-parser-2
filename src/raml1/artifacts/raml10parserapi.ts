@@ -1013,12 +1013,6 @@ format(  ):AnnotationRef[]
 
 
 /**
- * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
- **/
-export interface DateTypeDeclaration extends TypeDeclaration{}
-
-
-/**
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  **/
 export interface FileTypeDeclaration extends TypeDeclaration{
@@ -2723,15 +2717,6 @@ export function isDateTimeOnlyTypeDeclaration(node: core.AbstractWrapperNode) : 
  */
 export function isDateTimeTypeDeclaration(node: core.AbstractWrapperNode) : node is DateTimeTypeDeclaration {
     return node.kind() == "DateTimeTypeDeclaration" && node.RAMLVersion() == "RAML10";
-}
-
-
-/**
- * Custom type guard for DateTypeDeclaration. Returns true if node is instance of DateTypeDeclaration. Returns false otherwise.
- * Also returns false for super interfaces of DateTypeDeclaration.
- */
-export function isDateTypeDeclaration(node: core.AbstractWrapperNode) : node is DateTypeDeclaration {
-    return node.kind() == "DateTypeDeclaration" && node.RAMLVersion() == "RAML10";
 }
 
 

@@ -326,13 +326,16 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         var def = this.nodeDefinition();
         if (def &&(def.key()==universes.Universe08.TraitRef||def.key()==universes.Universe08.ResourceTypeRef
             ||def.key()==universes.Universe10.TraitRef||def.key()==universes.Universe10.ResourceTypeRef)) {
-            if(typeof obj == 'object'){
+            if(obj && typeof obj == 'object'){
                 var keys = Object.keys(obj);
                 if(keys.length>0){
                     obj = keys[0];
                 }
             }
         }
+
+        if (obj == null) return "";
+
         return stringify(obj);
     }
 

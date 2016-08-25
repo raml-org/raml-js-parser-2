@@ -104,7 +104,6 @@ import TimeOnlyTypeDeclaration = pApi.TimeOnlyTypeDeclaration;
 import DateTimeOnlyTypeDeclaration = pApi.DateTimeOnlyTypeDeclaration;
 import DateTimeTypeDeclaration = pApi.DateTimeTypeDeclaration;
 import DateTimeTypeDeclarationScalarsAnnotations = pApi.DateTimeTypeDeclarationScalarsAnnotations;
-import DateTypeDeclaration = pApi.DateTypeDeclaration;
 import FileTypeDeclaration = pApi.FileTypeDeclaration;
 import FileTypeDeclarationScalarsAnnotations = pApi.FileTypeDeclarationScalarsAnnotations;
 import Response = pApi.Response;
@@ -2620,33 +2619,6 @@ format(  ):AnnotationRef[]{
         var result = core.attributesToValues(annotationAttrs,(a:hl.IAttribute)=>new AnnotationRefImpl(a));
         return <AnnotationRef[]>result;
 }
-}
-
-
-/**
- * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3, or according to specified date format
- **/
-export class DateTypeDeclarationImpl extends TypeDeclarationImpl implements DateTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
-
-
-        /**
-         * @hidden
-         * @return Actual name of instance class
-         **/
-wrapperClassName(  ):string{return "DateTypeDeclarationImpl";}
-
-
-        /**
-         * @return Actual name of instance interface
-         **/
-kind(  ):string{return "DateTypeDeclaration";}
-
-
-        /**
-         * @return RAML version of the node
-         **/
-RAMLVersion(  ):string{return "RAML10";}
 }
 
 
@@ -5689,16 +5661,6 @@ function createDateTimeOnlyTypeDeclaration(key:string){
 function createDateTimeTypeDeclaration(key:string){
     var universe=def.getUniverse("RAML10");
     var nc=<def.NodeClass>universe.type("DateTimeTypeDeclaration");
-    var node=stubs.createStubNode(nc,null,key);
-    return node;
-}
-
-/**
- * @hidden
- **/
-function createDateTypeDeclaration(key:string){
-    var universe=def.getUniverse("RAML10");
-    var nc=<def.NodeClass>universe.type("DateTypeDeclaration");
     var node=stubs.createStubNode(nc,null,key);
     return node;
 }

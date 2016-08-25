@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: raml-service
+
+mediaType: application/json
+/parseFiles:
+  post:
+    description: Parse the given RAML files
+    body:
+      application/json:
+
+    responses:
+      200:
+        body:
+          application/json:
+          description: Parsed RAML

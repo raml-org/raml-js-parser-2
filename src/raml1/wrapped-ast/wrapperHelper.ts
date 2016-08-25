@@ -966,6 +966,10 @@ function extractParams(
     uri:string,
     owner:core.BasicNode,
     propName:string):RamlWrapper.TypeDeclaration[] {
+    
+    if(typeof(uri)!='string'){
+        return [];
+    }
 
     var ownerHl = owner.highLevel();
     var definition = ownerHl.definition();

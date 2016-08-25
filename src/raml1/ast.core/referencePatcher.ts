@@ -735,9 +735,12 @@ export function patchMethodIs(node:hl.IHighLevelNode,traits:{
 
     var newTraits = childrenToPreserve.concat(traits.map(x=>{
         var llChNode = prepareTraitRefNode(x.node,isNode);
-        var cNode = new proxy.LowLevelCompositeNode(llChNode,isNode,x.transformer,ramlVersion);
-        return cNode;
-    }));
+        if(llChNode!=null) {
+            var cNode = new proxy.LowLevelCompositeNode(llChNode, isNode, x.transformer, ramlVersion);
+            return cNode;
+        }
+        return null;
+    })).filter(x=>x!=null);
     isNode.setChildren(newTraits);
     isNode.filterChildren();
     return isNode;
@@ -748,11 +751,20 @@ export function prepareTraitRefNode(llNode:ll.ILowLevelASTNode,llParent:ll.ILowL
     llParent = toOriginal(llParent);
     llNode = toOriginal(llNode);
     var yNode = <yaml.YAMLNode>llNode.actual();
+    if(yNode==null){
+        return null;
+    }
     if(llNode.key()==universeDef.Universe10.MethodBase.properties.is.name){
         yNode = (<jsyaml.ASTNode>llNode).yamlNode().value;
     }
+    if(yNode==null){
+        return null;
+    }
     if(yNode.kind == yaml.Kind.SEQ){
         yNode = (<yaml.YAMLSequence>yNode).items[0];
+    }
+    if(yNode==null){
+        return null;
     }
     var result = new jsyaml.ASTNode(yNode,llNode.unit(),<jsyaml.ASTNode>llParent,null,null);
     return result;
