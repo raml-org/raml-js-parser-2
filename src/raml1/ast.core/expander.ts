@@ -69,7 +69,7 @@ function mergeHighLevelNodes(
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
 
-        if(expand) {
+        if(expand&&(currentMaster.lowLevel() instanceof proxy.LowLevelProxyNode)) {
             currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
                 currentMaster, rp, masterApi.wrapperNode()).highLevel();
         }
@@ -99,9 +99,6 @@ export class TraitsAndResourceTypesExpander {
         rp:referencePatcher.ReferencePatcher = null,
         forceProxy:boolean=false):RamlWrapper.Api|RamlWrapper08.Api {
         
-        if (api.definition().key()==universeDef.Universe10.Overlay){
-            return api;
-        }
         this.init(api);
 
         var unit = api.highLevel().lowLevel().unit();
@@ -112,6 +109,9 @@ export class TraitsAndResourceTypesExpander {
         }
         
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false,rp);
+        if (api.definition().key()==universeDef.Universe10.Overlay){
+            return <RamlWrapper.Api>hlNode.wrapperNode();
+        }
         var result = this.expandHighLevelNode(hlNode, rp, <core.BasicNodeImpl><any>api);
         return result;
     }
@@ -194,8 +194,15 @@ export class TraitsAndResourceTypesExpander {
         while(node) {
 
             var llNode:ll.ILowLevelASTNode = node.lowLevel();
-            var topComposite:proxy.LowLevelCompositeNode = new proxy.LowLevelCompositeNode(
-                llNode, null, null, this.ramlVersion);
+            var topComposite:ll.ILowLevelASTNode;
+            if (api.definition().key()!=universeDef.Universe10.Overlay||forceProxy){
+                topComposite = new proxy.LowLevelCompositeNode(
+                    llNode, null, null, this.ramlVersion);
+            }
+            else{
+                topComposite = llNode;
+            }
+            
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
             highLevelNodes.push(newNode);
@@ -457,23 +464,20 @@ export class LibraryExpander{
         }
         var expander = new TraitsAndResourceTypesExpander();
         var rp = new referencePatcher.ReferencePatcher(referencePatcher.PatchMode.PATH);
-
         var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api.highLevel(),true,rp,true);
-        if(api.definition().key()==universeDef.Universe10.Overlay){
-            this.processOverlayNode(rp,hlNode);
-        }
+
         api = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
-        rp.expandLibraries(api.highLevel());
+        this.processNode(rp,hlNode);
         (<RamlWrapperImpl.ApiImpl>_api).patchNode(api.highLevel());
 
     }
     
-    processOverlayNode(rp:referencePatcher.ReferencePatcher,hlNode:hl.IHighLevelNode){
+    processNode(rp:referencePatcher.ReferencePatcher, hlNode:hl.IHighLevelNode){
         if(hlNode==null){
             return;
         }
         var master = <hl.IHighLevelNode>(<hlimpl.ASTNodeImpl>hlNode).getMaster();
-        this.processOverlayNode(rp,master);
+        this.processNode(rp,master);
         if(universeHelpers.isOverlayType(hlNode.definition())){
             rp.process(hlNode);
         }
