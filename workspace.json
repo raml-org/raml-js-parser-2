@@ -16,12 +16,13 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "gitBranch" : "hotfix-for-1.0.0",
+    "gitBranch" : "lib-expansion",
     "installTypings" : true
   },
   "ts-structure-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git",
+    "gitBranch" : "develop",
     "installTypings" : true
   },
   "yaml-ast-parser" : {
