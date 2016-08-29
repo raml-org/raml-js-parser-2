@@ -10,38 +10,38 @@
     ],
     "traits": [
       {
-        "lib.libTrait1": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1": {
           "annotations": {
-            "lib.MyAnnotation": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
               "structuredValue": "stringValueFromLibTrait1",
-              "name": "lib.MyAnnotation"
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
             }
           },
-          "name": "lib.libTrait1"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
         }
       },
       {
-        "lib.libTrait2": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2": {
           "annotations": {
-            "lib.MyAnnotation": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
               "structuredValue": "stringValueFromLibTrait2",
-              "name": "lib.MyAnnotation"
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
             }
           },
-          "name": "lib.libTrait2"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
         }
       }
     ],
     "resourceTypes": [
       {
-        "lib.libResourceType": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType": {
           "is": [
-            "lib.libTrait2"
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
           ],
-          "name": "lib.libResourceType",
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType",
           "post": {
             "is": [
-              "lib.libTrait1"
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
             ],
             "method": "post"
           }
@@ -50,9 +50,9 @@
     ],
     "annotationTypes": [
       {
-        "lib.MyAnnotation": {
-          "name": "lib.MyAnnotation",
-          "displayName": "lib.MyAnnotation",
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation",
           "type": [
             "string"
           ],
@@ -76,33 +76,33 @@
         "methods": [
           {
             "annotations": {
-              "lib.MyAnnotation": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
                 "structuredValue": "stringValueFromLibTrait1",
-                "name": "lib.MyAnnotation"
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
               }
             },
             "is": [
-              "lib.libTrait1"
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
             ],
             "method": "get"
           },
           {
             "annotations": {
-              "lib.MyAnnotation": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
                 "structuredValue": "stringValueFromLibTrait2",
-                "name": "lib.MyAnnotation"
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
               }
             },
             "is": [
-              "lib.libTrait1"
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
             ],
             "method": "post"
           }
         ],
         "is": [
-          "lib.libTrait2"
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
         ],
-        "type": "lib.libResourceType",
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType",
         "uriParameters": {
           "id": {
             "name": "id",

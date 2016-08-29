@@ -12,17 +12,86 @@
         "value": "lib2.raml"
       }
     ],
+    "types": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
+          "queryParameters": {
+            "q": {
+              "name": "q",
+              "displayName": "<<paramName>>",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait"
+        }
+      }
+    ],
     "resourceTypes": [
       {
-        "lib1.rt": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt": {
           "is": [
             {
-              "lib1.lib2.myTrait": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
                 "paramName": "QParam"
               }
             }
           ],
-          "name": "lib1.rt"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt"
         }
       }
     ],
@@ -61,7 +130,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "lib1.lib2.MyLibType"
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -91,12 +160,12 @@
         ],
         "is": [
           {
-            "lib1.lib2.myTrait": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
               "paramName": "QParam"
             }
           }
         ],
-        "type": "lib1.rt",
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

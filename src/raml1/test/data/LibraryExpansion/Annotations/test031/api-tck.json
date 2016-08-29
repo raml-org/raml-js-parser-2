@@ -27,7 +27,7 @@
             "properties": {
               "cardId": {
                 "annotations": {
-                  "lib.bindingDefinition": {
+                  "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition": {
                     "structuredValue": [
                       {
                         "method": "GET",
@@ -40,7 +40,7 @@
                         "output": "REQUIRED"
                       }
                     ],
-                    "name": "lib.bindingDefinition"
+                    "name": "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition"
                   }
                 },
                 "name": "cardId",
@@ -88,8 +88,8 @@
     ],
     "annotationTypes": [
       {
-        "lib.bindingDefinition": {
-          "name": "lib.bindingDefinition",
+        "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition",
           "displayName": "BindingDefinition",
           "type": [
             "array"

@@ -3,23 +3,23 @@
   "type": "Overlay",
   "specification": {
     "annotations": {
-      "library.highLevelApiDescription": {
+      "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription": {
         "structuredValue": null,
-        "name": "library.highLevelApiDescription"
+        "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription"
       },
-      "library.apiLogo": {
+      "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo": {
         "structuredValue": null,
-        "name": "library.apiLogo"
+        "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo"
       },
-      "library.specAuthor": {
+      "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor": {
         "structuredValue": "mulesoft.com",
-        "name": "library.specAuthor"
+        "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor"
       },
-      "library.devPortal": {
+      "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal": {
         "structuredValue": null,
-        "name": "library.devPortal"
+        "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal"
       },
-      "library.extraResources": {
+      "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources": {
         "structuredValue": [
           {
             "title": "API Notebook",
@@ -27,7 +27,7 @@
             "uri": "blah"
           }
         ],
-        "name": "library.extraResources"
+        "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources"
       }
     },
     "uses": [
@@ -36,10 +36,91 @@
         "value": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml"
       }
     ],
+    "types": [
+      {
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource",
+          "displayName": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "title": {
+              "name": "title",
+              "displayName": "title",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "uri": {
+              "name": "uri",
+              "displayName": "uri",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
     "annotationTypes": [
       {
-        "library.highLevelApiDescription": {
-          "name": "library.highLevelApiDescription",
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription",
           "displayName": "Api Description",
           "type": [
             "string"
@@ -60,8 +141,8 @@
         }
       },
       {
-        "library.apiLogo": {
-          "name": "library.apiLogo",
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo",
           "displayName": "Logo",
           "type": [
             "string"
@@ -82,8 +163,8 @@
         }
       },
       {
-        "library.specAuthor": {
-          "name": "library.specAuthor",
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor",
           "displayName": "Spec Author",
           "type": [
             "string"
@@ -104,8 +185,8 @@
         }
       },
       {
-        "library.devPortal": {
-          "name": "library.devPortal",
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal",
           "displayName": "Developer Portal",
           "type": [
             "string"
@@ -126,11 +207,11 @@
         }
       },
       {
-        "library.extraResources": {
-          "name": "library.extraResources",
-          "displayName": "library.extraResources",
+        "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources": {
+          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources",
+          "displayName": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources",
           "type": [
-            "library.apiResource[]"
+            "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource[]"
           ],
           "required": true,
           "allowedTargets": [

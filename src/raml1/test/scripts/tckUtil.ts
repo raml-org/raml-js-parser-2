@@ -341,6 +341,38 @@ export function testAPILibExpand(
     
 }
 
+var pathReplacer = function (str1:string,str2:string) {
+    var l = str1.length;
+    return function (key, value) {
+        if(value) {
+            if (typeof(value) == "object") {
+                for (var k of Object.keys(value)) {
+                    if (k.substring(0, l) == str1) {
+                        var newKey = str2 + k.substring(l);
+                        var val = value[k];
+                        delete value[k];
+                        value[newKey] = val;
+                    }
+                }
+            }
+            else if (typeof(value) == "string") {
+                value = value.split(str1).join(str2);
+            }
+        }
+        return value;
+    };
+};
+var serializeTestJSON = function (tckJsonPath:string, json:any) {
+    var copy = JSON.parse(JSON.stringify(json));
+    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var replacer = pathReplacer(rootPath,"__$$ROOT_PATH__");
+    fs.writeFileSync(tckJsonPath, JSON.stringify(copy, replacer, 2));
+};
+var readTestJSON = function (tckJsonPath:string) {    
+    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
+    return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
+};
 export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
@@ -374,10 +406,10 @@ export function testAPI(
     }
 
     if(regenerteJSON) {
-        fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
+        serializeTestJSON(tckJsonPath, json);
     }
     if(!fs.existsSync(tckJsonPath)){
-        fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
+        serializeTestJSON(tckJsonPath, json);
         if(!callTests){
             console.log("TCK JSON GENERATED: " + tckJsonPath);
             return;
@@ -388,7 +420,8 @@ export function testAPI(
         return;
     }
 
-    var tckJson:any = JSON.parse(fs.readFileSync(tckJsonPath).toString());
+
+    var tckJson:any = readTestJSON(tckJsonPath);
     var pathRegExp = new RegExp('/errors\\[\\d+\\]/path');
     var messageRegExp = new RegExp('/errors\\[\\d+\\]/message');
     var diff = testUtil.compare(json,tckJson).filter(x=>{

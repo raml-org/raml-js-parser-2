@@ -12,13 +12,71 @@
         "value": "lib2.raml"
       }
     ],
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait": {
+          "body": {
+            "application/json": {
+              "annotations": {
+                "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
+                  "structuredValue": "stringValue",
+                  "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation"
+                }
+              },
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
+        }
+      }
+    ],
     "resourceTypes": [
       {
-        "lib1.rt": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt": {
           "is": [
-            "lib1.lib2.myTrait"
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
           ],
-          "name": "lib1.rt"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
         }
       }
     ],
@@ -35,9 +93,9 @@
             "body": {
               "application/json": {
                 "annotations": {
-                  "lib1.lib2.MyAnnotation": {
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
                     "structuredValue": "stringValue",
-                    "name": "lib1.lib2.MyAnnotation"
+                    "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation"
                   }
                 },
                 "name": "application/json",
@@ -75,9 +133,9 @@
           }
         ],
         "is": [
-          "lib1.lib2.myTrait"
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
         ],
-        "type": "lib1.rt",
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {

@@ -10,9 +10,9 @@
     ],
     "annotationTypes": [
       {
-        "decls.important": {
-          "name": "decls.important",
-          "displayName": "decls.important",
+        "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/overlay/lib/decls.raml#/annotationTypes/important": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/overlay/lib/decls.raml#/annotationTypes/important",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/overlay/lib/decls.raml#/annotationTypes/important",
           "type": [
             "nil"
           ],
@@ -36,9 +36,9 @@
         "methods": [
           {
             "annotations": {
-              "decls.important": {
+              "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/overlay/lib/decls.raml#/annotationTypes/important": {
                 "structuredValue": null,
-                "name": "decls.important"
+                "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/overlay/lib/decls.raml#/annotationTypes/important"
               }
             },
             "responses": {

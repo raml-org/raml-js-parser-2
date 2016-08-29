@@ -18,9 +18,52 @@
     ],
     "types": [
       {
-        "types2.MyObjectType": {
-          "name": "types2.MyObjectType",
-          "displayName": "types2.MyObjectType",
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "prop": {
+              "name": "prop",
+              "displayName": "prop",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType",
           "type": [
             "object"
           ],
@@ -59,6 +102,26 @@
             }
           }
         }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
       }
     ],
     "resourceTypes": [
@@ -86,22 +149,12 @@
                     "object"
                   ],
                   "required": true,
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    },
-                    {
-                      "key": "types2",
-                      "value": "../libs/types2.raml"
-                    }
-                  ],
                   "properties": {
                     "ownLibProperty": {
                       "name": "ownLibProperty",
                       "displayName": "ownLibProperty",
                       "type": [
-                        "lib0.MyType"
+                        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType"
                       ],
                       "required": true,
                       "__METADATA__": {
@@ -119,7 +172,7 @@
                       "name": "rootLibProperty",
                       "displayName": "rootLibProperty",
                       "type": [
-                        "types2.MyObjectType"
+                        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType"
                       ],
                       "required": true,
                       "__METADATA__": {
@@ -134,6 +187,16 @@
                       }
                     }
                   },
+                  "uses": [
+                    {
+                      "key": "lib",
+                      "value": "../libs/lib.raml"
+                    },
+                    {
+                      "key": "types2",
+                      "value": "../libs/types2.raml"
+                    }
+                  ],
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
@@ -203,22 +266,12 @@
                     "object"
                   ],
                   "required": true,
-                  "uses": [
-                    {
-                      "key": "lib",
-                      "value": "../libs/lib.raml"
-                    },
-                    {
-                      "key": "types2",
-                      "value": "../libs/types2.raml"
-                    }
-                  ],
                   "properties": {
                     "ownLibProperty": {
                       "name": "ownLibProperty",
                       "displayName": "ownLibProperty",
                       "type": [
-                        "lib0.MyType"
+                        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType"
                       ],
                       "required": true,
                       "__METADATA__": {
@@ -236,7 +289,7 @@
                       "name": "rootLibProperty",
                       "displayName": "rootLibProperty",
                       "type": [
-                        "types2.MyObjectType"
+                        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType"
                       ],
                       "required": true,
                       "__METADATA__": {
@@ -251,6 +304,16 @@
                       }
                     }
                   },
+                  "uses": [
+                    {
+                      "key": "lib",
+                      "value": "../libs/lib.raml"
+                    },
+                    {
+                      "key": "types2",
+                      "value": "../libs/types2.raml"
+                    }
+                  ],
                   "__METADATA__": {
                     "primitiveValuesMeta": {
                       "displayName": {
@@ -298,7 +361,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "lib.MyType"
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType"
                 ],
                 "example": "stringValue",
                 "required": true,

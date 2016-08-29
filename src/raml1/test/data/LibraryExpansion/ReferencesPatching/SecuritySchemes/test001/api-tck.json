@@ -10,11 +10,11 @@
     ],
     "traits": [
       {
-        "lib.boolean": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean": {
           "securedBy": [
-            "lib.number"
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
           ],
-          "name": "lib.boolean",
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean",
           "__METADATA__": {
             "primitiveValuesMeta": {
               "securedBy": {
@@ -27,45 +27,45 @@
     ],
     "resourceTypes": [
       {
-        "lib.number": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number": {
           "is": [
-            "lib.boolean"
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean"
           ],
           "securedBy": [
-            "lib.oauth",
-            "lib.number"
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
           ],
-          "name": "lib.number"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number"
         }
       }
     ],
     "securitySchemes": [
       {
-        "oauth": {
-          "name": "oauth",
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
           "type": "OAuth 2.0"
         }
       },
       {
-        "number": {
-          "name": "number",
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number",
           "type": "Basic Authentication"
         }
       }
     ],
     "title": "test API",
     "securedBy": [
-      "lib.number"
+      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
     ],
     "resources": [
       {
         "is": [
-          "lib.boolean"
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean"
         ],
-        "type": "lib.number",
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number",
         "securedBy": [
-          "lib.oauth",
-          "lib.number"
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
         ],
         "relativeUri": "/resource",
         "displayName": "/resource",

@@ -10,9 +10,9 @@
     ],
     "types": [
       {
-        "lib.LibType": {
-          "name": "lib.LibType",
-          "displayName": "lib.LibType",
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType",
           "type": [
             "object"
           ],
@@ -32,7 +32,7 @@
     ],
     "traits": [
       {
-        "lib.libTrait1": {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1": {
           "responses": {
             "200": {
               "code": "200",
@@ -41,7 +41,7 @@
                   "name": "application/json",
                   "displayName": "application/json",
                   "type": [
-                    "lib.LibType"
+                    "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -58,7 +58,7 @@
               }
             }
           },
-          "name": "lib.libTrait1"
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1"
         }
       }
     ],
@@ -80,7 +80,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "lib.LibType"
+                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -101,7 +101,7 @@
               "HTTPS"
             ],
             "is": [
-              "lib.libTrait1"
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1"
             ],
             "method": "get",
             "__METADATA__": {

@@ -10,9 +10,9 @@
     ],
     "annotationTypes": [
       {
-        "lib.TestAnnotationType": {
-          "name": "lib.TestAnnotationType",
-          "displayName": "lib.TestAnnotationType",
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType",
           "type": [
             "string"
           ],
@@ -30,9 +30,9 @@
         }
       },
       {
-        "lib.AnotherAnnotationType": {
-          "name": "lib.AnotherAnnotationType",
-          "displayName": "lib.AnotherAnnotationType",
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType",
           "type": [
             "object"
           ],
@@ -92,16 +92,16 @@
     "resources": [
       {
         "annotations": {
-          "lib.TestAnnotationType": {
+          "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType": {
             "structuredValue": "TestAnnotationType2",
-            "name": "lib.TestAnnotationType"
+            "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType"
           },
-          "lib.AnotherAnnotationType": {
+          "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType": {
             "structuredValue": {
               "firstProp": "firstProp2",
               "secondProp": 101
             },
-            "name": "lib.AnotherAnnotationType"
+            "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType"
           }
         },
         "relativeUri": "/servers",

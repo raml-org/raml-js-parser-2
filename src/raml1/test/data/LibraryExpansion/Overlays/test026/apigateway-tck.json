@@ -8,13 +8,39 @@
         "value": "aws-lib.raml"
       }
     ],
-    "annotationTypes": [
+    "types": [
       {
-        "AWS.amazon-apigateway-auth": {
-          "name": "AWS.amazon-apigateway-auth",
-          "displayName": "AWS.amazon-apigateway-auth",
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type",
           "type": [
-            "AWS.amazon-apigateway-auth-type"
+            "string"
+          ],
+          "required": true,
+          "enum": [
+            "aws_iam"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration",
+          "type": [
+            "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws"
           ],
           "required": true,
           "__METADATA__": {
@@ -30,11 +56,652 @@
         }
       },
       {
-        "AWS.amazon-apigateway-integration": {
-          "name": "AWS.amazon-apigateway-integration",
-          "displayName": "AWS.amazon-apigateway-integration",
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda",
           "type": [
-            "AWS.amazon-apigateway-integration"
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "lambda"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "HTTP"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "mock"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "type": "aws",
+            "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
+            "httpMethod": "POST",
+            "credentials": "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role",
+            "requestTemplates": {
+              "application/json": "json request template 2",
+              "application/xml": "xml request template 2"
+            },
+            "requestParameters": {
+              "integration.request.path.integrationPathParam": "method.request.querystring.latitude",
+              "integration.request.querystring.integrationQueryParam": "method.request.querystring.longitude"
+            },
+            "cacheNamespace": "cache namespace",
+            "cacheKeyParameters": [],
+            "responses": {
+              "2\\d{2}": {
+                "statusCode": "200",
+                "responseParameters": {
+                  "method.response.header.test-method-response-header": "integration.response.header.integrationResponseHeaderParam1"
+                },
+                "responseTemplates": {
+                  "application/json": "json 200 response template",
+                  "application/xml": "xml 200 response template"
+                }
+              },
+              "default": {
+                "statusCode": "400",
+                "responseParameters": {
+                  "method.response.header.test-method-response-header": "'static value'"
+                },
+                "responseTemplates": {
+                  "application/json": "json 400 response template",
+                  "application/xml": "xml 400 response template"
+                }
+              }
+            }
+          },
+          "required": true,
+          "properties": {
+            "type": {
+              "name": "type",
+              "displayName": "type",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "enum": [
+                "aws"
+              ],
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "uri": {
+              "name": "uri",
+              "displayName": "uri",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "httpMethod": {
+              "name": "httpMethod",
+              "displayName": "httpMethod",
+              "type": [
+                "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "credentials": {
+              "name": "credentials",
+              "displayName": "credentials",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "requestTemplates": {
+              "name": "requestTemplates",
+              "displayName": "requestTemplates",
+              "type": [
+                "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "requestParameters": {
+              "name": "requestParameters",
+              "displayName": "requestParameters",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "cacheNamespace": {
+              "name": "cacheNamespace",
+              "displayName": "cacheNamespace",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "cacheKeyParameters": {
+              "name": "cacheKeyParameters",
+              "displayName": "cacheKeyParameters",
+              "type": [
+                "string[]"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "responses": {
+              "name": "responses",
+              "displayName": "responses",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "properties": {
+                "/.*/": {
+                  "name": "/.*/",
+                  "displayName": "/.*/",
+                  "type": [
+                    "object"
+                  ],
+                  "required": true,
+                  "properties": {
+                    "statusCode": {
+                      "name": "statusCode",
+                      "displayName": "statusCode",
+                      "type": [
+                        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "responseParameters": {
+                      "name": "responseParameters",
+                      "displayName": "responseParameters",
+                      "type": [
+                        "object"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    },
+                    "responseTemplates": {
+                      "name": "responseTemplates",
+                      "displayName": "responseTemplates",
+                      "type": [
+                        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates"
+                      ],
+                      "required": true,
+                      "__METADATA__": {
+                        "primitiveValuesMeta": {
+                          "displayName": {
+                            "calculated": true
+                          },
+                          "required": {
+                            "insertedAsDefault": true
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "type": {
+                        "insertedAsDefault": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              },
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"type\": \"aws\",\n  \"uri\": \"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\n  \"httpMethod\": \"POST\",\n  \"credentials\": \"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\n  \"requestTemplates\": {\n    \"application/json\": \"json request template 2\",\n    \"application/xml\": \"xml request template 2\"\n  },\n  \"requestParameters\": {\n    \"integration.request.path.integrationPathParam\": \"method.request.querystring.latitude\",\n    \"integration.request.querystring.integrationQueryParam\": \"method.request.querystring.longitude\"\n  },\n  \"cacheNamespace\": \"cache namespace\",\n  \"cacheKeyParameters\": [],\n  \"responses\": {\n    \"2\\\\d{2}\": {\n      \"statusCode\": \"200\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"integration.response.header.integrationResponseHeaderParam1\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 200 response template\",\n        \"application/xml\": \"xml 200 response template\"\n      }\n    },\n    \"default\": {\n      \"statusCode\": \"400\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"'static value'\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 400 response template\",\n        \"application/xml\": \"xml 400 response template\"\n      }\n    }\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "type": "aws",
+              "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
+              "httpMethod": "POST",
+              "credentials": "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role",
+              "requestTemplates": {
+                "application/json": "json request template 2",
+                "application/xml": "xml request template 2"
+              },
+              "requestParameters": {
+                "integration.request.path.integrationPathParam": "method.request.querystring.latitude",
+                "integration.request.querystring.integrationQueryParam": "method.request.querystring.longitude"
+              },
+              "cacheNamespace": "cache namespace",
+              "cacheKeyParameters": [],
+              "responses": {
+                "2\\d{2}": {
+                  "statusCode": "200",
+                  "responseParameters": {
+                    "method.response.header.test-method-response-header": "integration.response.header.integrationResponseHeaderParam1"
+                  },
+                  "responseTemplates": {
+                    "application/json": "json 200 response template",
+                    "application/xml": "xml 200 response template"
+                  }
+                },
+                "default": {
+                  "statusCode": "400",
+                  "responseParameters": {
+                    "method.response.header.test-method-response-header": "'static value'"
+                  },
+                  "responseTemplates": {
+                    "application/json": "json 400 response template",
+                    "application/xml": "xml 400 response template"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method",
+          "type": [
+            "string"
+          ],
+          "example": "POST",
+          "required": true,
+          "enum": [
+            "GET",
+            "PATCH",
+            "PUT",
+            "POST",
+            "DELETE"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "POST",
+            "strict": true,
+            "name": null,
+            "structuredValue": "POST"
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "pattern": "^[12345]\\d\\d$",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "/\\w+/\\w+/": {
+              "name": "/\\w+/\\w+/",
+              "displayName": "/\\w+/\\w+/",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth",
+          "type": [
+            "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration",
+          "type": [
+            "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration"
           ],
           "required": true,
           "__METADATA__": {
@@ -52,8 +719,8 @@
     ],
     "securitySchemes": [
       {
-        "key": {
-          "name": "key",
+        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/apigateway.raml#/securitySchemes/key": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/apigateway.raml#/securitySchemes/key",
           "type": "Pass Through",
           "describedBy": {
             "headers": {
@@ -95,11 +762,11 @@
         "methods": [
           {
             "annotations": {
-              "AWS.amazon-apigateway-auth": {
+              "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth": {
                 "structuredValue": "aws_iam",
-                "name": "AWS.amazon-apigateway-auth"
+                "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth"
               },
-              "AWS.amazon-apigateway-integration": {
+              "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration": {
                 "structuredValue": {
                   "type": "aws",
                   "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
@@ -138,7 +805,7 @@
                     }
                   }
                 },
-                "name": "AWS.amazon-apigateway-integration"
+                "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration"
               }
             },
             "queryParameters": {

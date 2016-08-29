@@ -349,6 +349,10 @@ export function isSecuritySchemaType(type: hl.INodeDefinition | hl.ITypeDefiniti
     type.key() == universe.Universe08.AbstractSecurityScheme;
 }
 
+export function isSecuritySchemaTypeDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe10.AbstractSecurityScheme.name);
+}
+
 export function isSecuritySchemeRefType(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.key() == universe.Universe10.SecuritySchemeRef ||
         type.key() == universe.Universe08.SecuritySchemeRef;
@@ -438,6 +442,13 @@ export function isObjectTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITy
     return type.isAssignableFrom(universe.Universe10.ObjectTypeDeclaration.name);
 }
 
+export function isTypeDeclarationDescendant(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
+    return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
+}
+
+/**
+ * @deprecated use 'isTypeDeclarationDescendant'
+ */
 export function isTypeDeclarationSibling(type: hl.INodeDefinition | hl.ITypeDefinition) : boolean {
     return type.isAssignableFrom(universe.Universe10.TypeDeclaration.name);
 }
