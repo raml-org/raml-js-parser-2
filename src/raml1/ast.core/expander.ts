@@ -17,8 +17,8 @@ import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore");
 import referencePatcher = require("./referencePatcher");
-import {universeHelpers} from "../../../dist/index";
-import {ReferencePatcher} from "../../../dist/raml1/ast.core/referencePatcher";
+import def = require("raml-definition-system");
+import universeHelpers = require("../tools/universeHelpers");
 
 var changeCase = require('change-case');
 
@@ -64,14 +64,16 @@ function mergeHighLevelNodes(
     highLevelNodes,
     mergeMode,
     rp:referencePatcher.ReferencePatcher = null,
-    forceProxy = false):hlimpl.ASTNodeImpl {
+    expand = false):hlimpl.ASTNodeImpl {
 
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
 
-        currentMaster = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(
-            currentMaster.wrapperNode(),rp,forceProxy);
-        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster.highLevel());
+        if(expand) {
+            currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
+                currentMaster, rp, masterApi.wrapperNode()).highLevel();
+        }
+        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster);
         (<hlimpl.ASTNodeImpl>currentApi).setMergeMode(mergeMode);
 
         currentMaster = currentApi;
