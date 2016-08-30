@@ -621,6 +621,7 @@ export class ReferencePatcher{
         if(gotContribution){
             this.expandLibraries(api);
         }
+        this.removeUses(api.lowLevel());
         api.lowLevel().actual().libExpanded = true;
         this.resetTypes(api);
         api.resetChildren();

@@ -16,20 +16,6 @@
         "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib0.raml#/annotationTypes/a0"
       }
     },
-    "uses": [
-      {
-        "key": "lib2",
-        "value": "lib2.raml"
-      },
-      {
-        "key": "lib1",
-        "value": "lib1.raml"
-      },
-      {
-        "key": "lib0",
-        "value": "lib0.raml"
-      }
-    ],
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib0.raml#/annotationTypes/a0": {

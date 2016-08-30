@@ -30,12 +30,6 @@
         "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources"
       }
     },
-    "uses": [
-      {
-        "key": "library",
-        "value": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml"
-      }
-    ],
     "types": [
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource": {

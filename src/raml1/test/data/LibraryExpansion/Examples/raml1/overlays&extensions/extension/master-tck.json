@@ -2,12 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Extension",
   "specification": {
-    "uses": [
-      {
-        "key": "decls",
-        "value": "lib/decls.raml"
-      }
-    ],
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {

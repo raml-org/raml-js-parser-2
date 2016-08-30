@@ -2,16 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "uses": [
-      {
-        "key": "lib",
-        "value": "libA.raml"
-      },
-      {
-        "key": "lib.lib",
-        "value": "libB.raml"
-      }
-    ],
     "resourceTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt": {
