@@ -2072,6 +2072,12 @@ expand(  ):Api
 
 
         /**
+         * Expand traits, resource types and libraries for the API
+         **/
+expandLibraries(  ):void
+
+
+        /**
          * Get child resource by its relative path
          **/
 childResource( relPath:string ):Resource

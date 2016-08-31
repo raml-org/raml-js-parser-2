@@ -2023,7 +2023,7 @@ class TypeDeclarationValidator implements NodeValidator{
             };
         }
 
-        var examplesLowLevel = node.lowLevel() && (<any>node).lowLevel().find && (<any>node).lowLevel().find('examples');
+        var examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
 
         if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
             issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "map is expected here.", examplesLowLevel, node, false);

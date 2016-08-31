@@ -1,0 +1,265 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey",
+          "type": [
+            "number"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey",
+          "type": [
+            "boolean"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt": {
+          "type": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt": {
+              "param1": "<<param1>>",
+              "param2": "Monkey"
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt"
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "<<param1>>"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "<<param2>>"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "text/plain": {
+                "name": "text/plain",
+                "displayName": "text/plain",
+                "type": [
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "atom/xml": {
+                "name": "atom/xml",
+                "displayName": "atom/xml",
+                "type": [
+                  "<<param1>> | <<param2>> | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "text/plain": {
+                "name": "text/plain",
+                "displayName": "text/plain",
+                "type": [
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              },
+              "atom/xml": {
+                "name": "atom/xml",
+                "displayName": "atom/xml",
+                "type": [
+                  "Monkey | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "type": {
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt": {
+            "param1": "Monkey"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

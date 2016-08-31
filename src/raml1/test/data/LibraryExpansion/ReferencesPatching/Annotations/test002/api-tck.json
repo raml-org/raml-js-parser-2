@@ -1,0 +1,140 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1": {
+          "annotations": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+              "structuredValue": "stringValueFromLibTrait1",
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2": {
+          "annotations": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+              "structuredValue": "stringValueFromLibTrait2",
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType": {
+          "is": [
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
+          ],
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType",
+          "post": {
+            "is": [
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
+            ],
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "RAML spec",
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+                "structuredValue": "stringValueFromLibTrait1",
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
+              }
+            },
+            "is": [
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
+            ],
+            "method": "get"
+          },
+          {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation": {
+                "structuredValue": "stringValueFromLibTrait2",
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/annotationTypes/MyAnnotation"
+              }
+            },
+            "is": [
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait1"
+            ],
+            "method": "post"
+          }
+        ],
+        "is": [
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/traits/libTrait2"
+        ],
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test002/lib.raml#/resourceTypes/libResourceType",
+        "uriParameters": {
+          "id": {
+            "name": "id",
+            "displayName": "id",
+            "type": [
+              "string"
+            ],
+            "required": true,
+            "__METADATA__": {
+              "calculated": true,
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                },
+                "type": {
+                  "insertedAsDefault": true
+                },
+                "required": {
+                  "insertedAsDefault": true
+                }
+              }
+            }
+          }
+        },
+        "relativeUri": "/{id}",
+        "displayName": "/{id}",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "{id}"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

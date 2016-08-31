@@ -1,0 +1,85 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "specification": {
+    "annotations": {
+      "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2": {
+        "structuredValue": null,
+        "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2"
+      },
+      "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1": {
+        "structuredValue": null,
+        "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1"
+      },
+      "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0": {
+        "structuredValue": null,
+        "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0"
+      }
+    },
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "extends": "e1.raml"
+  },
+  "errors": []
+}

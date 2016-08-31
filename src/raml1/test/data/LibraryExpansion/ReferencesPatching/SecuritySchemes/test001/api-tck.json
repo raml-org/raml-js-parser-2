@@ -1,0 +1,80 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean": {
+          "securedBy": [
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
+          ],
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "securedBy": {
+                "calculated": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number": {
+          "is": [
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean"
+          ],
+          "securedBy": [
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
+          ],
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number"
+        }
+      }
+    ],
+    "securitySchemes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
+          "type": "OAuth 2.0"
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number",
+          "type": "Basic Authentication"
+        }
+      }
+    ],
+    "title": "test API",
+    "securedBy": [
+      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
+    ],
+    "resources": [
+      {
+        "is": [
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/traits/boolean"
+        ],
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/resourceTypes/number",
+        "securedBy": [
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/oauth",
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/SecuritySchemes/test001/lib.raml#/securitySchemes/number"
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

@@ -1,0 +1,152 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait": {
+          "body": {
+            "application/json": {
+              "annotations": {
+                "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
+                  "structuredValue": "stringValue",
+                  "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation"
+                }
+              },
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "object"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt": {
+          "is": [
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
+          ],
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt"
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
+                    "structuredValue": "stringValue",
+                    "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation"
+                  }
+                },
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "is": [
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
+        ],
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

@@ -17,6 +17,8 @@ import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore");
 import referencePatcher = require("./referencePatcher");
+import def = require("raml-definition-system");
+import universeHelpers = require("../tools/universeHelpers");
 
 var changeCase = require('change-case');
 
@@ -27,6 +29,10 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
 
     return <T><any>new TraitsAndResourceTypesExpander()
 .expandTraitsAndResourceTypes(<RamlWrapper.Api|RamlWrapper08.Api><any>api);
+}
+
+export function expandLibraries(api:RamlWrapper.Api){
+    new LibraryExpander().expandLibraries(api);
 }
 
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
@@ -53,16 +59,25 @@ export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:
     return lastExtensionOrOverlay;
 }
 
-function mergeHighLevelNodes(masterApi, highLevelNodes, mergeMode):hlimpl.ASTNodeImpl {
-    var currentMaster = masterApi;
-    highLevelNodes.forEach(currentApi=> {
+function mergeHighLevelNodes(
+    masterApi,
+    highLevelNodes,
+    mergeMode,
+    rp:referencePatcher.ReferencePatcher = null,
+    expand = false):hlimpl.ASTNodeImpl {
 
-        currentMaster = new TraitsAndResourceTypesExpander().expandTraitsAndResourceTypes(currentMaster.wrapperNode());
-        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster.highLevel());
+    var currentMaster = masterApi;
+    for(var currentApi of highLevelNodes) {
+
+        if(expand&&(currentMaster.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+            currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
+                currentMaster, rp, masterApi.wrapperNode()).highLevel();
+        }
+        (<hlimpl.ASTNodeImpl>currentApi).overrideMaster(currentMaster);
         (<hlimpl.ASTNodeImpl>currentApi).setMergeMode(mergeMode);
 
         currentMaster = currentApi;
-    });
+    }
     return currentMaster;
 };
 
@@ -79,30 +94,46 @@ export class TraitsAndResourceTypesExpander {
 
     private ramlVersion:string;
 
-    expandTraitsAndResourceTypes(api:RamlWrapper.Api|RamlWrapper08.Api):RamlWrapper.Api|RamlWrapper08.Api {
-        if (api.definition().key()==universeDef.Universe10.Overlay){
-            return api;
-        }
-        this.ramlVersion = api.highLevel().definition().universe().version();
-
-        var isRAML1 = api instanceof RamlWrapperImpl.ApiImpl;
-
-        this.globalTraits = this.ramlVersion=="RAML10"
-            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
-            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
-
-        this.globalResourceTypes  = this.ramlVersion=="RAML10"
-            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
-            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
+    expandTraitsAndResourceTypes(
+        api:RamlWrapper.Api|RamlWrapper08.Api,
+        rp:referencePatcher.ReferencePatcher = null,
+        forceProxy:boolean=false):RamlWrapper.Api|RamlWrapper08.Api {
+        
+        this.init(api);
 
         var unit = api.highLevel().lowLevel().unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
         var hasTemplates = this.globalTraits.length!=0||this.globalResourceTypes.length!=0;
-        if (!(hasTemplates||hasFragments)){
+        if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
         
-        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false);
+        var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false,rp);
+        if (api.definition().key()==universeDef.Universe10.Overlay){
+            return <RamlWrapper.Api>hlNode.wrapperNode();
+        }
+        var result = this.expandHighLevelNode(hlNode, rp, <core.BasicNodeImpl><any>api);
+        return result;
+    }
+
+    init(api:RamlWrapper08.Api|RamlWrapper.Api) {
+        this.ramlVersion = api.highLevel().definition().universe().version();
+
+        this.globalTraits = this.ramlVersion == "RAML10"
+            ? wrapperHelper.allTraits(<RamlWrapper.Api>api)
+            : wrapperHelper08.allTraits(<RamlWrapper08.Api>api);
+
+        this.globalResourceTypes = this.ramlVersion == "RAML10"
+            ? wrapperHelper.allResourceTypes(<RamlWrapper.Api>api)
+            : wrapperHelper08.allResourceTypes(<RamlWrapper08.Api>api);
+    }
+
+    expandHighLevelNode(
+        hlNode:hl.IHighLevelNode,
+        rp:referencePatcher.ReferencePatcher,
+        api:core.BasicNodeImpl) {
+
+        this.init(<any>api);
         var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
 
         (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
@@ -115,8 +146,11 @@ export class TraitsAndResourceTypesExpander {
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = result.resources();
         resources.forEach(x=>this.processResource(x));
-        if(isRAML1) {
-            new referencePatcher.ReferencePatcher().process(hlNode);
+
+        if (this.ramlVersion=="RAML10") {
+            rp = rp || new referencePatcher.ReferencePatcher();
+            rp.process(hlNode);
+            hlNode.lowLevel().actual().referencePatcher = rp;
         }
         return result;
     }
@@ -147,7 +181,11 @@ export class TraitsAndResourceTypesExpander {
         return val;
     }
 
-    public createHighLevelNode(_api:hl.IHighLevelNode,merge:boolean=true):hlimpl.ASTNodeImpl {
+    public createHighLevelNode(
+        _api:hl.IHighLevelNode,
+        merge:boolean=true,
+        rp:referencePatcher.ReferencePatcher = null,
+        forceProxy=false):hlimpl.ASTNodeImpl {
 
         var api = <hlimpl.ASTNodeImpl>_api;
         var highLevelNodes:hlimpl.ASTNodeImpl[] = [];
@@ -156,8 +194,15 @@ export class TraitsAndResourceTypesExpander {
         while(node) {
 
             var llNode:ll.ILowLevelASTNode = node.lowLevel();
-            var topComposite:proxy.LowLevelCompositeNode = new proxy.LowLevelCompositeNode(
-                llNode, null, null, this.ramlVersion);
+            var topComposite:ll.ILowLevelASTNode;
+            if (api.definition().key()!=universeDef.Universe10.Overlay||forceProxy){
+                topComposite = new proxy.LowLevelCompositeNode(
+                    llNode, null, null, this.ramlVersion);
+            }
+            else{
+                topComposite = llNode;
+            }
+            
             var nodeType = node.definition();
             var newNode = new hlimpl.ASTNodeImpl(topComposite, null, <any>nodeType, null);
             highLevelNodes.push(newNode);
@@ -169,7 +214,7 @@ export class TraitsAndResourceTypesExpander {
         var masterApi = highLevelNodes.pop();
         highLevelNodes = highLevelNodes.reverse();
         var mergeMode = api.getMergeMode();
-        return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode);
+        return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
     }
 
     private processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource) {
@@ -407,6 +452,38 @@ export class TraitsAndResourceTypesExpander {
     }
 }
 
+export class LibraryExpander{
+
+    expandLibraries(_api:RamlWrapper.Api){
+        var api = _api;
+        if(api==null){
+            return null;
+        }
+        if(api.highLevel().lowLevel() instanceof proxy.LowLevelCompositeNode){
+            api = <RamlWrapper.Api>api.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();            
+        }
+        var expander = new TraitsAndResourceTypesExpander();
+        var rp = new referencePatcher.ReferencePatcher(referencePatcher.PatchMode.PATH);
+        var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api.highLevel(),true,rp,true);
+
+        api = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
+        this.processNode(rp,hlNode);
+        (<RamlWrapperImpl.ApiImpl>_api).patchNode(api.highLevel());
+
+    }
+    
+    processNode(rp:referencePatcher.ReferencePatcher, hlNode:hl.IHighLevelNode){
+        if(hlNode==null){
+            return;
+        }
+        var master = <hl.IHighLevelNode>(<hlimpl.ASTNodeImpl>hlNode).getMaster();
+        this.processNode(rp,master);
+        if(universeHelpers.isOverlayType(hlNode.definition())){
+            rp.process(hlNode);
+        }
+        rp.expandLibraries(hlNode);
+    }
+}
 
 function toUnits1(nodes:hl.IParseResult[]):ll.ICompilationUnit[]{
     var result:ll.ICompilationUnit[] = [];

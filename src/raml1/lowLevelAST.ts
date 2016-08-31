@@ -174,6 +174,7 @@ export interface ILowLevelASTNode{
     kind(): yaml.Kind;
 
     valueKind(): yaml.Kind;
+    anchorValueKind():yaml.Kind;
     keyKind(): yaml.Kind;
 
     show(msg: string, lev?: number, text?: string);

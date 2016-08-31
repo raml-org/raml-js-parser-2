@@ -1,0 +1,182 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
+          "queryParameters": {
+            "q": {
+              "name": "q",
+              "displayName": "<<paramName>>",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "body": {
+            "application/json": {
+              "name": "application/json",
+              "displayName": "application/json",
+              "type": [
+                "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait"
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt": {
+          "is": [
+            {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
+                "paramName": "QParam"
+              }
+            }
+          ],
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt"
+        }
+      }
+    ],
+    "title": "test API",
+    "version": "v1",
+    "baseUri": "https://example.com/raml",
+    "protocols": [
+      "HTTPS"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "queryParameters": {
+              "q": {
+                "name": "q",
+                "displayName": "QParam",
+                "type": [
+                  "string"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/types/MyLibType"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTPS"
+            ],
+            "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "is": [
+          {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib2.raml#/traits/myTrait": {
+              "paramName": "QParam"
+            }
+          }
+        ],
+        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test004/lib1.raml#/resourceTypes/rt",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

@@ -14,6 +14,7 @@ npm-debug.log
 /src/**/*.d.ts
 
 /src/raml1/test/TCK2.ts
+/src/raml1/test/libraryExpansion.ts
 
 !/src/devUtil/documentation/theme.js
 

@@ -68,6 +68,14 @@ export class BasicNodeImpl implements hl.BasicNode{
 
     /**
      * @hidden
+     * Replace underlying high level node
+     **/
+    patchNode(node:hl.IHighLevelNode){
+        this._node = node;
+    }
+
+    /**
+     * @hidden
      **/
     protected attributes(name:string,constr?:(attr:hl.IAttribute)=>any):any[]{
         var attrs:hl.IAttribute[] = this._node.attributes(name);

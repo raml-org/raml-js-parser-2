@@ -1,0 +1,104 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Extension",
+  "specification": {
+    "annotationTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important",
+          "type": [
+            "nil"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "ApiExtension",
+    "baseUri": "http://myItems.com",
+    "protocols": [
+      "HTTP"
+    ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {
+                "structuredValue": null,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "description": "describing your method here\n",
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/items",
+        "displayName": "/items",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "items"
+        ]
+      },
+      {
+        "methods": [
+          {
+            "responses": {
+              "200": {
+                "code": "200"
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/elements",
+        "displayName": "/elements",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "elements"
+        ]
+      }
+    ],
+    "extends": "master.raml",
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

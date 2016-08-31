@@ -1,0 +1,16 @@
+#%RAML 1.0 ResourceType
+
+uses:
+  lib: ../libs/lib.raml
+
+post:
+  body:
+    application/json:
+      properties:
+        ownLibProperty: lib.MyType
+        rootLibProperty: types2.MyObjectType
+      example:
+        ownLibProperty:
+          prop: stringValue
+        rootLibProperty:
+          integerProperty: true

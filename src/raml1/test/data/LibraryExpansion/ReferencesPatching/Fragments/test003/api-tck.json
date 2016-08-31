@@ -1,0 +1,342 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/lib.raml#/types/MyType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/lib.raml#/types/MyType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/lib.raml#/types/MyType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "prop": {
+              "name": "prop",
+              "displayName": "prop",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types2.raml#/types/MyObjectType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types2.raml#/types/MyObjectType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types2.raml#/types/MyObjectType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "integerProperty": {
+              "name": "integerProperty",
+              "displayName": "integerProperty",
+              "type": [
+                "integer"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types.raml#/types/MyType": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types.raml#/types/MyType",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types.raml#/types/MyType",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "rt": {
+          "name": "rt",
+          "post": {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "example": {
+                  "ownLibProperty": {
+                    "prop": "stringValue"
+                  },
+                  "rootLibProperty": {
+                    "integerProperty": 5
+                  }
+                },
+                "required": true,
+                "properties": {
+                  "ownLibProperty": {
+                    "name": "ownLibProperty",
+                    "displayName": "ownLibProperty",
+                    "type": [
+                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/lib.raml#/types/MyType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "rootLibProperty": {
+                    "name": "rootLibProperty",
+                    "displayName": "rootLibProperty",
+                    "type": [
+                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types2.raml#/types/MyObjectType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "ownLibProperty": {
+                      "prop": "stringValue"
+                    },
+                    "rootLibProperty": {
+                      "integerProperty": 5
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types.raml#/types/MyType"
+                ],
+                "example": "stringValue",
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "stringValue",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "stringValue"
+                }
+              }
+            },
+            "method": "put"
+          },
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "example": {
+                  "ownLibProperty": {
+                    "prop": "stringValue"
+                  },
+                  "rootLibProperty": {
+                    "integerProperty": 5
+                  }
+                },
+                "required": true,
+                "properties": {
+                  "ownLibProperty": {
+                    "name": "ownLibProperty",
+                    "displayName": "ownLibProperty",
+                    "type": [
+                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/lib.raml#/types/MyType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  },
+                  "rootLibProperty": {
+                    "name": "rootLibProperty",
+                    "displayName": "rootLibProperty",
+                    "type": [
+                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test003/libs/types2.raml#/types/MyObjectType"
+                    ],
+                    "required": true,
+                    "__METADATA__": {
+                      "primitiveValuesMeta": {
+                        "displayName": {
+                          "calculated": true
+                        },
+                        "required": {
+                          "insertedAsDefault": true
+                        }
+                      }
+                    }
+                  }
+                },
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "ownLibProperty": {
+                      "prop": "stringValue"
+                    },
+                    "rootLibProperty": {
+                      "integerProperty": 5
+                    }
+                  }
+                }
+              }
+            },
+            "method": "post"
+          }
+        ],
+        "type": "rt",
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": []
+}

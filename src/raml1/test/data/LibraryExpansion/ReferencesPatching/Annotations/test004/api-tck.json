@@ -1,0 +1,270 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "resourceTypes": [
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt": {
+          "type": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/resourceTypes/rt": {
+              "param1": "<<param1>>",
+              "param2": "Monkey"
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt"
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/resourceTypes/rt": {
+          "annotations": {
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+              "structuredValue": 17,
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+            },
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+              "structuredValue": 5,
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+            },
+            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+              "structuredValue": true,
+              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+            }
+          },
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/resourceTypes/rt",
+          "get": {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+                "structuredValue": "stringValue2",
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+              }
+            },
+            "method": "get"
+          },
+          "post": {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+                "structuredValue": 8,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+              }
+            },
+            "method": "post"
+          },
+          "put": {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+                "structuredValue": false,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+              }
+            },
+            "method": "put"
+          },
+          "delete": {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+                "structuredValue": "stringValue3",
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+              },
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+                "structuredValue": 16,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+              },
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+                "structuredValue": true,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+              }
+            },
+            "method": "delete"
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "Monkey": {
+          "name": "Monkey",
+          "displayName": "Monkey",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey",
+          "type": [
+            "number"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey",
+          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey",
+          "type": [
+            "boolean"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Test API",
+    "resources": [
+      {
+        "annotations": {
+          "Monkey": {
+            "structuredValue": 17,
+            "name": "Monkey"
+          },
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+            "structuredValue": 5,
+            "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+          },
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+            "structuredValue": true,
+            "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+          }
+        },
+        "methods": [
+          {
+            "annotations": {
+              "Monkey": {
+                "structuredValue": "stringValue2",
+                "name": "Monkey"
+              }
+            },
+            "method": "get"
+          },
+          {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+                "structuredValue": 8,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+              }
+            },
+            "method": "post"
+          },
+          {
+            "annotations": {
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+                "structuredValue": false,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+              }
+            },
+            "method": "put"
+          },
+          {
+            "annotations": {
+              "Monkey": {
+                "structuredValue": "stringValue3",
+                "name": "Monkey"
+              },
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+                "structuredValue": 16,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+              },
+              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+                "structuredValue": true,
+                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+              }
+            },
+            "method": "delete"
+          }
+        ],
+        "type": {
+          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt": {
+            "param1": "Monkey"
+          }
+        },
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "string is expected",
+      "path": "libB.raml",
+      "line": 7,
+      "column": 4,
+      "position": 81,
+      "range": [
+        {
+          "line": 7,
+          "column": 4,
+          "position": 81
+        },
+        {
+          "line": 7,
+          "column": 16,
+          "position": 93
+        }
+      ],
+      "trace": [
+        {
+          "code": 11,
+          "message": "string is expected",
+          "path": "api.raml",
+          "line": 9,
+          "column": 0,
+          "position": 87,
+          "range": [
+            {
+              "line": 9,
+              "column": 0,
+              "position": 87
+            },
+            {
+              "line": 9,
+              "column": 9,
+              "position": 96
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

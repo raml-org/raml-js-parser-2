@@ -324,12 +324,62 @@ function orderExtensionsAndOverlays(ramlFiles:RamlFile[]):RamlFile[]{
     return sorted;
 }
 
+export function testAPILibExpand(
+    apiPath:string, extensions?:string[],
+    tckJsonPath?:string,
+    regenerteJSON:boolean=false,
+    callTests:boolean=true,
+    doAssert:boolean = true){
+    
+    testAPI(
+        apiPath,
+        extensions,
+        tckJsonPath,
+        regenerteJSON,
+        callTests,
+        doAssert,true);
+    
+}
+
+var pathReplacer = function (str1:string,str2:string) {
+    var l = str1.length;
+    return function (key, value) {
+        if(value) {
+            if (typeof(value) == "object") {
+                for (var k of Object.keys(value)) {
+                    if (k.substring(0, l) == str1) {
+                        var newKey = str2 + k.substring(l);
+                        var val = value[k];
+                        delete value[k];
+                        value[newKey] = val;
+                    }
+                }
+            }
+            else if (typeof(value) == "string") {
+                value = value.split(str1).join(str2);
+            }
+        }
+        return value;
+    };
+};
+var serializeTestJSON = function (tckJsonPath:string, json:any) {
+    var copy = JSON.parse(JSON.stringify(json));
+    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var replacer = pathReplacer(rootPath,"__$$ROOT_PATH__");
+    fs.writeFileSync(tckJsonPath, JSON.stringify(copy, replacer, 2));
+};
+var readTestJSON = function (tckJsonPath:string) {    
+    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
+    return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
+};
 export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,
     regenerteJSON:boolean=false,
     callTests:boolean=true,
-    doAssert:boolean = true):TestResult{
+    doAssert:boolean = true,
+    expandLib:boolean = false):TestResult{
 
     if(apiPath){
         apiPath = testUtil.data(apiPath);
@@ -345,6 +395,9 @@ export function testAPI(
     }
     var api = index.loadRAMLSync(apiPath,extensions);
     var expanded = api["expand"] ? api["expand"]() : api;
+    if(expandLib && expanded["expandLibraries"]){
+        expanded["expandLibraries"]();
+    }
     (<any>expanded).setAttributeDefaults(true);
     var json = expanded.toJSON({rootNodeDetails:true});
 
@@ -353,10 +406,10 @@ export function testAPI(
     }
 
     if(regenerteJSON) {
-        fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
+        serializeTestJSON(tckJsonPath, json);
     }
     if(!fs.existsSync(tckJsonPath)){
-        fs.writeFileSync(tckJsonPath,JSON.stringify(json,null,2));
+        serializeTestJSON(tckJsonPath, json);
         if(!callTests){
             console.log("TCK JSON GENERATED: " + tckJsonPath);
             return;
@@ -367,7 +420,8 @@ export function testAPI(
         return;
     }
 
-    var tckJson:any = JSON.parse(fs.readFileSync(tckJsonPath).toString());
+
+    var tckJson:any = readTestJSON(tckJsonPath);
     var pathRegExp = new RegExp('/errors\\[\\d+\\]/path');
     var messageRegExp = new RegExp('/errors\\[\\d+\\]/message');
     var diff = testUtil.compare(json,tckJson).filter(x=>{
@@ -407,7 +461,12 @@ export function testAPI(
     return new TestResult(apiPath,tckJson,success,tckJsonPath,diffArr);
 }
 
-export function generateMochaSuite(folderAbsPath:string,dstPath:string,dataRoot:string){
+export function generateMochaSuite(
+    folderAbsPath:string,
+    dstPath:string,
+    dataRoot:string,
+    mochaSuiteTitle:string,
+    libExpand:boolean=false){
 
     var dirs = iterateFolder(folderAbsPath);
     var map:{[key:string]:Test[]} = {};
@@ -429,28 +488,28 @@ export function generateMochaSuite(folderAbsPath:string,dstPath:string,dataRoot:
     var suitePaths = Object.keys(map).sort();
     var suiteStrings:string[] = [];
     for(var suitePath of suitePaths){
-        var title = suiteTitle(suitePath);
+        var title = suiteTitle(suitePath,folderAbsPath);
         if(!title){
             continue;
         }
-        var suiteStr = dumpSuite(title,dataRoot,map[suitePath]);
+        var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand);
         suiteStrings.push(suiteStr);
     }
-    var content = fileContent(suiteStrings,dstPath);
+    var content = fileContent(suiteStrings,dstPath,mochaSuiteTitle);
     fs.writeFileSync(dstPath,content);
 }
-function suiteTitle(absPath:string){
+function suiteTitle(absPath:string,dataRoot:string){
 
-    var ind = Math.max(absPath.indexOf("RAML10"),absPath.indexOf("RAML08"));
-    if(ind<0){
-        return null;
+    var title = absPath.substring(dataRoot.length);
+    if(title.length>0&&title.charAt(0)=="/"){
+        title = title.substring(1);
     }
-    return absPath.substring(ind);
+    return title;
 }
 
-function dumpSuite(title:string,dataRoot:string,tests:Test[]):string{
+function dumpSuite(title:string,dataRoot:string,tests:Test[],libExpand:boolean):string{
 
-    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot));
+    var dumpedTests = tests.map(x=>dumpTest(x,dataRoot,libExpand));
 
     var testsStr = dumpedTests.join("\n\n");
     return`describe('${title}',function(){
@@ -460,7 +519,7 @@ ${testsStr}
 });`
 }
 
-function dumpTest(test:Test,dataRoot:string):string{
+function dumpTest(test:Test,dataRoot:string,libExpand:boolean):string{
 
     var relMasterPath = path.relative(dataRoot,test.masterPath()).replace(/\\/g,'/');;
 
@@ -480,9 +539,11 @@ function dumpTest(test:Test,dataRoot:string):string{
         args.push(`"${jsonPath}"`);
     }
 
+    var testMethod = libExpand ? 'testAPILibExpand' : 'testAPI';
+
     return`    it("${path.basename(path.dirname(test.masterPath()))}/${path.basename(test.masterPath())}", function () {
         this.timeout(15000);
-        tckUtil.testAPI(${args.join(", ")});
+        tckUtil.${testMethod}(${args.join(", ")});
     });`
 }
 
@@ -500,7 +561,7 @@ export function projectFolder() {
     }
     return folder;
 };
-function fileContent(suiteStrings:string[],filePath:string) {
+function fileContent(suiteStrings:string[],filePath:string,title:string) {
 
     var folder = projectFolder();
     var dstFolder = path.dirname(filePath);
@@ -515,7 +576,7 @@ function fileContent(suiteStrings:string[],filePath:string) {
 /// <reference path="${relTypingsPath}" />
 import tckUtil = require("${relTckUtilPath}")
 
-describe('Complete TCK Test Set',function(){
+describe('${title}',function(){
 
 ${suiteStrings.join("\n\n")}
 

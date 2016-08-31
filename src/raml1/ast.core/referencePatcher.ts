@@ -14,7 +14,15 @@ import def = require("raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
 import expander=require("./expander");
 
+export enum PatchMode{
+    DEFAULT, PATH
+}
+
 export class ReferencePatcher{
+    
+    constructor(protected mode:PatchMode = PatchMode.DEFAULT){}
+
+    private _outerDependencies:{[key:string]:DependencyMap} = {};
 
     process(
         hlNode:hl.IHighLevelNode,
@@ -45,6 +53,9 @@ export class ReferencePatcher{
         var isNode:proxy.LowLevelCompositeNode;
         if(node.definition().property(universeDef.Universe10.TypeDeclaration.properties.annotations.name)!=null){
             var cNode = <proxy.LowLevelCompositeNode>node.lowLevel();
+            if(!(cNode instanceof proxy.LowLevelCompositeNode)){
+                return;
+            }
             var isPropertyName = universeDef.Universe10.MethodBase.properties.is.name;
             var traitNodes = node.attributes(isPropertyName);
             cNode.preserveAnnotations();
@@ -66,7 +77,7 @@ export class ReferencePatcher{
             this.popUnitIfNeeded(units,appended);
         }
 
-        if(universeHelpers.isTypeDeclarationSibling(node.definition())){
+        if(universeHelpers.isTypeDeclarationDescendant(node.definition())){
             var appended = this.appendUnitIfNeeded(node,units);
             this.patchType(node,rootNode,resolver,units);
             this.popUnitIfNeeded(units,appended);
@@ -90,7 +101,8 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[]){
 
         var property = attr.property();
-        if(!property.range().isAssignableFrom(universeDef.Universe10.Reference.name)){
+        var range = property.range();
+        if(!range.isAssignableFrom(universeDef.Universe10.Reference.name)){
             return;
         }
         var value = attr.value();
@@ -99,6 +111,9 @@ export class ReferencePatcher{
         }
 
         var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>attr.lowLevel();
+        if(!(llNode instanceof proxy.LowLevelProxyNode)){
+            return;
+        }
         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
         
         var isAnnotation = universeHelpers.isAnnotationsProperty(property);
@@ -111,12 +126,12 @@ export class ReferencePatcher{
             if(isAnnotation){
                 stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
             }
-            var newValue = this.patchTypeName(stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation);
+            var newValue = this.resolveReferenceValue(
+                stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
             if(newValue!=null){
-                if(isAnnotation){
-                    newValue = `(${newValue})`;
-                }
-                (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue);
+                var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                (<proxy.LowLevelProxyNode>attr.lowLevel()).setValueOverride(newValue1);
+                this.registerPatchedReference(newValue);
             }
         }
         else{
@@ -131,12 +146,12 @@ export class ReferencePatcher{
                 if(isAnnotation){
                     stringToPatch = stringToPatch.substring(1,stringToPatch.length-1);
                 }
-                var newValue = this.patchTypeName(stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,isAnnotation);
+                var newValue = this.resolveReferenceValue(
+                    stringToPatch,rootNode.lowLevel().unit(),units,resolver,transformer,range);
                 if(newValue!=null) {
-                    if(isAnnotation){
-                        newValue = `(${newValue})`;
-                    }
-                    (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue);
+                    var newValue1 = isAnnotation ? `(${newValue.value()})` : newValue.value();
+                    (<proxy.LowLevelProxyNode>sValue.lowLevel()).setKeyOverride(newValue1);
+                    this.registerPatchedReference(newValue);
                 }
             }
         }
@@ -149,6 +164,8 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[]){
 
+        var nodeType = node.definition()
+
         if(!node.localType().isExternal()) {
 
             var rootUnit = rootNode.lowLevel().unit();
@@ -158,16 +175,19 @@ export class ReferencePatcher{
             //if(rootPath != localPath) {
                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
                 for( var typeAttr of typeAttributes) {
+                    var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
+                    if(!(llNode instanceof proxy.LowLevelProxyNode)){
+                        continue;
+                    }
                     var localUnit = typeAttr.lowLevel().unit();
                     var localPath = localUnit.absolutePath();
-                    if(localPath==rootPath){
+                    if(localPath==rootPath && this.mode == PatchMode.DEFAULT){
                         continue;
                     }
                     var value = typeAttr.value();
                     if(typeof value == "string") {
 
-                        var gotExpression = checkExpression(value);
-                        var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
+                        var gotExpression = checkExpression(value);                        
                         var transformer:expander.DefaultTransformer = <expander.DefaultTransformer>llNode.transformer();
                         var stringToPatch = value;
                         var escapeData:EscapeData = { status: ParametersEscapingStatus.NOT_REQUIRED };
@@ -229,10 +249,12 @@ export class ReferencePatcher{
                                         lit.value = typeName;
                                         return;
                                     }
-                                    var patched = this.patchTypeName(typeName, rootUnit, units, resolver, transformer);
+                                    var patched = this.resolveReferenceValue(
+                                        typeName, rootUnit, units, resolver, transformer, nodeType);
                                     if (patched != null) {
-                                        lit.value = patched;
+                                        lit.value = patched.value();
                                         gotPatch = true;
+                                        this.registerPatchedReference(patched);
                                     }
                                 }
                             });
@@ -244,7 +266,11 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
-                            newValue = this.patchTypeName(stringToPatch, rootUnit, units, resolver, transformer);
+                            var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, nodeType);
+                            if(patched!=null) {
+                                this.registerPatchedReference(patched);
+                                newValue = patched.value();
+                            }
                         }
                         if (newValue != null) {
                             (<proxy.LowLevelProxyNode>typeAttr.lowLevel()).setValueOverride(newValue);
@@ -272,30 +298,37 @@ export class ReferencePatcher{
         }
     }
 
-    private patchTypeName(
+    private resolveReferenceValue(
         stringToPatch:string,
         rootUnit:ll.ICompilationUnit,
         units:ll.ICompilationUnit[],
         resolver:namespaceResolver.NamespaceResolver,
         transformer:expander.DefaultTransformer,
-        isAnnotation=false)
+        range:def.ITypeDefinition):PatchedReference
     {
-        var newValue:string;
+        var isAnnotation = universeHelpers.isAnnotationRefTypeOrDescendant(range);
+        var newValue:PatchedReference;
         if (transformer) {
             if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
                 var doContinue = true;
                 var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
                 newValue = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
-                    var newVal = this.patchValue(val, rootUnit, resolver, tr.unitsChain);
+                    var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, range);
                     if (newVal == null) {
-                        newVal = val;
+                        newVal = new PatchedReference(null,val,this.collectionName(range),rootUnit,PatchMode.DEFAULT);
                     }
                     if(isAnnotation){
-                        if (types.getAnnotationType(newVal) != null) {
+                        if (types.getAnnotationType(newVal.value()) != null) {
+                            doContinue = false;
+                        }
+                        else if (this.mode==PatchMode.PATH){
                             doContinue = false;
                         }
                     }
-                    else if (types.getType(newVal) != null) {
+                    else if (types.getType(newVal.value()) != null) {
+                        doContinue = false;
+                    }
+                    else if (this.mode==PatchMode.PATH){
                         doContinue = false;
                     }
                     return newVal;
@@ -303,7 +336,7 @@ export class ReferencePatcher{
             }
         }
         if (newValue === undefined) {
-            newValue = this.patchValue(stringToPatch, rootUnit, resolver, units);
+            newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, range);
         }
         return newValue;
     }
@@ -315,17 +348,28 @@ export class ReferencePatcher{
         
         var llNode = <proxy.LowLevelProxyNode>hlNode.lowLevel();
         var key = llNode.key();
-        var patched = this.patchValue(key,rootUnit,resolver,[llNode.unit()]);
+        var range  = hlNode.definition();        
+        if(universeHelpers.isTypeDeclarationSibling(range)) {
+            var localType = hlNode.localType();
+            if(localType.isAnnotationType()){
+                range = localType;
+            }
+        }
+        
+        var patched = this.resolveReferenceValueBasic(key,rootUnit,resolver,[llNode.unit()],range);
         if(patched != null){
-            llNode.setKeyOverride(patched);
+            llNode.setKeyOverride(patched.value());
         }
     }
 
-    patchValue(
+    resolveReferenceValueBasic(
         value:string,
         rootUnit:ll.ICompilationUnit,
         resolver:namespaceResolver.NamespaceResolver,
-        units:ll.ICompilationUnit[]):string{
+        units:ll.ICompilationUnit[],
+        range:def.ITypeDefinition):PatchedReference{
+        
+        var isType = universeHelpers.isTypeDeclarationSibling(range);
 
         var ind = value.lastIndexOf(".");
 
@@ -352,19 +396,30 @@ export class ReferencePatcher{
             }
         }
         else {
-            if(def.rt.builtInTypes().get(value)!=null){
+            if(isType&&def.rt.builtInTypes().get(value)!=null){
                 return null;
             }
             plainName = value;
             referencedUnit = units[units.length-1];
         }
-        var newNS = resolver.resolveNamespace(rootUnit, referencedUnit);
-        if(newNS==null){
-            return null;
+        var collectionName = this.collectionName(range);
+        if(this.mode == PatchMode.PATH){
+            if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
+                return null;
+            }
+            var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
+            if(!ll.isWebPath(aPath)){
+                aPath = "file:///" + aPath;
+            }
+            newNS = `${aPath}#/${collectionName}`;
         }
-        var newValue = newNS + "." + plainName;
-
-        return newValue;
+        else {
+            var newNS = resolver.resolveNamespace(rootUnit, referencedUnit);
+            if (newNS == null) {
+                return null;
+            }
+        }
+        return new PatchedReference(newNS,plainName,collectionName,referencedUnit,this.mode);
     }
 
     patchUses(node:ll.ILowLevelASTNode,resolver:namespaceResolver.NamespaceResolver){
@@ -475,6 +530,149 @@ export class ReferencePatcher{
         if (appended) {
             units.pop();
         }
+    }
+
+    registerPatchedReference(ref:PatchedReference){
+
+        var collectionName = ref.collectionName();
+        if(!collectionName){
+            return;
+        }
+
+        var aPath = ref.referencedUnit().absolutePath();
+        var libMap = this._outerDependencies[aPath];
+        if(libMap==null){
+            libMap = {};
+            this._outerDependencies[aPath] = libMap;
+        }
+        var collectionMap = libMap[collectionName];
+        if(collectionMap == null){
+            collectionMap = {};
+            libMap[collectionName] = collectionMap;
+        }
+        collectionMap[ref.name()] = ref;
+    }
+
+    private collectionName(range:def.ITypeDefinition):string {
+        var collectionName:string;
+        if (universeHelpers.isResourceTypeRefType(range)||universeHelpers.isResourceTypeType(range)) {
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.resourceTypes.name;
+        }
+        else if (universeHelpers.isTraitRefType(range)||universeHelpers.isTraitType(range)) {
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.traits.name;
+        }
+        else if (universeHelpers.isSecuritySchemeRefType(range)||universeHelpers.isSecuritySchemaTypeDescendant(range)) {
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.securitySchemes.name;
+        }
+        else if (universeHelpers.isAnnotationRefTypeOrDescendant(range)||range.isAnnotationType()) {
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.annotationTypes.name;
+        }
+        else if (universeHelpers.isTypeDeclarationDescendant(range)) {
+            collectionName = def.universesInfo.Universe10.LibraryBase.properties.types.name;
+        }
+        return collectionName;
+    }
+
+    expandLibraries(api:hl.IHighLevelNode){
+
+        if(api.lowLevel().actual().libExpanded){
+            return;
+        }
+        var llNode = api.lowLevel();
+        var unit = llNode.unit();
+        var rootPath = unit.absolutePath();
+        var project = unit.project();
+        var usedNamespaces = Object.keys(this._outerDependencies).filter(x=>x!=rootPath);
+        var libModels:LibModel[] = [];
+        for(var ns of usedNamespaces){
+            var libUnit = project.unit(ns,true);
+            if(libUnit){
+                var dependencies = this._outerDependencies[ns];
+                var libModel = this.extractLibModel(libUnit,dependencies);
+                libModels.push(libModel);
+            }
+        }
+        var gotContribution = false;
+        for(var libModel of libModels){
+            for(var cName of Object.keys(libModel)){
+                var collection = libModel[cName];
+                if(collection instanceof ElementsCollection) {
+                    gotContribution = gotContribution || this.contributeCollection(
+                        <proxy.LowLevelCompositeNode>api.lowLevel(), <ElementsCollection>collection);
+                }
+            }
+        }
+        this.resetTypes(api);
+        api.resetChildren();
+        var apiPath = api.lowLevel().unit().absolutePath();
+        for(var ch of api.children()){
+            if(!ch.isElement()){
+                continue;
+            }
+            var chPath = ch.lowLevel().unit().absolutePath();
+            if(chPath==apiPath&&ch.lowLevel().includePath()==null){
+                continue;
+            }
+            var definition = ch.asElement().definition();
+            if(this.collectionName(definition)!=null){                
+                this.process(ch.asElement(),api,true,true);
+            }
+        }
+        if(gotContribution){
+            this.expandLibraries(api);
+        }
+        this.removeUses(api.lowLevel());
+        api.lowLevel().actual().libExpanded = true;
+        this.resetTypes(api);
+        api.resetChildren();
+    }
+
+    private contributeCollection(
+        llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
+
+        var name = collection.name;
+        var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
+            llApi.children(),
+            x=>x.key()==name);
+        if(llNode==null){
+            var n = jsyaml.createMapNode(name);
+            llNode = llApi.replaceChild(null,n);
+        }
+        var result = false;
+        for(var e of collection.array){
+            if(llNode.children().some(x=>{
+                    var oNode = toOriginal(x);
+                    if(oNode.unit().absolutePath()!=e.lowLevel().unit().absolutePath()){
+                        return false;
+                    }
+                    return e.lowLevel().key()==oNode.key();
+                })){
+                continue;
+            }
+            llNode.replaceChild(null,e.lowLevel());
+            result = true;
+        }
+        return result;
+    }
+
+
+
+    private extractLibModel(unit:ll.ICompilationUnit,dependencies:DependencyMap):LibModel{
+        var result:LibModel = new LibModel();
+        var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
+        if(hlNode && hlNode.isElement()){
+            for(var cName of Object.keys(dependencies)){
+                var dep = dependencies[cName];
+                var collection = new ElementsCollection(cName);
+                for(var el of hlNode.asElement().elementsOfKind(cName)){
+                    if(dep[el.name()]){
+                        collection.array.push(el);
+                    }
+                }
+                result[cName] = collection;
+            }
+        }
+        return result;
     }
 }
 
@@ -629,3 +827,53 @@ function toOriginal(node:ll.ILowLevelASTNode){
     }
     return node;
 }
+
+export class PatchedReference{
+
+    constructor(
+        private _namespace:string,
+        private _name:string,
+        private _collectionName:string,
+        private _referencedUnit:ll.ICompilationUnit,
+        private _mode:PatchMode){}
+
+    namespace():string{ return this._namespace; }
+
+    name():string{ return this._name; }
+
+    collectionName():string{ return this._collectionName; }
+
+    referencedUnit():ll.ICompilationUnit{ return this._referencedUnit; }
+    
+    mode():PatchMode{ return this._mode; }
+
+    value():string{
+        if(this._namespace==null){
+            return this._name;
+        }
+        var delim = this._mode == PatchMode.PATH ? "/" : ".";
+        return this._namespace + delim + this._name;
+    }
+}
+
+class ElementsCollection{
+    constructor(public name:string){}
+
+    array:hl.IHighLevelNode[] = [];
+}
+
+class LibModel{
+
+    resourceTypes:ElementsCollection;
+
+    traits:ElementsCollection;
+
+    securitySchemes:ElementsCollection;
+
+    annotationTypes:ElementsCollection;
+
+    types:ElementsCollection;
+
+}
+
+type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};

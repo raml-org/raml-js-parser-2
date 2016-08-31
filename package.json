@@ -6,7 +6,7 @@
     "compile": "rimraf dist && tsc",
     "build": "npm run compile && npm run generateTopLevel && npm run generateTckSuite && npm run removeMainDTSLinks",
     "generateTopLevel": "node dist/topLevelGenerator/buildParsers.js",
-    "generateTckSuite": "node dist/raml1/test/scripts/generateTCKMocha.js && tsc src/raml1/test/TCK2.ts --outDir dist -m commonjs --sourceMap",
+    "generateTckSuite": "node dist/raml1/test/scripts/generateTCKMocha.js && tsc src/raml1/test/TCK2.ts --outDir dist -m commonjs --sourceMap && tsc src/raml1/test/libraryExpansion.ts --outDir dist -m commonjs --sourceMap",
     "generateDocumentation": "node dist/raml1/tools/packageTSParser.js -skipSources",
     "generateBrowserVersion": "node dist/browserVersionGenerator/browserVersionGenerator.js",
     "generateBrowserVersionDev": "node dist/browserVersionGenerator/browserVersionGenerator.js -dev",
