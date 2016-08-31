@@ -1,0 +1,17 @@
+#%RAML 1.0 Library
+
+uses:
+  lib: lib2.raml
+
+types:
+  t1:
+    properties:
+      p1?: lib.t2
+    example:
+      p1:
+        p2:
+          p1:
+            p2:
+              p1:
+                p2:
+                  p1:

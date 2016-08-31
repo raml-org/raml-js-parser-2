@@ -1,0 +1,93 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Library",
+  "specification": {
+    "uses": [
+      {
+        "key": "lib",
+        "value": "lib2.raml"
+      }
+    ],
+    "types": [
+      {
+        "t1": {
+          "name": "t1",
+          "displayName": "t1",
+          "type": [
+            "object"
+          ],
+          "example": {
+            "p1": {
+              "p2": {
+                "p1": {
+                  "p2": {
+                    "p1": {
+                      "p2": {
+                        "p1": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": true,
+          "properties": {
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
+              "type": [
+                "lib.t2"
+              ],
+              "required": false,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "{\n  \"p1\": {\n    \"p2\": {\n      \"p1\": {\n        \"p2\": {\n          \"p1\": {\n            \"p2\": {\n              \"p1\": null\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "p1": {
+                "p2": {
+                  "p1": {
+                    "p2": {
+                      "p1": {
+                        "p2": {
+                          "p1": null
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "errors": []
+}
