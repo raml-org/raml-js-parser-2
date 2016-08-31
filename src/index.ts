@@ -54,11 +54,11 @@ export function loadRAMLSync(ramlPath:string, arg1?:string[]|parserCore.Options,
 }
 
 function optionsForContent(content:string,
-            arg2?:parserCore.Options):parserCore.Options{
+            arg2?:parserCore.Options, filePath?):parserCore.Options{
     return {
         fsResolver:{
             content(pathStr:string):string{
-                if (pathStr==path.resolve("/","#local.raml").replace(/\\/,"/")){
+                if (pathStr === (filePath || path.resolve("/","#local.raml")).replace(/\\/,"/")){
                     return content;
                 }
                 if (arg2){
@@ -69,7 +69,7 @@ function optionsForContent(content:string,
             },
 
             contentAsync(pathStr:string):Promise<string>{
-                if (pathStr==path.resolve("/","#local.raml").replace(/\\/,"/")){
+                if (pathStr === (filePath || path.resolve("/","#local.raml")).replace(/\\/,"/")){
                     return Promise.resolve(content);
                 }
                 if (arg2){
@@ -91,9 +91,9 @@ function optionsForContent(content:string,
  * @return RAMLLanguageElement instance.
  **/
 export function parseRAMLSync(content:string,
-                             arg2?:parserCore.Options):hl.BasicNode{
+                             arg2?:parserCore.Options, filePath: string = null):hl.BasicNode{
 
-    return <any>apiLoader.loadApi("/#local.raml",[],optionsForContent(content,arg2)).getOrElse(null);
+    return <any>apiLoader.loadApi(filePath || "/#local.raml",[],optionsForContent(content,arg2, filePath)).getOrElse(null);
 }
 /**
  * Load RAML asynchronously. May load both Api and Typed fragments. If the 'rejectOnErrors' option is set to true, [[ApiLoadingError]] is thrown for RAML which contains errors.
@@ -102,9 +102,9 @@ export function parseRAMLSync(content:string,
  * @return RAMLLanguageElement instance.
  **/
 export function parseRAML(content:string,
-                              arg2?:parserCore.Options):Promise<hl.BasicNode>{
+                              arg2?:parserCore.Options, filePath: string = null):Promise<hl.BasicNode>{
 
-    return <any>apiLoader.loadApiAsync("/#local.raml",[],optionsForContent(content,arg2));
+    return <any>apiLoader.loadApiAsync(filePath || "/#local.raml",[],optionsForContent(content,arg2, filePath));
 }
 
 /**
