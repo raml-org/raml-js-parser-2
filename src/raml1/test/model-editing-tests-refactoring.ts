@@ -954,7 +954,7 @@ describe('Low level model: refactoring', function() {
 
       //util.show(api);
 
-      var body = new wrapper.DateTypeDeclarationImpl('application/json');
+      var body = new wrapper.TypeDeclarationImpl('application/json');
       method.add(body.highLevel());
 
       //console.log('REFACTORED:\n' + api.lowLevel().unit().contents());

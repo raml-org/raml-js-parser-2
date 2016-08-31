@@ -2004,6 +2004,7 @@ class FixedFacetsValidator implements NodeValidator {
 }
 
 class TypeDeclarationValidator implements NodeValidator{
+    
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor) {
         var nc=node.definition();
         var rof = node.parsedType();
@@ -2029,8 +2030,51 @@ class TypeDeclarationValidator implements NodeValidator{
 
             v.accept(issue);
         }
+        if(node.property()&&universeHelpers.isAnnotationTypesProperty(node.property())){
+            var atAttrs = node.attributes(universes.Universe10.TypeDeclaration.properties.allowedTargets.name);
+            for(var attr of atAttrs){
+                this.checkAnnotationTarget(attr,v);
+            }
+        }
 
     }
+    
+    private checkAnnotationTarget(attr:hl.IAttribute,v:hl.ValidationAcceptor){
+        var val = attr.value();
+        if(typeof(val)!="string"){
+            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
+                "annotation target must be set by a string", attr, false));
+        }
+        var str:string = val;
+        if(val.replace(/\w|\s/g,'').length>0){
+            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
+                "'allowedTargets' property value must be an array of type names or a single type name", attr, false));
+        }
+        else if(!this.annotables[str]){
+            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
+                `unsupported annotation target: '${str}'`, attr, false));
+        }
+    }
+
+    private annotables:{[key:string]:boolean} = {
+        "API" : true,
+        "DocumentationItem" : true,
+        "Resource" : true,
+        "Method" : true,
+        "Response" : true,
+        "RequestBody" : true,
+        "ResponseBody" : true,
+        "TypeDeclaration" : true,
+        "Example" : true,
+        "ResourceType" : true,
+        "Trait" : true,
+        "SecurityScheme" : true,
+        "SecuritySchemeSettings" : true,
+        "AnnotationType" : true,
+        "Library" : true,
+        "Overlay" : true,
+        "Extension" : true
+    };
 }
 function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{    
     var src= e.getValidationPath();

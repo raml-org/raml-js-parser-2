@@ -528,7 +528,7 @@
                   "RTType2"
                 ],
                 "example": {
-                  "rtTypeProperty1": "stringValue"
+                  "rtTypeProperty2": "stringValue"
                 },
                 "required": true,
                 "__METADATA__": {
@@ -542,11 +542,11 @@
                   }
                 },
                 "structuredExample": {
-                  "value": "{\n  \"rtTypeProperty1\": \"stringValue\"\n}",
+                  "value": "{\n  \"rtTypeProperty2\": \"stringValue\"\n}",
                   "strict": true,
                   "name": null,
                   "structuredValue": {
-                    "rtTypeProperty1": "stringValue"
+                    "rtTypeProperty2": "stringValue"
                   }
                 }
               }
@@ -703,47 +703,5 @@
       }
     ]
   },
-  "errors": [
-    {
-      "code": 11,
-      "message": "Required property: rtTypeProperty2 is missed",
-      "path": "apiValid.raml",
-      "line": 60,
-      "column": 8,
-      "position": 1020,
-      "range": [
-        {
-          "line": 60,
-          "column": 8,
-          "position": 1020
-        },
-        {
-          "line": 60,
-          "column": 15,
-          "position": 1027
-        }
-      ]
-    },
-    {
-      "code": 11,
-      "message": "Unknown property:rtTypeProperty1",
-      "path": "apiValid.raml",
-      "line": 61,
-      "column": 10,
-      "position": 1039,
-      "range": [
-        {
-          "line": 61,
-          "column": 10,
-          "position": 1039
-        },
-        {
-          "line": 61,
-          "column": 25,
-          "position": 1054
-        }
-      ],
-      "isWarning": true
-    }
-  ]
+  "errors": []
 }
