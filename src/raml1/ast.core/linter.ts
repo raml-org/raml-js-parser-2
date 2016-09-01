@@ -480,6 +480,30 @@ function hasTemplateArgs(node:ll.ILowLevelASTNode):boolean{
     }
     return false;
 }
+var createLibraryIssue = function (attr:hl.IAttribute, hlNode:hl.IHighLevelNode) {
+    var start = hlNode.lowLevel().start();
+    var usesNodes:hl.IHighLevelNode[] = [];
+    if(start<0){
+        var seq = hlNode.attr("key").value().split(".");
+        var nodes:hl.IHighLevelNode[] = [];
+        var parent = hlNode.parent();
+        for(var segment of seq){
+            var n = _.find(parent.elementsOfKind("uses"),x=>x.attr("key")&&x.attr("key").value()==segment);
+            nodes.push(n);
+            parent = n.lowLevel().unit().resolve(n.attr("value").value()).highLevel().asElement();
+        }
+        var issues = nodes.map(x=>createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, "Issues in the used library:" + x.attr("value").value(), x, true));
+        issues = issues.reverse();
+        for(var i = 0 ; i < issues.length-1 ; i++){
+            issues[i].extras.push(issues[i+1]);
+        }
+        return issues[0];
+    }
+    else{
+        usesNodes.push(hlNode);
+    }
+    return createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, "Issues in the used library:" + attr.value(), hlNode, true);
+};
 export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     if (!node.parent()){
         try {
@@ -537,10 +561,19 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     rs.highLevel().validate(
                         hlimpl.createBasicValidationAcceptor(issues));
                     if (issues.length>0){
-                        var brand=createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Issues in the used library:"+vn.value(),highLevelNode,false);
-                        issues.forEach(x=>{x.unit=rs;x.path=rs.absolutePath();});
+                        var brand=createLibraryIssue(vn, highLevelNode);
+                        issues.forEach(x=> {
+                            x.unit = x.unit == null ? rs : x.unit;
+                            if (!x.path) {
+                                x.path = rs.absolutePath();
+                            }
+                        });
                         for(var issue of issues) {
-                            issue.extras.push(brand);
+                            var _issue = issue;
+                            while(_issue.extras.length>0){
+                                _issue = _issue.extras[0];
+                            }
+                            _issue.extras.push(brand);
                             v.accept(issue);
                         }
                     }
@@ -2014,7 +2047,7 @@ class TypeDeclarationValidator implements NodeValidator{
                 var n = extractLowLevelNode(e);
                 var issue;
                 if(n){
-                    issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(),n,mapPath( node,e), e.isWarning());
+                    issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(),n,mapPath( node,e), e.isWarning(),true);
                 }
                 else {
                     issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath(node, e), e.isWarning());
@@ -3493,7 +3526,7 @@ export function createIssue(
 }
 
 export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILowLevelASTNode,
-                              rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false):hl.ValidationIssue{
+                              rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false):hl.ValidationIssue{
     var original=null;
 
     if (node) {
@@ -3515,7 +3548,7 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
     }
-    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,false);
+    var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p);
     if (original) {
         original.extras.push(error);
         error = original;
