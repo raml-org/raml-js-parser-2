@@ -9,7 +9,7 @@ import proxy=require("./LowLevelASTProxy");
 import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import universeHelpers = require("../tools/universeHelpers");
-import namespaceResolver = require("../ast.core/namespaceResolver");
+import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import typeExpressions = def.rt.typeExpressions;
 import expander=require("./expander");
@@ -369,7 +369,7 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[],
         range:def.ITypeDefinition):PatchedReference{
         
-        var isType = universeHelpers.isTypeDeclarationSibling(range);
+        var isType = universeHelpers.isTypeDeclarationDescendant(range);
 
         var ind = value.lastIndexOf(".");
 
@@ -454,28 +454,29 @@ export class ReferencePatcher{
         var u = node.unit();
         var unitPath = u.absolutePath();
 
-        var newUses = jsyaml.createMapNode("uses");
-        newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
-        newUses.setUnit(yamlNode.unit());
+
+        var existingLibs = {};
+        var usesNode:proxy.LowLevelCompositeNode;
+        if(usesNodes.length>0){
+            usesNode = <proxy.LowLevelCompositeNode>usesNodes[0];
+            usesNode.children().forEach(x=>existingLibs[x.key()]=true);
+        }
+        else{
+            var newUses = jsyaml.createMapNode("uses");
+            newUses["_parent"] = <jsyaml.ASTNode>yamlNode;
+            newUses.setUnit(yamlNode.unit());
+            usesNode = cNode.replaceChild(null,newUses);
+        }        
         for (var ui of usesInfos.concat(extendedUsesInfos)) {
             var up = ui.absolutePath();
+            if(existingLibs[ui.namespace()]){
+                continue;
+            }
             var ip = ui.includePath;
             var mapping = jsyaml.createMapping(ui.namespace(), ip);
             mapping.setUnit(yamlNode.unit());
-            newUses.addChild(mapping);
+            usesNode.replaceChild(null,mapping);
         }
-
-        if(usesNodes.length>0){
-            cNode.replaceChild(usesNodes[0],newUses);
-        }
-        else{
-            cNode.replaceChild(null,newUses);
-        }
-
-        while(node instanceof proxy.LowLevelProxyNode){
-            node = (<proxy.LowLevelProxyNode>node).originalNode();
-        }
-        //node.actual()["usesNode"] = newUses;
     }
 
     removeUses(node:ll.ILowLevelASTNode){

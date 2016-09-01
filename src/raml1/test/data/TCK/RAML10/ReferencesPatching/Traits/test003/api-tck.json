@@ -4,7 +4,7 @@
   "specification": {
     "uses": [
       {
-        "key": "lib1",
+        "key": "typesLib",
         "value": "libraries/types.raml"
       },
       {
@@ -26,7 +26,7 @@
               "name": "application/json",
               "displayName": "application/json",
               "type": [
-                "lib1.LibType"
+                "typesLib.LibType"
               ],
               "required": true,
               "__METADATA__": {
@@ -66,7 +66,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "lib1.LibType"
+                  "typesLib.LibType"
                 ],
                 "example": {
                   "p1": "stringValue",

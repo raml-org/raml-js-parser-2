@@ -72,6 +72,7 @@ export class NamespaceResolver{
         for(var i = 0 ; i < usesInfoArray.length ; i++){
             
             var visited = {};
+            var usedUnits = {};
 
             var info = usesInfoArray[i];
             var unit = info.unit;
@@ -124,8 +125,11 @@ export class NamespaceResolver{
                             }
                             includePath = includePath.replace(/\\/g, "/");
                             var ui = new UsesInfo(segments, childInfo.unit, includePath);
-                            result[absPath] = ui;
-                            usesInfoArray.push(ui);
+                            if(!usedUnits[ui.absolutePath()]) {
+                                result[absPath] = ui;
+                                usesInfoArray.push(ui);
+                                usedUnits[ui.absolutePath()] = true;
+                            }
                         }
                     }                 
                 }
