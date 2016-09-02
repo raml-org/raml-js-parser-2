@@ -383,6 +383,21 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
         var v={};
         var key = "" + (<any>n).key(true);
         var valueKind = n.valueKind();
+
+        if(valueKind==yaml.Kind.INCLUDE_REF){
+            var children = n.children();
+            if(children.length==0){
+                v[key] = null;
+            }
+            else{
+                if(children[0].key()==null){
+                    valueKind = yaml.Kind.SEQ;
+                }
+                else{
+                    valueKind = yaml.Kind.MAP;
+                }
+            }
+        }
         if(valueKind==yaml.Kind.ANCHOR_REF){
             valueKind = n.anchorValueKind();
         }
