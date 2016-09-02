@@ -1,0 +1,16 @@
+#%RAML 1.0
+title: My API with Types
+
+/firstResource: &firstResource
+  post:
+    body:
+      application/json:
+        type: string
+/secondResource:
+  /firstResource: *firstResource
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: string

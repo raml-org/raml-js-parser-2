@@ -1,0 +1,20 @@
+#%RAML 1.0
+title: My API with Types
+
+/secondResource:
+  post:
+    responses: &PostResponses
+      201:
+        body:
+          application/json:
+            type: string
+    body:
+      application/json:
+        type: string
+  get:
+    responses:
+      <<: *PostResponses
+      200:
+        body:
+          application/json:
+            type: string

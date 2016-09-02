@@ -2953,6 +2953,45 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         return rs;
     }
 
+    /**
+     * Joins current mappings with mappings from "<<" anchor, if there is one.
+     * @param mappings
+     * @param inc
+     * @param anc
+     * @returns {any}
+     */
+    joinMappingsWithFullIncludeAnchor(
+        mappings : yaml.YAMLMapping[],
+        inc:ASTNode,anc:ASTNode) : lowlevel.ILowLevelASTNode[] {
+
+        var fullAnchorMapping = _.find(mappings, mapping=>{
+            return mapping.key && mapping.value &&
+                    mapping.key.kind == yaml.Kind.SCALAR &&
+                    mapping.key.value == "<<" &&
+                    mapping.value.kind == yaml.Kind.ANCHOR_REF;
+        })
+
+        if (!fullAnchorMapping) {
+            return mappings.map(x=>new ASTNode(x, this._unit, this,
+                anc ? anc : this._anchor, inc ? inc : this._include, this.cacheChildren));
+        }
+
+        var filteredMappings = _.filter(mappings, mapping=>{
+            return !(mapping.key.kind == yaml.Kind.SCALAR &&
+                mapping.key.value == "<<" &&
+                mapping.value.kind == yaml.Kind.ANCHOR_REF);
+        })
+
+        var childrenFromAnchor : lowlevel.ILowLevelASTNode[]     =
+            new ASTNode(fullAnchorMapping.value,this._unit,this,inc,anc,this.cacheChildren).children(null,null,true);
+
+        var filteredChildren : lowlevel.ILowLevelASTNode[] =
+            filteredMappings.map(x=>new ASTNode(x, this._unit, this,
+            anc ? anc : this._anchor, inc ? inc : this._include,this.cacheChildren))
+
+        return filteredChildren.concat(childrenFromAnchor);
+    }
+
     children(inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true):lowlevel.ILowLevelASTNode[] {
         if (this._node==null){
             return [];//TODO FIXME
@@ -2982,7 +3021,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     result = new ASTNode(map.mappings[0].value,this._unit,this,inc,anc,this.cacheChildren).children(null,null,true);
                 }
                 else {
-                    result = map.mappings.map(x=>new ASTNode(x, this._unit, this, anc ? anc : this._anchor, inc ? inc : this._include,this.cacheChildren));
+                    //result = map.mappings.map(x=>new ASTNode(x, this._unit, this, anc ? anc : this._anchor, inc ? inc : this._include,this.cacheChildren));
+                    result = this.joinMappingsWithFullIncludeAnchor(map.mappings, inc, anc);
                 }
             }
             else if(kind == yaml.Kind.MAPPING)
