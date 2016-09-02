@@ -5,8 +5,8 @@
     "types": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType",
+          "name": "LibType",
+          "displayName": "LibType",
           "type": [
             "object"
           ],
@@ -52,7 +52,7 @@
               }
             }
           },
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1"
+          "name": "libTrait1"
         }
       }
     ],

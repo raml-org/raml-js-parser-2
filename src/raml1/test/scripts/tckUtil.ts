@@ -364,12 +364,12 @@ var pathReplacer = function (str1:string,str2:string) {
 };
 var serializeTestJSON = function (tckJsonPath:string, json:any) {
     var copy = JSON.parse(JSON.stringify(json));
-    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var rootPath = "file://"+testUtil.data("").replace(/\\/g,"/");
     var replacer = pathReplacer(rootPath,"__$$ROOT_PATH__");
     fs.writeFileSync(tckJsonPath, JSON.stringify(copy, replacer, 2));
 };
 var readTestJSON = function (tckJsonPath:string) {    
-    var rootPath = "file:///"+testUtil.data("").replace(/\\/g,"/");
+    var rootPath = "file://"+testUtil.data("").replace(/\\/g,"/");
     var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
     return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
 };

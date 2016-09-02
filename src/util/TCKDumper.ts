@@ -99,7 +99,9 @@ export class TCKDumper{
         var highLevelNode = node.highLevel();
         var highLevelParent = highLevelNode && highLevelNode.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        return this.dumpInternal(node, rootNodeDetails);
+        var result = this.dumpInternal(node, rootNodeDetails);
+        this.patchNames(rootNodeDetails ? result.specification : result);
+        return result;
     }
 
     dumpInternal(node:any,rootNodeDetails:boolean=false):any{
@@ -436,6 +438,36 @@ export class TCKDumper{
             return true;
         }
         return false;
+    }
+    
+    patchNames(obj:any){
+        var collectionNames = [
+            universe.Universe10.Library.properties.types.name,
+            universe.Universe10.Library.properties.annotationTypes.name,
+            universe.Universe10.Library.properties.traits.name,
+            universe.Universe10.Library.properties.resourceTypes.name,
+            universe.Universe10.Library.properties.securitySchemes.name
+        ];
+        for(var cName of collectionNames){
+            var collection = obj[cName];
+            if(collection){
+                for(var item of collection){
+                    var key = Object.keys(item)[0];
+                    if(util.stringStartsWith(key,"http://")
+                        ||util.stringStartsWith(key,"https://")
+                        ||util.stringStartsWith(key,"file://")){
+                        
+                        var ind = key.lastIndexOf("/");
+                        var name = key.substring(ind+1);
+                        var iObj = item[key];
+                        iObj.name = name;
+                        if(iObj.displayName==key){
+                            iObj.displayName = name;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

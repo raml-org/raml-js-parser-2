@@ -5,8 +5,8 @@
     "types": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/lib.raml#/types/MyType",
+          "name": "MyType",
+          "displayName": "MyType",
           "type": [
             "object"
           ],
@@ -48,8 +48,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types2.raml#/types/MyObjectType",
+          "name": "MyObjectType",
+          "displayName": "MyObjectType",
           "type": [
             "object"
           ],
@@ -91,8 +91,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test007/libs/types.raml#/types/MyType",
+          "name": "MyType",
+          "displayName": "MyType",
           "type": [
             "string"
           ],

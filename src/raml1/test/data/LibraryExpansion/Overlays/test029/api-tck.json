@@ -33,8 +33,8 @@
     "types": [
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource",
-          "displayName": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource",
+          "name": "apiResource",
+          "displayName": "apiResource",
           "type": [
             "object"
           ],
@@ -114,7 +114,7 @@
     "annotationTypes": [
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/highLevelApiDescription",
+          "name": "highLevelApiDescription",
           "displayName": "Api Description",
           "type": [
             "string"
@@ -136,7 +136,7 @@
       },
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/apiLogo",
+          "name": "apiLogo",
           "displayName": "Logo",
           "type": [
             "string"
@@ -158,7 +158,7 @@
       },
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/specAuthor",
+          "name": "specAuthor",
           "displayName": "Spec Author",
           "type": [
             "string"
@@ -180,7 +180,7 @@
       },
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/devPortal",
+          "name": "devPortal",
           "displayName": "Developer Portal",
           "type": [
             "string"
@@ -202,8 +202,8 @@
       },
       {
         "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources": {
-          "name": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources",
-          "displayName": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/annotationTypes/extraResources",
+          "name": "extraResources",
+          "displayName": "extraResources",
           "type": [
             "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml#/types/apiResource[]"
           ],

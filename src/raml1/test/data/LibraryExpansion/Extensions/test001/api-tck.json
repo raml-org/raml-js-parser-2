@@ -19,8 +19,8 @@
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib0.raml#/annotationTypes/a0",
+          "name": "a0",
+          "displayName": "a0",
           "type": [
             "nil"
           ],
@@ -39,8 +39,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib1.raml#/annotationTypes/a1",
+          "name": "a1",
+          "displayName": "a1",
           "type": [
             "nil"
           ],
@@ -59,8 +59,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Extensions/test001/lib2.raml#/annotationTypes/a2",
+          "name": "a2",
+          "displayName": "a2",
           "type": [
             "nil"
           ],

@@ -25,8 +25,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey",
+          "name": "Monkey",
+          "displayName": "Monkey",
           "type": [
             "number"
           ],
@@ -45,8 +45,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey",
+          "name": "Monkey",
+          "displayName": "Monkey",
           "type": [
             "boolean"
           ],
@@ -73,12 +73,12 @@
               "param2": "Monkey"
             }
           },
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt"
+          "name": "rt"
         }
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt",
+          "name": "rt",
           "post": {
             "body": {
               "application/json": {

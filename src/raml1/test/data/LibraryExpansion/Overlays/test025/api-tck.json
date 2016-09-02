@@ -5,8 +5,8 @@
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType",
+          "name": "TestAnnotationType",
+          "displayName": "TestAnnotationType",
           "type": [
             "string"
           ],
@@ -25,8 +25,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType",
+          "name": "AnotherAnnotationType",
+          "displayName": "AnotherAnnotationType",
           "type": [
             "object"
           ],

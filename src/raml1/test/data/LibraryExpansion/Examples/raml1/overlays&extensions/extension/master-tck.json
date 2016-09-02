@@ -5,8 +5,8 @@
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important",
+          "name": "important",
+          "displayName": "important",
           "type": [
             "nil"
           ],

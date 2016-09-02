@@ -5,8 +5,8 @@
     "types": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-method",
+          "name": "amazon-apigateway-method",
+          "displayName": "amazon-apigateway-method",
           "type": [
             "string"
           ],
@@ -42,8 +42,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-status",
+          "name": "amazon-apigateway-status",
+          "displayName": "amazon-apigateway-status",
           "type": [
             "string"
           ],
@@ -66,8 +66,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-templates",
+          "name": "amazon-apigateway-templates",
+          "displayName": "amazon-apigateway-templates",
           "type": [
             "object"
           ],
@@ -112,8 +112,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type",
+          "name": "amazon-apigateway-auth-type",
+          "displayName": "amazon-apigateway-auth-type",
           "type": [
             "string"
           ],
@@ -138,8 +138,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda",
+          "name": "amazon-apigateway-integration-lambda",
+          "displayName": "amazon-apigateway-integration-lambda",
           "type": [
             "object"
           ],
@@ -187,8 +187,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP",
+          "name": "amazon-apigateway-integration-HTTP",
+          "displayName": "amazon-apigateway-integration-HTTP",
           "type": [
             "object"
           ],
@@ -236,8 +236,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock",
+          "name": "amazon-apigateway-integration-mock",
+          "displayName": "amazon-apigateway-integration-mock",
           "type": [
             "object"
           ],
@@ -285,8 +285,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws",
+          "name": "amazon-apigateway-integration-aws",
+          "displayName": "amazon-apigateway-integration-aws",
           "type": [
             "object"
           ],
@@ -650,8 +650,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration",
+          "name": "amazon-apigateway-integration",
+          "displayName": "amazon-apigateway-integration",
           "type": [
             "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-lambda | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-HTTP | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-mock | __$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration-aws"
           ],
@@ -672,8 +672,8 @@
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-auth",
+          "name": "amazon-apigateway-auth",
+          "displayName": "amazon-apigateway-auth",
           "type": [
             "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-auth-type"
           ],
@@ -692,8 +692,8 @@
       },
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/annotationTypes/amazon-apigateway-integration",
+          "name": "amazon-apigateway-integration",
+          "displayName": "amazon-apigateway-integration",
           "type": [
             "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/aws-lib.raml#/types/amazon-apigateway-integration"
           ],
@@ -714,7 +714,7 @@
     "securitySchemes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/apigateway.raml#/securitySchemes/key": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test026/apigateway.raml#/securitySchemes/key",
+          "name": "key",
           "type": "Pass Through",
           "describedBy": {
             "headers": {

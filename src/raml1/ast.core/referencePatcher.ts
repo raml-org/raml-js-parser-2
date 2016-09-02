@@ -409,7 +409,7 @@ export class ReferencePatcher{
             }
             var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
             if(!ll.isWebPath(aPath)){
-                aPath = "file:///" + aPath;
+                aPath = "file://" + aPath;
             }
             newNS = `${aPath}#/${collectionName}`;
         }

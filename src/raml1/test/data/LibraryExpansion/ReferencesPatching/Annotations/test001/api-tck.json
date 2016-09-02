@@ -34,7 +34,7 @@
               }
             }
           },
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
+          "name": "myTrait"
         }
       }
     ],
@@ -44,15 +44,15 @@
           "is": [
             "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/traits/myTrait"
           ],
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib1.raml#/resourceTypes/rt"
+          "name": "rt"
         }
       }
     ],
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
-          "displayName": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test001/lib2.raml#/annotationTypes/MyAnnotation",
+          "name": "MyAnnotation",
+          "displayName": "MyAnnotation",
           "type": [
             "string"
           ],

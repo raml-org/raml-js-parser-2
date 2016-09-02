@@ -83,7 +83,7 @@
     "annotationTypes": [
       {
         "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition": {
-          "name": "__$$ROOT_PATH__/LibraryExpansion/Annotations/test031/lib.raml#/annotationTypes/bindingDefinition",
+          "name": "bindingDefinition",
           "displayName": "BindingDefinition",
           "type": [
             "array"
