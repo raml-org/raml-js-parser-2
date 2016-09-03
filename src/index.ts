@@ -91,8 +91,10 @@ function optionsForContent(content:string,
  * @return RAMLLanguageElement instance.
  **/
 export function parseRAMLSync(content:string,
-                             arg2?:parserCore.Options, filePath: string = null):hl.BasicNode{
+                             arg2?:parserCore.Options):hl.BasicNode{
 
+    var filePath : string = null;
+    if (arg2 && arg2.filePath) filePath = arg2.filePath;
     return <any>apiLoader.loadApi(filePath || "/#local.raml",[],optionsForContent(content,arg2, filePath)).getOrElse(null);
 }
 /**
@@ -102,8 +104,10 @@ export function parseRAMLSync(content:string,
  * @return RAMLLanguageElement instance.
  **/
 export function parseRAML(content:string,
-                              arg2?:parserCore.Options, filePath: string = null):Promise<hl.BasicNode>{
-
+                              arg2?:parserCore.Options):Promise<hl.BasicNode>{
+    
+    var filePath : string = null;
+    if (arg2 && arg2.filePath) filePath = arg2.filePath;
     return <any>apiLoader.loadApiAsync(filePath || "/#local.raml",[],optionsForContent(content,arg2, filePath));
 }
 

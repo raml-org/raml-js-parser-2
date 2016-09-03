@@ -50,4 +50,11 @@ export interface Options{
      * Affects only attributes.
      */
     attributeDefaults?:boolean
+
+    /**
+     * Absolute path of the RAML file. May be used when content is provided directly on
+     * RAML parser method call instead of specifying file path and making the parser to
+     * load the file.
+     */
+    filePath?:string
 }
