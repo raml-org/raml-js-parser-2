@@ -2177,7 +2177,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
         private cacheChildren:boolean = false,
         private _includesContents = false) {
         if (_node==null){
-            console.log("null")
+            this._errors.push(new Error("_node is null"))
         }
     }
     actual(): any{
