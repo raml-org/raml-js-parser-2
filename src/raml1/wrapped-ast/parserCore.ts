@@ -280,11 +280,10 @@ export class BasicNodeImpl implements hl.BasicNode{
             code: x.code,
             message: x.message,
             path: path,
-            start: x.start,
-            end: x.end,
-            line: startPoint.errorMessage ? null : startPoint.line,
-            column: startPoint.errorMessage ? null : startPoint.column,
-            range: [startPoint, endPoint],
+            range: {
+                start: startPoint,
+                end: endPoint
+            },
             isWarning: x.isWarning
         };
         if(x.extras && x.extras.length>0){
