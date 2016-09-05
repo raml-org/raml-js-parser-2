@@ -87,7 +87,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#node" class="tsd-kind-icon">node</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#parenttransformer" class="tsd-kind-icon">parent<wbr>Transformer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#ref" class="tsd-kind-icon">ref</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#transformer" class="tsd-kind-icon">transformer</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported"><a href="_src_raml1_ast_core_expander_.genericdata.html#unitschain" class="tsd-kind-icon">units<wbr>Chain</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/expander.ts#L636">src/raml1/ast.core/expander.ts:636</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L911">src/raml1/ast.core/expander.ts:911</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -111,17 +114,47 @@
 					<div class="tsd-signature tsd-kind-icon">node<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_artifacts_raml10parserapi_.trait.html" class="tsd-signature-type">Trait</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml10parserapi_.resourcetype.html" class="tsd-signature-type">ResourceType</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml10parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml10parserapi_.method.html" class="tsd-signature-type">Method</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.trait.html" class="tsd-signature-type">Trait</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.resourcetype.html" class="tsd-signature-type">ResourceType</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.resource.html" class="tsd-signature-type">Resource</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.method.html" class="tsd-signature-type">Method</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/expander.ts#L633">src/raml1/ast.core/expander.ts:633</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L906">src/raml1/ast.core/expander.ts:906</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="parenttransformer" class="tsd-anchor"></a>
+					<h3>parent<wbr>Transformer</h3>
+					<div class="tsd-signature tsd-kind-icon">parent<wbr>Transformer<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_ast_core_expander_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L915">src/raml1/ast.core/expander.ts:915</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="ref" class="tsd-anchor"></a>
+					<h3>ref</h3>
+					<div class="tsd-signature tsd-kind-icon">ref<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_artifacts_raml10parserapi_.traitref.html" class="tsd-signature-type">TraitRef</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml10parserapi_.resourcetyperef.html" class="tsd-signature-type">ResourceTypeRef</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.traitref.html" class="tsd-signature-type">TraitRef</a><span class="tsd-signature-symbol"> | </span><a href="_src_raml1_artifacts_raml08parserapi_.resourcetyperef.html" class="tsd-signature-type">ResourceTypeRef</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L909">src/raml1/ast.core/expander.ts:909</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
 					<a name="transformer" class="tsd-anchor"></a>
 					<h3>transformer</h3>
-					<div class="tsd-signature tsd-kind-icon">transformer<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_ast_core_expander_.valuetransformer.html" class="tsd-signature-type">ValueTransformer</a></div>
+					<div class="tsd-signature tsd-kind-icon">transformer<span class="tsd-signature-symbol">:</span> <a href="../classes/_src_raml1_ast_core_expander_.defaulttransformer.html" class="tsd-signature-type">DefaultTransformer</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/code/src/raml1/ast.core/expander.ts#L638">src/raml1/ast.core/expander.ts:638</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L913">src/raml1/ast.core/expander.ts:913</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+					<a name="unitschain" class="tsd-anchor"></a>
+					<h3>units<wbr>Chain</h3>
+					<div class="tsd-signature tsd-kind-icon">units<wbr>Chain<span class="tsd-signature-symbol">:</span> <a href="_src_raml1_lowlevelast_.icompilationunit.html" class="tsd-signature-type">ICompilationUnit</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/ast.core/expander.ts#L917">src/raml1/ast.core/expander.ts:917</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -152,7 +185,16 @@
 								<a href="_src_raml1_ast_core_expander_.genericdata.html#node" class="tsd-kind-icon">node</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_src_raml1_ast_core_expander_.genericdata.html#parenttransformer" class="tsd-kind-icon">parent<wbr>Transformer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_src_raml1_ast_core_expander_.genericdata.html#ref" class="tsd-kind-icon">ref</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
 								<a href="_src_raml1_ast_core_expander_.genericdata.html#transformer" class="tsd-kind-icon">transformer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external tsd-is-not-exported">
+								<a href="_src_raml1_ast_core_expander_.genericdata.html#unitschain" class="tsd-kind-icon">units<wbr>Chain</a>
 							</li>
 						</ul>
 					</li>
@@ -170,6 +212,9 @@
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_src_raml1_ast_core_expander_.html#transformers" class="tsd-kind-icon">transformers</a>
 					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_ast_core_expander_.html#expandlibraries" class="tsd-kind-icon">expand<wbr>Libraries</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-external">
 						<a href="../modules/_src_raml1_ast_core_expander_.html#expandtraitsandresourcetypes" class="tsd-kind-icon">expand<wbr>Traits<wbr>And<wbr>Resource<wbr>Types</a>
 					</li>
@@ -184,6 +229,15 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
 						<a href="../modules/_src_raml1_ast_core_expander_.html#mergehighlevelnodes" class="tsd-kind-icon">merge<wbr>High<wbr>Level<wbr>Nodes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external">
+						<a href="../modules/_src_raml1_ast_core_expander_.html#tounits" class="tsd-kind-icon">to<wbr>Units</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_src_raml1_ast_core_expander_.html#tounits1" class="tsd-kind-icon">to<wbr>Units1</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/_src_raml1_ast_core_expander_.html#tounits2" class="tsd-kind-icon">to<wbr>Units2</a>
 					</li>
 				</ul>
 			</nav>
