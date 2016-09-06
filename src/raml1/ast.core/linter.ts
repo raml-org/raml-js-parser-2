@@ -2098,6 +2098,9 @@ class TypeDeclarationValidator implements NodeValidator{
     
     private checkAnnotationTarget(attr:hl.IAttribute,v:hl.ValidationAcceptor){
         var val = attr.value();
+        if(val==null){
+            return;
+        }
         if(typeof(val)!="string"){
             v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
                 "annotation target must be set by a string", attr, false));
