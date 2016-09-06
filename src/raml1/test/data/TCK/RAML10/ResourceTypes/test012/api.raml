@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: My API
+
+resourceTypes:
+  rt:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                <<param1>><<param2>>
+
+/songs:
+  type:
+    rt:
+      param1: !include unexisting-file.txt
+      param2: !include example.json

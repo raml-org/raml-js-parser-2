@@ -403,6 +403,14 @@ export class TraitsAndResourceTypesExpander {
                         if(llNode.valueKind()==yaml.Kind.SCALAR) {
                             scalarParams[x.valueName()] = llNode.value();
                         }
+                        else if (llNode.valueKind()==yaml.Kind.INCLUDE_REF){
+                            if(llNode.children().length==0){
+                                scalarParams[x.valueName()] = llNode.value();    
+                            }
+                            else{
+                                structuredParams[x.valueName()] = llNode;
+                            }
+                        }
                         else{
                             structuredParams[x.valueName()] = llNode;
                         }

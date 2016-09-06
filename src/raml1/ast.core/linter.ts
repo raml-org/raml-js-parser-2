@@ -707,7 +707,31 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         }
     }
     node.children().forEach(x=>validateIncludes(x,v));
+    if(node.children().length==0&&llNode!=null){
+        llNode.children().forEach(x=>validateIncludesLL(x,v,node));
+    }
 
+}
+
+function validateIncludesLL(llNode:ll.ILowLevelASTNode,v:hl.ValidationAcceptor,node:hl.IParseResult) {
+    llNode.includeErrors().forEach(x=> {
+        var isWarn=false;
+        if (llNode.hasInnerIncludeError()){
+            isWarn=true;
+        }
+        var em = createLLIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, llNode,node,isWarn);
+        v.accept(em)
+    });
+    var includePath = llNode.includePath();
+    if(includePath!=null && !path.isAbsolute(includePath) && !ll.isWebPath(includePath)){
+        var unitPath = llNode.unit().absolutePath();
+        var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
+        if(exceeding>0){
+            var em = createLLIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", llNode,node,true);
+            v.accept(em)
+        }
+    }
+    llNode.children().forEach(x=>validateIncludesLL(x,v,node));
 }
 
 var actualSegments = function (rootPath:string) {
@@ -2074,6 +2098,9 @@ class TypeDeclarationValidator implements NodeValidator{
     
     private checkAnnotationTarget(attr:hl.IAttribute,v:hl.ValidationAcceptor){
         var val = attr.value();
+        if(val==null){
+            return;
+        }
         if(typeof(val)!="string"){
             v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
                 "annotation target must be set by a string", attr, false));
