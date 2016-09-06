@@ -14,7 +14,7 @@ if (typeof window === 'undefined') {
 
   chai.should();
 }
-
+setTimeout(15000);
 function itShouldBehaveLikeAnOptionalStructureNamedParameter(initialRaml) {
   function generateRaml(snippetRaml) {
     var indentation = '  ' + initialRaml.split('\n').slice(-1)[0].match(/^(\s*)/)[1];

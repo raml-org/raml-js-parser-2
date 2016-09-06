@@ -878,3 +878,59 @@ class LibModel{
 }
 
 type DependencyMap = {[key:string]:{[key:string]:PatchedReference}};
+
+export function getDeclaration(
+    elementName:string,
+    typeName:string,
+    resolver:namespaceResolver.NamespaceResolver,
+    units:ll.ICompilationUnit[]):hl.IHighLevelNode{
+    
+    if(!elementName){
+        return null;
+    }
+    
+    var ns = "";
+    var name = elementName;
+    var ind = elementName.lastIndexOf(".");
+    if(ind>=0){
+        ns = elementName.substring(0,ind);
+        name = elementName.substring(ind+1);
+    }
+    var result:hl.IHighLevelNode;
+    var gotLibrary = false;
+    for(var i = units.length ; i > 0 ; i--){
+        var u = units[i-1];
+        var hl = u.highLevel();
+        if(hl.isElement()){
+            if(universeHelpers.isLibraryType(hl.asElement().definition())){
+                if(gotLibrary){
+                    break;
+                }
+                gotLibrary = true;
+            }
+        }
+        var actualUnit = u;
+        if(ns){
+            actualUnit = null;
+            var map = resolver.nsMap(u);
+            if(map) {
+                var info = map[ns];
+                if (info) {
+                    actualUnit = info.unit;
+                }
+            }
+        } 
+        if(!actualUnit){
+            continue;
+        }
+        var ahl = actualUnit.highLevel();
+        if(!ahl || !ahl.isElement()){
+            continue;
+        }
+        result = _.find(ahl.asElement().elementsOfKind(typeName),x=>x.name()==name);
+        if(result){
+            break;
+        }
+    }
+    return result;
+}
