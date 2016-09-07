@@ -14,7 +14,7 @@ if (typeof window === 'undefined') {
 
   chai.should();
 }
-
+setTimeout(15000);
 describe('Transformations', function () {
   function getRAML() {
     return [
