@@ -91,7 +91,7 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "path" : true,
                 // "pluralize" : true,
                 // "then-request" : true,
-                // "typescript" : true,
+                "typescript" : true,
                 // "underscore" : true,
                 // "url": true,
                 // "xmldom" : true,

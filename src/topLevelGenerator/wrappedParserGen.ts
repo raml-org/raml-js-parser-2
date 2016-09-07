@@ -3,7 +3,7 @@ import def=require("raml-definition-system")
 import td=require("ts-model")
 import util=require("../util/index")
 import tsModel = require("ts-structure-parser")
-import helperMethodExtractor = tsModel.helperMethodExtractor
+import helperMethodExtractor = tsModel.helpers
 import nominals = def.rt.nominalTypes;
 import _ = require("underscore")
 
