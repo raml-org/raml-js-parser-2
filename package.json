@@ -1,6 +1,6 @@
 {
   "name": "raml-1-parser",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "dist/index.js",
   "scripts": {
     "compile": "rimraf dist && tsc",
@@ -32,7 +32,7 @@
     "mkdirp": "^0.5.0",
     "pluralize": "^1.2.0",
     "q": "^1.0.0",
-    "raml-definition-system": "0.0.45",
+    "raml-definition-system": "0.0.46",
     "then-request": "^2.2.0",
     "ts-structure-parser": "0.0.11",
     "ts-model": "0.0.11",
