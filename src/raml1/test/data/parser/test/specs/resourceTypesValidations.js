@@ -14,7 +14,7 @@ if (typeof window === 'undefined') {
 
   chai.should();
 }
-setTimeout(15000);
+
 function itShouldBehaveLikeAnOptionalStructureNamedParameter(initialRaml) {
   function generateRaml(snippetRaml) {
     var indentation = '  ' + initialRaml.split('\n').slice(-1)[0].match(/^(\s*)/)[1];
@@ -92,6 +92,7 @@ function itShouldBehaveLikeAnOptionalStructureNamedParameter(initialRaml) {
 }
 
 describe('Resource Types Validations', function () {
+  this.timeout(15000);
   var topLevelSnippetAndResourceTypeSnippet = function (topLevelRaml, resourceTypeRaml) {
     var resourceTypeIdentation = '      ';
     resourceTypeRaml = resourceTypeRaml.map(function (line) {
