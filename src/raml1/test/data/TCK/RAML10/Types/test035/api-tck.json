@@ -41,7 +41,7 @@
               "name": "reports",
               "displayName": "reports",
               "type": [
-                "Person[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -53,7 +53,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "Person"
             }
           },
           "__METADATA__": {

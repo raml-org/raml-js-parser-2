@@ -35,6 +35,7 @@ export class TCKDumper{
         new ResourcesTransformer(),
         new TypeExampleTransformer(),
         //new ParametersTransformer(),
+        new ArrayExpressionTransformer(),
         new TypesTransformer(),
         //new UsesTransformer(),
         //new PropertiesTransformer(),
@@ -954,6 +955,37 @@ class ReferencesTransformer implements Transformation{
     }
 
 }
+
+class ArrayExpressionTransformer implements Transformation{
+
+    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
+        if(!(node instanceof core.BasicNodeImpl)){
+            return false;
+        }
+        var hlNode = (<coreApi.BasicNode>node).highLevel();
+        var definition = hlNode.definition();
+        if(!universeHelpers.isTypeDeclarationDescendant(definition)){
+            return false;
+        }
+        var lType = hlNode.localType();
+        if(!lType || !lType.isArray()){
+            return false;
+        }
+        return true;
+    }
+
+    transform(value:any){
+        var typePropName = universes.Universe10.TypeDeclaration.properties.type.name;
+        var itemsPropName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
+        var tValue = value[typePropName];
+        if(tValue.length==1&&util.stringEndsWith(tValue[0],"[]")) {
+            value[itemsPropName] = tValue[0].substring(0, tValue[0].length - 2);
+            tValue[0] = "array";
+        }
+        return value;
+    }
+}
+
 
 class PropertiesData{
 

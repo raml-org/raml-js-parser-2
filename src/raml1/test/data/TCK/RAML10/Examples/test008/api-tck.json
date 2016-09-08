@@ -34,7 +34,7 @@
               "name": "items",
               "displayName": "items",
               "type": [
-                "number[]"
+                "array"
               ],
               "required": true,
               "minItems": 5,
@@ -47,13 +47,14 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "number"
             },
             "items2": {
               "name": "items2",
               "displayName": "items2",
               "type": [
-                "number[]"
+                "array"
               ],
               "required": true,
               "maxItems": 3,
@@ -66,13 +67,14 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "number"
             },
             "items3": {
               "name": "items3",
               "displayName": "items3",
               "type": [
-                "number[]"
+                "array"
               ],
               "required": true,
               "uniqueItems": true,
@@ -85,7 +87,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "number"
             }
           },
           "__METADATA__": {

@@ -8,7 +8,7 @@
           "name": "SomeType",
           "displayName": "SomeType",
           "type": [
-            "number[]"
+            "array"
           ],
           "example": [
             100500,
@@ -33,7 +33,8 @@
               100500,
               "not number"
             ]
-          }
+          },
+          "items": "number"
         }
       }
     ],

@@ -77,7 +77,7 @@
               "name": "point",
               "displayName": "point",
               "type": [
-                "Point[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -89,7 +89,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "Point"
             }
           },
           "__METADATA__": {

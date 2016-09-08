@@ -634,7 +634,7 @@
               "name": "members",
               "displayName": "members",
               "type": [
-                "(User|Team)[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -646,7 +646,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "(User|Team)"
             },
             "info": {
               "name": "info",
@@ -790,7 +791,7 @@
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
-                      "Team[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -802,7 +803,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "Team"
                   }
                 }
               }
@@ -1039,7 +1041,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "User[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -1051,7 +1053,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "User"
                   }
                 }
               }

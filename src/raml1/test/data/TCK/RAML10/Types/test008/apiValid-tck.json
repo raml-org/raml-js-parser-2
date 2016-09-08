@@ -170,7 +170,7 @@
               "name": "unionArray",
               "displayName": "unionArray",
               "type": [
-                "SimpleUnion[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -182,7 +182,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "SimpleUnion"
             }
           },
           "__METADATA__": {

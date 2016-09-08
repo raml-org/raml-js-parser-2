@@ -28,7 +28,7 @@
           "name": "Persons",
           "displayName": "Persons",
           "type": [
-            "Person[]"
+            "array"
           ],
           "required": true,
           "__METADATA__": {
@@ -40,7 +40,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "Person"
         }
       }
     ],

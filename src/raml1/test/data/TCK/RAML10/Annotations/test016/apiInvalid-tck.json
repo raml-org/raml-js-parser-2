@@ -144,7 +144,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "User[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -156,7 +156,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "User"
                   }
                 }
               }

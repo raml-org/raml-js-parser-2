@@ -47,8 +47,9 @@
 						"name": "addresses",
 						"displayName": "addresses",
 						"type": [
-							"string[]"
+							"array"
 						],
+						"items": "string",
 						"required": true,
 						"__METADATA__": {
 							"primitiveValuesMeta": {

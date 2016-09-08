@@ -27,7 +27,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "Types.Feature[]"
+                      "array"
                     ],
                     "example": [
                       {
@@ -108,7 +108,8 @@
                           "pic": "http://naw.netatwork.netdna-cdn.com/uploads/2015/06/icon-security-monitoring.png"
                         }
                       ]
-                    }
+                    },
+                    "items": "Types.Feature"
                   }
                 }
               }

@@ -37,7 +37,7 @@
               "name": "members",
               "displayName": "members",
               "type": [
-                "Person[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -49,7 +49,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "Person"
             }
           },
           "__METADATA__": {

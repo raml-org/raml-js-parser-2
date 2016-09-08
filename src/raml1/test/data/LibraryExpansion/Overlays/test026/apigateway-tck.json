@@ -475,8 +475,9 @@
               "name": "cacheKeyParameters",
               "displayName": "cacheKeyParameters",
               "type": [
-                "string[]"
+                "array"
               ],
+              "items": "string",
               "required": true,
               "__METADATA__": {
                 "primitiveValuesMeta": {

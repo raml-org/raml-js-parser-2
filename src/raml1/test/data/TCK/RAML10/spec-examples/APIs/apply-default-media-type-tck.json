@@ -68,7 +68,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "Person[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -80,13 +80,14 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "Person"
                   },
                   "application/xml": {
                     "name": "application/xml",
                     "displayName": "application/xml",
                     "type": [
-                      "Person[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -98,7 +99,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "Person"
                   }
                 }
               }

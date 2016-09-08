@@ -169,26 +169,6 @@
           "position": 94
         }
       ]
-    },
-    {
-      "code": 11,
-      "message": "Null or undefined value is not allowed",
-      "path": "lib.raml",
-      "line": 8,
-      "column": 4,
-      "position": 87,
-      "range": [
-        {
-          "line": 8,
-          "column": 4,
-          "position": 87
-        },
-        {
-          "line": 8,
-          "column": 11,
-          "position": 94
-        }
-      ]
     }
   ]
 }

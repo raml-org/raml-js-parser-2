@@ -25,7 +25,7 @@
           "name": "SmallArray",
           "displayName": "SmallArray",
           "type": [
-            "number[]"
+            "array"
           ],
           "required": true,
           "minItems": 5,
@@ -38,7 +38,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "number"
         }
       }
     ],

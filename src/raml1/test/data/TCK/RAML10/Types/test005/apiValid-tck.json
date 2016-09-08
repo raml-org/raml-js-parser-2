@@ -109,7 +109,7 @@
               "name": "users",
               "displayName": "users",
               "type": [
-                "AnotherType[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -121,7 +121,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "AnotherType"
             }
           },
           "__METADATA__": {

@@ -124,7 +124,7 @@
           "name": "Devices",
           "displayName": "Devices",
           "type": [
-            "( Phone | Notebook )[]"
+            "array"
           ],
           "required": true,
           "__METADATA__": {
@@ -136,7 +136,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "( Phone | Notebook )"
         }
       }
     ],

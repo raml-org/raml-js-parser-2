@@ -27,7 +27,7 @@
               "name": "v",
               "displayName": "v",
               "type": [
-                "boolean[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -39,7 +39,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "boolean"
             }
           },
           "__METADATA__": {

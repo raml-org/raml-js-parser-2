@@ -8,7 +8,7 @@
           "name": "MyArrayType",
           "displayName": "MyArrayType",
           "type": [
-            "number[]"
+            "array"
           ],
           "required": true,
           "__METADATA__": {
@@ -20,7 +20,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "number"
         }
       },
       {

@@ -53,7 +53,7 @@
               "name": "items",
               "displayName": "items",
               "type": [
-                "VV[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -65,7 +65,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "VV"
             }
           },
           "__METADATA__": {

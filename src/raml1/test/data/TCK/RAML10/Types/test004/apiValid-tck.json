@@ -8,7 +8,7 @@
           "name": "SomeType",
           "displayName": "SomeType",
           "type": [
-            "string[]"
+            "array"
           ],
           "example": [
             "some string",
@@ -33,7 +33,8 @@
               "some string",
               "another string"
             ]
-          }
+          },
+          "items": "string"
         }
       }
     ],
