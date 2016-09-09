@@ -527,7 +527,7 @@ class TransformMatches {
 
     regexp: RegExp;
 
-    static leftTransformRegexp: RegExp = /\|\s*!\s*/;
+    static leftTransformRegexp: RegExp = /\s*!\s*/;
     static rightTransformRegexp: RegExp = /\s*$/;
 
     transformer: (arg: string) => string;
@@ -610,17 +610,18 @@ export function getTransformNames(): string[] {
     return transformers.map(transformer => transformer.name);
 }
 
-export function getTransformerForOccurence(occurence: string) {
-    var result;
-
-    for(var i = 0; i < transformers.length; i++) {
-        if(occurence.match(transformers[i].regexp)) {
-            result = transformers[i].transformer;
-
-            break;
+export function getTransformersForOccurence(occurence: string) {
+    var result = [];
+    
+    var functions = occurence.split("|").slice(1);
+    for(var f of functions) {
+        for (var i = 0; i < transformers.length; i++) {
+            if (f.match(transformers[i].regexp)) {
+                result.push(transformers[i].transformer);
+                break;
+            }
         }
     }
-
     return result;
 }
 
@@ -696,17 +697,19 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var val;
                 var paramName;
 
-                var transformer = getTransformerForOccurence(paramOccurence);
+                var transformers = getTransformersForOccurence(paramOccurence);
 
-                if(transformer) {
-                    var ind = paramOccurence.lastIndexOf('|');
+                if(transformers.length>0) {
+                    var ind = paramOccurence.indexOf('|');
                     paramName = paramOccurence.substring(0,ind).trim();
                     val = this.params[paramName];
                     if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
                     if(val) {
-                        val = transformer(val);
+                        for(var tr of transformers) {
+                            val = tr(val);
+                        }
                     }
                 } else {
                     paramName = paramOccurence.trim();
