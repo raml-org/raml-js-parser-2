@@ -231,8 +231,8 @@ export class TCKDumper{
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);
             }
-            if (x.position != y.position) {
-                return x.position - y.position;
+            if (x.range.start.position != y.range.start.position) {
+                return x.range.start.position - y.range.start.position;
             }
             return x.code - y.code;
         });
