@@ -233,61 +233,52 @@
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
-      "line": 4,
-      "column": 0,
-      "position": 154,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 4,
           "column": 0,
           "position": 154
         },
-        {
+        "end": {
           "line": 4,
           "column": 33,
           "position": 187
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
-      "line": 5,
-      "column": 0,
-      "position": 189,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 5,
           "column": 0,
           "position": 189
         },
-        {
+        "end": {
           "line": 5,
           "column": 17,
           "position": 206
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
-      "line": 7,
-      "column": 0,
-      "position": 243,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 0,
           "position": 243
         },
-        {
+        "end": {
           "line": 7,
           "column": 19,
           "position": 262
         }
-      ]
+      }
     }
   ]
 }

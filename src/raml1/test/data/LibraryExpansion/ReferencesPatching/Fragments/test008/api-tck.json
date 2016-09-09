@@ -393,21 +393,18 @@
       "code": 11,
       "message": "integer is expected",
       "path": "api.raml",
-      "line": 20,
-      "column": 12,
-      "position": 312,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 20,
           "column": 12,
           "position": 312
         },
-        {
+        "end": {
           "line": 20,
           "column": 27,
           "position": 327
         }
-      ]
+      }
     }
   ]
 }
