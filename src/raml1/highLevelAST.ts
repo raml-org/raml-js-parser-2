@@ -142,29 +142,9 @@ export interface RamlParserError {
     path: string;
 
     /**
-     * Start index in the whole text, starting from zero
+     * RangeObject describing start and end of error location
      */
-    start: number;
-
-    /**
-     * End index in the whole text, starting from zero
-     */
-    end: number;
-
-    /**
-     * Start line, starting from zero
-     */
-    line?:number;
-
-    /**
-     * Column index, starting from zero
-     */
-    column?:number;
-
-    /**
-     * Length two array of [[TextPosition]] describing start and end of error location
-     */
-    range:lowLevel.TextPosition[];
+    range:RangeObject;
 
     /**
      * Whether the message is warning or not
@@ -172,6 +152,22 @@ export interface RamlParserError {
     isWarning: boolean;
     
     trace?:RamlParserError[];
+}
+
+export interface RangeObject{
+
+    start: MarkerObject;
+
+    end: MarkerObject;
+}
+
+export interface MarkerObject{
+
+    line:number;
+
+    column:number;
+
+    position:number;
 }
 
 export interface NodeMetadata extends ValueMetadata{
