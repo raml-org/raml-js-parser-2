@@ -45,21 +45,18 @@
       "code": 7,
       "message": "Form related media types can not be used in responses",
       "path": "api.raml",
-      "line": 10,
-      "column": 10,
-      "position": 143,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 10,
           "position": 143
         },
-        {
+        "end": {
           "line": 10,
           "column": 43,
           "position": 176
         }
-      ],
+      },
       "isWarning": true
     }
   ]

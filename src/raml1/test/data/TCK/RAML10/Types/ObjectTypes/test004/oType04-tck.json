@@ -137,21 +137,18 @@
       "code": 11,
       "message": "Required property: comment_id is missed",
       "path": "oType04.raml",
-      "line": 15,
-      "column": 4,
-      "position": 307,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 4,
           "position": 307
         },
-        {
+        "end": {
           "line": 15,
           "column": 11,
           "position": 314
         }
-      ]
+      }
     }
   ]
 }

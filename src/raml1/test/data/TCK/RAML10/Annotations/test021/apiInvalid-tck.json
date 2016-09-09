@@ -71,21 +71,18 @@
       "code": 7,
       "message": "annotation TestAnnotation can not be placed at this location, allowed targets are:SecuritySchemeSettings",
       "path": "apiInvalid.raml",
-      "line": 14,
-      "column": 4,
-      "position": 236,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 4,
           "position": 236
         },
-        {
+        "end": {
           "line": 14,
           "column": 20,
           "position": 252
         }
-      ]
+      }
     }
   ]
 }

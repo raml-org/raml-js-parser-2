@@ -57,21 +57,18 @@
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:file_0.xml:1: element country_name1: Schemas validity error : Element 'country_name1': This element is not expected. Expected is ( country_name ).",
       "path": "apiInvalid.raml",
-      "line": 8,
-      "column": 8,
-      "position": 117,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 8,
           "position": 117
         },
-        {
+        "end": {
           "line": 8,
           "column": 15,
           "position": 124
         }
-      ]
+      }
     }
   ]
 }

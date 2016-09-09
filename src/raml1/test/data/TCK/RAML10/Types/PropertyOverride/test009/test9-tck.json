@@ -94,41 +94,35 @@
       "code": 11,
       "message": "facet :test can not be overriden",
       "path": "test9.raml",
-      "line": 6,
-      "column": 2,
-      "position": 76,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 2,
           "position": 76
         },
-        {
+        "end": {
           "line": 6,
           "column": 9,
           "position": 83
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "missing required facets:test",
       "path": "test9.raml",
-      "line": 6,
-      "column": 2,
-      "position": 76,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 2,
           "position": 76
         },
-        {
+        "end": {
           "line": 6,
           "column": 9,
           "position": 83
         }
-      ]
+      }
     }
   ]
 }

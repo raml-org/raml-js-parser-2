@@ -273,41 +273,35 @@
       "code": 11,
       "message": "string should match to [a-zA-Z0-9]{8,32}",
       "path": "api.raml",
-      "line": 21,
-      "column": 2,
-      "position": 384,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 21,
           "column": 2,
           "position": 384
         },
-        {
+        "end": {
           "line": 21,
           "column": 8,
           "position": 390
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "string should match to [a-zA-Z0-9]{8,32}",
       "path": "api.raml",
-      "line": 31,
-      "column": 4,
-      "position": 598,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 31,
           "column": 4,
           "position": 598
         },
-        {
+        "end": {
           "line": 31,
           "column": 22,
           "position": 616
         }
-      ]
+      }
     }
   ]
 }

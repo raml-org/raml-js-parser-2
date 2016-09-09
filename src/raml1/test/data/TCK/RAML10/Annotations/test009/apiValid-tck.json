@@ -98,21 +98,18 @@
       "code": 11,
       "message": "Required property: prop1 is missed",
       "path": "apiValid.raml",
-      "line": 9,
-      "column": 2,
-      "position": 165,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 2,
           "position": 165
         },
-        {
+        "end": {
           "line": 9,
           "column": 10,
           "position": 173
         }
-      ]
+      }
     }
   ]
 }

@@ -56,41 +56,35 @@
       "code": 5,
       "message": "Resources share same URI",
       "path": "duplicated-uris-invalid.raml",
-      "line": 10,
-      "column": 2,
-      "position": 246,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 2,
           "position": 246
         },
-        {
+        "end": {
           "line": 10,
           "column": 6,
           "position": 250
         }
-      ]
+      }
     },
     {
       "code": 5,
       "message": "Resources share same URI",
       "path": "duplicated-uris-invalid.raml",
-      "line": 11,
-      "column": 0,
-      "position": 252,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 11,
           "column": 0,
           "position": 252
         },
-        {
+        "end": {
           "line": 11,
           "column": 10,
           "position": 262
         }
-      ]
+      }
     }
   ]
 }

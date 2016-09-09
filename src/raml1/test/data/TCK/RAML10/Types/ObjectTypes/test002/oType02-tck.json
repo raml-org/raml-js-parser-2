@@ -81,21 +81,18 @@
       "code": 11,
       "message": "'Initial_comments.minProperties=2' i.e. object properties count should not be less than 2",
       "path": "oType02.raml",
-      "line": 9,
-      "column": 4,
-      "position": 179,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 4,
           "position": 179
         },
-        {
+        "end": {
           "line": 9,
           "column": 11,
           "position": 186
         }
-      ]
+      }
     }
   ]
 }

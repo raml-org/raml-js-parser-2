@@ -411,61 +411,52 @@
       "code": 11,
       "message": "Restrictions conflict in type 'application/xml': should be of type number and should be of type string",
       "path": "api.raml",
-      "line": 15,
-      "column": 6,
-      "position": 275,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 6,
           "position": 275
         },
-        {
+        "end": {
           "line": 15,
           "column": 21,
           "position": 290
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Restrictions conflict in type 'application/xml': should be of type number and should be of type string",
       "path": "api.raml",
-      "line": 20,
-      "column": 6,
-      "position": 355,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 20,
           "column": 6,
           "position": 355
         },
-        {
+        "end": {
           "line": 20,
           "column": 21,
           "position": 370
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "schema and type are mutually exclusive",
       "path": "api.raml",
-      "line": 35,
-      "column": 6,
-      "position": 579,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 35,
           "column": 6,
           "position": 579
         },
-        {
+        "end": {
           "line": 35,
           "column": 21,
           "position": 594
         }
-      ]
+      }
     }
   ]
 }

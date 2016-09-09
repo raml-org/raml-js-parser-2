@@ -162,21 +162,18 @@
       "code": 11,
       "message": "Unknown property:z",
       "path": "apiInvalid.raml",
-      "line": 24,
-      "column": 10,
-      "position": 374,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 24,
           "column": 10,
           "position": 374
         },
-        {
+        "end": {
           "line": 24,
           "column": 11,
           "position": 375
         }
-      ]
+      }
     }
   ]
 }

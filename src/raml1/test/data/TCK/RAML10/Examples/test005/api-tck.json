@@ -82,21 +82,18 @@
       "code": 11,
       "message": "boolean is expected",
       "path": "api.raml",
-      "line": 10,
-      "column": 6,
-      "position": 143,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 6,
           "position": 143
         },
-        {
+        "end": {
           "line": 10,
           "column": 7,
           "position": 144
         }
-      ]
+      }
     }
   ]
 }

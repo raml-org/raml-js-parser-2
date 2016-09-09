@@ -38,21 +38,18 @@
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:Referenced type \"\" is not match with \"country\" root node",
       "path": "apiInvalid.raml",
-      "line": 6,
-      "column": 8,
-      "position": 86,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 8,
           "position": 86
         },
-        {
+        "end": {
           "line": 6,
           "column": 15,
           "position": 93
         }
-      ]
+      }
     }
   ]
 }

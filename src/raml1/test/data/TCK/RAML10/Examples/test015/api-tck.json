@@ -99,21 +99,18 @@
       "code": 11,
       "message": "'MyType1.maxProperties=1' i.e. object properties count should not be more than 1",
       "path": "api.raml",
-      "line": 7,
-      "column": 4,
-      "position": 105,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 4,
           "position": 105
         },
-        {
+        "end": {
           "line": 7,
           "column": 11,
           "position": 112
         }
-      ]
+      }
     }
   ]
 }

@@ -10,21 +10,18 @@
       "code": 7,
       "message": "invalid media type",
       "path": "api.raml",
-      "line": 2,
-      "column": 0,
-      "position": 27,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 2,
           "column": 0,
           "position": 27
         },
-        {
+        "end": {
           "line": 2,
           "column": 9,
           "position": 36
         }
-      ]
+      }
     }
   ]
 }

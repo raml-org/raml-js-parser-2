@@ -69,21 +69,18 @@
       "code": 9,
       "message": "authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI",
       "path": "apiInvalid.raml",
-      "line": 12,
-      "column": 49,
-      "position": 414,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 12,
           "column": 49,
           "position": 414
         },
-        {
+        "end": {
           "line": 12,
           "column": 62,
           "position": 427
         }
-      ]
+      }
     }
   ]
 }

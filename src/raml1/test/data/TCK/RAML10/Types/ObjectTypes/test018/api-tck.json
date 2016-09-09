@@ -77,21 +77,18 @@
       "code": 11,
       "message": "Required property: title?? is missed",
       "path": "api.raml",
-      "line": 17,
-      "column": 4,
-      "position": 470,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 17,
           "column": 4,
           "position": 470
         },
-        {
+        "end": {
           "line": 17,
           "column": 11,
           "position": 477
         }
-      ]
+      }
     }
   ]
 }

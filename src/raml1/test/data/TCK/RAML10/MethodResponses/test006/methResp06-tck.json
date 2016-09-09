@@ -58,21 +58,18 @@
       "code": 7,
       "message": "Status code should be 3 digits number.",
       "path": "methResp06.raml",
-      "line": 6,
-      "column": 6,
-      "position": 60,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 6,
           "position": 60
         },
-        {
+        "end": {
           "line": 6,
           "column": 9,
           "position": 63
         }
-      ]
+      }
     }
   ]
 }

@@ -397,41 +397,35 @@
       "code": 11,
       "message": "Required property: propertyFromResourceType2 is missed",
       "path": "apiInvalid.raml",
-      "line": 40,
-      "column": 10,
-      "position": 789,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 40,
           "column": 10,
           "position": 789
         },
-        {
+        "end": {
           "line": 40,
           "column": 17,
           "position": 796
         }
-      ],
+      },
       "trace": [
         {
           "code": 11,
           "message": "Required property: propertyFromResourceType2 is missed",
           "path": "apiInvalid.raml",
-          "line": 45,
-          "column": 0,
-          "position": 935,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 45,
               "column": 0,
               "position": 935
             },
-            {
+            "end": {
               "line": 45,
               "column": 9,
               "position": 944
             }
-          ]
+          }
         }
       ]
     },
@@ -439,42 +433,36 @@
       "code": 11,
       "message": "Unknown property:propertyFromResourceType1",
       "path": "apiInvalid.raml",
-      "line": 42,
-      "column": 12,
-      "position": 854,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 42,
           "column": 12,
           "position": 854
         },
-        {
+        "end": {
           "line": 42,
           "column": 37,
           "position": 879
         }
-      ],
+      },
       "isWarning": true,
       "trace": [
         {
           "code": 11,
           "message": "Unknown property:propertyFromResourceType1",
           "path": "apiInvalid.raml",
-          "line": 45,
-          "column": 0,
-          "position": 935,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 45,
               "column": 0,
               "position": 935
             },
-            {
+            "end": {
               "line": 45,
               "column": 9,
               "position": 944
             }
-          ],
+          },
           "isWarning": true
         }
       ]

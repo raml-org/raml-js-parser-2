@@ -105,41 +105,35 @@
       "code": 4,
       "message": "Resource property already used: '(meta)'",
       "path": "apiInvalid.raml",
-      "line": 15,
-      "column": 2,
-      "position": 326,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 2,
           "position": 326
         },
-        {
+        "end": {
           "line": 15,
           "column": 8,
           "position": 332
         }
-      ]
+      }
     },
     {
       "code": 4,
       "message": "Resource property already used: '(meta)'",
       "path": "apiInvalid.raml",
-      "line": 16,
-      "column": 2,
-      "position": 346,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 2,
           "position": 346
         },
-        {
+        "end": {
           "line": 16,
           "column": 8,
           "position": 352
         }
-      ]
+      }
     }
   ]
 }

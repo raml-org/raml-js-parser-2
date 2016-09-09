@@ -539,21 +539,18 @@
       "code": 11,
       "message": "enum facet value must be defined by array",
       "path": "test1.raml",
-      "line": 15,
-      "column": 10,
-      "position": 291,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 10,
           "position": 291
         },
-        {
+        "end": {
           "line": 15,
           "column": 14,
           "position": 295
         }
-      ]
+      }
     }
   ]
 }

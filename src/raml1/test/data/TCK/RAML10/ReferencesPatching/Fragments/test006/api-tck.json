@@ -136,21 +136,18 @@
       "code": 11,
       "message": "'MyStringType.maxLength=32' i.e. string length should not be more than 32",
       "path": "api.raml",
-      "line": 11,
-      "column": 10,
-      "position": 201,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 11,
           "column": 10,
           "position": 201
         },
-        {
+        "end": {
           "line": 11,
           "column": 24,
           "position": 215
         }
-      ]
+      }
     }
   ]
 }

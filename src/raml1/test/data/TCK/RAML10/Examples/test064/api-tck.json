@@ -93,21 +93,18 @@
       "code": 11,
       "message": "Unknown property:id",
       "path": "api.raml",
-      "line": 16,
-      "column": 16,
-      "position": 271,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 16,
           "position": 271
         },
-        {
+        "end": {
           "line": 16,
           "column": 18,
           "position": 273
         }
-      ],
+      },
       "isWarning": true
     }
   ]

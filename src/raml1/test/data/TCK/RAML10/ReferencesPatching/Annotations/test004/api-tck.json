@@ -204,41 +204,35 @@
       "code": 11,
       "message": "string is expected",
       "path": "libB.raml",
-      "line": 7,
-      "column": 4,
-      "position": 81,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 4,
           "position": 81
         },
-        {
+        "end": {
           "line": 7,
           "column": 16,
           "position": 93
         }
-      ],
+      },
       "trace": [
         {
           "code": 11,
           "message": "string is expected",
           "path": "api.raml",
-          "line": 9,
-          "column": 0,
-          "position": 87,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 9,
               "column": 0,
               "position": 87
             },
-            {
+            "end": {
               "line": 9,
               "column": 9,
               "position": 96
             }
-          ]
+          }
         }
       ]
     }

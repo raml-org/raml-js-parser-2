@@ -11,21 +11,18 @@
       "code": 10,
       "message": "Property version is not allowed to be overriden or added in overlays",
       "path": "NewOverlay.raml",
-      "line": 3,
-      "column": 0,
-      "position": 38,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 0,
           "position": 38
         },
-        {
+        "end": {
           "line": 3,
           "column": 7,
           "position": 45
         }
-      ]
+      }
     }
   ]
 }

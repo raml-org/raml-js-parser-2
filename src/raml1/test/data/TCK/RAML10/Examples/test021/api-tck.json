@@ -96,21 +96,18 @@
       "code": 11,
       "message": "string should match to .5",
       "path": "api.raml",
-      "line": 10,
-      "column": 6,
-      "position": 142,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 6,
           "position": 142
         },
-        {
+        "end": {
           "line": 10,
           "column": 7,
           "position": 143
         }
-      ]
+      }
     }
   ]
 }

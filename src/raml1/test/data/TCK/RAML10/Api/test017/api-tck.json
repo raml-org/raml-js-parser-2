@@ -60,21 +60,18 @@
       "code": 11,
       "message": "Base uri parameter unused",
       "path": "api.raml",
-      "line": 4,
-      "column": 2,
-      "position": 74,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 4,
           "column": 2,
           "position": 74
         },
-        {
+        "end": {
           "line": 4,
           "column": 3,
           "position": 75
         }
-      ],
+      },
       "isWarning": true
     }
   ]

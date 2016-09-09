@@ -128,21 +128,18 @@
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:Additional properties not allowed: vlue vlue",
       "path": "api.raml",
-      "line": 26,
-      "column": 12,
-      "position": 573,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 26,
           "column": 12,
           "position": 573
         },
-        {
+        "end": {
           "line": 26,
           "column": 19,
           "position": 580
         }
-      ]
+      }
     }
   ]
 }

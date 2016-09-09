@@ -33,21 +33,18 @@
       "code": 10,
       "message": "The './anotherResource' node does not match any node of the master api.",
       "path": "NewOverlay2.raml",
-      "line": 6,
-      "column": 0,
-      "position": 95,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 0,
           "position": 95
         },
-        {
+        "end": {
           "line": 6,
           "column": 16,
           "position": 111
         }
-      ]
+      }
     }
   ]
 }

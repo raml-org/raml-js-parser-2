@@ -117,21 +117,18 @@
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:Keyword 'required' is expected to be of type 'array' required,array, Keyword 'required' is expected to be of type 'array' required,array",
       "path": "api.raml",
-      "line": 25,
-      "column": 12,
-      "position": 585,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 25,
           "column": 12,
           "position": 585
         },
-        {
+        "end": {
           "line": 25,
           "column": 19,
           "position": 592
         }
-      ]
+      }
     }
   ]
 }

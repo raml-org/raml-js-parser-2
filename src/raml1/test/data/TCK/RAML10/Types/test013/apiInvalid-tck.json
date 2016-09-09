@@ -73,41 +73,35 @@
       "code": 11,
       "message": "somePropertyhas cyclic dependency",
       "path": "apiInvalid.raml",
-      "line": 6,
-      "column": 6,
-      "position": 64,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 6,
           "position": 64
         },
-        {
+        "end": {
           "line": 6,
           "column": 18,
           "position": 76
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "apiInvalid.raml",
-      "line": 10,
-      "column": 12,
-      "position": 158,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 12,
           "position": 158
         },
-        {
+        "end": {
           "line": 10,
           "column": 24,
           "position": 170
         }
-      ]
+      }
     }
   ]
 }

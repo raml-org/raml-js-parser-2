@@ -71,61 +71,52 @@
       "code": 11,
       "message": "recurrent type definition",
       "path": "apiInvalid.raml",
-      "line": 5,
-      "column": 4,
-      "position": 46,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 5,
           "column": 4,
           "position": 46
         },
-        {
+        "end": {
           "line": 5,
           "column": 8,
           "position": 50
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "recurrent type definition",
       "path": "apiInvalid.raml",
-      "line": 8,
-      "column": 4,
-      "position": 84,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 4,
           "position": 84
         },
-        {
+        "end": {
           "line": 8,
           "column": 8,
           "position": 88
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "recurrent type definition",
       "path": "apiInvalid.raml",
-      "line": 11,
-      "column": 4,
-      "position": 119,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 11,
           "column": 4,
           "position": 119
         },
-        {
+        "end": {
           "line": 11,
           "column": 8,
           "position": 123
         }
-      ]
+      }
     }
   ]
 }

@@ -75,21 +75,18 @@
       "code": 11,
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 4,
-      "position": 175,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 4,
           "position": 175
         },
-        {
+        "end": {
           "line": 13,
           "column": 8,
           "position": 179
         }
-      ]
+      }
     }
   ]
 }

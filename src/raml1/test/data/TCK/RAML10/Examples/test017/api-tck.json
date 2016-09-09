@@ -111,21 +111,18 @@
       "code": 11,
       "message": "'MyType1.minProperties=3' i.e. object properties count should not be less than 3",
       "path": "api.raml",
-      "line": 12,
-      "column": 6,
-      "position": 200,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 12,
           "column": 6,
           "position": 200
         },
-        {
+        "end": {
           "line": 12,
           "column": 8,
           "position": 202
         }
-      ]
+      }
     }
   ]
 }

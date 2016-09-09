@@ -236,61 +236,52 @@
       "code": 11,
       "message": "Union type option does not pass validation (SimpleType1: Required property: property1 is missed)",
       "path": "apiInvalid.raml",
-      "line": 23,
-      "column": 6,
-      "position": 368,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 23,
           "column": 6,
           "position": 368
         },
-        {
+        "end": {
           "line": 23,
           "column": 12,
           "position": 374
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type option does not pass validation (SimpleType2: Required property: property4 is missed)",
       "path": "apiInvalid.raml",
-      "line": 23,
-      "column": 6,
-      "position": 368,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 23,
           "column": 6,
           "position": 368
         },
-        {
+        "end": {
           "line": 23,
           "column": 12,
           "position": 374
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
-      "line": 23,
-      "column": 6,
-      "position": 368,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 23,
           "column": 6,
           "position": 368
         },
-        {
+        "end": {
           "line": 23,
           "column": 12,
           "position": 374
         }
-      ]
+      }
     }
   ]
 }

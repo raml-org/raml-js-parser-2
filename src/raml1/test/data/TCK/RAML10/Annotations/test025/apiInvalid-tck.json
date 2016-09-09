@@ -40,21 +40,18 @@
       "code": 11,
       "message": "'z.maximum=10' i.e. value should not be more than 10",
       "path": "apiInvalid.raml",
-      "line": 7,
-      "column": 2,
-      "position": 90,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 2,
           "position": 90
         },
-        {
+        "end": {
           "line": 7,
           "column": 5,
           "position": 93
         }
-      ]
+      }
     }
   ]
 }

@@ -87,21 +87,18 @@
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "lib.raml",
-      "line": 10,
-      "column": 6,
-      "position": 136,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 6,
           "position": 136
         },
-        {
+        "end": {
           "line": 10,
           "column": 13,
           "position": 143
         }
-      ]
+      }
     }
   ]
 }

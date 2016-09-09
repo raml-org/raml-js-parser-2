@@ -188,21 +188,18 @@
       "code": 11,
       "message": "Unknown function applied to parameter: !unknown",
       "path": "t1.raml",
-      "line": 28,
-      "column": 29,
-      "position": 905,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 28,
           "column": 29,
           "position": 905
         },
-        {
+        "end": {
           "line": 28,
           "column": 40,
           "position": 916
         }
-      ]
+      }
     }
   ]
 }

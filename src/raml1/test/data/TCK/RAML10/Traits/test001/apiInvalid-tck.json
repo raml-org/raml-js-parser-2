@@ -708,41 +708,35 @@
       "code": 11,
       "message": "Required property: rtTypeProperty1 is missed",
       "path": "apiInvalid.raml",
-      "line": 60,
-      "column": 8,
-      "position": 1020,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 60,
           "column": 8,
           "position": 1020
         },
-        {
+        "end": {
           "line": 60,
           "column": 15,
           "position": 1027
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:rtTypeProperty2",
       "path": "apiInvalid.raml",
-      "line": 61,
-      "column": 10,
-      "position": 1039,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 61,
           "column": 10,
           "position": 1039
         },
-        {
+        "end": {
           "line": 61,
           "column": 25,
           "position": 1054
         }
-      ],
+      },
       "isWarning": true
     }
   ]

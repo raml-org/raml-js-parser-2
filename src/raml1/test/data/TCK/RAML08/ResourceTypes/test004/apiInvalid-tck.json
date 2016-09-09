@@ -302,63 +302,54 @@
       "code": 11,
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
-      "line": 36,
-      "column": 8,
-      "position": 774,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 36,
           "column": 8,
           "position": 774
         },
-        {
+        "end": {
           "line": 36,
           "column": 15,
           "position": 781
         }
-      ],
+      },
       "isWarning": true
     },
     {
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 40,
-      "column": 8,
-      "position": 835,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 40,
           "column": 8,
           "position": 835
         },
-        {
+        "end": {
           "line": 40,
           "column": 15,
           "position": 842
         }
-      ],
+      },
       "isWarning": true
     },
     {
       "code": 11,
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
-      "line": 45,
-      "column": 12,
-      "position": 940,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 45,
           "column": 12,
           "position": 940
         },
-        {
+        "end": {
           "line": 45,
           "column": 19,
           "position": 947
         }
-      ],
+      },
       "isWarning": true
     }
   ]

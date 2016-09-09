@@ -104,41 +104,35 @@
       "code": 11,
       "message": "Required property: someProperty is missed",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 10,
-      "position": 220,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 10,
           "position": 220
         },
-        {
+        "end": {
           "line": 13,
           "column": 23,
           "position": 233
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:someProperty1",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 10,
-      "position": 220,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 10,
           "position": 220
         },
-        {
+        "end": {
           "line": 13,
           "column": 23,
           "position": 233
         }
-      ]
+      }
     }
   ]
 }

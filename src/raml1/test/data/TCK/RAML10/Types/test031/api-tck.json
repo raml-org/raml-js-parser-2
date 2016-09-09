@@ -69,21 +69,18 @@
       "code": 11,
       "message": "map is expected here.",
       "path": "api.raml",
-      "line": 8,
-      "column": 4,
-      "position": 114,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 4,
           "position": 114
         },
-        {
+        "end": {
           "line": 8,
           "column": 12,
           "position": 122
         }
-      ]
+      }
     }
   ]
 }

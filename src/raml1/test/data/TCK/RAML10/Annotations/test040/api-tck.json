@@ -37,21 +37,18 @@
       "code": 11,
       "message": "unsupported annotation target: 'ObjectTypeDeclaration'",
       "path": "api.raml",
-      "line": 5,
-      "column": 4,
-      "position": 55,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 5,
           "column": 4,
           "position": 55
         },
-        {
+        "end": {
           "line": 5,
           "column": 18,
           "position": 69
         }
-      ]
+      }
     }
   ]
 }

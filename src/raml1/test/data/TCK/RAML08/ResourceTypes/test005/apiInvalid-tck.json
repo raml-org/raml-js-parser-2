@@ -302,42 +302,36 @@
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 36,
-      "column": 8,
-      "position": 774,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 36,
           "column": 8,
           "position": 774
         },
-        {
+        "end": {
           "line": 36,
           "column": 15,
           "position": 781
         }
-      ],
+      },
       "isWarning": true
     },
     {
       "code": 11,
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
-      "line": 40,
-      "column": 8,
-      "position": 843,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 40,
           "column": 8,
           "position": 843
         },
-        {
+        "end": {
           "line": 40,
           "column": 15,
           "position": 850
         }
-      ],
+      },
       "isWarning": true
     }
   ]

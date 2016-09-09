@@ -49,41 +49,35 @@
       "code": 1,
       "message": "JS-YAML: bad indentation of a mapping entry at line 8, column 5",
       "path": "api.raml",
-      "line": 8,
-      "column": 4,
-      "position": 70,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 4,
           "position": 70
         },
-        {
+        "end": {
           "line": 8,
           "column": 5,
           "position": 71
         }
-      ]
+      }
     },
     {
       "code": 1,
       "message": "JS-YAML: can not read a block mapping entry; a multiline key may not be an implicit key at line 8, column 13",
       "path": "api.raml",
-      "line": 8,
-      "column": 12,
-      "position": 78,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 12,
           "position": 78
         },
-        {
+        "end": {
           "line": 8,
           "column": 13,
           "position": 79
         }
-      ]
+      }
     }
   ]
 }

@@ -20,21 +20,18 @@
       "code": 7,
       "message": "Invalid resource name: unmatched '{'",
       "path": "api.raml",
-      "line": 2,
-      "column": 0,
-      "position": 23,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 2,
           "column": 0,
           "position": 23
         },
-        {
+        "end": {
           "line": 2,
           "column": 7,
           "position": 30
         }
-      ]
+      }
     }
   ]
 }

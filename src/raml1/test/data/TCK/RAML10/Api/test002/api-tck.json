@@ -9,21 +9,18 @@
       "code": 2,
       "message": "resourceTypes should be a map in RAML 1.0",
       "path": "api.raml",
-      "line": 2,
-      "column": 0,
-      "position": 23,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 2,
           "column": 0,
           "position": 23
         },
-        {
+        "end": {
           "line": 2,
           "column": 13,
           "position": 36
         }
-      ]
+      }
     }
   ]
 }

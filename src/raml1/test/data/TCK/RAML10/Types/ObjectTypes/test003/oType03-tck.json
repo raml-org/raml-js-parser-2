@@ -144,21 +144,18 @@
       "code": 11,
       "message": "'Initial_comments.maxProperties=4' i.e. object properties count should not be more than 4",
       "path": "oType03.raml",
-      "line": 13,
-      "column": 4,
-      "position": 271,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 4,
           "position": 271
         },
-        {
+        "end": {
           "line": 13,
           "column": 11,
           "position": 278
         }
-      ]
+      }
     }
   ]
 }

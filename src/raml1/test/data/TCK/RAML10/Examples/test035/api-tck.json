@@ -71,21 +71,18 @@
       "code": 11,
       "message": "string is expected",
       "path": "api.raml",
-      "line": 7,
-      "column": 4,
-      "position": 87,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 4,
           "position": 87
         },
-        {
+        "end": {
           "line": 7,
           "column": 11,
           "position": 94
         }
-      ]
+      }
     }
   ]
 }

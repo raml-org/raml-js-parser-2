@@ -86,21 +86,18 @@
       "code": 10,
       "message": "The './resource2' node does not match any node of the master api.",
       "path": "NewOverlay.raml",
-      "line": 3,
-      "column": 0,
-      "position": 38,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 0,
           "position": 38
         },
-        {
+        "end": {
           "line": 3,
           "column": 10,
           "position": 48
         }
-      ]
+      }
     }
   ]
 }

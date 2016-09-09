@@ -41,21 +41,18 @@
       "code": 11,
       "message": "specifying unknown facet:wrongPropertyName",
       "path": "api.raml",
-      "line": 7,
-      "column": 4,
-      "position": 127,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 4,
           "position": 127
         },
-        {
+        "end": {
           "line": 7,
           "column": 21,
           "position": 144
         }
-      ]
+      }
     }
   ]
 }

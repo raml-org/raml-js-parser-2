@@ -85,42 +85,36 @@
       "code": 11,
       "message": "pattern property '//' conflicts with property: name",
       "path": "additional-properties.raml",
-      "line": 7,
-      "column": 2,
-      "position": 149,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 2,
           "position": 149
         },
-        {
+        "end": {
           "line": 7,
           "column": 8,
           "position": 155
         }
-      ],
+      },
       "isWarning": true
     },
     {
       "code": 11,
       "message": "pattern property '//' conflicts with property: age",
       "path": "additional-properties.raml",
-      "line": 7,
-      "column": 2,
-      "position": 149,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 2,
           "position": 149
         },
-        {
+        "end": {
           "line": 7,
           "column": 8,
           "position": 155
         }
-      ],
+      },
       "isWarning": true
     }
   ]

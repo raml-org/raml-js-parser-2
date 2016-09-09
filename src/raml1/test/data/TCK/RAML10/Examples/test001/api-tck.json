@@ -140,21 +140,18 @@
       "code": 11,
       "message": "Can not parse JSON example:Unexpected token d",
       "path": "api.raml",
-      "line": 16,
-      "column": 12,
-      "position": 240,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 12,
           "position": 240
         },
-        {
+        "end": {
           "line": 16,
           "column": 19,
           "position": 247
         }
-      ]
+      }
     }
   ]
 }

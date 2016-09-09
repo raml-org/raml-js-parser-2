@@ -20,21 +20,18 @@
       "code": 2,
       "message": "property 'title' must be a string",
       "path": "api.raml",
-      "line": 1,
-      "column": 0,
-      "position": 11,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 1,
           "column": 0,
           "position": 11
         },
-        {
+        "end": {
           "line": 1,
           "column": 5,
           "position": 16
         }
-      ]
+      }
     }
   ]
 }

@@ -395,41 +395,35 @@
       "code": 11,
       "message": "Required property: extraProperty is missed",
       "path": "apiInvalid.raml",
-      "line": 50,
-      "column": 8,
-      "position": 973,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 50,
           "column": 8,
           "position": 973
         },
-        {
+        "end": {
           "line": 50,
           "column": 15,
           "position": 980
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:extraProperty1",
       "path": "apiInvalid.raml",
-      "line": 51,
-      "column": 10,
-      "position": 992,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 51,
           "column": 10,
           "position": 992
         },
-        {
+        "end": {
           "line": 51,
           "column": 24,
           "position": 1006
         }
-      ],
+      },
       "isWarning": true
     }
   ]
