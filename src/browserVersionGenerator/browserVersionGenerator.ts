@@ -19,12 +19,31 @@ function createBrowserPackage(minify = true) {
     var targetFolder = path.join(rootPath, "browserVersion");
 
     var targetFile = path.join(targetFolder, "raml-1-parser.js");
+    var xmlValidationTargetFile = path.join(targetFolder, "raml-xml-validation.js");
+    
+    var xmlValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-xml-validation/dist/index.js');
 
     mkdirp.sync(targetFolder);
 
     copyStaticBrowserPackageContents(targetFolder, path.join(rootPath, "package.json"));
 
     webPackForBrowser(rootPath, rootFile, targetFile, minify);
+
+    var indexHtml = path.resolve(__dirname, "../../browserVersion/examples/web-example/index.html");
+    
+    var indexHtmlContent = fs.readFileSync(indexHtml).toString();
+    
+    try {
+        if(fs.existsSync(xmlValidationRootFile)) {
+            fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", '<script type="text/javascript" src="../../raml-xml-validation.js"></script>'));
+            
+            webPackForBrowserForXml(rootPath, xmlValidationRootFile, xmlValidationTargetFile, minify);
+        } else {
+            fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", ''));
+        }
+    } catch(exception) {
+        fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", ''));
+    }
 }
 
 /**
@@ -92,12 +111,75 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "pluralize" : true,
                 // "then-request" : true,
                 "typescript" : true,
+                "raml-xml-validation": "RAML.XmlValidation"
                 // "underscore" : true,
                 // "url": true,
                 // "xmldom" : true,
                 // "xmlhttprequest": true,
                 // "xhr2": true,
                 // "z-schema" : true,
+            }
+        ],
+        node: {
+            console: false,
+            global: true,
+            process: true,
+            Buffer: true,
+            __filename: true,
+            __dirname: true,
+            setImmediate: true
+        }
+    };
+
+    webpack(config, function(err, stats) {
+        if(err) {
+            console.log(err.message);
+
+            return;
+        }
+
+        console.log("Webpack Building Browser Bundle:");
+
+        console.log(stats.toString({reasons : true, errorDetails: true}));
+    });
+}
+
+function webPackForBrowserForXml(parserRootFolder: string, rootFile : string, targetFile : string, minify: boolean) {
+    console.log("Preparing to Webpack browser bundle:");
+
+    var plugins = [];
+
+    var relativeFilePath = path.relative(parserRootFolder, rootFile);
+    relativeFilePath = "./"+relativeFilePath;
+
+    var targetFolder = path.dirname(targetFile);
+    var targetFileName = path.basename(targetFile);
+
+    var config = {
+        context: parserRootFolder,
+
+        entry: relativeFilePath,
+
+        output: {
+            path: targetFolder,
+
+            library: ['RAML.XmlValidation'],
+
+            filename: targetFileName,
+            libraryTarget: "umd"
+        },
+
+        plugins: plugins,
+
+        module: {
+            loaders: [
+                { test: /\.json$/, loader: "json" }
+            ]
+        },
+        externals: [
+            {
+                "libxml-xsd" : true,
+                "ws" : true
             }
         ],
         node: {
