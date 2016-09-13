@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SerializeOptions | RAML JS Parser 2</title>
+	<title>MarkerObject | RAML JS Parser 2</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -60,10 +60,10 @@
 					<a href="../modules/_src_raml1_highlevelast_.html">&quot;src/raml1/highLevelAST&quot;</a>
 				</li>
 				<li>
-					<a href="_src_raml1_highlevelast_.serializeoptions.html">SerializeOptions</a>
+					<a href="_src_raml1_highlevelast_.markerobject.html">MarkerObject</a>
 				</li>
 			</ul>
-			<h1>Interface SerializeOptions</h1>
+			<h1>Interface MarkerObject</h1>
 		</div>
 	</div>
 </header>
@@ -74,7 +74,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SerializeOptions</span>
+						<span class="target">MarkerObject</span>
 					</li>
 				</ul>
 			</section>
@@ -85,9 +85,9 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.serializeoptions.html#dumpschemacontents" class="tsd-kind-icon">dump<wbr>Schema<wbr>Contents</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.serializeoptions.html#rootnodedetails" class="tsd-kind-icon">root<wbr>Node<wbr>Details</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.serializeoptions.html#serializemetadata" class="tsd-kind-icon">serialize<wbr>Metadata</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.markerobject.html#column" class="tsd-kind-icon">column</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.markerobject.html#line" class="tsd-kind-icon">line</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="_src_raml1_highlevelast_.markerobject.html#position" class="tsd-kind-icon">position</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,60 +96,34 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="dumpschemacontents" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> dump<wbr>Schema<wbr>Contents</h3>
-					<div class="tsd-signature tsd-kind-icon">dump<wbr>Schema<wbr>Contents<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="column" class="tsd-anchor"></a>
+					<h3>column</h3>
+					<div class="tsd-signature tsd-kind-icon">column<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L44">src/raml1/highLevelAST.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L168">src/raml1/highLevelAST.ts:168</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="rootnodedetails" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> root<wbr>Node<wbr>Details</h3>
-					<div class="tsd-signature tsd-kind-icon">root<wbr>Node<wbr>Details<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="line" class="tsd-anchor"></a>
+					<h3>line</h3>
+					<div class="tsd-signature tsd-kind-icon">line<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L35">src/raml1/highLevelAST.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L166">src/raml1/highLevelAST.ts:166</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>For root nodes additional details can be included into output. If the option is set to <code>true</code>,
-							node content is returned as value of the <strong>specification</strong> root property. Other root properties are:</p>
-						</div>
-						<ul>
-							<li><strong>ramlVersion</strong> version of RAML used by the specification represented by the node</li>
-							<li><strong>type</strong> type of the node: Api, Overlay, Extension, Library, or any other RAML type in fragments case</li>
-							<li><strong>errors</strong> errors of the specification represented by the node</li>
-						</ul>
-						<dl class="tsd-comment-tags">
-							<dt>default</dt>
-							<dd><p>false</p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="serializemetadata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> serialize<wbr>Metadata</h3>
-					<div class="tsd-signature tsd-kind-icon">serialize<wbr>Metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="position" class="tsd-anchor"></a>
+					<h3>position</h3>
+					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L41">src/raml1/highLevelAST.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/highLevelAST.ts#L170">src/raml1/highLevelAST.ts:170</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether to serialize metadata</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>default</dt>
-							<dd><p>true</p>
-							</dd>
-						</dl>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -211,9 +185,24 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.ivaluetypedefinition.html" class="tsd-kind-icon">IValue<wbr>Type<wbr>Definition</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.markerobject.html" class="tsd-kind-icon">Marker<wbr>Object</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_src_raml1_highlevelast_.markerobject.html#column" class="tsd-kind-icon">column</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_src_raml1_highlevelast_.markerobject.html#line" class="tsd-kind-icon">line</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="_src_raml1_highlevelast_.markerobject.html#position" class="tsd-kind-icon">position</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.nodemetadata.html" class="tsd-kind-icon">Node<wbr>Metadata</a>
 					</li>
@@ -223,24 +212,9 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.rangeobject.html" class="tsd-kind-icon">Range<wbr>Object</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.serializeoptions.html" class="tsd-kind-icon">Serialize<wbr>Options</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_src_raml1_highlevelast_.serializeoptions.html#dumpschemacontents" class="tsd-kind-icon">dump<wbr>Schema<wbr>Contents</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_src_raml1_highlevelast_.serializeoptions.html#rootnodedetails" class="tsd-kind-icon">root<wbr>Node<wbr>Details</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="_src_raml1_highlevelast_.serializeoptions.html#serializemetadata" class="tsd-kind-icon">serialize<wbr>Metadata</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-external">
 						<a href="_src_raml1_highlevelast_.status.html" class="tsd-kind-icon">Status</a>
 					</li>

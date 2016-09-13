@@ -145,6 +145,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#definition" class="tsd-kind-icon">definition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#dump" class="tsd-kind-icon">dump</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#errors" class="tsd-kind-icon">errors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#filtererrors" class="tsd-kind-icon">filter<wbr>Errors</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#kind" class="tsd-kind-icon">kind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#meta" class="tsd-kind-icon">meta</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="_src_raml1_wrapped_ast_parsercore_.basicnodeimpl.html#optional" class="tsd-kind-icon">optional</a></li>
@@ -208,7 +209,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#ramlversion">RAMLVersion</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L376">src/raml1/wrapped-ast/parserCore.ts:376</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L393">src/raml1/wrapped-ast/parserCore.ts:393</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -293,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L368">src/raml1/wrapped-ast/parserCore.ts:368</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L385">src/raml1/wrapped-ast/parserCore.ts:385</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -310,7 +311,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L249">src/raml1/wrapped-ast/parserCore.ts:249</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L267">src/raml1/wrapped-ast/parserCore.ts:267</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -334,7 +335,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#definition">definition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L299">src/raml1/wrapped-ast/parserCore.ts:299</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L316">src/raml1/wrapped-ast/parserCore.ts:316</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,6 +386,29 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="filtererrors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> filter<wbr>Errors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">filter<wbr>Errors<span class="tsd-signature-symbol">(</span>rawErrors<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_src_raml1_highlevelast_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L250">src/raml1/wrapped-ast/parserCore.ts:250</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rawErrors: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.ramlparsererror.html" class="tsd-signature-type">RamlParserError</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="kind" class="tsd-anchor"></a>
 					<h3>kind</h3>
@@ -414,7 +438,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#meta">meta</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L372">src/raml1/wrapped-ast/parserCore.ts:372</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L389">src/raml1/wrapped-ast/parserCore.ts:389</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_src_raml1_highlevelast_.nodemetadata.html" class="tsd-signature-type">NodeMetadata</a></h4>
@@ -432,7 +456,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#optional">optional</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L327">src/raml1/wrapped-ast/parserCore.ts:327</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L344">src/raml1/wrapped-ast/parserCore.ts:344</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -453,7 +477,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#optionalproperties">optionalProperties</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L335">src/raml1/wrapped-ast/parserCore.ts:335</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L352">src/raml1/wrapped-ast/parserCore.ts:352</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -526,7 +550,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/_src_raml1_highlevelast_.basicnode.html">BasicNode</a>.<a href="../interfaces/_src_raml1_highlevelast_.basicnode.html#runtimedefinition">runtimeDefinition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L306">src/raml1/wrapped-ast/parserCore.ts:306</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L323">src/raml1/wrapped-ast/parserCore.ts:323</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -592,7 +616,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L313">src/raml1/wrapped-ast/parserCore.ts:313</a></li>
+									<li>Defined in <a href="https://github.com/raml-org/raml-js-parser-2/blob/develop/src/raml1/wrapped-ast/parserCore.ts#L330">src/raml1/wrapped-ast/parserCore.ts:330</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
