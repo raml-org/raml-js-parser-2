@@ -394,9 +394,13 @@ export function testAPI(
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var api = index.loadRAMLSync(apiPath,extensions);
-    var expanded = api["expand"] ? api["expand"]() : api;
-    if(expandLib && expanded["expandLibraries"]){
+    var expanded;
+    if(expandLib && api["expandLibraries"]){
+        expanded = api;
         expanded["expandLibraries"]();
+    }
+    else{
+        expanded = api["expand"] ? api["expand"]() : api;
     }
     (<any>expanded).setAttributeDefaults(true);
     var json = expanded.toJSON({rootNodeDetails:true});
@@ -489,7 +493,7 @@ export function generateMochaSuite(
     var suiteStrings:string[] = [];
     for(var suitePath of suitePaths){
         var title = suiteTitle(suitePath,folderAbsPath);
-        if(!title){
+        if(title==null){
             continue;
         }
         var suiteStr = dumpSuite(title,dataRoot,map[suitePath],libExpand);

@@ -174,6 +174,9 @@ export class ReferencePatcher{
 
             //if(rootPath != localPath) {
                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
+                if(typeAttributes.length==0){
+                    typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.schema.name);
+                }
                 for( var typeAttr of typeAttributes) {
                     var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
                     if(!(llNode instanceof proxy.LowLevelProxyNode)){
@@ -407,6 +410,9 @@ export class ReferencePatcher{
             if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
                 return null;
             }
+            if(resolver.resolveNamespace(rootUnit, referencedUnit)==null){
+                return null;
+            }
             var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
             if(!ll.isWebPath(aPath)){
                 aPath = "file://" + aPath;
@@ -585,9 +591,10 @@ export class ReferencePatcher{
         var project = unit.project();
         var usedNamespaces = Object.keys(this._outerDependencies).filter(x=>x!=rootPath);
         var libModels:LibModel[] = [];
+        var resolver = (<jsyaml.Project>llNode.unit().project()).namespaceResolver();
         for(var ns of usedNamespaces){
             var libUnit = project.unit(ns,true);
-            if(libUnit){
+            if(libUnit&&resolver.resolveNamespace(unit,libUnit)!=null){
                 var dependencies = this._outerDependencies[ns];
                 var libModel = this.extractLibModel(libUnit,dependencies);
                 libModels.push(libModel);
@@ -874,6 +881,8 @@ class LibModel{
     annotationTypes:ElementsCollection;
 
     types:ElementsCollection;
+    
+    unit:ll.ICompilationUnit;
 
 }
 
