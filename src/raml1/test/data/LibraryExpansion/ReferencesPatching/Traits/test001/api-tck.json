@@ -4,7 +4,7 @@
   "specification": {
     "types": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType": {
+        "lib.LibType": {
           "name": "LibType",
           "displayName": "LibType",
           "type": [
@@ -26,7 +26,7 @@
     ],
     "traits": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1": {
+        "lib.libTrait1": {
           "responses": {
             "200": {
               "code": "200",
@@ -35,7 +35,7 @@
                   "name": "application/json",
                   "displayName": "application/json",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType"
+                    "lib.LibType"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -74,7 +74,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/types/LibType"
+                      "lib.LibType"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -95,7 +95,7 @@
               "HTTPS"
             ],
             "is": [
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Traits/test001/lib.raml#/traits/libTrait1"
+              "lib.libTrait1"
             ],
             "method": "get",
             "__METADATA__": {

@@ -4,9 +4,9 @@
   "specification": {
     "resourceTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt": {
+        "lib.rt": {
           "type": {
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/resourceTypes/rt": {
+            "lib.lib.rt": {
               "param1": "<<param1>>",
               "param2": "Monkey"
             }
@@ -15,62 +15,62 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/resourceTypes/rt": {
+        "lib.lib.rt": {
           "annotations": {
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+            "lib.lib.<<param1>>": {
               "structuredValue": 17,
-              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+              "name": "lib.lib.<<param1>>"
             },
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+            "lib.lib.<<param2>>": {
               "structuredValue": 5,
-              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+              "name": "lib.lib.<<param2>>"
             },
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+            "lib.lib.Monkey": {
               "structuredValue": true,
-              "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+              "name": "lib.lib.Monkey"
             }
           },
           "name": "rt",
           "get": {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+              "lib.lib.<<param1>>": {
                 "structuredValue": "stringValue2",
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+                "name": "lib.lib.<<param1>>"
               }
             },
             "method": "get"
           },
           "post": {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+              "lib.lib.<<param2>>": {
                 "structuredValue": 8,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+                "name": "lib.lib.<<param2>>"
               }
             },
             "method": "post"
           },
           "put": {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+              "lib.lib.Monkey": {
                 "structuredValue": false,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+                "name": "lib.lib.Monkey"
               }
             },
             "method": "put"
           },
           "delete": {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>": {
+              "lib.lib.<<param1>>": {
                 "structuredValue": "stringValue3",
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param1>>"
+                "name": "lib.lib.<<param1>>"
               },
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>": {
+              "lib.lib.<<param2>>": {
                 "structuredValue": 16,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/<<param2>>"
+                "name": "lib.lib.<<param2>>"
               },
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+              "lib.lib.Monkey": {
                 "structuredValue": true,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+                "name": "lib.lib.Monkey"
               }
             },
             "method": "delete"
@@ -100,7 +100,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+        "lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
           "type": [
@@ -120,7 +120,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+        "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
           "type": [
@@ -148,13 +148,13 @@
             "structuredValue": 17,
             "name": "Monkey"
           },
-          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+          "lib.Monkey": {
             "structuredValue": 5,
-            "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+            "name": "lib.Monkey"
           },
-          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+          "lib.lib.Monkey": {
             "structuredValue": true,
-            "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+            "name": "lib.lib.Monkey"
           }
         },
         "methods": [
@@ -169,18 +169,18 @@
           },
           {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+              "lib.Monkey": {
                 "structuredValue": 8,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+                "name": "lib.Monkey"
               }
             },
             "method": "post"
           },
           {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+              "lib.lib.Monkey": {
                 "structuredValue": false,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+                "name": "lib.lib.Monkey"
               }
             },
             "method": "put"
@@ -191,20 +191,20 @@
                 "structuredValue": "stringValue3",
                 "name": "Monkey"
               },
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey": {
+              "lib.Monkey": {
                 "structuredValue": 16,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/annotationTypes/Monkey"
+                "name": "lib.Monkey"
               },
-              "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey": {
+              "lib.lib.Monkey": {
                 "structuredValue": true,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libB.raml#/annotationTypes/Monkey"
+                "name": "lib.lib.Monkey"
               }
             },
             "method": "delete"
           }
         ],
         "type": {
-          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Annotations/test004/libA.raml#/resourceTypes/rt": {
+          "lib.rt": {
             "param1": "Monkey"
           }
         },

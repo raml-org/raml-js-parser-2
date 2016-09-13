@@ -4,7 +4,7 @@
   "specification": {
     "types": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location": {
+        "types.Location": {
           "name": "Location",
           "displayName": "Location",
           "type": [
@@ -135,11 +135,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Locations": {
+        "types.Locations": {
           "name": "Locations",
           "displayName": "Locations",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -173,7 +173,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location"
+              "items": "types.Location"
             }
           },
           "__METADATA__": {
@@ -207,7 +207,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UserAccount": {
+        "types.UserAccount": {
           "name": "UserAccount",
           "displayName": "UserAccount",
           "type": [
@@ -349,7 +349,7 @@
                   "name": "count",
                   "displayName": "count",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Counts"
+                    "types.Counts"
                   ],
                   "required": false,
                   "__METADATA__": {
@@ -408,11 +408,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionPost": {
+        "types.SubscriptionPost": {
           "name": "SubscriptionPost",
           "displayName": "SubscriptionPost",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -643,11 +643,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionsGet": {
+        "types.SubscriptionsGet": {
           "name": "SubscriptionsGet",
           "displayName": "SubscriptionsGet",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -680,7 +680,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionData"
+              "items": "types.SubscriptionData"
             }
           },
           "__METADATA__": {
@@ -713,11 +713,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionsDelete": {
+        "types.SubscriptionsDelete": {
           "name": "SubscriptionsDelete",
           "displayName": "SubscriptionsDelete",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -735,7 +735,7 @@
               "name": "data",
               "displayName": "data",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionData"
+                "types.SubscriptionData"
               ],
               "required": false,
               "__METADATA__": {
@@ -778,7 +778,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Tag": {
+        "types.Tag": {
           "name": "Tag",
           "displayName": "Tag",
           "type": [
@@ -873,11 +873,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsSearch": {
+        "types.TagsSearch": {
           "name": "TagsSearch",
           "displayName": "TagsSearch",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -909,7 +909,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SerachTagItem"
+              "items": "types.SerachTagItem"
             }
           },
           "__METADATA__": {
@@ -941,7 +941,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaLikes": {
+        "types.MediaLikes": {
           "name": "MediaLikes",
           "displayName": "MediaLikes",
           "type": [
@@ -976,7 +976,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaLike"
+              "items": "types.MediaLike"
             }
           },
           "__METADATA__": {
@@ -1007,11 +1007,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaComment": {
+        "types.MediaComment": {
           "name": "MediaComment",
           "displayName": "MediaComment",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -1049,7 +1049,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+              "items": "types.Comment"
             }
           },
           "__METADATA__": {
@@ -1087,11 +1087,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Relationships": {
+        "types.Relationships": {
           "name": "Relationships",
           "displayName": "Relationships",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "example": {
             "meta": {
@@ -1188,7 +1188,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users": {
+        "types.Users": {
           "name": "Users",
           "displayName": "Users",
           "type": [
@@ -1224,7 +1224,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersItem"
+              "items": "types.UsersItem"
             }
           },
           "__METADATA__": {
@@ -1256,7 +1256,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus": {
+        "types.OkStatus": {
           "name": "OkStatus",
           "displayName": "OkStatus",
           "type": [
@@ -1273,7 +1273,7 @@
               "name": "meta",
               "displayName": "meta",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Meta"
+                "types.Meta"
               ],
               "required": false,
               "__METADATA__": {
@@ -1329,7 +1329,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsRecentMedia": {
+        "types.TagsRecentMedia": {
           "name": "TagsRecentMedia",
           "displayName": "TagsRecentMedia",
           "type": [
@@ -1402,7 +1402,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsRecentMediaItem"
+              "items": "types.TagsRecentMediaItem"
             }
           },
           "__METADATA__": {
@@ -1471,7 +1471,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Media": {
+        "types.Media": {
           "name": "Media",
           "displayName": "Media",
           "type": [
@@ -1591,7 +1591,7 @@
                       }
                     }
                   },
-                  "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersInPhoto"
+                  "items": "types.UsersInPhoto"
                 },
                 "filter": {
                   "name": "filter",
@@ -1655,7 +1655,7 @@
                           }
                         }
                       },
-                      "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                      "items": "types.Comment"
                     },
                     "count": {
                       "name": "count",
@@ -1691,7 +1691,7 @@
                   "name": "caption",
                   "displayName": "caption",
                   "type": [
-                    "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                    "nil | types.Comment"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -1709,7 +1709,7 @@
                   "name": "likes",
                   "displayName": "likes",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Likes"
+                    "types.Likes"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -1745,7 +1745,7 @@
                   "name": "user",
                   "displayName": "user",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+                    "types.User"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -1799,7 +1799,7 @@
                   "name": "location",
                   "displayName": "location",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location | nil"
+                    "types.Location | nil"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -1931,11 +1931,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearch": {
+        "types.MediaSearch": {
           "name": "MediaSearch",
           "displayName": "MediaSearch",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "required": true,
           "properties": {
@@ -1943,7 +1943,7 @@
               "name": "data",
               "displayName": "data",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchFirstType | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchSecondType"
+                "types.MediaSearchFirstType | types.MediaSearchSecondType"
               ],
               "required": true,
               "__METADATA__": {
@@ -1971,11 +1971,11 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray": {
+        "types.MediaSearchArray": {
           "name": "MediaSearchArray",
           "displayName": "MediaSearchArray",
           "type": [
-            "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus"
+            "types.OkStatus"
           ],
           "required": true,
           "properties": {
@@ -1996,7 +1996,7 @@
                   }
                 }
               },
-              "items": "(__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchFirstType | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchSecondType)"
+              "items": "(types.MediaSearchFirstType | types.MediaSearchSecondType)"
             }
           },
           "__METADATA__": {
@@ -2012,7 +2012,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Meta": {
+        "types.Meta": {
           "name": "Meta",
           "displayName": "Meta",
           "type": [
@@ -2063,7 +2063,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Counts": {
+        "types.Counts": {
           "name": "Counts",
           "displayName": "Counts",
           "type": [
@@ -2154,7 +2154,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User": {
+        "types.User": {
           "name": "User",
           "displayName": "User",
           "type": [
@@ -2289,7 +2289,7 @@
               "name": "count",
               "displayName": "count",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Counts"
+                "types.Counts"
               ],
               "required": false,
               "__METADATA__": {
@@ -2334,7 +2334,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionData": {
+        "types.SubscriptionData": {
           "name": "SubscriptionData",
           "displayName": "SubscriptionData",
           "type": [
@@ -2479,7 +2479,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SerachTagItem": {
+        "types.SerachTagItem": {
           "name": "SerachTagItem",
           "displayName": "SerachTagItem",
           "type": [
@@ -2550,7 +2550,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaLike": {
+        "types.MediaLike": {
           "name": "MediaLike",
           "displayName": "MediaLike",
           "type": [
@@ -2661,7 +2661,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment": {
+        "types.Comment": {
           "name": "Comment",
           "displayName": "Comment",
           "type": [
@@ -2719,7 +2719,7 @@
               "name": "from",
               "displayName": "from",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+                "types.User"
               ],
               "required": false,
               "properties": {
@@ -2800,7 +2800,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersItem": {
+        "types.UsersItem": {
           "name": "UsersItem",
           "displayName": "UsersItem",
           "type": [
@@ -2931,7 +2931,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Likes": {
+        "types.Likes": {
           "name": "Likes",
           "displayName": "Likes",
           "type": [
@@ -2991,7 +2991,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+              "items": "types.User"
             }
           },
           "__METADATA__": {
@@ -3029,7 +3029,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsRecentMediaItem": {
+        "types.TagsRecentMediaItem": {
           "name": "TagsRecentMediaItem",
           "displayName": "TagsRecentMediaItem",
           "type": [
@@ -3129,7 +3129,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersInPhoto"
+              "items": "types.UsersInPhoto"
             },
             "filter": {
               "name": "filter",
@@ -3193,7 +3193,7 @@
                       }
                     }
                   },
-                  "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                  "items": "types.Comment"
                 },
                 "count": {
                   "name": "count",
@@ -3229,7 +3229,7 @@
               "name": "caption",
               "displayName": "caption",
               "type": [
-                "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                "nil | types.Comment"
               ],
               "required": false,
               "__METADATA__": {
@@ -3247,7 +3247,7 @@
               "name": "likes",
               "displayName": "likes",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Likes"
+                "types.Likes"
               ],
               "required": false,
               "__METADATA__": {
@@ -3301,7 +3301,7 @@
               "name": "images",
               "displayName": "images",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Image"
+                "types.Image"
               ],
               "required": false,
               "__METADATA__": {
@@ -3337,7 +3337,7 @@
               "name": "location",
               "displayName": "location",
               "type": [
-                "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location"
+                "nil | types.Location"
               ],
               "required": false,
               "__METADATA__": {
@@ -3427,7 +3427,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersInPhoto": {
+        "types.UsersInPhoto": {
           "name": "UsersInPhoto",
           "displayName": "UsersInPhoto",
           "type": [
@@ -3457,7 +3457,7 @@
               "name": "user",
               "displayName": "user",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+                "types.User"
               ],
               "required": true,
               "__METADATA__": {
@@ -3564,7 +3564,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchFirstType": {
+        "types.MediaSearchFirstType": {
           "name": "MediaSearchFirstType",
           "displayName": "MediaSearchFirstType",
           "type": [
@@ -3706,7 +3706,7 @@
                   }
                 }
               },
-              "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersInPhoto"
+              "items": "types.UsersInPhoto"
             },
             "filter": {
               "name": "filter",
@@ -3770,7 +3770,7 @@
                       }
                     }
                   },
-                  "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                  "items": "types.Comment"
                 },
                 "count": {
                   "name": "count",
@@ -3806,7 +3806,7 @@
               "name": "caption",
               "displayName": "caption",
               "type": [
-                "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                "nil | types.Comment"
               ],
               "required": true,
               "__METADATA__": {
@@ -3824,7 +3824,7 @@
               "name": "likes",
               "displayName": "likes",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Likes"
+                "types.Likes"
               ],
               "required": true,
               "__METADATA__": {
@@ -3860,7 +3860,7 @@
               "name": "user",
               "displayName": "user",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+                "types.User"
               ],
               "required": true,
               "__METADATA__": {
@@ -3914,7 +3914,7 @@
               "name": "images",
               "displayName": "images",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Image"
+                "types.Image"
               ],
               "required": false,
               "__METADATA__": {
@@ -3932,7 +3932,7 @@
               "name": "location",
               "displayName": "location",
               "type": [
-                "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location"
+                "nil | types.Location"
               ],
               "required": true,
               "__METADATA__": {
@@ -4046,7 +4046,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchSecondType": {
+        "types.MediaSearchSecondType": {
           "name": "MediaSearchSecondType",
           "displayName": "MediaSearchSecondType",
           "type": [
@@ -4349,7 +4349,7 @@
                       }
                     }
                   },
-                  "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UsersInPhoto"
+                  "items": "types.UsersInPhoto"
                 },
                 "type": {
                   "name": "type",
@@ -4431,7 +4431,7 @@
                           }
                         }
                       },
-                      "items": "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                      "items": "types.Comment"
                     },
                     "count": {
                       "name": "count",
@@ -4467,7 +4467,7 @@
                   "name": "caption",
                   "displayName": "caption",
                   "type": [
-                    "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Comment"
+                    "nil | types.Comment"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -4485,7 +4485,7 @@
                   "name": "likes",
                   "displayName": "likes",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Likes"
+                    "types.Likes"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -4521,7 +4521,7 @@
                   "name": "user",
                   "displayName": "user",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/User"
+                    "types.User"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -4575,7 +4575,7 @@
                   "name": "images",
                   "displayName": "images",
                   "type": [
-                    "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Image"
+                    "types.Image"
                   ],
                   "required": false,
                   "__METADATA__": {
@@ -4593,7 +4593,7 @@
                   "name": "location",
                   "displayName": "location",
                   "type": [
-                    "nil | __$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location"
+                    "nil | types.Location"
                   ],
                   "required": true,
                   "__METADATA__": {
@@ -4742,7 +4742,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Image": {
+        "types.Image": {
           "name": "Image",
           "displayName": "Image",
           "type": [
@@ -4771,7 +4771,7 @@
               "name": "low_resolution",
               "displayName": "low_resolution",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Resolution"
+                "types.Resolution"
               ],
               "required": false,
               "__METADATA__": {
@@ -4789,7 +4789,7 @@
               "name": "thumbnail",
               "displayName": "thumbnail",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Resolution"
+                "types.Resolution"
               ],
               "required": false,
               "__METADATA__": {
@@ -4807,7 +4807,7 @@
               "name": "standard_resolution",
               "displayName": "standard_resolution",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Resolution"
+                "types.Resolution"
               ],
               "required": false,
               "__METADATA__": {
@@ -4857,7 +4857,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Resolution": {
+        "types.Resolution": {
           "name": "Resolution",
           "displayName": "Resolution",
           "type": [
@@ -5253,7 +5253,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users"
+                      "types.Users"
                     ],
                     "example": {
                       "data": [
@@ -5369,7 +5369,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearch"
+                      "types.MediaSearch"
                     ],
                     "example": {
                       "data": {
@@ -5616,7 +5616,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "schema": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                      "types.OkStatus | string"
                     ],
                     "example": {
                       "meta": {
@@ -5676,7 +5676,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                      "types.OkStatus | string"
                     ],
                     "example": {
                       "meta": {
@@ -5833,7 +5833,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray"
+                      "types.MediaSearchArray"
                     ],
                     "example": {
                       "data": [
@@ -6447,7 +6447,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Media"
+                          "types.Media"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -6593,7 +6593,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaComment"
+                              "types.MediaComment"
                             ],
                             "required": true,
                             "__METADATA__": {
@@ -6652,7 +6652,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                              "types.OkStatus | string"
                             ],
                             "example": {
                               "meta": {
@@ -6785,7 +6785,7 @@
                                 "name": "application/json",
                                 "displayName": "application/json",
                                 "schema": [
-                                  "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                                  "types.OkStatus | string"
                                 ],
                                 "example": {
                                   "meta": {
@@ -6978,7 +6978,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaLikes"
+                              "types.MediaLikes"
                             ],
                             "required": true,
                             "__METADATA__": {
@@ -7037,7 +7037,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                              "types.OkStatus | string"
                             ],
                             "example": {
                               "meta": {
@@ -7107,7 +7107,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "schema": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/OkStatus | string"
+                              "types.OkStatus | string"
                             ],
                             "example": {
                               "meta": {
@@ -7382,7 +7382,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearch"
+                          "types.MediaSearch"
                         ],
                         "example": {
                           "data": {
@@ -7712,7 +7712,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearch"
+                          "types.MediaSearch"
                         ],
                         "example": {
                           "data": {
@@ -8063,7 +8063,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Tag"
+                          "types.Tag"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -8247,7 +8247,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsRecentMedia"
+                              "types.TagsRecentMedia"
                             ],
                             "required": true,
                             "__METADATA__": {
@@ -8425,7 +8425,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/TagsSearch"
+                          "types.TagsSearch"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -8583,7 +8583,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UserAccount"
+                          "types.UserAccount"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -8729,7 +8729,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users"
+                              "types.Users"
                             ],
                             "example": {
                               "data": [
@@ -8926,7 +8926,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users"
+                              "types.Users"
                             ],
                             "example": {
                               "data": [
@@ -9199,7 +9199,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray"
+                              "types.MediaSearchArray"
                             ],
                             "example": {
                               "data": [
@@ -9712,7 +9712,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Relationships"
+                              "types.Relationships"
                             ],
                             "required": true,
                             "__METADATA__": {
@@ -9771,7 +9771,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Relationships"
+                              "types.Relationships"
                             ],
                             "example": {
                               "meta": {
@@ -10023,7 +10023,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users"
+                          "types.Users"
                         ],
                         "example": {
                           "data": [
@@ -10220,7 +10220,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/UserAccount"
+                          "types.UserAccount"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -10394,7 +10394,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray"
+                              "types.MediaSearchArray"
                             ],
                             "example": {
                               "data": [
@@ -10905,7 +10905,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Users"
+                              "types.Users"
                             ],
                             "example": {
                               "data": [
@@ -11128,7 +11128,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray"
+                              "types.MediaSearchArray"
                             ],
                             "example": {
                               "data": [
@@ -11674,7 +11674,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Location"
+                          "types.Location"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -11892,7 +11892,7 @@
                             "name": "application/json",
                             "displayName": "application/json",
                             "type": [
-                              "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/MediaSearchArray"
+                              "types.MediaSearchArray"
                             ],
                             "example": {
                               "data": [
@@ -12523,7 +12523,7 @@
                         "name": "application/json",
                         "displayName": "application/json",
                         "type": [
-                          "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/Locations"
+                          "types.Locations"
                         ],
                         "required": true,
                         "__METADATA__": {
@@ -12880,7 +12880,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionsGet"
+                      "types.SubscriptionsGet"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -12930,7 +12930,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionPost"
+                      "types.SubscriptionPost"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -13279,7 +13279,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/Instagram1.0/types.raml#/types/SubscriptionsDelete"
+                      "types.SubscriptionsDelete"
                     ],
                     "required": true,
                     "__METADATA__": {

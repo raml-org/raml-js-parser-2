@@ -3,22 +3,22 @@
   "type": "Overlay",
   "specification": {
     "annotations": {
-      "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib2.raml#/annotationTypes/a2": {
+      "lib2.a2": {
         "structuredValue": null,
-        "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib2.raml#/annotationTypes/a2"
+        "name": "lib2.a2"
       },
-      "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib1.raml#/annotationTypes/a1": {
+      "lib1.a1": {
         "structuredValue": null,
-        "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib1.raml#/annotationTypes/a1"
+        "name": "lib1.a1"
       },
-      "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib0.raml#/annotationTypes/a0": {
+      "lib0.a0": {
         "structuredValue": null,
-        "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib0.raml#/annotationTypes/a0"
+        "name": "lib0.a0"
       }
     },
     "annotationTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib0.raml#/annotationTypes/a0": {
+        "lib0.a0": {
           "name": "a0",
           "displayName": "a0",
           "type": [
@@ -38,7 +38,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib1.raml#/annotationTypes/a1": {
+        "lib1.a1": {
           "name": "a1",
           "displayName": "a1",
           "type": [
@@ -58,7 +58,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test031/lib2.raml#/annotationTypes/a2": {
+        "lib2.a2": {
           "name": "a2",
           "displayName": "a2",
           "type": [

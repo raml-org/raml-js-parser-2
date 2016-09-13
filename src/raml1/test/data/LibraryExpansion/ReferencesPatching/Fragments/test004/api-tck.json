@@ -4,7 +4,7 @@
   "specification": {
     "types": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/lib.raml#/types/MyType": {
+        "lib0.MyType": {
           "name": "MyType",
           "displayName": "MyType",
           "type": [
@@ -47,7 +47,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/types2.raml#/types/MyObjectType": {
+        "types2.MyObjectType": {
           "name": "MyObjectType",
           "displayName": "MyObjectType",
           "type": [
@@ -90,7 +90,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/types.raml#/types/MyType": {
+        "lib.MyType": {
           "name": "MyType",
           "displayName": "MyType",
           "type": [
@@ -136,7 +136,7 @@
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/lib.raml#/types/MyType"
+                      "lib0.MyType"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -154,7 +154,7 @@
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/types2.raml#/types/MyObjectType"
+                      "types2.MyObjectType"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -212,7 +212,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/types.raml#/types/MyType"
+                  "lib.MyType"
                 ],
                 "example": "stringValue",
                 "required": true,
@@ -258,7 +258,7 @@
                     "name": "ownLibProperty",
                     "displayName": "ownLibProperty",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/lib.raml#/types/MyType"
+                      "lib0.MyType"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -276,7 +276,7 @@
                     "name": "rootLibProperty",
                     "displayName": "rootLibProperty",
                     "type": [
-                      "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/Fragments/test004/libs/types2.raml#/types/MyObjectType"
+                      "types2.MyObjectType"
                     ],
                     "required": true,
                     "__METADATA__": {

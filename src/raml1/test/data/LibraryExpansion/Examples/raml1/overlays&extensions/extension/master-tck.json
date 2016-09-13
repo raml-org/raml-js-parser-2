@@ -4,7 +4,7 @@
   "specification": {
     "annotationTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {
+        "decls.important": {
           "name": "important",
           "displayName": "important",
           "type": [
@@ -34,9 +34,9 @@
         "methods": [
           {
             "annotations": {
-              "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important": {
+              "decls.important": {
                 "structuredValue": null,
-                "name": "__$$ROOT_PATH__/LibraryExpansion/Examples/raml1/overlays&extensions/extension/lib/decls.raml#/annotationTypes/important"
+                "name": "decls.important"
               }
             },
             "protocols": [

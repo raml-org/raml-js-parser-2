@@ -471,7 +471,7 @@ export class LibraryExpander{
             api = <RamlWrapper.Api>api.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();            
         }
         var expander = new TraitsAndResourceTypesExpander();
-        var rp = new referencePatcher.ReferencePatcher(referencePatcher.PatchMode.PATH);
+        var rp = new referencePatcher.ReferencePatcher();
         var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api.highLevel(),true,rp,true);
 
         var result = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);

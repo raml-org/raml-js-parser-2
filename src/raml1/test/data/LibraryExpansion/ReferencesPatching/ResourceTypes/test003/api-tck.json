@@ -4,7 +4,7 @@
   "specification": {
     "types": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/types/MyLibType": {
+        "lib1.lib2.MyLibType": {
           "name": "MyLibType",
           "displayName": "MyLibType",
           "type": [
@@ -26,13 +26,13 @@
     ],
     "traits": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/traits/myTrait": {
+        "lib1.lib2.myTrait": {
           "body": {
             "application/json": {
               "name": "application/json",
               "displayName": "application/json",
               "type": [
-                "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/types/MyLibType"
+                "lib1.lib2.MyLibType"
               ],
               "required": true,
               "__METADATA__": {
@@ -53,9 +53,9 @@
     ],
     "resourceTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib1.raml#/resourceTypes/rt": {
+        "lib1.rt": {
           "is": [
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/traits/myTrait"
+            "lib1.lib2.myTrait"
           ],
           "name": "rt"
         }
@@ -76,7 +76,7 @@
                 "name": "application/json",
                 "displayName": "application/json",
                 "type": [
-                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/types/MyLibType"
+                  "lib1.lib2.MyLibType"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -105,9 +105,9 @@
           }
         ],
         "is": [
-          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib2.raml#/traits/myTrait"
+          "lib1.lib2.myTrait"
         ],
-        "type": "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test003/lib1.raml#/resourceTypes/rt",
+        "type": "lib1.rt",
         "relativeUri": "/resource",
         "displayName": "/resource",
         "__METADATA__": {
