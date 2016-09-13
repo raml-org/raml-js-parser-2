@@ -394,14 +394,8 @@ export function testAPI(
         tckJsonPath = testUtil.data(tckJsonPath);
     }
     var api = index.loadRAMLSync(apiPath,extensions);
-    var expanded;
-    if(expandLib && api["expandLibraries"]){
-        expanded = api;
-        expanded["expandLibraries"]();
-    }
-    else{
-        expanded = api["expand"] ? api["expand"]() : api;
-    }
+    var expanded = api["expand"] ? api["expand"](expandLib) : api;
+
     (<any>expanded).setAttributeDefaults(true);
     var json = expanded.toJSON({rootNodeDetails:true});
 

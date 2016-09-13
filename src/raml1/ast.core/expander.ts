@@ -31,8 +31,8 @@ export function expandTraitsAndResourceTypes<T>(api:T):T{
 .expandTraitsAndResourceTypes(<RamlWrapper.Api|RamlWrapper08.Api><any>api);
 }
 
-export function expandLibraries(api:RamlWrapper.Api){
-    new LibraryExpander().expandLibraries(api);
+export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
+    return new LibraryExpander().expandLibraries(api);
 }
 
 export function mergeAPIs(masterUnit:ll.ICompilationUnit, extensionsAndOverlays:ll.ICompilationUnit[],
@@ -462,7 +462,7 @@ export class TraitsAndResourceTypesExpander {
 
 export class LibraryExpander{
 
-    expandLibraries(_api:RamlWrapper.Api){
+    expandLibraries(_api:RamlWrapper.Api):RamlWrapper.Api{
         var api = _api;
         if(api==null){
             return null;
@@ -474,10 +474,9 @@ export class LibraryExpander{
         var rp = new referencePatcher.ReferencePatcher(referencePatcher.PatchMode.PATH);
         var hlNode:hl.IHighLevelNode = expander.createHighLevelNode(api.highLevel(),true,rp,true);
 
-        api = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
-        this.processNode(rp,hlNode);
-        (<RamlWrapperImpl.ApiImpl>_api).patchNode(api.highLevel());
-
+        var result = <RamlWrapper.Api>expander.expandHighLevelNode(hlNode, rp, <any>api);
+        this.processNode(rp,result.highLevel());
+        return result;
     }
     
     processNode(rp:referencePatcher.ReferencePatcher, hlNode:hl.IHighLevelNode){

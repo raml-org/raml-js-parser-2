@@ -79,7 +79,6 @@ export class ParserGenerator{
                     new td.TSSimpleTypeReference(td.Universe, 'boolean'),
                     true)
             ];
-            _constructor.parameters[1].optional = true;
             _constructor._body = `super((typeof  nodeOrKey=="string")?create${u.nameId()}(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)`
         }
 
@@ -165,7 +164,7 @@ export class ParserGenerator{
         this.generatePrimitivesAnnotations(u,idcl,dcl);
     }
 
-    private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSClassDecl,classModel:td.TSClassDecl){
+    private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSInterface,classModel:td.TSClassDecl){
 
         if((<def.NodeClass>u).isCustom()){
             return;
@@ -412,7 +411,7 @@ export class ParserGenerator{
                     method.parameters = [];
                 }
                 var paramType = this.createTypeForModel(x.type, method);
-                method.parameters.push(new td.Param(method,x.name,td.ParamLocation.OTHER,paramType));
+                method.parameters.push(new td.Param(method,x.name,td.ParamLocation.OTHER,paramType,x.defaultValue));
             });
 
             if(isImpl){

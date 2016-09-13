@@ -65,6 +65,19 @@ export function completeRelativeUri(res:RamlWrapper.Resource):string{
 /**
  * __$helperMethod__
  * Equivalent API with traits and resource types expanded
+ * @expLib whether to apply library expansion or not
+ * __$meta__={"name":"expand"}
+ */
+export function expandSpec(api:RamlWrapper.Api,expLib:boolean=false):RamlWrapper.Api{
+    if(expLib){
+        return expandLibraries(api);
+    }
+    else{
+        return expandTraitsAndResourceTypes(api);
+    }
+}
+/**
+ * Equivalent API with traits and resource types expanded
  * __$meta__={"name":"expand"}
  */
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
@@ -76,12 +89,11 @@ export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Ap
 }
 
 /**
- * __$helperMethod__
  * Expand traits, resource types and libraries for the API
  * __$meta__={"name":"expandLibraries"}
  */
-export function expandLibraries(api:RamlWrapper.Api):void{
-    expander.expandLibraries(api);
+export function expandLibraries(api:RamlWrapper.Api):RamlWrapper.Api{
+    return expander.expandLibraries(api);
 }
 
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
