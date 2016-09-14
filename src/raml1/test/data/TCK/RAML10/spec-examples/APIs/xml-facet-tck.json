@@ -38,7 +38,7 @@
               "name": "addresses",
               "displayName": "addresses",
               "type": [
-                "Address[]"
+                "array"
               ],
               "required": true,
               "xml": {
@@ -53,7 +53,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "Address"
             }
           },
           "__METADATA__": {

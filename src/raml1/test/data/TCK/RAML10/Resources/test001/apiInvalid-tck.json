@@ -150,41 +150,35 @@
       "code": 5,
       "message": "Resources share same URI",
       "path": "apiInvalid.raml",
-      "line": 12,
-      "column": 2,
-      "position": 190,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 12,
           "column": 2,
           "position": 190
         },
-        {
+        "end": {
           "line": 12,
           "column": 15,
           "position": 203
         }
-      ]
+      }
     },
     {
       "code": 5,
       "message": "Resources share same URI",
       "path": "apiInvalid.raml",
-      "line": 18,
-      "column": 0,
-      "position": 305,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 18,
           "column": 0,
           "position": 305
         },
-        {
+        "end": {
           "line": 18,
           "column": 26,
           "position": 331
         }
-      ]
+      }
     }
   ]
 }

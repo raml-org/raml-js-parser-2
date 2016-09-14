@@ -200,21 +200,18 @@
       "code": 11,
       "message": "null is expected",
       "path": "apiInvalid.raml",
-      "line": 19,
-      "column": 4,
-      "position": 292,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 19,
           "column": 4,
           "position": 292
         },
-        {
+        "end": {
           "line": 19,
           "column": 16,
           "position": 304
         }
-      ]
+      }
     }
   ]
 }

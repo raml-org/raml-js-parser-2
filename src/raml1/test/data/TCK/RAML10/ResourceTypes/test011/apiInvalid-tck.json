@@ -356,41 +356,35 @@
       "code": 11,
       "message": "Required property: propertyFromResourceType1 is missed",
       "path": "apiInvalid.raml",
-      "line": 43,
-      "column": 8,
-      "position": 810,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 43,
           "column": 8,
           "position": 810
         },
-        {
+        "end": {
           "line": 43,
           "column": 15,
           "position": 817
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:propertyFromResourceType2",
       "path": "apiInvalid.raml",
-      "line": 44,
-      "column": 10,
-      "position": 829,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 44,
           "column": 10,
           "position": 829
         },
-        {
+        "end": {
           "line": 44,
           "column": 35,
           "position": 854
         }
-      ],
+      },
       "isWarning": true
     }
   ]

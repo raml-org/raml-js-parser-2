@@ -70,21 +70,18 @@
       "code": 11,
       "message": "value should be one of:val1,val2,3",
       "path": "api.raml",
-      "line": 9,
-      "column": 6,
-      "position": 140,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 6,
           "position": 140
         },
-        {
+        "end": {
           "line": 9,
           "column": 7,
           "position": 141
         }
-      ]
+      }
     }
   ]
 }

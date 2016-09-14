@@ -99,21 +99,18 @@
       "code": 11,
       "message": "'MyType1.minProperties=2' i.e. object properties count should not be less than 2",
       "path": "api.raml",
-      "line": 12,
-      "column": 4,
-      "position": 174,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 12,
           "column": 4,
           "position": 174
         },
-        {
+        "end": {
           "line": 12,
           "column": 11,
           "position": 181
         }
-      ]
+      }
     }
   ]
 }

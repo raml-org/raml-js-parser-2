@@ -242,7 +242,25 @@ export class BasicNodeImpl implements hl.BasicNode{
             issues = issues.concat(highLevelErrors);
         }
         
-        var result = issues.map(x=>this.basicError(x));
+        var rawResult = issues.map(x=>this.basicError(x));
+        var result:RamlParserError[] = this.filterErrors(rawResult);
+        return result;
+    }
+
+    private filterErrors(rawErrors):RamlParserError[] {
+        var result:RamlParserError[] = [];
+        var errorsMap = {};
+
+        rawErrors.map(x=>{errorsMap[JSON.stringify(x)] = x});
+        var keys: string[] = Object.keys(errorsMap);
+        for (var i = 0; i < keys.length; i++){
+            result.push(errorsMap[keys[i]]);
+        }
+
+        //console.log("errorsMap:" + JSON.stringify(errorsMap, null, 4));
+        //console.log("rawErrors:" + JSON.stringify(rawErrors, null, 4));
+        //console.log("result:" + JSON.stringify(result, null, 4));
+
         return result;
     }
 
@@ -280,11 +298,10 @@ export class BasicNodeImpl implements hl.BasicNode{
             code: x.code,
             message: x.message,
             path: path,
-            start: x.start,
-            end: x.end,
-            line: startPoint.errorMessage ? null : startPoint.line,
-            column: startPoint.errorMessage ? null : startPoint.column,
-            range: [startPoint, endPoint],
+            range: {
+                start: startPoint,
+                end: endPoint
+            },
             isWarning: x.isWarning
         };
         if(x.extras && x.extras.length>0){

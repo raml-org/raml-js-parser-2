@@ -51,21 +51,18 @@
       "code": 11,
       "message": "redefining a built in type:datetime",
       "path": "api.raml",
-      "line": 3,
-      "column": 2,
-      "position": 32,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 2,
           "position": 32
         },
-        {
+        "end": {
           "line": 3,
           "column": 10,
           "position": 40
         }
-      ]
+      }
     }
   ]
 }

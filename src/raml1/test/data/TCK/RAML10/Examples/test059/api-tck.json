@@ -232,61 +232,52 @@
       "code": 11,
       "message": "Union type option does not pass validation (Cat: Required property: color is missed)",
       "path": "api.raml",
-      "line": 25,
-      "column": 10,
-      "position": 385,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 25,
           "column": 10,
           "position": 385
         },
-        {
+        "end": {
           "line": 25,
           "column": 17,
           "position": 392
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type option does not pass validation (Dog: Required property: fangs is missed)",
       "path": "api.raml",
-      "line": 25,
-      "column": 10,
-      "position": 385,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 25,
           "column": 10,
           "position": 385
         },
-        {
+        "end": {
           "line": 25,
           "column": 17,
           "position": 392
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type options do not pass validation",
       "path": "api.raml",
-      "line": 25,
-      "column": 10,
-      "position": 385,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 25,
           "column": 10,
           "position": 385
         },
-        {
+        "end": {
           "line": 25,
           "column": 17,
           "position": 392
         }
-      ]
+      }
     }
   ]
 }

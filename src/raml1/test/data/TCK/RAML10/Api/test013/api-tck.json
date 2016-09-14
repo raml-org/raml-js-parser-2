@@ -10,21 +10,18 @@
       "code": 2,
       "message": "Unknown node: wrongPropertyName",
       "path": "api.raml",
-      "line": 3,
-      "column": 0,
-      "position": 36,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 0,
           "position": 36
         },
-        {
+        "end": {
           "line": 3,
           "column": 17,
           "position": 53
         }
-      ]
+      }
     }
   ]
 }

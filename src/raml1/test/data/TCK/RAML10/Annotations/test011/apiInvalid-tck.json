@@ -216,41 +216,35 @@
       "code": 11,
       "message": "Required property: name is missed",
       "path": "apiInvalid.raml",
-      "line": 19,
-      "column": 3,
-      "position": 276,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 19,
           "column": 3,
           "position": 276
         },
-        {
+        "end": {
           "line": 19,
           "column": 10,
           "position": 283
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:name1",
       "path": "apiInvalid.raml",
-      "line": 19,
-      "column": 3,
-      "position": 276,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 19,
           "column": 3,
           "position": 276
         },
-        {
+        "end": {
           "line": 19,
           "column": 10,
           "position": 283
         }
-      ]
+      }
     }
   ]
 }

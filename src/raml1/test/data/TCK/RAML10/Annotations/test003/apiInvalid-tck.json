@@ -84,21 +84,18 @@
       "code": 11,
       "message": "Required property: items is missed",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 0,
-      "position": 132,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 0,
           "position": 132
         },
-        {
+        "end": {
           "line": 9,
           "column": 6,
           "position": 138
         }
-      ]
+      }
     }
   ]
 }

@@ -144,7 +144,7 @@
                     "name": "application/json",
                     "displayName": "application/json",
                     "type": [
-                      "User[]"
+                      "array"
                     ],
                     "required": true,
                     "__METADATA__": {
@@ -156,7 +156,8 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "items": "User"
                   }
                 }
               }
@@ -184,21 +185,18 @@
       "code": 7,
       "message": "annotation meta-data can not be placed at this location, allowed targets are:TypeDeclaration",
       "path": "apiInvalid.raml",
-      "line": 21,
-      "column": 4,
-      "position": 506,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 21,
           "column": 4,
           "position": 506
         },
-        {
+        "end": {
           "line": 21,
           "column": 15,
           "position": 517
         }
-      ]
+      }
     }
   ]
 }

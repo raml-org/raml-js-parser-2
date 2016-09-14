@@ -89,21 +89,18 @@
       "code": 11,
       "message": "Null or undefined value is not allowed",
       "path": "null-type-invalid.raml",
-      "line": 13,
-      "column": 6,
-      "position": 245,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 6,
           "position": 245
         },
-        {
+        "end": {
           "line": 13,
           "column": 13,
           "position": 252
         }
-      ]
+      }
     }
   ]
 }

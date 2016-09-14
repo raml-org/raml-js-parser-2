@@ -61,21 +61,18 @@
       "code": 11,
       "message": "number is expected",
       "path": "api.raml",
-      "line": 8,
-      "column": 8,
-      "position": 110,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 8,
           "position": 110
         },
-        {
+        "end": {
           "line": 8,
           "column": 15,
           "position": 117
         }
-      ]
+      }
     }
   ]
 }

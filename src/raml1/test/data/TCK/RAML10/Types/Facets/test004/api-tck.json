@@ -162,81 +162,69 @@
       "code": 7,
       "message": "invalid media type",
       "path": "api.raml",
-      "line": 15,
-      "column": 6,
-      "position": 223,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 6,
           "position": 223
         },
-        {
+        "end": {
           "line": 15,
           "column": 10,
           "position": 227
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "missing required facets:format",
       "path": "api.raml",
-      "line": 15,
-      "column": 6,
-      "position": 223,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 6,
           "position": 223
         },
-        {
+        "end": {
           "line": 15,
           "column": 10,
           "position": 227
         }
-      ]
+      }
     },
     {
       "code": 7,
       "message": "invalid media type",
       "path": "api.raml",
-      "line": 16,
-      "column": 6,
-      "position": 242,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 6,
           "position": 242
         },
-        {
+        "end": {
           "line": 16,
           "column": 12,
           "position": 248
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "inheriting from unknown type",
       "path": "api.raml",
-      "line": 16,
-      "column": 6,
-      "position": 242,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 6,
           "position": 242
         },
-        {
+        "end": {
           "line": 16,
           "column": 12,
           "position": 248
         }
-      ]
+      }
     }
   ]
 }

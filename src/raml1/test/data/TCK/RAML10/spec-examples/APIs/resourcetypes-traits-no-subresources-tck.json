@@ -25,21 +25,18 @@
       "code": 2,
       "message": "Unknown node: /groups",
       "path": "resourcetypes-traits-no-subresources.raml",
-      "line": 14,
-      "column": 4,
-      "position": 364,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 4,
           "position": 364
         },
-        {
+        "end": {
           "line": 14,
           "column": 11,
           "position": 371
         }
-      ]
+      }
     }
   ]
 }

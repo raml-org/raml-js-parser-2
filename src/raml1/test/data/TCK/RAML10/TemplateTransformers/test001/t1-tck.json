@@ -2,90 +2,6 @@
   "ramlVersion": "RAML10",
   "type": "Api",
   "specification": {
-    "resources": [
-      {
-        "methods": [
-          {
-            "responses": {
-              "401": {
-                "code": "401",
-                "description": "user cannot be found"
-              },
-              "402": {
-                "code": "402",
-                "description": "users cannot be found"
-              },
-              "403": {
-                "code": "403",
-                "description": "USER cannot be found"
-              },
-              "404": {
-                "code": "404",
-                "description": "user cannot be found"
-              },
-              "405": {
-                "code": "405",
-                "description": "user cannot be found"
-              },
-              "406": {
-                "code": "406",
-                "description": "User cannot be found"
-              },
-              "407": {
-                "code": "407",
-                "description": "user cannot be found"
-              },
-              "408": {
-                "code": "408",
-                "description": "USER cannot be found"
-              },
-              "409": {
-                "code": "409",
-                "description": "user cannot be found"
-              },
-              "410": {
-                "code": "410",
-                "description": "USER cannot be found"
-              },
-              "411": {
-                "code": "411",
-                "description": "<<param | !unknown>> cannot be found"
-              }
-            },
-            "protocols": [
-              "HTTP"
-            ],
-            "is": [
-              {
-                "notAlwaysPresent": {
-                  "param": "user"
-                }
-              }
-            ],
-            "method": "get",
-            "__METADATA__": {
-              "primitiveValuesMeta": {
-                "protocols": {
-                  "calculated": true
-                }
-              }
-            }
-          }
-        ],
-        "relativeUri": "/users",
-        "displayName": "/users",
-        "__METADATA__": {
-          "primitiveValuesMeta": {
-            "displayName": {
-              "calculated": true
-            }
-          }
-        },
-        "relativeUriPathSegments": [
-          "users"
-        ]
-      }  
-    ],
     "traits": [
       {
         "notAlwaysPresent": {
@@ -175,6 +91,90 @@
     "protocols": [
       "HTTP"
     ],
+    "resources": [
+      {
+        "methods": [
+          {
+            "responses": {
+              "401": {
+                "code": "401",
+                "description": "user cannot be found"
+              },
+              "402": {
+                "code": "402",
+                "description": "users cannot be found"
+              },
+              "403": {
+                "code": "403",
+                "description": "USER cannot be found"
+              },
+              "404": {
+                "code": "404",
+                "description": "user cannot be found"
+              },
+              "405": {
+                "code": "405",
+                "description": "user cannot be found"
+              },
+              "406": {
+                "code": "406",
+                "description": "User cannot be found"
+              },
+              "407": {
+                "code": "407",
+                "description": "user cannot be found"
+              },
+              "408": {
+                "code": "408",
+                "description": "USER cannot be found"
+              },
+              "409": {
+                "code": "409",
+                "description": "user cannot be found"
+              },
+              "410": {
+                "code": "410",
+                "description": "USER cannot be found"
+              },
+              "411": {
+                "code": "411",
+                "description": "<<param | !unknown>> cannot be found"
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "is": [
+              {
+                "notAlwaysPresent": {
+                  "param": "user"
+                }
+              }
+            ],
+            "method": "get",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          }
+        ],
+        "relativeUri": "/users",
+        "displayName": "/users",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "users"
+        ]
+      }
+    ],
     "__METADATA__": {
       "primitiveValuesMeta": {
         "protocols": {
@@ -188,21 +188,18 @@
       "code": 11,
       "message": "Unknown function applied to parameter: !unknown",
       "path": "t1.raml",
-      "line": 28,
-      "column": 29,
-      "position": 905,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 28,
           "column": 29,
           "position": 905
         },
-        {
+        "end": {
           "line": 28,
           "column": 40,
           "position": 916
         }
-      ]
+      }
     }
   ]
 }

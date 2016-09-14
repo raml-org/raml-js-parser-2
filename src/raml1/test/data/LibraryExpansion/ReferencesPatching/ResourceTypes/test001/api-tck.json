@@ -24,7 +24,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey": {
+        "lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
           "type": [
@@ -44,7 +44,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey": {
+        "lib.lib.Monkey": {
           "name": "Monkey",
           "displayName": "Monkey",
           "type": [
@@ -66,9 +66,9 @@
     ],
     "resourceTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt": {
+        "lib.rt": {
           "type": {
-            "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt": {
+            "lib.lib.rt": {
               "param1": "<<param1>>",
               "param2": "Monkey"
             }
@@ -77,7 +77,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/resourceTypes/rt": {
+        "lib.lib.rt": {
           "name": "rt",
           "post": {
             "body": {
@@ -121,7 +121,7 @@
                 "name": "text/plain",
                 "displayName": "text/plain",
                 "type": [
-                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                  "lib.lib.Monkey"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -139,7 +139,7 @@
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "<<param1>> | <<param2>> | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                  "<<param1>> | <<param2>> | lib.lib.Monkey"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -187,7 +187,7 @@
                 "name": "application/xml",
                 "displayName": "application/xml",
                 "type": [
-                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey"
+                  "lib.Monkey"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -205,7 +205,7 @@
                 "name": "text/plain",
                 "displayName": "text/plain",
                 "type": [
-                  "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                  "lib.lib.Monkey"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -223,7 +223,7 @@
                 "name": "atom/xml",
                 "displayName": "atom/xml",
                 "type": [
-                  "Monkey | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/types/Monkey | __$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libB.raml#/types/Monkey"
+                  "Monkey | lib.Monkey | lib.lib.Monkey"
                 ],
                 "required": true,
                 "__METADATA__": {
@@ -242,7 +242,7 @@
           }
         ],
         "type": {
-          "__$$ROOT_PATH__/LibraryExpansion/ReferencesPatching/ResourceTypes/test001/libA.raml#/resourceTypes/rt": {
+          "lib.rt": {
             "param1": "Monkey"
           }
         },

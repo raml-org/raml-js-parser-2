@@ -92,6 +92,7 @@ function itShouldBehaveLikeAnOptionalStructureNamedParameter(initialRaml) {
 }
 
 describe('Resource Types Validations', function () {
+  this.timeout(15000);
   var topLevelSnippetAndResourceTypeSnippet = function (topLevelRaml, resourceTypeRaml) {
     var resourceTypeIdentation = '      ';
     resourceTypeRaml = resourceTypeRaml.map(function (line) {
@@ -599,6 +600,7 @@ describe('Resource Types Validations', function () {
 });
 
 describe('Trait Validations', function () {
+  this.timeout(15000);
   var topLevelSnippetAndTraitSnippet = function (topLevelRaml, traitRaml) {
     var traitIdentation = '      ';
     traitRaml = traitRaml.map(function (line) {

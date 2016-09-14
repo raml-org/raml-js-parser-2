@@ -36,7 +36,7 @@
               "name": "X-Dept",
               "displayName": "X-Dept",
               "type": [
-                "dept_code[]"
+                "array"
               ],
               "examples": [
                 {
@@ -59,7 +59,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "dept_code"
             }
           },
           "name": "chargeable"
@@ -76,7 +77,7 @@
                 "name": "X-Dept",
                 "displayName": "X-Dept",
                 "type": [
-                  "dept_code[]"
+                  "array"
                 ],
                 "examples": [
                   {
@@ -99,7 +100,8 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "items": "dept_code"
               }
             },
             "is": [
@@ -128,61 +130,52 @@
       "code": 11,
       "message": "string should match to ^\\d+\\-\\w+$",
       "path": "api.raml",
-      "line": 14,
-      "column": 14,
-      "position": 235,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 14,
           "position": 235
         },
-        {
+        "end": {
           "line": 14,
           "column": 25,
           "position": 246
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "string should match to ^\\d+\\-\\w+$",
       "path": "api.raml",
-      "line": 14,
-      "column": 14,
-      "position": 235,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 14,
           "position": 235
         },
-        {
+        "end": {
           "line": 14,
           "column": 25,
           "position": 246
         }
-      ],
+      },
       "trace": [
         {
           "code": 11,
           "message": "string should match to ^\\d+\\-\\w+$",
           "path": "api.raml",
-          "line": 17,
-          "column": 2,
-          "position": 261,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 17,
               "column": 2,
               "position": 261
             },
-            {
+            "end": {
               "line": 17,
               "column": 5,
               "position": 264
             }
-          ]
+          }
         }
       ]
     }

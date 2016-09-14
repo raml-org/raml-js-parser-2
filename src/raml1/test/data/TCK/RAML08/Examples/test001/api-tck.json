@@ -39,21 +39,18 @@
       "code": 11,
       "message": "example should be a string",
       "path": "api.raml",
-      "line": 8,
-      "column": 12,
-      "position": 113,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 8,
           "column": 12,
           "position": 113
         },
-        {
+        "end": {
           "line": 8,
           "column": 19,
           "position": 120
         }
-      ]
+      }
     }
   ]
 }

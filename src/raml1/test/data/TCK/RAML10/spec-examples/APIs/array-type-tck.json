@@ -66,7 +66,7 @@
           "name": "Emails",
           "displayName": "Emails",
           "type": [
-            "Email[]"
+            "array"
           ],
           "example": [
             {
@@ -105,7 +105,8 @@
                 "body": "This is the text for email 2."
               }
             ]
-          }
+          },
+          "items": "Email"
         }
       }
     ],

@@ -2,8 +2,10 @@
 var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
+import proxy = require("../raml1/ast.core/LowLevelASTProxy");
 import def = require("raml-definition-system")
 import hl = require("../raml1/highLevelAST");
+import ll = require("../raml1/lowLevelAST");
 import hlImpl = require("../raml1/highLevelImpl");
 import builder = require("../raml1/ast.core/builder");
 
@@ -22,11 +24,11 @@ export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMet
     }).dump(node);
 }
 
-export class TCKDumper{
+export class TCKDumper {
 
-    constructor(private options?:SerializeOptions){
+    constructor(private options?:SerializeOptions) {
         this.options = this.options || {};
-        if(this.options.serializeMetadata == null){
+        if (this.options.serializeMetadata == null) {
             this.options.serializeMetadata = true;
         }
     }
@@ -35,6 +37,7 @@ export class TCKDumper{
         new ResourcesTransformer(),
         new TypeExampleTransformer(),
         //new ParametersTransformer(),
+        new ArrayExpressionTransformer(),
         new TypesTransformer(),
         //new UsesTransformer(),
         //new PropertiesTransformer(),
@@ -52,6 +55,7 @@ export class TCKDumper{
         new ProtocolsToUpperCaseTransformer(),
         new ResourceTypeMethodsToMapTransformer(),
         new ReferencesTransformer(),
+        new SimpleNamesTransformer(),
         //new OneElementArrayTransformer()
     ];
 
@@ -80,50 +84,49 @@ export class TCKDumper{
     ];
 
     private ignore:ObjectPropertyMatcher = new CompositeObjectPropertyMatcher([
-        new BasicObjectPropertyMatcher(universeHelpers.isResponseType,universeHelpers.isDisplayNameProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isDisplayNameProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isAnnotationRefTypeOrDescendant,universeHelpers.isAnnotationProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemeRefType,universeHelpers.isSecuritySchemeProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isTraitRefType,universeHelpers.isTraitProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeRefType,universeHelpers.isResourceTypeProperty),
-        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling,universeHelpers.isRAMLVersionProperty)
+        new BasicObjectPropertyMatcher(universeHelpers.isResponseType, universeHelpers.isDisplayNameProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isDisplayNameProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isAnnotationRefTypeOrDescendant, universeHelpers.isAnnotationProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isSecuritySchemeRefType, universeHelpers.isSecuritySchemeProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isTraitRefType, universeHelpers.isTraitProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isResourceTypeRefType, universeHelpers.isResourceTypeProperty),
+        new BasicObjectPropertyMatcher(universeHelpers.isApiSibling, universeHelpers.isRAMLVersionProperty)
     ]);
 
     private missingProperties:PropertiesData = new PropertiesData();
 
-    printMissingProperties():string{
+    printMissingProperties():string {
         return this.missingProperties.print();
     }
 
-    dump(node:any):any{
+    dump(node:any):any {
         var highLevelNode = node.highLevel();
         var highLevelParent = highLevelNode && highLevelNode.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
         var result = this.dumpInternal(node, rootNodeDetails);
-        this.patchNames(rootNodeDetails ? result.specification : result);
         return result;
     }
 
-    dumpInternal(node:any,rootNodeDetails:boolean=false):any{
+    dumpInternal(node:any, rootNodeDetails:boolean = false):any {
 
-        if(node==null){
+        if (node == null) {
             return null;
         }
 
 
-        if(node instanceof core.BasicNodeImpl){
+        if (node instanceof core.BasicNodeImpl) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var basicNode:coreApi.BasicNode = <coreApi.BasicNode>node;
             var definition = basicNode.highLevel().definition();
-            definition.allProperties().filter(x=>!this.ignore.match(basicNode.definition(),x)).forEach(x=>{
+            definition.allProperties().filter(x=>!this.ignore.match(basicNode.definition(), x)).forEach(x=> {
                 props[x.nameId()] = x;
             });
-            (<def.NodeClass>definition).allCustomProperties().filter(x=>!this.ignore.match(basicNode.definition(),x)).forEach(x=>{
+            (<def.NodeClass>definition).allCustomProperties().filter(x=>!this.ignore.match(basicNode.definition(), x)).forEach(x=> {
                 props[x.nameId()] = x;
             });
             var obj = this.dumpProperties(props, node);
-            if (props["schema"]){
+            if (props["schema"]) {
                 if (this.options.dumpSchemaContents) {
                     if (props["schema"].range().key() == universes.Universe08.SchemaString) {
                         var schemas = basicNode.highLevel().root().elementsOfKind("schemas");
@@ -132,32 +135,32 @@ export class TCKDumper{
                                 var vl = x.attr("value");
                                 if (vl) {
                                     obj["schema"] = vl.value();
-                                    obj["schemaContent"]=vl.value();
+                                    obj["schemaContent"] = vl.value();
                                 }
                             }
                         })
                     }
                 }
             }
-            this.serializeScalarsAnnotations(obj,basicNode,props);
-            this.serializeMeta(obj,basicNode);
-            if(this.canBeFragment(node)){
-                if(RamlWrapper10.isFragment(<any>node)){
+            this.serializeScalarsAnnotations(obj, basicNode, props);
+            this.serializeMeta(obj, basicNode);
+            if (this.canBeFragment(node)) {
+                if (RamlWrapper10.isFragment(<any>node)) {
                     var fragment = RamlWrapper10.asFragment(<any>node);
                     var uses = fragment.uses();
-                    if(uses.length>0){
+                    if (uses.length > 0) {
                         obj["uses"] = uses.map(x=>x.toJSON());
                     }
                 }
             }
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, node.highLevel().property())) {
-                    obj = x.transform(obj);
+                    obj = x.transform(obj, node);
                 }
             });
             var result:any = {};
-            if(rootNodeDetails){
-                if(definition){
+            if (rootNodeDetails) {
+                if (definition) {
                     var ramlVersion = definition.universe().version();
                     result.ramlVersion = ramlVersion;
                     result.type = definition.nameId();
@@ -168,61 +171,61 @@ export class TCKDumper{
             else {
                 result = obj;
             }
-            
+
             return result;
         }
-        else if(node instanceof core.AttributeNodeImpl){
+        else if (node instanceof core.AttributeNodeImpl) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var attrNode:coreApi.AttributeNode = <coreApi.AttributeNode>node;
             var definition = attrNode.highLevel().definition();
-            (<def.ValueType>definition).allCustomProperties().filter(x=>!this.ignore.match(attrNode.highLevel().property().range(),x)).forEach(x=>{
+            (<def.ValueType>definition).allCustomProperties().filter(x=>!this.ignore.match(attrNode.highLevel().property().range(), x)).forEach(x=> {
                 props[x.nameId()] = x;
             });
 
             var isValueType = attrNode.highLevel().property().range().isValueType();
-            if(isValueType&&attrNode['value']) {
+            if (isValueType && attrNode['value']) {
                 var val = attrNode['value']();
                 if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
                     return val;
                 }
             }
-            var obj = this.dumpProperties(props,node);
+            var obj = this.dumpProperties(props, node);
 
-                this.nodeTransformers.forEach(x=> {
-                    if (x.match(node, node.highLevel().property())) {
-                        obj = x.transform(obj);
-                    }
-                });
+            this.nodeTransformers.forEach(x=> {
+                if (x.match(node, node.highLevel().property())) {
+                    obj = x.transform(obj);
+                }
+            });
 
-            this.serializeScalarsAnnotations(obj,node,props);
-            this.serializeMeta(obj,attrNode);
+            this.serializeScalarsAnnotations(obj, node, props);
+            this.serializeMeta(obj, attrNode);
             return obj;
         }
-        else if(node instanceof core.TypeInstanceImpl){
+        else if (node instanceof core.TypeInstanceImpl) {
             return this.serializeTypeInstance(<core.TypeInstanceImpl>node);
         }
-        else if(node instanceof core.TypeInstancePropertyImpl){
+        else if (node instanceof core.TypeInstancePropertyImpl) {
             return this.serializeTypeInstanceProperty(<core.TypeInstancePropertyImpl>node);
         }
         return node;
 
     }
 
-    private canBeFragment(node:core.BasicNodeImpl){
+    private canBeFragment(node:core.BasicNodeImpl) {
 
         var definition = node.definition();
         var arr = [definition].concat(definition.allSubTypes());
         var arr1 = arr.filter(x=>x.getAdapter(def.RAMLService).possibleInterfaces()
-            .filter(y=>y.nameId()==def.universesInfo.Universe10.FragmentDeclaration.name).length>0);
+            .filter(y=>y.nameId() == def.universesInfo.Universe10.FragmentDeclaration.name).length > 0);
 
-        return arr1.length>0;
+        return arr1.length > 0;
     }
 
     private dumpErrors(errors:core.RamlParserError[]) {
         return errors.map(x=> {
             var eObj = this.dumpErrorBasic(x);
-            if(x.trace && x.trace.length>0) {
+            if (x.trace && x.trace.length > 0) {
                 eObj['trace'] = x.trace.map(y=>this.dumpErrorBasic(y));
             }
             return eObj;
@@ -230,8 +233,8 @@ export class TCKDumper{
             if (x.path != y.path) {
                 return x.path.localeCompare(y.path);
             }
-            if (x.position != y.position) {
-                return x.position - y.position;
+            if (x.range.start.position != y.range.start.position) {
+                return x.range.start.position - y.range.start.position;
             }
             return x.code - y.code;
         });
@@ -247,7 +250,7 @@ export class TCKDumper{
             "position": x.start,
             "range": x.range
         };
-        if(x.isWarning===true){
+        if (x.isWarning === true) {
             eObj.isWarning = true;
         }
         return eObj;
@@ -258,32 +261,32 @@ export class TCKDumper{
         Object.keys(props).forEach(propName=> {
 
             if (!node[propName]) {
-                this.missingProperties.addProperty(props[propName],node.kind());
+                this.missingProperties.addProperty(props[propName], node.kind());
                 return;
             }
             var property = props[propName];
             var value = node[propName]();
-            if (value && propName=="structuredType"&&typeof value==="object"){
-                value=null;
-                var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
-                var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
-                var tdl=null;
-                a.children().forEach(x=>{
-                    if (x.key()=="type"||x.key()=="schema"){
-                        var td=highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
-                        var hasType=highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
-                        var tNode=new hlImpl.ASTNodeImpl(x,highLevelNode,td,hasType.property(universe.Universe10.LibraryBase.properties.types.name))
+            if (value && propName == "structuredType" && typeof value === "object") {
+                value = null;
+                var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
+                var a = (<hl.IHighLevelNode>highLevelNode).lowLevel();
+                var tdl = null;
+                a.children().forEach(x=> {
+                    if (x.key() == "type" || x.key() == "schema") {
+                        var td = highLevelNode.definition().universe().type(universe.Universe10.TypeDeclaration.name);
+                        var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
+                        var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
-                        value=dump(tNode.wrapperNode());
-                        propName=x.key();
+                        value = dump(tNode.wrapperNode());
+                        propName = x.key();
                     }
                 })
             }
-            if (!value && propName=="type"){
+            if (!value && propName == "type") {
                 return
                 //we should not use
             }
-            if (!value && propName=="schema"){
+            if (!value && propName == "schema") {
                 return;
                 //we should not use
             }
@@ -295,62 +298,62 @@ export class TCKDumper{
                 // thus making "type" and "schema" arrays mutually exclusive in JSON.
 
 
-                    var schemaValue =node[universe.Universe10.TypeDeclaration.properties.schema.name]();
-                    if(schemaValue != null && (!Array.isArray(schemaValue) || schemaValue.length != 0)) {
+                var schemaValue = node[universe.Universe10.TypeDeclaration.properties.schema.name]();
+                if (schemaValue != null && (!Array.isArray(schemaValue) || schemaValue.length != 0)) {
+                    return;
+                }
+                var highLevelNode = (<hl.IHighLevelNode>node.highLevel());
+                var a = (<hl.IHighLevelNode>highLevelNode).lowLevel();
+                var tdl = null;
+                var hasSchema = false;
+                a.children().forEach(x=> {
+                    if (x.key() == "schema") {
+                        hasSchema = true;
                         return;
                     }
-                    var highLevelNode=(<hl.IHighLevelNode>node.highLevel());
-                    var a=(<hl.IHighLevelNode>highLevelNode).lowLevel();
-                    var tdl=null;
-                    var hasSchema=false;
-                    a.children().forEach(x=>{
-                        if (x.key()=="schema"){
-                            hasSchema=true;
-                            return;
-                        }
-                    })
-                    if (hasSchema){
-                        return;
-                    }
+                })
+                if (hasSchema) {
+                    return;
+                }
 
             }
 
             if (Array.isArray(value)) {
                 var propertyValue:any[] = [];
-                for(var val of value){
+                for (var val of value) {
                     var dumped = this.dumpInternal(val);
 
-                    if(propName === 'examples' && this.options && this.options.dumpXMLRepresentationOfExamples && val.expandable && val.expandable._owner) {
+                    if (propName === 'examples' && this.options && this.options.dumpXMLRepresentationOfExamples && val.expandable && val.expandable._owner) {
                         (<any>dumped).asXMLString = val.expandable.asXMLString();
                     }
 
                     propertyValue.push(dumped);
                 }
-                if(propertyValue.length==0 && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
+                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
                     return;
                 }
-                for(var x of this.nodePropertyTransformers){
-                    if(x.match(node, property)){
-                        propertyValue = x.transform(propertyValue);
+                for (var x of this.nodePropertyTransformers) {
+                    if (x.match(node, property)) {
+                        propertyValue = x.transform(propertyValue, node);
                     }
                 }
                 obj[propName] = propertyValue;
             }
             else {
                 var val = this.dumpInternal(value);
-                if(val==null && node instanceof core.BasicNodeImpl && !this.isDefined(node,propName)){
+                if (val == null && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
                     return;
                 }
-                if(node instanceof core.BasicNodeImpl) {
+                if (node instanceof core.BasicNodeImpl) {
                     this.nodePropertyTransformers.forEach(x=> {
                         if (x.match(node, property)) {
-                            val = x.transform(val);
+                            val = x.transform(val, node);
                         }
                     });
                 }
                 obj[propName] = val;
 
-                if(propName === 'example' && this.options && this.options.dumpXMLRepresentationOfExamples && value.expandable && value.expandable._owner) {
+                if (propName === 'example' && this.options && this.options.dumpXMLRepresentationOfExamples && value.expandable && value.expandable._owner) {
                     (<any>val).asXMLString = value.expandable.asXMLString();
                 }
             }
@@ -358,19 +361,21 @@ export class TCKDumper{
         return obj;
     }
 
-    serializeScalarsAnnotations(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode,props:{[key:string]:nominals.IProperty}){
-        if(node["scalarsAnnotations"]){
-            var val={};
+    serializeScalarsAnnotations(obj:any, node:coreApi.BasicNode|coreApi.AttributeNode, props:{[key:string]:nominals.IProperty}) {
+        if (node["scalarsAnnotations"]) {
+            var val = {};
             var accessor = node["scalarsAnnotations"]();
-            for(var propName of Object.keys(props)){
-                if(accessor[propName]){
+            for (var propName of Object.keys(props)) {
+                if (accessor[propName]) {
                     var arr:any[] = accessor[propName]();
-                    if(arr.length>0){
-                        if(Array.isArray(arr[0])){
+                    if (arr.length > 0) {
+                        if (Array.isArray(arr[0])) {
 
                             var arr1 = [];
-                            arr.forEach((x,i)=>{arr1.push(x.map(y=>this.dumpInternal(y)))});
-                            if(arr1.filter(x=>x.length>0).length>0){
+                            arr.forEach((x, i)=> {
+                                arr1.push(x.map(y=>this.dumpInternal(y)))
+                            });
+                            if (arr1.filter(x=>x.length > 0).length > 0) {
                                 val[propName] = arr1;
                             }
                         }
@@ -380,18 +385,18 @@ export class TCKDumper{
                     }
                 }
             }
-            if(Object.keys(val).length>0){
+            if (Object.keys(val).length > 0) {
                 obj["scalarsAnnotations"] = val;
             }
         }
     }
 
-    serializeMeta(obj:any,node:coreApi.BasicNode|coreApi.AttributeNode){
-        if(!this.options.serializeMetadata){
+    serializeMeta(obj:any, node:coreApi.BasicNode|coreApi.AttributeNode) {
+        if (!this.options.serializeMetadata) {
             return;
         }
         var meta = node.meta();
-        if(!meta.isDefault()){
+        if (!meta.isDefault()) {
             obj["__METADATA__"] = meta.toJSON();
         }
     }
@@ -400,7 +405,7 @@ export class TCKDumper{
         if (inst.isScalar()) {
             return inst.value();
         }
-        else if(inst.isArray()){
+        else if (inst.isArray()) {
             return inst.items().map(x=>this.serializeTypeInstance(x));
         }
         else {
@@ -439,43 +444,14 @@ export class TCKDumper{
         }
         return false;
     }
-    
-    patchNames(obj:any){
-        var collectionNames = [
-            universe.Universe10.Library.properties.types.name,
-            universe.Universe10.Library.properties.annotationTypes.name,
-            universe.Universe10.Library.properties.traits.name,
-            universe.Universe10.Library.properties.resourceTypes.name,
-            universe.Universe10.Library.properties.securitySchemes.name
-        ];
-        for(var cName of collectionNames){
-            var collection = obj[cName];
-            if(collection){
-                for(var item of collection){
-                    var key = Object.keys(item)[0];
-                    if(util.stringStartsWith(key,"http://")
-                        ||util.stringStartsWith(key,"https://")
-                        ||util.stringStartsWith(key,"file://")){
-                        
-                        var ind = key.lastIndexOf("/");
-                        var name = key.substring(ind+1);
-                        var iObj = item[key];
-                        iObj.name = name;
-                        if(iObj.displayName==key){
-                            iObj.displayName = name;
-                        }
-                    }
-                }
-            }
-        }
-    }
+
 }
 
 interface Transformation{
 
     match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean
 
-    transform(value:any)
+    transform(value:any,node?:coreApi.BasicNode|coreApi.AttributeNode)
 }
 
 interface ObjectPropertyMatcher{
@@ -882,6 +858,39 @@ class ResourcesTransformer implements Transformation{
 
 }
 
+class SimpleNamesTransformer implements Transformation{
+
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
+        if(!node.parent() || !node.parent().highLevel().lowLevel()["libProcessed"]){
+            return false;
+        }
+        return universeHelpers.isAnnotationTypesProperty(prop)
+            || universeHelpers.isTypesProperty(prop)
+            || universeHelpers.isResourceTypesProperty(prop)
+            || universeHelpers.isTraitsProperty(prop)
+            || universeHelpers.isSecuritySchemesProperty(prop);
+    }
+
+    transform(value:any,node?:coreApi.BasicNode|coreApi.AttributeNode){
+
+        var llNode = node.highLevel().lowLevel();
+        var key = llNode.key();
+        var original:ll.ILowLevelASTNode = llNode;
+        while(original instanceof proxy.LowLevelProxyNode){
+            original = (<proxy.LowLevelProxyNode>original).originalNode();
+        }
+        var oKey = original.key();
+        var aVal = value[Object.keys(value)[0]];
+        aVal.name = oKey;
+        if(aVal.displayName==key){
+            aVal.displayName = oKey;
+        }
+        return value;
+    }
+
+}
+
+
 class TemplateParametrizedPropertiesTransformer implements Transformation{
 
     match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
@@ -954,6 +963,37 @@ class ReferencesTransformer implements Transformation{
     }
 
 }
+
+class ArrayExpressionTransformer implements Transformation{
+
+    match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
+        if(!(node instanceof core.BasicNodeImpl)){
+            return false;
+        }
+        var hlNode = (<coreApi.BasicNode>node).highLevel();
+        var definition = hlNode.definition();
+        if(!universeHelpers.isTypeDeclarationDescendant(definition)){
+            return false;
+        }
+        var lType = hlNode.localType();
+        if(!lType || !lType.isArray()){
+            return false;
+        }
+        return true;
+    }
+
+    transform(value:any){
+        var typePropName = universes.Universe10.TypeDeclaration.properties.type.name;
+        var itemsPropName = universes.Universe10.ArrayTypeDeclaration.properties.items.name;
+        var tValue = value[typePropName];
+        if(tValue.length==1&&util.stringEndsWith(tValue[0],"[]")) {
+            value[itemsPropName] = tValue[0].substring(0, tValue[0].length - 2);
+            tValue[0] = "array";
+        }
+        return value;
+    }
+}
+
 
 class PropertiesData{
 

@@ -103,8 +103,8 @@ function handleErrors(errors){
   if (errors.length == 1) {
     var err = errors[0];
     err.problem_mark = {
-      column: err.column,
-      line: err.line
+      column: err.range.start.column,
+      line: err.range.start.line
     };
     return Promise.reject(err);
   } else if (errors.length > 1) {
@@ -114,8 +114,8 @@ function handleErrors(errors){
       resultError.message += currentError.message;
     })
     resultError.problem_mark = {
-      column: errors[0].column,
-      line: errors[0].line
+      column: errors[0].range.start.column,
+      line: errors[0].range.start.line
     };
     return Promise.reject(resultError);
   }

@@ -123,21 +123,18 @@
       "code": 11,
       "message": "Uri parameter unused",
       "path": "apiInvalid.raml",
-      "line": 7,
-      "column": 4,
-      "position": 92,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 7,
           "column": 4,
           "position": 92
         },
-        {
+        "end": {
           "line": 7,
           "column": 8,
           "position": 96
         }
-      ],
+      },
       "isWarning": true
     }
   ]

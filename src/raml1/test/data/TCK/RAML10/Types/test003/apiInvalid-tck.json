@@ -163,41 +163,35 @@
       "code": 11,
       "message": "Unknown property:name",
       "path": "apiInvalid.raml",
-      "line": 23,
-      "column": 8,
-      "position": 335,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 23,
           "column": 8,
           "position": 335
         },
-        {
+        "end": {
           "line": 23,
           "column": 12,
           "position": 339
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 24,
-      "column": 8,
-      "position": 361,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 24,
           "column": 8,
           "position": 361
         },
-        {
+        "end": {
           "line": 24,
           "column": 11,
           "position": 364
         }
-      ]
+      }
     }
   ]
 }

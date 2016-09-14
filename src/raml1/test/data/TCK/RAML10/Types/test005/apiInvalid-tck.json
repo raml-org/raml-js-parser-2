@@ -112,7 +112,7 @@
               "name": "users",
               "displayName": "users",
               "type": [
-                "AnotherType[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -124,7 +124,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "AnotherType"
             }
           },
           "__METADATA__": {
@@ -170,81 +171,69 @@
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 22,
-      "column": 10,
-      "position": 338,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 22,
           "column": 10,
           "position": 338
         },
-        {
+        "end": {
           "line": 22,
           "column": 13,
           "position": 341
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Unknown property:name1",
       "path": "apiInvalid.raml",
-      "line": 24,
-      "column": 10,
-      "position": 374,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 24,
           "column": 10,
           "position": 374
         },
-        {
+        "end": {
           "line": 24,
           "column": 15,
           "position": 379
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Required property: name is missed",
       "path": "apiInvalid.raml",
-      "line": 24,
-      "column": 10,
-      "position": 374,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 24,
           "column": 10,
           "position": 374
         },
-        {
+        "end": {
           "line": 25,
           "column": 17,
           "position": 403
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Required property: age is missed",
       "path": "apiInvalid.raml",
-      "line": 27,
-      "column": 10,
-      "position": 424,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 27,
           "column": 10,
           "position": 424
         },
-        {
+        "end": {
           "line": 27,
           "column": 20,
           "position": 434
         }
-      ]
+      }
     }
   ]
 }

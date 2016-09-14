@@ -152,21 +152,18 @@
       "code": 11,
       "message": "Required property: y is missed",
       "path": "apiInvalid.raml",
-      "line": 16,
-      "column": 6,
-      "position": 243,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 6,
           "position": 243
         },
-        {
+        "end": {
           "line": 16,
           "column": 11,
           "position": 248
         }
-      ]
+      }
     }
   ]
 }

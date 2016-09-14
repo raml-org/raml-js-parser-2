@@ -100,21 +100,18 @@
       "code": 11,
       "message": "'meta.minLength=10' i.e. string length should not be less than 10",
       "path": "apiInvalid.raml",
-      "line": 16,
-      "column": 2,
-      "position": 345,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 2,
           "position": 345
         },
-        {
+        "end": {
           "line": 16,
           "column": 8,
           "position": 351
         }
-      ]
+      }
     }
   ]
 }

@@ -48,7 +48,7 @@
           "name": "ArrayType",
           "displayName": "ArrayType",
           "type": [
-            "SomeType[]"
+            "array"
           ],
           "required": true,
           "__METADATA__": {
@@ -60,7 +60,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "SomeType"
         }
       },
       {

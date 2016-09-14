@@ -4,7 +4,7 @@
   "specification": {
     "annotationTypes": [
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType": {
+        "lib.TestAnnotationType": {
           "name": "TestAnnotationType",
           "displayName": "TestAnnotationType",
           "type": [
@@ -24,7 +24,7 @@
         }
       },
       {
-        "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType": {
+        "lib.AnotherAnnotationType": {
           "name": "AnotherAnnotationType",
           "displayName": "AnotherAnnotationType",
           "type": [
@@ -86,16 +86,16 @@
     "resources": [
       {
         "annotations": {
-          "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType": {
+          "lib.TestAnnotationType": {
             "structuredValue": "TestAnnotationType2",
-            "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/TestAnnotationType"
+            "name": "lib.TestAnnotationType"
           },
-          "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType": {
+          "lib.AnotherAnnotationType": {
             "structuredValue": {
               "firstProp": "firstProp2",
               "secondProp": 101
             },
-            "name": "__$$ROOT_PATH__/LibraryExpansion/Overlays/test025/lib.raml#/annotationTypes/AnotherAnnotationType"
+            "name": "lib.AnotherAnnotationType"
           }
         },
         "relativeUri": "/servers",

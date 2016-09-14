@@ -65,21 +65,18 @@
       "code": 11,
       "message": "types and schemas are mutually exclusive",
       "path": "api.raml",
-      "line": 15,
-      "column": 0,
-      "position": 217,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 0,
           "position": 217
         },
-        {
+        "end": {
           "line": 15,
           "column": 7,
           "position": 224
         }
-      ]
+      }
     }
   ]
 }

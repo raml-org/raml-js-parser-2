@@ -755,7 +755,7 @@ trait(  ):Trait{
 }
 
 export class OperationImpl extends AnnotableImpl implements Operation{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOperation(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOperation(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -810,7 +810,7 @@ RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class TypeDeclarationImpl extends AnnotableImpl implements TypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1159,7 +1159,7 @@ RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class UsesDeclarationImpl extends AnnotableImpl implements UsesDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUsesDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createUsesDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1273,7 +1273,7 @@ value(  ):AnnotationRef[]{
 }
 
 export class XMLFacetInfoImpl extends AnnotableImpl implements XMLFacetInfo{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createXMLFacetInfo(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createXMLFacetInfo(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1468,7 +1468,7 @@ prefix(  ):AnnotationRef[]{
 }
 
 export class ArrayTypeDeclarationImpl extends TypeDeclarationImpl implements ArrayTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createArrayTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createArrayTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1782,7 +1782,7 @@ maxItems(  ):AnnotationRef[]{
 }
 
 export class UnionTypeDeclarationImpl extends TypeDeclarationImpl implements UnionTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createUnionTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createUnionTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1805,7 +1805,7 @@ RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class ObjectTypeDeclarationImpl extends TypeDeclarationImpl implements ObjectTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createObjectTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createObjectTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2012,7 +2012,7 @@ discriminatorValue(  ):AnnotationRef[]{
  * Value must be a string
  **/
 export class StringTypeDeclarationImpl extends TypeDeclarationImpl implements StringTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createStringTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createStringTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2178,7 +2178,7 @@ enum(  ):AnnotationRef[][]{
  * Value must be a boolean
  **/
 export class BooleanTypeDeclarationImpl extends TypeDeclarationImpl implements BooleanTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createBooleanTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createBooleanTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2205,7 +2205,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  **/
 export class NumberTypeDeclarationImpl extends TypeDeclarationImpl implements NumberTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createNumberTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createNumberTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2328,7 +2328,7 @@ scalarsAnnotations(  ):NumberTypeDeclarationScalarsAnnotationsImpl{return new Nu
  * Value MUST be a integer.
  **/
 export class IntegerTypeDeclarationImpl extends NumberTypeDeclarationImpl implements IntegerTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createIntegerTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createIntegerTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2474,7 +2474,7 @@ format(  ):AnnotationRef[]{
  * the "full-date" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)
  **/
 export class DateOnlyTypeDeclarationImpl extends TypeDeclarationImpl implements DateOnlyTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDateOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2501,7 +2501,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * the "partial-time" notation of RFC3339, namely hh:mm:ss[.ff...] (no implications about date or timezone-offset)
  **/
 export class TimeOnlyTypeDeclarationImpl extends TypeDeclarationImpl implements TimeOnlyTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTimeOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createTimeOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2528,7 +2528,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * combined date-only and time-only with a separator of "T", namely yyyy-mm-ddThh:mm:ss[.ff...] (no implications about timezone-offset)
  **/
 export class DateTimeOnlyTypeDeclarationImpl extends TypeDeclarationImpl implements DateTimeOnlyTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTimeOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDateTimeOnlyTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2555,7 +2555,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * a timestamp, either in the "date-time" notation of RFC3339, if format is omitted or is set to rfc3339, or in the format defined in RFC2616, if format is set to rfc2616.
  **/
 export class DateTimeTypeDeclarationImpl extends TypeDeclarationImpl implements DateTimeTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTimeTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDateTimeTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2626,7 +2626,7 @@ format(  ):AnnotationRef[]{
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  **/
 export class FileTypeDeclarationImpl extends TypeDeclarationImpl implements FileTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFileTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createFileTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2746,7 +2746,7 @@ maxLength(  ):AnnotationRef[]{
 }
 
 export class ResponseImpl extends AnnotableImpl implements Response{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createResponse(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2856,7 +2856,7 @@ annotations(  ):AnnotationRef[][]{
 }
 
 export class SecuritySchemePartImpl extends OperationImpl implements SecuritySchemePart{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2912,7 +2912,7 @@ annotations(  ):AnnotationRef[][]{
 }
 
 export class MethodBaseImpl extends OperationImpl implements MethodBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethodBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createMethodBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3034,7 +3034,7 @@ securityScheme(  ):AbstractSecurityScheme{
  * Declares globally referable security scheme definition
  **/
 export class AbstractSecuritySchemeImpl extends AnnotableImpl implements AbstractSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createAbstractSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createAbstractSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3141,7 +3141,7 @@ scalarsAnnotations(  ):AbstractSecuritySchemeScalarsAnnotationsImpl{return new A
 }
 
 export class SecuritySchemeSettingsImpl extends AnnotableImpl implements SecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createSecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3164,7 +3164,7 @@ RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth1SecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth1SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth1SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3296,7 +3296,7 @@ signatures(  ):AnnotationRef[][]{
 }
 
 export class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth2SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth2SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3441,7 +3441,7 @@ scopes(  ):AnnotationRef[][]{
  * Declares globally referable security scheme definition
  **/
 export class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth2SecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth2SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth2SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 settings(  ):OAuth2SecuritySchemeSettings{
              return <OAuth2SecuritySchemeSettings>super.element('settings');
@@ -3472,7 +3472,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Declares globally referable security scheme definition
  **/
 export class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth1SecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth1SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth1SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 settings(  ):OAuth1SecuritySchemeSettings{
              return <OAuth1SecuritySchemeSettings>super.element('settings');
@@ -3503,7 +3503,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Declares globally referable security scheme definition
  **/
 export class PassThroughSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements PassThroughSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createPassThroughSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createPassThroughSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 settings(  ):SecuritySchemeSettings{
              return <SecuritySchemeSettings>super.element('settings');
@@ -3534,7 +3534,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Declares globally referable security scheme definition
  **/
 export class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements BasicSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createBasicSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createBasicSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3561,7 +3561,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Declares globally referable security scheme definition
  **/
 export class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements DigestSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDigestSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDigestSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3588,7 +3588,7 @@ RAMLVersion(  ):string{return "RAML10";}
  * Declares globally referable security scheme definition
  **/
 export class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements CustomSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createCustomSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createCustomSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3659,7 +3659,7 @@ displayName(  ):AnnotationRef[]{
 }
 
 export class MethodImpl extends MethodBaseImpl implements Method{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -3857,7 +3857,7 @@ displayName(  ):AnnotationRef[]{
 }
 
 export class TraitImpl extends MethodBaseImpl implements Trait{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4007,7 +4007,7 @@ resourceType(  ):ResourceType{
 }
 
 export class ResourceBaseImpl extends AnnotableImpl implements ResourceBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResourceBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createResourceBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4116,7 +4116,7 @@ scalarsAnnotations(  ):ResourceBaseScalarsAnnotationsImpl{return new ResourceBas
 }
 
 export class ResourceImpl extends ResourceBaseImpl implements Resource{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResource(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createResource(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4359,7 +4359,7 @@ annotations(  ):AnnotationRef[][]{
 }
 
 export class ResourceTypeImpl extends ResourceBaseImpl implements ResourceType{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createResourceType(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createResourceType(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4513,7 +4513,7 @@ annotation(  ):TypeDeclaration{
 }
 
 export class DocumentationItemImpl extends AnnotableImpl implements DocumentationItem{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDocumentationItem(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDocumentationItem(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4606,7 +4606,7 @@ content(  ):AnnotationRef[]{
 }
 
 export class FragmentDeclarationImpl extends AnnotableImpl implements FragmentDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFragmentDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createFragmentDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 uses(  ):UsesDeclaration[]{
              return <UsesDeclaration[]>super.elements('uses');
@@ -4633,7 +4633,7 @@ RAMLVersion(  ):string{return "RAML10";}
 }
 
 export class LibraryBaseImpl extends FragmentDeclarationImpl implements LibraryBase{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibraryBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createLibraryBase(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4740,7 +4740,7 @@ allResourceTypes(  ):ResourceType[]{
 }
 
 export class LibraryImpl extends LibraryBaseImpl implements Library{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createLibrary(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createLibrary(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4825,7 +4825,7 @@ usage(  ):AnnotationRef[]{
 }
 
 export class ApiImpl extends LibraryBaseImpl implements Api{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createApi(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createApi(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -4969,17 +4969,10 @@ RAMLVersion_original(  ):string{return "RAML10";}
 
         /**
          * Equivalent API with traits and resource types expanded
+         * @expLib whether to apply library expansion or not
          **/
-expand(  ):Api{
-            return helper.expandTraitsAndResourceTypes(this);
-        }
-
-
-        /**
-         * Expand traits, resource types and libraries for the API
-         **/
-expandLibraries(  ):void{
-            helper.expandLibraries(this);
+expand( expLib:boolean=false ):Api{
+            return helper.expandSpec(this, expLib);
         }
 
 
@@ -5050,7 +5043,7 @@ scalarsAnnotations(  ):ApiScalarsAnnotationsImpl{return new ApiScalarsAnnotation
 }
 
 export class OverlayImpl extends ApiImpl implements Overlay{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOverlay(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOverlay(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -5295,7 +5288,7 @@ title(  ):AnnotationRef[]{
 }
 
 export class ExtensionImpl extends ApiImpl implements Extension{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createExtension(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createExtension(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**

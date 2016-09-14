@@ -249,41 +249,35 @@
       "code": 11,
       "message": "integer is expected",
       "path": "fragments/rt.raml",
-      "line": 15,
-      "column": 10,
-      "position": 292,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 10,
           "position": 292
         },
-        {
+        "end": {
           "line": 15,
           "column": 25,
           "position": 307
         }
-      ],
+      },
       "trace": [
         {
           "code": 11,
           "message": "integer is expected",
           "path": "api.raml",
-          "line": 8,
-          "column": 2,
-          "position": 102,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 8,
               "column": 2,
               "position": 102
             },
-            {
+            "end": {
               "line": 8,
               "column": 4,
               "position": 104
             }
-          ]
+          }
         }
       ]
     },
@@ -291,41 +285,35 @@
       "code": 11,
       "message": "integer is expected",
       "path": "fragments/rt.raml",
-      "line": 15,
-      "column": 10,
-      "position": 292,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 10,
           "position": 292
         },
-        {
+        "end": {
           "line": 15,
           "column": 25,
           "position": 307
         }
-      ],
+      },
       "trace": [
         {
           "code": 11,
           "message": "integer is expected",
           "path": "api.raml",
-          "line": 10,
-          "column": 0,
-          "position": 136,
-          "range": [
-            {
+          "range": {
+            "start": {
               "line": 10,
               "column": 0,
               "position": 136
             },
-            {
+            "end": {
               "line": 10,
               "column": 9,
               "position": 145
             }
-          ]
+          }
         }
       ]
     }

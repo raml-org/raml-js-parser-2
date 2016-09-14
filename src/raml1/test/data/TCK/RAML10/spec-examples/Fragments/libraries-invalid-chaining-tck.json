@@ -47,21 +47,18 @@
       "code": 11,
       "message": "inheriting from unknown type",
       "path": "libraries-invalid-chaining.raml",
-      "line": 16,
-      "column": 10,
-      "position": 382,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 10,
           "position": 382
         },
-        {
+        "end": {
           "line": 16,
           "column": 14,
           "position": 386
         }
-      ]
+      }
     }
   ]
 }

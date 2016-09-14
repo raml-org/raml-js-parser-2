@@ -136,21 +136,18 @@
       "code": 11,
       "message": "Can not override required property:testProperty to be optional",
       "path": "test7.raml",
-      "line": 14,
-      "column": 2,
-      "position": 202,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 2,
           "position": 202
         },
-        {
+        "end": {
           "line": 14,
           "column": 7,
           "position": 207
         }
-      ]
+      }
     }
   ]
 }

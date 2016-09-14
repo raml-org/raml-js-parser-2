@@ -34,7 +34,7 @@
               "name": "items",
               "displayName": "items",
               "type": [
-                "VV[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -46,7 +46,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "VV"
             }
           },
           "__METADATA__": {
@@ -275,21 +276,18 @@
       "code": 11,
       "message": "Required property: c is missed",
       "path": "api.raml",
-      "line": 31,
-      "column": 16,
-      "position": 460,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 31,
           "column": 16,
           "position": 460
         },
-        {
+        "end": {
           "line": 32,
           "column": 23,
           "position": 490
         }
-      ]
+      }
     }
   ]
 }

@@ -91,21 +91,18 @@
       "code": 11,
       "message": "recurrent type definition",
       "path": "apiInvalid.raml",
-      "line": 14,
-      "column": 4,
-      "position": 180,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 14,
           "column": 4,
           "position": 180
         },
-        {
+        "end": {
           "line": 14,
           "column": 8,
           "position": 184
         }
-      ]
+      }
     }
   ]
 }

@@ -63,61 +63,52 @@
       "code": 3,
       "message": "Missing required property requestTokenUri",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 6,
-      "position": 237,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 6,
           "position": 237
         },
-        {
+        "end": {
           "line": 9,
           "column": 14,
           "position": 245
         }
-      ]
+      }
     },
     {
       "code": 3,
       "message": "Missing required property authorizationUri",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 6,
-      "position": 237,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 6,
           "position": 237
         },
-        {
+        "end": {
           "line": 9,
           "column": 14,
           "position": 245
         }
-      ]
+      }
     },
     {
       "code": 3,
       "message": "Missing required property tokenCredentialsUri",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 6,
-      "position": 237,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 6,
           "position": 237
         },
-        {
+        "end": {
           "line": 9,
           "column": 14,
           "position": 245
         }
-      ]
+      }
     }
   ]
 }

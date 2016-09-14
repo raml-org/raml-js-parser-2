@@ -95,21 +95,18 @@
       "code": 11,
       "message": "number is expected",
       "path": "apiInvalid.raml",
-      "line": 15,
-      "column": 8,
-      "position": 202,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 8,
           "position": 202
         },
-        {
+        "end": {
           "line": 15,
           "column": 15,
           "position": 209
         }
-      ],
+      },
       "isWarning": true
     }
   ]

@@ -1053,7 +1053,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Value must be a string
  **/
 export class StringTypeDeclarationImpl extends ParameterImpl implements StringTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createStringTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createStringTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1152,7 +1152,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Value must be a boolean
  **/
 export class BooleanTypeDeclarationImpl extends ParameterImpl implements BooleanTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createBooleanTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createBooleanTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1179,7 +1179,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Value MUST be a number. Indicate floating point numbers as defined by YAML.
  **/
 export class NumberTypeDeclarationImpl extends ParameterImpl implements NumberTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createNumberTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createNumberTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1242,7 +1242,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Value MUST be a integer.
  **/
 export class IntegerTypeDeclarationImpl extends NumberTypeDeclarationImpl implements IntegerTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createIntegerTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createIntegerTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1269,7 +1269,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Value MUST be a string representation of a date as defined in RFC2616 Section 3.3.
  **/
 export class DateTypeDeclarationImpl extends ParameterImpl implements DateTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDateTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDateTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1296,7 +1296,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * (Applicable only to Form properties) Value is a file. Client generators SHOULD use this type to handle file uploads correctly.
  **/
 export class FileTypeDeclarationImpl extends ParameterImpl implements FileTypeDeclaration{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createFileTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createFileTypeDeclaration(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1536,7 +1536,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Needed to set connection between xml related mime types and xsd schema
  **/
 export class XMLBodyImpl extends BodyLikeImpl implements XMLBody{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createXMLBody(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createXMLBody(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1571,7 +1571,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Needed to set connection between json related mime types and json schema
  **/
 export class JSONBodyImpl extends BodyLikeImpl implements JSONBody{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createJSONBody(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createJSONBody(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1716,7 +1716,7 @@ RAMLVersion(  ):string{return "RAML08";}
 }
 
 export class SecuritySchemePartImpl extends MethodBaseImpl implements SecuritySchemePart{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createSecuritySchemePart(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1822,7 +1822,7 @@ trait(  ):Trait{
 }
 
 export class TraitImpl extends MethodBaseImpl implements Trait{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createTrait(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1924,7 +1924,7 @@ RAMLVersion(  ):string{return "RAML08";}
 }
 
 export class OAuth1SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth1SecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth1SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth1SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -1996,7 +1996,7 @@ RAMLVersion(  ):string{return "RAML08";}
 }
 
 export class OAuth2SecuritySchemeSettingsImpl extends SecuritySchemeSettingsImpl implements OAuth2SecuritySchemeSettings{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth2SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth2SecuritySchemeSettings(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2075,7 +2075,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Declares globally referable security schema definition
  **/
 export class OAuth2SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth2SecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth2SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth2SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 settings(  ):OAuth2SecuritySchemeSettings{
              return <OAuth2SecuritySchemeSettings>super.element('settings');
@@ -2106,7 +2106,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Declares globally referable security schema definition
  **/
 export class OAuth1SecuritySchemeImpl extends AbstractSecuritySchemeImpl implements OAuth1SecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createOAuth1SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createOAuth1SecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 settings(  ):OAuth1SecuritySchemeSettings{
              return <OAuth1SecuritySchemeSettings>super.element('settings');
@@ -2137,7 +2137,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Declares globally referable security schema definition
  **/
 export class BasicSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements BasicSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createBasicSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createBasicSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2164,7 +2164,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Declares globally referable security schema definition
  **/
 export class DigestSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements DigestSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDigestSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDigestSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2191,7 +2191,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Declares globally referable security schema definition
  **/
 export class CustomSecuritySchemeImpl extends AbstractSecuritySchemeImpl implements CustomSecurityScheme{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createCustomSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createCustomSecurityScheme(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2214,7 +2214,7 @@ RAMLVersion(  ):string{return "RAML08";}
 }
 
 export class MethodImpl extends MethodBaseImpl implements Method{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createMethod(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2420,7 +2420,7 @@ RAMLVersion(  ):string{return "RAML08";}
 }
 
 export class DocumentationItemImpl extends RAMLSimpleElementImpl implements DocumentationItem{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createDocumentationItem(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createDocumentationItem(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**
@@ -2473,7 +2473,7 @@ RAMLVersion(  ):string{return "RAML08";}
  * Content of the schema
  **/
 export class GlobalSchemaImpl extends RAMLSimpleElementImpl implements GlobalSchema{
-constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel?:boolean ){super((typeof  nodeOrKey=="string")?createGlobalSchema(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
+constructor( protected nodeOrKey:hl.IHighLevelNode|string,protected setAsTopLevel:boolean=true ){super((typeof  nodeOrKey=="string")?createGlobalSchema(<string>nodeOrKey):<hl.IHighLevelNode>nodeOrKey,setAsTopLevel)}
 
 
         /**

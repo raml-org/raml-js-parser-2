@@ -116,21 +116,18 @@
       "code": 6,
       "message": "Can not resolve unexisting-file.txt",
       "path": "api.raml",
-      "line": 16,
-      "column": 6,
-      "position": 225,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 6,
           "position": 225
         },
-        {
+        "end": {
           "line": 16,
           "column": 12,
           "position": 231
         }
-      ]
+      }
     }
   ]
 }

@@ -85,41 +85,35 @@
       "code": 11,
       "message": "It is not allowed to use external types in property definitions",
       "path": "api.raml",
-      "line": 20,
-      "column": 6,
-      "position": 431,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 20,
           "column": 6,
           "position": 431
         },
-        {
+        "end": {
           "line": 20,
           "column": 7,
           "position": 432
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:Expected type object but found type integer object,integer",
       "path": "api.raml",
-      "line": 22,
-      "column": 6,
-      "position": 462,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 22,
           "column": 6,
           "position": 462
         },
-        {
+        "end": {
           "line": 22,
           "column": 7,
           "position": 463
         }
-      ]
+      }
     }
   ]
 }

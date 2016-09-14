@@ -160,21 +160,18 @@
       "code": 7,
       "message": "annotation MyAnnotation can not be placed at this location, allowed targets are:TypeDeclaration",
       "path": "apiInvalid.raml",
-      "line": 19,
-      "column": 0,
-      "position": 280,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 19,
           "column": 0,
           "position": 280
         },
-        {
+        "end": {
           "line": 19,
           "column": 14,
           "position": 294
         }
-      ]
+      }
     }
   ]
 }

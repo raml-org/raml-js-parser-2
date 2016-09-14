@@ -93,21 +93,18 @@
       "code": 11,
       "message": "Example does not conform to schema:Content is not valid according to schema:Missing required property: id id",
       "path": "api.raml",
-      "line": 19,
-      "column": 4,
-      "position": 430,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 19,
           "column": 4,
           "position": 430
         },
-        {
+        "end": {
           "line": 19,
           "column": 11,
           "position": 437
         }
-      ]
+      }
     }
   ]
 }

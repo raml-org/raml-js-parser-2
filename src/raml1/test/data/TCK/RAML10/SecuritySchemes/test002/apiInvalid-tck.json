@@ -69,21 +69,18 @@
       "code": 2,
       "message": "Unknown node: get",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 6,
-      "position": 200,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 6,
           "position": 200
         },
-        {
+        "end": {
           "line": 9,
           "column": 9,
           "position": 203
         }
-      ]
+      }
     }
   ]
 }

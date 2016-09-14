@@ -150,7 +150,7 @@
               "name": "followers",
               "displayName": "followers",
               "type": [
-                "User[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -162,7 +162,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "User"
             },
             "/^X\\-/": {
               "name": "/^X\\-/",

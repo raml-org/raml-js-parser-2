@@ -34,12 +34,6 @@
             "object"
           ],
           "required": true,
-          "uses": [
-            {
-              "key": "lib",
-              "value": "../lib.raml"
-            }
-          ],
           "properties": {
             "p1": {
               "name": "p1",
@@ -78,6 +72,12 @@
               }
             }
           },
+          "uses": [
+            {
+              "key": "lib",
+              "value": "../lib.raml"
+            }
+          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {

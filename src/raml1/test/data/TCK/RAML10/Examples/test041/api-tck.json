@@ -215,21 +215,18 @@
       "code": 11,
       "message": "Required property: c is missed",
       "path": "api.raml",
-      "line": 23,
-      "column": 10,
-      "position": 320,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 23,
           "column": 10,
           "position": 320
         },
-        {
+        "end": {
           "line": 23,
           "column": 17,
           "position": 327
         }
-      ]
+      }
     }
   ]
 }

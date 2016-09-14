@@ -35,7 +35,7 @@
           "name": "GeoPoints",
           "displayName": "GeoPoints",
           "type": [
-            "number[]"
+            "array"
           ],
           "example": [
             100,
@@ -60,7 +60,8 @@
               100,
               10
             ]
-          }
+          },
+          "items": "number"
         }
       },
       {

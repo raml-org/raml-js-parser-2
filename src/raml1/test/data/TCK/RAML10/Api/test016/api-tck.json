@@ -56,21 +56,18 @@
       "code": 2,
       "message": "In RAML 1.0 base uri parameter is not allowed to have sequence as definition",
       "path": "api.raml",
-      "line": 4,
-      "column": 2,
-      "position": 74,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 4,
           "column": 2,
           "position": 74
         },
-        {
+        "end": {
           "line": 4,
           "column": 3,
           "position": 75
         }
-      ]
+      }
     }
   ]
 }

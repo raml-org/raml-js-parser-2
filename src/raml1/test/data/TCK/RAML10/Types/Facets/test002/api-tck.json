@@ -190,21 +190,18 @@
       "code": 11,
       "message": "string is expected",
       "path": "api.raml",
-      "line": 16,
-      "column": 2,
-      "position": 241,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 2,
           "position": 241
         },
-        {
+        "end": {
           "line": 16,
           "column": 5,
           "position": 244
         }
-      ]
+      }
     }
   ]
 }

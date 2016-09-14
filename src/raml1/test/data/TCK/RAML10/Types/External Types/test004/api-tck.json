@@ -31,21 +31,18 @@
       "code": 11,
       "message": "It is not JSON schema(can not parse JSON:Unexpected token p)",
       "path": "api.raml",
-      "line": 3,
-      "column": 2,
-      "position": 45,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 2,
           "position": 45
         },
-        {
+        "end": {
           "line": 3,
           "column": 9,
           "position": 52
         }
-      ]
+      }
     }
   ]
 }

@@ -118,81 +118,69 @@
       "code": 11,
       "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 6,
-      "position": 212,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 6,
           "position": 212
         },
-        {
+        "end": {
           "line": 13,
           "column": 17,
           "position": 223
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type option does not pass validation (number[]: number is expected)",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 20,
-      "position": 226,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 20,
           "position": 226
         },
-        {
+        "end": {
           "line": 13,
           "column": 24,
           "position": 230
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 26,
-      "position": 232,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 26,
           "position": 232
         },
-        {
+        "end": {
           "line": 13,
           "column": 27,
           "position": 233
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
-      "line": 13,
-      "column": 29,
-      "position": 235,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 13,
           "column": 29,
           "position": 235
         },
-        {
+        "end": {
           "line": 13,
           "column": 30,
           "position": 236
         }
-      ]
+      }
     }
   ]
 }

@@ -7,21 +7,18 @@
       "code": 3,
       "message": "Missing required property title",
       "path": "emptyApi.raml",
-      "line": 0,
-      "column": 10,
-      "position": 10,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 0,
           "column": 10,
           "position": 10
         },
-        {
+        "end": {
           "line": 0,
           "column": 10,
           "position": 10
         }
-      ]
+      }
     }
   ]
 }

@@ -18,21 +18,18 @@
       "code": 0,
       "message": "Unrecognized security scheme type 'n-sls'. Allowed values are:OAuth 1.0,OAuth 2.0,Basic Authentication,DigestSecurityScheme Authentication,x-{other}",
       "path": "apiInvalid.raml",
-      "line": 6,
-      "column": 4,
-      "position": 68,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 4,
           "position": 68
         },
-        {
+        "end": {
           "line": 6,
           "column": 8,
           "position": 72
         }
-      ]
+      }
     }
   ]
 }

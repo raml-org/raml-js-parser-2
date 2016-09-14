@@ -220,21 +220,18 @@
       "code": 11,
       "message": "Restrictions conflict in type 'Type2': should be of type string and should be of type boolean",
       "path": "test3.raml",
-      "line": 18,
-      "column": 2,
-      "position": 275,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 18,
           "column": 2,
           "position": 275
         },
-        {
+        "end": {
           "line": 18,
           "column": 7,
           "position": 280
         }
-      ]
+      }
     }
   ]
 }

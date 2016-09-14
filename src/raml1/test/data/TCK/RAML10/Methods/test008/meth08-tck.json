@@ -63,41 +63,35 @@
       "code": 0,
       "message": "Invalid value:FTP allowed values are:HTTP,HTTPS",
       "path": "meth08.raml",
-      "line": 4,
-      "column": 22,
-      "position": 60,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 4,
           "column": 22,
           "position": 60
         },
-        {
+        "end": {
           "line": 4,
           "column": 25,
           "position": 63
         }
-      ]
+      }
     },
     {
       "code": 0,
       "message": "Invalid value:SMTP allowed values are:HTTP,HTTPS",
       "path": "meth08.raml",
-      "line": 4,
-      "column": 27,
-      "position": 65,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 4,
           "column": 27,
           "position": 65
         },
-        {
+        "end": {
           "line": 4,
           "column": 31,
           "position": 69
         }
-      ]
+      }
     }
   ]
 }

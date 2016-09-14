@@ -53,7 +53,7 @@
               "name": "items",
               "displayName": "items",
               "type": [
-                "VV[]"
+                "array"
               ],
               "required": true,
               "__METADATA__": {
@@ -65,7 +65,8 @@
                     "insertedAsDefault": true
                   }
                 }
-              }
+              },
+              "items": "VV"
             }
           },
           "__METADATA__": {
@@ -216,61 +217,52 @@
       "code": 11,
       "message": "string is expected",
       "path": "api.raml",
-      "line": 15,
-      "column": 14,
-      "position": 238,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 15,
           "column": 14,
           "position": 238
         },
-        {
+        "end": {
           "line": 15,
           "column": 16,
           "position": 240
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "string is expected",
       "path": "api.raml",
-      "line": 16,
-      "column": 14,
-      "position": 258,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 14,
           "position": 258
         },
-        {
+        "end": {
           "line": 16,
           "column": 16,
           "position": 260
         }
-      ]
+      }
     },
     {
       "code": 11,
       "message": "Required property: c is missed",
       "path": "api.raml",
-      "line": 16,
-      "column": 14,
-      "position": 258,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 16,
           "column": 14,
           "position": 258
         },
-        {
+        "end": {
           "line": 16,
           "column": 19,
           "position": 263
         }
-      ]
+      }
     }
   ]
 }

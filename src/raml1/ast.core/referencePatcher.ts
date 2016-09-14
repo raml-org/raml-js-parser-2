@@ -29,6 +29,9 @@ export class ReferencePatcher{
         rootNode:hl.IHighLevelNode=hlNode,
         removeUses:boolean=false,
         patchNodeName:boolean=false){
+        if(hlNode.lowLevel()["libProcessed"]){
+            return;
+        }
         var resolver = (<jsyaml.Project>hlNode.lowLevel().unit().project()).namespaceResolver();
         this.patchReferences(hlNode,rootNode,resolver);
         if(patchNodeName){
@@ -42,6 +45,7 @@ export class ReferencePatcher{
         }
         this.resetTypes(hlNode);
         hlNode.resetChildren();
+        hlNode.lowLevel()["libProcessed"] = true;
     }
 
     patchReferences(
@@ -164,9 +168,18 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[]){
 
-        var nodeType = node.definition()
-
-        if(!node.localType().isExternal()) {
+        var nodeType = node.definition();
+        var isExternal = node.localType().isExternal();
+        if(!isExternal){
+            for(var st of node.localType().allSuperTypes()){
+                isExternal = st.isExternal();
+                if(isExternal){
+                    break;
+                }
+            }
+        }
+        
+        if(!isExternal) {
 
             var rootUnit = rootNode.lowLevel().unit();
             var rootPath = rootUnit.absolutePath();
@@ -174,6 +187,9 @@ export class ReferencePatcher{
 
             //if(rootPath != localPath) {
                 var typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.type.name);
+                if(typeAttributes.length==0){
+                    typeAttributes = node.attributes(universeDef.Universe10.TypeDeclaration.properties.schema.name);
+                }
                 for( var typeAttr of typeAttributes) {
                     var llNode:proxy.LowLevelProxyNode = <proxy.LowLevelProxyNode>typeAttr.lowLevel();
                     if(!(llNode instanceof proxy.LowLevelProxyNode)){
@@ -181,9 +197,7 @@ export class ReferencePatcher{
                     }
                     var localUnit = typeAttr.lowLevel().unit();
                     var localPath = localUnit.absolutePath();
-                    if(localPath==rootPath && this.mode == PatchMode.DEFAULT){
-                        continue;
-                    }
+
                     var value = typeAttr.value();
                     if(typeof value == "string") {
 
@@ -321,14 +335,14 @@ export class ReferencePatcher{
                         if (types.getAnnotationType(newVal.value()) != null) {
                             doContinue = false;
                         }
-                        else if (this.mode==PatchMode.PATH){
+                        else {
                             doContinue = false;
                         }
                     }
                     else if (types.getType(newVal.value()) != null) {
                         doContinue = false;
                     }
-                    else if (this.mode==PatchMode.PATH){
+                    else {
                         doContinue = false;
                     }
                     return newVal;
@@ -403,8 +417,11 @@ export class ReferencePatcher{
             referencedUnit = units[units.length-1];
         }
         var collectionName = this.collectionName(range);
+        if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
+            return null;
+        }
         if(this.mode == PatchMode.PATH){
-            if(referencedUnit==null||referencedUnit.absolutePath()==rootUnit.absolutePath()){
+            if(resolver.resolveNamespace(rootUnit, referencedUnit)==null){
                 return null;
             }
             var aPath = referencedUnit.absolutePath().replace(/\\/g,"/");
@@ -585,9 +602,10 @@ export class ReferencePatcher{
         var project = unit.project();
         var usedNamespaces = Object.keys(this._outerDependencies).filter(x=>x!=rootPath);
         var libModels:LibModel[] = [];
+        var resolver = (<jsyaml.Project>llNode.unit().project()).namespaceResolver();
         for(var ns of usedNamespaces){
             var libUnit = project.unit(ns,true);
-            if(libUnit){
+            if(libUnit&&resolver.resolveNamespace(unit,libUnit)!=null){
                 var dependencies = this._outerDependencies[ns];
                 var libModel = this.extractLibModel(libUnit,dependencies);
                 libModels.push(libModel);
@@ -599,7 +617,7 @@ export class ReferencePatcher{
                 var collection = libModel[cName];
                 if(collection instanceof ElementsCollection) {
                     gotContribution = gotContribution || this.contributeCollection(
-                        <proxy.LowLevelCompositeNode>api.lowLevel(), <ElementsCollection>collection);
+                        <proxy.LowLevelCompositeNode>api.lowLevel(), <ElementsCollection>collection, resolver);
                 }
             }
         }
@@ -629,7 +647,7 @@ export class ReferencePatcher{
     }
 
     private contributeCollection(
-        llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
+        llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection, resolver:namespaceResolver.NamespaceResolver):boolean {
 
         var name = collection.name;
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
@@ -646,7 +664,7 @@ export class ReferencePatcher{
                     if(oNode.unit().absolutePath()!=e.lowLevel().unit().absolutePath()){
                         return false;
                     }
-                    return e.lowLevel().key()==oNode.key();
+                    return e.lowLevel().key()==oNode.key() && e.lowLevel().unit().absolutePath() == oNode.unit().absolutePath();
                 })){
                 continue;
             }
@@ -874,6 +892,8 @@ class LibModel{
     annotationTypes:ElementsCollection;
 
     types:ElementsCollection;
+    
+    unit:ll.ICompilationUnit;
 
 }
 

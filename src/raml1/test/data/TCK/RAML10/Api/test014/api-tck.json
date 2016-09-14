@@ -10,21 +10,18 @@
       "code": 2,
       "message": "Unknown node: [12]",
       "path": "api.raml",
-      "line": 3,
-      "column": 0,
-      "position": 36,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 3,
           "column": 0,
           "position": 36
         },
-        {
+        "end": {
           "line": 3,
           "column": 5,
           "position": 41
         }
-      ]
+      }
     }
   ]
 }

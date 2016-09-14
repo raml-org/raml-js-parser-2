@@ -2067,14 +2067,9 @@ RAMLVersion(  ):string
 
         /**
          * Equivalent API with traits and resource types expanded
+         * @expLib whether to apply library expansion or not
          **/
-expand(  ):Api
-
-
-        /**
-         * Expand traits, resource types and libraries for the API
-         **/
-expandLibraries(  ):void
+expand( expLib?:boolean ):Api
 
 
         /**

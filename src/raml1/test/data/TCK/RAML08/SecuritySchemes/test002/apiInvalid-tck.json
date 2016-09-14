@@ -73,41 +73,35 @@
       "code": 2,
       "message": "Unknown node: get",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 8,
-      "position": 212,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 8,
           "position": 212
         },
-        {
+        "end": {
           "line": 9,
           "column": 11,
           "position": 215
         }
-      ]
+      }
     },
     {
       "code": 2,
       "message": "Unknown node: queryString",
       "path": "apiInvalid.raml",
-      "line": 10,
-      "column": 8,
-      "position": 225,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 10,
           "column": 8,
           "position": 225
         },
-        {
+        "end": {
           "line": 10,
           "column": 19,
           "position": 236
         }
-      ]
+      }
     }
   ]
 }

@@ -100,21 +100,18 @@
       "code": 11,
       "message": "object is expected",
       "path": "apiInvalid.raml",
-      "line": 9,
-      "column": 2,
-      "position": 165,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 9,
           "column": 2,
           "position": 165
         },
-        {
+        "end": {
           "line": 9,
           "column": 10,
           "position": 173
         }
-      ]
+      }
     }
   ]
 }

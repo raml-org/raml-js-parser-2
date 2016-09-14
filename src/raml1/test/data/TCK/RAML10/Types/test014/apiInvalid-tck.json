@@ -8,7 +8,7 @@
           "name": "SomeType",
           "displayName": "SomeType",
           "type": [
-            "SomeType[]"
+            "array"
           ],
           "required": true,
           "__METADATA__": {
@@ -20,7 +20,8 @@
                 "insertedAsDefault": true
               }
             }
-          }
+          },
+          "items": "SomeType"
         }
       }
     ],
@@ -31,21 +32,18 @@
       "code": 11,
       "message": "recurrent array type definition",
       "path": "apiInvalid.raml",
-      "line": 5,
-      "column": 4,
-      "position": 46,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 5,
           "column": 4,
           "position": 46
         },
-        {
+        "end": {
           "line": 5,
           "column": 8,
           "position": 50
         }
-      ]
+      }
     }
   ]
 }
