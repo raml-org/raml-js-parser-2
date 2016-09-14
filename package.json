@@ -34,7 +34,7 @@
     "q": "^1.0.0",
     "raml-definition-system": "0.0.46",
     "then-request": "^2.2.0",
-    "ts-structure-parser": "0.0.11",
+    "ts-structure-parser": "0.0.12",
     "ts-model": "0.0.11",
     "typescript-compiler": "1.4.1-2",
     "underscore": "^1.8.3",
