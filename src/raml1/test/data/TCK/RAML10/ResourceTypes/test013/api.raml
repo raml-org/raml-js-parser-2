@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: My API
+
+types:
+  Example:
+resourceTypes:
+  collection: !include collection.raml
+traits:
+  hasResponseCollection: !include hasResponseCollection.raml
+
+/example:
+  type: collection

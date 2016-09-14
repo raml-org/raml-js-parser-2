@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="tree" type="Tree"/>
+
+    <xs:complexType name="Tree">
+        <xs:sequence>
+            <xs:element name="length" type="xs:int"></xs:element>
+            <xs:element name="color" type="xs:string"></xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

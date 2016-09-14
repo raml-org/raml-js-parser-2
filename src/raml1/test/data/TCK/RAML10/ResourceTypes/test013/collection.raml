@@ -1,0 +1,16 @@
+#%RAML 1.0 ResourceType
+
+uses:
+  lib: library.raml
+
+description: A collection of <<resourcePathName|!uppercamelcase>>
+get:
+  description: |
+    Get all <<resourcePathName|!uppercamelcase>>,
+    optionally filtered
+  is: [ lib.hasResponseCollection ]
+
+post:
+  description: |
+    Create a <<resourcePathName|!uppercamelcase>>
+  is: [ hasResponseCollection ]

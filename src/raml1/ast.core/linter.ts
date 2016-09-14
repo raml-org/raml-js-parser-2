@@ -823,7 +823,7 @@ class TraitVariablesValidator{
             prev = str.indexOf('>>', i);
             var paramOccurence = str.substring(i, prev);
 
-            var ind = paramOccurence.lastIndexOf('|');
+            var ind = paramOccurence.indexOf('|');
             var paramName = ind >= 0 ? paramOccurence.substring(0, ind) : paramOccurence;
             if (paramName.trim().length == 0) {
                 var msg = "Trait or resource type parameter name must contain non whitespace characters";
@@ -834,17 +834,19 @@ class TraitVariablesValidator{
             }
             if (ind != -1) {
                 ind++;
-                var transformerName = paramOccurence.substring(ind).trim();
+                var transformerNames = paramOccurence.split("|").slice(1).map(x=>x.trim());
                 var functionNames = expander.getTransformNames();
 
-                if (!_.find(functionNames, functionName =>
-                    transformerName === functionName || transformerName === ('!' + functionName))) {
+                for(var transformerName of transformerNames) {
+                    if (!_.find(functionNames, functionName =>
+                        transformerName === functionName || transformerName === ('!' + functionName))) {
 
-                    var msg = "Unknown function applied to parameter: " + transformerName;
-                    var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, msg, node, false);
-                    issue.start = start + ind;
-                    issue.end = start + prev;
-                    acceptor.accept(issue);
+                        var msg = "Unknown function applied to parameter: " + transformerName;
+                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, msg, node, false);
+                        issue.start = start + ind;
+                        issue.end = start + prev;
+                        acceptor.accept(issue);
+                    }
                 }
             }
             prev += '>>'.length;
