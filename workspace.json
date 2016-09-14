@@ -20,7 +20,6 @@
   "raml-xml-validation" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/dreamflyer/raml-xml-validation.git",
-    "gitBranch" : false,
     "installTypings" : true
   },
   "ts-structure-parser" : {
