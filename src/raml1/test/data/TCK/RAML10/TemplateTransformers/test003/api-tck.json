@@ -43,21 +43,18 @@
       "code": 11,
       "message": "Unknown function applied to parameter: !singulari___ize",
       "path": "api.raml",
-      "line": 6,
-      "column": 36,
-      "position": 102,
-      "range": [
-        {
+      "range": {
+        "start": {
           "line": 6,
           "column": 36,
           "position": 102
         },
-        {
+        "end": {
           "line": 6,
           "column": 79,
           "position": 145
         }
-      ]
+      }
     }
   ]
 }
