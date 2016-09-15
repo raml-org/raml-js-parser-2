@@ -377,13 +377,15 @@ export class ReferencePatcher{
     }
 
     resolveReferenceValueBasic(
-        value:string,
+        _value:string,
         rootUnit:ll.ICompilationUnit,
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[],
         range:def.ITypeDefinition):PatchedReference{
-        
+
         var isType = universeHelpers.isTypeDeclarationDescendant(range);
+        var gotQuestion = isType && util.stringEndsWith(_value,"?");
+        var value = gotQuestion ? _value.substring(0,_value.length-1) : _value;
 
         var ind = value.lastIndexOf(".");
 
@@ -435,6 +437,9 @@ export class ReferencePatcher{
             if (newNS == null) {
                 return null;
             }
+        }
+        if(gotQuestion){
+            plainName += "?";
         }
         return new PatchedReference(newNS,plainName,collectionName,referencedUnit,this.mode);
     }
