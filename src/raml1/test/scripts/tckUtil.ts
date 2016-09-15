@@ -235,7 +235,7 @@ export class RamlFile{
         private _extends?:string){}
     
     absolutePath():string{
-        return this._absPath.replace(/\\/g,'/');;
+        return this._absPath.replace(/\\/g,'/');
     }
     
     kind():RamlFileKind{
@@ -247,7 +247,7 @@ export class RamlFile{
     }
 
     extends():string{
-        return this._extends;
+        return this._extends.replace(/\\/g,'/');
     }
 }
 
