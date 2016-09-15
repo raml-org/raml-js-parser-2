@@ -56,7 +56,7 @@ describe('TCK tests',function() {
 
     it("Instagram 1.0", function () {
         this.timeout(15000);
-        tckUtil.testAPI('TCK/RAML10/Instagram1.0/api.raml');
+        tckUtil.testAPI('TCK/RAML10/Specifications/Instagram1.0/api.raml');
     });
 
     it("Instagram 0.8", function () {
