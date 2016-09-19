@@ -396,6 +396,10 @@ var readTestJSON = function (tckJsonPath:string) {
     var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
     return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
 };
+var printTime = function (message) {
+    var d = new Date();
+    console.log(message + ": " + d.toLocaleString() + "/" + d.getMilliseconds());
+};
 export function testAPI(
     apiPath:string, extensions?:string[],
     tckJsonPath?:string,

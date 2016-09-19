@@ -24,6 +24,8 @@ export class ReferencePatcher{
 
     private _outerDependencies:{[key:string]:DependencyMap} = {};
 
+    private _libModels:{[key:string]:LibModel} = {};
+
     process(
         hlNode:hl.IHighLevelNode,
         rootNode:hl.IHighLevelNode=hlNode,
@@ -382,6 +384,10 @@ export class ReferencePatcher{
         resolver:namespaceResolver.NamespaceResolver,
         units:ll.ICompilationUnit[],
         range:def.ITypeDefinition):PatchedReference{
+        
+        if(_value==null || typeof(_value)!="string"){
+            return null;
+        }
 
         var isType = universeHelpers.isTypeDeclarationDescendant(range);
         var gotQuestion = isType && util.stringEndsWith(_value,"?");
@@ -605,45 +611,44 @@ export class ReferencePatcher{
         var unit = llNode.unit();
         var rootPath = unit.absolutePath();
         var project = unit.project();
-        var usedNamespaces = Object.keys(this._outerDependencies).filter(x=>x!=rootPath);
         var libModels:LibModel[] = [];
         var resolver = (<jsyaml.Project>llNode.unit().project()).namespaceResolver();
-        for(var ns of usedNamespaces){
-            var libUnit = project.unit(ns,true);
-            if(libUnit&&resolver.resolveNamespace(unit,libUnit)!=null){
-                var dependencies = this._outerDependencies[ns];
-                var libModel = this.extractLibModel(libUnit,dependencies);
-                libModels.push(libModel);
-            }
-        }
-        var gotContribution = false;
-        for(var libModel of libModels){
-            for(var cName of Object.keys(libModel)){
-                var collection = libModel[cName];
-                if(collection instanceof ElementsCollection) {
-                    gotContribution = gotContribution || this.contributeCollection(
-                        <proxy.LowLevelCompositeNode>api.lowLevel(), <ElementsCollection>collection, resolver);
+        var expandedPathMap = resolver.expandedPathMap(unit);
+        if(expandedPathMap!=null) {
+            var libPaths = Object.keys(expandedPathMap).sort();
+            for (var ns of libPaths) {
+                var libModel = this._libModels[ns];
+                if (libModel == null) {
+                    var libUnit = project.unit(ns, true);
+                    if (libUnit && resolver.resolveNamespace(unit, libUnit) != null) {
+                        libModel = this.extractLibModel(libUnit);
+                    }
+                }
+                if (libModel) {
+                    libModels.push(libModel);
                 }
             }
-        }
-        this.resetTypes(api);
-        api.resetChildren();
-        var apiPath = api.lowLevel().unit().absolutePath();
-        for(var ch of api.children()){
-            if(!ch.isElement()){
-                continue;
+            var gotContribution = false;
+            for (var libModel of libModels) {
+                for (var cName of Object.keys(libModel)) {
+                    var collection:ElementsCollection = <ElementsCollection>libModel[cName];
+                    if (collection instanceof ElementsCollection) {
+                        gotContribution = this.contributeCollection(
+                                <proxy.LowLevelCompositeNode>api.lowLevel(),
+                                collection) || gotContribution;
+                    }
+                }
             }
-            var chPath = ch.lowLevel().unit().absolutePath();
-            if(chPath==apiPath&&ch.lowLevel().includePath()==null){
-                continue;
+            this.resetTypes(api);
+            api.resetChildren();
+            if (gotContribution) {
+                var gotPatch = false;
+                do {
+                    gotPatch = this.patchDependencies(api);
+                }
+                while (gotPatch);
+                this.removeUnusedDependencies(api);
             }
-            var definition = ch.asElement().definition();
-            if(this.collectionName(definition)!=null){                
-                this.process(ch.asElement(),api,true,true);
-            }
-        }
-        if(gotContribution){
-            this.expandLibraries(api);
         }
         this.removeUses(api.lowLevel());
         api.lowLevel().actual().libExpanded = true;
@@ -651,8 +656,56 @@ export class ReferencePatcher{
         api.resetChildren();
     }
 
-    private contributeCollection(
-        llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection, resolver:namespaceResolver.NamespaceResolver):boolean {
+    private patchDependencies(api:hl.IHighLevelNode):boolean {
+        var result = false;
+        var apiPath = api.lowLevel().unit().absolutePath();
+        for (var ch of api.children()) {
+            if (!ch.isElement()||ch.lowLevel()["libProcessed"]) {
+                continue;
+            }
+            var chNode = ch.asElement();
+            this.removeUses(chNode.lowLevel());
+            var chPath = ch.lowLevel().unit().absolutePath();
+            if (chPath == apiPath && ch.lowLevel().includePath() == null) {
+                continue;
+            }
+            var dependencies = this._outerDependencies[chPath];
+            if(dependencies==null){
+                continue;
+            }
+            var pName = chNode.property().nameId();
+            var depCollection = dependencies[pName];
+            if(depCollection==null){
+                continue;
+            }
+            var chName = chNode.name();
+            if(depCollection[chName]==null){
+                continue;
+            }
+            this.process(chNode, api, true, true);
+            result = true;
+        }
+        return result;
+    }
+
+    private removeUnusedDependencies(api:hl.IHighLevelNode) {
+        var llNode = <proxy.LowLevelCompositeNode>api.lowLevel();
+        var apiPath = llNode.unit().absolutePath();
+        var children = [].concat(api.children());
+        for (var ch of children) {
+            var chLl = ch.lowLevel();
+            if (ch.isElement()&&chLl["libProcessed"]) {
+                continue;
+            }
+            var chPath = chLl.unit().absolutePath();
+            if (chPath == apiPath) {
+                continue;
+            }
+            (<proxy.LowLevelCompositeNode>chLl.parent()).removeChild(chLl);
+        }
+    }
+
+    private contributeCollection(llApi:proxy.LowLevelCompositeNode, collection:ElementsCollection):boolean {
 
         var name = collection.name;
         var llNode:proxy.LowLevelCompositeNode = <proxy.LowLevelCompositeNode>_.find(
@@ -681,17 +734,19 @@ export class ReferencePatcher{
 
 
 
-    private extractLibModel(unit:ll.ICompilationUnit,dependencies:DependencyMap):LibModel{
-        var result:LibModel = new LibModel();
+    private extractLibModel(unit:ll.ICompilationUnit):LibModel{
+        var result:LibModel = this._libModels[unit.absolutePath()];
+        if(result!=null){
+            return result;
+        }
+        result = new LibModel(unit);
+        this._libModels[unit.absolutePath()] = result;
         var hlNode = (<jsyaml.CompilationUnit>unit).highLevel();
         if(hlNode && hlNode.isElement()){
-            for(var cName of Object.keys(dependencies)){
-                var dep = dependencies[cName];
+            for(var cName of ["resourceTypes", "traits", "types", "annotationTypes", "securitySchemes"]){
                 var collection = new ElementsCollection(cName);
                 for(var el of hlNode.asElement().elementsOfKind(cName)){
-                    if(dep[el.name()]){
-                        collection.array.push(el);
-                    }
+                    collection.array.push(el);
                 }
                 result[cName] = collection;
             }
@@ -860,6 +915,8 @@ export class PatchedReference{
         private _collectionName:string,
         private _referencedUnit:ll.ICompilationUnit,
         private _mode:PatchMode){}
+    
+    referencedNode: ll.ILowLevelASTNode;
 
     namespace():string{ return this._namespace; }
 
@@ -887,6 +944,8 @@ class ElementsCollection{
 }
 
 class LibModel{
+    
+    constructor(public unit:ll.ICompilationUnit){}
 
     resourceTypes:ElementsCollection;
 
@@ -898,7 +957,7 @@ class LibModel{
 
     types:ElementsCollection;
     
-    unit:ll.ICompilationUnit;
+    
 
 }
 
