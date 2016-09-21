@@ -123,6 +123,11 @@ export function allResourceTypes(a:RamlWrapper.Api):RamlWrapper.ResourceType[]{
 function findTemplates(a:core.BasicNode,filter) {
     var arr = search.globalDeclarations(a.highLevel()).filter(x=>filter(x.definition()));
     var ll = a.highLevel().lowLevel();
+    
+    if(!ll) {
+        return [];
+    }
+    
     var nodePath = ll.includePath();
     if(!nodePath){
         nodePath = ll.unit().path();

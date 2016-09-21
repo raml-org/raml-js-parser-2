@@ -558,8 +558,14 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                     v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Can not resolve library from path:"+vn.value(),highLevelNode,false));
                 } else if(!resourceRegistry.isWaitingFor(vn.value())){
                     var issues:hl.ValidationIssue[]=[];
-                    rs.highLevel().validate(
-                        hlimpl.createBasicValidationAcceptor(issues));
+                    
+                    if(rs.contents().trim().length === 0) {
+                        v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Empty file: " + vn.value(),highLevelNode,false));
+                        
+                        return;
+                    }
+                    
+                    rs.highLevel().validate(hlimpl.createBasicValidationAcceptor(issues));
                     if (issues.length>0){
                         var brand=createLibraryIssue(vn, highLevelNode);
                         issues.forEach(x=> {
@@ -665,6 +671,10 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     new OptionalPropertiesValidator().validate(node,v);
 }
 function cleanupIncludesFlag(node:hl.IParseResult,v:hl.ValidationAcceptor) {
+    if(!node.lowLevel()) {
+        return;
+    }
+    
     var val=<any>node.lowLevel().actual();
     delete val._inc;
     node.children().forEach(x=>cleanupIncludesFlag(x,v));
@@ -672,6 +682,11 @@ function cleanupIncludesFlag(node:hl.IParseResult,v:hl.ValidationAcceptor) {
 }
 function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
     var llNode = node.lowLevel();
+    
+    if(!llNode) {
+        return;
+    }
+    
     var val=<any>llNode.actual();
 
     if (val._inc){

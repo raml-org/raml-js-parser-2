@@ -80,6 +80,11 @@ export function findDeclarations(
     h:hl.IHighLevelNode,
     visitedUnits:{[key:string]:boolean}={},
     rs:hl.IHighLevelNode[]=[]):hl.IHighLevelNode[]{
+    
+    if(!h.lowLevel()) {
+        return [];
+    }    
+    
     var aPath = h.lowLevel().unit().absolutePath();
     visitedUnits[aPath] = true;
 

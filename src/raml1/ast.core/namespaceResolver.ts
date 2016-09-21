@@ -82,7 +82,9 @@ export class NamespaceResolver{
             }
             var steps = info.steps() + 1;
             var visit = (x:ll.ILowLevelASTNode)=>{
-
+                if(!x) {
+                    return;
+                }
                 var children = x.children();
 
                 if(x.parent()==null) {

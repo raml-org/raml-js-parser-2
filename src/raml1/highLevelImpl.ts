@@ -987,7 +987,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
     children(){
         var s=this._node.unit().resolve(this.value());
-        if (s&&s.isRAMLUnit()){
+        if (s && s.isRAMLUnit() && s.contents().trim().length > 0){
             return new LowLevelWrapperForTypeSystem(s.ast(), this._highLevelRoot).children();
         }
         return [];
@@ -1039,6 +1039,11 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     }
     clearTypesCache(){
         this._types=null;
+        
+        if(!this.lowLevel()) {
+            return;
+        }
+        
         var c=this.lowLevel().actual();
         c.types=null;
     }

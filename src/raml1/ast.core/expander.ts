@@ -98,8 +98,12 @@ export class TraitsAndResourceTypesExpander {
         api:RamlWrapper.Api|RamlWrapper08.Api,
         rp:referencePatcher.ReferencePatcher = null,
         forceProxy:boolean=false):RamlWrapper.Api|RamlWrapper08.Api {
-        
+
         this.init(api);
+
+        if(!api.highLevel().lowLevel()) {
+            return api;
+        }
 
         var unit = api.highLevel().lowLevel().unit();
         var hasFragments = (<jsyaml.Project>unit.project()).namespaceResolver().hasFragments(unit);
