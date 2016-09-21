@@ -19,10 +19,13 @@ function createBrowserPackage(minify = true) {
     var targetFolder = path.join(rootPath, "browserVersion");
 
     var targetFile = path.join(targetFolder, "raml-1-parser.js");
+    
     var xmlValidationTargetFile = path.join(targetFolder, "raml-xml-validation.js");
+    var jsonValidationTargetFile = path.join(targetFolder, "raml-json-validation.js");
     
     var xmlValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-xml-validation/dist/index.js');
-
+    var jsonValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-json-validation/dist/index.js');
+    
     mkdirp.sync(targetFolder);
 
     copyStaticBrowserPackageContents(targetFolder, path.join(rootPath, "package.json"));
@@ -35,15 +38,29 @@ function createBrowserPackage(minify = true) {
     
     try {
         if(fs.existsSync(xmlValidationRootFile)) {
-            fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", '<script type="text/javascript" src="../../raml-xml-validation.js"></script>'));
+            indexHtmlContent = indexHtmlContent.replace("<xmlvalidation>", '<script type="text/javascript" src="../../raml-xml-validation.js"></script>');
             
-            webPackForBrowserForXml(rootPath, xmlValidationRootFile, xmlValidationTargetFile, minify);
+            webPackForBrowserLib(rootPath, xmlValidationRootFile, xmlValidationTargetFile, minify, "RAML.XmlValidation", "raml-xml-validation");
         } else {
-            fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", ''));
+            indexHtmlContent = indexHtmlContent.replace("<xmlvalidation>", '');
         }
     } catch(exception) {
-        fs.writeFileSync(indexHtml, indexHtmlContent.replace("<xmlvalidation>", ''));
+        indexHtmlContent = indexHtmlContent.replace("<xmlvalidation>", '');
     }
+
+    try {
+        if(fs.existsSync(jsonValidationRootFile)) {
+            indexHtmlContent = indexHtmlContent.replace("<jsonvalidation>", '<script type="text/javascript" src="../../raml-json-validation.js"></script>');
+
+            webPackForBrowserLib(rootPath, jsonValidationRootFile, jsonValidationTargetFile, minify, "RAML.JsonValidation", "raml-json-validation");
+        } else {
+            indexHtmlContent = indexHtmlContent.replace("<jsonvalidation>", '');
+        }
+    } catch(exception) {
+        indexHtmlContent = indexHtmlContent.replace("<jsonvalidation>", '');
+    }
+
+    fs.writeFileSync(indexHtml, indexHtmlContent);
 }
 
 /**
@@ -54,7 +71,7 @@ function createBrowserPackage(minify = true) {
  * @param callback
  */
 function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFile : string, minify: boolean) {
-    console.log("Preparing to Webpack browser bundle:");
+    console.log("Preparing to Webpack browser bundle: raml-1-parser.js");
 
     var plugins = [];
     // if (minify) {
@@ -111,7 +128,8 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
                 // "pluralize" : true,
                 // "then-request" : true,
                 "typescript" : true,
-                "raml-xml-validation": "RAML.XmlValidation"
+                "raml-xml-validation": "RAML.XmlValidation",
+                "raml-json-validation": "RAML.JsonValidation"
                 // "underscore" : true,
                 // "url": true,
                 // "xmldom" : true,
@@ -144,8 +162,8 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
     });
 }
 
-function webPackForBrowserForXml(parserRootFolder: string, rootFile : string, targetFile : string, minify: boolean) {
-    console.log("Preparing to Webpack browser bundle:");
+function webPackForBrowserLib(parserRootFolder: string, rootFile : string, targetFile : string, minify: boolean, libName: string, moduleName: string) {
+    console.log("Preparing to Webpack browser bundle: " + moduleName);
 
     var plugins = [];
 
@@ -163,7 +181,7 @@ function webPackForBrowserForXml(parserRootFolder: string, rootFile : string, ta
         output: {
             path: targetFolder,
 
-            library: ['RAML.XmlValidation'],
+            library: [libName],
 
             filename: targetFileName,
             libraryTarget: "umd"

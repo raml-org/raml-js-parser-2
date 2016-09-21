@@ -25,6 +25,12 @@
     "gitBranch" : false,
     "installTypings" : true
   },
+  "raml-json-validation" : {
+    "build" : "npm run build",
+    "gitUrl" : "https://github.com/dreamflyer/raml-json-validation.git",
+    "gitBranch" : false,
+    "installTypings" : true
+  },
   "ts-structure-parser" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/mulesoft-labs/ts-structure-parser.git",
