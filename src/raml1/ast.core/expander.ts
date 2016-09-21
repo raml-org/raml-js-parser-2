@@ -17,6 +17,7 @@ import universeDef=require("../tools/universe");
 import _ = require("underscore");
 import core = require("../wrapped-ast/parserCore");
 import referencePatcher = require("./referencePatcher");
+import namespaceResolver = require("./namespaceResolver");
 import def = require("raml-definition-system");
 import universeHelpers = require("../tools/universeHelpers");
 
@@ -83,16 +84,13 @@ function mergeHighLevelNodes(
 
 export class TraitsAndResourceTypesExpander {
 
-
-    private traitMap:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper08.Trait}};
-
-    private resourceTypeMap:{[key:string]:{[key:string]:RamlWrapper.ResourceType|RamlWrapper08.ResourceType}};
-
     private globalTraits:(RamlWrapper.Trait|RamlWrapper08.Trait)[];
 
     private globalResourceTypes:(RamlWrapper.ResourceType|RamlWrapper08.ResourceType)[];
 
     private ramlVersion:string;
+
+    private namespaceResolver:namespaceResolver.NamespaceResolver = new namespaceResolver.NamespaceResolver();
 
     expandTraitsAndResourceTypes(
         api:RamlWrapper.Api|RamlWrapper08.Api,
@@ -111,7 +109,7 @@ export class TraitsAndResourceTypesExpander {
         if (!(hasTemplates||hasFragments)&&!forceProxy){
             return api;
         }
-        
+
         var hlNode = this.createHighLevelNode(<hlimpl.ASTNodeImpl>api.highLevel(),false,rp);
         if (api.definition().key()==universeDef.Universe10.Overlay){
             return <RamlWrapper.Api>hlNode.wrapperNode();
@@ -141,9 +139,6 @@ export class TraitsAndResourceTypesExpander {
         var result:RamlWrapper.Api|RamlWrapper08.Api = <RamlWrapper.Api|RamlWrapper08.Api>hlNode.wrapperNode();
 
         (<any>result).setAttributeDefaults((<any>api).getDefaultsCalculator().isEnabled());
-
-        this.traitMap = {};
-        this.resourceTypeMap = {};
 
         (<hlimpl.ASTNodeImpl>result.highLevel()).setMergeMode(
             (<hlimpl.ASTNodeImpl>api.highLevel()).getMergeMode());
@@ -221,9 +216,10 @@ export class TraitsAndResourceTypesExpander {
         return mergeHighLevelNodes(masterApi,highLevelNodes, mergeMode, rp, forceProxy);
     }
 
-    private processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource) {
+    private processResource(resource:RamlWrapper.Resource|RamlWrapper08.Resource,_nodes:hl.IParseResult[]=[]) {
+        var nodes = _nodes.concat(resource.highLevel());
 
-        var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource);
+        var resourceData:ResourceGenericData[] = this.collectResourceData(resource,resource,undefined,undefined,nodes);
 
 
         var resourceLowLevel = <proxy.LowLevelCompositeNode>resource.highLevel().lowLevel();
@@ -271,7 +267,7 @@ export class TraitsAndResourceTypesExpander {
         });
 
         var resources:(RamlWrapper.Resource|RamlWrapper08.Resource)[] = resource.resources();
-        resources.forEach(x=>this.processResource(x));
+        resources.forEach(x=>this.processResource(x,nodes));
     }
 
     private collectResourceData(
@@ -299,8 +295,7 @@ export class TraitsAndResourceTypesExpander {
         var rtRef:RamlWrapper.ResourceTypeRef|RamlWrapper08.ResourceTypeRef = obj.type();
         if(rtRef!=null) {
             var units = toUnits1(nodesChain);
-            rtData = this.readGenerictData(original, rtRef, obj.highLevel(),
-                this.resourceTypeMap, this.globalResourceTypes, 'resource type', transformer, units);
+            rtData = this.readGenerictData(original, rtRef, obj.highLevel(), 'resource type', transformer, units);
         }
 
         var result = {
@@ -346,7 +341,7 @@ export class TraitsAndResourceTypesExpander {
             (<any>_obj).is().forEach(x=> {
                 var unitsChain = toUnits2(units,x.highLevel());
                 var traitData = this.readGenerictData(obj,
-                    x, _obj.highLevel(), this.traitMap, this.globalTraits, 'trait', transformer,unitsChain);
+                    x, _obj.highLevel(), 'trait', transformer,unitsChain);
 
                 if (traitData) {
                     var name = traitData.name;
@@ -362,19 +357,19 @@ export class TraitsAndResourceTypesExpander {
 
     private readGenerictData(r:core.BasicNode,obj:RamlWrapper.TraitRef|RamlWrapper.ResourceTypeRef|RamlWrapper08.TraitRef|RamlWrapper08.ResourceTypeRef,
                      context:hl.IHighLevelNode,
-                     cache:{[key:string]:{[key:string]:RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType}},
-                     globalList:(RamlWrapper.Trait|RamlWrapper.ResourceType|RamlWrapper08.Trait|RamlWrapper08.ResourceType)[],
                      template:string,
                      transformer:ValueTransformer,
                      unitsChain:ll.ICompilationUnit[]=[]):GenericData {
 
         var value = <any>obj.value();
+        var propName = pluralize.plural(changeCase.camelCase(template));
         if (typeof(value) == 'string') {
             if (transformer) {
                 value = transformer.transform(value).value;
             }
-            var node = this.getTemplate(value,context,cache,globalList);
-            if (node) {
+            var _node = referencePatcher.getDeclaration(value,propName,this.namespaceResolver,unitsChain);
+            if (_node) {
+                var node = <any>_node.wrapperNode();
                 return {
                     name: value,
                     transformer: null,
@@ -394,10 +389,9 @@ export class TraitsAndResourceTypesExpander {
             var scalarParams:{[key:string]:string} = {};
             var structuredParams:{[key:string]:ll.ILowLevelASTNode} = {};
 
-            var node = this.getTemplate(name,context,cache,globalList);;
-            //var t = hlimpl.typeFromNode(node.highLevel());
-            if (node) {
-
+            var _node = referencePatcher.getDeclaration(name,propName,this.namespaceResolver,unitsChain);
+            if (_node) {
+                var node = <any>_node.wrapperNode();
                 if (this.ramlVersion == 'RAML08') {
                     sv.children().forEach(x=>scalarParams[x.valueName()] = x.lowLevel().value());
                 }
@@ -536,7 +530,7 @@ class TransformMatches {
 
     regexp: RegExp;
 
-    static leftTransformRegexp: RegExp = /\|\s*!\s*/;
+    static leftTransformRegexp: RegExp = /\s*!\s*/;
     static rightTransformRegexp: RegExp = /\s*$/;
 
     transformer: (arg: string) => string;
@@ -619,17 +613,18 @@ export function getTransformNames(): string[] {
     return transformers.map(transformer => transformer.name);
 }
 
-export function getTransformerForOccurence(occurence: string) {
-    var result;
-
-    for(var i = 0; i < transformers.length; i++) {
-        if(occurence.match(transformers[i].regexp)) {
-            result = transformers[i].transformer;
-
-            break;
+export function getTransformersForOccurence(occurence: string) {
+    var result = [];
+    
+    var functions = occurence.split("|").slice(1);
+    for(var f of functions) {
+        for (var i = 0; i < transformers.length; i++) {
+            if (f.match(transformers[i].regexp)) {
+                result.push(transformers[i].transformer);
+                break;
+            }
         }
     }
-
     return result;
 }
 
@@ -705,17 +700,19 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 var val;
                 var paramName;
 
-                var transformer = getTransformerForOccurence(paramOccurence);
+                var transformers = getTransformersForOccurence(paramOccurence);
 
-                if(transformer) {
-                    var ind = paramOccurence.lastIndexOf('|');
+                if(transformers.length>0) {
+                    var ind = paramOccurence.indexOf('|');
                     paramName = paramOccurence.substring(0,ind).trim();
                     val = this.params[paramName];
                     if(val && typeof(val) == "string" && val.indexOf("<<")>=0&&this.vDelegate){
                         val = this.vDelegate.transform(val,toString,doBreak,callback).value;
                     }
                     if(val) {
-                        val = transformer(val);
+                        for(var tr of transformers) {
+                            val = tr(val);
+                        }
                     }
                 } else {
                     paramName = paramOccurence.trim();
@@ -860,7 +857,7 @@ export class DefaultTransformer extends ValueTransformer{
         var resourcePath:string = "";
         var resourcePathName:string;
         var ll=this.owner.highLevel().lowLevel();
-        var node = ll instanceof proxy.LowLevelProxyNode?(<proxy.LowLevelValueTransformingNode>(<proxy.LowLevelCompositeNode>ll).originalNode()).originalNode():ll;
+        var node = ll;
         var last=null;
         while(node){
             var key = node.key();

@@ -179,7 +179,7 @@ export function getTests(dirContent:DirectoryContent):Test[] {
         result = dirContent.masterAPIs().map(x=>new Test(x.absolutePath()));
     }
     else if (dirContent.hasSingleExtensionOrOverlay()) {
-        result = dirContent.extnsionsAndOverlays().map(x=>{
+        result = dirContent.extensionsAndOverlays().map(x=>{
             var jsonPath = defaultJSONPath(x.extends());
             return new Test(x.absolutePath(),null,jsonPath);
         });
@@ -191,11 +191,17 @@ export function getTests(dirContent:DirectoryContent):Test[] {
         result = dirContent.fragments().map(x=>new Test(x.absolutePath()));
     }
     else if (dirContent.hasExtensionsOrOverlaysAppliedToSingleAPI()) {
-        var ordered = orderExtensionsAndOverlays(dirContent.extnsionsAndOverlays());
+        var ordered = orderExtensionsAndOverlaysByIndex(dirContent.extensionsAndOverlays());
         if (ordered) {
             var apiPath = ordered[0].extends();
             var extensionsAndOverlays = ordered.map(x=>x.absolutePath());
             result = [ new Test(apiPath, extensionsAndOverlays) ];
+        }
+        else{
+            var topExt = dirContent.topExtensionOrOverlay();
+            if(topExt != null){
+                result = [ new Test(topExt.absolutePath()) ];
+            }
         }
     }
     return result;
@@ -229,7 +235,7 @@ export class RamlFile{
         private _extends?:string){}
     
     absolutePath():string{
-        return this._absPath.replace(/\\/g,'/');;
+        return this._absPath.replace(/\\/g,'/');
     }
     
     kind():RamlFileKind{
@@ -241,7 +247,7 @@ export class RamlFile{
     }
 
     extends():string{
-        return this._extends;
+        return this._extends.replace(/\\/g,'/');
     }
 }
 
@@ -257,7 +263,7 @@ export class DirectoryContent{
         return this.files;
     }
 
-    extnsionsAndOverlays():RamlFile[]{
+    extensionsAndOverlays():RamlFile[]{
         return this.files.filter(x=>x.kind()==RamlFileKind.EXTENSION||x.kind()==RamlFileKind.OVERLAY);
     }
 
@@ -274,15 +280,15 @@ export class DirectoryContent{
     }
 
     hasCleanAPIsOnly():boolean{
-        return this.extnsionsAndOverlays().length==0 && this.masterAPIs().length>0;
+        return this.extensionsAndOverlays().length==0 && this.masterAPIs().length>0;
     }
 
     hasSingleExtensionOrOverlay():boolean{
-        return this.extnsionsAndOverlays().length==1 && this.masterAPIs().length>0;
+        return this.extensionsAndOverlays().length==1 && this.masterAPIs().length>0;
     }
 
     hasExtensionsOrOverlaysAppliedToSingleAPI():boolean{
-        return this.extnsionsAndOverlays().length>0 && this.masterAPIs().length==1;
+        return this.extensionsAndOverlays().length>0 && this.masterAPIs().length==1;
     }
 
     hasFragmentsOnly():boolean{
@@ -291,6 +297,23 @@ export class DirectoryContent{
 
     hasLibraries():boolean{
         return this.libraries().length>0;
+    }
+
+    topExtensionOrOverlay():RamlFile{
+        var arr = this.extensionsAndOverlays();
+        var map = {};
+        for(var x of arr){
+            map[x.absolutePath()] = x;
+        }
+        for(var x of arr){
+            var ext = x.extends();
+            delete map[ext];
+        }
+        var keys = Object.keys(map);
+        if(keys.length != 1){
+            return null;
+        }
+        return map[keys[0]];
     }
 }
 
@@ -301,7 +324,7 @@ export function defaultJSONPath(apiPath:string) {
     return str;
 };
 
-function orderExtensionsAndOverlays(ramlFiles:RamlFile[]):RamlFile[]{
+function orderExtensionsAndOverlaysByIndex(ramlFiles:RamlFile[]):RamlFile[]{
     
     var indToFileMap:{[key:string]:RamlFile} = {};
     var pathToIndMap:{[key:string]:number} = {};
@@ -372,6 +395,10 @@ var readTestJSON = function (tckJsonPath:string) {
     var rootPath = "file://"+testUtil.data("").replace(/\\/g,"/");
     var replacer = pathReplacer("__$$ROOT_PATH__",rootPath);
     return JSON.parse(fs.readFileSync(tckJsonPath).toString(),replacer);
+};
+var printTime = function (message) {
+    var d = new Date();
+    console.log(message + ": " + d.toLocaleString() + "/" + d.getMilliseconds());
 };
 export function testAPI(
     apiPath:string, extensions?:string[],

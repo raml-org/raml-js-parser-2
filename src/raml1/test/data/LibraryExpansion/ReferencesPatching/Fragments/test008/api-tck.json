@@ -47,6 +47,26 @@
         }
       },
       {
+        "lib.MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
         "types2.MyObjectType": {
           "name": "MyObjectType",
           "displayName": "MyObjectType",
@@ -81,26 +101,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "lib.MyType": {
-          "name": "MyType",
-          "displayName": "MyType",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
               },
               "required": {
                 "insertedAsDefault": true

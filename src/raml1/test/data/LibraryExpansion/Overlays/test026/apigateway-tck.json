@@ -4,6 +4,113 @@
   "specification": {
     "types": [
       {
+        "AWS.amazon-apigateway-method": {
+          "name": "amazon-apigateway-method",
+          "displayName": "amazon-apigateway-method",
+          "type": [
+            "string"
+          ],
+          "example": "POST",
+          "required": true,
+          "enum": [
+            "GET",
+            "PATCH",
+            "PUT",
+            "POST",
+            "DELETE"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "structuredExample": {
+            "value": "POST",
+            "strict": true,
+            "name": null,
+            "structuredValue": "POST"
+          }
+        }
+      },
+      {
+        "AWS.amazon-apigateway-status": {
+          "name": "amazon-apigateway-status",
+          "displayName": "amazon-apigateway-status",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "pattern": "^[12345]\\d\\d$",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "AWS.amazon-apigateway-templates": {
+          "name": "amazon-apigateway-templates",
+          "displayName": "amazon-apigateway-templates",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "/\\w+/\\w+/": {
+              "name": "/\\w+/\\w+/",
+              "displayName": "/\\w+/\\w+/",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "type": {
+                    "insertedAsDefault": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
         "AWS.amazon-apigateway-auth-type": {
           "name": "amazon-apigateway-auth-type",
           "displayName": "amazon-apigateway-auth-type",
@@ -21,26 +128,6 @@
               },
               "type": {
                 "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "AWS.amazon-apigateway-integration": {
-          "name": "amazon-apigateway-integration",
-          "displayName": "amazon-apigateway-integration",
-          "type": [
-            "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
-          ],
-          "required": true,
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
               },
               "required": {
                 "insertedAsDefault": true
@@ -563,104 +650,17 @@
         }
       },
       {
-        "AWS.amazon-apigateway-method": {
-          "name": "amazon-apigateway-method",
-          "displayName": "amazon-apigateway-method",
+        "AWS.amazon-apigateway-integration": {
+          "name": "amazon-apigateway-integration",
+          "displayName": "amazon-apigateway-integration",
           "type": [
-            "string"
+            "AWS.amazon-apigateway-integration-lambda | AWS.amazon-apigateway-integration-HTTP | AWS.amazon-apigateway-integration-mock | AWS.amazon-apigateway-integration-aws"
           ],
-          "example": "POST",
           "required": true,
-          "enum": [
-            "GET",
-            "PATCH",
-            "PUT",
-            "POST",
-            "DELETE"
-          ],
           "__METADATA__": {
             "primitiveValuesMeta": {
               "displayName": {
                 "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          },
-          "structuredExample": {
-            "value": "POST",
-            "strict": true,
-            "name": null,
-            "structuredValue": "POST"
-          }
-        }
-      },
-      {
-        "AWS.amazon-apigateway-status": {
-          "name": "amazon-apigateway-status",
-          "displayName": "amazon-apigateway-status",
-          "type": [
-            "string"
-          ],
-          "required": true,
-          "pattern": "^[12345]\\d\\d$",
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "AWS.amazon-apigateway-templates": {
-          "name": "amazon-apigateway-templates",
-          "displayName": "amazon-apigateway-templates",
-          "type": [
-            "object"
-          ],
-          "required": true,
-          "properties": {
-            "/\\w+/\\w+/": {
-              "name": "/\\w+/\\w+/",
-              "displayName": "/\\w+/\\w+/",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "type": {
-                    "insertedAsDefault": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "type": {
-                "insertedAsDefault": true
               },
               "required": {
                 "insertedAsDefault": true
