@@ -186,12 +186,12 @@
         "start": {
           "line": 20,
           "column": 6,
-          "position": 327
+          "position": 307
         },
         "end": {
           "line": 20,
           "column": 8,
-          "position": 329
+          "position": 309
         }
       }
     }
