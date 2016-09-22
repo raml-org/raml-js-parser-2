@@ -100,13 +100,13 @@ function checkPropertyQuard  (n:hl.IAttribute|hl.IHighLevelNode, v:hl.Validation
 
 function lintNode(astNode:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) {
     var fsEnabled;
-    
+
     try {
         fsEnabled = astNode.lowLevel().unit().project().fsEnabled();
     } catch(exception) {
         fsEnabled = true;
     }
-    
+
     if(!fsEnabled) {
         return;
     }
@@ -438,7 +438,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
     if((<any>node).definition && (<any>node).definition().isAssignableFrom(universes.Universe10.Operation.name)) {
         var queryStringNode = (<any>node).element(universes.Universe10.Operation.properties.queryString.name);
         var queryParamsNode: ll.ILowLevelASTNode = (<any>node).lowLevel && <ll.ILowLevelASTNode>_.find((<any>node).lowLevel().children(), child => (<any>child).key && (<any>child).key() === universes.Universe10.Operation.properties.queryParameters.name);
-        
+
         if(queryStringNode && queryParamsNode) {
             v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, universes.Universe10.Operation.properties.queryParameters.name + " already specified.", queryStringNode));
             v.accept(createLLIssue(hl.IssueCode.UNKNOWN_NODE, universes.Universe10.Operation.properties.queryString.name + " already specified.", queryParamsNode, node));
@@ -446,7 +446,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
     }
     try {
         var isOverlay = (<any>node).definition && (<any>node).definition() && (<any>node).definition().key() === universes.Universe10.Overlay
-        
+
         var children = isOverlay ? node.children() : node.directChildren();
 
         children.filter(child => {
@@ -456,9 +456,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, x.name()?x:node));
                 return;
             }
-            
-            
-            
+
+
+
             x.validate(v)
         });
     }finally{
@@ -1853,23 +1853,23 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
         var u=(<hlimpl.ASTNodeImpl>node).universe();
         var tv=u.getTypedVersion();
         if (tv){
-                if (tv !== "0.8" && tv !== "1.0") {
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'", node)
-                    v.accept(i);
+            if (tv !== "0.8" && tv !== "1.0") {
+                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'", node)
+                v.accept(i);
 
-                }
-                var tl=u.getOriginalTopLevelText();
-                if (tl){
-                    if (tl!=node.definition().nameId()){
-                        if (node.definition().nameId()=="Api") {
-                            var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown top level type:" + tl, node)
-                            v.accept(i);
-                        }
-                    } else if ("Api" == u.getOriginalTopLevelText()) {
-                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Redundant fragment name:" + tl, node)
+            }
+            var tl=u.getOriginalTopLevelText();
+            if (tl){
+                if (tl!=node.definition().nameId()){
+                    if (node.definition().nameId()=="Api") {
+                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown top level type:" + tl, node)
                         v.accept(i);
                     }
+                } else if ("Api" == u.getOriginalTopLevelText()) {
+                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Redundant fragment name:" + tl, node)
+                    v.accept(i);
                 }
+            }
         }
     }
 
@@ -2053,7 +2053,7 @@ class FixedFacetsValidator implements NodeValidator {
             var dp=node.lowLevel().dumpToObject(true);
             if (dp){
                 dp=dp[Object.keys(dp)[0]];}
-            
+
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
                 validateObject.getErrors().forEach(e=>v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath( node,e), false)));
@@ -2063,7 +2063,7 @@ class FixedFacetsValidator implements NodeValidator {
 }
 
 class TypeDeclarationValidator implements NodeValidator{
-    
+
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor) {
         var nc=node.definition();
         var rof = node.parsedType();
@@ -2097,7 +2097,7 @@ class TypeDeclarationValidator implements NodeValidator{
         }
 
     }
-    
+
     private checkAnnotationTarget(attr:hl.IAttribute,v:hl.ValidationAcceptor){
         var val = attr.value();
         if(val==null){
@@ -2138,7 +2138,7 @@ class TypeDeclarationValidator implements NodeValidator{
         "Extension" : true
     };
 }
-function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{    
+function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{
     var src= e.getValidationPath();
     return findElementAtPath(node,src);
 }
@@ -2156,9 +2156,12 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
         return n;
     }
     var chld=n.children();
-    for (var i=0;i<chld.length;i++){
-        if (chld[i].name()=== p.name){
-            return findElementAtPath(chld[i], p.child)
+    for (var ch of chld){
+        if(ch.isAttr()&&(<hlimpl.ASTPropImpl>ch.asAttr()).isFromKey()){
+            continue;
+        }
+        if (ch.name()=== p.name){
+            return findElementAtPath(ch, p.child)
         }
     }
     if (!n.lowLevel()){
