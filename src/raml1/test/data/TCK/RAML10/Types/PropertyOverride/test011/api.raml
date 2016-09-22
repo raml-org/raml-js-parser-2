@@ -1,0 +1,21 @@
+#%RAML 1.0
+---
+title: test API
+types:
+  strType1:
+    properties:
+      name:
+        type: string
+        maxLength: 2
+  strType2:
+    properties:
+      name:
+        type: string
+        minLength: 5
+  ParentType:
+    properties:
+      p1: strType1
+  Childtype:
+    type: ParentType
+    properties:
+      p1: strType2

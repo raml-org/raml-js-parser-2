@@ -4,9 +4,9 @@
   "specification": {
     "types": [
       {
-        "PropertyType1": {
-          "name": "PropertyType1",
-          "displayName": "PropertyType1",
+        "strType1": {
+          "name": "strType1",
+          "displayName": "strType1",
           "type": [
             "object"
           ],
@@ -19,6 +19,7 @@
                 "string"
               ],
               "required": true,
+              "maxLength": 2,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -47,49 +48,9 @@
         }
       },
       {
-        "PropertyType2": {
-          "name": "PropertyType2",
-          "displayName": "PropertyType2",
-          "type": [
-            "PropertyType1"
-          ],
-          "required": true,
-          "properties": {
-            "name2": {
-              "name": "name2",
-              "displayName": "name2",
-              "type": [
-                "string"
-              ],
-              "required": true,
-              "__METADATA__": {
-                "primitiveValuesMeta": {
-                  "displayName": {
-                    "calculated": true
-                  },
-                  "required": {
-                    "insertedAsDefault": true
-                  }
-                }
-              }
-            }
-          },
-          "__METADATA__": {
-            "primitiveValuesMeta": {
-              "displayName": {
-                "calculated": true
-              },
-              "required": {
-                "insertedAsDefault": true
-              }
-            }
-          }
-        }
-      },
-      {
-        "PropertyType3": {
-          "name": "PropertyType3",
-          "displayName": "PropertyType3",
+        "strType2": {
+          "name": "strType2",
+          "displayName": "strType2",
           "type": [
             "object"
           ],
@@ -99,9 +60,10 @@
               "name": "name",
               "displayName": "name",
               "type": [
-                "boolean"
+                "string"
               ],
               "required": true,
+              "minLength": 5,
               "__METADATA__": {
                 "primitiveValuesMeta": {
                   "displayName": {
@@ -130,19 +92,19 @@
         }
       },
       {
-        "Type1": {
-          "name": "Type1",
-          "displayName": "Type1",
+        "ParentType": {
+          "name": "ParentType",
+          "displayName": "ParentType",
           "type": [
             "object"
           ],
           "required": true,
           "properties": {
-            "testProperty": {
-              "name": "testProperty",
-              "displayName": "testProperty",
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
               "type": [
-                "PropertyType1"
+                "strType1"
               ],
               "required": true,
               "__METADATA__": {
@@ -173,19 +135,19 @@
         }
       },
       {
-        "Type2": {
-          "name": "Type2",
-          "displayName": "Type2",
+        "Childtype": {
+          "name": "Childtype",
+          "displayName": "Childtype",
           "type": [
-            "Type1"
+            "ParentType"
           ],
           "required": true,
           "properties": {
-            "testProperty": {
-              "name": "testProperty",
-              "displayName": "testProperty",
+            "p1": {
+              "name": "p1",
+              "displayName": "p1",
               "type": [
-                "PropertyType3"
+                "strType2"
               ],
               "required": true,
               "__METADATA__": {
@@ -213,23 +175,23 @@
         }
       }
     ],
-    "title": "test"
+    "title": "test API"
   },
   "errors": [
     {
       "code": 11,
-      "message": "Restrictions conflict between types 'Type2' and 'Type1': should be of type string and should be of type boolean",
-      "path": "test3.raml",
+      "message": "Restrictions conflict between types 'Childtype' and 'ParentType': ['strType1.name.maxLength=2' is less than 'strType2.name.minLength=5'. The minLength cannot be higher than the maxLength.]",
+      "path": "api.raml",
       "range": {
         "start": {
-          "line": 21,
+          "line": 20,
           "column": 6,
-          "position": 320
+          "position": 327
         },
         "end": {
-          "line": 21,
-          "column": 18,
-          "position": 332
+          "line": 20,
+          "column": 8,
+          "position": 329
         }
       }
     }
