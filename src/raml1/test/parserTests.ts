@@ -470,7 +470,7 @@ describe('Parser regression tests', function () {
 
     //TODO correct test after bug fix
     it ("recurrent errors3 " ,function(){
-        testErrors(util.data("parser/typexpressions/tr3.raml"),["recurrent type as an option of union type", "recurrent type as an option of union type"]);
+        testErrors(util.data("parser/typexpressions/tr3.raml"),["recurrent type as an option of union type", "recurrent type as an option of union type", "recurrent type definition"]);
     })
 
     //TODO correct test after bug fix
