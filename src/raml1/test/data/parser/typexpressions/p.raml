@@ -18,9 +18,14 @@ types:
           "kind": "Car"
           "name": "Ford"
           "price": 20000
+          "gallonsPerMile": 0.1
 
   Car:
     type: Product
     discriminatorValue: Car
     properties:
       gallonsPerMile: number
+
+  CellPhone:
+    type: Product
+    discriminatorValue: cell phone

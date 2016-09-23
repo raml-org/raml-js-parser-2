@@ -613,11 +613,11 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                 }
 
             })
-            if (highLevelNode.parent()&&!highLevelNode.parent().parent()){
-                if (rtypes.builtInTypes().get(highLevelNode.name())){
-                    v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"redefining a built in type:"+highLevelNode.name(),highLevelNode));
-                }
-            }
+            // if (highLevelNode.parent()&&!highLevelNode.parent().parent()){
+            //     if (rtypes.builtInTypes().get(highLevelNode.name())){
+            //         v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"redefining a built in type:"+highLevelNode.name(),highLevelNode));
+            //     }
+            // }
 
             new RecurrentOverlayValidator().validate(highLevelNode, v);
             new RecurrentValidateChildrenKeys().validate(highLevelNode, v);
