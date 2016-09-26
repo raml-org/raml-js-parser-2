@@ -328,7 +328,7 @@ export class ReferencePatcher{
             if (stringToPatch && stringToPatch.indexOf("<<") >= 0) {
                 var doContinue = true;
                 var types = (<hlimpl.ASTNodeImpl>rootUnit.highLevel()).types();
-                newValue = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
+                var newValue1 = transformer.transform(stringToPatch, true, ()=>doContinue, (val, tr)=> {
                     var newVal = this.resolveReferenceValueBasic(val, rootUnit, resolver, tr.unitsChain, range);
                     if (newVal == null) {
                         newVal = new PatchedReference(null,val,this.collectionName(range),rootUnit,PatchMode.DEFAULT);
@@ -348,10 +348,11 @@ export class ReferencePatcher{
                         doContinue = false;
                     }
                     return newVal;
-                }).value;
+                });
+                newValue = newValue1.value;
             }
         }
-        if (newValue === undefined) {
+        if (newValue === undefined || !instanceOfPatchedReference(newValue)) {
             newValue = this.resolveReferenceValueBasic(stringToPatch, rootUnit, resolver, units, range);
         }
         return newValue;
@@ -935,6 +936,16 @@ export class PatchedReference{
         var delim = this._mode == PatchMode.PATH ? "/" : ".";
         return this._namespace + delim + this._name;
     }
+}
+
+export function instanceOfPatchedReference(instance : any) : instance is PatchedReference {
+    if (!instance) return false;
+    
+    return instance.namespace != null && typeof(instance.namespace) == "function" &&
+        instance.name != null && typeof(instance.name) == "function" &&
+        instance.collectionName != null && typeof(instance.collectionName) == "function" &&
+        instance.referencedUnit != null && typeof(instance.referencedUnit) == "function" &&
+        instance.mode != null && typeof(instance.mode) == "function";
 }
 
 class ElementsCollection{
