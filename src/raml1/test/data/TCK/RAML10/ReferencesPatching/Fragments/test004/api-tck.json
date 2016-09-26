@@ -264,7 +264,7 @@
       "trace": [
         {
           "code": 11,
-          "message": "integer is expected",
+          "message": "Error in the included file: integer is expected",
           "path": "api.raml",
           "range": {
             "start": {
