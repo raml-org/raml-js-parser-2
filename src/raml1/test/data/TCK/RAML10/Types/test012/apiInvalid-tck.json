@@ -106,14 +106,14 @@
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 13,
-          "column": 10,
-          "position": 220
+          "line": 15,
+          "column": 14,
+          "position": 263
         },
         "end": {
-          "line": 13,
-          "column": 23,
-          "position": 233
+          "line": 16,
+          "column": 33,
+          "position": 314
         }
       }
     },
@@ -123,14 +123,14 @@
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 13,
-          "column": 10,
-          "position": 220
+          "line": 16,
+          "column": 14,
+          "position": 295
         },
         "end": {
-          "line": 13,
-          "column": 23,
-          "position": 233
+          "line": 16,
+          "column": 27,
+          "position": 308
         }
       }
     }

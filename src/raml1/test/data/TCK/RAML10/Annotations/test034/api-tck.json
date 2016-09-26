@@ -275,14 +275,14 @@
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 21,
-          "column": 2,
-          "position": 384
+          "line": 22,
+          "column": 4,
+          "position": 396
         },
         "end": {
-          "line": 21,
-          "column": 8,
-          "position": 390
+          "line": 22,
+          "column": 22,
+          "position": 414
         }
       }
     },
