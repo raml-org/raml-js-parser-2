@@ -3586,7 +3586,7 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
     var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p);
     if (original) {
         original.extras.push(error);
-        if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
+        if(node.valueKind()==yaml.Kind.INCLUDE_REF) {
             error.message = "Error in the included file: " + error.message;
         }
         error = original;
