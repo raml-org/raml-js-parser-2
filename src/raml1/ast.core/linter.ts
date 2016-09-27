@@ -2089,7 +2089,8 @@ class TypeDeclarationValidator implements NodeValidator{
 
             v.accept(issue);
         }
-        if(node.property()&&universeHelpers.isAnnotationTypesProperty(node.property())){
+        if((node.property()&&universeHelpers.isAnnotationTypesProperty(node.property()))
+            ||hlimpl.isAnnotationTypeFragment(node)){
             var atAttrs = node.attributes(universes.Universe10.TypeDeclaration.properties.allowedTargets.name);
             for(var attr of atAttrs){
                 this.checkAnnotationTarget(attr,v);
