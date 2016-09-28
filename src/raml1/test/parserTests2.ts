@@ -691,7 +691,7 @@ describe('Union types', function(){
 
         var errors:any=util.validateNode(api);
         assert.equal(errors.length, 1)
-        assert.equal(errors[0].message, "Using unknown property 'hasTail' as discriminator")
+        assert.equal(errors[0].message, "You can not specify `discriminator` for union types")
         assert.equal(errors[0].start, 125)
     })
 });
