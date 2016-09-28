@@ -1,0 +1,13 @@
+#%RAML 1.0 Library
+uses:
+  - File1: !include file1.raml
+
+types:
+  Base:
+    type: object
+    properties:
+      name: string
+  Full:
+    type: Base
+    properties:
+      file1: File1.Base

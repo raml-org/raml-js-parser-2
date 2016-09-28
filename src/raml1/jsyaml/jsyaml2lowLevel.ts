@@ -66,6 +66,7 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
     private stu:boolean;
     private _lineMapper:lowlevel.LineMapper;
     private _hl:highlevel.IParseResult
+    private _includedByPaths:string[] = []
     highLevel():highlevel.IParseResult{
         if (this._hl){
             return this._hl;
@@ -94,7 +95,11 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
             if (x.key()=="uses"){
                 x.children().forEach(y=>{
                     arr.push({
-                        includePath(){return y.value()}
+                        includePath(){
+                            var val = y.value();
+                            if (typeof(val) != "string") return null;
+                            return val;
+                        }
                     })
                 })
             }
@@ -268,6 +273,20 @@ export class CompilationUnit implements lowlevel.ICompilationUnit{
         return _.find(this.ast().children(),
             x=>x.key()==universes.Universe10.Overlay.properties.extends.name);
 
+    }
+
+    addIncludedBy(path:string) : void {
+        if (!this.includedByContains(path)) {
+            this._includedByPaths.push(path)
+        }
+    }
+
+    includedByContains(path:string) : boolean {
+        return _.find(this._includedByPaths,currentPath=>{return currentPath==path}) != null;
+    }
+    
+    getIncludedByPaths() : string[] {
+        return this._includedByPaths;
     }
 }
 
@@ -2286,12 +2305,17 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     }
 
     addIncludeError(error: Error) {
-        this._errors.push(error);
-        if (!(<any>this._node).includeErrors) {
-            (<any>this._node).includeErrors = []
-        }
+        if (_.find(this._errors,currentError=>{return currentError.message==error.message})) return;
 
-        (<any>this._node).includeErrors.push(error);
+        var node : any = this._node;
+        if (!node.includeErrors) {
+            node.includeErrors = []
+
+        }
+        if (_.find(node.includeErrors,(currentError:any)=>{return currentError.message==error.message})) return;
+
+        this._errors.push(error);
+        node.includeErrors.push(error);
     }
 
     parent():ASTNode{
@@ -2444,6 +2468,13 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     return null;
                 }
                 else if (resolved.isRAMLUnit() && this.canInclude(resolved)) {
+                    var currentUnit : CompilationUnit = <CompilationUnit>this.unit();
+                    var resolvedUnit : CompilationUnit = <CompilationUnit>resolved;
+                    resolvedUnit.addIncludedBy(currentUnit.absolutePath());
+                    currentUnit.getIncludedByPaths().forEach(includedByPath=>{
+                        resolvedUnit.addIncludedBy(includedByPath);
+                    })
+
                     var ast = resolved.ast();
                     if (ast) {
                         return ast.dumpToObject(full);
@@ -3059,17 +3090,30 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     if (resolved == null) {
                         result = [];
                     }
-                    else if (resolved.isRAMLUnit() && this.canInclude(resolved)) {
-                        var ast = resolved.ast();
-                        if (ast) {
-                            if(this.cacheChildren){
-                                ast = <ASTNode>toChildCachingNode(ast);
-                            } //else {
-                            //    ast = <ASTNode>toIncludingNode(ast);
-                            //}
+                    else if (resolved.isRAMLUnit()) {
+                        if (this.canInclude(resolved)) {
+                            var currentUnit : CompilationUnit = <CompilationUnit>this.unit();
+                            var resolvedUnit : CompilationUnit = <CompilationUnit>resolved;
+                            resolvedUnit.addIncludedBy(currentUnit.absolutePath());
+                            currentUnit.getIncludedByPaths().forEach(includedByPath=>{
+                                resolvedUnit.addIncludedBy(includedByPath);
+                            })
 
-                            result = (<ASTNode> resolved.ast()).children(this, null);
-                            this.setIncludesContents(true);
+                            var ast = resolved.ast();
+                            if (ast) {
+                                if(this.cacheChildren){
+                                    ast = <ASTNode>toChildCachingNode(ast);
+                                } //else {
+                                //    ast = <ASTNode>toIncludingNode(ast);
+                                //}
+
+                                result = (<ASTNode> resolved.ast()).children(this, null);
+                                this.setIncludesContents(true);
+                            }
+                        } else {
+                            if ((<any>this).addIncludeError) {
+                                 (<any>this).addIncludeError(new Error("Recursive definition"))
+                            }
                         }
                     }
                 }
@@ -3106,7 +3150,7 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             includedFrom = includedFrom.includedFrom();
         }
 
-        return true;
+        return !(<CompilationUnit>this.unit()).includedByContains(unit.absolutePath());
     }
 
     directChildren(inc:ASTNode=null,anc:ASTNode=null,inOneMemberMap:boolean=true):lowlevel.ILowLevelASTNode[] {
@@ -3810,7 +3854,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
             var includeNodes = unit.getIncludeNodes();
             includeNodes.forEach(x=>{
                 var ip = x.includePath();
-
+                if (!ip) return;
                 var includeReference = refResolvers.getIncludeReference(ip);
 
                 if(includeReference) {

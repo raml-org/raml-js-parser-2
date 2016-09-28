@@ -1250,7 +1250,17 @@ describe('RAML10/Dead Loop Tests/Includes',function(){
 
     it("test002", function () {
         this.timeout(15000);
-        testErrors(util.data("./parser/deadLoopTests/Includes/test002/api.raml"));
+        testErrors(util.data("./parser/deadLoopTests/Includes/test002/api.raml"),["Recursive definition"]);
+    });
+
+    it("test003", function () {
+        this.timeout(15000);
+        testErrorsByNumber(util.data("./parser/deadLoopTests/Includes/test003/file1.raml"),2);
+    });
+
+    it("test004", function () {
+        this.timeout(15000);
+        testErrors(util.data("./parser/deadLoopTests/Includes/test002/api.raml"),["Recursive definition"]);
     });
 
 });

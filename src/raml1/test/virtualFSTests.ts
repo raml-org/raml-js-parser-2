@@ -26,7 +26,7 @@ if (typeof window === 'undefined') {
 }
 
 describe('Virtual File System Tests', function() {
-    this.timeout(15000);
+    this.timeout(30000);
     it('Basic test for virtual file system integration', function (done) {
         testAPI("./vfsTests/test001/api.raml").should.be.fulfilled.and.notify(done);
     });
@@ -41,8 +41,12 @@ describe('Virtual File System Tests', function() {
     });
 
     it('Include path exceeding file system root must cause warning 2', function (done) {
+        // process.once("uncaughtException", function (error) {
+        //     console.log("HEREHERE: " + error)
+        // })
         testAPI("./vfsTests/test004/api.raml").should.be.rejectedWith(
             /Resolved include path exceeds file system root/).and.notify(done);
+
     });
 
     it("RAML references test", function (done) {
@@ -152,6 +156,13 @@ function testAPI(_apiPath:string):any{
     return vfsInstance.directory("/").then(x=>{
             return putEntry(0);
         }).then(x=> {
+            // index.loadApi(apiRelPath, {
+            //     fsResolver: fsResolver,
+            //     httpResolver: httpResolver
+            // }).catch(function (theError) {
+            //     console.log("Achtung!!!!!")
+            //     console.log(theError)
+            // })
             return index.loadApi(apiRelPath, {
                 fsResolver: fsResolver,
                 httpResolver: httpResolver
@@ -159,7 +170,7 @@ function testAPI(_apiPath:string):any{
         }).then(x=>{
             return inspect(x,apiDir);
         });
-    
+
 }
 
 function getContent(p:string, rootDir:string, result:any = {}){
@@ -178,6 +189,10 @@ function getContent(p:string, rootDir:string, result:any = {}){
 }
 
 function inspect(node:parserCore.BasicNode,apiDir:string):Promise<void>{
+    // console.log("INSPECTING:" + apiDir)
+    // try {
+
+
     if(!node){
         return Promise.reject(new Error("Failed to load RAML"));
     }
@@ -213,4 +228,7 @@ function inspect(node:parserCore.BasicNode,apiDir:string):Promise<void>{
 ${console.warn(diff.map(x=>x.message("actual","expected")).join("\n\n"))}`
         return Promise.reject(new Error(message));
     }
+    // } catch (Error) {
+    //     console.log("INSPECTION EXCEPTION!: " + Error)
+    // }
 }
