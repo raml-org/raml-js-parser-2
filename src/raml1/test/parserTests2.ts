@@ -34,7 +34,7 @@ describe('API parsing', function() {
         testErrors(util.data('parser/api/api04.raml'));
     });
     it('Should not allow using sequences in global map declarations', function(){
-        testErrors(util.data('parser/api/api01-r.raml'),["resourceTypes should be a map in RAML 1.0"]);
+        testErrors(util.data('parser/api/api01-r.raml'),["'resourceTypes' should be a map in RAML 1.0"]);
     });
     it('Should parse mediaType', function(){
         testErrors(util.data('parser/api/api05.raml'));
@@ -65,11 +65,11 @@ describe('API parsing', function() {
     });
 
     it('Should fail if there is a root property with wrong displayName', function(){
-        testErrors(util.data('parser/api/api12.raml'), ["Unknown node: \\w+"]);
+        testErrors(util.data('parser/api/api12.raml'), ["Unknown node: '\\w+'"]);
     });
 
     it('Should fail if there is a root property with array', function(){
-        testErrors(util.data('parser/api/api13.raml'),["Unknown node: \\[\\w+\\]"]);
+        testErrors(util.data('parser/api/api13.raml'),["Unknown node: '\\[\\w+\\]'"]);
     });
 
 //  #2156.
@@ -96,7 +96,7 @@ describe('API parsing', function() {
         });
 
         it('Should fail when declaring a property inside a URI parameter that is not valid', function(){
-            testErrors(util.data('parser/api/api17.raml'), ["specifying unknown facet:wrongPropertyName"]);
+            testErrors(util.data('parser/api/api17.raml'), ["specifying unknown facet: 'wrongPropertyName'"]);
         });
 
         it('Should not fail when declaring an enum with duplicated values', function(){
@@ -183,7 +183,7 @@ describe('Resource parsing', function() {
     // });
 
     it('Disabled body test 0.8.', function(){
-        testErrors(util.data('parser/resource/res12.raml'), ["Request body is disabled for \"trace\" method"]);
+        testErrors(util.data('parser/resource/res12.raml'), ["Request body is disabled for 'trace' method"]);
     });
 
     // it('Disabled body test 1.0.', function(){
@@ -266,7 +266,7 @@ describe('Resource type', function(){
     // });
 
     it('Disabled body test 0.8.', function(){
-        testErrors(util.data('parser/resourceType/resType13.raml'), ["Request body is disabled for \"trace\" method"]);
+        testErrors(util.data('parser/resourceType/resType13.raml'), ["Request body is disabled for 'trace' method"]);
     });
 
     // it('Disabled body test 1.0.', function(){
@@ -284,7 +284,7 @@ describe('Method', function(){
     });
 
     it('Only reserved method names are applicable', function(){
-        testErrors(util.data('parser/method/meth03.raml'), ["Unknown node: set"]);
+        testErrors(util.data('parser/method/meth03.raml'), ["Unknown node: 'set'"]);
     });
 
     it('Should parse header and check that it validates correctly', function(){
@@ -304,7 +304,7 @@ describe('Method', function(){
     });
 
     it('Should check that allowed only \'HTTP\' and \'HTTPS\' values', function(){
-        testErrors(util.data('parser/method/meth08.raml'), ["Invalid value:\\w+ allowed values are:HTTP,HTTPS","Invalid value:\\w+ allowed values are:HTTP,HTTPS"]);
+        testErrors(util.data('parser/method/meth08.raml'), ["Invalid value: '\\w+' allowed values are: 'HTTP', 'HTTPS'","Invalid value: '\\w+' allowed values are: 'HTTP', 'HTTPS'"]);
     });
 
     it('Should parse body mimeType', function(){
@@ -324,11 +324,11 @@ describe('Method', function(){
     });
 
     it('Test 13', function(){
-        testErrors(util.data('parser/method/meth13.raml'), ["queryParameters already specified.", "queryString already specified."]);
+        testErrors(util.data('parser/method/meth13.raml'), ["'queryParameters' is already specified.", "'queryString' is already specified."]);
     });
 
     it('Test 14', function(){
-        testErrors(util.data('parser/method/meth14.raml'), ["queryParameters already specified.", "queryString already specified."]);
+        testErrors(util.data('parser/method/meth14.raml'), ["'queryParameters' is already specified.", "'queryString' is already specified."]);
     });
 });
 
@@ -512,7 +512,7 @@ describe('Type', function(){
     });
 
     it('Repeat facet no longer exists', function(){
-        testErrors(util.data('parser/type/t28.raml'), ['specifying unknown facet:repeat']);
+        testErrors(util.data('parser/type/t28.raml'), ["specifying unknown facet: 'repeat'"]);
     });
 
     it('Custom facets are recognized', function(){
@@ -612,7 +612,7 @@ describe('Object types', function(){
     });
 
     it('Should parse property required option',function(){
-        testErrors(util.data('parser/objectTypes/oType04.raml'),["Required property: comment_id is missed"]);
+        testErrors(util.data('parser/objectTypes/oType04.raml'),["Required property 'comment_id' is missing"]);
     });
 
     it('Should parse property default option',function(){
@@ -691,7 +691,7 @@ describe('Union types', function(){
 
         var errors:any=util.validateNode(api);
         assert.equal(errors.length, 1)
-        assert.equal(errors[0].message, "Using unknown property 'hasTail' as discriminator")
+        assert.equal(errors[0].message, "You can not specify 'discriminator' for union types")
         assert.equal(errors[0].start, 125)
     })
 });
@@ -712,7 +712,7 @@ describe('Object type Inheritance', function(){
 
 // #2157
    it('Should parse inheritance which should works in the types and in the mimeTypes',function(){
-       testErrors(util.data('parser/objectTypeInheritance/oti04.raml'),["Required property: baseField is missed"]);
+       testErrors(util.data('parser/objectTypeInheritance/oti04.raml'),["Required property 'baseField' is missing"]);
    });
 
 // #2061
@@ -748,7 +748,7 @@ describe('External Types', function(){
     // });
 
     it('Should validate json schemas',function(){
-        testErrors(util.data('parser/externalTypes/eType05.raml'),["It is not JSON schema(can not parse JSON:Unexpected token p)"]);
+        testErrors(util.data('parser/externalTypes/eType05.raml'),["It is not JSON schema(can not parse JSON: Unexpected token p)"]);
     });
 
     it('Should parse json schemas referencing json schemas',function(){
@@ -837,7 +837,7 @@ describe("Individual errors",function(){
     })
     it('Should not allow API fragment',function(){
         testErrors(util.data('parser/fragment/ApiInvalid.raml'),
-        ["Redundant fragment name:Api", "Missing required property title"]);
+        ["Redundant fragment name: 'Api'", "Missing required property: 'title'"]);
     });
     
 })

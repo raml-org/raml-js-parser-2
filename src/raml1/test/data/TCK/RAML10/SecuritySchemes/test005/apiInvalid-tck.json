@@ -67,7 +67,7 @@
   "errors": [
     {
       "code": 9,
-      "message": "authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI",
+      "message": "'authorizationGrants' value should be one of 'authorization_code', 'implicit', 'password', 'client_credentials' or to be an abolute URI",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

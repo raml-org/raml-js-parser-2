@@ -393,7 +393,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: propertyFromType1 is missed",
+      "message": "Required property 'propertyFromType1' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -410,7 +410,7 @@
     },
     {
       "code": 11,
-      "message": "Unknown property:propertyFromType2",
+      "message": "Unknown property: 'propertyFromType2'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

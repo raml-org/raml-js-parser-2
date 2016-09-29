@@ -209,7 +209,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: x is missed",
+      "message": "Required property 'x' is missing",
       "path": "api.raml",
       "range": {
         "start": {
@@ -226,7 +226,7 @@
     },
     {
       "code": 11,
-      "message": "Unknown property:x2",
+      "message": "Unknown property: 'x2'",
       "path": "api.raml",
       "range": {
         "start": {

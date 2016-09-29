@@ -102,35 +102,35 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: someProperty is missed",
+      "message": "Required property 'someProperty' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 13,
-          "column": 10,
-          "position": 220
+          "line": 15,
+          "column": 14,
+          "position": 263
         },
         "end": {
-          "line": 13,
-          "column": 23,
-          "position": 233
+          "line": 16,
+          "column": 33,
+          "position": 314
         }
       }
     },
     {
       "code": 11,
-      "message": "Unknown property:someProperty1",
+      "message": "Unknown property: 'someProperty1'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
-          "line": 13,
-          "column": 10,
-          "position": 220
+          "line": 16,
+          "column": 14,
+          "position": 295
         },
         "end": {
-          "line": 13,
-          "column": 23,
-          "position": 233
+          "line": 16,
+          "column": 27,
+          "position": 308
         }
       }
     }

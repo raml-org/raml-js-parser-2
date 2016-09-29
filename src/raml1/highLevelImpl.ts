@@ -2002,3 +2002,19 @@ export function createBasicValidationAcceptor(errors:hl.ValidationIssue[]):hl.Va
     }
     return q;
 }
+
+export function isAnnotationTypeFragment(node:hl.IHighLevelNode):boolean{
+    if(node.parent()!=null){
+        return false;
+    }
+    var unit = node.lowLevel().unit();
+    if(unit==null){
+        return false;
+    }
+    var content = unit.contents();
+    var fLine = ramlFirstLine(content);
+    if(fLine.length<3){
+        return false;
+    }
+    return fLine[2] == "AnnotationTypeDeclaration";
+}

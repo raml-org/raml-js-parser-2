@@ -36,7 +36,7 @@
   "errors": [
     {
       "code": 3,
-      "message": "Missing required property title",
+      "message": "Missing required property: 'title'",
       "path": "api.raml",
       "range": {
         "start": {

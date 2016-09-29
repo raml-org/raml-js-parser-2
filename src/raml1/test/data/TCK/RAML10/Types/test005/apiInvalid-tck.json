@@ -186,7 +186,7 @@
     },
     {
       "code": 11,
-      "message": "Unknown property:name1",
+      "message": "Unknown property: 'name1'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -203,7 +203,7 @@
     },
     {
       "code": 11,
-      "message": "Required property: name is missed",
+      "message": "Required property 'name' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -220,7 +220,7 @@
     },
     {
       "code": 11,
-      "message": "Required property: age is missed",
+      "message": "Required property 'age' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

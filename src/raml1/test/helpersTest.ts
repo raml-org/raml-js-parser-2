@@ -72,7 +72,7 @@ describe('Helper methods', function () {
         var found=false;
         var apiObj = util.loadApiWrapper1("./testUnionType.raml");
         var m=apiObj.types()[3].validateInstance("Hello")
-        assert.equal(m[0],"string should match to ([a-z]|[A-Z]|[0-9]){8}");
+        assert.equal(m[0],"String should match to '([a-z]|[A-Z]|[0-9]){8}'");
     });
     it('Api testing component type', function () {
         var found=false;

@@ -71,7 +71,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "somePropertyhas cyclic dependency",
+      "message": "'someProperty' has cyclic dependency",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

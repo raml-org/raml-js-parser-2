@@ -61,7 +61,7 @@
   "errors": [
     {
       "code": 0,
-      "message": "Invalid value:FTP allowed values are:HTTP,HTTPS",
+      "message": "Invalid value: 'FTP' allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {
         "start": {
@@ -78,7 +78,7 @@
     },
     {
       "code": 0,
-      "message": "Invalid value:SMTP allowed values are:HTTP,HTTPS",
+      "message": "Invalid value: 'SMTP' allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {
         "start": {

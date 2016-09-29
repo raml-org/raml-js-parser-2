@@ -67,7 +67,7 @@
   "errors": [
     {
       "code": 2,
-      "message": "Unknown node: get",
+      "message": "Unknown node: 'get'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

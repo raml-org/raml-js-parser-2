@@ -231,7 +231,7 @@ describe('Resource Types Validations', function () {
       '  get:',
       '    description: Get'
     ]);
-    raml.load(definition).should.be.rejectedWith("Unknown node: /resource").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Unknown node: '/resource'").and.notify(done);
   });
 
   it('should succeed when given a usage property', function (done) {
@@ -247,7 +247,7 @@ describe('Resource Types Validations', function () {
       'post:',
       '  usage: This resourceType should be used for any collection of items'
     ]);
-    raml.load(definition).should.be.rejectedWith("Unknown node: usage").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Unknown node: 'usage'").and.notify(done);
   });
 
   describe('Optional Properties', function () {
@@ -453,7 +453,7 @@ describe('Resource Types Validations', function () {
     //FIXTEST message changed from /property: 'type\?' is invalid in a resource type/
     it('should fail when given a "type?" property', function (done) {
       var definition = resourceTypeSnippet([ 'type?: collection']);
-      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: type?").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: 'type?'").and.notify(done);
     });
 
     //it('should fail when given an "is?" property', function (done) {
@@ -466,7 +466,7 @@ describe('Resource Types Validations', function () {
       var definition = resourceTypeSnippet([
         'usage?: This resourceType should be used for any collection of items'
       ]);
-      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: usage?").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: 'usage?'").and.notify(done);
     });
 
     //FIXTEST changed message from /resource type cannot define child resources/
@@ -476,7 +476,7 @@ describe('Resource Types Validations', function () {
         '  get:',
         '    summary: Get'
       ]);
-      raml.load(definition).should.be.rejectedWith("Unknown node: /resource").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Unknown node: '/resource'").and.notify(done);
     });
   });
 
@@ -628,19 +628,19 @@ describe('Trait Validations', function () {
   //FIXTEST changed message from /property: 'unknown' is invalid in a trait/
   it('should fail when given an unknown property', function (done) {
     var definition = traitSnippet([ 'unknown: Some value']);
-    raml.load(definition).should.be.rejectedWith("Unknown node: unknown").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Unknown node: 'unknown'").and.notify(done);
   });
 
   //FIXTEST changed message from /property: 'is' is invalid in a trait/
   it('should fail when given an "is" property', function (done) {
     var definition = traitSnippet([ 'is: [someTrait]']);
-    raml.load(definition).should.be.rejectedWith("Unknown node: is").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Unknown node: 'is'").and.notify(done);
   });
 
   //FIXTEST changed message from /property: 'type' is invalid in a trait/
   it('should fail when given a "type" property', function (done) {
     var definition = traitSnippet([ 'type: [someType]']);
-    raml.load(definition).should.be.rejectedWith("Unknown node: type").and.notify(done);
+    raml.load(definition).should.be.rejectedWith("Unknown node: 'type'").and.notify(done);
   });
 
   //FIXTEST error message changed from /property: 'usage\?' is invalid in a trait/
@@ -649,19 +649,19 @@ describe('Trait Validations', function () {
       var definition = traitSnippet([
         'usage?: This trait should be used for ...'
       ]);
-      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in traits and their descendants: usage?").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Optional scalar properties are not allowed in traits and their descendants: 'usage?'").and.notify(done);
     });
 
     //FIXTEST changed message from /property: 'type\?' is invalid in a trait/
     it('should fail when given a "type?" property', function (done) {
       var definition = traitSnippet([ 'type?: collection']);
-      raml.load(definition).should.be.rejectedWith("Unknown node: type").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Unknown node: 'type'").and.notify(done);
     });
 
     //FIXTEST /property: 'is\?' is invalid in a trait/
     it('should fail when given an "is?" property', function (done) {
       var definition = traitSnippet([ 'is?: [secured]']);
-      raml.load(definition).should.be.rejectedWith("Unknown node: is").and.notify(done);
+      raml.load(definition).should.be.rejectedWith("Unknown node: 'is'").and.notify(done);
     });
 
     describe('method properties', function () {

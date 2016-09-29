@@ -150,7 +150,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: x is missed",
+      "message": "Required property 'x' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

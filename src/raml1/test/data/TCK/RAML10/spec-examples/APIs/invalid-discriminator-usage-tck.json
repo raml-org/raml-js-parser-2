@@ -146,35 +146,35 @@
   "errors": [
     {
       "code": 11,
-      "message": "you only can use `discriminator` with object types",
+      "message": "You can not specify 'discriminator' for union types",
       "path": "invalid-discriminator-usage.raml",
       "range": {
         "start": {
-          "line": 10,
-          "column": 2,
-          "position": 214
+          "line": 12,
+          "column": 4,
+          "position": 254
         },
         "end": {
-          "line": 10,
-          "column": 13,
-          "position": 225
+          "line": 12,
+          "column": 17,
+          "position": 267
         }
       }
     },
     {
       "code": 11,
-      "message": "you only can use `discriminator` with top level type definitions",
+      "message": "You can not specify 'discriminator' for inline type declarations",
       "path": "invalid-discriminator-usage.raml",
       "range": {
         "start": {
-          "line": 19,
-          "column": 10,
-          "position": 358
+          "line": 20,
+          "column": 12,
+          "position": 388
         },
         "end": {
-          "line": 19,
-          "column": 26,
-          "position": 374
+          "line": 20,
+          "column": 25,
+          "position": 401
         }
       }
     }

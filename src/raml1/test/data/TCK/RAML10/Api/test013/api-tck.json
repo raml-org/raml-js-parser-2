@@ -8,7 +8,7 @@
   "errors": [
     {
       "code": 2,
-      "message": "Unknown node: wrongPropertyName",
+      "message": "Unknown node: 'wrongPropertyName'",
       "path": "api.raml",
       "range": {
         "start": {

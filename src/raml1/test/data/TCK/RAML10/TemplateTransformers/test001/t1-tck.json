@@ -186,7 +186,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Unknown function applied to parameter: !unknown",
+      "message": "Unknown function applied to parameter: '!unknown'",
       "path": "t1.raml",
       "range": {
         "start": {

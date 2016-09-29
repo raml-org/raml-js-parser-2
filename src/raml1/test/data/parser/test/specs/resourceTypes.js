@@ -163,7 +163,7 @@ describe('Resource Types', function () {
       '   type:',
       '       type1:',
       '           typeName: type2'
-    ].join('\n')).should.be.rejectedWith("Unrecognized resource type 'type2'.").and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Unrecognized resource type: 'type2'.").and.notify(done);
   });
 
   //FIXTEST capitalized error message
@@ -179,7 +179,7 @@ describe('Resource Types', function () {
       '   type:',
       '       type1:',
       '           resourcePath: does-not-matter'
-    ].join('\n')).should.be.rejectedWith('Invalid parameter name: resourcePath is reserved').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Invalid parameter name: 'resourcePath' is reserved").and.notify(done);
   });
 
   it('should provide reserved <<resourcePathName>> parameter', function (done) {
@@ -234,6 +234,6 @@ describe('Resource Types', function () {
       '  type:',
       '    resourceType1:',
       '      resourceTypeName:'
-    ].join('\n')).should.be.rejectedWith('value was not provided for parameter: resourceTypeName').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Value is not provided for parameter: 'resourceTypeName'").and.notify(done);
   });
 });

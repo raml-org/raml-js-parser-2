@@ -75,7 +75,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: title?? is missed",
+      "message": "Required property 'title??' is missing",
       "path": "api.raml",
       "range": {
         "start": {

@@ -30,7 +30,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "recurrent array type definition",
+      "message": "Recurrent array type definition",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

@@ -46,7 +46,7 @@
   "errors": [
     {
       "code": 2,
-      "message": "Unknown node: set",
+      "message": "Unknown node: 'set'",
       "path": "meth03.raml",
       "range": {
         "start": {

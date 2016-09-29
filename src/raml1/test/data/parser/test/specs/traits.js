@@ -33,7 +33,7 @@ describe('Traits', function () {
       '           - trait1:',
       '               param1: value1',
       '               param2: value2'
-    ].join('\n')).should.be.rejectedWith('Unused parameter: param2').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Unused parameter: 'param2'").and.notify(done);
   });
 
   //FIXTEST (capitalized error message)
@@ -53,7 +53,7 @@ describe('Traits', function () {
       '       resourceType1:',
       '           param1: value1',
       '           param2: value2'
-    ].join('\n')).should.be.rejectedWith('Unused parameter: param2').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Unused parameter: 'param2'").and.notify(done);
   });
 
   //FIXTEST (inserted into 'expected' inherited 'is' for resource)
@@ -136,7 +136,7 @@ describe('Traits', function () {
       '       is:',
       '         - trait1:',
       '             methodName: does-not-matter'
-    ].join('\n')).should.be.rejectedWith('Invalid parameter name: methodName is reserved').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Invalid parameter name: 'methodName' is reserved").and.notify(done);
   });
 
   //FIXTEST (capitalized error message)
@@ -153,7 +153,7 @@ describe('Traits', function () {
       '       is:',
       '         - trait1:',
       '             resourcePath: does-not-matter'
-    ].join('\n')).should.be.rejectedWith('Invalid parameter name: resourcePath is reserved').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Invalid parameter name: 'resourcePath' is reserved").and.notify(done);
   });
 
   it('should not crash if applied trait has value of null (RT-364)', function (done) {
@@ -231,6 +231,6 @@ describe('Traits', function () {
       '  type:',
       '    resourceType1:',
       '      traitName:'
-    ].join('\n')).should.be.rejectedWith('value was not provided for parameter: traitName').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Value is not provided for parameter: 'traitName'").and.notify(done);
   });
 });

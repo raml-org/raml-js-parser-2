@@ -249,7 +249,7 @@
     },
     {
       "code": 11,
-      "message": "Required property: c is missed",
+      "message": "Required property 'c' is missing",
       "path": "api.raml",
       "range": {
         "start": {

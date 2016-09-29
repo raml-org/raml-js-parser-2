@@ -271,24 +271,24 @@
   "errors": [
     {
       "code": 11,
-      "message": "string should match to [a-zA-Z0-9]{8,32}",
+      "message": "String should match to '[a-zA-Z0-9]{8,32}'",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 21,
-          "column": 2,
-          "position": 384
+          "line": 22,
+          "column": 4,
+          "position": 396
         },
         "end": {
-          "line": 21,
-          "column": 8,
-          "position": 390
+          "line": 22,
+          "column": 22,
+          "position": 414
         }
       }
     },
     {
       "code": 11,
-      "message": "string should match to [a-zA-Z0-9]{8,32}",
+      "message": "String should match to '[a-zA-Z0-9]{8,32}'",
       "path": "api.raml",
       "range": {
         "start": {

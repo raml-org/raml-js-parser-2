@@ -61,7 +61,7 @@
   "errors": [
     {
       "code": 3,
-      "message": "Missing required property accessTokenUri",
+      "message": "Missing required property: 'accessTokenUri'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -78,7 +78,7 @@
     },
     {
       "code": 3,
-      "message": "Missing required property authorizationUri",
+      "message": "Missing required property: 'authorizationUri'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
