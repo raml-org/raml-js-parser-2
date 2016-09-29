@@ -15,12 +15,18 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "gitBranch" : "hotfix-for-1.1.3",
+    "gitBranch": "develop",
     "installTypings" : true
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/dreamflyer/raml-xml-validation.git",
+    "installTypings" : true
+  },
+  "raml-json-validation" : {
+    "build" : "npm run build",
+    "gitUrl" : "https://github.com/dreamflyer/raml-json-validation.git",
+    "gitBranch" : false,
     "installTypings" : true
   },
   "ts-structure-parser" : {
