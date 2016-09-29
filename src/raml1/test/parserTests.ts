@@ -25,7 +25,7 @@ describe('Parser integration tests',function(){
 
     it ("Instagram",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/Instagram/api.raml"),["Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema:Content is not valid according to schema:Expected type \\w+ but found type null \\w+,null, Expected type \\w+ but found type null \\w+,null"]);
+        testErrors(util.data("../example-ramls/Instagram/api.raml"),["Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null", "Example does not conform to schema: Content is not valid according to schema: Expected type \\w+ but found type null \\w+,null, Expected type \\w+ but found type null \\w+,null"]);
     });
     it ("Omni",function(){
         this.timeout(15000);
@@ -54,11 +54,11 @@ describe('Parser integration tests',function(){
     });
     it ("core services",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/core-services/api.raml"),["Can not parse JSON:Unexpected token {", "Can not parse JSON:Unexpected token \\w+", "Can not parse JSON:Unexpected token \\w+"]);
+        testErrors(util.data("../example-ramls/core-services/api.raml"),["Can not parse JSON: Unexpected token {", "Can not parse JSON: Unexpected token \\w+", "Can not parse JSON: Unexpected token \\w+"]);
     });
     it ("cloudhub new logging",function(){
         this.timeout(15000);
-        testErrors(util.data("../example-ramls/cloudhub-new-logging/api.raml"),["Can not parse JSON:Unexpected token }"]);
+        testErrors(util.data("../example-ramls/cloudhub-new-logging/api.raml"),["Can not parse JSON: Unexpected token }"]);
     });
     it ("audit logging",function(){
         this.timeout(15000);
@@ -66,7 +66,7 @@ describe('Parser integration tests',function(){
     });
     it ("application monitoring",function(){
         this.timeout(15000)
-        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),["Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-rule appmonitor-rule", "Unrecognized schema 'appmonitor-rule.schema'", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Example does not conform to schema:Content is not valid according to schema:Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Unrecognized schema 'appmonitor'"]);
+        testErrors(util.data("../example-ramls/application-monitoring/api.raml"),["Unrecognized schema: 'appmonitor-rule.schema'", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-rule appmonitor-rule", "Unrecognized schema: 'appmonitor-rule.schema'", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Example does not conform to schema: Content is not valid according to schema: Reference has not been resolved during compilation: appmonitor-action appmonitor-action", "Unrecognized schema: 'appmonitor'"]);
     });
     //it ("api platform",function(){
     //    testErrors(util.data("../../../../example-ramls/api-platform/api.raml"));
@@ -112,13 +112,13 @@ describe('Id tests',function(){
 
 describe('Transformers tests',function(){
     it ("All transformer from spec should be valid.",function(){
-        testErrors(util.data("parser/transformers/t1.raml"), ["Unknown function applied to parameter: !\\w+"]);
+        testErrors(util.data("parser/transformers/t1.raml"), ["Unknown function applied to parameter: \'!\\w+\'"]);
     });
 });
 
 describe('Security Schemes tests', function () {
     it ("should fail if not all required settings specified" ,function(){
-        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property \\w+"]);
+        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property: \'\\w+\'"]);
     })
     it ("should pass when extra non-required settings specified" ,function(){
         testErrors(util.data("parser/securitySchemes/ss2/securityScheme.raml"));
@@ -150,7 +150,7 @@ describe('Security Schemes tests', function () {
         testErrors(util.data("parser/securitySchemes/ss10/securityScheme.raml"));
     })
     it ("grant type validation" ,function(){
-        testErrors(util.data("parser/custom/oath2.raml"),["authorizationGrants should be one of authorization_code,implicit,password,client_credentials or to be an abolute URI"]);
+        testErrors(util.data("parser/custom/oath2.raml"),["'authorizationGrants' value should be one of 'authorization_code', 'implicit', 'password', 'client_credentials' or to be an abolute URI"]);
     })
     it ("security scheme should be a seq in 0.8" ,function(){
         testErrorsByNumber(util.data("parser/custom/shemeShouldBeASeq.raml"),1);
@@ -170,25 +170,25 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/typexpressions/multiDimAndSig.raml"));
     //})
     it ("example validation" ,function(){
-        testErrors(util.data("parser/examples/ex1.raml"), ["Can not parse JSON example:Unexpected token d"]);
+        testErrors(util.data("parser/examples/ex1.raml"), ["Can not parse JSON example: Unexpected token d"]);
     })
     it ("example validation json against schema" ,function(){
         testErrors(util.data("parser/examples/ex2.raml"), ["Content is not valid according to schema"]);
     })
     it ("example validation yaml against schema" ,function(){
-        testErrors(util.data("parser/examples/ex3.raml"), ["Example does not conform to schema:Content is not valid according to schema:Additional properties not allowed: \\w+ \\w+"]);
+        testErrors(util.data("parser/examples/ex3.raml"), ["Example does not conform to schema: Content is not valid according to schema: Additional properties not allowed: \\w+ \\w+"]);
     })
     it ("example validation yaml against basic type" ,function(){
-        testErrors(util.data("parser/examples/ex4.raml"),["Required property: c is missed"]);
+        testErrors(util.data("parser/examples/ex4.raml"),["Required property 'c' is missing"]);
     })
     it ("example validation yaml against inherited type" ,function(){
-        testErrors(util.data("parser/examples/ex5.raml"), ["Required property: c is missed"]);
+        testErrors(util.data("parser/examples/ex5.raml"), ["Required property 'c' is missing"]);
     })
     it ("example validation yaml against array" ,function(){
-        testErrors(util.data("parser/examples/ex6.raml"),["Required property: c is missed"]);
+        testErrors(util.data("parser/examples/ex6.raml"),["Required property 'c' is missing"]);
     })
     it ("example in model" ,function(){
-        testErrors(util.data("parser/examples/ex7.raml"), ["string is expected","string is expected","Required property: c is missed"]);
+        testErrors(util.data("parser/examples/ex7.raml"), ["string is expected","string is expected","Required property 'c' is missing"]);
     })
     it ("another kind of examples" ,function(){
         testErrors(util.data("parser/examples/ex13.raml"), ["boolean is expected"]);
@@ -210,10 +210,10 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex12.raml"),["number is expected"]);
     })
     it ("objects are closed" ,function(){
-        testErrors(util.data("parser/examples/ex14.raml"), ["Unknown property:z"]);
+        testErrors(util.data("parser/examples/ex14.raml"), ["Unknown property: 'z'"]);
     })
     it ("enums restriction" ,function(){
-        testErrors(util.data("parser/examples/ex15.raml"),["value should be one of:val1,val2,3"]);
+        testErrors(util.data("parser/examples/ex15.raml"),["value should be one of: 'val1', 'val2', '3'"]);
     })
     it ("array facets" ,function(){
         testErrors(util.data("parser/examples/ex16.raml"), ["'Person.items.minItems=5' i.e. array items count should not be less than 5", "'Person.items2.maxItems=3' i.e. array items count should not be more than 3", "items should be unique"]);
@@ -252,7 +252,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex27.raml"), ["'MyType1.minLength=5' i.e. string length should not be less than 5"]);
     })
     it ("string facets4" ,function(){
-        testErrors(util.data("parser/examples/ex28.raml"), ["string should match to \\.5"]);
+        testErrors(util.data("parser/examples/ex28.raml"), ["string should match to '\\.5'"]);
     })
     it ("number facets1" ,function(){
         testErrors(util.data("parser/examples/ex29.raml"),["'MyType1.minimum=5' i.e. value should not be less than 5", "'MyType1.minimum=5' i.e. value should not be less than 5"]);
@@ -265,13 +265,13 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex31.raml"));
     })
     it ("media type" ,function(){
-        testErrors(util.data("parser/examples/ex32.raml"),["Can not parse JSON example:Unexpected token p"]);
+        testErrors(util.data("parser/examples/ex32.raml"),["Can not parse JSON example: Unexpected token p"]);
     })
     it ("number 0" ,function(){
         testErrors(util.data("parser/examples/ex33.raml"));
     })
     it ("example inside of inplace type" ,function(){
-        testErrors(util.data("parser/examples/ex34.raml"), ["Required property: x is missed","Unknown property:x2"]);
+        testErrors(util.data("parser/examples/ex34.raml"), ["Required property 'x' is missing","Unknown property: 'x2'"]);
     })
     it ("aws example" ,function(){
         testErrors(util.data("parser/examples/ex35.raml"));
@@ -292,7 +292,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/custom/res08.raml"));
     })
     it ("example is string 0.8" ,function(){
-        testErrors(util.data("parser/examples/ex44.raml"),["example should be a string"]);
+        testErrors(util.data("parser/examples/ex44.raml"),["'example' value should be a string"]);
     })
     it ("enums values restriction" ,function(){
         testErrors(util.data("parser/examples/ex37.raml"));
@@ -363,19 +363,19 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/media/m3.raml"), ["Form related media types can not be used in responses"]);
     })
     it ("annotations1" ,function(){
-        testErrors(util.data("parser/annotations/a.raml"), ["value should be one of:W,A"]);
+        testErrors(util.data("parser/annotations/a.raml"), ["value should be one of: 'W', 'A'"]);
     })
     it ("annotations2" ,function(){
         testErrors(util.data("parser/annotations/a2.raml"), ["boolean is expected"]);
     })
     it ("annotations3" ,function(){
-        testErrors(util.data("parser/annotations/a3.raml"), ["Required property: items is missed"]);
+        testErrors(util.data("parser/annotations/a3.raml"), ["Required property 'items' is missing"]);
     })
     it ("annotations4" ,function(){
         testErrors(util.data("parser/annotations/a4.raml"));
     })
     it ("annotations5" ,function(){
-        testErrors(util.data("parser/annotations/a5.raml"), ["Required property: y is missed"]);
+        testErrors(util.data("parser/annotations/a5.raml"), ["Required property 'y' is missing"]);
     })
     it ("annotations6" ,function(){
         testErrors(util.data("parser/annotations/a6.raml"));
@@ -387,7 +387,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a8.raml"));
     })
     it ("annotations9" ,function(){
-        testErrors(util.data("parser/annotations/a9.raml"), ["Required property: ee is missed"]);
+        testErrors(util.data("parser/annotations/a9.raml"), ["Required property 'ee' is missing"]);
     })
     it ("annotations10" ,function(){
         testErrors(util.data("parser/annotations/a10.raml"));
@@ -441,7 +441,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/annotations/a27.raml"),["number is expected"]);
     })
     it ("annotations28 (annotated scalar (unknown))" ,function(){
-        testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation (z2)"]);
+        testErrors(util.data("parser/annotations/a28.raml"),["unknown annotation: 'z2'"]);
     })
     it ("properties shortcut" ,function(){
         testErrors(util.data("parser/typexpressions/p.raml"));
@@ -519,7 +519,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr6.raml"), ["inheriting from unknown type"]);
     })
     it ("type deps" ,function(){
-        testErrors(util.data("parser/typexpressions/tr7.raml"),["Required property: element is missed"]);
+        testErrors(util.data("parser/typexpressions/tr7.raml"),["Required property 'element' is missing"]);
     })
     it ("inplace types 00" ,function(){
         testErrors(util.data("parser/typexpressions/tr8.raml"),["Null or undefined value is not allowed"]);//Ok for now lets improve later
@@ -528,7 +528,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/typexpressions/tr9.raml"),["Keys should be unique"]);//Ok for now lets improve later
     })
     it ("runtime types value" ,function(){
-        testErrors(util.data("parser/typexpressions/tr10.raml"),["Required property: y is missed"]);//Ok for now lets improve later
+        testErrors(util.data("parser/typexpressions/tr10.raml"),["Required property 'y' is missing"]);//Ok for now lets improve later
     })
     it ("runtime types value1" ,function(){
         testErrors(util.data("parser/typexpressions/tr11.raml"),["object is expected"]);//Ok for now lets improve later
@@ -581,7 +581,7 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/typexpressions/ct1.raml"));//Ok for now lets improve later
     //})
     it ("custom api" ,function(){
-        testErrors(util.data("parser/custom/api.raml"), ["Missing required property title"]);//Ok for now lets improve later
+        testErrors(util.data("parser/custom/api.raml"), ["Missing required property: 'title'"]);//Ok for now lets improve later
     })
     it ("discriminator can only be used at top level" ,function(){
         testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later
@@ -636,7 +636,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/facets/f2.raml"), ["string is expected"]);
     })
     it ("redeclare buildin" ,function(){
-        testErrors(util.data("parser/facets/f3.raml"),["redefining a built in type:date"]);
+        testErrors(util.data("parser/facets/f3.raml"),["redefining a built in type: datetime"]);
     })
     //it ("recursive includes" ,function(){
     //    testErrors(util.data("parser/recursive/r1.raml"));
@@ -675,7 +675,7 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/inheritance/i1.raml"), ["Restrictions conflict"]);
     })
     it ("override2" ,function(){
-        testErrors(util.data("parser/inheritance/i2.raml"),["facet :q can not be overriden"]);
+        testErrors(util.data("parser/inheritance/i2.raml"),["Facet 'q' can not be overriden"]);
     })
     it ("override3" ,function(){
         testErrors(util.data("parser/inheritance/i3.raml"));
@@ -732,10 +732,10 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/overlay/o17/NewOverlay.raml"));
     })
     it ("Overlay: top-level illegal property" ,function(){
-        testErrors(util.data("parser/overlay/o18/NewOverlay.raml"), ["Property version is not allowed to be overriden or added in overlays"]);
+        testErrors(util.data("parser/overlay/o18/NewOverlay.raml"), ["Property 'version' is not allowed to be overriden or added in overlays"]);
     })
     it ("Overlay: sub-level illegal property" ,function(){
-        testErrors(util.data("parser/overlay/o19/NewOverlay.raml"), ["Property default is not allowed to be overriden or added in overlays"]);
+        testErrors(util.data("parser/overlay/o19/NewOverlay.raml"), ["Property 'default' is not allowed to be overriden or added in overlays"]);
     })
     it ("Overlay: top-level illegal node" ,function(){
         testErrors(util.data("parser/overlay/o20/NewOverlay.raml"),["The './resource2' node does not match any node of the master api."]);
@@ -781,7 +781,7 @@ describe('Parser regression tests', function () {
 
     })
     it ("external 1" ,function(){
-        testErrors(util.data("parser/external/e1.raml"),["Example does not conform to schema:Content is not valid according to schema:Missing required property: \\w+ \\w+"]);
+        testErrors(util.data("parser/external/e1.raml"),["Example does not conform to schema: Content is not valid according to schema: Missing required property: \\w+ \\w+"]);
     })
     it ("external 2" ,function(){
         testErrors(util.data("parser/external/e2.raml"));
@@ -1110,7 +1110,7 @@ describe('Parse strings', function () {
 
 describe('Property override tests',function(){
     it ("Planets",function(){
-        testErrors(util.data("parser/propertyOverride/test1.raml"),["enum facet value must be defined by array"]);
+        testErrors(util.data("parser/propertyOverride/test1.raml"),["'enum' facet value must be defined by array"]);
     });
 
     it ("User type properties: correct",function(){
@@ -1135,7 +1135,7 @@ describe('Property override tests',function(){
     });
 
     it ("Required property overridden as optional",function(){
-        testErrors(util.data("parser/propertyOverride/test7.raml"), ["Can not override required property:testProperty to be optional"]);
+        testErrors(util.data("parser/propertyOverride/test7.raml"), ["Can not override required property 'testProperty' to be optional"]);
     });
 
     it ("Value type properties 4",function(){
@@ -1143,7 +1143,7 @@ describe('Property override tests',function(){
     });
 
     it ("Facet override",function(){
-        testErrors(util.data("parser/propertyOverride/test9.raml"), ["test can not be overriden","missing required facets"]);
+        testErrors(util.data("parser/propertyOverride/test9.raml"), ["Facet 'test' can not be overriden","missing required facets"]);
     });
 
     it ("Optional property overridden as required",function(){
@@ -1211,14 +1211,14 @@ describe('Optional template parameters tests', function () {
     });
     it("Should report error on unspecified parameter, which is used after expansion #1.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api02.raml")
-            ,["value was not provided for parameter: param1"]);
+            ,["Value is not provided for parameter: 'param1'"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #2.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api03.raml"));
     });
     it("Should report error on unspecified parameter, which is used after expansion #2.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api04.raml")
-            ,["value was not provided for parameter: param1"]);
+            ,["Value is not provided for parameter: 'param1'"]);
     });
     it("Should not report error on unspecified parameter, which is not used after expansion #3.", function () {
         testErrors(util.data("parser/optionalTemplateParameters/api05.raml"));

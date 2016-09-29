@@ -69,7 +69,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "recurrent type definition",
+      "message": "Recurrent type definition",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -86,7 +86,7 @@
     },
     {
       "code": 11,
-      "message": "recurrent type definition",
+      "message": "Recurrent type definition",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -103,7 +103,7 @@
     },
     {
       "code": 11,
-      "message": "recurrent type definition",
+      "message": "Recurrent type definition",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

@@ -92,7 +92,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "facet :test can not be overriden",
+      "message": "Facet 'test' can not be overriden",
       "path": "test9.raml",
       "range": {
         "start": {
@@ -109,7 +109,7 @@
     },
     {
       "code": 11,
-      "message": "missing required facets:test",
+      "message": "Missing required facets: 'test'",
       "path": "test9.raml",
       "range": {
         "start": {

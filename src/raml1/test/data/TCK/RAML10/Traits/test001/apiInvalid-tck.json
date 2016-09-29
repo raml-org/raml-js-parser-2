@@ -706,7 +706,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Required property: rtTypeProperty1 is missed",
+      "message": "Required property 'rtTypeProperty1' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -723,7 +723,7 @@
     },
     {
       "code": 11,
-      "message": "Unknown property:rtTypeProperty2",
+      "message": "Unknown property: 'rtTypeProperty2'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

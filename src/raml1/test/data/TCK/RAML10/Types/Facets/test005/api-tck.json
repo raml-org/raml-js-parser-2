@@ -221,7 +221,7 @@
     },
     {
       "code": 11,
-      "message": "missing required facets:format",
+      "message": "Missing required facets: 'format'",
       "path": "api.raml",
       "range": {
         "start": {
@@ -255,7 +255,7 @@
     },
     {
       "code": 11,
-      "message": "inheriting from unknown type",
+      "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {
@@ -289,7 +289,7 @@
     },
     {
       "code": 11,
-      "message": "inheriting from unknown type",
+      "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {
@@ -323,7 +323,7 @@
     },
     {
       "code": 11,
-      "message": "inheriting from unknown type",
+      "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {

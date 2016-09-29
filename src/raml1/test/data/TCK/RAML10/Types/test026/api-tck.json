@@ -443,7 +443,7 @@
     },
     {
       "code": 11,
-      "message": "schema and type are mutually exclusive",
+      "message": "'schema' and 'type' are mutually exclusive",
       "path": "api.raml",
       "range": {
         "start": {

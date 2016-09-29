@@ -19,7 +19,7 @@ describe('Resource type parameters tests',function(){
 
     it ("Resource type parameters test 1",function(){
         parserTests.testErrors(util.data("../data/rc2/resourceTypeParamsNegative.raml"),
-            ["value was not provided for parameter: TextAbout"]);
+            ["Value is not provided for parameter: 'TextAbout'"]);
     });
 
     it ("Resource type parameters test 3",function(){
@@ -37,7 +37,7 @@ describe('Resource type parameters tests',function(){
 
     it ("Resource type parameters test 6",function(){
         parserTests.testErrors(util.data("../data/rc2/resourceTypeParamsNegative3.raml"),
-            ["value was not provided for parameter: Param1"]);
+            ["Value is not provided for parameter: 'Param1'"]);
     });
 });
 
@@ -238,6 +238,6 @@ describe('Inplace types',function(){
 
     it ("Inplace types 6",function(){
         parserTests.testErrors(util.data("../data/rc2/inplaceTypesNegative1.raml"),
-            ["Required property: name2 is missed"]);
+            ["Required property 'name2' is missing"]);
     });
 });

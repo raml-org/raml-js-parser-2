@@ -18,7 +18,7 @@ if (typeof window === 'undefined') {
 describe('Optional scalar parameters', function () {
 
   //TESTFIX changed error message : 'property: \'' + property[0] + '\' is invalid in a resource type'=>
-  //'Optional scalar properties are not allowed in resource types and their descendants: '+property[0]
+  //'Optional scalar properties are not allowed in resource types and their descendants: ''+property[0]
   //setting valid values for 'is', 'type' and 'securedBy' properties
   //inserting title
   //removing 'is' and 'securedBy' from the list
@@ -44,13 +44,13 @@ describe('Optional scalar parameters', function () {
           '  - rt1:',
           '  - failType:',
           '      ' + property[0] + property[1]
-        ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in resource types and their descendants: '+property[0]).and.notify(done);
+        ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: '"+property[0]+"'").and.notify(done);
       });
       });
   })();
 
   //FIXTEST changed message 'unknown property ' + property[0]=>
-  //'Optional scalar properties are not allowed in resource types and their descendants: '+property[0]
+  //'Optional scalar properties are not allowed in resource types and their descendants: ''+property[0]
   //inserted type: number for testing 'minimum' and 'maximum'
   (function(){
     [
@@ -76,13 +76,13 @@ describe('Optional scalar parameters', function () {
           '      uriParameters:',
           '        failParam:',
           '          ' + property[0] + property[1]
-        ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in resource types and their descendants: '+property[0]).and.notify(done);
+        ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: '"+property[0]+"'").and.notify(done);
       });
     });
   })();
 
   //FIXTEST changed message 'property: \'description?\' is invalid in a response'=>
-  //'Optional scalar properties are not allowed in resource types and their descendants: description?'
+  //'Optional scalar properties are not allowed in resource types and their descendants: 'description?'
   it('should reject scalar optional description in a response', function (done) {
     raml.load([
       '#%RAML 0.8',
@@ -93,11 +93,11 @@ describe('Optional scalar parameters', function () {
       '        responses:',
       '          200:',
       '            description?: description'
-    ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in resource types and their descendants: description?').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: 'description?'").and.notify(done);
   });
 
   //FIXTEST changed message 'property: \'example?\' is invalid in a response'=>
-  //'Optional scalar properties are not allowed in resource types and their descendants: description?'
+  //'Optional scalar properties are not allowed in resource types and their descendants: 'description?'
   //added default media type
   //inserted 'body' tag between '200' and 'example?'
   it('should reject scalar optional example in a body', function (done) {
@@ -112,11 +112,11 @@ describe('Optional scalar parameters', function () {
       '          200:',
       '            body:',
       '              example?: example'
-    ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in resource types and their descendants: example?').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: 'example?'").and.notify(done);
   });
 
   //FIXTEST changed message 'property: \'schema?\' is invalid in a response'=>
-  //'Optional scalar properties are not allowed in resource types and their descendants: description?'
+  //'Optional scalar properties are not allowed in resource types and their descendants: 'description?'
   //added default media type
   //inserted 'body' tag between '200' and 'schema?'
   //inserted valid value for schema 'schema'
@@ -134,11 +134,11 @@ describe('Optional scalar parameters', function () {
       '          200:',
       '            body:',
       '              schema?: schema'
-    ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in resource types and their descendants: schema?').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in resource types and their descendants: 'schema?'").and.notify(done);
   });
 
   //TESTFIX changed error message : 'property: \'' + property[0] + '\' is invalid in a trait'=>
-  //'Optional scalar properties are not allowed in traits and their descendants: '+property[0]
+  //'Optional scalar properties are not allowed in traits and their descendants: ''+property[0]
   //setting valid value 'securedBy' propertiy
   //removed 'securedBy' from the list
   (function(){
@@ -158,7 +158,7 @@ describe('Optional scalar parameters', function () {
           'traits:',
           '  - failTrait:',
           '      ' + property[0] + property[1]
-        ].join('\n')).should.be.rejectedWith('Optional scalar properties are not allowed in traits and their descendants: '+property[0]).and.notify(done);
+        ].join('\n')).should.be.rejectedWith("Optional scalar properties are not allowed in traits and their descendants: '"+property[0]+"'").and.notify(done);
       });
     });
   })();

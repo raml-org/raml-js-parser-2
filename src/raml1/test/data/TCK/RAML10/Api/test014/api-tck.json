@@ -8,7 +8,7 @@
   "errors": [
     {
       "code": 2,
-      "message": "Unknown node: [12]",
+      "message": "Unknown node: '[12]'",
       "path": "api.raml",
       "range": {
         "start": {

@@ -35,7 +35,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "unsupported annotation target: 'ObjectTypeDeclaration'",
+      "message": "Unsupported annotation target: 'ObjectTypeDeclaration'",
       "path": "api.raml",
       "range": {
         "start": {

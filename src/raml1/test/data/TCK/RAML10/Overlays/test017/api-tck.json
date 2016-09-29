@@ -9,7 +9,7 @@
   "errors": [
     {
       "code": 10,
-      "message": "Property version is not allowed to be overriden or added in overlays",
+      "message": "Property 'version' is not allowed to be overriden or added in overlays",
       "path": "NewOverlay.raml",
       "range": {
         "start": {

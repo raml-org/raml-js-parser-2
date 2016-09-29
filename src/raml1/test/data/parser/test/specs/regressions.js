@@ -72,7 +72,7 @@ describe('Regressions', function () {
       '      description'
     ].join('\n');
 
-    raml.load(definition).should.be.rejectedWith(/node company can not be a scalar/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Node 'company' can not be a scalar/).and.notify(done);
   });
   //
 
@@ -141,7 +141,7 @@ describe('Regressions', function () {
 
     raml.load(definition).then(noop, function (error) {
       setTimeout(function () {
-        error.message.should.match(/Missing required property title/);
+        error.message.should.match(/Missing required property: 'title'/);
         done();
       }, 0);
     });
@@ -154,7 +154,7 @@ describe('Regressions', function () {
       '#%RAML 0.8',
       '---'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/Missing required property title/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Missing required property: 'title'/).and.notify(done);
   });
   //
   it('should not fail to parse a RAML null uriParameters. RT-178', function (done) {
@@ -195,7 +195,7 @@ describe('Regressions', function () {
       'baseUriParameters:',
       ' version:'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/version parameter not allowed here/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/'version' parameter not allowed here/).and.notify(done);
   });
   //
   //FIXTEST changed error message for an equivalent (actually, to a better one).
@@ -262,7 +262,7 @@ describe('Regressions', function () {
       'baseUriParameters:',
       '  someparam'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/property baseUriParameters can not have scalar value/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Property 'baseUriParameters' can not have scalar value/).and.notify(done);
   });
   //
 
@@ -280,7 +280,7 @@ describe('Regressions', function () {
     ].join('\n');
     raml.load(definition).then(noop, function (error) {
       setTimeout(function () {
-        error.message.should.be.equal('property baseUriParameters can not have scalar value');
+        error.message.should.be.equal("Property 'baseUriParameters' can not have scalar value");
         error.problem_mark.should.exist;
         error.problem_mark.line.should.be.equal(5);
         error.problem_mark.column.should.be.equal(0);
@@ -302,7 +302,7 @@ describe('Regressions', function () {
       '  baseUriParameters:',
       '    someparam'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/property baseUriParameters can not have scalar value/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Property 'baseUriParameters' can not have scalar value/).and.notify(done);
   });
 
   //
@@ -318,7 +318,7 @@ describe('Regressions', function () {
       '  uriParameters:',
       '    someparam'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/property uriParameters can not have scalar value/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Property 'uriParameters' can not have scalar value/).and.notify(done);
   });
   //
   //it('should report correct line (RT-244)', function (done) {

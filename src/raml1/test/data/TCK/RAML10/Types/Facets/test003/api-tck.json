@@ -49,7 +49,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "redefining a built in type:datetime",
+      "message": "Redefining a built in type: datetime",
       "path": "api.raml",
       "range": {
         "start": {

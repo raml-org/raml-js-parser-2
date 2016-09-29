@@ -100,7 +100,7 @@
     },
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Expected type object but found type integer object,integer",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type integer object,integer",
       "path": "api.raml",
       "range": {
         "start": {

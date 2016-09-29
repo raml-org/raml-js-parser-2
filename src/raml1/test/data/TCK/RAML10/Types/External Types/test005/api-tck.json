@@ -91,7 +91,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Missing required property: id id",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: id id",
       "path": "api.raml",
       "range": {
         "start": {

@@ -5107,7 +5107,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Expected type string but found type null string,null, Expected type string but found type null string,null",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type string but found type null string,null, Expected type string but found type null string,null",
       "path": "api.raml",
       "range": {
         "start": {
@@ -5125,7 +5125,7 @@
     },
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Expected type object but found type null object,null",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type null object,null",
       "path": "api.raml",
       "range": {
         "start": {
@@ -5143,7 +5143,7 @@
     },
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Expected type object but found type null object,null",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Expected type object but found type null object,null",
       "path": "api.raml",
       "range": {
         "start": {

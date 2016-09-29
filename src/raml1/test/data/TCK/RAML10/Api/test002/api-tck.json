@@ -7,7 +7,7 @@
   "errors": [
     {
       "code": 2,
-      "message": "resourceTypes should be a map in RAML 1.0",
+      "message": "'resourceTypes' should be a map in RAML 1.0",
       "path": "api.raml",
       "range": {
         "start": {

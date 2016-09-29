@@ -64,7 +64,7 @@ describe('Duplicated properties', function () {
         '       authorizationUri: https://www.dropbox.com/1/oauth2/authorize'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property already used: \'authorizationUri\'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property already used: \'authorizationUri\'/).and.notify(done);
     });
 //
     //FIXTEST error message
@@ -85,7 +85,7 @@ describe('Duplicated properties', function () {
         '       tokenTTL: 30s'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property already used: \'tokenTTL\'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property already used: \'tokenTTL\'/).and.notify(done);
     });
 //
     //FIXTEST error message
@@ -105,7 +105,7 @@ describe('Duplicated properties', function () {
         '       requestTokenUri: https://api.dropbox.com/1/oauth/request_token'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property already used: \'requestTokenUri\'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property already used: \'requestTokenUri\'/).and.notify(done);
     });
 //
     //FIXTEST error message
@@ -126,7 +126,7 @@ describe('Duplicated properties', function () {
         '       requestTimeout: 30'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property already used: \'requestTimeout\'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property already used: \'requestTimeout\'/).and.notify(done);
     });
   });
 //

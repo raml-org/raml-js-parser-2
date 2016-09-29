@@ -36,7 +36,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Example does not conform to schema:Content is not valid according to schema:Referenced type \"\" is not match with \"country\" root node",
+      "message": "Example does not conform to schema: Content is not valid according to schema: Referenced type '' does not match 'country' root node",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

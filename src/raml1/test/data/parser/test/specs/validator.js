@@ -80,7 +80,7 @@ describe('Validator', function () {
       '   - FTP'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain('allowed values are:HTTP,HTTPS');
+        error.message.should.contain("allowed values are: 'HTTP', 'HTTPS'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(5);
         done();
@@ -98,7 +98,7 @@ describe('Validator', function () {
       'protocols:',
       '   - HtTp',
       '   - hTtPs'
-    ].join('\n')).should.be.rejectedWith('allowed values are:HTTP,HTTPS').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
   });
 
   it('should allow protocols at method level', function (done) {
@@ -179,7 +179,7 @@ describe('Validator', function () {
       '   get:',
       '       protocols:',
       '           - HtTp'
-    ].join('\n')).should.be.rejectedWith('allowed values are:HTTP,HTTPS').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
   });
 
   it('should allow protocols in traits', function (done) {
@@ -205,7 +205,7 @@ describe('Validator', function () {
       '/:',
       '   protocols:',
       '       - HTTP'
-    ].join('\n')).should.be.rejectedWith('Unknown node: protocols').and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Unknown node: 'protocols'").and.notify(done);
   });
 
   //it('should not allow parameter key to be used as a name for resource type', function (done) {
@@ -298,7 +298,7 @@ describe('Validator', function () {
       '       settings: {}'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain('Missing required property accessTokenUri');
+        error.message.should.contain("Missing required property: 'accessTokenUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -319,7 +319,7 @@ describe('Validator', function () {
       '           accessTokenUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain('Missing required property authorizationUri');
+        error.message.should.contain("Missing required property: 'authorizationUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -340,7 +340,7 @@ describe('Validator', function () {
       '           requestTokenUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain('Missing required property authorizationUri');
+        error.message.should.contain("Missing required property: 'authorizationUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -362,7 +362,7 @@ describe('Validator', function () {
       '           authorizationUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain('Missing required property tokenCredentialsUri');
+        error.message.should.contain("Missing required property: 'tokenCredentialsUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();

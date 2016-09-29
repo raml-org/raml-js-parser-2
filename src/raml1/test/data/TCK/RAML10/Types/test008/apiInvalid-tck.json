@@ -221,7 +221,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "Union type option does not pass validation (SimpleType1: Required property: property2 is missed)",
+      "message": "Union type option does not pass validation (SimpleType1: Required property 'property2' is missing)",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -238,7 +238,7 @@
     },
     {
       "code": 11,
-      "message": "Union type option does not pass validation (SimpleType2: Required property: property3 is missed)",
+      "message": "Union type option does not pass validation (SimpleType2: Required property 'property3' is missing)",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

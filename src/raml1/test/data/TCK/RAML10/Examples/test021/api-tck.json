@@ -94,7 +94,7 @@
   "errors": [
     {
       "code": 11,
-      "message": "string should match to .5",
+      "message": "String should match to '.5'",
       "path": "api.raml",
       "range": {
         "start": {
