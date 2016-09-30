@@ -8,6 +8,8 @@ import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
 
+import jsonValidation = require("./schema/schemaTCKValidator");
+
 class MessageMapping{
 
     constructor(patterns:string[]){
@@ -467,6 +469,12 @@ export function testAPI(
     var diffArr = [];
     if(diff.length==0){
         success = true;
+
+        if(doAssert) {
+            var jsonErrors = jsonValidation.validateJSON(tckJson);
+
+            assert(jsonErrors.length === 0, printErrors(jsonErrors));
+        }
     }
     else{
         console.warn("DIFFERENCE DETECTED FOR " + tckJsonPath);
@@ -484,6 +492,24 @@ export function testAPI(
         });
     }
     return new TestResult(apiPath,tckJson,success,tckJsonPath,diffArr);
+}
+
+function printErrors(errors: any[], level: number = 0): string {
+    var result: string = "";
+    
+    errors.forEach(error => {
+        for(var i = 0; i < level; i++) {
+            result += '\t';
+        }
+        
+        result += error.message + ': ' + error.path + '\n';
+        
+        if(error.inner) {
+            result += printErrors(error.inner, level + 1);
+        }
+    });
+    
+    return result;
 }
 
 export function generateMochaSuite(
