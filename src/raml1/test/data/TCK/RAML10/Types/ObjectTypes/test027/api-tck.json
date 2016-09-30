@@ -1,0 +1,229 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "ParentType": {
+          "name": "ParentType",
+          "displayName": "ParentType",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "stringProperty": {
+              "name": "stringProperty",
+              "displayName": "stringProperty",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            },
+            "kind": {
+              "name": "kind",
+              "displayName": "kind",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "discriminator": "kind",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ChildType1": {
+          "name": "ChildType1",
+          "displayName": "ChildType1",
+          "type": [
+            "ParentType"
+          ],
+          "required": true,
+          "discriminatorValue": "k1",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ChildType2": {
+          "name": "ChildType2",
+          "displayName": "ChildType2",
+          "type": [
+            "ParentType"
+          ],
+          "required": true,
+          "properties": {
+            "stringProperty": {
+              "name": "stringProperty",
+              "displayName": "stringProperty",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "minLength": 3,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "discriminatorValue": "k2",
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "ArrayType1": {
+          "name": "ArrayType1",
+          "displayName": "ArrayType1",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "items": "ChildType1"
+        }
+      },
+      {
+        "ArrayType2": {
+          "name": "ArrayType2",
+          "displayName": "ArrayType2",
+          "type": [
+            "array"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          },
+          "items": "ChildType2"
+        }
+      },
+      {
+        "ArrayType": {
+          "name": "ArrayType",
+          "displayName": "ArrayType",
+          "type": [
+            "ArrayType1|ArrayType2"
+          ],
+          "examples": [
+            {
+              "value": "[\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  },\n  {\n    \"stringProperty\": \"ab\",\n    \"kind\": \"k1\"\n  }\n]",
+              "strict": true,
+              "name": "ex1",
+              "structuredValue": [
+                {
+                  "stringProperty": "ab",
+                  "kind": "k1"
+                },
+                {
+                  "stringProperty": "ab",
+                  "kind": "k1"
+                }
+              ]
+            },
+            {
+              "value": "[\n  {\n    \"stringProperty\": \"abс\",\n    \"kind\": \"k2\"\n  },\n  {\n    \"stringProperty\": \"abс\",\n    \"kind\": \"k2\"\n  }\n]",
+              "strict": true,
+              "name": "ex2",
+              "structuredValue": [
+                {
+                  "stringProperty": "abс",
+                  "kind": "k2"
+                },
+                {
+                  "stringProperty": "abс",
+                  "kind": "k2"
+                }
+              ]
+            }
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}
