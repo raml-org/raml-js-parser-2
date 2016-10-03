@@ -20,13 +20,12 @@
   },
   "raml-xml-validation" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/dreamflyer/raml-xml-validation.git",
+    "gitUrl" : "https://github.com/mulesoft-labs/raml-xml-validation.git",
     "installTypings" : true
   },
   "raml-json-validation" : {
     "build" : "npm run build",
-    "gitUrl" : "https://github.com/dreamflyer/raml-json-validation.git",
-    "gitBranch" : false,
+    "gitUrl" : "https://github.com/mulesoft-labs/raml-json-validation.git",
     "installTypings" : true
   },
   "ts-structure-parser" : {
