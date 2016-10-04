@@ -12,7 +12,7 @@
           ],
           "examples": [
             {
-              "value": "{\r\n  \"p\" : \"stringValue1\"\r\n}\r\n",
+              "value": "{\n  \"p\" : \"stringValue1\"\n}\n",
               "strict": true,
               "name": "ex1",
               "structuredValue": {
@@ -20,7 +20,7 @@
               }
             },
             {
-              "value": "{\r\n  \"p\" : \"stringValue2\"\r\n}",
+              "value": "{\n  \"p\" : \"stringValue2\"\n}",
               "strict": true,
               "name": "ex2",
               "structuredValue": {
@@ -73,7 +73,7 @@
           ],
           "examples": [
             {
-              "value": "{\r\n  \"p\" : \"stringValue1\"\r\n}\r\n",
+              "value": "{\n  \"p\" : \"stringValue1\"\n}\n",
               "strict": true,
               "name": "ex3",
               "displayName": "T2 Example",
