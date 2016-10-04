@@ -265,8 +265,12 @@ export class ReferencePatcher{
                                         lit.value = typeName;
                                         return;
                                     }
+                                    var patchTransformedValue = true;
+                                    if(typeName.indexOf("<<")>=0&&this.isCompoundValue(typeName)){
+                                        patchTransformedValue = false;
+                                    }
                                     var patched = this.resolveReferenceValue(
-                                        typeName, rootUnit, units, resolver, transformer, nodeType);
+                                        typeName, rootUnit, units, resolver, transformer, nodeType, patchTransformedValue);
                                     if (patched != null) {
                                         lit.value = patched.value();
                                         gotPatch = true;
@@ -282,6 +286,10 @@ export class ReferencePatcher{
                             }
                         }
                         else if(!(escapeData.status==ParametersEscapingStatus.OK && transformer==null)){
+                            if(stringToPatch.indexOf("<<")>=0&&this.isCompoundValue(stringToPatch)){
+                                stringToPatch = value;
+                                transformer = null;
+                            }
                             var patched = this.resolveReferenceValue(stringToPatch, rootUnit, units, resolver, transformer, nodeType);
                             if(patched!=null) {
                                 this.registerPatchedReference(patched);
@@ -320,7 +328,8 @@ export class ReferencePatcher{
         units:ll.ICompilationUnit[],
         resolver:namespaceResolver.NamespaceResolver,
         transformer:expander.DefaultTransformer,
-        range:def.ITypeDefinition):PatchedReference
+        range:def.ITypeDefinition,
+        patchTransformedValue = true):PatchedReference
     {
         var isAnnotation = universeHelpers.isAnnotationRefTypeOrDescendant(range);
         var newValue:PatchedReference;
@@ -753,6 +762,21 @@ export class ReferencePatcher{
             }
         }
         return result;
+    }
+
+    private isCompoundValue(str:string):boolean{
+        var i0 = str.indexOf("<<");
+        if(i0<0){
+            return false;
+        }
+        if(i0!=0){
+            return true;
+        }
+        var i1 = str.indexOf(">>",i0);
+        if(i1+">>".length!=str.length){
+            return true;
+        }
+        return false;
     }
 }
 

@@ -1,0 +1,8 @@
+#%RAML 1.0 ResourceType
+
+uses:
+  defaultResponses:  ../libraries/responseBase.raml
+  error-types:  ../types/error-types.raml
+
+get:
+  is: [defaultResponses.general: { parentType: <<parentType>> }]
