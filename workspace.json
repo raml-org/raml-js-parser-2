@@ -15,7 +15,7 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "gitBranch" : "hotfix-for-1.1.4",
+    "gitBranch": "develop",
     "installTypings" : true
   },
   "raml-xml-validation" : {
