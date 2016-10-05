@@ -22,7 +22,8 @@
         },
         "relativeUriPathSegments": [
           "user"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/user"
       },
       {
         "description": "All users",
@@ -63,7 +64,8 @@
             },
             "relativeUriPathSegments": [
               "{userId}"
-            ]
+            ],
+            "absoluteUri": "https://api.github.com/users/{userId}"
           }
         ],
         "__METADATA__": {
@@ -75,7 +77,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/users"
       }
     ],
     "__METADATA__": {

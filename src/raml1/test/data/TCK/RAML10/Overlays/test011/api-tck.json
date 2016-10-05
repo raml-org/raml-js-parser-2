@@ -9,7 +9,8 @@
         "displayName": "Test4",
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "/resource"
       },
       {
         "relativeUri": "/anotherResource",
@@ -23,7 +24,8 @@
         },
         "relativeUriPathSegments": [
           "anotherResource"
-        ]
+        ],
+        "absoluteUri": "/anotherResource"
       },
       {
         "relativeUri": "/anotherResource2",
@@ -37,7 +39,8 @@
         },
         "relativeUriPathSegments": [
           "anotherResource2"
-        ]
+        ],
+        "absoluteUri": "/anotherResource2"
       }
     ],
     "extends": "NewExtension2.raml"

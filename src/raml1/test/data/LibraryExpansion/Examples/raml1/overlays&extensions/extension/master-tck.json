@@ -64,7 +64,8 @@
         },
         "relativeUriPathSegments": [
           "items"
-        ]
+        ],
+        "absoluteUri": "http://myItems.com/items"
       },
       {
         "methods": [
@@ -88,7 +89,8 @@
         },
         "relativeUriPathSegments": [
           "elements"
-        ]
+        ],
+        "absoluteUri": "/elements"
       }
     ],
     "extends": "master.raml",

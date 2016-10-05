@@ -127,7 +127,8 @@
         "relativeUriPathSegments": [
           "users",
           "{id}"
-        ]
+        ],
+        "absoluteUri": "/users/{id}"
       }
     ]
   },

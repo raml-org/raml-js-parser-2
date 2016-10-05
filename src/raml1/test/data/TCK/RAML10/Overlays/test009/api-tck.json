@@ -9,7 +9,8 @@
         "displayName": "Test3",
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "/resource"
       },
       {
         "relativeUri": "/anotherResource",
@@ -23,7 +24,8 @@
         },
         "relativeUriPathSegments": [
           "anotherResource"
-        ]
+        ],
+        "absoluteUri": "/anotherResource"
       }
     ],
     "extends": "NewOverlay.raml"

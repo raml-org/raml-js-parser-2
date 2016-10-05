@@ -107,7 +107,8 @@
             },
             "relativeUriPathSegments": [
               "anotherChild"
-            ]
+            ],
+            "absoluteUri": "/some/base/uri/someChildUri/anotherChild"
           }
         ],
         "__METADATA__": {
@@ -119,7 +120,8 @@
         },
         "relativeUriPathSegments": [
           "someChildUri"
-        ]
+        ],
+        "absoluteUri": "/some/base/uri/someChildUri"
       },
       {
         "relativeUri": "/someChildUri/anotherChild",
@@ -134,7 +136,8 @@
         "relativeUriPathSegments": [
           "someChildUri",
           "anotherChild"
-        ]
+        ],
+        "absoluteUri": "/some/base/uri/someChildUri/anotherChild"
       }
     ],
     "__METADATA__": {

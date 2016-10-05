@@ -17,7 +17,8 @@
         "relativeUriPathSegments": [
           "root",
           "{id"
-        ]
+        ],
+        "absoluteUri": "/root/{id"
       }
     ]
   },

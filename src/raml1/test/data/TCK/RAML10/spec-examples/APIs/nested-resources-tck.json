@@ -18,12 +18,14 @@
             "displayName": "Public Gists",
             "relativeUriPathSegments": [
               "public"
-            ]
+            ],
+            "absoluteUri": "https://api.github.com/gists/public"
           }
         ],
         "relativeUriPathSegments": [
           "gists"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/gists"
       }
     ],
     "__METADATA__": {

@@ -30,7 +30,8 @@
             }
           }
         },
-        "relativeUriPathSegments": []
+        "relativeUriPathSegments": [],
+        "absoluteUri": "/"
       }
     ]
   },

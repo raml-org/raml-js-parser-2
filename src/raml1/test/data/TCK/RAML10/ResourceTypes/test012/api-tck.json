@@ -107,7 +107,8 @@
         },
         "relativeUriPathSegments": [
           "songs"
-        ]
+        ],
+        "absoluteUri": "/songs"
       }
     ]
   },

@@ -395,7 +395,8 @@
         "relativeUriPathSegments": [
           "orgs",
           "{orgId}"
-        ]
+        ],
+        "absoluteUri": "/orgs/{orgId}"
       }
     ]
   },

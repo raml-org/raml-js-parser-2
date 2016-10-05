@@ -1136,6 +1136,9 @@
             "type": "string"
           }
         },
+        "absoluteUri": {
+          "type": "string"
+        },
         "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
       },
       "additionalProperties": false,
@@ -2282,6 +2285,9 @@
           "additionalProperties": false
         },
         "description":{
+          "type": "string"
+        },
+        "absoluteUri": {
           "type": "string"
         },
         "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}

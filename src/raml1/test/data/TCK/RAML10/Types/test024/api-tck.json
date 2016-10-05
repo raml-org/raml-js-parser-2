@@ -1016,7 +1016,8 @@
             },
             "relativeUriPathSegments": [
               "{id}"
-            ]
+            ],
+            "absoluteUri": "http://api.samplehost.com/{version}/teams/{id}"
           }
         ],
         "__METADATA__": {
@@ -1028,7 +1029,8 @@
         },
         "relativeUriPathSegments": [
           "teams"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams"
       },
       {
         "methods": [
@@ -1083,7 +1085,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/users"
       },
       {
         "methods": [
@@ -1165,7 +1168,8 @@
         "relativeUriPathSegments": [
           "users",
           "{id}"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/users/{id}"
       }
     ],
     "__METADATA__": {

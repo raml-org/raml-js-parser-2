@@ -84,7 +84,8 @@
         },
         "relativeUriPathSegments": [
           "login"
-        ]
+        ],
+        "absoluteUri": "/login"
       }
     ]
   },
