@@ -103,7 +103,8 @@
         },
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/resource"
       }
     ],
     "extends": "https://WWW.__TESTDATA__.com/vfsTests/remoteExtend/web/api.raml",
