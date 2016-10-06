@@ -1129,7 +1129,8 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                             }
                         });
                         if (!found){
-                            return new Error("annotation "+v+" can not be placed at this location, allowed targets are:"+aVals)
+                            var list = aVals.map(x=>`'${x}'`).join(", ");
+                            return new Error(`Annotation '${v}' can not be placed at this location, allowed targets are: ${list}`)
                         }
                     }
                 }

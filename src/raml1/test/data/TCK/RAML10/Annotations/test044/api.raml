@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test
+annotationTypes:
+  xz:
+    allowedTargets: Method
+
+/g:
+  get:
+    body:
+      application/json:
+        examples:
+          ex1:
+            value:
+              prop: stringValue
+            (xz): z
