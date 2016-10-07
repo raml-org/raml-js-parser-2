@@ -1,7 +1,9 @@
 #%RAML 1.0
 title: test
 annotationTypes:
-  xz:
+  a1:
+    allowedTargets: [ Example, Resource ]
+  a2:
     allowedTargets: Method
 
 /g:
@@ -11,4 +13,5 @@ annotationTypes:
         example:
           value:
             prop: stringValue
-          (xz): z
+          (a1): stringValue
+          (a2): stringValue

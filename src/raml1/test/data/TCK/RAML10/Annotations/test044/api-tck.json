@@ -4,9 +4,36 @@
   "specification": {
     "annotationTypes": [
       {
-        "xz": {
-          "name": "xz",
-          "displayName": "xz",
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "Example",
+            "Resource"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "a2": {
+          "name": "a2",
+          "displayName": "a2",
           "type": [
             "string"
           ],
@@ -45,9 +72,13 @@
                 "examples": [
                   {
                     "annotations": {
-                      "xz": {
-                        "structuredValue": "z",
-                        "name": "xz"
+                      "a1": {
+                        "structuredValue": "stringValue",
+                        "name": "a1"
+                      },
+                      "a2": {
+                        "structuredValue": "stringValue",
+                        "name": "a2"
                       }
                     },
                     "value": "{\n  \"prop\": \"stringValue\"\n}",
@@ -96,18 +127,18 @@
   "errors": [
     {
       "code": 11,
-      "message": "Annotation 'xz' can not be placed at this location, allowed targets are: 'Method'",
+      "message": "Annotation 'a2' can not be placed at this location, allowed targets are: 'Method'",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 14,
+          "line": 17,
           "column": 12,
-          "position": 215
+          "position": 293
         },
         "end": {
-          "line": 14,
+          "line": 17,
           "column": 16,
-          "position": 219
+          "position": 297
         }
       }
     }
