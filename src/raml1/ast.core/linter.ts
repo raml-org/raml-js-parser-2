@@ -446,7 +446,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
     try {
-        var isOverlay = (<any>node).definition && (<any>node).definition() && (<any>node).definition().key() === universes.Universe10.Overlay
+        var isOverlay = (<any>node).definition && (<any>node).definition() &&
+            ((<any>node).definition().key() === universes.Universe10.Overlay ||
+                (<any>node).definition().key() === universes.Universe10.Extension)
 
         var children = isOverlay ? node.children() : node.directChildren();
 
