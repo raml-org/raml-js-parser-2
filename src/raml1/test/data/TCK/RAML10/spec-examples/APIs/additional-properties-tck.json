@@ -80,5 +80,5 @@
     "title": "My API With Types",
     "description": "This RAML illustrates an example to restrict all additional properties to be string.\n"
   },
-  "errors": [  ]
+  "errors": []
 }

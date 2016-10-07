@@ -118,7 +118,7 @@ describe('Transformers tests',function(){
 
 describe('Security Schemes tests', function () {
     it ("should fail if not all required settings specified" ,function(){
-        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property: \'\\w+\'"]);
+        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property \'\\w+\'"]);
     })
     it ("should pass when extra non-required settings specified" ,function(){
         testErrors(util.data("parser/securitySchemes/ss2/securityScheme.raml"));
@@ -581,7 +581,7 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/typexpressions/ct1.raml"));//Ok for now lets improve later
     //})
     it ("custom api" ,function(){
-        testErrors(util.data("parser/custom/api.raml"), ["Missing required property: 'title'"]);//Ok for now lets improve later
+        testErrors(util.data("parser/custom/api.raml"), ["Missing required property 'title'"]);//Ok for now lets improve later
     })
     it ("discriminator can only be used at top level" ,function(){
         testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later

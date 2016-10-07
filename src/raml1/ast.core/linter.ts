@@ -1967,7 +1967,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     }
                 }
                 if(!gotValue){
-                    var msg=`Missing required property: '${x.nameId()}'`;
+                    var msg=`Missing required property '${x.nameId()}'`;
 
                     if (isInlinedTemplate){
                         msg=`Value is not provided for parameter: '${x.nameId()}'`;
@@ -1979,7 +1979,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             else{
                 var el = node.elementsOfKind(x.nameId());
                 if (!el||el.length==0) {
-                    var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, `Missing required property: '${x.nameId()}'`, node)
+                    var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, `Missing required property '${x.nameId()}'`, node)
                     v.accept(i);
                 }
             }
