@@ -5,7 +5,37 @@
     "uses": [
       {
         "key": "lib",
-        "value": "libs/lib.raml"
+        "value": "https://www.__testdata__.com/vfsTests/remoteExtend/web/libs/lib.raml"
+      }
+    ],
+    "traits": [
+      {
+        "lib.tr": {
+          "body": {
+            "application/xml": {
+              "name": "application/xml",
+              "displayName": "application/xml",
+              "type": [
+                "lib.MyType"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "name": "lib.tr",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
       }
     ],
     "annotationTypes": [
@@ -83,6 +113,42 @@
               "HTTP"
             ],
             "method": "post",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "protocols": {
+                  "calculated": true
+                }
+              }
+            }
+          },
+          {
+            "body": {
+              "application/xml": {
+                "name": "application/xml",
+                "displayName": "application/xml",
+                "type": [
+                  "lib.MyType"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "protocols": [
+              "HTTP"
+            ],
+            "is": [
+              "lib.tr"
+            ],
+            "method": "put",
             "__METADATA__": {
               "primitiveValuesMeta": {
                 "protocols": {
