@@ -30,6 +30,8 @@ type NodeClass=def.NodeClass;
 type IAttribute=high.IAttribute
 
 import contentprovider = require('../util/contentprovider')
+import utils = require('../utils')
+
 type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     //var dr=search.declRoot(context);
@@ -178,7 +180,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     errors():hl.ValidationIssue[]{
         var errors:hl.ValidationIssue[]=[];
-        var q = createBasicValidationAcceptor(errors);
+        var q = createBasicValidationAcceptor(errors, this);
         this.validate(q);
         return errors;
     }
@@ -452,7 +454,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
     errors():hl.ValidationIssue[]{
         var errors:hl.ValidationIssue[]=[];
-        var q:hl.ValidationAcceptor= createBasicValidationAcceptor(errors);
+        var q:hl.ValidationAcceptor= createBasicValidationAcceptor(errors,this);
         this.parent().validate(q);
         return errors;
     }
@@ -1168,6 +1170,10 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
      */
     private overlayMergeMode : OverlayMergeMode = OverlayMergeMode.MERGE;
 
+    /**
+     * Slave of this master, if there is any
+     */
+    private slave : hl.IParseResult;
 
     constructor(node:ll.ILowLevelASTNode, parent:hl.IHighLevelNode,private _def:hl.INodeDefinition,private _prop:hl.IProperty){
         super(node,parent)
@@ -1352,7 +1358,12 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             return this.masterApi;
         }
 
-        return this.calculateMasterByRef();
+        var detectedMaster = this.calculateMasterByRef();
+        if (detectedMaster) {
+            (<ASTNodeImpl>detectedMaster).setSlave(this);
+        }
+
+        return detectedMaster;
     }
 
     /**
@@ -1364,6 +1375,14 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         this.masterApi = master;
 
         this.resetAuxilaryState();
+
+        if (master) {
+            (<ASTNodeImpl>master).setSlave(this);
+        }
+    }
+
+    setSlave(slave: hl.IParseResult) : void {
+        this.slave = slave;
     }
 
     setMergeMode(mergeMode : OverlayMergeMode) : void {
@@ -1980,27 +1999,50 @@ export function fromUnit(l: ll.ICompilationUnit): hl.IParseResult {
     return api;
 }
 
-export function createBasicValidationAcceptor(errors:hl.ValidationIssue[]):hl.ValidationAcceptor{
-    var q:hl.ValidationAcceptor={
-        accept(c:hl.ValidationIssue){
-            errors.push(c);
-        },
-        begin(){
 
-        },
-        end(){
 
-        },
-        acceptUnique(issue: hl.ValidationIssue){
-            for(var e of errors){
-                if(e.start==issue.start && e.message==issue.message){
-                    return;
+
+
+/**
+ * Creates basic acceptor.
+ * If primaryUnitPointerNode is provided, creates PointOfViewValidationAcceptor
+ * instance with primary unit taken from the node.
+ * @param errors
+ * @param primaryUnitPointerNode
+ * @returns {hl.ValidationAcceptor}
+ */
+export function createBasicValidationAcceptor(
+    errors:hl.ValidationIssue[],
+    primaryUnitPointerNode? : hl.IParseResult):hl.ValidationAcceptor{
+
+
+    if (primaryUnitPointerNode) {
+        var unit = primaryUnitPointerNode.root().lowLevel().unit();
+        if (unit) {
+
+            return new utils.PointOfViewValidationAcceptorImpl(errors, primaryUnitPointerNode.root())
+        } else {
+            return {
+                accept(c:hl.ValidationIssue){
+                    errors.push(c);
+                },
+                begin(){
+
+                },
+                end(){
+
+                },
+                acceptUnique(issue: hl.ValidationIssue){
+                    for(var e of errors){
+                        if(e.start==issue.start && e.message==issue.message){
+                            return;
+                        }
+                    }
+                    this.accept(issue);
                 }
-            }
-            this.accept(issue);
+            };
         }
     }
-    return q;
 }
 
 export function isAnnotationTypeFragment(node:hl.IHighLevelNode):boolean{

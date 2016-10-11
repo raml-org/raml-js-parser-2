@@ -282,6 +282,22 @@ export interface ValidationAcceptor{
     acceptUnique(issue: ValidationIssue);
 }
 
+/**
+ * Sometimes the way we report the same error depends on the point of view:
+ * which unit we consider the "primary" one.
+ *
+ * In example, the same application of extension to master API can be either treated
+ * as a parser "opening" the extension (so extension is the primary unit), or as
+ * "opening" master API and then applying extension to it (so master is the primary unit).
+ *
+ * In both cases the error is the same, but should be reported a bit differently.
+ *
+ * Thus we need to add primary unit info to the acceptor.
+ */
+export interface PointOfViewValidationAcceptor extends ValidationAcceptor {
+    getPrimaryUnit() : lowLevel.ICompilationUnit;
+}
+
 export interface ValidationAction {
     name: string;
     action: () => void;

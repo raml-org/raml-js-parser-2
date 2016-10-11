@@ -383,7 +383,7 @@ ${label1}: ${strValue1}`
 
 export function validateNode(api:hl.IHighLevelNode):hl.ValidationIssue[] {
   var errors:hl.ValidationIssue[] = [];
-  var q:hl.ValidationAcceptor = hlimpl.createBasicValidationAcceptor(errors);
+  var q:hl.ValidationAcceptor = hlimpl.createBasicValidationAcceptor(errors,api);
   api.validate(q);
   return errors;
 };
@@ -475,7 +475,7 @@ export function testAST(masterPath : string, astPath: string, extensions? : stri
 
   //Validating first. It is supposed that there should be no errors in AST we are testing
   var errors:hl.ValidationIssue[]=[];
-  var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors);
+  var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors,api);
 
   api.validate(q);
 
