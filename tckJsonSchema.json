@@ -2714,7 +2714,7 @@
             "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
             "type":{
               "type": "string",
-              "pattern": "x-[a-zA-Z0-9<>]+"
+              "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
             },
             "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
             "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
