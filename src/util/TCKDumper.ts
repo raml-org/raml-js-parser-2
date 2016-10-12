@@ -226,7 +226,7 @@ export class TCKDumper {
         return errors.map(x=> {
             var eObj = this.dumpErrorBasic(x);
             if (x.trace && x.trace.length > 0) {
-                eObj['trace'] = x.trace.map(y=>this.dumpErrorBasic(y));
+                eObj['trace'] = this.dumpErrors(x.trace);//x.trace.map(y=>this.dumpErrorBasic(y));
             }
             return eObj;
         }).sort((x, y)=> {
