@@ -824,6 +824,28 @@ describe('Modularization', function(){
 
         assert.equal(serializedJSON.indexOf("required") > 0, true)
     })
+
+    it('Should not expode on empty extension',function(){
+        testErrors(util.data('extensions/empty.raml'),["Missing required property: 'extends'"]);
+    });
+
+    it('Should translate errors from invalid api to extension',function(){
+        testErrors(util.data('extensions/invalidApiExtension.raml'),["Unknown node: 'unknown'"]);
+    });
+
+    it('Should translate errors to extensions extension',function(){
+        var extension=util.loadApi(util.data('extensions/test51Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors[0].unit.path(), "test51.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test51Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test51Lib2.raml")
+    })
 });
 
 describe("Individual errors",function(){

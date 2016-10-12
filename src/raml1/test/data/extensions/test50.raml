@@ -1,0 +1,12 @@
+#%RAML 1.0
+title: Test
+baseUri: http://{a}.myapi.org
+
+uses:
+  test50Library: test50library.raml
+
+types:
+  TestType:
+    properties:
+      firstPrtop: string
+      thirdProp: test50Library.LibType1
