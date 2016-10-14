@@ -227,20 +227,27 @@ function getValueAt(text:string,offset:number):string{
 }
 export function extractName(cleaned:string,offset:number):string{
     var txt="";
-    for (var i=offset;i>=0;i--){
+    
+    for(var i=offset;i>=0;i--){
         var c=cleaned[i];
-        if (c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')'){
+        
+        if(c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')') {
             break;
         }
+        
         txt=c+txt;
     }
-    for (var i=offset+1;i<cleaned.length;i++){
+    
+    for(var i=offset+1;i<cleaned.length;i++){
         var c=cleaned[i];
-        if (c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')'){
+        
+        if(c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')'||c==',') {
             break;
         }
+        
         txt=txt+c;
     }
+    
     return txt;
 }
 var searchInTheValue = function (offset:number,content: string,attr:hl.IAttribute, hlnode:hl.IHighLevelNode,p:hl.IProperty=attr.property()):hl.IParseResult {
