@@ -197,6 +197,19 @@ describe('Parser regression tests', function () {
         testErrors(util.data("parser/examples/ex8.raml"), ["boolean is expected"]);
     })
 
+    it('Should correctly serialize multiple examples to JSON',function(){
+        var api=util.loadApi(util.data('parser/examples/ex45.raml'));
+        api = util.expandHighIfNeeded(api);
+
+        var topLevelApi : any = api.wrapperNode();
+
+        var json = topLevelApi.toJSON();
+        var serializedJSON = JSON.stringify(json);
+
+        assert.equal(serializedJSON.indexOf("One") > 0, true)
+        assert.equal(serializedJSON.indexOf("Two") > 0, true)
+    })
+
     it ("checking that node is actually primitive" ,function(){
         testErrors(util.data("parser/examples/ex9.raml"), ["string is expected"]);
     })
