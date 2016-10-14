@@ -31,7 +31,7 @@ function testErrorsByNumber(p:string,count:number=0){
     var api=util.loadApi(p);
     api = util.expandHighIfNeeded(api);
     var errors:any=[];
-    var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors);
+    var q:hl.ValidationAcceptor= hlimpl.createBasicValidationAcceptor(errors,api);
     api.validate(q);
     if(errors.length!=count) {
         errors.forEach(error=>console.log(error.message))

@@ -446,7 +446,9 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
     try {
-        var isOverlay = (<any>node).definition && (<any>node).definition() && (<any>node).definition().key() === universes.Universe10.Overlay
+        var isOverlay = (<any>node).definition && (<any>node).definition() &&
+                        ((<any>node).definition().key() === universes.Universe10.Overlay ||
+                            (<any>node).definition().key() === universes.Universe10.Extension)
 
         var children = isOverlay ? node.children() : node.directChildren();
 
@@ -568,7 +570,8 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                         return;
                     }
                     
-                    rs.highLevel().validate(hlimpl.createBasicValidationAcceptor(issues));
+                    rs.highLevel().validate(
+                        hlimpl.createBasicValidationAcceptor(issues, rs.highLevel()));
                     if (issues.length>0){
                         var brand=createLibraryIssue(vn, highLevelNode);
                         issues.forEach(x=> {
@@ -3537,10 +3540,10 @@ export function toIssue(error: any, node: hl.IHighLevelNode): hl.ValidationIssue
 }
 
 export function createIssue(
-    c:hl.IssueCode,
+    issueCode:hl.IssueCode,
     message:string,
     node:hl.IParseResult,
-    w:boolean=false):hl.ValidationIssue{
+    isWarning:boolean=false):hl.ValidationIssue{
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
@@ -3548,7 +3551,7 @@ export function createIssue(
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){
-                original=localError(node,c,w,message,true,pr);
+                original=localError(node,issueCode,isWarning,message,true,pr);
                 //message +="(template expansion affected)"
             }
             node=node.parent();
@@ -3559,7 +3562,7 @@ export function createIssue(
         pr=node.property();
 
         if (node.lowLevel().unit() != node.root().lowLevel().unit()) {
-            original=localError(node,c,w,message,true,pr);
+            original=localError(node,issueCode,isWarning,message,true,pr);
             var v=node.lowLevel().unit();
             if (v) {
                 //message = message + " " + v.path();
@@ -3576,7 +3579,7 @@ export function createIssue(
             node=node.parent();
         }
     }
-    var error=localError(node, c, w, message,false,pr);
+    var error=localError(node, issueCode, isWarning, message,false,pr);
     if (original) {
         original.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {

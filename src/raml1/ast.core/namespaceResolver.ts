@@ -59,11 +59,13 @@ export class NamespaceResolver{
                 var hlElem = hlNode.asElement();
                 var definition = hlElem.definition();
                 if (universeHelpers.isOverlayType(definition) || universeHelpers.isExtensionType(definition)) {
-                    var eValue = hlElem.attr(universes.Universe10.Extension.properties.extends.name).value();
-                    _unit = u.resolve(eValue);
+                    var eValue = hlElem.attrValue(universes.Universe10.Extension.properties.extends.name);
+                    if (eValue) {
+                        _unit = u.resolve(eValue);
 
-                    if(_unit && resourceRegistry.isWaitingFor(_unit.absolutePath())) {
-                        _unit = null;
+                        if (_unit && resourceRegistry.isWaitingFor(_unit.absolutePath())) {
+                            _unit = null;
+                        }
                     }
                 }
             }
