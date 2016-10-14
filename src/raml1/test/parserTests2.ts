@@ -825,8 +825,8 @@ describe('Modularization', function(){
         assert.equal(serializedJSON.indexOf("required") > 0, true)
     })
 
-    it('Should not expode on empty extension',function(){
-        testErrors(util.data('extensions/empty.raml'),["Missing required property: 'extends'"]);
+    it('Should not explode on empty extension',function(){
+        testErrors(util.data('extensions/empty.raml'),["Missing required property 'extends'"]);
     });
 
     it('Should translate errors from invalid api to extension',function(){
