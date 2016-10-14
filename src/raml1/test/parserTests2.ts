@@ -859,7 +859,7 @@ describe("Individual errors",function(){
     })
     it('Should not allow API fragment',function(){
         testErrors(util.data('parser/fragment/ApiInvalid.raml'),
-        ["Redundant fragment name: 'Api'", "Missing required property: 'title'"]);
+        ["Redundant fragment name: 'Api'", "Missing required property 'title'"]);
     });
     
 })

@@ -141,7 +141,7 @@ describe('Regressions', function () {
 
     raml.load(definition).then(noop, function (error) {
       setTimeout(function () {
-        error.message.should.match(/Missing required property: 'title'/);
+        error.message.should.match(/Missing required property 'title'/);
         done();
       }, 0);
     });
@@ -154,7 +154,7 @@ describe('Regressions', function () {
       '#%RAML 0.8',
       '---'
     ].join('\n');
-    raml.load(definition).should.be.rejectedWith(/Missing required property: 'title'/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Missing required property 'title'/).and.notify(done);
   });
   //
   it('should not fail to parse a RAML null uriParameters. RT-178', function (done) {

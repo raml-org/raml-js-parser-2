@@ -70,7 +70,7 @@ describe('Parser', function() {
        ,''
     ].join('\n');
 
-    raml.load(definition).should.be.rejectedWith(/Missing required property: 'title'/).and.notify(done);
+    raml.load(definition).should.be.rejectedWith(/Missing required property 'title'/).and.notify(done);
     });
     it('should fail if title is array', function(done) {
         var definition = [
@@ -6096,7 +6096,7 @@ describe('Parser', function() {
         ' - scheme: []',
         '/resource:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Missing required property: 'type'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Missing required property 'type'/).and.notify(done);
     });
 //
     it('should fail when scheme contains a wrong property', function(done) {
@@ -7597,7 +7597,7 @@ describe('Parser', function() {
         '  - content: Content'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Missing required property: 'title'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Missing required property 'title'/).and.notify(done);
     });
 //
     it('should fail if docsection is missing content', function(done) {
@@ -7609,7 +7609,7 @@ describe('Parser', function() {
         '  - title: Getting Started'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Missing required property: 'content'/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Missing required property 'content'/).and.notify(done);
     });
 //
 //    it('should fail if docsection is map', function(done) {
