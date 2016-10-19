@@ -842,9 +842,198 @@ describe('Modularization', function(){
 
         var errors = util.validateNode(extension);
 
+        assert.equal(errors.length, 1)
         assert.equal(errors[0].unit.path(), "test51.raml")
         assert.equal(errors[0].extras[0].unit.path(), "test51Lib.raml")
         assert.equal(errors[0].extras[0].extras[0].unit.path(), "test51Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 2',function(){
+        var extension=util.loadApi(util.data('extensions/test51Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test51.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test51Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 3',function(){
+        var extension=util.loadApi(util.data('extensions/test52Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test52.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test52Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 4',function(){
+        var extension=util.loadApi(util.data('extensions/test52Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test52.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test52Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test52Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 5',function(){
+        var extension=util.loadApi(util.data('extensions/test53Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test53.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test53Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 6',function(){
+        var extension=util.loadApi(util.data('extensions/test53Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test53.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test53Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test53Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 7',function(){
+        var extension=util.loadApi(util.data('extensions/test54Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test54.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test54Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 8',function(){
+        var extension=util.loadApi(util.data('extensions/test54Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test54.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test54Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test54Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 9',function(){
+        var extension=util.loadApi(util.data('extensions/test55Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test55.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test55Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 10',function(){
+        var extension=util.loadApi(util.data('extensions/test55Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test55.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test55Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test55Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 11',function(){
+        var extension=util.loadApi(util.data('extensions/test56Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test56.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test56Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 12',function(){
+        var extension=util.loadApi(util.data('extensions/test56Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test56.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test56Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test56Lib2.raml")
+    })
+
+    it('Should translate errors to extensions extension 13',function(){
+        var extension=util.loadApi(util.data('extensions/test57Lib.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test57.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test57Lib.raml")
+    })
+
+    it('Should translate errors to extensions extension 14',function(){
+        var extension=util.loadApi(util.data('extensions/test57Lib2.raml'));
+        extension = util.expandHighIfNeeded(extension);
+
+        var topLevel : any = extension.wrapperNode();
+
+
+        var errors = util.validateNode(extension);
+
+        assert.equal(errors.length, 1)
+        assert.equal(errors[0].unit.path(), "test57.raml")
+        assert.equal(errors[0].extras[0].unit.path(), "test57Lib.raml")
+        assert.equal(errors[0].extras[0].extras[0].unit.path(), "test57Lib2.raml")
     })
 });
 
