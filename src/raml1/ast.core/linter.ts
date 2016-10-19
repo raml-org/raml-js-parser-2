@@ -343,13 +343,13 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
 };
 
 function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.ValidationAcceptor) {
-    if (!node.parent()){
-        try {
-            validateIncludes(<hlimpl.BasicASTNode>node, v);
-        } finally {
-            cleanupIncludesFlag(<hlimpl.BasicASTNode>node, v);
-        }
-    }
+    // if (!node.parent()){
+    //     try {
+    //         validateIncludes(<hlimpl.BasicASTNode>node, v);
+    //     } finally {
+    //         cleanupIncludesFlag(<hlimpl.BasicASTNode>node, v);
+    //     }
+    // }
     if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
@@ -380,12 +380,9 @@ function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.Valida
 
         var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
 
-        var isAllowAny = highLevelNode.definition().getAdapter(services.RAMLService).getAllowAny();
-
-
         validateBasicFlat(<hlimpl.BasicASTNode>node,v);
 
-        new UriParametersValidator().validate(highLevelNode,v);
+        //new UriParametersValidator().validate(highLevelNode,v);
 
         new CompositeNodeValidator().validate(highLevelNode,v);
         new TemplateCyclesDetector().validate(highLevelNode,v);
@@ -507,6 +504,14 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
         }
     }
 
+    var isOverlay = (<any>node).definition && (<any>node).definition() &&
+        ((<any>node).definition().key() === universes.Universe10.Overlay ||
+        (<any>node).definition().key() === universes.Universe10.Extension)
+
+    if (isOverlay) {
+        validateMasterFlat(node, v, requiredOnly);
+    }
+
     return true;
 }
 
@@ -540,10 +545,6 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         var isOverlay = (<any>node).definition && (<any>node).definition() &&
                         ((<any>node).definition().key() === universes.Universe10.Overlay ||
                             (<any>node).definition().key() === universes.Universe10.Extension)
-
-        if (isOverlay) {
-            validateMasterFlat(node, v, requiredOnly);
-        }
 
         var children = isOverlay ? node.children() : node.directChildren();
 
