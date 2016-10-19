@@ -69,7 +69,7 @@
   "errors": [
     {
       "code": 7,
-      "message": "annotation TestAnnotation can not be placed at this location, allowed targets are:SecuritySchemeSettings",
+      "message": "Annotation 'TestAnnotation' can not be placed at this location, allowed targets are: 'SecuritySchemeSettings'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

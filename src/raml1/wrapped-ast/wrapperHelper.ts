@@ -699,7 +699,7 @@ export function examplesFromNominal(
     var universe = defs.getUniverse("RAML10");
     var definition = universe.type(universeDef.Universe10.ExampleSpec.name);
 
-    var expandables = runtimeDefinition.examples().filter(x=>!x.isEmpty() && x.isSingle() == isSingle);
+    var expandables = runtimeDefinition.examples().filter(x=>x!=null && !x.isEmpty() && x.isSingle() == isSingle);
     return expandables.map(x=> {
         var obj = x.asJSON();
 

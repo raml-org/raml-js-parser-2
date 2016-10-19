@@ -111,7 +111,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "/users"
       },
       {
         "methods": [
@@ -212,7 +213,8 @@
         },
         "relativeUriPathSegments": [
           "groups"
-        ]
+        ],
+        "absoluteUri": "/groups"
       }
     ]
   },

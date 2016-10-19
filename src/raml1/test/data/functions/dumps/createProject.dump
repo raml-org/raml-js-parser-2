@@ -126,7 +126,8 @@
 			},
 			"relativeUriPathSegments": [
 				"res"
-			]
+			],
+			"absoluteUri": "/res"
 		}
 	]
 }

@@ -118,7 +118,7 @@ describe('Transformers tests',function(){
 
 describe('Security Schemes tests', function () {
     it ("should fail if not all required settings specified" ,function(){
-        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property: \'\\w+\'"]);
+        testErrors(util.data("parser/securitySchemes/ss1/securityScheme.raml"), ["Missing required property \'\\w+\'"]);
     })
     it ("should pass when extra non-required settings specified" ,function(){
         testErrors(util.data("parser/securitySchemes/ss2/securityScheme.raml"));
@@ -195,6 +195,19 @@ describe('Parser regression tests', function () {
     })
     it ("example in parameter" ,function(){
         testErrors(util.data("parser/examples/ex8.raml"), ["boolean is expected"]);
+    })
+
+    it('Should correctly serialize multiple examples to JSON',function(){
+        var api=util.loadApi(util.data('parser/examples/ex45.raml'));
+        api = util.expandHighIfNeeded(api);
+
+        var topLevelApi : any = api.wrapperNode();
+
+        var json = topLevelApi.toJSON();
+        var serializedJSON = JSON.stringify(json);
+
+        assert.equal(serializedJSON.indexOf("One") > 0, true)
+        assert.equal(serializedJSON.indexOf("Two") > 0, true)
     })
 
     it ("checking that node is actually primitive" ,function(){
@@ -581,7 +594,7 @@ describe('Parser regression tests', function () {
     //    testErrors(util.data("parser/typexpressions/ct1.raml"));//Ok for now lets improve later
     //})
     it ("custom api" ,function(){
-        testErrors(util.data("parser/custom/api.raml"), ["Missing required property: 'title'"]);//Ok for now lets improve later
+        testErrors(util.data("parser/custom/api.raml"), ["Missing required property 'title'"]);//Ok for now lets improve later
     })
     it ("discriminator can only be used at top level" ,function(){
         testErrorsByNumber(util.data("parser/custom/discTop.raml"), 1);//Ok for now lets improve later

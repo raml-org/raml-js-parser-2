@@ -257,7 +257,8 @@
         },
         "relativeUriPathSegments": [
           "helloWorld"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/helloWorld"
       }
     ],
     "__METADATA__": {

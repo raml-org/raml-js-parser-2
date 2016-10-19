@@ -1,0 +1,18 @@
+#%RAML 1.0
+title: test
+annotationTypes:
+  a1:
+    allowedTargets: [ Example, Resource ]
+  a2:
+    allowedTargets: Method
+
+/g:
+  get:
+    body:
+      application/json:
+        examples:
+          ex1:
+            value:
+              prop: stringValue
+            (a1): stringValue
+            (a2): stringValue

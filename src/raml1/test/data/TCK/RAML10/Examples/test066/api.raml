@@ -1,0 +1,22 @@
+#%RAML 1.0
+title: test API
+
+traits:
+  tr:
+
+types:
+  t:
+    properties:
+      p : string
+  nt1:
+    type: t | nil
+    examples:
+      ex1: !include nullExample1.json
+      ex2: !include nullExample2.json
+  tn2:
+    type: nil | t
+    examples:
+      ex3:
+        value: !include nullExample1.json
+        displayName: Nilable Type Example
+        description: Example for the nilable type

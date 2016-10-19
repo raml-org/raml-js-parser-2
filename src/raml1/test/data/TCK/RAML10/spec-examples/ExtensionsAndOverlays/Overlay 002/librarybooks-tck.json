@@ -22,7 +22,8 @@
         },
         "relativeUriPathSegments": [
           "books"
-        ]
+        ],
+        "absoluteUri": "/books"
       }
     ],
     "documentation": [

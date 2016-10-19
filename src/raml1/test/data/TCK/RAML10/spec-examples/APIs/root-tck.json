@@ -199,7 +199,8 @@
             },
             "relativeUriPathSegments": [
               "code"
-            ]
+            ],
+            "absoluteUri": "https://api.github.com/search/code"
           }
         ],
         "__METADATA__": {
@@ -214,7 +215,8 @@
         },
         "relativeUriPathSegments": [
           "search"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/search"
       }
     ],
     "__METADATA__": {

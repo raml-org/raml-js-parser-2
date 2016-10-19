@@ -1,0 +1,124 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "t": {
+          "name": "t",
+          "displayName": "t",
+          "type": [
+            "object"
+          ],
+          "required": true,
+          "properties": {
+            "p": {
+              "name": "p",
+              "displayName": "p",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "nt1": {
+          "name": "nt1",
+          "displayName": "nt1",
+          "type": [
+            "t | nil"
+          ],
+          "examples": [
+            {
+              "value": "null\n",
+              "strict": true,
+              "name": "ex1",
+              "structuredValue": "null\n"
+            },
+            {
+              "value": "null\n",
+              "strict": true,
+              "name": "ex2",
+              "structuredValue": "null\n"
+            }
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "tn2": {
+          "name": "tn2",
+          "displayName": "tn2",
+          "type": [
+            "nil | t"
+          ],
+          "examples": [
+            {
+              "value": "null\n",
+              "strict": true,
+              "name": "ex3",
+              "displayName": "Nilable Type Example",
+              "description": "Example for the nilable type",
+              "structuredValue": "null\n"
+            }
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "traits": [
+      {
+        "tr": {
+          "name": "tr"
+        }
+      }
+    ],
+    "title": "test API"
+  },
+  "errors": []
+}

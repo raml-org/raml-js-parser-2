@@ -158,7 +158,8 @@
         },
         "relativeUriPathSegments": [
           "q"
-        ]
+        ],
+        "absoluteUri": "/q"
       }
     ]
   },

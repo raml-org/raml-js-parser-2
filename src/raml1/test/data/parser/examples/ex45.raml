@@ -1,0 +1,15 @@
+#%RAML 1.0
+title: test
+types:
+  TestType:
+    properties:
+      message: string
+
+/test:
+  post:
+    body:
+      application/json:
+        type: TestType
+        examples:
+          One: !include example.json
+          Two: !include example.json

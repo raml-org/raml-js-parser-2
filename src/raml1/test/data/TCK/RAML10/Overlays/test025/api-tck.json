@@ -35,7 +35,8 @@
         },
         "relativeUriPathSegments": [
           "servers"
-        ]
+        ],
+        "absoluteUri": "/servers"
       }
     ],
     "extends": "NewOverlay.raml"

@@ -167,7 +167,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "https://api.dropbox.com/{version}/users"
       }
     ],
     "__METADATA__": {

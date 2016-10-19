@@ -54,7 +54,8 @@
         },
         "relativeUriPathSegments": [
           "files"
-        ]
+        ],
+        "absoluteUri": "/files"
       }
     ]
   },

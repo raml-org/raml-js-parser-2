@@ -139,7 +139,8 @@
         },
         "relativeUriPathSegments": [
           "inline"
-        ]
+        ],
+        "absoluteUri": "/inline"
       }
     ]
   },

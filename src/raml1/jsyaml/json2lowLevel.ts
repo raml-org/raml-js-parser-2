@@ -387,7 +387,7 @@ export function serialize2(n:lowlevel.ILowLevelASTNode,full:boolean=false):any{
         if(valueKind==yaml.Kind.INCLUDE_REF){
             var children = n.children();
             if(children.length==0){
-                v[key] = null;
+                v[key] = n.value();
             }
             else{
                 if(children[0].key()==null){

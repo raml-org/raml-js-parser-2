@@ -33,16 +33,20 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "number"
+          "type": "number",
+          "description": "IssueCode"
         },
         "message": {
-          "type": "string"
+          "type": "string",
+          "description": "Message text"
         },
         "path": {
-          "type": "string"
+          "type": "string",
+          "description": "File path"
         },
         "isWarning": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether the message is warning or not"
         },
         "trace": {
           "type": "array",
@@ -56,6 +60,7 @@
 
     "ErrorRange": {
       "type": "object",
+      "description": "RangeObject describing start and end of error location",
       "properties": {
         "start": {"$ref": "#/definitions/ErrorPosition"},
         "end": {"$ref": "#/definitions/ErrorPosition"}
@@ -103,6 +108,7 @@
     },
     "RAML10Library": {
       "type": "object",
+      "description": "RAML libraries are used to combine any collection of data type declarations, resource type declarations, trait declarations, and security scheme declarations into modular, externalized, reusable groups.",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -114,10 +120,12 @@
           "type": "object",
           "properties": {
             "name": {
-              "type": "string"
+              "type": "string",
+              "description": "Namespace which the library is imported under"
             },
             "usage": {
-              "type": "string"
+              "type": "string",
+              "description": "contains description of why library exist"
             },
             "annotations": {"$ref": "#/definitions/LibraryBase10/properties/annotations"},
             "scalarsAnnotations": {"$ref": "#/definitions/LibraryBase10/properties/scalarsAnnotations"},
@@ -136,6 +144,7 @@
     },
     "RAML10Extension": {
       "type": "object",
+      "description": "Extension is RAML documents that add or override nodes of a RAML API definition.",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -147,10 +156,12 @@
           "type": "object",
           "properties": {
             "extends": {
-              "type": "string"
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
             },
             "usage": {
-              "type": "string"
+              "type": "string",
+              "description": "contains description of why extension exist"
             },
             "uses": {"$ref": "#/definitions/Api10/properties/uses"},
             "annotations": {"$ref": "#/definitions/Api10/properties/annotations"},
@@ -181,6 +192,7 @@
     },
     "RAML10Overlay": {
       "type": "object",
+      "description": "Overlays is RAML document that add or override nodes of a RAML API definition.",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -192,10 +204,12 @@
           "type": "object",
           "properties": {
             "extends": {
-              "type": "string"
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
             },
             "usage": {
-              "type": "string"
+              "type": "string",
+              "description": "contains description of why overlay exist"
             },
             "uses": {"$ref": "#/definitions/Api10/properties/uses"},
             "annotations": {"$ref": "#/definitions/Api10/properties/annotations"},
@@ -226,6 +240,7 @@
     },
     "RAML10TypeDeclaration": {
       "type": "object",
+      "description": "A data type declaration (inline or in a global types collection), header declaration, query parameter declaration, URI parameter declaration, or a property within any of these declarations, where the type property can be used",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -240,6 +255,7 @@
     },
     "RAML10SecurityScheme": {
       "type": "object",
+      "description": "Describes how an API include security scheme definitions",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -254,6 +270,7 @@
     },
     "RAML10Trait": {
       "type": "object",
+      "description": "A trait can provide method-level nodes such as description, headers, query string parameters, and responses.",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -293,6 +310,7 @@
     },
     "RAML10ExampleSpec": {
       "type": "object",
+      "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -322,6 +340,7 @@
     },
     "RAML10ResourceType": {
       "type": "object",
+      "description": "Declarations of resource types for use within this API",
       "properties": {
         "ramlVersion": {"$ref": "#/definitions/RAML10/properties/ramlVersion"},
         "type": {
@@ -373,19 +392,24 @@
         "resourceTypes": {"$ref": "#/definitions/LibraryBase10/properties/resourceTypes"},
         "documentation": {"$ref": "#/definitions/Documentation"},
         "title": {
-          "type": ["string", "null"]
+          "type": ["string", "null"],
+          "description": "Short plain-text label for the API"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
         },
         "version": {
-          "type": "string"
+          "type": "string",
+          "description": "The version of the API, e.g. 'v1'"
         },
         "baseUri": {
-          "type": "string"
+          "type": "string",
+          "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
         },
         "baseUriParameters": {
           "type": "object",
+          "description": "Named parameters used in the baseUri (template)",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
@@ -395,10 +419,12 @@
         },
         "resources": {
           "type": "array",
+          "description": "The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc",
           "items": {"$ref": "#/definitions/Resource10"}
         },
         "protocols": {
           "type": "array",
+          "description": "The protocols supported by the API",
           "items": {
             "type": "string"
           }
@@ -414,10 +440,12 @@
             {
               "type": "string"
             }
-          ]
+          ],
+          "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
         },
         "securedBy": {
           "type": "array",
+          "description": "The security schemes that apply to every resource and method in the API",
           "items": {"$ref": "#/definitions/SecuritySchemeRef10"}
         }
       },
@@ -432,6 +460,7 @@
         "scalarsAnnotations": {"$ref": "#/definitions/FragmentDeclaration/properties/scalarsAnnotations"},
         "schemas": {
           "type": "array",
+          "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -441,6 +470,7 @@
         },
         "types": {
           "type": "array",
+          "description": "Declarations of (data) types for use within this API",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -450,6 +480,7 @@
         },
         "resourceTypes": {
           "type": "array",
+          "description": "Declarations of resource types for use within this API",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -459,6 +490,7 @@
         },
         "traits": {
           "type": "array",
+          "description": "Declarations of traits for use within this API",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -468,6 +500,7 @@
         },
         "securitySchemes": {
           "type": "array",
+          "description": "Declarations of security schemes for use within this API.",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -477,6 +510,7 @@
         },
         "annotationTypes": {
           "type": "array",
+          "description": "Declarations of annotation types for use by annotations",
           "items": {
             "type": "object",
             "patternProperties": {
@@ -488,6 +522,7 @@
       "additionalProperties": false
     },
     "Type": {
+      "description": "Declaration of (data) type for use within API",
       "anyOf": [
         {
           "anyOf": [
@@ -518,16 +553,20 @@
         "example": {"$ref": "#/definitions/TypeDeclaration/properties/example"},
         "examples": {"$ref": "#/definitions/TypeDeclaration/properties/examples"},
         "uniqueItems": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Should items in array be unique"
         },
         "minItems": {
-          "type": "number"
+          "type": "number",
+          "description": "Minimum amount of items in array"
         },
         "maxItems": {
-          "type": "number"
+          "type": "number",
+          "description": "Maximum amount of items in array"
         },
         "default": {
-          "type": "array"
+          "type": "array",
+          "description": "Provides default value for a property"
         },
         "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
         "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
@@ -539,6 +578,7 @@
     },
     "StringTypeDeclaration": {
       "type": "object",
+      "description": "Value must be a string",
       "properties": {
         "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
@@ -551,16 +591,20 @@
         "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
         "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
         "pattern": {
-          "type": "string"
+          "type": "string",
+          "description": "Regular expression that this string should path"
         },
         "minLength": {
-          "type": "number"
+          "type": "number",
+          "description": "Minimum length of the string"
         },
         "maxLength": {
-          "type": "number"
+          "type": "number",
+          "description": "Maximum length of the string"
         },
         "example": {
-          "type": "string"
+          "type": "string",
+          "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
         },
         "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
         "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
@@ -594,13 +638,16 @@
           }
         },
         "pattern": {
-          "type": "string"
+          "type": "string",
+          "description": "Regular expression"
         },
         "minLength": {
-          "type": "number"
+          "type": "number",
+          "description": "Minimum length"
         },
         "maxLength": {
-          "type": "number"
+          "type": "number",
+          "description": "Maximum length"
         },
         "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
         "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
@@ -610,6 +657,7 @@
     },
     "NumberTypeDeclaration": {
       "type": "object",
+      "description": "Value MUST be a number. Indicate floating point numbers as defined by YAML.",
       "properties": {
         "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
@@ -622,37 +670,48 @@
         "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
         "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
         "pattern": {
-          "type": "string"
+          "type": "string",
+          "description": "Regular expression"
         },
         "minimum": {
-          "type": "number"
+          "type": "number",
+          "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
         },
         "maximum": {
-          "type": "number"
+          "type": "number",
+          "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
         },
         "default": {
-          "type": "number"
+          "type": "number",
+          "description": "Provides default value for a property"
         },
         "example": {
-          "type": "number"
+          "type": "number",
+          "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
         },
         "format": {
-          "type": "string"
+          "type": "string",
+          "description": "Value format"
         },
         "multipleOf": {
-          "type": "number"
+          "type": "number",
+          "description": "A numeric instance is valid against \"multipleOf\" if the result of the division of the instance by this keywords value is an integer."
         },
         "fixedFacets": {
           "type": "object",
+          "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
           "properties": {
             "maximum": {
-              "type": "number"
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
             },
             "minimum": {
-              "type": "number"
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
             },
             "format": {
-              "type": "string"
+              "type": "string",
+              "description": "Value format"
             }
           },
           "additionalProperties": false
@@ -666,6 +725,7 @@
     },
     "DateTypeDeclaration": {
       "type": "object",
+      "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
       "properties": {
         "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
@@ -678,22 +738,27 @@
         "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
         "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
         "pattern": {
-          "type": "string"
+          "type": "string",
+          "description": "Regular expression"
         },
         "format": {
-          "type": ["string", "number"]
+          "type": ["string", "number"],
+          "description": "Value format"
         },
         "fixedFacets": {
           "type": "object",
+          "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
           "properties": {
             "format": {
-              "type": ["string", "number"]
+              "type": ["string", "number"],
+              "description": "Value format"
             }
           },
           "additionalProperties": false
         },
         "example": {
-          "type": ["string"]
+          "type": ["string"],
+          "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
         },
         "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
         "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
@@ -753,22 +818,27 @@
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "name of the parameter"
         },
         "default": {
-          "type": ["object", "string", "array", "number", "boolean"]
+          "type": ["object", "string", "array", "number", "boolean"],
+          "description": "Provides default value for a property"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "A longer, human-friendly description of the type"
         },
         "properties": {
           "type": "object",
+          "description": "For types defined in traits or resource types returns object representation of parametrized properties",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
           }
         },
         "allowedTargets": {
           "type": "array",
+          "description": "Restrictions on where annotations of this type can be applied. If this property is specified, annotations of this type may only be applied on a property corresponding to one of the target names specified as the value of this property.",
           "items": {
             "type": "string"
           }
@@ -783,57 +853,72 @@
           "type": "object",
           "properties": {
             "attribute": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "If attribute is set to true, a type instance should be serialized as an XML attribute. It can only be true for scalar types."
             },
             "wrapped": {
-              "type": "boolean"
+              "type": "boolean",
+              "description": "If wrapped is set to true, a type instance should be wrapped in its own XML element. It can not be true for scalar types and it can not be true at the same moment when attribute is true."
             },
             "name": {
-              "type": "string"
+              "type": "string",
+              "description": "Allows to override the name of the XML element or XML attribute in it's XML representation."
             },
             "namespace": {
-              "type": "string"
+              "type": "string",
+              "description": "Allows to configure the name of the XML namespace."
             },
             "prefix": {
-              "type": "string"
+              "type": "string",
+              "description": "Allows to configure the prefix which will be used during serialization to XML."
             }
           },
           "additionalProperties": false
         },
         "enum": {
-          "type": "array"
+          "type": "array",
+          "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
         },
         "minProperties": {
-          "type": "number"
+          "type": "number",
+          "description": "The minimum number of properties allowed for instances of this type."
         },
         "maxProperties": {
-          "type": "number"
+          "type": "number",
+          "description": "The maximum number of properties allowed for instances of this type."
         },
         "additionalProperties": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "A Boolean that indicates if an object instance has additional properties."
         },
         "examples": {
           "type": "array",
+          "description": "An example of this type instance represented as string. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the example property is present.",
           "items": {"$ref": "#/definitions/ExampleSpec10"}
         },
         "required": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Sets if property is optional or not"
         },
         "displayName": {
-          "type": "string"
+          "type": "string",
+          "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
         },
         "type": {"$ref": "#/definitions/TypeReference10"},
         "facets": {
           "type": "object",
+          "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
         },
         "fixedFacets": {
-          "type": "object"
+          "type": "object",
+          "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet."
         },
         "example": {
-          "type": ["object", "string", "boolean", "number", "array"]
+          "type": ["object", "string", "boolean", "number", "array"],
+          "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
         },
         "structuredExample": {"$ref": "#/definitions/ExampleSpec10"},
         "__METADATA__": {
@@ -935,6 +1020,7 @@
     },
 
     "SecuritySchemeRef10": {
+      "description": "The name of security scheme, this reference refers to.",
       "oneOf": [
         {
           "type": ["string", "null"]
@@ -958,24 +1044,29 @@
     },
     "Response10": {
       "type": "object",
+      "description": "Information about the expected responses to a request",
       "properties": {
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "A longer, human-friendly description of the response"
         },
         "headers": {
           "type": "array",
+          "description": "Detailed information about any response headers returned by this method",
           "items": {"$ref": "#/definitions/Type"}
         },
         "body": {
           "type": "object",
+          "description": "The body of the response: a body declaration",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
         },
         "code": {
-          "type": "string"
+          "type": "string",
+          "description": "Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code."
         }
       },
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"},
@@ -983,16 +1074,20 @@
     },
     "Trait10": {
       "type": "object",
+      "description": "Declarations of traits for use within this API",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the trait"
         },
         "displayName": {
-          "type": "string"
+          "type": "string",
+          "description": "The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
         },
         "description": {"$ref": "#/definitions/MethodBase10/properties/description"},
         "usage": {
-          "type": "string"
+          "type": "string",
+          "description": "Instructions on how and when the trait should be used."
         },
         "annotations": {"$ref": "#/definitions/MethodBase10/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/MethodBase10/properties/scalarsAnnotations"},
@@ -1022,7 +1117,8 @@
         "is": {"$ref": "#/definitions/MethodBase10/properties/is"},
         "body": {"$ref": "#/definitions/MethodBase10/properties/body"},
         "method": {
-          "type": "string"
+          "type": "string",
+          "description": "Method that can be called"
         },
         "__METADATA__": {"$ref": "#/definitions/MethodBase10/properties/__METADATA__"}
       },
@@ -1040,20 +1136,24 @@
         "queryString" : {"$ref": "#/definitions/Operation10/properties/queryString"},
         "protocols": {
           "type": "array",
+          "description": "A method can override the protocols specified in the resource or at the API root, by employing this property.",
           "items": {
             "type": "string"
           }
         },
         "securedBy": {
           "type": "array",
+          "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
           "items": {"$ref": "#/definitions/SecuritySchemeRef10"}
         },
         "is": {
           "type": "array",
+          "description": "Instantiation of applyed traits",
           "items":{"$ref": "#/definitions/TraitRef10"}
         },
         "body": {
           "type": "object",
+          "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
@@ -1071,6 +1171,7 @@
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
         "responses": {
+          "description": "Information about the expected responses to a request",
           "oneOf": [
             {
               "type": "object",
@@ -1086,12 +1187,14 @@
         },
         "headers": {
           "type": "object",
+          "description": "Headers that allowed at this position",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
         },
         "queryParameters": {
           "type": "object",
+          "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming  a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
@@ -1115,26 +1218,34 @@
         "is": {"$ref": "#/definitions/ResourceBase10/properties/is"},
         "uriParameters": {
           "type": "object",
+          "description": "Detailed information about any URI parameters of this resource",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
           }
         },
         "resources": {
           "type": "array",
+          "description": "A nested resource is identified as any property whose name begins with a slash (\"/\") and is therefore treated as a relative URI.",
           "items": {"$ref": "#/definitions/Resource10"}
         },
         "methods": {
           "type": "array",
+          "description": "Methods that are part of this resource type definition",
           "items": {"$ref": "#/definitions/ResourceBase10/properties/methods"}
         },
         "relativeUri": {
-          "type": "string"
+          "type": "string",
+          "description": "Relative URL of this resource from the parent resource"
         },
         "relativeUriPathSegments": {
           "type": "array",
+          "description": "URI Segments",
           "items": {
             "type": "string"
           }
+        },
+        "absoluteUri": {
+          "type": "string"
         },
         "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
       },
@@ -1152,7 +1263,8 @@
         "type": {"$ref": "#/definitions/ResourceBase10/properties/type"},
         "scalarsAnnotations": {"$ref": "#/definitions/ResourceBase10/properties/scalarsAnnotations"},
         "usage": {
-          "type": "string"
+          "type": "string",
+          "description": "Instructions on how and when the resource type should be used."
         },
         "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
       },
@@ -1167,24 +1279,29 @@
       "type": "object",
       "properties": {
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Resource name"
         },
         "displayName": {
-          "type": "string"
+          "type": "string",
+          "description": "Resource name"
         },
         "methods": {"$ref": "#/definitions/Method10"},
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "Resource description"
         },
         "is": {
           "type": "array",
+          "description": "A list of the traits to apply to all methods declared (implicitly or explicitly) for this resource. Individual methods may override this declaration",
           "items":{"$ref": "#/definitions/TraitRef10"}
         },
         "type": {"$ref": "#/definitions/ResourceRef10"},
         "securedBy": {
           "type": "array",
+          "description": "The security schemes that apply to all methods declared (implicitly or explicitly) for this resource.",
           "items": {"$ref": "#/definitions/SecuritySchemeRef10"}
         },
         "__METADATA__": {
@@ -1199,8 +1316,9 @@
       "type": "object",
       "properties": {
         "annotations": {
+          "description": "Most of RAML model elements may have attached annotations decribing additional meta data about this element",
           "oneOf": [
-             {
+            {
               "type": "object",
               "patternProperties": {
                 "^[a-zA-Z0-9]+": {"$ref": "#/definitions/AnnotationInstance"}
@@ -1249,19 +1367,24 @@
       "type": "object",
       "properties": {
         "value": {
-          "type": "string"
+          "type": "string",
+          "description": "String representation of example"
         },
         "strict": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate."
         },
         "name": {
-          "type": ["string", "null"]
+          "type": ["string", "null"],
+          "description": "Example identifier, if specified"
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "A longer, human-friendly description of the example"
         },
         "displayName": {
-          "type": "string"
+          "type": "string",
+          "description": "An alternate, human-friendly name for the example"
         },
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
@@ -1274,16 +1397,19 @@
     },
     "Documentation": {
       "type": "array",
+      "description": "Additional overall documentation for the API",
       "items": {"$ref": "#/definitions/DocumentationItem"}
     },
     "DocumentationItem": {
       "type" : "object",
       "properties": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "description": "Title of documentation section"
         },
         "content": {
-          "type": "string"
+          "type": "string",
+          "description": "Content of documentation section"
         }
       },
       "required": ["title", "content"],
@@ -1295,18 +1421,22 @@
       "properties": {
         "signatures": {
           "type": "array",
+          "description": "List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT",
           "items": {
             "type": "string"
           }
         },
         "requestTokenUri": {
-          "type": "string"
+          "type": "string",
+          "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
         },
         "authorizationUri": {
-          "type": "string"
+          "type": "string",
+          "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
         },
         "tokenCredentialsUri": {
-          "type": "string"
+          "type": "string",
+          "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
         },
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
@@ -1318,18 +1448,22 @@
       "type": "object",
       "properties": {
         "accessTokenUri": {
-          "type": "string"
+          "type": "string",
+          "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
         },
         "authorizationUri": {
-          "type": "string"
+          "type": "string",
+          "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
         },
         "authorizationGrants": {
           "type": "array",
+          "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or any absolute url.",
           "items": {
             "type": "string"
           }
         },
         "scopes": {
+          "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
           "oneOf": [
             {
               "type": "string"
@@ -1349,6 +1483,7 @@
 
     "PassThroughSecuritySettings10": {
       "type": "object",
+      "description": "Declares globally referable security scheme definition",
       "properties": {
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
@@ -1358,6 +1493,7 @@
 
     "BasicSecuritySettings10": {
       "type": "object",
+      "description": "Declares globally referable security scheme definition",
       "properties": {
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
@@ -1367,6 +1503,7 @@
 
     "DigestSecuritySettings10": {
       "type": "object",
+      "description": "Declares globally referable security scheme definition",
       "properties": {
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
@@ -1376,6 +1513,7 @@
 
     "CustomSecuritySettings10": {
       "type": "object",
+      "description": "Declares globally referable security scheme definition",
       "properties": {
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
@@ -1415,18 +1553,23 @@
 
     "SecurityScheme10": {
       "type": "object",
+      "description": "Declares globally referable security scheme definition",
       "properties": {
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "description": "Name of the security scheme"
         },
         "settings": {
-          "type": "string"
+          "type": "string",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "description": "The description attribute MAY be used to describe a security schemes property."
         },
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
@@ -1441,7 +1584,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "pattern": "OAuth 1.0"
+          "pattern": "OAuth 1.0",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/OAuth10SecuritySettings10"},
@@ -1459,7 +1603,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "pattern": "OAuth 2.0"
+          "pattern": "OAuth 2.0",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/OAuth20SecuritySettings10"},
@@ -1477,7 +1622,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "pattern": "Pass Through"
+          "pattern": "Pass Through",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/PassThroughSecuritySettings10"},
@@ -1495,7 +1641,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "pattern": "Basic Authentication"
+          "pattern": "Basic Authentication",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/BasicSecuritySettings10"},
@@ -1513,7 +1660,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "pattern": "Digest Authentication"
+          "pattern": "Digest Authentication",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/DigestSecuritySettings10"},
@@ -1530,7 +1678,8 @@
       "type": "object",
       "properties": {
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
         "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
         "settings": {"$ref": "#/definitions/CustomSecuritySettings10"},
@@ -1863,7 +2012,8 @@
       "properties": {
         "ramlVersion": {
           "type": "string",
-          "pattern": "RAML08"
+          "pattern": "RAML08",
+          "description":"Returns AST node of security scheme, this reference refers to, or null."
         },
         "errors": {
           "type": "array",
@@ -1884,22 +2034,30 @@
           "type": "object",
           "properties":{
             "title": {
-              "type": "string"
+              "type": "string",
+              "description": "The title property is a short plain text description of the RESTful API. The value SHOULD be suitable for use as a title for the contained user documentation."
             },
             "version": {
-              "type": "string"
+              "type": "string",
+              "description": "If the RAML API definition is targeted to a specific API version, the API definition MUST contain a version property. The version property is OPTIONAL and should not be used if: The API itself is not versioned. The API definition does not change between versions. The API architect can decide whether a change to user documentation elements, but no change to the API's resources, constitutes a version change. The API architect MAY use any versioning scheme so long as version numbers retain the same format. For example, 'v3', 'v3.0', and 'V3' are all allowed, but are not considered to be equal."
             },
             "baseUri": {
-              "type": "string"
+              "type": "string",
+              "description": "(Optional during development; Required after implementation) A RESTful API's resources are defined relative to the API's base URI. The use of the baseUri field is OPTIONAL to allow describing APIs that have not yet been implemented. After the API is implemented (even a mock implementation) and can be accessed at a service endpoint, the API definition MUST contain a baseUri property. The baseUri property's value MUST conform to the URI specification RFC2396 or a Level 1 Template URI as defined in RFC6570. The baseUri property SHOULD only be used as a reference value."
             },
             "baseUriParameters": {
               "type": "object",
+              "description": "Base uri parameters are named parameters which described template parameters in the base uri",
               "patternProperties": {
                 "^[a-zA-Z0-9]+": {
                   "oneOf":[
-                    {"$ref": "#/definitions/Parameter08"},
+                    {
+                      "$ref": "#/definitions/Parameter08",
+                      "description":"Named parameter which described template parameter in the base uri"
+                    },
                     {
                       "type": "array",
+                      "description": "Array of named parameters which described template parameters in the base uri",
                       "items": {"$ref": "#/definitions/Parameter08"}
                     }
                   ]
@@ -1909,6 +2067,7 @@
             },
             "uriParameters": {
               "type": "object",
+              "description": "URI parameters can be further defined by using the uriParameters property. The use of uriParameters is OPTIONAL. The uriParameters property MUST be a map in which each key MUST be the name of the URI parameter as defined in the baseUri property. The uriParameters CANNOT contain a key named version because it is a reserved URI parameter name. The value of the uriParameters property is itself a map that specifies  the property's attributes as named parameters",
               "patternProperties": {
                 "^[a-zA-Z0-9]+": {
                   "oneOf":[
@@ -1924,51 +2083,60 @@
             },
             "protocols":{
               "type": "array",
+              "description": "A RESTful API can be reached HTTP, HTTPS, or both. The protocols property MAY be used to specify the protocols that an API supports. If the protocols property is not specified, the protocol specified at the baseUri property is used. The protocols property MUST be an array of strings, of values `HTTP` and/or `HTTPS`.",
               "items":{
                 "type": "string"
               }
             },
             "mediaType": {
+              "description": "(Optional) The media types returned by API responses, and expected from API requests that accept a body, MAY be defaulted by specifying the mediaType property. This property is specified at the root level of the API definition. The property's value MAY be a single string with a valid media type described in the specification.",
               "type": "string"
             },
             "schemas":{
               "type": "array",
+              "description": "To better achieve consistency and simplicity, the API definition SHOULD include an OPTIONAL schemas property in the root section. The schemas property specifies collections of schemas that could be used anywhere in the API definition. The value of the schemas property is an array of maps; in each map, the keys are the schema name, and the values are schema definitions. The schema definitions MAY be included inline or by using the RAML !include user-defined data type.",
               "items":{
                 "$ref": "#/definitions/GlobalSchema"
               }
             },
             "traits":{
               "type": "array",
+              "description": "Declarations of traits used in this API",
               "items":{
                 "$ref": "#/definitions/Trait"
               }
             },
             "securedBy":{
               "type": "array",
+              "description": "A list of the security schemes to apply to all methods, these must be defined in the securitySchemes declaration.",
               "items":{
                 "$ref": "#/definitions/Reference08"
               }
             },
             "securitySchemes":{
               "type": "array",
+              "description": "Security schemes that can be applied using securedBy",
               "items":{
                 "$ref": "#/definitions/AbstractSecurityScheme08"
               }
             },
             "resourceTypes":{
               "type": "array",
+              "description": "Declaration of resource types used in this API",
               "items":{
                 "$ref": "#/definitions/ResourceType08"
               }
             },
             "resources":{
               "type": "array",
+              "description": "Resources are identified by their relative URI, which MUST begin with a slash (/). A resource defined as a root-level property is called a top-level resource. Its property's key is the resource's URI relative to the baseUri. A resource defined as a child property of another resource is called a nested resource, and its property's key is its URI relative to its parent resource's URI. Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property. The key of a resource, i.e. its relative URI, MAY consist of multiple URI path fragments separated by slashes; e.g. `/bom/items` may indicate the collection of items in a bill of materials as a single resource. However, if the individual URI path fragments are themselves resources, the API definition SHOULD use nested resources to describe this structure; e.g. if `/bom` is itself a resource then `/items` should be a nested resource of `/bom`, while `/bom/items` should not be used.",
               "items":{
                 "$ref": "#/definitions/Resource08"
               }
             },
             "documentation":{
               "type": "array",
+              "description": "The API definition can include a variety of documents that serve as a user guides and reference documentation for the API. Such documents can clarify how the API works or provide business context. Documentation-generators MUST include all the sections in an API definition's documentation property in the documentation output, and they MUST preserve the order in which the documentation is declared. To add user documentation to the API, include the documentation property at the root of the API definition. The documentation property MUST be an array of documents. Each document MUST contain title and content attributes, both of which are REQUIRED. If the documentation property is specified, it MUST include at least one document. Documentation-generators MUST process the content field as if it was defined using Markdown.",
               "items":{
                 "$ref": "#/definitions/DocumentationItem08"
               }
@@ -1995,32 +2163,41 @@
       "type": "object",
       "properties":{
         "name":{
-          "type": "string"
+          "type": "string",
+          "description": "name of the parameter"
         },
         "displayName":{
-          "type": "string"
+          "type": "string",
+          "description": "An alternate, human-friendly name for the parameter"
         },
         "type":{
-          "type": "string"
+          "type": "string",
+          "description": "The type attribute specifies the primitive type of the parameter's resolved value. API clients MUST return/throw an error if the parameter's resolved value does not match the specified type. If type is not specified, it defaults to string."
         },
         "location":{
           "type": "string",
+          "description": "Location of the parameter (can not be edited by user)",
           "enum":["QUERY","HEADERS","URI","FORM","BURI"]
         },
         "required":{
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Set to true if parameter is required"
         },
         "default":{
-          "type": ["array", "boolean", "integer", "number", "null", "object", "string"]
+          "type": ["array", "boolean", "integer", "number", "null", "object", "string"],
+          "description": "The default attribute specifies the default value to use for the property if the property is omitted or its value is not specified. This SHOULD NOT be interpreted as a requirement for the client to send the default attribute's value if there is no other value to send. Instead, the default attribute's value is the value the server uses if the client does not send a value."
         },
         "example":{
-          "type": "string"
+          "type": "string",
+          "description": "(Optional) The example attribute shows an example value for the property. This can be used, e.g., by documentation generators to generate sample values for the property."
         },
         "repeat":{
-          "type": "boolean"
+          "type": "boolean",
+          "description": "The repeat attribute specifies that the parameter can be repeated. If the parameter can be used multiple times, the repeat parameter value MUST be set to 'true'. Otherwise, the default value is 'false' and the parameter may not be repeated."
         },
         "description":{
-          "type": "string"
+          "type": "string",
+          "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
         },
         "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
       },
@@ -2032,22 +2209,27 @@
       "properties":{
         "type": {
           "type": "string",
-          "enum":["string"]
+          "enum":["string"],
+          "description": "Value must be a string"
         },
         "pattern": {
-          "type": "string"
+          "type": "string",
+          "description": "(Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity."
         },
         "enum": {
           "type": "array",
+          "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.",
           "items": {
             "type": "string"
           }
         },
         "minLength": {
-          "type": "number"
+          "type": "number",
+          "description":"(Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters."
         },
         "maxLength": {
-          "type": "number"
+          "type": "number",
+          "description": "(Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters."
         },
         "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
         "displayName": {"$ref": "#/definitions/ParameterBase08/properties/displayName"},
@@ -2067,6 +2249,7 @@
       "properties":{
         "type": {
           "type": "string",
+          "description": "Value must be a boolean or date or file",
           "enum":["boolean", "date", "file"]
         },
         "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
@@ -2087,13 +2270,16 @@
       "properties":{
         "type": {
           "type": "string",
+          "description": "Value MUST be a number or integer. Indicate floating point numbers as defined by YAML.",
           "enum":["number", "integer"]
         },
         "minimum": {
-          "type": "number"
+          "type": "number",
+          "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
         },
         "maximum": {
-          "type": "number"
+          "type": "number",
+          "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
         },
         "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
         "displayName": {"$ref": "#/definitions/ParameterBase08/properties/displayName"},
@@ -2112,13 +2298,15 @@
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
-          "type": "string"
+          "type": "string",
+          "description":"Content of the schema"
         }
       },
       "additionalProperties": false
     },
     "Trait": {
       "type": "object",
+      "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
@@ -2132,13 +2320,16 @@
             "headers": {"$ref": "#/definitions/MethodBase08/properties/headers"},
             "description": {"$ref": "#/definitions/MethodBase08/properties/description"},
             "name":{
-              "type": "string"
+              "type": "string",
+              "description": "Name of the trait"
             },
             "usage":{
-              "type": "string"
+              "type": "string",
+              "description": "Instructions on how and when the trait should be used."
             },
             "displayName":{
-              "type": "string"
+              "type": "string",
+              "description": "An alternate, human-friendly name for the trait"
             },
             "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
             "properties": {"$ref": "#/definitions/TypeInstance08/properties/properties"},
@@ -2175,18 +2366,22 @@
     },
     "TypeInstance08":{
       "type": "object",
+      "description": "Returns object representation of parametrized properties of the trait",
       "properties":{
         "properties":{
           "type": "array",
+          "description": "Array of instance properties",
           "items":{
             "$ref": "#/definitions/TypeInstanceProperty08"
           }
         },
         "isScalar":{
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether the type is scalar"
         },
         "value":{
-          "type": ["array", "boolean", "integer", "number", "null","object","string"]
+          "type": ["array", "boolean", "integer", "number", "null","object","string"],
+          "description": "For instances of scalar types returns scalar value"
         }
       },
       "additionalProperties": false
@@ -2195,17 +2390,20 @@
       "type": "object",
       "properties":{
         "name":{
-          "type": "string"
+          "type": "string",
+          "description": "Property name"
         },
         "value": {"$ref": "#/definitions/TypeInstance08"},
         "values":{
           "type": "array",
+          "description": "Array of values if property value is array",
           "items":{
             "$ref": "#/definitions/TypeInstance08"
           }
         },
         "isArray":{
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether property has array as value"
         }
       },
       "additionalProperties": false
@@ -2214,10 +2412,12 @@
       "type": "object",
       "properties":{
         "relativeUri":{
-          "type": "string"
+          "type": "string",
+          "description": "Relative URL of this resource from the parent resource"
         },
         "relativeUriPathSegments":{
           "type": "array",
+          "description": "Instantiation of applyed resource type",
           "items":{
             "type": "string"
           }
@@ -2225,18 +2425,21 @@
         "type":{"$ref": "#/definitions/Reference08"},
         "is":{
           "type": "array",
+          "description": "Instantiation of applyed traits",
           "items":{
             "$ref": "#/definitions/Reference08"
           }
         },
         "securedBy":{
           "type": "array",
+          "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
           "items":{
             "$ref": "#/definitions/Reference08"
           }
         },
         "uriParameters":{
           "type": "object",
+          "description": "Uri parameters of this resource",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2252,6 +2455,7 @@
         },
         "methods":{
           "type": "array",
+          "description": "Methods that can be called on this resource",
           "items":{
             "$ref": "#/definitions/Method08"
           },
@@ -2259,15 +2463,18 @@
         },
         "resources":{
           "type": "array",
+          "description": "Children resources",
           "items":{
             "$ref": "#/definitions/Resource08"
           }
         },
         "displayName":{
-          "type": "string"
+          "type": "string",
+          "description": "An alternate, human-friendly name for the resource"
         },
         "baseUriParameters":{
           "type": "object",
+          "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2282,6 +2489,10 @@
           "additionalProperties": false
         },
         "description":{
+          "type": "string",
+          "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
+        },
+        "absoluteUri": {
           "type": "string"
         },
         "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
@@ -2292,15 +2503,18 @@
       "type": "object",
       "properties":{
         "title":{
-          "type": "string"
+          "type": "string",
+          "description": "title of documentation section"
         },
         "content":{
-          "type": "string"
+          "type": "string",
+          "description": "Content of documentation section"
         }
       },
       "additionalProperties": false
     },
     "AbstractSecurityScheme08": {
+      "description": "Declares globally referable security schema definition",
       "anyOf": [
         {
           "oneOf":[
@@ -2317,23 +2531,28 @@
       "type": "object",
       "properties": {
         "name":{
-          "type": "string"
+          "type": "string",
+          "description": "Name of the security scheme"
         },
         "type":{
-          "type": "string"
+          "type": "string",
+          "description": "The securitySchemes property MUST be used to specify an API's security mechanisms, including the required settings and the authentication methods that the API supports. one authentication method is allowed if the API supports them."
         },
         "description":{
-          "type": "string"
+          "type": "string",
+          "description": "The description attribute MAY be used to describe a security schemes property."
         },
         "describedBy":{"$ref": "#/definitions/SecuritySchemePart08"},
         "settings":{
-          "type": "object"
+          "type": "object",
+          "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         }
       },
       "additionalProperties": false
     },
     "SecuritySchemePart08": {
       "type":"object",
+      "description": "A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.",
       "properties":{
         "responses": {"$ref": "#/definitions/MethodBase08/properties/responses"},
         "body": {"$ref": "#/definitions/MethodBase08/properties/body"},
@@ -2348,6 +2567,7 @@
         },
         "is":{
           "type": "array",
+          "description": "Instantiation of applyed traits",
           "items":{
             "$ref": "#/definitions/Reference08"
           }
@@ -2358,6 +2578,7 @@
     },
     "OAuth2SecurityScheme08":{
       "type": "object",
+      "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
@@ -2373,19 +2594,23 @@
               "type": "object",
               "properties":{
                 "accessTokenUri":{
-                  "type":"string"
+                  "type":"string",
+                  "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
                 },
                 "authorizationUri":{
-                  "type":"string"
+                  "type":"string",
+                  "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
                 },
                 "authorizationGrants":{
                   "type":"array",
+                  "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or refresh_token.",
                   "items":{
                     "type":"string"
                   }
                 },
                 "scopes":{
                   "type":"array",
+                  "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
                   "items":{
                     "type":"string"
                   }
@@ -2401,6 +2626,7 @@
     },
     "OAuth1SecurityScheme08":{
       "type": "object",
+      "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
@@ -2416,13 +2642,16 @@
               "type": "object",
               "properties":{
                 "requestTokenUri":{
-                  "type":"string"
+                  "type":"string",
+                  "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
                 },
                 "authorizationUri":{
-                  "type":"string"
+                  "type":"string",
+                  "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
                 },
                 "tokenCredentialsUri":{
-                  "type":"string"
+                  "type":"string",
+                  "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
                 }
               },
               "additionalProperties": false
@@ -2435,6 +2664,7 @@
     },
     "BasicSecurityScheme08":{
       "type": "object",
+      "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
@@ -2455,6 +2685,7 @@
     },
     "DigestSecurityScheme08":{
       "type": "object",
+      "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
@@ -2475,13 +2706,15 @@
     },
     "CustomSecurityScheme08":{
       "type": "object",
+      "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
           "type": "object",
           "properties": {
             "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
             "type":{
-              "type": "string"
+              "type": "string",
+              "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
             },
             "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
             "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
@@ -2499,13 +2732,16 @@
           "type": "object",
           "properties":{
             "name":{
-              "type": "string"
+              "type": "string",
+              "description": "Name of the resource type"
             },
             "usage":{
-              "type": "string"
+              "type": "string",
+              "description": "Instructions on how and when the resource type should be used."
             },
             "is":{
               "type": "array",
+              "description": "Instantiation of applyed traits",
               "items":{
                 "$ref": "#/definitions/Reference08"
               }
@@ -2513,12 +2749,14 @@
             "type":{"$ref": "#/definitions/Reference08"},
             "securedBy":{
               "type": "array",
+              "description": "securityScheme may also be applied to a resource by using the securedBy key, which is equivalent to applying the securityScheme to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme.",
               "items":{
                 "$ref": "#/definitions/Reference08"
               }
             },
             "uriParameters":{
               "type": "object",
+              "description": "Uri parameters of this resource",
               "patternProperties": {
                 "^[a-zA-Z0-9<>]+": {
                   "oneOf":[
@@ -2533,10 +2771,12 @@
               "additionalProperties": false
             },
             "displayName":{
-              "type": "string"
+              "type": "string",
+              "description": "An alternate, human-friendly name for the resource type"
             },
             "baseUriParameters": {
               "type": "object",
+              "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
               "patternProperties": {
                 "^[a-zA-Z0-9<>]+": {
                   "oneOf": [
@@ -2554,7 +2794,8 @@
               }
             },
             "description":{
-              "type": "string"
+              "type": "string",
+              "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
             },
             "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
             "properties+": {
@@ -2574,12 +2815,15 @@
     },
     "Response08":{
       "type": "object",
+      "description": "Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.",
       "properties":{
         "code":{
-          "type": "string"
+          "type": "string",
+          "description": "Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code."
         },
         "headers":{
           "type": "object",
+          "description": "An API's methods may support custom header values in responses. The custom, non-standard HTTP headers MUST be specified by the headers property. API's may include the the placeholder token {?} in a header name to indicate that any number of headers that conform to the specified format can be sent in responses. This is particularly useful for APIs that allow HTTP headers that conform to some naming convention to send arbitrary, custom data.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2595,31 +2839,38 @@
         },
         "body":{
           "type": "object",
+          "description": "Each response MAY contain a body property, which conforms to the same structure as request body properties (see Body). Responses that can return more than one response code MAY therefore have multiple bodies defined. For APIs without a priori knowledge of the response types for their responses, `*/*` MAY be used to indicate that responses that do not matching other defined data types MUST be accepted. Processing applications MUST match the most descriptive media type first if `*/*` is used.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/BodyLike08"}
           },
           "additionalProperties": false
         },
         "description":{
-          "type": "string"
+          "type": "string",
+          "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
         }
       },
       "additionalProperties": false
     },
     "BodyLike08":{
       "type": "object",
+      "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
       "properties":{
         "name":{
-          "type": "string"
+          "type": "string",
+          "description": "Mime type of the request or response body"
         },
         "schema":{
-          "type": "string"
+          "type": "string",
+          "description": "The structure of a request or response body MAY be further specified by the schema property under the appropriate media type. The schema key CANNOT be specified if a body's media type is application/x-www-form-urlencoded or multipart/form-data. All parsers of RAML MUST be able to interpret JSON Schema and XML Schema. Schema MAY be declared inline or in an external file. However, if the schema is sufficiently large so as to make it difficult for a person to read the API definition, or the schema is reused across multiple APIs or across multiple miles in the same API, the !include user-defined data type SHOULD be used instead of including the content inline. Alternatively, the value of the schema field MAY be the name of a schema specified in the root-level schemas property, or it MAY be declared in an external file and included by using the by using the RAML !include user-defined data type."
         },
         "example":{
-          "type": ["string", "integer", "number", "boolean"]
+          "type": ["string", "integer", "number", "boolean"],
+          "description": "Documentation generators MUST use body properties' example attributes to generate example invocations."
         },
         "formParameters":{
           "type": "object",
+          "description": "Web forms REQUIRE special encoding and custom declaration. If the API's media type is either application/x-www-form-urlencoded or multipart/form-data, the formParameters property MUST specify the name-value pairs that the API is expecting. The formParameters property is a map in which the key is the name of the web form parameter, and the value is itself a map the specifies the web form parameter's attributes.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2634,19 +2885,23 @@
           "additionalProperties": false
         },
         "schemaContent":{
-          "type": "string"
+          "type": "string",
+          "description": "Returns schema content for the cases when schema is inlined, when schema is included, and when "
         },
         "description":{
-          "type": "string"
+          "type": "string",
+          "description": "Human readable description of the body"
         }
       },
       "additionalProperties": false
     },
     "MethodBase08":{
       "type": "object",
+      "description": "Method object allows description of http methods",
       "properties":{
         "responses":{
           "type": "object",
+          "description": "Resource methods MAY have one or more responses. Responses MAY be described using the description property, and MAY include example attributes or schema properties.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/Response08"}
           },
@@ -2654,6 +2909,7 @@
         },
         "body":{
           "type": "object",
+          "description": "Some method verbs expect the resource to be sent as a request body. For example, to create a resource, the request must include the details of the resource to create. Resources CAN have alternate representations. For example, an API might support both JSON and XML representations. A method's body is defined in the body property as a hashmap, in which the key MUST be a valid media type.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+":{
               "oneOf":[
@@ -2666,18 +2922,21 @@
         },
         "protocols":{
           "type": "array",
+          "description": "A method can override an API's protocols value for that single method by setting a different value for the fields.",
           "items": {
             "type": "string"
           }
         },
         "securedBy":{
           "type": "array",
+          "description": "A list of the security schemas to apply, these must be defined in the securitySchemes declaration. To indicate that the method may be called without applying any securityScheme, the method may be annotated with the null securityScheme. Security schemas may also be applied to a resource with securedBy, which is equivalent to applying the security schemas to all methods that may be declared, explicitly or implicitly, by defining the resourceTypes or traits property for that resource.",
           "items":{
             "$ref": "#/definitions/Reference08"
           }
         },
         "baseUriParameters":{
           "type": "object",
+          "description": "A resource or a method can override a base URI template's values. This is useful to restrict or change the default or parameter selection in the base URI. The baseUriParameters property MAY be used to override any or all parameters defined at the root level baseUriParameters property, as well as base URI parameters not specified at the root level.",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2693,6 +2952,7 @@
         },
         "queryParameters":{
           "type": "object",
+          "description": "An APIs resources MAY be filtered (to return a subset of results) or altered (such as transforming a response body from JSON to XML format) by the use of query strings. If the resource or its method supports a query string, the query string MUST be defined by the queryParameters property",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2709,6 +2969,7 @@
         },
         "headers":{
           "type": "object",
+          "description": "Headers that allowed at this position",
           "patternProperties": {
             "^[a-zA-Z0-9<>]+": {
               "oneOf":[
@@ -2740,10 +3001,12 @@
         "headers": {"$ref": "#/definitions/MethodBase08/properties/headers"},
         "description": {"$ref": "#/definitions/MethodBase08/properties/description"},
         "method":{
-          "type": "string"
+          "type": "string",
+          "description": "Method that can be called"
         },
         "is":{
           "type": "array",
+          "description": "Instantiation of applyed traits",
           "items":{
             "$ref": "#/definitions/Reference08"
           }

@@ -194,7 +194,7 @@ export class TCKDumper {
 
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, node.highLevel().property())) {
-                    obj = x.transform(obj);
+                    obj = x.transform(obj,node);
                 }
             });
 
@@ -841,7 +841,7 @@ class ResourcesTransformer implements Transformation{
         return prop!=null && universeHelpers.isResourcesProperty(prop);
     }
 
-    transform(value:any){
+    transform(value:any,node){
         if(Array.isArray(value)){
             return value;
         }
@@ -852,6 +852,7 @@ class ResourcesTransformer implements Transformation{
                 segments.shift();
             }
             value["relativeUriPathSegments"] = segments;
+            value.absoluteUri = (<RamlWrapper10.Resource>node).absoluteUri();
         }
         return value;
     }

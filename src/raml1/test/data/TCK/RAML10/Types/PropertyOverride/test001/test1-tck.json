@@ -506,7 +506,8 @@
                 },
                 "relativeUriPathSegments": [
                   "planetscope"
-                ]
+                ],
+                "absoluteUri": "http://api.planet.com/v1/scenes/planetscope"
               }
             ],
             "__METADATA__": {
@@ -518,7 +519,8 @@
             },
             "relativeUriPathSegments": [
               "scenes"
-            ]
+            ],
+            "absoluteUri": "http://api.planet.com/v1/scenes"
           }
         ],
         "__METADATA__": {
@@ -530,7 +532,8 @@
         },
         "relativeUriPathSegments": [
           "v1"
-        ]
+        ],
+        "absoluteUri": "http://api.planet.com/v1"
       }
     ]
   },

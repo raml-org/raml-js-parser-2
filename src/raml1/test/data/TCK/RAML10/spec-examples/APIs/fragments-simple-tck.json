@@ -101,7 +101,8 @@
         },
         "relativeUriPathSegments": [
           "products"
-        ]
+        ],
+        "absoluteUri": "/products"
       }
     ]
   },

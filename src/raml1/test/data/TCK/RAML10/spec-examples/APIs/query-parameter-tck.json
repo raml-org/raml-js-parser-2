@@ -121,7 +121,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/{version}/users"
       }
     ],
     "__METADATA__": {

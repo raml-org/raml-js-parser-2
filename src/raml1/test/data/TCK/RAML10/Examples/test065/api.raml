@@ -1,0 +1,21 @@
+#%RAML 1.0
+title: test API
+
+traits:
+  tr:
+
+types:
+  t1:
+    properties:
+      p : string
+    examples:
+      ex1: !include example1.json
+      ex2: !include example2.json
+  t2:
+    properties:
+      p : string
+    examples:
+      ex3:
+        value: !include example1.json
+        displayName: T2 Example
+        description: Example for the 'T2' type

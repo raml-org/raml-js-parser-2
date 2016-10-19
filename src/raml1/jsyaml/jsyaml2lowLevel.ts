@@ -2479,6 +2479,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     if (ast) {
                         return ast.dumpToObject(full);
                     }
+                } else if (this.canInclude(resolved)) {
+                    return resolved.contents();
                 }
             }
             return null;

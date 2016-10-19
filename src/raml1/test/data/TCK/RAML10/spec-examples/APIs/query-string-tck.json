@@ -241,7 +241,8 @@
         },
         "relativeUriPathSegments": [
           "locations"
-        ]
+        ],
+        "absoluteUri": "/locations"
       }
     ]
   },

@@ -176,14 +176,15 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "/users"
       }
     ]
   },
   "errors": [
     {
       "code": 7,
-      "message": "annotation meta-data can not be placed at this location, allowed targets are:TypeDeclaration",
+      "message": "Annotation 'meta-data' can not be placed at this location, allowed targets are: 'TypeDeclaration'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

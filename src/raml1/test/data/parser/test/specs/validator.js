@@ -298,7 +298,7 @@ describe('Validator', function () {
       '       settings: {}'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain("Missing required property: 'accessTokenUri'");
+        error.message.should.contain("Missing required property 'accessTokenUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -319,7 +319,7 @@ describe('Validator', function () {
       '           accessTokenUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain("Missing required property: 'authorizationUri'");
+        error.message.should.contain("Missing required property 'authorizationUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -340,7 +340,7 @@ describe('Validator', function () {
       '           requestTokenUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain("Missing required property: 'authorizationUri'");
+        error.message.should.contain("Missing required property 'authorizationUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();
@@ -362,7 +362,7 @@ describe('Validator', function () {
       '           authorizationUri: i-dont-care'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain("Missing required property: 'tokenCredentialsUri'");
+        error.message.should.contain("Missing required property 'tokenCredentialsUri'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(7);
         done();

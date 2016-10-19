@@ -142,7 +142,8 @@
         },
         "relativeUriPathSegments": [
           "teams"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams"
       },
       {
         "methods": [
@@ -192,7 +193,8 @@
         },
         "relativeUriPathSegments": [
           "teams2"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams2"
       },
       {
         "methods": [
@@ -245,7 +247,8 @@
         },
         "relativeUriPathSegments": [
           "teams3"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams3"
       },
       {
         "methods": [
@@ -297,7 +300,8 @@
         },
         "relativeUriPathSegments": [
           "teams4"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams4"
       },
       {
         "methods": [
@@ -346,7 +350,8 @@
         },
         "relativeUriPathSegments": [
           "teams5"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams5"
       },
       {
         "methods": [
@@ -395,7 +400,8 @@
         },
         "relativeUriPathSegments": [
           "teams6"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/{version}/teams6"
       }
     ],
     "__METADATA__": {
