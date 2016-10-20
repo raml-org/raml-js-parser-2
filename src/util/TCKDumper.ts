@@ -286,9 +286,12 @@ export class TCKDumper {
             }
 
             if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
-                var jsonString = value[0].trim();
+                var schemaString = value[0].trim();
                 
-                if(jsonString[0] === "{" && jsonString[jsonString.length - 1] === "}") {
+                var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                
+                if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
 
                     if(include) {
