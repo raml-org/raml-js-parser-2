@@ -801,6 +801,7 @@
         "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
         "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
         "schema": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
+        "schemaPath": {"$ref": "#/definitions/TypeDeclaration/properties/schemaPath"},
         "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
         "fixedFacets": {"$ref": "#/definitions/TypeDeclaration/properties/fixedFacets"},
         "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
@@ -905,6 +906,10 @@
           "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
         },
         "type": {"$ref": "#/definitions/TypeReference10"},
+        "schemaPath": {
+          "type": "string",
+          "description": "relative path to schema for types that loaded from json schemas"
+        },
         "facets": {
           "type": "object",
           "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
