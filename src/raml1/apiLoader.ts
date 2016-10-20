@@ -85,7 +85,7 @@ function loadRAMLInternal(apiPath:string,arg1?:string[]|parserCoreApi.Options,ar
             })
 
             extensionsAndOverlays.forEach(unitPath=>{
-                extensionUnits.push(project.unit(path.basename(unitPath)))
+                extensionUnits.push(project.unit(unitPath, path.isAbsolute(unitPath)))
             })
 
             //calling to perform the checks, we do not actually need the api itself
@@ -177,7 +177,7 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
             var apiPromises = []
 
             extensionsAndOverlays.forEach(extensionUnitPath=>{
-                apiPromises.push(fetchAndLoadApiAsync(project, path.basename(extensionUnitPath), options))
+                apiPromises.push(fetchAndLoadApiAsync(project, extensionUnitPath, options))
             })
 
             return Promise.all(apiPromises).then(apis=>{
@@ -186,14 +186,16 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
 
                 var result = expander.mergeAPIs(masterApi.highLevel().lowLevel().unit(), overlayUnits,
                     hlimpl.OverlayMergeMode.MERGE);
+                
+                var wrapperNode = result.wrapperNode();
 
                 if (options.attributeDefaults != null && result) {
-                    (<any>result).setAttributeDefaults(options.attributeDefaults);
+                    (<any>wrapperNode).setAttributeDefaults(options.attributeDefaults);
                 } else if (result) {
-                    (<any>result).setAttributeDefaults(true);
+                    (<any>wrapperNode).setAttributeDefaults(true);
                 }
 
-                return result;
+                return wrapperNode.highLevel();
             }).then(mergedHighLevel=>{
                 return toApi(mergedHighLevel, options);
             })
