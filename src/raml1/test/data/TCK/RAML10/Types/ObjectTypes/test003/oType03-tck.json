@@ -141,7 +141,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 84,
       "message": "'Initial_comments.maxProperties=4' i.e. object properties count should not be more than 4",
       "path": "oType03.raml",
       "range": {

@@ -81,7 +81,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 1,
       "message": "'schema' and 'type' are mutually exclusive",
       "path": "type-schema-invalid.raml",
       "range": {
@@ -98,7 +98,7 @@
       }
     },
     {
-      "code": 11,
+      "code": 1,
       "message": "'schema' and 'type' are mutually exclusive",
       "path": "type-schema-invalid.raml",
       "range": {

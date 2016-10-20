@@ -129,7 +129,7 @@ export interface RamlParserError {
     /**
      * [[IssueCode]]
      */
-    code: IssueCode;
+    code: number;
 
     /**
      * Messag text
@@ -304,7 +304,7 @@ export interface ValidationAction {
 }
 
 export interface ValidationIssue {
-    code: IssueCode;
+    code: number;
     message: string;
     node: IParseResult;
     path: string;

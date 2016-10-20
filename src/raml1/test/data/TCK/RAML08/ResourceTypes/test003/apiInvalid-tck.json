@@ -216,7 +216,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 27,
       "message": "number is expected",
       "path": "apiInvalid.raml",
       "range": {

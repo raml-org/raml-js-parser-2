@@ -304,7 +304,7 @@ describe('Method', function(){
     });
 
     it('Should check that allowed only \'HTTP\' and \'HTTPS\' values', function(){
-        testErrors(util.data('parser/method/meth08.raml'), ["Invalid value: '\\w+' allowed values are: 'HTTP', 'HTTPS'","Invalid value: '\\w+' allowed values are: 'HTTP', 'HTTPS'"]);
+        testErrors(util.data('parser/method/meth08.raml'), ["Invalid value: 'FTP'. Allowed values are: 'HTTP', 'HTTPS'","Invalid value: 'SMTP'. Allowed values are: 'HTTP', 'HTTPS'"]);
     });
 
     it('Should parse body mimeType', function(){
@@ -748,7 +748,7 @@ describe('External Types', function(){
     // });
 
     it('Should validate json schemas',function(){
-        testErrors(util.data('parser/externalTypes/eType05.raml'),["It is not JSON schema(can not parse JSON: Unexpected token p)"]);
+        testErrors(util.data('parser/externalTypes/eType05.raml'),["Invalid JSON schema: Unexpected token p"]);
     });
 
     it('Should parse json schemas referencing json schemas',function(){

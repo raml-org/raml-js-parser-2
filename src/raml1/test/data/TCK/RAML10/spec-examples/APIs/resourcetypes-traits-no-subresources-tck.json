@@ -22,7 +22,7 @@
   },
   "errors": [
     {
-      "code": 2,
+      "code": 1012,
       "message": "Unknown node: '/groups'",
       "path": "resourcetypes-traits-no-subresources.raml",
       "range": {

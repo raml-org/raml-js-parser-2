@@ -54,7 +54,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 64,
       "message": "Example does not conform to schema: Content is not valid according to schema: Referenced type 'city' does not match 'country' root node",
       "path": "apiInvalid.raml",
       "range": {

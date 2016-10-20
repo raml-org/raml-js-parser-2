@@ -15,7 +15,7 @@
   },
   "errors": [
     {
-      "code": 0,
+      "code": 1050,
       "message": "Unrecognized security scheme type: 'n-sls'. Allowed values are: 'OAuth 1.0', 'OAuth 2.0', 'Basic Authentication', 'DigestSecurityScheme Authentication', 'x-{other}'",
       "path": "apiInvalid.raml",
       "range": {

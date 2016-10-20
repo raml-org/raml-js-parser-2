@@ -179,7 +179,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 83,
       "message": "Restrictions conflict between types 'Childtype' and 'ParentType': ['strType1.name.maxLength=2' is less than 'strType2.name.minLength=5'. The minLength cannot be higher than the maxLength.]",
       "path": "api.raml",
       "range": {

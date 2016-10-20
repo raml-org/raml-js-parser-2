@@ -6,7 +6,7 @@
   },
   "errors": [
     {
-      "code": 6,
+      "code": 1019,
       "message": "Can not resolve relative.md",
       "path": "api.raml",
       "range": {

@@ -113,7 +113,7 @@
   },
   "errors": [
     {
-      "code": 6,
+      "code": 1019,
       "message": "Can not resolve unexisting-file.txt",
       "path": "api.raml",
       "range": {

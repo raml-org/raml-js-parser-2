@@ -53,7 +53,7 @@
   },
   "errors": [
     {
-      "code": 2,
+      "code": 1093,
       "message": "In RAML 1.0 base uri parameter is not allowed to have sequence as definition",
       "path": "api.raml",
       "range": {

@@ -203,24 +203,7 @@
   },
   "errors": [
     {
-      "code": 7,
-      "message": "invalid media type",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 16,
-          "column": 6,
-          "position": 225
-        },
-        "end": {
-          "line": 16,
-          "column": 10,
-          "position": 229
-        }
-      }
-    },
-    {
-      "code": 11,
+      "code": 19,
       "message": "Missing required facets: 'format'",
       "path": "api.raml",
       "range": {
@@ -237,24 +220,24 @@
       }
     },
     {
-      "code": 7,
+      "code": 1044,
       "message": "invalid media type",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 17,
+          "line": 16,
           "column": 6,
-          "position": 244
+          "position": 225
         },
         "end": {
-          "line": 17,
-          "column": 12,
-          "position": 250
+          "line": 16,
+          "column": 10,
+          "position": 229
         }
       }
     },
     {
-      "code": 11,
+      "code": 6,
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
@@ -271,24 +254,24 @@
       }
     },
     {
-      "code": 7,
+      "code": 1044,
       "message": "invalid media type",
       "path": "api.raml",
       "range": {
         "start": {
-          "line": 20,
+          "line": 17,
           "column": 6,
-          "position": 280
+          "position": 244
         },
         "end": {
-          "line": 20,
-          "column": 10,
-          "position": 284
+          "line": 17,
+          "column": 12,
+          "position": 250
         }
       }
     },
     {
-      "code": 11,
+      "code": 6,
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
@@ -305,8 +288,25 @@
       }
     },
     {
-      "code": 7,
+      "code": 1044,
       "message": "invalid media type",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 20,
+          "column": 6,
+          "position": 280
+        },
+        "end": {
+          "line": 20,
+          "column": 10,
+          "position": 284
+        }
+      }
+    },
+    {
+      "code": 6,
+      "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {
         "start": {
@@ -322,8 +322,8 @@
       }
     },
     {
-      "code": 11,
-      "message": "Inheriting from unknown type",
+      "code": 1044,
+      "message": "invalid media type",
       "path": "api.raml",
       "range": {
         "start": {

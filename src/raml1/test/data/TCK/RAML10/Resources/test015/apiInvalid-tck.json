@@ -362,7 +362,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 66,
       "message": "Required property 'propertyFromResourceType1' is missing",
       "path": "apiInvalid.raml",
       "range": {
@@ -379,7 +379,7 @@
       },
       "trace": [
         {
-          "code": 11,
+          "code": 66,
           "message": "Required property 'propertyFromResourceType1' is missing",
           "path": "apiInvalid.raml",
           "range": {
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "code": 11,
+      "code": 65,
       "message": "Unknown property: 'propertyFromResourceType2'",
       "path": "apiInvalid.raml",
       "range": {
@@ -416,7 +416,7 @@
       "isWarning": true,
       "trace": [
         {
-          "code": 11,
+          "code": 65,
           "message": "Unknown property: 'propertyFromResourceType2'",
           "path": "apiInvalid.raml",
           "range": {

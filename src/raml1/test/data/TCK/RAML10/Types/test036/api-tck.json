@@ -48,7 +48,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 59,
       "message": "Property 'prop' refers to unknown type 'date'",
       "path": "api.raml",
       "range": {

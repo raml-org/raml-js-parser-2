@@ -469,7 +469,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 85,
       "message": "Union type options do not pass validation",
       "path": "api.raml",
       "range": {

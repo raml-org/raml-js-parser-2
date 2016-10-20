@@ -16,24 +16,7 @@
   },
   "errors": [
     {
-      "code": 3,
-      "message": "Missing required property: 'title'",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 1,
-          "column": 0,
-          "position": 11
-        },
-        "end": {
-          "line": 1,
-          "column": 37,
-          "position": 48
-        }
-      }
-    },
-    {
-      "code": 7,
+      "code": 1042,
       "message": "Invalid resource name: unmatched '{'",
       "path": "api.raml",
       "range": {
@@ -46,6 +29,23 @@
           "line": 1,
           "column": 7,
           "position": 18
+        }
+      }
+    },
+    {
+      "code": 1060,
+      "message": "Missing required property: 'title'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 1,
+          "column": 0,
+          "position": 11
+        },
+        "end": {
+          "line": 1,
+          "column": 37,
+          "position": 48
         }
       }
     }

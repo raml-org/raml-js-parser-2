@@ -77,7 +77,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 1091,
       "message": "Base uri parameter unused",
       "path": "api.raml",
       "range": {

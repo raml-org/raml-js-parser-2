@@ -38,7 +38,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 18,
       "message": "Specifying unknown facet: 'wrongPropertyName'",
       "path": "api.raml",
       "range": {

@@ -213,8 +213,8 @@
   },
   "errors": [
     {
-      "code": 11,
-      "message": "Required property 'name' is missing",
+      "code": 65,
+      "message": "Unknown property: 'name1'",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -230,8 +230,8 @@
       }
     },
     {
-      "code": 11,
-      "message": "Unknown property: 'name1'",
+      "code": 66,
+      "message": "Required property 'name' is missing",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

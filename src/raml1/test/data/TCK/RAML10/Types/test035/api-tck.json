@@ -84,7 +84,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 21,
       "message": "Null or undefined value is not allowed",
       "path": "api.raml",
       "range": {

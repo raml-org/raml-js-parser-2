@@ -159,7 +159,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 65,
       "message": "Unknown property: 'z'",
       "path": "apiInvalid.raml",
       "range": {

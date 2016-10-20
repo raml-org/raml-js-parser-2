@@ -81,7 +81,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 66,
       "message": "Required property 'items' is missing",
       "path": "apiInvalid.raml",
       "range": {

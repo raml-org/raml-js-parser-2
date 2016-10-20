@@ -220,8 +220,8 @@
   },
   "errors": [
     {
-      "code": 11,
-      "message": "Union type option does not pass validation (SimpleType2: number is expected)",
+      "code": 85,
+      "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
@@ -237,7 +237,7 @@
       }
     },
     {
-      "code": 11,
+      "code": 85,
       "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "range": {
@@ -254,8 +254,8 @@
       }
     },
     {
-      "code": 11,
-      "message": "Union type option does not pass validation (SimpleType1: string is expected)",
+      "code": 85,
+      "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "range": {
         "start": {

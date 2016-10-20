@@ -646,7 +646,7 @@ describe('Parser', function() {
         '    minLength: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of minLength must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'minLength' must be a number/).and.notify(done);
     });
 
     it('should fail when declaring a maxLength validation as anything other than a number', function(done) {
@@ -662,7 +662,7 @@ describe('Parser', function() {
         '    maxLength: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of maxLength must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'maxLength' must be a number/).and.notify(done);
     });
     //FIXTEST only numbers has minumum
     it('should fail when declaring a minimum validation as anything other than a number', function(done) {
@@ -679,7 +679,7 @@ describe('Parser', function() {
         '    minimum: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of minimum must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'minimum' must be a number/).and.notify(done);
     });
     //FIXTEST only numbers has minumum
     it('should fail when declaring a maximum validation as anything other than a number', function(done) {
@@ -696,7 +696,7 @@ describe('Parser', function() {
         '    maximum: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of maximum must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'maximum' must be a number/).and.notify(done);
     });
 
     it('should fail when declaring a URI parameter with an invalid type', function(done) {
@@ -2395,7 +2395,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 //
     it('should succeed with null response', function(done) {
@@ -2463,7 +2463,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 
     it('should overwrite arrays as keys with new single node', function(done) {
@@ -2483,7 +2483,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 //
     it('should fail to load a yaml with hash as key', function(done) {
@@ -7390,7 +7390,7 @@ describe('Parser', function() {
         '    responses:',
         '     [string]:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
   //});
 //

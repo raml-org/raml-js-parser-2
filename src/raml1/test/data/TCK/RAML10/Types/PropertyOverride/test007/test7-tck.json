@@ -133,7 +133,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 2,
       "message": "Can not override required property 'testProperty' to be optional",
       "path": "test7.raml",
       "range": {

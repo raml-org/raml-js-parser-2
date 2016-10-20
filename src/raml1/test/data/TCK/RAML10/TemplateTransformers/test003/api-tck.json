@@ -40,7 +40,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 1022,
       "message": "Unknown function applied to parameter: '!singulari___ize'",
       "path": "api.raml",
       "range": {

@@ -73,7 +73,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 76,
       "message": "It is not allowed to use external types in component type definitions",
       "path": "external-type-extend-invalid.raml",
       "range": {

@@ -67,7 +67,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 80,
       "message": "value should be one of: 'val1', 'val2', '3'",
       "path": "api.raml",
       "range": {

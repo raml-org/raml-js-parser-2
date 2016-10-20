@@ -225,7 +225,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 27,
       "message": "string is expected",
       "path": "libB.raml",
       "range": {
@@ -242,7 +242,7 @@
       },
       "trace": [
         {
-          "code": 11,
+          "code": 27,
           "message": "string is expected",
           "path": "api.raml",
           "range": {

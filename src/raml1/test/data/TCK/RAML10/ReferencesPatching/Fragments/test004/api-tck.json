@@ -246,7 +246,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 28,
       "message": "integer is expected",
       "path": "fragments/rt.raml",
       "range": {
@@ -263,7 +263,7 @@
       },
       "trace": [
         {
-          "code": 11,
+          "code": 1095,
           "message": "Error in the included file: integer is expected",
           "path": "api.raml",
           "range": {
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "code": 11,
+      "code": 28,
       "message": "integer is expected",
       "path": "fragments/rt.raml",
       "range": {
@@ -299,7 +299,7 @@
       },
       "trace": [
         {
-          "code": 11,
+          "code": 28,
           "message": "integer is expected",
           "path": "api.raml",
           "range": {

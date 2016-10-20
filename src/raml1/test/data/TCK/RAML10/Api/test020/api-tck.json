@@ -35,7 +35,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 6,
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {

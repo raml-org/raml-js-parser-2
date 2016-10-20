@@ -97,7 +97,7 @@
   },
   "errors": [
     {
-      "code": 10,
+      "code": 1077,
       "message": "The '.env-org-pair2' node does not match any node of the master api.",
       "path": "NewOverlay.raml",
       "range": {

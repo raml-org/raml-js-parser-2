@@ -82,7 +82,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 27,
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
       "range": {

@@ -190,7 +190,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 66,
       "message": "Required property 'c' is missing",
       "path": "api.raml",
       "range": {

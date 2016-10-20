@@ -7,7 +7,7 @@
   },
   "errors": [
     {
-      "code": 7,
+      "code": 1044,
       "message": "invalid media type",
       "path": "api.raml",
       "range": {

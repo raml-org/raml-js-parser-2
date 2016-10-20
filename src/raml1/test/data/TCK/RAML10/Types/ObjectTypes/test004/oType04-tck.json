@@ -134,7 +134,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 66,
       "message": "Required property 'comment_id' is missing",
       "path": "oType04.raml",
       "range": {

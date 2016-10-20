@@ -87,7 +87,7 @@
   },
   "errors": [
     {
-      "code": 0,
+      "code": 1048,
       "message": "Unresolved reference: 'suborg1'.",
       "path": "apiInvalid.raml",
       "range": {

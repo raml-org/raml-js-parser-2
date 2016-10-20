@@ -95,7 +95,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 66,
       "message": "Required property 'prop1' is missing",
       "path": "apiValid.raml",
       "range": {
