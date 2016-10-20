@@ -1,0 +1,114 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "schemaPath": "../../../../../../../../https:/raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test9/remoteScheme.json",
+          "type": [
+            "{\n    \"$schema\":\"http://json-schema.org/draft-04/schema\",\n    \"type\": \"object\",\n    \"properties\":{\n        \"rootName\": {\"type\": \"string\"},\n        \"parent\": {\"$ref\": \"subdir/remoteScheme.json#\"}\n    },\n    \"required\": [ \"rootName\" ]\n}\n"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "MyType"
+                ],
+                "example": {
+                  "rootName": "rootname",
+                  "parent": {
+                    "parentName": "somename",
+                    "child": {
+                      "childName1": "anothername"
+                    }
+                  }
+                },
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"rootName\": \"rootname\",\n  \"parent\": {\n    \"parentName\": \"somename\",\n    \"child\": {\n      \"childName1\": \"anothername\"\n    }\n  }\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "rootName": "rootname",
+                    "parent": {
+                      "parentName": "somename",
+                      "child": {
+                        "childName1": "anothername"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: childName childName",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 8,
+          "position": 261
+        },
+        "end": {
+          "line": 12,
+          "column": 15,
+          "position": 268
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema",
+    "id":"asd",
+    "type":"object",
+    "properties":{
+        "name":{
+            "type":"string"
+        }
+    },
+    "required": [ "name" ]
+}
