@@ -487,7 +487,7 @@
       "isWarning": true
     },
     {
-      "code": 11,
+      "code": 86,
       "message": "Union type option does not pass validation (Manager: None of the 'Manager' type known subtypes declare 'admin' as value of discriminating property 'kind'.)",
       "path": "api.raml",
       "range": {
@@ -505,7 +505,7 @@
       "isWarning": true
     },
     {
-      "code": 11,
+      "code": 86,
       "message": "Union type option does not pass validation (AlertableAdmin: None of the 'AlertableAdmin' type known subtypes declare 'admin' as value of discriminating property 'kind'.)",
       "path": "api.raml",
       "range": {

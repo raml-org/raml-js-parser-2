@@ -220,7 +220,24 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": 85,
+      "message": "Union type options do not pass validation",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 24,
+          "column": 10,
+          "position": 380
+        },
+        "end": {
+          "line": 25,
+          "column": 25,
+          "position": 421
+        }
+      }
+    },
+    {
+      "code": 86,
       "message": "Union type option does not pass validation (SimpleType1: Required property 'property2' is missing)",
       "path": "apiInvalid.raml",
       "range": {
@@ -237,25 +254,8 @@
       }
     },
     {
-      "code": 11,
+      "code": 86,
       "message": "Union type option does not pass validation (SimpleType2: Required property 'property3' is missing)",
-      "path": "apiInvalid.raml",
-      "range": {
-        "start": {
-          "line": 24,
-          "column": 10,
-          "position": 380
-        },
-        "end": {
-          "line": 25,
-          "column": 25,
-          "position": 421
-        }
-      }
-    },
-    {
-      "code": 11,
-      "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "range": {
         "start": {
