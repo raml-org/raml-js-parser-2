@@ -17,6 +17,8 @@ import util = require("../util/index")
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 
+var pathUtils = require("path");
+
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
     return new TCKDumper({
         rootNodeDetails : true,
@@ -282,6 +284,23 @@ export class TCKDumper {
                     }
                 })
             }
+
+            if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
+                var jsonString = value[0].trim();
+                
+                if(jsonString[0] === "{" && jsonString[jsonString.length - 1] === "}") {
+                    var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
+
+                    if(include) {
+                        var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
+
+                        var relativePath = pathUtils.relative((<any>node).highLevel().lowLevel().unit().project().getRootPath(), aPath);
+
+                        obj["schemaPath"] = relativePath;
+                    }
+                }
+            }
+
             if (!value && propName == "type") {
                 return
                 //we should not use
@@ -570,8 +589,14 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
         ]),"name");
     }
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean {
+        var res = node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+
+        if(res) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
