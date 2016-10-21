@@ -7,7 +7,7 @@ import schemaGenImpl = require("./raml1/tools/schemaModelGen")
 
 import path = require("path");
 
-import parserApi = require("./index");
+import project = require("./project");
 
 import contentprovider = require('./util/contentprovider');
 
@@ -20,7 +20,7 @@ export interface Schema {
 }
 
 export function dereference(schemaPath: string, jsonReference: string): string {
-    var project = parserApi.project.createProject(path.dirname(schemaPath));
+    var project = project.createProject(path.dirname(schemaPath));
 
     var dummySchema = {
         "$ref": jsonReference
