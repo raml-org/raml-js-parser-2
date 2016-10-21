@@ -5,6 +5,10 @@ import refResolvers=require("./raml1/jsyaml/includeRefResolvers")
 import schemaGenApi = require("./raml1/tools/schemaModelGenApi")
 import schemaGenImpl = require("./raml1/tools/schemaModelGen")
 
+import path = require("path");
+
+import parserApi = require("./index");
+
 import contentprovider = require('./util/contentprovider');
 
 var su = def.getSchemaUtils();
@@ -13,6 +17,22 @@ export interface Schema {
     getType(): string;
     validate(content: string): void;
     validateObject(object:any):void;
+}
+
+export function dereference(schemaPath: string, jsonReference: string): string {
+    var project = parserApi.project.createProject(path.dirname(schemaPath));
+
+    var dummySchema = {
+        "$ref": jsonReference
+    }
+    
+    var schemaContent = JSON.stringify(dummySchema);
+
+    var unit = project.setCachedUnitContent(path.basename(schemaPath), schemaContent);
+
+    var schema = getJSONSchema(schemaContent, unit);
+
+    return (<any>schema).jsonSchema["$ref"];
 }
 
 export function createSchema(c:string,u:ll.ICompilationUnit):Schema{
