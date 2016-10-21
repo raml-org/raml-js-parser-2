@@ -74,12 +74,12 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
     console.log("Preparing to Webpack browser bundle: raml-1-parser.js");
 
     var plugins = [];
-    // if (minify) {
-    //     plugins.push(new webpack.optimize.UglifyJsPlugin({
-    //         minimize: true,
-    //         compress: { warnings: false }
-    //     }));
-    // }
+    if (minify) {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: { warnings: false }
+        }));
+    }
 
     var relativeFilePath = path.relative(parserRootFolder, rootFile);
     relativeFilePath = "./"+relativeFilePath;
