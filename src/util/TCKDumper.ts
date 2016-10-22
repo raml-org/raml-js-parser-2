@@ -297,8 +297,16 @@ export class TCKDumper {
                     if(include) {
                         var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
 
-                        var relativePath = pathUtils.relative((<any>node).highLevel().lowLevel().unit().project().getRootPath(), aPath);
+                        var relativePath;
+
+                        if(aPath.indexOf("http://") === 0 || aPath.indexOf("https://") === 0) {
+                            relativePath = aPath;
+                        } else {
+                            relativePath = pathUtils.relative((<any>node).highLevel().lowLevel().unit().project().getRootPath(), aPath);
+                        }
+
                         relativePath = relativePath.replace(/\\/g,'/');
+
                         obj["schemaPath"] = relativePath;
                     }
                 }
