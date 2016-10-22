@@ -298,7 +298,7 @@ export class TCKDumper {
                         var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
 
                         var relativePath = pathUtils.relative((<any>node).highLevel().lowLevel().unit().project().getRootPath(), aPath);
-
+                        relativePath = relativePath.replace(/\\/g,'/');
                         obj["schemaPath"] = relativePath;
                     }
                 }
