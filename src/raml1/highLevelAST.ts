@@ -453,3 +453,48 @@ export interface IStructuredValue {
 
     toHighLevel2(parent?: IHighLevelNode):IHighLevelNode;
 }
+
+export interface INodeValidationPlugin{
+    
+    validate(node:IParseResult):ValidationIssue[];
+
+    id():string;
+}
+
+export class NodeValidationPluginIssue{
+
+    constructor(private _issue:ValidationIssue, private _plugin:INodeValidationPlugin){}
+
+    pliginId(){
+        return this._plugin.id();
+    }
+
+    issue():ValidationIssue{ return this._issue; }
+
+    plugin():INodeValidationPlugin{ return this._plugin; }
+}
+
+
+export function getNodeValidationPlugins():INodeValidationPlugin[]{
+    var rv:any = global.ramlValidation;
+    if(rv){
+        var nodeValidators = rv.nodeValidators;
+        if(Array.isArray(nodeValidators)){
+            return <INodeValidationPlugin[]>nodeValidators;
+        }
+    }
+    return [];
+}
+
+export function applyNodeValidationPlugins(t:IParseResult):NodeValidationPluginIssue[] {
+
+    var result:NodeValidationPluginIssue[] = [];
+    var plugins = getNodeValidationPlugins();
+    for (var tv of plugins) {
+        var issues:ValidationIssue[] = tv.validate(t);
+        if (issues) {
+            issues.forEach(x=>result.push(new NodeValidationPluginIssue(x, tv)));
+        }
+    }
+    return result;
+}

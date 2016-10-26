@@ -209,6 +209,9 @@ export class BasicASTNode implements hl.IParseResult {
     validate(v:hl.ValidationAcceptor):void{
 
         linter.validate(this,v);
+        for(var pluginIssue of hl.applyNodeValidationPlugins(this)){
+            v.accept(pluginIssue.issue());
+        }
     }
     allowRecursive(){
         return false;
@@ -1037,7 +1040,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if (k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
             this.clearTypesCache();
         }
-        linter.validate(this,v);
+        super.validate(v);
     }
     clearTypesCache(){
         this._types=null;
