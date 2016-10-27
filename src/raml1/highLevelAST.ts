@@ -454,27 +454,53 @@ export interface IStructuredValue {
     toHighLevel2(parent?: IHighLevelNode):IHighLevelNode;
 }
 
+/**
+ * Model of AST node validation plugin
+ */
 export interface INodeValidationPlugin{
-    
+
+    /**
+     * Apply validation to AST node
+     * @param node AST node
+     * @return array of {ValidationIssue}
+     */
     validate(node:IParseResult):ValidationIssue[];
 
+    /**
+     * String ID of the plugin
+     */
     id():string;
 }
 
+/**
+ * Model object providing both issue detected by node validation
+ * plugin and the plugin itself
+ */
 export class NodeValidationPluginIssue{
 
     constructor(private _issue:ValidationIssue, private _plugin:INodeValidationPlugin){}
 
+    /**
+     * ID of the plugin
+     */
     pliginId(){
         return this._plugin.id();
     }
 
+    /**
+     * The issue detected expressed as {ValidationIssue}
+     */
     issue():ValidationIssue{ return this._issue; }
 
+    /**
+     * The validation plugin
+     */
     plugin():INodeValidationPlugin{ return this._plugin; }
 }
 
-
+/**
+ * Retrieve a list of registered node validation plugins
+ */
 export function getNodeValidationPlugins():INodeValidationPlugin[]{
     var rv:any = global.ramlValidation;
     if(rv){
@@ -486,15 +512,38 @@ export function getNodeValidationPlugins():INodeValidationPlugin[]{
     return [];
 }
 
-export function applyNodeValidationPlugins(t:IParseResult):NodeValidationPluginIssue[] {
+/**
+ * Apply registered node validation plugins to the type
+ * @param node node to be validated
+ * @returns an array of {NodeValidationPluginIssue}
+ */
+
+export function applyNodeValidationPlugins(node:IParseResult):NodeValidationPluginIssue[] {
 
     var result:NodeValidationPluginIssue[] = [];
     var plugins = getNodeValidationPlugins();
     for (var tv of plugins) {
-        var issues:ValidationIssue[] = tv.validate(t);
+        var issues:ValidationIssue[] = tv.validate(node);
         if (issues) {
             issues.forEach(x=>result.push(new NodeValidationPluginIssue(x, tv)));
         }
     }
     return result;
+}
+
+/**
+ * Model of annotation validator
+ */
+export interface ASTAnnotationValidationPlugin {
+
+    /**
+     * validate annotated RAML element
+     */
+    processAnnotatedEntry(entry:rTypes.tsInterfaces.IAnnotatedElement):ValidationIssue[];
+
+    /**
+     * String ID of the plugin
+     */
+    id():string;
+
 }

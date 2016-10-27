@@ -2063,3 +2063,19 @@ export function isAnnotationTypeFragment(node:hl.IHighLevelNode):boolean{
     }
     return fLine[2] == "AnnotationTypeDeclaration";
 }
+
+export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
+
+    kind():string{ return "AnnotatedNode"; }
+
+    annotationsMap(): {[key:string]:def.rt.tsInterfaces.IAnnotationInstance}{  return {}; }
+
+    annotations(): def.rt.tsInterfaces.IAnnotationInstance[]{ return []; }
+
+    value():any{ return null; }
+
+    name():string{ return null; }
+
+    entry():hl.IParseResult{ return null; }
+
+}
