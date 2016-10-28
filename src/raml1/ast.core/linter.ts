@@ -2278,7 +2278,7 @@ class CompositeNodeValidator implements NodeValidator {
 
             var isPattern=node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
             if (!isPattern) {
-                acceptor.accept(createIssue1(messageRegistry.SEQUENCE_AS_KEY, {}, node));
+                acceptor.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_SEQUENCE, {}, node));
             }
 
         }
