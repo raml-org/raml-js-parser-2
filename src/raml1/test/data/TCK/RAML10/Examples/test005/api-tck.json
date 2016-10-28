@@ -79,7 +79,7 @@
   },
   "errors": [
     {
-      "code": 27,
+      "code": "TYPE_EXPECTED",
       "message": "boolean is expected",
       "path": "api.raml",
       "range": {

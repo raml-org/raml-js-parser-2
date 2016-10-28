@@ -78,7 +78,7 @@
   },
   "errors": [
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'Initial_comments.minProperties=2' i.e. object properties count should not be less than 2",
       "path": "oType02.raml",
       "range": {

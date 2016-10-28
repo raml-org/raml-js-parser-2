@@ -129,7 +129,7 @@
   },
   "errors": [
     {
-      "code": 80,
+      "code": "ENUM_RESTRICTION",
       "message": "value should be one of: 'low', 'medium', 'high'",
       "path": "apiInvalid.raml",
       "range": {

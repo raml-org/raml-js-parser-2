@@ -60,7 +60,7 @@
   },
   "errors": [
     {
-      "code": 1037,
+      "code": "INVALID_VALUE",
       "message": "Invalid value: 'FTP'. Allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {
@@ -77,7 +77,7 @@
       }
     },
     {
-      "code": 1037,
+      "code": "INVALID_VALUE",
       "message": "Invalid value: 'SMTP'. Allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {

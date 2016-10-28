@@ -55,7 +55,7 @@
   },
   "errors": [
     {
-      "code": 1033,
+      "code": "STATUS_MUST_BE_3NUMBER",
       "message": "Status code should be 3 digits number.",
       "path": "methResp06.raml",
       "range": {

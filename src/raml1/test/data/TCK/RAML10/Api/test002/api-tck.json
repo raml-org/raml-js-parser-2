@@ -6,7 +6,7 @@
   },
   "errors": [
     {
-      "code": 1008,
+      "code": "PROPERTY_MUST_BE_A_MAP_10",
       "message": "'resourceTypes' should be a map in RAML 1.0",
       "path": "api.raml",
       "range": {

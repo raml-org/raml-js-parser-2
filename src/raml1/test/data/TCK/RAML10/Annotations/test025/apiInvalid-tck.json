@@ -37,7 +37,7 @@
   },
   "errors": [
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'z.maximum=10' i.e. value should not be more than 10",
       "path": "apiInvalid.raml",
       "range": {

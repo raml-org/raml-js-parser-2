@@ -230,7 +230,7 @@
   },
   "errors": [
     {
-      "code": 21,
+      "code": "NULL_NOT_ALLOWED",
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
       "range": {
@@ -247,7 +247,7 @@
       }
     },
     {
-      "code": 21,
+      "code": "NULL_NOT_ALLOWED",
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
       "range": {
@@ -264,7 +264,7 @@
       }
     },
     {
-      "code": 21,
+      "code": "NULL_NOT_ALLOWED",
       "message": "Null or undefined value is not allowed",
       "path": "overlay.raml",
       "range": {

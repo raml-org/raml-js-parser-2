@@ -68,7 +68,7 @@
   },
   "errors": [
     {
-      "code": 1029,
+      "code": "INVALID_ANNOTATION_LOCATION",
       "message": "annotation TestAnnotation can not be placed at this location, allowed targets are:SecuritySchemeSettings",
       "path": "apiInvalid.raml",
       "range": {

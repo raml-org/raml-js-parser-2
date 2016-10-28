@@ -296,7 +296,7 @@
   },
   "errors": [
     {
-      "code": 28,
+      "code": "INTEGER_EXPECTED",
       "message": "integer is expected",
       "path": "api.raml",
       "range": {

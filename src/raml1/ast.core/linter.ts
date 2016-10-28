@@ -333,7 +333,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                         return x1 + ', ';
 
                     }).join('');
-                    issue = createIssue1(messageRegistry.PROPERTY_OWNER_TYPE_RESTRICTION,
+                    issue = createIssue1(messageRegistry.INVALID_PROPERTY_OWNER_TYPE,
                         {propName:propName,namesStr:namesStr}, node);
                 }
             }
@@ -348,7 +348,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
     if (node.lowLevel()) {
         if (node.lowLevel().keyKind()==yaml.Kind.MAP){
 
-            v.accept(createIssue1(messageRegistry.MAP_AS_KEY, {}, node));
+            v.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_MAP, {}, node));
 
         }
         if (node.lowLevel().keyKind()==yaml.Kind.SEQ){
@@ -360,7 +360,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                     }
                 }
                 if (!isPattern) {
-                    v.accept(createIssue1(messageRegistry.SEQUENCE_AS_KEY, {}, node));
+                    v.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_SEQUENCE, {}, node));
                 }
             }
         }
@@ -368,7 +368,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             node.lowLevel().errors().forEach(x=> {
                 var ps= (<any>x).mark?(<any>x).mark.position:0;
                 var em = {
-                    code: hl.IssueCode.YAML_ERROR,
+                    code: "YAML_ERROR",//hl.IssueCode.YAML_ERROR,
                     message: x.message,
                     node: null,
                     start: ps,
@@ -398,7 +398,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
         if (node.needMap){
             if(node.knownProperty){
-                v.accept(createIssue1(messageRegistry.MAP_REQUIRED_PROPERTY, {propName : node.knownProperty.nameId()}, node));
+                v.accept(createIssue1(messageRegistry.PROPERTY_MUST_BE_A_MAP_10, {propName : node.knownProperty.nameId()}, node));
             }
             else{
                 v.accept(createIssue1(messageRegistry.MAP_REQUIRED, {}, node));
@@ -466,7 +466,8 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             return !requiredOnly || (child.property && child.property() && child.property().isRequired());
         }).forEach(x => {
             if (x && (<any>x).errorMessage){
-                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, x.name()?x:node));
+                var em = (<any>x).errorMessage;
+                v.accept(createIssue1(em.entry, em.parameters, x.name()?x:node));
                 return;
             }
 
@@ -663,7 +664,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                 }
             })
             if (hasSchemas&&hasTypes){
-                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+                v.accept(createLLIssue1(messageRegistry.TYPES_AND_SCHEMAS_ARE_EXCLUSIVE,{},vv,highLevelNode));
             }
         }
 
@@ -1667,7 +1668,7 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
         var referencedToName = typeToName[expected] || nameForNonReference(astNode);
         var parameters = {
             referencedToName: referencedToName,
-            refValue: vl
+            ref: vl
         }
         var code = referencedToName ? messageRegistry.UNRECOGNIZED_ELEMENT
             : messageRegistry.UNRESOLVED_REFERENCE;
@@ -1679,7 +1680,7 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
     }
 
     if(isDuplicateSibling(astNode) && universeHelpers.isTraitRefType(astNode.definition())) {
-        cb.accept(createIssue1(messageRegistry.DUPLICATE_TRATE_REFERENCE,{refValue: vl}, astNode));
+        cb.accept(createIssue1(messageRegistry.DUPLICATE_TRAIT_REFERENCE,{refValue: vl}, astNode));
 
         return true;
     }

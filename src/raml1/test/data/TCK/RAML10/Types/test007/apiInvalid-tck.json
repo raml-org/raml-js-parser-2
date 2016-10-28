@@ -115,7 +115,7 @@
   },
   "errors": [
     {
-      "code": 85,
+      "code": "UNION_TYPE_FAILURE",
       "message": "Union type options do not pass validation",
       "path": "apiInvalid.raml",
       "range": {
@@ -132,7 +132,7 @@
       }
     },
     {
-      "code": 86,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (number[]: number is expected)",
       "path": "apiInvalid.raml",
       "range": {
@@ -149,7 +149,7 @@
       }
     },
     {
-      "code": 86,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
       "range": {
@@ -166,7 +166,7 @@
       }
     },
     {
-      "code": 86,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (string[]: string is expected)",
       "path": "apiInvalid.raml",
       "range": {

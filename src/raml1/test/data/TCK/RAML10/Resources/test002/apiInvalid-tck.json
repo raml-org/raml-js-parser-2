@@ -120,7 +120,7 @@
   },
   "errors": [
     {
-      "code": 1091,
+      "code": "PROPERTY_UNUSED",
       "message": "Uri parameter unused",
       "path": "apiInvalid.raml",
       "range": {

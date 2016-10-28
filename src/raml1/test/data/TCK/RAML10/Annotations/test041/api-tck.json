@@ -34,7 +34,7 @@
   },
   "errors": [
     {
-      "code": 1064,
+      "code": "ALLOWED_TARGETS_MUST_BE_ARRAY",
       "message": "'allowedTargets' property value must be an array of type names or a single type name",
       "path": "api.raml",
       "range": {

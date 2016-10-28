@@ -127,9 +127,9 @@ export interface ValueMetadata{
 export interface RamlParserError {
 
     /**
-     * [[IssueCode]]
+     * Error identifier
      */
-    code: number;
+    code: string;
 
     /**
      * Messag text
@@ -304,7 +304,7 @@ export interface ValidationAction {
 }
 
 export interface ValidationIssue {
-    code: number;
+    code: string;
     message: string;
     node: IParseResult;
     path: string;

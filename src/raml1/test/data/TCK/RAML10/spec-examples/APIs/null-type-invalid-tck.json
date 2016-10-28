@@ -86,7 +86,7 @@
   },
   "errors": [
     {
-      "code": 21,
+      "code": "NULL_NOT_ALLOWED",
       "message": "Null or undefined value is not allowed",
       "path": "null-type-invalid.raml",
       "range": {

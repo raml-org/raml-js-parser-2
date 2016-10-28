@@ -90,7 +90,7 @@
   },
   "errors": [
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'MyType1.minimum=5' i.e. value should not be less than 5",
       "path": "api.raml",
       "range": {
@@ -107,7 +107,7 @@
       }
     },
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'MyType1.minimum=5' i.e. value should not be less than 5",
       "path": "api.raml",
       "range": {

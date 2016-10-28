@@ -67,7 +67,7 @@
   },
   "errors": [
     {
-      "code": 80,
+      "code": "ENUM_RESTRICTION",
       "message": "value should be one of: 'val1', 'val2', '3'",
       "path": "api.raml",
       "range": {

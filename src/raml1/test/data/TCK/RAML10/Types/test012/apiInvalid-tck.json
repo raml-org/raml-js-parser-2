@@ -101,7 +101,7 @@
   },
   "errors": [
     {
-      "code": 66,
+      "code": "REQUIRED_PROPERTY_MISSING",
       "message": "Required property 'someProperty' is missing",
       "path": "apiInvalid.raml",
       "range": {
@@ -118,7 +118,7 @@
       }
     },
     {
-      "code": 65,
+      "code": "UNKNOWN_PROPERTY",
       "message": "Unknown property: 'someProperty1'",
       "path": "apiInvalid.raml",
       "range": {

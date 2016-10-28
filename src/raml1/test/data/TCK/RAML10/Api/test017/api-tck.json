@@ -57,7 +57,7 @@
   },
   "errors": [
     {
-      "code": 1091,
+      "code": "PROPERTY_UNUSED",
       "message": "Base uri parameter unused",
       "path": "api.raml",
       "range": {

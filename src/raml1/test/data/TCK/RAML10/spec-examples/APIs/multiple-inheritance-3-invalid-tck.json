@@ -73,7 +73,7 @@
   },
   "errors": [
     {
-      "code": 83,
+      "code": "RESTRICTIONS_CONFLICT",
       "message": "Restrictions conflict in type 'Number3': ['Number2.maximum=2' is less than 'Number1.minimum=4'. The minimum cannot be higher than the maximum.]",
       "path": "multiple-inheritance-3-invalid.raml",
       "range": {

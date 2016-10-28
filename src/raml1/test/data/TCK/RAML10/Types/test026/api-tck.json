@@ -408,7 +408,7 @@
   },
   "errors": [
     {
-      "code": 83,
+      "code": "RESTRICTIONS_CONFLICT",
       "message": "Restrictions conflict in type 'application/xml': should be of type number and should be of type string",
       "path": "api.raml",
       "range": {
@@ -425,7 +425,7 @@
       }
     },
     {
-      "code": 83,
+      "code": "RESTRICTIONS_CONFLICT",
       "message": "Restrictions conflict in type 'application/xml': should be of type number and should be of type string",
       "path": "api.raml",
       "range": {
@@ -442,7 +442,7 @@
       }
     },
     {
-      "code": 1,
+      "code": "SCHEMA_AND_TYPE",
       "message": "'schema' and 'type' are mutually exclusive",
       "path": "api.raml",
       "range": {

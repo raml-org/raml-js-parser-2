@@ -28,7 +28,7 @@
   },
   "errors": [
     {
-      "code": 87,
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
       "message": "Invalid JSON schema: Unexpected token p",
       "path": "api.raml",
       "range": {

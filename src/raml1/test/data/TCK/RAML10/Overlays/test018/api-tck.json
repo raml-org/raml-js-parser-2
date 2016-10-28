@@ -69,7 +69,7 @@
   },
   "errors": [
     {
-      "code": 1078,
+      "code": "INVALID_OVERRIDE_IN_OVERLAY",
       "message": "Property 'default' is not allowed to be overriden or added in overlays",
       "path": "NewOverlay.raml",
       "range": {

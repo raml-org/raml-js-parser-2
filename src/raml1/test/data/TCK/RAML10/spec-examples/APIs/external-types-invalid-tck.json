@@ -28,7 +28,7 @@
   },
   "errors": [
     {
-      "code": 17,
+      "code": "FACET_PROHIBITED_FOR_EXTERNALS",
       "message": "'properties' facet is prohibited for external types",
       "path": "external-types-invalid.raml",
       "range": {

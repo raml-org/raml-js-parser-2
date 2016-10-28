@@ -199,7 +199,7 @@
   },
   "errors": [
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'ChildType2.stringProperty.minLength=3' i.e. string length should not be less than 3",
       "path": "api.raml",
       "range": {

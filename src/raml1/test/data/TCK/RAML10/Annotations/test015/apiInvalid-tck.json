@@ -97,7 +97,7 @@
   },
   "errors": [
     {
-      "code": 84,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'meta.minLength=10' i.e. string length should not be less than 10",
       "path": "apiInvalid.raml",
       "range": {

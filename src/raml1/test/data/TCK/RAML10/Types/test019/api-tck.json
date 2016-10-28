@@ -30,7 +30,7 @@
   },
   "errors": [
     {
-      "code": 83,
+      "code": "RESTRICTIONS_CONFLICT",
       "message": "Restrictions conflict in type 'SomeType': ['SomeType.minimum=10' is higher than 'SomeType.maximum=1'. The maximum cannot be less than the minimum.]",
       "path": "api.raml",
       "range": {

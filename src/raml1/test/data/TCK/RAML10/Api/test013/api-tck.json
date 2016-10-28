@@ -7,7 +7,7 @@
   },
   "errors": [
     {
-      "code": 1012,
+      "code": "UNKNOWN_NODE",
       "message": "Unknown node: 'wrongPropertyName'",
       "path": "api.raml",
       "range": {

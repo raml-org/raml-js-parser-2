@@ -86,7 +86,7 @@
   },
   "errors": [
     {
-      "code": 58,
+      "code": "EXTERNAL_IN_PROPERTY_DEFINITION",
       "message": "It is not allowed to use external types in property definitions",
       "path": "api.raml",
       "range": {
@@ -103,7 +103,7 @@
       }
     },
     {
-      "code": 64,
+      "code": "EXAMPLE_SCHEMA_FAILURE",
       "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: id id",
       "path": "api.raml",
       "range": {

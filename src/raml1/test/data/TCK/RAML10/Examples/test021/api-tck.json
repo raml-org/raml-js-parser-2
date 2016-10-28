@@ -93,7 +93,7 @@
   },
   "errors": [
     {
-      "code": 78,
+      "code": "PATTERN_VIOLATION",
       "message": "String should match to '.5'",
       "path": "api.raml",
       "range": {

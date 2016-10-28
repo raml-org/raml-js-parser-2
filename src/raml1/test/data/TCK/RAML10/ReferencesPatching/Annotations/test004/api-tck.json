@@ -201,7 +201,7 @@
   },
   "errors": [
     {
-      "code": 27,
+      "code": "TYPE_EXPECTED",
       "message": "string is expected",
       "path": "libB.raml",
       "range": {
@@ -218,7 +218,7 @@
       },
       "trace": [
         {
-          "code": 27,
+          "code": "TYPE_EXPECTED",
           "message": "string is expected",
           "path": "api.raml",
           "range": {

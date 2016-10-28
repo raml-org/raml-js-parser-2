@@ -1,447 +1,455 @@
 {
-  "CONTEXT_REQUIREMENT" : {
-    "code" : 1001,
+  "CONTEXT_REQUIREMENT_VIOLATION": {
+    "code" : "CONTEXT_REQUIREMENT_VIOLATION",
     "message" : "{{name}} should be {{value}} to use property '{{propName}}'"
   },
   "INVALID_PARAMETER_NAME" : {
-    "code" : 1002,
+    "code" : "INVALID_PARAMETER_NAME",
     "message" : "Invalid parameter name: '{{paramName}}' is reserved"
   },
   "UNUSED_PARAMETER" : {
-    "code" : 1003,
+    "code" : "UNUSED_PARAMETER",
     "message" : "Unused parameter: '{{paramName}}'"
   },
-  "PROPERTY_OWNER_TYPE_RESTRICTION" : {
-    "code" : 1004,
+  "INVALID_PROPERTY_OWNER_TYPE": {
+    "code" : "INVALID_PROPERTY_OWNER_TYPE",
     "message" : "Property '{{propName}}' can only be used if type is {{namesStr}}"
   },
-  "MAP_AS_KEY" : {
-    "code" : 1005,
+  "NODE_KEY_IS_A_MAP": {
+    "code" : "NODE_KEY_IS_A_MAP",
     "message" : "Node key can not be a map"
   },
-  "SEQUENCE_AS_KEY" : {
-    "code" : 1006,
+  "NODE_KEY_IS_A_SEQUENCE": {
+    "code" : "NODE_KEY_IS_A_SEQUENCE",
     "message" : "Node key can not be a sequence"
   },
   "SEQUENCE_REQUIRED" : {
-    "code" : 1007,
+    "code" : "SEQUENCE_REQUIRED",
     "message" : "Node: '{{name}}' should be wrapped in sequence"
   },
-  "MAP_REQUIRED_PROPERTY" : {
-    "code" : 1008,
+  "PROPERTY_MUST_BE_A_MAP_10": {
+    "code" : "PROPERTY_MUST_BE_A_MAP_10",
     "message" : "'{{propName}}' should be a map in RAML 1.0"
   },
+  "PROPERTY_MUST_BE_A_MAP": {
+    "code" : "PROPERTY_MUST_BE_A_MAP",
+    "message" : "Property '{{propName}}' should be a map"
+  },
+  "PROPERTY_MUST_BE_A_SEQUENCE": {
+    "code" : "PROPERTY_MUST_BE_A_SEQUENCE",
+    "message" : "Property '{{propName}}' should be a sequence"
+  },
+  "INVALID_PROPERTY_RANGE": {
+    "code" : "INVALID_PROPERTY_RANGE",
+    "message" : "Property '{{propName}}' must be a {{range}}"
+  },
   "MAP_REQUIRED" : {
-    "code" : 1009,
+    "code" : "MAP_REQUIRED",
     "message" : "should be a map in RAML 1.0"
   },
   "UNRESOLVED_REFERENCE" : {
-    "code" : 1010,
+    "code" : "UNRESOLVED_REFERENCE",
     "message" : "Reference: '{{ref}}' can not be resolved"
   },
   "SCALAR_PROHIBITED" : {
-    "code" : 1011,
+    "code" : "SCALAR_PROHIBITED",
     "message" : "Property '{{propName}}' can not have scalar value"
   },
   "UNKNOWN_NODE" : {
-    "code" : 1012,
+    "code" : "UNKNOWN_NODE",
     "message" : "Unknown node: '{{name}}'"
   },
   "RECURSIVE_DEFINITION" : {
-    "code" : 1013,
+    "code" : "RECURSIVE_DEFINITION",
     "message" : "Recursive definition: '{{name}}'"
   },
   "PROPERTY_ALREADY_SPECIFIED" : {
-    "code" : 1014,
+    "code" : "PROPERTY_ALREADY_SPECIFIED",
     "message" : "'{{propName}}' is already specified.`"
   },
   "ISSUES_IN_THE_LIBRARY" : {
-    "code" : 1015,
+    "code" : "ISSUES_IN_THE_LIBRARY",
     "message" : "Issues in the used library: '{{value}}'"
   },
   "INVALID_LIBRARY_PATH" : {
-    "code" : 1016,
+    "code" : "INVALID_LIBRARY_PATH",
     "message" : "Can not resolve library from path: '{{path}}'"
   },
   "EMPTY_FILE" : {
-    "code" : 1017,
+    "code" : "EMPTY_FILE",
     "message" : "Empty file: {{path}}"
   },
   "SPACES_IN_KEY" : {
-    "code" : 1018,
+    "code" : "SPACES_IN_KEY",
     "message" : "Keys should not have spaces '{{value}}'"
   },
   "INCLUDE_ERROR" : {
-    "code" : 1019,
+    "code" : "INCLUDE_ERROR",
     "message" : "{{msg}}"
   },
   "PATH_EXCEEDS_ROOT" : {
-    "code" : 1020,
+    "code" : "PATH_EXCEEDS_ROOT",
     "message" : "Resolved include path exceeds file system root"
   },
   "ILLEGAL_PATTERN" : {
-    "code" : 1021,
+    "code" : "ILLEGAL_PATTERN",
     "message" : "Illegal pattern: '{{value}}'"
   },
   "UNKNOWN_FUNCTION" : {
-    "code" : 1022,
+    "code" : "UNKNOWN_FUNCTION",
     "message" : "Unknown function applied to parameter: '{{transformerName}}'"
   },
   "REQUEST_BODY_DISABLED" : {
-    "code" : 1023,
+    "code" : "REQUEST_BODY_DISABLED",
     "message" : "Request body is disabled for '{{methodName}}' method."
   },
   "SCALAR_EXPECTED" : {
-    "code" : 1024,
+    "code" : "SCALAR_EXPECTED",
     "message" : "Scalar is expected here"
   },
   "STRING_EXPECTED" : {
-    "code" : 1025,
+    "code" : "STRING_EXPECTED",
     "message" : "Property '{{propName}}' must be a string"
   },
   "UNKNOWN_ANNOTATION" : {
-    "code" : 1026,
+    "code" : "UNKNOWN_ANNOTATION",
     "message" : "Unknown annotation: '{{aName}}'"
   },
   "STRING_EXPECTED_2" : {
-    "code" : 1027,
+    "code" : "STRING_EXPECTED_2",
     "message" : "{{propName}} value should be a string"
   },
   "SECUREDBY_LIST_08" : {
-    "code" : 1028,
+    "code" : "SECUREDBY_LIST_08",
     "message" : "'securedBy' should be a list in RAML08"
   },
   "INVALID_ANNOTATION_LOCATION" : {
-    "code" : 1029,
+    "code" : "INVALID_ANNOTATION_LOCATION",
     "message" : "annotation {{aName}} can not be placed at this location, allowed targets are:{{aValues}}"
   },
   "BOOLEAN_EXPECTED" : {
-    "code" : 1030,
+    "code" : "BOOLEAN_EXPECTED",
     "message" : "'true' or 'false' is expected here"
   },
   "NUMBER_EXPECTED" : {
-    "code" : 1031,
+    "code" : "NUMBER_EXPECTED",
     "message" : "Value of '{{propName}}' must be a number"
   },
   "STRING_EXPECTED_3" : {
-    "code" : 1032,
+    "code" : "STRING_EXPECTED_3",
     "message" :  "'{{propName}}' must be a string"
   },
   "STATUS_MUST_BE_3NUMBER" : {
-    "code" : 1033,
+    "code" : "STATUS_MUST_BE_3NUMBER",
     "message" : "Status code should be 3 digits number."
   },
   "34" : {
-    "code" : 1034,
+    "code" : "34",
     "message" : ""
   },
   "EMPTY_VALUE_NOT_ALLOWED" : {
-    "code" : 1035,
+    "code" : "EMPTY_VALUE_NOT_ALLOWED",
     "message" : "Empty value is not allowed here"
   },
   "INVALID_VALUE_SCHEMA" : {
-    "code" : 1036,
+    "code" : "INVALID_VALUE_SCHEMA",
     "message" : "Invalid value schema: '{{iValue}}'"
   },
   "INVALID_VALUE" : {
-    "code" : 1037,
+    "code" : "INVALID_VALUE",
     "message" : "Invalid value: '{{iValue}}'. Allowed values are: {{aValues}}"
   },
   "SCHEMA_EXCEPTION" : {
-    "code" : 1038,
+    "code" : "SCHEMA_EXCEPTION",
     "message" : "Schema exception: {{msg}}"
   },
   "SCHEMA_ERROR" : {
-    "code" : 1039,
+    "code" : "SCHEMA_ERROR",
     "message" : "{{msg}}"
   },
   "MISSING_VERSION" : {
-    "code" : 1040,
+    "code" : "MISSING_VERSION",
     "message" : "Missing 'version'"
   },
   "URI_PARAMETER_NAME_MISSING" : {
-    "code" : 1041,
+    "code" : "URI_PARAMETER_NAME_MISSING",
     "message" : "URI parameter must have name specified"
   },
   "URI_EXCEPTION" : {
-    "code" : 1042,
+    "code" : "URI_EXCEPTION",
     "message" : "{{msg}}"
   },
   "INVALID_MEDIATYPE" : {
-    "code" : 1043,
+    "code" : "INVALID_MEDIATYPE",
     "message" : "Invalid media type '{{mediaType}}'"
   },
   "MEDIATYPE_EXCEPTION" : {
-    "code" : 1044,
+    "code" : "MEDIATYPE_EXCEPTION",
     "message" : "{{msg}}"
   },
   "FORM_IN_RESPONSE" : {
-    "code" : 1045,
+    "code" : "FORM_IN_RESPONSE",
     "message" : "Form related media types can not be used in responses"
   },
   "UNUSED_URL_PARAMETER" : {
-    "code" : 1046,
+    "code" : "UNUSED_URL_PARAMETER",
     "message" : "Unused url parameter {{paramName}}"
   },
   "UNRECOGNIZED_ELEMENT" : {
-    "code" : 1047,
-    "message" : "Unrecognized {{referencedToName}}: '{{refValue}}'."
-  },
-  "UNRESOLVED_REFERENCE" : {
-    "code" : 1048,
-    "message" : "Unresolved reference: '{{refValue}}'."
+    "code" : "UNRECOGNIZED_ELEMENT",
+    "message" : "Unrecognized {{referencedToName}}: '{{ref}}'."
   },
   "TYPES_VARIETY_RESTRICTION" : {
-    "code" : 1049,
+    "code" : "TYPES_VARIETY_RESTRICTION",
     "message" : "Type can be either of: string, number, integer, file, date or boolean"
   },
   "UNRECOGNIZED_SECURITY_SCHEME" : {
-    "code" : 1050,
-    "message" : "Unrecognized security scheme type: '{{refValue}}'. Allowed values are: 'OAuth 1.0', 'OAuth 2.0', 'Basic Authentication', 'DigestSecurityScheme Authentication', 'x-{other}'"
+    "code" : "UNRECOGNIZED_SECURITY_SCHEME",
+    "message" : "Unrecognized security scheme type: '{{ref}}'. Allowed values are: 'OAuth 1.0', 'OAuth 2.0', 'Basic Authentication', 'DigestSecurityScheme Authentication', 'x-{other}'"
   },
-  "DUPLICATE_TRATE_REFERENCE" : {
-    "code" : 1051,
+  "DUPLICATE_TRAIT_REFERENCE" : {
+    "code" : "DUPLICATE_TRAIT_REFERENCE",
     "message" : "Duplicate trait reference: '{{refValue}}'."
   },
   "IS_IS_ARRAY" : {
-    "code" : 1052,
+    "code" : "IS_IS_ARRAY",
     "message" : "Property 'is' must be an array"
   },
   "RESOURCE_TYPE_NAME" : {
-    "code" : 1053,
+    "code" : "RESOURCE_TYPE_NAME",
     "message" : "Resource type name must be provided"
   },
   "MULTIPLE_RESOURCE_TYPES" : {
-    "code" : 1054,
+    "code" : "MULTIPLE_RESOURCE_TYPES",
     "message" : "A resource or resourceType can inherit from a single resourceType"
   },
   "UNKNOWN_RAML_VERSION" : {
-    "code" : 1055,
+    "code" : "UNKNOWN_RAML_VERSION",
     "message" : "Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'"
   },
   "UNKNOWN_TOPL_LEVEL_TYPE" : {
-    "code" : 1056,
+    "code" : "UNKNOWN_TOPL_LEVEL_TYPE",
     "message" : "Unknown top level type: '{{typeName}}'"
   },
   "REDUNDANT_FRAGMENT_NAME" : {
-    "code" : 1057,
+    "code" : "REDUNDANT_FRAGMENT_NAME",
     "message" : "Redundant fragment name: '{{typeName}}'"
   },
   "CONTEXT_REQUIREMENT_VIOLATION" : {
-    "code" : 1058,
+    "code" : "CONTEXT_REQUIREMENT_VIOLATION",
     "message" : "{{v1}} should be {{v2}} to use type {{v3}}"
   },
   "WEB_FORMS" : {
-    "code" : 1059,
+    "code" : "WEB_FORMS",
     "message" : "File type can be only used in web forms"
   },
   "MISSING_REQUIRED_PROPERTY" : {
-    "code" : 1060,
+    "code" : "MISSING_REQUIRED_PROPERTY",
     "message" : "Missing required property: '{{propName}}'"
   },
   "VALUE_NOT_PROVIDED" : {
-    "code" : 1061,
+    "code" : "VALUE_NOT_PROVIDED",
     "message" : "Value is not provided for parameter: '{{propName}}'"
   },
   "SUSPICIOUS_DOUBLEQUOTE" : {
-    "code" : 1062,
+    "code" : "SUSPICIOUS_DOUBLEQUOTE",
     "message" : "Suspicious double quoted multiline scalar, it is likely that you forgot closing \"{{value}}"
   },
   "ANNOTATION_TARGET_MUST_BE_A_STRING" : {
-    "code" : 1063,
+    "code" : "ANNOTATION_TARGET_MUST_BE_A_STRING",
     "message" : "Annotation target must be set by a string"
   },
   "ALLOWED_TARGETS_MUST_BE_ARRAY" : {
-    "code" : 1064,
+    "code" : "ALLOWED_TARGETS_MUST_BE_ARRAY",
     "message" : "'allowedTargets' property value must be an array of type names or a single type name"
   },
   "UNSUPPORTED_ANNOTATION_TARGET" : {
-    "code" : 1065,
+    "code" : "UNSUPPORTED_ANNOTATION_TARGET",
     "message" : "Unsupported annotation target: '{{aTarget}}'"
   },
   "SCHEMA_NAME_MUST_BE_STRING" : {
-    "code" : 1066,
+    "code" : "SCHEMA_NAME_MUST_BE_STRING",
     "message" : "Schema '{{name}}' must be a string"
   },
   "FORM_PARAMS_IN_RESPONSE" : {
-    "code" : 1067,
+    "code" : "FORM_PARAMS_IN_RESPONSE",
     "message" : "Form parameters can not be used in response"
   },
   "FORM_PARAMS_WITH_EXAMPLE" : {
-    "code" : 1068,
+    "code" : "FORM_PARAMS_WITH_EXAMPLE",
     "message" : "'formParameters' property cannot be used together with the 'example' or 'schema' properties"
   },
   "AUTHORIZATION_GRANTS_ENUM" : {
-    "code" : 1069,
+    "code" : "AUTHORIZATION_GRANTS_ENUM",
     "message" : "'authorizationGrants' value should be one of 'authorization_code', 'implicit', 'password', 'client_credentials' or to be an abolute URI"
   },
   "AUTHORIZATION_URI_REQUIRED" : {
-    "code" : 1070,
+    "code" : "AUTHORIZATION_URI_REQUIRED",
     "message" : "'authorizationUri' is required when `authorization_code` or `implicit` grant type are used "
   },
   "REPEATING_COMPONENTS_IN_ENUM" : {
-    "code" : 1071,
+    "code" : "REPEATING_COMPONENTS_IN_ENUM",
     "message" : "'enum' value contains repeating components"
   },
   "INTEGER_EXPECTED" : {
-    "code" : 1072,
+    "code" : "INTEGER_EXPECTED",
     "message" : "Integer is expected"
   },
   "NUMBER_EXPECTED_2" : {
-    "code" : 1073,
+    "code" : "NUMBER_EXPECTED_2",
     "message" : "Number is expected"
   },
   "RESOURCE_TYPE_NULL" : {
-    "code" : 1074,
+    "code" : "RESOURCE_TYPE_NULL",
     "message" : "Resource type can not be null"
   },
   "SCALAR_PROHIBITED_2" : {
-    "code" : 1075,
+    "code" : "SCALAR_PROHIBITED_2",
     "message" : "Node '{{name}}' can not be a scalar"
   },
   "VERSION_NOT_ALLOWED" : {
-    "code" : 1076,
+    "code" : "VERSION_NOT_ALLOWED",
     "message" : "'version' parameter not allowed here",
     "comment" : "I dont like the message, but its coming from JS 0.8 parser @Denis"
   },
   "INVALID_OVERLAY_NODE" : {
-    "code" : 1077,
+    "code" : "INVALID_OVERLAY_NODE",
     "message" : "The '{{nodeId}}' node does not match any node of the master api."
   },
   "INVALID_OVERRIDE_IN_OVERLAY" : {
-    "code" : 1078,
+    "code" : "INVALID_OVERRIDE_IN_OVERLAY",
     "message" : "Property '{{propName}}' is not allowed to be overriden or added in overlays"
   },
   "KEYS_SHOULD_BE_UNIQUE" : {
-    "code" : 1079,
+    "code" : "KEYS_SHOULD_BE_UNIQUE",
     "message" : "Keys should be unique"
   },
   "ALREADY_EXISTS" : {
-    "code" : 1080,
+    "code" : "ALREADY_EXISTS",
     "message" : "{{capitalized}} '{{name}}' already exists"
   },
   "ALREADY_EXISTS_IN_CONTEXT" : {
-    "code" : 1081,
+    "code" : "ALREADY_EXISTS_IN_CONTEXT",
     "message" : "{{name}}' already exists in this context"
   },
   "PROPERTY_USED" : {
-    "code" : 1082,
+    "code" : "PROPERTY_USED",
     "message" : "Property already used: '{{propName}}'"
   },
   "PARENT_PROPERTY_USED" : {
-    "code" : 1083,
+    "code" : "PARENT_PROPERTY_USED",
     "message" : "{{parent}} property already used: '{{propName}}'"
   },
   "INVALID_JSON_SCHEMA" : {
-    "code" : 1084,
+    "code" : "INVALID_JSON_SCHEMA",
     "message" : "Invalid JSON schema. Potentially, required array containing value '{{propName}}' has invalid location"
   },
   "EXAMPLE_SCHEMA_FAILURE" : {
-    "code" : 1085,
+    "code" : "EXAMPLE_SCHEMA_FAILURE",
     "message" : "Example does not conform to schema: {{msg}}"
   },
   "CAN_NOT_PARSE_JSON" : {
-    "code" : 1086,
+    "code" : "CAN_NOT_PARSE_JSON",
     "message" : "Can not parse JSON: {{msg}}"
   },
   "CAN_NOT_PARSE_XML" : {
-    "code" : 1087,
+    "code" : "CAN_NOT_PARSE_XML",
     "message" : "Can not parse XML: {{msg}}"
   },
   "OPTIONAL_SCLARAR_PROPERTIES_10" : {
-    "code" : 1088,
+    "code" : "OPTIONAL_SCLARAR_PROPERTIES_10",
     "message" : "Optional scalar properties are not allowed in {{templateNamePlural}} and their descendants: '{{propName}}?'"
   },
   "OPTIONAL_PROPERTIES_10" : {
-    "code" : 1089,
+    "code" : "OPTIONAL_PROPERTIES_10",
     "message" : "Optional properties are not allowed in '{{propName}}': '{{oPropName}}'"
   },
   "ONLY_METHODS_CAN_BE_OPTIONAL" : {
-    "code" : 1090,
+    "code" : "ONLY_METHODS_CAN_BE_OPTIONAL",
     "message" : "Only method nodes can be optional"
   },
   "PROPERTY_UNUSED" : {
-    "code" : 1091,
+    "code" : "PROPERTY_UNUSED",
     "message" : "{{propName}} unused"
   },
   "CYCLE_IN_DEFINITION" : {
-    "code" : 1092,
+    "code" : "CYCLE_IN_DEFINITION",
     "message" : "{{typeName}} definition contains cycle: {{cycle}}"
   },
   "SEQUENCE_NOT_ALLOWED_10" : {
-    "code" : 1093,
+    "code" : "SEQUENCE_NOT_ALLOWED_10",
     "message" : "In RAML 1.0 {{propName}} is not allowed to have sequence as definition"
   },
   "MAP_EXPECTED" : {
-    "code" : 1094,
+    "code" : "MAP_EXPECTED",
     "message" : "Map is expected here"
   },
   "ERROR_IN_INCLUDED_FILE" : {
-    "code" : 1095,
+    "code" : "ERROR_IN_INCLUDED_FILE",
     "message" : "Error in the included file: {{msg}}"
   },
-  "1095" : {
-    "code" : 1096,
-    "message" : ""
+  "NODE_SHOULD_HAVE_VALUE" : {
+    "code" : "NODE_SHOULD_HAVE_VALUE",
+    "message" : "node should have at least one member value"
   },
-  "96" : {
-    "code" : 1097,
-    "message" : ""
+  "NAMED_PARAMETER_NEEDS_TYPE" : {
+    "code" : "NAMED_PARAMETER_NEEDS_TYPE",
+    "message" : "named parameter needs at least one type"
   },
-  "1097" : {
-    "code" : 1098,
-    "message" : ""
+  "ENUM_IS_EMPTY" : {
+    "code" : "ENUM_IS_EMPTY",
+    "message" : "enum is empty"
   },
-  "1098" : {
-    "code" : 1099,
-    "message" : ""
+  "ENUM_MUST_BE_AN_ARRAY" : {
+    "code" : "ENUM_MUST_BE_AN_ARRAY",
+    "message" : "the value of enum must be an array"
   },
-  "1099" : {
-    "code" : 1100,
-    "message" : ""
+  "DEFINITION_SHOULD_BE_A_MAP" : {
+    "code" : "DEFINITION_SHOULD_BE_A_MAP",
+    "message" : "{{typeName}} definition should be a map"
   },
-  "100" : {
-    "code" : 1101,
-    "message" : ""
+  "RESOURCES_SHARE_SAME_URI" : {
+    "code" : "RESOURCES_SHARE_SAME_URI",
+    "message" : "Resources share same URI"
   },
-  "1101" : {
-    "code" : 1102,
-    "message" : ""
+  "TYPES_AND_SCHEMAS_ARE_EXCLUSIVE" : {
+    "code" : "TYPES_AND_SCHEMAS_ARE_EXCLUSIVE",
+    "message" : "'types' and 'schemas' are mutually exclusive"
   },
   "1102" : {
-    "code" : 1103,
+    "code" : "1102",
     "message" : ""
   },
   "1103" : {
-    "code" : 1104,
+    "code" : "1103",
     "message" : ""
   },
   "1104" : {
-    "code" : 1105,
+    "code" : "1104",
     "message" : ""
   },
   "1105" : {
-    "code" : 1106,
+    "code" : "1105",
     "message" : ""
   },
   "1106" : {
-    "code" : 1107,
+    "code" : "1106",
     "message" : ""
   },
   "1107" : {
-    "code" : 1108,
+    "code" : "1107",
     "message" : ""
   },
   "1108" : {
-    "code" : 1109,
+    "code" : "1108",
     "message" : ""
   },
   "1109" : {
-    "code" : 1110,
+    "code" : "1109",
     "message" : ""
   },
   "1110" : {
-    "code": 1111,
+    "code": "1110",
     "message": ""
   }
 }

@@ -23,7 +23,7 @@
   },
   "errors": [
     {
-      "code": 1042,
+      "code": "URI_EXCEPTION",
       "message": "Invalid resource name: unmatched '{'",
       "path": "apiInValid.raml",
       "range": {

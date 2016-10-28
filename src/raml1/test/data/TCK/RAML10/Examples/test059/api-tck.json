@@ -229,24 +229,7 @@
   },
   "errors": [
     {
-      "code": 85,
-      "message": "Union type options do not pass validation",
-      "path": "api.raml",
-      "range": {
-        "start": {
-          "line": 25,
-          "column": 10,
-          "position": 385
-        },
-        "end": {
-          "line": 25,
-          "column": 17,
-          "position": 392
-        }
-      }
-    },
-    {
-      "code": 86,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (Cat: Required property 'color' is missing)",
       "path": "api.raml",
       "range": {
@@ -263,8 +246,25 @@
       }
     },
     {
-      "code": 86,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (Dog: Required property 'fangs' is missing)",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 25,
+          "column": 10,
+          "position": 385
+        },
+        "end": {
+          "line": 25,
+          "column": 17,
+          "position": 392
+        }
+      }
+    },
+    {
+      "code": "UNION_TYPE_FAILURE",
+      "message": "Union type options do not pass validation",
       "path": "api.raml",
       "range": {
         "start": {

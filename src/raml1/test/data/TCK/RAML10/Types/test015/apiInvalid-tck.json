@@ -28,7 +28,7 @@
   },
   "errors": [
     {
-      "code": 5,
+      "code": "RECURRENT_DEFINITION",
       "message": "Recurrent type definition",
       "path": "apiInvalid.raml",
       "range": {

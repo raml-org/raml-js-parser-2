@@ -55,7 +55,7 @@
   },
   "errors": [
     {
-      "code": 27,
+      "code": "TYPE_EXPECTED",
       "message": "string is expected",
       "path": "api.raml",
       "range": {

@@ -30,7 +30,7 @@
   },
   "errors": [
     {
-      "code": 1077,
+      "code": "INVALID_OVERLAY_NODE",
       "message": "The './anotherResource' node does not match any node of the master api.",
       "path": "NewOverlay2.raml",
       "range": {

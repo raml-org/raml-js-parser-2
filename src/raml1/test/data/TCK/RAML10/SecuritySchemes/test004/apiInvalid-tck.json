@@ -58,7 +58,7 @@
   },
   "errors": [
     {
-      "code": 1060,
+      "code": "MISSING_REQUIRED_PROPERTY",
       "message": "Missing required property: 'accessTokenUri'",
       "path": "apiInvalid.raml",
       "range": {
@@ -75,7 +75,7 @@
       }
     },
     {
-      "code": 1060,
+      "code": "MISSING_REQUIRED_PROPERTY",
       "message": "Missing required property: 'authorizationGrants'",
       "path": "apiInvalid.raml",
       "range": {
