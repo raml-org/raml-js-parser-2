@@ -125,7 +125,7 @@
   },
   "INVALID_ANNOTATION_LOCATION" : {
     "code" : "INVALID_ANNOTATION_LOCATION",
-    "message" : "annotation {{aName}} can not be placed at this location, allowed targets are:{{aValues}}"
+    "message" : "Annotation '{{aName}}' can not be placed at this location, allowed targets are: {{aValues}}"
   },
   "BOOLEAN_EXPECTED" : {
     "code" : "BOOLEAN_EXPECTED",
