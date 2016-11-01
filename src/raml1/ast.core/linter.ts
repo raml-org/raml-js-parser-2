@@ -155,19 +155,19 @@ class LinterExtensionsImpl implements linterApi.ErrorFactory<core.BasicNode>,lin
 
     }
     error(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,w.highLevel()));
+        this.acceptor.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},w.highLevel()));
     }
     errorOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,pr));
+        this.acceptor.accept(createIssue(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},pr));
     }
     warningOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,pr,true));
+        this.acceptor.accept(createIssue(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},pr,true));
     }
 
     warning(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,w.highLevel(),true));
+        this.acceptor.accept(createIssue(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},w.highLevel(),true));
     }
     nodes:{ [name:string]:linterApi.LinterRule<any>[]}={}
 
@@ -3119,7 +3119,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     return;
                                 }
                                 if (so instanceof Error){
-                                    cb.accept(createIssue("INVALID_VALUE_SCHEMA",so.message,node,!strict));
+                                    cb.accept(createIssue(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},node,!strict));
                                     return;
                                 }
                                 so.validateObject(pObje);
