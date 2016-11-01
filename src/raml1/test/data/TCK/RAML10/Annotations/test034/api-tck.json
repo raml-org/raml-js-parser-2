@@ -271,7 +271,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "PATTERN_VIOLATION",
       "message": "String should match to '[a-zA-Z0-9]{8,32}'",
       "path": "api.raml",
       "range": {
@@ -288,7 +288,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "PATTERN_VIOLATION",
       "message": "String should match to '[a-zA-Z0-9]{8,32}'",
       "path": "api.raml",
       "range": {

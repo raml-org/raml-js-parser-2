@@ -85,7 +85,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "INVALID_ANNOTATION_LOCATION",
       "message": "Annotation 'xz' can not be placed at this location, allowed targets are: 'Method'",
       "path": "api.raml",
       "range": {

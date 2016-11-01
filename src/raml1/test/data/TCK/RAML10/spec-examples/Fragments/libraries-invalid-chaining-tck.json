@@ -44,7 +44,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "INHERITING_UNKNOWN_TYPE",
       "message": "Inheriting from unknown type",
       "path": "libraries-invalid-chaining.raml",
       "range": {

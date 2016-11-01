@@ -33,7 +33,7 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "number",
+          "type": "string",
           "description": "IssueCode"
         },
         "message": {

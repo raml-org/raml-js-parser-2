@@ -706,7 +706,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "TYPE_EXPECTED",
       "message": "boolean is expected",
       "path": "apiInvalid.raml",
       "range": {
@@ -723,7 +723,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "TYPE_EXPECTED",
       "message": "number is expected",
       "path": "apiInvalid.raml",
       "range": {

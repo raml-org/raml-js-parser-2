@@ -91,7 +91,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "OVERRIDE_FACET",
       "message": "Facet 'test' can not be overriden",
       "path": "test9.raml",
       "range": {
@@ -108,7 +108,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "MISSING_REQUIRED_FACETS",
       "message": "Missing required facets: 'test'",
       "path": "test9.raml",
       "range": {

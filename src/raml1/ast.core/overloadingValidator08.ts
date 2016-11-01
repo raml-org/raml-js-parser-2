@@ -11,6 +11,7 @@ import wrapper=require("../artifacts/raml08parserapi")
 import wrapperImpl=require("../artifacts/raml08parser")
 import path=require("path")
 import fs=require("fs");
+var messageRegistry = require("../../../resources/errorMessages");
 
 function escapeUri(u:string){
     var ss="";
@@ -46,7 +47,7 @@ class OverloadingValidator{
             var notPushed=ms
             if (notPushed.length>1){
                 notPushed.forEach(m=>{
-                    v.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT,"resources share same URI",m.highLevel(),false))
+                    v.accept(linter.createIssue1(messageRegistry.RESOURCES_SHARE_SAME_URI, {},m.highLevel(),false))
                 })
             }
 

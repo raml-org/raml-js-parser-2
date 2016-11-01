@@ -146,7 +146,10 @@ export class BasicASTNode implements hl.IParseResult {
     needMap:boolean
     invalidSequence:boolean
     unresolvedRef:string
-    errorMessage: string
+    errorMessage: {
+        entry: any,
+        parameters: any
+    }
 
     isSameNode(n:hl.IParseResult){
         if (n) {

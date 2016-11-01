@@ -217,7 +217,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "RESTRICTIONS_CONFLICT",
       "message": "Restrictions conflict between types 'Type2' and 'Type1': should be of type string and should be of type boolean",
       "path": "test3.raml",
       "range": {

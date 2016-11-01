@@ -43,7 +43,7 @@
   },
   "errors": [
     {
-      "code": 7,
+      "code": "FORM_IN_RESPONSE",
       "message": "Form related media types can not be used in responses",
       "path": "api.raml",
       "range": {

@@ -91,7 +91,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "UNKNOWN_PROPERTY",
       "message": "Unknown property: 'id'",
       "path": "api.raml",
       "range": {

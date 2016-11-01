@@ -157,7 +157,7 @@
   },
   "errors": [
     {
-      "code": 7,
+      "code": "INVALID_ANNOTATION_LOCATION",
       "message": "Annotation 'MyAnnotation' can not be placed at this location, allowed targets are: 'TypeDeclaration'",
       "path": "apiInvalid.raml",
       "range": {

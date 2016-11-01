@@ -45,6 +45,8 @@ import {find} from "../../util/index";
 var changeCase = require('change-case');
 var pluralize = require('pluralize');
 
+let messageRegistry = require("../../../resources/errorMessages");
+
 type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
 
@@ -91,8 +93,7 @@ function checkPropertyQuard  (n:hl.IAttribute|hl.IHighLevelNode, v:hl.Validation
     if (pr) {
         (<def.Property>pr).getContextRequirements().forEach(x=> {
             if (!(<hlimpl.BasicASTNode><any>n).checkContextValue(x.name, x.value,x.value)) {
-                v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,
-                    `${x.name} should be ${x.value} to use property '${pr.nameId()}'`, n))
+                v.accept(createIssue1(messageRegistry.CONTEXT_REQUIREMENT, { name: x.name, value: x.value, propName: pr.nameId()}, n));
             }
         });
     }
@@ -154,19 +155,19 @@ class LinterExtensionsImpl implements linterApi.ErrorFactory<core.BasicNode>,lin
 
     }
     error(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,w.highLevel()));
+        this.acceptor.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},w.highLevel()));
     }
     errorOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,pr));
+        this.acceptor.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},pr));
     }
     warningOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,pr,true));
+        this.acceptor.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},pr,true));
     }
 
     warning(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,w.highLevel(),true));
+        this.acceptor.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:message},w.highLevel(),true));
     }
     nodes:{ [name:string]:linterApi.LinterRule<any>[]}={}
 
@@ -281,10 +282,10 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
             var paramName = node.name();
             if (RESERVED_TEMPLATE_PARAMETERS[paramName] != null) {
                 //Handling reserved parameter names;
-                issue = createIssue(hl.IssueCode.INVALID_PROPERTY, `Invalid parameter name: '${paramName}' is reserved`, node);
+                issue = createIssue1(messageRegistry.INVALID_PARAMETER_NAME, { paramName : paramName}, node);
             }
             else {
-                issue = createIssue(hl.IssueCode.UNKNOWN_NODE, `Unused parameter: '${paramName}'`, node);
+                issue = createIssue1(messageRegistry.UNUSED_PARAMETER, { paramName : paramName }, node);
             }
         }
 
@@ -332,8 +333,8 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
                         return x1 + ', ';
 
                     }).join('');
-                    var message = `Property '${propName}' can only be used if type is ${namesStr}`;
-                    issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY, message, node);
+                    issue = createIssue1(messageRegistry.INVALID_PROPERTY_OWNER_TYPE,
+                        {propName:propName,namesStr:namesStr}, node);
                 }
             }
         }
@@ -353,9 +354,10 @@ function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.Valida
     if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
-            var msg = changeCase.sentenceCase(pluralize.singular(pName));
-            msg = `In RAML 1.0 ${msg} is not allowed to have sequence as definition`;
-            v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
+            pName = changeCase.sentenceCase(pluralize.singular(pName));
+            v.acceptUnique(createLLIssue1(
+                messageRegistry.SEQUENCE_NOT_ALLOWED_10,{propName:pName}
+                ,node.lowLevel().parent().parent(),node));
         }
 
         var highLevelNode = node.asElement();
@@ -409,7 +411,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     if (node.lowLevel()) {
         if (node.lowLevel().keyKind()==yaml.Kind.MAP){
 
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Node key can not be a map", node));
+            v.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_MAP, {}, node));
 
         }
         if (node.lowLevel().keyKind()==yaml.Kind.SEQ){
@@ -421,7 +423,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     }
                 }
                 if (!isPattern) {
-                    v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Node key can not be a sequence", node));
+                    v.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_SEQUENCE, {}, node));
                 }
             }
         }
@@ -429,7 +431,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             node.lowLevel().errors().forEach(x=> {
                 var ps= (<any>x).mark?(<any>x).mark.position:0;
                 var em = {
-                    code: hl.IssueCode.YAML_ERROR,
+                    code: "YAML_ERROR",//hl.IssueCode.YAML_ERROR,
                     message: x.message,
                     node: null,
                     start: ps,
@@ -451,14 +453,19 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
             }
         }
         if (node.needSequence){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, `Node: '${node.name()}' should be wrapped in sequence`, node));
+            v.accept(createIssue1(messageRegistry.SEQUENCE_REQUIRED, {name:node.name()}, node));
         }
         if (node.needMap){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (node.knownProperty?`'${node.knownProperty.nameId()}' `:"")+"should be a map in RAML 1.0", node));
+            if(node.knownProperty){
+                v.accept(createIssue1(messageRegistry.PROPERTY_MUST_BE_A_MAP_10, {propName : node.knownProperty.nameId()}, node));
+            }
+            else{
+                v.accept(createIssue1(messageRegistry.MAP_REQUIRED, {}, node));
+            }
             return false;
         }
         if (node.unresolvedRef){
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, `Reference: '${llValue}' can not be resolved`, node));
+            v.accept(createIssue1(messageRegistry.UNRESOLVED_REFERENCE, { ref : llValue}, node));
 
         }
         if (node.knownProperty){
@@ -473,14 +480,15 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
                     return false;
                 }
                 if (node.lowLevel().value()!='~') {
-                    v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, `Property '${node.name()}' can not have scalar value`, node));
+                    v.accept(createIssue1(messageRegistry.SCALAR_PROHIBITED,
+                        {propName: node.name()}, node));
                 }
             }
         }
         else {
             var issue = restrictUnknownNodeError(node);
             if(!issue){
-                issue = createIssue(hl.IssueCode.UNKNOWN_NODE, `Unknown node: '${node.name()}'`, node);
+                issue = createIssue1(messageRegistry.UNKNOWN_NODE, {name : node.name()}, node);
             }
             v.accept(issue);
         }
@@ -490,7 +498,7 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
         if (!node.property()){
             return false;
         }
-        v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, `Recursive definition: '${node.name()}'`, node));
+        v.accept(createIssue1(messageRegistry.RECURSIVE_DEFINITION, {name:node.name()}, node));
         return false;
     }
 
@@ -499,8 +507,10 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
         var queryParamsNode: ll.ILowLevelASTNode = (<any>node).lowLevel && <ll.ILowLevelASTNode>_.find((<any>node).lowLevel().children(), child => (<any>child).key && (<any>child).key() === universes.Universe10.Operation.properties.queryParameters.name);
 
         if(queryStringNode && queryParamsNode) {
-            v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, `'${universes.Universe10.Operation.properties.queryParameters.name}' is already specified.`, queryStringNode));
-            v.accept(createLLIssue(hl.IssueCode.UNKNOWN_NODE, `'${universes.Universe10.Operation.properties.queryString.name}' is already specified.`, queryParamsNode, node));
+            v.accept(createIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED,
+                { propName: universes.Universe10.Operation.properties.queryParameters.name}, queryStringNode));
+            v.accept(createLLIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED,
+                { propName: universes.Universe10.Operation.properties.queryString.name}, queryParamsNode, node));
         }
     }
 
@@ -543,8 +553,8 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
 
     try {
         var isOverlay = (<any>node).definition && (<any>node).definition() &&
-                        ((<any>node).definition().key() === universes.Universe10.Overlay ||
-                            (<any>node).definition().key() === universes.Universe10.Extension)
+            ((<any>node).definition().key() === universes.Universe10.Overlay ||
+            (<any>node).definition().key() === universes.Universe10.Extension)
 
         var children = isOverlay ? node.children() : node.directChildren();
 
@@ -552,7 +562,8 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             return !requiredOnly || (child.property && child.property() && child.property().isRequired());
         }).forEach(x => {
             if (x && (<any>x).errorMessage){
-                v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, (<hlimpl.BasicASTNode>x).errorMessage, x.name()?x:node));
+                var em = (<any>x).errorMessage;
+                v.accept(createIssue1(em.entry, em.parameters, x.name()?x:node));
                 return;
             }
 
@@ -589,8 +600,8 @@ var createLibraryIssue = function (attr:hl.IAttribute, hlNode:hl.IHighLevelNode)
             nodes.push(n);
             parent = n.lowLevel().unit().resolve(n.attr("value").value()).highLevel().asElement();
         }
-        var issues = nodes.map(x=>createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,
-            `Issues in the used library: '${x.attr("value").value()}'`, x, true));
+        var issues = nodes.map(x=>createIssue1(messageRegistry.ISSUES_IN_THE_LIBRARY,
+            {value: x.attr("value").value()}, x, true));
         issues = issues.reverse();
         for(var i = 0 ; i < issues.length-1 ; i++){
             issues[i].extras.push(issues[i+1]);
@@ -600,7 +611,8 @@ var createLibraryIssue = function (attr:hl.IAttribute, hlNode:hl.IHighLevelNode)
     else{
         usesNodes.push(hlNode);
     }
-    return createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, `Issues in the used library: '${attr.value()}'`, hlNode, true);
+    return createIssue1(messageRegistry.ISSUES_IN_THE_LIBRARY,
+        { value : attr.value()}, hlNode, true);
 };
 export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     if (!node.parent()){
@@ -616,9 +628,9 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
     else if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
-            var msg = changeCase.sentenceCase(pluralize.singular(pName));
-            msg = `In RAML 1.0 ${msg} is not allowed to have sequence as definition`;
-            v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
+            var propName = changeCase.sentenceCase(pluralize.singular(pName));
+            v.acceptUnique(createLLIssue1(messageRegistry.SEQUENCE_NOT_ALLOWED_10,
+                { propName: propName },node.lowLevel().parent().parent(),node,false));
         }
 
         var highLevelNode = node.asElement();
@@ -653,14 +665,14 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
             if (vn&&vn.value()){
                 var rs=highLevelNode.lowLevel().unit().resolve(vn.value());
                 if (!rs){
-                    v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,
-                        `Can not resolve library from path: '${vn.value()}'`,highLevelNode,false));
+                    v.accept(createIssue1(messageRegistry.INVALID_LIBRARY_PATH,
+                        {path:vn.value()},highLevelNode,false));
                 } else if(!resourceRegistry.isWaitingFor(vn.value())){
                     var issues:hl.ValidationIssue[]=[];
                     
                     if(rs.contents().trim().length === 0) {
-                        v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,"Empty file: " + vn.value(),highLevelNode,false));
-                        
+                        v.accept(createIssue1(messageRegistry.EMPTY_FILE,
+                            {path:vn.value()},highLevelNode,false));
                         return;
                     }
                     
@@ -679,7 +691,9 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                             while(_issue.extras.length>0){
                                 _issue = _issue.extras[0];
                             }
-                            _issue.extras.push(brand);
+                            if(_issue != brand) {
+                                _issue.extras.push(brand);
+                            }
                             v.accept(issue);
                         }
                     }
@@ -746,7 +760,7 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                 }
             })
             if (hasSchemas&&hasTypes){
-                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+                v.accept(createLLIssue1(messageRegistry.TYPES_AND_SCHEMAS_ARE_EXCLUSIVE,{},vv,highLevelNode));
             }
         }
 
@@ -797,7 +811,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
         var vl=node.name();
         if (typeof vl=="string") {
             if (vl != null && vl.indexOf(" ") != -1) {
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Keys should not have spaces '${vl}'`, node,true))
+                v.accept(createIssue1(messageRegistry.SPACES_IN_KEY, { value : vl}, node,true));
             }
         }
     }
@@ -809,7 +823,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             if (node.lowLevel().hasInnerIncludeError()){
                 isWarn=true;
             }
-            var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, node,isWarn);
+            var em = createIssue1(messageRegistry.INCLUDE_ERROR, { msg: x }, node,isWarn);
             v.accept(em)
         });
         var includePath = llNode.includePath();
@@ -817,7 +831,7 @@ function validateIncludes(node:hl.IParseResult,v:hl.ValidationAcceptor) {
             var unitPath = llNode.unit().absolutePath();
             var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
             if(exceeding>0){
-                var em = createIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", node,true);
+                var em = createIssue1(messageRegistry.PATH_EXCEEDS_ROOT, {}, node,true);
                 v.accept(em)
             }
         }
@@ -835,7 +849,7 @@ function validateIncludesLL(llNode:ll.ILowLevelASTNode,v:hl.ValidationAcceptor,n
         if (llNode.hasInnerIncludeError()){
             isWarn=true;
         }
-        var em = createLLIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, x, llNode,node,isWarn);
+        var em = createLLIssue1(messageRegistry.INCLUDE_ERROR,{msg:x}, llNode,node,isWarn);
         v.accept(em)
     });
     var includePath = llNode.includePath();
@@ -843,7 +857,7 @@ function validateIncludesLL(llNode:ll.ILowLevelASTNode,v:hl.ValidationAcceptor,n
         var unitPath = llNode.unit().absolutePath();
         var exceeding = calculateExceeding(path.dirname(unitPath),includePath);
         if(exceeding>0){
-            var em = createLLIssue(hl.IssueCode.UNABLE_TO_RESOLVE_INCLUDE_FILE, "Resolved include path exceeds file system root", llNode,node,true);
+            var em = createLLIssue1(messageRegistry.PATH_EXCEEDS_ROOT,{},llNode,node,true);
             v.accept(em)
         }
     }
@@ -889,7 +903,7 @@ var validateRegexp = function (cleanedValue:string, v:hl.ValidationAcceptor, nod
     try {
         new RegExp(cleanedValue)
     } catch (Error) {
-        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Illegal pattern: '${cleanedValue}`, node))
+        v.accept(createIssue1(messageRegistry.ILLEGAL_PATTERN, {value : cleanedValue}, node))
     }
 };
 class TraitVariablesValidator{
@@ -943,7 +957,8 @@ class TraitVariablesValidator{
             var paramName = ind >= 0 ? paramOccurence.substring(0, ind) : paramOccurence;
             if (paramName.trim().length == 0) {
                 var msg = "Trait or resource type parameter name must contain non whitespace characters";
-                var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, msg, node, false);
+                var issue = createIssue1(
+                    messageRegistry.TEMPLATE_PARAMETER_NAME_MUST_CONTAIN_NONWHITESPACE_CHARACTERS,{},node);
                 issue.start = start + i;
                 issue.end = start + prev;
                 acceptor.accept(issue);
@@ -957,8 +972,8 @@ class TraitVariablesValidator{
                     if (!_.find(functionNames, functionName =>
                         transformerName === functionName || transformerName === ('!' + functionName))) {
 
-                        var msg = `Unknown function applied to parameter: '${transformerName}'`;
-                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, msg, node, false);
+                        var issue = createIssue1(messageRegistry.UNKNOWN_FUNCTION,
+                            {transformerName:transformerName}, node, false);
                         issue.start = start + ind;
                         issue.end = start + prev;
                         acceptor.accept(issue);
@@ -993,8 +1008,8 @@ class MethodBodyValidator  implements PropertyValidator {
         });
 
         if(hasBody && _.find(MethodBodyValidator.methodsWithoutRequestBody, methodDisabled => methodNode.name() === methodDisabled)) {
-            validationAcceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,
-                `Request body is disabled for '${methodNode.name()}' method.`, methodNode));
+            validationAcceptor.accept(createIssue1(messageRegistry.REQUEST_BODY_DISABLED,
+                { methodName: methodNode.name() }, methodNode));
         }
     }
 }
@@ -1020,7 +1035,7 @@ class CompositePropertyValidator implements PropertyValidator{
                     &&typeOfContainingTemplate(node.parent())!=null){
                     return;
                 }
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Scalar is expected here",node))
+                v.accept(createIssue1(messageRegistry.SCALAR_EXPECTED,{},node))
             }
             else {
                 var vk=node.lowLevel().valueKind();
@@ -1030,8 +1045,8 @@ class CompositePropertyValidator implements PropertyValidator{
                         if (k==universes.Universe08.StringType||k==universes.Universe08.MarkdownString||k==universes.Universe08.MimeType) {
                             if (vk==yaml.Kind.SEQ||vk==yaml.Kind.MAPPING||vk==yaml.Kind.MAP||((node.property().isRequired()||node.property().nameId()=="mediaType")&&(vk==null||vk===undefined))) {
                                 if (!node.property().domain().getAdapter(services.RAMLService).isInlinedTemplates()) {
-                                    v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,
-                                        `Property '${node.name()}' must be a string`, node))
+                                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED,
+                                        {propName: node.name()}, node));
                                 }
                             }
                         }
@@ -1045,7 +1060,8 @@ class CompositePropertyValidator implements PropertyValidator{
                     var vl = x.value();
                     var highLevel=vl.toHighLevel();
                     if (!highLevel){
-                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Unknown annotation: '${vl.valueName()}'`, x));
+                        v.accept(createIssue1(messageRegistry.UNKNOWN_ANNOTATION,
+                            {aName : vl.valueName()}, x));
                     }
                     else{
                         fvl.validate(highLevel,v);
@@ -1089,7 +1105,8 @@ class CompositePropertyValidator implements PropertyValidator{
                 var llv=node.lowLevel().value();
                 if (node.lowLevel().children().length>0){
                     var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
-                    v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,valName+" value should be a string",node,false));
+                    v.accept(createIssue1(messageRegistry.STRING_EXPECTED_2,
+                        {propName: valName},node,false));
                 }
             }
             new ExampleAndDefaultValueValidator().validate(node, v);
@@ -1098,15 +1115,14 @@ class CompositePropertyValidator implements PropertyValidator{
             if (node.definition().universe().version()=="RAML08"){
                 var np=node.lowLevel().parent();
                 var ysc=yaml.Kind.SEQ;
-                var msg="'securedBy' should be a list in RAML08";
                 if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
                     if (np.valueKind()!=ysc){
-                        v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,msg,node,false));
+                        v.accept(createIssue1(messageRegistry.SECUREDBY_LIST_08,{},node,false));
                     }
                 }
                 else{
                     if (np.kind()!=ysc){
-                        v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,msg,node,false));
+                        v.accept(createIssue1(messageRegistry.SECUREDBY_LIST_08,{},node,false));
                     }
                 }
 
@@ -1178,6 +1194,14 @@ function isValidArray(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.IProp
     }
     return true;
 }
+
+class ValidationError extends Error{
+
+    constructor(public messageEntry:any, public parameters:any={}){
+        super();
+    }
+}
+
 function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.IProperty, attr?:hl.IAttribute):any{
     //FIXME
     try {
@@ -1226,8 +1250,9 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                             }
                         });
                         if (!found){
-                            var list = aVals.map(x=>`'${x}'`).join(", ");
-                            return new Error(`Annotation '${v}' can not be placed at this location, allowed targets are: ${list}`)
+                        	var list = aVals.map(x=>`'${x}'`).join(", ");
+                            return new ValidationError(messageRegistry.INVALID_ANNOTATION_LOCATION,
+                                { aName: v, aValues: list });
                         }
                     }
                 }
@@ -1250,19 +1275,19 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
 
         if (t.key() == universes.Universe08.BooleanType||t.isAssignableFrom(universes.Universe10.BooleanType.name)) {
             if (!(v === 'true' || v === 'false' || v === true || v === false)){
-                return new Error("'true' or 'false' is expected here")
+                return new ValidationError(messageRegistry.BOOLEAN_EXPECTED);
             }
             if(attr){
                 var stringValue = attr.lowLevel().value(true);
                 if (!(stringValue === 'true' || stringValue === 'false')){
-                    return new Error("'true' or 'false' is expected here")
+                    return new ValidationError(messageRegistry.BOOLEAN_EXPECTED)
                 }
             }
         }
         if (t.key() == universes.Universe08.NumberType||t.isAssignableFrom(universes.Universe10.NumberType.name)) {
             var q=parseFloat(v);
             if (isNaN(q)){
-                return new Error("the value of "+p.nameId()+" must be a number")
+                return new ValidationError(messageRegistry.NUMBER_EXPECTED, {propName:p.nameId()});
             }
         }
         if (t.key() == universes.Universe08.StringType||t.isAssignableFrom(universes.Universe10.StringType.name)) {
@@ -1275,7 +1300,8 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                     if (highLevelProperty) {
                         var lowLevelChildren = highLevelProperty.lowLevel().children();
                         if (lowLevelChildren && lowLevelChildren.length > 0) {
-                            return new Error(p.nameId() + " must be a string")
+                            return new ValidationError(messageRegistry.STRING_EXPECTED_3,
+                                {propName:p.nameId()});
                         }
                     }
                 }
@@ -1305,7 +1331,8 @@ class NormalValidator implements PropertyValidator{
             var val=(isVal||(tempVal===null||tempVal===undefined))?tempVal:tempVal[pr.nameId()];
             var validateObject=rof.validate(val,true);
             if (!validateObject.isOk()) {
-                validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, false)));
+                validateObject.getErrors().forEach(e=>cb.accept(createIssue(
+                    e.getCode(), e.getMessage(), node, false)));
             }
         }
 
@@ -1318,8 +1345,14 @@ class NormalValidator implements PropertyValidator{
         }
         if (validation instanceof Error){
             if (!(<any>validation).canBeRef){
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,(<Error>validation).message, node));
-                validation=null;
+                if(validation instanceof ValidationError){
+                    var ve = <ValidationError>validation;
+                    v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                }
+                else {
+                    v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg: (<Error>validation).message}, node));
+                }
+                validation = null;
                 return;
             }
         }
@@ -1339,7 +1372,13 @@ class NormalValidator implements PropertyValidator{
                     }
                     var decl = (<hlimpl.ASTPropImpl>node).findReferencedValue();
                     if (decl instanceof Error) {
-                        v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,(<Error>decl).message, node));
+                        if(decl instanceof ValidationError){
+                            var ve = <ValidationError>decl;
+                            v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                        }
+                        else {
+                            v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>decl).message}, node));
+                        }
                     }
                     if (!decl){
                         if (vl) {
@@ -1353,29 +1392,39 @@ class NormalValidator implements PropertyValidator{
                             }
                         }
                         if (validation instanceof Error&&vl){
-                            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,(<Error>validation).message, node));
+                            if(validation instanceof ValidationError){
+                                var ve = <ValidationError>validation;
+                                v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                            }
+                            else {
+                                v.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
+                            }
                             validation=null;
                             return;
                         }
                         if (node.property().isRequired()&&node.value()==null) {
-                            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                            v.accept(createIssue1(messageRegistry.EMPTY_VALUE_NOT_ALLOWED,{}, node));
                         }
                         else{
                             var ck=node.lowLevel().valueKind();
                             if (ck==yaml.Kind.MAP||ck==yaml.Kind.SEQ||ck==yaml.Kind.MAPPING){
-                                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Empty value is not allowed here", node));
+                                v.accept(createIssue1(messageRegistry.EMPTY_VALUE_NOT_ALLOWED,{}, node));
                             }
                         }
                     }
                 }
             }
             else{
-                var vl=node.value();
-                var message = `Invalid value schema: '${vl}`;
                 if (validation instanceof Error){
-                    message=validation.message;
+                    var message=validation.message;
+                    v.accept(createIssue1(messageRegistry.SCHEMA_ERROR,
+                        {msg: message}, node, pr.range().key() == universes.Universe08.SchemaString));
                 }
-                v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, message, node,pr.range().key()==universes.Universe08.SchemaString));
+                else {
+                    var vl=node.value();
+                    v.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,
+                        {iValue: vl}, node, pr.range().key() == universes.Universe08.SchemaString));
+                }
             }
         }
         var values=pr.enumOptions();
@@ -1389,8 +1438,8 @@ class NormalValidator implements PropertyValidator{
                         //return true;
                     }
                     else {
-                        v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,
-                            `Invalid value: '${vl}' allowed value is: '${values}'`, node));
+                        v.accept(createIssue1(messageRegistry.INVALID_VALUE, {iValue: vl,
+                            aValues: `'${values}'` }, node));
                     }
                 }
             }
@@ -1400,8 +1449,8 @@ class NormalValidator implements PropertyValidator{
                         //return true;
                     }
                     else {
-                        v.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE,
-                            `Invalid value: '${vl}' allowed values are: ${values.map(x=>`'${x}'`).join(", ")}`, node));
+                        v.accept(createIssue1(messageRegistry.INVALID_VALUE, {iValue: vl,
+                            aValues: values.map(x=>`'${x}'`).join(", ")}, node));
                     }
                 }
             }
@@ -1417,16 +1466,16 @@ class UriValidator{
                 var version= node.root().attr("version")
 
                 if (!version){
-                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Missing 'version'", node,false))
+                    cb.accept(createIssue1(messageRegistry.MISSING_VERSION,{}, node,false))
                 }
             }
 
             if (values.some(x=>x.length == 0)) {
-                cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "URI parameter must have name specified", node,false))
+                cb.accept(createIssue1(messageRegistry.URI_PARAMETER_NAME_MISSING, {}, node,false))
             }
         }
         catch (e){
-            cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, e.message, node,false))
+            cb.accept(createIssue1(messageRegistry.URI_EXCEPTION,{msg: e.message}, node,false))
         }
     }
 }
@@ -1462,15 +1511,15 @@ class MediaTypeValidator implements PropertyValidator{
             var res = mediaTypeParser.parse(v);
             //check if type name satisfies RFC6338
             if (!res.type.match(/[\w\d][\w\d!#\$&\-\^_+\.]*/)) {
-                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Invalid media type '${res.type}'`, node))
+                cb.accept(createIssue1(messageRegistry.INVALID_MEDIATYPE, { mediaType: res.type}, node));
             }
         }catch (e){
-            cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, ""+e.message, node))
+            cb.accept(createIssue1(messageRegistry.MEDIATYPE_EXCEPTION,{ msg: e.message}, node))
         }
         if (node.value()&&node.value()==("multipart/form-data")||node.value()==("application/x-www-form-urlencoded")){
             if (node.parent()&&node.parent().parent()&&node.parent().parent().property()) {
                 if (node.parent().parent().property().nameId() == universes.Universe10.MethodBase.properties.responses.name) {
-                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Form related media types can not be used in responses", node,true))
+                    cb.accept(createIssue1(messageRegistry.FORM_IN_RESPONSE, {}, node,true))
                 }
             }
         }
@@ -1502,7 +1551,7 @@ export class UrlParameterNameValidator implements PropertyValidator{
             try {
                 var pNames = this.parseUrl(tnv);
                 if (!_.find(pNames, x=>x == vl)) {
-                    v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Unused url parameter", node))
+                    v.accept(createIssue1(messageRegistry.UNUSED_URL_PARAMETER,{paramName: ""}, node));
                 }
 
             } catch (e) {
@@ -1510,7 +1559,7 @@ export class UrlParameterNameValidator implements PropertyValidator{
             }
         }
         else {
-            v.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Unused url parameter", node))
+            v.accept(createIssue1(messageRegistry.UNUSED_URL_PARAMETER,{paramName: ""}, node));
         }
     }
     parseUrl(value:string):string[]{//FIXME INHERITANCE
@@ -1580,7 +1629,7 @@ export class UrlParameterNameValidator implements PropertyValidator{
                     }
                 }
 
-                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,`Unused url parameter '${vl}'`,node))
+                cb.accept(createIssue1(messageRegistry.UNUSED_URL_PARAMETER,{paramName: `'${vl}'`}, node));
             }
 
         } catch (e){
@@ -1715,21 +1764,21 @@ function checkReference(pr:def.Property, astNode:hl.IAttribute, vl:string, cb:hl
         var expected = (adapter.isReference && adapter.isReference() && adapter.referencesTo && adapter.referencesTo() && adapter.referencesTo().nameId && adapter.referencesTo().nameId());
 
         var referencedToName = typeToName[expected] || nameForNonReference(astNode);
+        var parameters = {
+            referencedToName: referencedToName,
+            ref: vl
+        }
+        var code = referencedToName ? messageRegistry.UNRECOGNIZED_ELEMENT
+            : messageRegistry.UNRESOLVED_REFERENCE;
 
-        var message = referencedToName ? `Unrecognized ${referencedToName}: '${vl}'.` : `Unresolved reference: '${vl}'.`;
-
-        var spesializedMessage = specializeReferenceError(message, pr, astNode)
-        cb.accept(createIssue(hl.IssueCode.UNRESOLVED_REFERENCE, spesializedMessage, astNode,pr.range().key()===universes.Universe08.SchemaString));
+        var spesializedMessage = specializeReferenceError(code, pr, astNode)
+        cb.accept(createIssue1(spesializedMessage, parameters, astNode,pr.range().key()===universes.Universe08.SchemaString));
 
         return true;
     }
 
     if(isDuplicateSibling(astNode) && universeHelpers.isTraitRefType(astNode.definition())) {
-        var message = `Duplicate trait reference: '${vl}'.`;
-
-        var spesializedMessage = specializeReferenceError(message, pr, astNode)
-
-        cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, spesializedMessage, astNode));
+        cb.accept(createIssue1(messageRegistry.DUPLICATE_TRAIT_REFERENCE,{refValue: vl}, astNode));
 
         return true;
     }
@@ -1823,7 +1872,7 @@ function checkTraitReference(property:def.Property, astNode:hl.IAttribute, accep
 
     //having a single value is bad
     if (isMappingNode.value() != null && (!isMappingNode.children() || isMappingNode.children().length == 0)) {
-        acceptor.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"Property 'is' must be an array",astNode));
+        acceptor.accept(createIssue1(messageRegistry.IS_IS_ARRAY,{},astNode));
     }
 
     //only maps and scalars are allowed as direct children
@@ -1835,7 +1884,7 @@ function checkTraitReference(property:def.Property, astNode:hl.IAttribute, accep
     })
 
     if (illegalChildFound) {
-        acceptor.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,"Property 'is' must be an array",astNode));
+        acceptor.accept(createIssue1(messageRegistry.IS_IS_ARRAY,{},astNode));
     }
 }
 
@@ -1853,14 +1902,13 @@ function checkResourceTypeReference(property:def.Property, astNode:hl.IAttribute
         lowLevel.children().length == 0) {
         if (lowLevel.kind() == yaml.Kind.MAPPING && lowLevel.valueKind() != null) {
             //no value, no children in the mapping, but some value, that means empty map or something like this.
-            acceptor.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "Resource type name must be provided", astNode));
+            acceptor.accept(createIssue1(messageRegistry.RESOURCE_TYPE_NAME,{}, astNode));
         }
     } else if (astNode.value() == null && lowLevel && lowLevel.children() &&
         lowLevel.children().length > 1) {
 
         //more than a single resource type in a list / map
-        acceptor.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
-            "A resource or resourceType can inherit from a single resourceType", astNode));
+        acceptor.accept(createIssue1(messageRegistry.MULTIPLE_RESOURCE_TYPES,{}, astNode));
     }
 }
 
@@ -1873,16 +1921,16 @@ function checkResourceTypeReference(property:def.Property, astNode:hl.IAttribute
  * @param astNode
  * @returns {string}
  */
-function specializeReferenceError(originalMessage: string, property:def.Property, astNode:hl.IAttribute) : string {
+function specializeReferenceError(originalMessage: any,
+                                  property:def.Property, astNode:hl.IAttribute):any {
     if (property.nameId()=="type"&&property.domain().universe().version()=="RAML08"){
         if (property.domain().isAssignableFrom(universes.Universe08.Parameter.name)) {
-            return "Type can be either of: string, number, integer, file, date or boolean";
+            return messageRegistry.TYPES_VARIETY_RESTRICTION;
         }
     }
 
     if (astNode.parent() != null && universeHelpers.isSecuritySchemaType(astNode.parent().definition())) {
-        return originalMessage +
-            " Allowed values are: 'OAuth 1.0', 'OAuth 2.0', 'Basic Authentication', 'DigestSecurityScheme Authentication', 'x-{other}'";
+        return messageRegistry.UNRECOGNIZED_SECURITY_SCHEME;
     }
 
 
@@ -1952,7 +2000,13 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
         if (valueKey) {
             var validation = isValid(pr.range(),node.parent(), valueKey, pr);
             if (validation instanceof Error) {
-                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, (<Error>validation).message, node));
+                if(validation instanceof ValidationError){
+                    var ve = <ValidationError>validation;
+                    cb.accept(createIssue1(ve.messageEntry,ve.parameters, node));
+                }
+                else {
+                    cb.accept(createIssue1(messageRegistry.SCHEMA_EXCEPTION, {msg:(<Error>validation).message}, node));
+                }
                 validation = null;
             }
         }
@@ -1975,19 +2029,21 @@ class RAMLVersionAndFragmentValidator implements NodeValidator{
         var tv=u.getTypedVersion();
         if (tv){
             if (tv !== "0.8" && tv !== "1.0") {
-                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Unknown version of RAML expected to see one of '#%RAML 0.8' or '#%RAML 1.0'", node)
+                var i = createIssue1(messageRegistry.UNKNOWN_RAML_VERSION, {}, node)
                 v.accept(i);
 
             }
             var tl=u.getOriginalTopLevelText();
             if (tl){
+                var parameters = { typeName: tl }
                 if (tl!=node.definition().nameId()){
                     if (node.definition().nameId()=="Api") {
-                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, `Unknown top level type: '${tl}'`, node);
+                        var i = createIssue1(messageRegistry.UNKNOWN_TOPL_LEVEL_TYPE,
+                            parameters, node);
                         v.accept(i);
                     }
                 } else if ("Api" == u.getOriginalTopLevelText()) {
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, `Redundant fragment name: '${tl}'`, node);
+                    var i = createIssue1(messageRegistry.REDUNDANT_FRAGMENT_NAME,parameters, node);
                     v.accept(i);
                 }
             }
@@ -2000,11 +2056,12 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
 
         (node.definition()).getAdapter(services.RAMLService).getContextRequirements().forEach(x=>{
             if (!(<hlimpl.ASTNodeImpl>node).checkContextValue(x.name,x.value,x.value)){
-                var message=x.name+` should be ${x.value} to use type ${node.definition().nameId()}`;
+                var parameters = { v1: x.name, v2: x.value, v3: node.definition().nameId() };
+                var messageEntry = messageRegistry.CONTEXT_REQUIREMENT_VIOLATION;
                 if (x.name=='location'&&x.value=="ParameterLocation.FORM"){
-                    message="File type can be only used in web forms"
+                    messageEntry = messageRegistry.WEB_FORMS;
                 }
-                v.accept(createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT,message,node))
+                v.accept(createIssue1(messageEntry, parameters,node));
             }
         });
         var t:proxy.ValueTransformer;
@@ -2064,19 +2121,20 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                     }
                 }
                 if(!gotValue){
-                    var msg=`Missing required property '${x.nameId()}'`;
-
+                    var parameters = { propName: x.nameId() };
+                    var messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
                     if (isInlinedTemplate){
-                        msg=`Value is not provided for parameter: '${x.nameId()}'`;
+                        messageEntry = messageRegistry.VALUE_NOT_PROVIDED;
                     }
-                    var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, msg, node)
+                    var i = createIssue1(messageEntry, parameters, node);
                     v.accept(i);
                 }
             }
             else{
                 var el = node.elementsOfKind(x.nameId());
                 if (!el||el.length==0) {
-                    var i = createIssue(hl.IssueCode.MISSING_REQUIRED_PROPERTY, `Missing required property '${x.nameId()}'`, node)
+                    var i = createIssue1(messageRegistry.MISSING_REQUIRED_PROPERTY,
+                        { propName: x.nameId() }, node)
                     v.accept(i);
                 }
             }
@@ -2151,8 +2209,8 @@ class ScalarQuoteValidator implements NodeValidator {
                     var ind = (x.value() + "").indexOf(":");
                     var nl = (x.value() + "").indexOf("\n");
                     if (ind != -1 && nl != -1 && (!x.includePath() || x.includePath().length == 0)) {
-                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE,
-                            `Suspicious double quoted multiline scalar, it is likely that you forgot closing "${x.value()}`, node, true);
+                        var i = createIssue1(messageRegistry.SUSPICIOUS_DOUBLEQUOTE,
+                            {value:x.value()}, node, true);
                         i.start = (<any>x)._node.value.startPosition;
                         i.end = (<any>x)._node.value.endPosition;
                         if (i.start == i.end) {
@@ -2178,7 +2236,7 @@ class FixedFacetsValidator implements NodeValidator {
 
             var validateObject=rof.validate(dp,false,false);
             if (!validateObject.isOk()) {
-                validateObject.getErrors().forEach(e=>v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath( node,e), false)));
+                validateObject.getErrors().forEach(e=>v.accept(createIssue(e.getCode(), e.getMessage(), mapPath( node,e), false)));
             }
         }
     }
@@ -2195,10 +2253,10 @@ class TypeDeclarationValidator implements NodeValidator{
                 var n = extractLowLevelNode(e);
                 var issue;
                 if(n){
-                    issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(),n,mapPath( node,e), e.isWarning(),true);
+                    issue = createLLIssue(e.getCode(), e.getMessage(),n,mapPath( node,e), e.isWarning(),true);
                 }
                 else {
-                    issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), mapPath(node, e), e.isWarning());
+                    issue = createIssue(e.getCode(), e.getMessage(), mapPath(node, e), e.isWarning());
                 }
                 v.accept(issue);
             };
@@ -2207,7 +2265,7 @@ class TypeDeclarationValidator implements NodeValidator{
         var examplesLowLevel = node.lowLevel() && _.find(node.lowLevel().children(),x=>x.key()=='examples');
 
         if(examplesLowLevel && examplesLowLevel.valueKind &&  examplesLowLevel.valueKind() === yaml.Kind.SEQ) {
-            issue = createLLIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, "Map is expected here.", examplesLowLevel, node, false);
+            issue = createLLIssue1(messageRegistry.MAP_EXPECTED,{}, examplesLowLevel, node, false);
 
             v.accept(issue);
         }
@@ -2227,17 +2285,17 @@ class TypeDeclarationValidator implements NodeValidator{
             return;
         }
         if(typeof(val)!="string"){
-            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
-                "Annotation target must be set by a string", attr, false));
+            v.accept(createIssue1(messageRegistry.ANNOTATION_TARGET_MUST_BE_A_STRING,
+                {}, attr, false));
         }
         var str:string = val;
         if(val.replace(/\w|\s/g,'').length>0){
-            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
-                "'allowedTargets' property value must be an array of type names or a single type name", attr, false));
+            v.accept(createIssue1(messageRegistry.ALLOWED_TARGETS_MUST_BE_ARRAY,
+                {}, attr, false));
         }
         else if(!this.annotables[str]){
-            v.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE,
-                `Unsupported annotation target: '${str}'`, attr, false));
+            v.accept(createIssue1(messageRegistry.UNSUPPORTED_ANNOTATION_TARGET,
+                {aTarget: str}, attr, false));
         }
     }
 
@@ -2317,7 +2375,7 @@ class CompositeNodeValidator implements NodeValidator {
 
             var isPattern=node.definition().isAssignableFrom(universes.Universe10.TypeDeclaration.name)
             if (!isPattern) {
-                acceptor.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, "Node key can not be sequence", node));
+                acceptor.accept(createIssue1(messageRegistry.NODE_KEY_IS_A_SEQUENCE, {}, node));
             }
 
         }
@@ -2331,7 +2389,8 @@ class CompositeNodeValidator implements NodeValidator {
                     }
                 }
                 if (!isString) {
-                    acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, `Schema '${node.name()}' must be a string`, node))
+                    acceptor.accept(createIssue1(messageRegistry.SCHEMA_NAME_MUST_BE_STRING,
+                        {name: node.name()}, node))
                 }
             }
 
@@ -2359,12 +2418,11 @@ class CompositeNodeValidator implements NodeValidator {
         if (nc.key()==universes.Universe08.BodyLike){
             if (node.lowLevel().children().map(x=>x.key()).some(x=>x==="formParameters")){
                 if (node.parent()&&node.parent().definition().key()==universes.Universe08.Response) {
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "Form parameters can not be used in response", node)
+                    var i = createIssue1(messageRegistry.FORM_PARAMS_IN_RESPONSE, {}, node);
                     acceptor.accept(i);
                 }
                 else if (node.lowLevel().children().map(x=>x.key()).some(x=>x==="schema"||x==="example")){
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE,
-                        "'formParameters' property cannot be used together with the 'example' or 'schema' properties", node)
+                    var i = createIssue1(messageRegistry.FORM_PARAMS_WITH_EXAMPLE,{}, node);
                     acceptor.accept(i);
                 }
             }
@@ -2378,16 +2436,14 @@ class CompositeNodeValidator implements NodeValidator {
                 }
                 else if (vl!=="password"&&vl!=='client_credentials'){
                     if (vl&&typeof vl==="string"&&vl.indexOf("://")==-1&&vl.indexOf(":")==-1){
-                        var i = createIssue(hl.IssueCode.NODE_HAS_VALUE,
-                            "'authorizationGrants' value should be one of 'authorization_code', 'implicit', 'password', 'client_credentials' or to be an abolute URI", x)
+                        var i = createIssue1(messageRegistry.AUTHORIZATION_GRANTS_ENUM,{}, x)
                         acceptor.accept(i);
                     }
                 }
             })
             if (requireUrl){
                 if (!node.attr("authorizationUri")){
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE,
-                        "'authorizationUri' is required when `authorization_code` or `implicit` grant type are used ", node)
+                    var i = createIssue1(messageRegistry.AUTHORIZATION_URI_REQUIRED, {}, node)
                     acceptor.accept(i);
                 }
             }
@@ -2398,7 +2454,7 @@ class CompositeNodeValidator implements NodeValidator {
 
             var vls=node.attributes("enum").map(x=>x.value());
             if (vls.length!=_.uniq(vls).length){
-                var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, "'enum' value contains repeating components", node)
+                var i = createIssue1(messageRegistry.REPEATING_COMPONENTS_IN_ENUM, {}, node)
                 acceptor.accept(i);
             }
 
@@ -2411,7 +2467,9 @@ class CompositeNodeValidator implements NodeValidator {
                     var isValid = isInteger ? !isNaN(value) && attribute.value().indexOf('.') === -1 : !isNaN(value);
 
                     if(!isValid) {
-                        var issue = createIssue(hl.IssueCode.NODE_HAS_VALUE, (isInteger ? "Integer" : "Number") + " is expected", attribute);
+                        var issue = createIssue1(isInteger
+                            ? messageRegistry.INTEGER_EXPECTED
+                            : messageRegistry.NUMBER_EXPECTED_2, {}, attribute);
 
                         acceptor.accept(issue);
                     }
@@ -2421,7 +2479,7 @@ class CompositeNodeValidator implements NodeValidator {
 
         if (universeHelpers.isResourceTypeType(node.definition())){
             if(node.value()==null&&node.lowLevel().value(true)==="null") {
-                acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Resource type can not be null", node))
+                acceptor.accept(createIssue1(messageRegistry.RESOURCE_TYPE_NULL, {}, node))
             }
         }
         checkPropertyQuard(node, acceptor);
@@ -2432,7 +2490,7 @@ class CompositeNodeValidator implements NodeValidator {
             && !node.definition().getAdapter(services.RAMLService).allowValue()) {
             if (node.parent()) {
                 if (nodeValue!='~') {
-                    var i = createIssue(hl.IssueCode.NODE_HAS_VALUE, `Node '${node.name()}' can not be a scalar`, node)
+                    var i = createIssue1(messageRegistry.SCALAR_PROHIBITED_2, {name: node.name()}, node)
                     acceptor.accept(i);
                 }
             }
@@ -2451,9 +2509,7 @@ class BaseUriParameterValidator implements NodeValidator {
         var nameAttributeValue = node.attrValue(universes.Universe10.TypeDeclaration.properties.name.name);
         if ("version" == nameAttributeValue) {
 
-            //I dont like the message, but its coming from JS 0.8 parser @Denis
-            acceptor.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY,
-                "'version' parameter not allowed here", node));
+            acceptor.accept(createIssue1(messageRegistry.VERSION_NOT_ALLOWED,{}, node));
         }
     }
 }
@@ -2643,8 +2699,7 @@ class OverlayNodesValidator implements NodeValidator{
         }
 
         //otherwise reporting an illegal node:
-        v.accept(createIssue(hl.IssueCode.ONLY_OVERRIDE_ALLOWED,
-            `The '${node.id()}' node does not match any node of the master api.`, node));
+        v.accept(createIssue1(messageRegistry.INVALID_OVERLAY_NODE, {nodeId: node.id()}, node));
     }
 
     private validateProperties(node:hl.IHighLevelNode, acceptor:hl.ValidationAcceptor) : void {
@@ -2690,8 +2745,8 @@ class OverlayNodesValidator implements NodeValidator{
             if (universeHelpers.isUsesProperty(attribute.property())) return;
 
             //reporting the error
-            var message : string = `Property '${attribute.name()}' is not allowed to be overriden or added in overlays`;
-            acceptor.accept(createIssue(hl.IssueCode.ONLY_OVERRIDE_ALLOWED, message, attribute));
+            acceptor.accept(createIssue1(messageRegistry.INVALID_OVERRIDE_IN_OVERLAY,
+                {propName: attribute.name()}, attribute));
         })
     }
 
@@ -2714,7 +2769,7 @@ class RecurrentValidateChildrenKeys implements NodeValidator{
                 var c= x.key();
                 if (c) {
                     if (ms.hasOwnProperty(c)) {
-                        var issue = createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Keys should be unique", p, false);
+                        var issue = createIssue1(messageRegistry.KEYS_SHOULD_BE_UNIQUE, {}, p, false);
                         if (x.unit() == p.lowLevel().unit()) {
                             issue.start = x.keyStart();
                             issue.end = x.keyEnd();
@@ -2795,18 +2850,14 @@ class ValidateChildrenKeys implements NodeValidator {
                 var message = "";
 
                 var humanReadableName = getHumanReadableNodeName(childElement);
+                var parameters:any = { name: childElement.name() };
+                var messageEntry = messageRegistry.ALREADY_EXISTS_IN_CONTEXT;
                 if (humanReadableName) {
-
-                    var capitalized = changeCase.upperCaseFirst(humanReadableName);
-
-                    message = `${capitalized} '${childElement.name()}' already exists`;
-
-                } else {
-                    message = `'${childElement.name()}' already exists in this context`;
+                    parameters.capitalized = changeCase.upperCaseFirst(humanReadableName);
+                    messageEntry= messageRegistry.ALREADY_EXISTS;
                 }
 
-                var issue = createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT,
-                    message, childElement);
+                var issue = createIssue1(messageEntry, parameters, childElement);
                 acceptor.accept(issue)
             })
         })
@@ -2844,16 +2895,14 @@ class ValidateChildrenKeys implements NodeValidator {
                 //we blame even multivalue properties if they have duplicated low-level keys as YAML forbids this
 
                 nameToHighLevelAttributes[attributeName].forEach(attribute=>{
-                    var message = `Property already used: '${(attribute.property() ? attribute.property().nameId() : attribute.name())}'`;
+                    var parameters:any = {propName: attribute.property() ? attribute.property().nameId() : attribute.name()};
+                    var messageEntry = messageRegistry.PROPERTY_USED;
                     var humanReadableParent = getHumanReadableNodeName(attribute.parent());
                     if (humanReadableParent) {
-                        var capitalizedParent = changeCase.upperCaseFirst(humanReadableParent);
-                        message = capitalizedParent + " " + changeCase.lowerCaseFirst(message);
+                        parameters.parent = changeCase.upperCaseFirst(humanReadableParent);
+                        messageEntry = messageRegistry.PARENT_PROPERTY_USED;
                     }
-
-                    var issue=createIssue(hl.IssueCode.PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE,
-                        message,attribute);
-
+                    var issue=createIssue1(messageEntry,parameters,attribute);
                     acceptor.accept(issue);
                 })
             }
@@ -2873,17 +2922,15 @@ class ValidateChildrenKeys implements NodeValidator {
                     if(node.definition().isAssignableFrom(universes.Universe10.ObjectTypeDeclaration.name)) {
                         return;
                     }
-
-                    var message = "property already used: '" + lowLevelChildKey + "'";
+                    var parameters:any = {propName: lowLevelChildKey};
+                    var messageEntry = messageRegistry.PROPERTY_USED;
                     var humanReadableNode = getHumanReadableNodeName(node);
                     if (humanReadableNode) {
-                        var capitalizedParent = humanReadableNode.charAt(0).toUpperCase() + humanReadableNode.slice(1);
-                        message = capitalizedParent + " " + message;
+                        parameters.parent = changeCase.upperCaseFirst(humanReadableNode);
+                        messageEntry = messageRegistry.PARENT_PROPERTY_USED;
                     }
-
                     keyToLowLevelChildren[lowLevelChildKey].forEach(lowLevelChild=>{
-                        var i = createLLIssue(hl.IssueCode.PROPERTY_EXPECT_TO_HAVE_SINGLE_VALUE,
-                            message, lowLevelChild,node);
+                        var i = createLLIssue1(messageEntry,parameters,lowLevelChild,node);
 
                         i.start = lowLevelChild.keyStart();
                         i.end = lowLevelChild.keyEnd();
@@ -3072,7 +3119,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     return;
                                 }
                                 if (so instanceof Error){
-                                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,so.message,node,!strict));
+                                    cb.accept(createIssue1(messageRegistry.INVALID_VALUE_SCHEMA,{iValue:so.message},node,!strict));
                                     return;
                                 }
                                 so.validateObject(pObje);
@@ -3082,15 +3129,15 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     var propertyName = e.message.substr(illegalRequiredMessageStart.length,
                                         e.message.length - illegalRequiredMessageStart.length);
 
-                                    var patchedErrorMessage =
-                                        `Invalid JSON schema. Potentially, required array containing value '${propertyName}' has invalid location`;
-                                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,patchedErrorMessage,sa,!strict));
+                                    cb.accept(createIssue1(messageRegistry.INVALID_JSON_SCHEMA,
+                                        {propName: propertyName},sa,!strict));
                                     return;
                                 }
                                 if (e.message=="Object.keys called on non-object"){
                                     return;
                                 }
-                                cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Example does not conform to schema: "+e.message,node,!strict));
+                                cb.accept(createIssue1(messageRegistry.EXAMPLE_SCHEMA_FAILURE,
+                                    {msg:e.message},node,!strict));
                                 return;
                             }
                             //validate using classical schema;
@@ -3143,7 +3190,8 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     }
                     var validateObject = pt.validate(pObje, false);
                     if (!validateObject.isOk()) {
-                        validateObject.getErrors().forEach(e=>cb.accept(createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, e.getMessage(), node, !strict)));
+                        validateObject.getErrors().forEach(e=>cb.accept(
+                            createIssue(e.getCode(),e.getMessage(), node, !strict)));
                     }
                 }
             }
@@ -3166,7 +3214,8 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         v.children().forEach(x=>{
             if (x.key()) {
                 if (map[x.key()]) {
-                    cb.accept(createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Keys should be unique", new hlimpl.BasicASTNode(x, h.parent())))
+                    cb.accept(createIssue1(messageRegistry.KEYS_SHOULD_BE_UNIQUE,
+                        {}, new hlimpl.BasicASTNode(x, h.parent())))
                 }
                 map[x.key()] = x;
             }
@@ -3187,7 +3236,8 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                     try{
                         pObj=JSON.parse(vl);
                     }catch (e){
-                        cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Can not parse JSON: "+e.message,node,!strictValidation));
+                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_JSON,
+                            {msg:e.message},node,!strictValidation));
                         return;
                     }
                 }
@@ -3196,7 +3246,8 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                         pObj = xmlutil(vl);
                     }
                     catch (e){
-                        cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Can not parse XML: "+e.message,node,!strictValidation));
+                        cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                            {msg:e.message},node,!strictValidation));
                         return;
                     }
                 }
@@ -3228,12 +3279,14 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                             pObj = xmlutil(vl);
                         }
                         catch (e){
-                            cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,"Can not parse XML: "+e.message,node,!strictValidation));
+                            cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                                {msg:e.message},node,!strictValidation));
                             return;
                         }
                     }
                     else {
-                        //cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA, "Can not parse JSON: " + e.message, node, !strictValidation));
+                        //cb.accept(createIssue1(messageRegistry.CAN_NOT_PARSE_XML,
+                        // {msg: e.message}, node, !strictValidation));
                         return vl;
                     }
                 }
@@ -3290,9 +3343,10 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 if (template) {
                     if (prop.isValueProperty()) {
                         var templateNamePlural = toReadableName(template,true,true);
-                        var message =
-                `Optional scalar properties are not allowed in ${templateNamePlural} and their descendants: '${attr.name()}?'`;
-                        var issue = createIssue(hl.IssueCode.INVALID_PROPERTY, message, attr, false);
+                        var issue = createIssue1(messageRegistry.OPTIONAL_SCLARAR_PROPERTIES_10,{
+                            templateNamePlural:templateNamePlural,
+                            propName: attr.name()
+                        }, attr, false);
                         v.accept(issue);
                     }
                 }
@@ -3306,9 +3360,12 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                 var propName = prop ? toReadableName(prop.nameId(),true,true) : 'API root';
                 aNode.optionalProperties().forEach(x=>{
                     aNode.children().forEach(y=>{
-                        var message = 
-                `Optional properties are not allowed in '${propName}': '${y.lowLevel().key()}?'`;
-                        var issue = createIssue(hl.IssueCode.INVALID_PROPERTY, message, node, false);
+                        var parameters = {
+                            propName: propName,
+                            oPropName: y.lowLevel().key()
+                        };
+                        var issue = createIssue1(messageRegistry.OPTIONAL_PROPERTIES_10,
+                            parameters, node, false);
                         v.accept(issue);
                     });
                 });
@@ -3322,7 +3379,7 @@ class OptionalPropertiesValidator implements NodeValidator, PropertyValidator {
                     ||universeHelpers.isHeadersProperty(prop);
 
                 if(!universeHelpers.isMethodType(def)&&!(universeHelpers.isTypeDeclarationType(def)&&isParam)){
-                    var issue = createIssue(hl.IssueCode.MISSED_CONTEXT_REQUIREMENT, "Only method nodes can be optional", node, false);
+                    var issue = createIssue1(messageRegistry.ONLY_METHODS_CAN_BE_OPTIONAL, {}, node, false);
                     v.accept(issue);
                 }
             }
@@ -3380,9 +3437,9 @@ class UriParametersValidator implements NodeValidator {
                                 return;
                             }
                         }
-                        var propNameReadable = pluralize.singular(changeCase.sentence(paramsPropName));
-                        var message = changeCase.upperCaseFirst(propNameReadable) + " unused";
-                        var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, x, true);
+                        var propNameReadable = changeCase.upperCaseFirst(
+                            pluralize.singular(changeCase.sentence(paramsPropName)));
+                        var issue = createIssue1(messageRegistry.PROPERTY_UNUSED, {propName: propNameReadable}, x, true);
                         v.accept(issue);
                     }
                 }
@@ -3436,9 +3493,13 @@ class TemplateCyclesDetector implements NodeValidator {
                 cycle.forEach(x=>templatesWithCycle[x] = true);
 
                 cycle = cycle.reverse();
-                var message = toReadableName(template.definition().nameId())
-                    + " definition contains cycle: " + cycle.join(" -> ");
-                var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, message, template, false);
+                var typeName = toReadableName(template.definition().nameId());
+                var cycleStr = cycle.join(" -> ");
+                var parameters = {
+                    typeName: typeName,
+                    cycle: cycleStr
+                };
+                var issue = createIssue1(messageRegistry.CYCLE_IN_DEFINITION, parameters, template, false);
                 v.accept(issue);
             });
         });
@@ -3630,11 +3691,21 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
 
 
 export function toIssue(error: any, node: hl.IHighLevelNode): hl.ValidationIssue {
-    return createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, error.getMessage(), mapPath(node, error), error.isWarning());
+    return createIssue(error.getCode(), error.getMessage(), mapPath(node, error), error.isWarning());
+}
+
+export function createIssue1(
+    messageEntry:any,
+    parameters: any,
+    node:hl.IParseResult,
+    isWarning:boolean=false):hl.ValidationIssue {
+
+    var msg = applyTemplate(<Message>messageEntry,parameters);
+    return createIssue(messageEntry.code, msg, node, isWarning);
 }
 
 export function createIssue(
-    issueCode:hl.IssueCode,
+    issueCode:string,
     message:string,
     node:hl.IParseResult,
     isWarning:boolean=false):hl.ValidationIssue{
@@ -3677,7 +3748,9 @@ export function createIssue(
     if (original) {
         original.extras.push(error);
         if(node.lowLevel().valueKind()==yaml.Kind.INCLUDE_REF) {
-            error.message = "Error in the included file: " + error.message;
+            var messageEntry = messageRegistry.ERROR_IN_INCLUDED_FILE;
+            error.code = messageEntry.code;
+            error.message = applyTemplate(messageEntry,{msg: error.message});
         }
         error = original;
     }
@@ -3685,7 +3758,14 @@ export function createIssue(
     return error;
 }
 
-export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILowLevelASTNode,
+function createLLIssue1(messageEntry:any, parameters:any, node:ll.ILowLevelASTNode,
+                        rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false){
+
+    var msg = applyTemplate(<Message>messageEntry,parameters);
+    return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p);
+}
+
+export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevelASTNode,
                               rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false):hl.ValidationIssue{
     var original=null;
 
@@ -3721,13 +3801,31 @@ export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILo
 }
 export function validateResponseString(v:string):any{
     if (v.length!=3){
-        return new Error("Status code should be 3 digits number.");
+        return new ValidationError(messageRegistry.STATUS_MUST_BE_3NUMBER);
     }
     for (var i=0;i<v.length;i++){
         var c=v[i];
         if (!_.find(['0','1','2','3','4','5','6','7','8','9'],x=>x==c)){
-            return new Error("Status code should be 3 digits number.");
+            return new ValidationError(messageRegistry.STATUS_MUST_BE_3NUMBER);
         }
     }
     return null;
 }
+
+
+interface Message{
+    code: number
+    message: string
+    func?: (x:any)=>string
+}
+
+function applyTemplate(messageEntry:Message, parameters:any):string {
+    var func = messageEntry.func;
+    if (!func) {
+        var template = messageEntry.message;
+        func = _.template(template, {interpolate: /\{\{(.+?)\}\}/g});
+        messageEntry.func = func;
+    }
+    return func(parameters);
+}
+

@@ -208,7 +208,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "UNION_TYPE_FAILURE",
       "message": "Union type options do not pass validation",
       "path": "api.raml",
       "range": {
@@ -225,7 +225,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (ChildType2[]: 'ChildType2.stringProperty.minLength=3' i.e. string length should not be less than 3)",
       "path": "api.raml",
       "range": {
@@ -242,7 +242,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "UNION_TYPE_FAILURE_DETAILS",
       "message": "Union type option does not pass validation (ChildType1[]: None of the 'ChildType1' type known subtypes declare 'k2' as value of discriminating property 'kind'.)",
       "path": "api.raml",
       "range": {
