@@ -78,7 +78,7 @@ gulp.task('test:ts', ['pre-test'], function () {
 
     return gulp.src(testFiles1, { read: false })
         .pipe(mocha({
-            bail: false,
+            bail: true,
             reporter: 'spec'
         }))
         .pipe(istanbul.writeReports());
