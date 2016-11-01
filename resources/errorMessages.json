@@ -416,9 +416,9 @@
     "code" : "TYPES_AND_SCHEMAS_ARE_EXCLUSIVE",
     "message" : "'types' and 'schemas' are mutually exclusive"
   },
-  "1102" : {
-    "code" : "1102",
-    "message" : ""
+  "TEMPLATE_PARAMETER_NAME_MUST_CONTAIN_NONWHITESPACE_CHARACTERS" : {
+    "code" : "TEMPLATE_PARAMETER_NAME_MUST_CONTAIN_NONWHITESPACE_CHARACTERS",
+    "message" : "Trait or resource type parameter name must contain non whitespace characters"
   },
   "1103" : {
     "code" : "1103",

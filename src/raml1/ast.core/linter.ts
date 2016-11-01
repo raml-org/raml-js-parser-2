@@ -45,7 +45,7 @@ import {find} from "../../util/index";
 var changeCase = require('change-case');
 var pluralize = require('pluralize');
 
-var messageRegistry = require("../../../resources/errorMessages");
+let messageRegistry = require("../../../resources/errorMessages");
 
 type ASTNodeImpl=hlimpl.ASTNodeImpl;
 type ASTPropImpl=hlimpl.ASTPropImpl;
@@ -155,19 +155,19 @@ class LinterExtensionsImpl implements linterApi.ErrorFactory<core.BasicNode>,lin
 
     }
     error(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,w.highLevel()));
+        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,w.highLevel()));
     }
     errorOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,pr));
+        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,pr));
     }
     warningOnProperty(w:core.BasicNode,property: string,message:string){
         var pr=w.highLevel().attr(property);
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,pr,true));
+        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,pr,true));
     }
 
     warning(w:core.BasicNode,message:string){
-        this.acceptor.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,message,w.highLevel(),true));
+        this.acceptor.accept(createIssue("INVALID_VALUE_SCHEMA",message,w.highLevel(),true));
     }
     nodes:{ [name:string]:linterApi.LinterRule<any>[]}={}
 
@@ -354,9 +354,10 @@ function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.Valida
     if (node.isElement()){
         if((<hlimpl.ASTNodeImpl>node).invalidSequence){
             var pName = node.property().nameId();
-            var msg = changeCase.sentenceCase(pluralize.singular(pName));
-            msg = `In RAML 1.0 ${msg} is not allowed to have sequence as definition`;
-            v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
+            pName = changeCase.sentenceCase(pluralize.singular(pName));
+            v.acceptUnique(createLLIssue1(
+                messageRegistry.SEQUENCE_NOT_ALLOWED_10,{propName:pName}
+                ,node.lowLevel().parent().parent(),node));
         }
 
         var highLevelNode = node.asElement();
@@ -956,7 +957,8 @@ class TraitVariablesValidator{
             var paramName = ind >= 0 ? paramOccurence.substring(0, ind) : paramOccurence;
             if (paramName.trim().length == 0) {
                 var msg = "Trait or resource type parameter name must contain non whitespace characters";
-                var issue = createIssue(hl.IssueCode.ILLEGAL_PROPERTY_VALUE, msg, node, false);
+                var issue = createIssue1(
+                    messageRegistry.TEMPLATE_PARAMETER_NAME_MUST_CONTAIN_NONWHITESPACE_CHARACTERS,{},node);
                 issue.start = start + i;
                 issue.end = start + prev;
                 acceptor.accept(issue);
@@ -3117,7 +3119,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
                                     return;
                                 }
                                 if (so instanceof Error){
-                                    cb.accept(createIssue(hl.IssueCode.INVALID_VALUE_SCHEMA,so.message,node,!strict));
+                                    cb.accept(createIssue("INVALID_VALUE_SCHEMA",so.message,node,!strict));
                                     return;
                                 }
                                 so.validateObject(pObje);
@@ -3703,7 +3705,7 @@ export function createIssue1(
 }
 
 export function createIssue(
-    issueCode:hl.IssueCode,
+    issueCode:string,
     message:string,
     node:hl.IParseResult,
     isWarning:boolean=false):hl.ValidationIssue{
@@ -3763,7 +3765,7 @@ function createLLIssue1(messageEntry:any, parameters:any, node:ll.ILowLevelASTNo
     return createLLIssue(messageEntry.code, msg, node, rootCalculationAnchor,isWarning,p);
 }
 
-export function createLLIssue(issueCode:hl.IssueCode, message:string,node:ll.ILowLevelASTNode,
+export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevelASTNode,
                               rootCalculationAnchor: hl.IParseResult,isWarning:boolean=false,p=false):hl.ValidationIssue{
     var original=null;
 
