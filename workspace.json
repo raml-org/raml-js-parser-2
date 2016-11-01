@@ -15,7 +15,7 @@
     "build" : "npm run build",
     "test" : "npm run test-cov",
     "gitUrl" : "https://github.com/raml-org/typesystem-ts.git",
-    "gitBranch": "develop",
+    "gitBranch": "messages-externalization",
     "installTypings" : true
   },
   "raml-xml-validation" : {
