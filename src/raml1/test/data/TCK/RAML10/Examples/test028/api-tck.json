@@ -188,7 +188,8 @@
         },
         "relativeUriPathSegments": [
           "hello"
-        ]
+        ],
+        "absoluteUri": "/hello"
       },
       {
         "relativeUri": "/world",
@@ -202,7 +203,8 @@
         },
         "relativeUriPathSegments": [
           "world"
-        ]
+        ],
+        "absoluteUri": "/world"
       }
     ]
   },

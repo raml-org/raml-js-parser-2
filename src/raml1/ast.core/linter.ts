@@ -342,7 +342,69 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
 
     return issue;
 };
-export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, requiredOnly: boolean = false){
+
+function validateTopLevelNodeSkippingChildren(node : hl.IParseResult,v:hl.ValidationAcceptor) {
+    // if (!node.parent()){
+    //     try {
+    //         validateIncludes(<hlimpl.BasicASTNode>node, v);
+    //     } finally {
+    //         cleanupIncludesFlag(<hlimpl.BasicASTNode>node, v);
+    //     }
+    // }
+    if (node.isElement()){
+        if((<hlimpl.ASTNodeImpl>node).invalidSequence){
+            var pName = node.property().nameId();
+            var msg = changeCase.sentenceCase(pluralize.singular(pName));
+            msg = `In RAML 1.0 ${msg} is not allowed to have sequence as definition`;
+            v.acceptUnique(createLLIssue(hl.IssueCode.UNKNOWN_NODE, msg,node.lowLevel().parent().parent(),node,false));
+        }
+
+        var highLevelNode = node.asElement();
+
+        if (highLevelNode.definition().isAssignableFrom(universes.Universe10.LibraryBase.name)){
+            var hasSchemas:boolean=false;
+            var hasTypes:boolean=false;
+            var vv:ll.ILowLevelASTNode;
+            highLevelNode.lowLevel().children().forEach(x=>{
+                if (x.key()=="schemas"){
+                    hasSchemas=true;
+                    vv=x;
+                }
+                if (x.key()=="types"){
+                    hasTypes=true;
+                }
+            })
+            if (hasSchemas&&hasTypes){
+                v.accept(localLowLevelError(vv,highLevelNode,hl.IssueCode.ILLEGAL_PROPERTY_VALUE,false,"types and schemas are mutually exclusive",false));
+            }
+        }
+
+        var hasRequireds = highLevelNode.definition().requiredProperties() && highLevelNode.definition().requiredProperties().length > 0;
+
+        validateBasicFlat(<hlimpl.BasicASTNode>node,v);
+
+        //new UriParametersValidator().validate(highLevelNode,v);
+
+        new CompositeNodeValidator().validate(highLevelNode,v);
+        new TemplateCyclesDetector().validate(highLevelNode,v);
+    }
+    else{
+        validateBasicFlat(<hlimpl.BasicASTNode>node,v);
+    }
+
+    new OptionalPropertiesValidator().validate(node,v);
+}
+
+/**
+ * Performs basic validation of a node on a single level, without proceeding to the node high-level children validation.
+ * @param node
+ * @param v
+ * @param requiredOnly
+ * @returns {boolean} - whether to continue validation after this one is finished, or there is no point for further validation.
+ */
+export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, requiredOnly: boolean = false)
+    : boolean {
+
     var parentNode = node.parent();
     var llValue = node.lowLevel().value();
     if (node.lowLevel()) {
@@ -382,15 +444,11 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
         }
     }
 
-    // if (node.errorMessage){
-    //     v.accept(createIssue(hl.IssueCode.UNKNOWN_NODE, node.errorMessage, node));
-    //     return;
-    // }
     if (node.isUnknown()){
         if (node.name().indexOf("<<")!=-1){
             if (typeOfContainingTemplate(parentNode)!=null){
                 new TraitVariablesValidator().validateName(node,v);
-                return;
+                return false;
             }
         }
         if (node.needSequence){
@@ -403,8 +461,7 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
             else{
                 v.accept(createIssue1(messageRegistry.MAP_REQUIRED, {}, node));
             }
-
-            return
+            return false;
         }
         if (node.unresolvedRef){
             v.accept(createIssue1(messageRegistry.UNRESOLVED_REFERENCE, { ref : llValue}, node));
@@ -416,10 +473,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 if(typeOfContainingTemplate(parentNode)
                     &&util.startsWith(llValue,"<<")
                     &&util.endsWith(llValue,">>")){
-                    return;
+                    return false;
                 }
                 if (node.name()=="body"&&node.computedValue("mediaType")){
-                    return;
+                    return false;
                 }
                 if (node.lowLevel().value()!='~') {
                     v.accept(createIssue1(messageRegistry.SCALAR_PROHIBITED,
@@ -438,10 +495,10 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
 
     if(node.markCh()&&!node.allowRecursive()){
         if (!node.property()){
-            return;
+            return false;
         }
         v.accept(createIssue1(messageRegistry.RECURSIVE_DEFINITION, {name:node.name()}, node));
-        return;
+        return false;
     }
 
     if((<any>node).definition && (<any>node).definition().isAssignableFrom(universes.Universe10.Operation.name)) {
@@ -455,6 +512,44 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 { propName: universes.Universe10.Operation.properties.queryString.name}, queryParamsNode, node));
         }
     }
+
+    var isOverlay = (<any>node).definition && (<any>node).definition() &&
+        ((<any>node).definition().key() === universes.Universe10.Overlay ||
+        (<any>node).definition().key() === universes.Universe10.Extension)
+
+    if (isOverlay) {
+        validateMasterFlat(node, v, requiredOnly);
+    }
+
+    return true;
+}
+
+/**
+ * Validates node master, but only on a single level, without recurring to high-level children.
+ * @param node
+ * @param acceptor
+ */
+function validateMasterFlat(node:hlimpl.BasicASTNode,acceptor:hl.ValidationAcceptor, requiredOnly: boolean = false) {
+
+    if (node.parent()) return;
+    
+    var nodeAsElement = node.asElement();
+    if (!nodeAsElement) return;
+
+    if(!nodeAsElement.isAuxilary()) return;
+
+    var master = nodeAsElement.getMaster();
+    if (!master) return;
+
+    validateTopLevelNodeSkippingChildren(master, acceptor);
+}
+
+export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, requiredOnly: boolean = false){
+
+    if(!validateBasicFlat(node, v, requiredOnly)) {
+        return;
+    }
+
     try {
         var isOverlay = (<any>node).definition && (<any>node).definition() &&
             ((<any>node).definition().key() === universes.Universe10.Overlay ||
@@ -470,8 +565,6 @@ export function validateBasic(node:hlimpl.BasicASTNode,v:hl.ValidationAcceptor, 
                 v.accept(createIssue1(em.entry, em.parameters, x.name()?x:node));
                 return;
             }
-
-
 
             x.validate(v)
         });
@@ -597,7 +690,9 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                             while(_issue.extras.length>0){
                                 _issue = _issue.extras[0];
                             }
-                            _issue.extras.push(brand);
+                            if(_issue != brand) {
+                                _issue.extras.push(brand);
+                            }
                             v.accept(issue);
                         }
                     }
@@ -1153,8 +1248,9 @@ function isValidValueType(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.I
                             }
                         });
                         if (!found){
+                        	var list = aVals.map(x=>`'${x}'`).join(", ");
                             return new ValidationError(messageRegistry.INVALID_ANNOTATION_LOCATION,
-                                { aName: v, aValues: aVals });
+                                { aName: v, aValues: list });
                         }
                     }
                 }
@@ -2025,7 +2121,6 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
                 if(!gotValue){
                     var parameters = { propName: x.nameId() };
                     var messageEntry = messageRegistry.MISSING_REQUIRED_PROPERTY;
-
                     if (isInlinedTemplate){
                         messageEntry = messageRegistry.VALUE_NOT_PROVIDED;
                     }

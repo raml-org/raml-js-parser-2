@@ -160,7 +160,8 @@
         },
         "relativeUriPathSegments": [
           "test"
-        ]
+        ],
+        "absoluteUri": "/test"
       }
     ]
   },

@@ -21,7 +21,8 @@
         },
         "relativeUriPathSegments": [
           "user"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/user"
       },
       {
         "relativeUri": "/users",
@@ -63,7 +64,8 @@
                 },
                 "relativeUriPathSegments": [
                   "followers"
-                ]
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/followers"
               },
               {
                 "relativeUri": "/following",
@@ -77,7 +79,8 @@
                 },
                 "relativeUriPathSegments": [
                   "following"
-                ]
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/following"
               },
               {
                 "relativeUri": "/keys",
@@ -115,7 +118,8 @@
                     },
                     "relativeUriPathSegments": [
                       "{keyId}"
-                    ]
+                    ],
+                    "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}"
                   }
                 ],
                 "__METADATA__": {
@@ -127,7 +131,8 @@
                 },
                 "relativeUriPathSegments": [
                   "keys"
-                ]
+                ],
+                "absoluteUri": "https://api.github.com/users/{userId}/keys"
               }
             ],
             "__METADATA__": {
@@ -139,7 +144,8 @@
             },
             "relativeUriPathSegments": [
               "{userId}"
-            ]
+            ],
+            "absoluteUri": "https://api.github.com/users/{userId}"
           }
         ],
         "__METADATA__": {
@@ -151,7 +157,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/users"
       }
     ],
     "__METADATA__": {

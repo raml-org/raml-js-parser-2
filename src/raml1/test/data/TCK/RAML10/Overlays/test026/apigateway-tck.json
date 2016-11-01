@@ -159,7 +159,8 @@
         "displayName": "Product Types",
         "relativeUriPathSegments": [
           "products"
-        ]
+        ],
+        "absoluteUri": "https://api.uber.com/products"
       }
     ],
     "extends": "apigateway.raml",

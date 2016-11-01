@@ -64,7 +64,7 @@ export interface IProject{
 
     unit(path:string,absolute?:boolean):ICompilationUnit
 
-    unitAsync(path:string):Promise<ICompilationUnit>
+    unitAsync(path:string,absolute?:boolean):Promise<ICompilationUnit>
 
     lexerErrors():Error[]
 

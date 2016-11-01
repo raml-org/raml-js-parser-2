@@ -197,7 +197,8 @@
         },
         "relativeUriPathSegments": [
           "q"
-        ]
+        ],
+        "absoluteUri": "/q"
       }
     ]
   },

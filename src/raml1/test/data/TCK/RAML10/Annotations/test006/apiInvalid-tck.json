@@ -146,7 +146,8 @@
         },
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "http://api.samplehost.com/resource"
       }
     ],
     "__METADATA__": {

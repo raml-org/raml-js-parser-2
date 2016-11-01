@@ -138,7 +138,8 @@
           "users",
           "{userid}",
           "gists"
-        ]
+        ],
+        "absoluteUri": "https://api.github.com/users/{userid}/gists"
       }
     ],
     "__METADATA__": {

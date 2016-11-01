@@ -11,6 +11,7 @@
     "resources": [
       {
         "relativeUri": "/resource",
+        "absoluteUri": "/resource",
         "methods": [
           {
             "body": {

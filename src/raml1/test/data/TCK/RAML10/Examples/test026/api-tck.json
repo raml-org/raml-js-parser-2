@@ -393,7 +393,8 @@
             },
             "relativeUriPathSegments": [
               "helloWorldddd1234ddd2"
-            ]
+            ],
+            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
           }
         ],
         "__METADATA__": {
@@ -405,7 +406,8 @@
         },
         "relativeUriPathSegments": [
           "test"
-        ]
+        ],
+        "absoluteUri": "https://api.instagram.com/{version}/test"
       }
     ],
     "__METADATA__": {

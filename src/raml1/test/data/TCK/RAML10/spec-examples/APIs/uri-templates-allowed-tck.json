@@ -41,7 +41,8 @@
         "relativeUriPathSegments": [
           "users",
           "{userId}"
-        ]
+        ],
+        "absoluteUri": "/users/{userId}"
       },
       {
         "uriParameters": {
@@ -80,7 +81,8 @@
         "relativeUriPathSegments": [
           "users",
           "{username}"
-        ]
+        ],
+        "absoluteUri": "/users/{username}"
       },
       {
         "relativeUri": "/users/me",
@@ -95,7 +97,8 @@
         "relativeUriPathSegments": [
           "users",
           "me"
-        ]
+        ],
+        "absoluteUri": "/users/me"
       }
     ]
   },

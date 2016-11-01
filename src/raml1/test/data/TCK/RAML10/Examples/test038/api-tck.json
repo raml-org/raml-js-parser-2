@@ -110,7 +110,8 @@
         },
         "relativeUriPathSegments": [
           "s"
-        ]
+        ],
+        "absoluteUri": "/s"
       }
     ]
   },

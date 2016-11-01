@@ -34,7 +34,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "/users"
       }
     ]
   },

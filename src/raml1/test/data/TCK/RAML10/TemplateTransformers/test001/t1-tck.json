@@ -172,7 +172,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "/api/{version}/users"
       }
     ],
     "__METADATA__": {

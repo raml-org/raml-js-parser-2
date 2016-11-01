@@ -39,7 +39,8 @@
         },
         "relativeUriPathSegments": [
           "elements"
-        ]
+        ],
+        "absoluteUri": "/elements"
       }
     ],
     "extends": "master.raml"

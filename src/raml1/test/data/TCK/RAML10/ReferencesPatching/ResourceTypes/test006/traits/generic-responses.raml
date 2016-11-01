@@ -1,0 +1,13 @@
+#%RAML 1.0 Trait
+uses:
+  error-types:  ../types/error-types.raml
+
+responses:
+  422:
+    body:
+      application/json:
+        type: error-types.<<parentType>>-<<resourcePathName>>-errors
+  423:
+    body:
+      application/json:
+        type: error-types.<<parentType>>-<<resourcePathName>>-errors | string

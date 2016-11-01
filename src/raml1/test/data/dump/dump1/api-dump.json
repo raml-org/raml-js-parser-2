@@ -280,6 +280,7 @@
 				}
 			],
 			"relativeUri": "/users",
+			"absoluteUri": "/media/users",
 			"displayName": "/users",
 			"__METADATA__": {
 				"primitiveValuesMeta": {

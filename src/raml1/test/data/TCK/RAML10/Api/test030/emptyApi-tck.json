@@ -5,7 +5,7 @@
   "errors": [
     {
       "code": "MISSING_REQUIRED_PROPERTY",
-      "message": "Missing required property: 'title'",
+      "message": "Missing required property 'title'",
       "path": "emptyApi.raml",
       "range": {
         "start": {

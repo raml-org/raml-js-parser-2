@@ -223,7 +223,8 @@
         "relativeUriPathSegments": [
           "animals",
           "{animalId}"
-        ]
+        ],
+        "absoluteUri": "/animals/{animalId}"
       }
     ]
   },

@@ -16,7 +16,8 @@
         },
         "relativeUriPathSegments": [
           "resource2"
-        ]
+        ],
+        "absoluteUri": "/resource2"
       },
       {
         "methods": [
@@ -76,7 +77,8 @@
         },
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "/resource"
       }
     ],
     "extends": "api.raml"

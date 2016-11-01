@@ -419,6 +419,16 @@ export interface IHighLevelNode extends IParseResult {
     optionalProperties():string[];
 
     createIssue(error: any): ValidationIssue;
+
+    /**
+     * Returns node master or null for top-level nodes.
+     */
+    getMaster() : IParseResult;
+
+    /**
+     * Gets whether this node is auxilary.
+     */
+    isAuxilary() : boolean;
 }
 
 export interface IEditableHighLevelNode extends IHighLevelNode {

@@ -36,7 +36,8 @@
         },
         "relativeUriPathSegments": [
           "rere"
-        ]
+        ],
+        "absoluteUri": "/rere"
       }
     ]
   },

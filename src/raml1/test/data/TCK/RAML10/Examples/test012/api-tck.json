@@ -108,7 +108,8 @@
         },
         "relativeUriPathSegments": [
           "hello"
-        ]
+        ],
+        "absoluteUri": "/hello"
       }
     ]
   },

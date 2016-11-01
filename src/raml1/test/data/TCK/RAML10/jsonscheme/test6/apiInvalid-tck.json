@@ -1,0 +1,102 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "schemaPath": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvbWFzdGVyL3NyYy9yYW1sMS90ZXN0L2RhdGEvcGFyc2VyL2pzb25zY2hlbWUvdGVzdDYvcmVtb3RlU2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json",
+          "type": [
+            "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "MyType"
+                ],
+                "example": {
+                  "innerTypeName1": "somename"
+                },
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"innerTypeName1\": \"somename\"\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "innerTypeName1": "somename"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: innerTypeName innerTypeName",
+      "path": "apiInvalid.raml",
+      "range": {
+        "start": {
+          "line": 12,
+          "column": 8,
+          "position": 284
+        },
+        "end": {
+          "line": 12,
+          "column": 15,
+          "position": 291
+        }
+      }
+    }
+  ]
+}

@@ -75,7 +75,8 @@
         },
         "relativeUriPathSegments": [
           "servers"
-        ]
+        ],
+        "absoluteUri": "https://anypoint.mulesoft.com/hybrid/api/v1/servers"
       }
     ],
     "extends": "api.raml"

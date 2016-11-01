@@ -91,7 +91,8 @@
         },
         "relativeUriPathSegments": [
           "jobs"
-        ]
+        ],
+        "absoluteUri": "https://app.zencoder.com/api/{version}/jobs"
       }
     ],
     "__METADATA__": {

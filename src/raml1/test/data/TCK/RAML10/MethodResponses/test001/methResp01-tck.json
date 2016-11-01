@@ -79,7 +79,8 @@
         },
         "relativeUriPathSegments": [
           "test"
-        ]
+        ],
+        "absoluteUri": "/test"
       }
     ]
   },

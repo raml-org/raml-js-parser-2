@@ -48,7 +48,8 @@
         },
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "/resource"
       }
     ]
   },

@@ -245,7 +245,7 @@
   },
   "MISSING_REQUIRED_PROPERTY" : {
     "code" : "MISSING_REQUIRED_PROPERTY",
-    "message" : "Missing required property: '{{propName}}'"
+    "message" : "Missing required property '{{propName}}'"
   },
   "VALUE_NOT_PROVIDED" : {
     "code" : "VALUE_NOT_PROVIDED",

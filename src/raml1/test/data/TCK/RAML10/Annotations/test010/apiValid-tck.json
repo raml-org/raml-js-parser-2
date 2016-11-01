@@ -54,7 +54,8 @@
         },
         "relativeUriPathSegments": [
           "assets"
-        ]
+        ],
+        "absoluteUri": "/assets"
       },
       {
         "annotations": {
@@ -81,7 +82,8 @@
         },
         "relativeUriPathSegments": [
           "foods"
-        ]
+        ],
+        "absoluteUri": "/foods"
       }
     ]
   },

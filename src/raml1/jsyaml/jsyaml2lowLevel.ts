@@ -2479,6 +2479,8 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                     if (ast) {
                         return ast.dumpToObject(full);
                     }
+                } else if (this.canInclude(resolved)) {
+                    return resolved.contents();
                 }
             }
             return null;
@@ -3932,7 +3934,7 @@ export function fetchIncludesAndMasterAsync(project:lowlevel.IProject, apiPath:s
         });
     }
 
-    return project.unitAsync(apiPath).then(x=>{
+    return project.unitAsync(apiPath, path.isAbsolute(apiPath)).then(x=>{
         units.push(x);
         map[x.absolutePath()] = true;
         return processUnits(0);

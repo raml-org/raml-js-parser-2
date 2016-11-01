@@ -1,0 +1,146 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "a1": {
+          "name": "a1",
+          "displayName": "a1",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "Example",
+            "Resource"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      },
+      {
+        "a2": {
+          "name": "a2",
+          "displayName": "a2",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "Method"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "examples": [
+                  {
+                    "annotations": {
+                      "a1": {
+                        "structuredValue": "stringValue",
+                        "name": "a1"
+                      },
+                      "a2": {
+                        "structuredValue": "stringValue",
+                        "name": "a2"
+                      }
+                    },
+                    "value": "{\n  \"prop\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": "ex1",
+                    "structuredValue": {
+                      "prop": "stringValue"
+                    }
+                  }
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/g",
+        "displayName": "/g",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "g"
+        ],
+        "absoluteUri": "/g"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Annotation 'a2' can not be placed at this location, allowed targets are: 'Method'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 17,
+          "column": 12,
+          "position": 293
+        },
+        "end": {
+          "line": 17,
+          "column": 16,
+          "position": 297
+        }
+      }
+    }
+  ]
+}

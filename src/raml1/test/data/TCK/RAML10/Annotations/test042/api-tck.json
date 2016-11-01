@@ -1,0 +1,105 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "annotationTypes": [
+      {
+        "xz": {
+          "name": "xz",
+          "displayName": "xz",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "allowedTargets": [
+            "Method"
+          ],
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "test",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "annotations": {
+                  "xz": {
+                    "structuredValue": "z",
+                    "name": "xz"
+                  }
+                },
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "object"
+                ],
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "type": {
+                      "insertedAsDefault": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/g",
+        "displayName": "/g",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "g"
+        ],
+        "absoluteUri": "/g"
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": 11,
+      "message": "Annotation 'xz' can not be placed at this location, allowed targets are: 'Method'",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 10,
+          "column": 9,
+          "position": 128
+        },
+        "end": {
+          "line": 10,
+          "column": 13,
+          "position": 132
+        }
+      }
+    }
+  ]
+}

@@ -63,7 +63,8 @@
             },
             "relativeUriPathSegments": [
               "{userIds}"
-            ]
+            ],
+            "absoluteUri": "/users/{userIds}"
           }
         ],
         "__METADATA__": {
@@ -75,7 +76,8 @@
         },
         "relativeUriPathSegments": [
           "users"
-        ]
+        ],
+        "absoluteUri": "/users"
       }
     ]
   },

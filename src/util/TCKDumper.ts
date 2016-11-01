@@ -17,6 +17,8 @@ import util = require("../util/index")
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 
+var pathUtils = require("path");
+
 export function dump(node: coreApi.BasicNode|coreApi.AttributeNode, serializeMeta:boolean = true):any{
     return new TCKDumper({
         rootNodeDetails : true,
@@ -194,7 +196,7 @@ export class TCKDumper {
 
             this.nodeTransformers.forEach(x=> {
                 if (x.match(node, node.highLevel().property())) {
-                    obj = x.transform(obj);
+                    obj = x.transform(obj,node);
                 }
             });
 
@@ -282,6 +284,34 @@ export class TCKDumper {
                     }
                 })
             }
+
+            if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
+                var schemaString = value[0].trim();
+                
+                var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
+                var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
+                
+                if(canBeJson || canBeXml) {
+                    var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
+
+                    if(include) {
+                        var aPath = node.highLevel().lowLevel().unit().resolve(include).absolutePath();
+
+                        var relativePath;
+
+                        if(aPath.indexOf("http://") === 0 || aPath.indexOf("https://") === 0) {
+                            relativePath = aPath;
+                        } else {
+                            relativePath = pathUtils.relative((<any>node).highLevel().lowLevel().unit().project().getRootPath(), aPath);
+                        }
+
+                        relativePath = relativePath.replace(/\\/g,'/');
+
+                        obj["schemaPath"] = relativePath;
+                    }
+                }
+            }
+
             if (!value && propName == "type") {
                 return
                 //we should not use
@@ -570,8 +600,14 @@ class TypesTransformer extends ArrayToMappingsArrayTransformer{
         ]),"name");
     }
 
-    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean{
-        return node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+    match(node:coreApi.BasicNode,prop:nominals.IProperty):boolean {
+        var res = node.parent()!=null && this.matcher.match(node.parent().definition(),prop);
+
+        if(res) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
@@ -841,7 +877,7 @@ class ResourcesTransformer implements Transformation{
         return prop!=null && universeHelpers.isResourcesProperty(prop);
     }
 
-    transform(value:any){
+    transform(value:any,node){
         if(Array.isArray(value)){
             return value;
         }
@@ -852,6 +888,7 @@ class ResourcesTransformer implements Transformation{
                 segments.shift();
             }
             value["relativeUriPathSegments"] = segments;
+            value.absoluteUri = (<RamlWrapper10.Resource>node).absoluteUri();
         }
         return value;
     }

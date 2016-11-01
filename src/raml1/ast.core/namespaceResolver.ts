@@ -118,14 +118,25 @@ export class NamespaceResolver{
                             }
                             var includePath;
                             var childInclude = childInfo.includePath;
+                            var absChildPath = childInfo.absolutePath();
                             if (path.isAbsolute(info.includePath) || ll.isWebPath(info.includePath)) {
-                                includePath = childInfo.absolutePath();
+                                includePath = absChildPath;
                             }
                             else if (path.isAbsolute(childInclude) || ll.isWebPath(childInclude)) {
-                                includePath = childInfo.absolutePath();
+                                includePath = absChildPath;
                             }
                             else {
-                                includePath = path.relative(rootPath, childInfo.absolutePath());
+                                if(ll.isWebPath(rootPath)!=ll.isWebPath(absChildPath)){
+                                    includePath = absChildPath;
+                                }
+                                else if(rootPath.length>0 && absChildPath.length > 0
+                                    && rootPath.charAt(0).toLowerCase() != absChildPath.charAt(0).toLowerCase()){
+                                    //Windows case of library being located on different drive
+                                    includePath = absChildPath;
+                                }
+                                else {
+                                    includePath = path.relative(rootPath, absChildPath);
+                                }
                             }
                             includePath = includePath.replace(/\\/g, "/");
                             var ui = new UsesInfo(segments, childInfo.unit, includePath);

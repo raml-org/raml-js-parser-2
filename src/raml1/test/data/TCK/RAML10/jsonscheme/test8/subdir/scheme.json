@@ -1,0 +1,9 @@
+{
+    "$schema":"http://json-schema.org/draft-04/schema",
+    "type": "object",
+    "required":["parentName"],
+    "properties":{
+        "parentName": {"type": "string"},
+        "child": {"$ref": "subdir/scheme.json#"}
+    }
+}

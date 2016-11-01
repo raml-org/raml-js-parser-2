@@ -132,7 +132,8 @@
         },
         "relativeUriPathSegments": [
           "{id}"
-        ]
+        ],
+        "absoluteUri": "/{id}"
       }
     ]
   },

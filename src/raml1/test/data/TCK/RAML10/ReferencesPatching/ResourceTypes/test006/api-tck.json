@@ -1,0 +1,219 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "uses": [
+      {
+        "key": "defaultResponses",
+        "value": "libraries/responseBase.raml"
+      },
+      {
+        "key": "error-types",
+        "value": "types/error-types.raml"
+      }
+    ],
+    "traits": [
+      {
+        "defaultResponses.general": {
+          "responses": {
+            "422": {
+              "code": "422",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "type": [
+                    "error-types.<<parentType>>-<<resourcePathName>>-errors"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "423": {
+              "code": "423",
+              "body": {
+                "application/json": {
+                  "name": "application/json",
+                  "displayName": "application/json",
+                  "type": [
+                    "error-types.<<parentType>>-<<resourcePathName>>-errors | string"
+                  ],
+                  "required": true,
+                  "__METADATA__": {
+                    "primitiveValuesMeta": {
+                      "displayName": {
+                        "calculated": true
+                      },
+                      "required": {
+                        "insertedAsDefault": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "name": "defaultResponses.general",
+          "__METADATA__": {
+            "calculated": true
+          }
+        }
+      }
+    ],
+    "resourceTypes": [
+      {
+        "collection": {
+          "name": "collection",
+          "get": {
+            "is": [
+              {
+                "defaultResponses.general": {
+                  "parentType": "<<parentType>>"
+                }
+              }
+            ],
+            "method": "get"
+          }
+        }
+      }
+    ],
+    "title": "test API",
+    "baseUri": "https://example.com",
+    "protocols": [
+      "HTTPS"
+    ],
+    "mediaType": "application/json",
+    "resources": [
+      {
+        "relativeUri": "/alpha",
+        "displayName": "/alpha",
+        "resources": [
+          {
+            "methods": [
+              {
+                "responses": {
+                  "422": {
+                    "code": "422",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "error-types.alpha-letters-errors"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "423": {
+                    "code": "423",
+                    "body": {
+                      "application/json": {
+                        "name": "application/json",
+                        "displayName": "application/json",
+                        "type": [
+                          "error-types.alpha-letters-errors | string"
+                        ],
+                        "required": true,
+                        "__METADATA__": {
+                          "primitiveValuesMeta": {
+                            "displayName": {
+                              "calculated": true
+                            },
+                            "required": {
+                              "insertedAsDefault": true
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "protocols": [
+                  "HTTPS"
+                ],
+                "is": [
+                  {
+                    "defaultResponses.general": {
+                      "parentType": "<<parentType>>"
+                    }
+                  },
+                  {
+                    "defaultResponses.general": {
+                      "parentType": "alpha"
+                    }
+                  }
+                ],
+                "method": "get",
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "protocols": {
+                      "calculated": true
+                    }
+                  }
+                }
+              }
+            ],
+            "type": {
+              "collection": {
+                "parentType": "alpha"
+              }
+            },
+            "relativeUri": "/letters",
+            "displayName": "/letters",
+            "__METADATA__": {
+              "primitiveValuesMeta": {
+                "displayName": {
+                  "calculated": true
+                }
+              }
+            },
+            "relativeUriPathSegments": [
+              "letters"
+            ],
+            "absoluteUri": "https://example.com/alpha/letters"
+          }
+        ],
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "alpha"
+        ],
+        "absoluteUri": "https://example.com/alpha"
+      }
+    ],
+    "__METADATA__": {
+      "primitiveValuesMeta": {
+        "protocols": {
+          "calculated": true
+        }
+      }
+    }
+  },
+  "errors": []
+}

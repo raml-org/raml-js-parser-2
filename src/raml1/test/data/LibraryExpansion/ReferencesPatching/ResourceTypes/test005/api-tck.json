@@ -119,7 +119,8 @@
         },
         "relativeUriPathSegments": [
           "resource"
-        ]
+        ],
+        "absoluteUri": "https://example.com/raml/resource"
       }
     ],
     "__METADATA__": {

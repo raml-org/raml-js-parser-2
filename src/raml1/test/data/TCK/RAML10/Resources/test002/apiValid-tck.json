@@ -85,7 +85,8 @@
         "relativeUriPathSegments": [
           "someChildUri",
           "{blah}"
-        ]
+        ],
+        "absoluteUri": "/some/base/uri/someChildUri/{blah}"
       }
     ],
     "__METADATA__": {

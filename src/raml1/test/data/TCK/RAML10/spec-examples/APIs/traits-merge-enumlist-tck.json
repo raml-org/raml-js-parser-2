@@ -87,7 +87,8 @@
         },
         "relativeUriPathSegments": [
           "installer"
-        ]
+        ],
+        "absoluteUri": "/installer"
       }
     ]
   },
