@@ -679,7 +679,9 @@ export function validate(node:hl.IParseResult,v:hl.ValidationAcceptor){
                             while(_issue.extras.length>0){
                                 _issue = _issue.extras[0];
                             }
-                            _issue.extras.push(brand);
+                            if(_issue != brand) {
+                                _issue.extras.push(brand);
+                            }
                             v.accept(issue);
                         }
                     }
