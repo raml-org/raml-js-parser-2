@@ -3819,13 +3819,27 @@ interface Message{
     func?: (x:any)=>string
 }
 
-function applyTemplate(messageEntry:Message, parameters:any):string {
-    var func = messageEntry.func;
-    if (!func) {
-        var template = messageEntry.message;
-        func = _.template(template, {interpolate: /\{\{(.+?)\}\}/g});
-        messageEntry.func = func;
+function applyTemplate(messageEntry:Message, params:any):string {
+    var result = "";
+    var msg = messageEntry.message;
+    var prev = 0;
+    for (var ind = msg.indexOf("{{"); ind >= 0; ind = msg.indexOf("{{", prev)) {
+        result += msg.substring(prev, ind);
+        prev = msg.indexOf("}}", ind);
+        if (prev < 0) {
+            prev = ind;
+            break;
+        }
+        ind += "{{".length;
+        var paramName = msg.substring(ind, prev);
+        prev += "}}".length;
+        var paramValue = params[paramName];
+        if (paramValue === undefined) {
+            throw new Error(`Message parameter '${paramName}' has no value specified.`);
+        }
+        result += paramValue;
     }
-    return func(parameters);
-}
+    result += msg.substring(prev, msg.length);
+    return result;
+};
 
