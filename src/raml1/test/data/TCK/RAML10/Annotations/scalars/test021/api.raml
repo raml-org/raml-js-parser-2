@@ -1,0 +1,18 @@
+#%RAML 1.0
+#successful test for 'multipleOf'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      iProp:
+        type: integer
+        multipleOf:
+          value: 3
+          (a): abcdefghijkl
