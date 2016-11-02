@@ -82,7 +82,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "ENUM_RESTRICTION",
       "message": "value should be one of: 'W', 'A'",
       "path": "apiInvalid.raml",
       "range": {

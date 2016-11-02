@@ -37,7 +37,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "STRING_EXPECTED_2",
       "message": "'example' value should be a string",
       "path": "api.raml",
       "range": {

@@ -134,7 +134,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "MINMAX_RESTRICTION_VIOLATION",
       "message": "'MyStringType.maxLength=32' i.e. string length should not be more than 32",
       "path": "api.raml",
       "range": {

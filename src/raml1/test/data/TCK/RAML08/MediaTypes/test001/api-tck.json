@@ -38,7 +38,7 @@
   },
   "errors": [
     {
-      "code": 7,
+      "code": "MEDIATYPE_EXCEPTION",
       "message": "invalid media type",
       "path": "api.raml",
       "range": {

@@ -80,7 +80,7 @@ describe('Validator', function () {
       '   - FTP'
     ].join('\n')).then(function () {}, function (error) {
       setTimeout(function () {
-        error.message.should.contain("allowed values are: 'HTTP', 'HTTPS'");
+        error.message.should.contain("Allowed values are: 'HTTP', 'HTTPS'");
         error.problem_mark.line.should.be.equal(6);
         error.problem_mark.column.should.be.equal(5);
         done();
@@ -98,7 +98,7 @@ describe('Validator', function () {
       'protocols:',
       '   - HtTp',
       '   - hTtPs'
-    ].join('\n')).should.be.rejectedWith("allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
   });
 
   it('should allow protocols at method level', function (done) {
@@ -179,7 +179,7 @@ describe('Validator', function () {
       '   get:',
       '       protocols:',
       '           - HtTp'
-    ].join('\n')).should.be.rejectedWith("allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
+    ].join('\n')).should.be.rejectedWith("Allowed values are: 'HTTP', 'HTTPS'").and.notify(done);
   });
 
   it('should allow protocols in traits', function (done) {

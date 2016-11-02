@@ -19,13 +19,13 @@ function createBrowserPackage(minify = true) {
     var targetFolder = path.join(rootPath, "browserVersion");
 
     var targetFile = path.join(targetFolder, "raml-1-parser.js");
-    
+
     var xmlValidationTargetFile = path.join(targetFolder, "raml-xml-validation.js");
     var jsonValidationTargetFile = path.join(targetFolder, "raml-json-validation.js");
-    
+
     var xmlValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-xml-validation/dist/index.js');
     var jsonValidationRootFile = path.resolve(rootPath, './node_modules/raml-definition-system/node_modules/raml-typesystem/node_modules/raml-json-validation/dist/index.js');
-    
+
     mkdirp.sync(targetFolder);
 
     copyStaticBrowserPackageContents(targetFolder, path.join(rootPath, "package.json"));
@@ -33,14 +33,14 @@ function createBrowserPackage(minify = true) {
     webPackForBrowser(rootPath, rootFile, targetFile, minify);
 
     var indexHtml = path.resolve(__dirname, "../../browserVersion/examples/web-example/index.html");
-    
+
     var indexHtmlContent = fs.readFileSync(indexHtml).toString();
-    
+
     try {
         if(fs.existsSync(xmlValidationRootFile)) {
             indexHtmlContent = indexHtmlContent.replace("<xmlvalidation>", '<script type="text/javascript" src="../../raml-xml-validation.js"></script>');
-            
-            webPackForBrowserLib(rootPath, xmlValidationRootFile, xmlValidationTargetFile, minify, "RAML.XmlValidation", "raml-xml-validation");
+
+            webPackForBrowserLib(rootPath, xmlValidationRootFile, xmlValidationTargetFile, false, "RAML.XmlValidation", "raml-xml-validation");
         } else {
             indexHtmlContent = indexHtmlContent.replace("<xmlvalidation>", '');
         }
@@ -74,12 +74,12 @@ function webPackForBrowser(parserRootFolder: string, rootFile : string, targetFi
     console.log("Preparing to Webpack browser bundle: raml-1-parser.js");
 
     var plugins = [];
-    // if (minify) {
-    //     plugins.push(new webpack.optimize.UglifyJsPlugin({
-    //         minimize: true,
-    //         compress: { warnings: false }
-    //     }));
-    // }
+    if (minify) {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: { warnings: false }
+        }));
+    }
 
     var relativeFilePath = path.relative(parserRootFolder, rootFile);
     relativeFilePath = "./"+relativeFilePath;
@@ -166,6 +166,12 @@ function webPackForBrowserLib(parserRootFolder: string, rootFile : string, targe
     console.log("Preparing to Webpack browser bundle: " + moduleName);
 
     var plugins = [];
+    if (minify) {
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: { warnings: false }
+        }));
+    }
 
     var relativeFilePath = path.relative(parserRootFolder, rootFile);
     relativeFilePath = "./"+relativeFilePath;

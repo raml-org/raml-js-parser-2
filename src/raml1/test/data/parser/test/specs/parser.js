@@ -80,7 +80,7 @@ describe('Parser', function() {
             'baseUri: http://myapi.com'
         ].join('\n');
 
-        raml.load(definition).should.be.rejectedWith(/property \'title\' must be a string/).and.notify(done);
+        raml.load(definition).should.be.rejectedWith(/Property \'title\' must be a string/).and.notify(done);
     });
 ////    describe('feature flags', function (){
         it('should not validate title if flag is set not to validate 1', function(done) {
@@ -174,7 +174,7 @@ describe('Parser', function() {
             'baseUri: http://myapi.com'
         ].join('\n');
 
-        raml.load(definition).should.be.rejectedWith(/property \'title\' must be a string/).and.notify(done);
+        raml.load(definition).should.be.rejectedWith(/Property \'title\' must be a string/).and.notify(done);
     });
     it('should succeed if title is longer than 48 chars', function(done) {
         var definition = [
@@ -646,7 +646,7 @@ describe('Parser', function() {
         '    minLength: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of minLength must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'minLength' must be a number/).and.notify(done);
     });
 
     it('should fail when declaring a maxLength validation as anything other than a number', function(done) {
@@ -662,7 +662,7 @@ describe('Parser', function() {
         '    maxLength: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of maxLength must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'maxLength' must be a number/).and.notify(done);
     });
     //FIXTEST only numbers has minumum
     it('should fail when declaring a minimum validation as anything other than a number', function(done) {
@@ -679,7 +679,7 @@ describe('Parser', function() {
         '    minimum: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of minimum must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'minimum' must be a number/).and.notify(done);
     });
     //FIXTEST only numbers has minumum
     it('should fail when declaring a maximum validation as anything other than a number', function(done) {
@@ -696,7 +696,7 @@ describe('Parser', function() {
         '    maximum: X'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/the value of maximum must be a number/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Value of 'maximum' must be a number/).and.notify(done);
     });
 
     it('should fail when declaring a URI parameter with an invalid type', function(done) {
@@ -2395,7 +2395,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 //
     it('should succeed with null response', function(done) {
@@ -2463,7 +2463,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 
     it('should overwrite arrays as keys with new single node', function(done) {
@@ -2483,7 +2483,7 @@ describe('Parser', function() {
         ''
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
 //
     it('should fail to load a yaml with hash as key', function(done) {
@@ -3243,7 +3243,7 @@ describe('Parser', function() {
         '      200:',
         '        description: Retrieve a list of leagues'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/property \'param1\' must be a string/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'param1\' must be a string/).and.notify(done);
     });
 
     //FIXTEST (Changed error message: "parameter value must be a scalar"=>"Unused parameter: param1".
@@ -4153,7 +4153,7 @@ describe('Parser', function() {
         '        description: Retrieve a list of leagues'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property \'param1\' must be a string/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'param1\' must be a string/).and.notify(done);
     });
     it('should reject parameters whose value is a map', function(done) {
       var definition = [
@@ -4171,7 +4171,7 @@ describe('Parser', function() {
         '        description: Retrieve a list of leagues'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property \'param1\' must be a string/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'param1\' must be a string/).and.notify(done);
     });
 //
     it('should reject trait with missing provided parameters 2', function(done) {
@@ -4564,7 +4564,7 @@ describe('Parser', function() {
         '  -',
         '/:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/property: \'resourceTypes\' must be a map/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'resourceTypes\' should be a map/).and.notify(done);
     });
 //
     it('should fail if resource type is not map', function(done) {
@@ -6481,7 +6481,7 @@ describe('Parser', function() {
         '     type: []',
         '/resource:'
       ].join('\n');
-        raml.load(definition).should.be.rejectedWith(/property \'type\' must be a string/).and.notify(done);
+        raml.load(definition).should.be.rejectedWith(/Property \'type\' must be a string/).and.notify(done);
     });
 //
     it('should fail when type is map', function(done) {
@@ -6495,7 +6495,7 @@ describe('Parser', function() {
         '     type: {}',
         '/resource:'
       ].join('\n');
-       raml.load(definition).should.be.rejectedWith(/property \'type\' must be a string/).and.notify(done);
+       raml.load(definition).should.be.rejectedWith(/Property \'type\' must be a string/).and.notify(done);
     });
 
     //FIXTEST (inserted into 'expected' inherited securedBy for resource)
@@ -6750,7 +6750,7 @@ describe('Parser', function() {
         '  /b:',
         '    displayName: {}'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/property \'displayName\' must be a string/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'displayName\' must be a string/).and.notify(done);
     });
 //
     it('should fail if displayName is an array', function(done) {
@@ -6764,7 +6764,7 @@ describe('Parser', function() {
         '  /b:',
         '    displayName: []'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/property \'displayName\' must be a string/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property \'displayName\' must be a string/).and.notify(done);
     });
 //
     it('should fail if description is map', function(done) {
@@ -6972,7 +6972,7 @@ describe('Parser', function() {
         '    headers: []'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property: 'headers' must be a map/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property 'headers' should be a map/).and.notify(done);
     });
 //
     it('should succeed if headers is null', function(done) {
@@ -7062,7 +7062,7 @@ describe('Parser', function() {
         '    queryParameters: []'
       ].join('\n');
 
-      raml.load(definition).should.be.rejectedWith(/property: 'queryParameters' must be a map/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Property 'queryParameters' should be a map/).and.notify(done);
     });
 //
     it('should succeed if queryParameters is null', function(done) {
@@ -7390,7 +7390,7 @@ describe('Parser', function() {
         '    responses:',
         '     [string]:'
       ].join('\n');
-      raml.load(definition).should.be.rejectedWith(/Node key can not be sequence/).and.notify(done);
+      raml.load(definition).should.be.rejectedWith(/Node key can not be a sequence/).and.notify(done);
     });
   //});
 //
@@ -7620,7 +7620,7 @@ describe('Parser', function() {
 //        'documentation: {}'
 //      ].join('\n');
 //
-//      raml.load(definition).should.be.rejectedWith(/property documentation can not have scalar value/).and.notify(done);
+//      raml.load(definition).should.be.rejectedWith(/Property documentation can not have scalar value/).and.notify(done);
 //    });
 //
     it('should fail if docsection is scalar', function(done) {

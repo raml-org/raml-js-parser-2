@@ -1180,7 +1180,7 @@ describe('Property override tests',function(){
         testErrors(util.data("parser/custom/resShouldBeMap.raml"),["Resource definition should be a map"]);
     });
     it ("documentation should be a sequence",function(){
-        testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["property: 'documentation' should be a sequence"]);
+        testErrors(util.data("parser/custom/docShouldBeSequence.raml"),["Property 'documentation' should be a sequence"]);
     });
     it ("missed title value should report only one message",function(){
         testErrors(util.data("parser/custom/missedTitle.raml"),["property 'title' must be a string"]);

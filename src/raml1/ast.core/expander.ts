@@ -729,21 +729,21 @@ export class ValueTransformer implements proxy.ValueTransformer{
                 buf.append(val);
             }
 
-            var upArr = Object.keys(undefParams);
-            if(upArr.length>0){
-                var errStr = upArr.join(', ').trim();
-                var message = `Undefined ${this.templateKind} parameter${upArr.length>1?'s':''}: ${errStr}`;
-                var error = {
-                    code: hl.IssueCode.MISSING_REQUIRED_PROPERTY,
-                    isWarning: false,
-                    message: message,
-                    node: null,
-                    start: -1,
-                    end: -1,
-                    path: null
-                }
-                errors.push(error);
-            }
+            // var upArr = Object.keys(undefParams);
+            // if(upArr.length>0){
+            //     var errStr = upArr.join(', ').trim();
+            //     var message = `Undefined ${this.templateKind} parameter${upArr.length>1?'s':''}: ${errStr}`;
+            //     var error = {
+            //         code: hl.IssueCode.MISSING_REQUIRED_PROPERTY,
+            //         isWarning: false,
+            //         message: message,
+            //         node: null,
+            //         start: -1,
+            //         end: -1,
+            //         path: null
+            //     }
+            //     errors.push(error);
+            // }
             buf.append(str.substring(prev,str.length));
             return { value:buf.value(), errors: errors };
         }

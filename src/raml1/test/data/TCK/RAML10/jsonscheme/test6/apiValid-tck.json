@@ -1,0 +1,84 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "MyType": {
+          "name": "MyType",
+          "displayName": "MyType",
+          "schemaPath": "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3JhbWwtb3JnL3JhbWwtanMtcGFyc2VyLTIvbWFzdGVyL3NyYy9yYW1sMS90ZXN0L2RhdGEvcGFyc2VyL2pzb25zY2hlbWUvdGVzdDYvcmVtb3RlU2NoZW1lLmpzb24vL2RlZmluaXRpb25zL0lubmVyVHlwZQ.json",
+          "type": [
+            "{\n  \"$ref\": \"https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test6/remoteScheme.json#/definitions/InnerType\"\n}"
+          ],
+          "required": true,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "Api",
+    "resources": [
+      {
+        "methods": [
+          {
+            "body": {
+              "application/json": {
+                "name": "application/json",
+                "displayName": "application/json",
+                "type": [
+                  "MyType"
+                ],
+                "example": {
+                  "innerTypeName": "somename"
+                },
+                "required": true,
+                "__METADATA__": {
+                  "primitiveValuesMeta": {
+                    "displayName": {
+                      "calculated": true
+                    },
+                    "required": {
+                      "insertedAsDefault": true
+                    }
+                  }
+                },
+                "structuredExample": {
+                  "value": "{\n  \"innerTypeName\": \"somename\"\n}",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": {
+                    "innerTypeName": "somename"
+                  }
+                }
+              }
+            },
+            "method": "get"
+          }
+        ],
+        "relativeUri": "/resource",
+        "displayName": "/resource",
+        "__METADATA__": {
+          "primitiveValuesMeta": {
+            "displayName": {
+              "calculated": true
+            }
+          }
+        },
+        "relativeUriPathSegments": [
+          "resource"
+        ],
+        "absoluteUri": "/resource"
+      }
+    ]
+  },
+  "errors": []
+}

@@ -150,7 +150,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "REQUIRED_PROPERTY_MISSING",
       "message": "Required property 'y' is missing",
       "path": "apiInvalid.raml",
       "range": {

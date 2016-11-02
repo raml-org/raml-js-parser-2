@@ -28,8 +28,8 @@
   },
   "errors": [
     {
-      "code": 11,
-      "message": "It is not JSON schema(can not parse JSON: Unexpected token p)",
+      "code": "INVALID_JSON_SCHEMA_DETAILS",
+      "message": "Invalid JSON schema: Unexpected token p",
       "path": "api.raml",
       "range": {
         "start": {

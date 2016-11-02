@@ -146,7 +146,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "DISCRIMINATOR_FOR_UNION",
       "message": "You can not specify 'discriminator' for union types",
       "path": "invalid-discriminator-usage.raml",
       "range": {
@@ -163,7 +163,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "DISCRIMINATOR_FOR_INLINE",
       "message": "You can not specify 'discriminator' for inline type declarations",
       "path": "invalid-discriminator-usage.raml",
       "range": {

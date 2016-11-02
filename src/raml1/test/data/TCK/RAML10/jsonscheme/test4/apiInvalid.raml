@@ -1,0 +1,26 @@
+#%RAML 1.0
+
+title: Api
+
+types:
+  MyType: |
+    {
+        "$schema":"http://json-schema.org/draft-04/schema",
+        "type":"object",
+        "properties":{
+          "child": {
+            "$ref": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/master/src/raml1/test/data/parser/jsonscheme/test4/remoteScheme.json#"
+          }
+        },
+        "required": [ "child" ]
+      }
+
+
+/resource:
+  get:
+    body:
+      application/json:
+        type: MyType
+        example:
+          child:
+            name1: somename

@@ -99,7 +99,7 @@
   },
   "errors": [
     {
-      "code": 7,
+      "code": "MEDIATYPE_EXCEPTION",
       "message": "invalid media type",
       "path": "api.raml",
       "range": {
@@ -116,7 +116,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "INHERITING_UNKNOWN_TYPE",
       "message": "Inheriting from unknown type",
       "path": "api.raml",
       "range": {

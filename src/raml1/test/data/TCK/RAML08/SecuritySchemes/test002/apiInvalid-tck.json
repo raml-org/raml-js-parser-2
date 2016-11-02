@@ -70,7 +70,7 @@
   },
   "errors": [
     {
-      "code": 2,
+      "code": "UNKNOWN_NODE",
       "message": "Unknown node: 'get'",
       "path": "apiInvalid.raml",
       "range": {
@@ -87,7 +87,7 @@
       }
     },
     {
-      "code": 2,
+      "code": "UNKNOWN_NODE",
       "message": "Unknown node: 'queryString'",
       "path": "apiInvalid.raml",
       "range": {

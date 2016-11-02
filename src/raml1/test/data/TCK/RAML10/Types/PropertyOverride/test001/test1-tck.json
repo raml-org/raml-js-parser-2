@@ -539,7 +539,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "ENUM_ARRAY",
       "message": "'enum' facet value must be defined by array",
       "path": "test1.raml",
       "range": {
