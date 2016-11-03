@@ -39,9 +39,9 @@
                   }
                 }
               },
-              "minProperties": 5,
+              "maxProperties": 5,
               "scalarsAnnotations": {
-                "minProperties": [
+                "maxProperties": [
                   {
                     "structuredValue": "abcdefg",
                     "name": "a"
@@ -115,12 +115,12 @@
         "start": {
           "line": 19,
           "column": 10,
-          "position": 286
+          "position": 293
         },
         "end": {
           "line": 19,
           "column": 13,
-          "position": 289
+          "position": 296
         }
       }
     }

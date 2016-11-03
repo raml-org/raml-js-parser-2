@@ -2336,15 +2336,20 @@ function findElementAtPath(n:hl.IParseResult,p:rtypes.IValidationPath):hl.IParse
     if (!p){
         return n;
     }
-    var chld=n.children();
-    for (var ch of chld){
+    var chld=n.children().filter(ch=>{
         if(ch.isAttr()&&(<hlimpl.ASTPropImpl>ch.asAttr()).isFromKey()){
-            continue;
+            return false;
         }
-        if (ch.name()=== p.name){
-            return findElementAtPath(ch, p.child)
-        }
+        return ch.name()=== p.name;
+    });
+    var ind = (p.child && typeof(p.child.name)=="number") ? <number>p.child.name : -1;
+    if(ind>=0 && chld.length>ind){
+        return findElementAtPath(chld[ind], p.child.child);
     }
+    else if(chld.length>0){
+        return findElementAtPath(chld[0], p.child)
+    }
+        
     if (!n.lowLevel()){
         return n;
     }

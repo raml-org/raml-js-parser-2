@@ -39,9 +39,9 @@
                   }
                 }
               },
-              "minProperties": 5,
+              "maxProperties": 5,
               "scalarsAnnotations": {
-                "minProperties": [
+                "maxProperties": [
                   {
                     "structuredValue": "abcdefghijkl",
                     "name": "a"

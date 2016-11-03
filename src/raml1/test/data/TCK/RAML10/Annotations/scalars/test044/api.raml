@@ -1,0 +1,21 @@
+#%RAML 1.0
+#failure test for 'type'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t0:
+  t1:
+  t2:
+    properties:
+      prop:
+        type:
+          - value: t0
+            (a): qwertyuiop
+          - value: t1
+            (a): asdfg
