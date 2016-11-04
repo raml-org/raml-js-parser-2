@@ -166,7 +166,8 @@ export class ParserGenerator{
 
     private generatePrimitivesAnnotations(u:def.IType,interfaceModel:td.TSInterface,classModel:td.TSClassDecl){
 
-        if((<def.NodeClass>u).isCustom()){
+        var isCustom = (<def.NodeClass>u).isCustom();
+        if(isCustom&&u.nameId()!=def.universesInfo.Universe10.ExampleSpec.name){
             return;
         }
 
@@ -187,7 +188,7 @@ export class ParserGenerator{
         }
 
 
-        var scalarProperties = u.properties().filter(x=>x.range().isValueType()&&!(<def.Property>x).isFromParentKey());
+        var scalarProperties = this.annotableScalarProperties(u);
         if(scalarProperties.length==0){
             return;
         }
@@ -206,7 +207,7 @@ export class ParserGenerator{
         var superTypes = u.superTypes();
         while(superTypes.length>0){
             var superType = superTypes[0];
-            if(superType.properties().filter(x=>x.range().isValueType()).length>0){
+            if(this.annotableScalarProperties(superType).length>0){
                 var superTypeName = superType.nameId();
                 var superInterfaceName = superTypeName+ "ScalarsAnnotations";
                 idcl.extends.push(new td.TSSimpleTypeReference(td.Universe, superInterfaceName));
@@ -266,6 +267,19 @@ export class ParserGenerator{
 
         this.addImplementationMethod(classModel,"scalarsAnnotations"
             ,cName,"return new "+cName+"(this.highLevel());","Scalar properties annotations accessor");
+        if(isCustom){
+            this.implementationModule.removeChild(dcl);
+        }
+    }
+
+    private annotableScalarProperties(u:def.IType) {
+        var scalarProperties = u.properties().filter(x=>
+            x.range().isValueType()
+            && !(<def.Property>x).isFromParentKey()
+            && x.nameId() != def.universesInfo.Universe10.Annotable.properties.annotations.name
+            && (u.nameId() != def.universesInfo.Universe10.ExampleSpec.name
+                || x.nameId() != def.universesInfo.Universe10.ExampleSpec.properties.value.name));
+        return scalarProperties;
     }
 
     private addInterfaceMethod(
