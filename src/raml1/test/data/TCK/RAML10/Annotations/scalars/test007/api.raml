@@ -1,0 +1,17 @@
+#%RAML 1.0
+#successful test for 'displayName'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+        displayName:
+          value: Prop
+          (a): abcdefghijk

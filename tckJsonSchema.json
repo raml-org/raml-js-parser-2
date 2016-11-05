@@ -1346,7 +1346,15 @@
           "patternProperties": {
             "^[a-zA-Z0-9]+": {
               "type": "array",
-              "items": {"$ref": "#/definitions/AnnotationInstance"}
+              "items": {
+                "oneOf": [
+                  {"$ref": "#/definitions/AnnotationInstance"},
+                  {
+                    "type": "array",
+                    "items": {"$ref": "#/definitions/AnnotationInstance"}
+                  }
+                ]
+              }
             }
           }
         }

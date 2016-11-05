@@ -1,0 +1,17 @@
+#%RAML 1.0
+#successful test for 'required'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    properties:
+      prop:
+        required:
+          value: true
+          (a): abcdefghijk

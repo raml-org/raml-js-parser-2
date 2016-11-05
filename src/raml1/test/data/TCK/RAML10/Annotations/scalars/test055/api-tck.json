@@ -1,0 +1,100 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "t1": {
+          "name": "t1",
+          "displayName": "t1",
+          "type": [
+            "object"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"prop\": \"stringValue\"\n}",
+              "strict": true,
+              "name": "e1",
+              "description": "my example",
+              "structuredValue": {
+                "prop": "stringValue"
+              },
+              "scalarsAnnotations": {
+                "description": [
+                  {
+                    "structuredValue": "asdfghjkl",
+                    "name": "a"
+                  }
+                ]
+              }
+            }
+          ],
+          "required": true,
+          "properties": {
+            "prop": {
+              "name": "prop",
+              "displayName": "prop",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "a": {
+          "name": "a",
+          "displayName": "a",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "minLength": 8,
+          "maxLength": 64,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "testAPI",
+    "version": "v1"
+  },
+  "errors": []
+}

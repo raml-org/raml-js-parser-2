@@ -1,0 +1,118 @@
+{
+  "ramlVersion": "RAML10",
+  "type": "Api",
+  "specification": {
+    "types": [
+      {
+        "t1": {
+          "name": "t1",
+          "displayName": "t1",
+          "type": [
+            "object"
+          ],
+          "examples": [
+            {
+              "value": "{\n  \"prop\": \"stringValue\"\n}",
+              "strict": true,
+              "name": "e1",
+              "displayName": "myExample",
+              "structuredValue": {
+                "prop": "stringValue"
+              },
+              "scalarsAnnotations": {
+                "displayName": [
+                  {
+                    "structuredValue": "asdfg",
+                    "name": "a"
+                  }
+                ]
+              }
+            }
+          ],
+          "required": true,
+          "properties": {
+            "prop": {
+              "name": "prop",
+              "displayName": "prop",
+              "type": [
+                "string"
+              ],
+              "required": true,
+              "__METADATA__": {
+                "primitiveValuesMeta": {
+                  "displayName": {
+                    "calculated": true
+                  },
+                  "required": {
+                    "insertedAsDefault": true
+                  }
+                }
+              }
+            }
+          },
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "annotationTypes": [
+      {
+        "a": {
+          "name": "a",
+          "displayName": "a",
+          "type": [
+            "string"
+          ],
+          "required": true,
+          "minLength": 8,
+          "maxLength": 64,
+          "__METADATA__": {
+            "primitiveValuesMeta": {
+              "displayName": {
+                "calculated": true
+              },
+              "type": {
+                "insertedAsDefault": true
+              },
+              "required": {
+                "insertedAsDefault": true
+              }
+            }
+          }
+        }
+      }
+    ],
+    "title": "testAPI",
+    "version": "v1"
+  },
+  "errors": [
+    {
+      "code": "MINMAX_RESTRICTION_VIOLATION",
+      "message": "'a.minLength=8' i.e. string length should not be less than 8",
+      "path": "api.raml",
+      "range": {
+        "start": {
+          "line": 21,
+          "column": 10,
+          "position": 324
+        },
+        "end": {
+          "line": 21,
+          "column": 13,
+          "position": 327
+        }
+      }
+    }
+  ]
+}
