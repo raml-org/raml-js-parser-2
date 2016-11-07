@@ -2247,15 +2247,9 @@ class TypeDeclarationValidator implements NodeValidator{
     validate(node:hl.IHighLevelNode,v:hl.ValidationAcceptor) {
         var nc=node.definition();
         var rof = node.parsedType();
-        var reg = node.types().getAnnotationTypeRegistry();
-        var validateObject = rof.validateType(reg);
-        var statuses = validateObject.isOk() ? [] : [ validateObject ];
-
-        var pluginStatuses = def.tsInterfaces.applyTypeValidationPlugins(rof,reg);
-        pluginStatuses.forEach(x=>statuses.push(x.status()));
-
-        for (var status of statuses) {
-            for( var e of status.getErrors()){
+        var validateObject=rof.validateType(node.types().getAnnotationTypeRegistry());
+        if (!validateObject.isOk()) {
+            for( var e of validateObject.getErrors()){
                 var n = extractLowLevelNode(e);
                 var issue;
                 if(n){

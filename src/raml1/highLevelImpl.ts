@@ -213,7 +213,11 @@ export class BasicASTNode implements hl.IParseResult {
 
         linter.validate(this,v);
         for(var pluginIssue of hl.applyNodeValidationPlugins(this)){
-            v.accept(pluginIssue.issue());
+            v.accept(pluginIssue);
+        }
+        var aEntry = new AnnotatedNode(this);
+        for(var pluginIssue of hl.applyNodeAnnotationValidationPlugins(aEntry)){
+            v.accept(pluginIssue);
         }
     }
     allowRecursive(){
@@ -2069,16 +2073,86 @@ export function isAnnotationTypeFragment(node:hl.IHighLevelNode):boolean{
 
 export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
 
+    constructor(protected _node:hl.IParseResult){};
+
+    private _annotations:AnnotationInstance[];
+
+    private _annotationsMap: {[key:string]:def.rt.tsInterfaces.IAnnotationInstance};
+
     kind():string{ return "AnnotatedNode"; }
 
-    annotationsMap(): {[key:string]:def.rt.tsInterfaces.IAnnotationInstance}{  return {}; }
+    annotationsMap(): {[key:string]:def.rt.tsInterfaces.IAnnotationInstance}{
+        if(!this._annotationsMap) {
+            this._annotationsMap = {};
+            this.annotations().forEach(x=>this._annotationsMap[x.name()]=x);
+        }
+        return this._annotationsMap;
+    }
 
-    annotations(): def.rt.tsInterfaces.IAnnotationInstance[]{ return []; }
+    annotations(): def.rt.tsInterfaces.IAnnotationInstance[]{
+        if(!this._annotations) {
+            var aAttrs:hl.IAttribute[] = [];
+            if (this._node.isElement()) {
+                aAttrs = this._node.asElement().attributes(
+                    def.universesInfo.Universe10.Annotable.properties.annotations.name);
+            }
+            else if(this._node.isAttr()){
+                aAttrs = this._node.asAttr().annotations();
+            }
+            this._annotations = aAttrs.map(x=>new AnnotationInstance(x));
+        }
+        return this._annotations;
+    }
 
-    value():any{ return null; }
+    value():any{
+        if(this._node.isElement()){
+            return this._node.asElement().wrapperNode().toJSON();
+        }
+        else if(this._node.isAttr()){
+            var val = this._node.asAttr().value();
+            if(val instanceof StructuredValue){
+                return (<StructuredValue>val).lowLevel().dump();
+            }
+            return val;
+        }
+        return this._node.lowLevel().dump();
+    }
 
-    name():string{ return null; }
+    name():string{ return this._node.name(); }
 
-    entry():hl.IParseResult{ return null; }
+    entry():hl.IParseResult{ return this._node; }
 
+}
+
+export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstance {
+
+    constructor(protected attr:hl.IAttribute){}
+
+    name():string{
+        return this.attr.name();
+    }
+    /**
+     * Annotation value
+     */
+    value(): any{
+        var val = this.attr.value();
+        if(val instanceof  StructuredValue){
+            return (<StructuredValue>val).lowLevel().dump();
+        }
+        return val;
+    }
+    /**
+     * Annotation definition type
+     */
+    definition(): def.rt.tsInterfaces.IParsedType{
+        var parent = this.attr.parent();
+        var vn = this.name();
+        var cands = search.referenceTargets(this.attr.property(),parent).filter(
+            x=>qName(x,parent)==vn);
+
+        if(cands.length==0){
+            return null;
+        }
+        return cands[0].parsedType();
+    }
 }
