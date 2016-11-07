@@ -10,16 +10,24 @@ var fs = require("fs");
 
 rimraf.sync('browser_version');
 
-childProcess.execSync('mkdir browser_version && cd browser_version && git clone https://github.com/raml-org/raml-js-parser-2.git --branch browser_version --single-branch .');
+var isNpm = process.argv[process.argv.indexOf("--type") + 1] === 'npm';
+
+if(isNpm) {
+    childProcess.execSync('mkdir browser_version');
+} else {
+    childProcess.execSync('mkdir browser_version && cd browser_version && git clone https://github.com/raml-org/raml-js-parser-2.git --branch browser_version --single-branch .');
+}
+
+console.log("is npm:" + isNpm);
 
 function webPackForBrowserLib() {
     var plugins = [];
-    
+
     plugins.push(new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         compress: { warnings: false }
     }));
-    
+
     var config = {
         entry: path.resolve(__dirname, "./dist/index.js"),
 
@@ -72,24 +80,30 @@ function webPackForBrowserLib() {
         console.log(stats.toString({reasons : true, errorDetails: true}));
 
         updateVersion();
-
-        childProcess.execSync('VERSION=`node -p "require(\'./package.json\').version"` && cd browser_version && git add -A && git commit -m "Prepare v$VERSION" && git tag -a "v$VERSION" -m "v$VERSION" && git push && git push --tags');
+        
+        if(isNpm) {
+            childProcess.execSync('cd browser_version && npm publish');
+        } else {
+            //childProcess.execSync('VERSION=`node -p "require(\'./package.json\').version"` && cd browser_version && git add -A && git commit -m "Prepare v$VERSION" && git tag -a "v$VERSION" -m "v$VERSION" && git push && git push --tags');
+        }
     });
 }
 
 function updateVersion() {
-    var bowerJsonPath = path.resolve(__dirname, "./browser_version/bower.json");
+    var targetJsonPath = path.resolve(__dirname, "./browser_version/" + (isNpm ? "package.json" : "bower.json"));
     var packageJsonPath = path.resolve(__dirname, "./package.json");
+
+    var targetJson = {};
     
-    var bowerJson = JSON.parse(fs.readFileSync(bowerJsonPath).toString());
+    //var targetJson = JSON.parse(fs.readFileSync(targetJsonPath).toString());
     var packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
-    bowerJson.version = packageJson.version;
+    targetJson.version = packageJson.version;
+    targetJson.name = packageJson.name + (isNpm ? "-browser" : "");
+    targetJson.main = "index.js"
 
-    fs.writeFileSync(bowerJsonPath, JSON.stringify(bowerJson, null, '\t'));
+    fs.writeFileSync(targetJsonPath, JSON.stringify(targetJson, null, '\t'));
 }
-
-var jsonValidationRootFile = path.resolve(__dirname, './dist/index.js');
 
 webPackForBrowserLib();
 
