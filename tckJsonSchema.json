@@ -33,7 +33,7 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "number",
+          "type": "string",
           "description": "IssueCode"
         },
         "message": {
@@ -1346,7 +1346,15 @@
           "patternProperties": {
             "^[a-zA-Z0-9]+": {
               "type": "array",
-              "items": {"$ref": "#/definitions/AnnotationInstance"}
+              "items": {
+                "oneOf": [
+                  {"$ref": "#/definitions/AnnotationInstance"},
+                  {
+                    "type": "array",
+                    "items": {"$ref": "#/definitions/AnnotationInstance"}
+                  }
+                ]
+              }
             }
           }
         }

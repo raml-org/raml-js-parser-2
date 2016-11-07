@@ -15,6 +15,7 @@ import universes=require("../tools/universe")
 import universeHelpers=require("../tools/universeHelpers")
 import services=defs
 import ramlTypes=defs.rt;
+var messageRegistry = require("../../../resources/errorMessages");
 
 var mediaTypeParser = require("media-typer");
 
@@ -207,7 +208,10 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                 }
                 if (node.lowLevel().valueKind() === yaml.Kind.SEQ){
                     var error=new hlimpl.BasicASTNode(node.lowLevel(), aNode);
-                    error.errorMessage= ""+node.definition().nameId()+" definition should be a map"
+                    error.errorMessage= {
+                        entry: messageRegistry.DEFINITION_SHOULD_BE_A_MAP,
+                        parameters: { typeName: node.definition().nameId() }
+                    };
                     res.push(error);
                     return res;
                 }
@@ -398,12 +402,24 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                 if (rng == "string" || rng == "number" || rng == "boolean") {
                                     if (!x.isAnnotatedScalar()){
-                                        attrNode.errorMessage = "property '"+p.groupName() + "' must be a " + rng;
+                                        attrNode.errorMessage = {
+                                            entry: messageRegistry.INVALID_PROPERTY_RANGE,
+                                            parameters: {
+                                                propName: p.groupName(),
+                                                range: rng
+                                            }
+                                        }
 
                                         if (x.children().length==0&&p.groupName()=="enum"){
-                                            attrNode.errorMessage = "enum is empty";
+                                            attrNode.errorMessage = {
+                                                entry: messageRegistry.ENUM_IS_EMPTY,
+                                                parameters: {}
+                                            };
                                             if (x.valueKind()==yaml.Kind.MAP){
-                                                attrNode.errorMessage = "the value of enum must be an array"
+                                                attrNode.errorMessage = {
+                                                    entry: messageRegistry.ENUM_MUST_BE_AN_ARRAY,
+                                                    parameters: {}
+                                                };
                                             }
                                         }
 
@@ -477,14 +493,20 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                     if (p.range().key()==universes.Universe08.ResourceType){
                                         if (!hasSequenceComposition) {
                                             var error = new hlimpl.BasicASTNode(x, aNode);
-                                            error.errorMessage = "property: '" + p.nameId() + "' must be a map"
+                                            error.errorMessage = {
+                                                entry: messageRegistry.PROPERTY_MUST_BE_A_MAP,
+                                                parameters: { propName: p.nameId() }
+                                            }
                                             res.push(error);
                                         }
                                     }
                                     if (x.valueKind()==yaml.Kind.SCALAR){
                                         if (p.range().key()==universes.Universe08.AbstractSecurityScheme) {
                                             var error = new hlimpl.BasicASTNode(x.parent(), aNode);
-                                            error.errorMessage = "property: '" + p.nameId() + "' must be a map"
+                                            error.errorMessage = {
+                                                entry: messageRegistry.PROPERTY_MUST_BE_A_MAP,
+                                                parameters: { propName: p.nameId() }
+                                            }
                                             res.push(error);
                                         }
                                     }
@@ -633,7 +655,10 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
 
                                         if (p.range().key()==universes.Universe08.Parameter){
                                             var error=new hlimpl.BasicASTNode(x, aNode);
-                                            error.errorMessage="property: '"+p.nameId()+"' must be a map"
+                                            error.errorMessage = {
+                                                entry: messageRegistry.PROPERTY_MUST_BE_A_MAP,
+                                                parameters: { propName: p.nameId() }
+                                            }
                                             res.push(error);
                                         }
 
@@ -643,7 +668,10 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                 if (p.nameId()==="documentation"&&x.valueKind()!==yaml.Kind.SEQ){
                                         if (!aNode.definition().getAdapter(services.RAMLService).isUserDefined()) {
                                             var error = new hlimpl.BasicASTNode(x, aNode);
-                                            error.errorMessage = "property: '" + p.nameId() + "' should be a sequence"
+                                            error.errorMessage = {
+                                                entry: messageRegistry.PROPERTY_MUST_BE_A_SEQUENCE,
+                                                parameters: { propName: p.nameId() }
+                                            }
                                             res.push(error);
                                         }
 
@@ -667,10 +695,16 @@ export class BasicNodeBuilder implements hl.INodeBuilder{
                                             if (y.children().length == 0) {
                                                 var error = new hlimpl.BasicASTNode(y, aNode);
                                                 if (p.range().key() == universes.Universe08.Parameter) {
-                                                    error.errorMessage = "named parameter needs at least one type"
+                                                    error.errorMessage = {
+                                                        entry: messageRegistry.NAMED_PARAMETER_NEEDS_TYPE,
+                                                        parameters: {}
+                                                    }
                                                 }
                                                 else {
-                                                    error.errorMessage = "node should have at least one member value"
+                                                    error.errorMessage = {
+                                                        entry: messageRegistry.NODE_SHOULD_HAVE_VALUE,
+                                                        parameters: {}
+                                                    }
                                                 }
                                                 res.push(error);
                                             }

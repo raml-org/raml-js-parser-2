@@ -98,7 +98,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "TYPE_EXPECTED",
       "message": "object is expected",
       "path": "apiInvalid.raml",
       "range": {

@@ -1,0 +1,16 @@
+#%RAML 1.0
+#successful test for 'uniqueItems'
+title: testAPI
+version: v1
+
+annotationTypes:
+  a:
+    minLength: 8
+    maxLength: 64
+
+types:
+  t1:
+    type: array
+    uniqueItems:
+      value: true
+      (a): abcdefghijkl

@@ -62,8 +62,8 @@
   },
   "errors": [
     {
-      "code": 11,
-      "message": "types and schemas are mutually exclusive",
+      "code": "TYPES_AND_SCHEMAS_ARE_EXCLUSIVE",
+      "message": "'types' and 'schemas' are mutually exclusive",
       "path": "api.raml",
       "range": {
         "start": {

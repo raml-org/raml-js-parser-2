@@ -61,8 +61,8 @@
   },
   "errors": [
     {
-      "code": 0,
-      "message": "Invalid value: 'FTP' allowed values are: 'HTTP', 'HTTPS'",
+      "code": "INVALID_VALUE",
+      "message": "Invalid value: 'FTP'. Allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {
         "start": {
@@ -78,8 +78,8 @@
       }
     },
     {
-      "code": 0,
-      "message": "Invalid value: 'SMTP' allowed values are: 'HTTP', 'HTTPS'",
+      "code": "INVALID_VALUE",
+      "message": "Invalid value: 'SMTP'. Allowed values are: 'HTTP', 'HTTPS'",
       "path": "meth08.raml",
       "range": {
         "start": {

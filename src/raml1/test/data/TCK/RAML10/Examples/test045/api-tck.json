@@ -128,7 +128,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "PATTERN_VIOLATION",
       "message": "String should match to '^\\d+\\-\\w+$'",
       "path": "api.raml",
       "range": {
@@ -145,7 +145,7 @@
       }
     },
     {
-      "code": 11,
+      "code": "PATTERN_VIOLATION",
       "message": "String should match to '^\\d+\\-\\w+$'",
       "path": "api.raml",
       "range": {
@@ -162,7 +162,7 @@
       },
       "trace": [
         {
-          "code": 11,
+          "code": "PATTERN_VIOLATION",
           "message": "String should match to '^\\d+\\-\\w+$'",
           "path": "api.raml",
           "range": {

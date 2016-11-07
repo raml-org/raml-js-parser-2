@@ -1,3 +1,4 @@
+
 {
   "ramlVersion": "RAML10",
   "type": "Api",
@@ -88,7 +89,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "EXAMPLE_SCHEMA_FAILURE",
       "message": "Example does not conform to schema: Content is not valid according to schema: Missing required property: innerTypeName innerTypeName",
       "path": "apiInvalid.raml",
       "range": {

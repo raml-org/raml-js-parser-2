@@ -12,6 +12,7 @@ import wrapper10=require("../artifacts/raml10parserapi")
 import wrapper08=require("../artifacts/raml08parserapi")
 import path=require("path")
 import fs=require("fs");
+var messageRegistry = require("../../../resources/errorMessages");
 
 function escapeUri(u:string){
     var ss="";
@@ -80,7 +81,7 @@ function escapeUri(u:string){
                     //if we have more than a single id of conflicting resources
                     resources.forEach(resource=>{
 
-                        acceptor.accept(linter.createIssue(hl.IssueCode.KEY_SHOULD_BE_UNIQUE_INTHISCONTEXT, "Resources share same URI", resource.highLevel(), false));
+                        acceptor.accept(linter.createIssue1(messageRegistry.RESOURCES_SHARE_SAME_URI, {}, resource.highLevel(), false));
                     })
                 }
             }

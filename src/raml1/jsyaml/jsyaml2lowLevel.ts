@@ -2580,24 +2580,31 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     }
 
     isAnnotatedScalar(){
-        if (this.kind()==yaml.Kind.MAPPING&&this.unit()) {
-
-            if (this.valueKind() == yaml.Kind.MAP&&this._node.value.mappings) {
-                var isScalar = (<yaml.YamlMap>this._node).value.mappings.length>0;
-                (<yaml.YamlMap>this._node).value.mappings.forEach(x=> {
-                    if (x.key.value === "value") {
+        if(!this.unit()){
+            return false;
+        }
+        var mappings;
+        if(this.kind() == yaml.Kind.MAPPING && this.valueKind() == yaml.Kind.MAP ) {
+            mappings = this._node.value.mappings;
+        }
+        else if(this.key()==null && this.kind() == yaml.Kind.MAP) {
+            mappings = this._node.mappings;
+        }
+        if(mappings) {
+            var isScalar = mappings.length > 0;
+            mappings.forEach(x=> {
+                if (x.key.value === "value") {
+                    return;
+                }
+                if (x.key.value) {
+                    if (x.key.value.charAt(0) == '(' && x.key.value.charAt(x.key.value.length - 1) == ')') {
                         return;
                     }
-                    if(x.key.value) {
-                        if (x.key.value.charAt(0) == '(' && x.key.value.charAt(x.key.value.length - 1) == ')') {
-                            return;
-                        }
-                    }
-                    isScalar = false;
-                });
-                return isScalar;
-            }
-        }
+                }
+                isScalar = false;
+            });
+            return isScalar;
+        }        
         return false;
     }
 
@@ -2636,6 +2643,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
                 var ch=child.children();
                 for (var i=0;i<ch.length;i++){
                     if (ch[i].key()==="value"){
+                        if(ch[i].valueKind()==yaml.Kind.SEQ){
+                            return ch[i].children().map(x=>x.value());
+                        }
                         return ch[i].value();
                     }
                 }
@@ -2683,6 +2693,17 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
                 //handle map with one member case differently
                 return new ASTNode(amap.mappings[0],this._unit,this,null,null);
+            }
+            else if (this.isAnnotatedScalar()){
+                var ch=this.children();
+                for (var i=0;i<ch.length;i++){
+                    if (ch[i].key()==="value"){
+                        if(ch[i].valueKind()==yaml.Kind.SEQ){
+                            return ch[i].children().map(x=>x.value());
+                        }
+                        return ch[i].value();
+                    }
+                }
             }
         }
         if (this._node.kind==yaml.Kind.SEQ){

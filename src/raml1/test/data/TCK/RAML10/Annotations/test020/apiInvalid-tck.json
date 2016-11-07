@@ -198,7 +198,7 @@
   },
   "errors": [
     {
-      "code": 11,
+      "code": "NULL_EXPECTED",
       "message": "null is expected",
       "path": "apiInvalid.raml",
       "range": {

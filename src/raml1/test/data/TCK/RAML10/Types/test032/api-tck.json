@@ -67,8 +67,8 @@
   },
   "errors": [
     {
-      "code": 11,
-      "message": "Map is expected here.",
+      "code": "MAP_EXPECTED",
+      "message": "Map is expected here",
       "path": "api.raml",
       "range": {
         "start": {

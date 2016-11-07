@@ -36,12 +36,6 @@ export interface Annotable extends core.BasicNode{
          * Most of RAML model elements may have attached annotations decribing additional meta data about this element
          **/
 annotations(  ):AnnotationRef[]
-
-
-        /**
-         * Scalar properties annotations accessor
-         **/
-scalarsAnnotations(  ):AnnotableScalarsAnnotations
 }
 
 export interface ValueType extends core.AttributeNode{
@@ -438,6 +432,12 @@ annotations(  ):AnnotationRef[]
          * Returns object representation of example, if possible
          **/
 structuredValue(  ):TypeInstance
+
+
+        /**
+         * Scalar properties annotations accessor
+         **/
+scalarsAnnotations(  ):ExampleSpecScalarsAnnotations
 }
 
 export interface UsesDeclaration extends Annotable{
@@ -468,26 +468,38 @@ scalarsAnnotations(  ):UsesDeclarationScalarsAnnotations
 
 
 /**
- * Annotable scalar properties annotations accessor
- **/
-export interface AnnotableScalarsAnnotations{
-
-        /**
-         * Annotable.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
-}
-
-
-/**
  * UsesDeclaration scalar properties annotations accessor
  **/
-export interface UsesDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface UsesDeclarationScalarsAnnotations{
 
         /**
          * UsesDeclaration.value annotations
          **/
 value(  ):AnnotationRef[]
+}
+
+
+/**
+ * ExampleSpec scalar properties annotations accessor
+ **/
+export interface ExampleSpecScalarsAnnotations{
+
+        /**
+         * ExampleSpec.strict annotations
+         **/
+strict(  ):AnnotationRef[]
+
+
+        /**
+         * ExampleSpec.displayName annotations
+         **/
+displayName(  ):AnnotationRef[]
+
+
+        /**
+         * ExampleSpec.description annotations
+         **/
+description(  ):AnnotationRef[]
 }
 
 export interface XMLFacetInfo extends Annotable{
@@ -532,7 +544,7 @@ scalarsAnnotations(  ):XMLFacetInfoScalarsAnnotations
 /**
  * XMLFacetInfo scalar properties annotations accessor
  **/
-export interface XMLFacetInfoScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface XMLFacetInfoScalarsAnnotations{
 
         /**
          * XMLFacetInfo.attribute annotations
@@ -609,7 +621,7 @@ scalarsAnnotations(  ):ArrayTypeDeclarationScalarsAnnotations
 /**
  * TypeDeclaration scalar properties annotations accessor
  **/
-export interface TypeDeclarationScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface TypeDeclarationScalarsAnnotations{
 
         /**
          * TypeDeclaration.displayName annotations
@@ -669,12 +681,6 @@ allowedTargets(  ):AnnotationRef[][]
          * TypeDeclaration.isAnnotation annotations
          **/
 isAnnotation(  ):AnnotationRef[]
-
-
-        /**
-         * TypeDeclaration.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
 }
 
 
@@ -1113,18 +1119,12 @@ scalarsAnnotations(  ):ResponseScalarsAnnotations
 /**
  * Response scalar properties annotations accessor
  **/
-export interface ResponseScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface ResponseScalarsAnnotations{
 
         /**
          * Response.description annotations
          **/
 description(  ):AnnotationRef[]
-
-
-        /**
-         * Response.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
 }
 
 export interface SecuritySchemePart extends Operation{
@@ -1133,24 +1133,6 @@ export interface SecuritySchemePart extends Operation{
          * Annotations to be applied to this security scheme part. Annotations are any property whose key begins with "(" and ends with ")" and whose name (the part between the beginning and ending parentheses) is a declared annotation name.
          **/
 annotations(  ):AnnotationRef[]
-
-
-        /**
-         * Scalar properties annotations accessor
-         **/
-scalarsAnnotations(  ):SecuritySchemePartScalarsAnnotations
-}
-
-
-/**
- * SecuritySchemePart scalar properties annotations accessor
- **/
-export interface SecuritySchemePartScalarsAnnotations extends AnnotableScalarsAnnotations{
-
-        /**
-         * SecuritySchemePart.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
 }
 
 export interface MethodBase extends Operation{
@@ -1289,7 +1271,7 @@ scalarsAnnotations(  ):OAuth1SecuritySchemeSettingsScalarsAnnotations
 /**
  * OAuth1SecuritySchemeSettings scalar properties annotations accessor
  **/
-export interface OAuth1SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface OAuth1SecuritySchemeSettingsScalarsAnnotations{
 
         /**
          * OAuth1SecuritySchemeSettings.requestTokenUri annotations
@@ -1351,7 +1333,7 @@ scalarsAnnotations(  ):OAuth2SecuritySchemeSettingsScalarsAnnotations
 /**
  * OAuth2SecuritySchemeSettings scalar properties annotations accessor
  **/
-export interface OAuth2SecuritySchemeSettingsScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface OAuth2SecuritySchemeSettingsScalarsAnnotations{
 
         /**
          * OAuth2SecuritySchemeSettings.accessTokenUri annotations
@@ -1423,7 +1405,7 @@ export interface CustomSecurityScheme extends AbstractSecurityScheme{}
 /**
  * AbstractSecurityScheme scalar properties annotations accessor
  **/
-export interface AbstractSecuritySchemeScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface AbstractSecuritySchemeScalarsAnnotations{
 
         /**
          * AbstractSecurityScheme.type annotations
@@ -1501,7 +1483,7 @@ scalarsAnnotations(  ):MethodScalarsAnnotations
 /**
  * MethodBase scalar properties annotations accessor
  **/
-export interface MethodBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface MethodBaseScalarsAnnotations{
 
         /**
          * MethodBase.protocols annotations
@@ -1759,7 +1741,7 @@ scalarsAnnotations(  ):ResourceScalarsAnnotations
 /**
  * ResourceBase scalar properties annotations accessor
  **/
-export interface ResourceBaseScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface ResourceBaseScalarsAnnotations{
 
         /**
          * ResourceBase.is annotations
@@ -1801,12 +1783,6 @@ displayName(  ):AnnotationRef[]
          * Resource.description annotations
          **/
 description(  ):AnnotationRef[]
-
-
-        /**
-         * Resource.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
 }
 
 export interface ResourceType extends ResourceBase{
@@ -1895,7 +1871,7 @@ scalarsAnnotations(  ):DocumentationItemScalarsAnnotations
 /**
  * DocumentationItem scalar properties annotations accessor
  **/
-export interface DocumentationItemScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface DocumentationItemScalarsAnnotations{
 
         /**
          * DocumentationItem.title annotations
@@ -1989,7 +1965,7 @@ scalarsAnnotations(  ):LibraryScalarsAnnotations
 /**
  * Library scalar properties annotations accessor
  **/
-export interface LibraryScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface LibraryScalarsAnnotations{
 
         /**
          * Library.usage annotations
@@ -2159,7 +2135,7 @@ scalarsAnnotations(  ):OverlayScalarsAnnotations
 /**
  * Api scalar properties annotations accessor
  **/
-export interface ApiScalarsAnnotations extends AnnotableScalarsAnnotations{
+export interface ApiScalarsAnnotations{
 
         /**
          * Api.title annotations
@@ -2201,12 +2177,6 @@ mediaType(  ):AnnotationRef[][]
          * Api.securedBy annotations
          **/
 securedBy(  ):AnnotationRef[][]
-
-
-        /**
-         * Api.annotations annotations
-         **/
-annotations(  ):AnnotationRef[][]
 }
 
 
