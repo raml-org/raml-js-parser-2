@@ -454,6 +454,16 @@ export interface IStructuredValue {
     toHighLevel2(parent?: IHighLevelNode):IHighLevelNode;
 }
 
+export interface PluginValidationIssue extends rTypes.tsInterfaces.PluginValidationIssue{
+    
+    issueCode?:string,
+    message?:string,
+    node?:IParseResult,
+    isWarning?:boolean,
+    
+    validationIssue?:ValidationIssue
+}
+
 /**
  * Model of AST node validation plugin
  */
@@ -464,7 +474,7 @@ export interface INodeValidationPlugin{
      * @param node AST node
      * @return array of {ValidationIssue}
      */
-    validate(node:IParseResult):ValidationIssue[];
+    process(node:IParseResult):PluginValidationIssue[];
 
     /**
      * String ID of the plugin
@@ -501,44 +511,6 @@ export function getNodeAnnotationValidationPlugins():ASTAnnotationValidationPlug
     return [];
 }
 
-/**
- * Apply registered node validation plugins to the type
- * @param node node to be validated
- * @returns an array of {NodeValidationPluginIssue}
- */
-
-export function applyNodeValidationPlugins(node:IParseResult):ValidationIssue[] {
-
-    var result:ValidationIssue[] = [];
-    var plugins = getNodeValidationPlugins();
-    for (var tv of plugins) {
-        var issues:ValidationIssue[] = tv.validate(node);
-        if (issues) {
-            issues.forEach(x=>result.push(x));
-        }
-    }
-    return result;
-}
-
-/**
- * Apply registered node annotation validation plugins to the type
- * @param node node to be validated
- * @returns an array of {NodeValidationPluginIssue}
- */
-
-export function applyNodeAnnotationValidationPlugins(
-    node:rTypes.tsInterfaces.IAnnotatedElement):ValidationIssue[] {
-
-    var result:ValidationIssue[] = [];
-    var plugins = getNodeAnnotationValidationPlugins();
-    for (var tv of plugins) {
-        var issues:ValidationIssue[] = tv.processAnnotatedEntry(node);
-        if (issues) {
-            issues.forEach(x=>result.push(x));
-        }
-    }
-    return result;
-}
 
 /**
  * Model of annotation validator
@@ -548,7 +520,7 @@ export interface ASTAnnotationValidationPlugin {
     /**
      * validate annotated RAML element
      */
-    processAnnotatedEntry(entry:rTypes.tsInterfaces.IAnnotatedElement):ValidationIssue[];
+    process(entry:rTypes.tsInterfaces.IAnnotatedElement):PluginValidationIssue[];
 
     /**
      * String ID of the plugin

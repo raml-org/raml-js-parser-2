@@ -212,11 +212,10 @@ export class BasicASTNode implements hl.IParseResult {
     validate(v:hl.ValidationAcceptor):void{
 
         linter.validate(this,v);
-        for(var pluginIssue of hl.applyNodeValidationPlugins(this)){
+        for(var pluginIssue of applyNodeValidationPlugins(this)){            
             v.accept(pluginIssue);
         }
-        var aEntry = new AnnotatedNode(this);
-        for(var pluginIssue of hl.applyNodeAnnotationValidationPlugins(aEntry)){
+        for(var pluginIssue of applyNodeAnnotationValidationPlugins(this)){
             v.accept(pluginIssue);
         }
     }
@@ -2084,7 +2083,14 @@ export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
     annotationsMap(): {[key:string]:def.rt.tsInterfaces.IAnnotationInstance}{
         if(!this._annotationsMap) {
             this._annotationsMap = {};
-            this.annotations().forEach(x=>this._annotationsMap[x.name()]=x);
+            this.annotations().forEach(x=>{
+                var n = x.name();
+                var ind = n.lastIndexOf(".");
+                if(ind>=0){
+                    n = n.substring(ind+1);
+                }
+                this._annotationsMap[n]=x
+            });
         }
         return this._annotationsMap;
     }
@@ -2129,7 +2135,7 @@ export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstan
     constructor(protected attr:hl.IAttribute){}
 
     name():string{
-        return this.attr.name();
+        return this.attr.value().valueName();
     }
     /**
      * Annotation value
@@ -2137,7 +2143,9 @@ export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstan
     value(): any{
         var val = this.attr.value();
         if(val instanceof  StructuredValue){
-            return (<StructuredValue>val).lowLevel().dump();
+            var obj = (<StructuredValue>val).lowLevel().dumpToObject();
+            var key = Object.keys(obj)[0];
+            return obj[key];
         }
         return val;
     }
@@ -2155,4 +2163,61 @@ export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstan
         }
         return cands[0].parsedType();
     }
+}
+
+function toValidationIssue(x:hl.PluginValidationIssue, pluginId:string, node:hl.IParseResult) {
+    var vi = x.validationIssue;
+    if (!vi) {
+        var issueCode = x.issueCode || pluginId;
+        var node1 = x.node || node;
+        var message = x.message || `The ${pluginId} plugin reports an error`;
+        var isWarning = x.isWarning;
+        vi = linter.createIssue(issueCode, message, node1, isWarning);
+    }
+    return vi;
+};
+/**
+ * Apply registered node validation plugins to the type
+ * @param node node to be validated
+ * @returns an array of {NodeValidationPluginIssue}
+ */
+
+export function applyNodeValidationPlugins(node:hl.IParseResult):hl.ValidationIssue[] {
+
+    var result:hl.ValidationIssue[] = [];
+    var plugins = hl.getNodeValidationPlugins();
+    for (var tv of plugins) {
+        var issues:hl.PluginValidationIssue[] = tv.process(node);
+        if (issues) {
+            issues.forEach(x=>{
+                var vi = toValidationIssue(x, tv.id(), node);
+                result.push(vi);
+            });
+        }
+    }
+    return result;
+}
+
+/**
+ * Apply registered node annotation validation plugins to the type
+ * @param node node to be validated
+ * @returns an array of {NodeValidationPluginIssue}
+ */
+
+export function applyNodeAnnotationValidationPlugins(
+    node:hl.IParseResult):hl.ValidationIssue[] {
+
+    var aEntry = new AnnotatedNode(node);
+    var result:hl.ValidationIssue[] = [];
+    var plugins = hl.getNodeAnnotationValidationPlugins();
+    for (var tv of plugins) {
+        var issues:hl.PluginValidationIssue[] = tv.process(aEntry);
+        if (issues) {
+            issues.forEach(x=>{
+                var vi = toValidationIssue(x, tv.id(), node);
+                result.push(vi);
+            });
+        }
+    }
+    return result;
 }
