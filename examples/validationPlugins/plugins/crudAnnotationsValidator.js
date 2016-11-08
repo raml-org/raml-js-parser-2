@@ -11,16 +11,6 @@ var operationToMethod = {
     "deleteElement" : "delete"
 };
 
-var focusedAnnotations = {
-
-    retrieveCollection: true,
-
-    retrieveCollectionElement: true,
-
-    updateCollectionElement: true
-
-};
-
 function validateEntry(node){
 
     if(!node){
