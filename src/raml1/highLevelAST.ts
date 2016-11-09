@@ -204,38 +204,128 @@ export enum RAMLVersion{
     RAML08
 }
 export interface IParseResult {
+
     hashkey(): string;
+
+    /**
+     * retrieve errors if any
+     */
     errors():ValidationIssue[]
 
+    /**
+     * The underlaying node of the low level AST
+     */
     lowLevel():lowLevel.ILowLevelASTNode
+
     name():string
+
+    /**
+     * Whether the element is an optional sibling of trait or resource type
+     **/
     optional():boolean;
+
+    /**
+     * Returns AST root node
+     */
     root():IHighLevelNode
+
+    /**
+     * Whether the nodes have the same underlying YAML node
+     */
     isSameNode(n:IParseResult):boolean;
-    
+
+    /**
+     * Parent AST node
+     */
     parent():IHighLevelNode;
+
+    /**
+     * Specify parent AST node
+     */
     setParent(node: IParseResult);
+
+    /**
+     * Child nodes obtained
+     * 1. from AST directly
+     * 2. by applying overlays and extensions if any
+     */
     children():IParseResult[];
+
+    /**
+     * Child nodes obtained from AST directly
+     */
     directChildren():IParseResult[];
+
+    /**
+     * Whether the node is not the AST root
+     */
     isAttached():boolean
+
     isImplicit():boolean
+
+    /**
+     * Whether the node is an attribute
+     */
     isAttr():boolean
+
+    /**
+     * @return this for attribute nodes, and null otherwise
+     */
     asAttr():IAttribute;
+
+    /**
+     * Whether the node is an element
+     */
     isElement():boolean;
+
+    /**
+     * @return this for element nodes, and null otherwise
+     */
     asElement():IHighLevelNode;
+
     localId():string;
     fullLocalId() : string;
+
+    /**
+     * Whether the node is unknown, i.e. can not justified by RAML syntax
+     */
     isUnknown():boolean;
+
+    /**
+     * Each non root AST node appears to be a value of some RAML element property
+     * The property is returned gor non root nodes. Null is returned for root.
+     */
     property():IProperty;
+
     id():string
+
     computedValue(name:string):any
+
+    /**
+     * Apply validation using the input validation acceptor
+     */
     validate(acceptor:ValidationAcceptor):void
+
+    /**
+     * Some text representation of the node
+     */
     printDetails(indent?:string):string
 
     getKind() : NodeKind
 
+    /**
+     * Start position of the underlying low level AST node
+     */
     getLowLevelStart()
+
+    /**
+     * End position of the underlying low level AST node
+     */
     getLowLevelEnd()
+
+    /**
+     * RAML version
+     */
     version();
 }
 
@@ -331,80 +421,180 @@ export interface INodeBuilder {
 
 export interface IAttribute extends IParseResult {
 
-    lowLevel(): lowLevel.ILowLevelASTNode;
-
+    /**
+     * Value type representation
+     */
     definition(): IValueTypeDefinition;
 
-    property(): IProperty;
-
+    /**
+     * Attribute value
+     */
     value(): any;
+
+    /**
+     * Set key to the underlying YAML node
+     */
     setKey(k:string);
 
+    /**
+     * Set value to the underlying YAML node
+     */
     setValue(newValue: string|IStructuredValue);
+
+    /**
+     * Set values to the underlying YAML node
+     */
     setValues(values: string[]);
+
+    /**
+     * Append value to the underlying YAML node
+     */
     addValue(value: string|IStructuredValue);
 
-    name(): string;
-
-    localId(): string;
+    /**
+     * Remove trhe attribute from AST
+     */
     remove();
 
     isEmpty(): boolean;
 
     owningWrapper():{node:BasicNode; property:string};
 
+    /**
+     * For references returns nAST node defining the referenced RAML element
+     */
     findReferencedValue():IHighLevelNode
-    
+
+    /**
+     * Whether the attribute represents an annotated scalar value
+     */
     isAnnotatedScalar():boolean;
 
+    /**
+     * A list of annotations if any
+     */
     annotations():IAttribute[];
 }
 
 export interface IHighLevelNode extends IParseResult {
 
-    lowLevel(): lowLevel.ILowLevelASTNode;
-
+    /**
+     * Relevant types collection
+     */
     types():rTypes.IParsedTypeCollection;
 
+    /**
+     * For type nodes returns runtime representation of the type
+     */
     parsedType():rTypes.IParsedType;
 
+    /**
+     * For type nodes returns nominal representation of the type
+     */
     localType():typeSystem.ITypeDefinition;
 
+    /**
+     * RAML type of the node
+     */
     definition(): INodeDefinition;
+
+    /**
+     * Whether the node can appear as optional template property value
+     */
     allowsQuestion(): boolean;
-    property(): IProperty;
 
-    children(): IParseResult[];
-
+    /**
+     * List child attributes
+     */
     attrs():IAttribute[];
+
+    /**
+     * Retrieve attribute by property name. For multivalue properties returns the first attribute.
+     */
     attr(n:string):IAttribute;
+
+    /**
+     * Retrieve attribute by name or create it if it does not exist
+     */
     attrOrCreate(n:string):IAttribute;
+
+    /**
+     * Retrieve attribute value by name
+     */
     attrValue(n:string):string;
+
+    /**
+     * Retrieve attributes by property name. For multivalue properties returns
+     * a complete list of attributes.
+     */
     attributes(n:string):IAttribute[];
+
+    /**
+     * List child elements
+     */
     elements():IHighLevelNode[];
+
+    /**
+     * Retrieve element by property name. For multivalue properties returns the first element.
+     */
     element(n:string):IHighLevelNode;
 
+    /**
+     * Retrieve elements by property name. For multivalue properties returns
+     * a complete list of elements.
+     */
     elementsOfKind(n: string): IHighLevelNode[];
+
+
+    /**
+     * Whether the AST has traits and resource types expanded
+     */
     isExpanded(): boolean;
 
+    /**
+     * Scalar value representing the element value, if possible
+     */
     value(): any;
 
+    /**
+     * All possible properties of the element
+     */
     propertiesAllowedToUse():IProperty[];
-    getExpandedVersion?(): IHighLevelNode;
 
+    /**
+     * Append child node
+     */
     add(node: IHighLevelNode|IAttribute);
+
+    /**
+     * Remove child node
+     */
     remove(node: IHighLevelNode|IAttribute);
 
+    /**
+     * Dump the element to YAML string
+     */
     dump(flavor: string): string;
 
-    findElementAtOffset(offset: number);
+    /**
+     * Retrieve the deepest element enclosing the position specified
+     * @param offset text position
+     */
+    findElementAtOffset(offset: number):IHighLevelNode;
 
-    root(): IHighLevelNode;
-
+    /**
+     * List all the references to the RAML element decalred in the node
+     */
     findReferences(): IParseResult[];
 
+    /**
+     * Copy of the node having low level node and YAML node copies as underlying nodes
+     */
     copy(): IHighLevelNode;
 
+    /**
+     * Clean the list of cached child nodes
+     */
     resetChildren():void
 
     findById(id:string);
@@ -412,13 +602,25 @@ export interface IHighLevelNode extends IParseResult {
 
     associatedType():INodeDefinition;
 
+    /**
+     * Retrieve top level owner node
+     */
     wrapperNode():BasicNode;
 
+    /**
+     * Override top level owner node
+     */
     setWrapperNode(node:BasicNode);
 
+    /**
+     * A list of optional property names
+     */
     optionalProperties():string[];
 
-    createIssue(error: any): ValidationIssue;
+    /**
+     * Convert typesystem error representation to parser error representation
+     */
+    createIssue(error:rTypes.IStatus): ValidationIssue;
 
     /**
      * Returns node master or null for top-level nodes.
@@ -452,4 +654,79 @@ export interface IStructuredValue {
     toHighLevel(parent?: IHighLevelNode):IHighLevelNode;
 
     toHighLevel2(parent?: IHighLevelNode):IHighLevelNode;
+}
+
+export interface PluginValidationIssue extends rTypes.tsInterfaces.PluginValidationIssue{
+
+    issueCode?:string,
+    message?:string,
+    node?:IParseResult,
+    isWarning?:boolean,
+
+    validationIssue?:ValidationIssue
+}
+
+/**
+ * Model of AST node validation plugin
+ */
+export interface INodeValidationPlugin{
+
+    /**
+     * Apply validation to AST node
+     * @param node AST node
+     * @return array of {ValidationIssue}
+     */
+    process(node:IParseResult):PluginValidationIssue[];
+
+    /**
+     * String ID of the plugin
+     */
+    id():string;
+}
+
+
+/**
+ * Retrieve a list of registered node validation plugins
+ */
+export function getNodeValidationPlugins():INodeValidationPlugin[]{
+    var rv:any = global.ramlValidation;
+    if(rv){
+        var nodeValidators = rv.nodeValidators;
+        if(Array.isArray(nodeValidators)){
+            return <INodeValidationPlugin[]>nodeValidators;
+        }
+    }
+    return [];
+}
+
+/**
+ * Retrieve a list of registered annotation node validation plugins
+ */
+export function getNodeAnnotationValidationPlugins():ASTAnnotationValidationPlugin[]{
+    var rv:any = global.ramlValidation;
+    if(rv){
+        var astAnnotationValidators = rv.astAnnotationValidators;
+        if(Array.isArray(astAnnotationValidators)){
+            return <ASTAnnotationValidationPlugin[]>astAnnotationValidators;
+        }
+    }
+    return [];
+}
+
+
+/**
+ * Model of annotation validator
+ */
+export interface ASTAnnotationValidationPlugin {
+
+    /**
+     * validate annotated RAML element
+     */
+    process(entry:rTypes.tsInterfaces.IAnnotatedElement):PluginValidationIssue[];
+
+    /**
+     * String ID of the plugin
+     */
+    id():string;
+
 }
