@@ -684,14 +684,14 @@ PetCollection : ArrayTypeDeclaration
 RandomPet : UnionTypeDeclaration
 ```
 
-###Runtime Type System
+###Nominal Type System
 
-Apart from AST, the parser provides one more way of representing types: runtime type system. Runtime type system has several advantages in comparison with AST: it allows to
+Apart from AST, the parser provides one more way of representing types: nominal type system. Nominal type system has several advantages in comparison with AST: it allows to
 
 * explore type hierarchy in a natural way
 * obtain consistent object representations for component types of arrays and union types.
 
-Having a `TypeDeclaration` instance in hands one can obtain a runtime type by means of `TypeDeclaration.runtimeDefinition()` method returning `ITypeDefinition`:
+Having a `TypeDeclaration` instance in hands one can obtain a nominal type by means of `TypeDeclaration.localType()` method returning `ITypeDefinition`:
 
 ![GettingStarted_BasicNodeRuntimeDefinition](images/GettingStarted_BasicNodeRuntimeDefinition.png)
 
@@ -714,11 +714,11 @@ Having a `TypeDeclaration` instance in hands one can obtain a runtime type by me
 * `isUnion`
 * `isValueType`
 
-Lets print runtime type names for our types:
+Lets print nominal type names for our types:
 
 ```js
 api.types().forEach(function(type){
-    var typeName = type.runtimeDefinition().nameId();
+    var typeName = type.localType().nameId();
     console.log(typeName);
 });
 ```
@@ -766,22 +766,22 @@ RandomPet : UnionTypeDeclaration
 
 One need a special type registry in order to explore type hierarchy using AST as it provides only names of supertypes or expressions which define them.
 
-In contrast to the AST, the runtime type system allows to explore hierarchy without involving auxiliary services. In order to obtain all direct supertypes of the type you should call the `ITypeDefinition.superTypes()` method. It returns an array of `ITypeDefinition` instances which can be treated just the same way as the one the method has been called for.
+In contrast to the AST, the nominal type system allows to explore hierarchy without involving auxiliary services. In order to obtain all direct supertypes of the type you should call the `ITypeDefinition.superTypes()` method. It returns an array of `ITypeDefinition` instances which can be treated just the same way as the one the method has been called for.
 
 Let's list complete hierarchy for each of our types:
 
 ```js
-function printHierarchy(runtimeType,indent){
+function printHierarchy(nominalType,indent){
     indent = indent || "";
-    var typeName = runtimeType.nameId();
+    var typeName = nominalType.nameId();
     console.log(indent + typeName);
-    runtimeType.superTypes().forEach(function(st){
+    nominalType.superTypes().forEach(function(st){
         printHierarchy(st, indent + "  ");
     });
 }
 
 api.types().forEach(function(type){
-    printHierarchy(type.runtimeDefinition());
+    printHierarchy(type.localType());
     console.log("---");
 });
 ```
@@ -820,7 +820,7 @@ The `ITypeDefinition.isAssignableFrom()` method is used to check if one type inh
 ```
 console.log("Is the type assignable from \"Pet\" type?")
 api.types().filter(function(type){
-    console.log(type.name(),":",type.runtimeDefinition().isAssignableFrom("Pet"));
+    console.log(type.name(),":",type.localType().isAssignableFrom("Pet"));
 });
 ```
 output:
@@ -840,7 +840,7 @@ api.types().filter(function(type){
     return type.name()=="Pet"
 }).forEach(function(type){
     console.log("Subtypes of", type.name(), ":");
-    type.runtimeDefinition().subTypes().forEach(function(st){
+    type.localType().subTypes().forEach(function(st){
         console.log(st.nameId());
     });
 });
@@ -940,22 +940,22 @@ PetCollection : ArrayTypeDeclaration
 RandomPet : UnionTypeDeclaration
 ```
 
-As AST does not allow to directly retrieve full information about object property types, it's one more cases of runtime type system being useful.
-Let print hierarchy and properties for runtime type of the `Pet.metrics` property:
+As AST does not allow to directly retrieve full information about object property types, it's one more cases of nominal type system being useful.
+Let print hierarchy and properties for nominal type of the `Pet.metrics` property:
 ```js
-function printHierarchyAndProperties(runtimeType,indent){
+function printHierarchyAndProperties(nominalType,indent){
     indent = indent || "";
-    var typeName = runtimeType.nameId();
-    console.log(indent + "type: " + typeName + " (" + runtimeType.kind() + ")");
-    if(runtimeType.isAssignableFrom("object") && runtimeType.properties().length>0) {
+    var typeName = nominalType.nameId();
+    console.log(indent + "type: " + typeName + " (" + nominalType.kind() + ")");
+    if(nominalType.isAssignableFrom("object") && nominalType.properties().length>0) {
         console.log(indent + "  properties:");
-        runtimeType.properties().forEach(function (prop) {
+        nominalType.properties().forEach(function (prop) {
             console.log(indent + "    " + prop.nameId() + ": " + prop.range().nameId());
         });
     }
-    if(runtimeType.superTypes().length>0) {
+    if(nominalType.superTypes().length>0) {
         console.log(indent + "  supertypes:");
-        runtimeType.superTypes().forEach(function (st) {
+        nominalType.superTypes().forEach(function (st) {
             printHierarchyAndProperties(st, indent + "    ");
         });
     }
@@ -966,8 +966,8 @@ api.types().filter(function(type){return type.name()=="Pet"})
 
         type.properties().filter(function(prop){return prop.name()=="metrics"})
             .forEach(function(prop) {
-                var runtimeDefinition = prop.runtimeDefinition();
-                printHierarchyAndProperties(runtimeDefinition);
+                var localType = prop.localType();
+                printHierarchyAndProperties(localType);
             });
     });
 ```
@@ -986,17 +986,17 @@ type: metrics (object)
           supertypes:
             type: any (object)
 ```
-The runtime type has the same name as the property and has property type as supertype. The picture looks more natural, if we switch to runtime type system directly from AST node of the type itself:
+The nominal type has the same name as the property and has property type as supertype. The picture looks more natural, if we switch to nominal type system directly from AST node of the type itself:
 
 ```js
 api.types().filter(function(type){return type.name()=="Pet"})
     .forEach(function (type) {
 
-        var runtimeDefinition = type.runtimeDefinition();
-        var runtimeProp = runtimeDefinition.property("metrics");
-        var propertyRange = runtimeProp.range();
+        var localType = type.localType();
+        var nominalProp = localType.property("metrics");
+        var propertyRange = nominalProp.range();
 
-        console.log(runtimeProp.domain().nameId()+"."+runtimeProp.nameId()+" range details:")
+        console.log(nominalProp.domain().nameId()+"."+nominalProp.nameId()+" range details:")
         printHierarchyAndProperties(propertyRange);
 });
 ```
@@ -1043,16 +1043,16 @@ PetCollection : ArrayTypeDeclaration
 	 items :  ObjectTypeDeclaration
 ```
 
-As in case with property types, AST does not allow to directly inspect component type details. Thus, we have to switch to runtime type system.
-Runtime type of array types is represented as `IArrayType` instance.
+As in case with property types, AST does not allow to directly inspect component type details. Thus, we have to switch to nominal type system.
+Nominal type of array types is represented as `IArrayType` instance.
 The code below prints details for array type component types:
 ```js
 api.types().filter(function(type){return type.kind()=="ArrayTypeDeclaration"})
     .forEach(function (type) {
 
-    var runtimeDefinition = type.items().runtimeDefinition();
+    var localType = type.items().localType();
     console.log(type.name() + " component details:");
-    printHierarchyAndProperties(runtimeDefinition);
+    printHierarchyAndProperties(localType);
 });
 ```
 output:
@@ -1074,15 +1074,15 @@ type: Pet (object)
 The reason of the `color` property type having `null` type name is that its type is anonymous.
 
 
-Once again, the same result can be achieved by switching to runtime type system right from the types AST node. The method for retrieving 
-runtime array type component is `IArrayType.componentType()`.
+Once again, the same result can be achieved by switching to nominal type system right from the types AST node. The method for retrieving
+nominal array type component is `IArrayType.componentType()`.
 ```js
 api.types().filter(function(type){return type.kind()=="ArrayTypeDeclaration"})
     .forEach(function (type) {
 
-    var runtimeDefinition = type.runtimeDefinition().componentType();
+    var localType = type.localType().componentType();
     console.log(type.name() + " component details:");
-    printHierarchyAndProperties(runtimeDefinition);
+    printHierarchyAndProperties(localType);
 });
 ```
 output:
@@ -1102,20 +1102,20 @@ type: Pet (object)
 ```
 
 ###Union Types
-Runtime type of union types is represented as `IUnionType` instance. The `IUnionType.leftType()` and `IUnionType.rightType()` methods allow inspection
+Nominal type of union types is represented as `IUnionType` instance. The `IUnionType.leftType()` and `IUnionType.rightType()` methods allow inspection
 union type components:
 
 ```js
-api.types().filter(function(type){return type.runtimeDefinition().isUnion()})
+api.types().filter(function(type){return type.localType().isUnion()})
     .forEach(function (type) {
 
-    var runtimeDefinition = type.runtimeDefinition();
-    console.log(runtimeDefinition.nameId() + " components:");
+    var localType = type.localType();
+    console.log(localType.nameId() + " components:");
     console.log("left:");
     //See "Properties of Object Types" section for "printHierarchyAndProperties" definition
-    printHierarchyAndProperties(runtimeDefinition.leftType(), "  ");
+    printHierarchyAndProperties(localType.leftType(), "  ");
     console.log("right:");
-    printHierarchyAndProperties(runtimeDefinition.rightType(), "  ");
+    printHierarchyAndProperties(localType.rightType(), "  ");
 });
 ```
 output:
@@ -1193,7 +1193,7 @@ type: [ 'Pet' ]
 properties:
   tailLength : [ 'number' ]
 ```
-Thus, body type has body media type as name and inherits type specified in `type` property. Lets see it again with the help of runtime type system:
+Thus, body type has body media type as name and inherits type specified in `type` property. Lets see it again with the help of nominal type system:
 ```js
 api.resources().filter(function(resource){return resource.relativeUri().value()=="/pets"})
     .forEach(function(resource){
@@ -1201,7 +1201,7 @@ api.resources().filter(function(resource){return resource.relativeUri().value()=
         var bodyTypes = method.body();
         bodyTypes.forEach(function (body) {
         //See "Properties of Object Types" section for "printHierarchyAndProperties" definition
-            printHierarchyAndProperties(body.runtimeType());
+            printHierarchyAndProperties(body.nominalType());
         });
     });
 });
@@ -1295,7 +1295,7 @@ fixeded facets: {
 }
 
 ```
-The same result can be achieved by means of runtime type system.
+The same result can be achieved by means of nominal type system.
 A set of facets declared by the type itself can be retrieved by the `ITypeDefinition.facets()` returning an array of `IProperty`.
 If you need a set of facets declared by type and all of its supertypes, you should use the `ITypeDefinition.allFacets()` method.
 A set of type fixed facet values can be retrieved by the `ITypeDefinition.getFixedFacets()` method returning actual values used to fix facets.
@@ -1303,17 +1303,17 @@ A set of type fixed facet values can be retrieved by the `ITypeDefinition.getFix
 ```js
 api.types().forEach(function(type){
 
-    var runtimeType = type.runtimeDefinition();
-    console.log(runtimeType.nameId(), ":");
-    if(runtimeType.facets().length>0){
+    var nominalType = type.localType();
+    console.log(nominalType.nameId(), ":");
+    if(nominalType.facets().length>0){
         console.log("defined facets:");
-        runtimeType.facets().forEach(function(f){
+        nominalType.facets().forEach(function(f){
             console.log(f.nameId(),":",f.range().nameId());
         });
     }
-    if(Object.keys(runtimeType.getFixedFacets()).length>0){
+    if(Object.keys(nominalType.getFixedFacets()).length>0){
         console.log("fixeded facets:",
-            JSON.stringify(runtimeType.getFixedFacets(),null,2));
+            JSON.stringify(nominalType.getFixedFacets(),null,2));
     }
     console.log();
 });
@@ -1410,12 +1410,12 @@ annotation type
     property2 : [ 'string' ]
 ```
 
-The same operation can be performed by means of runtime type system:
+The same operation can be performed by means of nominal type system:
 ```js
 	api.annotationTypes().forEach(function(aType){
 	    //see "Supertypes and Subtypes" section of the "Types" chapter
 	    //for "printHierarchyAndProperties" definition 
-	    printHierarchyAndProperties(aType.runtimeDefinition());
+	    printHierarchyAndProperties(aType.localType());
 	    console.log();
 	});
 ```
@@ -1470,7 +1470,7 @@ api.childResource("/resource").annotations().forEach(function(aRef){
     console.log("referenced annotation:");
     //see "Supertypes and Subtypes" section of the "Types" chapter
 	//for "printHierarchyAndProperties" definition 
-    printHierarchyAndProperties(aRef.annotation().runtimeDefinition());
+    printHierarchyAndProperties(aRef.annotation().localType());
     console.log("value:", JSON.stringify(aRef.structuredValue().toJSON(),null,2));
     console.log();
 });

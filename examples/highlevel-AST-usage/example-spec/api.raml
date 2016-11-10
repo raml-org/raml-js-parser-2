@@ -1,0 +1,31 @@
+#%RAML 1.0
+
+title: Highlevel AST Usage Example
+
+securitySchemes:
+  oauth:
+    type: OAuth 2.0
+  basic:
+    type: Basic Authentication
+
+types:
+  Entry:
+    properties:
+      stringProperty: string
+      numberProperty: number
+
+annotationTypes:
+  Marker:
+    pattern: "[a-zA-Z]+"
+
+securedBy:
+  - oauth
+  - basic
+
+/resource:
+  get:
+    (Marker): stringValue
+    responses:
+      200:
+        body:
+          application/json: Entry
