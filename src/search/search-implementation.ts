@@ -1,14 +1,14 @@
-/// <reference path="../../../typings/main.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 
 import defs=require("raml-definition-system")
-import hl=require("../highLevelAST")
-import ll=require("../lowLevelAST")
+import hl=require("../raml1/highLevelAST")
+import ll=require("../raml1/lowLevelAST")
 import _=require("underscore")
 
 import def=require( "raml-definition-system");
 // import high=require("../highLevelAST");
-import hlimpl=require("../highLevelImpl")
-import universes=require("../tools/universe")
+import hlimpl=require("../raml1/highLevelImpl")
+import universes=require("../raml1/tools/universe")
 import ramlServices=def
 import path=require("path")
 import nominalTypes=defs.rt.nominalTypes;
@@ -17,7 +17,7 @@ import sourceFinder = require("./sourceFinder")
 
 export type ITypeDefinition=hl.ITypeDefinition
 
-import resourceRegistry = require('../jsyaml/resourceRegistry');
+import resourceRegistry = require('../raml1/jsyaml/resourceRegistry');
 
 
 export var declRoot = function (h:hl.IHighLevelNode):hl.IHighLevelNode {
@@ -80,18 +80,18 @@ export function findDeclarations(
     h:hl.IHighLevelNode,
     visitedUnits:{[key:string]:boolean}={},
     rs:hl.IHighLevelNode[]=[]):hl.IHighLevelNode[]{
-    
+
     if(!h.lowLevel()) {
         return [];
-    }    
-    
+    }
+
     var aPath = h.lowLevel().unit().absolutePath();
     visitedUnits[aPath] = true;
 
     if (!(h instanceof hlimpl.ASTNodeImpl)){
         return rs;
     }
-    
+
     var skipAll = false;
 
     h.elements().forEach(x=> {
@@ -99,17 +99,17 @@ export function findDeclarations(
             if(skipAll) {
                 return;
             }
-            
+
             var mm=x.attr("value");
             if (mm) {
                 var unit = x.root().lowLevel().unit().resolve(mm.value());
-                
+
                 if(unit && resourceRegistry.isWaitingFor(unit.absolutePath())) {
                     skipAll = true;
-                    
+
                     return;
                 }
-                
+
                 if (unit != null&&unit.isRAMLUnit()&&!visitedUnits[unit.absolutePath()]) {
                     if(unit.highLevel().isElement()) {
                         findDeclarations(unit.highLevel().asElement(), visitedUnits, rs);
@@ -227,27 +227,27 @@ function getValueAt(text:string,offset:number):string{
 }
 export function extractName(cleaned:string,offset:number):string{
     var txt="";
-    
+
     for(var i=offset;i>=0;i--){
         var c=cleaned[i];
-        
+
         if(c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')') {
             break;
         }
-        
+
         txt=c+txt;
     }
-    
+
     for(var i=offset+1;i<cleaned.length;i++){
         var c=cleaned[i];
-        
+
         if(c==' '||c=='\r'||c=='\n'||c=='|'||c=='['||c==']'||c==':'||c=='('||c==')'||c==',') {
             break;
         }
-        
+
         txt=txt+c;
     }
-    
+
     return txt;
 }
 var searchInTheValue = function (offset:number,content: string,attr:hl.IAttribute, hlnode:hl.IHighLevelNode,p:hl.IProperty=attr.property()):hl.IParseResult {
@@ -328,7 +328,6 @@ export function referenceTargets(p0:hl.IProperty,c:hl.IHighLevelNode):hl.IHighLe
 export function enumValues(p:def.Property,c:hl.IHighLevelNode):string[]{
     if (c) {
         var rs:string[]=[];
-        //TODO FIXME it is very very weird idea but I need to get it working right now
 
         if (p.getAdapter(ramlServices.RAMLPropertyService).isTypeExpr())
         {
@@ -405,7 +404,7 @@ function getLibraryName(node : hl.IParseResult) : string {
 }
 
 export function findDeclarationByNode(node : hl.IParseResult,
-    nodePart? : LocationKind):ll.ICompilationUnit|hl.IParseResult {
+                                      nodePart? : LocationKind):ll.ICompilationUnit|hl.IParseResult {
     var unit = node.lowLevel().unit();
     if (!unit) {
         return null;
@@ -477,7 +476,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                     }
                 })
             }
-    })}
+        })}
     if (result){
         return result;
     }
@@ -977,17 +976,17 @@ export function refFinder(root:hl.IHighLevelNode,node:hl.IHighLevelNode,result:h
             }
         }
         else if (pr.getAdapter(ramlServices.RAMLPropertyService).isTypeExpr()&&typeof vl=="string"){
-                var tpa = root.localType();
+            var tpa = root.localType();
 
-                testUsage(<def.NodeClass>tpa, a, node, result);
-                var libraryName = getLibraryName(node)
-                if(libraryName && vl.indexOf(libraryName) != -1) {
-                    var referencingLibrary = getLibraryDefiningNode(a)
-                    if (referencingLibrary &&
-                        referencingLibrary.lowLevel().start() == node.lowLevel().start()) {
-                        result.push(a)
-                    }
+            testUsage(<def.NodeClass>tpa, a, node, result);
+            var libraryName = getLibraryName(node)
+            if(libraryName && vl.indexOf(libraryName) != -1) {
+                var referencingLibrary = getLibraryDefiningNode(a)
+                if (referencingLibrary &&
+                    referencingLibrary.lowLevel().start() == node.lowLevel().start()) {
+                    result.push(a)
                 }
+            }
         }
         if ((<def.Property>pr).isReference()||pr.isDescriminator()){
             if (typeof vl=='string'){
