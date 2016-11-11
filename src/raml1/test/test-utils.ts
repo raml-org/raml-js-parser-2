@@ -110,6 +110,8 @@ export function compareDump(actual: any, expectedPath, apiPath) {
 }
 
 export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
+  console.log("")
+  console.log("Test utils: start loading " + name)
   var unit = loadUnit(name,path.dirname(name));
 
   var api = <high.ASTNodeImpl>high.fromUnit(unit);
@@ -119,6 +121,7 @@ export function loadApi(name: string, neverExpand = false):high.ASTNodeImpl {
   }
 
   if(!api) throw new Error("couldn't load api from " + name);
+  console.log("Test utils: end loading " + name)
   return api;
 }
 
