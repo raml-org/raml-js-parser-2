@@ -1390,6 +1390,7 @@ function testErrorsEnd(p:string) {
 }
 
 export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=false){
+    console.log("Starting test errors for " + p)
     var api=util.loadApi(p);
     api = util.expandHighIfNeeded(api);
 
@@ -1444,8 +1445,10 @@ export function testErrors(p:string, expectedErrors=[],ignoreWarnings:boolean=fa
 
         errors.forEach(error=>console.warn(error.message + " : " + unitContents.substr(error.start, error.end-error.start)));
     }
+    console.log("Before asserting test errors for " + p)
     assert.equal(hasUnexpectedErr, false, "Unexpected errors found\n"+errorMsg);
     assert.equal(errors.length, expectedErrors.length, "Wrong number of errors\n"+errorMsg);
+    console.log("Finishing test errors for " + p)
 }
 function testIds(p:string){
     var api=util.loadApi(p);

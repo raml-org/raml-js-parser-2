@@ -49,12 +49,14 @@ describe('Low level model: nodes markup', function () {
 
   it('structured json attribute markup #markup2', function (done) {
     try {
+      console.log("Start of structured json attribute markup #markup2")
       var api = util.loadApi(util.data('attr/sattr1.raml'), true);
       var node: hl.IHighLevelNode = api.elementsOfKind('resources')[0];
       var result = genStructuredValue("base", node, node.definition().property('type'));
       var sv = <high.StructuredValue>result;
       var svh = sv.toHighLevel();
 
+      console.log("Before structured json attribute markup failure #markup2")
       svh.attrOrCreate("required").setValue("true");
       var n = <jsyaml.ASTNode>svh.lowLevel();
 
