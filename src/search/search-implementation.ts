@@ -311,9 +311,17 @@ export function referenceTargets(p0:hl.IProperty,c:hl.IHighLevelNode):hl.IHighLe
         var subTypes=nodesDeclaringType(p.range(),c);
         return subTypes;
     }
+
+    console.log("Checking if property " + p.nameId() + " is reference")
     if (p.isReference()){
+        console.log("Property " + p.nameId() + " is reference")
         var rt=p.referencesTo();
+        console.log("Its runtime type is found: " + (rt != null))
+        if (rt) {
+            console.log("And found type name is: " + rt.nameId())
+        }
         var subTypes=nodesDeclaringType(rt,c);
+        console.log("Node declaring found: " + (subTypes != null && subTypes.length))
         return subTypes;
     }
     if (p.range().hasValueTypeInHierarchy()){
