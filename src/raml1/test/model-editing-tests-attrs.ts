@@ -47,20 +47,27 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       assert.equal(buf.text, '{key1: value1}');
     });
 
-    it('structured json attribute markup #markup2', function () {
-      var api = util.loadApi(util.data('attr/sattr1.raml'), true);
-      var node:hl.IHighLevelNode = api.elementsOfKind('resources')[0];
-      var result = genStructuredValue("base", node, node.definition().property('type'));
-      var sv = <high.StructuredValue>result;
-      var svh = sv.toHighLevel();
+    it('structured json attribute markup #markup2', function (done) {
+      try {
+        var api = util.loadApi(util.data('attr/sattr1.raml'), true);
+        var node: hl.IHighLevelNode = api.elementsOfKind('resources')[0];
+        var result = genStructuredValue("base", node, node.definition().property('type'));
+        var sv = <high.StructuredValue>result;
+        var svh = sv.toHighLevel();
 
-      svh.attrOrCreate("required").setValue("true");
-      var n = <jsyaml.ASTNode>svh.lowLevel();
+        svh.attrOrCreate("required").setValue("true");
+        var n = <jsyaml.ASTNode>svh.lowLevel();
 
-      var buf2 = new jsyaml.MarkupIndentingBuffer('');
-      n.markupNode(buf2, n._actualNode(), 0, true);
-      //console.log('text2:\n' + buf2.text);
-      assert.equal(buf2.text, 'base: {required: true}');
+        var buf2 = new jsyaml.MarkupIndentingBuffer('');
+        n.markupNode(buf2, n._actualNode(), 0, true);
+        //console.log('text2:\n' + buf2.text);
+        assert.equal(buf2.text, 'base: {required: true}');
+
+        done();
+      } catch (Exception) {
+        done(Exception)
+      }
+
     });
 
     it('include ref markup #markup3', function () {
