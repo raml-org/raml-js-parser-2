@@ -391,8 +391,11 @@ export class StructuredValue implements hl.IStructuredValue{
         if (this._hl){
             return this._hl;
         }
-        var vn=this.valueName();
-        var cands=search.referenceTargets(this._pr, parent).filter(x=>qName(x,parent)==vn);
+        var vn=this.valueName()
+        var refTargets = search.referenceTargets(this._pr, parent);
+        console.log("refTargets:" + (refTargets != null && refTargets.length && refTargets.length > 0))
+        var cands=refTargets.filter(x=>qName(x,parent)==vn);
+        console.log("cands:" + (cands != null && cands.length && cands.length > 0))
         if (cands&&cands[0]){
             var tp=(<hl.IHighLevelNode>cands[0]).localType();
             var node=new ASTNodeImpl(this.node,parent,<hl.INodeDefinition>tp,this._pr);
