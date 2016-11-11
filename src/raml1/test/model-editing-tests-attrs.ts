@@ -38,17 +38,20 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
 
   describe('Low level model: nodes markup', function () {
     it('structured attribute markup #markup1', function () {
+      console.log("Start of " + 'Low level model: nodes markup');
       var sval = stubs.genStructuredValue('aaa', 'bbb', [{key: 'key1', value: 'value1'}], null);
       var n = <jsyaml.ASTNode>sval.lowLevel();
       var buf = new jsyaml.MarkupIndentingBuffer('');
       n.markupNode(buf, n._actualNode(), 0, true);
       //console.log('markup: ' + textutil.replaceNewlines(buf.text));
       //console.log('node markup: ' + n.text(buf.text));
+      console.log("Before assert of " + 'Low level model: nodes markup');
       assert.equal(buf.text, '{key1: value1}');
     });
 
     it('structured json attribute markup #markup2', function (done) {
       try {
+        console.log("Start of " + 'structured json attribute markup #markup2');
         var api = util.loadApi(util.data('attr/sattr1.raml'), true);
         console.log("Result API print: " + (api != null))
         console.log(api.printDetails());
@@ -65,6 +68,7 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         var buf2 = new jsyaml.MarkupIndentingBuffer('');
         n.markupNode(buf2, n._actualNode(), 0, true);
         //console.log('text2:\n' + buf2.text);
+        console.log("Before assert of " + 'structured json attribute markup #markup2');
         assert.equal(buf2.text, 'base: {required: true}');
 
         done();
@@ -75,11 +79,13 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
     });
 
     it('include ref markup #markup3', function () {
+      console.log("Start of " + 'include ref markup #markup3');
       var api = util.loadApi(util.data('markup/include.raml'), true);
       var buf = new jsyaml.MarkupIndentingBuffer('');
       var node = <jsyaml.ASTNode>api.lowLevel();
       node.markupNode(buf, node._actualNode(), 0, false);
       //console.log('Markup:\n' + buf.text);
+      console.log("Before assert of " + 'include ref markup #markup3');
       util.compareToFile(buf.text, util.data("markup/include-markup.raml"));
     });
 
@@ -89,6 +95,7 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
 
     describe('plain attributes', function () {
       it('add plain attribute #add-attr1', function () {
+        console.log("Start of " + 'add plain attribute #add-attr1');
         var api = util.loadApi(util.data('attr/attr0.raml'), true);
         //var type = <def.NodeClass>util.universe.type("GlobalSchema");
         var response: hl.IHighLevelNode = <hl.IHighLevelNode>util.xpath(api, "resources/methods/responses");
@@ -102,6 +109,7 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
 
         //console.log(api.lowLevel().unit().contents());
+        console.log("Before assert of " + 'add plain attribute #add-attr1');
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr0-add-attr1.raml"));
 
       });
@@ -154,10 +162,12 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
     describe('set str value', function () {
 
       it('set str value to str attribute #attributes11', function () {
+        console.log("Start of " + 'set str value to str attribute #attributes11');
         var api = util.loadApi(util.data('attr/attr1.raml'), true);
         //(<jsyaml.ASTNode>api.lowLevel()).show('ORIGINAL NODE:');
         api.attr('version').setValue('xxxxx');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
+        console.log("Before assert of " + 'set str value to str attribute #attributes11');
         util.assertText(api.attr('version'), 'version: xxxxx');
         util.assertValue(api.attr('version'), 'xxxxx');
         //console.log(api.lowLevel().unit().contents());
@@ -165,8 +175,10 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       });
 
       it('set multiline str value to str attribute #attributes12', function () {
+        console.log("Start of " + 'set multiline str value to str attribute #attributes12');
         var api = util.loadApi(util.data('attr/attr1.raml'), true);
         api.attr('version').setValue('xxx\nyyy\nzzz');
+        console.log("Before assert of " + 'set multiline str value to str attribute #attributes12');
         util.assertText(api.attr('version'), 'version: |\n  xxx\n  yyy\n  zzz');
         util.assertValue(api.attr('version'), 'xxx\nyyy\nzzz');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
@@ -175,8 +187,10 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       });
 
       it('set str value to json attribute #attributes13', function () {
+        console.log("Start of " + 'set str value to json attribute #attributes13');
         var api = util.loadApi(util.data(util.data('attr/attr2.raml')), true);
         api.attr('version').setValue('xxx');
+        console.log("Before assert of " + 'set str value to json attribute #attributes13');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         util.assertText(api.attr('version'), 'version: {xxx: aaa}');
         //util.assertValue(api.attr('version'), 'xxx');
@@ -185,8 +199,10 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       });
 
       it('set multiline str value to json attribute #attributes14', function () {
+        console.log("Start of " + 'set multiline str value to json attribute #attributes14');
         var api = util.loadApi(util.data('attr/attr2.raml'), true);
         api.attr('version').setValue('xxx\nyyy\nzzz');
+        console.log("Before assert of " + 'set multiline str value to json attribute #attributes14');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         util.assertText(api.attr('version'), 'version: |\n  xxx\n  yyy\n  zzz');
@@ -195,12 +211,14 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
       });
 
       it('set str value to yaml attribute #attributes15', function () {
+        console.log("Start of " + 'set str value to yaml attribute #attributes15');
         var api = util.loadApi(util.data('attr/attr3.raml'), true);
         api.attr('version').setValue('xxx');
         //(<jsyaml.ASTNode>api.lowLevel()).show('UPDATED NODE:');
         //console.log(api.lowLevel().unit().contents());
         //TODO need more correct crlf aware comparision here
         //util.assertText(api.attr('version'), 'version:\r\n  xxx: aaa\r');
+        console.log("Before assert of " + 'set str value to yaml attribute #attributes15');
         util.compareToFile(api.lowLevel().unit().contents(), util.data("attr/attr3-test15.raml"));
       });
 
