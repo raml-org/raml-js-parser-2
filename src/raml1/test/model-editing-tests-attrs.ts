@@ -50,10 +50,14 @@ function genStructuredValue(name: string, parent: hl.IHighLevelNode, pr: hl.IPro
     it('structured json attribute markup #markup2', function (done) {
       try {
         var api = util.loadApi(util.data('attr/sattr1.raml'), true);
+        console.log("Result API print: " + (api != null))
+        console.log(api.printDetails());
         var node: hl.IHighLevelNode = api.elementsOfKind('resources')[0];
         var result = genStructuredValue("base", node, node.definition().property('type'));
+        console.log("Structured value generated: " + (result != null));
         var sv = <high.StructuredValue>result;
         var svh = sv.toHighLevel();
+        console.log("Structured value converted to high level: " + (svh != null));
 
         svh.attrOrCreate("required").setValue("true");
         var n = <jsyaml.ASTNode>svh.lowLevel();
