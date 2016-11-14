@@ -453,3 +453,78 @@ export interface IStructuredValue {
 
     toHighLevel2(parent?: IHighLevelNode):IHighLevelNode;
 }
+
+export interface PluginValidationIssue extends rTypes.tsInterfaces.PluginValidationIssue{
+    
+    issueCode?:string,
+    message?:string,
+    node?:IParseResult,
+    isWarning?:boolean,
+    
+    validationIssue?:ValidationIssue
+}
+
+/**
+ * Model of AST node validation plugin
+ */
+export interface INodeValidationPlugin{
+
+    /**
+     * Apply validation to AST node
+     * @param node AST node
+     * @return array of {ValidationIssue}
+     */
+    process(node:IParseResult):PluginValidationIssue[];
+
+    /**
+     * String ID of the plugin
+     */
+    id():string;
+}
+
+
+/**
+ * Retrieve a list of registered node validation plugins
+ */
+export function getNodeValidationPlugins():INodeValidationPlugin[]{
+    var rv:any = global.ramlValidation;
+    if(rv){
+        var nodeValidators = rv.nodeValidators;
+        if(Array.isArray(nodeValidators)){
+            return <INodeValidationPlugin[]>nodeValidators;
+        }
+    }
+    return [];
+}
+
+/**
+ * Retrieve a list of registered annotation node validation plugins
+ */
+export function getNodeAnnotationValidationPlugins():ASTAnnotationValidationPlugin[]{
+    var rv:any = global.ramlValidation;
+    if(rv){
+        var astAnnotationValidators = rv.astAnnotationValidators;
+        if(Array.isArray(astAnnotationValidators)){
+            return <ASTAnnotationValidationPlugin[]>astAnnotationValidators;
+        }
+    }
+    return [];
+}
+
+
+/**
+ * Model of annotation validator
+ */
+export interface ASTAnnotationValidationPlugin {
+
+    /**
+     * validate annotated RAML element
+     */
+    process(entry:rTypes.tsInterfaces.IAnnotatedElement):PluginValidationIssue[];
+
+    /**
+     * String ID of the plugin
+     */
+    id():string;
+
+}
