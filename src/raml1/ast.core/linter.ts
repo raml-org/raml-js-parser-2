@@ -27,7 +27,7 @@ import typeBuilder=require("./typeBuilder")
 import OverloadingValidator=require("./overloadingValidator")
 import expander=require("./expander")
 import builder = require('./builder')
-import search = require("./search")
+import search = require("../../search/search-interface")
 import rtypes=def.rt;
 import util=require("../../util/textutil")
 

@@ -18,7 +18,7 @@ import util = require('../../util/index');
 import expander=require("../ast.core/expander")
 import proxy = require("../ast.core/LowLevelASTProxy")
 import referencePatcher = require("../ast.core/referencePatcher")
-import search=require("../ast.core/search")
+import search=require("../../search/search-interface")
 import ll=require("../lowLevelAST");
 import llImpl=require("../jsyaml/jsyaml2lowLevel");
 import json=require("../jsyaml/json2lowLevel");
@@ -27,7 +27,6 @@ import ramlservices=defs
 import universeHelpers = require("../tools/universeHelpers");
 import universeProvider = defs
 import rTypes = defs.rt;
-import sourceFinder = require("../ast.core/sourceFinder")
 
 export function resolveType(p:RamlWrapper.TypeDeclaration):hl.ITypeDefinition{
     return p.highLevel().localType();
@@ -958,7 +957,7 @@ function findComponentTypeDeclByRuntimeType(
     var componentType : hl.ITypeDefinition = runtimeArrayType.componentType();
     if (!componentType) return null;
 
-    var componentTypeHLSourceProvider = sourceFinder.getNominalTypeSource(componentType);
+    var componentTypeHLSourceProvider = search.getNominalTypeSource(componentType);
     if (!componentTypeHLSourceProvider) return null;
 
     var componentTypeSource = componentTypeHLSourceProvider.getSource();

@@ -16,7 +16,7 @@ import linter=require("../ast.core/linter")
 import Opt = require('../../Opt')
 import util = require('../../util/index');
 import typeexpression=require("../ast.core/typeBuilder")
-import search=require("../ast.core/search")
+import search=require("../../search/search-interface")
 import ramlservices=require("../definition-system/ramlServices")
 import universeHelpers = require("../tools/universeHelpers");
 
