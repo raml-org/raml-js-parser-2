@@ -1,0 +1,59 @@
+#%RAML 1.0
+
+title: test API
+
+uses:
+  annotations: ./libs/annotations.raml
+
+types:
+  T1:
+    type: object
+    properties:
+      name:
+        type: string
+        (annotations.XMLName): Name
+
+  T2:
+    type: T1
+    properties:
+      size:
+        type: number
+        (annotations.XMLName): Size><
+        (annotations.XMLAttribute):
+  T3:
+    type: T1
+  T4:
+    type: T2
+    properties:
+      address:
+        (annotations.XMLAttribute):
+        (annotations.XMLName): Address
+        properties:
+          street: string
+          city: string
+
+/root:
+  /resource^2$:
+    post:
+      body:
+        application/json: T4
+
+  /entries:
+    description: the products root resource
+    get:
+      (annotations.CRUDMarker):
+        collectionName: products
+        operation: retrieveCollection
+
+
+    /{id}:
+      get:
+        (annotations.CRUDMarker):
+          collectionName: products
+          operation: retrieveElement
+
+  /update/{id}:
+    put:
+      (annotations.CRUDMarker):
+        collectionName: products
+        operation: retrieveCollection

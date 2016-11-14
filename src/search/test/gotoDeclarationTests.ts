@@ -3,24 +3,16 @@ import assert = require("assert")
 
 import fs = require("fs")
 import path = require("path")
-//import _=require("underscore")
-//
-//import def = require("raml-definition-system")
-//
-//import ll=require("../lowLevelAST")
-import yll=require("../jsyaml/jsyaml2lowLevel")
-import high = require("../highLevelImpl")
-import hl=require("../highLevelAST")
+import yll=require("../../raml1/jsyaml/jsyaml2lowLevel")
+import high = require("../../raml1/highLevelImpl")
+import hl=require("../../raml1/highLevelAST")
 import _=require("underscore")
-import search=require("../ast.core/search")
-//
-//import t3 = require("../artifacts/raml10parser")
-//
-import util = require("./test-utils")
+import search=require("../search-implementation")
+import util = require("../../raml1/test/test-utils")
 
 describe('Goto declaration tests',function(){
     it ("Goto decl1",function(){
-    testErrors("data/gotoDeclaration/test1.raml")
+        testErrors("data/gotoDeclaration/test1.raml")
     });
     it ("Goto decl2",function(){
         testErrors("data/gotoDeclaration/test2.raml")

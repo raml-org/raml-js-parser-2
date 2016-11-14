@@ -1,10 +1,10 @@
-/// <reference path="../../../typings/main.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
 
 import def=require("raml-definition-system")
 import ramlTypes=def.rt;
-import hl=require("../highLevelAST")
-import lowLevel = require("../lowLevelAST")
-import universes=require("../tools/universe")
+import hl=require("../raml1/highLevelAST")
+import lowLevel = require("../raml1/lowLevelAST")
+import universes=require("../raml1/tools/universe")
 import _=require("underscore")
 
 export interface IHighLevelSourceProvider {
@@ -19,7 +19,7 @@ export function getExtraProviderSource(extraProvider: def.IHasExtra) : IHighLeve
     if (def.isSourceProvider(sourceExtra)) {
         return sourceExtra;
     }
-    
+
     if (lowLevel.isLowLevelNode(sourceExtra)) {
         return {
             getSource() {
@@ -48,7 +48,7 @@ export function getRTypeSource(
 export function findRTypeByNominal(nominalType : ramlTypes.nominalInterfaces.ITypeDefinition) : ramlTypes.IParsedType {
     var adapters = nominalType.getAdapters();
     if (!adapters) return null;
-    
+
     return _.find(adapters, adapter=>{
         return def.rt.isParsedType(adapter);
     })

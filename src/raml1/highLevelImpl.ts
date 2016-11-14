@@ -8,7 +8,7 @@ import proxy=require("./ast.core/LowLevelASTProxy")
 import def=defs;
 import high=require("./highLevelAST");
 import builder=require("./ast.core/builder")
-import search=require("./ast.core/search")
+import search=require("../search/search-interface")
 import mutators=require("./ast.core/mutators")
 import linter=require("./ast.core/linter")
 import expander=require("./ast.core/expander")
@@ -212,6 +212,12 @@ export class BasicASTNode implements hl.IParseResult {
     validate(v:hl.ValidationAcceptor):void{
 
         linter.validate(this,v);
+        for(var pluginIssue of applyNodeValidationPlugins(this)){            
+            v.accept(pluginIssue);
+        }
+        for(var pluginIssue of applyNodeAnnotationValidationPlugins(this)){
+            v.accept(pluginIssue);
+        }
     }
     allowRecursive(){
         return false;
@@ -1040,7 +1046,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if (k==universes.Universe10.Overlay||k==universes.Universe10.Extension){
             this.clearTypesCache();
         }
-        linter.validate(this,v);
+        super.validate(v);
     }
     clearTypesCache(){
         this._types=null;
@@ -2062,4 +2068,156 @@ export function isAnnotationTypeFragment(node:hl.IHighLevelNode):boolean{
         return false;
     }
     return fLine[2] == "AnnotationTypeDeclaration";
+}
+
+export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
+
+    constructor(protected _node:hl.IParseResult){};
+
+    private _annotations:AnnotationInstance[];
+
+    private _annotationsMap: {[key:string]:def.rt.tsInterfaces.IAnnotationInstance};
+
+    kind():string{ return "AnnotatedNode"; }
+
+    annotationsMap(): {[key:string]:def.rt.tsInterfaces.IAnnotationInstance}{
+        if(!this._annotationsMap) {
+            this._annotationsMap = {};
+            this.annotations().forEach(x=>{
+                var n = x.name();
+                var ind = n.lastIndexOf(".");
+                if(ind>=0){
+                    n = n.substring(ind+1);
+                }
+                this._annotationsMap[n]=x
+            });
+        }
+        return this._annotationsMap;
+    }
+
+    annotations(): def.rt.tsInterfaces.IAnnotationInstance[]{
+        if(!this._annotations) {
+            var aAttrs:hl.IAttribute[] = [];
+            if (this._node.isElement()) {
+                aAttrs = this._node.asElement().attributes(
+                    def.universesInfo.Universe10.Annotable.properties.annotations.name);
+            }
+            else if(this._node.isAttr()){
+                aAttrs = this._node.asAttr().annotations();
+            }
+            this._annotations = aAttrs.map(x=>new AnnotationInstance(x));
+        }
+        return this._annotations;
+    }
+
+    value():any{
+        if(this._node.isElement()){
+            return this._node.asElement().wrapperNode().toJSON();
+        }
+        else if(this._node.isAttr()){
+            var val = this._node.asAttr().value();
+            if(val instanceof StructuredValue){
+                return (<StructuredValue>val).lowLevel().dump();
+            }
+            return val;
+        }
+        return this._node.lowLevel().dump();
+    }
+
+    name():string{ return this._node.name(); }
+
+    entry():hl.IParseResult{ return this._node; }
+
+}
+
+export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstance {
+
+    constructor(protected attr:hl.IAttribute){}
+
+    name():string{
+        return this.attr.value().valueName();
+    }
+    /**
+     * Annotation value
+     */
+    value(): any{
+        var val = this.attr.value();
+        if(val instanceof  StructuredValue){
+            var obj = (<StructuredValue>val).lowLevel().dumpToObject();
+            var key = Object.keys(obj)[0];
+            return obj[key];
+        }
+        return val;
+    }
+    /**
+     * Annotation definition type
+     */
+    definition(): def.rt.tsInterfaces.IParsedType{
+        var parent = this.attr.parent();
+        var vn = this.name();
+        var cands = search.referenceTargets(this.attr.property(),parent).filter(
+            x=>qName(x,parent)==vn);
+
+        if(cands.length==0){
+            return null;
+        }
+        return cands[0].parsedType();
+    }
+}
+
+function toValidationIssue(x:hl.PluginValidationIssue, pluginId:string, node:hl.IParseResult) {
+    var vi = x.validationIssue;
+    if (!vi) {
+        var issueCode = x.issueCode || pluginId;
+        var node1 = x.node || node;
+        var message = x.message || `The ${pluginId} plugin reports an error`;
+        var isWarning = x.isWarning;
+        vi = linter.createIssue(issueCode, message, node1, isWarning);
+    }
+    return vi;
+};
+/**
+ * Apply registered node validation plugins to the type
+ * @param node node to be validated
+ * @returns an array of {NodeValidationPluginIssue}
+ */
+
+export function applyNodeValidationPlugins(node:hl.IParseResult):hl.ValidationIssue[] {
+
+    var result:hl.ValidationIssue[] = [];
+    var plugins = hl.getNodeValidationPlugins();
+    for (var tv of plugins) {
+        var issues:hl.PluginValidationIssue[] = tv.process(node);
+        if (issues) {
+            issues.forEach(x=>{
+                var vi = toValidationIssue(x, tv.id(), node);
+                result.push(vi);
+            });
+        }
+    }
+    return result;
+}
+
+/**
+ * Apply registered node annotation validation plugins to the type
+ * @param node node to be validated
+ * @returns an array of {NodeValidationPluginIssue}
+ */
+
+export function applyNodeAnnotationValidationPlugins(
+    node:hl.IParseResult):hl.ValidationIssue[] {
+
+    var aEntry = new AnnotatedNode(node);
+    var result:hl.ValidationIssue[] = [];
+    var plugins = hl.getNodeAnnotationValidationPlugins();
+    for (var tv of plugins) {
+        var issues:hl.PluginValidationIssue[] = tv.process(aEntry);
+        if (issues) {
+            issues.forEach(x=>{
+                var vi = toValidationIssue(x, tv.id(), node);
+                result.push(vi);
+            });
+        }
+    }
+    return result;
 }

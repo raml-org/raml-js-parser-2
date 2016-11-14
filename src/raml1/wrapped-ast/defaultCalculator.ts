@@ -9,7 +9,7 @@ import universes = require("../tools/universe")
 import universeHelpers = require("../tools/universeHelpers")
 import services=def
 import parserCore = require("./parserCore")
-import search = require("../ast.core/search")
+import search = require("../../search/search-interface")
 import RamlWrapper10 = require("../artifacts/raml10parser")
 import RamlWrapper08 = require("../artifacts/raml08parser")
 

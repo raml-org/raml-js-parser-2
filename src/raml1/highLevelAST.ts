@@ -662,7 +662,6 @@ export interface PluginValidationIssue extends rTypes.tsInterfaces.PluginValidat
     message?:string,
     node?:IParseResult,
     isWarning?:boolean,
-
     validationIssue?:ValidationIssue
 }
 

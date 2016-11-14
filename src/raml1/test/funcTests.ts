@@ -11,7 +11,7 @@ import tools = require("./testTools")
 import index = require("../../index");
 import parserMod = require("../../parserMod");
 import project = require("../../project");
-import search = require("../../searchProxy");
+import search = require("../../search/search-interface");
 import schema = require("../../schema");
 
 import fs = require("fs");

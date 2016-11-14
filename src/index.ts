@@ -185,7 +185,7 @@ export import ll=require("./raml1/lowLevelAST")
 /**
  * Search functionality, operates on high AST level.
  */
-export import search=require("./searchProxy")
+export import search=require("./search/search-interface")
 
 /**
  * High-level stub node factory methods.
