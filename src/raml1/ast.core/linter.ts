@@ -42,6 +42,7 @@ import xmlutil = require('../../util/xmlutil')
 import {error} from "util";
 import {LowLevelWrapperForTypeSystem} from "../highLevelImpl";
 import {find} from "../../util/index";
+import {Operation, MethodBase, ResourceBase} from "../artifacts/raml10parserapi";
 var changeCase = require('change-case');
 var pluralize = require('pluralize');
 
@@ -503,14 +504,14 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     }
 
     if((<any>node).definition && (<any>node).definition().isAssignableFrom(universes.Universe10.Operation.name)) {
-        var queryStringNode = (<any>node).element(universes.Universe10.Operation.properties.queryString.name);
-        var queryParamsNode: ll.ILowLevelASTNode = (<any>node).lowLevel && <ll.ILowLevelASTNode>_.find((<any>node).lowLevel().children(), child => (<any>child).key && (<any>child).key() === universes.Universe10.Operation.properties.queryParameters.name);
-
+        var searchResult: QueryDeclarationsSearchResult = queryDeclarationsSearch((<any>node).wrapperNode());
+        
+        var queryStringNode = searchResult.queryStringComesFrom;
+        var queryParamsNode = searchResult.queryParamsComesFrom;
+        
         if(queryStringNode && queryParamsNode) {
-            v.accept(createIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED,
-                { propName: universes.Universe10.Operation.properties.queryParameters.name}, queryStringNode));
-            v.accept(createLLIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED,
-                { propName: universes.Universe10.Operation.properties.queryString.name}, queryParamsNode, node));
+            v.accept(createIssueForQueryDeclarations(queryStringNode, node, false));
+            v.accept(createIssueForQueryDeclarations(queryParamsNode, node, true));
         }
     }
 
@@ -523,6 +524,113 @@ export function validateBasicFlat(node:hlimpl.BasicASTNode,v:hl.ValidationAccept
     }
 
     return true;
+}
+
+function createIssueForQueryDeclarations(node: ll.ILowLevelASTNode | hl.IParseResult, parentNode: hl.IParseResult, isQueryParamsDeclaration: boolean): hl.ValidationIssue {
+    var asLowLevel:ll.ILowLevelASTNode = <ll.ILowLevelASTNode>node;
+    var asHighLevel:hl.IParseResult = <hl.IParseResult>node;
+
+    var propertyName = isQueryParamsDeclaration ? universes.Universe10.Operation.properties.queryString.name : universes.Universe10.Operation.properties.queryParameters.name;
+
+    if(asLowLevel.unit) {
+        return createLLIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+            propName: propertyName
+        }, asLowLevel, parentNode);
+    } else {
+        return createIssue1(messageRegistry.PROPERTY_ALREADY_SPECIFIED, {
+            propName: propertyName
+        }, asHighLevel);
+    }
+}
+
+class QueryDeclarationsSearchResult {
+    queryParamsComesFrom: ll.ILowLevelASTNode | hl.IParseResult;
+    queryStringComesFrom: ll.ILowLevelASTNode | hl.IParseResult;
+}
+
+function queryDeclarationsSearch(operation: MethodBase): QueryDeclarationsSearchResult {
+    return {
+        queryParamsComesFrom: queryDeclarationSearch(operation, true),
+        queryStringComesFrom: queryDeclarationSearch(operation, false)
+    }
+}
+
+function queryDeclarationSearch(operation: MethodBase, isParamsSearch: boolean): ll.ILowLevelASTNode | hl.IParseResult {
+    if(!operation) {
+        return null;
+    }
+    
+    var declaredHere = queryDeclarationFromMethodBase(operation, isParamsSearch);
+
+    if(declaredHere) {
+        return declaredHere;
+    }
+
+    var traitRefs = operation.is();
+
+    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(traitRef.trait(), isParamsSearch));
+
+    if(declaredIn) {
+        return declaredIn.highLevel();
+    }
+
+    var resourceBase: ResourceBase = (<any>operation).parentResource && (<any>operation).parentResource();
+
+    var found = resourceBase && queryDeclarationSearchInResourceBase(resourceBase, isParamsSearch);
+
+    if(found) {
+        return found;
+    }
+
+    resourceBase = (<any>operation).parent && (<any>operation).parent();
+
+    if(resourceBase && resourceBase.highLevel().definition().isAssignableFrom(universes.Universe10.ResourceBase.name)) {
+        return queryDeclarationSearchInResourceBase(resourceBase, isParamsSearch);
+    }
+    
+    return null;
+}
+
+function queryDeclarationSearchInResourceBase(resource: ResourceBase, isParamsSearch: boolean): ll.ILowLevelASTNode | hl.IParseResult {
+    var traitRefs = resource.is();
+
+    var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(traitRef.trait(), isParamsSearch));
+
+    if(declaredIn) {
+        return declaredIn.highLevel();
+    }
+
+    var resourceTypeRef = resource.type();
+
+    var resourceType = resourceTypeRef && resourceTypeRef.resourceType();
+
+    var foundInType = resourceType && queryDeclarationSearchInResourceBase(resourceType, isParamsSearch);
+
+    if(foundInType) {
+        return resourceTypeRef.highLevel();
+    }
+}
+
+function queryDeclarationFromMethodBase(operation: MethodBase, isParamsSearch: boolean): ll.ILowLevelASTNode | hl.IParseResult {
+    if(isParamsSearch) {
+        return queryParametersDeclarationFromMehodBase(operation);
+    } else {
+        return queryStringDeclarationFromMehodBase(operation);
+    }
+}
+
+function queryParametersDeclarationFromMehodBase(operation: MethodBase): ll.ILowLevelASTNode | hl.IParseResult {
+    var node = operation.highLevel();
+
+    return (<any>node).lowLevel && <ll.ILowLevelASTNode>_.find((<any>node).lowLevel().children(), child => (<any>child).key && (<any>child).key() === universes.Universe10.Operation.properties.queryParameters.name);
+}
+
+function queryStringDeclarationFromMehodBase(operation: MethodBase): ll.ILowLevelASTNode | hl.IParseResult {
+    var node = operation.highLevel();
+
+    var highLevelResult = (<any>node).element(universes.Universe10.Operation.properties.queryString.name);
+
+    return highLevelResult;
 }
 
 /**
