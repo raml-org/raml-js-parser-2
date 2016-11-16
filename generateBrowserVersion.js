@@ -94,7 +94,7 @@ function updateVersion() {
     var packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
 
     targetJson.version = packageJson.version;
-    targetJson.name = packageJson.name + (isNpm ? "-browser" : "");
+    targetJson.name = packageJson.name + '-browser';
     targetJson.main = isNpm ? "index.js" : "browser_version_bower/index.js";
 
     if(!isNpm) {
