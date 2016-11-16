@@ -79,7 +79,7 @@ function webPackForBrowserLib() {
         updateVersion();
         
         if(isNpm) {
-            //childProcess.execSync('cd browser_version && npm publish');
+            childProcess.execSync('cd browser_version && npm publish');
         }
     });
 }
