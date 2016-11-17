@@ -172,7 +172,7 @@ function findTemplates(a:core.BasicNode,filter) {
     if(!nodePath){
         nodePath = ll.unit().path();
     }
-    var isProxy = a.highLevel().lowLevel() instanceof proxy.LowLevelProxyNode;
+    var isProxy = !universeHelpers.isOverlayType(a.highLevel().definition());
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var topLevelArr = arr.map(x=>{
         var topLevelNode:core.BasicNode;
