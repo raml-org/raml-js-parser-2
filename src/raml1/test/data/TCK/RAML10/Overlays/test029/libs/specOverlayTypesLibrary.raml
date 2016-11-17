@@ -1,0 +1,14 @@
+#%RAML 1.0 Library
+
+annotationTypes:
+  highLevelApiDescription: string | nil
+  apiLogo: string | nil
+  specAuthor: string | nil
+  devPortal: string | nil
+  extraResources:
+    type: array
+    items:
+      properties:
+        title: string
+        type: string
+        uri: string
