@@ -1,0 +1,35 @@
+#%RAML 1.0 Library
+
+annotationTypes:
+
+  CRUDMarker:
+    allowedTargets: Method
+    description: |
+      Mark the method as a crud operation on particular collection
+      Suggested operation to method correspondence:
+      {
+          "createElement"      : "post"  ,
+          "retrieveElement"    : "get"   ,
+          "retrieveCollection" : "get"   ,
+          "updateElement"      : "put"   ,
+          "deleteElement"      : "delete"
+      }
+    properties:
+      collectionName: string
+      operation:
+        type: string
+        enum:
+          - createElement
+          - retrieveElement
+          - retrieveCollection
+          - updateElement
+          - deleteElement
+
+  XMLName:
+    type: string
+    allowedTargets: TypeDeclaration
+
+
+  XMLAttribute:
+    type: nil
+    allowedTargets: TypeDeclaration
