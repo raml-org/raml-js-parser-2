@@ -445,6 +445,16 @@ export class StructuredValue implements hl.IStructuredValue{
 
 
 
+/**
+ * Instanceof for StructuredValue class
+ * @param node
+ * @returns
+ */
+export function isStructuredValue(node : any) : node is StructuredValue {
+    var anyNode = <any>node;
+    return anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
+}
+
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 
@@ -806,6 +816,16 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
         return this.fromKey;
     }
 
+}
+
+/**
+ * Instanceof for ASTPropImpl class
+ * @param node
+ * @returns
+ */
+export function isASTPropImpl(node : any) : node is ASTPropImpl {
+    var anyNode = <any>node;
+    return anyNode.isString && anyNode.isFromKey && anyNode.isEmbedded;
 }
 
 var nodeBuilder=new builder.BasicNodeBuilder()
@@ -1967,6 +1987,16 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     // localUniverse.setDescription(spec);
     return { ptype: ptype, localUniverse: localUniverse };
 };
+
+/**
+ * Instanceof for ASTNodeImpl type.
+ * @param node
+ * @returns
+ */
+export function isASTNodeImpl(node : any) : node is ASTNodeImpl {
+    var anyNode = <any>node;
+    return anyNode.setTypes && anyNode.patchProp && anyNode.clearChildrenCache;
+}
 
 export function ramlFirstLine(content:string):RegExpMatchArray{
     return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);
