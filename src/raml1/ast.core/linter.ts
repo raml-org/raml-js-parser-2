@@ -565,8 +565,8 @@ function queryDeclarationSearch(operation: MethodBase, isParamsSearch: boolean):
     if(declaredHere) {
         return declaredHere;
     }
-
-    var traitRefs = operation.is();
+    
+    var traitRefs = (operation.is && operation.is()) || [];
 
     var declaredIn = _.find(traitRefs, traitRef => queryDeclarationSearch(traitRef.trait(), isParamsSearch));
 
