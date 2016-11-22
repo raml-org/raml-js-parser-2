@@ -1019,6 +1019,16 @@ export class UsesNodeWrapperFoTypeSystem extends LowLevelWrapperForTypeSystem{
         return null;
     }
 }
+export function auxiliaryTypeForExample(node:hl.IHighLevelNode) {
+    var typeYamlNode = yaml.newMap([yaml.newMapping(yaml.newScalar("example"), node.lowLevel().actual())]);
+    var typesNode = yaml.newMapping(yaml.newScalar("types")
+        , yaml.newMap([yaml.newMapping(yaml.newScalar("__AUX_TYPE__"), typeYamlNode)]));
+    var yamlNode = yaml.newMap([typesNode]);
+    var llNode = new jsyaml.ASTNode(yamlNode, node.lowLevel().unit(), null, null, null);
+    var types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(llNode, node));
+    var nominal = rTypes.toNominal(types.types()[0], x=>null);
+    return nominal;
+};
 export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelNode{
 
 
@@ -1209,13 +1219,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     wrapperNode():ParserCore.BasicNode{
         if(!this._wrapperNode){
             if(universeHelpers.isExampleSpecType(this.definition())){
-                var typeYamlNode = yaml.newMap([yaml.newMapping(yaml.newScalar("example"),this.lowLevel().actual())]);
-                var typesNode = yaml.newMapping(yaml.newScalar("types")
-                    ,yaml.newMap([yaml.newMapping(yaml.newScalar("__AUX_TYPE__"),typeYamlNode)]));
-                var yamlNode = yaml.newMap([typesNode]);
-                var llNode = new jsyaml.ASTNode(yamlNode,this.lowLevel().unit(),null,null,null);
-                var types = rTypes.parseFromAST(new LowLevelWrapperForTypeSystem(llNode,this));
-                var nominal = rTypes.toNominal(types.types()[0],x=>null);
+                var nominal = auxiliaryTypeForExample(this);
                 var spec = wrapperHelper.examplesFromNominal(nominal,this,true,false);
                 return spec[0];
             }
@@ -1804,6 +1808,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         }
         if (this._node) {
             this._children = nodeBuilder.process(this, this._node.children());
+            this._mergedChildren = null;
             return this._children;
 
         }

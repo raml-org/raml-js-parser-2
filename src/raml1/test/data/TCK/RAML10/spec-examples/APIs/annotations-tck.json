@@ -232,7 +232,7 @@
                 "name": "experimental"
               },
               "feedbackRequested": {
-                "structuredValue": null,
+                "structuredValue": "Feedback committed!",
                 "name": "feedbackRequested"
               }
             },

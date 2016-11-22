@@ -22,18 +22,19 @@ export class AttributeDefaultsCalculator {
      * attrValueOrDefault method, only original values.
      * @constructor
      */
-    constructor(private enabled : boolean) {
+    constructor(private enabled : boolean, private toHighLevel=false) {
+        this.valueCalculators = [
+            new RequiredPropertyCalculator(),
+            new TypePropertyCalculator(),
+            new DisplayNamePropertyCalculator(),
+            new MediaTypeCalculator(),
+            new SecuredByPropertyCalculator(this.toHighLevel),
+            new ProtocolsPropertyCalculator(),
+            new VersionParamEnumCalculator()
+        ];
     }
 
-    valueCalculators:ValueCalculator[] = [
-        new RequiredPropertyCalculator(),
-        new TypePropertyCalculator(),
-        new DisplayNamePropertyCalculator(),
-        new MediaTypeCalculator(),
-        new SecuredByPropertyCalculator(),
-        new ProtocolsPropertyCalculator(),
-        new VersionParamEnumCalculator()
-    ];
+    valueCalculators:ValueCalculator[]
     /**
      * Return attribute default value if defaults calculator is enabled.
      * If attribute value is null or undefined, returns attribute default.
@@ -309,6 +310,8 @@ class RequiredPropertyCalculator implements ValueCalculator{
 }
 
 class SecuredByPropertyCalculator implements ValueCalculator{
+    
+    constructor(private toHighLevel = false){}
 
     calculate(attributeProperty: def.IProperty, node : hl.IHighLevelNode):any {
 
@@ -322,7 +325,9 @@ class SecuredByPropertyCalculator implements ValueCalculator{
         if (universeHelpers.isMethodType(definition)) {
             var resource = node.parent();
             if (resource) {
-                values = (<any>resource.wrapperNode()).securedBy();
+                values = this.toHighLevel
+                    ? resource.attributes("securedBy")
+                    : (<any>resource.wrapperNode()).securedBy();
             }
         }
         if(!values || values.length == 0) {
@@ -330,7 +335,9 @@ class SecuredByPropertyCalculator implements ValueCalculator{
                 node = node.parent();
             }
             if(node){
-                values = (<any>node.wrapperNode()).securedBy();
+                values = this.toHighLevel
+                    ? node.attributes("securedBy")
+                    : (<any>node.wrapperNode()).securedBy();
             }
         }
         if(values && values.length>0){

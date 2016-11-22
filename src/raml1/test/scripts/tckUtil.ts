@@ -7,6 +7,7 @@ import hlImpl = require("../../highLevelImpl");
 import mappings = require("./messageMappings")
 import _ = require("underscore")
 import assert = require("assert")
+import tckDumperHL = require("../../../util/tckDumperHL");
 
 import jsonValidation = require("./schema/schemaTCKValidator");
 
@@ -426,7 +427,8 @@ export function testAPI(
     var expanded = api["expand"] ? api["expand"](expandLib) : api;
 
     (<any>expanded).setAttributeDefaults(true);
-    var json = expanded.toJSON({rootNodeDetails:true});
+    //var json1 = expanded.toJSON({rootNodeDetails:true});
+    var json = new tckDumperHL.TCKDumper({rootNodeDetails: true}).dump(expanded.highLevel());
 
     if(!tckJsonPath){
         tckJsonPath = defaultJSONPath(apiPath);

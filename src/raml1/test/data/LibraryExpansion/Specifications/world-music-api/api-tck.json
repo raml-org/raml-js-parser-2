@@ -439,8 +439,8 @@
               ],
               "required": true,
               "fileTypes": [
-                {},
-                {}
+                "image/jpeg",
+                "image/png"
               ],
               "maxLength": 307200,
               "fixedFacets": {
@@ -1050,7 +1050,13 @@
           "type": [
             "integer"
           ],
-          "example": null,
+          "example": 2,
+          "structuredExample": {
+            "value": "2",
+            "strict": true,
+            "name": null,
+            "structuredValue": 2
+          },
           "required": true,
           "description": "interval in seconds",
           "__METADATA__": {
