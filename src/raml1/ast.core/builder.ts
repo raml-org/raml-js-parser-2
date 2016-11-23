@@ -879,7 +879,7 @@ function patchTypeWithFacets(originalType: hl.ITypeDefinition, nodeReferencingTy
         <def.Universe>nodeReferencingType.definition().universe(),"","");
 
     var parsedRType=nodeReferencingType.parsedType();
-
+    patchedType.addAdapter(parsedRType);
     parsedRType.allFacets().forEach(facet=>{
         if (facet.kind() == defs.tsInterfaces.MetaInformationKind.FacetDeclaration) {
 

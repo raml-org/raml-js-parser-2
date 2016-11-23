@@ -45,7 +45,7 @@ export class TCKDumper {
     dump(node:hl.IParseResult):any {
         var highLevelParent = node.parent();
         var rootNodeDetails = !highLevelParent && this.options.rootNodeDetails;
-        var result = this.dumpInternal(node, true, rootNodeDetails);
+        var result = this.dumpInternal(node, null, true, rootNodeDetails);
         if (rootNodeDetails) {
             var obj:any = result;
             result= {};            
@@ -65,7 +65,7 @@ export class TCKDumper {
         return result;
     }
 
-    dumpInternal(_node:hl.IParseResult, isRoot = false, rootNodeDetails = false):any {
+    dumpInternal(_node:hl.IParseResult, nodeProperty:hl.IProperty, isRoot = false, rootNodeDetails = false):any {
 
         if (_node == null) {
             return null;
@@ -83,10 +83,9 @@ export class TCKDumper {
                     return "";//to be fulfilled by the transformer
                 }
                 var at = hlImpl.auxiliaryTypeForExample(eNode);
-                var example = at.examples()[0];
                 var eObj:any = helpersHL.dumpExpandableExample(
                     at.examples()[0],this.options.dumpXMLRepresentationOfExamples);
-                var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x));
+                var uses = eNode.elementsOfKind("uses").map(x=>this.dumpInternal(x,x.property()));
                 if(uses.length>0){
                     eObj["uses"] = uses;
                 }
@@ -142,13 +141,13 @@ export class TCKDumper {
                 var aVal:any;
                 if(pVal!==undefined){
                     if(pVal.isMultiValue) {
-                        aVal = pVal.arr.map(x=>this.dumpInternal(x));
+                        aVal = pVal.arr.map(x=>this.dumpInternal(x,pVal.prop));
                         if(p.isValueProperty()) {
                             var sAnnotations = [];
                             var gotScalarAnnotations = false;
                             pVal.arr.filter(x=>x.isAttr()).map(x=>x.asAttr())
                                 .filter(x=>x.isAnnotatedScalar()).forEach(x=> {
-                                var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x));
+                                var sAnnotations1 = x.annotations().map(x=>this.dumpInternal(x,null));
                                 gotScalarAnnotations = gotScalarAnnotations || sAnnotations1.length>0;
                                 sAnnotations.push(sAnnotations1);
                             });
@@ -166,11 +165,11 @@ export class TCKDumper {
                         }
                     }
                     else{
-                        aVal = this.dumpInternal(pVal.val);
+                        aVal = this.dumpInternal(pVal.val,pVal.prop);
                         if(p.isValueProperty()) {
                             var attr = pVal.val.asAttr();
                             if(attr.isAnnotatedScalar()) {
-                                var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x));
+                                var sAnnotations = attr.annotations().map(x=>this.dumpInternal(x,null));
                                 if (sAnnotations.length > 0) {
                                     scalarsAnnotations[pName] = sAnnotations;
                                 }
@@ -187,24 +186,20 @@ export class TCKDumper {
                     if(Array.isArray(defVal)){
                         defVal = defVal.map(x=>{
                             if(x instanceof hlImpl.ASTPropImpl){
-                                return this.dumpInternal(<hl.IParseResult>x);
+                                return this.dumpInternal(<hl.IParseResult>x,p);
                             }
                             return x;
                         });
                     }
                     else if(defVal instanceof hlImpl.ASTPropImpl){
-                        defVal = this.dumpInternal(<hl.IParseResult>defVal);
+                        defVal = this.dumpInternal(<hl.IParseResult>defVal,p);
                     }
                     aVal = defVal;
                     if(aVal != null && p.isMultiValue()&&!Array.isArray(aVal)){
                         aVal = [aVal];
                     }
                 }
-                for (var x of this.oDumper.nodePropertyTransformers) {
-                    if (x.match(eNode, p)) {
-                        aVal = x.transform(aVal, eNode);
-                    }
-                }
+                aVal = tckDumper.applyTransformersMap(eNode,p,aVal,this.oDumper.nodePropertyTransformersMap);
                 if(aVal != null) {
                     //TODO implement as transformer
                     if((pName === "type" || pName == "schema") && aVal && aVal.forEach && typeof aVal[0] === "string") {
@@ -250,11 +245,7 @@ export class TCKDumper {
                     result["fixedFacets"] = fixedFacets;
                 }
             }
-            this.oDumper.nodeTransformers.forEach(x=> {
-                if (x.match(eNode, eNode.property())) {
-                    result = x.transform(result, eNode);
-                }
-            });
+            result = tckDumper.applyTransformersMap(eNode,nodeProperty||eNode.property(),result,this.oDumper.nodeTransformersMap);
             return result;
         }
         else if (_node.isAttr()) {
@@ -291,14 +282,10 @@ export class TCKDumper {
                     var hasType = def.getUniverse("RAML10").type(universe.Universe10.LibraryBase.name);
                     var tNode = new hlImpl.ASTNodeImpl(llNode, aNode.parent(), td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
                     tNode.patchType(builder.doDescrimination(tNode));
-                    val = this.dump(tNode);
+                    val = this.dumpInternal(tNode,nodeProperty||aNode.property(),true);
                 }
             }
-            this.oDumper.nodeTransformers.forEach(x=> {
-                if (x.match(aNode, aNode.property())) {
-                    val = x.transform(val, aNode);
-                }
-            });
+            val = tckDumper.applyTransformersMap(aNode,nodeProperty||aNode.property(),val,this.oDumper.nodeTransformersMap);
             return val;
         }
         var llNode = _node.lowLevel();
