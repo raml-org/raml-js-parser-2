@@ -362,6 +362,19 @@ export class BasicASTNode implements hl.IParseResult {
 export class StructuredValue implements hl.IStructuredValue{
 
     private _pr:def.Property
+
+    private static CLASS_IDENTIFIER = "highLevelImpl.StructuredValue";
+
+    public static isInstance(instance : any) : instance is StructuredValue {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && StructuredValue.CLASS_IDENTIFIER == instance.getClassIdentifier();
+    }
+
+    public getClassIdentifier() : string {
+        return StructuredValue.CLASS_IDENTIFIER;
+    }
+
     constructor(private node:ll.ILowLevelASTNode,private _parent:hl.IHighLevelNode,_pr:hl.IProperty,private kv=null){
         this._pr=<def.Property>_pr;
     }
@@ -449,20 +462,19 @@ export class StructuredValue implements hl.IStructuredValue{
     }
 }
 
-
-
-/**
- * Instanceof for StructuredValue class
- * @param node
- * @returns
- */
-export function isStructuredValue(node : any) : node is StructuredValue {
-    var anyNode = <any>node;
-    return anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
-}
-
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
+    private static CLASS_IDENTIFIER = "highLevelImpl.ASTPropImpl";
+
+    public static isInstance(instance : any) : instance is ASTPropImpl {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && ASTPropImpl.CLASS_IDENTIFIER == instance.getClassIdentifier();
+    }
+
+    public getClassIdentifier() : string {
+        return ASTPropImpl.CLASS_IDENTIFIER;
+    }
 
     definition():hl.IValueTypeDefinition {
         return this._def;
@@ -824,16 +836,6 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
 }
 
-/**
- * Instanceof for ASTPropImpl class
- * @param node
- * @returns
- */
-export function isASTPropImpl(node : any) : node is ASTPropImpl {
-    var anyNode = <any>node;
-    return anyNode.isString && anyNode.isFromKey && anyNode.isEmbedded;
-}
-
 var nodeBuilder=new builder.BasicNodeBuilder()
 
 export enum OverlayMergeMode {
@@ -1044,6 +1046,18 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
 
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
+
+    private static CLASS_IDENTIFIER = "highLevelImpl.ASTNodeImpl";
+
+    public static isInstance(instance : any) : instance is ASTNodeImpl {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && ASTNodeImpl.CLASS_IDENTIFIER == instance.getClassIdentifier();
+    }
+
+    public getClassIdentifier() : string {
+        return ASTNodeImpl.CLASS_IDENTIFIER;
+    }
 
     createIssue(error: any): hl.ValidationIssue {
         return linter.toIssue(error, this);
@@ -1993,16 +2007,6 @@ var getDefinitionSystemType = function (contents:string,ast:ll.ILowLevelASTNode)
     // localUniverse.setDescription(spec);
     return { ptype: ptype, localUniverse: localUniverse };
 };
-
-/**
- * Instanceof for ASTNodeImpl type.
- * @param node
- * @returns
- */
-export function isASTNodeImpl(node : any) : node is ASTNodeImpl {
-    var anyNode = <any>node;
-    return anyNode.setTypes && anyNode.patchProp && anyNode.clearChildrenCache;
-}
 
 export function ramlFirstLine(content:string):RegExpMatchArray{
     return content.match(/^\s*#%RAML\s+(\d\.\d)\s*(\w*)\s*$/m);

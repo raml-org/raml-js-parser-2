@@ -88,7 +88,7 @@ export function findDeclarations(
     var aPath = h.lowLevel().unit().absolutePath();
     visitedUnits[aPath] = true;
 
-    if (!(hlimpl.isASTNodeImpl(h))){
+    if (!(hlimpl.ASTNodeImpl.isInstance(h))){
         return rs;
     }
 
@@ -150,7 +150,7 @@ export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOth
     if (n.lowLevel()) {
         //var node:ASTNode=<ASTNode>n;
         if (n.lowLevel().start() <= offset && n.lowLevel().end() >= end) {
-            if (hlimpl.isASTNodeImpl(n)){
+            if (hlimpl.ASTNodeImpl.isInstance(n)){
                 var hn=<hlimpl.ASTNodeImpl>n;
                 var all= goToOtherUnits ? hn.children() : hn.directChildren();
                 for(var i=0;i<all.length;i++){
@@ -161,7 +161,7 @@ export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOth
 
                     var node=deepFindNode(all[i],offset,end, goToOtherUnits);
                     if (node){
-                        if (!returnAttrs && hlimpl.isASTPropImpl(node)) {
+                        if (!returnAttrs && hlimpl.ASTPropImpl.isInstance(node)) {
                             node = node.parent();
                         }
                         return node;
@@ -169,11 +169,11 @@ export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOth
                 }
                 return n;
             }
-            else if (hlimpl.isASTPropImpl(n)){
+            else if (hlimpl.ASTPropImpl.isInstance(n)){
                 var attr=<hlimpl.ASTPropImpl>n;
                 if (!attr.property().isKey()) {
                     var vl = attr.value();
-                    if (hlimpl.isStructuredValue(vl)) {
+                    if (hlimpl.StructuredValue.isInstance(vl)) {
                         var st = <hlimpl.StructuredValue>vl;
                         var hl = st.toHighLevel2();
                         if (hl) {
@@ -183,7 +183,7 @@ export function deepFindNode(n:hl.IParseResult,offset:number,end:number, goToOth
                         }
                         var node = deepFindNode(hl, offset, end, goToOtherUnits);
                         if (node) {
-                            if (!returnAttrs && hlimpl.isASTPropImpl(node)) {
+                            if (!returnAttrs && hlimpl.ASTPropImpl.isInstance(node)) {
                                 node = node.parent();
                             }
                             return node;
@@ -273,20 +273,20 @@ export interface FindUsagesResult{
 export function findUsages(unit:ll.ICompilationUnit, offset:number):FindUsagesResult{
     var decl=findDeclaration(unit,offset);
     if (decl){
-        if (hlimpl.isASTNodeImpl(decl)){
+        if (hlimpl.ASTNodeImpl.isInstance(decl)){
             var hnode=<hlimpl.ASTNodeImpl>decl;
             return {node:hnode,results:hnode.findReferences()};
         }
-        if (hlimpl.isASTPropImpl(decl)){
+        if (hlimpl.ASTPropImpl.isInstance(decl)){
             //var prop=<hlimpl.ASTPropImpl>decl;
             //return {node:prop,results:prop.findReferences()};
         }
     }
     var node = deepFindNode(hlimpl.fromUnit(unit), offset,offset, false);
-    if (hlimpl.isASTNodeImpl(node)){
+    if (hlimpl.ASTNodeImpl.isInstance(node)){
         return {node:<hlimpl.ASTNodeImpl>node,results:(<hlimpl.ASTNodeImpl>node).findReferences()};
     }
-    if (hlimpl.isASTPropImpl(node)){
+    if (hlimpl.ASTPropImpl.isInstance(node)){
         var prop=<hlimpl.ASTPropImpl>node;
         if (prop.property().canBeValue()){
             return {node:<hlimpl.ASTNodeImpl>prop.parent(),results:(<hlimpl.ASTNodeImpl>prop.parent()).findReferences()};
@@ -495,11 +495,11 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
     if (kind == LocationKind.VALUE_COMPLETION) {
 
         var hlnode = <hl.IHighLevelNode>node;
-        if (hlimpl.isASTPropImpl(node)) {
+        if (hlimpl.ASTPropImpl.isInstance(node)) {
             var attr =<hlimpl.ASTPropImpl> node;
             if (attr) {
                 if (attr.value()) {
-                    if (hlimpl.isStructuredValue(attr.value())) {
+                    if (hlimpl.StructuredValue.isInstance(attr.value())) {
                         var sval = <hlimpl.StructuredValue>attr.value();
                         var hlvalue = sval.toHighLevel();
 
@@ -532,7 +532,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
             var up=<defs.UserDefinedProp>pp;
             return getUserDefinedPropertySource(up);
         }
-        if (hlimpl.isASTNodeImpl(node)) {
+        if (hlimpl.ASTNodeImpl.isInstance(node)) {
             if (defs.isUserDefinedClass(hlnode.definition())) {
                 var uc = <defs.UserDefinedClass>hlnode.definition();
                 if (uc.isAssignableFrom("TypeDeclaration")){
@@ -542,7 +542,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                 return uc.getAdapter(ramlServices.RAMLService).getDeclaringNode();
             }
         }
-        if (hlimpl.isASTPropImpl(node)){
+        if (hlimpl.ASTPropImpl.isInstance(node)){
             var pr=<hlimpl.ASTPropImpl>node;
             if (isExampleNodeContent(pr)) {
                 var contentType = findExampleContentType(pr)
@@ -557,7 +557,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                             var up=<defs.UserDefinedProp>pp;
                             return getUserDefinedPropertySource(up);
                         }
-                        if (hlimpl.isASTNodeImpl(node)) {
+                        if (hlimpl.ASTNodeImpl.isInstance(node)) {
                             if (defs.isUserDefinedClass(hlnode.definition())) {
                                 var uc = <defs.UserDefinedClass>hlnode.definition();
                                 return uc.getAdapter(ramlServices.RAMLService).getDeclaringNode();
@@ -609,7 +609,7 @@ export function findExampleContentType(node : hl.IParseResult) : hl.INodeDefinit
 }
 
 export function parseDocumentationContent(attribute : hl.IAttribute, type : hl.INodeDefinition) : hl.IHighLevelNode {
-    if (!(hlimpl.isStructuredValue(attribute.value()))){
+    if (!(hlimpl.StructuredValue.isInstance(attribute.value()))){
         return null
     }
     return new hlimpl.ASTNodeImpl((<hlimpl.StructuredValue>attribute.value()).lowLevel(), attribute.parent(), type, attribute.property())
@@ -627,7 +627,7 @@ export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var typeExampleName10 = universes.Universe10.TypeDeclaration.properties.example.name;
     var objectName10 = universes.Universe10.ObjectTypeDeclaration.name;
 
-    if (!(hlimpl.isASTPropImpl(node))){
+    if (!(hlimpl.ASTPropImpl.isInstance(node))){
         return false
     }
 
@@ -637,7 +637,7 @@ export function isExampleNodeContent(node : hl.IAttribute) : boolean {
     var parentPropertyName = parentProperty && parentProperty.nameId();
 
     if(typeExampleName10 === property.name() && property.isString()) {
-        if(hlimpl.isASTNodeImpl(parent) && parent.definition().isAssignableFrom(objectName10)) {
+        if(hlimpl.ASTNodeImpl.isInstance(parent) && parent.definition().isAssignableFrom(objectName10)) {
             return true;
         }
     }
