@@ -33,7 +33,7 @@
       "type": "object",
       "properties": {
         "code": {
-          "type": "number",
+          "type": "string",
           "description": "IssueCode"
         },
         "message": {
@@ -106,6 +106,7 @@
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10Library": {
       "type": "object",
       "description": "RAML libraries are used to combine any collection of data type declarations, resource type declarations, trait declarations, and security scheme declarations into modular, externalized, reusable groups.",
@@ -117,31 +118,27 @@
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
         "specification": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "Namespace which the library is imported under"
+          "allOf":[
+            {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Namespace which the library is imported under"
+                },
+                "usage": {
+                  "type": "string",
+                  "description": "contains description of why library exist"
+                }
+              }
             },
-            "usage": {
-              "type": "string",
-              "description": "contains description of why library exist"
-            },
-            "annotations": {"$ref": "#/definitions/LibraryBase10/properties/annotations"},
-            "scalarsAnnotations": {"$ref": "#/definitions/LibraryBase10/properties/scalarsAnnotations"},
-            "uses": {"$ref": "#/definitions/LibraryBase10/properties/uses"},
-            "types": {"$ref": "#/definitions/LibraryBase10/properties/types"},
-            "resourceTypes": {"$ref": "#/definitions/LibraryBase10/properties/resourceTypes"},
-            "traits": {"$ref": "#/definitions/LibraryBase10/properties/traits"},
-            "securitySchemes": {"$ref": "#/definitions/LibraryBase10/properties/securitySchemes"},
-            "annotationTypes": {"$ref": "#/definitions/LibraryBase10/properties/annotationTypes"}
-          },
-          "additionalProperties": false
+            {"$ref": "#/definitions/LibraryBase10"}
+          ]
         }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10Extension": {
       "type": "object",
       "description": "Extension is RAML documents that add or override nodes of a RAML API definition.",
@@ -153,43 +150,27 @@
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
         "specification": {
-          "type": "object",
-          "properties": {
-            "extends": {
-              "type": "string",
-              "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
+          "allOf":[
+            {
+              "properties": {
+                "extends": {
+                  "type": "string",
+                  "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
+                },
+                "usage": {
+                  "type": "string",
+                  "description": "contains description of why extension exist"
+                }
+              }
             },
-            "usage": {
-              "type": "string",
-              "description": "contains description of why extension exist"
-            },
-            "uses": {"$ref": "#/definitions/Api10/properties/uses"},
-            "annotations": {"$ref": "#/definitions/Api10/properties/annotations"},
-            "scalarsAnnotations": {"$ref": "#/definitions/Api10/properties/scalarsAnnotations"},
-            "schemas": {"$ref": "#/definitions/Api10/properties/schemas"},
-            "types": {"$ref": "#/definitions/Api10/properties/types"},
-            "traits": {"$ref": "#/definitions/Api10/properties/traits"},
-            "securitySchemes": {"$ref": "#/definitions/Api10/properties/securitySchemes"},
-            "annotationTypes": {"$ref": "#/definitions/Api10/properties/annotationTypes"},
-            "resourceTypes": {"$ref": "#/definitions/Api10/properties/resourceTypes"},
-            "documentation": {"$ref": "#/definitions/Documentation"},
-            "title": {"$ref": "#/definitions/Api10/properties/title"},
-            "description": {"$ref": "#/definitions/Api10/properties/description"},
-            "version": {"$ref": "#/definitions/Api10/properties/version"},
-            "baseUri": {"$ref": "#/definitions/Api10/properties/baseUri"},
-            "baseUriParameters": {"$ref": "#/definitions/Api10/properties/baseUriParameters"},
-            "__METADATA__": {"$ref": "#/definitions/Api10/properties/__METADATA__"},
-            "resources": {"$ref": "#/definitions/Api10/properties/resources"},
-            "protocols": {"$ref": "#/definitions/Api10/properties/protocols"},
-            "mediaType": {"$ref": "#/definitions/Api10/properties/mediaType"},
-            "securedBy": {"$ref": "#/definitions/Api10/properties/securedBy"}
-          },
-          "additionalProperties": false
+            {"$ref": "#/definitions/Api10"}
+          ]
         }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10Overlay": {
       "type": "object",
       "description": "Overlays is RAML document that add or override nodes of a RAML API definition.",
@@ -201,43 +182,27 @@
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
         "specification": {
-          "type": "object",
-          "properties": {
-            "extends": {
-              "type": "string",
-              "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
+          "allOf":[
+            {
+              "properties": {
+                "extends": {
+                  "type": "string",
+                  "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
+                },
+                "usage": {
+                  "type": "string",
+                  "description": "contains description of why overlay exist"
+                }
+              }
             },
-            "usage": {
-              "type": "string",
-              "description": "contains description of why overlay exist"
-            },
-            "uses": {"$ref": "#/definitions/Api10/properties/uses"},
-            "annotations": {"$ref": "#/definitions/Api10/properties/annotations"},
-            "scalarsAnnotations": {"$ref": "#/definitions/Api10/properties/scalarsAnnotations"},
-            "schemas": {"$ref": "#/definitions/Api10/properties/schemas"},
-            "types": {"$ref": "#/definitions/Api10/properties/types"},
-            "traits": {"$ref": "#/definitions/Api10/properties/traits"},
-            "securitySchemes": {"$ref": "#/definitions/Api10/properties/securitySchemes"},
-            "annotationTypes": {"$ref": "#/definitions/Api10/properties/annotationTypes"},
-            "resourceTypes": {"$ref": "#/definitions/Api10/properties/resourceTypes"},
-            "documentation": {"$ref": "#/definitions/Documentation"},
-            "title": {"$ref": "#/definitions/Api10/properties/title"},
-            "description": {"$ref": "#/definitions/Api10/properties/description"},
-            "version": {"$ref": "#/definitions/Api10/properties/version"},
-            "baseUri": {"$ref": "#/definitions/Api10/properties/baseUri"},
-            "baseUriParameters": {"$ref": "#/definitions/Api10/properties/baseUriParameters"},
-            "__METADATA__": {"$ref": "#/definitions/Api10/properties/__METADATA__"},
-            "resources": {"$ref": "#/definitions/Api10/properties/resources"},
-            "protocols": {"$ref": "#/definitions/Api10/properties/protocols"},
-            "mediaType": {"$ref": "#/definitions/Api10/properties/mediaType"},
-            "securedBy": {"$ref": "#/definitions/Api10/properties/securedBy"}
-          },
-          "additionalProperties": false
+            {"$ref": "#/definitions/Api10"}
+          ]
         }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10TypeDeclaration": {
       "type": "object",
       "description": "A data type declaration (inline or in a global types collection), header declaration, query parameter declaration, URI parameter declaration, or a property within any of these declarations, where the type property can be used",
@@ -253,6 +218,7 @@
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10SecurityScheme": {
       "type": "object",
       "description": "Describes how an API include security scheme definitions",
@@ -268,6 +234,7 @@
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10Trait": {
       "type": "object",
       "description": "A trait can provide method-level nodes such as description, headers, query string parameters, and responses.",
@@ -282,23 +249,14 @@
           "type": "object",
           "properties": {
             "undefined": {
-              "type": "object",
-              "properties": {
-                "name": {"$ref": "#/definitions/Trait10/properties/name"},
-                "displayName": {"$ref": "#/definitions/Trait10/properties/displayName"},
-                "description": {"$ref": "#/definitions/Trait10/properties/description"},
-                "usage": {"$ref": "#/definitions/Trait10/properties/usage"},
-                "annotations": {"$ref": "#/definitions/Trait10/properties/annotations"},
-                "scalarsAnnotations": {"$ref": "#/definitions/Trait10/properties/scalarsAnnotations"},
-                "responses": {"$ref": "#/definitions/Trait10/properties/responses"},
-                "headers": {"$ref": "#/definitions/Trait10/properties/headers"},
-                "queryParameters": {"$ref": "#/definitions/Trait10/properties/queryParameters"},
-                "protocols": {"$ref": "#/definitions/Trait10/properties/protocols"},
-                "securedBy":{"$ref": "#/definitions/Trait10/properties/securedBy"},
-                "body": {"$ref": "#/definitions/Trait10/properties/body"},
-                "__METADATA__": {"$ref": "#/definitions/Trait10/properties/__METADATA__"},
-                "uses": {"$ref": "#/definitions/Api10/properties/uses"}
-              },
+              "anyOf":[
+                {
+                  "properties": {
+                    "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+                  }
+                },
+                {"$ref": "#/definitions/Trait10"}
+              ],
               "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
             }
           },
@@ -308,6 +266,7 @@
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
     },
+
     "RAML10ExampleSpec": {
       "type": "object",
       "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present.",
@@ -319,20 +278,15 @@
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
         "specification": {
-          "type": "object",
-          "properties": {
-            "value": {"$ref": "#/definitions/ExampleSpec10/properties/value"},
-            "strict": {"$ref": "#/definitions/ExampleSpec10/properties/strict"},
-            "name": {"$ref": "#/definitions/ExampleSpec10/properties/name"},
-            "description": {"$ref": "#/definitions/ExampleSpec10/properties/description"},
-            "displayName": {"$ref": "#/definitions/ExampleSpec10/properties/displayName"},
-            "annotations": {"$ref": "#/definitions/ExampleSpec10/properties/annotations"},
-            "scalarsAnnotations": {"$ref": "#/definitions/ExampleSpec10/properties/scalarsAnnotations"},
-            "structuredValue": {"$ref": "#/definitions/ExampleSpec10/properties/structuredValue"},
-            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-          },
-          "required": ["value", "strict"],
-          "additionalProperties": false
+          "allOf":[
+            {
+              "properties": {
+                "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+              }
+            },
+            {"$ref": "#/definitions/ExampleSpec10"}
+          ],
+          "required": ["value", "strict"]
         }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
@@ -352,19 +306,14 @@
           "type": "object",
           "properties": {
             "undefined": {
-              "type": "object",
-              "properties": {
-                "name": {"$ref": "#/definitions/ResourceType10/properties/name"},
-                "description": {"$ref": "#/definitions/ResourceType10/properties/description"},
-                "annotations": {"$ref": "#/definitions/ResourceType10/properties/annotations"},
-                "securedBy": {"$ref": "#/definitions/ResourceType10/properties/securedBy"},
-                "is": {"$ref": "#/definitions/ResourceType10/properties/is"},
-                "type": {"$ref": "#/definitions/ResourceType10/properties/type"},
-                "scalarsAnnotations": {"$ref": "#/definitions/ResourceType10/properties/scalarsAnnotations"},
-                "usage": {"$ref": "#/definitions/ResourceType10/properties/usage"},
-                "__METADATA__": {"$ref": "#/definitions/ResourceType10/properties/__METADATA__"},
-                "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-              },
+              "anyOf":[
+                {
+                  "properties": {
+                    "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+                  }
+                },
+                {"$ref": "#/definitions/ResourceType10"}
+              ],
               "patternProperties": {
                 "^(get|post|delete|put|patch|options)?$": {"$ref": "#/definitions/ResourceBase10/properties/methods"}
               },
@@ -379,147 +328,141 @@
     },
 
     "Api10": {
-      "type": "object",
-      "properties": {
-        "uses": {"$ref": "#/definitions/LibraryBase10/properties/uses"},
-        "annotations": {"$ref": "#/definitions/LibraryBase10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/LibraryBase10/properties/scalarsAnnotations"},
-        "schemas": {"$ref": "#/definitions/LibraryBase10/properties/schemas"},
-        "types": {"$ref": "#/definitions/LibraryBase10/properties/types"},
-        "traits": {"$ref": "#/definitions/LibraryBase10/properties/traits"},
-        "securitySchemes": {"$ref": "#/definitions/LibraryBase10/properties/securitySchemes"},
-        "annotationTypes": {"$ref": "#/definitions/LibraryBase10/properties/annotationTypes"},
-        "resourceTypes": {"$ref": "#/definitions/LibraryBase10/properties/resourceTypes"},
-        "documentation": {"$ref": "#/definitions/Documentation"},
-        "title": {
-          "type": ["string", "null"],
-          "description": "Short plain-text label for the API"
-        },
-        "description": {
-          "type": "string",
-          "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
-        },
-        "version": {
-          "type": "string",
-          "description": "The version of the API, e.g. 'v1'"
-        },
-        "baseUri": {
-          "type": "string",
-          "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
-        },
-        "baseUriParameters": {
-          "type": "object",
-          "description": "Named parameters used in the baseUri (template)",
-          "patternProperties": {
-            "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
-          }
-        },
-        "__METADATA__": {
-          "type": "object"
-        },
-        "resources": {
-          "type": "array",
-          "description": "The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc",
-          "items": {"$ref": "#/definitions/Resource10"}
-        },
-        "protocols": {
-          "type": "array",
-          "description": "The protocols supported by the API",
-          "items": {
-            "type": "string"
-          }
-        },
-        "mediaType": {
-          "oneOf": [
-            {
+      "allOf":[
+        {"$ref": "#/definitions/LibraryBase10"},
+        {
+          "properties": {
+            "documentation": {"$ref": "#/definitions/Documentation"},
+            "title": {
+              "type": ["string", "null"],
+              "description": "Short plain-text label for the API"
+            },
+            "description": {
+              "type": "string",
+              "description": "A substantial, human-friendly description of the API. Its value is a string and MAY be formatted using markdown."
+            },
+            "version": {
+              "type": "string",
+              "description": "The version of the API, e.g. 'v1'"
+            },
+            "baseUri": {
+              "type": "string",
+              "description": "A URI that's to be used as the base of all the resources' URIs. Often used as the base of the URL of each resource, containing the location of the API. Can be a template URI."
+            },
+            "baseUriParameters": {
+              "type": "object",
+              "description": "Named parameters used in the baseUri (template)",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+              }
+            },
+            "__METADATA__": {
+              "type": "object"
+            },
+            "resources": {
               "type": "array",
+              "description": "The resources of the API, identified as relative URIs that begin with a slash (/). Every property whose key begins with a slash (/), and is either at the root of the API definition or is the child property of a resource property, is a resource property, e.g.: /users, /{groupId}, etc",
+              "items": {"$ref": "#/definitions/Resource10"}
+            },
+            "protocols": {
+              "type": "array",
+              "description": "The protocols supported by the API",
               "items": {
                 "type": "string"
               }
             },
-            {
-              "type": "string"
+            "mediaType": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ],
+              "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
+            },
+            "securedBy": {
+              "type": "array",
+              "description": "The security schemes that apply to every resource and method in the API",
+              "items": {"$ref": "#/definitions/SecuritySchemeRef10"}
             }
-          ],
-          "description": "The default media type to use for request and response bodies (payloads), e.g. \"application/json\""
-        },
-        "securedBy": {
-          "type": "array",
-          "description": "The security schemes that apply to every resource and method in the API",
-          "items": {"$ref": "#/definitions/SecuritySchemeRef10"}
+          }
         }
-      },
-      "additionalProperties": false
+      ]
     },
 
     "LibraryBase10": {
-      "type": "object",
-      "properties": {
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "annotations": {"$ref": "#/definitions/FragmentDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/FragmentDeclaration/properties/scalarsAnnotations"},
-        "schemas": {
-          "type": "array",
-          "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-            }
-          }
-        },
-        "types": {
-          "type": "array",
-          "description": "Declarations of (data) types for use within this API",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
-            }
-          }
-        },
-        "resourceTypes": {
-          "type": "array",
-          "description": "Declarations of resource types for use within this API",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/ResourceType10"}
-            }
-          }
-        },
-        "traits": {
-          "type": "array",
-          "description": "Declarations of traits for use within this API",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Trait10"}
-            }
-          }
-        },
-        "securitySchemes": {
-          "type": "array",
-          "description": "Declarations of security schemes for use within this API.",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/SecuritySchemeDeclaration"}
-            }
-          }
-        },
-        "annotationTypes": {
-          "type": "array",
-          "description": "Declarations of annotation types for use by annotations",
-          "items": {
-            "type": "object",
-            "patternProperties": {
-              "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+      "allOf":[
+        {"$ref": "#/definitions/FragmentDeclaration"},
+        {
+          "properties": {
+            "schemas": {
+              "type": "array",
+              "description": "Alias for the equivalent \"types\" property, for compatibility with RAML 0.8. Deprecated - API definitions should use the \"types\" property, as the \"schemas\" alias for that property name may be removed in a future RAML version. The \"types\" property allows for XML and JSON schemas.",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+                }
+              }
+            },
+            "types": {
+              "type": "array",
+              "description": "Declarations of (data) types for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+                }
+              }
+            },
+            "resourceTypes": {
+              "type": "array",
+              "description": "Declarations of resource types for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/ResourceType10"}
+                }
+              }
+            },
+            "traits": {
+              "type": "array",
+              "description": "Declarations of traits for use within this API",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Trait10"}
+                }
+              }
+            },
+            "securitySchemes": {
+              "type": "array",
+              "description": "Declarations of security schemes for use within this API.",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/SecuritySchemeDeclaration"}
+                }
+              }
+            },
+            "annotationTypes": {
+              "type": "array",
+              "description": "Declarations of annotation types for use by annotations",
+              "items": {
+                "type": "object",
+                "patternProperties": {
+                  "^[a-zA-Z0-9]+": {"$ref": "#/definitions/Type"}
+                }
+              }
             }
           }
         }
-      },
-      "additionalProperties": false
+      ]
     },
     "Type": {
       "description": "Declaration of (data) type for use within API",
@@ -539,231 +482,242 @@
       ]
     },
     "ArrayTypeDeclaration": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "example": {"$ref": "#/definitions/TypeDeclaration/properties/example"},
-        "examples": {"$ref": "#/definitions/TypeDeclaration/properties/examples"},
-        "uniqueItems": {
-          "type": "boolean",
-          "description": "Should items in array be unique"
-        },
-        "minItems": {
-          "type": "number",
-          "description": "Minimum amount of items in array"
-        },
-        "maxItems": {
-          "type": "number",
-          "description": "Maximum amount of items in array"
-        },
-        "default": {
-          "type": "array",
-          "description": "Provides default value for a property"
-        },
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"},
-        "items": {"$ref": "#/definitions/TypeReference10"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "name": {"$ref": "#/definitions/TypeDeclarationBase10/properties/name"},
+            "description" :  {"$ref": "#/definitions/TypeDeclarationBase10/properties/description"},
+            "required": {"$ref": "#/definitions/TypeDeclarationBase10/properties/required"},
+            "displayName": {"$ref": "#/definitions/TypeDeclarationBase10/properties/displayName"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "facets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/facets"},
+            "xml": {"$ref": "#/definitions/TypeDeclarationBase10/properties/xml"},
+            "example": {"$ref": "#/definitions/TypeDeclarationBase10/properties/example"},
+            "examples": {"$ref": "#/definitions/TypeDeclarationBase10/properties/examples"},
+            "uniqueItems": {
+              "type": "boolean",
+              "description": "Should items in array be unique"
+            },
+            "minItems": {
+              "type": "number",
+              "description": "Minimum amount of items in array"
+            },
+            "maxItems": {
+              "type": "number",
+              "description": "Maximum amount of items in array"
+            },
+            "default": {
+              "type": "array",
+              "description": "Provides default value for a property"
+            },
+            "structuredExample": {"$ref": "#/definitions/TypeDeclarationBase10/properties/structuredExample"},
+            "allowedTargets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/allowedTargets"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"},
+            "items": {"$ref": "#/definitions/TypeReference10"}
+          }
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required", "items"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
     "StringTypeDeclaration": {
-      "type": "object",
       "description": "Value must be a string",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "pattern": {
-          "type": "string",
-          "description": "Regular expression that this string should path"
-        },
-        "minLength": {
-          "type": "number",
-          "description": "Minimum length of the string"
-        },
-        "maxLength": {
-          "type": "number",
-          "description": "Maximum length of the string"
-        },
-        "example": {
-          "type": "string",
-          "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
-        },
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "name": {"$ref": "#/definitions/TypeDeclarationBase10/properties/name"},
+            "description" :  {"$ref": "#/definitions/TypeDeclarationBase10/properties/description"},
+            "required": {"$ref": "#/definitions/TypeDeclarationBase10/properties/required"},
+            "displayName": {"$ref": "#/definitions/TypeDeclarationBase10/properties/displayName"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "facets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/facets"},
+            "xml": {"$ref": "#/definitions/TypeDeclarationBase10/properties/xml"},
+            "enum": {"$ref": "#/definitions/TypeDeclarationBase10/properties/enum"},
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression that this string should path"
+            },
+            "minLength": {
+              "type": "number",
+              "description": "Minimum length of the string"
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "Maximum length of the string"
+            },
+            "example": {
+              "type": "string",
+              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error."
+            },
+            "structuredExample": {"$ref": "#/definitions/TypeDeclarationBase10/properties/structuredExample"},
+            "allowedTargets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/allowedTargets"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+
+            }
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
     "FileTypeDeclaration": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "fileTypes": {
-          "type": "array"
-        },
-        "fixedFacets": {
-          "fileTypes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "name": {"$ref": "#/definitions/TypeDeclarationBase10/properties/name"},
+            "description" :  {"$ref": "#/definitions/TypeDeclarationBase10/properties/description"},
+            "required": {"$ref": "#/definitions/TypeDeclarationBase10/properties/required"},
+            "displayName": {"$ref": "#/definitions/TypeDeclarationBase10/properties/displayName"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "facets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/facets"},
+            "xml": {"$ref": "#/definitions/TypeDeclarationBase10/properties/xml"},
+            "enum": {"$ref": "#/definitions/TypeDeclarationBase10/properties/enum"},
+            "fileTypes": {
+              "type": "array"
+            },
+            "fixedFacets": {
+              "fileTypes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression"
+            },
+            "minLength": {
+              "type": "number",
+              "description": "Minimum length"
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "Maximum length"
+            },
+            "allowedTargets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/allowedTargets"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           }
-        },
-        "pattern": {
-          "type": "string",
-          "description": "Regular expression"
-        },
-        "minLength": {
-          "type": "number",
-          "description": "Minimum length"
-        },
-        "maxLength": {
-          "type": "number",
-          "description": "Maximum length"
-        },
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
     "NumberTypeDeclaration": {
-      "type": "object",
       "description": "Value MUST be a number. Indicate floating point numbers as defined by YAML.",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "pattern": {
-          "type": "string",
-          "description": "Regular expression"
-        },
-        "minimum": {
-          "type": "number",
-          "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
-        },
-        "maximum": {
-          "type": "number",
-          "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
-        },
-        "default": {
-          "type": "number",
-          "description": "Provides default value for a property"
-        },
-        "example": {
-          "type": "number",
-          "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
-        },
-        "format": {
-          "type": "string",
-          "description": "Value format"
-        },
-        "multipleOf": {
-          "type": "number",
-          "description": "A numeric instance is valid against \"multipleOf\" if the result of the division of the instance by this keywords value is an integer."
-        },
-        "fixedFacets": {
-          "type": "object",
-          "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
           "properties": {
-            "maximum": {
-              "type": "number",
-              "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+            "name": {"$ref": "#/definitions/TypeDeclarationBase10/properties/name"},
+            "description" :  {"$ref": "#/definitions/TypeDeclarationBase10/properties/description"},
+            "required": {"$ref": "#/definitions/TypeDeclarationBase10/properties/required"},
+            "displayName": {"$ref": "#/definitions/TypeDeclarationBase10/properties/displayName"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "facets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/facets"},
+            "xml": {"$ref": "#/definitions/TypeDeclarationBase10/properties/xml"},
+            "enum": {"$ref": "#/definitions/TypeDeclarationBase10/properties/enum"},
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression"
             },
             "minimum": {
               "type": "number",
               "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
             },
+            "maximum": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+            },
+            "default": {
+              "type": "number",
+              "description": "Provides default value for a property"
+            },
+            "example": {
+              "type": "number",
+              "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
+            },
             "format": {
               "type": "string",
               "description": "Value format"
-            }
-          },
-          "additionalProperties": false
-        },
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
+            },
+            "multipleOf": {
+              "type": "number",
+              "description": "A numeric instance is valid against \"multipleOf\" if the result of the division of the instance by this keywords value is an integer."
+            },
+            "fixedFacets": {
+              "type": "object",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+              "properties": {
+                "maximum": {
+                  "type": "number",
+                  "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+                },
+                "minimum": {
+                  "type": "number",
+                  "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
+                },
+                "format": {
+                  "type": "string",
+                  "description": "Value format"
+                }
+              },
+              "additionalProperties": false
+            },
+            "allowedTargets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/allowedTargets"},
+            "structuredExample": {"$ref": "#/definitions/TypeDeclarationBase10/properties/structuredExample"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+          }
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
     "DateTypeDeclaration": {
-      "type": "object",
       "description": "the \"full-date\" notation of RFC3339, namely yyyy-mm-dd (no implications about time or timezone-offset)",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "pattern": {
-          "type": "string",
-          "description": "Regular expression"
-        },
-        "format": {
-          "type": ["string", "number"],
-          "description": "Value format"
-        },
-        "fixedFacets": {
-          "type": "object",
-          "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
           "properties": {
+            "name": {"$ref": "#/definitions/TypeDeclarationBase10/properties/name"},
+            "description" :  {"$ref": "#/definitions/TypeDeclarationBase10/properties/description"},
+            "required": {"$ref": "#/definitions/TypeDeclarationBase10/properties/required"},
+            "displayName": {"$ref": "#/definitions/TypeDeclarationBase10/properties/displayName"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "facets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/facets"},
+            "xml": {"$ref": "#/definitions/TypeDeclarationBase10/properties/xml"},
+            "enum": {"$ref": "#/definitions/TypeDeclarationBase10/properties/enum"},
+            "pattern": {
+              "type": "string",
+              "description": "Regular expression"
+            },
             "format": {
               "type": ["string", "number"],
               "description": "Value format"
-            }
-          },
-          "additionalProperties": false
-        },
-        "example": {
-          "type": ["string"],
-          "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
-        },
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
+            },
+            "fixedFacets": {
+              "type": "object",
+              "description": "Returns facets fixed by the type. Value is an object with properties named after facets fixed. Value of each property is a value of the corresponding facet.",
+              "properties": {
+                "format": {
+                  "type": ["string", "number"],
+                  "description": "Value format"
+                }
+              },
+              "additionalProperties": false
+            },
+            "example": {
+              "type": ["string"],
+              "description": "An example of this type instance represented as string or yaml map/sequence. This can be used, e.g., by documentation generators to generate sample values for an object of this type. Cannot be present if the examples property is present."
+            },
+            "structuredExample": {"$ref": "#/definitions/TypeDeclarationBase10/properties/structuredExample"},
+            "allowedTargets": {"$ref": "#/definitions/TypeDeclarationBase10/properties/allowedTargets"},
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+          }
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
@@ -785,38 +739,24 @@
       ]
     },
     "TypeSchemaDeclaration": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "default": {"$ref": "#/definitions/TypeDeclaration/properties/default"},
-        "description": {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "properties": {"$ref": "#/definitions/TypeDeclaration/properties/properties"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "minProperties": {"$ref": "#/definitions/TypeDeclaration/properties/minProperties"},
-        "maxProperties": {"$ref": "#/definitions/TypeDeclaration/properties/maxProperties"},
-        "additionalProperties":{"$ref": "#/definitions/TypeDeclaration/properties/additionalProperties"},
-        "examples": {"$ref": "#/definitions/TypeDeclaration/properties/examples"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "schema": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "fixedFacets": {"$ref": "#/definitions/TypeDeclaration/properties/fixedFacets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "example": {"$ref": "#/definitions/TypeDeclaration/properties/example"},
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/TypeDeclarationBase10"},
+        {
+          "properties": {
+            "schema":  {"$ref": "#/definitions/TypeReference10"},
+            "schemaPath": {
+              "type": "string",
+              "description": "relative path to schema for types that loaded from json schemas"
+            }
+          }
+        }
+      ],
       "required": ["name", "displayName", "schema", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
-    "TypeDeclaration": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+    "TypeDeclarationBase10":{
+      "properties":{
         "name": {
           "type": "string",
           "description": "name of the parameter"
@@ -842,12 +782,6 @@
           "items": {
             "type": "string"
           }
-        },
-        "discriminator": {
-          "type": "string"
-        },
-        "discriminatorValue": {
-          "type": "string"
         },
         "xml": {
           "type": "object",
@@ -904,7 +838,6 @@
           "type": "string",
           "description": "The displayName attribute specifies the type display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
         },
-        "type": {"$ref": "#/definitions/TypeReference10"},
         "facets": {
           "type": "object",
           "description": "When extending from a type you can define new facets (which can then be set to concrete values by subtypes).",
@@ -924,7 +857,28 @@
         "__METADATA__": {
           "type": "object"
         }
-      },
+      }
+    },
+    "TypeDeclaration": {
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/TypeDeclarationBase10"},
+        {
+          "properties": {
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "schemaPath": {
+              "type": "string",
+              "description": "relative path to schema for types that loaded from json schemas"
+            },
+            "discriminator": {
+              "type": "string"
+            },
+            "discriminatorValue": {
+              "type": "string"
+            }
+          }
+        }
+      ],
       "required": ["name", "displayName", "type", "__METADATA__", "required"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
@@ -961,8 +915,7 @@
         },
         "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
         "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
-      "additionalProperties": false
+      }
     },
 
     "UsesDeclaration": {
@@ -1045,95 +998,93 @@
     "Response10": {
       "type": "object",
       "description": "Information about the expected responses to a request",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
-        "description": {
-          "type": "string",
-          "description": "A longer, human-friendly description of the response"
-        },
-        "headers": {
-          "type": "array",
-          "description": "Detailed information about any response headers returned by this method",
-          "items": {"$ref": "#/definitions/Type"}
-        },
-        "body": {
-          "type": "object",
-          "description": "The body of the response: a body declaration",
-          "patternProperties": {
-            "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "A longer, human-friendly description of the response"
+            },
+            "headers": {
+              "type": "array",
+              "description": "Detailed information about any response headers returned by this method",
+              "items": {"$ref": "#/definitions/Type"}
+            },
+            "body": {
+              "type": "object",
+              "description": "The body of the response: a body declaration",
+              "patternProperties": {
+                "^[a-zA-Z0-9]+": {"$ref": "#/definitions/TypeReference10"}
+              }
+            },
+            "code": {
+              "type": "string",
+              "description": "Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code."
+            }
           }
-        },
-        "code": {
-          "type": "string",
-          "description": "Responses MUST be a map of one or more HTTP status codes, where each status code itself is a map that describes that status code."
         }
-      },
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"},
       "required": ["code"]
     },
     "Trait10": {
-      "type": "object",
       "description": "Declarations of traits for use within this API",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the trait"
-        },
-        "displayName": {
-          "type": "string",
-          "description": "The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
-        },
-        "description": {"$ref": "#/definitions/MethodBase10/properties/description"},
-        "usage": {
-          "type": "string",
-          "description": "Instructions on how and when the trait should be used."
-        },
-        "annotations": {"$ref": "#/definitions/MethodBase10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/MethodBase10/properties/scalarsAnnotations"},
-        "responses": {"$ref": "#/definitions/MethodBase10/properties/responses"},
-        "headers": {"$ref": "#/definitions/MethodBase10/properties/headers"},
-        "queryParameters": {"$ref": "#/definitions/MethodBase10/properties/queryParameters"},
-        "protocols": {"$ref": "#/definitions/MethodBase10/properties/protocols"},
-        "securedBy": {"$ref": "#/definitions/MethodBase10/properties/securedBy"},
-        "body": {"$ref": "#/definitions/MethodBase10/properties/body"},
-        "__METADATA__": {"$ref": "#/definitions/MethodBase10/properties/__METADATA__"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/MethodBase10"},
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name of the trait"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The displayName attribute specifies the trait display name. It is a friendly name used only for  display or documentation purposes. If displayName is not specified, it defaults to the element's key (the name of the property itself)."
+            },
+            "description": {"$ref": "#/definitions/MethodBaseObject10/properties/description"},
+            "usage": {
+              "type": "string",
+              "description": "Instructions on how and when the trait should be used."
+            },
+            "responses": {"$ref": "#/definitions/OperationBase10/properties/responses"},
+            "headers": {"$ref": "#/definitions/OperationBase10/properties/headers"},
+            "queryParameters": {"$ref": "#/definitions/OperationBase10/properties/queryParameters"},
+            "protocols": {"$ref": "#/definitions/MethodBaseObject10/properties/protocols"},
+            "securedBy": {"$ref": "#/definitions/MethodBaseObject10/properties/securedBy"},
+            "body": {"$ref": "#/definitions/MethodBaseObject10/properties/body"},
+            "__METADATA__": {"$ref": "#/definitions/OperationBase10/properties/__METADATA__"}
+          }
+        }
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"},
       "required": ["name"]
     },
     "Method10": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/MethodBase10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/MethodBase10/properties/scalarsAnnotations"},
-        "responses": {"$ref": "#/definitions/MethodBase10/properties/responses"},
-        "headers": {"$ref": "#/definitions/MethodBase10/properties/headers"},
-        "queryParameters": {"$ref": "#/definitions/MethodBase10/properties/queryParameters"},
-        "queryString" : {"$ref": "#/definitions/MethodBase10/properties/queryString"},
-        "protocols": {"$ref": "#/definitions/MethodBase10/properties/protocols"},
-        "securedBy": {"$ref": "#/definitions/MethodBase10/properties/securedBy"},
-        "description": {"$ref": "#/definitions/MethodBase10/properties/description"},
-        "is": {"$ref": "#/definitions/MethodBase10/properties/is"},
-        "body": {"$ref": "#/definitions/MethodBase10/properties/body"},
-        "method": {
-          "type": "string",
-          "description": "Method that can be called"
-        },
-        "__METADATA__": {"$ref": "#/definitions/MethodBase10/properties/__METADATA__"}
-      },
+      "allOf": [
+        {"$ref": "#/definitions/MethodBase10"},
+        {
+          "properties": {
+            "method": {
+              "type": "string",
+              "description": "Method that can be called"
+            }
+          }
+        }
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"},
       "require": ["method"]
     },
     "MethodBase10": {
+      "allOf": [
+        {"$ref": "#/definitions/Operation10"},
+        {"$ref": "#/definitions/MethodBaseObject10"}
+      ]
+    },
+    "MethodBaseObject10":{
       "type": "object",
       "properties": {
-        "annotations": {"$ref": "#/definitions/Operation10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Operation10/properties/scalarsAnnotations"},
-        "responses": {"$ref": "#/definitions/Operation10/properties/responses"},
-        "headers": {"$ref": "#/definitions/Operation10/properties/headers"},
-        "queryParameters": {"$ref": "#/definitions/Operation10/properties/queryParameters"},
-        "queryString" : {"$ref": "#/definitions/Operation10/properties/queryString"},
         "protocols": {
           "type": "array",
           "description": "A method can override the protocols specified in the resource or at the API root, by employing this property.",
@@ -1160,16 +1111,17 @@
         },
         "description": {
           "type": "string"
-        },
-        "__METADATA__": {"$ref": "#/definitions/Operation10/properties/__METADATA__"}
-      },
-      "additionalProperties": false
+        }
+      }
     },
     "Operation10": {
-      "type": "object",
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/OperationBase10"}
+      ]
+    },
+    "OperationBase10":{
       "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
         "responses": {
           "description": "Information about the expected responses to a request",
           "oneOf": [
@@ -1203,8 +1155,7 @@
         "__METADATA__": {
           "type": "object"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "Resource10": {
       "type": "object",
@@ -1334,19 +1285,25 @@
               }
             }
           ]
-
         },
         "scalarsAnnotations": {
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9]+": {
               "type": "array",
-              "items": {"$ref": "#/definitions/AnnotationInstance"}
+              "items": {
+                "oneOf": [
+                  {"$ref": "#/definitions/AnnotationInstance"},
+                  {
+                    "type": "array",
+                    "items": {"$ref": "#/definitions/AnnotationInstance"}
+                  }
+                ]
+              }
             }
           }
         }
-      },
-      "additionalProperties": false
+      }
     },
 
     "AnnotationInstance": {
@@ -1364,34 +1321,36 @@
     },
 
     "ExampleSpec10": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "string",
-          "description": "String representation of example"
-        },
-        "strict": {
-          "type": "boolean",
-          "description": "By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate."
-        },
-        "name": {
-          "type": ["string", "null"],
-          "description": "Example identifier, if specified"
-        },
-        "description": {
-          "type": "string",
-          "description": "A longer, human-friendly description of the example"
-        },
-        "displayName": {
-          "type": "string",
-          "description": "An alternate, human-friendly name for the example"
-        },
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
-        "structuredValue": {
-          "type": ["object", "boolean", "string", "number", "array", "null"]
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "value": {
+              "type": "string",
+              "description": "String representation of example"
+            },
+            "strict": {
+              "type": "boolean",
+              "description": "By default, examples are validated against any type declaration. Set this to false to allow examples that need not validate."
+            },
+            "name": {
+              "type": ["string", "null"],
+              "description": "Example identifier, if specified"
+            },
+            "description": {
+              "type": "string",
+              "description": "A longer, human-friendly description of the example"
+            },
+            "displayName": {
+              "type": "string",
+              "description": "An alternate, human-friendly name for the example"
+            },
+            "structuredValue": {
+              "type": ["object", "boolean", "string", "number", "array", "null"]
+            }
+          }
         }
-      },
+      ],
       "required": ["value", "strict"],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
@@ -1417,107 +1376,107 @@
     },
 
     "OAuth10SecuritySettings10": {
-      "type": "object",
-      "properties": {
-        "signatures": {
-          "type": "array",
-          "description": "List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT",
-          "items": {
-            "type": "string"
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "signatures": {
+              "type": "array",
+              "description": "List of the signature methods used by the server. Available methods: HMAC-SHA1, RSA-SHA1, PLAINTEXT",
+              "items": {
+                "type": "string"
+              }
+            },
+            "requestTokenUri": {
+              "type": "string",
+              "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
+            },
+            "authorizationUri": {
+              "type": "string",
+              "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
+            },
+            "tokenCredentialsUri": {
+              "type": "string",
+              "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
+            }
           }
-        },
-        "requestTokenUri": {
-          "type": "string",
-          "description": "The URI of the Temporary Credential Request endpoint as defined in RFC5849 Section 2.1"
-        },
-        "authorizationUri": {
-          "type": "string",
-          "description": "The URI of the Resource Owner Authorization endpoint as defined in RFC5849 Section 2.2"
-        },
-        "tokenCredentialsUri": {
-          "type": "string",
-          "description": "The URI of the Token Request endpoint as defined in RFC5849 Section 2.3"
-        },
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+        }
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "OAuth20SecuritySettings10": {
-      "type": "object",
-      "properties": {
-        "accessTokenUri": {
-          "type": "string",
-          "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
-        },
-        "authorizationUri": {
-          "type": "string",
-          "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
-        },
-        "authorizationGrants": {
-          "type": "array",
-          "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or any absolute url.",
-          "items": {
-            "type": "string"
-          }
-        },
-        "scopes": {
-          "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
-          "oneOf": [
-            {
-              "type": "string"
-            }, {
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {
+          "properties": {
+            "accessTokenUri": {
+              "type": "string",
+              "description": "The URI of the Token Endpoint as defined in RFC6749 Section 3.2. Not required forby implicit grant type."
+            },
+            "authorizationUri": {
+              "type": "string",
+              "description": "The URI of the Authorization Endpoint as defined in RFC6749 Section 3.1. Required forby authorization_code and implicit grant types."
+            },
+            "authorizationGrants": {
               "type": "array",
+              "description": "A list of the Authorization grants supported by the API as defined in RFC6749 Sections 4.1, 4.2, 4.3 and 4.4, can be any of: authorization_code, password, client_credentials, implicit, or any absolute url.",
               "items": {
                 "type": "string"
               }
+            },
+            "scopes": {
+              "description": "A list of scopes supported by the security scheme as defined in RFC6749 Section 3.3",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
             }
-          ]
-        },
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+          }
+        }
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "PassThroughSecuritySettings10": {
-      "type": "object",
       "description": "Declares globally referable security scheme definition",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"}
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "BasicSecuritySettings10": {
       "type": "object",
       "description": "Declares globally referable security scheme definition",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"}
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "DigestSecuritySettings10": {
       "type": "object",
       "description": "Declares globally referable security scheme definition",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"}
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
     "CustomSecuritySettings10": {
       "type": "object",
       "description": "Declares globally referable security scheme definition",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"}
-      },
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"}
+      ],
       "additionalProperties": {"$ref": "#/definitions/PatternProperties"}
     },
 
@@ -1552,8 +1511,14 @@
     },
 
     "SecurityScheme10": {
-      "type": "object",
       "description": "Declares globally referable security scheme definition",
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/SecuritySchemeBase10"}
+      ],
+      "required": ["type", "name"]
+    },
+    "SecuritySchemeBase10": {
       "properties": {
         "type": {
           "type": "string",
@@ -1571,34 +1536,51 @@
           "type": "string",
           "description": "The description attribute MAY be used to describe a security schemes property."
         },
-        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecuritySchemePart10"}
-      },
-      "required": ["type", "name"],
-      "additionalProperties": false
+        "describedBy": {
+          "$ref": "#/definitions/SecuritySchemePart10"
+        }
+      }
+    },
+    "OAuth10SecurityScheme10": {
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"}
+      ],
+      "required": ["type", "name"]
     },
 
-    "OAuth10SecurityScheme10": {
-      "type": "object",
+    "OAuth10SecuritySchemeBase10": {
       "properties": {
         "type": {
           "type": "string",
           "pattern": "OAuth 1.0",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/OAuth10SecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
-      },
-      "required": ["type", "name"],
-      "additionalProperties": false
+        "name": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/name"
+        },
+        "settings": {
+          "$ref": "#/definitions/OAuth10SecuritySettings10"
+        },
+        "describedBy": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"
+        },
+        "description": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/description"
+        }
+      }
     },
 
     "OAuth20SecurityScheme10": {
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"}
+
+      ],
+      "required": ["type", "name"]
+    },
+
+    "OAuth20SecuritySchemeBase10": {
       "type": "object",
       "properties": {
         "type": {
@@ -1606,15 +1588,19 @@
           "pattern": "OAuth 2.0",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/OAuth20SecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
-      },
-      "required": ["type", "name"],
-      "additionalProperties": false
+        "name": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/name"
+        },
+        "settings": {
+          "$ref": "#/definitions/OAuth20SecuritySettings10"
+        },
+        "describedBy": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"
+        },
+        "description": {
+          "$ref": "#/definitions/SecuritySchemeBase10/properties/description"
+        }
+      }
     },
 
     "PassThroughSecurityScheme10": {
@@ -1625,12 +1611,12 @@
           "pattern": "Pass Through",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
+        "name": {"$ref": "#/definitions/SecuritySchemeBase10/properties/name"},
         "settings": {"$ref": "#/definitions/PassThroughSecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
+        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
+        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+        "describedBy": {"$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"},
+        "description": {"$ref": "#/definitions/SecuritySchemeBase10/properties/description"}
       },
       "required": ["type", "name"],
       "additionalProperties": false
@@ -1644,12 +1630,12 @@
           "pattern": "Basic Authentication",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
+        "name": {"$ref": "#/definitions/SecuritySchemeBase10/properties/name"},
         "settings": {"$ref": "#/definitions/BasicSecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
+        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
+        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+        "describedBy": {"$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"},
+        "description": {"$ref": "#/definitions/SecuritySchemeBase10/properties/description"}
       },
       "required": ["type", "name"],
       "additionalProperties": false
@@ -1663,12 +1649,12 @@
           "pattern": "Digest Authentication",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
+        "name": {"$ref": "#/definitions/SecuritySchemeBase10/properties/name"},
         "settings": {"$ref": "#/definitions/DigestSecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
+        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
+        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+        "describedBy": {"$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"},
+        "description": {"$ref": "#/definitions/SecuritySchemeBase10/properties/description"}
       },
       "required": ["type", "name"],
       "additionalProperties": false
@@ -1681,12 +1667,12 @@
           "type": "string",
           "description": "The settings attribute MAY be used to provide security scheme-specific information. The required attributes vary depending on the type of security scheme is being declared. It describes the minimum set of properties which any processing application MUST provide and validate if it chooses to implement the security scheme. Processing applications MAY choose to recognize other properties for things such as token lifetime, preferred cryptographic algorithms, and more."
         },
-        "name": {"$ref": "#/definitions/SecurityScheme10/properties/name"},
+        "name": {"$ref": "#/definitions/SecuritySchemeBase10/properties/name"},
         "settings": {"$ref": "#/definitions/CustomSecuritySettings10"},
-        "annotations": {"$ref": "#/definitions/SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/SecurityScheme10/properties/description"}
+        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
+        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+        "describedBy": {"$ref": "#/definitions/SecuritySchemeBase10/properties/describedBy"},
+        "description": {"$ref": "#/definitions/SecuritySchemeBase10/properties/description"}
       },
       "required": ["type", "name"],
       "additionalProperties": false
@@ -1695,12 +1681,12 @@
     "SecuritySchemePart10": {
       "type": "object",
       "properties": {
-        "annotations": {"$ref": "#/definitions/Operation10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/Operation10/properties/scalarsAnnotations"},
-        "responses": {"$ref": "#/definitions/Operation10/properties/responses"},
-        "headers": {"$ref": "#/definitions/Operation10/properties/headers"},
-        "queryParameters": {"$ref": "#/definitions/Operation10/properties/queryParameters"},
-        "queryString" : {"$ref": "#/definitions/Operation10/properties/queryString"}
+        "annotations": {"$ref": "#/definitions/Annotable/properties/annotations"},
+        "scalarsAnnotations": {"$ref": "#/definitions/Annotable/properties/scalarsAnnotations"},
+        "responses": {"$ref": "#/definitions/OperationBase10/properties/responses"},
+        "headers": {"$ref": "#/definitions/OperationBase10/properties/headers"},
+        "queryParameters": {"$ref": "#/definitions/OperationBase10/properties/queryParameters"},
+        "queryString" : {"$ref": "#/definitions/OperationBase10/properties/queryString"}
       },
       "additionalProperties": false
     },
@@ -1721,291 +1707,180 @@
       ]
     },
     "ArrayTypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/ArrayTypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/xml"},
-        "example": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/example"},
-        "examples": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/examples"},
-        "uniqueItems": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/uniqueItems"},
-        "minItems": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/minItems"},
-        "maxItems": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/maxItems"},
-        "default": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/default"},
-        "structuredExample": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/ArrayTypeDeclaration/properties/__METADATA__"},
-        "items": {"$ref": "#/definitions/TypeReference10"}
-      },
-      "required": ["type", "__METADATA__", "required", "items"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/ArrayTypeDeclaration"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required", "items"]
     },
     "StringTypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/StringTypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/StringTypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/StringTypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/StringTypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/StringTypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/StringTypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/StringTypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/StringTypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/StringTypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/StringTypeDeclaration/properties/enum"},
-        "pattern": {"$ref": "#/definitions/StringTypeDeclaration/properties/pattern"},
-        "minLength": {"$ref": "#/definitions/StringTypeDeclaration/properties/minLength"},
-        "maxLength": {"$ref": "#/definitions/StringTypeDeclaration/properties/maxLength"},
-        "example":{"$ref": "#/definitions/StringTypeDeclaration/properties/example"},
-        "structuredExample": {"$ref": "#/definitions/StringTypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/StringTypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/StringTypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["type", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/StringTypeDeclaration"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required"]
     },
     "FileTypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/FileTypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/FileTypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/FileTypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/FileTypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/FileTypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/FileTypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/FileTypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/FileTypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/FileTypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/FileTypeDeclaration/properties/enum"},
-        "fileTypes": {"$ref": "#/definitions/FileTypeDeclaration/properties/fileTypes"},
-        "fixedFacets": {"$ref": "#/definitions/FileTypeDeclaration/properties/fixedFacets"},
-        "pattern": {"$ref": "#/definitions/FileTypeDeclaration/properties/pattern"},
-        "minLength": {"$ref": "#/definitions/FileTypeDeclaration/properties/minLength"},
-        "maxLength": {"$ref": "#/definitions/FileTypeDeclaration/properties/maxLength"},
-        "allowedTargets": {"$ref": "#/definitions/FileTypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/FileTypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["type", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/FileTypeDeclaration"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required"]
     },
     "NumberTypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/NumberTypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/NumberTypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/NumberTypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/NumberTypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/NumberTypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/NumberTypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/NumberTypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/NumberTypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/NumberTypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/NumberTypeDeclaration/properties/enum"},
-        "pattern": {"$ref": "#/definitions/NumberTypeDeclaration/properties/pattern"},
-        "minimum": {"$ref": "#/definitions/NumberTypeDeclaration/properties/minimum"},
-        "maximum":{"$ref": "#/definitions/NumberTypeDeclaration/properties/maximum"},
-        "default": {"$ref": "#/definitions/NumberTypeDeclaration/properties/default"},
-        "example": {"$ref": "#/definitions/NumberTypeDeclaration/properties/example"},
-        "format": {"$ref": "#/definitions/NumberTypeDeclaration/properties/format"},
-        "multipleOf": {"$ref": "#/definitions/NumberTypeDeclaration/properties/multipleOf"},
-        "fixedFacets":{"$ref": "#/definitions/NumberTypeDeclaration/properties/fixedFacets"},
-        "allowedTargets": {"$ref": "#/definitions/NumberTypeDeclaration/properties/allowedTargets"},
-        "structuredExample": {"$ref": "#/definitions/NumberTypeDeclaration/properties/structuredExample"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/NumberTypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["type", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/NumberTypeDeclaration"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required"]
     },
     "DateTypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/DateTypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/DateTypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/DateTypeDeclaration/properties/name"},
-        "description" :  {"$ref": "#/definitions/DateTypeDeclaration/properties/description"},
-        "required": {"$ref": "#/definitions/DateTypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/DateTypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/DateTypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/DateTypeDeclaration/properties/facets"},
-        "xml": {"$ref": "#/definitions/DateTypeDeclaration/properties/xml"},
-        "enum": {"$ref": "#/definitions/DateTypeDeclaration/properties/enum"},
-        "pattern": {"$ref": "#/definitions/DateTypeDeclaration/properties/pattern"},
-        "format": {"$ref": "#/definitions/DateTypeDeclaration/properties/format"},
-        "fixedFacets":{"$ref": "#/definitions/DateTypeDeclaration/properties/fixedFacets"},
-        "example":{"$ref": "#/definitions/DateTypeDeclaration/properties/example"},
-        "structuredExample": {"$ref": "#/definitions/DateTypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/DateTypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/DateTypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["type", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/DateTypeDeclaration"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required"]
     },
 
     "TypeSchemaDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "default": {"$ref": "#/definitions/TypeDeclaration/properties/default"},
-        "description": {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "properties": {"$ref": "#/definitions/TypeDeclaration/properties/properties"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "minProperties": {"$ref": "#/definitions/TypeDeclaration/properties/minProperties"},
-        "maxProperties": {"$ref": "#/definitions/TypeDeclaration/properties/maxProperties"},
-        "additionalProperties":{"$ref": "#/definitions/TypeDeclaration/properties/additionalProperties"},
-        "examples": {"$ref": "#/definitions/TypeDeclaration/properties/examples"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "schema": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "fixedFacets": {"$ref": "#/definitions/TypeDeclaration/properties/fixedFacets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "example": {"$ref": "#/definitions/TypeDeclaration/properties/example"},
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["schema", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/TypeDeclarationBase10"},
+        {
+        "properties": {
+          "schema": {"$ref": "#/definitions/TypeReference10"},
+          "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+        }
+        }
+      ],
+      "required": ["schema", "__METADATA__", "required"]
     },
 
     "TypeDeclarationFragment": {
-      "type": "object",
-      "properties": {
-        "annotations": {"$ref": "#/definitions/TypeDeclaration/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/TypeDeclaration/properties/scalarsAnnotations"},
-        "name": {"$ref": "#/definitions/TypeDeclaration/properties/name"},
-        "default": {"$ref": "#/definitions/TypeDeclaration/properties/default"},
-        "description": {"$ref": "#/definitions/TypeDeclaration/properties/description"},
-        "properties": {"$ref": "#/definitions/TypeDeclaration/properties/properties"},
-        "enum": {"$ref": "#/definitions/TypeDeclaration/properties/enum"},
-        "minProperties": {"$ref": "#/definitions/TypeDeclaration/properties/minProperties"},
-        "maxProperties": {"$ref": "#/definitions/TypeDeclaration/properties/maxProperties"},
-        "additionalProperties":{"$ref": "#/definitions/TypeDeclaration/properties/additionalProperties"},
-        "examples": {"$ref": "#/definitions/TypeDeclaration/properties/examples"},
-        "required": {"$ref": "#/definitions/TypeDeclaration/properties/required"},
-        "displayName": {"$ref": "#/definitions/TypeDeclaration/properties/displayName"},
-        "type": {"$ref": "#/definitions/TypeDeclaration/properties/type"},
-        "facets": {"$ref": "#/definitions/TypeDeclaration/properties/facets"},
-        "fixedFacets": {"$ref": "#/definitions/TypeDeclaration/properties/fixedFacets"},
-        "xml": {"$ref": "#/definitions/TypeDeclaration/properties/xml"},
-        "example": {"$ref": "#/definitions/TypeDeclaration/properties/example"},
-        "structuredExample": {"$ref": "#/definitions/TypeDeclaration/properties/structuredExample"},
-        "allowedTargets": {"$ref": "#/definitions/TypeDeclaration/properties/allowedTargets"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"},
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
-      "required": ["type", "__METADATA__", "required"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/TypeDeclarationBase10"},
+        {
+          "properties": {
+            "type": {"$ref": "#/definitions/TypeReference10"},
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type", "__METADATA__", "required"]
     },
 
     "OAuth10SecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/OAuth10SecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/OAuth10SecuritySchemeBase10"},
+        {
+          "properties": {
+            "uses": {
+              "$ref": "#/definitions/FragmentDeclaration/properties/uses"
+            }
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "OAuth20SecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/OAuth20SecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/OAuth20SecuritySchemeBase10"},
+        {
+          "properties": {
+            "uses": {
+              "$ref": "#/definitions/FragmentDeclaration/properties/uses"
+            }
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "PassThroughSecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/PassThroughSecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/PassThroughSecurityScheme10"},
+        {
+          "properties": {
+            "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "BasicSecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/BasicSecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/BasicSecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/BasicSecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/BasicSecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/BasicSecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/BasicSecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/BasicSecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/BasicSecurityScheme10"},
+        {
+          "properties": {
+            "uses": {
+              "$ref": "#/definitions/FragmentDeclaration/properties/uses"
+            }
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "DigestSecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/DigestSecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/DigestSecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/DigestSecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/DigestSecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/DigestSecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/DigestSecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/DigestSecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/DigestSecurityScheme10"},
+        {
+          "properties": {
+            "uses": {
+              "$ref": "#/definitions/FragmentDeclaration/properties/uses"
+            }
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "CustomSecuritySchemeFragment10": {
-      "type": "object",
-      "properties": {
-        "type": {"$ref": "#/definitions/CustomSecurityScheme10/properties/type"},
-        "name": {"$ref": "#/definitions/CustomSecurityScheme10/properties/name"},
-        "settings": {"$ref": "#/definitions/CustomSecurityScheme10/properties/settings"},
-        "annotations": {"$ref": "#/definitions/CustomSecurityScheme10/properties/annotations"},
-        "scalarsAnnotations": {"$ref": "#/definitions/CustomSecurityScheme10/properties/scalarsAnnotations"},
-        "describedBy": {"$ref": "#/definitions/CustomSecurityScheme10/properties/describedBy"},
-        "description": {"$ref": "#/definitions/CustomSecurityScheme10/properties/description"},
-        "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
-      },
-      "required": ["type"],
-      "additionalProperties": false
+      "allOf": [
+        {"$ref": "#/definitions/Annotable"},
+        {"$ref": "#/definitions/CustomSecurityScheme10"},
+        {
+          "properties": {
+            "uses": {
+              "$ref": "#/definitions/FragmentDeclaration/properties/uses"
+            }
+          }
+        }
+      ],
+      "required": ["type"]
     },
 
     "RAML08": {
@@ -2141,7 +2016,7 @@
                 "$ref": "#/definitions/DocumentationItem08"
               }
             },
-            "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           },
           "required": ["title"],
           "additionalProperties": false
@@ -2199,100 +2074,83 @@
           "type": "string",
           "description": "The description attribute describes the intended use or meaning of the $self. This value MAY be formatted using Markdown."
         },
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
+        "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
       },
-      "required": ["name"],
-      "additionalProperties": false
+      "required": ["name"]
     },
     "StringTypeDeclaration08":{
-      "type": "object",
-      "properties":{
-        "type": {
-          "type": "string",
-          "enum":["string"],
-          "description": "Value must be a string"
-        },
-        "pattern": {
-          "type": "string",
-          "description": "(Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity."
-        },
-        "enum": {
-          "type": "array",
-          "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.",
-          "items": {
-            "type": "string"
+      "allOf":[
+        {"$ref": "#/definitions/ParameterBase08"},
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "string"
+              ],
+              "description": "Value must be a string"
+            },
+            "pattern": {
+              "type": "string",
+              "description": "(Optional, applicable only for parameters of type string) The pattern attribute is a regular expression that a parameter of type string MUST match. Regular expressions MUST follow the regular expression specification from ECMA 262/Perl 5. The pattern MAY be enclosed in double quotes for readability and clarity."
+            },
+            "enum": {
+              "type": "array",
+              "description": "(Optional, applicable only for parameters of type string) The enum attribute provides an enumeration of the parameter's valid values. This MUST be an array. If the enum attribute is defined, API clients and servers MUST verify that a parameter's value matches a value in the enum array. If there is no matching value, the clients and servers MUST treat this as an error.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "minLength": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters."
+            },
+            "maxLength": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters."
+            }
           }
-        },
-        "minLength": {
-          "type": "number",
-          "description":"(Optional, applicable only for parameters of type string) The minLength attribute specifies the parameter value's minimum number of characters."
-        },
-        "maxLength": {
-          "type": "number",
-          "description": "(Optional, applicable only for parameters of type string) The maxLength attribute specifies the parameter value's maximum number of characters."
-        },
-        "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
-        "displayName": {"$ref": "#/definitions/ParameterBase08/properties/displayName"},
-        "location": {"$ref": "#/definitions/ParameterBase08/properties/location"},
-        "required": {"$ref": "#/definitions/ParameterBase08/properties/required"},
-        "default": {"$ref": "#/definitions/ParameterBase08/properties/default"},
-        "example": {"$ref": "#/definitions/ParameterBase08/properties/example"},
-        "repeat": {"$ref": "#/definitions/ParameterBase08/properties/repeat"},
-        "description": {"$ref": "#/definitions/ParameterBase08/properties/description"},
-        "__METADATA__": {"$ref": "#/definitions/ParameterBase08/properties/__METADATA__"}
-      },
-      "required": ["name"],
-      "additionalProperties": false
+        }
+      ],
+      "required": ["name"]
     },
     "ParameterTypeDeclaration08":{
-      "type": "object",
-      "properties":{
-        "type": {
-          "type": "string",
-          "description": "Value must be a boolean or date or file",
-          "enum":["boolean", "date", "file"]
-        },
-        "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
-        "displayName": {"$ref": "#/definitions/ParameterBase08/properties/displayName"},
-        "location": {"$ref": "#/definitions/ParameterBase08/properties/location"},
-        "required": {"$ref": "#/definitions/ParameterBase08/properties/required"},
-        "default": {"$ref": "#/definitions/ParameterBase08/properties/default"},
-        "example": {"$ref": "#/definitions/ParameterBase08/properties/example"},
-        "repeat": {"$ref": "#/definitions/ParameterBase08/properties/repeat"},
-        "description": {"$ref": "#/definitions/ParameterBase08/properties/description"},
-        "__METADATA__": {"$ref": "#/definitions/ParameterBase08/properties/__METADATA__"}
-      },
-      "required": ["name"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/ParameterBase08"},
+        {
+          "properties":{
+            "type": {
+              "type": "string",
+              "description": "Value must be a boolean or date or file",
+              "enum":["boolean", "date", "file"]
+            }
+          }
+        }
+      ],
+      "required": ["name"]
     },
     "NumberTypeDeclaration08":{
-      "type": "object",
-      "properties":{
-        "type": {
-          "type": "string",
-          "description": "Value MUST be a number or integer. Indicate floating point numbers as defined by YAML.",
-          "enum":["number", "integer"]
-        },
-        "minimum": {
-          "type": "number",
-          "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
-        },
-        "maximum": {
-          "type": "number",
-          "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
-        },
-        "name": {"$ref": "#/definitions/ParameterBase08/properties/name"},
-        "displayName": {"$ref": "#/definitions/ParameterBase08/properties/displayName"},
-        "location": {"$ref": "#/definitions/ParameterBase08/properties/location"},
-        "required": {"$ref": "#/definitions/ParameterBase08/properties/required"},
-        "default": {"$ref": "#/definitions/ParameterBase08/properties/default"},
-        "example": {"$ref": "#/definitions/ParameterBase08/properties/example"},
-        "repeat": {"$ref": "#/definitions/ParameterBase08/properties/repeat"},
-        "description": {"$ref": "#/definitions/ParameterBase08/properties/description"},
-        "__METADATA__": {"$ref": "#/definitions/ParameterBase08/properties/__METADATA__"}
-      },
-      "required": ["name"],
-      "additionalProperties": false
+      "allOf":[
+        {"$ref": "#/definitions/ParameterBase08"},
+        {
+          "properties":{
+            "type": {
+              "type": "string",
+              "description": "Value MUST be a number or integer. Indicate floating point numbers as defined by YAML.",
+              "enum":["number", "integer"]
+            },
+            "minimum": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The minimum attribute specifies the parameter's minimum value."
+            },
+            "maximum": {
+              "type": "number",
+              "description": "(Optional, applicable only for parameters of type number or integer) The maximum attribute specifies the parameter's maximum value."
+            }
+          }
+        }
+      ],
+      "required": ["name"]
     },
     "GlobalSchema": {
       "type": "object",
@@ -2309,37 +2167,32 @@
       "description": "A partial method definition that, like a method, can provide method-level properties such as description, headers, query string parameters, and responses. Methods that use one or more traits inherit those traits' properties.",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
-          "type": "object",
-          "properties": {
-            "responses": {"$ref": "#/definitions/MethodBase08/properties/responses"},
-            "body": {"$ref": "#/definitions/MethodBase08/properties/body"},
-            "protocols": {"$ref": "#/definitions/MethodBase08/properties/protocols"},
-            "securedBy": {"$ref": "#/definitions/MethodBase08/properties/securedBy"},
-            "baseUriParameters": {"$ref": "#/definitions/MethodBase08/properties/baseUriParameters"},
-            "queryParameters": {"$ref": "#/definitions/MethodBase08/properties/queryParameters"},
-            "headers": {"$ref": "#/definitions/MethodBase08/properties/headers"},
-            "description": {"$ref": "#/definitions/MethodBase08/properties/description"},
-            "name":{
-              "type": "string",
-              "description": "Name of the trait"
-            },
-            "usage":{
-              "type": "string",
-              "description": "Instructions on how and when the trait should be used."
-            },
-            "displayName":{
-              "type": "string",
-              "description": "An alternate, human-friendly name for the trait"
-            },
-            "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
-            "properties": {"$ref": "#/definitions/TypeInstance08/properties/properties"},
-            "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-          },
+          "allOf":[
+            {"$ref": "#/definitions/MethodBase08"},
+            {
+              "properties": {
+                "name":{
+                  "type": "string",
+                  "description": "Name of the trait"
+                },
+                "usage":{
+                  "type": "string",
+                  "description": "Instructions on how and when the trait should be used."
+                },
+                "displayName":{
+                  "type": "string",
+                  "description": "An alternate, human-friendly name for the trait"
+                },
+                "isScalar": {"$ref": "#/definitions/TypeInstance08/properties/isScalar"},
+                "properties": {"$ref": "#/definitions/TypeInstance08/properties/properties"},
+                "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
+              }
+            }
+          ],
           "patternProperties":{
             "^[a-zA-Z0-9<>]+": {"$ref": "#/definitions/TypeInstance08/properties/value"}
           },
-          "required": ["name"],
-          "additionalProperties": false
+          "required": ["name"]
         }
       },
       "additionalProperties": false
@@ -2495,7 +2348,7 @@
         "absoluteUri": {
           "type": "string"
         },
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
+        "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
       },
       "additionalProperties": false
     },
@@ -2551,30 +2404,25 @@
       "additionalProperties": false
     },
     "SecuritySchemePart08": {
-      "type":"object",
       "description": "A description of the request components related to Security that are determined by the scheme: the headers, query parameters or responses. As a best practice, even for standard security schemes, API designers SHOULD describe these properties of security schemes. Including the security scheme description completes an API documentation.",
-      "properties":{
-        "responses": {"$ref": "#/definitions/MethodBase08/properties/responses"},
-        "body": {"$ref": "#/definitions/MethodBase08/properties/body"},
-        "protocols": {"$ref": "#/definitions/MethodBase08/properties/protocols"},
-        "securedBy": {"$ref": "#/definitions/MethodBase08/properties/securedBy"},
-        "baseUriParameters": {"$ref": "#/definitions/MethodBase08/properties/baseUriParameters"},
-        "queryParameters": {"$ref": "#/definitions/MethodBase08/properties/queryParameters"},
-        "headers": {"$ref": "#/definitions/MethodBase08/properties/headers"},
-        "description": {"$ref": "#/definitions/MethodBase08/properties/description"},
-        "method":{
-          "type": "string"
-        },
-        "is":{
-          "type": "array",
-          "description": "Instantiation of applyed traits",
-          "items":{
-            "$ref": "#/definitions/Reference08"
+      "allOf":[
+        {"$ref": "#/definitions/MethodBase08"},
+        {
+          "properties":{
+            "method":{
+              "type": "string"
+            },
+            "is":{
+              "type": "array",
+              "description": "Instantiation of applyed traits",
+              "items":{
+                "$ref": "#/definitions/Reference08"
+              }
+            },
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           }
-        },
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
-      "additionalProperties": false
+        }
+      ]
     },
     "OAuth2SecurityScheme08":{
       "type": "object",
@@ -2667,18 +2515,17 @@
       "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
-          "type": "object",
-          "properties": {
-            "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-            "type":{
-              "type": "string",
-              "pattern": "Basic Authentication"
-            },
-            "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-            "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-            "settings":{"$ref": "#/definitions/SecuritySchemeBase08/properties/settings"}
-          },
-          "additionalProperties": false
+          "allOf":[
+            {"$ref": "#/definitions/SecuritySchemeBase08"},
+            {
+              "properties": {
+                "type":{
+                  "type": "string",
+                  "pattern": "Basic Authentication"
+                }
+              }
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -2688,18 +2535,17 @@
       "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
-          "type": "object",
-          "properties": {
-            "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-            "type":{
-              "type": "string",
-              "pattern": "Digest Authentication"
-            },
-            "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-            "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-            "settings":{"$ref": "#/definitions/SecuritySchemeBase08/properties/settings"}
-          },
-          "additionalProperties": false
+          "allOf":[
+            {"$ref": "#/definitions/SecuritySchemeBase08"},
+              {
+                "properties": {
+                  "type":{
+                    "type": "string",
+                    "pattern": "Digest Authentication"
+                  }
+                }
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -2709,18 +2555,17 @@
       "description": "Declares globally referable security schema definition",
       "patternProperties": {
         "^[a-zA-Z0-9]+":{
-          "type": "object",
-          "properties": {
-            "name":{"$ref": "#/definitions/SecuritySchemeBase08/properties/name"},
-            "type":{
-              "type": "string",
-              "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
-            },
-            "description":{"$ref": "#/definitions/SecuritySchemeBase08/properties/description"},
-            "describedBy":{"$ref": "#/definitions/SecuritySchemeBase08/properties/describedBy"},
-            "settings":{"$ref": "#/definitions/SecuritySchemeBase08/properties/settings"}
-          },
-          "additionalProperties": false
+          "allOf":[
+            {"$ref": "#/definitions/SecuritySchemeBase08"},
+            {
+              "properties": {
+                "type":{
+                  "type": "string",
+                  "pattern": "[a-zA-Z0-9<>]-[a-zA-Z0-9<>]+"
+                }
+              }
+            }
+          ]
         }
       },
       "additionalProperties": false
@@ -2801,7 +2646,7 @@
             "properties+": {
               "$ref": "#/definitions/TypeInstance08/properties/properties"
             },
-            "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           },
           "patternProperties":{
             "^(get|post|delete|put|patch|options|head|<<[a-zA-Z0-9]+>>)?$": {
@@ -2986,34 +2831,29 @@
         "description":{
           "type": "string"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "Method08":{
-      "type": "object",
-      "properties":{
-        "responses": {"$ref": "#/definitions/MethodBase08/properties/responses"},
-        "body": {"$ref": "#/definitions/MethodBase08/properties/body"},
-        "protocols": {"$ref": "#/definitions/MethodBase08/properties/protocols"},
-        "securedBy": {"$ref": "#/definitions/MethodBase08/properties/securedBy"},
-        "baseUriParameters": {"$ref": "#/definitions/MethodBase08/properties/baseUriParameters"},
-        "queryParameters": {"$ref": "#/definitions/MethodBase08/properties/queryParameters"},
-        "headers": {"$ref": "#/definitions/MethodBase08/properties/headers"},
-        "description": {"$ref": "#/definitions/MethodBase08/properties/description"},
-        "method":{
-          "type": "string",
-          "description": "Method that can be called"
-        },
-        "is":{
-          "type": "array",
-          "description": "Instantiation of applyed traits",
-          "items":{
-            "$ref": "#/definitions/Reference08"
+      "allOf":[
+        {"$ref": "#/definitions/MethodBase08"},
+        {
+          "type": "object",
+          "properties":{
+            "method":{
+              "type": "string",
+              "description": "Method that can be called"
+            },
+            "is":{
+              "type": "array",
+              "description": "Instantiation of applyed traits",
+              "items":{
+                "$ref": "#/definitions/Reference08"
+              }
+            },
+            "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
           }
-        },
-        "__METADATA__": {"$ref": "#/definitions/TypeDeclaration/properties/__METADATA__"}
-      },
-      "additionalProperties": false
+        }
+      ]
     }
   }
 }
