@@ -260,7 +260,7 @@ var searchInTheValue = function (offset:number,content: string,attr:hl.IAttribut
         return t;
         //ed.setSelectedBufferRange();
     }
-    if (defs.isUserDefinedProp(p)){
+    if (defs.UserDefinedProp.isInstance(p)){
         var up=p;
         return getUserDefinedPropertySource(<defs.UserDefinedProp>up);
     }
@@ -455,7 +455,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         var tp=node.asElement().localType();
                         tp.allFacets().forEach(f=>{
                             if (f.nameId()== x.lowLevel().key()){
-                                if (def.isUserDefinedProp(f)){
+                                if (def.UserDefinedProp.isInstance(f)){
                                     var up= getUserDefinedPropertySource(<def.UserDefinedProp>f);
                                     result=up;
                                 }
@@ -478,7 +478,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         var tp = node.parent().asElement().localType();
                         tp.allProperties().forEach(f=> {
                             if (f.nameId() == x.key()) {
-                                if (def.isUserDefinedProp(f)) {
+                                if (def.UserDefinedProp.isInstance(f)) {
                                     var up = getUserDefinedPropertySource(<def.UserDefinedProp>f);
                                     result = up;
                                 }
@@ -528,7 +528,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
     if (kind == LocationKind.KEY_COMPLETION||kind==LocationKind.SEQUENCE_KEY_COPLETION) {
         var hlnode = <hl.IHighLevelNode>node;
         var pp=node.property();
-        if (defs.isUserDefinedProp(pp)){
+        if (defs.UserDefinedProp.isInstance(pp)){
             var up=<defs.UserDefinedProp>pp;
             return getUserDefinedPropertySource(up);
         }
@@ -553,7 +553,7 @@ export function findDeclaration(unit:ll.ICompilationUnit, offset:number,
                         var node = deepFindNode(documentationRoot, offset,offset);
 
                         pp=node.property();
-                        if (defs.isUserDefinedProp(pp)){
+                        if (defs.UserDefinedProp.isInstance(pp)){
                             var up=<defs.UserDefinedProp>pp;
                             return getUserDefinedPropertySource(up);
                         }
@@ -967,7 +967,7 @@ export function refFinder(root:hl.IHighLevelNode,node:hl.IHighLevelNode,result:h
         //if (pr.isTypeExpr()){
         //    typeExpression.
         //}
-        if (defs.isUserDefinedProp(pr)){
+        if (defs.UserDefinedProp.isInstance(pr)){
             var up=(<defs.UserDefinedProp>pr).node();
             if (up==node){
                 result.push(a);
