@@ -36,8 +36,8 @@ type IHighLevelNode=hl.IHighLevelNode
 export function qName(x:hl.IHighLevelNode,context:hl.IHighLevelNode):string{
     //var dr=search.declRoot(context);
     var nm=x.name();
-    if(context.lowLevel() instanceof proxy.LowLevelProxyNode){
-        if(x.lowLevel() instanceof proxy.LowLevelProxyNode){
+    if(proxy.LowLevelProxyNode.isInstance(context.lowLevel())){
+        if(proxy.LowLevelProxyNode.isInstance(x.lowLevel())){
             return nm;
         }
         var rootUnit = context.root().lowLevel().unit();
@@ -190,7 +190,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     markCh() {
         var n:any = this.lowLevel();
-        while(n instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(n)){
             n = (<proxy.LowLevelProxyNode>n).originalNode();
         }
         n = n._node ? n._node : n;
@@ -202,7 +202,7 @@ export class BasicASTNode implements hl.IParseResult {
 
     unmarkCh(){
         var n:any=this.lowLevel();
-        while(n instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(n)){
             n = (<proxy.LowLevelProxyNode>n).originalNode();
         }
         n=n._node?n._node:n;
@@ -549,7 +549,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
     findReferenceDeclaration():hl.IHighLevelNode{
         var targets=search.referenceTargets(this.property(),this.parent());
         var vl=this.value();
-        if (vl instanceof StructuredValue){
+        if (StructuredValue.isInstance(vl)){
             var st=<StructuredValue>vl;
             var nm=st.valueName();
         }
@@ -648,14 +648,14 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
         var actualValue = this._node.value(isString); //TODO FIXME
         if (this.property().isSelfNode()){
-            if (!actualValue||actualValue instanceof jsyaml.ASTNode){
+            if (!actualValue||jsyaml.ASTNode.isInstance(actualValue)){
                 actualValue=this._node;
                 if (actualValue.children().length==0){
                     actualValue=null;
                 }
             }
         }
-        if (actualValue instanceof jsyaml.ASTNode||actualValue instanceof proxy.LowLevelProxyNode) {
+        if (actualValue instanceof jsyaml.ASTNode||proxy.LowLevelProxyNode.isInstance(actualValue)) {
             var isAnnotatedScalar=false;
             if (!this.property().range().hasStructure()){
                 if (this._node.isAnnotatedScalar()){
@@ -725,7 +725,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             + "  =  " + this.value()) +
             "\n";
 
-        if (this.value() instanceof StructuredValue){
+        if (StructuredValue.isInstance(this.value())){
             var structuredHighLevel : any = (<StructuredValue>this.value()).toHighLevel();
             if (structuredHighLevel && structuredHighLevel.testSerialize) {
                 result += structuredHighLevel.testSerialize((indent?indent:"") + "  ");
@@ -1003,7 +1003,7 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
             if (result) {
                 this._node.setHighLevelParseResult(result);
-                if (result instanceof ASTNodeImpl) {
+                if (ASTNodeImpl.isInstance(result)) {
                     this._node.setHighLevelNode(<ASTNodeImpl>result)
                 }
             }
@@ -1223,7 +1223,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
         if(node) {
             node.setHighLevelNode(this);
         }
-        if (node instanceof proxy.LowLevelProxyNode){
+        if (proxy.LowLevelProxyNode.isInstance(node)){
             this._expanded=true;
         }
     }
@@ -1580,7 +1580,7 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
             return this._patchedName
         }
         var ka=_.find(this.directChildren(),x=>x.property()&&x.property().getAdapter(services.RAMLPropertyService).isKey());
-        if (ka&&ka instanceof ASTPropImpl){
+        if (ka&&ASTPropImpl.isInstance(ka)){
             var c = null;
             var defClass = this.definition();
             var ramlVersion = defClass.universe().version();
@@ -2150,7 +2150,7 @@ export class AnnotatedNode implements def.rt.tsInterfaces.IAnnotatedElement{
         }
         else if(this._node.isAttr()){
             var val = this._node.asAttr().value();
-            if(val instanceof StructuredValue){
+            if(StructuredValue.isInstance(val)){
                 return (<StructuredValue>val).lowLevel().dump();
             }
             return val;
@@ -2176,7 +2176,7 @@ export class AnnotationInstance implements def.rt.tsInterfaces.IAnnotationInstan
      */
     value(): any{
         var val = this.attr.value();
-        if(val instanceof  StructuredValue){
+        if(StructuredValue.isInstance(val)){
             var obj = (<StructuredValue>val).lowLevel().dumpToObject();
             var key = Object.keys(obj)[0];
             return obj[key];

@@ -2187,6 +2187,18 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
 
     _errors:Error[]=[]
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.ASTNode";
+
+    public static isInstance(instance : any) : instance is ASTNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && ASTNode.CLASS_IDENTIFIER == instance.getClassIdentifier();
+    }
+
+    public getClassIdentifier() : string {
+        return ASTNode.CLASS_IDENTIFIER;
+    }
+
     constructor (
         private _node: yaml.YAMLNode,
         private _unit: lowlevel.ICompilationUnit,

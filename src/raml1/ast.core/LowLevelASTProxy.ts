@@ -15,6 +15,18 @@ var _ = require("underscore");
 
 export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
+    private static CLASS_IDENTIFIER = "LowLevelASTProxy.LowLevelProxyNode";
+
+    public static isInstance(instance : any) : instance is LowLevelProxyNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && LowLevelProxyNode.CLASS_IDENTIFIER == instance.getClassIdentifier();
+    }
+
+    public getClassIdentifier() : string {
+        return LowLevelProxyNode.CLASS_IDENTIFIER;
+    }
+
     constructor(
         protected _parent:ll.ILowLevelASTNode,
         protected _transformer:ValueTransformer,
