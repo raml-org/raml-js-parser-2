@@ -24,6 +24,8 @@ import universeHelpers = require("../tools/universeHelpers");
 var changeCase = require('change-case');
 
 export function expandTraitsAndResourceTypes<T>(api:T):T{
+    // if(!((<any>api).kind
+    //     && ((<any>api).kind() == "Api" || (<any>api).kind() == "Overlay" || (<any>api).kind() == "Extension"))){
     if(!(api instanceof RamlWrapperImpl.ApiImpl || api instanceof RamlWrapper08Impl.ApiImpl)){
         return null;
     }
@@ -380,7 +382,7 @@ export class TraitsAndResourceTypesExpander {
                 };
             }
         }
-        else if (value instanceof hlimpl.StructuredValue) {
+        else if (hlimpl.StructuredValue.isInstance(value)) {
             var sv = <hlimpl.StructuredValue>value;
             var name = sv.valueName();
             if (transformer) {
@@ -465,7 +467,7 @@ export class LibraryExpander{
         if(api==null){
             return null;
         }
-        if(api.highLevel().lowLevel() instanceof proxy.LowLevelCompositeNode){
+        if(proxy.LowLevelCompositeNode.isInstance(api.highLevel().lowLevel())){
             api = <RamlWrapper.Api>api.highLevel().lowLevel().unit().highLevel().asElement().wrapperNode();            
         }
         var expander = new TraitsAndResourceTypesExpander();

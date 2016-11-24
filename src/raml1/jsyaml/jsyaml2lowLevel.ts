@@ -2192,11 +2192,13 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
     public static isInstance(instance : any) : instance is ASTNode {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
-            && ASTNode.CLASS_IDENTIFIER == instance.getClassIdentifier();
+            && _.contains(instance.getClassIdentifier(),ASTNode.CLASS_IDENTIFIER);
     }
 
-    public getClassIdentifier() : string {
-        return ASTNode.CLASS_IDENTIFIER;
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ASTNode.CLASS_IDENTIFIER);
     }
 
     constructor (

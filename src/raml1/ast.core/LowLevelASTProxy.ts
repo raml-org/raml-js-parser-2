@@ -20,11 +20,13 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
     public static isInstance(instance : any) : instance is LowLevelProxyNode {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
-            && LowLevelProxyNode.CLASS_IDENTIFIER == instance.getClassIdentifier();
+            && _.contains(instance.getClassIdentifier(),LowLevelProxyNode.CLASS_IDENTIFIER);
     }
 
-    public getClassIdentifier() : string {
-        return LowLevelProxyNode.CLASS_IDENTIFIER;
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(LowLevelProxyNode.CLASS_IDENTIFIER);
     }
 
     constructor(
@@ -208,6 +210,20 @@ export class LowLevelProxyNode implements ll.ILowLevelASTNode{
 
 
 export class LowLevelCompositeNode extends LowLevelProxyNode{
+
+    private static CLASS_IDENTIFIER_LowLevelCompositeNode = "LowLevelASTProxy.LowLevelCompositeNode";
+
+    public static isInstance(instance : any) : instance is LowLevelCompositeNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelCompositeNode.CLASS_IDENTIFIER_LowLevelCompositeNode);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelCompositeNode.CLASS_IDENTIFIER_LowLevelCompositeNode);
+    }
 
     constructor(
         node:ll.ILowLevelASTNode,

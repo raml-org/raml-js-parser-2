@@ -90,7 +90,19 @@ export class BasicASTNode implements hl.IParseResult {
 
     unitMap:{ [path:string]:string };
 
+    private static CLASS_IDENTIFIER = "highLevelImpl.BasicASTNode";
 
+    public static isInstance(instance : any) : instance is BasicASTNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),BasicASTNode.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(BasicASTNode.CLASS_IDENTIFIER);
+    }
 
     getKind() : hl.NodeKind {
         return hl.NodeKind.BASIC
@@ -368,11 +380,13 @@ export class StructuredValue implements hl.IStructuredValue{
     public static isInstance(instance : any) : instance is StructuredValue {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
-            && StructuredValue.CLASS_IDENTIFIER == instance.getClassIdentifier();
+            && _.contains(instance.getClassIdentifier(),StructuredValue.CLASS_IDENTIFIER);
     }
 
-    public getClassIdentifier() : string {
-        return StructuredValue.CLASS_IDENTIFIER;
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(StructuredValue.CLASS_IDENTIFIER);
     }
 
     constructor(private node:ll.ILowLevelASTNode,private _parent:hl.IHighLevelNode,_pr:hl.IProperty,private kv=null){
@@ -464,16 +478,18 @@ export class StructuredValue implements hl.IStructuredValue{
 
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
 
-    private static CLASS_IDENTIFIER = "highLevelImpl.ASTPropImpl";
+    private static CLASS_IDENTIFIER_ASTPropImpl = "highLevelImpl.ASTPropImpl";
 
     public static isInstance(instance : any) : instance is ASTPropImpl {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
-            && ASTPropImpl.CLASS_IDENTIFIER == instance.getClassIdentifier();
+            && _.contains(instance.getClassIdentifier(),ASTPropImpl.CLASS_IDENTIFIER_ASTPropImpl);
     }
 
-    public getClassIdentifier() : string {
-        return ASTPropImpl.CLASS_IDENTIFIER;
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(ASTPropImpl.CLASS_IDENTIFIER_ASTPropImpl);
     }
 
     definition():hl.IValueTypeDefinition {
@@ -655,7 +671,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
                 }
             }
         }
-        if (actualValue instanceof jsyaml.ASTNode||proxy.LowLevelProxyNode.isInstance(actualValue)) {
+        if (jsyaml.ASTNode.isInstance(actualValue)||proxy.LowLevelProxyNode.isInstance(actualValue)) {
             var isAnnotatedScalar=false;
             if (!this.property().range().hasStructure()){
                 if (this._node.isAnnotatedScalar()){
@@ -702,7 +718,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
             + "  =  " + this.value()) + (this.property().isKey()&&this.optional()?"?":"")
             + "\n";
 
-        if (this.value() instanceof StructuredValue){
+        if (StructuredValue.isInstance(this.value())){
             var structuredHighLevel : any = (<StructuredValue>this.value()).toHighLevel();
             if (structuredHighLevel && structuredHighLevel.printDetails) {
                 result += structuredHighLevel.printDetails(indent + "\t");
@@ -1047,16 +1063,18 @@ export class ASTNodeImpl extends BasicASTNode implements  hl.IEditableHighLevelN
     private _types:rTypes.IParsedTypeCollection;
     private _ptype:rTypes.IParsedType;
 
-    private static CLASS_IDENTIFIER = "highLevelImpl.ASTNodeImpl";
+    private static CLASS_IDENTIFIER_ASTNodeImpl = "highLevelImpl.ASTNodeImpl";
 
     public static isInstance(instance : any) : instance is ASTNodeImpl {
         return instance != null && instance.getClassIdentifier
             && typeof(instance.getClassIdentifier) == "function"
-            && ASTNodeImpl.CLASS_IDENTIFIER == instance.getClassIdentifier();
+            && _.contains(instance.getClassIdentifier(),ASTNodeImpl.CLASS_IDENTIFIER_ASTNodeImpl);
     }
 
-    public getClassIdentifier() : string {
-        return ASTNodeImpl.CLASS_IDENTIFIER;
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(ASTNodeImpl.CLASS_IDENTIFIER_ASTNodeImpl);
     }
 
     createIssue(error: any): hl.ValidationIssue {
