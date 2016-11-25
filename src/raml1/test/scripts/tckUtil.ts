@@ -431,9 +431,7 @@ export function testAPI(
 
     (<any>expanded).setAttributeDefaults(true);
     var json = expanded.toJSON({
-        rootNodeDetails:true,
-        serializeMetadata: true,
-        attributeDefaults: true
+        rootNodeDetails:true
     });
 
     if(!tckJsonPath){
