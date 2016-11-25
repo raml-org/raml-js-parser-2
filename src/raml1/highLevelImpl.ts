@@ -878,6 +878,20 @@ export class LowLevelWrapperForTypeSystem extends defs.SourceProvider implements
 
     private _toMerge:LowLevelWrapperForTypeSystem;
 
+    private static CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem = "highLevelImpl.LowLevelWrapperForTypeSystem";
+
+    public static isInstance(instance : any) : instance is LowLevelWrapperForTypeSystem {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelWrapperForTypeSystem.CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelWrapperForTypeSystem.CLASS_IDENTIFIER_LowLevelWrapperForTypeSystem);
+    }
+
     constructor(protected _node:ll.ILowLevelASTNode, protected _highLevelRoot:hl.IHighLevelNode){
         super()
 

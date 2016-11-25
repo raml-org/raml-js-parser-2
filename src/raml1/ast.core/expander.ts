@@ -72,7 +72,7 @@ function mergeHighLevelNodes(
     var currentMaster = masterApi;
     for(var currentApi of highLevelNodes) {
 
-        if(expand&&(currentMaster.lowLevel() instanceof proxy.LowLevelProxyNode)) {
+        if(expand&&(proxy.LowLevelProxyNode.isInstance(currentMaster.lowLevel()))) {
             currentMaster = new TraitsAndResourceTypesExpander().expandHighLevelNode(
                 currentMaster, rp, masterApi.wrapperNode()).highLevel();
         }

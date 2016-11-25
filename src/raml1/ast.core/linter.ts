@@ -12,7 +12,7 @@ import _=require("underscore")
 import yaml=require("yaml-ast-parser")
 import def=require( "raml-definition-system");
 import high=require("../highLevelAST");
-type Error=yaml.Error
+type Error=yaml.YAMLException
 import hlimpl=require("../highLevelImpl")
 
 import linterApi=require("./linterApi")
@@ -187,7 +187,7 @@ class LinterExtensionsImpl implements linterApi.ErrorFactory<core.BasicNode>,lin
         h.elements().forEach(y=>this.visit(y));
     }
     process(d:hl.ITypeDefinition,h:hl.IHighLevelNode){
-        if (d instanceof def.NodeClass) {
+        if (def.NodeClass.isInstance(d)) {
             if (!d.getAdapter(services.RAMLService).getDeclaringNode()) {
                 var rules = this.nodes[d.nameId()];
                 if (rules) {
@@ -275,7 +275,7 @@ function restrictUnknownNodeError(node:hlimpl.BasicASTNode) {
     var parentNode = node.parent();
     var issue = null;
     var parentDef = parentNode.definition();
-    if (parentNode && parentDef instanceof def.UserDefinedClass) {
+    if (parentNode && def.UserDefinedClass.isInstance(parentDef)) {
         var parentProperty = parentNode.property();
         if (universeHelpers.isIsProperty(parentProperty)
             || universeHelpers.isTypeProperty(parentProperty)) {
@@ -1020,7 +1020,7 @@ class CompositePropertyValidator implements PropertyValidator{
         var pr = checkPropertyQuard(node, v);
         var vl=node.value();
         if (!node.property().range().hasStructure()){
-            if (vl instanceof hlimpl.StructuredValue&&!(<def.Property>node.property()).isSelfNode()){
+            if (hlimpl.StructuredValue.isInstance(vl)&&!(<def.Property>node.property()).isSelfNode()){
 
                 //TODO THIS SHOULD BE MOVED TO TYPESYSTEM FOR STS AT SOME MOMENT
                 if (isTypeOrSchema(node.property())){
@@ -1075,7 +1075,7 @@ class CompositePropertyValidator implements PropertyValidator{
         if (typeof vl=='string'){
             refName = vl;
         }
-        else if(vl instanceof hlimpl.StructuredValue){
+        else if(hlimpl.StructuredValue.isInstance(vl)){
             refName = (<hlimpl.StructuredValue>vl).valueName();
         }
         if (refName && refName.indexOf("<<")!=-1){
@@ -1115,7 +1115,7 @@ class CompositePropertyValidator implements PropertyValidator{
             if (node.definition().universe().version()=="RAML08"){
                 var np=node.lowLevel().parent();
                 var ysc=yaml.Kind.SEQ;
-                if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
+                if (proxy.LowLevelProxyNode.isInstance(node.lowLevel())){
                     if (np.valueKind()!=ysc){
                         v.accept(createIssue1(messageRegistry.SECUREDBY_LIST_08,{},node,false));
                     }
@@ -1159,10 +1159,10 @@ class CompositePropertyValidator implements PropertyValidator{
             && (<string>node.value()).indexOf("[") == 0
             && (<string>node.value()).lastIndexOf("]") == (<string>node.value()).length - 1) {
 
-            if(node.parent() instanceof hlimpl.ASTNodeImpl &&
+            if(hlimpl.ASTNodeImpl.isInstance(node.parent()) &&
                 universes.Universe10.ObjectTypeDeclaration.properties.properties.name == (<hlimpl.ASTNodeImpl>node.parent()).property().nameId()){
 
-                if (node.parent().parent() instanceof hlimpl.ASTNodeImpl &&
+                if (hlimpl.ASTNodeImpl.isInstance(node.parent().parent()) &&
                     universes.Universe10.ObjectTypeDeclaration == (<hlimpl.ASTNodeImpl>node.parent().parent()).definition().key()) {
                     var cleanedValue = (<string>node.value()).substr(1, (<string>node.value()).length - 2)
                     validateRegexp(cleanedValue, v, node);
@@ -1196,6 +1196,20 @@ function isValidArray(t:hl.ITypeDefinition,h:hl.IHighLevelNode, v:any,p:hl.IProp
 }
 
 class ValidationError extends Error{
+
+    private static CLASS_IDENTIFIER_ValidationError = "linter.ValidationError";
+
+    public static isInstance(instance : any) : instance is ValidationError {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ValidationError.CLASS_IDENTIFIER_ValidationError);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ValidationError.CLASS_IDENTIFIER_ValidationError);
+    }
 
     constructor(public messageEntry:any, public parameters:any={}){
         super();
@@ -1345,7 +1359,7 @@ class NormalValidator implements PropertyValidator{
         }
         if (validation instanceof Error){
             if (!(<any>validation).canBeRef){
-                if(validation instanceof ValidationError){
+                if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
                     v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
                 }
@@ -1372,7 +1386,7 @@ class NormalValidator implements PropertyValidator{
                     }
                     var decl = (<hlimpl.ASTPropImpl>node).findReferencedValue();
                     if (decl instanceof Error) {
-                        if(decl instanceof ValidationError){
+                        if(ValidationError.isInstance(decl)){
                             var ve = <ValidationError>decl;
                             v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
                         }
@@ -1392,7 +1406,7 @@ class NormalValidator implements PropertyValidator{
                             }
                         }
                         if (validation instanceof Error&&vl){
-                            if(validation instanceof ValidationError){
+                            if(ValidationError.isInstance(validation)){
                                 var ve = <ValidationError>validation;
                                 v.accept(createIssue1(ve.messageEntry,ve.parameters, node));
                             }
@@ -1963,7 +1977,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
         var pr=<def.Property>node.property();
         if (typeof vl=='string'){
             checkReference(pr, node, vl,cb);
-            if (pr.range() instanceof def.ReferenceType){
+            if (def.ReferenceType.isInstance(pr.range())){
                 var t=<def.ReferenceType>pr.range();
                 if (true){
                     var mockNode=jsyaml.createNode(""+vl,<any>node.lowLevel().parent(),node.lowLevel().unit());
@@ -2000,7 +2014,7 @@ class DescriminatorOrReferenceValidator implements PropertyValidator{
         if (valueKey) {
             var validation = isValid(pr.range(),node.parent(), valueKey, pr);
             if (validation instanceof Error) {
-                if(validation instanceof ValidationError){
+                if(ValidationError.isInstance(validation)){
                     var ve = <ValidationError>validation;
                     cb.accept(createIssue1(ve.messageEntry,ve.parameters, node));
                 }
@@ -2174,7 +2188,7 @@ class RequiredPropertiesAndContextRequirementsValidator implements NodeValidator
             path.indexOf("/")<0;
         }
         var lowLevel:ll.ILowLevelASTNode = children[0];
-        if(lowLevel instanceof proxy.LowLevelCompositeNode){
+        if(proxy.LowLevelCompositeNode.isInstance(lowLevel)){
             lowLevel = (<proxy.LowLevelCompositeNode>lowLevel).primaryNode();
         }
         if(lowLevel==null){
@@ -2326,7 +2340,7 @@ function mapPath(node:hl.IHighLevelNode,e:rtypes.IStatus):hl.IParseResult{
 
 function extractLowLevelNode(e:rtypes.IStatus):ll.ILowLevelASTNode{
     var pn = e.getExtra(rtypes.SOURCE_EXTRA);
-    if(pn instanceof hlimpl.LowLevelWrapperForTypeSystem){
+    if(hlimpl.LowLevelWrapperForTypeSystem.isInstance(pn)){
         return (<hlimpl.LowLevelWrapperForTypeSystem>pn).node();
     }
     return null;
@@ -3096,7 +3110,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
             var sa = this.findParentSchemaOrTypeAttribute(node);
             if (sa){
                 var val=sa.value();
-                if (val instanceof hlimpl.StructuredValue){
+                if (hlimpl.StructuredValue.isInstance(val)){
                     return null;
                 }
                 var strVal=(""+val).trim();
@@ -3231,7 +3245,7 @@ export class ExampleAndDefaultValueValidator implements PropertyValidator{
         var pObj:any=null;
         var vl=node.value();
         var mediaType=getMediaType(node);
-        if (vl instanceof hlimpl.StructuredValue){
+        if (hlimpl.StructuredValue.isInstance(vl)){
             //validate in context of type/schema
             pObj=this.toObject(node,<hlimpl.StructuredValue>vl,cb);
         }
@@ -3717,7 +3731,7 @@ export function createIssue(
     //console.log(node.name()+node.lowLevel().start()+":"+node.id());
     var original=null;
     var pr:hl.IProperty=null;
-    if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
+    if (proxy.LowLevelProxyNode.isInstance(node.lowLevel())){
         var proxyNode:proxy.LowLevelProxyNode=<proxy.LowLevelProxyNode>node.lowLevel();
         while (!proxyNode.primaryNode()){
             if (!original){

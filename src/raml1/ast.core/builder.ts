@@ -867,6 +867,9 @@ function findFacetDeclaration(facet : ramlTypes.ITypeFacet) : def.SourceProvider
             }
 
             return null;
+        },
+        getClassIdentifier() : string[] {
+            return [defs.SourceProvider.CLASS_IDENTIFIER];
         }
     }
 }
