@@ -189,16 +189,17 @@ export function loadRAMLAsync(ramlPath:string,arg1?:string[]|parserCoreApi.Optio
         if(attrDefaults==null){
             attrDefaults = true;
         }
-        if (attrDefaults) {
-            var node = x;
-            while(node != null){
-                var wn = node.wrapperNode();
-                if(wn) {
-                    (<any>wn).setAttributeDefaults(true);
-                }
-                node = node.getMaster().asElement();
+
+        var node = x;
+        while (node != null) {
+            var wn = node.wrapperNode();
+            if (wn) {
+                (<any>wn).setAttributeDefaults(attrDefaults);
             }
+            var master = node.getMaster();
+            node = master ? master.asElement() : null;
         }
+
         return x.wrapperNode();
     });
 }

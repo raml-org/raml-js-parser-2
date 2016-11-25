@@ -1,4 +1,5 @@
 /// <reference path="../../typings/main.d.ts" />
+import {IParseResult, IHighLevelNode} from "../raml1/highLevelAST";
 var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
@@ -32,6 +33,9 @@ export class TCKDumper {
         this.options = this.options || {};
         if (this.options.serializeMetadata == null) {
             this.options.serializeMetadata = true;
+        }
+        if (this.options.attributeDefaults == null) {
+            this.options.attributeDefaults = true;
         }
         this.oDumper = new tckDumper.TCKDumper(this.options);
         this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
@@ -230,6 +234,20 @@ export class TCKDumper {
                     }
                     result[pName] = aVal;
                 }
+            }
+            if (this.options.dumpSchemaContents&&map["schema"]) {
+                    if (map["schema"].prop.range().key() == universes.Universe08.SchemaString) {
+                        var schemas = eNode.root().elementsOfKind("schemas");
+                        schemas.forEach(x=> {
+                            if (x.name() == result["schema"]) {
+                                var vl = x.attr("value");
+                                if (vl) {
+                                    result["schema"] = vl.value();
+                                    result["schemaContent"] = vl.value();
+                                }
+                            }
+                        })
+                    }
             }
             if(this.options.serializeMetadata) {
                 this.serializeMeta(result, eNode);

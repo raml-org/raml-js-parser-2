@@ -329,8 +329,17 @@ export class BasicNodeImpl implements hl.BasicNode{
     }
 
     toJSON(serializeOptions?:tckDumperHL.SerializeOptions):any{
+        serializeOptions = serializeOptions || {};
         var oldDefaults=defaultAttributeDefaultsValue;
         defaultAttributeDefaultsValue=this.attributeDefaults();
+        if(serializeOptions.attributeDefaults==null){
+            var so:tckDumperHL.SerializeOptions = {};
+            for(var k of Object.keys(serializeOptions)){
+                so[k] = serializeOptions[k];
+            }
+            so.attributeDefaults = defaultAttributeDefaultsValue;
+            serializeOptions = so;
+        }
         try {
             return new tckDumperHL.TCKDumper(serializeOptions).dump(this.highLevel());
         }

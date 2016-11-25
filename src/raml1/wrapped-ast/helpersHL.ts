@@ -276,7 +276,8 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean
     if(!nodePath){
         nodePath = ll.unit().path();
     }
-    var isProxy = !universeHelpers.isOverlayType(hlNode.definition());
+    var isProxy = hlNode.definition().universe().version()=="RAML10"
+        &&!universeHelpers.isOverlayType(hlNode.definition());
     var exp = isProxy ? new expander.TraitsAndResourceTypesExpander() : null;
     var result:hl.IHighLevelNode[] = [];
     for(var x of arr){

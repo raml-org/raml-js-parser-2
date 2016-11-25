@@ -2229,8 +2229,8 @@ export function applyNodeAnnotationValidationPlugins(
 
 export function toParserErrors(issues:hl.ValidationIssue[],node:hl.IHighLevelNode):hl.RamlParserError[]{
 
-    var rawResult = issues.map(x=>this.basicError(x,node));
-    var result:hl.RamlParserError[] = this.filterErrors(rawResult);
+    var rawResult = issues.map(x=>basicError(x,node));
+    var result:hl.RamlParserError[] = filterErrors(rawResult);
     return result;
 }
 
