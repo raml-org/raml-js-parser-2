@@ -123,7 +123,7 @@ export class TCKDumper {
             for(var p of definition.allProperties()
                 .concat((<def.NodeClass>definition).allCustomProperties())){
                 
-                if(p instanceof def.UserDefinedProp){
+                if(def.isUserDefinedProp(p)){
                     continue;
                 }
                 if(universeHelpers.isTypeProperty(p)){
@@ -163,7 +163,7 @@ export class TCKDumper {
                             &&universeHelpers.isTypeProperty(p)){
                             //TODO compatibility crutch
                             if(pVal.arr.map(x=>(<hl.IAttribute>x).value())
-                                    .filter(x=>x instanceof hlImpl.StructuredValue).length>0){
+                                    .filter(x=>hlImpl.isStructuredValue(x)).length>0){
                                 aVal = aVal[0];
                             }
                         }
@@ -189,13 +189,13 @@ export class TCKDumper {
                     var defVal = this.getDefaultsCalculator().attributeDefaultIfEnabled(eNode, p);
                     if(Array.isArray(defVal)){
                         defVal = defVal.map(x=>{
-                            if(x instanceof hlImpl.ASTPropImpl){
+                            if(hlImpl.isASTPropImpl(x)){
                                 return this.dumpInternal(<hl.IParseResult>x,p);
                             }
                             return x;
                         });
                     }
-                    else if(defVal instanceof hlImpl.ASTPropImpl){
+                    else if(hlImpl.isASTPropImpl(defVal)){
                         defVal = this.dumpInternal(<hl.IParseResult>defVal,p);
                     }
                     aVal = defVal;
@@ -281,7 +281,7 @@ export class TCKDumper {
                     return val;
                 }
             }            
-            if(val instanceof hlImpl.StructuredValue){
+            if(hlImpl.isStructuredValue(val)){
                 var sVal = (<hlImpl.StructuredValue>val);
                 var llNode = sVal.lowLevel();
                 val = llNode ? llNode.dumpToObject() : null;

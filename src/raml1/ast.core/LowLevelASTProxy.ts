@@ -665,3 +665,8 @@ export interface ValueTransformer{
 
     valueKind(node:ll.ILowLevelASTNode):yaml.Kind
 }
+
+export function isLowLevelProxyNode(node : any) : node is LowLevelProxyNode {
+    var anyNode = <any>node;
+    return anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
+}
