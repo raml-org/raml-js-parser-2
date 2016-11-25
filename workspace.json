@@ -9,6 +9,7 @@
   "raml-definition-system" : {
     "build" : "npm run build",
     "gitUrl" : "https://github.com/raml-org/raml-definition-system.git",
+    "gitBranch": "develop",
     "installTypings" : true
   },
   "raml-typesystem" : {
