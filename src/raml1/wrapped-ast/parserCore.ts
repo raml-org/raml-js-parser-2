@@ -10,6 +10,7 @@ import json2lowlevel = require('../jsyaml/json2lowLevel');
 import defaultCalculator = require("./defaultCalculator");
 import search=require("../../search/search-interface");
 import universeHelpers = require("../tools/universeHelpers")
+import tckDumperHL = require("../../util/TCKDumperHL")
 import tckDumper = require("../../util/TCKDumper")
 import yaml=require("yaml-ast-parser")
 
@@ -327,11 +328,11 @@ export class BasicNodeImpl implements hl.BasicNode{
         return null;
     }
 
-    toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
+    toJSON(serializeOptions?:tckDumperHL.SerializeOptions):any{
         var oldDefaults=defaultAttributeDefaultsValue;
         defaultAttributeDefaultsValue=this.attributeDefaults();
         try {
-            return new tckDumper.TCKDumper(serializeOptions).dump(this);
+            return new tckDumperHL.TCKDumper(serializeOptions).dump(this.highLevel());
         }
         finally {
             defaultAttributeDefaultsValue=oldDefaults;
@@ -444,8 +445,8 @@ export class AttributeNodeImpl implements parserCoreApi.AttributeNode{
         return parent ? parent.wrapperNode() : null;
     }
 
-    toJSON(serializeOptions?:tckDumper.SerializeOptions):any{
-        return new tckDumper.TCKDumper(serializeOptions).dump(this);
+    toJSON(serializeOptions?:tckDumperHL.SerializeOptions):any{
+        return new tckDumperHL.TCKDumper(serializeOptions).dump(this.highLevel());
     }
 }
 
@@ -468,11 +469,6 @@ export function toStructuredValue(node:hl.IAttribute):hlImpl.StructuredValue{
 }
 
 export  type RamlParserError=hl.RamlParserError;
-
-export interface ApiLoadingError extends Error{
-
-    parserErrors:RamlParserError[]
-}
 
 export class TypeInstanceImpl{
 

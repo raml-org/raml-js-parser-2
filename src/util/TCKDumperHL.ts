@@ -1,5 +1,4 @@
 /// <reference path="../../typings/main.d.ts" />
-import {IParseResult, IHighLevelNode} from "../raml1/highLevelAST";
 var universe = require("../raml1/tools/universe");
 import coreApi = require("../raml1/wrapped-ast/parserCoreApi");
 import core = require("../raml1/wrapped-ast/parserCore");
@@ -23,11 +22,8 @@ import helpersHL = require("../raml1/wrapped-ast/helpersHL");
 
 var pathUtils = require("path");
 
-export function dump(node: hl.IHighLevelNode|hl.IAttribute, serializeMeta:boolean = true):any{
-    return new TCKDumper({
-        rootNodeDetails : true,
-        serializeMetadata : serializeMeta
-    }).dump(node);
+export function dump(node: hl.IHighLevelNode|hl.IAttribute, options:SerializeOptions):any{
+    return new TCKDumper(options).dump(node);
 }
 
 export class TCKDumper {
@@ -38,9 +34,13 @@ export class TCKDumper {
             this.options.serializeMetadata = true;
         }
         this.oDumper = new tckDumper.TCKDumper(this.options);
+        this.defaultsCalculator = new defaultCalculator.AttributeDefaultsCalculator(true,true);
     }
 
     private oDumper:tckDumper.TCKDumper;
+
+
+    private defaultsCalculator:defaultCalculator.AttributeDefaultsCalculator;
 
     dump(node:hl.IParseResult):any {
         var highLevelParent = node.parent();
@@ -136,9 +136,9 @@ export class TCKDumper {
                     }
                 }
                 var pVal = map[pName];
-                pVal = applyHelpers(pVal,eNode,p);
+                pVal = applyHelpers(pVal,eNode,p,this.options.serializeMetadata);
                 var udVal = obj[pName];
-                var aVal:any;
+                let aVal:any;
                 if(pVal!==undefined){
                     if(pVal.isMultiValue) {
                         aVal = pVal.arr.map(x=>this.dumpInternal(x,pVal.prop));
@@ -181,7 +181,7 @@ export class TCKDumper {
                 else if(udVal !== undefined){
                     aVal = udVal;
                 }
-                else{
+                else if(this.options.attributeDefaults){
                     var defVal = this.getDefaultsCalculator().attributeDefaultIfEnabled(eNode, p);
                     if(Array.isArray(defVal)){
                         defVal = defVal.map(x=>{
@@ -231,7 +231,9 @@ export class TCKDumper {
                     result[pName] = aVal;
                 }
             }
-            this.serializeMeta(result,eNode);
+            if(this.options.serializeMetadata) {
+                this.serializeMeta(result, eNode);
+            }
             if(Object.keys(scalarsAnnotations).length>0){
                 result["scalarsAnnotations"] = scalarsAnnotations;
             }
@@ -292,9 +294,6 @@ export class TCKDumper {
         return llNode ? llNode.dumpToObject() : null;
 
     }
-    
-    private defaultsCalculator
-        = new defaultCalculator.AttributeDefaultsCalculator(true,true);
 
     getDefaultsCalculator() : defaultCalculator.AttributeDefaultsCalculator {
         return this.defaultsCalculator;
@@ -314,7 +313,7 @@ export class TCKDumper {
         return errors.map(x=> {
             var eObj = this.dumpErrorBasic(x);
             if (x.trace && x.trace.length > 0) {
-                eObj['trace'] = this.dumpErrors(x.trace);//x.trace.map(y=>this.dumpErrorBasic(y));
+                eObj['trace'] = this.dumpErrors(x.trace);
             }
             return eObj;
         }).sort((x, y)=> {
@@ -359,63 +358,6 @@ export class TCKDumper {
 
 }
 
-
-
-class PropertiesData{
-
-    typeName:string;
-
-    map:{[key:string]:TypePropertiesData} = {}
-
-    addProperty(prop:nominals.IProperty,wrapperKind:string){
-        var data = this.map[wrapperKind];
-        if(!data){
-            data = new TypePropertiesData(wrapperKind);
-            this.map[wrapperKind] = data;
-        }
-        data.addProperty(prop);
-    }
-
-    print():string{
-        return Object.keys(this.map).map(x=>this.map[x].print()).join('\n') + "\n";
-    }
-}
-
-class TypePropertiesData{
-    constructor(protected typeName:string){}
-
-    map:{[key:string]:TypePropertiesData2} = {};
-
-    addProperty(prop:nominals.IProperty){
-        var name = prop.domain().nameId();
-        var data = this.map[name];
-        if(!data){
-            data = new TypePropertiesData2(name);
-            this.map[name] = data;
-        }
-        data.addProperty(prop);
-    }
-
-    print():string{
-        return this.typeName + ':\n' +Object.keys(this.map).map(x=>'    '+this.map[x].print()).join('\n');
-    }
-}
-
-class TypePropertiesData2{
-    constructor(protected typeName:string){}
-
-    map:{[key:string]:nominals.IProperty} = {};
-
-    addProperty(prop:nominals.IProperty){
-        var name = prop.nameId();
-        this.map[name] = prop;
-    }
-
-    print():string{
-        return this.typeName + ': ' +Object.keys(this.map).sort().join(', ');
-    }
-}
-
 export interface SerializeOptions{
 
     /**
@@ -438,6 +380,8 @@ export interface SerializeOptions{
     dumpXMLRepresentationOfExamples?:boolean
 
     dumpSchemaContents?:boolean
+    
+    attributeDefaults?:boolean
 }
 
 class PropertyValue{
@@ -461,32 +405,32 @@ class PropertyValue{
 }
 
 
-function applyHelpers(pVal:PropertyValue,node:hl.IHighLevelNode,p:hl.IProperty){
+function applyHelpers(pVal:PropertyValue,node:hl.IHighLevelNode,p:hl.IProperty,serializeMetadata:boolean){
     
     var newVal:PropertyValue;
     if(universeHelpers.isBaseUriParametersProperty(p)){
-        var baseUriParameters = helpersHL.baseUriParameters(node);
+        var baseUriParameters = helpersHL.baseUriParameters(node,serializeMetadata);
         if(baseUriParameters.length>0) {
             newVal = new PropertyValue(p);
             baseUriParameters.forEach(x=>newVal.registerValue(x));
         }
     }
     if(universeHelpers.isUriParametersProperty(p)){
-        var uriParameters = helpersHL.uriParameters(node);
+        var uriParameters = helpersHL.uriParameters(node,serializeMetadata);
         if(uriParameters.length>0) {
             newVal = new PropertyValue(p);
             uriParameters.forEach(x=>newVal.registerValue(x));
         }
     }
     else if(universeHelpers.isTraitsProperty(p)){
-        var arr = helpersHL.allTraits(node);
+        var arr = helpersHL.allTraits(node,serializeMetadata);
         if(arr.length>0){
             newVal = new PropertyValue(p);
             arr.forEach(x=>newVal.registerValue(x));
         }
     }
     else if(universeHelpers.isResourceTypesProperty(p)){
-        var arr = helpersHL.allResourceTypes(node);
+        var arr = helpersHL.allResourceTypes(node,serializeMetadata);
         if(arr.length>0){
             newVal = new PropertyValue(p);
             arr.forEach(x=>newVal.registerValue(x));

@@ -39,7 +39,7 @@ import core=require("./parserCore");
  * but it is among Resource.allUriParameters().
  * __$meta__={"name":"allUriParameters","deprecated":true}
  */
-export function uriParameters(resource:hl.IHighLevelNode):hl.IHighLevelNode[]{
+export function uriParameters(resource:hl.IHighLevelNode,serializeMetadata=false):hl.IHighLevelNode[]{
 
     var propName = universes.Universe10.ResourceBase.properties.uriParameters.name;
     var params = resource.elementsOfKind(propName);
@@ -47,7 +47,7 @@ export function uriParameters(resource:hl.IHighLevelNode):hl.IHighLevelNode[]{
         return params;
     }
     var uri = resource.attr(universes.Universe10.Resource.properties.relativeUri.name).value();
-    return extractParams(params, uri, resource, propName);
+    return extractParams(params, uri, resource, propName,serializeMetadata);
 }
 
 /**
@@ -64,21 +64,22 @@ export function uriParameters(resource:hl.IHighLevelNode):hl.IHighLevelNode[]{
  * but they are among `Api.allBaseUriParameters()`.
  * __$meta__={"name":"allBaseUriParameters","deprecated":true}
  */
-export function baseUriParameters(api:hl.IHighLevelNode):hl.IHighLevelNode[]{
+export function baseUriParameters(api:hl.IHighLevelNode,serializeMetadata=true):hl.IHighLevelNode[]{
 
     var buriAttr = api.attr(universes.Universe10.Api.properties.baseUri.name);
     var uri = buriAttr ? buriAttr.value() : '';
     var propName = universes.Universe10.Api.properties.baseUriParameters.name;
     var params = api.elementsOfKind(propName);
 
-    return extractParams(params, uri, api, propName);
+    return extractParams(params, uri, api, propName,serializeMetadata);
 }
 
 function extractParams(
     params:hl.IHighLevelNode[],
     uri:string,
     ownerHl:hl.IHighLevelNode,
-    propName:string):hl.IHighLevelNode[] {
+    propName:string,
+    serializeMetadata:boolean):hl.IHighLevelNode[] {
 
     if(typeof(uri)!='string'){
         return [];
@@ -119,8 +120,9 @@ function extractParams(
             var nc=<def.NodeClass>universe.type(universeDef.Universe10.StringTypeDeclaration.name);
             var hlNode=stubs.createStubNode(nc,null,paramName,ownerHl.lowLevel().unit());
             hlNode.setParent(ownerHl);
-            //TODO
-             (<any>hlNode.wrapperNode().meta()).setCalculated();
+            if(serializeMetadata) {
+                (<any>hlNode.wrapperNode().meta()).setCalculated();
+            }
             hlNode.attrOrCreate("name").setValue(paramName);
             (<hlimpl.ASTNodeImpl>hlNode).patchProp(prop);
 
@@ -220,10 +222,10 @@ export function dumpExpandableExample(ex,dumpXMLRepresentationOfExamples=false):
     return sObj;
 }
 function exampleObjects(node:hl.IHighLevelNode,
-    isSingle:boolean,dumpXMLRepresentationOfExamples=false):any[]{
+                        isSingle:boolean,dumpXMLRepresentationOfExamples=false):any[]{
     var lt = node.localType();
     if(lt.isAnnotationType()){
-        lt = _.find(lt.superTypes(),x=>x.nameId()==lt.nameId()); 
+        lt = _.find(lt.superTypes(),x=>x.nameId()==lt.nameId());
     }
     var examples = lt.examples().filter(
         x=>x!=null && !x.isEmpty() &&(x.isSingle() == isSingle))
@@ -249,25 +251,25 @@ function toAnnotations(annotations:any) {
  * __$helperMethod__ Retrieve all traits including those defined in libraries
  * __$meta__{"deprecated":true}
  */
-export function allTraits(hlNode:hl.IHighLevelNode):hl.IHighLevelNode[]{
+export function allTraits(hlNode:hl.IHighLevelNode,serializeMetadata=true):hl.IHighLevelNode[]{
     if(hlNode.lowLevel().actual().libExpanded){
         return [];
     }
-    return findTemplates(hlNode,d=>universeHelpers.isTraitType(d));
+    return findTemplates(hlNode,d=>universeHelpers.isTraitType(d),serializeMetadata);
 }
 
 /**
  * __$helperMethod__ Retrieve all resource types including those defined in libraries
  * __$meta__{"deprecated":true}
  */
-export function allResourceTypes(hlNode:hl.IHighLevelNode):hl.IHighLevelNode[]{
+export function allResourceTypes(hlNode:hl.IHighLevelNode,serializeMetadata=true):hl.IHighLevelNode[]{
     if(hlNode.lowLevel().actual().libExpanded){
         return [];
     }
-    return findTemplates(hlNode,d=>universeHelpers.isResourceTypeType(d));
+    return findTemplates(hlNode,d=>universeHelpers.isResourceTypeType(d),serializeMetadata);
 }
 
-function findTemplates(hlNode:hl.IHighLevelNode,filter):hl.IHighLevelNode[] {
+function findTemplates(hlNode:hl.IHighLevelNode,filter,serializeMetadata:boolean):hl.IHighLevelNode[] {
     var arr = search.globalDeclarations(hlNode).filter(x=>filter(x.definition()));
     var ll = hlNode.lowLevel();
     var nodePath = ll.includePath();
@@ -285,7 +287,7 @@ function findTemplates(hlNode:hl.IHighLevelNode,filter):hl.IHighLevelNode[] {
             }
             new referencePatcher.ReferencePatcher().process(x,hlNode,true,true);
         }
-        if(p!=nodePath){
+        if(serializeMetadata&&p!=nodePath){
             (<core.NodeMetadataImpl>x.wrapperNode().meta()).setCalculated();
         }
         result.push(x);
@@ -302,7 +304,7 @@ export function schemaContent08(bodyDeclaration:hl.IHighLevelNode):hl.IAttribute
 
     var schemaAttribute =
         bodyDeclaration.attr(universes.Universe08.BodyLike.properties.schema.name);
-    
+
     if (!schemaAttribute) {
         return null;
     }
