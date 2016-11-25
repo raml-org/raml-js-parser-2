@@ -33,7 +33,7 @@
     "uses": [
       {
         "key": "library",
-        "value": "https://raw.githubusercontent.com/apiregistry/storage/master/libraries/specOverlayTypesLibrary.raml"
+        "value": "https://raw.githubusercontent.com/raml-org/raml-js-parser-2/highlevel-workflow/src/raml1/test/data/LibraryExpansion/Overlays/test029/libs/specOverlayTypesLibrary.raml"
       }
     ],
     "title": "Api",
@@ -48,12 +48,12 @@
         "start": {
           "line": 4,
           "column": 0,
-          "position": 154
+          "position": 221
         },
         "end": {
           "line": 4,
           "column": 33,
-          "position": 187
+          "position": 254
         }
       }
     },
@@ -65,12 +65,12 @@
         "start": {
           "line": 5,
           "column": 0,
-          "position": 189
+          "position": 256
         },
         "end": {
           "line": 5,
           "column": 17,
-          "position": 206
+          "position": 273
         }
       }
     },
@@ -82,12 +82,12 @@
         "start": {
           "line": 7,
           "column": 0,
-          "position": 243
+          "position": 310
         },
         "end": {
           "line": 7,
           "column": 19,
-          "position": 262
+          "position": 329
         }
       }
     }
