@@ -122,7 +122,7 @@ function findInsertionPoint(where:hlimpl.ASTNodeImpl,node:hl.IHighLevelNode|hl.I
 }
 export function removeNodeFrom(source:hlimpl.ASTNodeImpl,node:hl.IParseResult){
     if (source.isStub()){
-        if (node instanceof hlimpl.ASTNodeImpl){
+        if (hlimpl.ASTNodeImpl.isInstance(node)){
             var cm=<hlimpl.ASTNodeImpl>node;
             if (cm.isInEdit){
                 return
@@ -135,7 +135,7 @@ export function removeNodeFrom(source:hlimpl.ASTNodeImpl,node:hl.IParseResult){
         return;
     }
     var command=new ll.CompositeCommand();
-    if (node instanceof hlimpl.ASTNodeImpl){
+    if (hlimpl.ASTNodeImpl.isInstance(node)){
         var aNode=<hlimpl.ASTNodeImpl>node;
         if (!aNode.property().getAdapter(services.RAMLPropertyService).isMerged()){
             if (source.elementsOfKind(aNode.property().nameId()).length==1){

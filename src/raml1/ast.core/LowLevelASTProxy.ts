@@ -234,7 +234,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         super(parent,transformer,ramlVersion);
 
         var originalParent = this.parent() ? this.parent().originalNode() : null;
-        if(node instanceof LowLevelValueTransformingNode){
+        if(LowLevelValueTransformingNode.isInstance(node)){
             this._originalNode = node;
         }
         else {
@@ -292,7 +292,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
         else {
             val = this._originalNode.value(toString);
         }
-        if(val instanceof LowLevelValueTransformingNode){
+        if(LowLevelValueTransformingNode.isInstance(val)){
             this._valueOverride = val;
         }
         return val;
@@ -336,7 +336,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 }
                 map[key] = true;
                 var transformer = x.transformer() ? x.transformer() : this.transformer();
-                var ch = (y instanceof  LowLevelValueTransformingNode)
+                var ch = (LowLevelValueTransformingNode.isInstance(y))
                     ? (<LowLevelValueTransformingNode>y).originalNode() : y;
                 result.push(new LowLevelCompositeNode(ch,this,transformer,this.ramlVersion,isPrimary));
             }));
@@ -622,6 +622,20 @@ interface ChildEntry {
 }
 
 export class LowLevelValueTransformingNode extends LowLevelProxyNode{
+
+    private static CLASS_IDENTIFIER_LowLevelValueTransformingNode = "highLevelImpl.LowLevelValueTransformingNode";
+
+    public static isInstance(instance : any) : instance is LowLevelValueTransformingNode {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),LowLevelValueTransformingNode.CLASS_IDENTIFIER_LowLevelValueTransformingNode);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = super.getClassIdentifier();
+
+        return superIdentifiers.concat(LowLevelValueTransformingNode.CLASS_IDENTIFIER_LowLevelValueTransformingNode);
+    }
 
     constructor(
         node:ll.ILowLevelASTNode,
