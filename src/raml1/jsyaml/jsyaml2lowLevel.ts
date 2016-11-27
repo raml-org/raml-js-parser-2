@@ -60,6 +60,20 @@ export class MarkupIndentingBuffer {
 
 export class CompilationUnit implements lowlevel.ICompilationUnit{
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.CompilationUnit";
+
+    public static isInstance(instance : any) : instance is CompilationUnit {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),CompilationUnit.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(CompilationUnit.CLASS_IDENTIFIER);
+    }
+
     constructor(private _path,private _content,private _tl,private _project:Project, private _apath:string){
         this._path = this._path != null ? this._path.replace(/\\/g,"/") : null;
     }
@@ -1211,11 +1225,11 @@ export class Project implements lowlevel.IProject{
         //console.log('api: ' + api);
         var point = null;
         if(ipoint) {
-            if (ipoint instanceof ASTNode) {
+            if (ASTNode.isInstance(ipoint)) {
                 //console.log('insertion: ast node');
                 point = <ASTNode>ipoint;
             }
-            if (ipoint instanceof InsertionPoint) {
+            if (InsertionPoint.isInstance(ipoint)) {
                 //console.log('insertion: ip');
                 point = (<InsertionPoint>ipoint).point;
             }
@@ -1347,7 +1361,7 @@ export class Project implements lowlevel.IProject{
                     }
                 }
             } else {
-                if(ipoint && (ipoint instanceof InsertionPoint)) {
+                if(ipoint && (InsertionPoint.isInstance(ipoint))) {
                     //ipoint.show('insertion point provided');
                     var ip = <InsertionPoint>ipoint;
                     if(ip.type == InsertionPointType.START) {
@@ -3704,6 +3718,20 @@ export enum InsertionPointType {
 
 export class InsertionPoint {
 
+    private static CLASS_IDENTIFIER = "jsyaml2lowLevel.InsertionPoint";
+
+    public static isInstance(instance : any) : instance is InsertionPoint {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),InsertionPoint.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(InsertionPoint.CLASS_IDENTIFIER);
+    }
+
     type: InsertionPointType;
     point: ASTNode;
 
@@ -3793,7 +3821,7 @@ export function createMapping(key:string,v:string){
 }
 
 export function toChildCachingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
-    if(!(node instanceof ASTNode)){
+    if(!(ASTNode.isInstance(node))){
         return null;
     }
     var astNode:ASTNode = <ASTNode>node;
@@ -3803,7 +3831,7 @@ export function toChildCachingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILow
 }
 
 export function toIncludingNode(node:lowlevel.ILowLevelASTNode):lowlevel.ILowLevelASTNode{
-    if(!(node instanceof ASTNode)){
+    if(!(ASTNode.isInstance(node))){
         return null;
     }
     var astNode:ASTNode = <ASTNode>node;

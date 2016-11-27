@@ -623,7 +623,7 @@ interface ChildEntry {
 
 export class LowLevelValueTransformingNode extends LowLevelProxyNode{
 
-    private static CLASS_IDENTIFIER_LowLevelValueTransformingNode = "highLevelImpl.LowLevelValueTransformingNode";
+    private static CLASS_IDENTIFIER_LowLevelValueTransformingNode = "LowLevelASTProxy.LowLevelValueTransformingNode";
 
     public static isInstance(instance : any) : instance is LowLevelValueTransformingNode {
         return instance != null && instance.getClassIdentifier

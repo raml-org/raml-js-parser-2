@@ -541,7 +541,7 @@ export class ReferencePatcher{
     };
 
     appendUnitIfNeeded(node:hl.IParseResult|ll.ICompilationUnit,units:ll.ICompilationUnit[]):boolean{
-        if(node instanceof jsyaml.CompilationUnit){
+        if(jsyaml.CompilationUnit.isInstance(node)){
             var unit = <ll.ICompilationUnit>node;
             if (unit.absolutePath() != units[units.length - 1].absolutePath()) {
                 units.push(unit);
@@ -642,7 +642,7 @@ export class ReferencePatcher{
             for (var libModel of libModels) {
                 for (var cName of Object.keys(libModel)) {
                     var collection:ElementsCollection = <ElementsCollection>libModel[cName];
-                    if (collection instanceof ElementsCollection) {
+                    if (ElementsCollection.isInstance(collection)) {
                         gotContribution = this.contributeCollection(
                                 <proxy.LowLevelCompositeNode>api.lowLevel(),
                                 collection) || gotContribution;
@@ -973,6 +973,20 @@ export function instanceOfPatchedReference(instance : any) : instance is Patched
 }
 
 class ElementsCollection{
+    private static CLASS_IDENTIFIER = "referencePatcher.ElementsCollection";
+
+    public static isInstance(instance : any) : instance is ElementsCollection {
+        return instance != null && instance.getClassIdentifier
+            && typeof(instance.getClassIdentifier) == "function"
+            && _.contains(instance.getClassIdentifier(),ElementsCollection.CLASS_IDENTIFIER);
+    }
+
+    public getClassIdentifier() : string[] {
+        var superIdentifiers = [];
+
+        return superIdentifiers.concat(ElementsCollection.CLASS_IDENTIFIER);
+    }
+
     constructor(public name:string){}
 
     array:hl.IHighLevelNode[] = [];
