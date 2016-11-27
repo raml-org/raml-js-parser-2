@@ -363,7 +363,7 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
                 if(!key){
                     continue;
                 }
-                var arr:ChildEntry[] = m[key];
+                var arr:ChildEntry[] = m.hasOwnProperty(key) && m[key];
                 if (!arr) {
                     arr = [];
                     m[key] = arr;
