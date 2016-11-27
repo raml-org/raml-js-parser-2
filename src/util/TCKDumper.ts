@@ -14,6 +14,7 @@ import nominals = typeSystem.nominalTypes;
 import universeHelpers = require("../raml1/tools/universeHelpers")
 import universes = require("../raml1/tools/universe")
 import util = require("../util/index")
+import _ = require("underscore");
 
 import RamlWrapper10 = require("../raml1/artifacts/raml10parserapi");
 
@@ -109,7 +110,7 @@ export class TCKDumper {
         return result;
     }
 
-    dumpInternal(node:any, rootNodeDetails:boolean = false):any {
+    dumpInternal(node:any, rootNodeDetails:boolean = false, nodeProperty?:hl.IProperty):any {
 
         if (node == null) {
             return null;
@@ -156,7 +157,7 @@ export class TCKDumper {
                 }
             }
             this.nodeTransformers.forEach(x=> {
-                if (x.match(node, node.highLevel().property())) {
+                if (x.match(node, nodeProperty||node.highLevel().property())) {
                     obj = x.transform(obj, node);
                 }
             });
@@ -260,7 +261,19 @@ export class TCKDumper {
 
     private dumpProperties(props, node:coreApi.BasicNode|coreApi.AttributeNode):any {
         var obj = {};
+        var definition:hl.ITypeDefinition;
+        if(node.highLevel().isElement()){
+            definition = node.highLevel().definition();
+        }
         Object.keys(props).forEach(propName=> {
+
+            var nodeProperty:hl.IProperty;
+            if(definition) {
+                nodeProperty = definition.property(propName);
+                if(!nodeProperty){
+                    nodeProperty = _.find((<def.NodeClass>definition).allCustomProperties(),x=>x.nameId()==propName);
+                }
+            }
 
             if (!node[propName]) {
                 this.missingProperties.addProperty(props[propName], node.kind());
@@ -279,7 +292,7 @@ export class TCKDumper {
                         var hasType = highLevelNode.definition().universe().type(universe.Universe10.LibraryBase.name);
                         var tNode = new hlImpl.ASTNodeImpl(x, highLevelNode, td, hasType.property(universe.Universe10.LibraryBase.properties.types.name))
                         tNode.patchType(builder.doDescrimination(tNode));
-                        value = dump(tNode.wrapperNode());
+                        value = this.dumpInternal(tNode.wrapperNode(),false,nodeProperty);
                         propName = x.key();
                     }
                 })
@@ -287,10 +300,10 @@ export class TCKDumper {
 
             if((propName === "type" || propName == "schema") && value && value.forEach && typeof value[0] === "string") {
                 var schemaString = value[0].trim();
-                
+
                 var canBeJson = (schemaString[0] === "{" && schemaString[schemaString.length - 1] === "}");
                 var canBeXml= (schemaString[0] === "<" && schemaString[schemaString.length - 1] === ">");
-                
+
                 if(canBeJson || canBeXml) {
                     var include = node.highLevel().lowLevel().includePath && node.highLevel().lowLevel().includePath();
 
@@ -943,7 +956,7 @@ class TemplateParametrizedPropertiesTransformer implements Transformation{
             || universeHelpers.isTraitType(d)
             || universeHelpers.isMethodType(d)
             || universeHelpers.isTypeDeclarationSibling(d);
-        
+
     }
 
     transform(value:any){
