@@ -566,8 +566,8 @@ export class LowLevelCompositeNode extends LowLevelProxyNode{
             return;
         }
         this._children = nodes.map(x=>{
-            if(x instanceof LowLevelCompositeNode){
-                return x;
+            if(LowLevelCompositeNode.isInstance(x)){
+                return <LowLevelCompositeNode>x;
             }
             return new LowLevelCompositeNode(x,this,null,this.ramlVersion);
         });

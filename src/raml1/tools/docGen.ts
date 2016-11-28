@@ -507,14 +507,14 @@ export function generateValueTypeDocumentation(v:def.ValueType,refPrefix:string=
         "<table>"
     ];
     appendMethodDocs(v, result);
-    if (v instanceof def.EnumType){
+    if (def.EnumType.isInstance(v)){
         var et=<def.EnumType>v;
         result.push("Enum values:")
         result.push("<ul>")
         et.values.forEach(x=>result.push("<li>"+x+"</li>"))
         result.push("</ul>")
     }
-    if (v instanceof def.ReferenceType){
+    if (def.ReferenceType.isInstance(v)){
         var refType=<def.ReferenceType>v;
         result.push("Instantiation of "+genRef(refType.getReferencedType()));
 
