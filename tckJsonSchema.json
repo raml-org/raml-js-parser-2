@@ -99,9 +99,7 @@
           "pattern": "Api"
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
-        "specification": {
-          "$ref": "#/definitions/Api10"
-        }
+        "specification": { "$ref": "#/definitions/Api10" }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
@@ -117,23 +115,7 @@
           "pattern": "Library"
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
-        "specification": {
-          "allOf":[
-            {
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Namespace which the library is imported under"
-                },
-                "usage": {
-                  "type": "string",
-                  "description": "contains description of why library exist"
-                }
-              }
-            },
-            {"$ref": "#/definitions/LibraryBase10"}
-          ]
-        }
+        "specification": { "$ref": "#/definitions/Library" }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
@@ -149,23 +131,7 @@
           "pattern": "Extension"
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
-        "specification": {
-          "allOf":[
-            {
-              "properties": {
-                "extends": {
-                  "type": "string",
-                  "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
-                },
-                "usage": {
-                  "type": "string",
-                  "description": "contains description of why extension exist"
-                }
-              }
-            },
-            {"$ref": "#/definitions/Api10"}
-          ]
-        }
+        "specification": { "$ref": "#/definitions/Extension" }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
@@ -181,23 +147,7 @@
           "pattern": "Overlay"
         },
         "errors": {"$ref": "#/definitions/RAML10/properties/errors"},
-        "specification": {
-          "allOf":[
-            {
-              "properties": {
-                "extends": {
-                  "type": "string",
-                  "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
-                },
-                "usage": {
-                  "type": "string",
-                  "description": "contains description of why overlay exist"
-                }
-              }
-            },
-            {"$ref": "#/definitions/Api10"}
-          ]
-        }
+        "specification": { "$ref": "#/definitions/Overlay" }
       },
       "required": ["ramlVersion", "type", "errors", "specification"],
       "additionalProperties": false
@@ -392,6 +342,60 @@
             }
           }
         }
+      ]
+    },
+
+    "Library": {
+      "allOf":[
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Namespace which the library is imported under"
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why library exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/LibraryBase10"}
+      ]
+    },
+
+    "Extension": {
+      "allOf":[
+        {
+          "properties": {
+            "extends": {
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the extension is applied to"
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why extension exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/Api10"}
+      ]
+    },
+
+    "Overlay": {
+      "allOf":[
+        {
+          "properties": {
+            "extends": {
+              "type": "string",
+              "description": "Location of a valid RAML API definition (or overlay or extension), the overlay is applied to."
+            },
+            "usage": {
+              "type": "string",
+              "description": "contains description of why overlay exist"
+            }
+          }
+        },
+        {"$ref": "#/definitions/Api10"}
       ]
     },
 
