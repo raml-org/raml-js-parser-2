@@ -44,7 +44,7 @@ export function load(pth: string):core.BasicNode{
  **/
 export function expandTraitsAndResourceTypes(api:RamlWrapper.Api):RamlWrapper.Api{
     var lowLevelNode = api.highLevel().lowLevel();
-    if(lowLevelNode instanceof lowLevelProxy.LowLevelProxyNode){
+    if(lowLevelProxy.LowLevelProxyNode.isInstance(lowLevelNode)){
         return api;
     }
     return expander.expandTraitsAndResourceTypes(api);

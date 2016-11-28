@@ -63,7 +63,7 @@ export class ParserGenerator{
                 _constructor._body = '';
             }
         }
-        else if (u instanceof def.NodeClass) {
+        else if (def.NodeClass.isInstance(u)) {
             var _constructor = new td.TSConstructor(dcl);
             _constructor.parameters = [
                 new td.Param(
@@ -774,7 +774,7 @@ export function getLanguageElementByRuntimeType(runtimeType : hl.ITypeDefinition
         var res="";
         for (var p in this.processed){
             var q=<def.IType>this.processed[p];
-            if (q instanceof def.NodeClass){
+            if (def.NodeClass.isInstance(q)){
                 res+=
 `
 /**
@@ -946,7 +946,7 @@ class ImplementationGenerator {
 
 export function checkIfReference(u:nominals.ITypeDefinition):boolean{
 
-    if(u instanceof def.ReferenceType){
+    if(def.ReferenceType.isInstance(u)){
         return true;
     }
     //var superTypes = u.superTypes();
