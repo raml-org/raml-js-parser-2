@@ -15,7 +15,8 @@
     "buildall": "dev-env-installer buildall",
     "testall": "dev-env-installer testall",
     "devInstall": "dev-env-installer install",
-    "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js"
+    "removeMainDTSLinks": "node dist/devUtil/mainDTSLinkRemover.js",
+    "validateTCKSchema": "node dist/raml1/test/schemaTCKValidator.js"
   },
   "dependencies": {
     "base64url": "^1.0.6",
