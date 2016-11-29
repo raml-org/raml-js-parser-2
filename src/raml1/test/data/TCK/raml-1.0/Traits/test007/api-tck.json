@@ -93,12 +93,12 @@
         "start": {
           "line": 8,
           "column": 9,
-          "position": 120
+          "position": 112
         },
         "end": {
           "line": 8,
           "column": 19,
-          "position": 130
+          "position": 122
         }
       }
     },
@@ -110,12 +110,12 @@
         "start": {
           "line": 4,
           "column": 4,
-          "position": 127
+          "position": 123
         },
         "end": {
           "line": 4,
           "column": 10,
-          "position": 133
+          "position": 129
         }
       },
       "trace": [
@@ -127,12 +127,12 @@
             "start": {
               "line": 7,
               "column": 2,
-              "position": 105
+              "position": 98
             },
             "end": {
               "line": 7,
               "column": 5,
-              "position": 108
+              "position": 101
             }
           }
         }
