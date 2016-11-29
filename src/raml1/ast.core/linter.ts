@@ -1019,6 +1019,8 @@ class CompositePropertyValidator implements PropertyValidator{
 
         var pr = checkPropertyQuard(node, v);
         var vl=node.value();
+        var ramlVersion = node.parent().definition().universe().version();
+        var isInsideTemplate = typeOfContainingTemplate(node.parent())!=null;
         if (!node.property().range().hasStructure()){
             if (vl instanceof hlimpl.StructuredValue&&!(<def.Property>node.property()).isSelfNode()){
 
@@ -1031,8 +1033,7 @@ class CompositePropertyValidator implements PropertyValidator{
                         return;
                     }
                 }
-                if(node.parent().definition().universe().version()=="RAML10"
-                    &&typeOfContainingTemplate(node.parent())!=null){
+                if(ramlVersion=="RAML10"&&isInsideTemplate){
                     return;
                 }
                 v.accept(createIssue1(messageRegistry.SCALAR_EXPECTED,{},node))
@@ -1081,7 +1082,7 @@ class CompositePropertyValidator implements PropertyValidator{
         if (refName && refName.indexOf("<<")!=-1){
             if (refName.indexOf(">>")>refName.indexOf("<<")){
                 new TraitVariablesValidator().validateValue(node,v);
-                if (typeOfContainingTemplate(node.parent())!=null){
+                if (isInsideTemplate){
                     return;
                 }
 
@@ -1101,7 +1102,7 @@ class CompositePropertyValidator implements PropertyValidator{
         }
 
         if (isExampleProp(node.property())||isDefaultValueProp(node.property())){
-            if (node.definition().universe().version()=="RAML08"){
+            if (ramlVersion=="RAML08"){
                 var llv=node.lowLevel().value();
                 if (node.lowLevel().children().length>0){
                     var valName = isExampleProp(node.property()) ? "'example'" : "'defaultValue'";
@@ -1112,7 +1113,7 @@ class CompositePropertyValidator implements PropertyValidator{
             new ExampleAndDefaultValueValidator().validate(node, v);
         }
         if (isSecuredBy(node.property())){
-            if (node.definition().universe().version()=="RAML08"){
+            if (ramlVersion=="RAML08"){
                 var np=node.lowLevel().parent();
                 var ysc=yaml.Kind.SEQ;
                 if (node.lowLevel() instanceof proxy.LowLevelProxyNode){
@@ -1128,6 +1129,54 @@ class CompositePropertyValidator implements PropertyValidator{
 
             }
             new ExampleAndDefaultValueValidator().validate(node, v);
+            if(ramlVersion=="RAML10"){
+                if(hlimpl.isStructuredValue(vl)) {
+                    var sv = <hlimpl.StructuredValue>vl;
+                    var scopes = sv.children().filter(x=>x.valueName() == "scopes");
+                    if (scopes.length > 0) {
+                        var schema = node.findReferencedValue();
+                        if (schema) {
+                            var scopeNodes:hlimpl.StructuredValue[] = [];
+                            scopes.forEach(scopeNode=> {
+                                var children = scopeNode.children();
+                                if (children.length > 0) {
+                                    children.forEach(ch => {
+                                        var strVal = ch.lowLevel().value();
+                                        if (strVal != null && !(isInsideTemplate && strVal.indexOf("<<")>=0)) {
+                                            scopeNodes.push(ch);
+                                        }
+                                    });
+                                }
+                                else {
+                                    var strVal = scopeNode.lowLevel().value();
+                                    if (strVal != null && !(isInsideTemplate && strVal.indexOf("<<")>=0)){
+                                        scopeNodes.push(scopeNode);
+                                    }
+                                }
+                            });
+                            var allowedScopes = {};
+                            var settingsNode = schema.element(def.universesInfo.Universe10.AbstractSecurityScheme.properties.settings.name);
+                            if (settingsNode) {
+                                var allowedScopesNodes = settingsNode.attributes(
+                                    def.universesInfo.Universe10.OAuth2SecuritySchemeSettings.properties.scopes.name);
+    
+                                allowedScopesNodes.forEach(x=>allowedScopes[x.value()] = true);
+                            }
+                            for (var scope of scopeNodes) {
+                                var scopeStr = scope.lowLevel().value();
+                                if (!allowedScopes.hasOwnProperty(scopeStr)) {
+                                    v.accept(createLLIssue1(messageRegistry.INVALID_SECURITY_SCHEME_SCOPE,
+                                        {
+                                            invalidScope: scopeStr,
+                                            securityScheme: schema.name(),
+                                            allowedScopes: Object.keys(allowedScopes).map(x=>`'${x}'`).join(", ")
+                                        }, scope.lowLevel(), node, false));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (node.property().nameId()==universes.Universe10.TypeDeclaration.properties.name.name){
             //TODO MOVE TO DEF SYSTEM
@@ -3665,7 +3714,7 @@ var localLowLevelError = function (node:ll.ILowLevelASTNode, highLevelAnchor : h
 
     var st = node.start();
     var et = node.end();
-    if (contentLength && contentLength >= et) {
+    if (contentLength && et >= contentLength) {
         et = contentLength - 1;
     }
 

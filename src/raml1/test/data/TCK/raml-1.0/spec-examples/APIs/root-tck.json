@@ -135,6 +135,10 @@
               "authorization_code",
               "implicit",
               "urn:ietf:params:oauth:grant-type:saml2-bearer"
+            ],
+            "scopes": [
+              "USER",
+              "ADMINISTRATOR"
             ]
           }
         }
