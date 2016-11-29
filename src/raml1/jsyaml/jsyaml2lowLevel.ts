@@ -2406,6 +2406,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             if (mapping.value) return mapping.value.startPosition;
             else return mapping.endPosition;
         }
+        else if(this._node.kind==yaml.Kind.SCALAR){
+            return this.start();
+        }
 
         return -1;
     }
@@ -2415,6 +2418,9 @@ export class ASTNode implements lowlevel.ILowLevelASTNode{
             var mapping = this.asMapping();
 
             return mapping.value ? mapping.value.endPosition : mapping.endPosition;
+        }
+        else if(this._node.kind==yaml.Kind.SCALAR){
+            return this.end();
         }
 
         return -1;

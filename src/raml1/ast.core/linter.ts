@@ -3776,13 +3776,14 @@ export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevel
 
     if (node) {
 
-        if (rootCalculationAnchor.lowLevel().unit() != rootCalculationAnchor.root().lowLevel().unit()) {
+        var rootUnit = rootCalculationAnchor.root().lowLevel().unit();
+        if (rootCalculationAnchor.lowLevel().unit() != rootUnit) {
             original=localLowLevelError(node,rootCalculationAnchor,issueCode,isWarning,message,true);
             var v=rootCalculationAnchor.lowLevel().unit();
             if (v) {
                 message = message + " " + v.path();
             }
-            while(rootCalculationAnchor.lowLevel().unit()!=rootCalculationAnchor.root().lowLevel().unit()){
+            while(rootCalculationAnchor.lowLevel().unit()!=rootUnit){
                 rootCalculationAnchor=rootCalculationAnchor.parent();
             }
         }
@@ -3792,6 +3793,7 @@ export function createLLIssue(issueCode:string, message:string,node:ll.ILowLevel
             ==universes.Universe10.FragmentDeclaration.properties.uses.name&&rootCalculationAnchor.parent()!=null){
             rootCalculationAnchor=rootCalculationAnchor.parent();
         }
+        node = rootCalculationAnchor.lowLevel();
     }
     var error=localLowLevelError(node, rootCalculationAnchor, issueCode, isWarning, message,p);
     if (original) {
