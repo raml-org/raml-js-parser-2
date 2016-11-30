@@ -164,6 +164,12 @@ kind(  ):string{return "Annotable";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return ["Annotable"];}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -182,6 +188,12 @@ wrapperClassName(  ):string{return "ValueTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ValueType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ValueType");}
 
 
         /**
@@ -209,6 +221,12 @@ wrapperClassName(  ):string{return "StringTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StringType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StringType");}
 
 
         /**
@@ -243,6 +261,12 @@ kind(  ):string{return "UriTemplate";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UriTemplate");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -265,6 +289,12 @@ wrapperClassName(  ):string{return "RelativeUriStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "RelativeUriString";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("RelativeUriString");}
 
 
         /**
@@ -293,6 +323,12 @@ kind(  ):string{return "FullUriTemplateString";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FullUriTemplateString");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -311,6 +347,12 @@ wrapperClassName(  ):string{return "StatusCodeStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "StatusCodeString";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StatusCodeString");}
 
 
         /**
@@ -339,6 +381,12 @@ kind(  ):string{return "FixedUriString";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FixedUriString");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -357,6 +405,12 @@ wrapperClassName(  ):string{return "ContentTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ContentType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ContentType");}
 
 
         /**
@@ -385,6 +439,12 @@ kind(  ):string{return "MarkdownString";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MarkdownString");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -407,6 +467,12 @@ wrapperClassName(  ):string{return "SchemaStringImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SchemaString";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SchemaString");}
 
 
         /**
@@ -435,6 +501,12 @@ kind(  ):string{return "MimeType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MimeType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -456,6 +528,12 @@ kind(  ):string{return "AnyType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnyType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -474,6 +552,12 @@ wrapperClassName(  ):string{return "NumberTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NumberType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NumberType");}
 
 
         /**
@@ -504,6 +588,12 @@ kind(  ):string{return "IntegerType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("IntegerType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -522,6 +612,12 @@ wrapperClassName(  ):string{return "NullTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "NullType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NullType");}
 
 
         /**
@@ -546,6 +642,12 @@ kind(  ):string{return "TimeOnlyType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TimeOnlyType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -564,6 +666,12 @@ wrapperClassName(  ):string{return "DateOnlyTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateOnlyType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateOnlyType");}
 
 
         /**
@@ -588,6 +696,12 @@ kind(  ):string{return "DateTimeOnlyType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeOnlyType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -606,6 +720,12 @@ wrapperClassName(  ):string{return "DateTimeTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeType");}
 
 
         /**
@@ -630,6 +750,12 @@ kind(  ):string{return "FileType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FileType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -648,6 +774,12 @@ wrapperClassName(  ):string{return "BooleanTypeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanType";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BooleanType");}
 
 
         /**
@@ -682,6 +814,12 @@ kind(  ):string{return "AnnotationTarget";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnnotationTarget");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -700,6 +838,12 @@ wrapperClassName(  ):string{return "ReferenceImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Reference";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Reference");}
 
 
         /**
@@ -735,6 +879,12 @@ wrapperClassName(  ):string{return "TraitRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "TraitRef";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TraitRef");}
 
 
         /**
@@ -794,6 +944,12 @@ wrapperClassName(  ):string{return "OperationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Operation";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Operation");}
 
 
         /**
@@ -1022,6 +1178,12 @@ kind(  ):string{return "TypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1123,6 +1285,12 @@ kind(  ):string{return "ModelLocation";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return ["ModelLocation"];}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1143,6 +1311,12 @@ wrapperClassName(  ):string{return "LocationKindImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LocationKind";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return ["LocationKind"];}
 
 
         /**
@@ -1202,6 +1376,12 @@ wrapperClassName(  ):string{return "UsesDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "UsesDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UsesDeclaration");}
 
 
         /**
@@ -1351,6 +1531,12 @@ wrapperClassName(  ):string{return "XMLFacetInfoImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "XMLFacetInfo";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("XMLFacetInfo");}
 
 
         /**
@@ -1521,6 +1707,12 @@ wrapperClassName(  ):string{return "ArrayTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ArrayTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ArrayTypeDeclaration");}
 
 
         /**
@@ -1764,6 +1956,12 @@ kind(  ):string{return "UnionTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("UnionTypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -1882,6 +2080,12 @@ wrapperClassName(  ):string{return "ObjectTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ObjectTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ObjectTypeDeclaration");}
 
 
         /**
@@ -2066,6 +2270,12 @@ kind(  ):string{return "StringTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("StringTypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2157,6 +2367,12 @@ wrapperClassName(  ):string{return "BooleanTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BooleanTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BooleanTypeDeclaration");}
 
 
         /**
@@ -2277,6 +2493,12 @@ kind(  ):string{return "NumberTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("NumberTypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2325,6 +2547,12 @@ wrapperClassName(  ):string{return "IntegerTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "IntegerTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("IntegerTypeDeclaration");}
 
 
         /**
@@ -2456,6 +2684,12 @@ kind(  ):string{return "DateOnlyTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateOnlyTypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2483,6 +2717,12 @@ kind(  ):string{return "TimeOnlyTypeDeclaration";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("TimeOnlyTypeDeclaration");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2507,6 +2747,12 @@ wrapperClassName(  ):string{return "DateTimeOnlyTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeOnlyTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeOnlyTypeDeclaration");}
 
 
         /**
@@ -2552,6 +2798,12 @@ wrapperClassName(  ):string{return "DateTimeTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DateTimeTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DateTimeTypeDeclaration");}
 
 
         /**
@@ -2649,6 +2901,12 @@ wrapperClassName(  ):string{return "FileTypeDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FileTypeDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FileTypeDeclaration");}
 
 
         /**
@@ -2768,6 +3026,12 @@ kind(  ):string{return "Response";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Response");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2832,6 +3096,12 @@ wrapperClassName(  ):string{return "SecuritySchemePartImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemePart";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemePart");}
 
 
         /**
@@ -2918,6 +3188,12 @@ kind(  ):string{return "MethodBase";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("MethodBase");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -2942,6 +3218,12 @@ wrapperClassName(  ):string{return "SecuritySchemeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeRef";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemeRef");}
 
 
         /**
@@ -3058,6 +3340,12 @@ kind(  ):string{return "AbstractSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AbstractSecurityScheme");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3084,6 +3372,12 @@ wrapperClassName(  ):string{return "SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "SecuritySchemeSettings";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("SecuritySchemeSettings");}
 
 
         /**
@@ -3149,6 +3443,12 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeSettingsImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecuritySchemeSettings";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth1SecuritySchemeSettings");}
 
 
         /**
@@ -3296,6 +3596,12 @@ kind(  ):string{return "OAuth2SecuritySchemeSettings";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth2SecuritySchemeSettings");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3395,6 +3701,12 @@ kind(  ):string{return "OAuth2SecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth2SecurityScheme");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3423,6 +3735,12 @@ wrapperClassName(  ):string{return "OAuth1SecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "OAuth1SecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("OAuth1SecurityScheme");}
 
 
         /**
@@ -3457,6 +3775,12 @@ kind(  ):string{return "PassThroughSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("PassThroughSecurityScheme");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3481,6 +3805,12 @@ wrapperClassName(  ):string{return "BasicSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "BasicSecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("BasicSecurityScheme");}
 
 
         /**
@@ -3511,6 +3841,12 @@ kind(  ):string{return "DigestSecurityScheme";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DigestSecurityScheme");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3535,6 +3871,12 @@ wrapperClassName(  ):string{return "CustomSecuritySchemeImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "CustomSecurityScheme";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("CustomSecurityScheme");}
 
 
         /**
@@ -3644,6 +3986,12 @@ wrapperClassName(  ):string{return "MethodImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Method";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Method");}
 
 
         /**
@@ -3869,6 +4217,12 @@ kind(  ):string{return "Trait";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Trait");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -3931,6 +4285,12 @@ wrapperClassName(  ):string{return "ResourceTypeRefImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceTypeRef";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceTypeRef");}
 
 
         /**
@@ -4003,6 +4363,12 @@ wrapperClassName(  ):string{return "ResourceBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "ResourceBase";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceBase");}
 
 
         /**
@@ -4117,6 +4483,12 @@ wrapperClassName(  ):string{return "ResourceImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Resource";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Resource");}
 
 
         /**
@@ -4360,6 +4732,12 @@ kind(  ):string{return "ResourceType";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("ResourceType");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -4429,6 +4807,12 @@ kind(  ):string{return "AnnotationRef";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("AnnotationRef");}
+
+
+        /**
          * @return RAML version of the node
          **/
 RAMLVersion(  ):string{return "RAML10";}
@@ -4483,6 +4867,12 @@ wrapperClassName(  ):string{return "DocumentationItemImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "DocumentationItem";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("DocumentationItem");}
 
 
         /**
@@ -4552,6 +4942,12 @@ wrapperClassName(  ):string{return "FragmentDeclarationImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "FragmentDeclaration";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("FragmentDeclaration");}
 
 
         /**
@@ -4625,6 +5021,12 @@ wrapperClassName(  ):string{return "LibraryBaseImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "LibraryBase";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("LibraryBase");}
 
 
         /**
@@ -4718,6 +5120,12 @@ wrapperClassName(  ):string{return "LibraryImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Library";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Library");}
 
 
         /**
@@ -4891,6 +5299,12 @@ kind(  ):string{return "Api";}
 
 
         /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Api");}
+
+
+        /**
          * @return RAML version of the node
          * @hidden
          **/
@@ -5041,6 +5455,12 @@ wrapperClassName(  ):string{return "OverlayImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Overlay";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Overlay");}
 
 
         /**
@@ -5275,6 +5695,12 @@ wrapperClassName(  ):string{return "ExtensionImpl";}
          * @return Actual name of instance interface
          **/
 kind(  ):string{return "Extension";}
+
+
+        /**
+         * @return Actual name of instance interface
+         **/
+allKinds(  ):string[]{return super.allKinds().concat("Extension");}
 
 
         /**

@@ -117,7 +117,7 @@ export class TCKDumper {
         }
 
 
-        if (node instanceof core.BasicNodeImpl) {
+        if (core.BasicNodeImpl.isInstance(node)) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var basicNode:coreApi.BasicNode = <coreApi.BasicNode>node;
@@ -177,7 +177,7 @@ export class TCKDumper {
 
             return result;
         }
-        else if (node instanceof core.AttributeNodeImpl) {
+        else if (core.AttributeNodeImpl.isInstance(node)) {
 
             var props:{[key:string]:nominals.IProperty} = {};
             var attrNode:coreApi.AttributeNode = <coreApi.AttributeNode>node;
@@ -205,10 +205,10 @@ export class TCKDumper {
             this.serializeMeta(obj, attrNode);
             return obj;
         }
-        else if (node instanceof core.TypeInstanceImpl) {
+        else if (core.TypeInstanceImpl.isInstance(node)) {
             return this.serializeTypeInstance(<core.TypeInstanceImpl>node);
         }
-        else if (node instanceof core.TypeInstancePropertyImpl) {
+        else if (core.TypeInstancePropertyImpl.isInstance(node)) {
             return this.serializeTypeInstanceProperty(<core.TypeInstancePropertyImpl>node);
         }
         return node;
@@ -372,7 +372,7 @@ export class TCKDumper {
 
                     propertyValue.push(dumped);
                 }
-                if (propertyValue.length == 0 && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
+                if (propertyValue.length == 0 && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }
                 for (var x of this.nodePropertyTransformers) {
@@ -384,10 +384,10 @@ export class TCKDumper {
             }
             else {
                 var val = this.dumpInternal(value);
-                if (val == null && node instanceof core.BasicNodeImpl && !this.isDefined(node, propName)) {
+                if (val == null && core.BasicNodeImpl.isInstance(node) && !this.isDefined(node, propName)) {
                     return;
                 }
-                if (node instanceof core.BasicNodeImpl) {
+                if (core.BasicNodeImpl.isInstance(node)) {
                     this.nodePropertyTransformers.forEach(x=> {
                         if (x.match(node, property)) {
                             val = x.transform(val, node);
@@ -926,7 +926,7 @@ class SimpleNamesTransformer implements Transformation{
         var llNode = node.highLevel().lowLevel();
         var key = llNode.key();
         var original:ll.ILowLevelASTNode = llNode;
-        while(original instanceof proxy.LowLevelProxyNode){
+        while(proxy.LowLevelProxyNode.isInstance(original)){
             original = (<proxy.LowLevelProxyNode>original).originalNode();
         }
         var oKey = original.key();
@@ -1017,7 +1017,7 @@ class ReferencesTransformer implements Transformation{
 class ArrayExpressionTransformer implements Transformation{
 
     match(node:coreApi.BasicNode|coreApi.AttributeNode,prop:nominals.IProperty):boolean{
-        if(!(node instanceof core.BasicNodeImpl)){
+        if(!(core.BasicNodeImpl.isInstance(node))){
             return false;
         }
         var hlNode = (<coreApi.BasicNode>node).highLevel();

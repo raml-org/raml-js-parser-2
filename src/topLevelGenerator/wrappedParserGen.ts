@@ -126,6 +126,13 @@ export class ParserGenerator{
 
         this.addImplementationMethod(dcl,'wrapperClassName', 'string',`return "${typeName}Impl";`,'@hidden\n@return Actual name of instance class');
         this.addImplementationMethod(dcl,'kind', 'string',`return "${typeName}";`,'@return Actual name of instance interface');
+
+        if (u.superTypes() && u.superTypes().length > 0) {
+            this.addImplementationMethod(dcl,'allKinds', 'string[]',`return super.allKinds().concat("${typeName}");`,'@return Actual name of instance interface');
+        } else {
+            this.addImplementationMethod(dcl,'allKinds', 'string[]',`return ["${typeName}"];`,'@return Actual name of instance interface');
+        }
+
         this.addImplementationMethod(dcl,'RAMLVersion', 'string',`return "${this.ramlVersion}";`,'@return RAML version of the node');
 
         if(typeName=='ValueType'){
