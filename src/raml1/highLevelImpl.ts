@@ -458,7 +458,7 @@ export class StructuredValue implements hl.IStructuredValue{
  */
 export function isStructuredValue(node : any) : node is StructuredValue {
     var anyNode = <any>node;
-    return anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
+    return anyNode && anyNode.valueName && anyNode.toHighLevel && anyNode.toHighLevel2;
 }
 
 export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
