@@ -831,7 +831,7 @@ export class ASTPropImpl extends BasicASTNode implements  hl.IAttribute {
  */
 export function isASTPropImpl(node : any) : node is ASTPropImpl {
     var anyNode = <any>node;
-    return anyNode.isString && anyNode.isFromKey && anyNode.isEmbedded;
+    return anyNode && anyNode.isString && anyNode.isFromKey && anyNode.isEmbedded;
 }
 
 var nodeBuilder=new builder.BasicNodeBuilder()

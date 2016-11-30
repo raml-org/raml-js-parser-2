@@ -44,7 +44,7 @@
           ],
           "required": true,
           "fileTypes": [
-            {}
+            "*/*"
           ],
           "maxLength": 1048576,
           "fixedFacets": {

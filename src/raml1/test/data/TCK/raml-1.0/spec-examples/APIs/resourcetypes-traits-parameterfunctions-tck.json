@@ -126,9 +126,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "type": {
+                    "name": "type",
+                    "displayName": "type",
                     "type": [
                       "<<resourcePathName | !singularize>>"
                     ],
@@ -159,9 +159,9 @@
               "200": {
                 "code": "200",
                 "body": {
-                  "body": {
-                    "name": "body",
-                    "displayName": "body",
+                  "type": {
+                    "name": "type",
+                    "displayName": "type",
                     "type": [
                       "<<resourcePathName>>"
                     ],
