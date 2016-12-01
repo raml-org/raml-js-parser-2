@@ -63,9 +63,6 @@
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "prop": "stringValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -80,24 +77,26 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"prop\": \"stringValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "prop": "stringValue"
-                  },
-                  "annotations": {
-                    "a1": {
-                      "structuredValue": "stringValue",
-                      "name": "a1"
+                "examples": [
+                  {
+                    "value": "{\n  \"prop\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "prop": "stringValue"
                     },
-                    "a2": {
-                      "structuredValue": "stringValue",
-                      "name": "a2"
+                    "annotations": {
+                      "a1": {
+                        "structuredValue": "stringValue",
+                        "name": "a1"
+                      },
+                      "a2": {
+                        "structuredValue": "stringValue",
+                        "name": "a2"
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"

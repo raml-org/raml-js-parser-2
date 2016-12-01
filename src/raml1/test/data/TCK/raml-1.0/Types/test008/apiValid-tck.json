@@ -143,18 +143,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "unionArray": [
-            {
-              "property1": "val1",
-              "property2": "val2"
-            },
-            {
-              "property3": "val3",
-              "property4": "val4"
-            }
-          ]
-        },
         "required": true,
         "properties": {
           "unionArray": {
@@ -187,23 +175,25 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"unionArray\": [\n    {\n      \"property1\": \"val1\",\n      \"property2\": \"val2\"\n    },\n    {\n      \"property3\": \"val3\",\n      \"property4\": \"val4\"\n    }\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "unionArray": [
-              {
-                "property1": "val1",
-                "property2": "val2"
-              },
-              {
-                "property3": "val3",
-                "property4": "val4"
-              }
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"unionArray\": [\n    {\n      \"property1\": \"val1\",\n      \"property2\": \"val2\"\n    },\n    {\n      \"property3\": \"val3\",\n      \"property4\": \"val4\"\n    }\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "unionArray": [
+                {
+                  "property1": "val1",
+                  "property2": "val2"
+                },
+                {
+                  "property3": "val3",
+                  "property4": "val4"
+                }
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

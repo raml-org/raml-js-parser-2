@@ -53,7 +53,6 @@
             "type": [
               "string"
             ],
-            "example": "<<methodName>>=h8duh3uhhu38",
             "required": true,
             "description": "A <<methodName>>-token pair is required",
             "__METADATA__": {
@@ -69,12 +68,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "<<methodName>>=h8duh3uhhu38",
-              "strict": true,
-              "name": null,
-              "structuredValue": "<<methodName>>=h8duh3uhhu38"
-            }
+            "examples": [
+              {
+                "value": "<<methodName>>=h8duh3uhhu38",
+                "strict": true,
+                "name": null,
+                "structuredValue": "<<methodName>>=h8duh3uhhu38"
+              }
+            ]
           }
         },
         "description": "Some requests require authentication",

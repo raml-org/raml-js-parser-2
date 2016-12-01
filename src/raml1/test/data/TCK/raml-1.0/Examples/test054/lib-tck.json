@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "Fred",
-          "comment": ""
-        },
         "required": true,
         "properties": {
           "name": {
@@ -66,15 +62,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"Fred\",\n  \"comment\": \"\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "Fred",
-            "comment": ""
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": \"\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Fred",
+              "comment": ""
+            }
           }
-        }
+        ]
       }
     }
   },

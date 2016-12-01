@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "field": "value"
-        },
         "required": true,
         "properties": {
           "field": {
@@ -41,14 +38,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"field\": \"value\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "field": "value"
+        "examples": [
+          {
+            "value": "{\n  \"field\": \"value\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "field": "value"
+            }
           }
-        }
+        ]
       }
     },
     "title": "test",

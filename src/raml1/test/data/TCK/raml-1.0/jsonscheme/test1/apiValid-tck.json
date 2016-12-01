@@ -33,9 +33,6 @@
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "name": "somename"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -47,14 +44,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"somename\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "somename"
+                "examples": [
+                  {
+                    "value": "{\n  \"name\": \"somename\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "name": "somename"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "get"

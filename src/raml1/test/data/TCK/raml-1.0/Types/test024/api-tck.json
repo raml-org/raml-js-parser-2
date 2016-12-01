@@ -7,7 +7,6 @@
         "type": [
           "number"
         ],
-        "example": 630128,
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -19,12 +18,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "630128",
-          "strict": true,
-          "name": null,
-          "structuredValue": 630128
-        }
+        "examples": [
+          {
+            "value": "630128",
+            "strict": true,
+            "name": null,
+            "structuredValue": 630128
+          }
+        ]
       },
       "Address": {
         "name": "Address",
@@ -32,13 +33,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "country": "US",
-          "city": "SF",
-          "street": "Geary Street",
-          "house": "77, Suite 400",
-          "zip": 94108
-        },
         "required": true,
         "properties": {
           "country": {
@@ -163,18 +157,20 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "country": "US",
-            "city": "SF",
-            "street": "Geary Street",
-            "house": "77, Suite 400",
-            "zip": 94108
+        "examples": [
+          {
+            "value": "{\n  \"country\": \"US\",\n  \"city\": \"SF\",\n  \"street\": \"Geary Street\",\n  \"house\": \"77, Suite 400\",\n  \"zip\": 94108\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "country": "US",
+              "city": "SF",
+              "street": "Geary Street",
+              "house": "77, Suite 400",
+              "zip": 94108
+            }
           }
-        }
+        ]
       },
       "Email": {
         "name": "Email",
@@ -182,7 +178,6 @@
         "type": [
           "string"
         ],
-        "example": "press@mulesoft.com",
         "required": true,
         "pattern": "[a-zA-Z0-9\\.]{1,32}@[a-zA-Z0-9]+\\.com",
         "minLength": 15,
@@ -200,12 +195,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "press@mulesoft.com",
-          "strict": true,
-          "name": null,
-          "structuredValue": "press@mulesoft.com"
-        }
+        "examples": [
+          {
+            "value": "press@mulesoft.com",
+            "strict": true,
+            "name": null,
+            "structuredValue": "press@mulesoft.com"
+          }
+        ]
       },
       "User": {
         "name": "User",

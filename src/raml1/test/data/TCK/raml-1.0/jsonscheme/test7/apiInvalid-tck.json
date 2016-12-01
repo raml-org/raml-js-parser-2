@@ -33,9 +33,6 @@
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "innerTypeName1": "somenam"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -47,14 +44,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"innerTypeName1\": \"somenam\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "innerTypeName1": "somenam"
+                "examples": [
+                  {
+                    "value": "{\n  \"innerTypeName1\": \"somenam\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "innerTypeName1": "somenam"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "get"

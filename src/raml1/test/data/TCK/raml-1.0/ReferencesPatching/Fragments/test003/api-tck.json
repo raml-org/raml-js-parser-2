@@ -25,14 +25,6 @@
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 5
-                  }
-                },
                 "required": true,
                 "properties": {
                   "ownLibProperty": {
@@ -85,19 +77,21 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue"
-                    },
-                    "rootLibProperty": {
-                      "integerProperty": 5
+                "examples": [
+                  {
+                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": 5
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "post"
@@ -118,7 +112,6 @@
                 "type": [
                   "lib.MyType"
                 ],
-                "example": "stringValue",
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -130,12 +123,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "stringValue",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "stringValue"
-                }
+                "examples": [
+                  {
+                    "value": "stringValue",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "stringValue"
+                  }
+                ]
               }
             },
             "method": "put"
@@ -148,14 +143,6 @@
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 5
-                  }
-                },
                 "required": true,
                 "properties": {
                   "ownLibProperty": {
@@ -208,19 +195,21 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue"
-                    },
-                    "rootLibProperty": {
-                      "integerProperty": 5
+                "examples": [
+                  {
+                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": 5
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "post"

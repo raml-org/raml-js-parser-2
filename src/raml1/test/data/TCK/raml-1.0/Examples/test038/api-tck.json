@@ -64,7 +64,6 @@
                   "string"
                 ],
                 "default": "FOO",
-                "example": "FOO",
                 "required": true,
                 "enum": [
                   "FOO",
@@ -84,12 +83,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "FOO",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "FOO"
-                }
+                "examples": [
+                  {
+                    "value": "FOO",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "FOO"
+                  }
+                ]
               }
             },
             "method": "get"

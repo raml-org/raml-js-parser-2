@@ -9,7 +9,6 @@
             "type": [
               "string"
             ],
-            "example": "5757gh76",
             "required": true,
             "description": "Access Token",
             "__METADATA__": {
@@ -22,12 +21,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "5757gh76",
-              "strict": true,
-              "name": null,
-              "structuredValue": "5757gh76"
-            }
+            "examples": [
+              {
+                "value": "5757gh76",
+                "strict": true,
+                "name": null,
+                "structuredValue": "5757gh76"
+              }
+            ]
           }
         },
         "description": "Some requests require authentication.",
@@ -42,7 +43,6 @@
             "type": [
               "integer"
             ],
-            "example": 2,
             "required": true,
             "description": "Current page number.",
             "__METADATA__": {
@@ -52,12 +52,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "2",
-              "strict": true,
-              "name": null,
-              "structuredValue": 2
-            }
+            "examples": [
+              {
+                "value": "2",
+                "strict": true,
+                "name": null,
+                "structuredValue": 2
+              }
+            ]
           }
         },
         "description": "Some responses require paging.",
@@ -72,7 +74,6 @@
             "type": [
               "integer"
             ],
-            "example": 5000,
             "required": true,
             "description": "The limit.",
             "__METADATA__": {
@@ -82,12 +83,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "5000",
-              "strict": true,
-              "name": null,
-              "structuredValue": 5000
-            }
+            "examples": [
+              {
+                "value": "5000",
+                "strict": true,
+                "name": null,
+                "structuredValue": 5000
+              }
+            ]
           }
         },
         "description": "Some requests require rate limiting.",
@@ -164,7 +167,6 @@
                 "type": [
                   "integer"
                 ],
-                "example": 2,
                 "required": true,
                 "description": "Current page number.",
                 "__METADATA__": {
@@ -174,12 +176,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "2",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 2
-                }
+                "examples": [
+                  {
+                    "value": "2",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": 2
+                  }
+                ]
               },
               "limit": {
                 "name": "limit",
@@ -187,7 +191,6 @@
                 "type": [
                   "integer"
                 ],
-                "example": 5000,
                 "required": true,
                 "description": "The limit.",
                 "__METADATA__": {
@@ -197,12 +200,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5000",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": 5000
-                }
+                "examples": [
+                  {
+                    "value": "5000",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": 5000
+                  }
+                ]
               },
               "access_token": {
                 "name": "access_token",
@@ -210,7 +215,6 @@
                 "type": [
                   "string"
                 ],
-                "example": "5757gh76",
                 "required": true,
                 "description": "Access Token",
                 "__METADATA__": {
@@ -223,12 +227,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5757gh76",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "5757gh76"
-                }
+                "examples": [
+                  {
+                    "value": "5757gh76",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "5757gh76"
+                  }
+                ]
               }
             },
             "is": [
@@ -246,7 +252,6 @@
                 "type": [
                   "string"
                 ],
-                "example": "5757gh76",
                 "required": true,
                 "description": "Access Token",
                 "__METADATA__": {
@@ -259,12 +264,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "5757gh76",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "5757gh76"
-                }
+                "examples": [
+                  {
+                    "value": "5757gh76",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "5757gh76"
+                  }
+                ]
               }
             },
             "responses": {

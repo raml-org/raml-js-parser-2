@@ -25,18 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "unionArray1": [
-            1,
-            2,
-            3
-          ],
-          "unionArray2": [
-            "blah",
-            "blah",
-            "blah"
-          ]
-        },
         "required": true,
         "properties": {
           "unionArray1": {
@@ -86,23 +74,25 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "unionArray1": [
-              1,
-              2,
-              3
-            ],
-            "unionArray2": [
-              "blah",
-              "blah",
-              "blah"
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"unionArray1\": [\n    1,\n    2,\n    3\n  ],\n  \"unionArray2\": [\n    \"blah\",\n    \"blah\",\n    \"blah\"\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "unionArray1": [
+                1,
+                2,
+                3
+              ],
+              "unionArray2": [
+                "blah",
+                "blah",
+                "blah"
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

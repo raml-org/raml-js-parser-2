@@ -59,10 +59,6 @@
                     "schema": [
                       "{\n  \"required\": \"message\",\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": true,\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
                     ],
-                    "example": {
-                      "message": "s",
-                      "r": 2
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -77,15 +73,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{ \"message\":\"s\" ,\"r\":2 }\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "message": "s",
-                        "r": 2
+                    "examples": [
+                      {
+                        "value": "{ \"message\":\"s\" ,\"r\":2 }\n",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "message": "s",
+                          "r": 2
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

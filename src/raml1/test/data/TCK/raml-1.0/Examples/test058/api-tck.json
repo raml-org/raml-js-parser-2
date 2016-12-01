@@ -148,10 +148,6 @@
                     "type": [
                       "CatOrDog"
                     ],
-                    "example": {
-                      "name": "Rex",
-                      "fangs": "big ones"
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -163,15 +159,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"name\": \"Rex\",\n  \"fangs\": \"big ones\"\n}\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "name": "Rex",
-                        "fangs": "big ones"
+                    "examples": [
+                      {
+                        "value": "{\n  \"name\": \"Rex\",\n  \"fangs\": \"big ones\"\n}\n",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "name": "Rex",
+                          "fangs": "big ones"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

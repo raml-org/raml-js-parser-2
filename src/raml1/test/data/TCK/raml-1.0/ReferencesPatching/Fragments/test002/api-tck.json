@@ -21,9 +21,6 @@
                 "type": [
                   "lib0.MyType"
                 ],
-                "example": {
-                  "prop": "stringValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -35,14 +32,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"prop\": \"stringValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "prop": "stringValue"
+                "examples": [
+                  {
+                    "value": "{\n  \"prop\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "prop": "stringValue"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "post"
@@ -63,7 +62,6 @@
                 "type": [
                   "lib.MyType"
                 ],
-                "example": "stringValue",
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -75,12 +73,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "stringValue",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "stringValue"
-                }
+                "examples": [
+                  {
+                    "value": "stringValue",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "stringValue"
+                  }
+                ]
               }
             },
             "method": "put"
@@ -93,9 +93,6 @@
                 "type": [
                   "lib0.MyType"
                 ],
-                "example": {
-                  "prop": "stringValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -107,14 +104,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"prop\": \"stringValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "prop": "stringValue"
+                "examples": [
+                  {
+                    "value": "{\n  \"prop\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "prop": "stringValue"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "post"

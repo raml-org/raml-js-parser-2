@@ -25,11 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "reports": [
-            null
-          ]
-        },
         "required": true,
         "properties": {
           "reports": {
@@ -62,16 +57,18 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"reports\": [\n    null\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "reports": [
-              null
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"reports\": [\n    null\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "reports": [
+                null
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "Test API"

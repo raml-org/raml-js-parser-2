@@ -93,11 +93,6 @@
                     "type": [
                       "TestType"
                     ],
-                    "example": {
-                      "additionalField": "asd",
-                      "baseField": "asdasd",
-                      "field": "asdds"
-                    },
                     "required": true,
                     "properties": {
                       "additionalField": {
@@ -129,16 +124,18 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"additionalField\": \"asd\",\n  \"baseField\": \"asdasd\",\n  \"field\": \"asdds\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "additionalField": "asd",
-                        "baseField": "asdasd",
-                        "field": "asdds"
+                    "examples": [
+                      {
+                        "value": "{\n  \"additionalField\": \"asd\",\n  \"baseField\": \"asdasd\",\n  \"field\": \"asdds\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "additionalField": "asd",
+                          "baseField": "asdasd",
+                          "field": "asdds"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

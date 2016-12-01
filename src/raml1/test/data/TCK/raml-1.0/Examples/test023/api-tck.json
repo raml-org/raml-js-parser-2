@@ -41,17 +41,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"a\": 5\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "a": 5
+        "examples": [
+          {
+            "value": "{\n  \"a\": 5\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "a": 5
+            }
           }
-        },
-        "example": {
-          "a": 5
-        }
+        ]
       }
     },
     "title": "WebOfMe",
@@ -70,10 +69,6 @@
                     "schema": [
                       "{\n  \"required\": [\"message\"],\n  \"$schema\": \"http://json-schema.org/draft-04/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"type\": \"string\"\n    }\n  },\n  \"additionalProperties\": false\n}\n"
                     ],
-                    "example": {
-                      "message": 4,
-                      "vlue": 3
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -88,15 +83,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "message": 4,
-                        "vlue": 3
+                    "examples": [
+                      {
+                        "value": "{\n  \"message\": 4,\n  \"vlue\": 3\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "message": 4,
+                          "vlue": 3
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

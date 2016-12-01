@@ -74,10 +74,6 @@
                 "type": [
                   "User"
                 ],
-                "example": {
-                  "name": "john",
-                  "age": 34
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -89,15 +85,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"john\",\n  \"age\": 34\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "john",
-                    "age": 34
+                "examples": [
+                  {
+                    "value": "{\n  \"name\": \"john\",\n  \"age\": 34\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "name": "john",
+                      "age": 34
+                    }
                   }
-                }
+                ]
               }
             },
             "protocols": [

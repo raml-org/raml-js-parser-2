@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "Fred",
-          "comment": null
-        },
         "required": true,
         "properties": {
           "name": {
@@ -63,15 +59,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "Fred",
-            "comment": null
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"Fred\",\n  \"comment\": null\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Fred",
+              "comment": null
+            }
           }
-        }
+        ]
       }
     },
     "title": "Using null type and union"

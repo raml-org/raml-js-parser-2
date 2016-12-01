@@ -26,13 +26,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "p": [
-            1,
-            0,
-            0
-          ]
-        },
         "required": true,
         "properties": {
           "p": {
@@ -67,18 +60,20 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"p\": [\n    1,\n    0,\n    0\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "p": [
-              1,
-              0,
-              0
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"p\": [\n    1,\n    0,\n    0\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "p": [
+                1,
+                0,
+                0
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "resourceTypes": {

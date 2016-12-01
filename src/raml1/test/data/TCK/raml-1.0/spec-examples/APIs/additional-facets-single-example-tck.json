@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "title": "Attention needed",
-          "body": "You have been added to group 274"
-        },
         "required": true,
         "properties": {
           "title": {
@@ -99,21 +95,23 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
-          "strict": false,
-          "name": null,
-          "structuredValue": {
-            "title": "Attention needed",
-            "body": "You have been added to group 274"
-          },
-          "annotations": {
-            "pii": {
-              "structuredValue": true,
-              "name": "pii"
+        "examples": [
+          {
+            "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
+            "strict": false,
+            "name": null,
+            "structuredValue": {
+              "title": "Attention needed",
+              "body": "You have been added to group 274"
+            },
+            "annotations": {
+              "pii": {
+                "structuredValue": true,
+                "name": "pii"
+              }
             }
           }
-        }
+        ]
       }
     },
     "annotationTypes": {

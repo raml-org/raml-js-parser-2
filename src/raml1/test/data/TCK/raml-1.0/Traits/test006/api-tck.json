@@ -62,9 +62,6 @@
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "prop": "value"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -79,14 +76,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"prop\": \"value\"\n}\n",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "prop": "value"
+                "examples": [
+                  {
+                    "value": "{\n  \"prop\": \"value\"\n}\n",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "prop": "value"
+                    }
                   }
-                }
+                ]
               }
             },
             "protocols": [

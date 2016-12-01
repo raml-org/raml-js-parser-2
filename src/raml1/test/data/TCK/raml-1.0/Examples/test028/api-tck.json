@@ -94,9 +94,6 @@
                         "type": [
                           "object"
                         ],
-                        "example": {
-                          "x2": 123
-                        },
                         "required": true,
                         "properties": {
                           "x": {
@@ -128,14 +125,16 @@
                             }
                           }
                         },
-                        "structuredExample": {
-                          "value": "{\n  \"x2\": 123\n}",
-                          "strict": true,
-                          "name": null,
-                          "structuredValue": {
-                            "x2": 123
+                        "examples": [
+                          {
+                            "value": "{\n  \"x2\": 123\n}",
+                            "strict": true,
+                            "name": null,
+                            "structuredValue": {
+                              "x2": 123
+                            }
                           }
-                        }
+                        ]
                       }
                     },
                     "__METADATA__": {

@@ -7,11 +7,6 @@
         "type": [
           "array"
         ],
-        "example": [
-          0,
-          1,
-          2
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -23,16 +18,18 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "[ 0.0, 1.0, 2.0 ]\n",
-          "strict": true,
-          "name": null,
-          "structuredValue": [
-            0,
-            1,
-            2
-          ]
-        },
+        "examples": [
+          {
+            "value": "[ 0.0, 1.0, 2.0 ]\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              0,
+              1,
+              2
+            ]
+          }
+        ],
         "items": "number"
       },
       "MyType": {
@@ -41,13 +38,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "p": [
-            1,
-            0,
-            0
-          ]
-        },
         "required": true,
         "properties": {
           "p": {
@@ -82,18 +72,20 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"p\": [ 1.0, 0.0, 0.0 ]\n}\n",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "p": [
-              1,
-              0,
-              0
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"p\": [ 1.0, 0.0, 0.0 ]\n}\n",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "p": [
+                1,
+                0,
+                0
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "resourceTypes": {

@@ -75,10 +75,6 @@
                 "type": [
                   "T1"
                 ],
-                "example": {
-                  "p1": "stringValue",
-                  "p2": 10
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -90,15 +86,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "p1": "stringValue",
-                    "p2": 10
+                "examples": [
+                  {
+                    "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": 10\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "p1": "stringValue",
+                      "p2": 10
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "post"

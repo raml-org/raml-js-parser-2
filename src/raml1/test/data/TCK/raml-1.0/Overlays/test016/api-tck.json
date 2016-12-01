@@ -15,9 +15,6 @@
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "content": 9
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -32,14 +29,16 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"content\": 9\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "content": 9
+                    "examples": [
+                      {
+                        "value": "{\n  \"content\": 9\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "content": 9
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

@@ -25,9 +25,6 @@
         "type": [
           "mySchema"
         ],
-        "example": {
-          "id": "4"
-        },
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -39,14 +36,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"id\": \"4\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "id": "4"
+        "examples": [
+          {
+            "value": "{\n  \"id\": \"4\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "id": "4"
+            }
           }
-        }
+        ]
       }
     },
     "title": "A"

@@ -87,20 +87,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "Brandicted",
-          "logo": "http://www.domain.com/logo.gif",
-          "followers": [
-            {
-              "firstName": "Fred",
-              "lastName": "Armand"
-            },
-            {
-              "firstName": "Joan",
-              "lastName": "Rivers"
-            }
-          ]
-        },
         "required": true,
         "properties": {
           "name": {
@@ -190,25 +176,27 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "Brandicted",
-            "logo": "http://www.domain.com/logo.gif",
-            "followers": [
-              {
-                "firstName": "Fred",
-                "lastName": "Armand"
-              },
-              {
-                "firstName": "Joan",
-                "lastName": "Rivers"
-              }
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"Brandicted\",\n  \"logo\": \"http://www.domain.com/logo.gif\",\n  \"followers\": [\n    {\n      \"firstName\": \"Fred\",\n      \"lastName\": \"Armand\"\n    },\n    {\n      \"firstName\": \"Joan\",\n      \"lastName\": \"Rivers\"\n    }\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Brandicted",
+              "logo": "http://www.domain.com/logo.gif",
+              "followers": [
+                {
+                  "firstName": "Fred",
+                  "lastName": "Armand"
+                },
+                {
+                  "firstName": "Joan",
+                  "lastName": "Rivers"
+                }
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "Testing with Jonathan",

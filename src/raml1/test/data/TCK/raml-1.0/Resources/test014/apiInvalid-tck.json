@@ -95,10 +95,6 @@
                 "type": [
                   "<<bodyTypeParam>>"
                 ],
-                "example": {
-                  "propertyFromResourceType1": "stringValue1",
-                  "propertyFromType2": "stringValue2"
-                },
                 "required": true,
                 "properties": {
                   "extraProperty": {
@@ -130,15 +126,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "propertyFromResourceType1": "stringValue1",
-                    "propertyFromType2": "stringValue2"
+                "examples": [
+                  {
+                    "value": "{\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "propertyFromResourceType1": "stringValue1",
+                      "propertyFromType2": "stringValue2"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "get"
@@ -262,11 +260,6 @@
                 "type": [
                   "Type1"
                 ],
-                "example": {
-                  "extraProperty": "stringValue3",
-                  "propertyFromResourceType1": "stringValue1",
-                  "propertyFromType2": "stringValue2"
-                },
                 "required": true,
                 "properties": {
                   "extraProperty": {
@@ -316,16 +309,18 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"extraProperty\": \"stringValue3\",\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "extraProperty": "stringValue3",
-                    "propertyFromResourceType1": "stringValue1",
-                    "propertyFromType2": "stringValue2"
+                "examples": [
+                  {
+                    "value": "{\n  \"extraProperty\": \"stringValue3\",\n  \"propertyFromResourceType1\": \"stringValue1\",\n  \"propertyFromType2\": \"stringValue2\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "extraProperty": "stringValue3",
+                      "propertyFromResourceType1": "stringValue1",
+                      "propertyFromType2": "stringValue2"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "get"

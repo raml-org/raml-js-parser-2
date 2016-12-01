@@ -41,25 +41,20 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": null\n    }\n  }\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "someProperty": {
+        "examples": [
+          {
+            "value": "{\n  \"someProperty\": {\n    \"someProperty\": {\n      \"someProperty\": null\n    }\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
               "someProperty": {
-                "someProperty": null
+                "someProperty": {
+                  "someProperty": null
+                }
               }
             }
           }
-        },
-        "example": {
-          "someProperty": {
-            "someProperty": {
-              "someProperty": null
-            }
-          }
-        }
+        ]
       }
     },
     "title": "API"

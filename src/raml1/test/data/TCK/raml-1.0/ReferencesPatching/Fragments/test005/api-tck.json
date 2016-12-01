@@ -81,12 +81,6 @@
                     }
                   }
                 },
-                "example": {
-                  "objectProperty": {
-                    "prop": "string"
-                  },
-                  "stringProperty": "stringValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -98,17 +92,19 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"stringValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "objectProperty": {
-                      "prop": "string"
-                    },
-                    "stringProperty": "stringValue"
+                "examples": [
+                  {
+                    "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "objectProperty": {
+                        "prop": "string"
+                      },
+                      "stringProperty": "stringValue"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "put"

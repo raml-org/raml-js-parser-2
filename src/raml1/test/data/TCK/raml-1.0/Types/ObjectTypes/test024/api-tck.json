@@ -344,28 +344,6 @@
                     "type": [
                       "Org"
                     ],
-                    "example": {
-                      "onCall": {
-                        "firstname": "nico",
-                        "lastname": "ark",
-                        "kind": "admin",
-                        "clearanceLevel": "low",
-                        "phone": "12321"
-                      },
-                      "Head": {
-                        "firstname": "nico",
-                        "lastname": "ark",
-                        "kind": "Manager",
-                        "reports": [
-                          {
-                            "firstname": "nico",
-                            "lastname": "ark",
-                            "kind": "Person"
-                          }
-                        ],
-                        "phone": "123-23"
-                      }
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -377,33 +355,35 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"onCall\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"admin\",\n    \"clearanceLevel\": \"low\",\n    \"phone\": \"12321\"\n  },\n  \"Head\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"Manager\",\n    \"reports\": [\n      {\n        \"firstname\": \"nico\",\n        \"lastname\": \"ark\",\n        \"kind\": \"Person\"\n      }\n    ],\n    \"phone\": \"123-23\"\n  }\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "onCall": {
-                          "firstname": "nico",
-                          "lastname": "ark",
-                          "kind": "admin",
-                          "clearanceLevel": "low",
-                          "phone": "12321"
-                        },
-                        "Head": {
-                          "firstname": "nico",
-                          "lastname": "ark",
-                          "kind": "Manager",
-                          "reports": [
-                            {
-                              "firstname": "nico",
-                              "lastname": "ark",
-                              "kind": "Person"
-                            }
-                          ],
-                          "phone": "123-23"
+                    "examples": [
+                      {
+                        "value": "{\n  \"onCall\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"admin\",\n    \"clearanceLevel\": \"low\",\n    \"phone\": \"12321\"\n  },\n  \"Head\": {\n    \"firstname\": \"nico\",\n    \"lastname\": \"ark\",\n    \"kind\": \"Manager\",\n    \"reports\": [\n      {\n        \"firstname\": \"nico\",\n        \"lastname\": \"ark\",\n        \"kind\": \"Person\"\n      }\n    ],\n    \"phone\": \"123-23\"\n  }\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "onCall": {
+                            "firstname": "nico",
+                            "lastname": "ark",
+                            "kind": "admin",
+                            "clearanceLevel": "low",
+                            "phone": "12321"
+                          },
+                          "Head": {
+                            "firstname": "nico",
+                            "lastname": "ark",
+                            "kind": "Manager",
+                            "reports": [
+                              {
+                                "firstname": "nico",
+                                "lastname": "ark",
+                                "kind": "Person"
+                              }
+                            ],
+                            "phone": "123-23"
+                          }
                         }
                       }
-                    }
+                    ]
                   }
                 }
               }

@@ -7,10 +7,6 @@
         "type": [
           "array"
         ],
-        "example": [
-          "some string",
-          "another string"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -22,15 +18,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "[\n  \"some string\",\n  \"another string\"\n]",
-          "strict": true,
-          "name": null,
-          "structuredValue": [
-            "some string",
-            "another string"
-          ]
-        },
+        "examples": [
+          {
+            "value": "[\n  \"some string\",\n  \"another string\"\n]",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              "some string",
+              "another string"
+            ]
+          }
+        ],
         "items": "string"
       }
     },

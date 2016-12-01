@@ -33,12 +33,6 @@
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "name": "somename",
-                  "child": {
-                    "innerTypeName": "anothername"
-                  }
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -50,17 +44,19 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName\": \"anothername\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "somename",
-                    "child": {
-                      "innerTypeName": "anothername"
+                "examples": [
+                  {
+                    "value": "{\n  \"name\": \"somename\",\n  \"child\": {\n    \"innerTypeName\": \"anothername\"\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "name": "somename",
+                      "child": {
+                        "innerTypeName": "anothername"
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"

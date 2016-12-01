@@ -25,11 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "c": {
-            "i": 2
-          }
-        },
         "required": true,
         "properties": {
           "c": {
@@ -64,16 +59,18 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"c\": {\n    \"i\": 2\n  }\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "c": {
-              "i": 2
+        "examples": [
+          {
+            "value": "{\n  \"c\": {\n    \"i\": 2\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "c": {
+                "i": 2
+              }
             }
           }
-        }
+        ]
       }
     },
     "title": "A"

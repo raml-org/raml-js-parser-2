@@ -84,21 +84,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "users": [
-            {
-              "name": "John",
-              "age": "not number"
-            },
-            {
-              "name1": "Jane",
-              "age": 28
-            },
-            {
-              "name": "Alex"
-            }
-          ]
-        },
         "required": true,
         "properties": {
           "users": {
@@ -134,26 +119,28 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": \"not number\"\n    },\n    {\n      \"name1\": \"Jane\",\n      \"age\": 28\n    },\n    {\n      \"name\": \"Alex\"\n    }\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "users": [
-              {
-                "name": "John",
-                "age": "not number"
-              },
-              {
-                "name1": "Jane",
-                "age": 28
-              },
-              {
-                "name": "Alex"
-              }
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"users\": [\n    {\n      \"name\": \"John\",\n      \"age\": \"not number\"\n    },\n    {\n      \"name1\": \"Jane\",\n      \"age\": 28\n    },\n    {\n      \"name\": \"Alex\"\n    }\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "users": [
+                {
+                  "name": "John",
+                  "age": "not number"
+                },
+                {
+                  "name1": "Jane",
+                  "age": 28
+                },
+                {
+                  "name": "Alex"
+                }
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

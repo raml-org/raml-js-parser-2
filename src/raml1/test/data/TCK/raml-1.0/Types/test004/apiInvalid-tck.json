@@ -7,10 +7,6 @@
         "type": [
           "array"
         ],
-        "example": [
-          100500,
-          "not number"
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -22,15 +18,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "[\n  100500,\n  \"not number\"\n]",
-          "strict": true,
-          "name": null,
-          "structuredValue": [
-            100500,
-            "not number"
-          ]
-        },
+        "examples": [
+          {
+            "value": "[\n  100500,\n  \"not number\"\n]",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              100500,
+              "not number"
+            ]
+          }
+        ],
         "items": "number"
       }
     },

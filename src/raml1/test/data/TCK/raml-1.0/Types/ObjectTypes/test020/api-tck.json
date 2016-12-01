@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "firstname": "eleo",
-          "lastname": "ortega"
-        },
         "required": true,
         "properties": {
           "firstname": {
@@ -78,15 +74,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"firstname\": \"eleo\",\n  \"lastname\": \"ortega\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "firstname": "eleo",
-            "lastname": "ortega"
+        "examples": [
+          {
+            "value": "{\n  \"firstname\": \"eleo\",\n  \"lastname\": \"ortega\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "firstname": "eleo",
+              "lastname": "ortega"
+            }
           }
-        }
+        ]
       }
     },
     "title": "properties with trailing question marks"

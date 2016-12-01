@@ -47,19 +47,21 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"p2\": {\n    \"p1\": {\n      \"p2\": {\n        \"p1\": {\n          \"p2\": {\n            \"p1\": {\n              \"p2\": {\n                \"p1\": null\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "p2": {
-              "p1": {
-                "p2": {
-                  "p1": {
-                    "p2": {
-                      "p1": {
-                        "p2": {
-                          "p1": null
+        "examples": [
+          {
+            "value": "{\n  \"p2\": {\n    \"p1\": {\n      \"p2\": {\n        \"p1\": {\n          \"p2\": {\n            \"p1\": {\n              \"p2\": {\n                \"p1\": null\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "p2": {
+                "p1": {
+                  "p2": {
+                    "p1": {
+                      "p2": {
+                        "p1": {
+                          "p2": {
+                            "p1": null
+                          }
                         }
                       }
                     }
@@ -68,24 +70,7 @@
               }
             }
           }
-        },
-        "example": {
-          "p2": {
-            "p1": {
-              "p2": {
-                "p1": {
-                  "p2": {
-                    "p1": {
-                      "p2": {
-                        "p1": null
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     }
   },

@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "initial_comments": "oo"
-        },
         "required": true,
         "properties": {
           "comment_id": {
@@ -60,14 +57,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"initial_comments\": \"oo\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "initial_comments": "oo"
+        "examples": [
+          {
+            "value": "{\n  \"initial_comments\": \"oo\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "initial_comments": "oo"
+            }
           }
-        }
+        ]
       }
     },
     "title": "My API With Types"

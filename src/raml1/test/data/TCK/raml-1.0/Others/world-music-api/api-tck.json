@@ -62,9 +62,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "firstname": "John"
-        },
         "required": true,
         "properties": {
           "firstname": {
@@ -91,7 +88,6 @@
             "type": [
               "string"
             ],
-            "example": "Doe",
             "required": false,
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -100,12 +96,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "Doe",
-              "strict": true,
-              "name": null,
-              "structuredValue": "Doe"
-            }
+            "examples": [
+              {
+                "value": "Doe",
+                "strict": true,
+                "name": null,
+                "structuredValue": "Doe"
+              }
+            ]
           }
         },
         "__METADATA__": {
@@ -121,14 +119,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"firstname\": \"John\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "firstname": "John"
+        "examples": [
+          {
+            "value": "{\n  \"firstname\": \"John\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "firstname": "John"
+            }
           }
-        }
+        ]
       }
     },
     "traits": {
@@ -310,7 +310,6 @@
         "type": [
           "integer"
         ],
-        "example": 2,
         "required": true,
         "description": "interval in seconds",
         "__METADATA__": {
@@ -323,12 +322,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "2",
-          "strict": true,
-          "name": null,
-          "structuredValue": 2
-        }
+        "examples": [
+          {
+            "value": "2",
+            "strict": true,
+            "name": null,
+            "structuredValue": 2
+          }
+        ]
       },
       "ready": {
         "name": "ready",
@@ -1028,7 +1029,6 @@
                         "type": [
                           "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n  elementFormDefault=\"qualified\" attributeFormDefault=\"unqualified\">\n  <xs:element name=\"song\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"title\" type=\"xs:string\" />\n        <xs:element name=\"artist\" type=\"xs:string\" />\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
                         ],
-                        "example": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -1040,12 +1040,14 @@
                             }
                           }
                         },
-                        "structuredExample": {
-                          "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
-                          "strict": true,
-                          "name": null,
-                          "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
-                        }
+                        "examples": [
+                          {
+                            "value": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n",
+                            "strict": true,
+                            "name": null,
+                            "structuredValue": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<song>\n  <title>str1234</title>\n  <artist>str1234</artist>\n</song>\n"
+                          }
+                        ]
                       }
                     }
                   }

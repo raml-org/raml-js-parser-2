@@ -25,9 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "baseField": "name"
-        },
         "required": true,
         "properties": {
           "baseField": {
@@ -59,14 +56,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"baseField\": \"name\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "baseField": "name"
+        "examples": [
+          {
+            "value": "{\n  \"baseField\": \"name\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "baseField": "name"
+            }
           }
-        }
+        ]
       },
       "TestType": {
         "name": "TestType",
@@ -74,10 +73,6 @@
         "type": [
           "TypeBase"
         ],
-        "example": {
-          "baseField": "name",
-          "field": "value"
-        },
         "required": true,
         "properties": {
           "field": {
@@ -109,15 +104,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"baseField\": \"name\",\n  \"field\": \"value\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "baseField": "name",
-            "field": "value"
+        "examples": [
+          {
+            "value": "{\n  \"baseField\": \"name\",\n  \"field\": \"value\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "baseField": "name",
+              "field": "value"
+            }
           }
-        }
+        ]
       }
     },
     "title": "test",
@@ -135,10 +132,6 @@
                     "type": [
                       "TestType"
                     ],
-                    "example": {
-                      "baseField": "base",
-                      "field": "any text"
-                    },
                     "required": true,
                     "properties": {
                       "additionalField": {
@@ -170,15 +163,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"baseField\": \"base\",\n  \"field\": \"any text\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "baseField": "base",
-                        "field": "any text"
+                    "examples": [
+                      {
+                        "value": "{\n  \"baseField\": \"base\",\n  \"field\": \"any text\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "baseField": "base",
+                          "field": "any text"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

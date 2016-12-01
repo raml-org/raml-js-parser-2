@@ -63,16 +63,6 @@
         "type": [
           "array"
         ],
-        "example": [
-          {
-            "subject": "My Email 1",
-            "body": "This is the text for email 1."
-          },
-          {
-            "subject": "My Email 2",
-            "body": "This is the text for email 2."
-          }
-        ],
         "required": true,
         "uniqueItems": true,
         "minItems": 1,
@@ -86,21 +76,23 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "[\n  {\n    \"subject\": \"My Email 1\",\n    \"body\": \"This is the text for email 1.\"\n  },\n  {\n    \"subject\": \"My Email 2\",\n    \"body\": \"This is the text for email 2.\"\n  }\n]",
-          "strict": true,
-          "name": null,
-          "structuredValue": [
-            {
-              "subject": "My Email 1",
-              "body": "This is the text for email 1."
-            },
-            {
-              "subject": "My Email 2",
-              "body": "This is the text for email 2."
-            }
-          ]
-        },
+        "examples": [
+          {
+            "value": "[\n  {\n    \"subject\": \"My Email 1\",\n    \"body\": \"This is the text for email 1.\"\n  },\n  {\n    \"subject\": \"My Email 2\",\n    \"body\": \"This is the text for email 2.\"\n  }\n]",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              {
+                "subject": "My Email 1",
+                "body": "This is the text for email 1."
+              },
+              {
+                "subject": "My Email 2",
+                "body": "This is the text for email 2."
+              }
+            ]
+          }
+        ],
         "items": "Email"
       }
     },

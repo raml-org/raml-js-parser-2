@@ -81,12 +81,6 @@
                     }
                   }
                 },
-                "example": {
-                  "objectProperty": {
-                    "prop": "string"
-                  },
-                  "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -98,17 +92,19 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "objectProperty": {
-                      "prop": "string"
-                    },
-                    "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
+                "examples": [
+                  {
+                    "value": "{\n  \"objectProperty\": {\n    \"prop\": \"string\"\n  },\n  \"stringProperty\": \"abcdefghijklmnopqrstuvwxyz0123456789\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "objectProperty": {
+                        "prop": "string"
+                      },
+                      "stringProperty": "abcdefghijklmnopqrstuvwxyz0123456789"
+                    }
                   }
-                }
+                ]
               }
             },
             "method": "put"

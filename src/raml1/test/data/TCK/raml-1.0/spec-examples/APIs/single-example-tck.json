@@ -95,19 +95,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "title": "Attention needed",
-            "body": "You have been added to group 274"
+        "examples": [
+          {
+            "value": "{\n  \"title\": \"Attention needed\",\n  \"body\": \"You have been added to group 274\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "title": "Attention needed",
+              "body": "You have been added to group 274"
+            }
           }
-        },
-        "example": {
-          "title": "Attention needed",
-          "body": "You have been added to group 274"
-        }
+        ]
       }
     },
     "title": "Single example"

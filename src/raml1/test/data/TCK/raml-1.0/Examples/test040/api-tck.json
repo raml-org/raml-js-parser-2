@@ -12,9 +12,6 @@
                 "type": [
                   "number"
                 ],
-                "example": [
-                  2
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -26,14 +23,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "[\n  2\n]",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": [
-                    2
-                  ]
-                }
+                "examples": [
+                  {
+                    "value": "[\n  2\n]",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": [
+                      2
+                    ]
+                  }
+                ]
               }
             },
             "method": "get"

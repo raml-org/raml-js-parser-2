@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "somestring"
-        },
         "required": true,
         "properties": {
           "name": {
@@ -41,14 +38,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"somestring\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "somestring"
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"somestring\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "somestring"
+            }
           }
-        }
+        ]
       },
       "AnotherType": {
         "name": "AnotherType",
@@ -56,10 +55,6 @@
         "type": [
           "SomeType"
         ],
-        "example": {
-          "name1": "somestring",
-          "age": "stringValue"
-        },
         "required": true,
         "properties": {
           "age": {
@@ -91,15 +86,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name1\": \"somestring\",\n  \"age\": \"stringValue\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name1": "somestring",
-            "age": "stringValue"
+        "examples": [
+          {
+            "value": "{\n  \"name1\": \"somestring\",\n  \"age\": \"stringValue\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name1": "somestring",
+              "age": "stringValue"
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

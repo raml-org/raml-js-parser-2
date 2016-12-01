@@ -64,12 +64,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "prop": [
-            "val1",
-            "val2"
-          ]
-        },
         "required": true,
         "properties": {
           "prop": {
@@ -101,17 +95,19 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"prop\": [\n    \"val1\",\n    \"val2\"\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "prop": [
-              "val1",
-              "val2"
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"prop\": [\n    \"val1\",\n    \"val2\"\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop": [
+                "val1",
+                "val2"
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

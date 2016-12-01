@@ -511,9 +511,6 @@
                 "type": [
                   "RTType2"
                 ],
-                "example": {
-                  "rtTypeProperty2": "stringValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -525,14 +522,16 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"rtTypeProperty2\": \"stringValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "rtTypeProperty2": "stringValue"
+                "examples": [
+                  {
+                    "value": "{\n  \"rtTypeProperty2\": \"stringValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "rtTypeProperty2": "stringValue"
+                    }
                   }
-                }
+                ]
               }
             },
             "is": [
@@ -555,12 +554,6 @@
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "traitProperty1": true,
-                      "traitProperty2": 1,
-                      "traitProperty1_3": "stringValue1",
-                      "traitProperty2_3": "stringValue2"
-                    },
                     "required": true,
                     "properties": {
                       "traitProperty1": {
@@ -649,17 +642,19 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"traitProperty1\": true,\n  \"traitProperty2\": 1,\n  \"traitProperty1_3\": \"stringValue1\",\n  \"traitProperty2_3\": \"stringValue2\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "traitProperty1": true,
-                        "traitProperty2": 1,
-                        "traitProperty1_3": "stringValue1",
-                        "traitProperty2_3": "stringValue2"
+                    "examples": [
+                      {
+                        "value": "{\n  \"traitProperty1\": true,\n  \"traitProperty2\": 1,\n  \"traitProperty1_3\": \"stringValue1\",\n  \"traitProperty2_3\": \"stringValue2\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "traitProperty1": true,
+                          "traitProperty2": 1,
+                          "traitProperty1_3": "stringValue1",
+                          "traitProperty2_3": "stringValue2"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

@@ -135,9 +135,6 @@
                     "schema": [
                       "MM"
                     ],
-                    "example": {
-                      "a": 3
-                    },
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -152,14 +149,16 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"a\": 3\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "a": 3
+                    "examples": [
+                      {
+                        "value": "{\n  \"a\": 3\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "a": 3
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

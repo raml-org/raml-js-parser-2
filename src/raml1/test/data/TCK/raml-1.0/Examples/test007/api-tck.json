@@ -46,17 +46,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"y\": \"aaa2\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "y": "aaa2"
+        "examples": [
+          {
+            "value": "{\n  \"y\": \"aaa2\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "y": "aaa2"
+            }
           }
-        },
-        "example": {
-          "y": "aaa2"
-        }
+        ]
       }
     },
     "title": "Test API"

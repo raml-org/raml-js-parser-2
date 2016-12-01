@@ -59,19 +59,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": null,\n  \"data\": null\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
+        "examples": [
+          {
+            "value": "{\n  \"name\": null,\n  \"data\": null\n}",
+            "strict": true,
             "name": null,
-            "data": null
+            "structuredValue": {
+              "name": null,
+              "data": null
+            }
           }
-        },
-        "example": {
-          "name": null,
-          "data": null
-        }
+        ]
       },
       "Data": {
         "name": "Data",

@@ -7,7 +7,6 @@
         "type": [
           "boolean"
         ],
-        "example": false,
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -19,12 +18,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "false",
-          "strict": true,
-          "name": null,
-          "structuredValue": false
-        }
+        "examples": [
+          {
+            "value": "false",
+            "strict": true,
+            "name": null,
+            "structuredValue": false
+          }
+        ]
       }
     }
   },

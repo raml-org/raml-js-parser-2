@@ -41,25 +41,24 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"prop\": \"stringValue\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "prop": "stringValue"
-          },
-          "scalarsAnnotations": {
-            "strict": [
-              {
-                "structuredValue": "asdfg",
-                "name": "a"
-              }
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"prop\": \"stringValue\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop": "stringValue"
+            },
+            "scalarsAnnotations": {
+              "strict": [
+                {
+                  "structuredValue": "asdfg",
+                  "name": "a"
+                }
+              ]
+            }
           }
-        },
-        "example": {
-          "prop": "stringValue"
-        }
+        ]
       }
     },
     "annotationTypes": {

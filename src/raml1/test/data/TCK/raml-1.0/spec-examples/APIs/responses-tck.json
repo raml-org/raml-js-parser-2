@@ -129,7 +129,6 @@
                     "type": [
                       "string"
                     ],
-                    "example": "/invoices/45612",
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -144,12 +143,14 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "/invoices/45612",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": "/invoices/45612"
-                    }
+                    "examples": [
+                      {
+                        "value": "/invoices/45612",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": "/invoices/45612"
+                      }
+                    ]
                   }
                 ],
                 "body": {
@@ -200,9 +201,6 @@
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "error": "Amount cannot be negative"
-                    },
                     "required": true,
                     "properties": {
                       "error": {
@@ -240,14 +238,16 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"error\": \"Amount cannot be negative\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "error": "Amount cannot be negative"
+                    "examples": [
+                      {
+                        "value": "{\n  \"error\": \"Amount cannot be negative\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "error": "Amount cannot be negative"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

@@ -25,9 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "c": 4
-        },
         "required": true,
         "properties": {
           "c": {
@@ -62,14 +59,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"c\": 4\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "c": 4
+        "examples": [
+          {
+            "value": "{\n  \"c\": 4\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "c": 4
+            }
           }
-        }
+        ]
       }
     },
     "title": "A"

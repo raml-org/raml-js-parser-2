@@ -7,20 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "selfReference": [
-            {
-              "selfReference": [
-                {
-                  "selfReference": [],
-                  "someProperty1": "val1"
-                }
-              ],
-              "someProperty": "val2"
-            }
-          ],
-          "someProperty": "val3"
-        },
         "required": true,
         "properties": {
           "selfReference": {
@@ -72,25 +58,27 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "selfReference": [
-              {
-                "selfReference": [
-                  {
-                    "selfReference": [],
-                    "someProperty1": "val1"
-                  }
-                ],
-                "someProperty": "val2"
-              }
-            ],
-            "someProperty": "val3"
+        "examples": [
+          {
+            "value": "{\n  \"selfReference\": [\n    {\n      \"selfReference\": [\n        {\n          \"selfReference\": [],\n          \"someProperty1\": \"val1\"\n        }\n      ],\n      \"someProperty\": \"val2\"\n    }\n  ],\n  \"someProperty\": \"val3\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "selfReference": [
+                {
+                  "selfReference": [
+                    {
+                      "selfReference": [],
+                      "someProperty1": "val1"
+                    }
+                  ],
+                  "someProperty": "val2"
+                }
+              ],
+              "someProperty": "val3"
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

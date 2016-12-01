@@ -10,7 +10,6 @@
           "string"
         ],
         "default": "test.com",
-        "example": "example.com",
         "required": true,
         "description": "Api base uri parameter domain",
         "enum": [
@@ -31,12 +30,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "example.com",
-          "strict": true,
-          "name": null,
-          "structuredValue": "example.com"
-        }
+        "examples": [
+          {
+            "value": "example.com",
+            "strict": true,
+            "name": null,
+            "structuredValue": "example.com"
+          }
+        ]
       },
       "mediaType": {
         "name": "mediaType",

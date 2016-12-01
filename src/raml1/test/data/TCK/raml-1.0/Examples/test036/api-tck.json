@@ -41,17 +41,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"prop1\": \"stringValue\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "prop1": "stringValue"
+        "examples": [
+          {
+            "value": "{\n  \"prop1\": \"stringValue\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": "stringValue"
+            }
           }
-        },
-        "example": {
-          "prop1": "stringValue"
-        }
+        ]
       }
     },
     "title": "Api"

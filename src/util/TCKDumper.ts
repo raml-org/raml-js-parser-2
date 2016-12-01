@@ -40,7 +40,7 @@ export class TCKDumper {
         }
         this.nodeTransformers = [
             new ResourcesTransformer(),
-            new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
+            //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
             new ExamplesTransformer(this.options.dumpXMLRepresentationOfExamples),
             //new ParametersTransformer(),
             new ArrayExpressionTransformer(),
@@ -878,11 +878,19 @@ class ExamplesTransformer extends BasicTransformation{
             return _value;
         }
         var value = isArray ? _value[0] : _value;
-        var examples = helpersHL.typeExamples(
+        var exampleObj = helpersHL.typeExample(
             node.asElement(),this.dumpXMLRepresentationOfExamples);
-        if(examples.length>0){
-            value["examples"] = examples;
+        if(exampleObj){
+            value["examples"] = [ exampleObj ];
         }
+        else {
+            var examples = helpersHL.typeExamples(
+                node.asElement(), this.dumpXMLRepresentationOfExamples);
+            if (examples.length > 0) {
+                value["examples"] = examples;
+            }
+        }
+        delete value["example"];
         return _value;
     }
 

@@ -35,7 +35,6 @@
                     "type": [
                       "integer"
                     ],
-                    "example": 10,
                     "required": true,
                     "description": "Number of seconds to wait.\n",
                     "__METADATA__": {
@@ -45,12 +44,14 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "10",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": 10
-                    }
+                    "examples": [
+                      {
+                        "value": "10",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": 10
+                      }
+                    ]
                   }
                 ]
               }

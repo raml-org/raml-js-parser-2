@@ -27,13 +27,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "items": [
-            "1",
-            "2",
-            "3"
-          ]
-        },
         "required": true,
         "properties": {
           "items": {
@@ -68,18 +61,20 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"items\": [\n    \"1\",\n    \"2\",\n    \"3\"\n  ]\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "items": [
-              "1",
-              "2",
-              "3"
-            ]
+        "examples": [
+          {
+            "value": "{\n  \"items\": [\n    \"1\",\n    \"2\",\n    \"3\"\n  ]\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "items": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
           }
-        }
+        ]
       }
     },
     "title": "Test API"

@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "eleo",
-          "title??": "Yes, I have a title"
-        },
         "required": true,
         "properties": {
           "name": {
@@ -57,15 +53,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"eleo\",\n  \"title??\": \"Yes, I have a title\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "eleo",
-            "title??": "Yes, I have a title"
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"eleo\",\n  \"title??\": \"Yes, I have a title\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "eleo",
+              "title??": "Yes, I have a title"
+            }
           }
-        }
+        ]
       }
     },
     "title": "properties with trailing question marks"

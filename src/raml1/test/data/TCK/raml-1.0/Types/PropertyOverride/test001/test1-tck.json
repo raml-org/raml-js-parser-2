@@ -414,21 +414,6 @@
                             "type": [
                               "array"
                             ],
-                            "example": [
-                              {
-                                "id": "foo",
-                                "type": "Feature",
-                                "geometry": {},
-                                "properties": {
-                                  "acquired": "2016-02-28T16:41:41.090Z",
-                                  "vnd_camera_gain": 5
-                                },
-                                "_embeds": [],
-                                "_links": {
-                                  "licenses": "https://api.planet.com/v1/scenes/foo/licenses"
-                                }
-                              }
-                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -440,26 +425,28 @@
                                 }
                               }
                             },
-                            "structuredExample": {
-                              "value": "[\n  {\n    \"id\": \"foo\",\n    \"type\": \"Feature\",\n    \"geometry\": {},\n    \"properties\": {\n      \"acquired\": \"2016-02-28T16:41:41.090Z\",\n      \"vnd_camera_gain\": 5\n    },\n    \"_embeds\": [],\n    \"_links\": {\n      \"licenses\": \"https://api.planet.com/v1/scenes/foo/licenses\"\n    }\n  }\n]",
-                              "strict": true,
-                              "name": null,
-                              "structuredValue": [
-                                {
-                                  "id": "foo",
-                                  "type": "Feature",
-                                  "geometry": {},
-                                  "properties": {
-                                    "acquired": "2016-02-28T16:41:41.090Z",
-                                    "vnd_camera_gain": 5
-                                  },
-                                  "_embeds": [],
-                                  "_links": {
-                                    "licenses": "https://api.planet.com/v1/scenes/foo/licenses"
+                            "examples": [
+                              {
+                                "value": "[\n  {\n    \"id\": \"foo\",\n    \"type\": \"Feature\",\n    \"geometry\": {},\n    \"properties\": {\n      \"acquired\": \"2016-02-28T16:41:41.090Z\",\n      \"vnd_camera_gain\": 5\n    },\n    \"_embeds\": [],\n    \"_links\": {\n      \"licenses\": \"https://api.planet.com/v1/scenes/foo/licenses\"\n    }\n  }\n]",
+                                "strict": true,
+                                "name": null,
+                                "structuredValue": [
+                                  {
+                                    "id": "foo",
+                                    "type": "Feature",
+                                    "geometry": {},
+                                    "properties": {
+                                      "acquired": "2016-02-28T16:41:41.090Z",
+                                      "vnd_camera_gain": 5
+                                    },
+                                    "_embeds": [],
+                                    "_links": {
+                                      "licenses": "https://api.planet.com/v1/scenes/foo/licenses"
+                                    }
                                   }
-                                }
-                              ]
-                            },
+                                ]
+                              }
+                            ],
                             "items": "PlanetScene"
                           }
                         }

@@ -32,11 +32,6 @@
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "child": {
-                    "name": "somename"
-                  }
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -48,16 +43,18 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"child\": {\n    \"name\": \"somename\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "child": {
-                      "name": "somename"
+                "examples": [
+                  {
+                    "value": "{\n  \"child\": {\n    \"name\": \"somename\"\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "child": {
+                        "name": "somename"
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"

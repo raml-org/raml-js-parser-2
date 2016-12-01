@@ -91,14 +91,6 @@
                     }
                   }
                 },
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 5
-                  }
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -110,19 +102,21 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue"
-                    },
-                    "rootLibProperty": {
-                      "integerProperty": 5
+                "examples": [
+                  {
+                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 5\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "ownLibProperty": {
+                        "prop": "stringValue"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": 5
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "post"
@@ -209,14 +203,6 @@
                     }
                   }
                 },
-                "example": {
-                  "ownLibProperty": {
-                    "prop": "stringValue2"
-                  },
-                  "rootLibProperty": {
-                    "integerProperty": 8
-                  }
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -228,19 +214,21 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue2\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 8\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "ownLibProperty": {
-                      "prop": "stringValue2"
-                    },
-                    "rootLibProperty": {
-                      "integerProperty": 8
+                "examples": [
+                  {
+                    "value": "{\n  \"ownLibProperty\": {\n    \"prop\": \"stringValue2\"\n  },\n  \"rootLibProperty\": {\n    \"integerProperty\": 8\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "ownLibProperty": {
+                        "prop": "stringValue2"
+                      },
+                      "rootLibProperty": {
+                        "integerProperty": 8
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "post"
@@ -253,7 +241,6 @@
                 "type": [
                   "lib.MyType"
                 ],
-                "example": "stringValue",
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -265,12 +252,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "stringValue",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "stringValue"
-                }
+                "examples": [
+                  {
+                    "value": "stringValue",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "stringValue"
+                  }
+                ]
               }
             },
             "method": "put"

@@ -7,7 +7,6 @@
         "type": [
           "string"
         ],
-        "example": "d5",
         "required": true,
         "pattern": ".5",
         "__METADATA__": {
@@ -23,12 +22,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "d5",
-          "strict": true,
-          "name": null,
-          "structuredValue": "d5"
-        }
+        "examples": [
+          {
+            "value": "d5",
+            "strict": true,
+            "name": null,
+            "structuredValue": "d5"
+          }
+        ]
       },
       "MyType2": {
         "name": "MyType2",
@@ -36,9 +37,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "z": ".3"
-        },
         "required": true,
         "properties": {
           "z": {
@@ -73,14 +71,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"z\": \".3\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "z": ".3"
+        "examples": [
+          {
+            "value": "{\n  \"z\": \".3\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "z": ".3"
+            }
           }
-        }
+        ]
       }
     },
     "title": "Test API"

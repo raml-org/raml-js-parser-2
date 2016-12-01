@@ -17,7 +17,6 @@
               "type": [
                 "string"
               ],
-              "example": "230-OCTO",
               "required": true,
               "pattern": "^\\d+\\-\\w+$",
               "__METADATA__": {
@@ -33,12 +32,14 @@
                   }
                 }
               },
-              "structuredExample": {
-                "value": "230-OCTO",
-                "strict": true,
-                "name": null,
-                "structuredValue": "230-OCTO"
-              }
+              "examples": [
+                {
+                  "value": "230-OCTO",
+                  "strict": true,
+                  "name": null,
+                  "structuredValue": "230-OCTO"
+                }
+              ]
             },
             "__METADATA__": {
               "primitiveValuesMeta": {
@@ -62,7 +63,6 @@
             "type": [
               "string"
             ],
-            "example": "abcdefghijklmnop",
             "required": true,
             "description": "A code to track API calls end to end",
             "pattern": "^\\w{16}$",
@@ -79,12 +79,14 @@
                 }
               }
             },
-            "structuredExample": {
-              "value": "abcdefghijklmnop",
-              "strict": true,
-              "name": null,
-              "structuredValue": "abcdefghijklmnop"
-            }
+            "examples": [
+              {
+                "value": "abcdefghijklmnop",
+                "strict": true,
+                "name": null,
+                "structuredValue": "abcdefghijklmnop"
+              }
+            ]
           }
         },
         "name": "traceable"
@@ -102,10 +104,6 @@
                 "type": [
                   "array"
                 ],
-                "example": [
-                  "18-FINANCE",
-                  "200-MISC"
-                ],
                 "required": true,
                 "description": "A department code to be charged.\nMultiple of such headers are allowed.\n",
                 "items": {
@@ -114,7 +112,6 @@
                   "type": [
                     "string"
                   ],
-                  "example": "230-OCTO",
                   "required": true,
                   "pattern": "^\\d+\\-\\w+$",
                   "__METADATA__": {
@@ -130,12 +127,14 @@
                       }
                     }
                   },
-                  "structuredExample": {
-                    "value": "230-OCTO",
-                    "strict": true,
-                    "name": null,
-                    "structuredValue": "230-OCTO"
-                  }
+                  "examples": [
+                    {
+                      "value": "230-OCTO",
+                      "strict": true,
+                      "name": null,
+                      "structuredValue": "230-OCTO"
+                    }
+                  ]
                 },
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -147,15 +146,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "[\n  \"18-FINANCE\",\n  \"200-MISC\"\n]",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": [
-                    "18-FINANCE",
-                    "200-MISC"
-                  ]
-                }
+                "examples": [
+                  {
+                    "value": "[\n  \"18-FINANCE\",\n  \"200-MISC\"\n]",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": [
+                      "18-FINANCE",
+                      "200-MISC"
+                    ]
+                  }
+                ]
               },
               "X-Tracker": {
                 "name": "X-Tracker",
@@ -163,7 +164,6 @@
                 "type": [
                   "string"
                 ],
-                "example": "gfr456d03ygh38s2",
                 "required": true,
                 "description": "A code to track API calls end to end",
                 "pattern": "^\\w{16}$",
@@ -180,12 +180,14 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "gfr456d03ygh38s2",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": "gfr456d03ygh38s2"
-                }
+                "examples": [
+                  {
+                    "value": "gfr456d03ygh38s2",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": "gfr456d03ygh38s2"
+                  }
+                ]
               }
             },
             "is": [

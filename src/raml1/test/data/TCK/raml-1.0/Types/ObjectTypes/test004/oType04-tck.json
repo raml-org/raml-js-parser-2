@@ -7,11 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "initial_comments": "oo",
-          "user": "Raml",
-          "time_stamp": 1422378528
-        },
         "required": true,
         "properties": {
           "comment_id": {
@@ -114,16 +109,18 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "initial_comments": "oo",
-            "user": "Raml",
-            "time_stamp": 1422378528
+        "examples": [
+          {
+            "value": "{\n  \"initial_comments\": \"oo\",\n  \"user\": \"Raml\",\n  \"time_stamp\": 1422378528\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "initial_comments": "oo",
+              "user": "Raml",
+              "time_stamp": 1422378528
+            }
           }
-        }
+        ]
       }
     },
     "title": "My API With Types"

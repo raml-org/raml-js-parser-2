@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "prop1": "value1"
-        },
         "required": true,
         "properties": {
           "prop1": {
@@ -47,28 +44,30 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"prop1\": \"value1\"\n}",
-          "strict": false,
-          "name": null,
-          "structuredValue": {
-            "prop1": "value1"
-          },
-          "annotations": {
-            "NumberAnnotation": {
-              "structuredValue": 5,
-              "name": "NumberAnnotation"
+        "examples": [
+          {
+            "value": "{\n  \"prop1\": \"value1\"\n}",
+            "strict": false,
+            "name": null,
+            "structuredValue": {
+              "prop1": "value1"
             },
-            "ObjectAnnotation": {
-              "structuredValue": {
-                "prop1": "value1"
+            "annotations": {
+              "NumberAnnotation": {
+                "structuredValue": 5,
+                "name": "NumberAnnotation"
               },
-              "name": "ObjectAnnotation"
-            }
-          },
-          "displayName": "myExample",
-          "description": "example of ObjectType3"
-        }
+              "ObjectAnnotation": {
+                "structuredValue": {
+                  "prop1": "value1"
+                },
+                "name": "ObjectAnnotation"
+              }
+            },
+            "displayName": "myExample",
+            "description": "example of ObjectType3"
+          }
+        ]
       }
     },
     "annotationTypes": {

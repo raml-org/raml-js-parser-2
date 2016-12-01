@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "prop1": "value1"
-        },
         "required": true,
         "properties": {
           "prop1": {
@@ -47,14 +44,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"prop1\": \"value1\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "prop1": "value1"
+        "examples": [
+          {
+            "value": "{\n  \"prop1\": \"value1\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "prop1": "value1"
+            }
           }
-        }
+        ]
       }
     },
     "title": "Example API test 01"

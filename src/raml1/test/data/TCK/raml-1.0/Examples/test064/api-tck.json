@@ -15,11 +15,6 @@
                     "type": [
                       "object"
                     ],
-                    "example": {
-                      "body": {
-                        "id": 7
-                      }
-                    },
                     "required": true,
                     "properties": {
                       "body": {
@@ -54,16 +49,18 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"body\": {\n    \"id\": 7\n  }\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "body": {
-                          "id": 7
+                    "examples": [
+                      {
+                        "value": "{\n  \"body\": {\n    \"id\": 7\n  }\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "body": {
+                            "id": 7
+                          }
                         }
                       }
-                    }
+                    ]
                   }
                 }
               }

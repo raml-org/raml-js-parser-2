@@ -7,7 +7,6 @@
         "type": [
           "string"
         ],
-        "example": "POST",
         "required": true,
         "enum": [
           "GET",
@@ -27,12 +26,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "POST",
-          "strict": true,
-          "name": null,
-          "structuredValue": "POST"
-        }
+        "examples": [
+          {
+            "value": "POST",
+            "strict": true,
+            "name": null,
+            "structuredValue": "POST"
+          }
+        ]
       },
       "amazon-apigateway-status": {
         "name": "amazon-apigateway-status",
@@ -271,44 +272,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "type": "aws",
-          "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
-          "httpMethod": "POST",
-          "credentials": "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role",
-          "requestTemplates": {
-            "application/json": "json request template 2",
-            "application/xml": "xml request template 2"
-          },
-          "requestParameters": {
-            "integration.request.path.integrationPathParam": "method.request.querystring.latitude",
-            "integration.request.querystring.integrationQueryParam": "method.request.querystring.longitude"
-          },
-          "cacheNamespace": "cache namespace",
-          "cacheKeyParameters": [],
-          "responses": {
-            "2\\d{2}": {
-              "statusCode": "200",
-              "responseParameters": {
-                "method.response.header.test-method-response-header": "integration.response.header.integrationResponseHeaderParam1"
-              },
-              "responseTemplates": {
-                "application/json": "json 200 response template",
-                "application/xml": "xml 200 response template"
-              }
-            },
-            "default": {
-              "statusCode": "400",
-              "responseParameters": {
-                "method.response.header.test-method-response-header": "'static value'"
-              },
-              "responseTemplates": {
-                "application/json": "json 400 response template",
-                "application/xml": "xml 400 response template"
-              }
-            }
-          }
-        },
         "required": true,
         "properties": {
           "type": {
@@ -585,49 +548,51 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"type\": \"aws\",\n  \"uri\": \"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\n  \"httpMethod\": \"POST\",\n  \"credentials\": \"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\n  \"requestTemplates\": {\n    \"application/json\": \"json request template 2\",\n    \"application/xml\": \"xml request template 2\"\n  },\n  \"requestParameters\": {\n    \"integration.request.path.integrationPathParam\": \"method.request.querystring.latitude\",\n    \"integration.request.querystring.integrationQueryParam\": \"method.request.querystring.longitude\"\n  },\n  \"cacheNamespace\": \"cache namespace\",\n  \"cacheKeyParameters\": [],\n  \"responses\": {\n    \"2\\\\d{2}\": {\n      \"statusCode\": \"200\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"integration.response.header.integrationResponseHeaderParam1\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 200 response template\",\n        \"application/xml\": \"xml 200 response template\"\n      }\n    },\n    \"default\": {\n      \"statusCode\": \"400\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"'static value'\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 400 response template\",\n        \"application/xml\": \"xml 400 response template\"\n      }\n    }\n  }\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "type": "aws",
-            "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
-            "httpMethod": "POST",
-            "credentials": "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role",
-            "requestTemplates": {
-              "application/json": "json request template 2",
-              "application/xml": "xml request template 2"
-            },
-            "requestParameters": {
-              "integration.request.path.integrationPathParam": "method.request.querystring.latitude",
-              "integration.request.querystring.integrationQueryParam": "method.request.querystring.longitude"
-            },
-            "cacheNamespace": "cache namespace",
-            "cacheKeyParameters": [],
-            "responses": {
-              "2\\d{2}": {
-                "statusCode": "200",
-                "responseParameters": {
-                  "method.response.header.test-method-response-header": "integration.response.header.integrationResponseHeaderParam1"
-                },
-                "responseTemplates": {
-                  "application/json": "json 200 response template",
-                  "application/xml": "xml 200 response template"
-                }
+        "examples": [
+          {
+            "value": "{\n  \"type\": \"aws\",\n  \"uri\": \"arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations\",\n  \"httpMethod\": \"POST\",\n  \"credentials\": \"arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role\",\n  \"requestTemplates\": {\n    \"application/json\": \"json request template 2\",\n    \"application/xml\": \"xml request template 2\"\n  },\n  \"requestParameters\": {\n    \"integration.request.path.integrationPathParam\": \"method.request.querystring.latitude\",\n    \"integration.request.querystring.integrationQueryParam\": \"method.request.querystring.longitude\"\n  },\n  \"cacheNamespace\": \"cache namespace\",\n  \"cacheKeyParameters\": [],\n  \"responses\": {\n    \"2\\\\d{2}\": {\n      \"statusCode\": \"200\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"integration.response.header.integrationResponseHeaderParam1\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 200 response template\",\n        \"application/xml\": \"xml 200 response template\"\n      }\n    },\n    \"default\": {\n      \"statusCode\": \"400\",\n      \"responseParameters\": {\n        \"method.response.header.test-method-response-header\": \"'static value'\"\n      },\n      \"responseTemplates\": {\n        \"application/json\": \"json 400 response template\",\n        \"application/xml\": \"xml 400 response template\"\n      }\n    }\n  }\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "type": "aws",
+              "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:ACCOUNT_ID:function:myFunction/invocations",
+              "httpMethod": "POST",
+              "credentials": "arn:aws:iam::ACCOUNT_ID:role/lambda_exec_role",
+              "requestTemplates": {
+                "application/json": "json request template 2",
+                "application/xml": "xml request template 2"
               },
-              "default": {
-                "statusCode": "400",
-                "responseParameters": {
-                  "method.response.header.test-method-response-header": "'static value'"
+              "requestParameters": {
+                "integration.request.path.integrationPathParam": "method.request.querystring.latitude",
+                "integration.request.querystring.integrationQueryParam": "method.request.querystring.longitude"
+              },
+              "cacheNamespace": "cache namespace",
+              "cacheKeyParameters": [],
+              "responses": {
+                "2\\d{2}": {
+                  "statusCode": "200",
+                  "responseParameters": {
+                    "method.response.header.test-method-response-header": "integration.response.header.integrationResponseHeaderParam1"
+                  },
+                  "responseTemplates": {
+                    "application/json": "json 200 response template",
+                    "application/xml": "xml 200 response template"
+                  }
                 },
-                "responseTemplates": {
-                  "application/json": "json 400 response template",
-                  "application/xml": "xml 400 response template"
+                "default": {
+                  "statusCode": "400",
+                  "responseParameters": {
+                    "method.response.header.test-method-response-header": "'static value'"
+                  },
+                  "responseTemplates": {
+                    "application/json": "json 400 response template",
+                    "application/xml": "xml 400 response template"
+                  }
                 }
               }
             }
           }
-        }
+        ]
       }
     },
     "title": "API Gateway Test API",

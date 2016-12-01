@@ -7,7 +7,6 @@
         "type": [
           "number"
         ],
-        "example": 100,
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -19,12 +18,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "100",
-          "strict": true,
-          "name": null,
-          "structuredValue": 100
-        }
+        "examples": [
+          {
+            "value": "100",
+            "strict": true,
+            "name": null,
+            "structuredValue": 100
+          }
+        ]
       },
       "GeoPoints": {
         "name": "GeoPoints",
@@ -32,10 +33,6 @@
         "type": [
           "array"
         ],
-        "example": [
-          100,
-          10
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -47,15 +44,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "[\n  100,\n  10\n]",
-          "strict": true,
-          "name": null,
-          "structuredValue": [
-            100,
-            10
-          ]
-        },
+        "examples": [
+          {
+            "value": "[\n  100,\n  10\n]",
+            "strict": true,
+            "name": null,
+            "structuredValue": [
+              100,
+              10
+            ]
+          }
+        ],
         "items": "number"
       },
       "Bool": {
@@ -64,7 +63,6 @@
         "type": [
           "boolean"
         ],
-        "example": true,
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -76,12 +74,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "true",
-          "strict": true,
-          "name": null,
-          "structuredValue": true
-        }
+        "examples": [
+          {
+            "value": "true",
+            "strict": true,
+            "name": null,
+            "structuredValue": true
+          }
+        ]
       }
     }
   },

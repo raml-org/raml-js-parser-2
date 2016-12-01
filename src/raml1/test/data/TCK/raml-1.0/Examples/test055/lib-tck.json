@@ -7,10 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "Fred",
-          "size": 0
-        },
         "required": true,
         "properties": {
           "name": {
@@ -63,15 +59,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"Fred\",\n  \"size\": 0\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "Fred",
-            "size": 0
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"Fred\",\n  \"size\": 0\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "Fred",
+              "size": 0
+            }
           }
-        }
+        ]
       }
     }
   },

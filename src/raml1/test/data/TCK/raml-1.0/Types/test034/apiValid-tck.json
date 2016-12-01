@@ -28,7 +28,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -43,12 +42,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_12": {
         "name": "StringType_12",
@@ -56,7 +57,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -71,12 +71,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_20": {
         "name": "StringType_20",
@@ -102,7 +104,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -114,12 +115,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_30": {
         "name": "StringType_30",
@@ -148,7 +151,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -163,12 +165,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_40": {
         "name": "StringType_40",
@@ -194,7 +198,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -206,12 +209,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_50": {
         "name": "StringType_50",
@@ -237,7 +242,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -249,12 +253,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_60": {
         "name": "StringType_60",
@@ -283,7 +289,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -298,12 +303,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "StringType_70": {
         "name": "StringType_70",
@@ -332,7 +339,6 @@
         "type": [
           "string"
         ],
-        "example": "stringValue",
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -347,12 +353,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "stringValue",
-          "strict": true,
-          "name": null,
-          "structuredValue": "stringValue"
-        }
+        "examples": [
+          {
+            "value": "stringValue",
+            "strict": true,
+            "name": null,
+            "structuredValue": "stringValue"
+          }
+        ]
       },
       "TypeWithStringProperties": {
         "name": "TypeWithStringProperties",

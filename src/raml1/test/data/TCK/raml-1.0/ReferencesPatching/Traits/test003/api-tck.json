@@ -64,10 +64,6 @@
                 "type": [
                   "typesLib.LibType"
                 ],
-                "example": {
-                  "p1": "stringValue",
-                  "p2": "invalidValue"
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -79,15 +75,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": \"invalidValue\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "p1": "stringValue",
-                    "p2": "invalidValue"
+                "examples": [
+                  {
+                    "value": "{\n  \"p1\": \"stringValue\",\n  \"p2\": \"invalidValue\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "p1": "stringValue",
+                      "p2": "invalidValue"
+                    }
                   }
-                }
+                ]
               }
             },
             "protocols": [

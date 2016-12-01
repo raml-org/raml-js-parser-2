@@ -7,7 +7,6 @@
         "type": [
           "number"
         ],
-        "example": 4,
         "required": true,
         "minimum": 5,
         "__METADATA__": {
@@ -20,12 +19,14 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "4",
-          "strict": true,
-          "name": null,
-          "structuredValue": 4
-        }
+        "examples": [
+          {
+            "value": "4",
+            "strict": true,
+            "name": null,
+            "structuredValue": 4
+          }
+        ]
       },
       "MyType2": {
         "name": "MyType2",
@@ -33,9 +34,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "z": 3
-        },
         "required": true,
         "properties": {
           "z": {
@@ -70,14 +68,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"z\": 3\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "z": 3
+        "examples": [
+          {
+            "value": "{\n  \"z\": 3\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "z": 3
+            }
           }
-        }
+        ]
       }
     },
     "title": "Test API"

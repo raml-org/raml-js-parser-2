@@ -16,10 +16,6 @@
                 "type": [
                   "object"
                 ],
-                "example": {
-                  "name": "john",
-                  "age": "342w"
-                },
                 "required": true,
                 "properties": {
                   "name": {
@@ -69,15 +65,17 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"name\": \"john\",\n  \"age\": \"342w\"\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "name": "john",
-                    "age": "342w"
+                "examples": [
+                  {
+                    "value": "{\n  \"name\": \"john\",\n  \"age\": \"342w\"\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "name": "john",
+                      "age": "342w"
+                    }
                   }
-                }
+                ]
               }
             },
             "protocols": [

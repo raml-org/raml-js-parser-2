@@ -33,12 +33,6 @@
                 "type": [
                   "MyType"
                 ],
-                "example": {
-                  "parentName": "somename",
-                  "child": {
-                    "childName1": "anothername"
-                  }
-                },
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -50,17 +44,19 @@
                     }
                   }
                 },
-                "structuredExample": {
-                  "value": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}",
-                  "strict": true,
-                  "name": null,
-                  "structuredValue": {
-                    "parentName": "somename",
-                    "child": {
-                      "childName1": "anothername"
+                "examples": [
+                  {
+                    "value": "{\n  \"parentName\": \"somename\",\n  \"child\": {\n    \"childName1\": \"anothername\"\n  }\n}",
+                    "strict": true,
+                    "name": null,
+                    "structuredValue": {
+                      "parentName": "somename",
+                      "child": {
+                        "childName1": "anothername"
+                      }
                     }
                   }
-                }
+                ]
               }
             },
             "method": "get"

@@ -25,9 +25,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "id": "userId"
-        },
         "required": true,
         "properties": {
           "id": {
@@ -59,14 +56,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"id\": \"userId\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "id": "userId"
+        "examples": [
+          {
+            "value": "{\n  \"id\": \"userId\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "id": "userId"
+            }
           }
-        }
+        ]
       },
       "TestType": {
         "name": "TestType",
@@ -74,10 +73,6 @@
         "type": [
           "TypeBase"
         ],
-        "example": {
-          "id": "userId",
-          "username": "name"
-        },
         "required": true,
         "properties": {
           "username": {
@@ -109,15 +104,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"id\": \"userId\",\n  \"username\": \"name\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "id": "userId",
-            "username": "name"
+        "examples": [
+          {
+            "value": "{\n  \"id\": \"userId\",\n  \"username\": \"name\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "id": "userId",
+              "username": "name"
+            }
           }
-        }
+        ]
       }
     },
     "title": "test",
@@ -135,10 +132,6 @@
                     "type": [
                       "TestType"
                     ],
-                    "example": {
-                      "username": "base",
-                      "id": "any text"
-                    },
                     "required": true,
                     "properties": {
                       "additionalField": {
@@ -170,15 +163,17 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": {
-                        "username": "base",
-                        "id": "any text"
+                    "examples": [
+                      {
+                        "value": "{\n  \"username\": \"base\",\n  \"id\": \"any text\"\n}",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": {
+                          "username": "base",
+                          "id": "any text"
+                        }
                       }
-                    }
+                    ]
                   }
                 }
               }

@@ -41,17 +41,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"a\": 5\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "a": 5
+        "examples": [
+          {
+            "value": "{\n  \"a\": 5\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "a": 5
+            }
           }
-        },
-        "example": {
-          "a": 5
-        }
+        ]
       }
     },
     "title": "WebOfMe",
@@ -70,7 +69,6 @@
                     "type": [
                       "object"
                     ],
-                    "example": null,
                     "required": true,
                     "properties": {
                       "x": {
@@ -105,12 +103,14 @@
                         }
                       }
                     },
-                    "structuredExample": {
-                      "value": "{ d\":5 ,\"r\":2 }\n",
-                      "strict": true,
-                      "name": null,
-                      "structuredValue": null
-                    }
+                    "examples": [
+                      {
+                        "value": "{ d\":5 ,\"r\":2 }\n",
+                        "strict": true,
+                        "name": null,
+                        "structuredValue": null
+                      }
+                    ]
                   }
                 }
               }

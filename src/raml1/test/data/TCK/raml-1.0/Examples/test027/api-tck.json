@@ -59,19 +59,17 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"stringValue\",\n  \"age\": 0\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "stringValue",
-            "age": 0
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"stringValue\",\n  \"age\": 0\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "stringValue",
+              "age": 0
+            }
           }
-        },
-        "example": {
-          "name": "stringValue",
-          "age": 0
-        }
+        ]
       }
     },
     "title": "Test API"

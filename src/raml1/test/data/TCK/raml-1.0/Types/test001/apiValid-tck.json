@@ -7,9 +7,6 @@
         "type": [
           "object"
         ],
-        "example": {
-          "name": "somestring"
-        },
         "required": true,
         "properties": {
           "name": {
@@ -41,14 +38,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"name\": \"somestring\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "name": "somestring"
+        "examples": [
+          {
+            "value": "{\n  \"name\": \"somestring\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "name": "somestring"
+            }
           }
-        }
+        ]
       }
     },
     "title": "API"

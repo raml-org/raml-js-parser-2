@@ -42,17 +42,16 @@
             }
           }
         },
-        "structuredExample": {
-          "value": "{\n  \"d\": \"a\"\n}",
-          "strict": true,
-          "name": null,
-          "structuredValue": {
-            "d": "a"
+        "examples": [
+          {
+            "value": "{\n  \"d\": \"a\"\n}",
+            "strict": true,
+            "name": null,
+            "structuredValue": {
+              "d": "a"
+            }
           }
-        },
-        "example": {
-          "d": "a"
-        }
+        ]
       }
     },
     "title": "Test API"
