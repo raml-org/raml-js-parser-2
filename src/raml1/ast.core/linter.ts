@@ -1130,7 +1130,7 @@ class CompositePropertyValidator implements PropertyValidator{
             }
             new ExampleAndDefaultValueValidator().validate(node, v);
             if(ramlVersion=="RAML10"){
-                if(hlimpl.isStructuredValue(vl)) {
+                if(hlimpl.StructuredValue.isInstance(vl)) {
                     var sv = <hlimpl.StructuredValue>vl;
                     var scopes = sv.children().filter(x=>x.valueName() == "scopes");
                     if (scopes.length > 0) {
