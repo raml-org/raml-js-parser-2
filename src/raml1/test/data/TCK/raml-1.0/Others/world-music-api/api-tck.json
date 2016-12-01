@@ -178,9 +178,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "<<resourcePathName|!singularize|!uppercamelcase>>"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -194,7 +191,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "<<resourcePathName|!singularize|!uppercamelcase>>"
+                    ]
                   }
                 }
               }
@@ -802,9 +802,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "Entry"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -818,7 +815,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "Entry"
+                    ]
                   }
                 }
               }

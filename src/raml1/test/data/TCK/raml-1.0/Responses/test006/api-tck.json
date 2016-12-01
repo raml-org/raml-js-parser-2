@@ -12,9 +12,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "{\"name\": \"someName\"}\n"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -28,7 +25,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      "{\"name\": \"someName\"}\n"
+                    ]
                   }
                 }
               }

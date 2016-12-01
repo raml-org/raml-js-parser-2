@@ -284,9 +284,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "schema": [
-                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
-                        ],
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -300,7 +297,10 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "type": [
+                          "{\"required\": true,\"$schema\": \"http://json-schema.org/draft-03/schema\",\"type\": \"object\",\"properties\": {  \"message\": {\"required\": false,\"type\": \"string\"}}}"
+                        ]
                       }
                     }
                   },
@@ -310,9 +310,6 @@
                       "application/json": {
                         "name": "application/json",
                         "displayName": "application/json",
-                        "schema": [
-                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
-                        ],
                         "required": true,
                         "__METADATA__": {
                           "primitiveValuesMeta": {
@@ -326,7 +323,10 @@
                               "insertedAsDefault": true
                             }
                           }
-                        }
+                        },
+                        "type": [
+                          "{\n  \"required\": true,\n  \"$schema\": \"http://json-schema.org/draft-03/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"message\": {\n      \"required\": false,\n      \"type\": \"string\"\n    }\n  }\n}\n"
+                        ]
                       }
                     }
                   },

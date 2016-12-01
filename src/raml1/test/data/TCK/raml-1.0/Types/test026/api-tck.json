@@ -201,10 +201,6 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "schema": [
-                  "string",
-                  "number"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -218,7 +214,11 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "string",
+                  "number"
+                ]
               }
             },
             "protocols": [
@@ -255,9 +255,6 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "schema": [
-                  "string"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -271,7 +268,10 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "string"
+                ]
               }
             },
             "protocols": [
@@ -358,9 +358,6 @@
               "application/xml": {
                 "name": "application/xml",
                 "displayName": "application/xml",
-                "schema": [
-                  "number"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -371,7 +368,10 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "number"
+                ]
               }
             },
             "protocols": [

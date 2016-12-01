@@ -132,9 +132,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "MM"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -158,6 +155,9 @@
                           "a": 3
                         }
                       }
+                    ],
+                    "type": [
+                      "MM"
                     ]
                   }
                 }

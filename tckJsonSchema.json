@@ -673,7 +673,7 @@
         {"$ref": "#/definitions/TypeDeclarationBase10"},
         {
           "properties": {
-            "schema":  {"$ref": "#/definitions/TypeReference10"},
+            "type":  {"$ref": "#/definitions/TypeReference10"},
             "schemaPath": {
               "type": "string",
               "description": "relative path to schema for types that loaded from json schemas"
@@ -1635,12 +1635,12 @@
         {"$ref": "#/definitions/TypeDeclarationBase10"},
         {
           "properties": {
-            "schema": {"$ref": "#/definitions/TypeReference10"},
+            "type": {"$ref": "#/definitions/TypeReference10"},
             "uses": {"$ref": "#/definitions/FragmentDeclaration/properties/uses"}
           }
         }
       ],
-      "required": ["schema", "__METADATA__", "required"]
+      "required": ["type", "__METADATA__", "required"]
     },
     "TypeDeclarationFragment": {
       "allOf":[

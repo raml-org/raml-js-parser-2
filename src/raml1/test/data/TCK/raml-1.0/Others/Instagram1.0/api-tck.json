@@ -539,9 +539,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "types.OkStatus | string"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -568,6 +565,9 @@
                           "data": null
                         }
                       }
+                    ],
+                    "type": [
+                      "types.OkStatus | string"
                     ]
                   }
                 }
@@ -1525,9 +1525,6 @@
                               "application/json": {
                                 "name": "application/json",
                                 "displayName": "application/json",
-                                "schema": [
-                                  "types.OkStatus | string"
-                                ],
                                 "required": true,
                                 "__METADATA__": {
                                   "primitiveValuesMeta": {
@@ -1554,6 +1551,9 @@
                                       "data": null
                                     }
                                   }
+                                ],
+                                "type": [
+                                  "types.OkStatus | string"
                                 ]
                               }
                             },
@@ -1843,9 +1843,6 @@
                           "application/json": {
                             "name": "application/json",
                             "displayName": "application/json",
-                            "schema": [
-                              "types.OkStatus | string"
-                            ],
                             "required": true,
                             "__METADATA__": {
                               "primitiveValuesMeta": {
@@ -1872,6 +1869,9 @@
                                   "data": null
                                 }
                               }
+                            ],
+                            "type": [
+                              "types.OkStatus | string"
                             ]
                           }
                         }

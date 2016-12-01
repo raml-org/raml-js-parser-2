@@ -182,9 +182,6 @@
               "application/json": {
                 "name": "application/json",
                 "displayName": "application/json",
-                "schema": [
-                  "account"
-                ],
                 "required": true,
                 "__METADATA__": {
                   "primitiveValuesMeta": {
@@ -198,7 +195,10 @@
                       "insertedAsDefault": true
                     }
                   }
-                }
+                },
+                "type": [
+                  "account"
+                ]
               }
             },
             "method": "post"

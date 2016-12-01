@@ -4,9 +4,6 @@
       "Person": {
         "name": "Person",
         "displayName": "Person",
-        "schema": [
-          null
-        ],
         "required": true,
         "__METADATA__": {
           "primitiveValuesMeta": {
@@ -20,7 +17,10 @@
               "insertedAsDefault": true
             }
           }
-        }
+        },
+        "type": [
+          null
+        ]
       }
     },
     "title": "Types / Schema mutual exclusive",
@@ -36,9 +36,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      null
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -52,7 +49,10 @@
                           "insertedAsDefault": true
                         }
                       }
-                    }
+                    },
+                    "type": [
+                      null
+                    ]
                   }
                 }
               }

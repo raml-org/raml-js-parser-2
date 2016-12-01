@@ -152,9 +152,6 @@
                   "application/json": {
                     "name": "application/json",
                     "displayName": "application/json",
-                    "schema": [
-                      "VV"
-                    ],
                     "required": true,
                     "__METADATA__": {
                       "primitiveValuesMeta": {
@@ -178,6 +175,9 @@
                           "a": 3
                         }
                       }
+                    ],
+                    "type": [
+                      "VV"
                     ]
                   }
                 }

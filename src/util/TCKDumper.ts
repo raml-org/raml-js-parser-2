@@ -41,7 +41,7 @@ export class TCKDumper {
         this.nodeTransformers = [
             new ResourcesTransformer(),
             //new TypeExampleTransformer(this.options.dumpXMLRepresentationOfExamples),
-            new ExamplesTransformer(this.options.dumpXMLRepresentationOfExamples),
+            new TypeTransformer(this.options.dumpXMLRepresentationOfExamples),
             //new ParametersTransformer(),
             new ArrayExpressionTransformer(),
             //new UsesTransformer(),
@@ -865,7 +865,7 @@ var exampleNameProp = universe.Universe10.ExampleSpec.properties.name.name;
 var exampleContentProp = universe.Universe10.ExampleSpec.properties.value.name;
 var exampleStructuredContentProp = "structuredContent";
 
-class ExamplesTransformer extends BasicTransformation{
+class TypeTransformer extends BasicTransformation{
 
     constructor(private dumpXMLRepresentationOfExamples=false){
         super(universes.Universe10.TypeDeclaration.name,null,true);
@@ -891,6 +891,26 @@ class ExamplesTransformer extends BasicTransformation{
             }
         }
         delete value["example"];
+        if(value.hasOwnProperty("schema")){
+            if(!value.hasOwnProperty("type")){
+                value["type"] = value["schema"];
+            }
+            else{
+                var typeValue = value["type"];
+                if(!Array.isArray(typeValue)){
+                    typeValue = [ typeValue ];
+                    value["type"] = typeValue;
+                }
+                var schemaValue = value["schema"];
+                if(Array.isArray(schemaValue)){
+                    schemaValue.forEach(x=>typeValue.push(x));
+                }
+                else{
+                    typeValue.push(schemaValue);
+                }
+            }
+            delete value["schema"];
+        }
         return _value;
     }
 
