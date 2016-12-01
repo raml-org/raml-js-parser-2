@@ -92,7 +92,9 @@
         "relativeUriPathSegments": [
           "list"
         ],
-        "absoluteUri": "/list"
+        "absoluteUri": "/list",
+        "completeRelativeUri": "/list",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -150,7 +152,9 @@
         "relativeUriPathSegments": [
           "send"
         ],
-        "absoluteUri": "/send"
+        "absoluteUri": "/send",
+        "completeRelativeUri": "/send",
+        "parentUri": ""
       }
     ]
   },

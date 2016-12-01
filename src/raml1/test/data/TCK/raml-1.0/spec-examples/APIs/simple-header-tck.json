@@ -90,7 +90,9 @@
         "relativeUriPathSegments": [
           "jobs"
         ],
-        "absoluteUri": "https://app.zencoder.com/api/{version}/jobs"
+        "absoluteUri": "https://app.zencoder.com/api/{version}/jobs",
+        "completeRelativeUri": "/jobs",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

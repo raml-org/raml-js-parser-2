@@ -80,7 +80,9 @@
         "relativeUriPathSegments": [
           "login"
         ],
-        "absoluteUri": "/login"
+        "absoluteUri": "/login",
+        "completeRelativeUri": "/login",
+        "parentUri": ""
       }
     ]
   },

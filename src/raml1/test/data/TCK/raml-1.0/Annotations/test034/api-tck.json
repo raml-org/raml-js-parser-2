@@ -250,7 +250,9 @@
         "relativeUriPathSegments": [
           "helloWorld"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/helloWorld"
+        "absoluteUri": "http://api.samplehost.com/{version}/helloWorld",
+        "completeRelativeUri": "/helloWorld",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

@@ -245,7 +245,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/resource"
+        "absoluteUri": "http://api.samplehost.com/{version}/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

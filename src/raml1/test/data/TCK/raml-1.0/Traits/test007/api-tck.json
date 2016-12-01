@@ -76,7 +76,9 @@
         "relativeUriPathSegments": [
           "some"
         ],
-        "absoluteUri": "/some"
+        "absoluteUri": "/some",
+        "completeRelativeUri": "/some",
+        "parentUri": ""
       }
     ]
   },

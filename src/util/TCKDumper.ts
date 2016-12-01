@@ -1021,7 +1021,7 @@ class OneElementArrayTransformer extends BasicTransformation{
 class ResourcesTransformer extends BasicTransformation{
 
     constructor(){
-        super(universes.Universe10.Resource.name,universes.Universe10.Api.properties.resources.name,true);
+        super(universes.Universe10.Resource.name,null,true);
     }
 
     transform(value:any,node:hl.IParseResult){
@@ -1036,6 +1036,13 @@ class ResourcesTransformer extends BasicTransformation{
             }
             value["relativeUriPathSegments"] = segments;
             value.absoluteUri = helpersHL.absoluteUri(node.asElement());
+            value.completeRelativeUri = helpersHL.completeRelativeUri(node.asElement());
+            if(universeHelpers.isResourceType(node.parent().definition())){
+                value.parentUri = helpersHL.completeRelativeUri(node.parent());
+            }
+            else{
+                value.parentUri = "";
+            }
         }
         return value;
     }

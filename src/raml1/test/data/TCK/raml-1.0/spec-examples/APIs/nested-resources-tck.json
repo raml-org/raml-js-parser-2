@@ -17,13 +17,17 @@
             "relativeUriPathSegments": [
               "public"
             ],
-            "absoluteUri": "https://api.github.com/gists/public"
+            "absoluteUri": "https://api.github.com/gists/public",
+            "completeRelativeUri": "/gists/public",
+            "parentUri": "/gists"
           }
         ],
         "relativeUriPathSegments": [
           "gists"
         ],
-        "absoluteUri": "https://api.github.com/gists"
+        "absoluteUri": "https://api.github.com/gists",
+        "completeRelativeUri": "/gists",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

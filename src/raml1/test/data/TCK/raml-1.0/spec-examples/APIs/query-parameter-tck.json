@@ -122,7 +122,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.github.com/{version}/users"
+        "absoluteUri": "https://api.github.com/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

@@ -100,7 +100,9 @@
         "relativeUriPathSegments": [
           "products"
         ],
-        "absoluteUri": "/products"
+        "absoluteUri": "/products",
+        "completeRelativeUri": "/products",
+        "parentUri": ""
       }
     ]
   },

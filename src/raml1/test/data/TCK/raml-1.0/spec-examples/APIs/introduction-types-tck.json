@@ -146,7 +146,9 @@
           "users",
           "{id}"
         ],
-        "absoluteUri": "/users/{id}"
+        "absoluteUri": "/users/{id}",
+        "completeRelativeUri": "/users/{id}",
+        "parentUri": ""
       }
     ]
   },

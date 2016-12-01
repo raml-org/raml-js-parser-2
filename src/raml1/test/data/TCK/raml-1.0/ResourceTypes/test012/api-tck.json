@@ -108,7 +108,9 @@
         "relativeUriPathSegments": [
           "songs"
         ],
-        "absoluteUri": "/songs"
+        "absoluteUri": "/songs",
+        "completeRelativeUri": "/songs",
+        "parentUri": ""
       }
     ]
   },

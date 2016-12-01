@@ -138,7 +138,9 @@
             "relativeUriPathSegments": [
               "{resourceId}"
             ],
-            "absoluteUri": "http://example.com/resource/{resourceId}"
+            "absoluteUri": "http://example.com/resource/{resourceId}",
+            "completeRelativeUri": "/resource/{resourceId}",
+            "parentUri": "/resource"
           }
         ],
         "displayName": "/resource",
@@ -152,7 +154,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "http://example.com/resource"
+        "absoluteUri": "http://example.com/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

@@ -84,7 +84,9 @@
         "relativeUriPathSegments": [
           "installer"
         ],
-        "absoluteUri": "/installer"
+        "absoluteUri": "/installer",
+        "completeRelativeUri": "/installer",
+        "parentUri": ""
       }
     ]
   },

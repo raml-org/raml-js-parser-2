@@ -83,7 +83,9 @@
         "relativeUriPathSegments": [
           "servers"
         ],
-        "absoluteUri": "/servers"
+        "absoluteUri": "/servers",
+        "completeRelativeUri": "/servers",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -104,7 +106,9 @@
         "relativeUriPathSegments": [
           "queues"
         ],
-        "absoluteUri": "/queues"
+        "absoluteUri": "/queues",
+        "completeRelativeUri": "/queues",
+        "parentUri": ""
       }
     ]
   },

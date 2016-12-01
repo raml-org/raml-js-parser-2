@@ -216,7 +216,9 @@
           "animals",
           "{animalId}"
         ],
-        "absoluteUri": "/animals/{animalId}"
+        "absoluteUri": "/animals/{animalId}",
+        "completeRelativeUri": "/animals/{animalId}",
+        "parentUri": ""
       }
     ]
   },

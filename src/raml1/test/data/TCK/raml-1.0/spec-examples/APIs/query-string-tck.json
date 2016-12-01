@@ -234,7 +234,9 @@
         "relativeUriPathSegments": [
           "locations"
         ],
-        "absoluteUri": "/locations"
+        "absoluteUri": "/locations",
+        "completeRelativeUri": "/locations",
+        "parentUri": ""
       }
     ]
   },

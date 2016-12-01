@@ -189,7 +189,9 @@
             "relativeUriPathSegments": [
               "letters"
             ],
-            "absoluteUri": "https://example.com/alpha/letters"
+            "absoluteUri": "https://example.com/alpha/letters",
+            "completeRelativeUri": "/alpha/letters",
+            "parentUri": "/alpha"
           }
         ],
         "__METADATA__": {
@@ -202,7 +204,9 @@
         "relativeUriPathSegments": [
           "alpha"
         ],
-        "absoluteUri": "https://example.com/alpha"
+        "absoluteUri": "https://example.com/alpha",
+        "completeRelativeUri": "/alpha",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

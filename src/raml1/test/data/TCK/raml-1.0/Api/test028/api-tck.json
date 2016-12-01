@@ -16,7 +16,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ]
   },

@@ -65,7 +65,9 @@
             "relativeUriPathSegments": [
               "resource2"
             ],
-            "absoluteUri": "/resource/resource2"
+            "absoluteUri": "/resource/resource2",
+            "completeRelativeUri": "/resource/resource2",
+            "parentUri": "/resource"
           }
         ],
         "__METADATA__": {
@@ -78,7 +80,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "extends": "api.raml"

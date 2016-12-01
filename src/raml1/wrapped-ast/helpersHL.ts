@@ -134,6 +134,19 @@ function extractParams(
     return allParams;
 };
 
+//__$helperMethod__ Path relative to API root
+export function completeRelativeUri(res:hl.IHighLevelNode):string{
+    var uri = '';
+    var parent = res;
+    do{
+        res = parent;//(parent instanceof RamlWrapper.ResourceImpl) ? <RamlWrapper.Resource>parent : null;
+        uri = res.attr(universeDef.Universe10.Resource.properties.relativeUri.name).value() + uri;
+        parent = res.parent();
+    }
+    while (universeHelpers.isResourceType(parent.definition()));
+    return uri;
+}
+
 //__$helperMethod__ baseUri of owning Api concatenated with completeRelativeUri
 export function absoluteUri(res:hl.IHighLevelNode):string{
     if(!universeHelpers.isResourceType(res.definition())){

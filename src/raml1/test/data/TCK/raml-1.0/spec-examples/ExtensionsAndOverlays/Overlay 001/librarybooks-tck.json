@@ -146,7 +146,9 @@
         "relativeUriPathSegments": [
           "books"
         ],
-        "absoluteUri": "/books"
+        "absoluteUri": "/books",
+        "completeRelativeUri": "/books",
+        "parentUri": ""
       }
     ],
     "documentation": [

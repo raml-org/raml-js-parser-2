@@ -115,7 +115,9 @@
         "relativeUriPathSegments": [
           "hello"
         ],
-        "absoluteUri": "/hello"
+        "absoluteUri": "/hello",
+        "completeRelativeUri": "/hello",
+        "parentUri": ""
       }
     ]
   },

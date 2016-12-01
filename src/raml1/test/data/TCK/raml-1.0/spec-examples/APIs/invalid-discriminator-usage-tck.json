@@ -132,7 +132,9 @@
         "relativeUriPathSegments": [
           "inline"
         ],
-        "absoluteUri": "/inline"
+        "absoluteUri": "/inline",
+        "completeRelativeUri": "/inline",
+        "parentUri": ""
       }
     ]
   },

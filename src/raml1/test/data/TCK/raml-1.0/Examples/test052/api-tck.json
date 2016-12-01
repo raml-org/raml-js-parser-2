@@ -109,7 +109,9 @@
         "relativeUriPathSegments": [
           "features"
         ],
-        "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features"
+        "absoluteUri": "https://mocksvc.mulesoft.com/mocks/042017e5-4a4e-45ec-ba49-738ad7f2ffcf/features",
+        "completeRelativeUri": "/features",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

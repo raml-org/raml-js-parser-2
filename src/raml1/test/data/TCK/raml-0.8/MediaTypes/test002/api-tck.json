@@ -35,7 +35,9 @@
         "relativeUriPathSegments": [
           "rere"
         ],
-        "absoluteUri": "/rere"
+        "absoluteUri": "/rere",
+        "completeRelativeUri": "/rere",
+        "parentUri": ""
       }
     ]
   },

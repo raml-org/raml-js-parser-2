@@ -1193,7 +1193,9 @@
                     "relativeUriPathSegments": [
                       "{commentId}"
                     ],
-                    "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}"
+                    "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments/{commentId}",
+                    "completeRelativeUri": "/media/{mediaId}/comments/{commentId}",
+                    "parentUri": "/media/{mediaId}/comments"
                   }
                 ],
                 "displayName": "/comments",
@@ -1207,7 +1209,9 @@
                 "relativeUriPathSegments": [
                   "comments"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments"
+                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/comments",
+                "completeRelativeUri": "/media/{mediaId}/comments",
+                "parentUri": "/media/{mediaId}"
               },
               {
                 "relativeUri": "/likes",
@@ -1421,7 +1425,9 @@
                 "relativeUriPathSegments": [
                   "likes"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes"
+                "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}/likes",
+                "completeRelativeUri": "/media/{mediaId}/likes",
+                "parentUri": "/media/{mediaId}"
               }
             ],
             "displayName": "/{mediaId}",
@@ -1438,7 +1444,9 @@
             "relativeUriPathSegments": [
               "{mediaId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}"
+            "absoluteUri": "https://api.instagram.com/{version}/media/{mediaId}",
+            "completeRelativeUri": "/media/{mediaId}",
+            "parentUri": "/media"
           },
           {
             "relativeUri": "/search",
@@ -1663,7 +1671,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/search"
+            "absoluteUri": "https://api.instagram.com/{version}/media/search",
+            "completeRelativeUri": "/media/search",
+            "parentUri": "/media"
           },
           {
             "relativeUri": "/popular",
@@ -1779,7 +1789,9 @@
             "relativeUriPathSegments": [
               "popular"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/media/popular"
+            "absoluteUri": "https://api.instagram.com/{version}/media/popular",
+            "completeRelativeUri": "/media/popular",
+            "parentUri": "/media"
           }
         ],
         "displayName": "/media",
@@ -1796,7 +1808,9 @@
         "relativeUriPathSegments": [
           "media"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/media"
+        "absoluteUri": "https://api.instagram.com/{version}/media",
+        "completeRelativeUri": "/media",
+        "parentUri": ""
       },
       {
         "relativeUri": "/tags",
@@ -2090,7 +2104,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}/media/recent",
+                "completeRelativeUri": "/tags/{tagName}/media/recent",
+                "parentUri": "/tags/{tagName}"
               }
             ],
             "displayName": "/{tagName}",
@@ -2107,7 +2123,9 @@
             "relativeUriPathSegments": [
               "{tagName}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}"
+            "absoluteUri": "https://api.instagram.com/{version}/tags/{tagName}",
+            "completeRelativeUri": "/tags/{tagName}",
+            "parentUri": "/tags"
           },
           {
             "relativeUri": "/search",
@@ -2245,7 +2263,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/tags/search"
+            "absoluteUri": "https://api.instagram.com/{version}/tags/search",
+            "completeRelativeUri": "/tags/search",
+            "parentUri": "/tags"
           }
         ],
         "displayName": "/tags",
@@ -2262,7 +2282,9 @@
         "relativeUriPathSegments": [
           "tags"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/tags"
+        "absoluteUri": "https://api.instagram.com/{version}/tags",
+        "completeRelativeUri": "/tags",
+        "parentUri": ""
       },
       {
         "relativeUri": "/users",
@@ -2521,7 +2543,9 @@
                 "relativeUriPathSegments": [
                   "follows"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/follows",
+                "completeRelativeUri": "/users/{userId}/follows",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/followed-by",
@@ -2646,7 +2670,9 @@
                 "relativeUriPathSegments": [
                   "followed-by"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/followed-by",
+                "completeRelativeUri": "/users/{userId}/followed-by",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/media/recent",
@@ -2849,7 +2875,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/media/recent",
+                "completeRelativeUri": "/users/{userId}/media/recent",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/relationship",
@@ -3057,7 +3085,9 @@
                 "relativeUriPathSegments": [
                   "relationship"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship"
+                "absoluteUri": "https://api.instagram.com/{version}/users/{userId}/relationship",
+                "completeRelativeUri": "/users/{userId}/relationship",
+                "parentUri": "/users/{userId}"
               }
             ],
             "displayName": "/{userId}",
@@ -3074,7 +3104,9 @@
             "relativeUriPathSegments": [
               "{userId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/{userId}"
+            "absoluteUri": "https://api.instagram.com/{version}/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
           },
           {
             "relativeUri": "/search",
@@ -3221,7 +3253,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/search"
+            "absoluteUri": "https://api.instagram.com/{version}/users/search",
+            "completeRelativeUri": "/users/search",
+            "parentUri": "/users"
           },
           {
             "relativeUri": "/self",
@@ -3497,7 +3531,9 @@
                 "relativeUriPathSegments": [
                   "feed"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/feed"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/feed",
+                "completeRelativeUri": "/users/self/feed",
+                "parentUri": "/users/self"
               },
               {
                 "relativeUri": "/requested-by",
@@ -3636,7 +3672,9 @@
                 "relativeUriPathSegments": [
                   "requested-by"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/requested-by",
+                "completeRelativeUri": "/users/self/requested-by",
+                "parentUri": "/users/self"
               },
               {
                 "relativeUri": "/media/liked",
@@ -3775,7 +3813,9 @@
                   "media",
                   "liked"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked"
+                "absoluteUri": "https://api.instagram.com/{version}/users/self/media/liked",
+                "completeRelativeUri": "/users/self/media/liked",
+                "parentUri": "/users/self"
               }
             ],
             "displayName": "/self",
@@ -3789,7 +3829,9 @@
             "relativeUriPathSegments": [
               "self"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/users/self"
+            "absoluteUri": "https://api.instagram.com/{version}/users/self",
+            "completeRelativeUri": "/users/self",
+            "parentUri": "/users"
           }
         ],
         "displayName": "/users",
@@ -3806,7 +3848,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/users"
+        "absoluteUri": "https://api.instagram.com/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       },
       {
         "relativeUri": "/locations",
@@ -4139,7 +4183,9 @@
                   "media",
                   "recent"
                 ],
-                "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent"
+                "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}/media/recent",
+                "completeRelativeUri": "/locations/{locId}/media/recent",
+                "parentUri": "/locations/{locId}"
               }
             ],
             "displayName": "/{locId}",
@@ -4156,7 +4202,9 @@
             "relativeUriPathSegments": [
               "{locId}"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}"
+            "absoluteUri": "https://api.instagram.com/{version}/locations/{locId}",
+            "completeRelativeUri": "/locations/{locId}",
+            "parentUri": "/locations"
           },
           {
             "relativeUri": "/search",
@@ -4386,7 +4434,9 @@
             "relativeUriPathSegments": [
               "search"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/locations/search"
+            "absoluteUri": "https://api.instagram.com/{version}/locations/search",
+            "completeRelativeUri": "/locations/search",
+            "parentUri": "/locations"
           }
         ],
         "displayName": "/locations",
@@ -4403,7 +4453,9 @@
         "relativeUriPathSegments": [
           "locations"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/locations"
+        "absoluteUri": "https://api.instagram.com/{version}/locations",
+        "completeRelativeUri": "/locations",
+        "parentUri": ""
       },
       {
         "relativeUri": "/geographies/{geoId}/media/recent",
@@ -4562,7 +4614,9 @@
           "media",
           "recent"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent"
+        "absoluteUri": "https://api.instagram.com/{version}/geographies/{geoId}/media/recent",
+        "completeRelativeUri": "/geographies/{geoId}/media/recent",
+        "parentUri": ""
       },
       {
         "relativeUri": "/subscriptions",
@@ -5095,7 +5149,9 @@
         "relativeUriPathSegments": [
           "subscriptions"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/subscriptions"
+        "absoluteUri": "https://api.instagram.com/{version}/subscriptions",
+        "completeRelativeUri": "/subscriptions",
+        "parentUri": ""
       }
     ],
     "documentation": [

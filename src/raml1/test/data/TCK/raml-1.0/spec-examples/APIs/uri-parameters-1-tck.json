@@ -20,7 +20,9 @@
         "relativeUriPathSegments": [
           "user"
         ],
-        "absoluteUri": "https://api.github.com/user"
+        "absoluteUri": "https://api.github.com/user",
+        "completeRelativeUri": "/user",
+        "parentUri": ""
       },
       {
         "relativeUri": "/users",
@@ -63,7 +65,9 @@
                 "relativeUriPathSegments": [
                   "followers"
                 ],
-                "absoluteUri": "https://api.github.com/users/{userId}/followers"
+                "absoluteUri": "https://api.github.com/users/{userId}/followers",
+                "completeRelativeUri": "/users/{userId}/followers",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/following",
@@ -78,7 +82,9 @@
                 "relativeUriPathSegments": [
                   "following"
                 ],
-                "absoluteUri": "https://api.github.com/users/{userId}/following"
+                "absoluteUri": "https://api.github.com/users/{userId}/following",
+                "completeRelativeUri": "/users/{userId}/following",
+                "parentUri": "/users/{userId}"
               },
               {
                 "relativeUri": "/keys",
@@ -117,7 +123,9 @@
                     "relativeUriPathSegments": [
                       "{keyId}"
                     ],
-                    "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}"
+                    "absoluteUri": "https://api.github.com/users/{userId}/keys/{keyId}",
+                    "completeRelativeUri": "/users/{userId}/keys/{keyId}",
+                    "parentUri": "/users/{userId}/keys"
                   }
                 ],
                 "__METADATA__": {
@@ -130,7 +138,9 @@
                 "relativeUriPathSegments": [
                   "keys"
                 ],
-                "absoluteUri": "https://api.github.com/users/{userId}/keys"
+                "absoluteUri": "https://api.github.com/users/{userId}/keys",
+                "completeRelativeUri": "/users/{userId}/keys",
+                "parentUri": "/users/{userId}"
               }
             ],
             "__METADATA__": {
@@ -143,7 +153,9 @@
             "relativeUriPathSegments": [
               "{userId}"
             ],
-            "absoluteUri": "https://api.github.com/users/{userId}"
+            "absoluteUri": "https://api.github.com/users/{userId}",
+            "completeRelativeUri": "/users/{userId}",
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -156,7 +168,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "https://api.github.com/users"
+        "absoluteUri": "https://api.github.com/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

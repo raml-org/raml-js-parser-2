@@ -8,7 +8,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "/resource"
+        "absoluteUri": "/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       },
       {
         "relativeUri": "/anotherResource",
@@ -23,7 +25,9 @@
         "relativeUriPathSegments": [
           "anotherResource"
         ],
-        "absoluteUri": "/anotherResource"
+        "absoluteUri": "/anotherResource",
+        "completeRelativeUri": "/anotherResource",
+        "parentUri": ""
       }
     ],
     "extends": "NewOverlay.raml"

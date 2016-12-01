@@ -29,7 +29,9 @@
           }
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "/"
+        "absoluteUri": "/",
+        "completeRelativeUri": "/",
+        "parentUri": ""
       }
     ]
   },

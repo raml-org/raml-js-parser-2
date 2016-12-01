@@ -93,7 +93,9 @@
         "relativeUriPathSegments": [
           "parseFiles"
         ],
-        "absoluteUri": "/parseFiles"
+        "absoluteUri": "/parseFiles",
+        "completeRelativeUri": "/parseFiles",
+        "parentUri": ""
       }
     ]
   },

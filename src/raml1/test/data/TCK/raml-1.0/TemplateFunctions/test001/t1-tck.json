@@ -169,7 +169,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/api/{version}/users"
+        "absoluteUri": "/api/{version}/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

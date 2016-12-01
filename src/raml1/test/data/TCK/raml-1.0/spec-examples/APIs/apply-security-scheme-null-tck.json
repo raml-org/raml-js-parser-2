@@ -139,7 +139,9 @@
           "{userid}",
           "gists"
         ],
-        "absoluteUri": "https://api.github.com/users/{userid}/gists"
+        "absoluteUri": "https://api.github.com/users/{userid}/gists",
+        "completeRelativeUri": "/users/{userid}/gists",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

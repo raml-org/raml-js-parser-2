@@ -118,7 +118,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },

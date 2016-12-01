@@ -48,7 +48,9 @@
           "single-query-record",
           "{code}"
         ],
-        "absoluteUri": "/single-query-record/{code}"
+        "absoluteUri": "/single-query-record/{code}",
+        "completeRelativeUri": "/single-query-record/{code}",
+        "parentUri": ""
       }
     ]
   },

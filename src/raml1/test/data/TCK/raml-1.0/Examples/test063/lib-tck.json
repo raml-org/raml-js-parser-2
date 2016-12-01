@@ -116,7 +116,9 @@
         "relativeUriPathSegments": [
           "customer"
         ],
-        "absoluteUri": "/customer"
+        "absoluteUri": "/customer",
+        "completeRelativeUri": "/customer",
+        "parentUri": ""
       }
     ]
   },

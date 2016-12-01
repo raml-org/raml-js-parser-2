@@ -124,7 +124,9 @@
           "someChildUri",
           "{blah}"
         ],
-        "absoluteUri": "/some/base/uri/someChildUri/{blah}"
+        "absoluteUri": "/some/base/uri/someChildUri/{blah}",
+        "completeRelativeUri": "/someChildUri/{blah}",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

@@ -19,7 +19,9 @@
             "relativeUriPathSegments": [
               "foo"
             ],
-            "absoluteUri": "/users/foo"
+            "absoluteUri": "/users/foo",
+            "completeRelativeUri": "/users/foo",
+            "parentUri": "/users"
           }
         ],
         "__METADATA__": {
@@ -32,7 +34,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       },
       {
         "relativeUri": "/users/foo",
@@ -48,7 +52,9 @@
           "users",
           "foo"
         ],
-        "absoluteUri": "/users/foo"
+        "absoluteUri": "/users/foo",
+        "completeRelativeUri": "/users/foo",
+        "parentUri": ""
       }
     ]
   },

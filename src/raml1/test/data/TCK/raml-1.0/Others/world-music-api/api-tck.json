@@ -748,7 +748,9 @@
         "relativeUriPathSegments": [
           "api"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/api"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/api",
+        "completeRelativeUri": "/api",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -864,7 +866,9 @@
         "relativeUriPathSegments": [
           "entry"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/entry"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/entry",
+        "completeRelativeUri": "/entry",
+        "parentUri": ""
       },
       {
         "annotations": {
@@ -1115,7 +1119,9 @@
             "relativeUriPathSegments": [
               "{songId}"
             ],
-            "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}"
+            "absoluteUri": "http://{environment}.musicapi.com/{version}/songs/{songId}",
+            "completeRelativeUri": "/songs/{songId}",
+            "parentUri": "/songs"
           }
         ],
         "__METADATA__": {
@@ -1128,7 +1134,9 @@
         "relativeUriPathSegments": [
           "songs"
         ],
-        "absoluteUri": "http://{environment}.musicapi.com/{version}/songs"
+        "absoluteUri": "http://{environment}.musicapi.com/{version}/songs",
+        "completeRelativeUri": "/songs",
+        "parentUri": ""
       }
     ],
     "documentation": [

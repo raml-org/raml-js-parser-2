@@ -47,7 +47,9 @@
         "relativeUriPathSegments": [
           "items"
         ],
-        "absoluteUri": "http://myItems.com/items"
+        "absoluteUri": "http://myItems.com/items",
+        "completeRelativeUri": "/items",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -72,7 +74,9 @@
         "relativeUriPathSegments": [
           "elements"
         ],
-        "absoluteUri": "/elements"
+        "absoluteUri": "/elements",
+        "completeRelativeUri": "/elements",
+        "parentUri": ""
       }
     ],
     "extends": "master.raml",

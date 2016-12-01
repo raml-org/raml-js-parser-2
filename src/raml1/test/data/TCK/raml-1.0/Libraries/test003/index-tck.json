@@ -51,7 +51,9 @@
         "relativeUriPathSegments": [
           "files"
         ],
-        "absoluteUri": "/files"
+        "absoluteUri": "/files",
+        "completeRelativeUri": "/files",
+        "parentUri": ""
       }
     ]
   },

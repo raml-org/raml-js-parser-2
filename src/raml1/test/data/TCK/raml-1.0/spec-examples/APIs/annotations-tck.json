@@ -188,7 +188,9 @@
         "relativeUriPathSegments": [
           "groups"
         ],
-        "absoluteUri": "/groups"
+        "absoluteUri": "/groups",
+        "completeRelativeUri": "/groups",
+        "parentUri": ""
       },
       {
         "annotations": {
@@ -244,7 +246,9 @@
         "relativeUriPathSegments": [
           "users"
         ],
-        "absoluteUri": "/users"
+        "absoluteUri": "/users",
+        "completeRelativeUri": "/users",
+        "parentUri": ""
       }
     ]
   },

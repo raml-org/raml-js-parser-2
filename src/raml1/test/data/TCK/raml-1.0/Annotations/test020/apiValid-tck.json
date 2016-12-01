@@ -178,7 +178,9 @@
         "relativeUriPathSegments": [
           "animals"
         ],
-        "absoluteUri": "/animals"
+        "absoluteUri": "/animals",
+        "completeRelativeUri": "/animals",
+        "parentUri": ""
       }
     ]
   },

@@ -382,7 +382,9 @@
           "orgs",
           "{orgId}"
         ],
-        "absoluteUri": "/orgs/{orgId}"
+        "absoluteUri": "/orgs/{orgId}",
+        "completeRelativeUri": "/orgs/{orgId}",
+        "parentUri": ""
       }
     ]
   },

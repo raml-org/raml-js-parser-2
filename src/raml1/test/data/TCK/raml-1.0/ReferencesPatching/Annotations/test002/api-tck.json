@@ -120,7 +120,9 @@
         "relativeUriPathSegments": [
           "{id}"
         ],
-        "absoluteUri": "/{id}"
+        "absoluteUri": "/{id}",
+        "completeRelativeUri": "/{id}",
+        "parentUri": ""
       }
     ]
   },

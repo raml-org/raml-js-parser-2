@@ -158,7 +158,9 @@
         "relativeUriPathSegments": [
           "products"
         ],
-        "absoluteUri": "https://api.uber.com/products"
+        "absoluteUri": "https://api.uber.com/products",
+        "completeRelativeUri": "/products",
+        "parentUri": ""
       }
     ],
     "extends": "apigateway.raml",

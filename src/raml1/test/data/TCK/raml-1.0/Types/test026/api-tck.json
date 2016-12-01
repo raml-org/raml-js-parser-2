@@ -141,7 +141,9 @@
         "relativeUriPathSegments": [
           "teams"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams",
+        "completeRelativeUri": "/teams",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -192,7 +194,9 @@
         "relativeUriPathSegments": [
           "teams2"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams2"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams2",
+        "completeRelativeUri": "/teams2",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -246,7 +250,9 @@
         "relativeUriPathSegments": [
           "teams3"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams3"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams3",
+        "completeRelativeUri": "/teams3",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -299,7 +305,9 @@
         "relativeUriPathSegments": [
           "teams4"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams4"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams4",
+        "completeRelativeUri": "/teams4",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -349,7 +357,9 @@
         "relativeUriPathSegments": [
           "teams5"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams5"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams5",
+        "completeRelativeUri": "/teams5",
+        "parentUri": ""
       },
       {
         "methods": {
@@ -399,7 +409,9 @@
         "relativeUriPathSegments": [
           "teams6"
         ],
-        "absoluteUri": "http://api.samplehost.com/{version}/teams6"
+        "absoluteUri": "http://api.samplehost.com/{version}/teams6",
+        "completeRelativeUri": "/teams6",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

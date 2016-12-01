@@ -1106,6 +1106,8 @@
               }
             },
             "absoluteUri": {"type": "string"},
+            "completeRelativeUri": {"type": "string"},
+            "parentUri": {"type": "string"},
             "__METADATA__": {"$ref": "#/definitions/ResourceBase10/properties/__METADATA__"}
           }
         }
@@ -2179,6 +2181,8 @@
         "absoluteUri": {
           "type": "string"
         },
+        "completeRelativeUri": {"type": "string"},
+        "parentUri": {"type": "string"},
         "__METADATA__": {"$ref": "#/definitions/TypeDeclarationBase10/properties/__METADATA__"}
       },
       "additionalProperties": false

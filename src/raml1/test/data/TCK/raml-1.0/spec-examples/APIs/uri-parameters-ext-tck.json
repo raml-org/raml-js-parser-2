@@ -44,7 +44,9 @@
         "relativeUriPathSegments": [
           "users{ext}"
         ],
-        "absoluteUri": "/users{ext}"
+        "absoluteUri": "/users{ext}",
+        "completeRelativeUri": "/users{ext}",
+        "parentUri": ""
       }
     ]
   },

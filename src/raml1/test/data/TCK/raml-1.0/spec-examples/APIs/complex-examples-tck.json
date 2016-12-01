@@ -272,7 +272,9 @@
         "relativeUriPathSegments": [
           "organization"
         ],
-        "absoluteUri": "/organization"
+        "absoluteUri": "/organization",
+        "completeRelativeUri": "/organization",
+        "parentUri": ""
       }
     ]
   },

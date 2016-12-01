@@ -387,7 +387,9 @@
             "relativeUriPathSegments": [
               "helloWorldddd1234ddd2"
             ],
-            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2"
+            "absoluteUri": "https://api.instagram.com/{version}/test/helloWorldddd1234ddd2",
+            "completeRelativeUri": "/test/helloWorldddd1234ddd2",
+            "parentUri": "/test"
           }
         ],
         "__METADATA__": {
@@ -400,7 +402,9 @@
         "relativeUriPathSegments": [
           "test"
         ],
-        "absoluteUri": "https://api.instagram.com/{version}/test"
+        "absoluteUri": "https://api.instagram.com/{version}/test",
+        "completeRelativeUri": "/test",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

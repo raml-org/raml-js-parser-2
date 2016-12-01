@@ -38,7 +38,9 @@
         "relativeUriPathSegments": [
           "elements"
         ],
-        "absoluteUri": "/elements"
+        "absoluteUri": "/elements",
+        "completeRelativeUri": "/elements",
+        "parentUri": ""
       }
     ],
     "extends": "master.raml"

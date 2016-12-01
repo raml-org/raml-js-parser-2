@@ -38,7 +38,9 @@
         "relativeUriPathSegments": [
           "methods"
         ],
-        "absoluteUri": "/methods"
+        "absoluteUri": "/methods",
+        "completeRelativeUri": "/methods",
+        "parentUri": ""
       }
     ]
   },

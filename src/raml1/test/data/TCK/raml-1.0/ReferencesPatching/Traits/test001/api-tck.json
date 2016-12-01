@@ -102,7 +102,9 @@
         "relativeUriPathSegments": [
           "resource"
         ],
-        "absoluteUri": "https://example.com/raml/resource"
+        "absoluteUri": "https://example.com/raml/resource",
+        "completeRelativeUri": "/resource",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {

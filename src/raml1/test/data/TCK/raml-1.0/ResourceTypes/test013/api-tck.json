@@ -197,7 +197,9 @@
         "relativeUriPathSegments": [
           "example"
         ],
-        "absoluteUri": "/example"
+        "absoluteUri": "/example",
+        "completeRelativeUri": "/example",
+        "parentUri": ""
       }
     ]
   },

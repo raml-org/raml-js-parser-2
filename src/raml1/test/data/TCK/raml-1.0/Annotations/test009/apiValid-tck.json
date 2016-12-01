@@ -86,7 +86,9 @@
         "relativeUriPathSegments": [
           "assets"
         ],
-        "absoluteUri": "/assets"
+        "absoluteUri": "/assets",
+        "completeRelativeUri": "/assets",
+        "parentUri": ""
       }
     ]
   },

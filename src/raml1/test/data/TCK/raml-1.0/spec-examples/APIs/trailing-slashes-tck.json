@@ -30,7 +30,9 @@
                   "",
                   ""
                 ],
-                "absoluteUri": "//api.test.com//common//users/groups/"
+                "absoluteUri": "//api.test.com//common//users/groups/",
+                "completeRelativeUri": "//users//groups//",
+                "parentUri": "//users/"
               }
             ],
             "__METADATA__": {
@@ -44,7 +46,9 @@
               "users",
               ""
             ],
-            "absoluteUri": "//api.test.com//common//users/"
+            "absoluteUri": "//api.test.com//common//users/",
+            "completeRelativeUri": "//users/",
+            "parentUri": "/"
           }
         ],
         "__METADATA__": {
@@ -55,7 +59,9 @@
           }
         },
         "relativeUriPathSegments": [],
-        "absoluteUri": "//api.test.com//common//"
+        "absoluteUri": "//api.test.com//common//",
+        "completeRelativeUri": "/",
+        "parentUri": ""
       }
     ],
     "__METADATA__": {
